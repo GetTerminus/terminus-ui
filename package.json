@@ -6,7 +6,7 @@
   "module": "./ui.es5.js",
   "es2015": "./ui.js",
   "typings": "./ui.d.ts",
-  "author": "",
+  "author": "@terminus",
   "license": "MIT",
   "repository": {},
   "engines": {
@@ -35,7 +35,7 @@
     "integration:jit": "cd integration && yarn run e2e",
     "integration:aot": "cd integration && yarn run e2e:aot",
     "lint:ts": "tslint ./src/**/*.ts -t verbose",
-    "lint:scss": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
+    "lint:scss": "sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commitmsg": "validate-commit-msg",
@@ -44,6 +44,19 @@
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
     "docs": "yarn run docs:ts && yarn run docs:scss"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./ci-scripts/cz-config.js"
+    }
+  },
+  "release": {
+    "getLastRelease": "last-release-git",
+    "verifyConditions": "condition-circle",
+    "branch": "master"
   },
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",

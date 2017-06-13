@@ -6,18 +6,21 @@ import {
   MdIconModule,
 } from '@angular/material';
 
-import { LibComponent } from './components/lib.component';
-import { LibService } from './service/lib.service';
-
-import { ButtonComponent } from './components/button/button.component';
-
 const MATERIAL_MODULES = [
   MdButtonModule,
   MdIconModule,
 ];
 
+// Components (atoms)
+import { ButtonComponent } from './components/button/button.component';
+
+// Components (compound)
+/*
+ *import { SearchModule } from './components/search/search.component';
+ */
+
+
 const TERMINUS_COMPONENTS = [
-  LibComponent,
   ButtonComponent,
   /*
    *InputComponent,
@@ -38,7 +41,6 @@ const TERMINUS_COMPONENTS = [
     ...TERMINUS_COMPONENTS,
   ],
   providers: [
-    LibService,
   ],
   exports: [
     ...TERMINUS_COMPONENTS,

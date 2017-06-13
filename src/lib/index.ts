@@ -1,5 +1,7 @@
+// Export Components (atoms)
 export { ButtonComponent } from './src/components/button/button.component';
 
-export { LibComponent } from './src/components/lib.component';
-export { LibService } from './src/service/lib.service';
+// Export Components (compound)
+
+// Export the Module
 export { TerminusUIModule } from './src/module';

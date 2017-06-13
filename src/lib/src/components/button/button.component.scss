@@ -16,7 +16,6 @@
     &.ladda-button {
       &[data-loading] {
         /deep/ .ladda-label {
-          color: #bada55;
           opacity: .7;
         }
       }

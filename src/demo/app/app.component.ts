@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { LibService } from '@terminus/ui';
 
 @Component({
   selector: 'demo-app',
   template: `
-    <my-lib></my-lib>
     <h3>Meaning is: {{meaning}}</h3>
     <div>
       <t-button [showProgress]="loading" (click)="run()">My Button!!!</t-button>
@@ -12,12 +10,12 @@ import { LibService } from '@terminus/ui';
   `,
 })
 export class AppComponent {
-  meaning: number;
+  meaning: number = 42;
   loading = false;
 
-  constructor(libService: LibService) {
-    this.meaning = libService.getMeaning();
+  constructor() {
   }
+
 
   run() {
     this.loading = true;
