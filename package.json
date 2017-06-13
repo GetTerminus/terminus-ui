@@ -34,11 +34,16 @@
     "integration": "yarn run integration:aot && yarn run integration:jit",
     "integration:jit": "cd integration && yarn run e2e",
     "integration:aot": "cd integration && yarn run e2e:aot",
-    "lint": "tslint ./src/**/*.ts -t verbose",
+    "lint:ts": "tslint ./src/**/*.ts -t verbose",
+    "lint:scss": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
+    "lint": "yarn run lint:ts && yarn run lint:scss",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commitmsg": "validate-commit-msg",
+    "notes": "notes -x node_modules/ -x .DS_Store -x dist/ -x coverage/ -x src/assets/",
     "cleanup:styleguide": "rm -rf styleguide",
-    "docs:scripts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
-    "docs:styles": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
-    "docs": "yarn run docs:scripts && yarn run docs:styles"
+    "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
+    "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
+    "docs": "yarn run docs:ts && yarn run docs:scss"
   },
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
