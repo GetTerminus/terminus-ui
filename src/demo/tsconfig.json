@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@terminus/ui": ["../lib"],
+      "@angular/*": ["../../../node_modules/@angular/*"],
+      "angular2-ladda": ["../../node_modules/angular2-ladda"]
+    }
+  },
+  "exclude": [
+    "main-aot.ts"
+  ]
+}

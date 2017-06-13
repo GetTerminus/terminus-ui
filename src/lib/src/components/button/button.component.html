@@ -1,0 +1,19 @@
+<button
+  md-raised-button
+  [color]="buttonStyle"
+  [attr.aria-label]="actionName"
+  [attr.type]="buttonType"
+  class="c-button c-button"
+  [disabled]="isDisabled"
+  [ladda]="showProgress"
+>
+  <md-icon
+    *ngIf="iconName"
+    class="c-button__icon"
+  >
+    {{ iconName }}
+  </md-icon>
+
+  <ng-content></ng-content>
+</button>
+

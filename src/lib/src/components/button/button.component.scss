@@ -1,0 +1,40 @@
+:host {
+  display: inline-block;
+}
+
+
+//
+// @component
+//  Button
+// @description
+//  A button component
+//
+.c-button {
+  // Top level styles should be nested here
+  /deep/ &#{&} {
+
+    &.ladda-button {
+      &[data-loading] {
+        /deep/ .ladda-label {
+          color: #bada55;
+          opacity: .7;
+        }
+      }
+    }
+  }
+
+  md-icon {
+    vertical-align: bottom;
+  }
+
+  [disabled] {
+    /deep/ .ladda-label {
+      opacity: .7;
+    }
+  }
+
+  .c-button__icon {
+    //
+  }
+
+}

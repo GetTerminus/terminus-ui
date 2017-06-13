@@ -1,0 +1,31 @@
+/**
+ * Asset URL builder
+ *
+ * @mixin asset
+ * @section Functions
+ * @param $type
+ *  Asset type, matching folder name (icons|backgrounds|etc)
+ * @param $file
+ *  Asset file name, including extension
+ * @example
+ *  @include asset('images', 'hero.jpg');
+ *  @include asset('icons', 'save.svg');
+ */
+@function asset($type, $file) {
+  @return url($asset-base-path + '/' + $type + '/' + $file);
+}
+
+/**
+ * Image asset URL builder
+ *
+ * @mixin image
+ * @section Functions
+ * @param $file
+ *  Asset file name, including extension
+ * @example
+ *  @include image('hero.jpg');
+ *  @include image('logo.png');
+ */
+@function image($file) {
+  @return asset('images', $file);
+}
