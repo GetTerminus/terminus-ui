@@ -3,9 +3,11 @@ engines:
   tslint:
     enabled: true
     channel: beta
+  scss-lint:
+    enabled: true
 ratings:
   paths:
-  - "src/lib/**/*.ts"
+  - "src/lib/**"
 exclude_paths:
   - coverage/
   - docs/
