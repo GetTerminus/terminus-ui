@@ -1,0 +1,16 @@
+---
+engines:
+  tslint:
+    enabled: false
+    channel: beta
+ratings:
+  paths:
+  - "src/lib/**/*.ts"
+exclude_paths:
+- coverage/
+- docs/
+- integration/
+- node_modules/
+- src/demo/
+- styleguide/
+- tooling/
