@@ -15,3 +15,5 @@ exclude_paths:
   - styleguide/
   - tooling/
   - out-tsc/
+  - README.md
+  - LICENSE

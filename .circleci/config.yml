@@ -10,6 +10,7 @@ jobs:
 
     environment:
       TEST_REPORTS: /coverage
+      CODECLIMATE_REPO_TOKEN: 5b373a3575bd84a9e7aea2326c27aac0e2870be914dcfe960eacc786c3901f8d
 
     steps:
       - add_ssh_keys
@@ -48,11 +49,11 @@ jobs:
 
       - store_artifacts:
           path: coverage/
-          destination: ~/ci-build/coverage/
+          destination: ~/coverage/
 
       - store_artifacts:
           path: dist/
-          destination: ~/ci-build/dist/
+          destination: ~/dist/
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
