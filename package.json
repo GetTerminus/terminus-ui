@@ -36,9 +36,9 @@
     "integration:aot": "cd integration && yarn run e2e:aot",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "cleanup:styleguide": "rm -rf styleguide",
-    "docs:scripts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.json --hideGenerator --toggleMenuItems all -d docs",
+    "docs:scripts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
     "docs:styles": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
-    "docs": "yarn run docs:scripts & yarn run docs:styles"
+    "docs": "yarn run docs:scripts && yarn run docs:styles"
   },
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",

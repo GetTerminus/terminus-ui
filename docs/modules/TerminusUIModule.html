@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@terminus/ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@terminus/ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../index.html">@terminus/ui documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse "
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/TerminusUIModule.html"  data-type="entity-link" class="active" >TerminusUIModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/ButtonComponent.html" >ButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LibComponent.html" >LibComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/ElementBase.html" >ElementBase</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/LibService.html" >LibService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../index.html">@terminus/ui documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse "
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/TerminusUIModule.html"  data-type="entity-link" class="active" >TerminusUIModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/ButtonComponent.html" >ButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LibComponent.html" >LibComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/ElementBase.html" >ElementBase</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/LibService.html" >LibService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content module">
+                   <div class="content-data">
+
+<ol class="breadcrumb">
+  <li>Modules</li>
+  <li>TerminusUIModule</li>
+</ol>
+
+<div class="text-center">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="906pt" height="284pt"
+ viewBox="0.00 0.00 906.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-280 902,-280 902,4 -4,4"/>
+<text text-anchor="start" x="428.0091" y="-42.4" font-family="sans-serif" font-weight="bold" font-size="14.00" fill="#000000">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="215,-10 215,-30 235,-30 235,-10 215,-10"/>
+<text text-anchor="start" x="238.629" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="328,-10 328,-30 348,-30 348,-10 328,-10"/>
+<text text-anchor="start" x="351.7251" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="414,-10 414,-30 434,-30 434,-10 414,-10"/>
+<text text-anchor="start" x="437.7812" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="511,-10 511,-30 531,-30 531,-10 511,-10"/>
+<text text-anchor="start" x="534.6732" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="607,-10 607,-30 627,-30 627,-10 607,-10"/>
+<text text-anchor="start" x="630.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_TerminusUIModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="8,-70 8,-268 890,-268 890,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TerminusUIModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="666,-78 666,-130 882,-130 882,-78 666,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_TerminusUIModule_imports</title>
+<polygon fill="none" stroke="#000000" points="146,-78 146,-130 658,-130 658,-78 146,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_TerminusUIModule_exports</title>
+<polygon fill="none" stroke="#000000" points="323,-208 323,-260 543,-260 543,-208 323,-208"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_TerminusUIModule_providers</title>
+<polygon fill="none" stroke="#000000" points="16,-78 16,-130 138,-130 138,-78 16,-78"/>
+</g>
+<!-- ...TERMINUS_COMPONENTS -->
+<g id="node1" class="node">
+<title>...TERMINUS_COMPONENTS</title>
+<polygon fill="#ffffb3" stroke="#000000" points="873.9208,-122 674.0792,-122 674.0792,-86 873.9208,-86 873.9208,-122"/>
+<text text-anchor="middle" x="774" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">...TERMINUS_COMPONENTS</text>
+</g>
+<!-- TerminusUIModule -->
+<g id="node2" class="node">
+<title>TerminusUIModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="496.9706,-187 493.9706,-191 472.9706,-191 469.9706,-187 369.0294,-187 369.0294,-151 496.9706,-151 496.9706,-187"/>
+<text text-anchor="middle" x="433" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TerminusUIModule</text>
+</g>
+<!-- ...TERMINUS_COMPONENTS&#45;&gt;TerminusUIModule -->
+<g id="edge1" class="edge">
+<title>...TERMINUS_COMPONENTS&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M774,-122.2843C774,-143.3211 774,-175 774,-175 774,-175 507.1395,-175 507.1395,-175"/>
+<polygon fill="#000000" stroke="#000000" points="507.1395,-171.5001 497.1395,-175 507.1395,-178.5001 507.1395,-171.5001"/>
+</g>
+<!-- ...TERMINUS_COMPONENTS  -->
+<g id="node6" class="node">
+<title>...TERMINUS_COMPONENTS </title>
+<polygon fill="#fb8072" stroke="#000000" points="534.9212,-252 331.0788,-252 331.0788,-216 534.9212,-216 534.9212,-252"/>
+<text text-anchor="middle" x="433" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">...TERMINUS_COMPONENTS </text>
+</g>
+<!-- TerminusUIModule&#45;&gt;...TERMINUS_COMPONENTS  -->
+<g id="edge5" class="edge">
+<title>TerminusUIModule&#45;&gt;...TERMINUS_COMPONENTS </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M433,-187.1061C433,-187.1061 433,-205.991 433,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="429.5001,-205.9909 433,-215.991 436.5001,-205.991 429.5001,-205.9909"/>
+</g>
+<!-- CommonModule -->
+<g id="node3" class="node">
+<title>CommonModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="649.6681,-122 646.6681,-126 625.6681,-126 622.6681,-122 538.3319,-122 538.3319,-86 649.6681,-86 649.6681,-122"/>
+<text text-anchor="middle" x="594" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">CommonModule</text>
+</g>
+<!-- CommonModule&#45;&gt;TerminusUIModule -->
+<g id="edge2" class="edge">
+<title>CommonModule&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M594,-122.0225C594,-139.3734 594,-163 594,-163 594,-163 507.0941,-163 507.0941,-163"/>
+<polygon fill="#000000" stroke="#000000" points="507.0941,-159.5001 497.0941,-163 507.094,-166.5001 507.0941,-159.5001"/>
+</g>
+<!-- ...MATERIAL_MODULES -->
+<g id="node4" class="node">
+<title>...MATERIAL_MODULES</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="519.9656,-122 516.9656,-126 495.9656,-126 492.9656,-122 346.0344,-122 346.0344,-86 519.9656,-86 519.9656,-122"/>
+<text text-anchor="middle" x="433" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">...MATERIAL_MODULES</text>
+</g>
+<!-- ...MATERIAL_MODULES&#45;&gt;TerminusUIModule -->
+<g id="edge3" class="edge">
+<title>...MATERIAL_MODULES&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M433,-122.1061C433,-122.1061 433,-140.991 433,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="429.5001,-140.9909 433,-150.991 436.5001,-140.991 429.5001,-140.9909"/>
+</g>
+<!-- LaddaModule.forRoot(args) -->
+<g id="node5" class="node">
+<title>LaddaModule.forRoot(args)</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="328.2211,-122 325.2211,-126 304.2211,-126 301.2211,-122 153.7789,-122 153.7789,-86 328.2211,-86 328.2211,-122"/>
+<text text-anchor="middle" x="241" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LaddaModule.forRoot(args)</text>
+</g>
+<!-- LaddaModule.forRoot(args)&#45;&gt;TerminusUIModule -->
+<g id="edge4" class="edge">
+<title>LaddaModule.forRoot(args)&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M241,-122.0225C241,-139.3734 241,-163 241,-163 241,-163 358.7998,-163 358.7998,-163"/>
+<polygon fill="#000000" stroke="#000000" points="358.7999,-166.5001 368.7998,-163 358.7998,-159.5001 358.7999,-166.5001"/>
+</g>
+<!-- LibService -->
+<g id="node7" class="node">
+<title>LibService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="77" cy="-104" rx="53.3071" ry="18"/>
+<text text-anchor="middle" x="77" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LibService</text>
+</g>
+<!-- LibService&#45;&gt;TerminusUIModule -->
+<g id="edge6" class="edge">
+<title>LibService&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M77,-122.2843C77,-143.3211 77,-175 77,-175 77,-175 358.9432,-175 358.9432,-175"/>
+<polygon fill="#000000" stroke="#000000" points="358.9432,-178.5001 368.9432,-175 358.9431,-171.5001 358.9432,-178.5001"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <div class="btn-group">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+    </li>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="infos">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/src/module.ts</code>
+        </p>
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#providers-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../injectables/LibService.html" >LibService</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { LaddaModule } from &#x27;angular2-ladda&#x27;;
+import {
+  MdButtonModule,
+  MdIconModule,
+} from &#x27;@angular/material&#x27;;
+
+import { LibComponent } from &#x27;./components/lib.component&#x27;;
+import { LibService } from &#x27;./service/lib.service&#x27;;
+
+import { ButtonComponent } from &#x27;./components/button/button.component&#x27;;
+
+const MATERIAL_MODULES &#x3D; [
+  MdButtonModule,
+  MdIconModule,
+];
+
+const TERMINUS_COMPONENTS &#x3D; [
+  LibComponent,
+  ButtonComponent,
+  /*
+   *InputComponent,
+   *InputMessagesComponent,
+   *SearchComponent,
+   */
+];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ...MATERIAL_MODULES,
+    LaddaModule.forRoot({
+      style: &#x27;expand-right&#x27;,
+    }),
+  ],
+  declarations: [
+    ...TERMINUS_COMPONENTS,
+  ],
+  providers: [
+    LibService,
+  ],
+  exports: [
+    ...TERMINUS_COMPONENTS,
+  ],
+})
+export class TerminusUIModule { }
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 1;</script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+    </body>
+</html>
