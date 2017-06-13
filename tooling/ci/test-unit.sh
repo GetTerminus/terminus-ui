@@ -10,12 +10,10 @@
 . ~/.bashrc
 
 # Run tests
-#yarn run test:ci || {
-    #echo 'yarn run test:ci failed!';
-    #exit 1;
-#}
-
-echo 'Testing currently disabled';
+yarn run test:ci || {
+    echo 'yarn run test:ci failed!';
+    exit 1;
+}
 
 # Upload coverage report
 # TODO: Hook up coverage service
