@@ -19,7 +19,7 @@ class TestHostComponent {}
 
 describe(`ButtonComponent`, () => {
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MdButtonModule,
@@ -32,17 +32,14 @@ describe(`ButtonComponent`, () => {
         ButtonComponent,
         TestHostComponent,
       ],
-    }).overrideComponent(ButtonComponent, {
-        set: {
-          template: '',
-        },
+    })
+      .compileComponents().then(() => {
+        this.fixture = TestBed.createComponent(ButtonComponent);
+        this.component = this.fixture.componentInstance;
+
+        this.fixture.detectChanges();
       });
-
-    this.fixture = TestBed.createComponent(ButtonComponent);
-    this.component = this.fixture.componentInstance;
-
-    this.fixture.detectChanges();
-  });
+  }));
 
 
   it(`should exist`, () => {

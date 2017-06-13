@@ -43,9 +43,7 @@
           }
         }
       },
-      rxjs: {
-        defaultExtension: 'js'
-      },
+      rxjs: { defaultExtension: 'js' },
       '@terminus/ui': {
         main: 'index.js',
         defaultExtension: 'js',
@@ -63,6 +61,6 @@
         main: 'ladda.js',
         defaultExtension: 'js',
       },
-    }
+    },
   });
 })(this);

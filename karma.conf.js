@@ -50,8 +50,12 @@ module.exports = function (config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
-
+      { pattern: 'node_modules/angular2-ladda/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/ladda/**/*.js', included: false, watched: false },
       { pattern: 'src/demo/systemjs-angular-loader.js', included: false, watched: false },
+
+      // Material styles
+      { pattern: './node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css' },
 
       'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 

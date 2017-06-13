@@ -40,19 +40,7 @@ System.config({
   },
   // Base URL for System.js calls. 'base/' is where Karma serves files from.
   baseURL: 'base/src/lib',
-  // Extend usual application package list with test folder
-  packages: {
-    rxjs: { defaultExtension: 'js' },
-    '': { defaultExtension: 'js' },
-    src: {
-      defaultExtension: 'js',
-      meta: {
-        './*.js': {
-          loader: 'system-loader'
-        }
-      }
-    }
-  },
+
   // Map the angular umd bundles
   map: {
     'system-loader': 'demo/systemjs-angular-loader.js',
@@ -73,8 +61,40 @@ System.config({
     '@angular/http/testing': 'npm:@angular/http/bundles/http-testing.umd.js',
     '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
     '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
+    '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+
+    // Material
+    '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
+
+    // other libraries
     'rxjs': 'npm:rxjs',
+    'angular2-ladda': 'node_modules/angular2-ladda/module',
+    'ladda': 'node_modules/ladda/js',
+    'spin': 'node_modules/ladda/js/spin.js',
+
     'src': 'src',
+  },
+
+  // Extend usual application package list with test folder
+  packages: {
+    rxjs: { defaultExtension: 'js' },
+    '': { defaultExtension: 'js' },
+    'angular2-ladda': {
+      main: 'module.js',
+      defaultExtension: 'js',
+    },
+    'ladda': {
+      main: 'ladda.js',
+      defaultExtension: 'js',
+    },
+    src: {
+      defaultExtension: 'js',
+      meta: {
+        './*.js': {
+          loader: 'system-loader'
+        }
+      }
+    }
   }
 });
 

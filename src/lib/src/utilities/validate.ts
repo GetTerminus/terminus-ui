@@ -83,7 +83,7 @@ export const validate =
     if (asyncValidators) {
       const asyncValidator = composeValidators(asyncValidators);
 
-      return asyncValidator(control).map(v => {
+      return asyncValidator(control).map((v: any) => {
         const secondary = synchronousValid();
 
         if (secondary || v) { // compose async and sync validator results
