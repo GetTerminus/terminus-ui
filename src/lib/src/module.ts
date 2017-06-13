@@ -13,6 +13,8 @@ const MATERIAL_MODULES = [
 
 // Components (atoms)
 import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
+import { InputMessagesComponent } from './components/input-messages/input-messages.component';
 
 // Components (compound)
 /*
@@ -22,9 +24,9 @@ import { ButtonComponent } from './components/button/button.component';
 
 const TERMINUS_COMPONENTS = [
   ButtonComponent,
+  InputComponent,
+  InputMessagesComponent,
   /*
-   *InputComponent,
-   *InputMessagesComponent,
    *SearchComponent,
    */
 ];
