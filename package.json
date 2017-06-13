@@ -1,6 +1,6 @@
 {
   "name": "@terminus/ui",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "Terminus UI Library",
   "main": "./bundles/ui.umd.js",
   "module": "./ui.es5.js",
@@ -43,14 +43,15 @@
     "cleanup:styleguide": "rm -rf styleguide",
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
-    "docs": "yarn run docs:ts && yarn run docs:scss"
+    "docs": "yarn run docs:ts && yarn run docs:scss",
+    "cm": "./node_modules/.bin/git-cz"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     },
     "cz-customizable": {
-      "config": "./ci-scripts/cz-config.js"
+      "config": "./tooling/cz-config.js"
     }
   },
   "release": {
@@ -80,10 +81,14 @@
     "angular2-ladda": "^1.2.1",
     "camelcase": "^4.0.0",
     "codelyzer": "^3.0.1",
+    "commitizen": "^2.9.6",
     "concurrently": "3.2.0",
+    "condition-circle": "^1.5.0",
     "core-js": "^2.4.1",
+    "cz-customizable": "^5.0.0",
     "execa": "^0.7.0",
     "glob": "^7.1.1",
+    "husky": "^0.13.4",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -97,6 +102,7 @@
     "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^3.0.3",
+    "last-release-git": "^0.0.3",
     "lite-server": "^2.2.2",
     "node-sass": "^4.5.2",
     "nucleus-styleguide": "^1.1.1",
@@ -105,9 +111,11 @@
     "rollup-plugin-sourcemaps": "^0.4.1",
     "rollup-plugin-uglify": "^1.0.1",
     "rxjs": "^5.0.1",
+    "semantic-release": "^6.3.6",
     "systemjs": "^0.19.40",
     "tslint": "^4.4.2",
     "typescript": "^2.2.1",
+    "validate-commit-msg": "^2.12.2",
     "zone.js": "^0.8.4"
   }
 }
