@@ -1,7 +1,7 @@
 ---
 engines:
   tslint:
-    enabled: false
+    enabled: true
     channel: beta
 ratings:
   paths:
