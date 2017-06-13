@@ -1,0 +1,63 @@
+version: 2
+
+jobs:
+  build:
+
+    docker:
+      - image: benjamincharity/terminus-ui:0.1
+
+    working_directory: ~/ci-build
+
+    environment:
+      TEST_REPORTS: /coverage
+
+    steps:
+      - add_ssh_keys
+
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: tooling/ci/install-dependencies.sh
+
+      - run:
+          name: Lint Styles
+          command: tooling/ci/lint-scss.sh
+
+      - run:
+          name: Lint TypeScript
+          command: tooling/ci/lint-typescript.sh
+
+      - run:
+          name: Run Tests
+          command: tooling/ci/test-unit.sh
+
+      - run:
+          name: Build Project
+          command: yarn run build
+
+      - run:
+          name: Semantic Release
+          # Note: Currently `yarn publish` hangs (known issue) 4.4.17
+          command: yarn run semantic-release || echo "No release needed."
+
+      - save_cache:
+          key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.yarn-cache"
+
+      - store_artifacts:
+          path: coverage/
+          destination: ~/ci-build/coverage/
+
+      - store_artifacts:
+          path: dist/
+          destination: ~/ci-build/dist/
+
+# HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
+# https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
+deployment:
+  fake_deploy_for_cci2:
+    tag: /.*/
+    commands:
+      - echo "make tags run in 2.0"
