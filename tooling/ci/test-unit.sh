@@ -15,6 +15,9 @@ yarn run test:ci || {
     exit 1;
 }
 
-# Upload coverage report
-# TODO: Hook up coverage service
-#bash <(curl -s https://codecov.io/bash)
+# Remap coverage to source files
+node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json || {
+    echo 'Remapping coverage failed!' ;
+    exit 1;
+}
+
