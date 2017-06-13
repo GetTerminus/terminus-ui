@@ -44,4 +44,4 @@ const TERMINUS_COMPONENTS = [
     ...TERMINUS_COMPONENTS,
   ],
 })
-export class LibModule { }
+export class TerminusUIModule { }
