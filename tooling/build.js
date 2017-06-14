@@ -10,7 +10,7 @@ const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
 const execa = require('execa');
 
-const inlineResources = require('./inline-resources');
+const inlineResources = require('./tooling/inline-resources');
 
 const libNameWithScope = require('./package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
