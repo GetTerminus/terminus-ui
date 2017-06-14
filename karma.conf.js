@@ -1,6 +1,6 @@
 module.exports = function (config) {
 
-  var libBase = 'src/lib/';       // transpiled app JS and map files
+  var libBase = 'src/lib/'; // transpiled app JS and map files
 
   config.set({
     basePath: '',
@@ -59,7 +59,7 @@ module.exports = function (config) {
       // Material styles
       { pattern: './node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css' },
 
-      'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
+      'tooling/karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
       // transpiled application & spec code paths loaded via module imports
       { pattern: libBase + '**/*.js', included: false, watched: true },

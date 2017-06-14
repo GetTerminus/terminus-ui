@@ -12,8 +12,8 @@
 # 'aws not found' error
 echo 'export PATH=/usr/local/bin:~/.yarn/bin:~/.local/bin:$PATH' >>~/.bashrc
 
-# NOTE: Currently `yarn install` does not correctly install all items under `node_modules/.bin/foo`.
-# NPM does seem to correctly do this. Once yarn is correctly installing all `.bin` items, this
-# should be switched back to `yarn install`
+# NOTE: Currently `yarn install` does not correctly install all executables under
+# `node_modules/.bin/`. NPM does seem to correctly do this. Once yarn is correctly installing all
+# `.bin` items, this should be switched back to `yarn install`
 npm install
 
