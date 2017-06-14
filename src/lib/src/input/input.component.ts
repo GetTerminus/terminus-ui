@@ -14,13 +14,13 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-import { ElementBase } from './../../utilities/element-base';
+import { ElementBase } from './../utilities/element-base';
 
 /**
  * A presentational component to render a text input. Extends {@link ElementBase}.
  *
  * @example
- * <t-input
+ * <ts-input
  *   [(ngModel)]="myModel"
  *   hint="Fill this out!"
  *   required
@@ -33,21 +33,21 @@ import { ElementBase } from './../../utilities/element-base';
  *   isFocused="false"
  *   hideRequiredMarker="false"
  *   hint="Only letters and numbers"
- * ></t-input>
+ * ></ts-input>
  */
 @Component({
-  selector: 't-input',
+  selector: 'ts-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: InputComponent,
+      useExisting: TsInputComponent,
       multi: true,
     },
   ],
 })
-export class InputComponent extends ElementBase<string> {
+export class TsInputComponent extends ElementBase<string> {
   /**
    * Provide access to the model
    */

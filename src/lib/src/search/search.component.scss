@@ -1,0 +1,15 @@
+//
+// @component
+//  Search form
+// @description
+//  A component to display validation messages for form inputs.
+//
+.c-search {
+  // Top level styles should be nested here
+  &#{&} {
+    &--disabled {
+      pointer-events: none;
+    }
+  }
+
+}

@@ -82,6 +82,7 @@ return Promise.resolve()
         // List of dependencies
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
         '@angular/core',
+        '@angular/common',
         '@angular/animations',
         '@angular/animations/browser',
         '@angular/forms',
@@ -91,6 +92,7 @@ return Promise.resolve()
         '@angular/platform-browser/animations',
         '@angular/platform-browser-dynamic',
         '@angular/material',
+        'angular2-ladda',
       ],
       plugins: [
         sourcemaps()

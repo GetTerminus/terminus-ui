@@ -1,29 +1,29 @@
 import { Component, Input } from '@angular/core';
 
-import { ButtonActionTypes } from './../../types/button-action.types';
-import { ButtonFunctionTypes } from './../../types/button-function.types';
-import { StyleThemeTypes } from './../../types/style-theme.types';
+import { ButtonActionTypes } from './../types/button-action.types';
+import { ButtonFunctionTypes } from './../types/button-function.types';
+import { StyleThemeTypes } from './../types/style-theme.types';
 
 
 /**
  * A presentational component to render a button
  *
  * @example
- * <t-button
+ * <ts-button
  *   actionName="Submit"
  *   buttonStyle="accent"
  *   buttonType="search"
  *   iconName="search"
  *   isDisabled="false"
  *   showProgress="true"
- * ></t-button>
+ * ></ts-button>
  */
 @Component({
-  selector: 't-button',
+  selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ButtonComponent {
+export class TsButtonComponent {
   /**
    * Define the action for the aria-label
    */
@@ -53,6 +53,5 @@ export class ButtonComponent {
    * Define if the progress indicator should show
    */
   @Input() showProgress: boolean = false;
-
 
 }

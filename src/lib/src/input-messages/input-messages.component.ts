@@ -7,11 +7,11 @@ import { Component, Input } from '@angular/core';
  * <t-input-messages [messages]="myMessages"></t-input-messages>
  */
 @Component({
-  selector: 't-input-messages',
+  selector: 'ts-input-messages',
   templateUrl: './input-messages.component.html',
   styleUrls: ['./input-messages.component.scss'],
 })
-export class InputMessagesComponent {
+export class TsInputMessagesComponent {
   /**
    * Accept an array of messages
    */
