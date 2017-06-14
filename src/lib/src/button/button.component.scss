@@ -1,3 +1,5 @@
+@import './../scss/typography';
+
 :host {
   display: inline-block;
 }
@@ -12,6 +14,7 @@
 .c-button {
   // Top level styles should be nested here
   /deep/ &#{&} {
+    font-family: $type__family--base;
     padding: 0;
 
     &.ladda-button {
@@ -37,10 +40,13 @@
   // Force the ladda label to fill the entire button. (the md-ripple will be inside the ladda-label
   // and will be cut off otherwise)
   /deep/ .ladda-label {
+    $padding-horizontal: 16px;
+    $padding-horizontal-total: $padding-horizontal * 2;
+
     display: inline-block;
     height: 100%;
-    padding: 0 16px;
-    width: calc(100% -(16 * 2));
+    padding: 0 $padding-horizontal;
+    width: calc(100% - #{$padding-horizontal-total});
 
     // Fix small vertical aligment issue between icon & text
     md-icon {
