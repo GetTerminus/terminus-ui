@@ -10,11 +10,11 @@ const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
 const execa = require('execa');
 
-const inlineResources = require('./tooling/inline-resources');
+const inlineResources = require('./inline-resources');
 
-const libNameWithScope = require('./package.json').name;
+const libNameWithScope = require('./../package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
-const rootFolder = path.join(__dirname);
+const rootFolder = path.join(__dirname, '../');
 const compilationFolder = path.join(rootFolder, 'out-tsc');
 const srcFolder = path.join(rootFolder, 'src/lib');
 const distFolder = path.join(rootFolder, 'dist');
