@@ -1,0 +1,7 @@
+dir:docs
+dir:out-tsc
+dir:coverage
+dir:dist
+dir:node_modules
+dir:styleguide
+

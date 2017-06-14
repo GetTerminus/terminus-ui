@@ -1,0 +1,29 @@
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Text input
+// @description
+//  A text input component with support for icon prefix, hints and validation messages
+//
+.c-input {
+  // Top level styles should be nested here
+  &#{&} {
+    //
+  }
+
+  // Button to clear the value of the input
+  .c-input__clear {
+    cursor: pointer;
+    opacity: 0;
+    // TODO: abstract
+    transition: opacity 200ms ease;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+
+}

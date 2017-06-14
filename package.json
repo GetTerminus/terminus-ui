@@ -15,13 +15,14 @@
   },
   "scripts": {
     "clean": "rimraf out-tsc dist \"src/lib/**/*.js\" \"src/lib/**/*.map\"",
+    "clean:styleguide": "rm -rf styleguide",
     "prebuild": "npm run clean",
-    "build": "node build.js",
+    "build": "node tooling/build.js",
     "build-demo": "tsc -p src/demo/",
     "build-demo:watch": "tsc -p src/demo/ -w",
     "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
     "build-scss:watch": "node-sass src/lib -o src/lib --output-style expanded -w",
-    "serve": "lite-server -c=bs-config.json",
+    "serve": "lite-server -c=tooling/bs-config.json",
     "prestart": "yarn run build-demo && yarn run build-scss",
     "start": "concurrently \"yarn run build-scss:watch\" \"yarn run build-demo:watch\" \"yarn run serve\"",
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
@@ -40,7 +41,6 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commitmsg": "validate-commit-msg",
     "notes": "notes -x node_modules/ -x .DS_Store -x dist/ -x coverage/ -x src/assets/",
-    "cleanup:styleguide": "rm -rf styleguide",
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
     "docs": "yarn run docs:ts && yarn run docs:scss",
@@ -62,7 +62,7 @@
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/material": "2.0.0-beta.6",
-    "angular2-ladda": "^1.2.1"
+    "angular2-ladda": "1.2.1"
   },
   "devDependencies": {
     "@angular/animations": "^4.2.2",

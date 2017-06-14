@@ -86,7 +86,7 @@
                                     <a href="../components/InputComponent.html" >InputComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/InputMessagesComponent.html" >InputMessagesComponent</a>
+                                    <a href="../components/InputMessagesComponent.html"  data-type="entity-link" class="active" >InputMessagesComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -124,7 +124,7 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
-                                    <a href="../injectables/LibService.html"  data-type="entity-link" class="active" >LibService</a>
+                                    <a href="../injectables/LibService.html" >LibService</a>
                                 </li>
                         </ul>
                     </li>
@@ -217,7 +217,7 @@
                                            <a href="../components/InputComponent.html" >InputComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/InputMessagesComponent.html" >InputMessagesComponent</a>
+                                           <a href="../components/InputMessagesComponent.html"  data-type="entity-link" class="active" >InputMessagesComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -255,7 +255,7 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
-                                           <a href="../injectables/LibService.html"  data-type="entity-link" class="active" >LibService</a>
+                                           <a href="../injectables/LibService.html" >LibService</a>
                                        </li>
                                </ul>
                            </li>
@@ -276,105 +276,192 @@
                    
                    </nav>
                </div>
-               <div class="content injectable">
+               <div class="content component">
                    <div class="content-data">
 
 
-
-
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li>LibService</li>
+  <li>Components</li>
+  <li>InputMessagesComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
     </li>
+
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/lib/src/service/lib.service.ts</code>
-        </p>
+    <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/src/components/input-messages/input-messages.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A presentational component to render input validation messages</p><br/>
+    </p>
 
 
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor()</code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/lib/src/service/lib.service.ts:4</a></div>
-                                    </td>
-                                </tr>
-            
-                        </tbody>
-                    </table>
-            </section>
 
-            <section>
-                
-                    <h3 id="methods">
-                        Methods
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b> getMeaning</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-            <code>getMeaning()</code>
-                                </td>
-                            </tr>
-            
-            
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/lib/src/service/lib.service.ts:6</a></div>
-                                    </td>
-                                </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-            
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code>void</code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;t-input-messages [messages]=&quot;myMessages&quot;&gt;&lt;/t-input-messages&gt;</code></pre>
+                </div>
     </div>
-    <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-@Injectable()
-export class LibService {
-  constructor() { }
-  getMeaning() { return 42; }
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>t-input-messages</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>input-messages.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./input-messages.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>messages</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Accept an array of messages</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>string[]</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/lib/src/components/input-messages/input-messages.component.ts:18</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+
+/**
+ * A presentational component to render input validation messages
+ *
+ * @example
+ * &lt;t-input-messages [messages]&#x3D;&quot;myMessages&quot;&gt;&lt;/t-input-messages&gt;
+ */
+@Component({
+  selector: &#x27;t-input-messages&#x27;,
+  templateUrl: &#x27;./input-messages.component.html&#x27;,
+  styleUrls: [&#x27;./input-messages.component.scss&#x27;],
+})
+export class InputMessagesComponent {
+  /**
+   * Accept an array of messages
+   */
+  @Input() messages: Array&lt;string&gt;;
 }
+
 </code></pre>
     </div>
+
+    <div class="tab-pane fade" id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;md-error
+  *ngFor&#x3D;&quot;let message of messages&quot;
+  class&#x3D;&quot;c-input-message  c-input-message&quot;
+&gt;
+  {{ message }}
+&lt;/md-error&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><md-error  *ngFor="let message of messages"  class="c-input-message  c-input-message">  {{ message }}</md-error></div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 't-button'},{'name': 'InputComponent', 'selector': 't-input'},{'name': 'InputMessagesComponent', 'selector': 't-input-messages'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InputMessagesComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
 
 
 

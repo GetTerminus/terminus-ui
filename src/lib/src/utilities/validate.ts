@@ -15,8 +15,10 @@ import { Observable } from 'rxjs/Observable';
 /**
  * Validation result interface
  */
+/* tslint:disable:camelcase */
+/* tslint-enable: camelcase */
 export interface IValidationResult {
-  [validator: string]: string | boolean,
+  [validator: string]: string | boolean;
 };
 
 

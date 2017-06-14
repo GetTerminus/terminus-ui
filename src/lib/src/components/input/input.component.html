@@ -1,0 +1,38 @@
+<md-input-container
+  class="c-input"
+  hideRequiredMarker="{{ hideRequiredMarker }}"
+>
+
+  <md-icon
+    mdPrefix
+    *ngIf="prefixIcon"
+  >{{ prefixIcon }}</md-icon>
+
+  <input
+    mdInput
+    placeholder="{{ label }}"
+    disabled="{{ isDisabled }}"
+    [(ngModel)]="value"
+    autofocus="{{ isFocused }}"
+    type="text"
+    class="c-input__text"
+    (blur)="enableValidation()"
+  >
+
+  <md-icon
+    mdSuffix
+    *ngIf="canClear"
+    class="c-input__clear"
+    [ngClass]="{'c-input__clear--visible': value?.length > 0}"
+    (click)="clearInput()"
+  >clear</md-icon>
+
+  <md-hint *ngIf="hint">
+    {{ hint }}
+  </md-hint>
+
+  <t-input-messages
+    [messages]="failures | async"
+    *ngIf="validationEnabled"
+  ></t-input-messages>
+</md-input-container>

@@ -80,10 +80,10 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/ButtonComponent.html"  data-type="entity-link" class="active" >ButtonComponent</a>
+                                    <a href="../components/ButtonComponent.html" >ButtonComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/InputComponent.html" >InputComponent</a>
+                                    <a href="../components/InputComponent.html"  data-type="entity-link" class="active" >InputComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/InputMessagesComponent.html" >InputMessagesComponent</a>
@@ -211,10 +211,10 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/ButtonComponent.html"  data-type="entity-link" class="active" >ButtonComponent</a>
+                                           <a href="../components/ButtonComponent.html" >ButtonComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/InputComponent.html" >InputComponent</a>
+                                           <a href="../components/InputComponent.html"  data-type="entity-link" class="active" >InputComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/InputMessagesComponent.html" >InputMessagesComponent</a>
@@ -282,7 +282,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>ButtonComponent</li>
+  <li>InputComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -307,16 +307,22 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/src/components/button/button.component.ts</code>
+    <code>src/lib/src/components/input/input.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a button</p><br/>
+        <p>A presentational component to render a text input. Extends <a href="../classes/ElementBase.html">ElementBase</a>.</p><br/>
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../classes/ElementBase.html" target="_self" >ElementBase</a></code>
+    </p>
 
 
     <p class="comment">
@@ -324,14 +330,20 @@
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;t-button
-actionName=&quot;Submit&quot;
-buttonStyle=&quot;accent&quot;
-buttonType=&quot;search&quot;
-iconName=&quot;search&quot;
+                    <pre class="line-numbers"><code class="language-html">&lt;t-input
+[(ngModel)]=&quot;myModel&quot;
+hint=&quot;Fill this out!&quot;
+required
+minlength=&quot;3&quot;
+label=&quot;My Input&quot;
 isDisabled=&quot;false&quot;
-showProgress=&quot;true&quot;
-&gt;&lt;/t-button&gt;</code></pre>
+prefixIcon=&quot;link&quot;
+canClear=&quot;true&quot;
+initialValue=&quot;initial value&quot;
+isFocused=&quot;false&quot;
+hideRequiredMarker=&quot;false&quot;
+hint=&quot;Only letters and numbers&quot;
+&gt;&lt;/t-input&gt;</code></pre>
                 </div>
     </div>
 
@@ -349,23 +361,31 @@ showProgress=&quot;true&quot;
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                    <code>
+                        { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi:  }
+                    </code>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>t-button</code></td>
+                <td class="col-md-9"><code>t-input</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>button.component.scss</code></td>
+                <td class="col-md-9"><code>input.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./button.component.html</code></td>
+                <td class="col-md-9"><code>./input.component.html</code></td>
             </tr>
 
 
@@ -379,22 +399,22 @@ showProgress=&quot;true&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>actionName</code>
+                            <code>canClear</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the action for the aria-label</p><br/></div>
+                            <div><p>Define a Material icon to include after the input</p><br/></div>
                               <p>
-                                <em>Type:</em>    <code>ButtonActionTypes</code>
+                                <em>Type:</em>    <code>boolean</code>
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>Button</code>
+                              <em>Default value: </em><code>false</code>
                             </p>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/src/components/button/button.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/components/input/input.component.ts:84</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -403,22 +423,22 @@ showProgress=&quot;true&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>buttonStyle</code>
+                            <code>hideRequiredMarker</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the button style</p><br/></div>
+                            <div><p>Define if a required marker should be included</p><br/></div>
                               <p>
-                                <em>Type:</em>    <code>StyleThemeTypes</code>
+                                <em>Type:</em>    <code>boolean</code>
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>primary</code>
+                              <em>Default value: </em><code>true</code>
                             </p>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/src/components/button/button.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/components/input/input.component.ts:99</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -427,34 +447,10 @@ showProgress=&quot;true&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>buttonType</code>
+                            <code>hint</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the button type</p><br/></div>
-                              <p>
-                                <em>Type:</em>    <code>ButtonFunctionTypes</code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>button</code>
-                            </p>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/components/button/button.component.ts:40</a></div>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>iconName</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define a Material icon to include</p><br/></div>
+                            <div><p>Define a hint for the input</p><br/></div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
@@ -463,7 +459,28 @@ showProgress=&quot;true&quot;
                     </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/components/button/button.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/src/components/input/input.component.ts:104</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>initialValue</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define an initial value for the input</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/src/components/input/input.component.ts:89</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -475,7 +492,7 @@ showProgress=&quot;true&quot;
                             <code>isDisabled</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the button is disabled</p><br/></div>
+                            <div><p>Define if the input is disabled</p><br/></div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -487,7 +504,7 @@ showProgress=&quot;true&quot;
                     </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/components/button/button.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/components/input/input.component.ts:74</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -496,22 +513,61 @@ showProgress=&quot;true&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>showProgress</code>
+                            <code>isFocused</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the progress indicator should show</p><br/></div>
+                            <div><p>Define if the input should be focused</p><br/></div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
                               </p>
-                            <p>
-                              <em>Default value: </em><code>false</code>
-                            </p>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/components/button/button.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/lib/src/components/input/input.component.ts:94</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>label</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the label</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/lib/src/components/input/input.component.ts:69</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>prefixIcon</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a Material icon to include before the input</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/components/input/input.component.ts:79</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -520,92 +576,347 @@ showProgress=&quot;true&quot;
 
 
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> clearInput</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>clearInput()</code>
+                        </td>
+                    </tr>
+    
+    
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/src/components/input/input.component.ts:121</a></div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Clear the input&#39;s value</p><br/></div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> enableValidation</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>enableValidation()</code>
+                        </td>
+                    </tr>
+    
+    
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/lib/src/components/input/input.component.ts:129</a></div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Enable the validation messages for the input</p><br/></div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Static</span> failures</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-export"></span><code>failures:     <code>Observable&lt;string[]&gt;</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/components/input/input.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Store validation error messages</p><br/></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> model</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/components/input/input.component.ts:54</a></div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the model</p><br/></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Static</span> validationEnabled</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-export"></span><code>validationEnabled:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/components/input/input.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Validation messages are hidden until the blur event</p><br/></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Component,
+  Optional,
+  Inject,
+  Input,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import {
+  NgModel,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  NG_ASYNC_VALIDATORS,
+  FormControl
+} from &#x27;@angular/forms&#x27;;
+import { Observable } from &#x27;rxjs/Observable&#x27;;
 
-import { ButtonActionTypes } from &#x27;./../../types/button-action.types&#x27;;
-import { ButtonFunctionTypes } from &#x27;./../../types/button-function.types&#x27;;
-import { StyleThemeTypes } from &#x27;./../../types/style-theme.types&#x27;;
-
+import { ElementBase } from &#x27;./../../utilities/element-base&#x27;;
 
 /**
- * A presentational component to render a button
+ * A presentational component to render a text input. Extends {@link ElementBase}.
  *
  * @example
- * &lt;t-button
- *   actionName&#x3D;&quot;Submit&quot;
- *   buttonStyle&#x3D;&quot;accent&quot;
- *   buttonType&#x3D;&quot;search&quot;
- *   iconName&#x3D;&quot;search&quot;
+ * &lt;t-input
+ *   [(ngModel)]&#x3D;&quot;myModel&quot;
+ *   hint&#x3D;&quot;Fill this out!&quot;
+ *   required
+ *   minlength&#x3D;&quot;3&quot;
+ *   label&#x3D;&quot;My Input&quot;
  *   isDisabled&#x3D;&quot;false&quot;
- *   showProgress&#x3D;&quot;true&quot;
- * &gt;&lt;/t-button&gt;
+ *   prefixIcon&#x3D;&quot;link&quot;
+ *   canClear&#x3D;&quot;true&quot;
+ *   initialValue&#x3D;&quot;initial value&quot;
+ *   isFocused&#x3D;&quot;false&quot;
+ *   hideRequiredMarker&#x3D;&quot;false&quot;
+ *   hint&#x3D;&quot;Only letters and numbers&quot;
+ * &gt;&lt;/t-input&gt;
  */
 @Component({
-  selector: &#x27;t-button&#x27;,
-  templateUrl: &#x27;./button.component.html&#x27;,
-  styleUrls: [&#x27;./button.component.scss&#x27;],
+  selector: &#x27;t-input&#x27;,
+  templateUrl: &#x27;./input.component.html&#x27;,
+  styleUrls: [&#x27;./input.component.scss&#x27;],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: InputComponent,
+      multi: true,
+    },
+  ],
 })
-export class ButtonComponent {
+export class InputComponent extends ElementBase&lt;string&gt; {
   /**
-   * Define the action for the aria-label
+   * Provide access to the model
    */
-  @Input() actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
+  @ViewChild(NgModel) model: NgModel;
 
   /**
-   * Define the button style
+   * Validation messages are hidden until the blur event
    */
-  @Input() buttonStyle: StyleThemeTypes &#x3D; &#x27;primary&#x27;;
+  public validationEnabled: boolean &#x3D; false;
 
   /**
-   * Define the button type
+   * Store validation error messages
    */
-  @Input() buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
+  public failures: Observable&lt;Array&lt;string&gt;&gt;;
 
   /**
-   * Define a Material icon to include
+   * Define the label
    */
-  @Input() iconName: string;
+  @Input() label: string;
 
   /**
-   * Define if the button is disabled
+   * Define if the input is disabled
    */
   @Input() isDisabled: boolean &#x3D; false;
 
   /**
-   * Define if the progress indicator should show
+   * Define a Material icon to include before the input
    */
-  @Input() showProgress: boolean &#x3D; false;
+  @Input() prefixIcon: string;
 
+  /**
+   * Define a Material icon to include after the input
+   */
+  @Input() canClear: boolean &#x3D; false;
+
+  /**
+   * Define an initial value for the input
+   */
+  @Input() initialValue: string;
+
+  /**
+   * Define if the input should be focused
+   */
+  @Input() isFocused: boolean;
+
+  /**
+   * Define if a required marker should be included
+   */
+  @Input() hideRequiredMarker: boolean &#x3D; true;
+
+  /**
+   * Define a hint for the input
+   */
+  @Input() hint: string;
+
+
+  /**
+   * @hidden
+   */
+  constructor(
+    @Optional() @Inject(NG_VALIDATORS) validators: Array&lt;any&gt;,
+    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array&lt;any&gt;,
+  ) {
+    super(validators, asyncValidators);
+  }
+
+
+  /**
+   * Clear the input&#x27;s value
+   */
+  clearInput(): void {
+    this.value &#x3D; &#x27;&#x27;;
+  }
+
+
+  /**
+   * Enable the validation messages for the input
+   */
+  enableValidation(): void {
+    this.validationEnabled &#x3D; true;
+  }
 
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;button
-  md-raised-button
-  [color]&#x3D;&quot;buttonStyle&quot;
-  [attr.aria-label]&#x3D;&quot;actionName&quot;
-  [attr.type]&#x3D;&quot;buttonType&quot;
-  class&#x3D;&quot;c-button c-button&quot;
-  [disabled]&#x3D;&quot;isDisabled&quot;
-  [ladda]&#x3D;&quot;showProgress&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;md-input-container
+  class&#x3D;&quot;c-input&quot;
+  hideRequiredMarker&#x3D;&quot;{{ hideRequiredMarker }}&quot;
 &gt;
+
   &lt;md-icon
-    *ngIf&#x3D;&quot;iconName&quot;
-    class&#x3D;&quot;c-button__icon&quot;
+    mdPrefix
+    *ngIf&#x3D;&quot;prefixIcon&quot;
+  &gt;{{ prefixIcon }}&lt;/md-icon&gt;
+
+  &lt;input
+    mdInput
+    placeholder&#x3D;&quot;{{ label }}&quot;
+    disabled&#x3D;&quot;{{ isDisabled }}&quot;
+    [(ngModel)]&#x3D;&quot;value&quot;
+    autofocus&#x3D;&quot;{{ isFocused }}&quot;
+    type&#x3D;&quot;text&quot;
+    class&#x3D;&quot;c-input__text&quot;
+    (blur)&#x3D;&quot;enableValidation()&quot;
   &gt;
-    {{ iconName }}
-  &lt;/md-icon&gt;
 
-  &lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;/button&gt;
+  &lt;md-icon
+    mdSuffix
+    *ngIf&#x3D;&quot;canClear&quot;
+    class&#x3D;&quot;c-input__clear&quot;
+    [ngClass]&#x3D;&quot;{&#x27;c-input__clear--visible&#x27;: value?.length &gt; 0}&quot;
+    (click)&#x3D;&quot;clearInput()&quot;
+  &gt;clear&lt;/md-icon&gt;
 
+  &lt;md-hint *ngIf&#x3D;&quot;hint&quot;&gt;
+    {{ hint }}
+  &lt;/md-hint&gt;
+
+  &lt;t-input-messages
+    [messages]&#x3D;&quot;failures | async&quot;
+    *ngIf&#x3D;&quot;validationEnabled&quot;
+  &gt;&lt;/t-input-messages&gt;
+&lt;/md-input-container&gt;
 </code></pre>
     </div>
 
@@ -632,10 +943,10 @@ export class ButtonComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="buttonStyle"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
+        var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input"  hideRequiredMarker="{{ hideRequiredMarker }}">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    disabled="{{ isDisabled }}"    [(ngModel)]="value"    autofocus="{{ isFocused }}"    type="text"    class="c-input__text"    (blur)="enableValidation()"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="clearInput()"  >clear</md-icon>  <md-hint *ngIf="hint">    {{ hint }}  </md-hint>  <t-input-messages    [messages]="failures | async"    *ngIf="validationEnabled"  ></t-input-messages></md-input-container></div>'
     var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 't-button'},{'name': 'InputComponent', 'selector': 't-input'},{'name': 'InputMessagesComponent', 'selector': 't-input-messages'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'ButtonComponent'};
+    var ACTUAL_COMPONENT = {'name': 'InputComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
