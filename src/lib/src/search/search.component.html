@@ -1,0 +1,29 @@
+<form
+  #form="ngForm"
+  (ngSubmit)="submitSearch(form.value)"
+  class="c-search"
+  [ngClass]="{'c-search--disabled': loading}"
+>
+
+  <ts-input
+    [label]="inputLabel"
+    [prefixIcon]="icon"
+    [canClear]="userCanClear"
+    [(ngModel)]="query"
+    [hint]="inputHint"
+    name="query"
+    required
+    minlength="2"
+    pattern="[a-zA-Z]+"
+    [initialValue]="initialValue"
+  ></ts-input>
+
+  <ts-button
+    [actionName]="buttonAction"
+    [buttonStyle]="buttonStyle"
+    [isDisabled]="!form.valid"
+    [buttonType]="buttonType"
+    [showProgress]="loading"
+  >Search</ts-button>
+
+</form>
