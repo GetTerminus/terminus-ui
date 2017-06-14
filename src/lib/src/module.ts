@@ -1,14 +1,20 @@
+// Angular imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+// 3rd party imports
 import { LaddaModule } from 'angular2-ladda';
 import {
   MdButtonModule,
   MdIconModule,
+  MdInputModule,
 } from '@angular/material';
 
 const MATERIAL_MODULES = [
   MdButtonModule,
   MdIconModule,
+  MdInputModule,
 ];
 
 // Components (atoms)
@@ -34,6 +40,7 @@ const TERMINUS_COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ...MATERIAL_MODULES,
     LaddaModule.forRoot({
       style: 'expand-right',
