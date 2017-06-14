@@ -92,7 +92,7 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                    <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -119,7 +119,7 @@
                                 id="xs-classes-links"
                             >
                                 <li class="link">
-                                    <a href="../classes/ElementBase.html"  data-type="entity-link" class="active" >ElementBase</a>
+                                    <a href="../classes/ElementBase.html" >ElementBase</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
@@ -222,7 +222,7 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                           <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -249,7 +249,7 @@
                                        id="classes-links"
                    >
                                        <li class="link">
-                                           <a href="../classes/ElementBase.html"  data-type="entity-link" class="active" >ElementBase</a>
+                                           <a href="../classes/ElementBase.html" >ElementBase</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
@@ -274,255 +274,372 @@
                    
                    </nav>
                </div>
-               <div class="content class">
+               <div class="content component">
                    <div class="content-data">
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li>ElementBase</li>
+  <li>Components</li>
+  <li>TsButtonComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
     </li>
+
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/lib/src/utilities/element-base.ts</code>
-        </p>
+    <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/src/button/button.component.ts</code>
+</p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Base class for input components that is responsible for supplying validity state and methods to<br/>the derived component. Extends <a href="../classes/ValueAccessorBase.html">ValueAccessorBase</a>.</p><br/><ul><br/><li>Provides observable values to its parent about its validity state.</li><br/><li>Provides a validate method which can also be used in the control and which works off of<br/> validators injected through hierarchical dependency injection (eg. a required or minlength<br/> directive).</li><br/></ul><br/><p>Reference: <a href="http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/">http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/</a></p><br/>
-            </p>
-
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                    <code><a href="../classes/ValueAccessorBase.html" target="_self" >ValueAccessorBase</a></code>
-            </p>
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A presentational component to render a button<br/>TODO: Text color transition doesn&#39;t match the background transition timing</p><br/>
+    </p>
 
 
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor(validators: (Validator | ValidatorFn)[], asyncValidators: (Validator | AsyncValidatorFn)[])</code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
-                                    </td>
-                                </tr>
-            
-                        </tbody>
-                    </table>
-            </section>
 
-            <section>
-                
-                    <h3 id="methods">
-                        Methods
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> validate</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play circle">
-                                            <span class="fa fa-circle"></span>
-                                        </span>
-                                    <code>validate()</code>
-                                </td>
-                            </tr>
-            
-            
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/utilities/element-base.ts:40</a></div>
-                                    </td>
-                                </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-            
-                                        <div class="io-description">
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code>Observable&lt;IValidationResult&gt;</code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-
-
-            <section>
-                
-                    <h3 id="inputs">
-                        Properties
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> failures</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>Observable&lt;string[]&gt;</code>
-            </bcode>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/utilities/element-base.ts:56</a></div>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> invalid</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>Observable&lt;boolean&gt;</code>
-            </bcode>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/utilities/element-base.ts:49</a></div>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> model</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
-            </bcode>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-            </section>
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-button
+actionName=&quot;Submit&quot;
+buttonStyle=&quot;accent&quot;
+buttonType=&quot;search&quot;
+iconName=&quot;search&quot;
+isDisabled=&quot;false&quot;
+showProgress=&quot;true&quot;
+&gt;&lt;/ts-button&gt;</code></pre>
+                </div>
     </div>
-    <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { NgModel } from &#x27;@angular/forms&#x27;;
-import { Observable } from &#x27;rxjs/Observable&#x27;;
-import { ValueAccessorBase } from &#x27;./value-accessor&#x27;;
 
-import {
-  AsyncValidatorArray,
-  ValidatorArray,
-  IValidationResult,
-  message,
-  validate,
-} from &#x27;./validate&#x27;;
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ts-button</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>button.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./button.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>actionName</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the action for the aria-label</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>ButtonActionTypes</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>Button</code>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/src/button/button.component.ts:31</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>buttonStyle</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the button style</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>StyleThemeTypes</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>primary</code>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/button/button.component.ts:36</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>buttonType</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the button type</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>ButtonFunctionTypes</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>button</code>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/button/button.component.ts:41</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>iconName</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a Material icon to include</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/button/button.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the button is disabled</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/button/button.component.ts:51</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>showProgress</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the progress indicator should show</p><br/></div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/button/button.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+
+import { ButtonActionTypes } from &#x27;./../types/button-action.types&#x27;;
+import { ButtonFunctionTypes } from &#x27;./../types/button-function.types&#x27;;
+import { StyleThemeTypes } from &#x27;./../types/style-theme.types&#x27;;
+
 
 /**
- * Base class for input components that is responsible for supplying validity state and methods to
- * the derived component. Extends {@link ValueAccessorBase}.
+ * A presentational component to render a button
+ * TODO: Text color transition doesn&#x27;t match the background transition timing
  *
- * - Provides observable values to its parent about its validity state.
- * - Provides a validate method which can also be used in the control and which works off of
- *   validators injected through hierarchical dependency injection (eg. a required or minlength
- *   directive).
- *
- * Reference: http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/
+ * @example
+ * &lt;ts-button
+ *   actionName&#x3D;&quot;Submit&quot;
+ *   buttonStyle&#x3D;&quot;accent&quot;
+ *   buttonType&#x3D;&quot;search&quot;
+ *   iconName&#x3D;&quot;search&quot;
+ *   isDisabled&#x3D;&quot;false&quot;
+ *   showProgress&#x3D;&quot;true&quot;
+ * &gt;&lt;/ts-button&gt;
  */
-export abstract class ElementBase&lt;T&gt; extends ValueAccessorBase&lt;T&gt; {
+@Component({
+  selector: &#x27;ts-button&#x27;,
+  templateUrl: &#x27;./button.component.html&#x27;,
+  styleUrls: [&#x27;./button.component.scss&#x27;],
+})
+export class TsButtonComponent {
   /**
-   * @protected store the model
+   * Define the action for the aria-label
    */
-  protected abstract model: NgModel;
-
-  constructor(
-    private validators: ValidatorArray,
-    private asyncValidators: AsyncValidatorArray,
-  ) {
-    super();
-  }
+  @Input() actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
 
   /**
-   * @protected Return the validation result
+   * Define the button style
    */
-  protected validate(): Observable&lt;IValidationResult&gt; {
-    return validate
-    (this.validators, this.asyncValidators)
-    (this.model.control);
-  }
+  @Input() buttonStyle: StyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
-   * @protected Get any invalid validations
+   * Define the button type
    */
-  protected get invalid(): Observable&lt;boolean&gt; {
-    return this.validate().map(v &#x3D;&gt; Object.keys(v || {}).length &gt; 0);
-  }
+  @Input() buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
 
   /**
-   * @protected Get all validation failures
+   * Define a Material icon to include
    */
-  protected get failures(): Observable&lt;Array&lt;string&gt;&gt; {
-    return this.validate().map((v) &#x3D;&gt; {
-      // V will be null if no more failures are found
-      if (v) {
-        return Object.keys(v).map(k &#x3D;&gt; message(v, k));
-      } else {
-        return null;
-      }
-    });
-  }
+  @Input() iconName: string;
+
+  /**
+   * Define if the button is disabled
+   */
+  @Input() isDisabled: boolean &#x3D; false;
+
+  /**
+   * Define if the progress indicator should show
+   */
+  @Input() showProgress: boolean &#x3D; false;
+
 }
 </code></pre>
     </div>
+
+    <div class="tab-pane fade" id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;button
+  md-raised-button
+  [color]&#x3D;&quot;buttonStyle&quot;
+  [attr.aria-label]&#x3D;&quot;actionName&quot;
+  [attr.type]&#x3D;&quot;buttonType&quot;
+  class&#x3D;&quot;c-button c-button&quot;
+  [disabled]&#x3D;&quot;isDisabled&quot;
+  [ladda]&#x3D;&quot;showProgress&quot;
+&gt;
+  &lt;md-icon
+    *ngIf&#x3D;&quot;iconName&quot;
+    class&#x3D;&quot;c-button__icon&quot;
+  &gt;
+    {{ iconName }}
+  &lt;/md-icon&gt;
+
+  &lt;ng-content&gt;&lt;/ng-content&gt;
+&lt;/button&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="buttonStyle"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsSearchComponent', 'selector': 'ts-search'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
 
 
 

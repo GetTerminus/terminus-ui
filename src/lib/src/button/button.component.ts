@@ -7,6 +7,7 @@ import { StyleThemeTypes } from './../types/style-theme.types';
 
 /**
  * A presentational component to render a button
+ * TODO: Text color transition doesn't match the background transition timing
  *
  * @example
  * <ts-button

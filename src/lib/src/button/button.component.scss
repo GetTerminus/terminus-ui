@@ -12,6 +12,7 @@
 .c-button {
   // Top level styles should be nested here
   /deep/ &#{&} {
+    padding: 0;
 
     &.ladda-button {
       &[data-loading] {
@@ -19,21 +20,39 @@
           opacity: .7;
         }
       }
+
+      &[data-style='expand-right'] {
+        // Lessen the right side padding while expanded
+        &[data-loading] {
+          padding-right: 30px;
+        }
+      }
     }
   }
 
   md-icon {
-    vertical-align: bottom;
+    margin-top: -.2em;
   }
 
+  // Force the ladda label to fill the entire button. (the md-ripple will be inside the ladda-label
+  // and will be cut off otherwise)
+  /deep/ .ladda-label {
+    display: inline-block;
+    height: 100%;
+    padding: 0 16px;
+    width: calc(100% -(16 * 2));
+
+    // Fix small vertical aligment issue between icon & text
+    md-icon {
+      margin-top: -.2em;
+    }
+  }
+
+  // Push back the text when the button is disabled
   [disabled] {
     /deep/ .ladda-label {
       opacity: .7;
     }
-  }
-
-  .c-button__icon {
-    //
   }
 
 }
