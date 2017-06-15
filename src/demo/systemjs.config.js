@@ -1,19 +1,18 @@
 /**
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
+ * System configuration for demo
  */
 (function (global) {
   System.config({
     paths: {
-      // paths serve as alias
+      // Paths serve as alias
       'npm:': 'node_modules/'
     },
-    // map tells the System loader where to look for things
+    // Map tells the System loader where to look for things
     map: {
-      // our app is within the app folder
+      // Our app is within the app folder
       app: 'app',
 
-      // angular bundles
+      // Angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -23,19 +22,23 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+      '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
+      // HACK: Not sure why this only works when pulling from the CDN. When defining as the others
+      // above, it throws an odd undefined error from inside the bundle
+      '@angular/platform-browser/animations': 'https://unpkg.com/@angular/platform-browser/bundles/platform-browser-animations.umd.js',
 
       // Material
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
-      // other libraries
+      // Other libraries
       'rxjs': 'npm:rxjs',
       'angular2-ladda': 'node_modules/angular2-ladda/module',
       'ladda': 'node_modules/ladda/js',
       'spin': 'node_modules/ladda/js/spin.js',
     },
-    // packages tells the System loader how to load when no filename and/or no extension
+    // Packages tells the System loader how to load when no filename and/or no extension
     packages: {
-      app: {
+      'app': {
         defaultExtension: 'js',
         meta: {
           './*.js': {
@@ -43,7 +46,9 @@
           }
         }
       },
-      rxjs: { defaultExtension: 'js' },
+      'rxjs': {
+        defaultExtension: 'js'
+      },
       '@terminus/ui': {
         main: 'index.js',
         defaultExtension: 'js',
