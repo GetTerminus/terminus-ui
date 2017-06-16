@@ -115,6 +115,7 @@
     "node-sass": "^4.5.2",
     "nucleus-styleguide": "^1.1.1",
     "onchange": "^3.2.1",
+    "remap-istanbul": "^0.9.5",
     "replace-in-file": "^2.5.0",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.5",
