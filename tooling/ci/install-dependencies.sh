@@ -21,6 +21,8 @@ npm --v
 # `.bin` items, this should be switched back to `yarn install`
 npm install
 
+echo 'INSTALLING TEST REPORTER';
+
 # TODO: If this works, move the install to our docker image
 curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 
