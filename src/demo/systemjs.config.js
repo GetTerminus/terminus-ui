@@ -25,7 +25,10 @@
       '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
       // HACK: Not sure why this only works when pulling from the CDN. When defining as the others
       // above, it throws an odd undefined error from inside the bundle
-      '@angular/platform-browser/animations': 'https://unpkg.com/@angular/platform-browser/bundles/platform-browser-animations.umd.js',
+      '@angular/animations': 'https://unpkg.com/@angular/animations/bundles/animations.umd.js',
+      '@angular/animations/browser': 'https://unpkg.com/@angular/animations/bundles/animations-browser.umd.js',
+      '@angular/platform-browser/animations': 'https://unpkg.com/@angular/platform-browser/bundles/platform-browser-animations.umd',
+
 
       // Material
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
