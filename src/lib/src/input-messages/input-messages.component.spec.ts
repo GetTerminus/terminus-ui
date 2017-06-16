@@ -3,9 +3,8 @@ import { MdInputModule } from '@angular/material';
 
 import { TsInputMessagesComponent } from './input-messages.component';
 
+
 describe('InputMessagesComponent', () => {
-  let component: TsInputMessagesComponent;
-  let fixture: ComponentFixture<TsInputMessagesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,16 +15,23 @@ describe('InputMessagesComponent', () => {
         TsInputMessagesComponent,
       ],
     })
-      .compileComponents();
+      .compileComponents()
+      .then(() => {
+        this.fixture = TestBed.createComponent(TsInputMessagesComponent);
+        this.component = this.fixture.componentInstance;
+        this.fixture.detectChanges();
+      })
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TsInputMessagesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    this.fixture = TestBed.createComponent(TsInputMessagesComponent);
+    this.component = this.fixture.componentInstance;
+    this.fixture.detectChanges();
   });
 
+
   it('should be created', () => {
-    expect(component).toBeTruthy();
+    expect(this.component).toBeTruthy();
   });
+
 });
