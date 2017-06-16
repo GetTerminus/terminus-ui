@@ -21,9 +21,6 @@ yarn run test:ci || {
 # Convert coverage format
 node tooling/convert-coverage-results.js
 
-
-./node_modules/.bin/codeclimate < coverage/lcov.info
-
 # Tell the reporter that the reports are finished
 ./cc-test-reporter after-build --exit-code $?
 
