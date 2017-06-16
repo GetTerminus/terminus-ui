@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -6,79 +6,76 @@ import {
     MdInputModule,
 } from '@angular/material';
 import { LaddaModule } from 'angular2-ladda';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { InputComponent } from './input.component';
+import { TsInputComponent } from './input.component';
 
-@Component({
-  selector: 't-input-messages',
-  template: `<div></div>`,
-})
-class InputMessagesComponentMock {}
 
 @Component({
   template: `
   <div>
-    <t-input [value]="myValue"></t-input>
+    <ts-input></ts-input>
   </div>`,
 })
 class TestHostComponent {
-  myValue = 'foo';
 }
 
-fdescribe(`InputComponent`, () => {
+describe(`TsInputComponent`, () => {
+  let component: TsInputComponent;
+  let fixture: ComponentFixture<TsInputComponent>;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
+        FormsModule,
         MdIconModule,
         MdInputModule,
       ],
       declarations: [
-        InputComponent,
+        TsInputComponent,
         TestHostComponent,
-        InputMessagesComponentMock,
       ],
-    }).overrideComponent(InputComponent, {
-        set: {
-          template: '',
-        },
-      });
-
-    this.fixture = TestBed.createComponent(InputComponent);
-    this.component = this.fixture.componentInstance;
-
-    this.fixture.detectChanges();
-  });
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+      ],
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(TsInputComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      })
+    ;
+  }));
 
 
   it(`should exist`, () => {
-    console.log('this.component: ', this.component);
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
-  describe(`clearInput()`, () => {
-
-    /*
-     *it(`should clear 'value'`, () => {
-     *  this.component.validateInputs('foo', 'primary', 'button');
-     *  expect(this.component.loggingService.warn).toHaveBeenCalled();
-     *});
-     */
-
-  });
-
-
-  describe(`enableValidation()`, () => {
-
-    /*
-     *it(`should enable validation via a boolean`, () => {
-     *  this.component.validateInputs('foo', 'primary', 'button');
-     *  expect(this.component.loggingService.warn).toHaveBeenCalled();
-     *});
-     */
-
-  });
+/*
+ *  describe(`clearInput()`, () => {
+ *
+ *    it(`should clear 'value'`, () => {
+ *      this.component.validateInputs('foo', 'primary', 'button');
+ *      expect(this.component.loggingService.warn).toHaveBeenCalled();
+ *    });
+ *
+ *  });
+ *
+ *
+ *  describe(`enableValidation()`, () => {
+ *
+ *    it(`should enable validation via a boolean`, () => {
+ *      this.component.validateInputs('foo', 'primary', 'button');
+ *      expect(this.component.loggingService.warn).toHaveBeenCalled();
+ *    });
+ *
+ *  });
+ */
 
 });
 
