@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="./modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="./modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -358,8 +394,8 @@
                 TsSearchComponent
             </td>
             <td align="right">
-                <span class="coverage-percent">93 %</span>
-                <span class="coverage-count">(14/15)</span>
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(14/14)</span>
             </td>
         </tr>
         <tr class="low">
@@ -375,6 +411,21 @@
             <td align="right">
                 <span class="coverage-percent">16 %</span>
                 <span class="coverage-count">(1/6)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <a href="./interfaces/IValidationResult.html">src/lib/src/utilities/validate.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                IValidationResult
+            </td>
+            <td align="right">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
             </td>
         </tr>
         <tr class="good">

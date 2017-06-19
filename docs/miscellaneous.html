@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="./modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="./modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -325,7 +361,8 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-description"><p>Normalize all validators</p><br/></div>
+                                <div class="io-description"><p>Normalize all validators</p>
+        </div>
                             </td>
                         </tr>
                     </tbody>
@@ -345,7 +382,8 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-description"><p>Compose validators for the validate method</p><br/></div>
+                                <div class="io-description"><p>Compose validators for the validate method</p>
+        </div>
                             </td>
                         </tr>
                     </tbody>
@@ -365,7 +403,8 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-description"><p>Method to run the validators</p><br/></div>
+                                <div class="io-description"><p>Method to run the validators</p>
+        </div>
                             </td>
                         </tr>
                     </tbody>
@@ -385,7 +424,10 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-description"><p>Respond to validators with specific messages</p><br/><p>HACK: TypeScript throws an error that a validator does not exist on type. (ie<br/>validator.minlength.requiredLength) Setting it to <code>any</code> allows us to access the property.</p><br/></div>
+                                <div class="io-description"><p>Respond to validators with specific messages</p>
+        <p>HACK: TypeScript throws an error that a validator does not exist on type. (ie
+        validator.minlength.requiredLength) Setting it to <code>any</code> allows us to access the property.</p>
+        </div>
                             </td>
                         </tr>
                     </tbody>
@@ -394,22 +436,6 @@
 
 
 
-    <h2 id="inputs"><b>Types</b></h2>
-            <i><code>src/lib/src/types/button-action.types.ts</code></i>
-        <h3>ButtonActionTypes</h3>
-        <br/>
-            <i><code>src/lib/src/types/button-function.types.ts</code></i>
-        <h3>ButtonFunctionTypes</h3>
-        <br/>
-            <i><code>src/lib/src/types/style-theme.types.ts</code></i>
-        <h3>StyleThemeTypes</h3>
-        <br/>
-            <i><code>src/lib/src/utilities/validate.ts</code></i>
-        <h3>AsyncValidatorArray</h3>
-        <br/>
-            <i><code>src/lib/src/utilities/validate.ts</code></i>
-        <h3>ValidatorArray</h3>
-        <br/>
 
 
                    </div><div class="search-results">

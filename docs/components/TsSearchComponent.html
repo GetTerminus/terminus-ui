@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="../modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="../modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -312,7 +348,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a search form</p><br/>
+        <p>A presentational component to render a search form</p>
+
     </p>
 
 
@@ -383,7 +420,8 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>buttonStyle</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the button style</p><br/></div>
+                            <div><p>Define the button style</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
@@ -393,11 +431,11 @@ inputLabel=&quot;Search for a tactic&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/search/search.component.ts:77</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/search/search.component.ts:77</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -407,18 +445,19 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>initialValue</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define an initial value for the search input</p><br/></div>
+                            <div><p>Define an initial value for the search input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/search/search.component.ts:72</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/search/search.component.ts:72</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -428,7 +467,8 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>inputHint</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the hint text below the input</p><br/></div>
+                            <div><p>Define the hint text below the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
@@ -438,11 +478,11 @@ inputLabel=&quot;Search for a tactic&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/search/search.component.ts:82</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/search/search.component.ts:82</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -452,7 +492,8 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>inputLabel</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the primary label for the input</p><br/></div>
+                            <div><p>Define the primary label for the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
@@ -462,11 +503,11 @@ inputLabel=&quot;Search for a tactic&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/search/search.component.ts:57</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/search/search.component.ts:57</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -476,7 +517,8 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>loading</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the search is currently loading results</p><br/></div>
+                            <div><p>Define if the search is currently loading results</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -486,11 +528,11 @@ inputLabel=&quot;Search for a tactic&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/search/search.component.ts:67</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/search/search.component.ts:67</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -500,7 +542,8 @@ inputLabel=&quot;Search for a tactic&quot;
                             <code>userCanClear</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the user can clear the search input</p><br/></div>
+                            <div><p>Define if the user can clear the search input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -510,34 +553,16 @@ inputLabel=&quot;Search for a tactic&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/search/search.component.ts:62</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/search/search.component.ts:62</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
     </section>
 
 
-    <section>
-        <h3 id="constructor">Constructor</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>constructor()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/search/search.component.ts:82</a></div>
-                            </td>
-                        </tr>
-    
-                </tbody>
-            </table>
-    </section>
 
     <section>
         
@@ -558,15 +583,16 @@ inputLabel=&quot;Search for a tactic&quot;
                     </tr>
     
     
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/search/search.component.ts:91</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/src/search/search.component.ts:88</a></div>
+                                </td>
+                            </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Seed the value if needed on initialization</p><br/></div>
+                                <div class="io-description"><p>Seed the value if needed on initialization</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
@@ -590,15 +616,17 @@ inputLabel=&quot;Search for a tactic&quot;
                     </tr>
     
     
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/src/search/search.component.ts:104</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/src/search/search.component.ts:101</a></div>
+                                </td>
+                            </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Submit a search query<br/>TODO: Add a type to the accepted param (need to figure out the type being passed by the form)</p><br/></div>
+                                <div class="io-description"><p>Submit a search query
+    TODO: Add a type to the accepted param (need to figure out the type being passed by the form)</p>
+    </div>
     
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -638,12 +666,12 @@ inputLabel=&quot;Search for a tactic&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> buttonAction</b>
+                            <b><span class="modifier">Public</span> buttonAction</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>buttonAction:     <code>ButtonActionTypes</code>
+                            <span class="modifier-icon fa fa-"></span><code>buttonAction:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
@@ -652,14 +680,15 @@ inputLabel=&quot;Search for a tactic&quot;
                                 <i>Default value : </i><code>Submit</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/src/search/search.component.ts:37</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/src/search/search.component.ts:37</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Define the button action label</p><br/></div>
+                            <div class="io-description"><p>Define the button action label</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -668,12 +697,12 @@ inputLabel=&quot;Search for a tactic&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> buttonType</b>
+                            <b><span class="modifier">Public</span> buttonType</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>buttonType:     <code>ButtonFunctionTypes</code>
+                            <span class="modifier-icon fa fa-"></span><code>buttonType:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
@@ -682,14 +711,15 @@ inputLabel=&quot;Search for a tactic&quot;
                                 <i>Default value : </i><code>search</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/search/search.component.ts:42</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/search/search.component.ts:42</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Define the button type</p><br/></div>
+                            <div class="io-description"><p>Define the button type</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -703,7 +733,7 @@ inputLabel=&quot;Search for a tactic&quot;
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>form:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
+                            <code>form:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
@@ -712,14 +742,15 @@ inputLabel=&quot;Search for a tactic&quot;
                                 <i>Decorators : </i><code>ViewChild</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/src/search/search.component.ts:32</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/lib/src/search/search.component.ts:32</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Provide access to the form</p><br/></div>
+                            <div class="io-description"><p>Provide access to the form</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -728,12 +759,12 @@ inputLabel=&quot;Search for a tactic&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> icon</b>
+                            <b><span class="modifier">Public</span> icon</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>icon:     <code>string</code>
+                            <span class="modifier-icon fa fa-"></span><code>icon:     <code>string</code>
     </bcode>
                         </td>
                     </tr>
@@ -742,14 +773,15 @@ inputLabel=&quot;Search for a tactic&quot;
                                 <i>Default value : </i><code>search</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/search/search.component.ts:47</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/search/search.component.ts:47</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Define the icon name</p><br/></div>
+                            <div class="io-description"><p>Define the icon name</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -758,23 +790,24 @@ inputLabel=&quot;Search for a tactic&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> query</b>
+                            <b><span class="modifier">Public</span> query</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>query:     <code>string</code>
+                            <span class="modifier-icon fa fa-"></span><code>query:     <code>string</code>
     </bcode>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/search/search.component.ts:52</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/search/search.component.ts:52</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Store the search query</p><br/></div>
+                            <div class="io-description"><p>Store the search query</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -866,9 +899,6 @@ export class TsSearchComponent implements OnInit {
    * Define the hint text below the input
    */
   @Input() inputHint: string &#x3D; &#x27;Enter at least two letters.&#x27;;
-
-
-  constructor() {}
 
 
   /**

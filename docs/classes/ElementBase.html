@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="../modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="../modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -309,7 +345,16 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Base class for input components that is responsible for supplying validity state and methods to<br/>the derived component. Extends <a href="../classes/ValueAccessorBase.html">ValueAccessorBase</a>.</p><br/><ul><br/><li>Provides observable values to its parent about its validity state.</li><br/><li>Provides a validate method which can also be used in the control and which works off of<br/> validators injected through hierarchical dependency injection (eg. a required or minlength<br/> directive).</li><br/></ul><br/><p>Reference: <a href="http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/">http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/</a></p><br/>
+                <p>Base class for input components that is responsible for supplying validity state and methods to
+the derived component. Extends <a href="../classes/ValueAccessorBase.html">ValueAccessorBase</a>.</p>
+<ul>
+<li>Provides observable values to its parent about its validity state.</li>
+<li>Provides a validate method which can also be used in the control and which works off of
+ validators injected through hierarchical dependency injection (eg. a required or minlength
+ directive).</li>
+</ul>
+<p>Reference: <a href="http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/">http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/</a></p>
+
             </p>
 
             <p class="comment">
@@ -326,14 +371,14 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(validators: (Validator | ValidatorFn)[], asyncValidators: (Validator | AsyncValidatorFn)[])</code>
+                                    <code>constructor(validators: any, asyncValidators: any)</code>
                                 </td>
                             </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
+                                        </td>
+                                    </tr>
             
                         </tbody>
                     </table>
@@ -348,24 +393,22 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> validate</b>
+                                    <b><span class="modifier">Protected</span> validate</b>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play circle">
-                                            <span class="fa fa-circle"></span>
-                                        </span>
+                                        <span class="modifier-icon method fa fa-play circle"></span>
                                     <code>validate()</code>
                                 </td>
                             </tr>
             
             
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/utilities/element-base.ts:40</a></div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/utilities/element-base.ts:40</a></div>
+                                        </td>
+                                    </tr>
             
                             <tr>
                                 <td class="col-md-4">
@@ -373,7 +416,7 @@
                                         <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns : </b>    <code>Observable&lt;IValidationResult&gt;</code>
+                                            <b>Returns : </b>    <code>any</code>
             
                                         </div>
                                             <div class="io-description">
@@ -395,60 +438,60 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> failures</b>
+                                    <b><span class="modifier">Protected</span> failures</b>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>Observable&lt;string[]&gt;</code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>any</code>
             </bcode>
                                 </td>
                             </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/utilities/element-base.ts:56</a></div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/utilities/element-base.ts:56</a></div>
+                                        </td>
+                                    </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> invalid</b>
+                                    <b><span class="modifier">Protected</span> invalid</b>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>Observable&lt;boolean&gt;</code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>any</code>
             </bcode>
                                 </td>
                             </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/utilities/element-base.ts:49</a></div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/utilities/element-base.ts:49</a></div>
+                                        </td>
+                                    </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> model</b>
+                                    <b><span class="modifier">Protected</span> model</b>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code>any</code>
             </bcode>
                                 </td>
                             </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
+                                        </td>
+                                    </tr>
                         </tbody>
                     </table>
             </section>

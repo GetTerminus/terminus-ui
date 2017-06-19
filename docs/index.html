@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="./modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="./modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="./interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -277,9 +313,9 @@
                <div class="content readme">
                    <div class="content-data">
 <h1 id="terminus-ui-library">Terminus UI Library</h1>
-<p><a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a> <a href="docs/coverage.html"><img src="docs/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"></a> <a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a> <a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=svg" alt="CircleCI" class="img-responsive"></a></p>
+<p><a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a> <a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a> <a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=svg" alt="CircleCI" class="img-responsive"></a> <a href="docs/coverage.html"><img src="https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"></a></p>
 <!--
-   - Currently not working?
+   - Currently not working
    -[![Test Coverage][coverage_image]][coverage_url] [![Issue Count][coverage_issues_image]][coverage_issues]
    -->
 

@@ -53,11 +53,13 @@
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="../modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                            <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
-                            ></span>
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
                         </a>
                         <ul class="links collapse "
                                 id="xs-modules-links"
@@ -81,12 +83,12 @@
                     </li>
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
                             <span class="fa fa-cogs"></span>
                             <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-components-links"
@@ -108,12 +110,12 @@
             
             
                     <li class="chapter">
-                        <div class="simple">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
                             <span class="fa fa-file-code-o"></span>
                             <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
+                            <span class="fa fa-angle-down"></span>
                         </div>
                         <ul class="links collapse "
                                 id="xs-classes-links"
@@ -128,6 +130,22 @@
                     </li>
             
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                        </ul>
+                    </li>
             
             
             
@@ -183,11 +201,13 @@
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="../modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
+                                   <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
-                                   ></span>
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
                                </a>
                                <ul class="links collapse "
                                        id="modules-links"
@@ -211,12 +231,12 @@
                            </li>
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
                                    <span class="fa fa-cogs"></span>
                                    <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="components-links"
@@ -238,12 +258,12 @@
                    
                    
                            <li class="chapter">
-                               <div class="simple">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
                                    <span class="fa fa-file-code-o"></span>
                                    <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-down" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
+                                   <span class="fa fa-angle-down"></span>
                                </div>
                                <ul class="links collapse "
                                        id="classes-links"
@@ -258,6 +278,22 @@
                            </li>
                    
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                    
                    
@@ -312,7 +348,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a text input. Extends <a href="../classes/ElementBase.html">ElementBase</a>.<br/>TODO: The required marker doesn&#39;t appear, even when set to true</p><br/>
+        <p>A presentational component to render a text input. Extends <a href="../classes/ElementBase.html">ElementBase</a>.
+TODO: The required marker doesn&#39;t appear, even when set to true</p>
+
     </p>
 
     <p class="comment">
@@ -400,7 +438,8 @@ hint=&quot;Only letters and numbers&quot;
                             <code>canClear</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define a Material icon to include after the input</p><br/></div>
+                            <div><p>Define a Material icon to include after the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -410,11 +449,11 @@ hint=&quot;Only letters and numbers&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/input/input.component.ts:85</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/input/input.component.ts:85</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -424,7 +463,8 @@ hint=&quot;Only letters and numbers&quot;
                             <code>hideRequiredMarker</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if a required marker should be included</p><br/></div>
+                            <div><p>Define if a required marker should be included</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -434,11 +474,11 @@ hint=&quot;Only letters and numbers&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/input/input.component.ts:100</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/input/input.component.ts:100</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -448,18 +488,19 @@ hint=&quot;Only letters and numbers&quot;
                             <code>hint</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define a hint for the input</p><br/></div>
+                            <div><p>Define a hint for the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/input/input.component.ts:105</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/input/input.component.ts:105</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -469,18 +510,19 @@ hint=&quot;Only letters and numbers&quot;
                             <code>initialValue</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define an initial value for the input</p><br/></div>
+                            <div><p>Define an initial value for the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/input/input.component.ts:90</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/input/input.component.ts:90</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -490,7 +532,8 @@ hint=&quot;Only letters and numbers&quot;
                             <code>isDisabled</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the input is disabled</p><br/></div>
+                            <div><p>Define if the input is disabled</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
@@ -500,11 +543,11 @@ hint=&quot;Only letters and numbers&quot;
                             </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/input/input.component.ts:75</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/input/input.component.ts:75</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -514,18 +557,19 @@ hint=&quot;Only letters and numbers&quot;
                             <code>isFocused</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the input should be focused</p><br/></div>
+                            <div><p>Define if the input should be focused</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/src/input/input.component.ts:95</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/src/input/input.component.ts:95</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -535,18 +579,19 @@ hint=&quot;Only letters and numbers&quot;
                             <code>label</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the label</p><br/></div>
+                            <div><p>Define the label</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/input/input.component.ts:70</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/input/input.component.ts:70</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -556,18 +601,19 @@ hint=&quot;Only letters and numbers&quot;
                             <code>prefixIcon</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define a Material icon to include before the input</p><br/></div>
+                            <div><p>Define a Material icon to include before the input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/input/input.component.ts:80</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/input/input.component.ts:80</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
     </section>
@@ -593,15 +639,16 @@ hint=&quot;Only letters and numbers&quot;
                     </tr>
     
     
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/lib/src/input/input.component.ts:122</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/lib/src/input/input.component.ts:122</a></div>
+                                </td>
+                            </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Clear the input&#39;s value</p><br/></div>
+                                <div class="io-description"><p>Clear the input&#39;s value</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
@@ -625,15 +672,16 @@ hint=&quot;Only letters and numbers&quot;
                     </tr>
     
     
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/input/input.component.ts:130</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/input/input.component.ts:130</a></div>
+                                </td>
+                            </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Enable the validation messages for the input</p><br/></div>
+                                <div class="io-description"><p>Enable the validation messages for the input</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
@@ -654,23 +702,24 @@ hint=&quot;Only letters and numbers&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> failures</b>
+                            <b><span class="modifier">Public</span> failures</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>failures:     <code>Observable&lt;string[]&gt;</code>
+                            <span class="modifier-icon fa fa-"></span><code>failures:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/input/input.component.ts:65</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/input/input.component.ts:65</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Store validation error messages</p><br/></div>
+                            <div class="io-description"><p>Store validation error messages</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -684,7 +733,7 @@ hint=&quot;Only letters and numbers&quot;
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+                            <code>model:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
@@ -693,14 +742,15 @@ hint=&quot;Only letters and numbers&quot;
                                 <i>Decorators : </i><code>ViewChild</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/input/input.component.ts:55</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/input/input.component.ts:55</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Provide access to the model</p><br/></div>
+                            <div class="io-description"><p>Provide access to the model</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -709,12 +759,12 @@ hint=&quot;Only letters and numbers&quot;
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Static</span> validationEnabled</b>
+                            <b><span class="modifier">Public</span> validationEnabled</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-export"></span><code>validationEnabled:     <code>boolean</code>
+                            <span class="modifier-icon fa fa-"></span><code>validationEnabled:     <code>boolean</code>
     </bcode>
                         </td>
                     </tr>
@@ -723,14 +773,15 @@ hint=&quot;Only letters and numbers&quot;
                                 <i>Default value : </i><code>false</code>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/input/input.component.ts:60</a></div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/input/input.component.ts:60</a></div>
+                                </td>
+                            </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Validation messages are hidden until the blur event</p><br/></div>
+                            <div class="io-description"><p>Validation messages are hidden until the blur event</p>
+    </div>
                         </td>
                     </tr>
                 </tbody>
