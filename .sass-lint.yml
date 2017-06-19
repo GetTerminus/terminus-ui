@@ -39,7 +39,7 @@ rules:
   extends-before-mixins:
     - 1
   final-newline:
-    - 1
+    - 0
   force-attribute-nesting:
     - 1
   force-element-nesting:
@@ -50,9 +50,6 @@ rules:
     - 1
     - allow-leading-underscore: false
     - convention: snakecase
-  hex-length:
-    - 1
-    - style: short
   hex-notation:
     - 1
     - style: lowercase
@@ -177,7 +174,7 @@ rules:
     - 1
     - include: true
   url-quotes:
-    - 0
+    - 1
   variable-for-property:
     - 0
   variable-name-format:

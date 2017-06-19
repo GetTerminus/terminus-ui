@@ -5,6 +5,8 @@ engines:
     channel: beta
   scss-lint:
     enabled: true
+  #sasslint:
+    #enabled: true
 ratings:
   paths:
   - "src/lib/**"
