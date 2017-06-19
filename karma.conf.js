@@ -1,4 +1,4 @@
-module.exports = function (config) {
+module.exports = function(config) {
 
   var libBase = 'src/lib/'; // transpiled app JS and map files
 
@@ -11,7 +11,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('karma-remap-coverage')
+      require('karma-remap-coverage'),
     ],
 
     client: {
@@ -52,12 +52,15 @@ module.exports = function (config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
+      // Ladda
       { pattern: 'node_modules/angular2-ladda/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/angular2-ladda/**/*.js.map', included: false, watched: false },
       { pattern: 'node_modules/ladda/**/*.js', included: false, watched: false },
-      { pattern: 'src/demo/systemjs-angular-loader.js', included: false, watched: false },
-
       // Material styles
-      { pattern: './node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css' },
+      { pattern: 'node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css', included: true, watched: true },
+      { pattern: 'node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css.map', included: false, watched: false },
+
+      { pattern: 'src/demo/systemjs-angular-loader.js', included: false, watched: false },
 
       'tooling/karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
@@ -82,20 +85,20 @@ module.exports = function (config) {
     },
 
     exclude: [],
+
     preprocessors: {
       'src/lib/**/*.js': ['coverage'],
     },
     reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage'],
-
     coverageReporter: {
       type : 'json',
       subdir : '.',
       file : 'coverage-final.json'
     },
-
     remapCoverageReporter: {
       'text-summary': null, // to show summary in console
       html: './coverage/html',
+      'text-lcov': './coverage/lcov/',
     },
 
     port: 9876,

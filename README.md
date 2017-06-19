@@ -1,9 +1,9 @@
 # Terminus UI Library
 
-[![MIT License][license_image]][license_url] [![documentation coverage][compodoc_badge]][docs_index] [![NPM version][npm_version_image]][npm_url] [![CircleCI][circle_badge]][circle_link]
+[![MIT License][license_image]][license_url] [![NPM version][npm_version_image]][npm_url] [![CircleCI][circle_badge]][circle_link] [![documentation coverage][compodoc_badge]][docs_index]
 
 <!--
-   - Currently not working?
+   - Currently not working
    -[![Test Coverage][coverage_image]][coverage_url] [![Issue Count][coverage_issues_image]][coverage_issues]
    -->
 
@@ -11,7 +11,7 @@
 
 
 
-[compodoc_badge]: docs/images/coverage-badge.svg
+[compodoc_badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
 [docs_index]: docs/coverage.html
 [license_image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license_url]: LICENSE

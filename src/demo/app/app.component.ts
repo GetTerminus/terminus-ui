@@ -5,13 +5,23 @@ import { Component } from '@angular/core';
   template: `
     <h3>Meaning is: {{meaning}}</h3>
     <div>
-      <t-button [showProgress]="loading" (click)="run()">My Button!!!</t-button>
+      <ts-button [showProgress]="loading" (click)="run()">My Button!!!</ts-button>
+    </div>
+    <form #form1="ngForm" (ngSubmit)="submitSearch(form1.value)">
+      Requirements:
+      <br>
+      <ts-input required minlength="3" [(ngModel)]="query1" name="query1"></ts-input>
+      <button type="submit">Submit</button>
+    </form>
+    <div>
+      <ts-search></ts-search>
     </div>
   `,
 })
 export class AppComponent {
   meaning: number = 42;
   loading = false;
+  query1 = '';
 
   constructor() {
   }
@@ -23,5 +33,9 @@ export class AppComponent {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  submitSearch(value: any) {
+    console.log('search submitted: ', value);
   }
 }

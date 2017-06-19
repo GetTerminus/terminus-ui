@@ -82,9 +82,6 @@ export class TsSearchComponent implements OnInit {
   @Input() inputHint: string = 'Enter at least two letters.';
 
 
-  constructor() {}
-
-
   /**
    * Seed the value if needed on initialization
    */

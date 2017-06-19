@@ -2,16 +2,18 @@
 Error.stackTraceLimit = 0; // "No stacktrace"" is usually best for testing.
 
 // Uncomment to get full stacktrace output. Sometimes helpful, usually not.
-// Error.stackTraceLimit = Infinity; //
+/*
+ *Error.stackTraceLimit = Infinity;
+ */
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
 // builtPaths: root paths for output ("built") files
 // get from karma.config.js, then prefix with '/base/' (default is 'src/')
 var builtPaths = (__karma__.config.builtPaths || ['src/'])
-                 .map(function(p) { return '/base/'+p;});
+                 .map(function(p) { return '/base/' + p;});
 
-__karma__.loaded = function () { };
+__karma__.loaded = function() { };
 
 function isJsFile(path) {
   return path.slice(-3) == '.js';
@@ -36,44 +38,10 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 System.config({
   paths: {
     // paths serve as alias
-    'npm:': 'node_modules/'
+    'npm:*': 'node_modules/*'
   },
   // Base URL for System.js calls. 'base/' is where Karma serves files from.
   baseURL: 'base/src/lib',
-
-  // Map the angular umd bundles
-  map: {
-    'system-loader': 'demo/systemjs-angular-loader.js',
-    '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
-    '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
-    '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
-    '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
-    '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-    '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
-    '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
-    '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-    // Testing bundles
-    '@angular/core/testing': 'npm:@angular/core/bundles/core-testing.umd.js',
-    '@angular/common/testing': 'npm:@angular/common/bundles/common-testing.umd.js',
-    '@angular/compiler/testing': 'npm:@angular/compiler/bundles/compiler-testing.umd.js',
-    '@angular/platform-browser/testing': 'npm:@angular/platform-browser/bundles/platform-browser-testing.umd.js',
-    '@angular/platform-browser-dynamic/testing': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
-    '@angular/http/testing': 'npm:@angular/http/bundles/http-testing.umd.js',
-    '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
-    '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
-    '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
-
-    // Material
-    '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
-
-    // other libraries
-    'rxjs': 'npm:rxjs',
-    'angular2-ladda': 'node_modules/angular2-ladda/module',
-    'ladda': 'node_modules/ladda/js',
-    'spin': 'node_modules/ladda/js/spin.js',
-
-    'src': 'src',
-  },
 
   // Extend usual application package list with test folder
   packages: {
@@ -95,7 +63,45 @@ System.config({
         }
       }
     }
-  }
+  },
+
+  // Map the angular umd bundles
+  map: {
+    'system-loader': 'demo/systemjs-angular-loader.js',
+    '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+    '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+    '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+    '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+    '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+    '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+    '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+    '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+
+    '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+    '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
+    '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd',
+
+    // Testing bundles
+    '@angular/core/testing': 'npm:@angular/core/bundles/core-testing.umd.js',
+    '@angular/common/testing': 'npm:@angular/common/bundles/common-testing.umd.js',
+    '@angular/compiler/testing': 'npm:@angular/compiler/bundles/compiler-testing.umd.js',
+    '@angular/platform-browser/testing': 'npm:@angular/platform-browser/bundles/platform-browser-testing.umd.js',
+    '@angular/platform-browser-dynamic/testing': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
+    '@angular/http/testing': 'npm:@angular/http/bundles/http-testing.umd.js',
+    '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
+    '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
+
+    // Material
+    '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
+
+    // other libraries
+    'rxjs': 'npm:rxjs',
+    'angular2-ladda': 'npm:angular2-ladda/module',
+    'ladda': 'npm:ladda/js',
+    'spin': 'npm:ladda/js/spin.js',
+
+    'src': 'src',
+  },
 });
 
 initTestBed().then(initTesting);
@@ -106,8 +112,8 @@ function initTestBed(){
     System.import('@angular/platform-browser-dynamic/testing')
   ])
 
-  .then(function (providers) {
-    var coreTesting    = providers[0];
+  .then(function(providers) {
+    var coreTesting = providers[0];
     var browserTesting = providers[1];
 
     coreTesting.TestBed.initTestEnvironment(
@@ -119,9 +125,10 @@ function initTestBed(){
 // Import all spec files and start karma
 function initTesting () {
   return Promise.all(
-    allSpecFiles.map(function (moduleName) {
+    allSpecFiles.map(function(moduleName) {
       return System.import(moduleName);
     })
   )
   .then(__karma__.start, __karma__.error);
 }
+

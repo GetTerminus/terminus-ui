@@ -1,25 +1,37 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MdInputModule } from '@angular/material';
 
-import { InputMessagesComponent } from './input-messages.component';
+import { TsInputMessagesComponent } from './input-messages.component';
+
 
 describe('InputMessagesComponent', () => {
-  let component: InputMessagesComponent;
-  let fixture: ComponentFixture<InputMessagesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputMessagesComponent ]
+      imports: [
+        MdInputModule,
+      ],
+      declarations: [
+        TsInputMessagesComponent,
+      ],
     })
-      .compileComponents();
+      .compileComponents()
+      .then(() => {
+        this.fixture = TestBed.createComponent(TsInputMessagesComponent);
+        this.component = this.fixture.componentInstance;
+        this.fixture.detectChanges();
+      })
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputMessagesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    this.fixture = TestBed.createComponent(TsInputMessagesComponent);
+    this.component = this.fixture.componentInstance;
+    this.fixture.detectChanges();
   });
 
+
   it('should be created', () => {
-    expect(component).toBeTruthy();
+    expect(this.component).toBeTruthy();
   });
+
 });

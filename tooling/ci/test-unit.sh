@@ -9,15 +9,18 @@
 
 . ~/.bashrc
 
+# Prep the CodeClimate reporter that a report is about to happen
+#./cc-test-reporter before-build
+
 # Run tests
 yarn run test:ci || {
     echo 'yarn run test:ci failed!';
     exit 1;
 }
 
-# Remap coverage to source files
-node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json || {
-    echo 'Remapping coverage failed!' ;
-    exit 1;
-}
+# Convert coverage format
+node tooling/convert-coverage-results.js
+
+# Tell the reporter that the reports are finished
+#./cc-test-reporter after-build --exit-code $?
 

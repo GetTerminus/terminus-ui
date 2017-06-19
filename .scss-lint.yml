@@ -1,0 +1,173 @@
+scss_files: 'src/lib/**/*.s+(a|c)ss'
+
+exclude: 'node_modules/**/*.s+(a|c)ss'
+
+# Default severity of all linters.
+severity: warning
+
+linters:
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
+
+  BemDepth:
+    enabled: true
+    max_elements: 1
+
+  BorderZero:
+    enabled: true
+
+  ChainedClasses:
+    enabled: true
+
+  ColorVariable:
+    enabled: true
+
+  Comment:
+    enabled: false
+
+  DeclarationOrder:
+    enabled: true
+
+  DuplicateProperty:
+    enabled: true
+
+  ElsePlacement:
+    enabled: true
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: false
+
+  EmptyRule:
+    enabled: true
+
+  FinalNewline:
+    enabled: true
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  IdSelector:
+    enabled: true
+
+  ImportantRule:
+    enabled: true
+
+  ImportPath:
+    enabled: true
+
+  Indentation:
+    enabled: true
+
+  LeadingZero:
+    enabled: true
+
+  LengthVariable:
+    enabled: true
+
+  MergeableSelector:
+    enabled: true
+
+  NameFormat:
+    enabled: true
+    convention: ^([\.\%]?[a-z]*[-]?[a-z0-9\-]*)(\.[a-z0-9\-]*)?(__[a-z0-9]*[-]?[a-z0-9\-]*)?(--[a-z0-9]*[-]?[a-z0-9\-]*)?(\:[a-z]*)*$
+
+  NestingDepth:
+    enabled: true
+    max_depth: 6
+
+  PlaceholderExtend:
+    enabled: true
+
+  PropertySortOrder:
+    enabled: true
+
+  PropertySpelling:
+    enabled: true
+
+  PseudoElement:
+    enabled: true
+
+  QualifyingElement:
+    enabled: true
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 6
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: true
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: true
+
+  SpaceAfterComment:
+    enabled: false
+
+  SpaceAfterPropertyColon:
+    enabled: true
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceAfterVariableColon:
+    enabled: true
+
+  SpaceAfterVariableName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: true
+
+  SpaceBeforeBrace:
+    enabled: true
+
+  SpaceBetweenParens:
+    enabled: true
+
+  StringQuotes:
+    enabled: true
+
+  TrailingSemicolon:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  TransitionAll:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  VariableForProperty:
+    enabled: true
+    properties:
+      - color
+      - font
+      - width
+
+  VendorPrefix:
+    enabled: true
+
+  ZeroUnit:
+    enabled: true

@@ -1,3 +1,4 @@
+@import './../scss/typography';
 @import './../scss/color';
 @import './../scss/triangle';
 
@@ -10,7 +11,7 @@
 .c-input-message {
   // Top level styles should be nested here
   &#{&} {
-    //
+    font-family: $type__family--base;
   }
 
   // Primary message container

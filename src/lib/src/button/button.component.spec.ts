@@ -7,12 +7,12 @@ import {
 } from '@angular/material';
 import { LaddaModule } from 'angular2-ladda';
 
-import { ButtonComponent } from './button.component';
+import { TsButtonComponent } from './button.component';
 
 @Component({
   template: `
   <div>
-    <t-button>Search</t-button>
+    <ts-button>Search</ts-button>
   </div>`,
 })
 class TestHostComponent {}
@@ -29,12 +29,12 @@ describe(`ButtonComponent`, () => {
         }),
       ],
       declarations: [
-        ButtonComponent,
+        TsButtonComponent,
         TestHostComponent,
       ],
     })
       .compileComponents().then(() => {
-        this.fixture = TestBed.createComponent(ButtonComponent);
+        this.fixture = TestBed.createComponent(TsButtonComponent);
         this.component = this.fixture.componentInstance;
 
         this.fixture.detectChanges();
@@ -45,6 +45,5 @@ describe(`ButtonComponent`, () => {
   it(`should exist`, () => {
     expect(this.component).toBeTruthy();
   });
-
 
 });

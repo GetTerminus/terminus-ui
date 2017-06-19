@@ -18,6 +18,7 @@ import { ElementBase } from './../utilities/element-base';
 
 /**
  * A presentational component to render a text input. Extends {@link ElementBase}.
+ * TODO: The required marker doesn't appear, even when set to true
  *
  * @example
  * <ts-input
