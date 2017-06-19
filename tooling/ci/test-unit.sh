@@ -10,7 +10,7 @@
 . ~/.bashrc
 
 # Prep the CodeClimate reporter that a report is about to happen
-./cc-test-reporter before-build
+#./cc-test-reporter before-build
 
 # Run tests
 yarn run test:ci || {
@@ -22,5 +22,5 @@ yarn run test:ci || {
 node tooling/convert-coverage-results.js
 
 # Tell the reporter that the reports are finished
-./cc-test-reporter after-build --exit-code $?
+#./cc-test-reporter after-build --exit-code $?
 
