@@ -12,14 +12,10 @@
 # 'aws not found' error
 echo 'export PATH=/usr/local/bin:~/.yarn/bin:~/.local/bin:$PATH' >>~/.bashrc
 
-# Check the version
-# TODO: Remove this after verifying we are on npm v5
-npm --v
-
 # NOTE: Currently `yarn install` does not correctly install all executables under
 # `node_modules/.bin/`. NPM does seem to correctly do this. Once yarn is correctly installing all
 # `.bin` items, this should be switched back to `yarn install`
-npm install
+yarn install
 
 echo 'INSTALLING TEST REPORTER';
 
