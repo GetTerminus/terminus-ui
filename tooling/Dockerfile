@@ -27,6 +27,8 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
 RUN pip install --upgrade pip && \
     pip install awscli --upgrade --user
 
+RUN npm i npm@latest -g
+
 RUN npm i yarn -g && npm rebuild node-sass
 
 # Install global tools
