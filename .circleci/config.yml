@@ -6,13 +6,11 @@ jobs:
     docker:
       - image: benjamincharity/terminus-ui:0.1.4
 
-    machine: true
-
     working_directory: ~/ci-build
+    machine: true
 
     environment:
       TEST_REPORTS: /coverage
-      CODECLIMATE_REPO_TOKEN: 5b373a3575bd84a9e7aea2326c27aac0e2870be914dcfe960eacc786c3901f8d
 
     steps:
       - add_ssh_keys
