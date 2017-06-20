@@ -6,6 +6,9 @@ The library of UI components used for Terminus applications.
 
 
 
+## Resources
+
+- [Semantic Release][semantic_release]
 
 
 [compodoc_badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
@@ -16,3 +19,5 @@ The library of UI components used for Terminus applications.
 [npm_version_image]: http://img.shields.io/npm/v/@terminus/ui.svg
 [circle_badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=svg
 [circle_link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master
+
+[semantic_release]: https://github.com/semantic-release/semantic-release
