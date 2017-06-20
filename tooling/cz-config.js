@@ -22,7 +22,6 @@ module.exports = {
     {name: 'Search'},
     {name: 'CI'},
     {name: 'Dependencies'},
-    {name: 'Docker'},
     {name: 'Documentation'},
   ],
 
