@@ -7,7 +7,6 @@ jobs:
       - image: benjamincharity/terminus-ui:0.1.4
 
     working_directory: ~/ci-build
-    machine: true
 
     environment:
       TEST_REPORTS: /coverage

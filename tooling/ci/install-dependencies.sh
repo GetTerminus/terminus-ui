@@ -7,8 +7,13 @@
 # 2) Install all project dependencies
 #
 
-echo 'NPM VERSION: '
+echo 'VERSIONS: '
+echo 'NODE: '
+node --version
+echo 'NPM: '
 npm --v
+echo 'YARN: '
+yarn --version
 echo '_______________'
 
 # Add all needed paths
