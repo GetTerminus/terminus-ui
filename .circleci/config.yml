@@ -6,6 +6,8 @@ jobs:
     docker:
       - image: benjamincharity/terminus-ui:0.1.4
 
+    machine: true
+
     working_directory: ~/ci-build
 
     environment:
