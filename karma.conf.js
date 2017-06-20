@@ -98,19 +98,8 @@ module.exports = function(config) {
     autoWatch: true,
 
     browsers: [
-      config.headless ? 'ChromeCI' : 'Chrome'
+      'Chrome'
     ],
-
-    customLaunchers: {
-      ChromeCI: {
-        base: 'Chrome',
-        flags: [
-          '--no-sandbox',
-          '--headless',
-          '--disable-gpu'
-        ]
-      }
-    },
 
     singleRun: false
   })
