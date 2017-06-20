@@ -1,5 +1,7 @@
 # Terminus UI Library
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg)](https://greenkeeper.io/)
+
 The library of UI components used for Terminus applications.
 
 [![MIT License][license_image]][license_url] [![NPM version][npm_version_image]][npm_url] [![CircleCI][circle_badge]][circle_link] [![documentation coverage][compodoc_badge]][docs_index]
