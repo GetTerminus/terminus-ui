@@ -36,7 +36,7 @@
     "pretest": "yarn run build-test",
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
-    "test:ci": "karma start karma.conf.js --single-run --code-coverage",
+    "test:ci": "karma start karma.conf.js --single-run --code-coverage --headless",
     "preintegration": "yarn run build && cd integration && yarn run clean && yarn install",
     "integration": "yarn run integration:aot && yarn run integration:jit",
     "integration:jit": "cd integration && yarn run e2e",
