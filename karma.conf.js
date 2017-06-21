@@ -9,21 +9,10 @@ module.exports = function(config) {
       version: '56.0',
       platform: 'Windows 10'
     },
-    'Win_10_IE': {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '11.103',
-      platform: 'Windows 10'
-    },
     'Win_10_Edge': {
       base: 'SauceLabs',
       browserName: 'MicrosoftEdge',
       version: '14.14393',
-      platform: 'Windows 10'
-    },
-    'Win_10_Firefox': {
-      base: 'SauceLabs',
-      browserName: 'firefox',
       platform: 'Windows 10'
     },
     'MacOS_Chrome': {
