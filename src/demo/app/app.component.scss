@@ -1,10 +1,7 @@
-/*
- *@import 'node_modules/@terminus/ui/helpers';
- */
+// sass-lint:disable no-color-hex
+$color: #808080;
+// sass-lint:enable no-color-hex
 
 h3 {
-  /*
-   *color: palette(mapWarn);
-   */
-  color: #bada55;
+  color: $color;
 }
