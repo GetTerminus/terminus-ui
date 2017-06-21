@@ -2,6 +2,39 @@ module.exports = function(config) {
 
   var libBase = 'src/lib/'; // transpiled app JS and map files
 
+  var customLaunchers = {
+    'Win_10_Chrome': {
+      base: 'SauceLabs',
+      browserName: 'chrome',
+      version: '56.0',
+      platform: 'Windows 10'
+    },
+    'Win_10_Edge': {
+      base: 'SauceLabs',
+      browserName: 'MicrosoftEdge',
+      version: '14.14393',
+      platform: 'Windows 10'
+    },
+    'MacOS_Chrome': {
+      base: 'SauceLabs',
+      browserName: 'Chrome',
+      version: '56.0',
+      platform: 'macOS 10.12'
+    },
+    'MacOS_Safari': {
+      base: 'SauceLabs',
+      browserName: 'safari',
+      version: '10.0',
+      platform: 'macOS 10.12'
+    },
+    'MacOS_Firefox': {
+      base: 'SauceLabs',
+      browserName: 'firefox',
+      version: '51.0',
+      platform: 'macOS 10.12'
+    }
+  };
+
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
@@ -12,6 +45,7 @@ module.exports = function(config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('karma-remap-coverage'),
+      require('karma-sauce-launcher'),
     ],
 
     client: {
@@ -80,7 +114,7 @@ module.exports = function(config) {
     preprocessors: {
       'src/lib/**/*.js': ['coverage'],
     },
-    reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage'],
+    reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage', 'saucelabs'],
     coverageReporter: {
       type : 'json',
       subdir : '.',
@@ -96,11 +130,13 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-
-    browsers: [
-      'Chrome'
-    ],
-
+    browsers: Object.keys(customLaunchers),
+    sauceLabs: {
+      testName: 'Terminus UI CI Tests'
+    },
+    captureTimeout: 120000,
+    concurrency: 2,
+    customLaunchers: customLaunchers,
     singleRun: false
   })
 }
