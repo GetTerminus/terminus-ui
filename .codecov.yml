@@ -19,4 +19,5 @@ ignore:
   - "src/demo"
   - "styleguide"
   - "tooling"
+  - "src/lib/src/**/*.spec.ts"
 
