@@ -10,7 +10,7 @@
 . ~/.bashrc
 
 # Lint the project
-yarn run lint:scss || {
-    echo 'yarn run lint:styles failed!' ;
+npm run lint:scss || {
+    echo 'npm run lint:styles failed!' ;
     exit 1;
 }

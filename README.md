@@ -5,14 +5,58 @@ The library of UI components used for Terminus applications.
 [![CircleCI][circle_badge]][circle_link] [![NPM version][npm_version_image]][npm_url] [![documentation coverage][compodoc_badge]][docs_index] [![Greenkeeper badge][greenkeeper_badge]][greenkeeper] [![semantic-release][semantic_release_badge]][semantic_release] [![MIT License][license_image]][license_url]
 
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Adding a Component](#adding-a-component)
+- [Developing](#developing)
+- [Releasing](#releasing)
+- [Resources](#resources)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Adding a Component
+
+1. Create a directory using the component name: `src/lib/src/button/`
+    - Necessary files:
+      - `button.module.ts`
+          - Class name: `TsButtonModule`
+      - `button.component.ts`
+          - Class name: `TsButtonComponent`
+      - `button.component.scss`
+      - `button.component.html`
+1. Import **and** export `button.component.ts` inside `button.module.ts`
+1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
+1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to the `TERMINUS_MODULES` array.
+1. Export `TsButtonModule` from `src/lib/index.ts`.
+1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
+1. Add a usage example in the component documentation with every possible input included.
+1. Document styles using [nucleus comments][nucleus_annotation].
+
+
+## Developing
+
+TODO
+
+
+## Releasing
+
+TODO
+
 
 ## Resources
 
-- [Semantic Release][semantic_release]
-- [Greenkeeper][greenkeeper]
-- [Commitizen][commitizen]
-- [Commitizen VSCode Plugin][commitizen_vsc]
-- [SauceLabs Platforms][saucelab_platforms]
+- [Semantic Release][semantic_release] - Automatically release versioned release to NPM and generate
+    a changelog in the Github tag.
+- [Greenkeeper][greenkeeper] - Automatically keep dependencies up to date.
+- [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
+- [Commitizen VSCode Plugin][commitizen_vsc] - VSCode plugin for commitizen.
+- [SauceLabs Platforms][saucelab_platforms] - Cross-browser unit tests.
+- [Nucleus][nucleus] - Generates SCSS documentation.
+- [Doctoc][doctoc] - Generate documentation table of contents.
+- [CodeCov][codecov] - Code coverage reporting.
+- [CodeCov Browser Extensions][codecov_browser] - Browser extensions for CodeCov.
 
 
 [compodoc_badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
@@ -32,3 +76,10 @@ The library of UI components used for Terminus applications.
 [commitizen]: https://github.com/commitizen
 [commitizen_vsc]: https://github.com/commitizen
 [saucelab_platforms]: https://saucelabs.com/platforms
+[compodoc]: https://compodoc.github.io/website/
+[compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
+[nucleus]: https://github.com/holidaypirates/nucleus/
+[nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
+[doctoc]: https://github.com/thlorenz/doctoc
+[codecov]: https://codecov.io
+[codecov_browser]: https://docs.codecov.io/docs/browser-extension

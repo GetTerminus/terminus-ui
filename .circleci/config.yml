@@ -41,11 +41,6 @@ jobs:
           # Note: Currently `yarn publish` hangs (known issue) 4.4.17
           command: yarn run semantic-release || echo "No release needed."
 
-      - save_cache:
-          key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - "~/.yarn-cache"
-
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
