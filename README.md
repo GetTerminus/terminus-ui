@@ -55,6 +55,8 @@ TODO
 - [SauceLabs Platforms][saucelab_platforms] - Cross-browser unit tests.
 - [Nucleus][nucleus] - Generates SCSS documentation.
 - [Doctoc][doctoc] - Generate documentation table of contents.
+- [CodeCov][codecov] - Code coverage reporting.
+- [CodeCov Browser Extensions][codecov_browser] - Browser extensions for CodeCov.
 
 
 [compodoc_badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
@@ -79,3 +81,5 @@ TODO
 [nucleus]: https://github.com/holidaypirates/nucleus/
 [nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
 [doctoc]: https://github.com/thlorenz/doctoc
+[codecov]: https://codecov.io
+[codecov_browser]: https://docs.codecov.io/docs/browser-extension
