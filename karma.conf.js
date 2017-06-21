@@ -26,6 +26,12 @@ module.exports = function(config) {
       browserName: 'safari',
       version: '10.0',
       platform: 'macOS 10.12'
+    },
+    'MacOS_Firefox': {
+      base: 'SauceLabs',
+      browserName: 'firefox',
+      version: '51.0',
+      platform: 'macOS 10.12'
     }
   };
 
@@ -122,7 +128,7 @@ module.exports = function(config) {
 
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
     autoWatch: true,
     browsers: Object.keys(customLaunchers),
     sauceLabs: {
