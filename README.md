@@ -10,6 +10,8 @@ The library of UI components used for Terminus applications.
 
 - [Semantic Release][semantic_release]
 - [Greenkeeper][greenkeeper]
+- [Commitizen][commitizen]
+- [Commitizen VSCode Plugin][commitizen_vsc]
 
 
 [compodoc_badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
@@ -26,3 +28,5 @@ The library of UI components used for Terminus applications.
 [semantic_release]: https://github.com/semantic-release/semantic-release
 
 [semantic_release]: https://github.com/semantic-release/semantic-release
+[commitizen]: https://github.com/commitizen
+[commitizen_vsc]: https://github.com/commitizen
