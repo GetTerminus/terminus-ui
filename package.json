@@ -111,6 +111,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-mocha-reporter": "^2.2.3",
     "karma-remap-coverage": "^0.1.4",
+    "karma-sauce-launcher": "^1.1.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^3.0.3",
     "last-release-git": "^0.0.3",
