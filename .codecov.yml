@@ -1,0 +1,22 @@
+codecov:
+  notify:
+    require_ci_to_pass: yes
+
+coverage:
+  range: "40...80"
+  status:
+    project:
+      default:
+        threshold: 1
+
+ignore:
+  - "coverage"
+  - "dist"
+  - "docs"
+  - "integration"
+  - "node_modules"
+  - "out-tsc"
+  - "src/demo"
+  - "styleguide"
+  - "tooling"
+
