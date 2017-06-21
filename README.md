@@ -1,10 +1,8 @@
 # Terminus UI Library
 
-[![Greenkeeper badge][greenkeeper_badge]][greenkeeper]
-
 The library of UI components used for Terminus applications.
 
-[![MIT License][license_image]][license_url] [![NPM version][npm_version_image]][npm_url] [![CircleCI][circle_badge]][circle_link] [![documentation coverage][compodoc_badge]][docs_index]
+[![CircleCI][circle_badge]][circle_link] [![NPM version][npm_version_image]][npm_url] [![documentation coverage][compodoc_badge]][docs_index] [![Greenkeeper badge][greenkeeper_badge]][greenkeeper] [![semantic-release][semantic_release_badge]][semantic_release] [![MIT License][license_image]][license_url]
 
 
 
@@ -24,5 +22,7 @@ The library of UI components used for Terminus applications.
 [circle_link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master
 [greenkeeper_badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
 [greenkeeper]: https://greenkeeper.io/
+[semantic_release_badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic_release]: https://github.com/semantic-release/semantic-release
 
 [semantic_release]: https://github.com/semantic-release/semantic-release
