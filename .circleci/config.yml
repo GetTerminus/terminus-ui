@@ -34,12 +34,12 @@ jobs:
 
       - run:
           name: Build Project
-          command: yarn run build
+          command: npm run build
 
       - run:
           name: Semantic Release
           # Note: Currently `yarn publish` hangs (known issue) 4.4.17
-          command: yarn run semantic-release || echo "No release needed."
+          command: npm run semantic-release || echo "No release needed."
 
       - store_artifacts:
           path: coverage/
