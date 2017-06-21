@@ -313,11 +313,54 @@
                <div class="content readme">
                    <div class="content-data">
 <h1 id="terminus-ui-library">Terminus UI Library</h1>
-<p><a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a> <a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a> <a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=svg" alt="CircleCI" class="img-responsive"></a> <a href="docs/coverage.html"><img src="https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"></a></p>
-<!--
-   - Currently not working
-   -[![Test Coverage][coverage_image]][coverage_url] [![Issue Count][coverage_issues_image]][coverage_issues]
-   -->
+<p>The library of UI components used for Terminus applications.</p>
+<p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=svg" alt="CircleCI" class="img-responsive"></a> <a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a> <a href="docs/coverage.html"><img src="https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg" alt="Greenkeeper badge" class="img-responsive"></a> <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"></a> <a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a></p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#adding-a-component">Adding a Component</a><ul>
+<li><a href="#dont-forget">Don&#39;t Forget</a></li>
+</ul>
+</li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="adding-a-component">Adding a Component</h2>
+<ol>
+<li>Create a directory using the component name: <code>src/lib/src/button/</code><ul>
+<li>Necessary files:<ul>
+<li><code>button.module.ts</code><ul>
+<li>Class name: <code>TsButtonModule</code></li>
+</ul>
+</li>
+<li><code>button.component.ts</code><ul>
+<li>Class name: <code>TsButtonComponent</code></li>
+</ul>
+</li>
+<li><code>button.component.scss</code></li>
+<li><code>button.component.html</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Import <strong>and</strong> export <code>button.component.ts</code> inside <code>button.module.ts</code></li>
+<li>Add <code>TsButtonComponent</code> to the exports <strong>and</strong> declarations of <code>button.module.ts</code>.</li>
+<li>Import <code>TsButtonModule</code> in <code>src/lib/src/module.ts</code> and add it to the <code>TERMINUS_MODULES</code> array.</li>
+<li>Export <code>TsButtonModule</code> from <code>src/lib/index.ts</code>.</li>
+<li>Comment all methods, constants &amp; <code>@Input</code>s using the supported <a href="https://compodoc.github.io/website/guides/comments.html">JSDoc style</a>.</li>
+<li>Add a usage example in the component documentation with every possible input included.</li>
+<li>Document styles using <a href="https://holidaypirates.github.io/nucleus/annotation-reference.html">nucleus comments</a>.</li>
+</ol>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/semantic-release/semantic-release">Semantic Release</a></li>
+<li><a href="https://greenkeeper.io/">Greenkeeper</a></li>
+<li><a href="https://github.com/commitizen">Commitizen</a></li>
+<li><a href="https://github.com/commitizen">Commitizen VSCode Plugin</a></li>
+<li><a href="https://saucelabs.com/platforms">SauceLabs Platforms</a></li>
+<li><a href="https://github.com/holidaypirates/nucleus/">Nucleus</a></li>
+</ul>
 
 
 
