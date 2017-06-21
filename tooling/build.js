@@ -9,8 +9,8 @@ const rollup = require('rollup');
 const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
 const execa = require('execa');
-
 const inlineResources = require('./inline-resources');
+const mergeFiles = require('merge-files');
 
 const libNameWithScope = require('./../package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -21,6 +21,16 @@ const distFolder = path.join(rootFolder, 'dist');
 const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
+// Define all SCSS files that need to be exposed to the consuming library
+const scssHelpersInputPathList = [
+  'src/lib/src/scss/helpers/_assets.scss',
+  'src/lib/src/scss/helpers/_breakpoints.scss',
+  'src/lib/src/scss/helpers/_color.scss',
+  'src/lib/src/scss/helpers/_layout.scss',
+  'src/lib/src/scss/helpers/_typography.scss',
+  'src/lib/src/scss/helpers/_z-index.scss'
+];
+const scssHelpersOutputPath = 'src/lib/helpers.scss';
 
 return Promise.resolve()
   // Copy library to temporary folder, compile sass files and inline html/css.
@@ -75,8 +85,8 @@ return Promise.resolve()
 
         // Rxjs dependencies
         'rxjs/Subject': 'Rx',
-        'rxjs/add/observable/of': 'Rx.Observable',
-        'rxjs/Observable': 'Rx'
+        'rxjs/Observable': 'Rx',
+        'rxjs/add/observable/of': 'Rx.Observable'
       },
       external: [
         // List of dependencies
@@ -144,6 +154,11 @@ return Promise.resolve()
     .then(() => _relativeCopy('package.json', rootFolder, distFolder))
     .then(() => _relativeCopy('README.md', rootFolder, distFolder))
     .then(() => console.log('Package files copy succeeded.'))
+  )
+  .then(() => Promise.resolve()
+    .then(() => mergeFiles(scssHelpersInputPathList, scssHelpersOutputPath))
+    .then(() => _relativeCopy('helpers.scss', srcFolder, distFolder))
+    .then(() => console.log('SCSS helpers merged and copied.'))
   )
   .catch(e => {
     console.error('\Build failed. See below for errors.\n');

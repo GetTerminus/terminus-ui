@@ -20,9 +20,10 @@ module.exports = {
     {name: 'Input'},
     {name: 'InputMessages'},
     {name: 'Search'},
+    {name: 'SCSS'},
     {name: 'CI'},
     {name: 'Dependencies'},
-    {name: 'Documentation'},
+    {name: 'Demo'},
   ],
 
   // it needs to match the value for field type. Eg.: 'fix'
