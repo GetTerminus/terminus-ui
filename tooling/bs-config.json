@@ -1,6 +1,7 @@
 {
   "server": {
     "baseDir": "src/demo",
+    "open": false,
     "routes": {
       "/node_modules": "node_modules",
       "/@terminus/ui": "src/lib"
