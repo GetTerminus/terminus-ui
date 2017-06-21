@@ -13,14 +13,14 @@
 #./cc-test-reporter before-build
 
 # Run tests
-yarn run test:ci || {
-    echo 'yarn run test:ci failed!';
+npm run test:ci || {
+    echo 'npm run test:ci failed!';
     exit 1;
 }
 
 # Convert coverage format
 node tooling/convert-coverage-results.js
 
-# Tell the reporter that the reports are finished
-#./cc-test-reporter after-build --exit-code $?
+# Upload coverage report
+bash <(curl -s https://codecov.io/bash)
 
