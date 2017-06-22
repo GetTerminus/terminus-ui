@@ -9,5 +9,6 @@
 # `node_modules/.bin/`. NPM does seem to correctly do this. Once yarn is correctly installing all
 # `.bin` items, this should be switched back to `yarn install`. The missing bin items break testing,
 # scss linting, and docs generation (compodoc)
+# Issue: https://github.com/yarnpkg/yarn/issues/760
 npm install
 
