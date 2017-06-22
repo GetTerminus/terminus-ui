@@ -43,7 +43,7 @@ The library of UI components used for Terminus applications.
       - `button.component.html`
 1. Import **and** export `button.component.ts` inside `button.module.ts`
 1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
-1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to the `TERMINUS_MODULES` array.
+1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to imports **and** exports array.
 1. Export `TsButtonModule` from `src/lib/index.ts`.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.

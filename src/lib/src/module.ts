@@ -9,24 +9,23 @@ import { TsInputMessagesModule } from './input-messages/input-messages.module';
 // Components (compound)
 import { TsSearchModule } from './search/search.module';
 
-const TERMINUS_MODULES = [
-  TsButtonModule,
-  TsInputModule,
-  TsInputMessagesModule,
-  TsSearchModule,
-];
-
 
 @NgModule({
   imports: [
-    TERMINUS_MODULES,
+    TsButtonModule,
+    TsInputModule,
+    TsInputMessagesModule,
+    TsSearchModule,
   ],
   declarations: [
   ],
   providers: [
   ],
   exports: [
-    TERMINUS_MODULES,
+    TsButtonModule,
+    TsInputModule,
+    TsInputMessagesModule,
+    TsSearchModule,
   ],
 })
 export class TerminusUIModule { }
