@@ -336,10 +336,7 @@
 <li><a href="#linting">Linting</a></li>
 <li><a href="#testing">Testing</a></li>
 <li><a href="#pull-requests">Pull Requests</a></li>
-<li><a href="#releasing">Releasing</a><ul>
-<li><a href="#feature-releases">Feature Releases</a></li>
-</ul>
-</li>
+<li><a href="#releasing">Releasing</a></li>
 <li><a href="#code-comments">Code Comments</a></li>
 </ul>
 </li>
@@ -527,25 +524,6 @@ not production ready!</p>
 <li>Based on those commits it will bump the version number appropriately</li>
 <li>A changelog is generated in the release notes on Github</li>
 <li>The new version is published to NPM</li>
-</ol>
-<h4 id="feature-releases">Feature Releases</h4>
-<p><strong>TODO: Test this release path</strong></p>
-<p>If changes need to be exposed prior to a merge into master:</p>
-<ol>
-<li>Manually create and publish a tag pointing to your feature branch. The tag format should be
-<code>feature/v0.0.0-0</code> where <code>0.0.0</code> is the latest version and the <code>-0</code> represents the version of this
-feature tag:<ul>
-<li><code>$ git tag -a feature/v0.0.0 -m &quot;My new version&quot;</code></li>
-</ul>
-</li>
-<li>Publish an <a href="https://docs.npmjs.com/cli/dist-tag">NPM dist-tag</a> for the new feature under the <code>next</code> tag:<ul>
-<li><code>npm dist-tag add @terminus/ui@feature/v0.0.0 next</code></li>
-</ul>
-</li>
-<li>Install the feature release:<ul>
-<li><code>npm i @terminus/ui@next -S</code></li>
-</ul>
-</li>
 </ol>
 <h3 id="code-comments">Code Comments</h3>
 <p>When writing code, an engineer should be mindful that others will need to understand and edit this
