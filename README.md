@@ -22,6 +22,7 @@ The library of UI components used for Terminus applications.
   - [Testing](#testing)
   - [Pull Requests](#pull-requests)
   - [Releasing](#releasing)
+    - [Feature Releases](#feature-releases)
   - [Code Comments](#code-comments)
 - [Issues](#issues)
 - [Project Resources](#project-resources)
@@ -209,8 +210,8 @@ When it is time merge a branch into `master`, create a pull request from the fea
 
 1. At the top of the pull request, link to the original issue.
 1. If the pull request includes more than one item, include a high level list of what was done.
-1. If the pull request covers UI changes, include a GIF or image to clearly show the change. Bonus
-   points for before and after images.
+1. If the pull request covers UI changes, include a GIF or image to clearly show the change (bonus
+   points for before and after images).
 1. Request a review from someone on your team.
 1. A pull request may be opened before the work is complete. This makes it easier to get feedback
    while the work is in progress. Include `WIP: ` at the beginning of the pull request title so that
@@ -218,14 +219,37 @@ When it is time merge a branch into `master`, create a pull request from the fea
 1. There are two options to check for merge conflicts between your branch and master:
     - Create a pull request against master. (Note: This will cause any associated CI service to
       begin building the feature branch on every push)
-    - Use GitHub's compare view: `https://github.com/GetTerminus/terminus-ui/compare/featureBranch...master`
-1. The pull request body, just like issues, is the single source of truth. Any discussions or
-   relevant information should be added to the pull request body immediately.
+    - Use GitHub's compare view:
+    `https://github.com/GetTerminus/terminus-ui/compare/featureBranch...master`
+1. The pull request body, just like the issue body, is the single source of truth. Any discussions,
+   decisions or relevant information should be added to the pull request body immediately.
 
 
 ### Releasing
 
-TODO
+Releases are handled automatically when code is merged to master. Never merge code to master that is
+not production ready!
+
+1. [Semantic Release][semantic_release] looks at all commits since the last tag on master
+1. Based on those commits it will bump the version number appropriately
+1. A changelog is generated in the release notes on Github
+1. The new version is published to NPM
+
+
+#### Feature Releases
+
+**TODO: Test this release path**
+
+If changes need to be exposed prior to a merge into master:
+
+1. Manually create and publish a tag pointing to your feature branch. The tag format should be
+   `feature/v0.0.0-0` where `0.0.0` is the latest version and the `-0` represents the version of this
+   feature tag:
+   - `$ git tag -a feature/v0.0.0 -m "My new version"`
+1. Publish an [NPM dist-tag][npm-dist-tag] for the new feature under the `next` tag:
+   - `npm dist-tag add @terminus/ui@feature/v0.0.0 next`
+1. Install the feature release:
+   - `npm i @terminus/ui@next -S`
 
 
 ### Code Comments
@@ -330,7 +354,6 @@ machines.
 - [Nucleus][nucleus] - Generates SCSS documentation.
 - [Doctoc][doctoc] - Generate documentation table of contents.
 - [CodeCov][codecov] - Code coverage reporting.
-- [CodeCov Browser Extensions][codecov_browser] - Browser extensions for CodeCov.
 
 
 ## Suggested Tools
@@ -363,8 +386,8 @@ machines.
     - Chrome extension that adds a code tree for GitHub.
 1. [Github with a Cape][github-cape]
     - Chrome Extension which adds a bunch of new features to GitHub.
-1. [CodeClimate for Chrome (if we keep the service)][code-climate-chrome]
-    - Chrome extension for code quality and test coverage feedback without ever leaving GitHub.
+1. [CodeCov Browser Extensions][codecov_browser]
+    - Browser extensions for CodeCov.
 1. [Github Highlight Selected][github-highlight]
     - Chrome extension for highlighting selected word in GitHub source view like Sublime Text.
 1. [Octopatcher][octopatcher]
@@ -427,3 +450,4 @@ machines.
 [neo-vision]: https://github.com/desandro/neo-vision
 [github-cape]: https://github-with-a-cape.nicosantangelo.com/
 [npm-to-yarn]: https://yarnpkg.com/lang/en/docs/migrating-from-npm/
+[npm-dist-tag]: https://docs.npmjs.com/cli/dist-tag
