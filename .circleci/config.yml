@@ -37,7 +37,7 @@ jobs:
           command: npm run build
 
       - run:
-          name: Semantic Release
+          name: Release
           # Note: Currently `yarn publish` hangs (known issue) 4.4.17
           command: npm run semantic-release || echo "No release needed."
 

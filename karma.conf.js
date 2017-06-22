@@ -125,6 +125,9 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: Object.keys(customLaunchers),
+    /*
+     *browsers: ['Chrome'],
+     */
     sauceLabs: {
       testName: 'Terminus UI CI Tests'
     },

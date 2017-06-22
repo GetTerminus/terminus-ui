@@ -22,7 +22,6 @@ The library of UI components used for Terminus applications.
   - [Testing](#testing)
   - [Pull Requests](#pull-requests)
   - [Releasing](#releasing)
-    - [Feature Releases](#feature-releases)
   - [Code Comments](#code-comments)
 - [Issues](#issues)
 - [Project Resources](#project-resources)
@@ -43,7 +42,7 @@ The library of UI components used for Terminus applications.
       - `button.component.html`
 1. Import **and** export `button.component.ts` inside `button.module.ts`
 1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
-1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to the `TERMINUS_MODULES` array.
+1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to imports **and** exports array.
 1. Export `TsButtonModule` from `src/lib/index.ts`.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.
@@ -234,22 +233,6 @@ not production ready!
 1. Based on those commits it will bump the version number appropriately
 1. A changelog is generated in the release notes on Github
 1. The new version is published to NPM
-
-
-#### Feature Releases
-
-**TODO: Test this release path**
-
-If changes need to be exposed prior to a merge into master:
-
-1. Manually create and publish a tag pointing to your feature branch. The tag format should be
-   `feature/v0.0.0-0` where `0.0.0` is the latest version and the `-0` represents the version of this
-   feature tag:
-   - `$ git tag -a feature/v0.0.0 -m "My new version"`
-1. Publish an [NPM dist-tag][npm-dist-tag] for the new feature under the `next` tag:
-   - `npm dist-tag add @terminus/ui@feature/v0.0.0 next`
-1. Install the feature release:
-   - `npm i @terminus/ui@next -S`
 
 
 ### Code Comments

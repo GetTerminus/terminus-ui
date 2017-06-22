@@ -9,9 +9,6 @@
 
 . ~/.bashrc
 
-# Prep the CodeClimate reporter that a report is about to happen
-#./cc-test-reporter before-build
-
 # Run tests
 npm run test:ci || {
     echo 'npm run test:ci failed!';
@@ -19,6 +16,8 @@ npm run test:ci || {
 }
 
 # Convert coverage format
+# TODO: Test without this conversion to see if CodeCov needs it. Currently it looks as though they
+# are consuming both reports
 node tooling/convert-coverage-results.js
 
 # Upload coverage report
