@@ -6,7 +6,6 @@ The library of UI components used for Terminus applications.
 [![NPM version][npm-version-image]][npm-url] [![Greenkeeper badge][greenkeeper-badge]][greenkeeper] [![semantic-release][semantic-release-badge]][semantic-release] [![MIT License][license-image]][license-url]
 
 
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -400,7 +399,6 @@ machines.
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-
 [semantic_release]: https://github.com/semantic-release/semantic-release
 [commitizen]: https://github.com/commitizen
 [commitizen_vsc]: https://github.com/commitizen
@@ -412,7 +410,6 @@ machines.
 [doctoc]: https://github.com/thlorenz/doctoc
 [codecov]: https://codecov.io
 [codecov_browser]: https://docs.codecov.io/docs/browser-extension
-
 [semantic-release-video]: https://youtu.be/tc2UgG5L7WM
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [imageoptim]: https://imageoptim.com/mac
