@@ -6,7 +6,6 @@ The library of UI components used for Terminus applications.
 [![NPM version][npm-version-image]][npm-url] [![Greenkeeper badge][greenkeeper-badge]][greenkeeper] [![semantic-release][semantic-release-badge]][semantic-release] [![MIT License][license-image]][license-url]
 
 
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
