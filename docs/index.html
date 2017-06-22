@@ -321,6 +321,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
+<li><a href="#primary-features">Primary Features</a></li>
 <li><a href="#adding-a-component">Adding a Component</a></li>
 <li><a href="#developing">Developing</a><ul>
 <li><a href="#branching">Branching</a><ul>
@@ -345,6 +346,38 @@
 <li><a href="#suggested-tools">Suggested Tools</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="primary-features">Primary Features</h2>
+<ol>
+<li>Demo app for developing within a real application (without the need for symlinks)</li>
+<li>Testing<ul>
+<li>Unit (cross-browser)</li>
+<li>JiT integration</li>
+<li>AoT integration</li>
+<li>Style regression (not yet implemented)</li>
+</ul>
+</li>
+<li>Linting<ul>
+<li>TypeScript</li>
+<li>SCSS</li>
+</ul>
+</li>
+<li>Documentation<ul>
+<li>Manual docs for basic project flow (README)<ul>
+<li>Automated Table of Contents updates</li>
+<li>Automated markdown link checking</li>
+</ul>
+</li>
+<li>Generated docs for TypeScript (<code>docs/</code>)</li>
+<li>Generated docs for SCSS (<code>styleguide/</code>)</li>
+</ul>
+</li>
+<li>Automated semantic versioning &amp; publishing to NPM</li>
+<li>Enforced commit style</li>
+<li>Tree-shaking via Rollup.js</li>
+<li>SCSS variables &amp; functions exposed to consuming application</li>
+<li>Code coverage reports (<code>coverage/</code>)</li>
+<li>Automatic dependency updates</li>
+</ol>
 <h2 id="adding-a-component">Adding a Component</h2>
 <ol>
 <li>Create a directory using the component name: <code>src/lib/src/button/</code><ul>

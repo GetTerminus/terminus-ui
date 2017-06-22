@@ -7,9 +7,10 @@ The library of UI components used for Terminus applications.
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN `npm run docs:toc` TO UPDATE -->
 **Table of Contents**
 
+- [Primary Features](#primary-features)
 - [Adding a Component](#adding-a-component)
 - [Developing](#developing)
   - [Branching](#branching)
@@ -28,6 +29,31 @@ The library of UI components used for Terminus applications.
 - [Suggested Tools](#suggested-tools)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Primary Features
+
+1. Demo app for developing within a real application
+1. Testing
+    - Unit (cross-browser)
+    - JiT integration
+    - AoT integration
+    - Style regression (not yet implemented)
+1. Linting
+    - TypeScript
+    - SCSS
+1. Documentation
+    - Manual docs for basic project flow (README)
+      - Automated Table of Contents updates
+      - Automated markdown link checking
+    - Generated docs for TypeScript (`docs/`)
+    - Generated docs for SCSS (`styleguide/`)
+1. Automated semantic versioning & publishing to NPM
+1. Enforced commit style
+1. Tree-shaking via Rollup.js
+1. SCSS variables & functions exposed to the consuming application
+1. Code coverage reporting (`coverage/`)
+1. Automated dependency updates
 
 
 ## Adding a Component
