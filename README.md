@@ -399,7 +399,6 @@ machines.
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-
 [semantic_release]: https://github.com/semantic-release/semantic-release
 [commitizen]: https://github.com/commitizen
 [commitizen_vsc]: https://github.com/commitizen
@@ -411,7 +410,6 @@ machines.
 [doctoc]: https://github.com/thlorenz/doctoc
 [codecov]: https://codecov.io
 [codecov_browser]: https://docs.codecov.io/docs/browser-extension
-
 [semantic-release-video]: https://youtu.be/tc2UgG5L7WM
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [imageoptim]: https://imageoptim.com/mac
