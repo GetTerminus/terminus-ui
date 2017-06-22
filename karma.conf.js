@@ -124,6 +124,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+
     browsers: Object.keys(customLaunchers),
     /*
      *browsers: ['Chrome'],
@@ -134,6 +135,7 @@ module.exports = function(config) {
     captureTimeout: 120000,
     concurrency: 2,
     customLaunchers: customLaunchers,
+
     singleRun: false
   })
 }
