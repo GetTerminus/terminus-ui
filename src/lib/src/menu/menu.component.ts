@@ -22,7 +22,7 @@ import { MenuPositionTypesY } from './menu-position-y.types';
 /**
  * Define the allowed keys and types for an item passed to the {@link TsMenuComponent}
  */
-interface MenuItem {
+export interface MenuItem {
   name: string;
   icon: string;
   action: string;
