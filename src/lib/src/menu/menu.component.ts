@@ -1,16 +1,28 @@
 import {
   Component,
   Input,
+  Output,
   ViewChild,
   OnInit,
+  EventEmitter,
+  AfterViewInit,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import _find = require('lodash/find')
+import { MdMenuTrigger } from '@angular/material';
+import { find } from 'lodash';
+
+const _ = {
+  find: find,
+};
 
 import { MenuPositionTypesX } from './menu-position-x.types';
 import { MenuPositionTypesY } from './menu-position-y.types';
 
-export interface MenuItem {
+
+/**
+ * Define the allowed keys and types for an item passed to the {@link TsMenuComponent}
+ */
+interface MenuItem {
   name: string;
   icon: string;
   action: string;
@@ -18,11 +30,14 @@ export interface MenuItem {
 
 /**
  * A presentational component to render a dropdown menu.
- * TODO: Add example
  *
  * @example
  * <ts-menu
- *   foo="bar"
+ *   menuItems="[{},{},{}]"
+ *   menuPositionX="20px"
+ *   menuPositionY="20px"
+ *   isDisabled="false"
+ *   (selected)="myMethod($event)"
  * ></ts-menu>
  */
 @Component({
@@ -30,47 +45,36 @@ export interface MenuItem {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class TsMenuComponent implements OnInit  {
+export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * Define if there is at least one icon
    */
   public hasIcons: boolean = false;
 
   /**
-   * Define the menu ID
-   */
-  public menuId: string = this.randomId();
-
-  /**
    * Define if the menu should overlap the trigger
    */
-  public shouldOverlapTrigger: boolean = true;
+  public shouldOverlapTrigger: boolean = false;
 
   /**
-   * Provide access to the model
+   * Provide access to the trigger
    */
-  @ViewChild('tsMenu') menu: any;
+  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+
+  /**
+   * Define if the menu should be opened by default
+   */
+  @Input() defaultOpened: boolean = false;
+
+  /**
+   * Define the Y menu position
+   */
+  @Input() isDisabled: boolean = false;
 
   /**
    * Accept an array of menu items to display
    */
-  @Input() menuItems: MenuItem[] = [
-    {
-      name: 'Item 1',
-      icon: 'build',
-      action: 'foobar',
-    },
-    {
-      name: 'Item 2',
-      icon: null,
-      action: 'barbaz',
-    },
-    {
-      name: 'Item 3',
-      icon: 'announcement',
-      action: 'bing',
-    },
-  ];
+  @Input() menuItems: MenuItem[];
 
   /**
    * Define the X menu position
@@ -82,26 +86,27 @@ export class TsMenuComponent implements OnInit  {
    */
   @Input() menuPositionY: MenuPositionTypesY = 'below';
 
+  /**
+   * Output a selection event with the item payload
+   */
+  @Output() selected = new EventEmitter<any>();
 
-  // TODO: Output selection
 
-
-
-  ngOnInit() {
-    console.log('this.menu: ', this.menu);
-    console.log('this.menuId: ', this.menuId);
-
+  /**
+   * On initialization check to see if at least 1 icon exists in the menu items
+   */
+  ngOnInit(): void {
     this.hasIcons = this._hasAtLeastOneIcon(this.menuItems);
   }
 
 
   /**
-   * Generate a random string for an ID
-   *
-   * @return {string} ID A random ID string
+   * After the view has initialized, open the menu if it is defaulted to 'open'
    */
-  private randomId(): string {
-    return Math.random().toString(36).substr(2, 10);
+  ngAfterViewInit(): void {
+    if (this.defaultOpened) {
+      this.trigger.openMenu();
+    }
   }
 
 
@@ -111,7 +116,7 @@ export class TsMenuComponent implements OnInit  {
    * @return {boolean} hasIcon Value that represents if at least one icon is present
    */
   private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
-    const found = _find(items, (item: MenuItem) => {
+    const found = _.find(items, (item: MenuItem) => {
       return item.icon;
     });
 

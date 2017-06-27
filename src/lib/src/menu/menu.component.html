@@ -10,6 +10,7 @@
     class="c-menu__item"
     [ngClass]="{'c-menu__item--fake-icon': (hasIcons && !item.icon)}"
     *ngFor="let item of menuItems"
+    (click)="selected.emit(item)"
   >
     <md-icon *ngIf="item.icon">
       {{ item.icon }}
