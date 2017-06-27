@@ -1,7 +1,8 @@
-dir:docs
-dir:out-tsc
-dir:coverage
-dir:dist
-dir:node_modules
-dir:styleguide
-
+^\.git$
+^coverage$
+^dist$
+^docs$
+^integration$
+^node_modules$
+^out-tsc$
+^styleguide$
