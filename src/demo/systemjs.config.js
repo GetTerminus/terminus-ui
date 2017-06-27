@@ -5,7 +5,7 @@
   System.config({
     paths: {
       // Paths serve as alias
-      'npm:': 'node_modules/'
+      'npm:': 'node_modules/',
     },
     // Map tells the System loader where to look for things
     map: {
@@ -29,7 +29,6 @@
       '@angular/animations/browser': 'https://unpkg.com/@angular/animations/bundles/animations-browser.umd.js',
       '@angular/platform-browser/animations': 'https://unpkg.com/@angular/platform-browser/bundles/platform-browser-animations.umd',
 
-
       // Material
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
@@ -38,6 +37,7 @@
       'angular2-ladda': 'node_modules/angular2-ladda/module',
       'ladda': 'node_modules/ladda/js',
       'spin': 'node_modules/ladda/js/spin.js',
+      'lodash': 'npm:lodash',
     },
     // Packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -67,6 +67,9 @@
       },
       'ladda': {
         main: 'ladda.js',
+        defaultExtension: 'js',
+      },
+      'lodash': {
         defaultExtension: 'js',
       },
     },

@@ -5,11 +5,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { find } from 'lodash';
+import _find = require('lodash/find')
 
 import { MenuPositionTypesX } from './menu-position-x.types';
 import { MenuPositionTypesY } from './menu-position-y.types';
-
 
 export interface MenuItem {
   name: string;
@@ -112,7 +111,7 @@ export class TsMenuComponent implements OnInit  {
    * @return {boolean} hasIcon Value that represents if at least one icon is present
    */
   private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
-    const found = find(items, (item) => {
+    const found = _find(items, (item: MenuItem) => {
       return item.icon;
     });
 
