@@ -6,6 +6,7 @@
     paths: {
       // Paths serve as alias
       'npm:': 'node_modules/',
+      'unpkg:': 'https://unpkg.com/',
     },
     // Map tells the System loader where to look for things
     map: {
@@ -19,15 +20,15 @@
       '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
       '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
-      '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+      '@angular/router': 'unpkg:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
       '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
       // HACK: Not sure why this only works when pulling from the CDN. When defining as the others
       // above, it throws an odd undefined error from inside the bundle
-      '@angular/animations': 'https://unpkg.com/@angular/animations/bundles/animations.umd.js',
-      '@angular/animations/browser': 'https://unpkg.com/@angular/animations/bundles/animations-browser.umd.js',
-      '@angular/platform-browser/animations': 'https://unpkg.com/@angular/platform-browser/bundles/platform-browser-animations.umd',
+      '@angular/animations': 'unpkg:@angular/animations/bundles/animations.umd.js',
+      '@angular/animations/browser': 'unpkg:@angular/animations/bundles/animations-browser.umd.js',
+      '@angular/platform-browser/animations': 'unpkg:@angular/platform-browser/bundles/platform-browser-animations.umd',
 
       // Material
       '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
@@ -70,6 +71,7 @@
         defaultExtension: 'js',
       },
       'lodash': {
+        main: 'index.js',
         defaultExtension: 'js',
       },
     },

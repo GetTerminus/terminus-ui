@@ -1,34 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  TsButtonModule,
-  TsInputModule,
-  TsSearchModule,
-  TsMenuModule,
-} from '@terminus/ui';
-import {
-  MdMenuModule,
-  MdIconModule,
-} from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TsButtonModule,
-    TsInputModule,
-    TsSearchModule,
-    TsMenuModule,
-    MdMenuModule,
-    MdIconModule,
+    AppRoutingModule,
+    ComponentsModule,
   ],
   declarations: [
     AppComponent,
+    routedComponents,
   ],
   bootstrap: [
     AppComponent,
