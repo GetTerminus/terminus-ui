@@ -6,7 +6,12 @@ import {
   TsButtonModule,
   TsInputModule,
   TsSearchModule,
+  TsMenuModule,
 } from '@terminus/ui';
+import {
+  MdMenuModule,
+  MdIconModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -18,6 +23,9 @@ import { AppComponent } from './app.component';
     TsButtonModule,
     TsInputModule,
     TsSearchModule,
+    TsMenuModule,
+    MdMenuModule,
+    MdIconModule,
   ],
   declarations: [
     AppComponent,

@@ -6,16 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <h3>Meaning is: {{meaning}}</h3>
     <div>
-      <ts-button [showProgress]="loading" (click)="run()">My Button!!!</ts-button>
-    </div>
-    <form #form1="ngForm" (ngSubmit)="submitSearch(form1.value)">
-      Requirements:
-      <br>
-      <ts-input required minlength="3" [(ngModel)]="query1" name="query1"></ts-input>
-      <button type="submit">Submit</button>
-    </form>
-    <div>
-      <ts-search></ts-search>
+      <ts-menu>Select an item</ts-menu>
     </div>
   `,
 })

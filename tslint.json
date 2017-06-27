@@ -118,13 +118,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "t",
+      "ts",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "t",
+      "ts",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
