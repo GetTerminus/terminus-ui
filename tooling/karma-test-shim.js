@@ -100,6 +100,8 @@ System.config({
     'ladda': 'npm:ladda/js',
     'spin': 'npm:ladda/js/spin.js',
 
+    'lodash': 'npm:lodash/index.js',
+
     'src': 'src',
   },
 });
