@@ -81,9 +81,6 @@ module.exports = function(config) {
 
       // Material styles
       { pattern: 'node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css', included: true, watched: true },
-      { pattern: 'node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css.map', included: false, watched: false },
-
-      { pattern: 'src/demo/systemjs-angular-loader.js', included: false, watched: false },
 
       'tooling/karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
@@ -104,7 +101,6 @@ module.exports = function(config) {
     proxies: {
       // required for modules fetched by SystemJS
       '/base/src/lib/node_modules/': '/base/node_modules/',
-      '/base/src/lib/demo/': '/base/src/demo/'
     },
 
     exclude: [],

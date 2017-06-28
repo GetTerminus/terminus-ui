@@ -38,7 +38,7 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 System.config({
   paths: {
     // paths serve as alias
-    'npm:*': 'node_modules/*'
+    'npm:*': 'node_modules/*',
   },
   // Base URL for System.js calls. 'base/' is where Karma serves files from.
   baseURL: 'base/src/lib',
@@ -67,7 +67,7 @@ System.config({
 
   // Map the angular umd bundles
   map: {
-    'system-loader': 'demo/systemjs-angular-loader.js',
+    'system-loader': 'systemjs-angular-loader.js',
     '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
     '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
     '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',

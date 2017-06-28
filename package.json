@@ -32,10 +32,8 @@
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "prebuild": "npm run clean:lib",
     "build": "node tooling/build.js",
-    "build-demo": "tsc -p src/demo/ && npm run build-demo-scss",
-    "build-demo:watch": "concurrently \"npm run watch-for-demo-css-extension\" \"tsc -p src/demo/ -w\" \"npm run build-demo-scss:watch\"",
-    "build-demo-scss": "node-sass src/demo -o src/demo --output-style expanded",
-    "build-demo-scss:watch": "node-sass src/demo -o src/demo --output-style expanded -w",
+    "build-demo": "cd src/demo && ng build --prod",
+    "build-demo:watch": "cd src/demo && ng serve --port 4300",
     "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
     "build-scss:watch": "node-sass src/lib -o src/lib --output-style expanded -w",
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
@@ -58,8 +56,7 @@
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "update-scss-lib-extensions": "node tooling/replace-scss-lib-extension.js",
     "update-scss-demo-extensions": "node tooling/replace-scss-demo-extension.js",
-    "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions",
-    "watch-for-demo-css-extension": "onchange 'src/demo/**/*.js' -- npm run update-scss-demo-extensions"
+    "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions"
   },
   "config": {
     "commitizen": {
@@ -85,6 +82,7 @@
   },
   "devDependencies": {
     "@angular/animations": "~4.2.2",
+    "@angular/cli": "^1.1.3",
     "@angular/common": "~4.2.2",
     "@angular/compiler": "~4.2.2",
     "@angular/compiler-cli": "~4.2.2",
