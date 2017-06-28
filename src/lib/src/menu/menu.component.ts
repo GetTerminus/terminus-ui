@@ -17,27 +17,19 @@ const _ = {
 
 import { MenuPositionTypesX } from './menu-position-x.types';
 import { MenuPositionTypesY } from './menu-position-y.types';
+import { MenuItem } from './menu-item.interface';
 
-
-/**
- * Define the allowed keys and types for an item passed to the {@link TsMenuComponent}
- */
-export interface MenuItem {
-  name: string;
-  icon: string;
-  action: string;
-}
 
 /**
  * A presentational component to render a dropdown menu.
  *
  * @example
  * <ts-menu
- *   menuItems="[{},{},{}]"
- *   menuPositionX="20px"
- *   menuPositionY="20px"
- *   isDisabled="false"
- *   (selected)="myMethod($event)"
+ *              menuItems="[{},{},{}]"
+ *              menuPositionX="20px"
+ *              menuPositionY="20px"
+ *              isDisabled="false"
+ *              (selected)="myMethod($event)"
  * ></ts-menu>
  */
 @Component({
