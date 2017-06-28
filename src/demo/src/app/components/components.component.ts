@@ -35,7 +35,7 @@ export class ComponentsComponent implements OnInit {
       route: ['input'],
     },
   ];
-  route: any;
+  route = '';
 
   constructor(
     private router: Router,
@@ -51,7 +51,9 @@ export class ComponentsComponent implements OnInit {
    */
   setCurrentPage(): void {
     const routeParts = this.router.routerState.snapshot.url.split('/');
-    this.route = routeParts[routeParts.length - 1];
+    if (routeParts.length > 2) {
+      this.route = routeParts[routeParts.length - 1];
+    }
   }
 
 
