@@ -11,12 +11,12 @@ import { StyleThemeTypes } from './../types/style-theme.types';
  *
  * @example
  * <ts-button
- *   actionName="Submit"
- *   buttonStyle="accent"
- *   buttonType="search"
- *   iconName="search"
- *   isDisabled="false"
- *   showProgress="true"
+ *              actionName="Submit"
+ *              buttonStyle="accent"
+ *              buttonType="search"
+ *              iconName="search"
+ *              isDisabled="false"
+ *              showProgress="true"
  * ></ts-button>
  */
 @Component({

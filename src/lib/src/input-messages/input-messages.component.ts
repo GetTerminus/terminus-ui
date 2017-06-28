@@ -4,7 +4,9 @@ import { Component, Input } from '@angular/core';
  * A presentational component to render input validation messages
  *
  * @example
- * <t-input-messages [messages]="myMessages"></t-input-messages>
+ * <t-input-messages
+ *             [messages]="myMessages"
+ * ></t-input-messages>
  */
 @Component({
   selector: 'ts-input-messages',

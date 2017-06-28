@@ -22,18 +22,18 @@ import { ElementBase } from './../utilities/element-base';
  *
  * @example
  * <ts-input
- *   [(ngModel)]="myModel"
- *   hint="Fill this out!"
- *   required
- *   minlength="3"
- *   label="My Input"
- *   isDisabled="false"
- *   prefixIcon="link"
- *   canClear="true"
- *   initialValue="initial value"
- *   isFocused="false"
- *   hideRequiredMarker="false"
- *   hint="Only letters and numbers"
+ *              [(ngModel)]="myModel"
+ *              hint="Fill this out!"
+ *              required
+ *              minlength="3"
+ *              label="My Input"
+ *              isDisabled="false"
+ *              prefixIcon="link"
+ *              canClear="true"
+ *              initialValue="initial value"
+ *              isFocused="false"
+ *              hideRequiredMarker="false"
+ *              hint="Only letters and numbers"
  * ></ts-input>
  */
 @Component({

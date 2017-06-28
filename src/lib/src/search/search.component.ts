@@ -15,8 +15,8 @@ import { ButtonFunctionTypes } from './../types/button-function.types';
  *
  * @example
  * <t-search
- *   userCanClear="false"
- *   inputLabel="Search for a tactic"
+ *              userCanClear="false"
+ *              inputLabel="Search for a tactic"
  * ></t-search>
  * <t-search inputLabel="Search for a tactic"></t-search>
  */
