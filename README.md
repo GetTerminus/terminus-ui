@@ -83,6 +83,7 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.
 1. Document styles using [nucleus comments][nucleus_annotation].
+1. Run `npm run docs` to generate all documentation.
 
 
 ## Developing
