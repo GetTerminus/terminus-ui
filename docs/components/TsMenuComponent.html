@@ -98,7 +98,7 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
+                                    <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -107,7 +107,7 @@
                                     <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                    <a href="../components/TsMenuComponent.html"  data-type="entity-link" class="active" >TsMenuComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -255,7 +255,7 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
+                                           <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -264,7 +264,7 @@
                                            <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                           <a href="../components/TsMenuComponent.html"  data-type="entity-link" class="active" >TsMenuComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -335,7 +335,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>TsButtonComponent</li>
+  <li>TsMenuComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -360,33 +360,38 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/src/button/button.component.ts</code>
+    <code>src/lib/src/menu/menu.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a button
-TODO: Text color transition doesn&#39;t match the background transition timing</p>
+        <p>A presentational component to render a dropdown menu.</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/AfterViewInit-interface.html" target="_blank" >AfterViewInit</a></code>
+    </p>
 
     <p class="comment">
         <h3>Example</h3>
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;ts-button
-  actionName=&quot;Submit&quot;
-  buttonStyle=&quot;accent&quot;
-  buttonType=&quot;search&quot;
-  iconName=&quot;search&quot;
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-menu
+  menuItems=&quot;[{},{},{}]&quot;
+  menuPositionX=&quot;20px&quot;
+  menuPositionY=&quot;20px&quot;
   isDisabled=&quot;false&quot;
-  showProgress=&quot;true&quot;
-&gt;&lt;/ts-button&gt;</code></pre>
+  (selected)=&quot;myMethod($event)&quot;
+&gt;&lt;/ts-menu&gt;</code></pre>
                 </div>
     </div>
 
@@ -408,19 +413,19 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-button</code></td>
+                <td class="col-md-9"><code>ts-menu</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>button.component.scss</code></td>
+                <td class="col-md-9"><code>menu.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./button.component.html</code></td>
+                <td class="col-md-9"><code>./menu.component.html</code></td>
             </tr>
 
 
@@ -434,95 +439,23 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>actionName</code>
+                            <code>defaultOpened</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the action for the aria-label</p>
+                            <div><p>Define if the menu should be opened by default</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>any</code>
+                                <em>Type:</em>    <code>boolean</code>
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>Button</code>
+                              <em>Default value: </em><code>false</code>
                             </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/src/button/button.component.ts:31</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>buttonStyle</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the button style</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>any</code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>primary</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/button/button.component.ts:36</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>buttonType</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the button type</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>any</code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>button</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/button/button.component.ts:41</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>iconName</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define a Material icon to include</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/button/button.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/menu/menu.component.ts:59</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -534,7 +467,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                             <code>isDisabled</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the button is disabled</p>
+                            <div><p>Define the Y menu position</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
@@ -547,7 +480,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/button/button.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/menu/menu.component.ts:64</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -556,23 +489,94 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>showProgress</code>
+                            <code>menuItems</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the progress indicator should show</p>
+                            <div><p>Accept an array of menu items to display</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>boolean</code>
+                                <em>Type:</em>    <code>{}</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/lib/src/menu/menu.component.ts:69</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>menuPositionX</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the X menu position</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>any</code>
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>false</code>
+                              <em>Default value: </em><code>after</code>
                             </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/button/button.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/menu/menu.component.ts:74</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>menuPositionY</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the Y menu position</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>any</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>below</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/menu/menu.component.ts:79</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>selected</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Output a selection event with the item payload</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/menu/menu.component.ts:84</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -580,93 +584,369 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
     </section>
 
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> ngOnInit</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngOnInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/menu/menu.component.ts:90</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>On initialization check to see if at least 1 icon exists in the menu items</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> ngAfterViewInit</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngAfterViewInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/src/menu/menu.component.ts:98</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>After the view has initialized, open the menu if it is defaulted to &#39;open&#39;</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> _hasAtLeastOneIcon</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play lock"></span>
+                            <code>_hasAtLeastOneIcon(items: {})</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/lib/src/menu/menu.component.ts:110</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Determine if at least one item has a non-null icon</p>
+    </div>
+    
+                                <div class="io-description">
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>boolean</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
-
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> hasIcons</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>hasIcons:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/menu/menu.component.ts:44</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define if there is at least one icon</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> shouldOverlapTrigger</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>shouldOverlapTrigger:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/menu/menu.component.ts:49</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define if the menu should overlap the trigger</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> trigger</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>trigger:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/menu/menu.component.ts:54</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the trigger</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  OnInit,
+  EventEmitter,
+  AfterViewInit,
+} from &#x27;@angular/core&#x27;;
+import { Observable } from &#x27;rxjs/Observable&#x27;;
+import { MdMenuTrigger } from &#x27;@angular/material&#x27;;
+import { find } from &#x27;lodash&#x27;;
 
-import { ButtonActionTypes } from &#x27;./../types/button-action.types&#x27;;
-import { ButtonFunctionTypes } from &#x27;./../types/button-function.types&#x27;;
-import { StyleThemeTypes } from &#x27;./../types/style-theme.types&#x27;;
+const _ &#x3D; {
+  find: find,
+};
+
+import { MenuPositionTypesX } from &#x27;./menu-position-x.types&#x27;;
+import { MenuPositionTypesY } from &#x27;./menu-position-y.types&#x27;;
+import { MenuItem } from &#x27;./menu-item.interface&#x27;;
 
 
 /**
- * A presentational component to render a button
- * TODO: Text color transition doesn&#x27;t match the background transition timing
+ * A presentational component to render a dropdown menu.
  *
  * @example
- * &lt;ts-button
- *              actionName&#x3D;&quot;Submit&quot;
- *              buttonStyle&#x3D;&quot;accent&quot;
- *              buttonType&#x3D;&quot;search&quot;
- *              iconName&#x3D;&quot;search&quot;
+ * &lt;ts-menu
+ *              menuItems&#x3D;&quot;[{},{},{}]&quot;
+ *              menuPositionX&#x3D;&quot;20px&quot;
+ *              menuPositionY&#x3D;&quot;20px&quot;
  *              isDisabled&#x3D;&quot;false&quot;
- *              showProgress&#x3D;&quot;true&quot;
- * &gt;&lt;/ts-button&gt;
+ *              (selected)&#x3D;&quot;myMethod($event)&quot;
+ * &gt;&lt;/ts-menu&gt;
  */
 @Component({
-  selector: &#x27;ts-button&#x27;,
-  templateUrl: &#x27;./button.component.html&#x27;,
-  styleUrls: [&#x27;./button.component.scss&#x27;],
+  selector: &#x27;ts-menu&#x27;,
+  templateUrl: &#x27;./menu.component.html&#x27;,
+  styleUrls: [&#x27;./menu.component.scss&#x27;],
 })
-export class TsButtonComponent {
+export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
-   * Define the action for the aria-label
+   * Define if there is at least one icon
    */
-  @Input() actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
+  public hasIcons: boolean &#x3D; false;
 
   /**
-   * Define the button style
+   * Define if the menu should overlap the trigger
    */
-  @Input() buttonStyle: StyleThemeTypes &#x3D; &#x27;primary&#x27;;
+  public shouldOverlapTrigger: boolean &#x3D; false;
 
   /**
-   * Define the button type
+   * Provide access to the trigger
    */
-  @Input() buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
+  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
 
   /**
-   * Define a Material icon to include
+   * Define if the menu should be opened by default
    */
-  @Input() iconName: string;
+  @Input() defaultOpened: boolean &#x3D; false;
 
   /**
-   * Define if the button is disabled
+   * Define the Y menu position
    */
   @Input() isDisabled: boolean &#x3D; false;
 
   /**
-   * Define if the progress indicator should show
+   * Accept an array of menu items to display
    */
-  @Input() showProgress: boolean &#x3D; false;
+  @Input() menuItems: MenuItem[];
 
+  /**
+   * Define the X menu position
+   */
+  @Input() menuPositionX: MenuPositionTypesX &#x3D; &#x27;after&#x27;;
+
+  /**
+   * Define the Y menu position
+   */
+  @Input() menuPositionY: MenuPositionTypesY &#x3D; &#x27;below&#x27;;
+
+  /**
+   * Output a selection event with the item payload
+   */
+  @Output() selected &#x3D; new EventEmitter&lt;any&gt;();
+
+
+  /**
+   * On initialization check to see if at least 1 icon exists in the menu items
+   */
+  ngOnInit(): void {
+    this.hasIcons &#x3D; this._hasAtLeastOneIcon(this.menuItems);
+  }
+
+
+  /**
+   * After the view has initialized, open the menu if it is defaulted to &#x27;open&#x27;
+   */
+  ngAfterViewInit(): void {
+    if (this.defaultOpened) {
+      this.trigger.openMenu();
+    }
+  }
+
+
+  /**
+   * Determine if at least one item has a non-null icon
+   *
+   * @return {boolean} hasIcon Value that represents if at least one icon is present
+   */
+  private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
+    const found &#x3D; _.find(items, (item: MenuItem) &#x3D;&gt; {
+      return item.icon;
+    });
+
+    return found ? true : false;
+  }
 }
+
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;button
-  md-raised-button
-  [color]&#x3D;&quot;buttonStyle&quot;
-  [attr.aria-label]&#x3D;&quot;actionName&quot;
-  [attr.type]&#x3D;&quot;buttonType&quot;
-  class&#x3D;&quot;c-button c-button&quot;
-  [disabled]&#x3D;&quot;isDisabled&quot;
-  [ladda]&#x3D;&quot;showProgress&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;md-menu
+  #menu&#x3D;&quot;mdMenu&quot;
+  [yPosition]&#x3D;&quot;menuPositionY&quot;
+  [xPosition]&#x3D;&quot;menuPositionX&quot;
+  [overlapTrigger]&#x3D;&quot;shouldOverlapTrigger&quot;
+  class&#x3D;&quot;c-menu&quot;
 &gt;
-  &lt;md-icon
-    *ngIf&#x3D;&quot;iconName&quot;
-    class&#x3D;&quot;c-button__icon&quot;
+  &lt;button
+    md-menu-item
+    class&#x3D;&quot;c-menu__item&quot;
+    [ngClass]&#x3D;&quot;{&#x27;c-menu__item--fake-icon&#x27;: (hasIcons &amp;&amp; !item.icon)}&quot;
+    *ngFor&#x3D;&quot;let item of menuItems&quot;
+    (click)&#x3D;&quot;selected.emit(item)&quot;
   &gt;
-    {{ iconName }}
-  &lt;/md-icon&gt;
+    &lt;md-icon *ngIf&#x3D;&quot;item.icon&quot;&gt;
+      {{ item.icon }}
+    &lt;/md-icon&gt;
 
+    {{ item.name }}
+  &lt;/button&gt;
+&lt;/md-menu&gt;
+
+&lt;ts-button [mdMenuTriggerFor]&#x3D;&quot;menu&quot; [isDisabled]&#x3D;&quot;isDisabled&quot;&gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;/button&gt;
-
+  &lt;md-icon&gt;arrow_drop_down&lt;/md-icon&gt;
+&lt;/ts-button&gt;
 </code></pre>
     </div>
 
@@ -693,10 +973,10 @@ export class TsButtonComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="buttonStyle"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
+        var COMPONENT_TEMPLATE = '<div><md-menu  #menu="mdMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger"  class="c-menu">  <button    md-menu-item    class="c-menu__item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <md-icon *ngIf="item.icon">      {{ item.icon }}    </md-icon>    {{ item.name }}  </button></md-menu><ts-button [mdMenuTriggerFor]="menu" [isDisabled]="isDisabled">  <ng-content></ng-content>  <md-icon>arrow_drop_down</md-icon></ts-button></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
+    var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};
 </script>
 <script src="../js/tree.js"></script>
 

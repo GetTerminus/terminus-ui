@@ -11,6 +11,7 @@ The library of UI components used for Terminus applications.
 **Table of Contents**
 
 - [Primary Features](#primary-features)
+- [Installation](#installation)
 - [Adding a Component](#adding-a-component)
 - [Developing](#developing)
   - [Branching](#branching)
@@ -56,6 +57,15 @@ The library of UI components used for Terminus applications.
 1. Automated dependency updates
 
 
+## Installation
+
+Install the library and all required dependencies:
+
+```bash
+$ npm i @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda lodash --save
+```
+
+
 ## Adding a Component
 
 1. Create a directory using the component name: `src/lib/src/button/`
@@ -73,6 +83,7 @@ The library of UI components used for Terminus applications.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.
 1. Document styles using [nucleus comments][nucleus_annotation].
+1. Run `npm run docs` to generate all documentation.
 
 
 ## Developing
@@ -256,9 +267,9 @@ Releases are handled automatically when code is merged to master. Never merge co
 not production ready!
 
 1. [Semantic Release][semantic_release] looks at all commits since the last tag on master
-1. Based on those commits it will bump the version number appropriately
-1. A changelog is generated in the release notes on Github
-1. The new version is published to NPM
+1. Based on those commits it will [bump the version number appropriately][semver]
+1. A changelog is generated in the release notes on [Github][ui-github]
+1. The new version is published to [NPM][ui-npm]
 
 
 ### Code Comments
@@ -458,3 +469,6 @@ machines.
 [github-cape]: https://github-with-a-cape.nicosantangelo.com/
 [npm-to-yarn]: https://yarnpkg.com/lang/en/docs/migrating-from-npm/
 [npm-dist-tag]: https://docs.npmjs.com/cli/dist-tag
+[ui-npm]: https://www.npmjs.com/package/@terminus/ui
+[ui-github]: https://github.com/GetTerminus/terminus-ui
+[semver]: http://semver.org/

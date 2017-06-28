@@ -78,6 +78,9 @@
                                     <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                         </ul>
@@ -102,6 +105,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -144,6 +150,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                 </li>
                         </ul>
                     </li>
@@ -226,6 +235,9 @@
                                            <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                </ul>
@@ -250,6 +262,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -292,6 +307,9 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
                                </ul>
                            </li>
@@ -368,18 +386,18 @@ TODO: The required marker doesn&#39;t appear, even when set to true</p>
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-input
-[(ngModel)]=&quot;myModel&quot;
-hint=&quot;Fill this out!&quot;
-required
-minlength=&quot;3&quot;
-label=&quot;My Input&quot;
-isDisabled=&quot;false&quot;
-prefixIcon=&quot;link&quot;
-canClear=&quot;true&quot;
-initialValue=&quot;initial value&quot;
-isFocused=&quot;false&quot;
-hideRequiredMarker=&quot;false&quot;
-hint=&quot;Only letters and numbers&quot;
+  [(ngModel)]=&quot;myModel&quot;
+  hint=&quot;Fill this out!&quot;
+  required
+  minlength=&quot;3&quot;
+  label=&quot;My Input&quot;
+  isDisabled=&quot;false&quot;
+  prefixIcon=&quot;link&quot;
+  canClear=&quot;true&quot;
+  initialValue=&quot;initial value&quot;
+  isFocused=&quot;false&quot;
+  hideRequiredMarker=&quot;false&quot;
+  hint=&quot;Only letters and numbers&quot;
 &gt;&lt;/ts-input&gt;</code></pre>
                 </div>
     </div>
@@ -816,18 +834,18 @@ import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
  *
  * @example
  * &lt;ts-input
- *   [(ngModel)]&#x3D;&quot;myModel&quot;
- *   hint&#x3D;&quot;Fill this out!&quot;
- *   required
- *   minlength&#x3D;&quot;3&quot;
- *   label&#x3D;&quot;My Input&quot;
- *   isDisabled&#x3D;&quot;false&quot;
- *   prefixIcon&#x3D;&quot;link&quot;
- *   canClear&#x3D;&quot;true&quot;
- *   initialValue&#x3D;&quot;initial value&quot;
- *   isFocused&#x3D;&quot;false&quot;
- *   hideRequiredMarker&#x3D;&quot;false&quot;
- *   hint&#x3D;&quot;Only letters and numbers&quot;
+ *              [(ngModel)]&#x3D;&quot;myModel&quot;
+ *              hint&#x3D;&quot;Fill this out!&quot;
+ *              required
+ *              minlength&#x3D;&quot;3&quot;
+ *              label&#x3D;&quot;My Input&quot;
+ *              isDisabled&#x3D;&quot;false&quot;
+ *              prefixIcon&#x3D;&quot;link&quot;
+ *              canClear&#x3D;&quot;true&quot;
+ *              initialValue&#x3D;&quot;initial value&quot;
+ *              isFocused&#x3D;&quot;false&quot;
+ *              hideRequiredMarker&#x3D;&quot;false&quot;
+ *              hint&#x3D;&quot;Only letters and numbers&quot;
  * &gt;&lt;/ts-input&gt;
  */
 @Component({
@@ -995,7 +1013,7 @@ export class TsInputComponent extends ElementBase&lt;string&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input"  hideRequiredMarker="{{ hideRequiredMarker }}">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    disabled="{{ isDisabled }}"    [(ngModel)]="value"    autofocus="{{ isFocused }}"    type="text"    class="c-input__text"    (blur)="enableValidation()"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="clearInput()"  >clear</md-icon>  <md-hint *ngIf="hint">    {{ hint }}  </md-hint>  <ts-input-messages    [messages]="failures | async"    *ngIf="validationEnabled"  ></ts-input-messages></md-input-container></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsSearchComponent', 'selector': 'ts-search'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>

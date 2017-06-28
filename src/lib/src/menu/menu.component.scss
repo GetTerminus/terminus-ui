@@ -1,0 +1,32 @@
+@import './../scss/helpers/typography';
+
+:host {
+  display: inline-block;
+}
+
+
+//
+// @component
+//  Menu
+// @description
+//  A dropdown menu component
+//
+.c-menu {
+  $icon-width: 24px;
+  $icon-margin: 16px;
+
+  // Top level styles should be nested here
+  /deep/ &#{&} {
+    font-family: $type__family--base;
+  }
+
+  // <button>
+  .c-menu__item {
+
+    // Create the space that an icon would fill.
+    /deep/ &.c-menu__item--fake-icon {
+      // FIXME: I'm not sure why this '4' is needed. B$
+      padding-left: $icon-width + $icon-margin + $icon-margin + 4;
+    }
+  }
+}

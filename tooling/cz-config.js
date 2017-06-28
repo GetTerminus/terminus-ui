@@ -19,6 +19,7 @@ module.exports = {
     {name: 'Button'},
     {name: 'Input'},
     {name: 'InputMessages'},
+    {name: 'Menu'},
     {name: 'Search'},
     {name: 'SCSS'},
     {name: 'CI'},

@@ -1,0 +1,26 @@
+<md-menu
+  #menu="mdMenu"
+  [yPosition]="menuPositionY"
+  [xPosition]="menuPositionX"
+  [overlapTrigger]="shouldOverlapTrigger"
+  class="c-menu"
+>
+  <button
+    md-menu-item
+    class="c-menu__item"
+    [ngClass]="{'c-menu__item--fake-icon': (hasIcons && !item.icon)}"
+    *ngFor="let item of menuItems"
+    (click)="selected.emit(item)"
+  >
+    <md-icon *ngIf="item.icon">
+      {{ item.icon }}
+    </md-icon>
+
+    {{ item.name }}
+  </button>
+</md-menu>
+
+<ts-button [mdMenuTriggerFor]="menu" [isDisabled]="isDisabled">
+  <ng-content></ng-content>
+  <md-icon>arrow_drop_down</md-icon>
+</ts-button>

@@ -1,26 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  TsButtonModule,
-  TsInputModule,
-  TsSearchModule,
-} from '@terminus/ui';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TsButtonModule,
-    TsInputModule,
-    TsSearchModule,
+    AppRoutingModule,
+    ComponentsModule,
   ],
   declarations: [
     AppComponent,
+    routedComponents,
   ],
   bootstrap: [
     AppComponent,

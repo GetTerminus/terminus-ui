@@ -86,7 +86,8 @@ return Promise.resolve()
         // Rxjs dependencies
         'rxjs/Subject': 'Rx',
         'rxjs/Observable': 'Rx',
-        'rxjs/add/observable/of': 'Rx.Observable'
+        'rxjs/add/observable/of': 'Rx.Observable',
+        'lodash': '_',
       },
       external: [
         // List of dependencies
@@ -103,9 +104,10 @@ return Promise.resolve()
         '@angular/platform-browser-dynamic',
         '@angular/material',
         'angular2-ladda',
+        'lodash',
       ],
       plugins: [
-        sourcemaps()
+        sourcemaps(),
       ]
     };
 

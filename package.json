@@ -23,7 +23,6 @@
     "clean:lib": "rimraf out-tsc dist \"src/lib/**/*.js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
     "clean:demo": "rimraf \"src/demo/**/*.js\" \"src/demo/**/*.map\"",
     "clean:styleguide": "rm -rf styleguide",
-    "precommit": "npm run docs",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",
     "predocs": "npm run markdown:test-links && npm run docs:toc",
@@ -48,7 +47,7 @@
     "lint:ts": "tslint ./src/**/*.ts -t verbose",
     "lint:scss": "./node_modules/.bin/sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
     "lint": "npm run lint:ts && npm run lint:scss",
-    "markdown:test-links": "markdown-link-check ./README.md",
+    "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "npm run build-demo && npm run build-scss",
@@ -56,7 +55,7 @@
     "pretest": "npm run build-test",
     "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "npm run build-test",
-    "test:ci": "karma start karma.conf.js --single-run --code-coverage",
+    "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "update-scss-lib-extensions": "node tooling/replace-scss-lib-extension.js",
     "update-scss-demo-extensions": "node tooling/replace-scss-demo-extension.js",
     "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions",
@@ -78,9 +77,11 @@
   "peerDependencies": {
     "@angular/animations": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
-    "@angular/material": "2.0.0-beta.6",
+    "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
+    "@angular/material": "2.0.0-beta.7",
     "@angular/platform-browser": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
-    "angular2-ladda": "1.2.1"
+    "angular2-ladda": "1.2.1",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "@angular/animations": "~4.2.2",
@@ -90,11 +91,12 @@
     "@angular/core": "~4.2.2",
     "@angular/forms": "~4.2.2",
     "@angular/http": "~4.2.2",
-    "@angular/material": "^2.0.0-beta.6",
+    "@angular/material": "^2.0.0-beta.7",
     "@angular/platform-browser": "~4.2.2",
     "@angular/platform-browser-dynamic": "~4.2.2",
     "@compodoc/compodoc": "^1.0.0-beta.10",
     "@types/jasmine": "2.5.53",
+    "@types/lodash": "^4.14.66",
     "@types/node": "^8.0.1",
     "angular2-ladda": "^1.2.1",
     "camelcase": "^4.0.0",
@@ -140,7 +142,7 @@
     "semantic-release": "^6.3.6",
     "systemjs": "^0.20.14",
     "tslint": "^5.4.3",
-    "typescript": "^2.2.1",
+    "typescript": "~2.2.1",
     "validate-commit-msg": "^2.12.2",
     "zone.js": "^0.8.4"
   }
