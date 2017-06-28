@@ -55,7 +55,7 @@
     "pretest": "npm run build-test",
     "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "npm run build-test",
-    "test:ci": "karma start karma.conf.js --single-run --code-coverage",
+    "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "update-scss-lib-extensions": "node tooling/replace-scss-lib-extension.js",
     "update-scss-demo-extensions": "node tooling/replace-scss-demo-extension.js",
     "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions",
