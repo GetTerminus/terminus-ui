@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-menu',
   template: `
     <ts-menu
       [menuItems]="demoItems"
-      [isDisabled]="isDisabled"
-      (selected)="wasSelected($event)"
-    >Select an item</ts-menu>
+      [isDisabled]="disabled"
+      (selected)="itemSelected($event)"
+    >Select Item</ts-menu>
   `,
 })
-export class DemoMenuComponent implements OnInit {
+export class MenuComponent {
   demoItems = [
     {
       name: 'Item 1',
@@ -28,14 +28,9 @@ export class DemoMenuComponent implements OnInit {
       action: 'bing',
     },
   ];
-  isDisabled = false;
+  disabled = false;
 
-
-  ngOnInit() {
+  itemSelected(item: any): void {
+    console.log('Item selected: ', item.name);
   }
-
-  wasSelected(item) {
-    console.log('item: ', item);
-  }
-
 }
