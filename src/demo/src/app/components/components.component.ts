@@ -61,7 +61,11 @@ export class ComponentsComponent implements OnInit {
    * @param {Object} value The selected component info
    */
   goToComponent(value: any): void {
-    this.router.navigate(['components', value]);
+    if (value) {
+      this.router.navigate(['components', value]);
+    } else {
+      this.router.navigate(['components']);
+    }
   }
 
 }
