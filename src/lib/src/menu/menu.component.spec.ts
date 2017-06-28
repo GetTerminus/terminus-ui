@@ -123,7 +123,6 @@ describe(`TsMenuComponent`, () => {
       const arrayMock = [
         {
           name: 'foo',
-          icon: null,
         },
       ];
       expect(this.component._hasAtLeastOneIcon(arrayMock)).toEqual(false);
