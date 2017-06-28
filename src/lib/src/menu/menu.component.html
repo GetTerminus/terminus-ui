@@ -20,7 +20,7 @@
   </button>
 </md-menu>
 
-<ts-button [mdMenuTriggerFor]="menu">
+<ts-button [mdMenuTriggerFor]="menu" [isDisabled]="isDisabled">
   <ng-content></ng-content>
   <md-icon>arrow_drop_down</md-icon>
 </ts-button>
