@@ -27,19 +27,25 @@ export class ComponentsComponent implements OnInit {
       route: ['button'],
     },
     {
+      name: 'Input',
+      route: ['input'],
+    },
+    {
       name: 'Menu',
       route: ['menu'],
     },
     {
-      name: 'Input',
-      route: ['input'],
+      name: 'Select',
+      route: ['select'],
     },
   ];
   route = '';
 
+
   constructor(
     private router: Router,
   ) {}
+
 
   ngOnInit() {
     this.setCurrentPage();
