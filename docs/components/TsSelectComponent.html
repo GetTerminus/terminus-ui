@@ -116,7 +116,7 @@
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
+                                    <a href="../components/TsSelectComponent.html"  data-type="entity-link" class="active" >TsSelectComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -134,7 +134,7 @@
                                 id="xs-classes-links"
                             >
                                 <li class="link">
-                                    <a href="../classes/ElementBase.html"  data-type="entity-link" class="active" >ElementBase</a>
+                                    <a href="../classes/ElementBase.html" >ElementBase</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
@@ -279,7 +279,7 @@
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
+                                           <a href="../components/TsSelectComponent.html"  data-type="entity-link" class="active" >TsSelectComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -297,7 +297,7 @@
                                        id="classes-links"
                    >
                                        <li class="link">
-                                           <a href="../classes/ElementBase.html"  data-type="entity-link" class="active" >ElementBase</a>
+                                           <a href="../classes/ElementBase.html" >ElementBase</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/ValueAccessorBase.html" >ValueAccessorBase</a>
@@ -341,278 +341,588 @@
                    
                    </nav>
                </div>
-               <div class="content class">
+               <div class="content component">
                    <div class="content-data">
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li>ElementBase</li>
+  <li>Components</li>
+  <li>TsSelectComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
     </li>
+
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/lib/src/utilities/element-base.ts</code>
-        </p>
+    <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/src/select/select.component.ts</code>
+</p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Base class for input components that is responsible for supplying validity state and methods to
-the derived component. Extends <a href="../classes/ValueAccessorBase.html">ValueAccessorBase</a>.</p>
-<ul>
-<li>Provides observable values to its parent about its validity state.</li>
-<li>Provides a validate method which can also be used in the control and which works off of
- validators injected through hierarchical dependency injection (eg. a required or minlength
- directive).</li>
-</ul>
-<p>Reference: <a href="http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/">http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/</a></p>
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A component to create a select menu</p>
 
-            </p>
+    </p>
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                    <code><a href="../classes/ValueAccessorBase.html" target="_self" >ValueAccessorBase</a></code>
-            </p>
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../classes/ElementBase.html" target="_self" >ElementBase</a></code>
+    </p>
 
 
-
-            <section>
-                
-                    <h3 id="methods">
-                        Methods
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Protected</span> validate</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play circle"></span>
-                                    <code>validate()</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/utilities/element-base.ts:47</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Return the validation result</p>
-            </div>
-            
-                                        <div class="io-description">
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code>any</code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-
-
-            <section>
-                
-                    <h3 id="inputs">
-                        Properties
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Protected</span> failures</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>any</code>
-            </bcode>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/utilities/element-base.ts:59</a></div>
-                                        </td>
-                                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Get all validation failures</p>
-            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Protected</span> invalid</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>any</code>
-            </bcode>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/utilities/element-base.ts:76</a></div>
-                                        </td>
-                                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Get any invalid validations</p>
-            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Protected</span> model</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code>any</code>
-            </bcode>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>
-                                        </td>
-                                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Store the model</p>
-            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-select
+  [(ngModel)]=&quot;myModel&quot;
+  blankChoice=&quot;none&quot;
+  label=&quot;Please select one:&quot;
+  items=&quot;[{},{},{}]&quot;
+  multipleAllowed=&quot;true&quot;
+  (open)=&quot;myMethod($event)
+  (close)=&quot;myMethod($event)
+  (change)=&quot;myMethod($event)
+&gt;&lt;/ts-select&gt;</code></pre>
+                </div>
     </div>
-    <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { NgModel } from &#x27;@angular/forms&#x27;;
-import { Observable } from &#x27;rxjs/Observable&#x27;;
-import { ValueAccessorBase } from &#x27;./value-accessor&#x27;;
 
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                    <code>
+                        { provide: NG_VALUE_ACCESSOR, useExisting: TsSelectComponent, multi:  }
+                    </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ts-select</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>select.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./select.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>blankChoice</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the content for a blank option (no content means no options will show)
+NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/select/select.component.ts:56</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>items</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a list of select items</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>any</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/select/select.component.ts:66</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>label</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the label for the menu</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/select/select.component.ts:61</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>multipleAllowed</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if multiple selections are allowed</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/select/select.component.ts:71</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>valueKey</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the key that represents the value item from the object</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/select/select.component.ts:76</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>change</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Emit event when the select value is changed</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/select/select.component.ts:91</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>close</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Emit event when the select is closed</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/select/select.component.ts:86</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>open</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Emit event when the select is opened</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/src/select/select.component.ts:81</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
+
+
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getValueKey</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>getValueKey(item: object, valueKey: string)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/select/select.component.ts:112</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Return the specified value from the object</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>item</b>
+                                                            :     <code>Object</code>
+    
+                                                    </div>
+                                                    <div>
+                                                        <p>The object representing the item</p>
+    
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>valueKey</b>
+                                                            :     <code>String</code>
+    
+                                                    </div>
+                                                    <div>
+                                                        <p>The string representing the value key</p>
+    
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> model</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>model:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/select/select.component.ts:50</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the model</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Component,
+  Input,
+  Output,
+  Optional,
+  Inject,
+  ViewChild,
+  EventEmitter,
+} from &#x27;@angular/core&#x27;;
 import {
-  AsyncValidatorArray,
-  ValidatorArray,
-  IValidationResult,
-  message,
-  validate,
-} from &#x27;./validate&#x27;;
+  NgModel,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  NG_ASYNC_VALIDATORS,
+  FormControl
+} from &#x27;@angular/forms&#x27;;
+import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
 
 /**
- * Base class for input components that is responsible for supplying validity state and methods to
- * the derived component. Extends {@link ValueAccessorBase}.
+ * A component to create a select menu
  *
- * - Provides observable values to its parent about its validity state.
- * - Provides a validate method which can also be used in the control and which works off of
- *   validators injected through hierarchical dependency injection (eg. a required or minlength
- *   directive).
- *
- * Reference: http://blog.rangle.io/angular-2-ngmodel-and-custom-form-components/
+ * @example
+ * &lt;ts-select
+ *              [(ngModel)]&#x3D;&quot;myModel&quot;
+ *              blankChoice&#x3D;&quot;none&quot;
+ *              label&#x3D;&quot;Please select one:&quot;
+ *              items&#x3D;&quot;[{},{},{}]&quot;
+ *              multipleAllowed&#x3D;&quot;true&quot;
+ *              (open)&#x3D;&quot;myMethod($event)
+ *              (close)&#x3D;&quot;myMethod($event)
+ *              (change)&#x3D;&quot;myMethod($event)
+ * &gt;&lt;/ts-select&gt;
  */
-export abstract class ElementBase&lt;T&gt; extends ValueAccessorBase&lt;T&gt; {
+@Component({
+  selector: &#x27;ts-select&#x27;,
+  templateUrl: &#x27;./select.component.html&#x27;,
+  styleUrls: [&#x27;./select.component.scss&#x27;],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: TsSelectComponent,
+      multi: true,
+    },
+  ],
+})
+export class TsSelectComponent extends ElementBase&lt;string&gt; {
   /**
-   * Store the model
+   * Provide access to the model
    */
-  protected abstract model: NgModel;
+  @ViewChild(NgModel) model: NgModel;
+
+  /**
+   * Define the content for a blank option (no content means no options will show)
+   * NOTE: This is disabled if &#x60;multipleAllowed&#x60; is true
+   */
+  @Input() blankChoice: string;
+
+  /**
+   * Define the label for the menu
+   */
+  @Input() label: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Define a list of select items
+   */
+  @Input() items: any &#x3D; [];
+
+  /**
+   * Define if multiple selections are allowed
+   */
+  @Input() multipleAllowed: boolean &#x3D; false;
+
+  /**
+   * Define the key that represents the value item from the object
+   */
+  @Input() valueKey: string;
+
+  /**
+   * Emit event when the select is opened
+   */
+  @Output() open &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  /**
+   * Emit event when the select is closed
+   */
+  @Output() close &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  /**
+   * Emit event when the select value is changed
+   */
+  @Output() change &#x3D; new EventEmitter&lt;any&gt;();
 
 
   /**
    * @hidden
    */
   constructor(
-    private validators: ValidatorArray,
-    private asyncValidators: AsyncValidatorArray,
+    @Optional() @Inject(NG_VALIDATORS) validators: Array&lt;any&gt;,
+    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array&lt;any&gt;,
   ) {
-    super();
+    super(validators, asyncValidators);
   }
 
 
   /**
-   * Return the validation result
+   * Return the specified value from the object
    *
-   * @return validationResults The validation result
+   * @param {Object} item The object representing the item
+   * @param {String} valueKey The string representing the value key
+   * @return {String} value The value of the valueKey or the item itself
    */
-  protected validate(): Observable&lt;IValidationResult&gt; {
-    return validate
-    (this.validators, this.asyncValidators)
-    (this.model.control);
+  getValueKey(item: object, valueKey?: string): string {
+    return valueKey ? item[valueKey] : item;
   }
 
-
-  /**
-   * Get all validation failures
-   *
-   * @return {Observable} An array of failures as strings
-   */
-  protected get failures(): Observable&lt;Array&lt;string&gt;&gt; {
-    return this.validate().map((v) &#x3D;&gt; {
-      // V will be null if no more failures are found
-      if (v) {
-        return Object.keys(v).map(k &#x3D;&gt; message(v, k));
-      } else {
-        return null;
-      }
-    });
-  }
-
-
-  /**
-   * Get any invalid validations
-   *
-   * @return isInvalid A boolean representing the invalid state
-   */
-  protected get invalid(): Observable&lt;boolean&gt; {
-    return this.validate().map(v &#x3D;&gt; Object.keys(v || {}).length &gt; 0);
-  }
 
 }
 </code></pre>
     </div>
+
+    <div class="tab-pane fade" id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;md-select
+  [placeholder]&#x3D;&quot;label&quot;
+  [(ngModel)]&#x3D;&quot;value&quot;
+  [multiple]&#x3D;&quot;multipleAllowed&quot;
+  (onClose)&#x3D;&quot;close.emit(true)&quot;
+  (onOpen)&#x3D;&quot;open.emit(true)&quot;
+  (change)&#x3D;&quot;change.emit(value)&quot;
+&gt;
+  &lt;md-option *ngIf&#x3D;&quot;blankChoice &amp;&amp; !multipleAllowed&quot;&gt;
+    {{ blankChoice }}
+  &lt;/md-option&gt;
+
+  &lt;md-option
+    *ngFor&#x3D;&quot;let item of items&quot;
+    [value]&#x3D;&quot;getValueKey(item, valueKey)&quot;
+  &gt;{{ item.name }}&lt;/md-option&gt;
+&lt;/md-select&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><md-select  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name }}</md-option></md-select></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
 
 
 

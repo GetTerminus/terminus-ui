@@ -83,6 +83,9 @@
                                 <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -111,6 +114,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -240,6 +246,9 @@
                                        <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -268,6 +277,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -400,10 +412,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:9</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:20</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The action attached to the menu item</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -432,10 +450,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:15</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The icon name</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -464,18 +488,35 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:10</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The menu item name</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">export interface MenuItem {
+  /**
+   * The menu item name
+   */
   name: string;
+
+  /**
+   * The icon name
+   */
   icon: string;
+
+  /**
+   * The action attached to the menu item
+   */
   action: string;
 }
 </code></pre>
