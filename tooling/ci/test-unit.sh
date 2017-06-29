@@ -15,11 +15,6 @@ npm run test:ci || {
     exit 1;
 }
 
-# Convert coverage format
-# TODO: Test without this conversion to see if CodeCov needs it. Currently it looks as though they
-# are consuming both reports
-node tooling/convert-coverage-results.js
-
 # Upload coverage report
 bash <(curl -s https://codecov.io/bash)
 
