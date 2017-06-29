@@ -20,7 +20,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean:lib": "rimraf out-tsc dist \"src/lib/**/*.js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
+    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
     "clean:demo": "rimraf \"src/demo/**/*.js\" \"src/demo/**/*.map\"",
     "clean:styleguide": "rm -rf styleguide",
     "commitmsg": "validate-commit-msg",
@@ -30,7 +30,6 @@
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all --theme stripe",
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
-    "prebuild": "npm run clean:lib",
     "build": "node tooling/build.js",
     "build:watch": "onchange 'src/lib/**/*.ts' -- npm run build",
     "build-demo": "cd src/demo && ng build --prod",
