@@ -23,10 +23,14 @@ import {
  */
 export abstract class ElementBase<T> extends ValueAccessorBase<T> {
   /**
-   * @protected store the model
+   * Store the model
    */
   protected abstract model: NgModel;
 
+
+  /**
+   * @hidden
+   */
   constructor(
     private validators: ValidatorArray,
     private asyncValidators: AsyncValidatorArray,
@@ -34,8 +38,11 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     super();
   }
 
+
   /**
-   * @protected Return the validation result
+   * Return the validation result
+   *
+   * @return validationResults The validation result
    */
   protected validate(): Observable<IValidationResult> {
     return validate
@@ -43,15 +50,11 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     (this.model.control);
   }
 
-  /**
-   * @protected Get any invalid validations
-   */
-  protected get invalid(): Observable<boolean> {
-    return this.validate().map(v => Object.keys(v || {}).length > 0);
-  }
 
   /**
-   * @protected Get all validation failures
+   * Get all validation failures
+   *
+   * @return {Observable} An array of failures as strings
    */
   protected get failures(): Observable<Array<string>> {
     return this.validate().map((v) => {
@@ -63,4 +66,15 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
       }
     });
   }
+
+
+  /**
+   * Get any invalid validations
+   *
+   * @return isInvalid A boolean representing the invalid state
+   */
+  protected get invalid(): Observable<boolean> {
+    return this.validate().map(v => Object.keys(v || {}).length > 0);
+  }
+
 }
