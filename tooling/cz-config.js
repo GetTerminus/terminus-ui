@@ -21,6 +21,7 @@ module.exports = {
     {name: 'InputMessages'},
     {name: 'Menu'},
     {name: 'Search'},
+    {name: 'Select'},
     {name: 'SCSS'},
     {name: 'CI'},
     {name: 'Dependencies'},

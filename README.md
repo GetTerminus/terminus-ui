@@ -84,6 +84,7 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Add a usage example in the component documentation with every possible input included.
 1. Document styles using [nucleus comments][nucleus_annotation].
 1. Run `npm run docs` to generate all documentation.
+1. Add the new component to available scopes in `tooling/cz-config.js`
 
 
 ## Developing

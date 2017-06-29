@@ -81,7 +81,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * Output a selection event with the item payload
    */
-  @Output() selected = new EventEmitter<any>();
+  @Output() selected = new EventEmitter<MenuItem>();
 
 
   /**
@@ -105,7 +105,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * Determine if at least one item has a non-null icon
    *
-   * @return {boolean} hasIcon Value that represents if at least one icon is present
+   * @param {Array} items The collection of items to look through
+   * @return {Boolean} hasIcon Value that represents if at least one icon is present
    */
   private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
     const found = _.find(items, (item: MenuItem) => {

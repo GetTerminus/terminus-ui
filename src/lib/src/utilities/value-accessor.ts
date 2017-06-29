@@ -6,17 +6,17 @@ import { ControlValueAccessor } from '@angular/forms';
  */
 export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
   /**
-   * @private Private value store
+   * Private value store
    */
   private innerValue: T;
 
   /**
-   * @private Store the changed items
+   * Store the changed items
    */
   private changed = new Array<(value: T) => void>();
 
   /**
-   * @private Store the touched items
+   * Store the touched items
    */
   private touched = new Array<() => void>();
 
@@ -59,7 +59,7 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
    *
    * @param fn The validation method
    */
-  registerOnChange(fn: (value: T) => void) {
+  registerOnChange(fn: (value: T) => void): void {
     this.changed.push(fn);
   }
 
@@ -69,7 +69,7 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
    *
    * @param fn The validation method
    */
-  registerOnTouched(fn: () => void) {
+  registerOnTouched(fn: () => void): void {
     this.touched.push(fn);
   }
 
@@ -77,7 +77,7 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
   /**
    * Run through each item of the touched array
    */
-  touch() {
+  touch(): void {
     this.touched.forEach(f => f());
   }
 }

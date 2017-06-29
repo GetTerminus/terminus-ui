@@ -14,6 +14,7 @@ import {
   TsButtonModule,
   TsInputModule,
   TsMenuModule,
+  TsSelectModule,
 } from '@terminus/ui';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,7 @@ import { ComponentsComponent } from './components/components.component';
 import { ButtonComponent } from './components/button.component';
 import { InputComponent } from './components/input.component';
 import { MenuComponent } from './components/menu.component';
+import { SelectComponent } from './components/select.component';
 
 @NgModule({
   imports: [
@@ -36,6 +38,7 @@ import { MenuComponent } from './components/menu.component';
     TsButtonModule,
     TsInputModule,
     TsMenuModule,
+    TsSelectModule,
   ],
   declarations: [
     AppComponent,
@@ -43,6 +46,7 @@ import { MenuComponent } from './components/menu.component';
     ButtonComponent,
     InputComponent,
     MenuComponent,
+    SelectComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
