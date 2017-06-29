@@ -108,8 +108,9 @@ export class TsSelectComponent extends ElementBase<string> {
    * @param {Object} item The object representing the item
    * @return {string} valueKey The key of the object that represents the value
    */
-  getValue(item: any, valueKey: string): string {
+  getValueKey(item: any, valueKey?: string): string {
     return valueKey ? item[valueKey] : item;
   }
+
 
 }
