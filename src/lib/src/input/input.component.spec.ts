@@ -17,7 +17,6 @@ import { TsInputComponent } from './input.component';
   </div>`,
 })
 class TestHostComponent {
-  val = 'foo';
 }
 
 
