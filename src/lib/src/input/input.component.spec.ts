@@ -13,7 +13,7 @@ import { TsInputComponent } from './input.component';
 @Component({
   template: `
   <div>
-    <ts-input [initialValue]="val"></ts-input>
+    <ts-input></ts-input>
   </div>`,
 })
 class TestHostComponent {

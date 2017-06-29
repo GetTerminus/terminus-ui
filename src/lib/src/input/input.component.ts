@@ -30,7 +30,6 @@ import { ElementBase } from './../utilities/element-base';
  *              isDisabled="false"
  *              prefixIcon="link"
  *              canClear="true"
- *              initialValue="initial value"
  *              isFocused="false"
  *              hideRequiredMarker="false"
  *              hint="Only letters and numbers"
@@ -50,11 +49,6 @@ import { ElementBase } from './../utilities/element-base';
 })
 export class TsInputComponent extends ElementBase<string> {
   /**
-   * Provide access to the model
-   */
-  @ViewChild(NgModel) model: NgModel;
-
-  /**
    * Validation messages are hidden until the blur event
    */
   public validationEnabled: boolean = false;
@@ -65,19 +59,9 @@ export class TsInputComponent extends ElementBase<string> {
   public failures: Observable<Array<string>>;
 
   /**
-   * Define the label
+   * Provide access to the model
    */
-  @Input() label: string;
-
-  /**
-   * Define if the input is disabled
-   */
-  @Input() isDisabled: boolean = false;
-
-  /**
-   * Define a Material icon to include before the input
-   */
-  @Input() prefixIcon: string;
+  @ViewChild(NgModel) model: NgModel;
 
   /**
    * Define a Material icon to include after the input
@@ -85,9 +69,9 @@ export class TsInputComponent extends ElementBase<string> {
   @Input() canClear: boolean = false;
 
   /**
-   * Define an initial value for the input
+   * Define if the input is disabled
    */
-  @Input() initialValue: string;
+  @Input() isDisabled: boolean = false;
 
   /**
    * Define if the input should be focused
@@ -103,6 +87,16 @@ export class TsInputComponent extends ElementBase<string> {
    * Define a hint for the input
    */
   @Input() hint: string;
+
+  /**
+   * Define the label
+   */
+  @Input() label: string;
+
+  /**
+   * Define a Material icon to include before the input
+   */
+  @Input() prefixIcon: string;
 
 
   /**

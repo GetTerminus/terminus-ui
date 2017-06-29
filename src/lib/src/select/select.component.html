@@ -1,0 +1,17 @@
+<md-select
+  [placeholder]="label"
+  [(ngModel)]="value"
+  [multiple]="multipleAllowed"
+  (onClose)="close.emit(true)"
+  (onOpen)="open.emit(true)"
+  (change)="change.emit(value)"
+>
+  <md-option *ngIf="blankChoice && !multipleAllowed">
+    {{ blankChoice }}
+  </md-option>
+
+  <md-option
+    *ngFor="let item of items"
+    [value]="getValue(item, valueKey)"
+  >{{ item.name }}</md-option>
+</md-select>

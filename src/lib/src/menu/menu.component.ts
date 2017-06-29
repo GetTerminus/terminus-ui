@@ -81,7 +81,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * Output a selection event with the item payload
    */
-  @Output() selected = new EventEmitter<any>();
+  @Output() selected = new EventEmitter<MenuItem>();
 
 
   /**
