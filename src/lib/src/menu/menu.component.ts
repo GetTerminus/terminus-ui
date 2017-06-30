@@ -30,7 +30,7 @@ import { MenuItem } from './menu-item.interface';
  *              menuPositionY="20px"
  *              isDisabled="false"
  *              (selected)="myMethod($event)"
- * ></ts-menu>
+ * >Select Item</ts-menu>
  */
 @Component({
   selector: 'ts-menu',
