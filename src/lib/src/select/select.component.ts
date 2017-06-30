@@ -22,7 +22,7 @@ import { ElementBase } from './../utilities/element-base';
  * @example
  * <ts-select
  *              [(ngModel)]="myModel"
- *              blankChoice="none"
+ *              blankChoice="Please choose one."
  *              label="Please select one:"
  *              items="[{},{},{}]"
  *              multipleAllowed="true"

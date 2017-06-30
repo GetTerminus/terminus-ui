@@ -13,5 +13,5 @@
   <md-option
     *ngFor="let item of items"
     [value]="getValueKey(item, valueKey)"
-  >{{ item.name }}</md-option>
+  >{{ item.name || item }}</md-option>
 </md-select>
