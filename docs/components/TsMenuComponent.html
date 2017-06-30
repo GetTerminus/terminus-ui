@@ -81,6 +81,9 @@
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +114,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html"  data-type="entity-link" class="active" >TsMenuComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -244,6 +250,9 @@
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -274,6 +283,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html"  data-type="entity-link" class="active" >TsMenuComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -403,7 +415,7 @@
   menuPositionY=&quot;20px&quot;
   isDisabled=&quot;false&quot;
   (selected)=&quot;myMethod($event)&quot;
-&gt;&lt;/ts-menu&gt;</code></pre>
+&gt;Select Item&lt;/ts-menu&gt;</code></pre>
                 </div>
     </div>
 
@@ -479,7 +491,7 @@
                             <code>isDisabled</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the Y menu position</p>
+                            <div><p>Define if the menu should be disabled</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code>boolean</code>
@@ -857,7 +869,7 @@ import { MenuItem } from &#x27;./menu-item.interface&#x27;;
  *              menuPositionY&#x3D;&quot;20px&quot;
  *              isDisabled&#x3D;&quot;false&quot;
  *              (selected)&#x3D;&quot;myMethod($event)&quot;
- * &gt;&lt;/ts-menu&gt;
+ * &gt;Select Item&lt;/ts-menu&gt;
  */
 @Component({
   selector: &#x27;ts-menu&#x27;,
@@ -886,7 +898,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   @Input() defaultOpened: boolean &#x3D; false;
 
   /**
-   * Define the Y menu position
+   * Define if the menu should be disabled
    */
   @Input() isDisabled: boolean &#x3D; false;
 
@@ -970,7 +982,10 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   &lt;/button&gt;
 &lt;/md-menu&gt;
 
-&lt;ts-button [mdMenuTriggerFor]&#x3D;&quot;menu&quot; [isDisabled]&#x3D;&quot;isDisabled&quot;&gt;
+&lt;ts-button
+  [mdMenuTriggerFor]&#x3D;&quot;menu&quot;
+  [isDisabled]&#x3D;&quot;isDisabled&quot;
+&gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
   &lt;md-icon&gt;arrow_drop_down&lt;/md-icon&gt;
 &lt;/ts-button&gt;
@@ -1000,8 +1015,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-menu  #menu="mdMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger"  class="c-menu">  <button    md-menu-item    class="c-menu__item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <md-icon *ngIf="item.icon">      {{ item.icon }}    </md-icon>    {{ item.name }}  </button></md-menu><ts-button [mdMenuTriggerFor]="menu" [isDisabled]="isDisabled">  <ng-content></ng-content>  <md-icon>arrow_drop_down</md-icon></ts-button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+        var COMPONENT_TEMPLATE = '<div><md-menu  #menu="mdMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger"  class="c-menu">  <button    md-menu-item    class="c-menu__item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <md-icon *ngIf="item.icon">      {{ item.icon }}    </md-icon>    {{ item.name }}  </button></md-menu><ts-button  [mdMenuTriggerFor]="menu"  [isDisabled]="isDisabled">  <ng-content></ng-content>  <md-icon>arrow_drop_down</md-icon></ts-button></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};
 </script>

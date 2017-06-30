@@ -81,6 +81,9 @@
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +114,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html"  data-type="entity-link" class="active" >TsSearchComponent</a>
@@ -244,6 +250,9 @@
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -274,6 +283,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html"  data-type="entity-link" class="active" >TsSearchComponent</a>
@@ -963,9 +975,9 @@ export class TsSearchComponent implements OnInit {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;form
+  class&#x3D;&quot;c-search&quot;
   #form&#x3D;&quot;ngForm&quot;
   (ngSubmit)&#x3D;&quot;submitSearch(form.value)&quot;
-  class&#x3D;&quot;c-search&quot;
   [ngClass]&#x3D;&quot;{&#x27;c-search--disabled&#x27;: loading}&quot;
 &gt;
 
@@ -1017,8 +1029,8 @@ export class TsSearchComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  class="c-search"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    [label]="inputLabel"    [prefixIcon]="icon"    [canClear]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"    [initialValue]="initialValue"  ></ts-input>  <ts-button    [actionName]="buttonAction"    [buttonStyle]="buttonStyle"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+        var COMPONENT_TEMPLATE = '<div><form  class="c-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    [label]="inputLabel"    [prefixIcon]="icon"    [canClear]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"    [initialValue]="initialValue"  ></ts-input>  <ts-button    [actionName]="buttonAction"    [buttonStyle]="buttonStyle"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSearchComponent'};
 </script>

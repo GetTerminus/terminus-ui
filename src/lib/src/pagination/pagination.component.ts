@@ -13,11 +13,18 @@ const _ = {
 
 /**
  * A pagination component
- * TODO: Fill out example
  *
  * @example
  * <ts-pagination
- *              item="Value"
+ *              currentPage="1"
+ *              maxPreferredRecords="100"
+ *              menuLocation="below"
+ *              totalRecords="1450"
+ *              recordCountTooHighMessage="Please refine your filters."
+ *              recordsPerPageChoices="[10, 20, 50]"
+ *              showRecordsPerPageSelector="true"
+ *              (pageSelect)="myMethod($event)"
+ *              (recordsPerPageChange)="myMethod($event)"
  * ></ts-pagination>
  */
 @Component({
@@ -117,11 +124,6 @@ export class TsPaginationComponent implements OnChanges {
    * Define how many records are shown per page
    */
   @Input() recordsPerPageChoices: number[] = this.DEFAULT_RECORDS_PER_PAGE_OPTIONS;
-
-  /**
-   * Define if the progress indicator should show
-   */
-  @Input() showProgress: boolean = false;
 
   /**
    * Define if the records per page select menu should be visible
