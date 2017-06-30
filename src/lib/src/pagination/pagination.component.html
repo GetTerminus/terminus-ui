@@ -1,0 +1,38 @@
+<div class="c-pagination">
+
+  <!-- First -->
+  <ts-button
+    [iconName]="firstPageIcon"
+    [isDisabled]="isFirstPage(currentPage)"
+    (clickEvent)="changePage(1, currentPage, pagesArray)"
+  ></ts-button>
+
+  <!-- Previous -->
+  <ts-button
+    [iconName]="previousPageIcon"
+    [isDisabled]="isFirstPage(currentPage)"
+    (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
+  ></ts-button>
+
+  <!-- current / select -->
+  <ts-menu
+    [menuItems]="pagesArray"
+    [menuPositionY]="menuLocation"
+    (selected)="currentPageChanged($event)"
+    >{{ currentPageLabel }}</ts-menu>
+
+  <!-- Next -->
+  <ts-button
+    [iconName]="nextPageIcon"
+    [isDisabled]="isLastPage(currentPage)"
+    (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
+  ></ts-button>
+
+  <!-- Last -->
+  <ts-button
+    [iconName]="lastPageIcon"
+    [isDisabled]="isLastPage(currentPage)"
+    (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"
+  ></ts-button>
+
+</div>

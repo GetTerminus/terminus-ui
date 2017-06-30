@@ -20,6 +20,7 @@ module.exports = {
     {name: 'Input'},
     {name: 'InputMessages'},
     {name: 'Menu'},
+    {name: 'Pagination'},
     {name: 'Search'},
     {name: 'Select'},
     {name: 'SCSS'},
