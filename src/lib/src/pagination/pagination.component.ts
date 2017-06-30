@@ -3,7 +3,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnInit,
+  OnChanges,
 } from '@angular/core';
 import { find } from 'lodash';
 
@@ -25,7 +25,7 @@ const _ = {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class TsPaginationComponent implements OnInit {
+export class TsPaginationComponent implements OnChanges {
   /**
    * Define the default count of records per page
    */
@@ -145,7 +145,7 @@ export class TsPaginationComponent implements OnInit {
   /**
    * @hidden
    */
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.initialize();
   }
 
@@ -187,7 +187,7 @@ export class TsPaginationComponent implements OnInit {
    * @param {Array} pages The collection of pages
    */
   changePage(destinationPage: number, currentPage: number, pages: any[]): void {
-    const destinationIsValid = destinationPage > 0;
+    const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
@@ -285,9 +285,19 @@ export class TsPaginationComponent implements OnInit {
    * @return {String} timeAgo The difference in time
    */
   private _createCurrentPageLabel(currentPage: number, pages: object[]): string {
-    const foundPage: any = _.find(pages, (item: any) => {
-      return item.value === currentPage.toString();
-    });
+    const findPage = (allPages: any[], number: number) => {
+      return _.find(pages, (item: any) => {
+        return item.value === number.toString();
+      });
+    };
+
+    let foundPage = findPage(pages, currentPage);
+
+    if (!foundPage) {
+      foundPage = findPage(pages, currentPage - 1);
+      // Save the current page change back to the primary variable
+      this.currentPage -= 1;
+    }
 
     // '1 - 10 of 243'
     return `${foundPage.name} of ${this.totalRecords}`;

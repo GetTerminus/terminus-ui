@@ -3,48 +3,46 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-pagination',
   template: `
-    <ts-pagination
-      [totalRecords]="pagesLarge"
-      (pageSelect)="onPageSelect($event)"
-      (firstPageChosen)="first($event)"
-      (previousPageChosen)="previous($event)"
-      (nextPageChosen)="next($event)"
-      (lastPageChosen)="last($event)"
-    ></ts-pagination>
+    <div>
+      <label for="page">
+        Set the current page from the parent component:
+      </label>
+      <select name="page" [(ngModel)]="currentPage">
+        <option *ngFor="let page of pages">{{ page }}</option>
+      </select>
+
+      <br>
+      <br>
+
+      <label for="records">
+        Set the total number of records from the parent component:
+      </label>
+      <input name="records" type="number" [(ngModel)]="recordCount">
+    </div>
 
     <br>
     <br>
     <br>
 
     <ts-pagination
-      [totalRecords]="pagesMedium"
+      [totalRecords]="recordCount"
       [showRecordsPerPageSelector]="showSelector"
+      [currentPage]="currentPage"
+      [menuLocation]="location"
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
-      (nextPageChosen)="next($event)"
-      (lastPageChosen)="last($event)"
-    ></ts-pagination>
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <ts-pagination
-      [totalRecords]="pagesSmall"
-      (pageSelect)="onPageSelect($event)"
       (nextPageChosen)="next($event)"
       (lastPageChosen)="last($event)"
     ></ts-pagination>
   `,
 })
 export class PaginationComponent {
-  pagesLarge = 117;
-  pagesMedium = 17;
-  pagesSmall = 7;
-  showSelector = false;
-  currentPage = 3;
+  recordCount = 111;
+  showSelector = true;
+  currentPage = 1;
+  location = 'below';
+  pages = [1, 2, 3, 4, 5];
 
   onPageSelect(e) {
     console.log('DEMO page selected: ', e);
