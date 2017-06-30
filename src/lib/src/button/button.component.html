@@ -6,6 +6,7 @@
   class="c-button c-button"
   [disabled]="isDisabled"
   [ladda]="showProgress"
+  (click)="clickEvent.emit($event)"
 >
   <md-icon
     *ngIf="iconName"

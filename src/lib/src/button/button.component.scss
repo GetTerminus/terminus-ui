@@ -15,7 +15,13 @@
   // Top level styles should be nested here
   /deep/ &#{&} {
     font-family: $type__family--base;
+    // Overwrite material min-width
+    min-width: auto;
     padding: 0;
+
+    &[disabled] {
+      pointer-events: none;
+    }
 
     &.ladda-button {
       &[data-loading] {

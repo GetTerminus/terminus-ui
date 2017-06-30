@@ -1,4 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import { ButtonActionTypes } from './../types/button-action.types';
 import { ButtonFunctionTypes } from './../types/button-function.types';
@@ -17,6 +22,7 @@ import { StyleThemeTypes } from './../types/style-theme.types';
  *              iconName="search"
  *              isDisabled="false"
  *              showProgress="true"
+ *              (clickEvent)="myMethod($event)
  * ></ts-button>
  */
 @Component({
@@ -54,5 +60,10 @@ export class TsButtonComponent {
    * Define if the progress indicator should show
    */
   @Input() showProgress: boolean = false;
+
+  /**
+   * Pass the click event through to the parent
+   */
+  @Output() clickEvent = new EventEmitter<any>();
 
 }
