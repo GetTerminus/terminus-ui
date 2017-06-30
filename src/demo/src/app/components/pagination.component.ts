@@ -4,17 +4,46 @@ import { Component } from '@angular/core';
   selector: 'demo-pagination',
   template: `
     <ts-pagination
-      [totalRecords]="allItems"
+      [totalRecords]="pagesLarge"
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
       (nextPageChosen)="next($event)"
       (lastPageChosen)="last($event)"
     ></ts-pagination>
+
+    <br>
+    <br>
+    <br>
+
+    <ts-pagination
+      [totalRecords]="pagesMedium"
+      [showRecordsPerPageSelector]="showSelector"
+      (pageSelect)="onPageSelect($event)"
+      (firstPageChosen)="first($event)"
+      (previousPageChosen)="previous($event)"
+      (nextPageChosen)="next($event)"
+      (lastPageChosen)="last($event)"
+    ></ts-pagination>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <ts-pagination
+      [totalRecords]="pagesSmall"
+      (pageSelect)="onPageSelect($event)"
+      (nextPageChosen)="next($event)"
+      (lastPageChosen)="last($event)"
+    ></ts-pagination>
   `,
 })
 export class PaginationComponent {
-  allItems = 347;
+  pagesLarge = 117;
+  pagesMedium = 17;
+  pagesSmall = 7;
+  showSelector = false;
   currentPage = 3;
 
   onPageSelect(e) {

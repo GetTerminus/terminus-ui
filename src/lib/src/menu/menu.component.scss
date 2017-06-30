@@ -2,8 +2,11 @@
 
 :host {
   display: inline-block;
-}
 
+  &.disabled {
+    pointer-events: none;
+  }
+}
 
 //
 // @component
@@ -21,7 +24,7 @@
     max-height: 12rem;
   }
 
-  // <button>
+  // <button> individual menu item
   .c-menu__item {
 
     // Create the space that an icon would fill.

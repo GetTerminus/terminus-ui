@@ -59,7 +59,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   @Input() defaultOpened: boolean = false;
 
   /**
-   * Define the Y menu position
+   * Define if the menu should be disabled
    */
   @Input() isDisabled: boolean = false;
 

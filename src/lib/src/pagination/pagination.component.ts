@@ -32,6 +32,22 @@ export class TsPaginationComponent implements OnInit {
   private DEFAULT_PER_PAGE: number = 10;
 
   /**
+   * Default max records before message is shown
+   */
+  private DEFAULT_MAX_PREFERED_RECORDS: number = 100;
+
+  /**
+   * Define the default options for the records per page select menu
+   */
+  private DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
+
+  /**
+   * Define the default message to show when too many records are returned
+   */
+  private DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
+    'Try refining your filters for better results.';
+
+  /**
    * Define the icon for the 'first page' button
    */
   private firstPageIcon: string = 'first_page';
@@ -67,28 +83,19 @@ export class TsPaginationComponent implements OnInit {
   private recordsPerPage: number = this.DEFAULT_PER_PAGE;
 
   /**
+   * Define the label for the records per page select
+   */
+  private recordsSelectLabel: string = 'Per page';
+
+  /**
    * Define the current page
-   * TODO: Does a string make more sense here?
-   * TODO: Go to this page after init
    */
   @Input() currentPage: number = 1;
 
   /**
-   * Define the total number of records
+   * Define how many pages exist to show a prompt about better filtering
    */
-  @Input() totalRecords: number = 0;
-
-  /**
-   * Define if the records per page select menu should be visible
-   * TODO: Show/hide the menu
-   */
-  @Input() showRecordsPerPageSelector: boolean = false;
-
-  /**
-   * Define how many records are shown per page
-   * TODO: Use this to build the menu
-   */
-  @Input() recordsPerPageChoices: number[];
+  @Input() maxPreferredRecords: number = this.DEFAULT_MAX_PREFERED_RECORDS;
 
   /**
    * Define the menu location (open up or open down)
@@ -96,9 +103,30 @@ export class TsPaginationComponent implements OnInit {
   @Input() menuLocation: 'above' | 'below' = 'above';
 
   /**
+   * Define the total number of records
+   */
+  @Input() totalRecords: number = 0;
+
+  /**
+   * Define the message to show when too many pages exist
+   * TODO: This should probably support rich HTML so it can link to filters/help/etc
+   */
+  @Input() recordCountTooHighMessage: string = this.DEFAULT_HIGH_RECORD_MESSAGE;
+
+  /**
+   * Define how many records are shown per page
+   */
+  @Input() recordsPerPageChoices: number[] = this.DEFAULT_RECORDS_PER_PAGE_OPTIONS;
+
+  /**
    * Define if the progress indicator should show
    */
   @Input() showProgress: boolean = false;
+
+  /**
+   * Define if the records per page select menu should be visible
+   */
+  @Input() showRecordsPerPageSelector: boolean = true;
 
   /**
    * Emit a page selected event
@@ -107,18 +135,25 @@ export class TsPaginationComponent implements OnInit {
 
   /**
    * Emit a change event when the records per page changes
-   * TODO: use for a menu to change per page
    */
   @Output() recordsPerPageChange = new EventEmitter<number>();
 
 
-  // TODO: Add tooltips to buttons
+  // TODO: Add tooltips on all buttons
 
 
   /**
-   * @hidden Set up needed resources
+   * @hidden
    */
   ngOnInit(): void {
+    this.initialize();
+  }
+
+
+  /**
+   * Set up initial resources
+   */
+  initialize() {
     this.pagesArray = this._createPagesArray(this.totalRecords, this.recordsPerPage);
     this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray);
 
@@ -147,12 +182,15 @@ export class TsPaginationComponent implements OnInit {
   /**
    * Manually trigger a page change event from a number
    *
-   * @param {Number} destinationPage The selected page
-   * @param {Number} currentPage The current page
+   * @param {Number} destinationPage The selected page number
+   * @param {Number} currentPage The current page number
+   * @param {Array} pages The collection of pages
    */
   changePage(destinationPage: number, currentPage: number, pages: any[]): void {
-    // If the destinationPage number is valid and we are not already on the destinationPage
-    if (destinationPage > 0 && destinationPage !== currentPage) {
+    const destinationIsValid = destinationPage > 0;
+    const notAlreadyOnPage = destinationPage !== currentPage;
+
+    if (destinationIsValid && notAlreadyOnPage) {
       const foundPage: any = _.find(pages, (item: any) => {
         return item.value === destinationPage.toString();
       });
@@ -185,19 +223,74 @@ export class TsPaginationComponent implements OnInit {
 
 
   /**
+   * Determine if the string exists
+   *
+   * @param {String} message The help message when too many results are returned
+   * @param {String} max The max number of records before the message should be shown
+   * @param {String} totalRecords The number of records
+   * @return {Boolean} shouldShow A boolean representing if the message should be shown
+   */
+  shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
+    if (totalRecords > max) {
+      return message && message.length > 0;
+    }
+  }
+
+
+  /**
+   * Re-initialize the pagination when records per page changes
+   *
+   * @param {Number} selection The selected records-per-page count
+   */
+  recordsPerPageUpdated(selection: number): void {
+    this.recordsPerPage = selection;
+    this.currentPage = 1;
+
+    // Re-init pagination
+    this.initialize();
+  }
+
+
+  /**
+   * Determine if the page select menu should be disabled
+   *
+   * @param {Number} pagesCount The number of pages
+   * @return {Boolean} shouldDisable A boolean representing if the menu should be disabled
+   */
+  menuIsDisabled(pagesCount: number): boolean {
+    return pagesCount < 2;
+  }
+
+
+  /**
+   * Determine if the records-per-page menu should be disabled
+   *
+   * @param {Number} total The total number of records
+   * @param {Array} perPageChoices The array of counts representing how many records may be show per
+   * page
+   * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
+   */
+  disableRecordsPerPage(totalRecords: number, perPageChoices: any[]): boolean {
+    const lowestPerPage = Math.min.apply(Math, perPageChoices);
+
+    return totalRecords < lowestPerPage;
+  }
+
+
+  /**
    * Create a new label based on the current page
    *
    * @param {Number} currentPage The current page
    * @param {Array} pages The array of all pages
    * @return {String} timeAgo The difference in time
    */
-  _createCurrentPageLabel(currentPage: number, pages: object[]): string {
-    const page: any = _.find(pages, (item: any) => {
+  private _createCurrentPageLabel(currentPage: number, pages: object[]): string {
+    const foundPage: any = _.find(pages, (item: any) => {
       return item.value === currentPage.toString();
     });
 
     // '1 - 10 of 243'
-    return `${page.name} of ${this.totalRecords}`;
+    return `${foundPage.name} of ${this.totalRecords}`;
   }
 
 
@@ -208,14 +301,14 @@ export class TsPaginationComponent implements OnInit {
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  _createPagesArray(total: number, perPage: number): any {
+  private _createPagesArray(total: number, perPage: number): any {
     const paginationArray = [];
     let recordsRemaining = total;
     let currentPage = 1;
 
-    while (recordsRemaining >= 10) {
+    while (recordsRemaining >= perPage) {
       const rangeEnd = (currentPage * perPage);
-      const page = rangeEnd.toString().slice(0, -1);
+      const page: number = paginationArray.length + 1;
 
       // Create a page object
       paginationArray.push({
@@ -228,16 +321,27 @@ export class TsPaginationComponent implements OnInit {
 
       // Set up for next loop if enough records exist
       if (recordsRemaining >= perPage) {
-        currentPage = parseInt(page, 10) + 1;
+        currentPage = page + 1;
       }
 
     }
 
-    // If any records remain, add the partial group as the last page
+    // If any records remain, add the partial group as the last page in the array
     if (recordsRemaining > 0) {
+      let name;
+      let value;
+
+      if (paginationArray.length > 0) {
+        name = `${currentPage * perPage} - ${currentPage * perPage + recordsRemaining}`;
+        value = `${currentPage + 1}`;
+      } else {
+        name = `${currentPage} - ${recordsRemaining}`;
+        value = currentPage;
+      }
+
       paginationArray.push({
-        name: `${currentPage * perPage} - ${currentPage * perPage + recordsRemaining}`,
-        value: `${currentPage + 1}`,
+        name: name,
+        value: value.toString(),
       });
     }
 

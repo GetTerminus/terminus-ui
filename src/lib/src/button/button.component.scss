@@ -2,6 +2,10 @@
 
 :host {
   display: inline-block;
+
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 
@@ -39,6 +43,7 @@
     }
   }
 
+  // Adjust icon vertical layout
   md-icon {
     margin-top: -.2em;
   }
@@ -66,5 +71,4 @@
       opacity: .7;
     }
   }
-
 }
