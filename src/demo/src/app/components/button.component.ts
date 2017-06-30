@@ -5,12 +5,14 @@ import { Component } from '@angular/core';
   template: `
     <ts-button
       [buttonStyle]="style"
-      (click)="run()"
+      (clickEvent)="run()"
+      [isDisabled]="disabled"
     >Click Me!</ts-button>
   `,
 })
 export class ButtonComponent {
   style = 'accent';
+  disabled = false;
 
   run() {
     console.log('in run');

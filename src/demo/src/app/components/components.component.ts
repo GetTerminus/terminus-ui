@@ -35,6 +35,10 @@ export class ComponentsComponent implements OnInit {
       route: ['menu'],
     },
     {
+      name: 'Pagination',
+      route: ['pagination'],
+    },
+    {
       name: 'Select',
       route: ['select'],
     },

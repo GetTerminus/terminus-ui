@@ -15,6 +15,7 @@ import {
   TsInputModule,
   TsMenuModule,
   TsSelectModule,
+  TsPaginationModule,
 } from '@terminus/ui';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { ButtonComponent } from './components/button.component';
 import { InputComponent } from './components/input.component';
 import { MenuComponent } from './components/menu.component';
 import { SelectComponent } from './components/select.component';
+import { PaginationComponent } from './components/pagination.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,7 @@ import { SelectComponent } from './components/select.component';
     TsInputModule,
     TsMenuModule,
     TsSelectModule,
+    TsPaginationModule,
   ],
   declarations: [
     AppComponent,
@@ -47,6 +50,7 @@ import { SelectComponent } from './components/select.component';
     InputComponent,
     MenuComponent,
     SelectComponent,
+    PaginationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
