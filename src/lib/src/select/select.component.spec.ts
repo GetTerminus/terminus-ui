@@ -18,6 +18,7 @@ import { TsSelectComponent } from './select.component';
 })
 class TestHostComponent {}
 
+
 describe(`TsSelectComponent`, () => {
 
   beforeEach(async(() => {
@@ -32,14 +33,22 @@ describe(`TsSelectComponent`, () => {
         TestHostComponent,
       ],
     })
-      .compileComponents().then(() => {
+      .overrideComponent(TsSelectComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
+      .compileComponents()
+      .then(() => {
         this.fixture = TestBed.createComponent(TsSelectComponent);
         this.component = this.fixture.componentInstance;
-      });
+      })
+    ;
   }));
 
 
-  it(`Should exist`, () => {
+  it(`should exist`, () => {
     this.fixture.detectChanges();
 
     expect(this.component).toBeTruthy();

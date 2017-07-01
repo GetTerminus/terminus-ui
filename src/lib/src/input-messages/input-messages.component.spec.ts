@@ -15,22 +15,23 @@ describe('InputMessagesComponent', () => {
         TsInputMessagesComponent,
       ],
     })
+      .overrideComponent(TsInputMessagesComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
       .compileComponents()
       .then(() => {
         this.fixture = TestBed.createComponent(TsInputMessagesComponent);
         this.component = this.fixture.componentInstance;
-        this.fixture.detectChanges();
       })
+    ;
   }));
 
-  beforeEach(() => {
-    this.fixture = TestBed.createComponent(TsInputMessagesComponent);
-    this.component = this.fixture.componentInstance;
+
+  it('should exist', () => {
     this.fixture.detectChanges();
-  });
-
-
-  it('should be created', () => {
     expect(this.component).toBeTruthy();
   });
 
