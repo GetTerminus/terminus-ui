@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   OnChanges,
+  OnInit,
 } from '@angular/core';
 import { find } from 'lodash';
 
@@ -32,7 +33,7 @@ const _ = {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class TsPaginationComponent implements OnChanges {
+export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Define the default count of records per page
    */
@@ -147,6 +148,14 @@ export class TsPaginationComponent implements OnChanges {
   /**
    * @hidden
    */
+  ngOnInit(): void {
+    this.initialize();
+  }
+
+
+  /**
+   * @hidden
+   */
   ngOnChanges(): void {
     this.initialize();
   }
@@ -157,7 +166,7 @@ export class TsPaginationComponent implements OnChanges {
    */
   initialize() {
     this.pagesArray = this._createPagesArray(this.totalRecords, this.recordsPerPage);
-    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray);
+    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
     // Go to the initially set page
     this.changePage(this.currentPage, 1, this.pagesArray);
@@ -174,7 +183,7 @@ export class TsPaginationComponent implements OnChanges {
     this.currentPage = parseInt(event.value, 10);
 
     // Create a new label for the menu
-    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray);
+    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
     // Emit an event
     this.pageSelect.emit(event);
@@ -220,7 +229,11 @@ export class TsPaginationComponent implements OnChanges {
    * @return {Boolean} isLastPage A boolean representing if this is the last page
    */
   isLastPage(page: number): boolean {
-    return page === this.pagesArray.length;
+    if (this.pagesArray) {
+      return page === this.pagesArray.length;
+    } else {
+      return false;
+    }
   }
 
 
@@ -234,7 +247,9 @@ export class TsPaginationComponent implements OnChanges {
    */
   shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
     if (totalRecords > max) {
-      return message && message.length > 0;
+      return (message && message.length > 0) ? true : false;
+    } else {
+      return false;
     }
   }
 
@@ -268,12 +283,12 @@ export class TsPaginationComponent implements OnChanges {
    * Determine if the records-per-page menu should be disabled
    *
    * @param {Number} total The total number of records
-   * @param {Array} perPageChoices The array of counts representing how many records may be show per
+   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be show per
    * page
    * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
    */
-  disableRecordsPerPage(totalRecords: number, perPageChoices: any[]): boolean {
-    const lowestPerPage = Math.min.apply(Math, perPageChoices);
+  disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
+    const lowestPerPage = Math.min.apply(Math, recordsPerPageChoices);
 
     return totalRecords < lowestPerPage;
   }
@@ -286,7 +301,7 @@ export class TsPaginationComponent implements OnChanges {
    * @param {Array} pages The array of all pages
    * @return {String} timeAgo The difference in time
    */
-  private _createCurrentPageLabel(currentPage: number, pages: object[]): string {
+  private _createCurrentPageLabel(currentPage: number, pages: object[], totalRecords: number): string {
     const findPage = (allPages: any[], number: number) => {
       return _.find(pages, (item: any) => {
         return item.value === number.toString();
@@ -302,7 +317,7 @@ export class TsPaginationComponent implements OnChanges {
     }
 
     // '1 - 10 of 243'
-    return `${foundPage.name} of ${this.totalRecords}`;
+    return `${foundPage.name} of ${totalRecords}`;
   }
 
 
@@ -314,9 +329,14 @@ export class TsPaginationComponent implements OnChanges {
    * @return {Array} paginationArray The array representing all possible pages of records
    */
   private _createPagesArray(total: number, perPage: number): any {
-    const paginationArray = [];
+    const paginationArray: any[] = [];
     let recordsRemaining = total;
     let currentPage = 1;
+
+    // If there are no records just return an empty array
+    if (!recordsRemaining || recordsRemaining < 1) {
+      return paginationArray;
+    }
 
     while (recordsRemaining >= perPage) {
       const rangeEnd = (currentPage * perPage);
@@ -344,7 +364,7 @@ export class TsPaginationComponent implements OnChanges {
       let value;
 
       if (paginationArray.length > 0) {
-        name = `${currentPage * perPage} - ${currentPage * perPage + recordsRemaining}`;
+        name = `${currentPage * perPage + 1} - ${currentPage * perPage + recordsRemaining}`;
         value = `${currentPage + 1}`;
       } else {
         name = `${currentPage} - ${recordsRemaining}`;
