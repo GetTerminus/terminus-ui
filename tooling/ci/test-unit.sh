@@ -15,6 +15,9 @@ npm run test:ci || {
     exit 1;
 }
 
+# Convert coverage format
+node tooling/convert-coverage-results.js
+
 # Upload coverage report
 bash <(curl -s https://codecov.io/bash)
 
