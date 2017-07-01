@@ -2,8 +2,11 @@
 
 :host {
   display: inline-block;
-}
 
+  &.disabled {
+    pointer-events: none;
+  }
+}
 
 //
 // @component
@@ -18,9 +21,10 @@
   // Top level styles should be nested here
   /deep/ &#{&} {
     font-family: $type__family--base;
+    max-height: 12rem;
   }
 
-  // <button>
+  // <button> individual menu item
   .c-menu__item {
 
     // Create the space that an icon would fill.

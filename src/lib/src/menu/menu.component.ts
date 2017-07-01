@@ -30,7 +30,7 @@ import { MenuItem } from './menu-item.interface';
  *              menuPositionY="20px"
  *              isDisabled="false"
  *              (selected)="myMethod($event)"
- * ></ts-menu>
+ * >Select Item</ts-menu>
  */
 @Component({
   selector: 'ts-menu',
@@ -59,7 +59,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   @Input() defaultOpened: boolean = false;
 
   /**
-   * Define the Y menu position
+   * Define if the menu should be disabled
    */
   @Input() isDisabled: boolean = false;
 

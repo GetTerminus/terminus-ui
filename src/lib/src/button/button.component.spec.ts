@@ -33,6 +33,12 @@ describe(`ButtonComponent`, () => {
         TestHostComponent,
       ],
     })
+      .overrideComponent(TsButtonComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
       .compileComponents().then(() => {
         this.fixture = TestBed.createComponent(TsButtonComponent);
         this.component = this.fixture.componentInstance;

@@ -81,6 +81,9 @@
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +114,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -244,6 +250,9 @@
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -274,6 +283,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -398,7 +410,7 @@
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-select
   [(ngModel)]=&quot;myModel&quot;
-  blankChoice=&quot;none&quot;
+  blankChoice=&quot;Please choose one.&quot;
   label=&quot;Please select one:&quot;
   items=&quot;[{},{},{}]&quot;
   multipleAllowed=&quot;true&quot;
@@ -773,7 +785,7 @@ import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
  * @example
  * &lt;ts-select
  *              [(ngModel)]&#x3D;&quot;myModel&quot;
- *              blankChoice&#x3D;&quot;none&quot;
+ *              blankChoice&#x3D;&quot;Please choose one.&quot;
  *              label&#x3D;&quot;Please select one:&quot;
  *              items&#x3D;&quot;[{},{},{}]&quot;
  *              multipleAllowed&#x3D;&quot;true&quot;
@@ -871,6 +883,7 @@ export class TsSelectComponent extends ElementBase&lt;string&gt; {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;md-select
+  class&#x3D;&quot;c-select&quot;
   [placeholder]&#x3D;&quot;label&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
   [multiple]&#x3D;&quot;multipleAllowed&quot;
@@ -885,7 +898,7 @@ export class TsSelectComponent extends ElementBase&lt;string&gt; {
   &lt;md-option
     *ngFor&#x3D;&quot;let item of items&quot;
     [value]&#x3D;&quot;getValueKey(item, valueKey)&quot;
-  &gt;{{ item.name }}&lt;/md-option&gt;
+  &gt;{{ item.name || item }}&lt;/md-option&gt;
 &lt;/md-select&gt;
 </code></pre>
     </div>
@@ -913,8 +926,8 @@ export class TsSelectComponent extends ElementBase&lt;string&gt; {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-select  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name }}</md-option></md-select></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+        var COMPONENT_TEMPLATE = '<div><md-select  class="c-select"  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name || item }}</md-option></md-select></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
 </script>

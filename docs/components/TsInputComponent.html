@@ -81,6 +81,9 @@
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +114,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -244,6 +250,9 @@
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -274,6 +283,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
@@ -996,7 +1008,7 @@ export class TsInputComponent extends ElementBase&lt;string&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input"  hideRequiredMarker="{{ hideRequiredMarker }}">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    disabled="{{ isDisabled }}"    [(ngModel)]="value"    autofocus="{{ isFocused }}"    type="text"    class="c-input__text"    (blur)="enableValidation()"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="clearInput()"  >clear</md-icon>  <md-hint *ngIf="hint">    {{ hint }}  </md-hint>  <ts-input-messages    [messages]="failures | async"    *ngIf="validationEnabled"  ></ts-input-messages></md-input-container></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>

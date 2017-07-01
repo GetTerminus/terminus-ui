@@ -6,6 +6,7 @@ import { ButtonComponent } from './components/button.component';
 import { InputComponent } from './components/input.component';
 import { MenuComponent } from './components/menu.component';
 import { SelectComponent } from './components/select.component';
+import { PaginationComponent } from './components/pagination.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'menu',
         component: MenuComponent,
+      },
+      {
+        path: 'pagination',
+        component: PaginationComponent,
       },
       {
         path: 'select',

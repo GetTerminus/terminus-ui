@@ -1,0 +1,59 @@
+<div class="c-pagination">
+
+  <div class="c-pagination__buttons">
+
+    <ts-select
+      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
+      [(ngModel)]="recordsPerPage"
+      (ngModelChange)="recordsPerPageUpdated($event)"
+      [items]="recordsPerPageChoices"
+      [label]="recordsSelectLabel"
+      [ngClass]="{'disabled': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"
+    ></ts-select>
+
+    <!-- First -->
+    <ts-button
+      [iconName]="firstPageIcon"
+      [isDisabled]="isFirstPage(currentPage)"
+      (clickEvent)="changePage(1, currentPage, pagesArray)"
+    ></ts-button>
+
+    <!-- Previous -->
+    <ts-button
+      [iconName]="previousPageIcon"
+      [isDisabled]="isFirstPage(currentPage)"
+      (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
+    ></ts-button>
+
+    <!-- current / select -->
+    <ts-menu
+      [menuItems]="pagesArray"
+      [menuPositionY]="menuLocation"
+      [isDisabled]="menuIsDisabled(pagesArray?.length)"
+      (selected)="currentPageChanged($event)"
+      [ngClass]="{'disabled': menuIsDisabled(pagesArray?.length)}"
+      >{{ currentPageLabel }}</ts-menu>
+
+    <!-- Next -->
+    <ts-button
+      [iconName]="nextPageIcon"
+      [isDisabled]="isLastPage(currentPage)"
+      (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
+    ></ts-button>
+
+    <!-- Last -->
+    <ts-button
+      [iconName]="lastPageIcon"
+      [isDisabled]="isLastPage(currentPage)"
+      (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"
+    ></ts-button>
+  </div>
+
+  <div
+    class="c-pagination__message"
+    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"
+  >
+    {{ recordCountTooHighMessage }}
+  </div>
+
+</div>

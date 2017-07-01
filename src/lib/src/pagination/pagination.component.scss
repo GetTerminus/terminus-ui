@@ -1,0 +1,29 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/color';
+
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Pagination
+// @description
+//  A component to show pagination controls
+//
+// <div> primary wrapper
+.c-pagination {
+  // Top level styles should be nested here
+  &#{&} {
+    font-family: $type__family--base;
+  }
+
+  // <div> container for the message about too many records
+  .c-pagination__message {
+    color: palette(mapGray, dark);
+    // TODO: This should be using a global type rule
+    font-size: 70%;
+    margin: .4em 0;
+    text-align: right;
+  }
+}

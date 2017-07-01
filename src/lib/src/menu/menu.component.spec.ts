@@ -12,7 +12,10 @@ import { TsMenuComponent } from './menu.component';
 @Component({
   template: `
   <div>
-    <ts-menu [menuItems]="items" [isDisabled]="disabled" [defaultOpened]="menuOpened"></ts-menu>
+    <ts-menu
+      [menuItems]="items"
+      [defaultOpened]="menuOpened"
+    ></ts-menu>
   </div>`,
 })
 class TestHostComponent {
@@ -54,6 +57,12 @@ describe(`TsMenuComponent`, () => {
         CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
+      .overrideComponent(TsMenuComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
       .compileComponents()
       .then(() => {
         this.fixture = TestBed.createComponent(TsMenuComponent);
@@ -63,7 +72,7 @@ describe(`TsMenuComponent`, () => {
   }));
 
 
-  it(`should be created`, () => {
+  it(`should exist`, () => {
     this.fixture.detectChanges();
 
     expect(this.component).toBeTruthy();

@@ -10,6 +10,7 @@ import { TsSelectModule } from './select/select.module';
 
 // Components (compound)
 import { TsSearchModule } from './search/search.module';
+import { TsPaginationModule } from './pagination/pagination.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { TsSearchModule } from './search/search.module';
     TsSelectModule,
 
     TsSearchModule,
+    TsPaginationModule,
   ],
   declarations: [
   ],
@@ -34,6 +36,7 @@ import { TsSearchModule } from './search/search.module';
     TsSelectModule,
 
     TsSearchModule,
+    TsPaginationModule,
   ],
 })
 export class TerminusUIModule { }

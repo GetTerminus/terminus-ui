@@ -1,0 +1,62 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/color';
+
+:host {
+  display: inline-block;
+
+  // disabled state
+  &.disabled {
+    pointer-events: none;
+
+    // Overwrite color to appear disabled
+    /deep/ .mat-select-value-text {
+      color: palette(mapGray);
+    }
+  }
+
+  // Custom rules when nested inside the pagination component
+  .c-pagination & {
+    vertical-align: bottom;
+    width: 4rem;
+  }
+}
+
+
+//
+// @component
+//  Select
+// @description
+//  A select inpu component
+//
+// <md-select>
+.c-select {
+  // Top level styles should be nested here
+  &#{&} {
+    font-family: $type__family--base;
+  }
+
+  // Custom rules when nested inside a pagination component
+  /deep/ .c-pagination & {
+    max-width: 4rem;
+    vertical-align: bottom;
+    width: 100%;
+
+    /deep/ .mat-select-trigger {
+      min-width: auto;
+    }
+
+    /deep/ .mat-select-placeholder {
+      position: absolute;
+      // sass-lint:disable no-important
+      // NOTE: We must overwrite an inline style from Material
+      width: 5rem !important;
+      // sass-lint:enable no-important
+    }
+
+    /deep/ .mat-select-arrow {
+      position: absolute;
+      right: 0;
+      top: 50%;
+    }
+  }
+}

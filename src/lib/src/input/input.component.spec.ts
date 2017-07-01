@@ -38,17 +38,23 @@ describe(`TsInputComponent`, () => {
         CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
+      .overrideComponent(TsInputComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
       .compileComponents()
       .then(() => {
         this.fixture = TestBed.createComponent(TsInputComponent);
         this.component = this.fixture.componentInstance;
-        this.fixture.detectChanges();
       })
     ;
   }));
 
 
-  it(`should be created`, () => {
+  it(`should exist`, () => {
+    this.fixture.detectChanges();
     expect(this.component).toBeTruthy();
   });
 
@@ -67,7 +73,10 @@ describe(`TsInputComponent`, () => {
   describe(`enableValidation()`, () => {
 
     it(`should enable validation via a boolean`, () => {
+      this.fixture.detectChanges();
+
       expect(this.component.validationEnabled).toBe(false);
+
       this.component.enableValidation();
       expect(this.component.validationEnabled).toBe(true);
     });
