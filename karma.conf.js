@@ -125,7 +125,11 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
 
-    browsers: config.sauceLabs ? Object.keys(customLaunchers) : ['Chrome'],
+    /*
+     * FIXME: Disabled for now. SauceLabs keeps timing out.
+     *browsers: config.sauceLabs ? Object.keys(customLaunchers) : ['Chrome'],
+     */
+    browsers: ['Chrome'],
 
     sauceLabs: {
       testName: 'Terminus UI CI Tests'
