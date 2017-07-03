@@ -1,0 +1,13 @@
+<md-slide-toggle
+  class="c-toggle"
+  [(ngModel)]="value"
+  [required]="isRequired"
+  [labelPosition]="labelPosition"
+  [color]="theme"
+  [aria-label]="ariaLabel"
+  [disabled]="isDisabled"
+  [name]="name"
+  (change)="change.emit($event)"
+>
+  <ng-content></ng-content>
+</md-slide-toggle>

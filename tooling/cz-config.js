@@ -23,6 +23,7 @@ module.exports = {
     {name: 'Pagination'},
     {name: 'Search'},
     {name: 'Select'},
+    {name: 'Toggle'},
     {name: 'SCSS'},
     {name: 'CI'},
     {name: 'Dependencies'},
