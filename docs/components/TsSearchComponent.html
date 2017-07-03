@@ -89,6 +89,9 @@
                                 <li class="link">
                                     <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -123,6 +126,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -258,6 +264,9 @@
                                        <li class="link">
                                            <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -292,6 +301,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -1030,7 +1042,7 @@ export class TsSearchComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><form  class="c-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    [label]="inputLabel"    [prefixIcon]="icon"    [canClear]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"    [initialValue]="initialValue"  ></ts-input>  <ts-button    [actionName]="buttonAction"    [buttonStyle]="buttonStyle"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSearchComponent'};
 </script>
