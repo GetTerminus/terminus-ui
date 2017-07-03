@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Toggle component
+// @description
+//  A toggle component
+//
+.c-toggle {
+  // Top level styles should be nested here
+  &#{&} {
+    //
+  }
+}

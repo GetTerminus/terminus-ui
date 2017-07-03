@@ -7,6 +7,7 @@ import { InputComponent } from './components/input.component';
 import { MenuComponent } from './components/menu.component';
 import { SelectComponent } from './components/select.component';
 import { PaginationComponent } from './components/pagination.component';
+import { ToggleComponent } from './components/toggle.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'select',
         component: SelectComponent,
+      },
+      {
+        path: 'toggle',
+        component: ToggleComponent,
       },
     ],
   },

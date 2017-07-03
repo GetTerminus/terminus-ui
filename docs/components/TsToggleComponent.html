@@ -113,7 +113,7 @@
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsInputMessagesComponent.html"  data-type="entity-link" class="active" >TsInputMessagesComponent</a>
+                                    <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
@@ -128,7 +128,7 @@
                                     <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                    <a href="../components/TsToggleComponent.html"  data-type="entity-link" class="active" >TsToggleComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -288,7 +288,7 @@
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsInputMessagesComponent.html"  data-type="entity-link" class="active" >TsInputMessagesComponent</a>
+                                           <a href="../components/TsInputMessagesComponent.html" >TsInputMessagesComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
@@ -303,7 +303,7 @@
                                            <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                           <a href="../components/TsToggleComponent.html"  data-type="entity-link" class="active" >TsToggleComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -371,7 +371,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>TsInputMessagesComponent</li>
+  <li>TsToggleComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -396,17 +396,23 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/src/input-messages/input-messages.component.ts</code>
+    <code>src/lib/src/toggle/toggle.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render input validation messages</p>
+        <p>The is a toggle component</p>
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../classes/ElementBase.html" target="_self" >ElementBase</a></code>
+    </p>
 
 
     <p class="comment">
@@ -414,9 +420,16 @@
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;t-input-messages
-[messages]=&quot;myMessages&quot;
-&gt;&lt;/t-input-messages&gt;</code></pre>
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-toggle
+  [(ngModel)]=&quot;myModel&quot;
+  arialLabel=&quot;Disable my thing&quot;
+  isDisabled=&quot;true&quot;
+  isRequired=&quot;true&quot;
+  labelPosition=&quot;before&quot;
+  name=&quot;My toggle&quot;
+  theme=&quot;accent&quot;
+  (change)=&quot;myMethod($event)&quot;
+&gt;&lt;/ts-toggle&gt;</code></pre>
                 </div>
     </div>
 
@@ -434,23 +447,31 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                    <code>
+                        { provide: NG_VALUE_ACCESSOR, useExisting: TsToggleComponent, multi:  }
+                    </code>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-input-messages</code></td>
+                <td class="col-md-9"><code>ts-toggle</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>input-messages.component.scss</code></td>
+                <td class="col-md-9"><code>toggle.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./input-messages.component.html</code></td>
+                <td class="col-md-9"><code>./toggle.component.html</code></td>
             </tr>
 
 
@@ -464,20 +485,169 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>messages</code>
+                            <code>ariaLabel</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Accept an array of messages</p>
+                            <div><p>Define the aria label</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>any</code>
+                                <em>Type:</em>    <code>string</code>
 
                               </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/src/input-messages/input-messages.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:57</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the toggle should be disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:62</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>isRequired</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the toggle is required</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>true</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:67</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>labelPosition</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the position of the label</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>&quot;before&quot; | &quot;after&quot;</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>after</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:72</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>name</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the input name for the toggle</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>toggle</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:77</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>theme</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the theme</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>&quot;primary&quot; | &quot;accent&quot; | &quot;warn&quot;</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>primary</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:82</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>change</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Emit an event each time the toggle value changes</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:87</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -486,43 +656,165 @@
 
 
 
-
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> model</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>model:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:52</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the model</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  Optional,
+  Inject,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import {
+  NgModel,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  NG_ASYNC_VALIDATORS,
+  FormControl
+} from &#x27;@angular/forms&#x27;;
+import { MdSlideToggleChange } from &#x27;@angular/material&#x27;;
+
+import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
 
 /**
- * A presentational component to render input validation messages
+ * The is a toggle component
  *
  * @example
- * &lt;t-input-messages
- *             [messages]&#x3D;&quot;myMessages&quot;
- * &gt;&lt;/t-input-messages&gt;
+ * &lt;ts-toggle
+ *              [(ngModel)]&#x3D;&quot;myModel&quot;
+ *              arialLabel&#x3D;&quot;Disable my thing&quot;
+ *              isDisabled&#x3D;&quot;true&quot;
+ *              isRequired&#x3D;&quot;true&quot;
+ *              labelPosition&#x3D;&quot;before&quot;
+ *              name&#x3D;&quot;My toggle&quot;
+ *              theme&#x3D;&quot;accent&quot;
+ *              (change)&#x3D;&quot;myMethod($event)&quot;
+ * &gt;&lt;/ts-toggle&gt;
  */
 @Component({
-  selector: &#x27;ts-input-messages&#x27;,
-  templateUrl: &#x27;./input-messages.component.html&#x27;,
-  styleUrls: [&#x27;./input-messages.component.scss&#x27;],
+  selector: &#x27;ts-toggle&#x27;,
+  templateUrl: &#x27;./toggle.component.html&#x27;,
+  styleUrls: [&#x27;./toggle.component.scss&#x27;],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: TsToggleComponent,
+      multi: true,
+    },
+  ],
 })
-export class TsInputMessagesComponent {
+export class TsToggleComponent extends ElementBase&lt;string&gt; {
   /**
-   * Accept an array of messages
+   * Provide access to the model
    */
-  @Input() messages: Array&lt;string&gt;;
-}
+  @ViewChild(NgModel) model: NgModel;
 
+  /**
+   * Define the aria label
+   */
+  @Input() ariaLabel: string;
+
+  /**
+   * Define if the toggle should be disabled
+   */
+  @Input() isDisabled: boolean &#x3D; false;
+
+  /**
+   * Define if the toggle is required
+   */
+  @Input() isRequired: boolean &#x3D; true;
+
+  /**
+   * Define the position of the label
+   */
+  @Input() labelPosition: &#x27;before&#x27; | &#x27;after&#x27; &#x3D; &#x27;after&#x27;;
+
+  /**
+   * Define the input name for the toggle
+   */
+  @Input() name: string &#x3D; &#x27;toggle&#x27;;
+
+  /**
+   * Define the theme
+   */
+  @Input() theme: &#x27;primary&#x27; | &#x27;accent&#x27; | &#x27;warn&#x27; &#x3D; &#x27;primary&#x27;;
+
+  /**
+   * Emit an event each time the toggle value changes
+   */
+  @Output() change &#x3D; new EventEmitter&lt;MdSlideToggleChange&gt;();
+
+
+  /**
+   * @hidden
+   */
+  constructor(
+    @Optional() @Inject(NG_VALIDATORS) validators: Array&lt;any&gt;,
+    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array&lt;any&gt;,
+  ) {
+    super(validators, asyncValidators);
+  }
+
+
+}
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;md-error
-  *ngFor&#x3D;&quot;let message of messages&quot;
-  class&#x3D;&quot;c-input-message  c-input-message&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;md-slide-toggle
+  class&#x3D;&quot;c-toggle&quot;
+  [(ngModel)]&#x3D;&quot;value&quot;
+  [required]&#x3D;&quot;isRequired&quot;
+  [labelPosition]&#x3D;&quot;labelPosition&quot;
+  [color]&#x3D;&quot;theme&quot;
+  [aria-label]&#x3D;&quot;ariaLabel&quot;
+  [disabled]&#x3D;&quot;isDisabled&quot;
+  [name]&#x3D;&quot;name&quot;
+  (change)&#x3D;&quot;change.emit($event)&quot;
 &gt;
-  {{ message }}
-&lt;/md-error&gt;
+  &lt;ng-content&gt;&lt;/ng-content&gt;
+&lt;/md-slide-toggle&gt;
 </code></pre>
     </div>
 
@@ -549,10 +841,10 @@ export class TsInputMessagesComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-error  *ngFor="let message of messages"  class="c-input-message  c-input-message">  {{ message }}</md-error></div>'
+        var COMPONENT_TEMPLATE = '<div><md-slide-toggle  class="c-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></md-slide-toggle></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'TsInputMessagesComponent'};
+    var ACTUAL_COMPONENT = {'name': 'TsToggleComponent'};
 </script>
 <script src="../js/tree.js"></script>
 

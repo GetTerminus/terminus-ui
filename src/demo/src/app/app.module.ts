@@ -5,6 +5,7 @@ import {
   MdButtonModule,
   MdIconModule,
   MdInputModule,
+  MdSlideToggleModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LaddaModule } from 'angular2-ladda';
@@ -16,6 +17,7 @@ import {
   TsMenuModule,
   TsSelectModule,
   TsPaginationModule,
+  TsToggleModule,
 } from '@terminus/ui';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +29,7 @@ import { InputComponent } from './components/input.component';
 import { MenuComponent } from './components/menu.component';
 import { SelectComponent } from './components/select.component';
 import { PaginationComponent } from './components/pagination.component';
+import { ToggleComponent } from './components/toggle.component';
 
 @NgModule({
   imports: [
@@ -35,13 +38,17 @@ import { PaginationComponent } from './components/pagination.component';
     FormsModule,
     BrowserAnimationsModule,
     LaddaModule.forRoot({}),
+
     MdButtonModule,
     MdIconModule,
+    MdSlideToggleModule,
+
     TsButtonModule,
     TsInputModule,
     TsMenuModule,
     TsSelectModule,
     TsPaginationModule,
+    TsToggleModule,
   ],
   declarations: [
     AppComponent,
@@ -51,6 +58,7 @@ import { PaginationComponent } from './components/pagination.component';
     MenuComponent,
     SelectComponent,
     PaginationComponent,
+    ToggleComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

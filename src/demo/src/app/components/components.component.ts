@@ -42,6 +42,10 @@ export class ComponentsComponent implements OnInit {
       name: 'Select',
       route: ['select'],
     },
+    {
+      name: 'Toggle',
+      route: ['toggle'],
+    },
   ];
   route = '';
 
