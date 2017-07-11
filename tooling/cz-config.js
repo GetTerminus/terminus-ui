@@ -24,6 +24,8 @@ module.exports = {
     {name: 'Search'},
     {name: 'Select'},
     {name: 'Toggle'},
+    // INJECT COMPONENT SCOPE
+
     {name: 'SCSS'},
     {name: 'CI'},
     {name: 'Dependencies'},
