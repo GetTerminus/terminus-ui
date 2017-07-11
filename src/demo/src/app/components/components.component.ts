@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { componentsList } from './components-list.constant';
+
 @Component({
   selector: 'demo-components',
   template: `
     <h2>{{ title }}</h2>
 
-    <select [(ngModel)]="route" (ngModelChange)="goToComponent($event)" class="form-control">
+    <select [(ngModel)]="path" (ngModelChange)="goToComponent($event)" class="form-control">
       <option value="">Select Component</option>
-      <option *ngFor="let component of components" [value]="component.route">
-        {{ component.name }}
+      <option *ngFor="let component of components" [value]="component.path">
+        {{ component.data.name }}
       </option>
     </select>
 
@@ -21,33 +23,8 @@ import { Router } from '@angular/router';
 export class ComponentsComponent implements OnInit {
   title = 'Components';
   height = '100px';
-  components = [
-    {
-      name: 'Button',
-      route: ['button'],
-    },
-    {
-      name: 'Input',
-      route: ['input'],
-    },
-    {
-      name: 'Menu',
-      route: ['menu'],
-    },
-    {
-      name: 'Pagination',
-      route: ['pagination'],
-    },
-    {
-      name: 'Select',
-      route: ['select'],
-    },
-    {
-      name: 'Toggle',
-      route: ['toggle'],
-    },
-  ];
-  route = '';
+  components = componentsList;
+  path = '';
 
 
   constructor(
@@ -66,13 +43,13 @@ export class ComponentsComponent implements OnInit {
   setCurrentPage(): void {
     const routeParts = this.router.routerState.snapshot.url.split('/');
     if (routeParts.length > 2) {
-      this.route = routeParts[routeParts.length - 1];
+      this.path = routeParts[routeParts.length - 1];
     }
   }
 
 
   /**
-   * Go to a component route selected by the menu
+   * Go to a component  selected by the menu
    *
    * @param {Object} value The selected component info
    */
