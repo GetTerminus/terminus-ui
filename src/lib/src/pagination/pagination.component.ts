@@ -58,32 +58,32 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Define the icon for the 'first page' button
    */
-  private firstPageIcon: string = 'first_page';
+  public firstPageIcon: string = 'first_page';
 
   /**
    * Define the icon for the 'previous page' button
    */
-  private previousPageIcon: string = 'keyboard_arrow_left';
+  public previousPageIcon: string = 'keyboard_arrow_left';
 
   /**
    * Define the icon for the 'next page' button
    */
-  private nextPageIcon: string = 'keyboard_arrow_right';
+  public nextPageIcon: string = 'keyboard_arrow_right';
 
   /**
    * Define the icon for the 'last page' button
    */
-  private lastPageIcon: string = 'last_page';
+  public lastPageIcon: string = 'last_page';
 
   /**
    * Store the array of objects that represent pages of collections
    */
-  private pagesArray: object[];
+  public pagesArray: object[];
 
   /**
    * Store the label for the current page
    */
-  private currentPageLabel: string;
+  public currentPageLabel: string;
 
   /**
    * Define the amount of records show per page
