@@ -10,7 +10,8 @@ import { TsSelectModule } from './select/select.module';
 import { TsToggleModule } from './toggle/toggle.module';
 import { TsSearchModule } from './search/search.module';
 import { TsPaginationModule } from './pagination/pagination.module';
-// YEOMAN_IMPORT_HOOK
+import { TsCopyModule } from './copy/copy.module';
+// INJECT IMPORT TO MODULE
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TsPaginationModule } from './pagination/pagination.module';
     TsToggleModule,
     TsSearchModule,
     TsPaginationModule,
-    // YEOMAN_IMPORTS_HOOK
+    TsCopyModule,
+    // INJECT IMPORT IN MODULE ARRAY
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
@@ -39,7 +41,8 @@ import { TsPaginationModule } from './pagination/pagination.module';
     TsToggleModule,
     TsSearchModule,
     TsPaginationModule,
-    // YEOMAN_EXPORTS_HOOK
+    TsCopyModule,
+    // INJECT EXPORT IN MODULE ARRAY
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
 })
