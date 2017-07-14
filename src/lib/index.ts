@@ -1,3 +1,4 @@
+export { TsCopyModule } from './src/copy/copy.module';
 // Export Components (atoms)
 export { TsButtonModule } from './src/button/button.module';
 export { TsInputModule } from './src/input/input.module';

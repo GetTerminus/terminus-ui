@@ -10,6 +10,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LaddaModule } from 'angular2-ladda';
 import 'hammerjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   TsButtonModule,
@@ -18,6 +19,7 @@ import {
   TsSelectModule,
   TsPaginationModule,
   TsToggleModule,
+  TsCopyModule,
 } from '@terminus/ui';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +32,7 @@ import { MenuComponent } from './components/menu.component';
 import { SelectComponent } from './components/select.component';
 import { PaginationComponent } from './components/pagination.component';
 import { ToggleComponent } from './components/toggle.component';
+import { CopyComponent } from './components/copy.component';
 
 @NgModule({
   imports: [
@@ -38,6 +41,7 @@ import { ToggleComponent } from './components/toggle.component';
     FormsModule,
     BrowserAnimationsModule,
     LaddaModule.forRoot({}),
+    FlexLayoutModule,
 
     MdButtonModule,
     MdIconModule,
@@ -49,6 +53,7 @@ import { ToggleComponent } from './components/toggle.component';
     TsSelectModule,
     TsPaginationModule,
     TsToggleModule,
+    TsCopyModule,
   ],
   declarations: [
     AppComponent,
@@ -59,6 +64,7 @@ import { ToggleComponent } from './components/toggle.component';
     SelectComponent,
     PaginationComponent,
     ToggleComponent,
+    CopyComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

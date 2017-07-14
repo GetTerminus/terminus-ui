@@ -1,0 +1,12 @@
+<div class="c-copy c-copy" fxLayout="row">
+  <div #content class="c-copy__content" fxFlex="auto">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="c-copy__icon">
+    <md-icon
+      mdSuffix
+      *ngIf="showIcon"
+    >{{ icon }}</md-icon>
+  </div>
+</div>
