@@ -1,12 +1,22 @@
-<div class="c-copy c-copy" fxLayout="row">
-  <div #content class="c-copy__content" fxFlex="auto">
+<div
+  class="c-copy c-copy"
+  fxLayout="row"
+  tabindex="1"
+  title="{{ textContent }}"
+  (blur)="resetSelection()"
+>
+  <div
+    #content
+    class="c-copy__content"
+    fxFlex="auto"
+    (click)="selectText(content, hasSelected, disableInitialSelection)"
+  >
     <ng-content></ng-content>
   </div>
 
-  <div class="c-copy__icon">
-    <md-icon
-      mdSuffix
-      *ngIf="showIcon"
-    >{{ icon }}</md-icon>
+  <div class="c-copy__icon" *ngIf="showIcon">
+    <md-icon mdSuffix>
+      {{ icon }}
+    </md-icon>
   </div>
 </div>

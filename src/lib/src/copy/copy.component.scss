@@ -3,6 +3,7 @@
 
 :host {
   display: inline-block;
+  max-width: 100%;
 }
 
 //
@@ -23,18 +24,21 @@
     color: palette(mapGray, dark);
     font-family: $type__family--base;
     padding: $margin__vertical $margin__horizontal;
+    transition: border-color 200ms ease-in-out 50ms;
 
-    // Temporary
-    width: 24rem;
+    // Adding tabindex to the element allows focus, but we don't need the visual indicator
+    &:focus {
+      border: 1px solid palette(mapGray);
+      outline: 0;
+      transition-delay: 0;
+    }
   }
 
   // <div> Container for text content
   .c-copy__content {
     // Match the line height of the copy icon
     line-height: 24px;
-    margin-right: $margin__horizontal;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-x: scroll;
     white-space: nowrap;
   }
 
@@ -48,7 +52,7 @@
     calc(-#{$margin__vertical} - 1px)
     calc(-#{$margin__horizontal} - 1px)
     calc(-#{$margin__vertical} - 1px)
-    0;
+    $margin__horizontal;
     padding: .25em .2em .2em .3em;
   }
 
