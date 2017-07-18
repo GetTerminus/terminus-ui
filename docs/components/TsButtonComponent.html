@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                 </li>
                                 <li class="link">
@@ -108,6 +111,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -154,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/WindowService.html" >WindowService</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -247,6 +269,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                        </li>
                                        <li class="link">
@@ -283,6 +308,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -329,6 +357,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/WindowService.html" >WindowService</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -477,7 +521,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                             <div><p>Define the action for the aria-label</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>any</code>
+                                <em>Type:</em>    <code>ButtonActionTypes</code>
 
                               </p>
                             <p>
@@ -502,7 +546,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                             <div><p>Define the button style</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>any</code>
+                                <em>Type:</em>    <code>StyleThemeTypes</code>
 
                               </p>
                             <p>
@@ -527,7 +571,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                             <div><p>Define the button type</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>any</code>
+                                <em>Type:</em>    <code>ButtonFunctionTypes</code>
 
                               </p>
                             <p>
@@ -646,76 +690,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-} from &#x27;@angular/core&#x27;;
-
-import { ButtonActionTypes } from &#x27;./../types/button-action.types&#x27;;
-import { ButtonFunctionTypes } from &#x27;./../types/button-function.types&#x27;;
-import { StyleThemeTypes } from &#x27;./../types/style-theme.types&#x27;;
-
-
-/**
- * A presentational component to render a button
- * TODO: Text color transition doesn&#x27;t match the background transition timing
- *
- * @example
- * &lt;ts-button
- *              actionName&#x3D;&quot;Submit&quot;
- *              buttonStyle&#x3D;&quot;accent&quot;
- *              buttonType&#x3D;&quot;search&quot;
- *              iconName&#x3D;&quot;search&quot;
- *              isDisabled&#x3D;&quot;false&quot;
- *              showProgress&#x3D;&quot;true&quot;
- *              (clickEvent)&#x3D;&quot;myMethod($event)
- * &gt;&lt;/ts-button&gt;
- */
-@Component({
-  selector: &#x27;ts-button&#x27;,
-  templateUrl: &#x27;./button.component.html&#x27;,
-  styleUrls: [&#x27;./button.component.scss&#x27;],
-})
-export class TsButtonComponent {
-  /**
-   * Define the action for the aria-label
-   */
-  @Input() actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
-
-  /**
-   * Define the button style
-   */
-  @Input() buttonStyle: StyleThemeTypes &#x3D; &#x27;primary&#x27;;
-
-  /**
-   * Define the button type
-   */
-  @Input() buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
-
-  /**
-   * Define a Material icon to include
-   */
-  @Input() iconName: string;
-
-  /**
-   * Define if the button is disabled
-   */
-  @Input() isDisabled: boolean &#x3D; false;
-
-  /**
-   * Define if the progress indicator should show
-   */
-  @Input() showProgress: boolean &#x3D; false;
-
-  /**
-   * Pass the click event through to the parent
-   */
-  @Output() clickEvent &#x3D; new EventEmitter&lt;any&gt;();
-
-}
-</code></pre>
+        <pre class="line-numbers"><code class="language-typescript"></code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
@@ -766,7 +741,7 @@ export class TsButtonComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="buttonStyle"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
 </script>

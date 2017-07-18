@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                 </li>
                                 <li class="link">
@@ -108,6 +111,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -154,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/WindowService.html" >WindowService</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -247,6 +269,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                        </li>
                                        <li class="link">
@@ -283,6 +308,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -329,6 +357,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/WindowService.html" >WindowService</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -684,28 +728,9 @@
     </div>
     
                                 <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>formValue</b>
-                                                            :     <code>Object</code>
-    
-                                                    </div>
-                                                    <div>
-                                                        <p>Value of the search input</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -726,10 +751,16 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>buttonAction:     <code>any</code>
+                            <span class="modifier-icon fa fa-"></span><code>buttonAction:     <code>ButtonActionTypes</code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>ButtonActionTypes</code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Default value : </i><code>Submit</code>
@@ -757,10 +788,16 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>buttonType:     <code>any</code>
+                            <span class="modifier-icon fa fa-"></span><code>buttonType:     <code>ButtonFunctionTypes</code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>ButtonFunctionTypes</code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Default value : </i><code>search</code>
@@ -788,10 +825,16 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>form:     <code>any</code>
+                            <code>form:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Decorators : </i><code>ViewChild</code>
@@ -825,6 +868,12 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
+                                <i>Type : </i>    <code>string</code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
                                 <i>Default value : </i><code>search</code>
                             </td>
                         </tr>
@@ -854,6 +903,12 @@
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>string</code>
+    
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/search/search.component.ts:52</a></div>
@@ -872,117 +927,7 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import {
-  Component,
-  Input,
-  ViewChild,
-  OnInit,
-} from &#x27;@angular/core&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
-
-import { ButtonActionTypes } from &#x27;./../types/button-action.types&#x27;;
-import { ButtonFunctionTypes } from &#x27;./../types/button-function.types&#x27;;
-
-
-/**
- * A presentational component to render a search form
- *
- * @example
- * &lt;t-search
- *              userCanClear&#x3D;&quot;false&quot;
- *              inputLabel&#x3D;&quot;Search for a tactic&quot;
- * &gt;&lt;/t-search&gt;
- * &lt;t-search inputLabel&#x3D;&quot;Search for a tactic&quot;&gt;&lt;/t-search&gt;
- */
-@Component({
-  selector: &#x27;ts-search&#x27;,
-  templateUrl: &#x27;./search.component.html&#x27;,
-  styleUrls: [&#x27;./search.component.scss&#x27;],
-})
-export class TsSearchComponent implements OnInit {
-  /**
-   * Provide access to the form
-   */
-  @ViewChild(&#x27;form&#x27;) form: FormGroup;
-
-  /**
-   * Define the button action label
-   */
-  public buttonAction: ButtonActionTypes &#x3D; &#x27;Submit&#x27;;
-
-  /**
-   * Define the button type
-   */
-  public buttonType: ButtonFunctionTypes &#x3D; &#x27;search&#x27;;
-
-  /**
-   * Define the icon name
-   */
-  public icon: string &#x3D; &#x27;search&#x27;;
-
-  /**
-   * Store the search query
-   */
-  public query: string &#x3D; &#x27;&#x27;;
-
-  /**
-   * Define the primary label for the input
-   */
-  @Input() inputLabel: string &#x3D; &#x27;Search&#x27;;
-
-  /**
-   * Define if the user can clear the search input
-   */
-  @Input() userCanClear: boolean &#x3D; true;
-
-  /**
-   * Define if the search is currently loading results
-   */
-  @Input() loading: boolean &#x3D; false;
-
-  /**
-   * Define an initial value for the search input
-   */
-  @Input() initialValue: string;
-
-  /**
-   * Define the button style
-   */
-  @Input() buttonStyle: string &#x3D; &#x27;primary&#x27;;
-
-  /**
-   * Define the hint text below the input
-   */
-  @Input() inputHint: string &#x3D; &#x27;Enter at least two letters.&#x27;;
-
-
-  /**
-   * Seed the value if needed on initialization
-   */
-  ngOnInit() {
-    if (this.initialValue) {
-      this.query &#x3D; this.initialValue;
-    }
-  }
-
-
-  /**
-   * Submit a search query
-   * TODO: Add a type to the accepted param (need to figure out the type being passed by the form)
-   *
-   * @param {Object} formValue Value of the search input
-   */
-  submitSearch(formValue: any): void {
-    this.loading &#x3D; true;
-
-    // NOTE: FOR EXAMPLE ONLY
-    setTimeout(() &#x3D;&gt; {
-      this.loading &#x3D; false;
-    }, 1000);
-  }
-
-}
-</code></pre>
+        <pre class="line-numbers"><code class="language-typescript"></code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
@@ -1003,7 +948,6 @@ export class TsSearchComponent implements OnInit {
     required
     minlength&#x3D;&quot;2&quot;
     pattern&#x3D;&quot;[a-zA-Z]+&quot;
-    [initialValue]&#x3D;&quot;initialValue&quot;
   &gt;&lt;/ts-input&gt;
 
   &lt;ts-button
@@ -1041,8 +985,8 @@ export class TsSearchComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  class="c-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    [label]="inputLabel"    [prefixIcon]="icon"    [canClear]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"    [initialValue]="initialValue"  ></ts-input>  <ts-button    [actionName]="buttonAction"    [buttonStyle]="buttonStyle"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+        var COMPONENT_TEMPLATE = '<div><form  class="c-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    [label]="inputLabel"    [prefixIcon]="icon"    [canClear]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"  ></ts-input>  <ts-button    [actionName]="buttonAction"    [buttonStyle]="buttonStyle"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSearchComponent'};
 </script>

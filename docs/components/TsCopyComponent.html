@@ -113,7 +113,7 @@
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
+                                    <a href="../components/TsCopyComponent.html"  data-type="entity-link" class="active" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -192,7 +192,7 @@
                                     <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/MenuItem.html"  data-type="entity-link" class="active" >MenuItem</a>
+                                    <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                 </li>
                         </ul>
                     </li>
@@ -310,7 +310,7 @@
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
+                                           <a href="../components/TsCopyComponent.html"  data-type="entity-link" class="active" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -389,7 +389,7 @@
                                            <a href="../interfaces/IValidationResult.html" >IValidationResult</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/MenuItem.html"  data-type="entity-link" class="active" >MenuItem</a>
+                                           <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
                                </ul>
                            </li>
@@ -409,188 +409,574 @@
                    
                    </nav>
                </div>
-               <div class="content interface">
+               <div class="content component">
                    <div class="content-data">
 
 
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>MenuItem</li>
+  <li>Components</li>
+  <li>TsCopyComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
     </li>
+
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/lib/src/menu/menu-item.interface.ts</code>
-        </p>
+    <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/src/copy/copy.component.ts</code>
+</p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Define the allowed keys and types for an item passed to the <a href="../components/TsMenuComponent.html">TsMenuComponent</a></p>
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the TsCopyComponent UI Component
+TODO: Add a tooltip to the copy button telling users it will copy to clipboard
+TODO: Add a snackbar or alert to give the user feedback on copy success &amp; failure</p>
 
-            </p>
-
-
-
-
-            <section>
-                <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <b>action</b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>action:     <code>string</code>
-</bcode>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string</code>
-
-                                        </td>
-                                    </tr>
+    </p>
 
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:20</a></div>
-                                        </td>
-                                    </tr>
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The action attached to the menu item</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <b>icon</b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>icon:     <code>string</code>
-</bcode>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:15</a></div>
-                                        </td>
-                                    </tr>
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The icon name</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <b>name</b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>name:     <code>string</code>
-</bcode>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/lib/src/menu/menu-item.interface.ts:10</a></div>
-                                        </td>
-                                    </tr>
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The menu item name</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-copy
+  showIcon=&quot;true&quot;
+  disableInitialSelection=&quot;true&quot;
+&gt;My text to copy!&lt;/ts-copy&gt;</code></pre>
+                </div>
     </div>
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ts-copy</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>copy.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./copy.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>disableInitialSelection</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the initial click should select the contents</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/copy/copy.component.ts:65</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>enableQuickCopy</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the copy to clipboard functionality is enabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/copy/copy.component.ts:70</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
+
+
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor(document: any, windowService: <a href="../injectables/WindowService.html">WindowService</a>)</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/copy/copy.component.ts:70</a></div>
+                                </td>
+                            </tr>
+    
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> selectText</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>selectText(element: <a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank">ElementRef</a>, hasSelected: boolean, disabled: boolean)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/copy/copy.component.ts:100</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Select the text content of the passed in element</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> resetSelection</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>resetSelection()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/src/copy/copy.component.ts:131</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Reset the text selection
+    NOTE: The div must have a <code>tabindex</code> set or no blur event will be fired</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> copyToClipboard</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>copyToClipboard(text: string)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/lib/src/copy/copy.component.ts:141</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Copy text to the user&#39;s clipboard</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> content</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>content:     <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/copy/copy.component.ts:60</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define access to the wrapper around the content to be copied</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> hasSelected</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>hasSelected:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>boolean</code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/copy/copy.component.ts:40</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Internal flag to track if the contents have been selected</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> icon</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>icon:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>string</code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>content_copy</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/copy/copy.component.ts:45</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the copy icon</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> rippleColor</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>rippleColor:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>string</code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>#1a237e</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/copy/copy.component.ts:50</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the color of the md-ripple</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> textContent</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>textContent:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>string</code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/copy/copy.component.ts:84</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Return the inner text content</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> window</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>window:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>any</code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/copy/copy.component.ts:55</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Store a reference to the window object</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">export interface MenuItem {
-  /**
-   * The menu item name
-   */
-  name: string;
+        <pre class="line-numbers"><code class="language-typescript"></code></pre>
+    </div>
 
-  /**
-   * The icon name
-   */
-  icon: string;
+    <div class="tab-pane fade" id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div
+  class&#x3D;&quot;c-copy c-copy&quot;
+  fxLayout&#x3D;&quot;row&quot;
+  tabindex&#x3D;&quot;1&quot;
+  title&#x3D;&quot;{{ textContent }}&quot;
+  (click)&#x3D;&quot;selectText(content, hasSelected, disableInitialSelection)&quot;
+  (blur)&#x3D;&quot;resetSelection()&quot;
+&gt;
+  &lt;div
+    #content
+    class&#x3D;&quot;c-copy__content&quot;
+    fxFlex&#x3D;&quot;auto&quot;
+  &gt;
+    &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;/div&gt;
 
-  /**
-   * The action attached to the menu item
-   */
-  action: string;
-}
+  &lt;div
+    class&#x3D;&quot;c-copy__icon&quot;
+    *ngIf&#x3D;&quot;enableQuickCopy&quot;
+    (click)&#x3D;&quot;copyToClipboard(textContent)&quot;
+    md-ripple
+    [mdRippleColor]&#x3D;&quot;rippleColor&quot;
+  &gt;
+    &lt;md-icon mdSuffix&gt;
+      {{ icon }}
+    &lt;/md-icon&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
+
+    <div class="tab-pane fade" id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div  class="c-copy c-copy"  fxLayout="row"  tabindex="1"  title="{{ textContent }}"  (click)="selectText(content, hasSelected, disableInitialSelection)"  (blur)="resetSelection()">  <div    #content    class="c-copy__content"    fxFlex="auto"  >    <ng-content></ng-content>  </div>  <div    class="c-copy__icon"    *ngIf="enableQuickCopy"    (click)="copyToClipboard(textContent)"    md-ripple    [mdRippleColor]="rippleColor"  >    <md-icon mdSuffix>      {{ icon }}    </md-icon>  </div></div></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TsCopyComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
 
 
 

@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                 </li>
                                 <li class="link">
@@ -108,6 +111,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html"  data-type="entity-link" class="active" >TsInputComponent</a>
@@ -154,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/WindowService.html" >WindowService</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -247,6 +269,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                        </li>
                                        <li class="link">
@@ -283,6 +308,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html"  data-type="entity-link" class="active" >TsInputComponent</a>
@@ -329,6 +357,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/WindowService.html" >WindowService</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -739,10 +783,16 @@ TODO: The required marker doesn&#39;t appear, even when set to true</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>failures:     <code>any</code>
+                            <span class="modifier-icon fa fa-"></span><code>failures:     <code>Observable&lt;Array&gt;</code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>Observable&lt;Array&gt;</code>
+    
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/input/input.component.ts:59</a></div>
@@ -765,10 +815,16 @@ TODO: The required marker doesn&#39;t appear, even when set to true</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>model:     <code>any</code>
+                            <code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Decorators : </i><code>ViewChild</code>
@@ -802,6 +858,12 @@ TODO: The required marker doesn&#39;t appear, even when set to true</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
+                                <i>Type : </i>    <code>boolean</code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
                                 <i>Default value : </i><code>false</code>
                             </td>
                         </tr>
@@ -823,135 +885,7 @@ TODO: The required marker doesn&#39;t appear, even when set to true</p>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import {
-  Component,
-  Optional,
-  Inject,
-  Input,
-  ViewChild,
-} from &#x27;@angular/core&#x27;;
-import {
-  NgModel,
-  NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  NG_ASYNC_VALIDATORS,
-  FormControl
-} from &#x27;@angular/forms&#x27;;
-import { Observable } from &#x27;rxjs/Observable&#x27;;
-
-import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
-
-/**
- * A presentational component to render a text input. Extends {@link ElementBase}.
- * TODO: The required marker doesn&#x27;t appear, even when set to true
- *
- * @example
- * &lt;ts-input
- *              [(ngModel)]&#x3D;&quot;myModel&quot;
- *              hint&#x3D;&quot;Fill this out!&quot;
- *              required
- *              minlength&#x3D;&quot;3&quot;
- *              label&#x3D;&quot;My Input&quot;
- *              isDisabled&#x3D;&quot;false&quot;
- *              prefixIcon&#x3D;&quot;link&quot;
- *              canClear&#x3D;&quot;true&quot;
- *              isFocused&#x3D;&quot;false&quot;
- *              hideRequiredMarker&#x3D;&quot;false&quot;
- *              hint&#x3D;&quot;Only letters and numbers&quot;
- * &gt;&lt;/ts-input&gt;
- */
-@Component({
-  selector: &#x27;ts-input&#x27;,
-  templateUrl: &#x27;./input.component.html&#x27;,
-  styleUrls: [&#x27;./input.component.scss&#x27;],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: TsInputComponent,
-      multi: true,
-    },
-  ],
-})
-export class TsInputComponent extends ElementBase&lt;string&gt; {
-  /**
-   * Validation messages are hidden until the blur event
-   */
-  public validationEnabled: boolean &#x3D; false;
-
-  /**
-   * Store validation error messages
-   */
-  public failures: Observable&lt;Array&lt;string&gt;&gt;;
-
-  /**
-   * Provide access to the model
-   */
-  @ViewChild(NgModel) model: NgModel;
-
-  /**
-   * Define a Material icon to include after the input
-   */
-  @Input() canClear: boolean &#x3D; false;
-
-  /**
-   * Define if the input is disabled
-   */
-  @Input() isDisabled: boolean &#x3D; false;
-
-  /**
-   * Define if the input should be focused
-   */
-  @Input() isFocused: boolean;
-
-  /**
-   * Define if a required marker should be included
-   */
-  @Input() hideRequiredMarker: boolean &#x3D; true;
-
-  /**
-   * Define a hint for the input
-   */
-  @Input() hint: string;
-
-  /**
-   * Define the label
-   */
-  @Input() label: string;
-
-  /**
-   * Define a Material icon to include before the input
-   */
-  @Input() prefixIcon: string;
-
-
-  /**
-   * @hidden
-   */
-  constructor(
-    @Optional() @Inject(NG_VALIDATORS) validators: Array&lt;any&gt;,
-    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array&lt;any&gt;,
-  ) {
-    super(validators, asyncValidators);
-  }
-
-
-  /**
-   * Clear the input&#x27;s value
-   */
-  clearInput(): void {
-    this.value &#x3D; &#x27;&#x27;;
-  }
-
-
-  /**
-   * Enable the validation messages for the input
-   */
-  enableValidation(): void {
-    this.validationEnabled &#x3D; true;
-  }
-
-}
-</code></pre>
+        <pre class="line-numbers"><code class="language-typescript"></code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
@@ -1020,7 +954,7 @@ export class TsInputComponent extends ElementBase&lt;string&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input"  hideRequiredMarker="{{ hideRequiredMarker }}">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    disabled="{{ isDisabled }}"    [(ngModel)]="value"    autofocus="{{ isFocused }}"    type="text"    class="c-input__text"    (blur)="enableValidation()"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="clearInput()"  >clear</md-icon>  <md-hint *ngIf="hint">    {{ hint }}  </md-hint>  <ts-input-messages    [messages]="failures | async"    *ngIf="validationEnabled"  ></ts-input-messages></md-input-container></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>

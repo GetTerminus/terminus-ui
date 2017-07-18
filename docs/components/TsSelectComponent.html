@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                 </li>
                                 <li class="link">
@@ -108,6 +111,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -154,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/WindowService.html" >WindowService</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -247,6 +269,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                        </li>
                                        <li class="link">
@@ -283,6 +308,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -329,6 +357,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/WindowService.html" >WindowService</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -693,39 +737,9 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     </div>
     
                                 <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>item</b>
-                                                            :     <code>Object</code>
-    
-                                                    </div>
-                                                    <div>
-                                                        <p>The object representing the item</p>
-    
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <b>valueKey</b>
-                                                            :     <code>String</code>
-    
-                                                    </div>
-                                                    <div>
-                                                        <p>The string representing the value key</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
                                     <b>Returns : </b>    <code>string</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -746,10 +760,16 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>model:     <code>any</code>
+                            <code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Decorators : </i><code>ViewChild</code>
@@ -773,124 +793,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import {
-  Component,
-  Input,
-  Output,
-  Optional,
-  Inject,
-  ViewChild,
-  EventEmitter,
-} from &#x27;@angular/core&#x27;;
-import {
-  NgModel,
-  NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  NG_ASYNC_VALIDATORS,
-  FormControl
-} from &#x27;@angular/forms&#x27;;
-import { ElementBase } from &#x27;./../utilities/element-base&#x27;;
-
-/**
- * A component to create a select menu
- *
- * @example
- * &lt;ts-select
- *              [(ngModel)]&#x3D;&quot;myModel&quot;
- *              blankChoice&#x3D;&quot;Please choose one.&quot;
- *              label&#x3D;&quot;Please select one:&quot;
- *              items&#x3D;&quot;[{},{},{}]&quot;
- *              multipleAllowed&#x3D;&quot;true&quot;
- *              (open)&#x3D;&quot;myMethod($event)
- *              (close)&#x3D;&quot;myMethod($event)
- *              (change)&#x3D;&quot;myMethod($event)
- * &gt;&lt;/ts-select&gt;
- */
-@Component({
-  selector: &#x27;ts-select&#x27;,
-  templateUrl: &#x27;./select.component.html&#x27;,
-  styleUrls: [&#x27;./select.component.scss&#x27;],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: TsSelectComponent,
-      multi: true,
-    },
-  ],
-})
-export class TsSelectComponent extends ElementBase&lt;string&gt; {
-  /**
-   * Provide access to the model
-   */
-  @ViewChild(NgModel) model: NgModel;
-
-  /**
-   * Define the content for a blank option (no content means no options will show)
-   * NOTE: This is disabled if &#x60;multipleAllowed&#x60; is true
-   */
-  @Input() blankChoice: string;
-
-  /**
-   * Define the label for the menu
-   */
-  @Input() label: string &#x3D; &#x27;&#x27;;
-
-  /**
-   * Define a list of select items
-   */
-  @Input() items: any &#x3D; [];
-
-  /**
-   * Define if multiple selections are allowed
-   */
-  @Input() multipleAllowed: boolean &#x3D; false;
-
-  /**
-   * Define the key that represents the value item from the object
-   */
-  @Input() valueKey: string;
-
-  /**
-   * Emit event when the select is opened
-   */
-  @Output() open &#x3D; new EventEmitter&lt;boolean&gt;();
-
-  /**
-   * Emit event when the select is closed
-   */
-  @Output() close &#x3D; new EventEmitter&lt;boolean&gt;();
-
-  /**
-   * Emit event when the select value is changed
-   */
-  @Output() change &#x3D; new EventEmitter&lt;any&gt;();
-
-
-  /**
-   * @hidden
-   */
-  constructor(
-    @Optional() @Inject(NG_VALIDATORS) validators: Array&lt;any&gt;,
-    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array&lt;any&gt;,
-  ) {
-    super(validators, asyncValidators);
-  }
-
-
-  /**
-   * Return the specified value from the object
-   *
-   * @param {Object} item The object representing the item
-   * @param {String} valueKey The string representing the value key
-   * @return {String} value The value of the valueKey or the item itself
-   */
-  getValueKey(item: object, valueKey?: string): string {
-    return valueKey ? item[valueKey] : item;
-  }
-
-
-}
-</code></pre>
+        <pre class="line-numbers"><code class="language-typescript"></code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
@@ -939,7 +842,7 @@ export class TsSelectComponent extends ElementBase&lt;string&gt; {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-select  class="c-select"  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name || item }}</md-option></md-select></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
 </script>
