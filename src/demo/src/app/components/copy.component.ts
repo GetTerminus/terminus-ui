@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-copy',
   template: `
-    <ts-copy
-    >{{ fakeUrl }}</ts-copy>
+    <div style="width: 24rem; overflow: hidden;">
+      <ts-copy
+      >{{ fakeUrl }}</ts-copy>
+    </div>
   `,
 })
 export class CopyComponent {
