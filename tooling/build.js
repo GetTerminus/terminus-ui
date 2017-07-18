@@ -64,7 +64,7 @@ return Promise.resolve()
       moduleName: camelCase(libName),
       sourceMap: true,
       // ATTENTION:
-      // Add any dependency or peer dependency your library to `globals` and `external`.
+      // Add any dependency or peer dependency your library has to `globals` and `external`.
       // This is required for UMD bundle users.
       globals: {
         // The key here is library name, and the value is the the name of the global variable name
@@ -108,7 +108,15 @@ return Promise.resolve()
       ],
       plugins: [
         sourcemaps(),
-      ]
+      ],
+      onwarn: function (warning) {
+        // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
+        // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
+        if (warning.code === 'THIS_IS_UNDEFINED') {
+          return;
+        }
+        console.error(warning.message);
+      }
     };
 
     // UMD bundle.
