@@ -8,6 +8,9 @@ function _window(): any {
 @Injectable()
 export class WindowService {
 
+  /**
+   * Return the native window object
+   */
   get nativeWindow(): any {
     return _window();
   }

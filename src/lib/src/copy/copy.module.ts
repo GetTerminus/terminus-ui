@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdIconModule } from '@angular/material';
+import { MdIconModule, MdRippleModule } from '@angular/material';
 
 import { WindowService } from './../utilities/window.service';
 
@@ -14,6 +14,7 @@ export { TsCopyComponent } from './copy.component';
     CommonModule,
     FlexLayoutModule,
     MdIconModule,
+    MdRippleModule,
   ],
   providers: [
     WindowService,

@@ -4,7 +4,6 @@ import {
   Output,
   ViewChild,
   ElementRef,
-  OnInit,
   Inject,
   HostListener,
 } from '@angular/core';
@@ -20,6 +19,8 @@ import { WindowService } from './../utilities/window.service';
 
 /**
  * This is the TsCopyComponent UI Component
+ * TODO: Add a tooltip to the copy button telling users it will copy to clipboard
+ * TODO: Add a snackbar or alert to give the user feedback on copy success & failure
  *
  * @example
  * <ts-copy
@@ -32,21 +33,21 @@ import { WindowService } from './../utilities/window.service';
   templateUrl: './copy.component.html',
   styleUrls: ['./copy.component.scss'],
 })
-export class TsCopyComponent implements OnInit {
-  /**
-   * Store a reference to the clipboard
-   */
-  private clipboard: any;
-
+export class TsCopyComponent {
   /**
    * Internal flag to track if the contents have been selected
    */
-  private hasSelected: boolean = false;
+  public hasSelected: boolean = false;
 
   /**
    * Define the copy icon
    */
   private icon: string = 'content_copy';
+
+  /**
+   * Define the color of the md-ripple
+   */
+  public rippleColor: string = '#1a237e';
 
   /**
    * Store a reference to the window object
@@ -64,20 +65,15 @@ export class TsCopyComponent implements OnInit {
   @Input() disableInitialSelection: boolean = false;
 
   /**
-   * Define if the copy icon should be included
+   * Define if the copy to clipboard functionality is enabled
    */
-  @Input() showIcon: boolean = false;
+  @Input() enableQuickCopy: boolean = false;
 
 
   constructor(
     @Inject(DOCUMENT) private document: any,
     private windowService: WindowService,
   ) {}
-
-
-  ngOnInit(): void {
-    // init clipboard functionality here
-  }
 
 
   /**
@@ -134,6 +130,35 @@ export class TsCopyComponent implements OnInit {
    */
   resetSelection(): void {
     this.hasSelected = false;
+  }
+
+
+  /**
+   * Copy text to the user's clipboard
+   *
+   * @param {String} text The text to copy
+   */
+  copyToClipboard(text: string): void {
+    // Create a hidden textarea to seed with text content
+    const target = this.document.createElement('textarea');
+    target.style.position = 'absolute';
+    target.style.left = '101%';
+    target.style.top = '0';
+    target.textContent = text;
+
+    // Add the textarea, focus and select the text
+    this.document.body.appendChild(target);
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+
+    // Copy the selection or fall back to prompt
+    try {
+      this.document.execCommand('copy');
+      target.remove();
+    } catch (error) {
+      // Fall back to the native alert
+      window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
+    }
   }
 
 }

@@ -3,18 +3,24 @@
   fxLayout="row"
   tabindex="1"
   title="{{ textContent }}"
+  (click)="selectText(content, hasSelected, disableInitialSelection)"
   (blur)="resetSelection()"
 >
   <div
     #content
     class="c-copy__content"
     fxFlex="auto"
-    (click)="selectText(content, hasSelected, disableInitialSelection)"
   >
     <ng-content></ng-content>
   </div>
 
-  <div class="c-copy__icon" *ngIf="showIcon">
+  <div
+    class="c-copy__icon"
+    *ngIf="enableQuickCopy"
+    (click)="copyToClipboard(textContent)"
+    md-ripple
+    [mdRippleColor]="rippleColor"
+  >
     <md-icon mdSuffix>
       {{ icon }}
     </md-icon>
