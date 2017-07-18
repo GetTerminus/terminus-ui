@@ -49,7 +49,7 @@
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
-    "prestart": "npm run build-demo && npm run build-scss",
+    "prestart": "npm run build && npm run build-demo && npm run build-scss",
     "start": "concurrently \"npm run build:watch\" \"npm run build-demo:watch\"",
     "pretest": "npm run build-test",
     "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
@@ -88,6 +88,7 @@
     "@angular/compiler": "~4.2.2",
     "@angular/compiler-cli": "~4.2.2",
     "@angular/core": "~4.2.2",
+    "@angular/flex-layout": "2.0.0-beta.8",
     "@angular/forms": "~4.2.2",
     "@angular/http": "~4.2.2",
     "@angular/material": "^2.0.0-beta.7",
@@ -144,5 +145,6 @@
     "typescript": "~2.2.1",
     "validate-commit-msg": "^2.12.2",
     "zone.js": "^0.8.4"
-  }
+  },
+  "dependencies": {}
 }
