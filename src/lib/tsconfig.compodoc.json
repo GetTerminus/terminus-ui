@@ -8,5 +8,9 @@
   },
   "include": [
     "src/lib"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.mock.ts"
   ]
 }

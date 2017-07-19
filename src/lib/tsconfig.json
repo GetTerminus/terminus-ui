@@ -11,6 +11,10 @@
     "./index.ts",
     "./typings.d.ts"
   ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.mock.ts"
+  ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
