@@ -14,7 +14,7 @@ const _ = {
   hasIn: hasIn,
 };
 
-import { WindowService } from './../utilities/window.service';
+import { WindowService } from './../services/window.service';
 
 
 /**
@@ -97,11 +97,11 @@ export class TsCopyComponent {
    * @param {Boolean} hasSelected The flag defining if the selection has already been made
    * @param {Boolean} disabled The flag defining if the selection functionality should be disabled
    */
-  selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): void {
+  selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
     // If this functionality is disabled OR the text has already been selected,
     // do not intercept any more clicks until the focus is reset
     if (disabled || hasSelected) {
-      return;
+      return false;
     }
 
     let range;
@@ -121,6 +121,7 @@ export class TsCopyComponent {
     }
 
     this.hasSelected = true;
+    return true;
   }
 
 
@@ -141,9 +142,12 @@ export class TsCopyComponent {
   copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
     const target = this.document.createElement('textarea');
+    target.className = 'targetElement';
     target.style.position = 'absolute';
     target.style.left = '101%';
     target.style.top = '0';
+    target.style.width = '1px';
+    target.style.height = '1px';
     target.textContent = text;
 
     // Add the textarea, focus and select the text
@@ -157,7 +161,7 @@ export class TsCopyComponent {
       target.remove();
     } catch (error) {
       // Fall back to the native alert
-      window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
+      this.window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
     }
   }
 

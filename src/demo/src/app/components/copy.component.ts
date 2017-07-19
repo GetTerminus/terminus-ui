@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div style="width: 24rem; overflow: hidden;">
       <ts-copy
-        enableQuickCopy="canCopy"
+        [enableQuickCopy]="canCopy"
       >{{ fakeUrl }}</ts-copy>
     </div>
   `,
