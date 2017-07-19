@@ -24,12 +24,14 @@ module.exports = {
     {name: 'Search'},
     {name: 'Select'},
     {name: 'Toggle'},
+    {name: 'Copy'},
     // INJECT COMPONENT SCOPE
 
     {name: 'SCSS'},
     {name: 'CI'},
     {name: 'Dependencies'},
     {name: 'Demo'},
+    {name: 'Services'},
   ],
 
   // it needs to match the value for field type. Eg.: 'fix'

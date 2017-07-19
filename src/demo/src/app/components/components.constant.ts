@@ -1,3 +1,4 @@
+import { CopyComponent } from './copy.component';
 import { Routes } from '@angular/router';
 
 import { ButtonComponent } from './button.component';
@@ -50,4 +51,12 @@ export const componentsList: Routes = [
       name: 'Toggle',
     },
   },
+  {
+    path: 'copy',
+    component: CopyComponent,
+    data: {
+      name: 'Copy',
+    },
+  },
+  // INJECT DEMO ROUTE
 ];

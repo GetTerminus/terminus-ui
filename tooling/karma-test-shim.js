@@ -38,7 +38,7 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 System.config({
   paths: {
     // paths serve as alias
-    'npm:*': 'node_modules/*',
+    'npm:': 'node_modules/',
   },
   // Base URL for System.js calls. 'base/' is where Karma serves files from.
   baseURL: 'base/src/lib',
@@ -81,6 +81,7 @@ System.config({
     '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
     '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
     '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd',
+    '@angular/flex-layout': 'npm:@angular/flex-layout/bundles/flex-layout.umd',
 
     // Testing bundles
     '@angular/core/testing': 'npm:@angular/core/bundles/core-testing.umd.js',

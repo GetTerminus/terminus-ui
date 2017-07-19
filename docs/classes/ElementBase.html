@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                 </li>
                                 <li class="link">
@@ -108,6 +111,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -154,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/WindowService.html" >WindowService</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -247,6 +269,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputMessagesModule.html" >TsInputMessagesModule</a>
                                        </li>
                                        <li class="link">
@@ -283,6 +308,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -329,6 +357,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/WindowService.html" >WindowService</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -455,7 +499,7 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                                         <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns : </b>    <code>any</code>
+                                            <b>Returns : </b>    <code>Observable&lt;&gt;</code>
             
                                         </div>
                                             <div class="io-description">
@@ -482,10 +526,16 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>any</code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>failures:     <code>Observable&lt;Array&gt;</code>
             </bcode>
                                 </td>
                             </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code>Observable&lt;Array&gt;</code>
+            
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
                                             <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/utilities/element-base.ts:59</a></div>
@@ -495,6 +545,12 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                                 <td class="col-md-4">
                                     <div class="io-description"><p>Get all validation failures</p>
             </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                  <div class="io-description">
+                                  </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -508,10 +564,16 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>any</code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>invalid:     <code>Observable&lt;boolean&gt;</code>
             </bcode>
                                 </td>
                             </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+            
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
                                             <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/utilities/element-base.ts:76</a></div>
@@ -521,6 +583,12 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                                 <td class="col-md-4">
                                     <div class="io-description"><p>Get any invalid validations</p>
             </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                  <div class="io-description">
+                                  </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -534,10 +602,16 @@ the derived component. Extends <a href="../classes/ValueAccessorBase.html">Value
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code>any</code>
+                                    <span class="modifier-icon fa fa-circle"></span><code>model:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
             </bcode>
                                 </td>
                             </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/forms/index/NgModel-directive.html" target="_blank" >NgModel</a></code>
+            
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
                                             <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/utilities/element-base.ts:28</a></div>

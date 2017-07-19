@@ -1,0 +1,70 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/color';
+
+:host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+//
+// @component
+//  Copy component allows for a string of text to be quickly copied to the clipboard
+// @description
+//
+.c-copy {
+  $margin__vertical: .2em;
+  $margin__horizontal: $margin__vertical * 2;
+  $radius: 3px;
+
+  // Top level styles should be nested here
+  &#{&} {
+    background-color: palette(mapGray, xlight);
+    border: 1px solid palette(mapGray, light);
+    border-radius: $radius;
+    color: palette(mapGray, dark);
+    font-family: $type__family--base;
+    padding: $margin__vertical $margin__horizontal;
+    transition: border-color 200ms ease-in-out 50ms;
+
+    // Adding tabindex to the element allows focus, but we don't need the visual indicator
+    &:focus {
+      border: 1px solid palette(mapGray);
+      outline: 0;
+      transition-delay: 0;
+    }
+  }
+
+  // <div> Container for text content
+  .c-copy__content {
+    // Match the line height of the copy icon
+    line-height: 24px;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  // <div> The container for the icon
+  .c-copy__icon {
+    background-color: palette(mapPrimary, light);
+    border-radius: 0 $radius $radius 0;
+    color: palette(mapWhite);
+    cursor: pointer;
+    margin:
+    calc(-#{$margin__vertical} - 1px)
+    calc(-#{$margin__horizontal} - 1px)
+    calc(-#{$margin__vertical} - 1px)
+    0;
+    padding: .25em .2em .2em .3em;
+    // Set up for md-ripple
+    position: relative;
+    transition: background-color 200ms ease-in;
+    // Double the width of the 24px icon
+    width: 48px;
+  }
+
+  md-icon {
+    // Set up for zindex
+    position: relative;
+    vertical-align: bottom;
+    z-index: 1;
+  }
+}

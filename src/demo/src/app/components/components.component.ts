@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { componentsList } from './components-list.constant';
+import { componentsList } from './components.constant';
 
 @Component({
   selector: 'demo-components',
