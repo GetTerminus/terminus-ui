@@ -25,6 +25,7 @@ module.exports = {
     {name: 'Select'},
     {name: 'Toggle'},
     {name: 'Copy'},
+    {name: 'Tooltip'},
     // INJECT COMPONENT SCOPE
 
     {name: 'SCSS'},

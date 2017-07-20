@@ -20,6 +20,8 @@ import {
   TsPaginationModule,
   TsToggleModule,
   TsCopyModule,
+  // INJECT DEMO UI IMPORT
+  // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +35,8 @@ import { SelectComponent } from './components/select.component';
 import { PaginationComponent } from './components/pagination.component';
 import { ToggleComponent } from './components/toggle.component';
 import { CopyComponent } from './components/copy.component';
+// INJECT DEMO IMPORT
+// NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
   imports: [
@@ -54,6 +58,8 @@ import { CopyComponent } from './components/copy.component';
     TsPaginationModule,
     TsToggleModule,
     TsCopyModule,
+    // INJECT DEMO IMPORT COMPONENT
+    // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
     AppComponent,
@@ -65,6 +71,8 @@ import { CopyComponent } from './components/copy.component';
     PaginationComponent,
     ToggleComponent,
     CopyComponent,
+    // INJECT DEMO DECLARATION
+    // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,8 @@ import { MenuComponent } from './menu.component';
 import { SelectComponent } from './select.component';
 import { PaginationComponent } from './pagination.component';
 import { ToggleComponent } from './toggle.component';
+// INJECT DEMO IMPORT
+// NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
   {
