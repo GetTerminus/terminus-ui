@@ -1,3 +1,4 @@
+TsTooltipModule
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import {
   TsPaginationModule,
   TsToggleModule,
   TsCopyModule,
+  TsTooltipModule,
   // INJECT DEMO UI IMPORT
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -35,7 +37,8 @@ import { SelectComponent } from './components/select.component';
 import { PaginationComponent } from './components/pagination.component';
 import { ToggleComponent } from './components/toggle.component';
 import { CopyComponent } from './components/copy.component';
-// INJECT DEMO IMPORT
+import { TooltipComponent } from './components/tooltip.component';
+// INJECT DEMO IMPORT COMPONENT
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
@@ -58,6 +61,7 @@ import { CopyComponent } from './components/copy.component';
     TsPaginationModule,
     TsToggleModule,
     TsCopyModule,
+    TsTooltipModule,
     // INJECT DEMO IMPORT COMPONENT
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -71,6 +75,7 @@ import { CopyComponent } from './components/copy.component';
     PaginationComponent,
     ToggleComponent,
     CopyComponent,
+    TooltipComponent,
     // INJECT DEMO DECLARATION
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
