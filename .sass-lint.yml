@@ -43,7 +43,7 @@ rules:
   force-attribute-nesting:
     - 1
   force-element-nesting:
-    - 1
+    - 0
   force-pseudo-nesting:
     - 1
   function-name-format:

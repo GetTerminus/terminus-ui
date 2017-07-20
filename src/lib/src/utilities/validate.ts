@@ -7,8 +7,9 @@ import {
 } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
-// TODO: Items from this file are being documented under 'miscellaneous'. Can this be refactored as
+// FIXME: Items from this file are being documented under 'miscellaneous'. Can this be refactored as
 // a Class so it is organized under 'classes'?
 
 
