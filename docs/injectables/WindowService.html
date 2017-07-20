@@ -95,6 +95,9 @@
                                 <li class="link">
                                     <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/TsTooltipModule.html" >TsTooltipModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -135,6 +138,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -292,6 +298,9 @@
                                        <li class="link">
                                            <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../modules/TsTooltipModule.html" >TsTooltipModule</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -332,6 +341,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -467,13 +479,19 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/lib/src/services/window.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/src/services/window.service.ts:21</a></div>
                                         </td>
                                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Return the native window object</p>
+                                    <div class="io-description"><p>Return a function that returns the native window object</p>
             </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                  <div class="io-description">
+                                  </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -483,6 +501,11 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Return the native window object
+   *
+   * @return {Object} window The native window object
+ */
 function _window(): any {
   // return the native window object
   return window;
@@ -492,7 +515,9 @@ function _window(): any {
 export class WindowService {
 
   /**
-   * Return the native window object
+   * Return a function that returns the native window object
+   *
+   * @return {Object} _window The function that returns the native window object
    */
   get nativeWindow(): any {
     return _window();

@@ -7,6 +7,9 @@ import { MenuComponent } from './menu.component';
 import { SelectComponent } from './select.component';
 import { PaginationComponent } from './pagination.component';
 import { ToggleComponent } from './toggle.component';
+import { TooltipComponent } from './tooltip.component';
+// INJECT DEMO IMPORT
+// NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
   {
@@ -56,6 +59,13 @@ export const componentsList: Routes = [
     component: CopyComponent,
     data: {
       name: 'Copy',
+    },
+  },
+  {
+    path: 'tooltip',
+    component: TooltipComponent,
+    data: {
+      name: 'Tooltip',
     },
   },
   // INJECT DEMO ROUTE

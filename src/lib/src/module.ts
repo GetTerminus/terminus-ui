@@ -11,6 +11,7 @@ import { TsToggleModule } from './toggle/toggle.module';
 import { TsSearchModule } from './search/search.module';
 import { TsPaginationModule } from './pagination/pagination.module';
 import { TsCopyModule } from './copy/copy.module';
+import { TsTooltipModule } from './tooltip/tooltip.module';
 // INJECT IMPORT TO MODULE
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -25,6 +26,7 @@ import { TsCopyModule } from './copy/copy.module';
     TsSearchModule,
     TsPaginationModule,
     TsCopyModule,
+    TsTooltipModule,
     // INJECT IMPORT IN MODULE ARRAY
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -42,6 +44,7 @@ import { TsCopyModule } from './copy/copy.module';
     TsSearchModule,
     TsPaginationModule,
     TsCopyModule,
+    TsTooltipModule,
     // INJECT EXPORT IN MODULE ARRAY
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

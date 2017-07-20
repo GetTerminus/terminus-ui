@@ -1,0 +1,19 @@
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Tooltip
+// @description
+//  TODO:
+//    1. Add description
+//    2. Verify the 'c-' prefix should be used
+//    3. Add needed styles
+//
+.c-tooltip {
+  // Top level styles should be nested here
+  &#{&} {
+    //
+  }
+}
