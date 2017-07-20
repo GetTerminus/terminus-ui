@@ -17,7 +17,7 @@
 //
 .c-button {
   // Top level styles should be nested here
-  /deep/ &#{&} {
+  ::ng-deep &#{&} {
     font-family: $type__family--base;
     // Overwrite material min-width
     min-width: auto;
@@ -29,7 +29,7 @@
 
     &.ladda-button {
       &[data-loading] {
-        /deep/ .ladda-label {
+        ::ng-deep .ladda-label {
           opacity: .7;
         }
       }
@@ -50,13 +50,14 @@
 
   // Force the ladda label to fill the entire button. (the md-ripple will be inside the ladda-label
   // and will be cut off otherwise)
-  /deep/ .ladda-label {
+  ::ng-deep .ladda-label {
     $padding-horizontal: 16px;
     $padding-horizontal-total: $padding-horizontal * 2;
 
     display: inline-block;
     height: 100%;
     padding: 0 $padding-horizontal;
+    position: static;
     width: calc(100% - #{$padding-horizontal-total});
 
     // Fix small vertical aligment issue between icon & text
@@ -67,7 +68,7 @@
 
   // Push back the text when the button is disabled
   [disabled] {
-    /deep/ .ladda-label {
+    ::ng-deep .ladda-label {
       opacity: .7;
     }
   }

@@ -9,7 +9,7 @@
     pointer-events: none;
 
     // Overwrite color to appear disabled
-    /deep/ .mat-select-value-text {
+    ::ng-deep .mat-select-value-text {
       color: palette(mapGray);
     }
   }
@@ -36,16 +36,16 @@
   }
 
   // Custom rules when nested inside a pagination component
-  /deep/ .c-pagination & {
+  ::ng-deep .c-pagination & {
     max-width: 4rem;
     vertical-align: bottom;
     width: 100%;
 
-    /deep/ .mat-select-trigger {
+    ::ng-deep .mat-select-trigger {
       min-width: auto;
     }
 
-    /deep/ .mat-select-placeholder {
+    ::ng-deep .mat-select-placeholder {
       position: absolute;
       // sass-lint:disable no-important
       // NOTE: We must overwrite an inline style from Material
@@ -53,7 +53,7 @@
       // sass-lint:enable no-important
     }
 
-    /deep/ .mat-select-arrow {
+    ::ng-deep .mat-select-arrow {
       position: absolute;
       right: 0;
       top: 50%;

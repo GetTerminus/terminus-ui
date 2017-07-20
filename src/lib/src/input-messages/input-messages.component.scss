@@ -15,7 +15,7 @@
   }
 
   // Primary message container
-  /deep/ &.mat-input-error {
+  ::ng-deep &.mat-input-error {
     background-color: palette(mapWarn);
     color: palette(mapWhite);
     font-size: 75%;
@@ -35,7 +35,7 @@
 
   // When the input has an icon prefix, we need to cancel out the space added on the left to retain
   // alignment
-  /deep/ .mat-input-prefix + .mat-input-infix &.mat-input-error {
+  ::ng-deep .mat-input-prefix + .mat-input-infix &.mat-input-error {
     margin-left: -16px;
   }
 }
