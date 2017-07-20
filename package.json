@@ -92,7 +92,7 @@
     "@angular/forms": "~4.2.2",
     "@angular/http": "~4.2.2",
     "@angular/material": "^2.0.0-beta.7",
-    "@angular/platform-browser": "~4.2.2",
+    "@angular/platform-browser": "~4.3.0",
     "@angular/platform-browser-dynamic": "~4.2.2",
     "@compodoc/compodoc": "^1.0.0-beta.12",
     "@types/jasmine": "2.5.53",
