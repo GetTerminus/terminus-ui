@@ -19,7 +19,7 @@
   $icon-margin: 16px;
 
   // Top level styles should be nested here
-  /deep/ &#{&} {
+  ::ng-deep &#{&} {
     font-family: $type__family--base;
     max-height: 12rem;
   }
@@ -28,7 +28,7 @@
   .c-menu__item {
 
     // Create the space that an icon would fill.
-    /deep/ &.c-menu__item--fake-icon {
+    ::ng-deep &.c-menu__item--fake-icon {
       // FIXME: I'm not sure why this '4' is needed. B$
       padding-left: $icon-width + $icon-margin + $icon-margin + 4;
     }

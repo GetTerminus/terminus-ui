@@ -7,14 +7,21 @@ import { Component } from '@angular/core';
       [buttonStyle]="style"
       (clickEvent)="run()"
       [isDisabled]="disabled"
+      [showProgress]="progress"
     >Click Me!</ts-button>
   `,
 })
 export class ButtonComponent {
   style = 'accent';
   disabled = false;
+  progress = false;
+
 
   run() {
-    console.log('in run');
+    this.progress = true;
+
+    setTimeout(() => {
+      this.progress = false;
+    }, 2000);
   }
 }
