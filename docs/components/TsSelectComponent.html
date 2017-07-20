@@ -95,6 +95,9 @@
                                 <li class="link">
                                     <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/TsTooltipModule.html" >TsTooltipModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -135,6 +138,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
                                 </li>
                         </ul>
                     </li>
@@ -292,6 +298,9 @@
                                        <li class="link">
                                            <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../modules/TsTooltipModule.html" >TsTooltipModule</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -332,6 +341,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
                                        </li>
                                </ul>
                            </li>
@@ -842,7 +854,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-select  class="c-select"  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name || item }}</md-option></md-select></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
 </script>
