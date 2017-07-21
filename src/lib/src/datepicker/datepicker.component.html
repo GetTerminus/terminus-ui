@@ -1,3 +1,20 @@
-<div>
-  Datepicker works!!!
-</div>
+<md-input-container class="c-datepicker  c-datepicker">
+  <input
+    mdInput
+    [mdDatepicker]="picker"
+    placeholder="{{ inputPlaceholder }}"
+    [min]="minDate"
+    [max]="maxDate"
+    [mdDatepickerFilter]="dateFilter"
+  >
+  <button
+    mdSuffix
+    [mdDatepickerToggle]="picker"
+  ></button>
+</md-input-container>
+<md-datepicker
+  #picker
+  [startView]="startingView"
+  [startAt]="startDate"
+  (selectedChanged)="selected.emit($event)"
+></md-datepicker>

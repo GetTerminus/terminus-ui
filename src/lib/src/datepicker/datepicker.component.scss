@@ -1,3 +1,5 @@
+@import './../scss/helpers/typography';
+
 :host {
   display: inline-block;
 }
@@ -6,14 +8,11 @@
 // @component
 //  Datepicker
 // @description
-//  TODO:
-//    1. Add description
-//    2. Verify the 'c-' prefix should be used
-//    3. Add needed styles
+//  A datepicker component
 //
 .c-datepicker {
   // Top level styles should be nested here
   &#{&} {
-    //
+    font-family: $type__family--base;
   }
 }

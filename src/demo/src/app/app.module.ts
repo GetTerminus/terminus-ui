@@ -78,7 +78,7 @@ import { DatepickerComponent } from './components/datepicker.component';
     ToggleComponent,
     CopyComponent,
     TooltipComponent,
-    DatepickerComponent
+    DatepickerComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
