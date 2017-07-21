@@ -8,7 +8,7 @@ export { TsSearchModule } from './src/search/search.module';
 export { TsPaginationModule } from './src/pagination/pagination.module';
 export { TsCopyModule } from './src/copy/copy.module';
 export { TsTooltipModule } from './src/tooltip/tooltip.module';
-// INJECT EXPORT TO INDEX
+// INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 // Export the Module

@@ -26,7 +26,8 @@ module.exports = {
     {name: 'Toggle'},
     {name: 'Copy'},
     {name: 'Tooltip'},
-    // INJECT COMPONENT SCOPE
+    // INJECT: Add commitizen scope
+    // NB! The above line is required for our yeoman generator and should not be changed.
 
     {name: 'SCSS'},
     {name: 'CI'},

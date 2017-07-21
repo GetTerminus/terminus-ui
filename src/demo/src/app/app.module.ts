@@ -22,7 +22,7 @@ import {
   TsToggleModule,
   TsCopyModule,
   TsTooltipModule,
-  // INJECT DEMO UI IMPORT
+  // INJECT: Add new lib component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
 
@@ -38,7 +38,7 @@ import { PaginationComponent } from './components/pagination.component';
 import { ToggleComponent } from './components/toggle.component';
 import { CopyComponent } from './components/copy.component';
 import { TooltipComponent } from './components/tooltip.component';
-// INJECT DEMO IMPORT COMPONENT
+// INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
@@ -62,7 +62,7 @@ import { TooltipComponent } from './components/tooltip.component';
     TsToggleModule,
     TsCopyModule,
     TsTooltipModule,
-    // INJECT DEMO IMPORT COMPONENT
+    // INJECT: Add new lib component to demo UI imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
@@ -76,7 +76,7 @@ import { TooltipComponent } from './components/tooltip.component';
     ToggleComponent,
     CopyComponent,
     TooltipComponent,
-    // INJECT DEMO DECLARATION
+    // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   providers: [],

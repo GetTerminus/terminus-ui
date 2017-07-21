@@ -8,7 +8,7 @@ import { SelectComponent } from './select.component';
 import { PaginationComponent } from './pagination.component';
 import { ToggleComponent } from './toggle.component';
 import { TooltipComponent } from './tooltip.component';
-// INJECT DEMO IMPORT
+// INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
@@ -68,5 +68,6 @@ export const componentsList: Routes = [
       name: 'Tooltip',
     },
   },
-  // INJECT DEMO ROUTE
+  // INJECT: Add route for demo component
+  // NB! The above line is required for our yeoman generator and should not be changed.
 ];
