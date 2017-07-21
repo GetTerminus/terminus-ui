@@ -10,7 +10,10 @@ The library of UI components used for Terminus applications.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Primary Features](#primary-features)
+- [Primary Library Features](#primary-library-features)
+- [Available Features](#available-features)
+  - [Components](#components)
+  - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
 - [Developing](#developing)
@@ -32,7 +35,7 @@ The library of UI components used for Terminus applications.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Primary Features
+## Primary Library Features
 
 1. Demo app for developing within a real application
 1. Testing
@@ -55,6 +58,58 @@ The library of UI components used for Terminus applications.
 1. SCSS variables & functions exposed to the consuming application
 1. Code coverage reporting (`coverage/`)
 1. Automated dependency updates
+
+
+## Available Features
+
+### Components
+
+| Feature          | Notes                                                  | Status           | CodePen Demo     |
+|------------------|--------------------------------------------------------|------------------|------------------|
+| alert            |                                                        |      not started |                  |
+| autocomplete     |                                                        |      not started |                  |
+| badge            |                                                        |      not started |                  |
+| button           |                                                        |        available |                  |
+| breadcrumbs      |                                                        |      not started |                  |
+| chip             |                                                        |      not started |                  |
+| checkbox         |                                                        |      not started |                  |
+| copy             |                                                        |        available |                  |
+| datavis          |                                                        |      not started |                  |
+| datetable        |                                                        |      not started |                  |
+| datepicker       |                                                        |        available |                  |
+| date-range       |                                                        |      not started |                  |
+| dialog           |                                                        |      not started |                  |
+| divider          |                                                        |      not started |                  |
+| expansion        |                                                        |      not started |                  |
+| file-picker      |                                                        |      not started |                  |
+| input-masking    |                                                        |      not started |                  |
+| input-messages   |         Used by `input` to display validation messages |        available |                  |
+| input            |                                                        |        available |                  |
+| link             |                                                        |      not started |                  |
+| menu             |                                                        |        available |                  |
+| pagination       |                                                        |        available |                  |
+| picklist         |                                                        |      not started |                  |
+| progress         |                                                        |      not started |                  |
+| progression      |                                                        |      not started |                  |
+| radio            |                                                        |      not started |                  |
+| search           |                                                        |        available |                  |
+| select           |                                                        |        available |                  |
+| tabs             |                                                        |      not started |                  |
+| toggle           |                                                        |        available |                  |
+| tooltip          |                                                        |        available |                  |
+| WindowService    |             Provide access to the native window object |        available |                  |
+
+
+### Style Helpers
+
+| Feature          | Notes                                                  | Status           |
+|------------------|--------------------------------------------------------|------------------|
+| assets           |                                                        |          started |
+| breakpoints      |                                                        |        available |
+| colors           |                                                        |          started |
+| layout           |                                                        |          started |
+| typography       |                                                        |          started |
+| z-index          |                                                        |        available |
 
 
 ## Installation
@@ -85,6 +140,8 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Document styles using [nucleus comments][nucleus_annotation].
 1. Run `npm run docs` to generate all documentation.
 1. Add the new component to available scopes in `tooling/cz-config.js`
+
+> NOTE: You can also use out [yeoman generator][generator] to quickly scaffold a new component
 
 
 ## Developing
@@ -473,3 +530,4 @@ machines.
 [ui-npm]: https://www.npmjs.com/package/@terminus/ui
 [ui-github]: https://github.com/GetTerminus/terminus-ui
 [semver]: http://semver.org/
+[generator]: https://github.com/GetTerminus/generator-terminus-ui
