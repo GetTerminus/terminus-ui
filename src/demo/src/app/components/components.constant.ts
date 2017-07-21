@@ -8,7 +8,8 @@ import { SelectComponent } from './select.component';
 import { PaginationComponent } from './pagination.component';
 import { ToggleComponent } from './toggle.component';
 import { TooltipComponent } from './tooltip.component';
-// INJECT DEMO IMPORT
+import { DatepickerComponent } from './datepicker.component';
+// INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
@@ -68,5 +69,13 @@ export const componentsList: Routes = [
       name: 'Tooltip',
     },
   },
-  // INJECT DEMO ROUTE
+  {
+    path: 'datepicker',
+    component: DatepickerComponent,
+    data: {
+      name: 'Datepicker',
+    },
+  },
+  // INJECT: Add route for demo component
+  // NB! The above line is required for our yeoman generator and should not be changed.
 ];

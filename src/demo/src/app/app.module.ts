@@ -1,4 +1,3 @@
-TsTooltipModule
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +21,8 @@ import {
   TsToggleModule,
   TsCopyModule,
   TsTooltipModule,
-  // INJECT DEMO UI IMPORT
+  TsDatepickerModule,
+  // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
 
@@ -38,7 +38,8 @@ import { PaginationComponent } from './components/pagination.component';
 import { ToggleComponent } from './components/toggle.component';
 import { CopyComponent } from './components/copy.component';
 import { TooltipComponent } from './components/tooltip.component';
-// INJECT DEMO IMPORT COMPONENT
+import { DatepickerComponent } from './components/datepicker.component';
+// INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
@@ -62,7 +63,8 @@ import { TooltipComponent } from './components/tooltip.component';
     TsToggleModule,
     TsCopyModule,
     TsTooltipModule,
-    // INJECT DEMO IMPORT COMPONENT
+    TsDatepickerModule,
+    // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
@@ -76,7 +78,8 @@ import { TooltipComponent } from './components/tooltip.component';
     ToggleComponent,
     CopyComponent,
     TooltipComponent,
-    // INJECT DEMO DECLARATION
+    DatepickerComponent,
+    // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   providers: [],

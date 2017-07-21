@@ -12,7 +12,8 @@ import { TsSearchModule } from './search/search.module';
 import { TsPaginationModule } from './pagination/pagination.module';
 import { TsCopyModule } from './copy/copy.module';
 import { TsTooltipModule } from './tooltip/tooltip.module';
-// INJECT IMPORT TO MODULE
+import { TsDatepickerModule } from './datepicker/datepicker.module';
+// INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 @NgModule({
@@ -27,7 +28,8 @@ import { TsTooltipModule } from './tooltip/tooltip.module';
     TsPaginationModule,
     TsCopyModule,
     TsTooltipModule,
-    // INJECT IMPORT IN MODULE ARRAY
+    TsDatepickerModule,
+    // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
@@ -45,7 +47,8 @@ import { TsTooltipModule } from './tooltip/tooltip.module';
     TsPaginationModule,
     TsCopyModule,
     TsTooltipModule,
-    // INJECT EXPORT IN MODULE ARRAY
+    TsDatepickerModule,
+    // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
 })

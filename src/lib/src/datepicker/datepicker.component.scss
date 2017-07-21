@@ -1,0 +1,18 @@
+@import './../scss/helpers/typography';
+
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Datepicker
+// @description
+//  A datepicker component
+//
+.c-datepicker {
+  // Top level styles should be nested here
+  &#{&} {
+    font-family: $type__family--base;
+  }
+}
