@@ -14,17 +14,20 @@ import { TsDatepickerComponent } from './datepicker.component';
 @Component({
   template: `
     <div>
-      <ts-datepicker>
-      </ts-datepicker>
+      <ts-datepicker
+        [(ngModel)]="myModel"
+      ></ts-datepicker>
     </div>
   `,
 })
 class TestHostComponent {
   @ViewChild(TsDatepickerComponent)
   public datepicker: TsDatepickerComponent;
+
+  myModel: any = 'foo';
 }
 
-describe(`TsDatepickerComponent`, () => {
+fdescribe(`TsDatepickerComponent`, () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,4 +58,17 @@ describe(`TsDatepickerComponent`, () => {
     expect(this.component).toBeTruthy();
   });
 
+
+  describe(`resetValue()`, () => {
+
+    it(`should reset the input value`, () => {
+      this.fixture.detectChanges();
+      expect(this.component.value).toEqual('foo');
+
+      this.component.reset();
+
+      expect(this.component.value).toEqual(null);
+    });
+
+  });
 });

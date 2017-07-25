@@ -6,12 +6,14 @@ import { Component } from '@angular/core';
     <ts-datepicker
       [dateFilter]="myFilter"
       [startingView]="startView"
-      [startDate]="myDate"
+      [initialDate]="myDate"
+      [isDisabled]="isDisabled"
       (selected)="dateSelected($event)"
     ></ts-datepicker>
   `,
 })
 export class DatepickerComponent {
+  isDisabled = false;
   startView = 'month';
 
   myDate = new Date(2017, 7, 5);
