@@ -75,6 +75,7 @@ return Promise.resolve()
         '@angular/animations/browser': 'ng.animations.browser',
         '@angular/core': 'ng.core',
         '@angular/common': 'ng.common',
+        '@angular/flex-layout': 'ng.flex-layout',
         '@angular/forms': 'ng.forms',
         '@angular/http': 'ng.http',
         '@angular/router': 'ng.router',
@@ -87,7 +88,6 @@ return Promise.resolve()
         'rxjs/Subject': 'Rx',
         'rxjs/Observable': 'Rx',
         'rxjs/add/observable/of': 'Rx.Observable',
-        'lodash': '_',
       },
       external: [
         // List of dependencies
@@ -96,6 +96,7 @@ return Promise.resolve()
         '@angular/common',
         '@angular/animations',
         '@angular/animations/browser',
+        '@angular/flex-layout',
         '@angular/forms',
         '@angular/http',
         '@angular/router',
@@ -104,7 +105,6 @@ return Promise.resolve()
         '@angular/platform-browser-dynamic',
         '@angular/material',
         'angular2-ladda',
-        'lodash',
       ],
       plugins: [
         sourcemaps(),
