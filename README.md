@@ -140,6 +140,7 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Document styles using [nucleus comments][nucleus_annotation].
 1. Run `npm run docs` to generate all documentation.
 1. Add the new component to available scopes in `tooling/cz-config.js`
+1. Update the status for the component in the [components table](#components)
 
 > NOTE: You can also use out [yeoman generator][generator] to quickly scaffold a new component
 

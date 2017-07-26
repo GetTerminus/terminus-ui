@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   Output,
+  OnChanges,
   EventEmitter,
   ViewChild,
 } from '@angular/core';
@@ -15,10 +16,10 @@ import {
  *              [(ngModel)]="myModel"
  *              [dateFilter]="myDateFilter"
  *              inputPlaceholder="Set a date"
- *              maxDate="new Date(1990, 1, 1)"
- *              minDate="new Date(1990, 1, 1)"
+ *              maxDate="{{ new Date(1990, 1, 1) }}"
+ *              minDate="{{ new Date(1990, 1, 1) }}"
  *              startingView="year"
- *              initialDate="new Date(1990, 1, 1)"
+ *              initialDate="{{ new Date(1990, 1, 1) }}"
  *              (selected)="changeSelected($event)"
  * ></ts-datepicker>
  */
@@ -27,11 +28,11 @@ import {
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
 })
-export class TsDatepickerComponent {
+export class TsDatepickerComponent implements OnChanges {
   /**
    * Store the value of the input
    */
-  public value: string;
+  public value: any;
 
   /**
    * Define a date filter to disallow certain dates
@@ -72,6 +73,16 @@ export class TsDatepickerComponent {
    * Define an event emitter to alert consumers that a date was selected
    */
   @Output() selected: EventEmitter<any> = new EventEmitter();
+
+
+  /**
+   * Set the initial date if it exists
+   */
+  ngOnChanges(changes: any): void {
+    if (this.initialDate) {
+      this.value = this.initialDate;
+    }
+  }
 
 
   /**
