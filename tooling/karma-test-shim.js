@@ -45,8 +45,12 @@ System.config({
 
   // Extend usual application package list with test folder
   packages: {
-    rxjs: { defaultExtension: 'js' },
-    '': { defaultExtension: 'js' },
+    '': {
+      defaultExtension: 'js'
+    },
+    'rxjs': {
+      defaultExtension: 'js'
+    },
     'angular2-ladda': {
       main: 'module.js',
       defaultExtension: 'js',
@@ -55,13 +59,13 @@ System.config({
       main: 'ladda.js',
       defaultExtension: 'js',
     },
-    src: {
+    'src': {
       defaultExtension: 'js',
       meta: {
         './*.js': {
-          loader: 'system-loader'
-        }
-      }
+          loader: 'system-loader',
+        },
+      },
     }
   },
 
