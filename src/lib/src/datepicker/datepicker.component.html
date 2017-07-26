@@ -1,20 +1,23 @@
 <md-input-container class="c-datepicker  c-datepicker">
   <input
     mdInput
+    [(ngModel)]="value"
     [mdDatepicker]="picker"
     placeholder="{{ inputPlaceholder }}"
     [min]="minDate"
     [max]="maxDate"
     [mdDatepickerFilter]="dateFilter"
+    [disabled]="isDisabled"
   >
   <button
     mdSuffix
     [mdDatepickerToggle]="picker"
+    [disabled]="isDisabled"
   ></button>
 </md-input-container>
 <md-datepicker
   #picker
   [startView]="startingView"
-  [startAt]="startDate"
+  [startAt]="initialDate"
   (selectedChanged)="selected.emit($event)"
 ></md-datepicker>

@@ -6,11 +6,7 @@ import {
   OnChanges,
   OnInit,
 } from '@angular/core';
-import { find } from 'lodash';
 
-const _ = {
-  find: find,
-};
 
 /**
  * A pagination component
@@ -202,8 +198,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     const notAlreadyOnPage = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: any = _.find(pages, (item: any) => {
-        return item.value === destinationPage.toString();
+      const foundPage: any = pages.find((page) => {
+        return page.value === destinationPage.toString();
       });
 
       this.currentPageChanged(foundPage);
@@ -301,10 +297,10 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Array} pages The array of all pages
    * @return {String} timeAgo The difference in time
    */
-  private _createCurrentPageLabel(currentPage: number, pages: object[], totalRecords: number): string {
+  private _createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
     const findPage = (allPages: any[], number: number) => {
-      return _.find(pages, (item: any) => {
-        return item.value === number.toString();
+      return pages.find((page: any) => {
+        return page.value === number.toString();
       });
     };
 

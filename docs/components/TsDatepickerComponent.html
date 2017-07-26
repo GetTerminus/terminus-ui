@@ -75,6 +75,9 @@
                                     <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsDateRangeModule.html" >TsDateRangeModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
@@ -120,6 +123,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsDateRangeComponent.html" >TsDateRangeComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsDatepickerComponent.html"  data-type="entity-link" class="active" >TsDatepickerComponent</a>
@@ -284,6 +290,9 @@
                                            <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsDateRangeModule.html" >TsDateRangeModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
@@ -329,6 +338,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsDateRangeComponent.html" >TsDateRangeComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsDatepickerComponent.html"  data-type="entity-link" class="active" >TsDatepickerComponent</a>
@@ -476,21 +488,28 @@
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnChanges-interface.html" target="_blank" >OnChanges</a></code>
+    </p>
 
     <p class="comment">
         <h3>Example</h3>
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;datepicker
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
+  [(ngModel)]=&quot;myModel&quot;
   [dateFilter]=&quot;myDateFilter&quot;
   inputPlaceholder=&quot;Set a date&quot;
-  maxDate=&quot;new Date(1990, 1, 1)&quot;
-  minDate=&quot;new Date(1990, 1, 1)&quot;
+  maxDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
+  minDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
   startingView=&quot;year&quot;
-  startDate=&quot;new Date(1990, 1, 1)&quot;
+  initialDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
   (selected)=&quot;changeSelected($event)&quot;
-&gt;&lt;/datepicker&gt;</code></pre>
+&gt;&lt;/ts-datepicker&gt;</code></pre>
                 </div>
     </div>
 
@@ -551,7 +570,29 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:40</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>initialDate</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a starting date for the datepicker</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>Date</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:65</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -570,13 +611,38 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>Set date</code>
+                              <em>Default value: </em><code>Select a date</code>
                             </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:45</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the input should be disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:50</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -598,7 +664,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:55</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -620,29 +686,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:51</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define a starting date for the datepicker</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>Date</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:60</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -656,10 +700,6 @@
                         <td class="col-md-10">
                             <div><p>Define the starting view of the datepicker</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code>TsStartingViewTypes</code>
-
-                              </p>
                             <p>
                               <em>Default value: </em><code>month</code>
                             </p>
@@ -667,7 +707,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:70</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -685,13 +725,13 @@
                         <td class="col-md-10">
                             <div><p>Define an event emitter to alert consumers that a date was selected</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:75</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -699,7 +739,118 @@
     </section>
 
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> ngOnChanges</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngOnChanges(changes: any)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:81</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set the initial date if it exists</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> resetValue</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play "></span>
+                            <code>resetValue()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:91</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Helper method to reset the input value</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> value</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>value:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>any</code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:35</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Store the value of the input</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
@@ -711,21 +862,24 @@
         <pre class="line-numbers"><code class="language-html">&lt;md-input-container class&#x3D;&quot;c-datepicker  c-datepicker&quot;&gt;
   &lt;input
     mdInput
+    [(ngModel)]&#x3D;&quot;value&quot;
     [mdDatepicker]&#x3D;&quot;picker&quot;
     placeholder&#x3D;&quot;{{ inputPlaceholder }}&quot;
     [min]&#x3D;&quot;minDate&quot;
     [max]&#x3D;&quot;maxDate&quot;
     [mdDatepickerFilter]&#x3D;&quot;dateFilter&quot;
+    [disabled]&#x3D;&quot;isDisabled&quot;
   &gt;
   &lt;button
     mdSuffix
     [mdDatepickerToggle]&#x3D;&quot;picker&quot;
+    [disabled]&#x3D;&quot;isDisabled&quot;
   &gt;&lt;/button&gt;
 &lt;/md-input-container&gt;
 &lt;md-datepicker
   #picker
   [startView]&#x3D;&quot;startingView&quot;
-  [startAt]&#x3D;&quot;startDate&quot;
+  [startAt]&#x3D;&quot;initialDate&quot;
   (selectedChanged)&#x3D;&quot;selected.emit($event)&quot;
 &gt;&lt;/md-datepicker&gt;
 </code></pre>
@@ -754,8 +908,8 @@
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-input-container class="c-datepicker  c-datepicker">  <input    mdInput    [mdDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="minDate"    [max]="maxDate"    [mdDatepickerFilter]="dateFilter"  >  <button    mdSuffix    [mdDatepickerToggle]="picker"  ></button></md-input-container><md-datepicker  #picker  [startView]="startingView"  [startAt]="startDate"  (selectedChanged)="selected.emit($event)"></md-datepicker></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
+        var COMPONENT_TEMPLATE = '<div><md-input-container class="c-datepicker  c-datepicker">  <input    mdInput    [(ngModel)]="value"    [mdDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="minDate"    [max]="maxDate"    [mdDatepickerFilter]="dateFilter"    [disabled]="isDisabled"  >  <button    mdSuffix    [mdDatepickerToggle]="picker"    [disabled]="isDisabled"  ></button></md-input-container><md-datepicker  #picker  [startView]="startingView"  [startAt]="initialDate"  (selectedChanged)="selected.emit($event)"></md-datepicker></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TsDatepickerComponent'};
 </script>

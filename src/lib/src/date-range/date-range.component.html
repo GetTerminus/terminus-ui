@@ -1,0 +1,27 @@
+<div class="c-date-range  c-date-range">
+  <ts-datepicker
+    [inputPlaceholder]="startPlaceholder"
+    [maxDate]="startMaxDate"
+    [minDate]="startMinDate"
+    [startingView]="startingView"
+    [initialDate]="startInitialDate"
+    (selected)="startDateSelected($event)"
+  ></ts-datepicker>
+
+  <span
+    class="c-date-range__seperator"
+    *ngIf="separator"
+  >
+    {{ separator }}
+  </span>
+
+  <ts-datepicker
+    [inputPlaceholder]="endPlaceholder"
+    [maxDate]="endMaxDate"
+    [minDate]="endMinDate"
+    [startingView]="startingView"
+    [initialDate]="endInitialDate"
+    (selected)="endDateSelected($event)"
+    #end
+  ></ts-datepicker>
+</div>

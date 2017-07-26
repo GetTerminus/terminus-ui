@@ -6,22 +6,28 @@ import {
   TestBed,
   ComponentFixture,
   async,
+  fakeAsync,
+  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { TsDatepickerComponent } from './datepicker.component';
 
 @Component({
   template: `
     <div>
-      <ts-datepicker>
-      </ts-datepicker>
+      <ts-datepicker
+        [initialDate]="myDate"
+      ></ts-datepicker>
     </div>
   `,
 })
 class TestHostComponent {
   @ViewChild(TsDatepickerComponent)
   public datepicker: TsDatepickerComponent;
+
+  myDate = new Date(1990, 3, 1);
 }
 
 describe(`TsDatepickerComponent`, () => {
@@ -29,6 +35,7 @@ describe(`TsDatepickerComponent`, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule,
       ],
       declarations: [
         TsDatepickerComponent,
@@ -55,4 +62,19 @@ describe(`TsDatepickerComponent`, () => {
     expect(this.component).toBeTruthy();
   });
 
+
+  describe(`resetValue()`, () => {
+
+    it(`should reset the input value`, fakeAsync(() => {
+      this.fixture.detectChanges();
+      tick();
+
+      expect(this.component.value.toString()).toBeTruthy();
+
+      this.component.resetValue();
+
+      expect(this.component.value).toEqual(null);
+    }));
+
+  });
 });

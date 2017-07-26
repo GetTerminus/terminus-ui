@@ -78,8 +78,7 @@
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
     "@angular/material": "2.0.0-beta.8",
     "@angular/platform-browser": ">=4.0.0 <5.0.0 || >=4.0.0 <5.0.0",
-    "angular2-ladda": "1.2.1",
-    "lodash": "^4.17.4"
+    "angular2-ladda": "1.2.1"
   },
   "devDependencies": {
     "@angular/animations": "~4.3.0",
@@ -96,7 +95,6 @@
     "@angular/platform-browser-dynamic": "~4.3.0",
     "@compodoc/compodoc": "^1.0.0-beta.12",
     "@types/jasmine": "2.5.53",
-    "@types/lodash": "^4.14.66",
     "@types/node": "^8.0.1",
     "angular2-ladda": "^1.2.1",
     "camelcase": "^4.0.0",

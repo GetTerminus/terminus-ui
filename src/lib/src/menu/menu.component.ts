@@ -9,11 +9,6 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdMenuTrigger } from '@angular/material';
-import { find } from 'lodash';
-
-const _ = {
-  find: find,
-};
 
 import { MenuPositionTypesX } from './menu-position-x.types';
 import { MenuPositionTypesY } from './menu-position-y.types';
@@ -109,8 +104,12 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * @return {Boolean} hasIcon Value that represents if at least one icon is present
    */
   private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
-    const found = _.find(items, (item: MenuItem) => {
-      return item.icon;
+    if (!items || items.length < 1) {
+      return false;
+    }
+
+    const found: any = items.find((item: MenuItem) => {
+      return item.icon ? true : false;
     });
 
     return found ? true : false;

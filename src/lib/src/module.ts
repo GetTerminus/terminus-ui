@@ -13,6 +13,7 @@ import { TsPaginationModule } from './pagination/pagination.module';
 import { TsCopyModule } from './copy/copy.module';
 import { TsTooltipModule } from './tooltip/tooltip.module';
 import { TsDatepickerModule } from './datepicker/datepicker.module';
+import { TsDateRangeModule } from './date-range/date-range.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -29,6 +30,7 @@ import { TsDatepickerModule } from './datepicker/datepicker.module';
     TsCopyModule,
     TsTooltipModule,
     TsDatepickerModule,
+    TsDateRangeModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -48,6 +50,7 @@ import { TsDatepickerModule } from './datepicker/datepicker.module';
     TsCopyModule,
     TsTooltipModule,
     TsDatepickerModule,
+    TsDateRangeModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

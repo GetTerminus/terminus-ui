@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   MdNativeDateModule,
   MdDatepickerModule,
@@ -14,6 +15,7 @@ export { TsDatepickerComponent } from './datepicker.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MdNativeDateModule,
     MdDatepickerModule,
     MdIconModule,

@@ -8,11 +8,6 @@ import {
   HostListener,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { hasIn } from 'lodash';
-
-const _ = {
-  hasIn: hasIn,
-};
 
 import { WindowService } from './../services/window.service';
 
@@ -24,8 +19,8 @@ import { WindowService } from './../services/window.service';
  *
  * @example
  * <ts-copy
- *              showIcon="true"
  *              disableInitialSelection="true"
+ *              enableQuickCopy="true"
  * >My text to copy!</ts-copy>
  */
 @Component({
@@ -82,7 +77,10 @@ export class TsCopyComponent {
    * @return {String} textContent The text content of the inner <ng-content>
    */
   get textContent(): string {
-    if (_.hasIn(this.content, 'nativeElement.innerText')) {
+    const hasInnerText =
+      this.content && this.content.nativeElement && this.content.nativeElement.innerText;
+
+    if (hasInnerText) {
       return this.content.nativeElement.innerText;
     } else {
       return '';
