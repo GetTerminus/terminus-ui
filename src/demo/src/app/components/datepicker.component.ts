@@ -16,7 +16,7 @@ export class DatepickerComponent {
   isDisabled = false;
   startView = 'month';
 
-  myDate = new Date(2017, 7, 5);
+  myDate = new Date(2017, 4, 1);
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();

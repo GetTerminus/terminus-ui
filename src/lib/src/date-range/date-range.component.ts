@@ -5,17 +5,27 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
-import { isAfter } from 'date-fns';
 import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 
 
 /**
- * TODO: Fill this section out
  * This is the date-range UI Component
  *
  * @example
  * <ts-date-range
- *              item="Value"
+ *              startingView="year"
+ *              seperator="~"
+ *              startPlaceholder="Select a date"
+ *              startMaxDate="{{ new Date(2017, 4, 30) }}"
+ *              startMinDate="{{ new Date(2017, 4, 1) }}"
+ *              startInitialDate="{{ new Date(2017, 4, 10) }}"
+ *              endPlaceholder="value"
+ *              endMaxDate="{{ new Date(2017, 4, 30) }}"
+ *              endMinDate="{{ new Date(2017, 4, 1) }}"
+ *              endInitialDate="{{ new Date(2017, 4, 10) }}"
+ *              (startSelected)="myMethod($event)"
+ *              (endSelected)="myMethod($event)"
+ *              (dateSelected)="myMethod($event)"
  * ></ts-date-range>
  */
 @Component({
@@ -117,8 +127,10 @@ export class TsDateRangeComponent {
       // chosen, we set it as the minimum end date
       this.endMinDate = this._startDate;
 
+      const dateIsAfter = this._endDate && date.getTime() > this._endDate.getTime();
+
       // If the new start date is after the existing end date
-      if (isAfter(date, this._endDate)) {
+      if (dateIsAfter) {
         // Clear the existing end date
         this._endDate = null;
         this.end.resetValue();
