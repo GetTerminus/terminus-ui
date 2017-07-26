@@ -14,7 +14,7 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
  * @example
  * <ts-date-range
  *              startingView="year"
- *              seperator="~"
+ *              separator="~"
  *              startPlaceholder="Select a date"
  *              startMaxDate="{{ new Date(2017, 4, 30) }}"
  *              startMinDate="{{ new Date(2017, 4, 1) }}"
@@ -55,9 +55,9 @@ export class TsDateRangeComponent {
   @Input() startingView: 'month' | 'year' = 'month';
 
   /**
-   * Define the seperator between the two date inputs
+   * Define the separator between the two date inputs
    */
-  @Input() seperator: string = '-';
+  @Input() separator: string = '-';
 
   /**
    * Define the start date placeholder
