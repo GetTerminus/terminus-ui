@@ -77,7 +77,7 @@ The library of UI components used for Terminus applications.
 | datavis          |                                                        |      not started |                  |
 | datetable        |                                                        |      not started |                  |
 | datepicker       |                                                        |        available |                  |
-| date-range       |                                                        |      not started |                  |
+| date-range       |                                                        |        available |                  |
 | dialog           |                                                        |      not started |                  |
 | divider          |                                                        |      not started |                  |
 | expansion        |                                                        |      not started |                  |
