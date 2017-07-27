@@ -13,6 +13,7 @@ The library of UI components used for Terminus applications.
 - [Primary Library Features](#primary-library-features)
 - [Available Features](#available-features)
   - [Components](#components)
+  - [Services](#services)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
@@ -98,6 +99,12 @@ The library of UI components used for Terminus applications.
 | tabs             |                                                        |      not started |                  |
 | toggle           |                                                        |        available |                  |
 | tooltip          |                                                        |        available |                  |
+
+
+### Services
+
+| Feature          | Notes                                                  | Status           | CodePen Demo     |
+|------------------|--------------------------------------------------------|------------------|------------------|
 | WindowService    |             Provide access to the native window object |        available |                  |
 
 
@@ -109,7 +116,8 @@ The library of UI components used for Terminus applications.
 | breakpoints      |                                                        |        available |
 | colors           |                                                        |          started |
 | layout           |                                                        |          started |
-| typography       |                                                        |          started |
+| spacing          |                                                        |        available |
+| typography       |                                                        |        available |
 | z-index          |                                                        |        available |
 
 
