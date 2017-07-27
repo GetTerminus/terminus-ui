@@ -1,0 +1,59 @@
+/**
+ * The vertical spacing default
+ *
+ * @nuclide vertical-spacing
+ * @section Config > Spacing
+ */
+$g-spacing: $type__size--base !default;
+
+
+/**
+ * The map of vertical layout spacings
+
+ * Decrease: 12, 8, 4
+ * Increase: 24, 32, 40, 48, 56, 72, 96
+ *
+ * @nuclide vertical-spacing
+ * @section Config > Spacing
+ */
+$vertical-spacing: (
+  small:  (
+    1x: floor($g-spacing - 4),
+    2x: floor($g-spacing / 2),
+    3x: floor($g-spacing / 4),
+  ),
+  large: (
+    1x: ceil($g-spacing / 2 * 3),
+    2x: ceil($g-spacing / 2 * 4),
+    3x: ceil($g-spacing / 2 * 5),
+    4x: ceil($g-spacing / 2 * 6),
+    5x: ceil($g-spacing / 2 * 7),
+    6x: ceil($g-spacing / 2 * 9),
+    7x: ceil($g-spacing / 2 * 12),
+  )
+);
+
+
+/**
+ * Base vertical spacing class
+ */
+::ng-deep .u-vertical-spacing {
+  margin-bottom: $g-spacing;
+}
+
+
+/**
+ * Loop over the map and create vertical layout utility classes
+ * Example: `.u-spacing__large--2x`
+ */
+// Loop over the vertical spacing map
+@each $size, $collection in $vertical-spacing {
+
+  // Loop over each collection (ie 'small')
+  @each $x, $spacing in $collection {
+    ::ng-deep .u-vertical-spacing__#{$size}--#{$x} {
+      margin-bottom: $spacing;
+    }
+  }
+
+}
