@@ -20,12 +20,11 @@
   .c-input__clear {
     cursor: pointer;
     opacity: 0;
-    // TODO: abstract
     transition: opacity 200ms ease;
+    will-change: opacity;
 
     &--visible {
       opacity: 1;
     }
   }
-
 }
