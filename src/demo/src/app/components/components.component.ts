@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { componentsList } from './components.constant';
+import orderArrayByProperty from './../utilities/orderArrayByProperty';
 
 @Component({
   selector: 'demo-components',
@@ -23,7 +24,7 @@ import { componentsList } from './components.constant';
 export class ComponentsComponent implements OnInit {
   title = 'Components';
   height = '100px';
-  components = componentsList;
+  components = orderArrayByProperty(componentsList, 'path');
   path = '';
 
 
