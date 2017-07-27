@@ -134,6 +134,7 @@ export class TsDateRangeComponent {
         // Clear the existing end date
         this._endDate = null;
         this.end.resetValue();
+        console.log('shouuld reset: ', this.end.value);
       }
 
       this.startSelected.emit(date);
