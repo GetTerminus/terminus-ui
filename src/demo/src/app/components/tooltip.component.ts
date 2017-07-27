@@ -2,17 +2,47 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-tooltip',
+  styles: [`
+    section {
+      text-align: center;
+    }
+
+    div {
+      outline: 1px solid lightblue;
+      display: inline-block;
+      padding: .5em;
+      margin: 1em auto;
+      max-width: 70%;
+    }
+  `],
   template: `
-    <p>
-      Here is some text with
-      <ts-tooltip
-        [tooltipValue]="myTooltip"
-      >a tooltip here</ts-tooltip>
-      for everyone to see!
-    </p>
+    <label>
+      Change the tooltip position:
+
+      <select class="example-select" [(ngModel)]="myPosition">
+        <option value="before">Before</option>
+        <option value="after">After</option>
+        <option value="above">Above</option>
+        <option value="below">Below</option>
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+      </select>
+    </label>
+
+    <hr>
+    <br>
+
+    <section>
+      <div>
+        <ts-tooltip
+          [tooltipValue]="myTooltip"
+          [tooltipPosition]="myPosition"
+        >Hover me.</ts-tooltip>
+      </div>
+    </section>
   `,
 })
 export class TooltipComponent {
   myTooltip = 'Here is my content';
-  myPosition = 'right';
+  myPosition = 'below';
 }
