@@ -17,6 +17,7 @@ The library of UI components used for Terminus applications.
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
 - [Developing](#developing)
+  - [Demos](#demos)
   - [Branching](#branching)
     - [Naming](#naming)
     - [Workflow](#workflow)
@@ -176,7 +177,7 @@ $ npm run test
 ### Demos
 
 1. `$ npm run start`
-2. Navigate to [`http://localhost:4300/components/`](http://localhost:4300/components/)
+2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu
 
 ![select a demo compenent][component-demo-screenshot]
