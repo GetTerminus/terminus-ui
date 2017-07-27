@@ -11,6 +11,7 @@ import { TooltipComponent } from './tooltip.component';
 import { DatepickerComponent } from './datepicker.component';
 import { DateRangeComponent } from './date-range.component';
 import { SpacingComponent } from './spacing.component';
+import { TypographyComponent } from './typography.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -90,6 +91,13 @@ export const componentsList: Routes = [
     component: SpacingComponent,
     data: {
       name: 'Spacing',
+    },
+  },
+  {
+    path: 'typography',
+    component: TypographyComponent,
+    data: {
+      name: 'Typography',
     },
   },
   // INJECT: Add route for demo component

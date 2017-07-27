@@ -43,6 +43,7 @@ import { TooltipComponent } from './components/tooltip.component';
 import { DatepickerComponent } from './components/datepicker.component';
 import { DateRangeComponent } from './components/date-range.component';
 import { SpacingComponent } from './components/spacing.component';
+import { TypographyComponent } from './components/typography.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -87,6 +88,7 @@ import { SpacingComponent } from './components/spacing.component';
     DatepickerComponent,
     DateRangeComponent,
     SpacingComponent,
+    TypographyComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

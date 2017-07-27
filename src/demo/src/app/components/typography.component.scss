@@ -1,0 +1,50 @@
+@import '~@terminus/ui/helpers';
+
+
+.display {
+  &-4 {
+    @include typography('display', 4);
+  }
+
+  &-3 {
+    @include typography('display', 3);
+  }
+
+  &-2 {
+    @include typography('display', 2);
+  }
+
+  &-1 {
+    @include typography('display', 1);
+  }
+}
+
+.headline {
+  @include typography('headline');
+}
+
+.title {
+  @include typography('title');
+}
+
+.subhead {
+  @include typography('subhead');
+}
+
+.body {
+  &-2 {
+    @include typography('body', 2);
+  }
+
+  &-1 {
+    @include typography('body', 1);
+  }
+
+  &-mono {
+    @include typography('body', 1, 'monospaced');
+  }
+}
+
+.caption {
+  @include typography('caption');
+}

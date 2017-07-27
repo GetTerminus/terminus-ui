@@ -2,7 +2,10 @@
  * Order an array alphabetically by property
  *
  * @param {Array} items The array of objects to sort
- * @return {String} timeAgo The difference in time
+ * @param {String} property The property to sort by
+ * @param {Boolean} isDescending A flag determining if the array should be sorted ascending or
+ * descending
+ * @return {Array} sortedArray The sorted array
  */
 export default function orderArrayByProperty(items: any[], property: string, isDescending: boolean = true): any[] {
   return items.sort((a: string, b: string) => {
