@@ -128,7 +128,7 @@
                                     <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsDateRangeComponent.html"  data-type="entity-link" class="active" >TsDateRangeComponent</a>
+                                    <a href="../components/TsDateRangeComponent.html" >TsDateRangeComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsDatepickerComponent.html" >TsDatepickerComponent</a>
@@ -172,7 +172,7 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                    <a href="../directives/TsVerticalSpacingDirective.html"  data-type="entity-link" class="active" >TsVerticalSpacingDirective</a>
                                 </li>
                         </ul>
                     </li>
@@ -362,7 +362,7 @@
                                            <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsDateRangeComponent.html"  data-type="entity-link" class="active" >TsDateRangeComponent</a>
+                                           <a href="../components/TsDateRangeComponent.html" >TsDateRangeComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsDatepickerComponent.html" >TsDatepickerComponent</a>
@@ -406,7 +406,7 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                           <a href="../directives/TsVerticalSpacingDirective.html"  data-type="entity-link" class="active" >TsVerticalSpacingDirective</a>
                                        </li>
                                </ul>
                            </li>
@@ -483,670 +483,168 @@
                    
                    </nav>
                </div>
-               <div class="content component">
+               <div class="content directive">
                    <div class="content-data">
 
 
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>TsDateRangeComponent</li>
+  <li>Directives</li>
+  <li>TsVerticalSpacingDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
     </li>
-
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
-
-    <li>
-        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
-    </li>
-    <li>
-        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/lib/src/date-range/date-range.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="infos">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/src/spacing/vertical-spacing.directive.ts</code>
+        </p>
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>This is the date-range UI Component</p>
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This is the vertical spacing UI directive</p>
 
-    </p>
+            </p>
+
+
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">&lt;div
+  tsVerticalSpacing&quot;
+&gt;&lt;/div&gt;
+
+&lt;div
+  tsVerticalSpacing=&quot;large--1x&quot;
+&gt;&lt;/div&gt;</code></pre>
+                        </div>
+            </div>
+
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">selector</td>
+                        <td class="col-md-9"><code>[tsVerticalSpacing]</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section>
+                <h3 id="inputs">Inputs</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-2">
+                                    <code>tsVerticalSpacing</code>
+                                </td>
+                                <td class="col-md-10">
+                                    <div><p>Set a spacing class based on the passed in value</p>
+</div>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-2" colspan="2">
+                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:34</a></div>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>constructor(renderer: <a href="https://angular.io/docs/ts/latest/api/core/index/Renderer-class.html" target="_blank">Renderer</a>, elementRef: <a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank">ElementRef</a>)</code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:39</a></div>
+                                        </td>
+                                    </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
 
 
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-                <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;ts-date-range
-  startingView=&quot;year&quot;
-  separator=&quot;~&quot;
-  startPlaceholder=&quot;Select a date&quot;
-  startMaxDate=&quot;{{ new Date(2017, 4, 30) }}&quot;
-  startMinDate=&quot;{{ new Date(2017, 4, 1) }}&quot;
-  startInitialDate=&quot;{{ new Date(2017, 4, 10) }}&quot;
-  endPlaceholder=&quot;value&quot;
-  endMaxDate=&quot;{{ new Date(2017, 4, 30) }}&quot;
-  endMinDate=&quot;{{ new Date(2017, 4, 1) }}&quot;
-  endInitialDate=&quot;{{ new Date(2017, 4, 10) }}&quot;
-  (startSelected)=&quot;myMethod($event)&quot;
-  (endSelected)=&quot;myMethod($event)&quot;
-  (dateSelected)=&quot;myMethod($event)&quot;
-&gt;&lt;/ts-date-range&gt;</code></pre>
-                </div>
     </div>
-
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-date-range</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>date-range.component.scss</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./date-range.component.html</code></td>
-            </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
-        <h3 id="inputs">Inputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>endInitialDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the initial date for the end date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:100</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>endMaxDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the max date for the end date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>Date</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:90</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>endMinDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the min date for the end date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>Date</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:95</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>endPlaceholder</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the end date placeholder</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:85</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>separator</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the separator between the two date inputs</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>-</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:60</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startingView</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the starting view for both datepickers</p>
-</div>
-                            <p>
-                              <em>Default value: </em><code>month</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:55</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startInitialDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the initial date for the starting date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:80</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startMaxDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the max date for the starting date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>Date</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:70</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startMinDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the min date for the starting date</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>Date</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:75</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startPlaceholder</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the start date placeholder</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>string</code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:65</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="outputs">Outputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>endSelected</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Output the end date when selected</p>
-</div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:110</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>selectedDate</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Output the selected date range</p>
-</div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:115</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>startSelected</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Output the start date when selected</p>
-</div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:105</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-
-    <section>
-        
-            <h3 id="methods">
-                Methods
-            </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> startDateSelected</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>startDateSelected(date: Date)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:123</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Emit the selected start date and date range</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> endDateSelected</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>endDateSelected(date: Date)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:150</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Emit the selected end date and date range</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        
-            <h3 id="inputs">
-                Properties
-            </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b><span class="modifier">Private</span> _endDate</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>_endDate:     <code>Date</code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code>Date</code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:45</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b><span class="modifier">Private</span> _startDate</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>_startDate:     <code>Date</code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code>Date</code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:40</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> dateRange</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>dateRange:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code>any</code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:165</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Getter to return the date range as an object</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> end</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>end:     <code><a href="../components/TsDatepickerComponent.html" target="_self" >TsDatepickerComponent</a></code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="../components/TsDatepickerComponent.html" target="_self" >TsDatepickerComponent</a></code>
-    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Decorators : </i><code>ViewChild</code>
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:50</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Allow access to child directive</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-</div>
-
-
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript"></code></pre>
-    </div>
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Directive,
+  ElementRef,
+  Renderer,
+  Input,
+} from &#x27;@angular/core&#x27;;
 
-    <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;c-date-range  c-date-range&quot;&gt;
-  &lt;ts-datepicker
-    [inputPlaceholder]&#x3D;&quot;startPlaceholder&quot;
-    [maxDate]&#x3D;&quot;startMaxDate&quot;
-    [minDate]&#x3D;&quot;startMinDate&quot;
-    [startingView]&#x3D;&quot;startingView&quot;
-    [initialDate]&#x3D;&quot;startInitialDate&quot;
-    (selected)&#x3D;&quot;startDateSelected($event)&quot;
-  &gt;&lt;/ts-datepicker&gt;
+import { TsVerticalSpacingTypes } from &#x27;./vertical-spacing.type&#x27;;
 
-  &lt;span
-    class&#x3D;&quot;c-date-range__seperator&quot;
-    *ngIf&#x3D;&quot;separator&quot;
-  &gt;
-    {{ separator }}
-  &lt;/span&gt;
 
-  &lt;ts-datepicker
-    [inputPlaceholder]&#x3D;&quot;endPlaceholder&quot;
-    [maxDate]&#x3D;&quot;endMaxDate&quot;
-    [minDate]&#x3D;&quot;endMinDate&quot;
-    [startingView]&#x3D;&quot;startingView&quot;
-    [initialDate]&#x3D;&quot;endInitialDate&quot;
-    (selected)&#x3D;&quot;endDateSelected($event)&quot;
-    #end
-  &gt;&lt;/ts-datepicker&gt;
-&lt;/div&gt;
+
+/**
+ * This is the vertical spacing UI directive
+ *
+ * @example
+ * &lt;div
+ *              tsVerticalSpacing&quot;
+ * &gt;&lt;/div&gt;
+ *
+ * &lt;div
+ *              tsVerticalSpacing&#x3D;&quot;large--1x&quot;
+ * &gt;&lt;/div&gt;
+ */
+@Directive({
+  selector: &#x27;[tsVerticalSpacing]&#x27;,
+})
+export class TsVerticalSpacingDirective {
+  /**
+   * Set a spacing class based on the passed in value
+   *
+   * @param {String} value The spacing value passed in
+   */
+  @Input()
+  set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
+    // Fall back to default class if no value is passed in
+    const className &#x3D; (value &amp;&amp; value.length &gt; 0) ? &#x60;u-vertical-spacing__${value}&#x60; : &#x60;u-vertical-spacing&#x60;;
+
+    this.renderer.setElementClass(this.elementRef.nativeElement, className, true)
+  }
+
+
+  constructor(
+    private renderer: Renderer,
+    private elementRef: ElementRef,
+  ) {}
+
+}
 </code></pre>
     </div>
-
-    <div class="tab-pane fade" id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><div class="c-date-range  c-date-range">  <ts-datepicker    [inputPlaceholder]="startPlaceholder"    [maxDate]="startMaxDate"    [minDate]="startMinDate"    [startingView]="startingView"    [initialDate]="startInitialDate"    (selected)="startDateSelected($event)"  ></ts-datepicker>  <span    class="c-date-range__seperator"    *ngIf="separator"  >    {{ separator }}  </span>  <ts-datepicker    [inputPlaceholder]="endPlaceholder"    [maxDate]="endMaxDate"    [minDate]="endMinDate"    [startingView]="startingView"    [initialDate]="endInitialDate"    (selected)="endDateSelected($event)"    #end  ></ts-datepicker></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
-    var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
-    var ACTUAL_COMPONENT = {'name': 'TsDateRangeComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
 
 
 

@@ -99,6 +99,9 @@
                                     <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsSpacingModule.html" >TsSpacingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                 </li>
                                 <li class="link">
@@ -157,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-directives-links"
+                            >
+                            <span class="fa fa-code"></span>
+                            <span>Directives</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-directives-links"
+                            >
+                                <li class="link">
+                                    <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -314,6 +333,9 @@
                                            <a href="../modules/TsSelectModule.html" >TsSelectModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsSpacingModule.html" >TsSpacingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsToggleModule.html" >TsToggleModule</a>
                                        </li>
                                        <li class="link">
@@ -372,6 +394,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#directives-links"
+                   >
+                                   <span class="fa fa-code"></span>
+                                   <span>Directives</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="directives-links"
+                   >
+                                       <li class="link">
+                                           <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -1657,7 +1695,7 @@ TODO: This should probably support rich HTML so it can link to filters/help/etc<
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-pagination">  <div class="c-pagination__buttons">    <ts-select      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"    ></ts-select>    <!-- First -->    <ts-button      [iconName]="firstPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(1, currentPage, pagesArray)"    ></ts-button>    <!-- Previous -->    <ts-button      [iconName]="previousPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"    ></ts-button>    <!-- current / select -->    <ts-menu      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"      >{{ currentPageLabel }}</ts-menu>    <!-- Next -->    <ts-button      [iconName]="nextPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"    ></ts-button>    <!-- Last -->    <ts-button      [iconName]="lastPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"    ></ts-button>  </div>  <div    class="c-pagination__message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
 </script>
 <script src="../js/tree.js"></script>

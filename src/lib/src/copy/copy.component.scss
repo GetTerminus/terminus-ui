@@ -25,6 +25,7 @@
     font-family: $type__family--base;
     padding: $margin__vertical $margin__horizontal;
     transition: border-color 200ms ease-in-out 50ms;
+    will-change: border-color;
 
     // Adding tabindex to the element allows focus, but we don't need the visual indicator
     &:focus {
@@ -59,6 +60,7 @@
     transition: background-color 200ms ease-in;
     // Double the width of the 24px icon
     width: 48px;
+    will-change: background-color;
   }
 
   md-icon {

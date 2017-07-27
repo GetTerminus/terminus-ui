@@ -99,6 +99,9 @@
                                     <a href="./modules/TsSelectModule.html" >TsSelectModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./modules/TsSpacingModule.html" >TsSpacingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="./modules/TsToggleModule.html" >TsToggleModule</a>
                                 </li>
                                 <li class="link">
@@ -157,6 +160,22 @@
                         </ul>
                     </li>
             
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-directives-links"
+                            >
+                            <span class="fa fa-code"></span>
+                            <span>Directives</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-directives-links"
+                            >
+                                <li class="link">
+                                    <a href="./directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                </li>
+                        </ul>
+                    </li>
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -314,6 +333,9 @@
                                            <a href="./modules/TsSelectModule.html" >TsSelectModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./modules/TsSpacingModule.html" >TsSpacingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./modules/TsToggleModule.html" >TsToggleModule</a>
                                        </li>
                                        <li class="link">
@@ -372,6 +394,22 @@
                                </ul>
                            </li>
                    
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#directives-links"
+                   >
+                                   <span class="fa fa-code"></span>
+                                   <span>Directives</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="directives-links"
+                   >
+                                       <li class="link">
+                                           <a href="./directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
+                                       </li>
+                               </ul>
+                           </li>
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -464,6 +502,7 @@
 <li><a href="#installation">Installation</a></li>
 <li><a href="#adding-a-component">Adding a Component</a></li>
 <li><a href="#developing">Developing</a><ul>
+<li><a href="#demos">Demos</a></li>
 <li><a href="#branching">Branching</a><ul>
 <li><a href="#naming">Naming</a></li>
 <li><a href="#workflow">Workflow</a></li>
@@ -797,7 +836,7 @@
 <li>Update the status for the component in the <a href="#components">components table</a></li>
 </ol>
 <blockquote>
-<p>NOTE: You can also use out <a href="https://github.com/GetTerminus/generator-terminus-ui">yeoman generator</a> to quickly scaffold a new component</p>
+<p>NOTE: You can also use our <a href="https://github.com/GetTerminus/generator-terminus-ui">yeoman generator</a> to quickly scaffold a new component</p>
 </blockquote>
 <h2 id="developing">Developing</h2>
 <pre class="line-numbers"><code class="language-bash"># Start the demo project and watch demo and lib files for changes
@@ -821,7 +860,14 @@ $ npm run lint
 # Run all TypeScript tests
 $ npm run test
 
-# Check package.json for all available commands</code></pre><h3 id="branching">Branching</h3>
+# Check package.json for all available commands</code></pre><h3 id="demos">Demos</h3>
+<ol>
+<li><code>$ npm run start</code></li>
+<li>Navigate to <code>http://localhost:4300/components/</code></li>
+<li>Select a component from the menu</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png" alt="select a demo compenent" class="img-responsive"></p>
+<h3 id="branching">Branching</h3>
 <p>Note: <code>master</code> is <strong>always deployable</strong>.</p>
 <h4 id="naming">Naming</h4>
 <ol>

@@ -17,6 +17,7 @@ The library of UI components used for Terminus applications.
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
 - [Developing](#developing)
+  - [Demos](#demos)
   - [Branching](#branching)
     - [Naming](#naming)
     - [Workflow](#workflow)
@@ -142,7 +143,7 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Add the new component to available scopes in `tooling/cz-config.js`
 1. Update the status for the component in the [components table](#components)
 
-> NOTE: You can also use out [yeoman generator][generator] to quickly scaffold a new component
+> NOTE: You can also use our [yeoman generator][generator] to quickly scaffold a new component
 
 
 ## Developing
@@ -171,6 +172,15 @@ $ npm run test
 
 # Check package.json for all available commands
 ```
+
+
+### Demos
+
+1. `$ npm run start`
+2. Navigate to `http://localhost:4300/components/`
+3. Select a component from the menu
+
+![select a demo compenent][component-demo-screenshot]
 
 
 ### Branching
@@ -532,3 +542,4 @@ machines.
 [ui-github]: https://github.com/GetTerminus/terminus-ui
 [semver]: http://semver.org/
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
+[component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png

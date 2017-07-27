@@ -23,6 +23,7 @@ import {
   TsTooltipModule,
   TsDatepickerModule,
   TsDateRangeModule,
+  TsSpacingModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -41,6 +42,7 @@ import { CopyComponent } from './components/copy.component';
 import { TooltipComponent } from './components/tooltip.component';
 import { DatepickerComponent } from './components/datepicker.component';
 import { DateRangeComponent } from './components/date-range.component';
+import { SpacingComponent } from './components/spacing.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -67,6 +69,7 @@ import { DateRangeComponent } from './components/date-range.component';
     TsTooltipModule,
     TsDatepickerModule,
     TsDateRangeModule,
+    TsSpacingModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -83,6 +86,7 @@ import { DateRangeComponent } from './components/date-range.component';
     TooltipComponent,
     DatepickerComponent,
     DateRangeComponent,
+    SpacingComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

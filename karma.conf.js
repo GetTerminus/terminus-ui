@@ -84,6 +84,9 @@ module.exports = function(config) {
 
       'tooling/karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
+      // Add hammerjs
+      'node_modules/hammerjs/hammer.min.js',
+
       // transpiled application & spec code paths loaded via module imports
       { pattern: libBase + '**/*.js', included: false, watched: true },
 

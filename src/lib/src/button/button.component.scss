@@ -22,6 +22,7 @@
     // Overwrite material min-width
     min-width: auto;
     padding: 0;
+    will-change: contents;
 
     &[disabled] {
       pointer-events: none;
