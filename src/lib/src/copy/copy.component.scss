@@ -19,17 +19,17 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
-    background-color: color(mapGray, xlight);
-    border: 1px solid color(mapGray, light);
+    background-color: color(utility, xlight);
+    border: 1px solid color(utility, light);
     border-radius: $radius;
-    color: color(mapGray, dark);
+    color: color(utility, dark);
     padding: $margin__vertical $margin__horizontal;
     transition: border-color 200ms ease-in-out 50ms;
     will-change: border-color;
 
     // Adding tabindex to the element allows focus, but we don't need the visual indicator
     &:focus {
-      border: 1px solid color(mapGray);
+      border: 1px solid color(utility);
       outline: 0;
       transition-delay: 0;
     }
@@ -45,9 +45,9 @@
 
   // <div> The container for the icon
   .c-copy__icon {
-    background-color: color(mapPrimary, light);
+    background-color: color(primary, light);
     border-radius: 0 $radius $radius 0;
-    color: color(mapWhite);
+    color: color(pure);
     cursor: pointer;
     margin:
     calc(-#{$margin__vertical} - 1px)

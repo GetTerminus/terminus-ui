@@ -7,11 +7,11 @@
  * @mixin triangle
  * @section Style Helpers
  * @param $direction
- *  Triangle direction, either `top`, `right`, `bottom` or `left`
+ *  Triangle direction, either `top`, `right`, `bottom` or `left`.
  * @param $color
- *  Triangle color
+ *  Triangle color. Default: currentcolor
  * @param $size
- *  Triangle size
+ *  Triangle size. Default: 1em
  * @example
  *  @include triangle(top);
  *  @include triangle(left, red, 2em);

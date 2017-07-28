@@ -10,7 +10,7 @@
 
     // Overwrite color to appear disabled
     ::ng-deep .mat-select-value-text {
-      color: color(mapGray);
+      color: color(utility);
     }
   }
 

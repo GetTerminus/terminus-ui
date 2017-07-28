@@ -1,44 +1,231 @@
 // sass-lint:disable no-color-hex
 
-/** @color Primary - Extra Light */
-$color__primary--xlight: #9fa8da;
-/** @color Primary - Light */
-$color__primary--light: #3f51b5;
-/** @color Primary - Base */
-$color__primary: #303f9f;
-/** @color Primary - Dark */
-$color__primary--dark: #1a237e;
 
-/** @color Accent - Light */
-$color__accent--light: #b2ebf2;
-/** @color Accent */
-$color__accent: #00bcd4;
-/** @color Accent - Dark */
-$color__accent--dark: #0097a7;
+/**
+ * Pure - Dark
+ *
+ * @color
+ * @section UI: Dark
+ */
+$color__pure--dark: #302d35;
 
-/** @color Warn - Light */
-$color__warn--light: #ffcdd2;
-/** @color Warn */
-$color__warn: #ff1744;
-/** @color Warn - Dark */
-$color__warn--dark: #d32f2f;
+/**
+ * Pure - Light
+ *
+ * @color
+ * @section UI: Light
+ */
+$color__pure--light: #fafafa;
 
-/** @color White */
-$color__white: #fff;
 
-/** @color Black */
-$color__black: #000;
 
-/** @color Gray - Extra Light */
-$color__gray--xlight: #f5f5f5;
-/** @color Gray - Light */
-$color__gray--light: #e0e0e0;
-/** @color Gray */
-$color__gray: #9e9e9e;
-/** @color Gray - Dark */
-$color__gray--dark: #424242;
-/** @color Gray - Extra Dark */
-$color__gray--xdark: #212121;
+
+/**
+ * Utility - Extra Dark
+ *
+ * @color
+ * @section UI: Utility
+ */
+$color__utility--xdark: #3e3c43;
+
+/**
+ * Utility - Dark
+ *
+ * @color
+ * @section UI: Utility
+ */
+$color__utility--dark: #48464d;
+
+/**
+ * Utility
+ *
+ * @color
+ * @section UI: Utility
+ */
+$color__utility: #999;
+
+/**
+ * Utility - Light
+ *
+ * @color
+ * @section UI: Utility
+ */
+$color__utility--light: #e3e1e8;
+
+/**
+ * Utility - Extra Light
+ *
+ * @color
+ * @section UI: Utility
+ */
+$color__utility--xlight: #f2f0f7;
+
+
+
+
+/**
+ * Primary - Extra Dark
+ *
+ * @color
+ * @section UI: Primary
+ */
+$color__primary--xdark: #0a375b;
+
+/**
+ * Primary - Dark
+ *
+ * @color
+ * @section UI: Primary
+ */
+$color__primary--dark: #0c4271;
+
+/**
+ * Primary
+ *
+ * @color
+ * @section UI: Primary
+ */
+$color__primary: #00538a;
+
+/**
+ * Primary - Light
+ *
+ * @color
+ * @section UI: Primary
+ */
+$color__primary--light: #1666b1;
+
+/**
+ * Primary - xLight
+ *
+ * @color
+ * @section UI: Primary
+ */
+$color__primary--xlight: #1777b6;
+
+
+
+
+/**
+ * Accent - Extra Dark
+ *
+ * @color
+ * @section UI: Accent
+ */
+$color__accent--xdark: #2b673f;
+
+/**
+ * Accent - Dark
+ *
+ * @color
+ * @section UI: Accent
+ */
+$color__accent--dark: #317448;
+
+/**
+ * Accent
+ *
+ * @color
+ * @section UI: Accent
+ */
+$color__accent: #2f854d;
+
+/**
+ * Accent - Light
+ *
+ * @color
+ * @section UI: Accent
+ */
+$color__accent--light: #3b9b5c;
+
+/**
+ * Accent - xLight
+ *
+ * @color
+ * @section UI: Accent
+ */
+$color__accent--xlight: #48ac6a;
+
+
+
+
+/**
+ * Error - Dark
+ *
+ * @color
+ * @section UI: Error
+ */
+$color__error--dark: #b55949;
+
+/**
+ * Error
+ *
+ * @color
+ * @section UI: Error
+ */
+$color__error: #c8604d;
+
+/**
+ * Error - Light
+ *
+ * @color
+ * @section UI: Error
+ */
+$color__error--light: #d76c59;
+
+
+
+
+/**
+ * Warn - Dark
+ *
+ * @color
+ * @section UI: Warn
+ */
+$color__warn--dark: #cc9f45;
+
+/**
+ * Warn
+ *
+ * @color
+ * @section UI: Warn
+ */
+$color__warn: #dea83b;
+
+/**
+ * Warn - Light
+ *
+ * @color
+ * @section UI: Warn
+ */
+$color__warn--light: #e8b550;
+
+
+
+
+/**
+ * Highlight - Dark
+ *
+ * @color
+ * @section UI: Highlight
+ */
+$color__highlight--dark: #ddd455;
+
+/**
+ * Highlight
+ *
+ * @color
+ * @section UI: Highlight
+ */
+$color__highlight: #efe557;
+
+/**
+ * Highlight - Light
+ *
+ * @color
+ * @section UI: Highlight
+ */
+$color__highlight--light: #f4eb6e;
 
 // sass-lint:enable no-color-hex
 
@@ -50,36 +237,49 @@ $color__gray--xdark: #212121;
  * @section Config
  */
 $palettes: (
-  mapPrimary: (
+  primary: (
     xlight: $color__primary--xlight,
     light: $color__primary--light,
     base: $color__primary,
-    dark: $color__primary--dark
+    dark: $color__primary--dark,
+    xdark: $color__primary--xdark
   ),
-  mapAccent: (
+  accent: (
+    xlight: $color__accent--xlight,
     light: $color__accent--light,
     base: $color__accent,
-    dark: $color__accent--dark
+    dark: $color__accent--dark,
+    xdark: $color__accent--xdark
   ),
-  mapWarn: (
+  error: (
+    light: $color__error--light,
+    base: $color__error,
+    dark: $color__error--dark
+  ),
+  warn: (
     light: $color__warn--light,
     base: $color__warn,
     dark: $color__warn--dark
   ),
-  mapWhite: (
-    base: $color__white
+  highlight: (
+    light: $color__highlight--light,
+    base: $color__highlight,
+    dark: $color__highlight--dark
   ),
-  mapBlack: (
-    base: $color__black
+  pure: (
+    dark: $color__pure--dark,
+    base: $color__pure--light
   ),
-  mapGray: (
-    xlight: $color__gray--xlight,
-    light: $color__gray--light,
-    base: $color__gray,
-    dark: $color__gray--dark,
-    xdark: $color__gray--xdark
+  utility: (
+    xlight: $color__utility--xlight,
+    light: $color__utility--light,
+    base: $color__utility,
+    dark: $color__utility--dark,
+    xdark: $color__utility--xdark
   )
 );
+
+
 
 
 /**
