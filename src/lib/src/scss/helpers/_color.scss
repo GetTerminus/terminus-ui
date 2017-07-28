@@ -85,16 +85,28 @@ $palettes: (
 /**
  * Retrieve a color from the colors map
  *
- * @mixin palette
+ * @mixin color
  * @section Functions
  * @param $palette
  *  The palette to use from the map
  * @param $tone
  *  The tone to use from the selected map
  * @example
- *  @include palette(mapPrimary);
- *  @include palette(mapAccent, light);
+ *  @include color(mapPrimary);
+ *  @include color(mapAccent, light);
  */
-@function palette($palette, $tone: 'base') {
+@function color($palette, $tone: 'base') {
+  // Verify the palette exists (color)
+  @if not(map-has-key($palettes, $palette)) {
+    $allowed: map-keys($palettes);
+    @error 'Invalid palette name: `#{$palette}`. Allowed palettes: #{$allowed}';
+  }
+
+  // Verify the tone exists (variation)
+  @if not(map-has-key(map-get($palettes, $palette), $tone)) {
+    $allowed: map-keys(map-get($palettes, $palette));
+    @error 'Invalid palette tone: `#{$tone}`. Allowed tones for `#{$palette}` are: #{$allowed}';
+  }
+
   @return map-get(map-get($palettes, $palette), $tone);
 }

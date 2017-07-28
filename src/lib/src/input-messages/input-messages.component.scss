@@ -11,13 +11,13 @@
 .c-input-message {
   // Top level styles should be nested here
   &#{&} {
-    font-family: $type__family--base;
+    @include typography;
   }
 
   // Primary message container
   ::ng-deep &.mat-input-error {
-    background-color: palette(mapWarn);
-    color: palette(mapWhite);
+    background-color: color(mapWarn);
+    color: color(mapWhite);
     font-size: 75%;
     line-height: 1.2em;
     margin-top: .6em;
@@ -28,7 +28,7 @@
 
     // Create the triangle arrow
     &::before {
-      @include triangle(top, palette(mapWarn), .7em);
+      @include triangle(top, color(mapWarn), .7em);
       left: 10%;
     }
   }

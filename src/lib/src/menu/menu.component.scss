@@ -20,7 +20,7 @@
 
   // Top level styles should be nested here
   ::ng-deep &#{&} {
-    font-family: $type__family--base;
+    @include typography;
     max-height: 12rem;
   }
 
