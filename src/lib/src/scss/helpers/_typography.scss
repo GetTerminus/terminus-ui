@@ -181,12 +181,20 @@ $typography-body-levels: (
 
     @if $level == 1 {
       font-weight: 400;
-      line-height: 20px;
+
+      // Don't apply custom line-height to buttons
+      &:not(.c-button) {
+        line-height: 20px;
+      }
     }
 
     @if $level == 2 {
       font-weight: 500;
-      line-height: 24px;
+
+      // Don't apply custom line-height to buttons
+      &:not(.c-button) {
+        line-height: 24px;
+      }
     }
   }
 
