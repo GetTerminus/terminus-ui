@@ -1,8 +1,9 @@
+// NOTE: Adding the @nuclide annotation to any of these variables or maps causes Nucleus to break.
+// The error is in nucleus-styleguide/src/Transform.js line 57
 
 /**
  * The base typeface
  *
- * @nuclide Typeface
  * @section Config > Typography
  */
 $type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
@@ -10,7 +11,6 @@ $type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
 /**
  * The monospaced typeface family
  *
- * @nuclide Typeface
  * @section Config > Typography
  */
 $type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace};
@@ -18,7 +18,6 @@ $type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bits
 /**
  * The available typefaces
  *
- * @nuclide Typefaces
  * @section Config > Typography
  */
 $typography-typefaces: (
@@ -29,7 +28,6 @@ $typography-typefaces: (
 /**
  * The base typography size
  *
- * @nuclide Typography Size
  * @section Config > Typography
  */
 $type__size--base: 16px;
@@ -37,7 +35,6 @@ $type__size--base: 16px;
 /**
  * The available typography formats
  *
- * @nuclide Typography Formats
  * @section Config > Typography
  */
 $typography-formats: (
@@ -52,7 +49,6 @@ $typography-formats: (
 /**
  * The available typography levels for the `display` format
  *
- * @nuclide Typography Display Levels
  * @section Config > Typography
  */
 $typography-display-levels: (
@@ -65,7 +61,6 @@ $typography-display-levels: (
 /**
  * The available typography levels for the `body` format
  *
- * @nuclide Typography Body Levels
  * @section Config > Typography
  */
 $typography-body-levels: (
@@ -84,7 +79,7 @@ $typography-body-levels: (
  * @param $level
  *  One of the accepted levels for the passed in format
  * @param $typeface
- *  One of the available typefaces defined in 
+ *  One of the available typefaces defined in $typography-typefaces
  * @example
  *  @include typography;
  *  @include typography('display', 4);
@@ -94,7 +89,6 @@ $typography-body-levels: (
   $level: 1,
   $typeface: 'primary'
 ) {
-
   // Verify the format is valid
   @if index($typography-formats, $format) == null {
     @error 'Invalid typography format: `#{$format}`. Allowed formats: #{$typography-formats}';
