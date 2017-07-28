@@ -136,6 +136,7 @@ export class TsDateRangeComponent {
         // TODO: If the end datepicker has a default value, 'reset' doesn't clear the value
         // We should amend this or add a separate method to clear.
         this.end.resetValue();
+        console.log('shouuld reset: ', this.end.value);
       }
 
       this.startSelected.emit(date);
