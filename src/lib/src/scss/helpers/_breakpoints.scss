@@ -73,7 +73,7 @@ $breakpoints: (
     }
 
   } @else {
-    @warn 'There is no breakpoint "#{$point}" in this list; choose one of: #{$breakpoints}';
+    @error 'There is no breakpoint `#{$point}` in this list; choose one of: #{$breakpoints}';
   }
 
 }

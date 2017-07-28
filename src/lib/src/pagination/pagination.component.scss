@@ -15,14 +15,13 @@
 .c-pagination {
   // Top level styles should be nested here
   &#{&} {
-    font-family: $type__family--base;
+    @include typography;
   }
 
   // <div> container for the message about too many records
   .c-pagination__message {
-    color: palette(mapGray, dark);
-    // TODO: This should be using a global type rule
-    font-size: 70%;
+    @include typography('caption');
+    color: color(mapGray, dark);
     margin: .4em 0;
     text-align: right;
   }

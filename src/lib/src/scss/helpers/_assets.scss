@@ -12,6 +12,10 @@
  *  @include asset('icons', 'save.svg');
  */
 @function asset($type, $file) {
+  @if ($type == null) or ($file == null) {
+    @error 'Both `$type` and `$file` are required.';
+  }
+
   @return url($asset-base-path + '/' + $type + '/' + $file);
 }
 
@@ -27,5 +31,9 @@
  *  @include image('logo.png');
  */
 @function image($file) {
+  @if $file == null {
+    @error 'the `$file` parameter is required.';
+  }
+
   @return asset('images', $file);
 }

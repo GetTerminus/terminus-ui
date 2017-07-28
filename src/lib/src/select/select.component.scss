@@ -10,7 +10,7 @@
 
     // Overwrite color to appear disabled
     ::ng-deep .mat-select-value-text {
-      color: palette(mapGray);
+      color: color(mapGray);
     }
   }
 
@@ -32,7 +32,7 @@
 .c-select {
   // Top level styles should be nested here
   &#{&} {
-    font-family: $type__family--base;
+    @include typography;
   }
 
   // Custom rules when nested inside a pagination component

@@ -13,7 +13,7 @@
 .c-input {
   // Top level styles should be nested here
   &#{&} {
-    font-family: $type__family--base;
+    @include typography;
   }
 
   // Button to clear the value of the input

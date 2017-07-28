@@ -1,16 +1,201 @@
+// NOTE: Adding the @nuclide annotation to any of these variables or maps causes Nucleus to break.
+// The error is in nucleus-styleguide/src/Transform.js line 57
 
 /**
- * The base font family
+ * The base typeface
  *
- * @nuclide Font Family
  * @section Config > Typography
  */
 $type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
 
 /**
- * The base font size
+ * The monospaced typeface family
  *
- * @nuclide Font Size
+ * @section Config > Typography
+ */
+$type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace};
+
+/**
+ * The available typefaces
+ *
+ * @section Config > Typography
+ */
+$typography-typefaces: (
+  'primary': $type__family--base,
+  'monospaced': $type__family--monospaced
+);
+
+/**
+ * The base typography size
+ *
  * @section Config > Typography
  */
 $type__size--base: 16px;
+
+/**
+ * The available typography formats
+ *
+ * @section Config > Typography
+ */
+$typography-formats: (
+  'display',
+  'headline',
+  'title',
+  'subhead',
+  'body',
+  'caption'
+);
+
+/**
+ * The available typography levels for the `display` format
+ *
+ * @section Config > Typography
+ */
+$typography-display-levels: (
+  1,
+  2,
+  3,
+  4
+);
+
+/**
+ * The available typography levels for the `body` format
+ *
+ * @section Config > Typography
+ */
+$typography-body-levels: (
+  1,
+  2
+);
+
+
+/**
+ * Return typography styles based on the format and level
+ *
+ * @mixin typography
+ * @section Style Helpers
+ * @param $format
+ *  One of the available formats defined within $typography-formats
+ * @param $level
+ *  One of the accepted levels for the passed in format
+ * @param $typeface
+ *  One of the available typefaces defined in $typography-typefaces
+ * @example
+ *  @include typography;
+ *  @include typography('display', 4);
+ */
+@mixin typography(
+  $format: 'body',
+  $level: 1,
+  $typeface: 'primary'
+) {
+  // Verify the format is valid
+  @if index($typography-formats, $format) == null {
+    @error 'Invalid typography format: `#{$format}`. Allowed formats: #{$typography-formats}';
+  }
+
+  // Verify the typeface is valid
+  @if not(map-has-key($typography-typefaces, $typeface)) {
+    $allowed: map-keys($typography-typefaces);
+    @error 'Invalid typography typeface: `#{$typeface}`. Allowed typefaces: #{$allowed}';
+  } @else {
+    font-family: map-get($typography-typefaces, $typeface);
+  }
+
+
+  // DISPLAY
+  @if $format == 'display' {
+    // Verify the level is valid for this format
+    @if index($typography-display-levels, $level) == null {
+      @error 'Invalid display format level: `#{$level}`. Allowed levels: #{$typography-display-levels}';
+    }
+
+    @if $level == 1 {
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 40px;
+    }
+
+    @if $level == 2 {
+      font-size: 45px;
+      font-weight: 400;
+      line-height: 64px;
+    }
+
+    @if $level == 3 {
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: -.005em;
+      line-height: 56px;
+    }
+
+    @if $level == 4 {
+      font-size: 112px;
+      font-weight: 300;
+      letter-spacing: -.01em;
+      line-height: 112px;
+    }
+  }
+
+
+  // HEADLINE
+  @if $format == 'headline' {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+
+
+  // TITLE
+  @if $format == 'title' {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: .005em;
+  }
+
+
+  // SUBHEAD
+  @if $format == 'subhead' {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 24px;
+  }
+
+
+  // BODY
+  @if $format == 'body' {
+    // Verify the level is valid for this format
+    @if index($typography-body-levels, $level) == null {
+      @error 'Invalid body format level: `#{$level}`. Allowed levels: #{$typography-body-levels}';
+    }
+
+    font-size: 16px;
+    letter-spacing: .01em;
+
+    @if $level == 1 {
+      font-weight: 400;
+
+      // Don't apply custom line-height to buttons
+      &:not(.c-button) {
+        line-height: 20px;
+      }
+    }
+
+    @if $level == 2 {
+      font-weight: 500;
+
+      // Don't apply custom line-height to buttons
+      &:not(.c-button) {
+        line-height: 24px;
+      }
+    }
+  }
+
+
+  // CAPTION
+  @if $format == 'caption' {
+    font-size: 12px;
+    letter-spacing: .02em;
+  }
+}

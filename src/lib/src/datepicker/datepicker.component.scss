@@ -13,6 +13,6 @@
 .c-datepicker {
   // Top level styles should be nested here
   &#{&} {
-    font-family: $type__family--base;
+    @include typography;
   }
 }

@@ -133,6 +133,8 @@ export class TsDateRangeComponent {
       if (dateIsAfter) {
         // Clear the existing end date
         this._endDate = null;
+        // TODO: If the end datepicker has a default value, 'reset' doesn't clear the value
+        // We should amend this or add a separate method to clear.
         this.end.resetValue();
         console.log('shouuld reset: ', this.end.value);
       }
