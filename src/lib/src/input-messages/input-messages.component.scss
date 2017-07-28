@@ -16,8 +16,8 @@
 
   // Primary message container
   ::ng-deep &.mat-input-error {
-    background-color: color(mapWarn);
-    color: color(mapWhite);
+    background-color: color(warn);
+    color: color(pure);
     font-size: 75%;
     line-height: 1.2em;
     margin-top: .6em;
@@ -28,7 +28,7 @@
 
     // Create the triangle arrow
     &::before {
-      @include triangle(top, color(mapWarn), .7em);
+      @include triangle(top, color(warn), .7em);
       left: 10%;
     }
   }

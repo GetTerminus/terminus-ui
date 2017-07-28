@@ -4,21 +4,24 @@
 /**
  * The base typeface
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
 
 /**
  * The monospaced typeface family
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace};
 
 /**
  * The available typefaces
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $typography-typefaces: (
   'primary': $type__family--base,
@@ -28,14 +31,16 @@ $typography-typefaces: (
 /**
  * The base typography size
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $type__size--base: 16px;
 
 /**
  * The available typography formats
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $typography-formats: (
   'display',
@@ -49,7 +54,8 @@ $typography-formats: (
 /**
  * The available typography levels for the `display` format
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $typography-display-levels: (
   1,
@@ -61,7 +67,8 @@ $typography-display-levels: (
 /**
  * The available typography levels for the `body` format
  *
- * @section Config > Typography
+ * @nuclide
+ * @section Typography
  */
 $typography-body-levels: (
   1,
@@ -75,20 +82,16 @@ $typography-body-levels: (
  * @mixin typography
  * @section Style Helpers
  * @param $format
- *  One of the available formats defined within $typography-formats
+ *  One of the available formats defined within $typography-formats. Default: 'body'.
  * @param $level
- *  One of the accepted levels for the passed in format
+ *  One of the accepted levels for the passed in format. Default: 1
  * @param $typeface
- *  One of the available typefaces defined in $typography-typefaces
+ *  One of the available typefaces defined in $typography-typefaces. Default: 'primary'
  * @example
  *  @include typography;
  *  @include typography('display', 4);
  */
-@mixin typography(
-  $format: 'body',
-  $level: 1,
-  $typeface: 'primary'
-) {
+@mixin typography($format: 'body', $level: 1, $typeface: 'primary') {
   // Verify the format is valid
   @if index($typography-formats, $format) == null {
     @error 'Invalid typography format: `#{$format}`. Allowed formats: #{$typography-formats}';

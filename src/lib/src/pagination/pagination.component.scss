@@ -21,7 +21,7 @@
   // <div> container for the message about too many records
   .c-pagination__message {
     @include typography('caption');
-    color: color(mapGray, dark);
+    color: color(utility, dark);
     margin: .4em 0;
     text-align: right;
   }

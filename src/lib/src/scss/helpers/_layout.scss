@@ -4,7 +4,7 @@
  * @mixin take-space
  * @section Layout
  * @param $margin
- *  The amount of space between the edge of the parent
+ *  The amount of space between the edge of the parent. Default: 0
  * @example
  *  @include fill-parent;
  *  @include fill-parent(1em);
@@ -28,9 +28,9 @@
  * @param $y
  *  The y ratio
  * @param $pseudo
- *  Determine if the element should be a pseudo element
+ *  Determine if the element should be a pseudo element. Default: false
  * @param $image
- *  The image source
+ *  The image source. Default: null
  * @example
  *  @include responsive-ratio(3, 4);
  *  @include responsive-ratio(20, 9, true, url('/images/landing-hero.jpg'));
