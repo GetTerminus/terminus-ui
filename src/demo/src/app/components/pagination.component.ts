@@ -25,6 +25,7 @@ import { Component } from '@angular/core';
     <br>
 
     <ts-pagination
+      [theme]="myTheme"
       [totalRecords]="recordCount"
       [showRecordsPerPageSelector]="showSelector"
       [currentPage]="currentPage"
@@ -38,6 +39,7 @@ import { Component } from '@angular/core';
   `,
 })
 export class PaginationComponent {
+  myTheme = 'accent';
   recordCount = 111;
   showSelector = true;
   currentPage = 1;

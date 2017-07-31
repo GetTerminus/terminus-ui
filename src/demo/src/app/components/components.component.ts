@@ -22,9 +22,9 @@ import orderArrayByProperty from './../utilities/orderArrayByProperty';
   `,
 })
 export class ComponentsComponent implements OnInit {
-  title = 'Components';
-  height = '100px';
   components = orderArrayByProperty(componentsList, 'path');
+  title = `Components (${this.components.length})`;
+  height = '100px';
   path = '';
 
 

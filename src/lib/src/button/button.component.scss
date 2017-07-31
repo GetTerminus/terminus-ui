@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/color';
 
 :host {
   display: inline-block;
@@ -19,6 +20,11 @@
   // Top level styles should be nested here
   ::ng-deep &#{&} {
     @include typography;
+    /*
+     *@include theme-color('background-color');
+     */
+    // This makes the bottom padding space look better than the default 36px
+    line-height: 35px;
     // Overwrite material min-width
     min-width: auto;
     padding: 0;

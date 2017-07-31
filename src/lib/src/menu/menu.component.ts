@@ -13,6 +13,7 @@ import { MdMenuTrigger } from '@angular/material';
 import { MenuPositionTypesX } from './menu-position-x.types';
 import { MenuPositionTypesY } from './menu-position-y.types';
 import { MenuItem } from './menu-item.interface';
+import { TsStyleThemeTypes } from './../types/style-theme.types';
 
 
 /**
@@ -72,6 +73,11 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * Define the Y menu position
    */
   @Input() menuPositionY: MenuPositionTypesY = 'below';
+
+  /**
+   * Define the menu theme
+   */
+  @Input() theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Output a selection event with the item payload

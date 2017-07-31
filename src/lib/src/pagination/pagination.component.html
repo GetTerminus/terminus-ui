@@ -4,15 +4,16 @@
 
     <ts-select
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
-      [(ngModel)]="recordsPerPage"
-      (ngModelChange)="recordsPerPageUpdated($event)"
       [items]="recordsPerPageChoices"
       [label]="recordsSelectLabel"
       [ngClass]="{'disabled': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"
+      [(ngModel)]="recordsPerPage"
+      (ngModelChange)="recordsPerPageUpdated($event)"
     ></ts-select>
 
     <!-- First -->
     <ts-button
+      [theme]="theme"
       [iconName]="firstPageIcon"
       [isDisabled]="isFirstPage(currentPage)"
       (clickEvent)="changePage(1, currentPage, pagesArray)"
@@ -20,6 +21,7 @@
 
     <!-- Previous -->
     <ts-button
+      [theme]="theme"
       [iconName]="previousPageIcon"
       [isDisabled]="isFirstPage(currentPage)"
       (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
@@ -27,6 +29,7 @@
 
     <!-- current / select -->
     <ts-menu
+      [theme]="theme"
       [menuItems]="pagesArray"
       [menuPositionY]="menuLocation"
       [isDisabled]="menuIsDisabled(pagesArray?.length)"
@@ -36,6 +39,7 @@
 
     <!-- Next -->
     <ts-button
+      [theme]="theme"
       [iconName]="nextPageIcon"
       [isDisabled]="isLastPage(currentPage)"
       (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
@@ -43,6 +47,7 @@
 
     <!-- Last -->
     <ts-button
+      [theme]="theme"
       [iconName]="lastPageIcon"
       [isDisabled]="isLastPage(currentPage)"
       (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"

@@ -3,11 +3,12 @@ import {
   Input,
   Output,
   EventEmitter,
+  ElementRef,
 } from '@angular/core';
 
 import { ButtonActionTypes } from './../types/button-action.types';
 import { ButtonFunctionTypes } from './../types/button-function.types';
-import { StyleThemeTypes } from './../types/style-theme.types';
+import { TsStyleThemeTypes } from './../types/style-theme.types';
 
 
 /**
@@ -17,7 +18,7 @@ import { StyleThemeTypes } from './../types/style-theme.types';
  * @example
  * <ts-button
  *              actionName="Submit"
- *              buttonStyle="accent"
+ *              theme="primary"
  *              buttonType="search"
  *              iconName="search"
  *              isDisabled="false"
@@ -35,11 +36,6 @@ export class TsButtonComponent {
    * Define the action for the aria-label
    */
   @Input() actionName: ButtonActionTypes = 'Button';
-
-  /**
-   * Define the button style
-   */
-  @Input() buttonStyle: StyleThemeTypes = 'primary';
 
   /**
    * Define the button type
@@ -60,6 +56,11 @@ export class TsButtonComponent {
    * Define if the progress indicator should show
    */
   @Input() showProgress: boolean = false;
+
+  /**
+   * Define the theme to pass to the button
+   */
+  @Input() theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Pass the click event through to the parent

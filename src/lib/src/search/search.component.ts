@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { TsStyleThemeTypes } from './../types/style-theme.types';
 import { ButtonActionTypes } from './../types/button-action.types';
 import { ButtonFunctionTypes } from './../types/button-function.types';
 
@@ -74,7 +75,7 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the button style
    */
-  @Input() buttonStyle: string = 'primary';
+  @Input() theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the hint text below the input

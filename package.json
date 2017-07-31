@@ -21,7 +21,6 @@
   },
   "scripts": {
     "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
-    "clean:demo": "rimraf \"src/demo/**/*.js\" \"src/demo/**/*.map\"",
     "clean:styleguide": "rm -rf styleguide",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",

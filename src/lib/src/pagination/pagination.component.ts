@@ -7,6 +7,8 @@ import {
   OnInit,
 } from '@angular/core';
 
+import { TsStyleThemeTypes } from './../types/style-theme.types';
+
 
 /**
  * A pagination component
@@ -105,6 +107,11 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Define the menu location (open up or open down)
    */
   @Input() menuLocation: 'above' | 'below' = 'above';
+
+  /**
+   * Define the color theme
+   */
+  @Input() theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the total number of records
