@@ -285,12 +285,12 @@ $palettes: (
 /**
  * Retrieve a color from the colors map
  *
- * @function color
+ * @mixin color
  * @section Functions
  * @param $palette
  *  The palette to use from the map
  * @param $tone
- *  The tone to use from the selected map
+ *  The tone to use from the selected map. Default: base
  * @example
  *  @include color(primary);
  *  @include color(accent, light);
@@ -370,9 +370,9 @@ $theme-and-color: (
 
 
 /**
- * Define our custom material palette maps
+ * Define the material based primary palette
  *
- * @nuclide Material Palette
+ * @nuclide Material Primary Palette
  * @section Config > Colors
  */
 $ts-material-primary: (
@@ -408,6 +408,12 @@ $ts-material-primary: (
   )
 );
 
+/**
+ * Define the material based accent palette
+ *
+ * @nuclide Material Accent Palette
+ * @section Config > Colors
+ */
 $ts-material-accent: (
   50: $color__accent--xlight,
   100: $color__accent--light,
@@ -441,6 +447,12 @@ $ts-material-accent: (
   )
 );
 
+/**
+ * Define the material based warn palette
+ *
+ * @nuclide Material Warn Palette
+ * @section Config > Colors
+ */
 $ts-material-warn: (
   50: $color__error--light,
   100: $color__error--light,
