@@ -6,6 +6,9 @@ import {
   MdIconModule,
 } from '@angular/material';
 
+/*
+ *import { TsThemeBaseComponent } from './../utilities/theme-base.component';
+ */
 import { TsButtonComponent } from './button.component';
 export { TsButtonComponent } from './button.component';
 
@@ -26,6 +29,9 @@ export { TsButtonComponent } from './button.component';
     TsButtonComponent,
   ],
   declarations: [
+    /*
+     *TsThemeBaseComponent,
+     */
     TsButtonComponent,
   ],
 })

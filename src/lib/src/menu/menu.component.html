@@ -1,9 +1,9 @@
 <md-menu
+  class="c-menu"
   #menu="mdMenu"
   [yPosition]="menuPositionY"
   [xPosition]="menuPositionX"
   [overlapTrigger]="shouldOverlapTrigger"
-  class="c-menu"
 >
   <button
     md-menu-item
@@ -21,6 +21,7 @@
 </md-menu>
 
 <ts-button
+  [theme]="theme"
   [mdMenuTriggerFor]="menu"
   [isDisabled]="isDisabled"
 >

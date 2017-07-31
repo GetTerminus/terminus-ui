@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'demo-menu',
   template: `
     <ts-menu
+      [theme]="myTheme"
       [menuItems]="demoItems"
       [isDisabled]="disabled"
       (selected)="itemSelected($event)"
@@ -29,6 +30,7 @@ export class MenuComponent {
     },
   ];
   disabled = false;
+  myTheme = 'primary';
 
   itemSelected(item: any): void {
     console.log('Item selected: ', item.name);
