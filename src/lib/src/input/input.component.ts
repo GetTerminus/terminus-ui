@@ -10,7 +10,6 @@ import {
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
   NG_ASYNC_VALIDATORS,
-  FormControl
 } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 

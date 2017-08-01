@@ -11,6 +11,7 @@ export { TsTooltipModule } from './src/tooltip/tooltip.module';
 export { TsDatepickerModule } from './src/datepicker/datepicker.module';
 export { TsDateRangeModule } from './src/date-range/date-range.module';
 export { TsSpacingModule } from './src/spacing/spacing.module';
+export { TsCheckboxModule } from './src/checkbox/checkbox.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
