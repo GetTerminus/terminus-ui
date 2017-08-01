@@ -1,0 +1,13 @@
+<md-checkbox
+  class="c-checkbox"
+  [(ngModel)]="value"
+  [color]="theme"
+  [checked]="checked"
+  [indeterminate]="isIndeterminate"
+  [disabled]="isDisabled"
+  [required]="isRequired"
+  (change)="inputChange.emit($event.checked)"
+  (indeterminateChange)="indeterminateChange.emit($event)"
+>
+  <ng-content></ng-content>
+</md-checkbox>

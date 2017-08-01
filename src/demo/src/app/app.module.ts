@@ -24,6 +24,7 @@ import {
   TsDatepickerModule,
   TsDateRangeModule,
   TsSpacingModule,
+  TsCheckboxModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -44,6 +45,7 @@ import { DatepickerComponent } from './components/datepicker.component';
 import { DateRangeComponent } from './components/date-range.component';
 import { SpacingComponent } from './components/spacing.component';
 import { TypographyComponent } from './components/typography.component';
+import { CheckboxComponent } from './components/checkbox.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -71,6 +73,7 @@ import { TypographyComponent } from './components/typography.component';
     TsDatepickerModule,
     TsDateRangeModule,
     TsSpacingModule,
+    TsCheckboxModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -89,6 +92,7 @@ import { TypographyComponent } from './components/typography.component';
     DateRangeComponent,
     SpacingComponent,
     TypographyComponent,
+    CheckboxComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

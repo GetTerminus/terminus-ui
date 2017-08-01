@@ -4,8 +4,4 @@
 export type TsStyleThemeTypes =
   'primary'
   | 'accent'
-  | 'error'
-  | 'warn'
-  | 'highlight'
-  | 'pure'
-  | 'utility';
+  | 'warn';

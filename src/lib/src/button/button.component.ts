@@ -58,7 +58,7 @@ export class TsButtonComponent {
   @Input() showProgress: boolean = false;
 
   /**
-   * Define the theme to pass to the button
+   * Define the theme
    */
   @Input() theme: TsStyleThemeTypes = 'primary';
 

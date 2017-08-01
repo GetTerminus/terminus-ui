@@ -29,6 +29,7 @@ module.exports = {
     {name: 'Datepicker'},
     {name: 'DateRange'},
     {name: 'Spacing'},
+    {name: 'Checkbox'},
     // INJECT: Add commitizen scope
     // NB! The above line is required for our yeoman generator and should not be changed.
 

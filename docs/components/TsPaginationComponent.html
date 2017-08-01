@@ -72,6 +72,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
                                 </li>
                                 <li class="link">
@@ -123,6 +126,9 @@
                             >
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
@@ -309,6 +315,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCopyModule.html" >TsCopyModule</a>
                                        </li>
                                        <li class="link">
@@ -360,6 +369,9 @@
                    >
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCopyComponent.html" >TsCopyComponent</a>
@@ -1730,7 +1742,7 @@ TODO: This should probably support rich HTML so it can link to filters/help/etc<
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-pagination">  <div class="c-pagination__buttons">    <ts-select      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <!-- First -->    <ts-button      [theme]="theme"      [iconName]="firstPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(1, currentPage, pagesArray)"    ></ts-button>    <!-- Previous -->    <ts-button      [theme]="theme"      [iconName]="previousPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"    ></ts-button>    <!-- current / select -->    <ts-menu      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"      >{{ currentPageLabel }}</ts-menu>    <!-- Next -->    <ts-button      [theme]="theme"      [iconName]="nextPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"    ></ts-button>    <!-- Last -->    <ts-button      [theme]="theme"      [iconName]="lastPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"    ></ts-button>  </div>  <div    class="c-pagination__message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsInputMessagesComponent', 'selector': 'ts-input-messages'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
 </script>
