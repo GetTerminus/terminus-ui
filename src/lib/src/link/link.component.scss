@@ -17,9 +17,16 @@
     @include typography;
     color: color('primary');
     text-decoration: underline;
+    transition: color 200ms ease;
+    will-change: color;
 
     &:visited {
       color: color('primary', dark);
+    }
+
+    &:focus,
+    &:hover {
+      color: color('pure', dark);
     }
 
     // Add support for theme colors
