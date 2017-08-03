@@ -14,6 +14,7 @@ import { SpacingComponent } from './spacing.component';
 import { TypographyComponent } from './typography.component';
 import { CheckboxComponent } from './checkbox.component';
 import { LoginFormComponent } from './login-form.component';
+import { LinkComponent } from './link.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -114,6 +115,13 @@ export const componentsList: Routes = [
     component: LoginFormComponent,
     data: {
       name: 'Login Form',
+    },
+  },
+  {
+    path: 'link',
+    component: LinkComponent,
+    data: {
+      name: 'Link',
     },
   },
   // INJECT: Add route for demo component

@@ -17,6 +17,7 @@ import { TsDateRangeModule } from './date-range/date-range.module';
 import { TsSpacingModule } from './spacing/spacing.module';
 import { TsCheckboxModule } from './checkbox/checkbox.module';
 import { TsLoginFormModule } from './login-form/login-form.module';
+import { TsLinkModule } from './link/link.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -37,6 +38,7 @@ import { TsLoginFormModule } from './login-form/login-form.module';
     TsSpacingModule,
     TsCheckboxModule,
     TsLoginFormModule,
+    TsLinkModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -60,6 +62,7 @@ import { TsLoginFormModule } from './login-form/login-form.module';
     TsSpacingModule,
     TsCheckboxModule,
     TsLoginFormModule,
+    TsLinkModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
