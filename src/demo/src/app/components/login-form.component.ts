@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 })
 export class LoginFormComponent {
   public progress = false;
+  public link = '/reset';
 
   formSubmission(e: any) {
     console.warn('Form value: ', e);

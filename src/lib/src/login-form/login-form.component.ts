@@ -23,6 +23,7 @@ import { validateEmail } from './../utilities/validators/email.validator';
  * @example
  * <ts-login-form
  *              [inProgress]="true"
+ *              forgotPasswordLink="reset/password/path"
  *              (submit)="myMethod($event)"
  * ></ts-login-form>
  */
@@ -32,6 +33,11 @@ import { validateEmail } from './../utilities/validators/email.validator';
   styleUrls: ['./login-form.component.scss'],
 })
 export class TsLoginFormComponent {
+  /**
+   * Define the text for the 'forgot password' link
+   */
+  public forgotPasswordText: string = 'Forgot your password?';
+
   /**
    * Define the login call to action
    */
@@ -58,6 +64,11 @@ export class TsLoginFormComponent {
       false,
     ],
   });
+
+  /**
+   * Define the link to the 'forgot password' view
+   */
+  @Input() forgotPasswordLink: string = '/forgot';
 
   /**
    * Define if the form button is showing progress

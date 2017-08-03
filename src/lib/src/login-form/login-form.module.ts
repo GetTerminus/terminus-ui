@@ -7,6 +7,7 @@ import { TsInputModule } from './../input/input.module';
 import { TsCheckboxModule } from './../checkbox/checkbox.module';
 import { TsButtonModule } from './../button/button.module';
 import { TsSpacingModule } from './../spacing/spacing.module';
+import { TsLinkModule } from './../link/link.module';
 import { TsLoginFormComponent } from './login-form.component';
 export { TsLoginFormComponent } from './login-form.component';
 
@@ -20,6 +21,7 @@ export { TsLoginFormComponent } from './login-form.component';
     TsCheckboxModule,
     TsSpacingModule,
     TsButtonModule,
+    TsLinkModule,
   ],
   exports: [
     TsLoginFormComponent,
