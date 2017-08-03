@@ -14,7 +14,7 @@ import { TsVerticalSpacingTypes } from './vertical-spacing.type';
  *
  * @example
  * <div
- *              tsVerticalSpacing"
+ *              tsVerticalSpacing
  * ></div>
  *
  * <div

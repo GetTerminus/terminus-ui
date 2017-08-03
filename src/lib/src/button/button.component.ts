@@ -65,6 +65,6 @@ export class TsButtonComponent {
   /**
    * Pass the click event through to the parent
    */
-  @Output() clickEvent = new EventEmitter<any>();
+  @Output() clickEvent: EventEmitter<any> = new EventEmitter;
 
 }
