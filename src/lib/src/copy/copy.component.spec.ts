@@ -11,8 +11,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdIconModule, MdRippleModule } from '@angular/material';
 
 import { TsCopyComponent } from './copy.component';
-import { WindowService } from '../services/window.service';
-import { WindowServiceMock } from '../services/window.service.mock';
+import { WindowService } from '../services/window/window.service';
+import { WindowServiceMock } from '../services/window/window.service.mock';
 
 @Component({
   template: `
