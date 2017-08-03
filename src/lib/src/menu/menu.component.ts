@@ -7,7 +7,6 @@ import {
   EventEmitter,
   AfterViewInit,
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { MdMenuTrigger } from '@angular/material';
 
 import { MenuPositionTypesX } from './menu-position-x.types';

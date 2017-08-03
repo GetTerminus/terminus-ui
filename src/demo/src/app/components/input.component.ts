@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {
-  NgModel,
-  FormGroup,
   AbstractControl,
   FormBuilder,
   Validators,
@@ -19,7 +17,8 @@ import {
         hint="A valid email is required."
         [isRequired]="true"
       ></ts-input>
-      <button (click)="submit(myForm)">Submit</button>
+
+      <button (click)="submit(myForm.value)">Submit</button>
     </form>
   `,
 })
@@ -42,8 +41,7 @@ export class InputComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-  ) {
-  }
+  ) {}
 
   submit(v: any) {
     console.log('Submit!: ', v);

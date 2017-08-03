@@ -1,16 +1,13 @@
 import {
   Component,
-  Optional,
-  Inject,
   Input,
-  ViewChild,
   forwardRef,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 
+import { noop } from './../utilities/noop';
 
 /**
  * Custom control value accessor for our component
@@ -23,12 +20,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => TsInputComponent),
   multi: true
 };
-
-/**
- * Placeholder function.
- * Will be overridden by Control Value Accessor during initialization
- */
-const noop = () => {};
 
 
 /**
@@ -122,38 +113,6 @@ export class TsInputComponent {
    */
   @Input() formControl: any;
 
-
-  /**
-   * Set touched on blur
-   * (for form control support)
-   */
-  onBlur() {
-    this.onTouchedCallback();
-  }
-
-  /**
-   * Register onChange callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnChange(fn: any) {
-    this.onChangeCallback = fn;
-  }
-
-  /**
-   * Register onTouched callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
-  }
-
-  /**
-   * Clear the input's value
-   */
-  reset(): void {
-    this.value = '';
-  }
-
   /**
    * Return the value
    * (for form control support)
@@ -172,6 +131,42 @@ export class TsInputComponent {
       this.onChangeCallback(v);
     }
   }
+
+
+  /**
+   * Set touched on blur
+   * (for form control support)
+   */
+  onBlur() {
+    this.onTouchedCallback();
+  }
+
+
+  /**
+   * Register onChange callback (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+
+  /**
+   * Register onTouched callback (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
+  }
+
+
+  /**
+   * Clear the input's value
+   */
+  reset(): void {
+    this.value = '';
+  }
+
 
   /**
    * Write value to inner value (from ControlValueAccessor interface)
