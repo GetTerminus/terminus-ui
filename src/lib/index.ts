@@ -1,6 +1,6 @@
 export { TsButtonModule } from './src/button/button.module';
 export { TsInputModule } from './src/input/input.module';
-export { TsInputMessagesModule } from './src/input-messages/input-messages.module';
+export { TsValidationMessagesModule } from './src/validation-messages/validation-messages.module';
 export { TsMenuModule } from './src/menu/menu.module';
 export { TsSelectModule } from './src/select/select.module';
 export { TsToggleModule } from './src/toggle/toggle.module';

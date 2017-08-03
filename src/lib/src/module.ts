@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 // Components
 import { TsButtonModule } from './button/button.module';
 import { TsInputModule } from './input/input.module';
-import { TsInputMessagesModule } from './input-messages/input-messages.module';
+import { TsValidationMessagesModule } from './validation-messages/validation-messages.module';
 import { TsMenuModule } from './menu/menu.module';
 import { TsSelectModule } from './select/select.module';
 import { TsToggleModule } from './toggle/toggle.module';
@@ -25,7 +25,7 @@ import { TsLinkModule } from './link/link.module';
   imports: [
     TsButtonModule,
     TsInputModule,
-    TsInputMessagesModule,
+    TsValidationMessagesModule,
     TsMenuModule,
     TsSelectModule,
     TsToggleModule,
@@ -49,7 +49,7 @@ import { TsLinkModule } from './link/link.module';
   exports: [
     TsButtonModule,
     TsInputModule,
-    TsInputMessagesModule,
+    TsValidationMessagesModule,
     TsMenuModule,
     TsSelectModule,
     TsToggleModule,

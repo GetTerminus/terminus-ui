@@ -6,7 +6,7 @@ import {
   MdIconModule,
 } from '@angular/material';
 
-import { TsInputMessagesModule } from './../input-messages/input-messages.module';
+import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 
 import { TsInputComponent } from './input.component';
 export { TsInputComponent } from './input.component';
@@ -19,7 +19,7 @@ export { TsInputComponent } from './input.component';
     ReactiveFormsModule,
     MdInputModule,
     MdIconModule,
-    TsInputMessagesModule,
+    TsValidationMessagesModule,
   ],
   exports: [
     TsInputComponent,

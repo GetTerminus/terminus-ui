@@ -7,8 +7,8 @@ import {
 } from '@angular/material';
 
 import { ValidationService } from './../services/validation/validation.service';
-import { TsInputMessagesComponent } from './input-messages.component';
-export { TsInputMessagesComponent } from './input-messages.component';
+import { TsValidationMessagesComponent } from './validation-messages.component';
+export { TsValidationMessagesComponent } from './validation-messages.component';
 
 
 @NgModule({
@@ -19,13 +19,13 @@ export { TsInputMessagesComponent } from './input-messages.component';
     MdIconModule,
   ],
   exports: [
-    TsInputMessagesComponent,
+    TsValidationMessagesComponent,
   ],
   declarations: [
-    TsInputMessagesComponent,
+    TsValidationMessagesComponent,
   ],
   providers: [
     ValidationService,
   ],
 })
-export class TsInputMessagesModule {}
+export class TsValidationMessagesModule {}

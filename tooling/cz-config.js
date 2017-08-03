@@ -18,7 +18,7 @@ module.exports = {
   scopes: [
     {name: 'Button'},
     {name: 'Input'},
-    {name: 'InputMessages'},
+    {name: 'ValidationMessages'},
     {name: 'Menu'},
     {name: 'Pagination'},
     {name: 'Search'},

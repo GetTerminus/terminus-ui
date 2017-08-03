@@ -8,7 +8,7 @@
 // @description
 //  A component to display validation messages for form inputs.
 //
-.c-input-message {
+.c-validation-message {
   // Top level styles should be nested here
   &#{&} {
     @include typography('caption');

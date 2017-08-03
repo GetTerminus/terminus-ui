@@ -1,23 +1,29 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  Component,
+  Input,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 import { ValidationService } from './../services/validation/validation.service';
 
 
 /**
- * A presentational component to render input validation messages
+ * A presentational component to render validation messages
  *
  * @example
- * <t-control-messages
+ * <t-validation-messages
  *             [control]="myForm.controls.email"
- * ></t-control-messages>
+ * ></t-validation-messages>
  */
 @Component({
-  selector: 'ts-control-messages',
-  templateUrl: './input-messages.component.html',
-  styleUrls: ['./input-messages.component.scss'],
+  selector: 'ts-validation-messages',
+  templateUrl: './validation-messages.component.html',
+  styleUrls: ['./validation-messages.component.scss'],
 })
-export class TsInputMessagesComponent {
+export class TsValidationMessagesComponent {
   /**
    * Define the associated form control
    */
