@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   MdInputModule,
-  MdIconModule,
 } from '@angular/material';
 
 import { ValidationService } from './../services/validation/validation.service';
@@ -16,7 +15,6 @@ export { TsValidationMessagesComponent } from './validation-messages.component';
     CommonModule,
     FormsModule,
     MdInputModule,
-    MdIconModule,
   ],
   exports: [
     TsValidationMessagesComponent,

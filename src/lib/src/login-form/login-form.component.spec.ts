@@ -2,6 +2,8 @@ import {
   Component,
   ViewChild,
 } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   TestBed,
   ComponentFixture,
@@ -9,6 +11,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { TsInputModule } from './../input/input.module';
+import { TsCheckboxModule } from './../checkbox/checkbox.module';
+import { TsButtonModule } from './../button/button.module';
+import { TsSpacingModule } from './../spacing/spacing.module';
+import { TsLinkModule } from './../link/link.module';
 import { TsLoginFormComponent } from './login-form.component';
 
 @Component({
@@ -29,6 +36,13 @@ describe(`TsLoginFormComponent`, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        ReactiveFormsModule,
+        FlexLayoutModule,
+        TsInputModule,
+        TsCheckboxModule,
+        TsButtonModule,
+        TsSpacingModule,
+        TsLinkModule,
       ],
       declarations: [
         TsLoginFormComponent,
@@ -54,5 +68,9 @@ describe(`TsLoginFormComponent`, () => {
 
     expect(this.component).toBeTruthy();
   });
+
+
+  // TODO: Fully test
+
 
 });

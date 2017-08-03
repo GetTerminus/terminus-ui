@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdInputModule } from '@angular/material';
 
 import { TsValidationMessagesComponent } from './validation-messages.component';
+import { ValidationService } from './../services/validation/validation.service';
+import { ValidationServiceMock } from './../services/validation/validation.service.mock';
 
 
 describe('InputMessagesComponent', () => {
@@ -13,6 +15,12 @@ describe('InputMessagesComponent', () => {
       ],
       declarations: [
         TsValidationMessagesComponent,
+      ],
+      providers: [
+        {
+          provide: ValidationService,
+          useClass: ValidationServiceMock,
+        }
       ],
     })
       .overrideComponent(TsValidationMessagesComponent, {
