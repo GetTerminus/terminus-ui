@@ -6,6 +6,7 @@ import {
   MdIconModule,
 } from '@angular/material';
 
+import { ValidationService } from './../services/validation/validation.service';
 import { TsInputMessagesComponent } from './input-messages.component';
 export { TsInputMessagesComponent } from './input-messages.component';
 
@@ -23,7 +24,8 @@ export { TsInputMessagesComponent } from './input-messages.component';
   declarations: [
     TsInputMessagesComponent,
   ],
+  providers: [
+    ValidationService,
+  ],
 })
 export class TsInputMessagesModule {}
-
-

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MdInputModule,
   MdIconModule,
@@ -16,6 +16,7 @@ export { TsInputComponent } from './input.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MdInputModule,
     MdIconModule,
     TsInputMessagesModule,
@@ -28,4 +29,3 @@ export { TsInputComponent } from './input.component';
   ],
 })
 export class TsInputModule {}
-
