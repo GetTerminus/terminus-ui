@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MdButtonModule,
   MdIconModule,
@@ -25,6 +25,7 @@ import {
   TsDateRangeModule,
   TsSpacingModule,
   TsCheckboxModule,
+  TsLoginFormModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -46,6 +47,7 @@ import { DateRangeComponent } from './components/date-range.component';
 import { SpacingComponent } from './components/spacing.component';
 import { TypographyComponent } from './components/typography.component';
 import { CheckboxComponent } from './components/checkbox.component';
+import { LoginFormComponent } from './components/login-form.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -54,6 +56,7 @@ import { CheckboxComponent } from './components/checkbox.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     LaddaModule.forRoot({}),
     FlexLayoutModule,
@@ -74,6 +77,7 @@ import { CheckboxComponent } from './components/checkbox.component';
     TsDateRangeModule,
     TsSpacingModule,
     TsCheckboxModule,
+    TsLoginFormModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -93,6 +97,7 @@ import { CheckboxComponent } from './components/checkbox.component';
     SpacingComponent,
     TypographyComponent,
     CheckboxComponent,
+    LoginFormComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

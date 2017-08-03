@@ -1,0 +1,41 @@
+<form [formGroup]="loginForm" fxLayout="column">
+
+  <ts-input
+    label="Email"
+    formControlName="email"
+    [formControl]="getControl('email')"
+    tsVerticalSpacing
+    isRequired="true"
+    [hint]="emailHint"
+  ></ts-input>
+
+  <ts-input
+    label="Password"
+    formControlName="password"
+    [formControl]="getControl('password')"
+    tsVerticalSpacing
+    hideRequiredMarker="false"
+    isRequired="true"
+    [hint]="passwordHint"
+  ></ts-input>
+
+  <ts-checkbox
+    formControlName="rememberMe"
+    [formControl]="getControl('rememberMe')"
+    tsVerticalSpacing
+  >
+    Remember me
+  </ts-checkbox>
+
+  <div fxLayout="row" fxFlexAlign="end">
+    <ts-button
+      actionName="Submit"
+      [showProgress]="inProgress"
+      [isDisabled]="!loginForm.valid"
+      (clickEvent)="submit.emit(loginForm.value)"
+    >
+      {{ loginCta }}
+    </ts-button>
+  </div>
+
+</form>
