@@ -38,7 +38,7 @@ export class TsValidationMessagesComponent {
   /**
    * Define the error message
    */
-  get errorMessage() {
+  get validationMessage() {
     // tslint:disable-next-line
     for (const propertyName in this.control.errors) {
 
