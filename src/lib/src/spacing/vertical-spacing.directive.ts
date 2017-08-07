@@ -10,7 +10,7 @@ import { TsVerticalSpacingTypes } from './vertical-spacing.type';
 
 
 /**
- * This is the vertical spacing UI directive
+ * This is the vertical spacing UI directive. Accepts {@link TsVerticalSpacingTypes}
  *
  * @example
  * <div
@@ -28,7 +28,7 @@ export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value
    *
-   * @param {String} value The spacing value passed in
+   * @param {String} value The spacing value passed in.
    */
   @Input()
   set tsVerticalSpacing(value: TsVerticalSpacingTypes) {

@@ -32,12 +32,12 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              formControlName="email"
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              blankChoice="Please choose one."
- *              label="Please select one:"
+ *              label="Please select one: "
  *              items="[{},{},{}]"
  *              multipleAllowed="true"
- *              (open)="myMethod($event)
- *              (close)="myMethod($event)
- *              (change)="myMethod($event)
+ *              (open)="myMethod($event)"
+ *              (close)="myMethod($event)"
+ *              (change)="myMethod($event)"
  * ></ts-select>
  */
 @Component({

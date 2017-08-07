@@ -173,9 +173,6 @@
                                     <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                                 <li class="link">
@@ -415,9 +412,6 @@
                                            <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                        </li>
                                        <li class="link">
@@ -558,8 +552,8 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
   iconName=&quot;search&quot;
   isDisabled=&quot;false&quot;
   showProgress=&quot;true&quot;
-  (clickEvent)=&quot;myMethod($event)
-&gt;&lt;/ts-button&gt;</code></pre>
+  (clickEvent)=&quot;myMethod($event)&quot;
+&gt;Click Me!&lt;/ts-button&gt;</code></pre>
                 </div>
     </div>
 
@@ -807,8 +801,8 @@ import { TsStyleThemeTypes } from &#x27;./../types/style-theme.types&#x27;;
  *              iconName&#x3D;&quot;search&quot;
  *              isDisabled&#x3D;&quot;false&quot;
  *              showProgress&#x3D;&quot;true&quot;
- *              (clickEvent)&#x3D;&quot;myMethod($event)
- * &gt;&lt;/ts-button&gt;
+ *              (clickEvent)&#x3D;&quot;myMethod($event)&quot;
+ * &gt;Click Me!&lt;/ts-button&gt;
  */
 @Component({
   selector: &#x27;ts-button&#x27;,
@@ -850,7 +844,6 @@ export class TsButtonComponent {
    * Pass the click event through to the parent
    */
   @Output() clickEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
-
 }
 </code></pre>
     </div>
@@ -902,7 +895,7 @@ export class TsButtonComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="theme"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
 </script>

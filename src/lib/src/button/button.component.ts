@@ -23,8 +23,8 @@ import { TsStyleThemeTypes } from './../types/style-theme.types';
  *              iconName="search"
  *              isDisabled="false"
  *              showProgress="true"
- *              (clickEvent)="myMethod($event)
- * ></ts-button>
+ *              (clickEvent)="myMethod($event)"
+ * >Click Me!</ts-button>
  */
 @Component({
   selector: 'ts-button',
@@ -66,5 +66,4 @@ export class TsButtonComponent {
    * Pass the click event through to the parent
    */
   @Output() clickEvent: EventEmitter<any> = new EventEmitter;
-
 }

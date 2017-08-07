@@ -173,9 +173,6 @@
                                     <a href="../components/TsSelectComponent.html"  data-type="entity-link" class="active" >TsSelectComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                                 <li class="link">
@@ -415,9 +412,6 @@
                                            <a href="../components/TsSelectComponent.html"  data-type="entity-link" class="active" >TsSelectComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                        </li>
                                        <li class="link">
@@ -554,12 +548,12 @@
   formControlName=&quot;email&quot;
   [formControl]=&quot;yourHelperToGetFormControl('email')&quot;
   blankChoice=&quot;Please choose one.&quot;
-  label=&quot;Please select one:&quot;
+  label=&quot;Please select one: &quot;
   items=&quot;[{},{},{}]&quot;
   multipleAllowed=&quot;true&quot;
-  (open)=&quot;myMethod($event)
-  (close)=&quot;myMethod($event)
-  (change)=&quot;myMethod($event)
+  (open)=&quot;myMethod($event)&quot;
+  (close)=&quot;myMethod($event)&quot;
+  (change)=&quot;myMethod($event)&quot;
 &gt;&lt;/ts-select&gt;</code></pre>
                 </div>
     </div>
@@ -1190,12 +1184,12 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              formControlName&#x3D;&quot;email&quot;
  *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;email&#x27;)&quot;
  *              blankChoice&#x3D;&quot;Please choose one.&quot;
- *              label&#x3D;&quot;Please select one:&quot;
+ *              label&#x3D;&quot;Please select one: &quot;
  *              items&#x3D;&quot;[{},{},{}]&quot;
  *              multipleAllowed&#x3D;&quot;true&quot;
- *              (open)&#x3D;&quot;myMethod($event)
- *              (close)&#x3D;&quot;myMethod($event)
- *              (change)&#x3D;&quot;myMethod($event)
+ *              (open)&#x3D;&quot;myMethod($event)&quot;
+ *              (close)&#x3D;&quot;myMethod($event)&quot;
+ *              (change)&#x3D;&quot;myMethod($event)&quot;
  * &gt;&lt;/ts-select&gt;
  */
 @Component({
@@ -1388,7 +1382,7 @@ export class TsSelectComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-select  class="c-select"  [placeholder]="label"  [(ngModel)]="value"  [multiple]="multipleAllowed"  (onClose)="close.emit(true)"  (onOpen)="open.emit(true)"  (change)="change.emit(value)">  <md-option *ngIf="blankChoice && !multipleAllowed">    {{ blankChoice }}  </md-option>  <md-option    *ngFor="let item of items"    [value]="getValueKey(item, valueKey)"  >{{ item.name || item }}</md-option></md-select></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
 </script>

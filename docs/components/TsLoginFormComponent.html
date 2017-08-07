@@ -173,9 +173,6 @@
                                     <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                                 <li class="link">
@@ -413,9 +410,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
@@ -1461,7 +1455,7 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><form [formGroup]="loginForm" fxLayout="column" *ngIf="showForm">  <ts-input    label="Email"    formControlName="email"    [formControl]="getControl(\'email\')"    tsVerticalSpacing    isRequired="true"    spellcheck="false"    autocapitalize="false"  ></ts-input>  <ts-input    label="Password"    formControlName="password"    [formControl]="getControl(\'password\')"    tsVerticalSpacing    hideRequiredMarker="false"    isRequired="true"    autocomplete="false"    autocapitalize="false"    spellcheck="false"    minlength="{{ PASSWORD_MINLENGTH }}"  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    tsVerticalSpacing    [text]="forgotPasswordText"  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCta }}    </ts-button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
 </script>

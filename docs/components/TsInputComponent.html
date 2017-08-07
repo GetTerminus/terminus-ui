@@ -173,9 +173,6 @@
                                     <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                                 <li class="link">
@@ -413,9 +410,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsSelectComponent.html" >TsSelectComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/TsThemeBaseComponent.html" >TsThemeBaseComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
@@ -1476,7 +1470,7 @@ export class TsInputComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input c-input"  [hideRequiredMarker]="hideRequiredMarker">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    autofocus="{{ isFocused }}"    type="text"    [required]="isRequired ? \'\' : null"    class="c-input__text"    [(ngModel)]="value"    (blur)="onBlur()"    autocomplete="{{ autocomplete ? \'on\' : \'off\' }}"    autocapitalize="{{ autocapitalize ? \'on\' : \'off\' }}"    spellcheck="{{ spellcheck ? \'on\' : \'off\' }}"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</md-icon>  <md-hint align="end" *ngIf="hint">    {{ hint }}  </md-hint>  <ts-validation-messages    [control]="formControl"  ></ts-validation-messages></md-input-container></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsThemeBaseComponent', 'selector': 'ts-theme-base'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>
