@@ -19,4 +19,3 @@ export { TsLinkModule } from './src/link/link.module';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';
-
