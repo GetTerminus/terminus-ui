@@ -1,0 +1,14 @@
+node_modules/
+debug.log
+npm-debug.log
+coverage/
+docs/
+integration/
+out-tsc/
+src/
+styleguide/
+tooling/
+config.nucleus.json
+karma.conf.js
+tsconfig.json
+tslint.json
