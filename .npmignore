@@ -12,3 +12,4 @@ config.nucleus.json
 karma.conf.js
 tsconfig.json
 tslint.json
+.npmrc
