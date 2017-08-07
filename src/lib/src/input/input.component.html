@@ -17,6 +17,10 @@
     class="c-input__text"
     [(ngModel)]="value"
     (blur)="onBlur()"
+    autocomplete="{{ autocomplete }}"
+    autocapitalize="{{ autocapitalize }}"
+    autocorrect="{{ autocorrect }}"
+    spellcheck="{{ autocapitalize }}"
   >
 
   <md-icon

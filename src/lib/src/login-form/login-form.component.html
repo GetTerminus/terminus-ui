@@ -6,6 +6,9 @@
     [formControl]="getControl('email')"
     tsVerticalSpacing
     isRequired="true"
+    spellcheck="false"
+    autocapitalize="off"
+    autocorrect="off"
   ></ts-input>
 
   <ts-input
@@ -15,6 +18,11 @@
     tsVerticalSpacing
     hideRequiredMarker="false"
     isRequired="true"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+    minlength="{{ PASSWORD_MINLENGTH }}"
   ></ts-input>
 
   <ts-checkbox

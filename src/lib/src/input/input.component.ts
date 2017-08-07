@@ -39,10 +39,15 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              minlength="3"
  *              label="My Input"
  *              isDisabled="false"
+ *              isRequired="false"
+ *              hideRequiredMarker="false"
  *              prefixIcon="link"
  *              canClear="true"
  *              isFocused="false"
- *              hideRequiredMarker="false"
+ *              autocomplete="off"
+ *              autocorrect="off"
+ *              autocapitalize="off"
+ *              spellcheck="false"
  * ></ts-input>
  */
 @Component({
@@ -69,6 +74,18 @@ export class TsInputComponent {
    * (for form control support)
    */
   private onTouchedCallback: () => void = noop;
+
+  /**
+   * Define if the input should autocapitalize
+   * (standard HTML5 property)
+   */
+  @Input() autocapitalize: boolean = true;
+
+  /**
+   * Define if the input should autocomplete
+   * (standard HTML5 property)
+   */
+  @Input() autocomplete: boolean = true;
 
   /**
    * Define a Material icon to include after the input
@@ -112,6 +129,12 @@ export class TsInputComponent {
    * (for form control support)
    */
   @Input() formControl: any;
+
+  /**
+   * Define if the input should spellcheck
+   * (standard HTML5 property)
+   */
+  @Input() spellcheck: boolean = true;
 
   /**
    * Return the value

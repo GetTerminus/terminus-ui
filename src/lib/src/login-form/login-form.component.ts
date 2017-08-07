@@ -61,6 +61,11 @@ const FORM_GROUP = {
 })
 export class TsLoginFormComponent implements OnChanges {
   /**
+   * Define the minimum length for a password
+   */
+  public PASSWORD_MINLENGTH: number = 8;
+
+  /**
    * Define the text for the 'forgot password' link
    */
   public forgotPasswordText: string = 'Forgot your password?';
