@@ -88,12 +88,6 @@ export class TsInputComponent {
   @Input() autocomplete: boolean = true;
 
   /**
-   * Define if the input should autocorrect
-   * (standard HTML5 property)
-   */
-  @Input() autocorrect: boolean = true;
-
-  /**
    * Define a Material icon to include after the input
    * FIXME: Rename to match other inputs: `isClearable`
    */
