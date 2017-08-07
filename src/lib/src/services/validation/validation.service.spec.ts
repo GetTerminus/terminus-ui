@@ -36,7 +36,7 @@ describe(`ValidationService`, () => {
         value: validNumber,
       };
       const actual = this.service.creditCardValidator(controlMock);
-      const expected = null;
+      const expected: any = null;
       expect(actual).toEqual(expected);
     });
 
@@ -54,7 +54,7 @@ describe(`ValidationService`, () => {
 
   describe(`emailValidator()`, () => {
     const controlMock = {
-      value: null,
+      value: <any>null,
     };
     const validEmail1 = `foo@bar.co`;
     const validEmail2 = `foo@bar.baz.net`;
