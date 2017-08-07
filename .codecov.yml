@@ -12,6 +12,7 @@ coverage:
 ignore:
   - "coverage"
   - "dist"
+  - "build"
   - "docs"
   - "integration"
   - "node_modules"

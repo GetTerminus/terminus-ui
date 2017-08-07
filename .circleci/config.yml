@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Seed NPMRC
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          command: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc'
       - run:
           name: Lint Styles
           command: tooling/ci/lint-scss.sh

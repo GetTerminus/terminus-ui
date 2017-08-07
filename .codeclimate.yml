@@ -19,5 +19,7 @@ exclude_paths:
   - styleguide/
   - tooling/
   - out-tsc/
+  - dist/
+  - build/
   - README.md
   - LICENSE
