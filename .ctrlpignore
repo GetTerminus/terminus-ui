@@ -1,6 +1,7 @@
 ^\.git$
 ^coverage$
 ^dist$
+^build$
 ^docs$
 ^integration$
 ^node_modules$

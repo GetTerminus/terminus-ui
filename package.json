@@ -7,7 +7,7 @@
   "es2015": "./ui.js",
   "typings": "./ui.d.ts",
   "files": [
-    "dist"
+    "build"
   ],
   "author": "@terminus",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
+    "clean:lib": "rimraf out-tsc build \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
     "clean:styleguide": "rm -rf styleguide",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",
@@ -46,8 +46,7 @@
     "lint:scss": "./node_modules/.bin/sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
     "lint": "npm run lint:ts && npm run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
-    "presemantic-release": "cp ~/.npmrc dist/.npmrc",
-    "semantic-release": "cd dist && semantic-release pre && npm publish && semantic-release post && cd ../",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "npm run build && npm run build-demo && npm run build-scss",
     "start": "concurrently \"npm run build:watch\" \"npm run build-demo:watch\"",
