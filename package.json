@@ -6,9 +6,6 @@
   "module": "./ui.es5.js",
   "es2015": "./ui.js",
   "typings": "./ui.d.ts",
-  "files": [
-    "dist"
-  ],
   "author": "@terminus",
   "license": "MIT",
   "repository": {
@@ -46,7 +43,7 @@
     "lint:scss": "./node_modules/.bin/sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
     "lint": "npm run lint:ts && npm run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "cd dist/ && semantic-release pre && npm publish && semantic-release post && cd ../",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "npm run build && npm run build-demo && npm run build-scss",
     "start": "concurrently \"npm run build:watch\" \"npm run build-demo:watch\"",
