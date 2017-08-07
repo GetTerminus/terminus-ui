@@ -14,9 +14,9 @@ import { ValidationService } from './../services/validation/validation.service';
  * A presentational component to render validation messages
  *
  * @example
- * <t-validation-messages
+ * <ts-validation-messages
  *             [control]="myForm.controls.email"
- * ></t-validation-messages>
+ * ></ts-validation-messages>
  */
 @Component({
   selector: 'ts-validation-messages',

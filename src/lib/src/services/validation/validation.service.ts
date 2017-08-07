@@ -9,8 +9,6 @@ import { passwordRegex, passwordMessage } from './../../utilities/regex/password
 @Injectable()
 export class ValidationService {
 
-  constructor() { }
-
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
 
     // TODO: We will need a way for the consuming app to seed these values so that localization is
