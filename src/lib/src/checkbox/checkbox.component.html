@@ -1,11 +1,12 @@
 <md-checkbox
   class="c-checkbox"
-  [(ngModel)]="value"
   [color]="theme"
-  [checked]="checked"
+  [checked]="isChecked"
   [indeterminate]="isIndeterminate"
-  [disabled]="isDisabled"
-  [required]="isRequired"
+  [disabled]="isDisabled ? '' : null"
+  [required]="isRequired ? '' : null"
+  [(ngModel)]="value"
+  (blur)="onBlur()"
   (change)="inputChange.emit($event.checked)"
   (indeterminateChange)="indeterminateChange.emit($event)"
 >

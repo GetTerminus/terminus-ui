@@ -2,52 +2,68 @@ import {
   Component,
   Input,
   Output,
-  Optional,
-  Inject,
-  ViewChild,
   EventEmitter,
+  forwardRef,
 } from '@angular/core';
 import {
-  NgModel,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  NG_ASYNC_VALIDATORS,
-  FormControl
 } from '@angular/forms';
-import { ElementBase } from './../utilities/element-base';
+
+import { noop } from './../utilities/noop';
+
+/**
+ * Custom control value accessor for our component
+ *
+ * FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
+ * a base class that others can extend? (Not sure how to pass in a named component like below)
+ */
+export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => TsSelectComponent),
+  multi: true
+};
+
 
 /**
  * A component to create a select menu
  *
  * @example
  * <ts-select
- *              [(ngModel)]="myModel"
+ *              formControlName="email"
+ *              [formControl]="yourHelperToGetFormControl('email')"
  *              blankChoice="Please choose one."
- *              label="Please select one:"
+ *              label="Please select one: "
  *              items="[{},{},{}]"
  *              multipleAllowed="true"
- *              (open)="myMethod($event)
- *              (close)="myMethod($event)
- *              (change)="myMethod($event)
+ *              (open)="myMethod($event)"
+ *              (close)="myMethod($event)"
+ *              (change)="myMethod($event)"
  * ></ts-select>
  */
 @Component({
   selector: 'ts-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: TsSelectComponent,
-      multi: true,
-    },
-  ],
+  providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
 })
-export class TsSelectComponent extends ElementBase<string> {
+export class TsSelectComponent {
   /**
-   * Provide access to the model
+   * @private Define the internal data model
+   * (for form control support)
    */
-  @ViewChild(NgModel) model: NgModel;
+  private innerValue: any = '';
+
+  /**
+   * @private Define placeholder for callback (provided later by the control value accessor)
+   * (for form control support)
+   */
+  private onChangeCallback: (_: any) => void = noop;
+
+  /**
+   * @private Define placeholder for callback (provided later by the control value accessor)
+   * (for form control support)
+   */
+  private onTouchedCallback: () => void = noop;
 
   /**
    * Define the content for a blank option (no content means no options will show)
@@ -76,6 +92,31 @@ export class TsSelectComponent extends ElementBase<string> {
   @Input() valueKey: string;
 
   /**
+   * Define the form control to get access to validators
+   * (for form control support)
+   */
+  @Input() formControl: any;
+
+  /**
+   * Return the value
+   * (for form control support)
+   */
+  get value(): any {
+    return this.innerValue;
+  };
+
+  /**
+   * Set the accessor and call the onchange callback
+   * (for form control support)
+   */
+  set value(v: any) {
+    if (v !== this.innerValue) {
+      this.innerValue = v;
+      this.onChangeCallback(v);
+    }
+  }
+
+  /**
    * Emit event when the select is opened
    */
   @Output() open = new EventEmitter<boolean>();
@@ -90,15 +131,30 @@ export class TsSelectComponent extends ElementBase<string> {
    */
   @Output() change = new EventEmitter<any>();
 
+  /**
+   * Set touched on blur
+   * (for form control support)
+   */
+  onBlur() {
+    this.onTouchedCallback();
+  }
+
 
   /**
-   * @hidden
+   * Register onChange callback (from ControlValueAccessor interface)
+   * (for form control support)
    */
-  constructor(
-    @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
-    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array<any>,
-  ) {
-    super(validators, asyncValidators);
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+
+  /**
+   * Register onTouched callback (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
   }
 
 
@@ -113,5 +169,15 @@ export class TsSelectComponent extends ElementBase<string> {
     return valueKey ? item[valueKey] : item;
   }
 
+
+  /**
+   * Write value to inner value (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  writeValue(value: any) {
+    if (value !== this.innerValue) {
+      this.innerValue = value;
+    }
+  }
 
 }

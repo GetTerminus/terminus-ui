@@ -18,7 +18,7 @@ module.exports = {
   scopes: [
     {name: 'Button'},
     {name: 'Input'},
-    {name: 'InputMessages'},
+    {name: 'ValidationMessages'},
     {name: 'Menu'},
     {name: 'Pagination'},
     {name: 'Search'},
@@ -30,6 +30,8 @@ module.exports = {
     {name: 'DateRange'},
     {name: 'Spacing'},
     {name: 'Checkbox'},
+    {name: 'LoginForm'},
+    {name: 'Link'},
     // INJECT: Add commitizen scope
     // NB! The above line is required for our yeoman generator and should not be changed.
 

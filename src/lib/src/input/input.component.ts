@@ -1,76 +1,97 @@
 import {
   Component,
-  Optional,
-  Inject,
   Input,
-  ViewChild,
+  forwardRef,
 } from '@angular/core';
 import {
-  NgModel,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  NG_ASYNC_VALIDATORS,
 } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 
-import { ElementBase } from './../utilities/element-base';
+import { noop } from './../utilities/noop';
 
 /**
- * A presentational component to render a text input. Extends {@link ElementBase}.
- * TODO: The required marker doesn't appear, even when set to true
+ * Custom control value accessor for our component
+ *
+ * FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
+ * a base class that others can extend? (Not sure how to pass in a named component like below)
+ */
+export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => TsInputComponent),
+  multi: true
+};
+
+
+/**
+ * A presentational component to render a text input.
+ * TODO: Offer ability to disable autocomplete/spellcheck.
+ *
+ * Why we are not masking passwords:
+ *   - https://www.nngroup.com/articles/stop-password-masking/
+ *   - https://www.lukew.com/ff/entry.asp?1653
  *
  * @example
  * <ts-input
- *              [(ngModel)]="myModel"
+ *              formControlName="email"
+ *              [formControl]="yourHelperToGetFormControl('email')"
  *              hint="Fill this out!"
  *              required
  *              minlength="3"
  *              label="My Input"
  *              isDisabled="false"
+ *              isRequired="false"
+ *              hideRequiredMarker="false"
  *              prefixIcon="link"
  *              canClear="true"
  *              isFocused="false"
- *              hideRequiredMarker="false"
- *              hint="Only letters and numbers"
+ *              autocomplete="off"
+ *              autocorrect="off"
+ *              autocapitalize="off"
+ *              spellcheck="false"
  * ></ts-input>
  */
 @Component({
   selector: 'ts-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: TsInputComponent,
-      multi: true,
-    },
-  ],
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
 })
-export class TsInputComponent extends ElementBase<string> {
+export class TsInputComponent {
   /**
-   * Validation messages are hidden until the blur event
+   * @private Define the internal data model
+   * (for form control support)
    */
-  public validationEnabled: boolean = false;
+  private innerValue: any = '';
 
   /**
-   * Store validation error messages
+   * @private Define placeholder for callback (provided later by the control value accessor)
+   * (for form control support)
    */
-  public failures: Observable<Array<string>>;
+  private onChangeCallback: (_: any) => void = noop;
 
   /**
-   * Provide access to the model
+   * @private Define placeholder for callback (provided later by the control value accessor)
+   * (for form control support)
    */
-  @ViewChild(NgModel) model: NgModel;
+  private onTouchedCallback: () => void = noop;
+
+  /**
+   * Define if the input should autocapitalize
+   * (standard HTML5 property)
+   */
+  @Input() autocapitalize: boolean = true;
+
+  /**
+   * Define if the input should autocomplete
+   * (standard HTML5 property)
+   */
+  @Input() autocomplete: boolean = true;
 
   /**
    * Define a Material icon to include after the input
+   * FIXME: Rename to match other inputs: `isClearable`
    */
   @Input() canClear: boolean = false;
-
-  /**
-   * Define if the input is disabled
-   */
-  @Input() isDisabled: boolean = false;
 
   /**
    * Define if the input should be focused
@@ -78,12 +99,18 @@ export class TsInputComponent extends ElementBase<string> {
   @Input() isFocused: boolean;
 
   /**
+   * Define if the input is required
+   */
+  @Input() isRequired: boolean = false;
+
+  /**
    * Define if a required marker should be included
    */
-  @Input() hideRequiredMarker: boolean = true;
+  @Input() hideRequiredMarker: boolean = false;
 
   /**
    * Define a hint for the input
+   * TODO: Fix potential overlap of hint and error messages
    */
   @Input() hint: string;
 
@@ -97,31 +124,81 @@ export class TsInputComponent extends ElementBase<string> {
    */
   @Input() prefixIcon: string;
 
+  /**
+   * Define the form control to get access to validators
+   * (for form control support)
+   */
+  @Input() formControl: any;
 
   /**
-   * @hidden
+   * Define if the input should spellcheck
+   * (standard HTML5 property)
    */
-  constructor(
-    @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
-    @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array<any>,
-  ) {
-    super(validators, asyncValidators);
+  @Input() spellcheck: boolean = true;
+
+  /**
+   * Return the value
+   * (for form control support)
+   */
+  get value(): any {
+    return this.innerValue;
+  };
+
+  /**
+   * Set the accessor and call the onchange callback
+   * (for form control support)
+   */
+  set value(v: any) {
+    if (v !== this.innerValue) {
+      this.innerValue = v;
+      this.onChangeCallback(v);
+    }
+  }
+
+
+  /**
+   * Set touched on blur
+   * (for form control support)
+   */
+  onBlur() {
+    this.onTouchedCallback();
+  }
+
+
+  /**
+   * Register onChange callback (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+
+  /**
+   * Register onTouched callback (from ControlValueAccessor interface)
+   * (for form control support)
+   */
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
   }
 
 
   /**
    * Clear the input's value
    */
-  clearInput(): void {
+  reset(): void {
     this.value = '';
   }
 
 
   /**
-   * Enable the validation messages for the input
+   * Write value to inner value (from ControlValueAccessor interface)
+   * (for form control support)
    */
-  enableValidation(): void {
-    this.validationEnabled = true;
+  writeValue(value: any) {
+    if (value !== this.innerValue) {
+      this.innerValue = value;
+    }
   }
 
 }

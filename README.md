@@ -87,7 +87,8 @@ The library of UI components used for Terminus applications.
 | input-masking    |                                                        |      not started |                  |
 | input-messages   |         Used by `input` to display validation messages |        available |                  |
 | input            |                                                        |        available |                  |
-| link             |                                                        |      not started |                  |
+| link             |                                                        |        available |                  |
+| login form       |                                                        |        available |                  |
 | menu             |                                                        |        available |                  |
 | pagination       |                                                        |        available |                  |
 | picklist         |                                                        |      not started |                  |

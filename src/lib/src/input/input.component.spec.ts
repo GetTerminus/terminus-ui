@@ -59,29 +59,8 @@ describe(`TsInputComponent`, () => {
   });
 
 
-  // TODO
-/*
- *  describe(`clearInput()`, () => {
- *
- *    it(`should clear 'value'`, () => {
- *    });
- *
- *  });
- */
+  // TODO: Fully test
 
-
-  describe(`enableValidation()`, () => {
-
-    it(`should enable validation via a boolean`, () => {
-      this.fixture.detectChanges();
-
-      expect(this.component.validationEnabled).toBe(false);
-
-      this.component.enableValidation();
-      expect(this.component.validationEnabled).toBe(true);
-    });
-
-  });
 
 });
 
