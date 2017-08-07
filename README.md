@@ -74,7 +74,7 @@ The library of UI components used for Terminus applications.
 | button           |                                                        |        available |
 | breadcrumbs      |                                                        |      not started |
 | chip             |                                                        |      not started |
-| checkbox         |                                                        |      not started |
+| checkbox         |                                                        |        available |
 | copy             |                                                        |        available |
 | datavis          |                                                        |      not started |
 | datetable        |                                                        |      not started |
