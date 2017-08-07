@@ -21,44 +21,44 @@
 <polygon fill="#fb8072" stroke="transparent" points="406,-10 406,-30 426,-30 426,-10 406,-10"/>
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
-<title>cluster_TsButtonModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="164,-70 164,-268 332,-268 332,-70 164,-70"/>
+<title>cluster_TsLinkModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="169,-70 169,-268 327,-268 327,-70 169,-70"/>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster_TsButtonModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="173,-78 173,-130 323,-130 323,-78 173,-78"/>
+<title>cluster_TsLinkModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="179,-78 179,-130 317,-130 317,-78 179,-78"/>
 </g>
 <g id="clust5" class="cluster">
-<title>cluster_TsButtonModule_exports</title>
-<polygon fill="none" stroke="#000000" points="172,-208 172,-260 324,-260 324,-208 172,-208"/>
+<title>cluster_TsLinkModule_exports</title>
+<polygon fill="none" stroke="#000000" points="177,-208 177,-260 319,-260 319,-208 177,-208"/>
 </g>
-<!-- TsButtonComponent -->
+<!-- TsLinkComponent -->
 <g id="node1" class="node">
-<title>TsButtonComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="314.9482,-122 181.0518,-122 181.0518,-86 314.9482,-86 314.9482,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonComponent</text>
+<title>TsLinkComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="308.773,-122 187.227,-122 187.227,-86 308.773,-86 308.773,-122"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLinkComponent</text>
 </g>
-<!-- TsButtonModule -->
+<!-- TsLinkModule -->
 <g id="node2" class="node">
-<title>TsButtonModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="303.6653,-187 300.6653,-191 279.6653,-191 276.6653,-187 192.3347,-187 192.3347,-151 303.6653,-151 303.6653,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule</text>
+<title>TsLinkModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="297.9902,-187 294.9902,-191 273.9902,-191 270.9902,-187 198.0098,-187 198.0098,-151 297.9902,-151 297.9902,-187"/>
+<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLinkModule</text>
 </g>
-<!-- TsButtonComponent&#45;&gt;TsButtonModule -->
+<!-- TsLinkComponent&#45;&gt;TsLinkModule -->
 <g id="edge1" class="edge">
-<title>TsButtonComponent&#45;&gt;TsButtonModule</title>
+<title>TsLinkComponent&#45;&gt;TsLinkModule</title>
 <path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
 </g>
-<!-- TsButtonComponent  -->
+<!-- TsLinkComponent  -->
 <g id="node3" class="node">
-<title>TsButtonComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="316.4474,-252 179.5526,-252 179.5526,-216 316.4474,-216 316.4474,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonComponent </text>
+<title>TsLinkComponent </title>
+<polygon fill="#fb8072" stroke="#000000" points="310.7731,-252 185.2269,-252 185.2269,-216 310.7731,-216 310.7731,-252"/>
+<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLinkComponent </text>
 </g>
-<!-- TsButtonModule&#45;&gt;TsButtonComponent  -->
+<!-- TsLinkModule&#45;&gt;TsLinkComponent  -->
 <g id="edge2" class="edge">
-<title>TsButtonModule&#45;&gt;TsButtonComponent </title>
+<title>TsLinkModule&#45;&gt;TsLinkComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
 </g>
