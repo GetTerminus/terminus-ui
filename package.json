@@ -47,7 +47,7 @@
     "lint": "npm run lint:ts && npm run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "presemantic-release": "cp ~/.npmrc dist/.npmrc",
-    "semantic-release": "semantic-release pre && cd dist && npm publish && cd ../ && semantic-release post",
+    "semantic-release": "cd dist && semantic-release pre && npm publish && semantic-release post && cd ../",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "npm run build && npm run build-demo && npm run build-scss",
     "start": "concurrently \"npm run build:watch\" \"npm run build-demo:watch\"",
