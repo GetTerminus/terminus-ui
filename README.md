@@ -66,47 +66,47 @@ The library of UI components used for Terminus applications.
 
 ### Components
 
-| Feature          | Notes                                                  | Status           | CodePen Demo     |
-|------------------|--------------------------------------------------------|------------------|------------------|
-| alert            |                                                        |      not started |                  |
-| autocomplete     |                                                        |      not started |                  |
-| badge            |                                                        |      not started |                  |
-| button           |                                                        |        available |                  |
-| breadcrumbs      |                                                        |      not started |                  |
-| chip             |                                                        |      not started |                  |
-| checkbox         |                                                        |      not started |                  |
-| copy             |                                                        |        available |                  |
-| datavis          |                                                        |      not started |                  |
-| datetable        |                                                        |      not started |                  |
-| datepicker       |                                                        |        available |                  |
-| date-range       |                                                        |        available |                  |
-| dialog           |                                                        |      not started |                  |
-| divider          |                                                        |      not started |                  |
-| expansion        |                                                        |      not started |                  |
-| file-picker      |                                                        |      not started |                  |
-| input-masking    |                                                        |      not started |                  |
-| input-messages   |         Used by `input` to display validation messages |        available |                  |
-| input            |                                                        |        available |                  |
-| link             |                                                        |        available |                  |
-| login form       |                                                        |        available |                  |
-| menu             |                                                        |        available |                  |
-| pagination       |                                                        |        available |                  |
-| picklist         |                                                        |      not started |                  |
-| progress         |                                                        |      not started |                  |
-| progression      |                                                        |      not started |                  |
-| radio            |                                                        |      not started |                  |
-| search           |                                                        |        available |                  |
-| select           |                                                        |        available |                  |
-| tabs             |                                                        |      not started |                  |
-| toggle           |                                                        |        available |                  |
-| tooltip          |                                                        |        available |                  |
+| Feature          | Notes                                                  | Status           |
+|------------------|--------------------------------------------------------|------------------|
+| alert            |                                                        |      not started |
+| autocomplete     |                                                        |      not started |
+| badge            |                                                        |      not started |
+| button           |                                                        |        available |
+| breadcrumbs      |                                                        |      not started |
+| chip             |                                                        |      not started |
+| checkbox         |                                                        |      not started |
+| copy             |                                                        |        available |
+| datavis          |                                                        |      not started |
+| datetable        |                                                        |      not started |
+| datepicker       |                                                        |        available |
+| date-range       |                                                        |        available |
+| dialog           |                                                        |      not started |
+| divider          |                                                        |      not started |
+| expansion        |                                                        |      not started |
+| file-picker      |                                                        |      not started |
+| input-masking    |                                                        |      not started |
+| input-messages   |         Used by `input` to display validation messages |        available |
+| input            |                                                        |        available |
+| link             |                                                        |        available |
+| login form       |                                                        |        available |
+| menu             |                                                        |        available |
+| pagination       |                                                        |        available |
+| picklist         |                                                        |      not started |
+| progress         |                                                        |      not started |
+| progression      |                                                        |      not started |
+| radio            |                                                        |      not started |
+| search           |                                                        |        available |
+| select           |                                                        |        available |
+| tabs             |                                                        |      not started |
+| toggle           |                                                        |        available |
+| tooltip          |                                                        |        available |
 
 
 ### Services
 
-| Feature          | Notes                                                  | Status           | CodePen Demo     |
-|------------------|--------------------------------------------------------|------------------|------------------|
-| WindowService    |             Provide access to the native window object |        available |                  |
+| Feature          | Notes                                                  | Status           |
+|------------------|--------------------------------------------------------|------------------|
+| WindowService    |             Provide access to the native window object |        available |
 
 
 ### Style Helpers
