@@ -17,8 +17,8 @@ export type TsTooltipPosition =
  *
  * @example
  * <tooltip
- *           [tooltipValue]="myTooltip"
- *           [tooltipPosition]="myPosition"
+ *              [tooltipValue]="myTooltip"
+ *              [tooltipPosition]="myPosition"
  * >My Tooltip!</tooltip>
  */
 @Component({

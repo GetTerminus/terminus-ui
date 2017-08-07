@@ -19,7 +19,6 @@ import { ButtonFunctionTypes } from './../types/button-function.types';
  *              userCanClear="false"
  *              inputLabel="Search for a tactic"
  * ></t-search>
- * <t-search inputLabel="Search for a tactic"></t-search>
  */
 @Component({
   selector: 'ts-search',

@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <form name="demo">
       <ts-checkbox
+        [isChecked]="checked"
         [theme]="myTheme"
         [isDisabled]="disabled"
         [isRequired]="required"
@@ -16,6 +17,7 @@ import { Component } from '@angular/core';
   `,
 })
 export class CheckboxComponent {
+  checked = true;
   disabled = false;
   required = true;
   indeterminate = false;

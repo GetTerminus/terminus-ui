@@ -8,29 +8,19 @@
 // @description
 //  A component to display validation messages for form inputs.
 //
-.c-input-message {
+.c-validation-message {
   // Top level styles should be nested here
   &#{&} {
-    @include typography;
+    @include typography('caption');
+    z-index: z('tooltip');
   }
 
   // Primary message container
   ::ng-deep &.mat-input-error {
-    background-color: color(warn);
-    color: color(pure);
-    font-size: 75%;
-    line-height: 1.2em;
     margin-top: .6em;
     padding: .3em .4em .2em;
     position: absolute;
-    top: 200%;
-    width: 100%;
-
-    // Create the triangle arrow
-    &::before {
-      @include triangle(top, color(warn), .7em);
-      left: 10%;
-    }
+    top: 90%;
   }
 
   // When the input has an icon prefix, we need to cancel out the space added on the left to retain
@@ -39,5 +29,3 @@
     margin-left: -16px;
   }
 }
-
-

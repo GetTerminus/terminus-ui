@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { WindowService } from './../services/window.service';
+import { WindowService } from './../services/window/window.service';
 
 
 /**

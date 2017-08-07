@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdInputModule } from '@angular/material';
 
-import { TsInputMessagesComponent } from './input-messages.component';
+import { TsValidationMessagesComponent } from './validation-messages.component';
+import { ValidationService } from './../services/validation/validation.service';
+import { ValidationServiceMock } from './../services/validation/validation.service.mock';
 
 
 describe('InputMessagesComponent', () => {
@@ -12,10 +14,16 @@ describe('InputMessagesComponent', () => {
         MdInputModule,
       ],
       declarations: [
-        TsInputMessagesComponent,
+        TsValidationMessagesComponent,
+      ],
+      providers: [
+        {
+          provide: ValidationService,
+          useClass: ValidationServiceMock,
+        }
       ],
     })
-      .overrideComponent(TsInputMessagesComponent, {
+      .overrideComponent(TsValidationMessagesComponent, {
         set: {
           template: '',
           templateUrl: null,
@@ -23,7 +31,7 @@ describe('InputMessagesComponent', () => {
       })
       .compileComponents()
       .then(() => {
-        this.fixture = TestBed.createComponent(TsInputMessagesComponent);
+        this.fixture = TestBed.createComponent(TsValidationMessagesComponent);
         this.component = this.fixture.componentInstance;
       })
     ;

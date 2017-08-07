@@ -1,0 +1,51 @@
+<form [formGroup]="loginForm" fxLayout="column" *ngIf="showForm">
+
+  <ts-input
+    label="Email"
+    formControlName="email"
+    [formControl]="getControl('email')"
+    tsVerticalSpacing
+    isRequired="true"
+    spellcheck="false"
+    autocapitalize="false"
+  ></ts-input>
+
+  <ts-input
+    label="Password"
+    formControlName="password"
+    [formControl]="getControl('password')"
+    tsVerticalSpacing
+    hideRequiredMarker="false"
+    isRequired="true"
+    autocomplete="false"
+    autocapitalize="false"
+    spellcheck="false"
+    minlength="{{ PASSWORD_MINLENGTH }}"
+  ></ts-input>
+
+  <ts-checkbox
+    formControlName="rememberMe"
+    [formControl]="getControl('rememberMe')"
+    tsVerticalSpacing
+  >
+    Remember me
+  </ts-checkbox>
+
+  <ts-link
+    [destination]="forgotPasswordLink"
+    tsVerticalSpacing
+    [text]="forgotPasswordText"
+  ></ts-link>
+
+  <div fxLayout="row" fxFlexAlign="end">
+    <ts-button
+      actionName="Submit"
+      [showProgress]="inProgress"
+      [isDisabled]="!loginForm.valid"
+      (clickEvent)="submit.emit(loginForm.value)"
+    >
+      {{ loginCta }}
+    </ts-button>
+  </div>
+
+</form>

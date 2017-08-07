@@ -1,0 +1,46 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/typography';
+
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Link
+// @description
+//  Basic link styles
+//
+.c-link {
+  // Top level styles should be nested here
+  &#{&} {
+    @include typography;
+    color: color('primary');
+    text-decoration: underline;
+    transition: color 200ms ease;
+    will-change: color;
+
+    &:visited {
+      color: color('primary', dark);
+    }
+
+    &:focus,
+    &:hover {
+      color: color('pure', dark);
+    }
+
+    // Add support for theme colors
+    ::ng-deep [color='accent'] & {
+      color: color('accent');
+    }
+
+    ::ng-deep [color='warn'] & {
+      color: color('warn');
+    }
+  }
+
+  // Align the icon to the text
+  md-icon {
+    vertical-align: bottom;
+  }
+}

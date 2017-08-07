@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'demo-input',
   template: `
-    <ts-input
-      [(ngModel)]="model1"
-      [label]="label1"
-      [canClear]="clearable"
-      [prefixIcon]="icon"
-    ></ts-input>
+    <form [formGroup]="myForm" novalidate>
+      <ts-input
+        formControlName="email"
+        [formControl]="getControl('email')"
+        [label]="label1"
+        [canClear]="clearable"
+        hint="A valid email is required."
+        [isRequired]="true"
+      ></ts-input>
 
-    <br>
-    <br>
-
-    <ts-input
-      [label]="label2"
-    ></ts-input>
+      <button (click)="submit(myForm.value)">Submit</button>
+    </form>
   `,
 })
 export class InputComponent {
@@ -24,4 +28,26 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
+
+  myForm = this.formBuilder.group({
+    email: [
+      null,
+      [
+        Validators.required,
+      ],
+    ],
+  });
+
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) {}
+
+  submit(v: any) {
+    console.log('Submit!: ', v);
+  }
+
+  getControl(name: string): AbstractControl {
+    return this.myForm.controls[name];
+  }
 }
