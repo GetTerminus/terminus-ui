@@ -21,9 +21,6 @@ jobs:
           command: tooling/ci/install-dependencies.sh
 
       - run:
-          name: Seed NPMRC
-          command: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc'
-      - run:
           name: Lint Styles
           command: tooling/ci/lint-scss.sh
 
@@ -49,8 +46,8 @@ jobs:
           destination: ~/coverage/
 
       - store_artifacts:
-          path: dist/
-          destination: ~/dist/
+          path: build/
+          destination: ~/build/
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
