@@ -41,6 +41,7 @@ export class TsCopyComponent {
 
   /**
    * Define the color of the md-ripple
+   * FIXME: This color should be coming from a config
    */
   public rippleColor: string = '#1a237e';
 
@@ -52,17 +53,20 @@ export class TsCopyComponent {
   /**
    * Define access to the wrapper around the content to be copied
    */
-  @ViewChild('content') content: ElementRef;
+  @ViewChild('content')
+  public content: ElementRef;
 
   /**
    * Define if the initial click should select the contents
    */
-  @Input() disableInitialSelection: boolean = false;
+  @Input()
+  public disableInitialSelection: boolean = false;
 
   /**
    * Define if the copy to clipboard functionality is enabled
    */
-  @Input() enableQuickCopy: boolean = false;
+  @Input()
+  public enableQuickCopy: boolean = false;
 
 
   constructor(
@@ -76,7 +80,7 @@ export class TsCopyComponent {
    *
    * @return {String} textContent The text content of the inner <ng-content>
    */
-  get textContent(): string {
+  public get textContent(): string {
     const hasInnerText =
       this.content && this.content.nativeElement && this.content.nativeElement.innerText;
 
@@ -95,7 +99,7 @@ export class TsCopyComponent {
    * @param {Boolean} hasSelected The flag defining if the selection has already been made
    * @param {Boolean} disabled The flag defining if the selection functionality should be disabled
    */
-  selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
+  public selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
     // If this functionality is disabled OR the text has already been selected,
     // do not intercept any more clicks until the focus is reset
     if (disabled || hasSelected) {
@@ -127,7 +131,7 @@ export class TsCopyComponent {
    * Reset the text selection
    * NOTE: The div must have a `tabindex` set or no blur event will be fired
    */
-  resetSelection(): void {
+  public resetSelection(): void {
     this.hasSelected = false;
   }
 
@@ -137,7 +141,7 @@ export class TsCopyComponent {
    *
    * @param {String} text The text to copy
    */
-  copyToClipboard(text: string): void {
+  public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
     const target = this.document.createElement('textarea');
     target.className = 'targetElement';

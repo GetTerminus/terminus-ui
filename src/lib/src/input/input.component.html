@@ -24,7 +24,7 @@
 
   <md-icon
     mdSuffix
-    *ngIf="canClear"
+    *ngIf="isClearable"
     class="c-input__clear"
     [ngClass]="{'c-input__clear--visible': value?.length > 0}"
     (click)="reset()"

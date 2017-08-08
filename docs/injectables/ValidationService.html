@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -475,6 +484,9 @@
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -526,6 +538,15 @@
             <code>src/lib/src/services/validation/validation.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Define a service that offers custom validators</p>
+<p>TODO: The consuming app will need a way to pass in the error messages config object so that
+localization is supported.</p>
+
+            </p>
 
 
 
@@ -551,195 +572,49 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/lib/src/services/validation/validation.service.ts:12</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/src/services/validation/validation.service.ts:25</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Return the correct error message for a validator</p>
+            </div>
             
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>validatorName</td>
+                                                              <td>
+                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              </td>
+                                                              <td><p>The name of the validator</p>
+            </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>validatorValue</td>
+                                                              <td>
+                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
+                                                              </td>
+                                                              <td><p>The value of the validator</p>
+            </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> creditCardValidator</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play "></span>
-                                    <code>creditCardValidator(control: <a href="https://angular.io/docs/ts/latest/api/forms/index/AbstractControl-class.html" target="_blank">AbstractControl</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/services/validation/validation.service.ts:34</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Credit card validator</p>
-            </div>
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
-                                                              </td>
-                                                              <td><p>The control to check for validation</p>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> emailValidator</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play "></span>
-                                    <code>emailValidator(control: <a href="https://angular.io/docs/ts/latest/api/forms/index/AbstractControl-class.html" target="_blank">AbstractControl</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/services/validation/validation.service.ts:49</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Email validator</p>
-            </div>
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
-                                                              </td>
-                                                              <td><p>The control to check for validation</p>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> passwordValidator</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play "></span>
-                                    <code>passwordValidator(control: <a href="https://angular.io/docs/ts/latest/api/forms/index/AbstractControl-class.html" target="_blank">AbstractControl</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/services/validation/validation.service.ts:64</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Password validator</p>
-            </div>
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
-                                                              </td>
-                                                              <td><p>The control to check for validation</p>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
             
                                         </div>
                                             <div class="io-description">
@@ -758,72 +633,39 @@
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { AbstractControl } from &#x27;@angular/forms&#x27;;
 
-import { emailRegex, emailMessage } from &#x27;./../../utilities/regex/email.regex&#x27;;
-import { creditCardRegex, creditCardMessage } from &#x27;./../../utilities/regex/credit-card.regex&#x27;;
-import { passwordRegex, passwordMessage } from &#x27;./../../utilities/regex/password.regex&#x27;;
+import { emailMessage } from &#x27;./../../utilities/regex/email.regex&#x27;;
+import { creditCardMessage } from &#x27;./../../utilities/regex/credit-card.regex&#x27;;
+import { passwordMessage } from &#x27;./../../utilities/regex/password.regex&#x27;;
 
 
+/**
+ * Define a service that offers custom validators
+ *
+ * TODO: The consuming app will need a way to pass in the error messages config object so that
+ * localization is supported.
+ */
 @Injectable()
 export class ValidationService {
 
+  /**
+   * Return the correct error message for a validator
+   *
+   * @param {String} validatorName The name of the validator
+   * @param {Object} validatorValue The value of the validator
+   * @return {String} errorMessage The error message
+   */
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
-
-    // TODO: We will need a way for the consuming app to seed these values so that localization is
-    // supported.
     const config &#x3D; {
+      // Standard responses:
       required: &#x60;Required&#x60;,
+      minlength: &#x60;Minimum length ${validatorValue.requiredLength}&#x60;,
+      // Custom responses:
       invalidCreditCard: creditCardMessage,
-      validateEmail: emailMessage,
+      invalidEmail: emailMessage,
       invalidPassword: passwordMessage,
-      minlength: &#x60;Minimum length ${validatorValue.requiredLength}&#x60;
     };
 
     return config[validatorName];
-  }
-
-
-  /**
-   * Credit card validator
-   *
-   * @param {Object} control The control to check for validation
-   * @return {Null|Object} result The validation result
-   */
-  public creditCardValidator(control: AbstractControl): any {
-    if (control.value.match(creditCardRegex)) {
-      return null;
-    } else {
-      return { &#x27;invalidCreditCard&#x27;: true };
-    }
-  }
-
-
-  /**
-   * Email validator
-   *
-   * @param {Object} control The control to check for validation
-   * @return {Null|Object} result The validation result
-   */
-  public emailValidator(control: AbstractControl): any {
-    if (control.value.match(emailRegex)) {
-      return null;
-    } else {
-      return { &#x27;invalidEmailAddress&#x27;: true };
-    }
-  }
-
-
-  /**
-   * Password validator
-   *
-   * @param {Object} control The control to check for validation
-   * @return {Null|Object} result The validation result
-   */
-  public passwordValidator(control: AbstractControl): any {
-    if (control.value.match(passwordRegex)) {
-      return null;
-    } else {
-      return { &#x27;invalidPassword&#x27;: true };
-    }
   }
 
 }

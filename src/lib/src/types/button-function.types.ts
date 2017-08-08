@@ -1,7 +1,7 @@
 /**
- * Define the allowed button action types
+ * Define the allowed {@link TsButtonComponent} action types
  */
 export type ButtonFunctionTypes =
-    'button'
-    | 'search'
-    | 'submit';
+  'button'
+  | 'search'
+  | 'submit';

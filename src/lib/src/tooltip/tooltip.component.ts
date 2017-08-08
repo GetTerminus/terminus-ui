@@ -3,14 +3,8 @@ import {
   Input,
 } from '@angular/core';
 
+import { TsTooltipPositionTypes } from './tooltip-position.type';
 
-export type TsTooltipPosition =
-  'left' |
-  'right' |
-  'above' |
-  'below' |
-  'before' |
-  'after';
 
 /**
  * This is the tooltip UI Component
@@ -30,10 +24,12 @@ export class TsTooltipComponent {
   /**
    * Define the position of the tooltip
    */
-  @Input() tooltipPosition: TsTooltipPosition = 'below';
+  @Input()
+  public tooltipPosition: TsTooltipPositionTypes = 'below';
 
   /**
    * Define the content to display within the tooltip
    */
-  @Input() tooltipValue: string;
+  @Input()
+  public tooltipValue: string;
 }

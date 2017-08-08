@@ -46,56 +46,64 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * Provide access to the trigger
    */
-  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+  @ViewChild(MdMenuTrigger)
+  private trigger: MdMenuTrigger;
 
   /**
    * Define if the menu should be opened by default
    */
-  @Input() defaultOpened: boolean = false;
+  @Input()
+  private defaultOpened: boolean = false;
 
   /**
    * Define if the menu should be disabled
    */
-  @Input() isDisabled: boolean = false;
+  @Input()
+  public isDisabled: boolean = false;
 
   /**
    * Accept an array of menu items to display
    */
-  @Input() menuItems: MenuItem[];
+  @Input()
+  public menuItems: MenuItem[];
 
   /**
    * Define the X menu position
    */
-  @Input() menuPositionX: MenuPositionTypesX = 'after';
+  @Input()
+  public menuPositionX: MenuPositionTypesX = 'after';
 
   /**
    * Define the Y menu position
    */
-  @Input() menuPositionY: MenuPositionTypesY = 'below';
+  @Input()
+  public menuPositionY: MenuPositionTypesY = 'below';
 
   /**
    * Define the menu theme
    */
-  @Input() theme: TsStyleThemeTypes = 'primary';
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Output a selection event with the item payload
    */
-  @Output() selected = new EventEmitter<MenuItem>();
+  @Output()
+  public selected: EventEmitter<MenuItem> = new EventEmitter();
 
 
   /**
    * On initialization check to see if at least 1 icon exists in the menu items
    */
-  ngOnInit(): void {
-    this.hasIcons = this._hasAtLeastOneIcon(this.menuItems);
+  public ngOnInit(): void {
+    this.hasIcons = this.hasAtLeastOneIcon(this.menuItems);
   }
 
 
   /**
    * After the view has initialized, open the menu if it is defaulted to 'open'
    */
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     if (this.defaultOpened) {
       this.trigger.openMenu();
     }
@@ -108,7 +116,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * @param {Array} items The collection of items to look through
    * @return {Boolean} hasIcon Value that represents if at least one icon is present
    */
-  private _hasAtLeastOneIcon(items: MenuItem[]): boolean {
+  private hasAtLeastOneIcon(items: MenuItem[]): boolean {
     if (!items || items.length < 1) {
       return false;
     }

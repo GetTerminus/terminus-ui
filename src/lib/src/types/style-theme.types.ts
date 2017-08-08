@@ -1,5 +1,5 @@
 /**
- * Define the allowed button action types
+ * Define the allowed theme types
  */
 export type TsStyleThemeTypes =
   'primary'

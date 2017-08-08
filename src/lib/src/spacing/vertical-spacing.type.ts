@@ -1,5 +1,5 @@
 /**
- * Define the accepted string values for vertical spacing
+ * Define the accepted string values for {@link TsVerticalSpacingDirective}
  */
 export type TsVerticalSpacingTypes =
   'small--1x' |

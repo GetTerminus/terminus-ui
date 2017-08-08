@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -475,6 +484,9 @@
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -533,8 +545,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a text input.
-TODO: Offer ability to disable autocomplete/spellcheck.</p>
+        <p>A presentational component to render a text input.</p>
 <p>Why we are not masking passwords:</p>
 <ul>
 <li><a href="https://www.nngroup.com/articles/stop-password-masking/">https://www.nngroup.com/articles/stop-password-masking/</a></li>
@@ -543,6 +554,12 @@ TODO: Offer ability to disable autocomplete/spellcheck.</p>
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../components/TsReactiveFormBaseComponent.html" target="_self" >TsReactiveFormBaseComponent</a></code>
+    </p>
 
 
     <p class="comment">
@@ -561,7 +578,7 @@ TODO: Offer ability to disable autocomplete/spellcheck.</p>
   isRequired=&quot;false&quot;
   hideRequiredMarker=&quot;false&quot;
   prefixIcon=&quot;link&quot;
-  canClear=&quot;true&quot;
+  isClearable=&quot;true&quot;
   isFocused=&quot;false&quot;
   autocomplete=&quot;off&quot;
   autocorrect=&quot;off&quot;
@@ -640,7 +657,7 @@ TODO: Offer ability to disable autocomplete/spellcheck.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/input/input.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/input/input.component.ts:64</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -666,56 +683,7 @@ TODO: Offer ability to disable autocomplete/spellcheck.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/src/input/input.component.ts:88</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>canClear</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define a Material icon to include after the input
-FIXME: Rename to match other inputs: <code>isClearable</code></p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>false</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/lib/src/input/input.component.ts:94</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>formControl</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the form control to get access to validators
-(for form control support)</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/src/input/input.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/input/input.component.ts:70</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -740,7 +708,7 @@ FIXME: Rename to match other inputs: <code>isClearable</code></p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/src/input/input.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/input/input.component.ts:90</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -763,7 +731,32 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/src/input/input.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/input/input.component.ts:96</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>isClearable</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a Material icon to include after the input</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/input/input.component.ts:75</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -785,7 +778,7 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/input/input.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/input/input.component.ts:80</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -810,7 +803,7 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/src/input/input.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/input/input.component.ts:85</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -832,7 +825,7 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/lib/src/input/input.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/src/input/input.component.ts:101</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -854,7 +847,7 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/lib/src/input/input.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/input/input.component.ts:106</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -880,7 +873,7 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/input/input.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/input/input.component.ts:112</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -898,108 +891,6 @@ TODO: Fix potential overlap of hint and error messages</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> onBlur</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>onBlur()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/lib/src/input/input.component.ts:163</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Set touched on blur
-    (for form control support)</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> registerOnChange</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/lib/src/input/input.component.ts:172</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Register onChange callback (from ControlValueAccessor interface)
-    (for form control support)</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> registerOnTouched</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/lib/src/input/input.component.ts:181</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Register onTouched callback (from ControlValueAccessor interface)
-    (for form control support)</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <b> reset</b>
                         </td>
                     </tr>
@@ -1012,7 +903,7 @@ TODO: Fix potential overlap of hint and error messages</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/src/input/input.component.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/input/input.component.ts:118</a></div>
                                 </td>
                             </tr>
     
@@ -1029,167 +920,8 @@ TODO: Fix potential overlap of hint and error messages</p>
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> writeValue</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>writeValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/lib/src/input/input.component.ts:198</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Write value to inner value (from ControlValueAccessor interface)
-    (for form control support)</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
     </section>
 
-    <section>
-        
-            <h3 id="inputs">
-                Properties
-            </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b><span class="modifier">Private</span> innerValue</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>innerValue:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/input/input.component.ts:64</a></div>
-                                </td>
-                            </tr>
-    
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b><span class="modifier">Private</span> onChangeCallback</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>onChangeCallback:     <code></code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>noop</code>
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/input/input.component.ts:70</a></div>
-                                </td>
-                            </tr>
-    
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b><span class="modifier">Private</span> onTouchedCallback</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>onTouchedCallback:     <code></code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>noop</code>
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/input/input.component.ts:76</a></div>
-                                </td>
-                            </tr>
-    
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> value</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>value:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/lib/src/input/input.component.ts:143</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Return the value
-    (for form control support)
-    Set the accessor and call the onchange callback
-    (for form control support)</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-    </section>
 </div>
 
 
@@ -1203,7 +935,8 @@ import {
   NG_VALUE_ACCESSOR,
 } from &#x27;@angular/forms&#x27;;
 
-import { noop } from &#x27;./../utilities/noop&#x27;;
+import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
+
 
 /**
  * Custom control value accessor for our component
@@ -1220,7 +953,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
 
 /**
  * A presentational component to render a text input.
- * TODO: Offer ability to disable autocomplete/spellcheck.
  *
  * Why we are not masking passwords:
  *   - https://www.nngroup.com/articles/stop-password-masking/
@@ -1238,7 +970,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              isRequired&#x3D;&quot;false&quot;
  *              hideRequiredMarker&#x3D;&quot;false&quot;
  *              prefixIcon&#x3D;&quot;link&quot;
- *              canClear&#x3D;&quot;true&quot;
+ *              isClearable&#x3D;&quot;true&quot;
  *              isFocused&#x3D;&quot;false&quot;
  *              autocomplete&#x3D;&quot;off&quot;
  *              autocorrect&#x3D;&quot;off&quot;
@@ -1252,25 +984,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   styleUrls: [&#x27;./input.component.scss&#x27;],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
 })
-export class TsInputComponent {
-  /**
-   * @private Define the internal data model
-   * (for form control support)
-   */
-  private innerValue: any &#x3D; &#x27;&#x27;;
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onChangeCallback: (_: any) &#x3D;&gt; void &#x3D; noop;
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onTouchedCallback: () &#x3D;&gt; void &#x3D; noop;
-
+export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define if the input should autocapitalize
    * (standard HTML5 property)
@@ -1285,9 +999,8 @@ export class TsInputComponent {
 
   /**
    * Define a Material icon to include after the input
-   * FIXME: Rename to match other inputs: &#x60;isClearable&#x60;
    */
-  @Input() canClear: boolean &#x3D; false;
+  @Input() isClearable: boolean &#x3D; false;
 
   /**
    * Define if the input should be focused
@@ -1321,62 +1034,10 @@ export class TsInputComponent {
   @Input() prefixIcon: string;
 
   /**
-   * Define the form control to get access to validators
-   * (for form control support)
-   */
-  @Input() formControl: any;
-
-  /**
    * Define if the input should spellcheck
    * (standard HTML5 property)
    */
   @Input() spellcheck: boolean &#x3D; true;
-
-  /**
-   * Return the value
-   * (for form control support)
-   */
-  get value(): any {
-    return this.innerValue;
-  };
-
-  /**
-   * Set the accessor and call the onchange callback
-   * (for form control support)
-   */
-  set value(v: any) {
-    if (v !&#x3D;&#x3D; this.innerValue) {
-      this.innerValue &#x3D; v;
-      this.onChangeCallback(v);
-    }
-  }
-
-
-  /**
-   * Set touched on blur
-   * (for form control support)
-   */
-  onBlur() {
-    this.onTouchedCallback();
-  }
-
-
-  /**
-   * Register onChange callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnChange(fn: any) {
-    this.onChangeCallback &#x3D; fn;
-  }
-
-
-  /**
-   * Register onTouched callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback &#x3D; fn;
-  }
 
 
   /**
@@ -1384,17 +1045,6 @@ export class TsInputComponent {
    */
   reset(): void {
     this.value &#x3D; &#x27;&#x27;;
-  }
-
-
-  /**
-   * Write value to inner value (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  writeValue(value: any) {
-    if (value !&#x3D;&#x3D; this.innerValue) {
-      this.innerValue &#x3D; value;
-    }
   }
 
 }
@@ -1428,7 +1078,7 @@ export class TsInputComponent {
 
   &lt;md-icon
     mdSuffix
-    *ngIf&#x3D;&quot;canClear&quot;
+    *ngIf&#x3D;&quot;isClearable&quot;
     class&#x3D;&quot;c-input__clear&quot;
     [ngClass]&#x3D;&quot;{&#x27;c-input__clear--visible&#x27;: value?.length &gt; 0}&quot;
     (click)&#x3D;&quot;reset()&quot;
@@ -1469,8 +1119,8 @@ export class TsInputComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input c-input"  [hideRequiredMarker]="hideRequiredMarker">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    autofocus="{{ isFocused }}"    type="text"    [required]="isRequired ? \'\' : null"    class="c-input__text"    [(ngModel)]="value"    (blur)="onBlur()"    autocomplete="{{ autocomplete ? \'on\' : \'off\' }}"    autocapitalize="{{ autocapitalize ? \'on\' : \'off\' }}"    spellcheck="{{ spellcheck ? \'on\' : \'off\' }}"  >  <md-icon    mdSuffix    *ngIf="canClear"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</md-icon>  <md-hint align="end" *ngIf="hint">    {{ hint }}  </md-hint>  <ts-validation-messages    [control]="formControl"  ></ts-validation-messages></md-input-container></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input c-input"  [hideRequiredMarker]="hideRequiredMarker">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    autofocus="{{ isFocused }}"    type="text"    [required]="isRequired ? \'\' : null"    class="c-input__text"    [(ngModel)]="value"    (blur)="onBlur()"    autocomplete="{{ autocomplete ? \'on\' : \'off\' }}"    autocapitalize="{{ autocapitalize ? \'on\' : \'off\' }}"    spellcheck="{{ spellcheck ? \'on\' : \'off\' }}"  >  <md-icon    mdSuffix    *ngIf="isClearable"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</md-icon>  <md-hint align="end" *ngIf="hint">    {{ hint }}  </md-hint>  <ts-validation-messages    [control]="formControl"  ></ts-validation-messages></md-input-container></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>

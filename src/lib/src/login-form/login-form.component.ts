@@ -105,32 +105,38 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Provide access to the text inputs
    */
-  @ViewChildren(TsInputComponent) inputComponents: QueryList<TsInputComponent>;
+  @ViewChildren(TsInputComponent)
+  private inputComponents: QueryList<TsInputComponent>;
 
   /**
    * Provide access to the checkbox inputs
    */
-  @ViewChild(TsCheckboxComponent) checkbox: TsCheckboxComponent;
+  @ViewChild(TsCheckboxComponent)
+  private checkbox: TsCheckboxComponent;
 
   /**
    * Define the link to the 'forgot password' view
    */
-  @Input() forgotPasswordLink: string = '/forgot';
+  @Input()
+  public forgotPasswordLink: string = '/forgot';
 
   /**
    * Define if the form button is showing progress
    */
-  @Input() inProgress: Boolean = false;
+  @Input()
+  public inProgress: Boolean = false;
 
   /**
    * Allow a consumer to reset the form via an input
    */
-  @Input() resetForm: boolean = false;
+  @Input()
+  private resetForm: boolean = false;
 
   /**
    * Emit an event on form submission
    */
-  @Output() submit: EventEmitter<any> = new EventEmitter;
+  @Output()
+  public submit: EventEmitter<any> = new EventEmitter;
 
 
   /**
@@ -147,7 +153,7 @@ export class TsLoginFormComponent implements OnChanges {
    *
    * @param {Object} changes The inputs that have changed
    */
-  ngOnChanges(changes: any): void {
+  public ngOnChanges(changes: any): void {
     if (changes.hasOwnProperty('resetForm') && changes.resetForm.currentValue) {
       this._resetForm();
     }

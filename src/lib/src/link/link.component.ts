@@ -36,15 +36,18 @@ export class TsLinkComponent {
   /**
    * Define the link's destination
    */
-  @Input() destination: any;
+  @Input()
+  public destination: any;
 
   /**
    * Define if the link is to an external page
    */
-  @Input() isExternal: boolean = false;
+  @Input()
+  public isExternal: boolean = false;
 
   /**
    * Define the link text content
    */
-  @Input() text: string;
+  @Input()
+  public text: string;
 }

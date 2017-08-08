@@ -4,14 +4,13 @@ import {
   Output,
   EventEmitter,
   forwardRef,
-  ViewChild,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { MdSlideToggleChange } from '@angular/material';
 
-import { noop } from './../utilities/noop';
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../types/style-theme.types';
 
 /**
@@ -49,121 +48,46 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./toggle.component.scss'],
   providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
 })
-export class TsToggleComponent {
-  /**
-   * @private Define the internal data model
-   * (for form control support)
-   */
-  private innerValue: any = '';
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onChangeCallback: (_: any) => void = noop;
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onTouchedCallback: () => void = noop;
-
+export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the aria label
    */
-  @Input() ariaLabel: string;
+  @Input()
+  public ariaLabel: string;
 
   /**
    * Define if the toggle should be disabled
    */
-  @Input() isDisabled: boolean = false;
+  @Input()
+  public isDisabled: boolean = false;
 
   /**
    * Define if the toggle is required
    */
-  @Input() isRequired: boolean = true;
+  @Input()
+  public isRequired: boolean = true;
 
   /**
    * Define the position of the label
    */
-  @Input() labelPosition: 'before' | 'after' = 'after';
+  @Input()
+  public labelPosition: 'before' | 'after' = 'after';
 
   /**
    * Define the input name for the toggle
    */
-  @Input() name: string = 'toggle';
+  @Input()
+  public name: string = 'toggle';
 
   /**
    * Define the theme
    */
-  @Input() theme: TsStyleThemeTypes = 'primary';
-
-  /**
-   * Define the form control to get access to validators
-   * (for form control support)
-   */
-  @Input() formControl: any;
-
-  /**
-   * Return the value
-   * (for form control support)
-   */
-  get value(): any {
-    return this.innerValue;
-  };
-
-  /**
-   * Set the accessor and call the onchange callback
-   * (for form control support)
-   */
-  set value(v: any) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.onChangeCallback(v);
-    }
-  }
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Emit an event each time the toggle value changes
    */
-  @Output() change = new EventEmitter<MdSlideToggleChange>();
-
-
-  /**
-   * Set touched on blur
-   * (for form control support)
-   */
-  onBlur() {
-    this.onTouchedCallback();
-  }
-
-
-  /**
-   * Register onChange callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnChange(fn: any) {
-    this.onChangeCallback = fn;
-  }
-
-
-  /**
-   * Register onTouched callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
-  }
-
-
-  /**
-   * Write value to inner value (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  writeValue(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-    }
-  }
-
+  @Output()
+  public change: EventEmitter<MdSlideToggleChange> = new EventEmitter();
 }
