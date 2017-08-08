@@ -9,7 +9,7 @@
   "author": "@terminus",
   "license": "MIT",
   "files": [
-    "build"
+    "build/"
   ],
   "repository": {
     "type": "git",
