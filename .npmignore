@@ -13,3 +13,4 @@ karma.conf.js
 tsconfig.json
 tslint.json
 .npmrc
+.git/

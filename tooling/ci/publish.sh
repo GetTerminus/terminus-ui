@@ -25,6 +25,9 @@ echo 'Build URL' $CIRCLE_BUILD_URL
 echo 'Branch' $CIRCLE_BRANCH
 echo 'Node total' $CIRCLECI_NODE_TOTAL
 
+echo "Copy git repo"
+cp -R ./.git ./build/.git
+
 # Run tests
 npm run semantic-release || {
     echo 'No release needed.';
