@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -475,6 +484,9 @@
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -533,8 +545,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A presentational component to render a button
-TODO: Text color transition doesn&#39;t match the background transition timing</p>
+        <p>A presentational component to render a button</p>
 
     </p>
 
@@ -642,7 +653,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/src/button/button.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/button/button.component.ts:44</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -664,7 +675,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/src/button/button.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/button/button.component.ts:50</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -689,7 +700,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/src/button/button.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/button/button.component.ts:56</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -714,7 +725,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/src/button/button.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/button/button.component.ts:62</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -739,7 +750,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/src/button/button.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/button/button.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -763,7 +774,7 @@ TODO: Text color transition doesn&#39;t match the background transition timing</
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/button/button.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/button/button.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -791,7 +802,6 @@ import { TsStyleThemeTypes } from &#x27;./../types/style-theme.types&#x27;;
 
 /**
  * A presentational component to render a button
- * TODO: Text color transition doesn&#x27;t match the background transition timing
  *
  * @example
  * &lt;ts-button
@@ -813,37 +823,44 @@ export class TsButtonComponent {
   /**
    * Define the action for the aria-label
    */
-  @Input() actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
+  @Input()
+  public actionName: ButtonActionTypes &#x3D; &#x27;Button&#x27;;
 
   /**
    * Define the button type
    */
-  @Input() buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
+  @Input()
+  public buttonType: ButtonFunctionTypes &#x3D; &#x27;button&#x27;;
 
   /**
    * Define a Material icon to include
    */
-  @Input() iconName: string;
+  @Input()
+  public iconName: string;
 
   /**
    * Define if the button is disabled
    */
-  @Input() isDisabled: boolean &#x3D; false;
+  @Input()
+  public isDisabled: boolean &#x3D; false;
 
   /**
    * Define if the progress indicator should show
    */
-  @Input() showProgress: boolean &#x3D; false;
+  @Input()
+  public showProgress: boolean &#x3D; false;
 
   /**
    * Define the theme
    */
-  @Input() theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
+  @Input()
+  public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
    * Pass the click event through to the parent
    */
-  @Output() clickEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
+  @Output()
+  public clickEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
 }
 </code></pre>
     </div>
@@ -895,7 +912,7 @@ export class TsButtonComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="theme"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
 </script>

@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -474,6 +483,9 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
                            </li>
@@ -616,7 +628,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/src/link/link.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/link/link.component.ts:40</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -641,7 +653,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/link/link.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/link/link.component.ts:46</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -663,7 +675,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/link/link.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/link/link.component.ts:52</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -760,17 +772,20 @@ export class TsLinkComponent {
   /**
    * Define the link&#x27;s destination
    */
-  @Input() destination: any;
+  @Input()
+  public destination: any;
 
   /**
    * Define if the link is to an external page
    */
-  @Input() isExternal: boolean &#x3D; false;
+  @Input()
+  public isExternal: boolean &#x3D; false;
 
   /**
    * Define the link text content
    */
-  @Input() text: string;
+  @Input()
+  public text: string;
 }
 </code></pre>
     </div>
@@ -823,7 +838,7 @@ export class TsLinkComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="c-link c-link"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <md-icon *ngIf="isExternal">    open_in_new  </md-icon></a></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLinkComponent'};
 </script>

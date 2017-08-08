@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -474,6 +483,9 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
                            </li>
@@ -644,18 +656,18 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> validationMessage</b>
+                            <b><span class="modifier">Public</span> validationMessage</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>validationMessage:     <code></code>
+                            <span class="modifier-icon fa fa-"></span><code>validationMessage:     <code></code>
     </bcode>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:43</a></div>
                                 </td>
                             </tr>
     
@@ -678,7 +690,6 @@
   Input,
 } from &#x27;@angular/core&#x27;;
 import {
-  FormGroup,
   FormControl,
 } from &#x27;@angular/forms&#x27;;
 
@@ -702,7 +713,8 @@ export class TsValidationMessagesComponent {
   /**
    * Define the associated form control
    */
-  @Input() control: FormControl;
+  @Input()
+  public control: FormControl;
 
 
   constructor(
@@ -712,15 +724,17 @@ export class TsValidationMessagesComponent {
 
   /**
    * Define the error message
+   *
+   * @return {String|Null} errorMessage The error message or null if no error
    */
-  get validationMessage() {
+  public get validationMessage(): string | null {
     // tslint:disable-next-line
     for (const propertyName in this.control.errors) {
 
       if (this.control.errors.hasOwnProperty(propertyName) &amp;&amp; this.control.touched) {
-        const errors &#x3D; this.validationService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
+        const errors &#x3D; this.control.errors[propertyName];
 
-        return errors;
+        return this.validationService.getValidatorErrorMessage(propertyName, errors);
       }
     }
 
@@ -764,7 +778,7 @@ export class TsValidationMessagesComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><md-error  class="c-validation-message  c-validation-message">  {{ validationMessage }}</md-error></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsValidationMessagesComponent'};
 </script>

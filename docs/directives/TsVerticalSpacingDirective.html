@@ -167,6 +167,9 @@
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -474,6 +483,9 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/MenuItem.html" >MenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
                            </li>
@@ -579,7 +591,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:34</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:33</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -598,7 +610,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:39</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:38</a></div>
                                         </td>
                                     </tr>
             
@@ -620,7 +632,6 @@
 } from &#x27;@angular/core&#x27;;
 
 import { TsVerticalSpacingTypes } from &#x27;./vertical-spacing.type&#x27;;
-
 
 
 /**
@@ -645,7 +656,7 @@ export class TsVerticalSpacingDirective {
    * @param {String} value The spacing value passed in.
    */
   @Input()
-  set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
+  public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
     // Fall back to default class if no value is passed in
     const className &#x3D; (value &amp;&amp; value.length &gt; 0) ? &#x60;u-vertical-spacing__${value}&#x60; : &#x60;u-vertical-spacing&#x60;;
 

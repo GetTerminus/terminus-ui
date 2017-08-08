@@ -167,6 +167,9 @@
                                     <a href="./components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/TsSearchComponent.html" >TsSearchComponent</a>
                                 </li>
                                 <li class="link">
@@ -235,6 +238,9 @@
                             >
                                 <li class="link">
                                     <a href="./interfaces/MenuItem.html" >MenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
                     </li>
@@ -406,6 +412,9 @@
                                            <a href="./components/TsPaginationComponent.html" >TsPaginationComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/TsSearchComponent.html" >TsSearchComponent</a>
                                        </li>
                                        <li class="link">
@@ -475,6 +484,9 @@
                                        <li class="link">
                                            <a href="./interfaces/MenuItem.html" >MenuItem</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -532,23 +544,6 @@
         
                                 </td>
                             </tr>
-        
-        
-                    </tbody>
-                </table>
-                <table class="table table-sm table-bordered">
-                    <tbody>
-                        <tr>
-                            <td class="col-md-4">
-                                <b> noop</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <code>noop:     <code></code>
-        </bcode>
-                            </td>
-                        </tr>
         
         
                     </tbody>
@@ -825,6 +820,7 @@
                         <tr>
                             <td class="col-md-4">
                                 <div class="io-description"><p>Define a regex to validate an email address</p>
+        <p>TODO: Not in use. Currently the only password requirement is a minlength of 8 characters</p>
         <p>{6,100}     - Assert password is between 6 and 100 characters
         (?=.*[0-9]) - Assert a string has at least one number</p>
         </div>
@@ -921,6 +917,57 @@
                     </tbody>
                 </table>
         </section>
+        <h4><code>src/lib/src/utilities/validators/credit-card.validator.ts</code></h4>
+        <section>
+                    <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> validateCreditCard</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+        <code>validateCreditCard(control: undefined)</code>
+                            </td>
+                        </tr>
+        
+        
+        
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>A custom credit card validator for use in a reactive form.</p>
+        </div>
+        
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>control</td>
+                                                          <td>
+                                                                  <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html" target="_blank" >FormControl</a></code>
+                                                          </td>
+                                                          <td><p>The form control</p>
+        </td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
         <h4><code>src/lib/src/utilities/validators/email.validator.ts</code></h4>
         <section>
                     <table class="table table-sm table-bordered">
@@ -932,12 +979,94 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-        <code>validateEmail(c: undefined)</code>
+        <code>validateEmail(control: undefined)</code>
                             </td>
                         </tr>
         
         
         
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>A custom email validator for use in a reactive form. (See <a href="components/TsLoginFormComponent.html">TsLoginFormComponent</a>)</p>
+        </div>
+        
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>control</td>
+                                                          <td>
+                                                                  <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html" target="_blank" >FormControl</a></code>
+                                                          </td>
+                                                          <td><p>The form control</p>
+        </td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
+        <h4><code>src/lib/src/utilities/validators/password.validator.ts</code></h4>
+        <section>
+                    <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> validatePassword</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+        <code>validatePassword(control: undefined)</code>
+                            </td>
+                        </tr>
+        
+        
+        
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>A custom email validator for use in a reactive form. (See <a href="components/TsLoginFormComponent.html">TsLoginFormComponent</a>)</p>
+        </div>
+        
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>control</td>
+                                                          <td>
+                                                                  <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html" target="_blank" >FormControl</a></code>
+                                                          </td>
+                                                          <td><p>The form control</p>
+        </td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
         </section>
