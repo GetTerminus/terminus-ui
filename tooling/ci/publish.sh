@@ -10,7 +10,7 @@
 . ~/.bashrc
 
 echo "Copy git repo"
-cp -R ./.git ./build/.git
+cp -R ./.git ./dist/.git
 
 # Run tests
 npm run semantic-release || {
