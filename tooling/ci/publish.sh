@@ -9,11 +9,11 @@
 
 . ~/.bashrc
 
-echo "Copy git repo"
-cp -R ./.git ./dist/.git
+#echo "Copy git repo"
+#cp -R ./.git ./dist/.git
 
 echo "Run semantic-release pre"
-semantic-release pre
+npm run semantic-release-pre
 
 cd dist/
 npm pack
@@ -28,4 +28,4 @@ npm publish
 #}
 
 echo "Run semantic-release post"
-semantic-release post
+npm run semantic-release-post
