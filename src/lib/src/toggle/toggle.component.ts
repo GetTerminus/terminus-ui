@@ -90,5 +90,4 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    */
   @Output()
   public change: EventEmitter<MdSlideToggleChange> = new EventEmitter();
-
 }

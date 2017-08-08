@@ -47,72 +47,86 @@ export class TsDateRangeComponent {
   /**
    * Allow access to child directive
    */
-  @ViewChild('end') end: TsDatepickerComponent;
+  @ViewChild('end')
+  public end: TsDatepickerComponent;
 
   /**
    * Define the starting view for both datepickers
    */
-  @Input() startingView: 'month' | 'year' = 'month';
+  @Input()
+  public startingView: 'month' | 'year' = 'month';
 
   /**
    * Define the separator between the two date inputs
    */
-  @Input() separator: string = '-';
+  @Input()
+  public separator: string = '-';
 
   /**
    * Define the start date placeholder
    */
-  @Input() startPlaceholder: string;
+  @Input()
+  public startPlaceholder: string;
 
   /**
    * Define the max date for the starting date
    */
-  @Input() startMaxDate: Date;
+  @Input()
+  public startMaxDate: Date;
 
   /**
    * Define the min date for the starting date
    */
-  @Input() startMinDate: Date;
+  @Input()
+  public startMinDate: Date;
 
   /**
    * Define the initial date for the starting date
    */
-  @Input() startInitialDate: string;
+  @Input()
+  public startInitialDate: string;
 
   /**
    * Define the end date placeholder
    */
-  @Input() endPlaceholder: string;
+  @Input()
+  public endPlaceholder: string;
 
   /**
    * Define the max date for the end date
    */
-  @Input() endMaxDate: Date;
+  @Input()
+  public endMaxDate: Date;
 
   /**
    * Define the min date for the end date
    */
-  @Input() endMinDate: Date;
+  @Input()
+  public endMinDate: Date;
 
   /**
    * Define the initial date for the end date
    */
-  @Input() endInitialDate: string;
+  @Input()
+  public endInitialDate: string;
 
   /**
    * Output the start date when selected
    */
-  @Output() startSelected: EventEmitter<any> = new EventEmitter();
+  @Output()
+  public startSelected: EventEmitter<any> = new EventEmitter();
 
   /**
    * Output the end date when selected
    */
-  @Output() endSelected: EventEmitter<any> = new EventEmitter();
+  @Output()
+  public endSelected: EventEmitter<any> = new EventEmitter();
 
   /**
    * Output the selected date range
    */
-  @Output() selectedDate: EventEmitter<any> = new EventEmitter();
+  @Output()
+  public selectedDate: EventEmitter<any> = new EventEmitter();
 
 
   /**
@@ -120,7 +134,7 @@ export class TsDateRangeComponent {
    *
    * @param {date} date The selected date
    */
-  startDateSelected(date: Date): void {
+  public startDateSelected(date: Date): void {
     if (date) {
       this._startDate = date;
       // NOTE: We don't want an end date that is before the start date, so when a start date is
@@ -149,7 +163,7 @@ export class TsDateRangeComponent {
    *
    * @param {date} date The selected date
    */
-  endDateSelected(date: Date): void {
+  public endDateSelected(date: Date): void {
     if (date) {
       this._endDate = date;
 
@@ -164,7 +178,7 @@ export class TsDateRangeComponent {
    *
    * @return {Object} dateRange The current date range
    */
-  get dateRange(): any {
+  private get dateRange(): any {
     return {
       start: this._startDate || null,
       end: this._endDate || null,

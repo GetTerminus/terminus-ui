@@ -54,38 +54,44 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the primary label for the input
    */
-  @Input() inputLabel: string = 'Search';
+  @Input()
+  public inputLabel: string = 'Search';
 
   /**
    * Define if the user can clear the search input
    */
-  @Input() userCanClear: boolean = true;
+  @Input()
+  public userCanClear: boolean = true;
 
   /**
    * Define if the search is currently loading results
    */
-  @Input() loading: boolean = false;
+  @Input()
+  public loading: boolean = false;
 
   /**
    * Define an initial value for the search input
    */
-  @Input() initialValue: string;
+  @Input()
+  public initialValue: string;
 
   /**
    * Define the button style
    */
-  @Input() theme: TsStyleThemeTypes = 'primary';
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the hint text below the input
    */
-  @Input() inputHint: string = 'Enter at least two letters.';
+  @Input()
+  public inputHint: string = 'Enter at least two letters.';
 
 
   /**
    * Seed the value if needed on initialization
    */
-  ngOnInit() {
+  public ngOnInit() {
     if (this.initialValue) {
       this.query = this.initialValue;
     }
@@ -94,11 +100,11 @@ export class TsSearchComponent implements OnInit {
 
   /**
    * Submit a search query
-   * TODO: Add a type to the accepted param (need to figure out the type being passed by the form)
+   * FIXME: Add a type to the accepted param (need to figure out the type being passed by the form)
    *
    * @param {Object} formValue Value of the search input
    */
-  submitSearch(formValue: any): void {
+  public submitSearch(formValue: any): void {
     this.loading = true;
 
     // NOTE: FOR EXAMPLE ONLY

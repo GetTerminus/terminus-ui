@@ -37,48 +37,56 @@ export class TsDatepickerComponent implements OnChanges {
   /**
    * Define a date filter to disallow certain dates
    */
-  @Input() dateFilter: any;
+  @Input()
+  public dateFilter: any;
 
   /**
    * Define the placeholder
    */
-  @Input() inputPlaceholder: string = 'Select a date';
+  @Input()
+  public inputPlaceholder: string = 'Select a date';
 
   /**
    * Define if the input should be disabled
    */
-  @Input() isDisabled: boolean = false;
+  @Input()
+  public isDisabled: boolean = false;
 
   /**
    * Define the maximum date requirement
    */
-  @Input() maxDate: Date;
+  @Input()
+  public maxDate: Date;
 
   /**
    * Define the minimum date requirement
    */
-  @Input() minDate: Date;
+  @Input()
+  public minDate: Date;
 
   /**
    * Define a starting date for the datepicker
    */
-  @Input() initialDate: Date;
+  @Input()
+  public initialDate: Date;
 
   /**
    * Define the starting view of the datepicker
    */
-  @Input() startingView: 'month' | 'year' = 'month';
+  @Input()
+  public startingView: 'month' | 'year' = 'month';
 
   /**
    * Define an event emitter to alert consumers that a date was selected
    */
-  @Output() selected: EventEmitter<any> = new EventEmitter();
+  @Output()
+  public selected: EventEmitter<any> = new EventEmitter();
 
 
   /**
    * Set the initial date if it exists
    */
-  ngOnChanges(changes: any): void {
+  public ngOnChanges(changes: any): void {
     if (this.initialDate) {
       this.value = this.initialDate;
     }

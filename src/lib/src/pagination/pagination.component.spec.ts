@@ -46,6 +46,7 @@ describe(`PaginationComponent`, () => {
       .then(() => {
         this.fixture = TestBed.createComponent(TsPaginationComponent);
         this.component = this.fixture.componentInstance;
+        this.TOTAL_RECORDS = 100;
       });
   }));
 
@@ -66,8 +67,8 @@ describe(`PaginationComponent`, () => {
         value: '3',
       };
       spyOn(this.component.pageSelect, 'emit').and.callThrough();
-      spyOn(this.component, '_createPagesArray').and.callThrough();
-      spyOn(this.component, '_createCurrentPageLabel').and.callThrough();
+      spyOn(this.component, 'createPagesArray').and.callThrough();
+      spyOn(this.component, 'createCurrentPageLabel').and.callThrough();
       this.component.totalRecords = 125;
       this.fixture.detectChanges();
 
@@ -76,8 +77,8 @@ describe(`PaginationComponent`, () => {
       this.component.currentPageChanged(eventMock);
 
       expect(this.component.currentPage).toEqual(3);
-      expect(this.component._createPagesArray).toHaveBeenCalled();
-      expect(this.component._createCurrentPageLabel).toHaveBeenCalled();
+      expect(this.component.createPagesArray).toHaveBeenCalled();
+      expect(this.component.createCurrentPageLabel).toHaveBeenCalled();
       expect(this.component.pageSelect.emit).toHaveBeenCalled();
     });
 
@@ -202,7 +203,7 @@ describe(`PaginationComponent`, () => {
 
     it(`should update the records per page, reset current page & re-initialize`, () => {
       spyOn(this.component, 'initialize');
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
       this.component.recordsPerPageUpdated(25);
@@ -218,7 +219,7 @@ describe(`PaginationComponent`, () => {
   describe(`menuIsDisabled()`, () => {
 
     it(`should return TRUE if there are less than 2 pages`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
       expect(this.component.menuIsDisabled(1)).toEqual(true);
@@ -226,7 +227,7 @@ describe(`PaginationComponent`, () => {
 
 
     it(`should return FALSE if there are 2 or more pages`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
       expect(this.component.menuIsDisabled(3)).toEqual(false);
@@ -239,7 +240,7 @@ describe(`PaginationComponent`, () => {
     const options = [5, 10, 20];
 
     it(`should return TRUE if there are fewer records than the amount of the lowest records-per-page option`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
       expect(this.component.disableRecordsPerPage(4, options)).toEqual(true);
@@ -247,7 +248,7 @@ describe(`PaginationComponent`, () => {
 
 
     it(`should return FALSE if there are more records than the amount of the lowest records-per-page option`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
       expect(this.component.disableRecordsPerPage(6, options)).toEqual(false);
@@ -256,23 +257,23 @@ describe(`PaginationComponent`, () => {
   });
 
 
-  describe(`_createCurrentPageLabel()`, () => {
+  describe(`createCurrentPageLabel()`, () => {
 
     it(`should return a valid title`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
-      const actual = this.component._createCurrentPageLabel(2, this.component.pagesArray, 100);
+      const actual = this.component.createCurrentPageLabel(2, this.component.pagesArray, 100);
       const expected = '11 - 20 of 100';
       expect(actual).toEqual(expected);
     });
 
 
-    it(`should return a valid title when the requested page does't exist`, () => {
-      this.component.totalRecords = 100;
+    it(`should return a valid title when the requested page doesn't exist`, () => {
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
-      const actual = this.component._createCurrentPageLabel(11, this.component.pagesArray, 100);
+      const actual = this.component.createCurrentPageLabel(11, this.component.pagesArray, this.TOTAL_RECORDS);
       const expected = '91 - 100 of 100';
       expect(actual).toEqual(expected);
     });
@@ -280,23 +281,23 @@ describe(`PaginationComponent`, () => {
   });
 
 
-  describe(`_createPagesArray()`, () => {
+  describe(`createPagesArray()`, () => {
 
     it(`should create a valid array`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
-      const actual = this.component._createPagesArray(105, 10);
+      const actual = this.component.createPagesArray(105, 10);
       const expected = 11;
       expect(actual.length).toEqual(expected);
     });
 
 
     it(`should create a final page when fewer than the per-page amount are remaining`, () => {
-      this.component.totalRecords = 100;
+      this.component.totalRecords = this.TOTAL_RECORDS;
       this.fixture.detectChanges();
 
-      const array = this.component._createPagesArray(105, 10);
+      const array = this.component.createPagesArray(105, 10);
       const expected = 11;
       expect(array.length).toEqual(expected);
       expect(array[array.length - 1].name).toEqual('101 - 105');
@@ -307,7 +308,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 8;
       this.fixture.detectChanges();
 
-      const array = this.component._createPagesArray(8, 10);
+      const array = this.component.createPagesArray(8, 10);
       const expected = 1;
       expect(array.length).toEqual(expected);
       expect(array[array.length - 1].name).toEqual('1 - 8');

@@ -13,7 +13,6 @@ import { TsStyleThemeTypes } from './../types/style-theme.types';
 
 /**
  * A presentational component to render a button
- * TODO: Text color transition doesn't match the background transition timing
  *
  * @example
  * <ts-button
@@ -35,35 +34,42 @@ export class TsButtonComponent {
   /**
    * Define the action for the aria-label
    */
-  @Input() actionName: ButtonActionTypes = 'Button';
+  @Input()
+  public actionName: ButtonActionTypes = 'Button';
 
   /**
    * Define the button type
    */
-  @Input() buttonType: ButtonFunctionTypes = 'button';
+  @Input()
+  public buttonType: ButtonFunctionTypes = 'button';
 
   /**
    * Define a Material icon to include
    */
-  @Input() iconName: string;
+  @Input()
+  public iconName: string;
 
   /**
    * Define if the button is disabled
    */
-  @Input() isDisabled: boolean = false;
+  @Input()
+  public isDisabled: boolean = false;
 
   /**
    * Define if the progress indicator should show
    */
-  @Input() showProgress: boolean = false;
+  @Input()
+  public showProgress: boolean = false;
 
   /**
    * Define the theme
    */
-  @Input() theme: TsStyleThemeTypes = 'primary';
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Pass the click event through to the parent
    */
-  @Output() clickEvent: EventEmitter<any> = new EventEmitter;
+  @Output()
+  public clickEvent: EventEmitter<any> = new EventEmitter;
 }

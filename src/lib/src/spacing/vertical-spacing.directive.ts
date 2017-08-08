@@ -8,7 +8,6 @@ import {
 import { TsVerticalSpacingTypes } from './vertical-spacing.type';
 
 
-
 /**
  * This is the vertical spacing UI directive. Accepts {@link TsVerticalSpacingTypes}
  *
@@ -31,7 +30,7 @@ export class TsVerticalSpacingDirective {
    * @param {String} value The spacing value passed in.
    */
   @Input()
-  set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
+  public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
     // Fall back to default class if no value is passed in
     const className = (value && value.length > 0) ? `u-vertical-spacing__${value}` : `u-vertical-spacing`;
 

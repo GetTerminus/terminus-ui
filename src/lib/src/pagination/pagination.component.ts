@@ -13,6 +13,9 @@ import { TsStyleThemeTypes } from './../types/style-theme.types';
 /**
  * A pagination component
  *
+ * TODO: Add tooltips for all buttons
+ * TODO: recordCountTooHighMessage should support rich HTML so it can link to filters/help/etc
+ *
  * @example
  * <ts-pagination
  *              currentPage="1"
@@ -89,77 +92,84 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   private recordsPerPage: number = this.DEFAULT_PER_PAGE;
 
   /**
-   * Define the label for the records per page select
-   */
-  private recordsSelectLabel: string = 'Per page';
-
-  /**
    * Define the current page
    */
-  @Input() currentPage: number = 1;
+  @Input()
+  public currentPage: number = 1;
 
   /**
    * Define how many pages exist to show a prompt about better filtering
    */
-  @Input() maxPreferredRecords: number = this.DEFAULT_MAX_PREFERED_RECORDS;
+  @Input()
+  public maxPreferredRecords: number = this.DEFAULT_MAX_PREFERED_RECORDS;
 
   /**
    * Define the menu location (open up or open down)
    */
-  @Input() menuLocation: 'above' | 'below' = 'above';
+  @Input()
+  public menuLocation: 'above' | 'below' = 'above';
 
   /**
    * Define the color theme
    */
-  @Input() theme: TsStyleThemeTypes = 'primary';
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the total number of records
    */
-  @Input() totalRecords: number = 0;
+  @Input()
+  public totalRecords: number = 0;
 
   /**
    * Define the message to show when too many pages exist
-   * TODO: This should probably support rich HTML so it can link to filters/help/etc
    */
-  @Input() recordCountTooHighMessage: string = this.DEFAULT_HIGH_RECORD_MESSAGE;
+  @Input()
+  public recordCountTooHighMessage: string = this.DEFAULT_HIGH_RECORD_MESSAGE;
 
   /**
    * Define how many records are shown per page
    */
-  @Input() recordsPerPageChoices: number[] = this.DEFAULT_RECORDS_PER_PAGE_OPTIONS;
+  @Input()
+  public recordsPerPageChoices: number[] = this.DEFAULT_RECORDS_PER_PAGE_OPTIONS;
+
+  /**
+   * Define the label for the records per page select
+   */
+  @Input()
+  public recordsSelectLabel: string = 'Per page';
 
   /**
    * Define if the records per page select menu should be visible
    */
-  @Input() showRecordsPerPageSelector: boolean = true;
+  @Input()
+  public showRecordsPerPageSelector: boolean = true;
 
   /**
    * Emit a page selected event
    */
-  @Output() pageSelect = new EventEmitter<number>();
+  @Output()
+  public pageSelect = new EventEmitter<number>();
 
   /**
    * Emit a change event when the records per page changes
    */
-  @Output() recordsPerPageChange = new EventEmitter<number>();
-
-
-  // TODO: Add tooltips on all buttons
+  @Output()
+  public recordsPerPageChange: EventEmitter<number> = new EventEmitter();
 
 
   /**
-   * @hidden
+   * Initialize on init
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initialize();
   }
 
 
   /**
-   * @hidden
+   * Initialize on any changes
    */
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     this.initialize();
   }
 
@@ -167,9 +177,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Set up initial resources
    */
-  initialize() {
-    this.pagesArray = this._createPagesArray(this.totalRecords, this.recordsPerPage);
-    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+  private initialize() {
+    this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
+    this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
     // Go to the initially set page
     this.changePage(this.currentPage, 1, this.pagesArray);
@@ -181,12 +191,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Object} event The selected page
    */
-  currentPageChanged(event: any): void {
+  public currentPageChanged(event: any): void {
     // Set the current page
     this.currentPage = parseInt(event.value, 10);
 
     // Create a new label for the menu
-    this.currentPageLabel = this._createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+    this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
     // Emit an event
     this.pageSelect.emit(event);
@@ -200,7 +210,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  changePage(destinationPage: number, currentPage: number, pages: any[]): void {
+  public changePage(destinationPage: number, currentPage: number, pages: any[]): void {
     const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
@@ -220,7 +230,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} page The number of the current page
    * @return {Boolean} isFirstPage A boolean representing if this is the first page
    */
-  isFirstPage(page: number): boolean {
+  public isFirstPage(page: number): boolean {
     return page === 1;
   }
 
@@ -231,7 +241,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} page The number of the current page
    * @return {Boolean} isLastPage A boolean representing if this is the last page
    */
-  isLastPage(page: number): boolean {
+  public isLastPage(page: number): boolean {
     if (this.pagesArray) {
       return page === this.pagesArray.length;
     } else {
@@ -248,7 +258,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {String} totalRecords The number of records
    * @return {Boolean} shouldShow A boolean representing if the message should be shown
    */
-  shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
+  public shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
     if (totalRecords > max) {
       return (message && message.length > 0) ? true : false;
     } else {
@@ -262,7 +272,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Number} selection The selected records-per-page count
    */
-  recordsPerPageUpdated(selection: number): void {
+  public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage = selection;
     this.currentPage = 1;
 
@@ -277,7 +287,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} pagesCount The number of pages
    * @return {Boolean} shouldDisable A boolean representing if the menu should be disabled
    */
-  menuIsDisabled(pagesCount: number): boolean {
+  public menuIsDisabled(pagesCount: number): boolean {
     return pagesCount < 2;
   }
 
@@ -290,7 +300,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * page
    * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
    */
-  disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
+  public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
     const lowestPerPage = Math.min.apply(Math, recordsPerPageChoices);
 
     return totalRecords < lowestPerPage;
@@ -304,7 +314,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Array} pages The array of all pages
    * @return {String} timeAgo The difference in time
    */
-  private _createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
+  private createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
     const findPage = (allPages: any[], number: number) => {
       return pages.find((page: any) => {
         return page.value === number.toString();
@@ -331,7 +341,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  private _createPagesArray(total: number, perPage: number): any {
+  private createPagesArray(total: number, perPage: number): any {
     const paginationArray: any[] = [];
     let recordsRemaining = total;
     let currentPage = 1;

@@ -104,7 +104,7 @@ describe(`TsMenuComponent`, () => {
   });
 
 
-  describe(`_hasAtLeastOneIcon()`, () => {
+  describe(`hasAtLeastOneIcon()`, () => {
 
     it(`should return TRUE if any array item has a value for 'icon'`, () => {
       this.fixture.detectChanges();
@@ -123,7 +123,7 @@ describe(`TsMenuComponent`, () => {
         },
       ];
 
-      expect(this.component._hasAtLeastOneIcon(arrayMock)).toEqual(true);
+      expect(this.component.hasAtLeastOneIcon(arrayMock)).toEqual(true);
     });
 
 
@@ -134,7 +134,7 @@ describe(`TsMenuComponent`, () => {
           name: 'foo',
         },
       ];
-      expect(this.component._hasAtLeastOneIcon(arrayMock)).toEqual(false);
+      expect(this.component.hasAtLeastOneIcon(arrayMock)).toEqual(false);
     });
 
   });
