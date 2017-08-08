@@ -21,9 +21,16 @@ cd dist/
 echo "RUN: pack"
 npm pack
 
+echo "List files"
+ls -a
+
 echo "RUN: get version"
-version=node -p "require('./package.json').version"
-echo "VERSION: ${version}"
+PACKAGE_VERSION=$(cat package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g')
+echo "VERSION: ${PACKAGE_VERSION}"
 
 echo "CD: out of dist"
 cd ../
