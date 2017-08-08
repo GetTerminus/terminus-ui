@@ -9,7 +9,8 @@
   "author": "@terminus",
   "license": "MIT",
   "files": [
-    "build/"
+    "build/",
+    "build/helpers.scss"
   ],
   "repository": {
     "type": "git",
