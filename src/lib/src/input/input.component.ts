@@ -7,7 +7,8 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
-import { noop } from './../utilities/noop';
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+
 
 /**
  * Custom control value accessor for our component
@@ -55,25 +56,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
 })
-export class TsInputComponent {
-  /**
-   * @private Define the internal data model
-   * (for form control support)
-   */
-  private innerValue: any = '';
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onChangeCallback: (_: any) => void = noop;
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onTouchedCallback: () => void = noop;
-
+export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define if the input should autocapitalize
    * (standard HTML5 property)
@@ -123,62 +106,10 @@ export class TsInputComponent {
   @Input() prefixIcon: string;
 
   /**
-   * Define the form control to get access to validators
-   * (for form control support)
-   */
-  @Input() formControl: any;
-
-  /**
    * Define if the input should spellcheck
    * (standard HTML5 property)
    */
   @Input() spellcheck: boolean = true;
-
-  /**
-   * Return the value
-   * (for form control support)
-   */
-  get value(): any {
-    return this.innerValue;
-  };
-
-  /**
-   * Set the accessor and call the onchange callback
-   * (for form control support)
-   */
-  set value(v: any) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.onChangeCallback(v);
-    }
-  }
-
-
-  /**
-   * Set touched on blur
-   * (for form control support)
-   */
-  onBlur() {
-    this.onTouchedCallback();
-  }
-
-
-  /**
-   * Register onChange callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnChange(fn: any) {
-    this.onChangeCallback = fn;
-  }
-
-
-  /**
-   * Register onTouched callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
-  }
 
 
   /**
@@ -186,17 +117,6 @@ export class TsInputComponent {
    */
   reset(): void {
     this.value = '';
-  }
-
-
-  /**
-   * Write value to inner value (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  writeValue(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-    }
   }
 
 }

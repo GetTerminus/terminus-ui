@@ -9,7 +9,8 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
-import { noop } from './../utilities/noop';
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+
 
 /**
  * Custom control value accessor for our component
@@ -46,116 +47,55 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./select.component.scss'],
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
 })
-export class TsSelectComponent {
-  /**
-   * @private Define the internal data model
-   * (for form control support)
-   */
-  private innerValue: any = '';
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onChangeCallback: (_: any) => void = noop;
-
-  /**
-   * @private Define placeholder for callback (provided later by the control value accessor)
-   * (for form control support)
-   */
-  private onTouchedCallback: () => void = noop;
-
+export class TsSelectComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the content for a blank option (no content means no options will show)
    * NOTE: This is disabled if `multipleAllowed` is true
    */
-  @Input() blankChoice: string;
+  @Input()
+  public blankChoice: string;
 
   /**
    * Define the label for the menu
    */
-  @Input() label: string = '';
+  @Input()
+  public label: string = '';
 
   /**
    * Define a list of select items
    */
-  @Input() items: any = [];
+  @Input()
+  public items: any = [];
 
   /**
    * Define if multiple selections are allowed
    */
-  @Input() multipleAllowed: boolean = false;
+  @Input()
+  public multipleAllowed: boolean = false;
 
   /**
    * Define the key that represents the value item from the object
    */
-  @Input() valueKey: string;
-
-  /**
-   * Define the form control to get access to validators
-   * (for form control support)
-   */
-  @Input() formControl: any;
-
-  /**
-   * Return the value
-   * (for form control support)
-   */
-  get value(): any {
-    return this.innerValue;
-  };
-
-  /**
-   * Set the accessor and call the onchange callback
-   * (for form control support)
-   */
-  set value(v: any) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.onChangeCallback(v);
-    }
-  }
+  @Input()
+  public valueKey: string;
 
   /**
    * Emit event when the select is opened
    */
-  @Output() open = new EventEmitter<boolean>();
+  @Output()
+  public open = new EventEmitter<boolean>();
 
   /**
    * Emit event when the select is closed
    */
-  @Output() close = new EventEmitter<boolean>();
+  @Output()
+  public close = new EventEmitter<boolean>();
 
   /**
    * Emit event when the select value is changed
    */
-  @Output() change = new EventEmitter<any>();
-
-  /**
-   * Set touched on blur
-   * (for form control support)
-   */
-  onBlur() {
-    this.onTouchedCallback();
-  }
-
-
-  /**
-   * Register onChange callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnChange(fn: any) {
-    this.onChangeCallback = fn;
-  }
-
-
-  /**
-   * Register onTouched callback (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
-  }
+  @Output()
+  public change = new EventEmitter<any>();
 
 
   /**
@@ -165,19 +105,8 @@ export class TsSelectComponent {
    * @param {String} valueKey The string representing the value key
    * @return {String} value The value of the valueKey or the item itself
    */
-  getValueKey(item: object, valueKey?: string): string {
+  public getValueKey(item: object, valueKey?: string): string {
     return valueKey ? item[valueKey] : item;
-  }
-
-
-  /**
-   * Write value to inner value (from ControlValueAccessor interface)
-   * (for form control support)
-   */
-  writeValue(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-    }
   }
 
 }
