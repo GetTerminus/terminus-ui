@@ -8,10 +8,6 @@
   "typings": "./ui.d.ts",
   "author": "@terminus",
   "license": "MIT",
-  "files": [
-    "build/",
-    "build/helpers.scss"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/GetTerminus/terminus-ui.git"
@@ -21,7 +17,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean:lib": "rimraf out-tsc build \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
+    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
     "clean:styleguide": "rm -rf styleguide",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",
