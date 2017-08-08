@@ -40,6 +40,7 @@ module.exports = {
     {name: 'Dependencies'},
     {name: 'Demo'},
     {name: 'Services'},
+    {name: 'Utilities'},
   ],
 
   // it needs to match the value for field type. Eg.: 'fix'
