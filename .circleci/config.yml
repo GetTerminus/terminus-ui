@@ -46,8 +46,8 @@ jobs:
           destination: ~/coverage/
 
       - store_artifacts:
-          path: build/
-          destination: ~/build/
+          path: dist/
+          destination: ~/dist/
 
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
