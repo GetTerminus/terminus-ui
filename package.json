@@ -45,7 +45,7 @@
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "semantic-release-pre": "semantic-release pre",
     "semantic-release-post": "semantic-release post",
-    "semantic-release": "semantic-release pre && npm publish dist/terminus-ui-0.0.0-development.tgz && semantic-release post",
+    "semantic-release": "semantic-release pre && npm run build && npm publish && semantic-release post",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "npm run build && npm run build-demo && npm run build-scss",
     "start": "concurrently \"npm run build:watch\" \"npm run build-demo:watch\"",
@@ -58,6 +58,7 @@
     "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions"
   },
   "config": {
+    "loglevel": "silly",
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     },
