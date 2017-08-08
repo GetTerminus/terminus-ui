@@ -12,6 +12,10 @@
 echo "Copy git repo"
 cp -R ./.git ./dist/.git
 
+cd dist/
+npm pack
+cd ../
+
 # Run tests
 npm run semantic-release || {
     echo 'No release needed.';
