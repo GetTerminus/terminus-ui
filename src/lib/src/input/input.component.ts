@@ -24,7 +24,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 /**
  * A presentational component to render a text input.
- * TODO: Offer ability to disable autocomplete/spellcheck.
  *
  * Why we are not masking passwords:
  *   - https://www.nngroup.com/articles/stop-password-masking/
@@ -42,7 +41,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              isRequired="false"
  *              hideRequiredMarker="false"
  *              prefixIcon="link"
- *              canClear="true"
+ *              isClearable="true"
  *              isFocused="false"
  *              autocomplete="off"
  *              autocorrect="off"
@@ -89,9 +88,8 @@ export class TsInputComponent {
 
   /**
    * Define a Material icon to include after the input
-   * FIXME: Rename to match other inputs: `isClearable`
    */
-  @Input() canClear: boolean = false;
+  @Input() isClearable: boolean = false;
 
   /**
    * Define if the input should be focused

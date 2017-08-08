@@ -13,7 +13,7 @@ import {
         formControlName="email"
         [formControl]="getControl('email')"
         [label]="label1"
-        [canClear]="clearable"
+        [isClearable]="clearable"
         hint="A valid email is required."
         [isRequired]="true"
       ></ts-input>
