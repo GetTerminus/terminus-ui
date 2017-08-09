@@ -77,62 +77,66 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ## Available Features
 
+> - :x:: not started
+> - :hammer:: started
+> - :white_check_mark:: available
+
 ### Components
 
-| Feature          | Notes                                                  | Status           |
-|------------------|--------------------------------------------------------|------------------|
-| alert            |                                                        |      not started |
-| autocomplete     |                                                        |      not started |
-| badge            |                                                        |      not started |
-| button           |                                                        |        available |
-| breadcrumbs      |                                                        |      not started |
-| chip             |                                                        |      not started |
-| checkbox         |                                                        |        available |
-| copy             |                                                        |        available |
-| datavis          |                                                        |      not started |
-| datetable        |                                                        |      not started |
-| datepicker       |                                                        |        available |
-| date-range       |                                                        |        available |
-| dialog           |                                                        |      not started |
-| divider          |                                                        |      not started |
-| expansion        |                                                        |      not started |
-| file-picker      |                                                        |      not started |
-| input-masking    |                                                        |      not started |
-| input-messages   |         Used by `input` to display validation messages |        available |
-| input            |                                                        |        available |
-| link             |                                                        |        available |
-| login form       |                                                        |        available |
-| menu             |                                                        |        available |
-| pagination       |                                                        |        available |
-| picklist         |                                                        |      not started |
-| progress         |                                                        |      not started |
-| progression      |                                                        |      not started |
-| radio            |                                                        |      not started |
-| search           |                                                        |        available |
-| select           |                                                        |        available |
-| tabs             |                                                        |      not started |
-| toggle           |                                                        |        available |
-| tooltip          |                                                        |        available |
+| Feature          | Notes                                                  | Status             |
+|------------------|--------------------------------------------------------|--------------------|
+| alert            |                                                        |                :x: |
+| autocomplete     |                                                        |                :x: |
+| badge            |                                                        |                :x: |
+| button           |                                                        | :white_check_mark: |
+| breadcrumbs      |                                                        |                :x: |
+| chip             |                                                        |                :x: |
+| checkbox         |                                                        | :white_check_mark: |
+| copy             |                                                        | :white_check_mark: |
+| datavis          |                                                        |                :x: |
+| datetable        |                                                        |                :x: |
+| datepicker       |                                                        | :white_check_mark: |
+| date-range       |                                                        | :white_check_mark: |
+| dialog           |                                                        |                :x: |
+| divider          |                                                        |                :x: |
+| expansion        |                                                        |                :x: |
+| file-picker      |                                                        |                :x: |
+| input-masking    |                                                        |                :x: |
+| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |
+| input            |                                                        | :white_check_mark: |
+| link             |                                                        | :white_check_mark: |
+| login form       |                                                        | :white_check_mark: |
+| menu             |                                                        | :white_check_mark: |
+| pagination       |                                                        | :white_check_mark: |
+| picklist         |                                                        |                :x: |
+| progress         |                                                        |                :x: |
+| progression      |                                                        |                :x: |
+| radio            |                                                        |                :x: |
+| search           |                                                        | :white_check_mark: |
+| select           |                                                        | :white_check_mark: |
+| tabs             |                                                        |                :x: |
+| toggle           |                                                        | :white_check_mark: |
+| tooltip          |                                                        | :white_check_mark: |
 
 
 ### Services
 
-| Feature          | Notes                                                  | Status           |
-|------------------|--------------------------------------------------------|------------------|
-| WindowService    |             Provide access to the native window object |        available |
+| Feature          | Notes                                                  | Status             |
+|------------------|--------------------------------------------------------|--------------------|
+| WindowService    |             Provide access to the native window object | :white_check_mark: |
 
 
 ### Style Helpers
 
-| Feature          | Notes                                                  | Status           |
-|------------------|--------------------------------------------------------|------------------|
-| assets           |                                                        |          started |
-| breakpoints      |                                                        |        available |
-| colors           |                                                        |          started |
-| layout           |                                                        |          started |
-| spacing          |                                                        |        available |
-| typography       |                                                        |        available |
-| z-index          |                                                        |        available |
+| Feature          | Notes                                                  | Status             |
+|------------------|--------------------------------------------------------|--------------------|
+| assets           |                                                        |           :hammer: |
+| breakpoints      |                                                        | :white_check_mark: |
+| colors           |                                                        |           :hammer: |
+| layout           |                                                        |           :hammer: |
+| spacing          |                                                        | :white_check_mark: |
+| typography       |                                                        | :white_check_mark: |
+| z-index          |                                                        | :white_check_mark: |
 
 
 ## Installation
