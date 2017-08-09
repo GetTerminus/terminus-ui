@@ -24,7 +24,7 @@
     "predocs": "npm run markdown:test-links && npm run docs:toc",
     "docs": "npm run docs:ts && npm run docs:scss",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
-    "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all --theme stripe",
+    "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs/typescript --hideGenerator --toggleMenuItems all --theme stripe",
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "prebuild": "npm run clean:lib",
     "build": "node tooling/build.js",

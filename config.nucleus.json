@@ -3,7 +3,7 @@
   "files": [
     "src/lib/**/*.scss"
   ],
-  "target": "./styleguide",
+  "target": "./docs/styleguide",
   "css": "",
   "namespace": "page",
   "verbose": 3,

@@ -4,7 +4,7 @@ The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
-[![documentation coverage][compodoc-badge]][docs-index]
+[![documentation coverage][compodoc-badge]][docs-url]
 [![NPM version][npm-version-image]][npm-url]
 [![Library size][file-size-badge]][raw-distribution-js]
 [![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
@@ -16,6 +16,7 @@ The library of UI components used for Terminus applications.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Library Component Documentation](#library-component-documentation)
 - [Primary Library Features](#primary-library-features)
 - [Available Features](#available-features)
   - [Components](#components)
@@ -41,6 +42,12 @@ The library of UI components used for Terminus applications.
 - [Suggested Tools](#suggested-tools)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Library Component Documentation
+
+This document covers documentation for building and maintaining the terminus-ui library. For
+documentation on all components and styles, visit [GetTerminus.github.io/terminus-ui][docs-url].
 
 
 ## Primary Library Features
@@ -508,7 +515,7 @@ machines.
 <!-- LINKS -->
 
 [compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
-[docs-index]: docs/coverage.html
+[docs-url]: https://getterminus.github.io/terminus-ui/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
 [npm-url]: https://npmjs.org/package/@terminus/ui
