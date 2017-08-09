@@ -4,7 +4,7 @@ The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
-[![documentation coverage][compodoc-badge]][docs-index]
+[![documentation coverage][compodoc-badge]][docs-url]
 [![NPM version][npm-version-image]][npm-url]
 [![Library size][file-size-badge]][raw-distribution-js]
 [![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
@@ -508,7 +508,7 @@ machines.
 <!-- LINKS -->
 
 [compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/images/coverage-badge.svg
-[docs-index]: docs/coverage.html
+[docs-url]: https://getterminus.github.io/terminus-ui/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
 [npm-url]: https://npmjs.org/package/@terminus/ui
