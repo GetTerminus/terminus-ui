@@ -53,7 +53,7 @@
     "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "npm run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
-    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x styleguide/ -x .DS_Store -x README.md",
+    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x styleguide/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
     "update-scss-lib-extensions": "node tooling/replace-scss-lib-extension.js",
     "update-scss-demo-extensions": "node tooling/replace-scss-demo-extension.js",
     "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- npm run update-scss-lib-extensions"

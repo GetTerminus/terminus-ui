@@ -21,8 +21,10 @@ const distFolder = path.join(rootFolder, 'dist');
 const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
-// Define all SCSS files that need to be exposed to the consuming library
-// NOTE: Typography must be before `_spacing.scss`
+/*
+ * Define all SCSS files that need to be exposed to the consuming library
+ * NOTE: Typography must be before `_spacing.scss`
+ */
 const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_typography.scss',
   'src/lib/src/scss/helpers/_color.scss',
