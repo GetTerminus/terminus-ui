@@ -2,8 +2,14 @@
 
 The library of UI components used for Terminus applications.
 
-[![CircleCI][circle-badge]][circle-link] [![codecov][codecov-badge]][codecov-project] [![documentation coverage][compodoc-badge]][docs-index]
-[![NPM version][npm-version-image]][npm-url] [![Greenkeeper badge][greenkeeper-badge]][greenkeeper] [![semantic-release][semantic-release-badge]][semantic-release] [![MIT License][license-image]][license-url]
+[![CircleCI][circle-badge]][circle-link]
+[![codecov][codecov-badge]][codecov-project]
+[![documentation coverage][compodoc-badge]][docs-index]
+[![NPM version][npm-version-image]][npm-url]
+[![Library size][file-size-badge]][raw-distribution-js]
+[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
+[![semantic-release][semantic-release-badge]][semantic-release]
+[![MIT License][license-image]][license-url]
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -133,6 +139,8 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 
 ## Adding a Component
 
+> NOTE: You can also use the [yeoman generator][generator] to quickly scaffold a new component
+
 1. Create a directory using the component name: `src/lib/src/button/`
     - Necessary files:
       - `button.module.ts`
@@ -151,8 +159,6 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Run `npm run docs` to generate all documentation.
 1. Add the new component to available scopes in `tooling/cz-config.js`
 1. Update the status for the component in the [components table](#components)
-
-> NOTE: You can also use our [yeoman generator][generator] to quickly scaffold a new component
 
 
 ## Developing
@@ -189,7 +195,7 @@ $ npm run test
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu
 
-![select a demo compenent][component-demo-screenshot]
+![select a demo component][component-demo-screenshot]
 
 
 ### Branching
@@ -349,6 +355,7 @@ not production ready!
 1. A changelog is generated in the release notes on [Github][ui-github]
 1. The new version is published to [NPM][ui-npm]
 
+> You can view the currently published files using the [unpkg cdn][unpkg-terminus].
 
 ### Code Comments
 
@@ -514,7 +521,8 @@ machines.
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-[semantic_release]: https://github.com/semantic-release/semantic-release
+[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
+[raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
 [commitizen]: https://github.com/commitizen
 [commitizen_vsc]: https://github.com/commitizen
 [saucelab_platforms]: https://saucelabs.com/platforms
@@ -552,3 +560,4 @@ machines.
 [semver]: http://semver.org/
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
+[unpkg-terminus]: https://unpkg.com/@terminus/ui/
