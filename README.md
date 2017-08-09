@@ -461,7 +461,7 @@ machines.
 
 ## Project Resources
 
-- [Semantic Release][semantic_release] - Automatically release versioned release to NPM and generate
+- [Semantic Release][semantic-release] - Automatically release versioned release to NPM and generate
     a changelog in the Github tag.
 - [Greenkeeper][greenkeeper] - Automatically keep dependencies up to date.
 - [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
