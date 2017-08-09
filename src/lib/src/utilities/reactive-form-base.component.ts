@@ -10,10 +10,12 @@ import { noop } from './noop';
  * This is the base class for all custom reactive form elements.
  *
  * @example
- * export class TsInputComponent extends TsReactiveFormBaseComponent...
+ * export class TsInputComponent extends TsReactiveFormBaseComponent {}
  */
 @Component({
-  // NOTE: Without this dummy selector, this class isn't picked up by the docs generator
+  /*
+   * NOTE: Without this dummy selector, this class isn't picked up by the docs generator
+   */
   selector: 'ts-dummy-selector',
 })
 export class TsReactiveFormBaseComponent {

@@ -6,11 +6,11 @@ import { creditCardMessage } from './../../utilities/regex/credit-card.regex';
 import { passwordMessage } from './../../utilities/regex/password.regex';
 
 
+// TODO: The consuming app will need a way to pass in the error messages config object so that
+// localization is supported.
+
 /**
  * Define a service that offers custom validators
- *
- * TODO: The consuming app will need a way to pass in the error messages config object so that
- * localization is supported.
  */
 @Injectable()
 export class ValidationService {

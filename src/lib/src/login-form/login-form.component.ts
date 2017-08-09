@@ -7,6 +7,7 @@ import {
   ViewChildren,
   QueryList,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   FormGroup,
@@ -153,7 +154,7 @@ export class TsLoginFormComponent implements OnChanges {
    *
    * @param {Object} changes The inputs that have changed
    */
-  public ngOnChanges(changes: any): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('resetForm') && changes.resetForm.currentValue) {
       this._resetForm();
     }
