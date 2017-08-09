@@ -16,6 +16,7 @@ The library of UI components used for Terminus applications.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Library Component Documentation](#library-component-documentation)
 - [Primary Library Features](#primary-library-features)
 - [Available Features](#available-features)
   - [Components](#components)
@@ -41,6 +42,12 @@ The library of UI components used for Terminus applications.
 - [Suggested Tools](#suggested-tools)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Library Component Documentation
+
+This document covers documentation for building and maintaining the terminus-ui library. For
+documentation on all components and styles, visit [GetTerminus.github.io/terminus-ui][docs-url].
 
 
 ## Primary Library Features
