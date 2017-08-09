@@ -84,7 +84,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 ### Components
 
 | Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|--------------------|
+|------------------|--------------------------------------------------------|        :---:       |
 | alert            |                                                        |                :x: |
 | autocomplete     |                                                        |                :x: |
 | badge            |                                                        |                :x: |
@@ -122,14 +122,14 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 ### Services
 
 | Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|--------------------|
+|------------------|--------------------------------------------------------|        :---:       |
 | WindowService    |             Provide access to the native window object | :white_check_mark: |
 
 
 ### Style Helpers
 
 | Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|--------------------|
+|------------------|--------------------------------------------------------|        :---:       |
 | assets           |                                                        |           :hammer: |
 | breakpoints      |                                                        | :white_check_mark: |
 | colors           |                                                        |           :hammer: |
