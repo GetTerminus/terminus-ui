@@ -10,11 +10,11 @@ import {
 import { TsStyleThemeTypes } from './../types/style-theme.types';
 
 
+// TODO: Add tooltips for all buttons
+// TODO: recordCountTooHighMessage should support rich HTML so it can link to filters/help/etc
+
 /**
  * A pagination component
- *
- * TODO: Add tooltips for all buttons
- * TODO: recordCountTooHighMessage should support rich HTML so it can link to filters/help/etc
  *
  * @example
  * <ts-pagination

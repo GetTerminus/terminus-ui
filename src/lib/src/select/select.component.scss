@@ -47,8 +47,10 @@
 
     ::ng-deep .mat-select-placeholder {
       position: absolute;
+      /*
+       * NOTE: We must overwrite an inline style from Material
+       */
       // sass-lint:disable no-important
-      // NOTE: We must overwrite an inline style from Material
       width: 5rem !important;
       // sass-lint:enable no-important
     }

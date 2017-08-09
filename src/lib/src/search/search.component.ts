@@ -100,14 +100,16 @@ export class TsSearchComponent implements OnInit {
 
   /**
    * Submit a search query
-   * FIXME: Add a type to the accepted param (need to figure out the type being passed by the form)
    *
    * @param {Object} formValue Value of the search input
    */
+  // FIXME: Add a type to the accepted param (need to figure out the type being passed by the form)
   public submitSearch(formValue: any): void {
     this.loading = true;
 
-    // NOTE: FOR EXAMPLE ONLY
+    /*
+     * NOTE: FOR EXAMPLE ONLY
+     */
     setTimeout(() => {
       this.loading = false;
     }, 1000);

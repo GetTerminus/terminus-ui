@@ -13,9 +13,9 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 /**
  * Custom control value accessor for our component
  *
- * FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
- * a base class that others can extend? (Not sure how to pass in a named component like below)
  */
+// FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
+// a base class that others can extend? (Not sure how to pass in a named component like below)
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsInputComponent),
@@ -91,8 +91,8 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Define a hint for the input
-   * TODO: Fix potential overlap of hint and error messages
    */
+  // TODO: Fix potential overlap of hint and error messages
   @Input() hint: string;
 
   /**

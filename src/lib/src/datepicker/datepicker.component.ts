@@ -5,6 +5,7 @@ import {
   OnChanges,
   EventEmitter,
   ViewChild,
+  SimpleChanges,
 } from '@angular/core';
 
 
@@ -86,7 +87,7 @@ export class TsDatepickerComponent implements OnChanges {
   /**
    * Set the initial date if it exists
    */
-  public ngOnChanges(changes: any): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (this.initialDate) {
       this.value = this.initialDate;
     }

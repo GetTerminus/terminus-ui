@@ -11,11 +11,11 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 import { WindowService } from './../services/window/window.service';
 
+// TODO: Add a tooltip to the copy button telling users it will copy to clipboard
+// TODO: Add a snackbar or alert to give the user feedback on copy success & failure
 
 /**
  * This is the TsCopyComponent UI Component
- * TODO: Add a tooltip to the copy button telling users it will copy to clipboard
- * TODO: Add a snackbar or alert to give the user feedback on copy success & failure
  *
  * @example
  * <ts-copy
@@ -41,8 +41,8 @@ export class TsCopyComponent {
 
   /**
    * Define the color of the md-ripple
-   * FIXME: This color should be coming from a config
    */
+  // FIXME: This color should be coming from a config
   public rippleColor: string = '#1a237e';
 
   /**

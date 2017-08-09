@@ -137,8 +137,10 @@ export class TsDateRangeComponent {
   public startDateSelected(date: Date): void {
     if (date) {
       this._startDate = date;
-      // NOTE: We don't want an end date that is before the start date, so when a start date is
-      // chosen, we set it as the minimum end date
+      /*
+       * NOTE: We don't want an end date that is before the start date, so when a start date is
+       * chosen, we set it as the minimum end date
+       */
       this.endMinDate = this._startDate;
 
       const dateIsAfter = this._endDate && date.getTime() > this._endDate.getTime();
