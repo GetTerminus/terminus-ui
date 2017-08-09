@@ -5,6 +5,7 @@ import {
   MdSlideToggleModule,
 } from '@angular/material';
 
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsToggleComponent } from './toggle.component';
 export { TsToggleComponent } from './toggle.component';
 
@@ -19,6 +20,7 @@ export { TsToggleComponent } from './toggle.component';
     TsToggleComponent,
   ],
   declarations: [
+    TsReactiveFormBaseComponent,
     TsToggleComponent,
   ],
 })

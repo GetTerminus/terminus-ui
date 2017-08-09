@@ -5,6 +5,7 @@ import {
   MdSelectModule,
 } from '@angular/material';
 
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsSelectComponent } from './select.component';
 export { TsSelectComponent } from './select.component';
 
@@ -19,6 +20,7 @@ export { TsSelectComponent } from './select.component';
     TsSelectComponent,
   ],
   declarations: [
+    TsReactiveFormBaseComponent,
     TsSelectComponent,
   ],
 })

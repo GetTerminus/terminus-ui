@@ -6,6 +6,7 @@ import {
   MdCheckboxModule,
 } from '@angular/material';
 
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsCheckboxComponent } from './checkbox.component';
 export { TsCheckboxComponent } from './checkbox.component';
 
@@ -21,6 +22,7 @@ export { TsCheckboxComponent } from './checkbox.component';
   ],
   declarations: [
     TsCheckboxComponent,
+    TsReactiveFormBaseComponent,
   ],
 })
 export class TsCheckboxModule {}

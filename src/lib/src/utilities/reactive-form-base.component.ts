@@ -41,7 +41,8 @@ export class TsReactiveFormBaseComponent {
    * Define the form control to get access to validators
    * (for form control support)
    */
-  @Input() protected formControl: any;
+  @Input()
+  protected formControl: any;
 
   /**
    * Return the value

@@ -8,6 +8,7 @@ import {
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsInputComponent } from './input.component';
 export { TsInputComponent } from './input.component';
 
@@ -25,6 +26,7 @@ export { TsInputComponent } from './input.component';
     TsInputComponent,
   ],
   declarations: [
+    TsReactiveFormBaseComponent,
     TsInputComponent,
   ],
 })
