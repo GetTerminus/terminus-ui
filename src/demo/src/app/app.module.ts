@@ -50,6 +50,7 @@ import { TypographyComponent } from './components/typography.component';
 import { CheckboxComponent } from './components/checkbox.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { LinkComponent } from './components/link.component';
+import { WindowServiceComponent } from './components/window-service.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -102,10 +103,12 @@ import { LinkComponent } from './components/link.component';
     CheckboxComponent,
     LoginFormComponent,
     LinkComponent,
+    WindowServiceComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
