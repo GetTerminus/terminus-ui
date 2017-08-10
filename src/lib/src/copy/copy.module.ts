@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdIconModule, MdRippleModule } from '@angular/material';
 
-import { WindowService } from './../services/window/window.service';
+import { TsWindowService } from './../services/window/window.service';
 import { TsCopyComponent } from './copy.component';
 export { TsCopyComponent } from './copy.component';
 
@@ -16,7 +16,7 @@ export { TsCopyComponent } from './copy.component';
     MdRippleModule,
   ],
   providers: [
-    WindowService,
+    TsWindowService,
   ],
   exports: [
     TsCopyComponent,

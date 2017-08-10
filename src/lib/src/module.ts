@@ -21,6 +21,9 @@ import { TsLinkModule } from './link/link.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
+import { TsWindowService } from './services/window/window.service';
+import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.component';
+
 @NgModule({
   imports: [
     TsButtonModule,
@@ -43,8 +46,10 @@ import { TsLinkModule } from './link/link.module';
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
+    TsReactiveFormBaseComponent,
   ],
   providers: [
+    TsWindowService,
   ],
   exports: [
     TsButtonModule,
@@ -67,4 +72,4 @@ import { TsLinkModule } from './link/link.module';
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
 })
-export class TerminusUIModule { }
+export class TerminusUIModule {}

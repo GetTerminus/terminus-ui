@@ -17,5 +17,7 @@ export { TsLinkModule } from './src/link/link.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
+export { TsWindowService } from './src/services/window/window.service';
+
 // Export the Module
 export { TerminusUIModule } from './src/module';
