@@ -1,3 +1,4 @@
+// Components
 export { TsButtonModule } from './src/button/button.module';
 export { TsInputModule } from './src/input/input.module';
 export { TsValidationMessagesModule } from './src/validation-messages/validation-messages.module';
@@ -17,7 +18,10 @@ export { TsLinkModule } from './src/link/link.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
+// Utilities & Services
 export { TsWindowService } from './src/services/window/window.service';
+export * from './src/utilities/interfaces';
+export * from './src/utilities/types';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';

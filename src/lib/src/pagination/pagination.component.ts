@@ -7,7 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { TsStyleThemeTypes } from './../types/style-theme.types';
+import { TsStyleThemeTypes } from './../utilities/types';
 
 
 // TODO: Add tooltips for all buttons

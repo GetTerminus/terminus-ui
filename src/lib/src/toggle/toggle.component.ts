@@ -11,7 +11,7 @@ import {
 import { MdSlideToggleChange } from '@angular/material';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
-import { TsStyleThemeTypes } from './../types/style-theme.types';
+import { TsStyleThemeTypes } from './../utilities/types';
 
 /**
  * Custom control value accessor for our component

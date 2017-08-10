@@ -6,9 +6,11 @@ import {
   ElementRef,
 } from '@angular/core';
 
-import { ButtonActionTypes } from './../types/button-action.types';
-import { ButtonFunctionTypes } from './../types/button-function.types';
-import { TsStyleThemeTypes } from './../types/style-theme.types';
+import {
+  TsButtonActionTypes,
+  TsButtonFunctionTypes,
+  TsStyleThemeTypes,
+} from './../utilities/types';
 
 
 /**
@@ -35,13 +37,13 @@ export class TsButtonComponent {
    * Define the action for the aria-label
    */
   @Input()
-  public actionName: ButtonActionTypes = 'Button';
+  public actionName: TsButtonActionTypes = 'Button';
 
   /**
    * Define the button type
    */
   @Input()
-  public buttonType: ButtonFunctionTypes = 'button';
+  public buttonType: TsButtonFunctionTypes = 'button';
 
   /**
    * Define a Material icon to include
