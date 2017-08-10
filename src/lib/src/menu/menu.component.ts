@@ -9,10 +9,9 @@ import {
 } from '@angular/core';
 import { MdMenuTrigger } from '@angular/material';
 
-import { MenuPositionTypesX } from './menu-position-x.types';
-import { MenuPositionTypesY } from './menu-position-y.types';
-import { MenuItem } from './menu-item.interface';
-import { TsStyleThemeTypes } from './../types/style-theme.types';
+import { TsMenuPositionTypesX, TsMenuPositionTypesY } from './../utilities/types';
+import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**
@@ -65,19 +64,19 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * Accept an array of menu items to display
    */
   @Input()
-  public menuItems: MenuItem[];
+  public menuItems: TsMenuItem[];
 
   /**
    * Define the X menu position
    */
   @Input()
-  public menuPositionX: MenuPositionTypesX = 'after';
+  public menuPositionX: TsMenuPositionTypesX = 'after';
 
   /**
    * Define the Y menu position
    */
   @Input()
-  public menuPositionY: MenuPositionTypesY = 'below';
+  public menuPositionY: TsMenuPositionTypesY = 'below';
 
   /**
    * Define the menu theme
@@ -89,7 +88,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * Output a selection event with the item payload
    */
   @Output()
-  public selected: EventEmitter<MenuItem> = new EventEmitter();
+  public selected: EventEmitter<TsMenuItem> = new EventEmitter();
 
 
   /**
@@ -116,12 +115,12 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
    * @param {Array} items The collection of items to look through
    * @return {Boolean} hasIcon Value that represents if at least one icon is present
    */
-  private hasAtLeastOneIcon(items: MenuItem[]): boolean {
+  private hasAtLeastOneIcon(items: TsMenuItem[]): boolean {
     if (!items || items.length < 1) {
       return false;
     }
 
-    const found: any = items.find((item: MenuItem) => {
+    const found: any = items.find((item: TsMenuItem) => {
       return item.icon ? true : false;
     });
 

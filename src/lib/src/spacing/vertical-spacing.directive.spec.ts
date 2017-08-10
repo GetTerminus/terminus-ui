@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
-import { TsVerticalSpacingTypes } from './vertical-spacing.type';
+import { TsVerticalSpacingTypes } from './../utilities/types';
 
 @Component({
   template: `

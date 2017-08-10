@@ -3,7 +3,7 @@ import {
   Input,
 } from '@angular/core';
 
-import { TsTooltipPositionTypes } from './tooltip-position.type';
+import { TsTooltipPositionTypes } from './../utilities/types';
 
 
 /**

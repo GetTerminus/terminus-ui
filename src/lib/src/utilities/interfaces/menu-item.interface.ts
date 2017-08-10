@@ -1,9 +1,7 @@
 /**
  * Define the allowed keys and types for an item passed to the {@link TsMenuComponent}
- *
- * @interface
  */
-export interface MenuItem {
+export interface TsMenuItem {
   /**
    * The menu item name
    */

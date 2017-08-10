@@ -6,9 +6,11 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { TsStyleThemeTypes } from './../types/style-theme.types';
-import { ButtonActionTypes } from './../types/button-action.types';
-import { ButtonFunctionTypes } from './../types/button-function.types';
+import {
+  TsButtonActionTypes,
+  TsButtonFunctionTypes,
+  TsStyleThemeTypes,
+} from './../utilities/types';
 
 
 /**
@@ -34,12 +36,12 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the button action label
    */
-  public buttonAction: ButtonActionTypes = 'Submit';
+  public buttonAction: TsButtonActionTypes = 'Submit';
 
   /**
    * Define the button type
    */
-  public buttonType: ButtonFunctionTypes = 'search';
+  public buttonType: TsButtonFunctionTypes = 'search';
 
   /**
    * Define the icon name

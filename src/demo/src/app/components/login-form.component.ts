@@ -4,6 +4,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
+import { TsLoginFormResponse } from '@terminus/ui';
 
 @Component({
   selector: 'demo-login-form',
@@ -21,7 +22,7 @@ export class LoginFormComponent {
   public reset = false;
 
 
-  formSubmission(e: any) {
+  formSubmission(e: TsLoginFormResponse) {
     console.warn('Form value: ', e);
     this.progress = true;
 

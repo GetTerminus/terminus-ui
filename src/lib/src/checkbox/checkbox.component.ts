@@ -9,7 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
-import { TsStyleThemeTypes } from './../types/style-theme.types';
+import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
 

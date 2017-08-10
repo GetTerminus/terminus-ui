@@ -19,6 +19,7 @@ import {
 import { TsInputComponent } from './../input/input.component';
 import { TsCheckboxComponent } from './../checkbox/checkbox.component';
 import { validateEmail } from './../utilities/validators/email.validator';
+import { TsLoginFormResponse } from './../utilities/interfaces/login-form-response.interface';
 
 
 /**
@@ -137,7 +138,7 @@ export class TsLoginFormComponent implements OnChanges {
    * Emit an event on form submission
    */
   @Output()
-  public submit: EventEmitter<any> = new EventEmitter;
+  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter;
 
 
   /**
