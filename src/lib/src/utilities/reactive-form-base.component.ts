@@ -16,7 +16,8 @@ import { noop } from './noop';
   /*
    * NOTE: Without this dummy selector, this class isn't picked up by the docs generator
    */
-  selector: 'ts-dummy-selector',
+  selector: `ts-dummy-selector`,
+  template: ``,
 })
 export class TsReactiveFormBaseComponent {
   /**
@@ -42,13 +43,13 @@ export class TsReactiveFormBaseComponent {
    * (for form control support)
    */
   @Input()
-  protected formControl: any;
+  public formControl: any;
 
   /**
    * Return the value
    * (for form control support)
    */
-  protected get value(): any {
+  public get value(): any {
     return this.innerValue;
   };
 
@@ -56,7 +57,7 @@ export class TsReactiveFormBaseComponent {
    * Set the accessor and call the onchange callback
    * (for form control support)
    */
-  protected set value(v: any) {
+  public set value(v: any) {
     if (v !== this.innerValue) {
       this.innerValue = v;
       this.onChangeCallback(v);
@@ -68,7 +69,7 @@ export class TsReactiveFormBaseComponent {
    * Set touched on blur
    * (for form control support)
    */
-  protected onBlur() {
+  public onBlur() {
     this.onTouchedCallback();
   }
 
