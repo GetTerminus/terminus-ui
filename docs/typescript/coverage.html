@@ -217,10 +217,10 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
-                                    <a href="./injectables/ValidationService.html" >ValidationService</a>
+                                    <a href="./injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="./injectables/WindowService.html" >WindowService</a>
+                                    <a href="./injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -237,7 +237,10 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
-                                    <a href="./interfaces/MenuItem.html" >MenuItem</a>
+                                    <a href="./interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/TsMenuItem.html" >TsMenuItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -246,10 +249,29 @@
                     </li>
             
             
-            
                     <li class="chapter">
-                        <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-miscellaneous-links"
+                            >
+                            <span class="fa fa-cubes"></span>
+                            <span>Miscellaneous</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-miscellaneous-links"
+                            >
+                                <li class="link">
+                                  <a href="./miscellaneous/functions.html" data-type="entity-link" >Functions</a>
+                                </li>
+                                <li class="link">
+                                  <a href="./miscellaneous/typealiases.html" data-type="entity-link" >Type aliases</a>
+                                </li>
+                                <li class="link">
+                                  <a href="./miscellaneous/variables.html" data-type="entity-link" >Variables</a>
+                                </li>
+                        </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
@@ -462,10 +484,10 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
-                                           <a href="./injectables/ValidationService.html" >ValidationService</a>
+                                           <a href="./injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
-                                           <a href="./injectables/WindowService.html" >WindowService</a>
+                                           <a href="./injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -482,7 +504,10 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
-                                           <a href="./interfaces/MenuItem.html" >MenuItem</a>
+                                           <a href="./interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/TsMenuItem.html" >TsMenuItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -491,10 +516,29 @@
                            </li>
                    
                    
-                   
                            <li class="chapter">
-                               <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#miscellaneous-links"
+                   >
+                                   <span class="fa fa-cubes"></span>
+                                   <span>Miscellaneous</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="miscellaneous-links"
+                   >
+                                       <li class="link">
+                                         <a href="./miscellaneous/functions.html" data-type="entity-link" >Functions</a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="./miscellaneous/typealiases.html" data-type="entity-link" >Type aliases</a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="./miscellaneous/variables.html" data-type="entity-link" >Variables</a>
+                                       </li>
+                               </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
@@ -657,21 +701,6 @@
         </tr>
         <tr class="good">
             <td>
-                <a href="./interfaces/MenuItem.html">src/lib/src/menu/menu-item.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                MenuItem
-            </td>
-            <td align="right">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
                 <a href="./components/TsMenuComponent.html">src/lib/src/menu/menu.component.ts</a>
             </td>
             <td>
@@ -747,17 +776,32 @@
         </tr>
         <tr class="good">
             <td>
-                <a href="./injectables/WindowService.html">src/lib/src/services/window/window.service.ts</a>
+                <a href="./injectables/TsWindowService.html">src/lib/src/services/window/window.service.ts</a>
             </td>
             <td>
                 injectable
             </td>
             <td>
-                WindowService
+                TsWindowService
             </td>
             <td align="right">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <a href="./directives/TsVerticalSpacingDirective.html">src/lib/src/spacing/vertical-spacing.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsVerticalSpacingDirective
+            </td>
+            <td align="right">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
             </td>
         </tr>
         <tr class="good">
@@ -788,6 +832,36 @@
             <td align="right">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./interfaces/TsLoginFormResponse.html">src/lib/src/utilities/interfaces/login-form-response.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsLoginFormResponse
+            </td>
+            <td align="right">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(1/4)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <a href="./interfaces/TsMenuItem.html">src/lib/src/utilities/interfaces/menu-item.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsMenuItem
+            </td>
+            <td align="right">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
             </td>
         </tr>
         <tr class="good">
