@@ -144,7 +144,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ npm i @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda lodash --save
+$ npm i @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs --save
 ```
 
 

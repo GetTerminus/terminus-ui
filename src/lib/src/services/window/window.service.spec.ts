@@ -1,10 +1,10 @@
-import { WindowService } from './window.service';
+import { TsWindowService } from './window.service';
 
 
-describe(`WindowService`, () => {
+describe(`TsWindowService`, () => {
 
   it(`should return the window object`, () => {
-    const service = new WindowService();
+    const service = new TsWindowService();
 
     expect(service.nativeWindow.innerWidth).toBeTruthy();
   });
