@@ -1,26 +1,30 @@
 /**
- * The vertical spacing default
+ * The spacing default
  *
- * @nuclide vertical-spacing
+ * @nuclide spacing
  * @section Spacing
  */
 $g-spacing: $type__size--base !default;
 
 
 /**
- * The map of vertical layout spacings
+ * The map of layout spacings
 
  * Decrease: 12, 8, 4
+ * Base: 16
  * Increase: 24, 32, 40, 48, 56, 72, 96
  *
- * @nuclide vertical-spacing
+ * @nuclide spacing
  * @section Spacing
  */
-$vertical-spacing: (
+$g-spacings: (
   small:  (
     1x: floor($g-spacing - 4),
     2x: floor($g-spacing / 2),
     3x: floor($g-spacing / 4),
+  ),
+  default: (
+    1x: $g-spacing,
   ),
   large: (
     1x: ceil($g-spacing / 2 * 3),
@@ -32,6 +36,36 @@ $vertical-spacing: (
     7x: ceil($g-spacing / 2 * 12),
   )
 );
+
+
+/**
+ * Retrieve a space from the $g-spacings map
+ *
+ * @mixin spacing
+ * @section Functions
+ * @param $type
+ *  The spacing map to use. Default: default
+ * @param $size
+ *  The value desired from the map. Default: 1x
+ * @example
+ *  padding: spacing();
+ *  padding: spacing(large, 4x);
+ */
+@function spacing($type: default, $size: 1x) {
+  // Verify the type exists
+  @if not(map-has-key($g-spacings, $type)) {
+    $allowed: map-keys($g-spacings);
+    @error 'Invalid spacing type name: `#{$type}`. Allowed type: #{$allowed}';
+  }
+
+  // Verify the size
+  @if not(map-has-key(map-get($g-spacings, $type), $size)) {
+    $allowed: map-keys(map-get($g-spacings, $type));
+    @error 'Invalid size: `#{$size}`. Allowed sizes for `#{$type}` are: #{$allowed}';
+  }
+
+  @return map-get(map-get($g-spacings, $type), $size);
+}
 
 
 /**
@@ -47,7 +81,7 @@ $vertical-spacing: (
  * Example: `.u-spacing__large--2x`
  */
 // Loop over the vertical spacing map
-@each $size, $collection in $vertical-spacing {
+@each $size, $collection in $g-spacings {
 
   // Loop over each collection (ie 'small')
   @each $x, $spacing in $collection {
