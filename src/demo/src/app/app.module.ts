@@ -51,6 +51,7 @@ import { CheckboxComponent } from './components/checkbox.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { LinkComponent } from './components/link.component';
 import { WindowServiceComponent } from './components/window-service.component';
+import { SpacingStylesComponent } from './components/spacing-styles.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -104,6 +105,7 @@ import { WindowServiceComponent } from './components/window-service.component';
     LoginFormComponent,
     LinkComponent,
     WindowServiceComponent,
+    SpacingStylesComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

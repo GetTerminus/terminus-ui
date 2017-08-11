@@ -17,7 +17,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\"",
+    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\" \"src/lib/helpers.css\"",
     "clean:styleguide": "rm -rf styleguide",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",

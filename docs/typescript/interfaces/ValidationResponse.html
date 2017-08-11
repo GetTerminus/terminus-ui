@@ -618,7 +618,13 @@
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">export interface ValidationResponse {
+  /**
+   * The expected object structure
+   */
   [key: string]: {
+    /**
+     * The expected validation result
+     */
     valid: boolean,
   },
 }
