@@ -9,7 +9,7 @@
  * @nuclide
  * @section Typography
  */
-$type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
+$type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif} !default;
 
 /**
  * The monospaced typeface family
@@ -17,7 +17,9 @@ $type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif};
  * @nuclide
  * @section Typography
  */
-$type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace};
+// sass-lint:disable max-line-length
+$type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace} !default;
+// sass-lint:enable max-line-length
 
 /**
  * The available typefaces
@@ -36,7 +38,7 @@ $typography-typefaces: (
  * @nuclide
  * @section Typography
  */
-$type__size--base: 16px;
+$type__size--base: 16px !default;
 
 /**
  * The available typography formats

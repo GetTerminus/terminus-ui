@@ -7,7 +7,7 @@
  * @color
  * @section UI: Dark
  */
-$color__pure--dark: #302d35;
+$color__pure--dark: #302d35 !default;
 
 /**
  * Pure - Light
@@ -15,7 +15,7 @@ $color__pure--dark: #302d35;
  * @color
  * @section UI: Light
  */
-$color__pure--light: #fafafa;
+$color__pure--light: #fafafa !default;
 
 
 
@@ -26,7 +26,7 @@ $color__pure--light: #fafafa;
  * @color
  * @section UI: Utility
  */
-$color__utility--xdark: #3e3c43;
+$color__utility--xdark: #3e3c43 !default;
 
 /**
  * Utility - Dark
@@ -34,7 +34,7 @@ $color__utility--xdark: #3e3c43;
  * @color
  * @section UI: Utility
  */
-$color__utility--dark: #48464d;
+$color__utility--dark: #48464d !default;
 
 /**
  * Utility
@@ -42,7 +42,7 @@ $color__utility--dark: #48464d;
  * @color
  * @section UI: Utility
  */
-$color__utility: #999;
+$color__utility: #999 !default;
 
 /**
  * Utility - Light
@@ -50,7 +50,7 @@ $color__utility: #999;
  * @color
  * @section UI: Utility
  */
-$color__utility--light: #e3e1e8;
+$color__utility--light: #e3e1e8 !default;
 
 /**
  * Utility - Extra Light
@@ -58,7 +58,7 @@ $color__utility--light: #e3e1e8;
  * @color
  * @section UI: Utility
  */
-$color__utility--xlight: #f2f0f7;
+$color__utility--xlight: #f2f0f7 !default;
 
 
 
@@ -69,7 +69,7 @@ $color__utility--xlight: #f2f0f7;
  * @color
  * @section UI: Primary
  */
-$color__primary--xdark: #0a375b;
+$color__primary--xdark: #0a375b !default;
 
 /**
  * Primary - Dark
@@ -77,7 +77,7 @@ $color__primary--xdark: #0a375b;
  * @color
  * @section UI: Primary
  */
-$color__primary--dark: #0c4271;
+$color__primary--dark: #0c4271 !default;
 
 /**
  * Primary
@@ -85,7 +85,7 @@ $color__primary--dark: #0c4271;
  * @color
  * @section UI: Primary
  */
-$color__primary: #00538a;
+$color__primary: #00538a !default;
 
 /**
  * Primary - Light
@@ -93,7 +93,7 @@ $color__primary: #00538a;
  * @color
  * @section UI: Primary
  */
-$color__primary--light: #1666b1;
+$color__primary--light: #1666b1 !default;
 
 /**
  * Primary - xLight
@@ -101,7 +101,7 @@ $color__primary--light: #1666b1;
  * @color
  * @section UI: Primary
  */
-$color__primary--xlight: #1777b6;
+$color__primary--xlight: #1777b6 !default;
 
 
 
@@ -112,7 +112,7 @@ $color__primary--xlight: #1777b6;
  * @color
  * @section UI: Accent
  */
-$color__accent--xdark: #2b673f;
+$color__accent--xdark: #2b673f !default;
 
 /**
  * Accent - Dark
@@ -120,7 +120,7 @@ $color__accent--xdark: #2b673f;
  * @color
  * @section UI: Accent
  */
-$color__accent--dark: #317448;
+$color__accent--dark: #317448 !default;
 
 /**
  * Accent
@@ -128,7 +128,7 @@ $color__accent--dark: #317448;
  * @color
  * @section UI: Accent
  */
-$color__accent: #2f854d;
+$color__accent: #2f854d !default;
 
 /**
  * Accent - Light
@@ -136,7 +136,7 @@ $color__accent: #2f854d;
  * @color
  * @section UI: Accent
  */
-$color__accent--light: #3b9b5c;
+$color__accent--light: #3b9b5c !default;
 
 /**
  * Accent - xLight
@@ -144,7 +144,7 @@ $color__accent--light: #3b9b5c;
  * @color
  * @section UI: Accent
  */
-$color__accent--xlight: #48ac6a;
+$color__accent--xlight: #48ac6a !default;
 
 
 
@@ -155,7 +155,7 @@ $color__accent--xlight: #48ac6a;
  * @color
  * @section UI: Error
  */
-$color__error--dark: #b55949;
+$color__error--dark: #b55949 !default;
 
 /**
  * Error
@@ -163,7 +163,7 @@ $color__error--dark: #b55949;
  * @color
  * @section UI: Error
  */
-$color__error: #c8604d;
+$color__error: #c8604d !default;
 
 /**
  * Error - Light
@@ -171,7 +171,7 @@ $color__error: #c8604d;
  * @color
  * @section UI: Error
  */
-$color__error--light: #d76c59;
+$color__error--light: #d76c59 !default;
 
 
 
@@ -182,7 +182,7 @@ $color__error--light: #d76c59;
  * @color
  * @section UI: Warn
  */
-$color__warn--dark: #cc9f45;
+$color__warn--dark: #cc9f45 !default;
 
 /**
  * Warn
@@ -190,7 +190,7 @@ $color__warn--dark: #cc9f45;
  * @color
  * @section UI: Warn
  */
-$color__warn: #dea83b;
+$color__warn: #dea83b !default;
 
 /**
  * Warn - Light
@@ -198,7 +198,7 @@ $color__warn: #dea83b;
  * @color
  * @section UI: Warn
  */
-$color__warn--light: #e8b550;
+$color__warn--light: #e8b550 !default;
 
 
 
@@ -209,7 +209,7 @@ $color__warn--light: #e8b550;
  * @color
  * @section UI: Highlight
  */
-$color__highlight--dark: #ddd455;
+$color__highlight--dark: #ddd455 !default;
 
 /**
  * Highlight
@@ -217,7 +217,7 @@ $color__highlight--dark: #ddd455;
  * @color
  * @section UI: Highlight
  */
-$color__highlight: #efe557;
+$color__highlight: #efe557 !default;
 
 /**
  * Highlight - Light
@@ -225,7 +225,7 @@ $color__highlight: #efe557;
  * @color
  * @section UI: Highlight
  */
-$color__highlight--light: #f4eb6e;
+$color__highlight--light: #f4eb6e !default;
 
 // sass-lint:enable no-color-hex
 

@@ -45,6 +45,8 @@ const FORM_GROUP = {
 };
 
 
+// TODO: Enter should submit the form if the submit button is enabled
+
 /**
  * This is the login-form UI Component
  *
