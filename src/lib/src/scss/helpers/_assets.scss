@@ -1,4 +1,13 @@
 /**
+ * The base path for all assets
+ *
+ * @nuclide assets
+ * @section Assets
+ */
+$g-asset-base-path: '/assets' !default;
+
+
+/**
  * Asset URL builder
  *
  * @mixin asset
@@ -16,7 +25,7 @@
     @error 'Both `$type` and `$file` are required.';
   }
 
-  @return url($asset-base-path + '/' + $type + '/' + $file);
+  @return url($g-asset-base-path + '/' + $type + 's/' + $file);
 }
 
 /**
@@ -32,8 +41,8 @@
  */
 @function image($file) {
   @if $file == null {
-    @error 'the `$file` parameter is required.';
+    @error 'The `$file` parameter is required.';
   }
 
-  @return asset('images', $file);
+  @return asset('image', $file);
 }
