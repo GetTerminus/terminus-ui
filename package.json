@@ -140,7 +140,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "rxjs": "^5.0.1",
     "sass-lint": "^1.10.2",
-    "semantic-release": "^6.3.6",
+    "semantic-release": "^7.0.1",
     "systemjs": "^0.20.14",
     "tslint": "^5.4.3",
     "typescript": "~2.4.2",
