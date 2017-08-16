@@ -1,4 +1,9 @@
-<form [formGroup]="loginForm" fxLayout="column" *ngIf="showForm">
+<form
+  [formGroup]="loginForm"
+  fxLayout="column"
+  *ngIf="showForm"
+  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)"
+>
 
   <ts-input
     label="Email"
@@ -40,6 +45,7 @@
   <div fxLayout="row" fxFlexAlign="end">
     <ts-button
       actionName="Submit"
+      buttonType="submit"
       [showProgress]="inProgress"
       [isDisabled]="!loginForm.valid"
       (clickEvent)="submit.emit(loginForm.value)"
