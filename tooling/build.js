@@ -11,6 +11,7 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 const execa = require('execa');
 const inlineResources = require('./inline-resources');
 const mergeFiles = require('merge-files');
+const absModuleFix = require('rollup-plugin-absolute-module-fix');
 
 const libNameWithScope = require('./../package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -35,6 +36,7 @@ const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_spacing.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
+
 
 return Promise.resolve()
   // Copy library to temporary folder, compile sass files and inline html/css.
@@ -108,12 +110,12 @@ return Promise.resolve()
         '@angular/platform-browser/animations',
         '@angular/platform-browser-dynamic',
         '@angular/material',
-        'angular2-ladda',
       ],
       plugins: [
         sourcemaps(),
+        absModuleFix(),
       ],
-      onwarn: function (warning) {
+      onwarn: function(warning) {
         // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
         // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
         if (warning.code === 'THIS_IS_UNDEFINED') {
