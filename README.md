@@ -83,40 +83,40 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ### Components
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| alert            |                                                        |                :x: |
-| autocomplete     |                                                        |                :x: |
-| badge            |                                                        |                :x: |
-| button           |                                                        | :white_check_mark: |
-| breadcrumbs      |                                                        |                :x: |
-| chip             |                                                        |                :x: |
-| checkbox         |                                                        | :white_check_mark: |
-| copy             |                                                        | :white_check_mark: |
-| datavis          |                                                        |                :x: |
-| datetable        |                                                        |                :x: |
-| datepicker       |                                                        | :white_check_mark: |
-| date-range       |                                                        | :white_check_mark: |
-| dialog           |                                                        |                :x: |
-| divider          |                                                        |                :x: |
-| expansion        |                                                        |                :x: |
-| file-picker      |                                                        |                :x: |
-| input-masking    |                                                        |                :x: |
-| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |
-| input            |                                                        | :white_check_mark: |
-| link             |                                                        | :white_check_mark: |
-| login form       |                                                        | :white_check_mark: |
-| menu             |                                                        | :white_check_mark: |
-| pagination       |                                                        | :white_check_mark: |
-| picklist         |                                                        |                :x: |
-| progress         |                                                        |                :x: |
-| progression      |                                                        |                :x: |
-| radio            |                                                        |                :x: |
-| search           |                                                        | :white_check_mark: |
-| select           |                                                        | :white_check_mark: |
-| tabs             |                                                        |                :x: |
-| toggle           |                                                        | :white_check_mark: |
-| tooltip          |                                                        | :white_check_mark: |
+| Feature          | Notes                                                  | Status             | Demo                    |
+|------------------|--------------------------------------------------------|        :---:       |-------------------------|
+| alert            |                                                        |                :x: |                         |
+| autocomplete     |                                                        |                :x: |                         |
+| badge            |                                                        |                :x: |                         |
+| button           |                                                        | :white_check_mark: |     [Demo][demo-button] |
+| breadcrumbs      |                                                        |                :x: |                         |
+| chip             |                                                        |                :x: |                         |
+| checkbox         |                                                        | :white_check_mark: |   [Demo][demo-checkbox] |
+| copy             |                                                        | :white_check_mark: |       [Demo][demo-copy] |
+| datavis          |                                                        |                :x: |                         |
+| datetable        |                                                        |                :x: |                         |
+| datepicker       |                                                        | :white_check_mark: | [Demo][demo-datepicker] |
+| date-range       |                                                        | :white_check_mark: | [Demo][demo-date-range] |
+| dialog           |                                                        |                :x: |                         |
+| divider          |                                                        |                :x: |                         |
+| expansion        |                                                        |                :x: |                         |
+| file-picker      |                                                        |                :x: |                         |
+| input-masking    |                                                        |                :x: |                         |
+| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |                         |
+| input            |                                                        | :white_check_mark: |      [Demo][demo-input] |
+| link             |                                                        | :white_check_mark: |       [Demo][demo-link] |
+| login form       |                                                        | :white_check_mark: | [Demo][demo-login-form] |
+| menu             |                                                        | :white_check_mark: |       [Demo][demo-menu] |
+| pagination       |                                                        | :white_check_mark: | [Demo][demo-pagination] |
+| picklist         |                                                        |                :x: |                         |
+| progress         |                                                        |                :x: |                         |
+| progression      |                                                        |                :x: |                         |
+| radio            |                                                        |                :x: |                         |
+| search           |                                                        | :white_check_mark: |                         |
+| select           |                                                        | :white_check_mark: |     [Demo][demo-select] |
+| tabs             |                                                        |                :x: |                         |
+| toggle           |                                                        | :white_check_mark: |     [Demo][demo-toggle] |
+| tooltip          |                                                        | :white_check_mark: |                         |
 
 
 ### Services
@@ -572,3 +572,19 @@ machines.
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
+
+<!-- Demos -->
+[demo-button]: https://embed.plnkr.co/plunk/W1t5Awrg7LLp4tyM?show=app,preview
+[demo-link]: https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=app,preview
+[demo-checkbox]: https://embed.plnkr.co/plunk/S3nMGAO5ov1qswnl?show=app,preview
+[demo-copy]: https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show=app,preview
+[demo-datepicker]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
+[demo-date-range]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
+[demo-input]: https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=app,preview
+[demo-login-form]: https://embed.plnkr.co/plunk/rbPXFU8FtCUJv5HR?show=app,preview
+[demo-menu]: https://embed.plnkr.co/plunk/ZDPGxMuPoA2CAp35?show=app,preview
+[demo-pagination]: https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show=app,preview
+[demo-select]: https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=app,preview
+[demo-toggle]: https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=app,preview
+
+

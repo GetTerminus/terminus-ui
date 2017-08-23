@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+import { TsStyleThemeTypes } from './../utilities/types';
 
 
 /**
@@ -35,6 +36,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              label="Please select one: "
  *              items="[{},{},{}]"
  *              multipleAllowed="true"
+ *              theme="primary"
  *              (open)="myMethod($event)"
  *              (close)="myMethod($event)"
  *              (change)="myMethod($event)"
@@ -71,6 +73,12 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public multipleAllowed: boolean = false;
+
+  /**
+   * Define the color theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the key that represents the value item from the object
