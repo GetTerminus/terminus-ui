@@ -107,6 +107,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | link             |                                                        | :white_check_mark: |       [Demo][demo-link] |
 | login form       |                                                        | :white_check_mark: | [Demo][demo-login-form] |
 | menu             |                                                        | :white_check_mark: |       [Demo][demo-menu] |
+| navigation       |                                                        | :white_check_mark: | [Demo][demo-navigation] |
 | pagination       |                                                        | :white_check_mark: | [Demo][demo-pagination] |
 | picklist         |                                                        |                :x: |                         |
 | progress         |                                                        |                :x: |                         |
@@ -586,5 +587,5 @@ machines.
 [demo-pagination]: https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show=app,preview
 [demo-select]: https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=app,preview
 [demo-toggle]: https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=app,preview
-
+[demo-navigation]: https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=app,preview
 
