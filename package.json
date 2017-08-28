@@ -28,7 +28,7 @@
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "prebuild": "npm run clean:lib",
     "build": "node tooling/build.js",
-    "build:watch": "onchange 'src/lib/**/*.ts' 'src/lib/**/!(helpers).scss' -- npm run build",
+    "build:watch": "onchange 'src/lib/**/*.ts' 'src/lib/**/!(helpers).scss' 'src/lib/**/*.html' -- npm run build",
     "build-demo": "cd src/demo && ng build --prod",
     "build-demo:watch": "cd src/demo && ng serve --port 4300",
     "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
