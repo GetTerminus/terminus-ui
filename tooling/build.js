@@ -22,6 +22,7 @@ const distFolder = path.join(rootFolder, 'dist');
 const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
+
 /*
  * Define all SCSS files that need to be exposed to the consuming library
  * NOTE: Typography must be before `_spacing.scss`
@@ -36,6 +37,8 @@ const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_spacing.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
+
+
 
 
 return Promise.resolve()
@@ -75,7 +78,7 @@ return Promise.resolve()
       globals: {
         // The key here is library name, and the value is the the name of the global variable name
         // the window object.
-        // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
+        // See https://rollupjs.org/#javascript-api for more.
         // Angular dependencies
         '@angular/animations': 'ng.animations',
         '@angular/animations/browser': 'ng.animations.browser',
@@ -94,10 +97,15 @@ return Promise.resolve()
         'rxjs/Subject': 'Rx',
         'rxjs/Observable': 'Rx',
         'rxjs/add/observable/of': 'Rx.Observable',
+        'rxjs/add/observable/fromEvent': 'Rx.Observable',
+        'rxjs/add/operator/distinctUntilChanged': 'Rx.Operator',
+        'rxjs/add/operator/pluck': 'Rx.Operator',
+        'rxjs/add/operator/debounceTime': 'Rx.Operator',
+        'rxjs/BehaviorSubject': 'Rx.BehaviorSubject',
       },
       external: [
         // List of dependencies
-        // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
+        // See https://rollupjs.org/#javascript-api for more.
         '@angular/core',
         '@angular/common',
         '@angular/animations',
@@ -110,6 +118,18 @@ return Promise.resolve()
         '@angular/platform-browser/animations',
         '@angular/platform-browser-dynamic',
         '@angular/material',
+        'rxjs/Subject',
+        'rxjs/Observable',
+        'rxjs/add/observable/of',
+        'rxjs/add/observable/fromEvent',
+        'rxjs/add/operator/distinctUntilChanged',
+        'rxjs/add/operator/pluck',
+        'rxjs/add/operator/debounceTime',
+        'rxjs/BehaviorSubject',
+        // NOTE: I would prefer this library to be bundled with terminus/ui. However, doing so
+        // breaks the build. We need the commonjs rollup plugin to include this library, but adding
+        // the commonjs plugin seems to break other @angular core includes.
+        'angular2-ladda',
       ],
       plugins: [
         sourcemaps(),
