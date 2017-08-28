@@ -41,6 +41,15 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   private _pristineItems: TsNavigationItem[];
 
   /**
+   * Getter to return the available navigation width
+   */
+  private get availableSpace(): number {
+    const NAV_WIDTH_BUFFER = 10;
+
+    return this.visibleItemsList.nativeElement.offsetWidth - NAV_WIDTH_BUFFER;
+  }
+
+  /**
    * Define an array of widths at which to break the navigation
    */
   public breakWidths: number[] = [];
@@ -55,6 +64,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   get hiddenItemsLength(): number {
     return this.hiddenItems.getValue().length;
+  }
+
+  /**
+   * Getter to return the space currently required for the navigation layout
+   */
+  private get requiredSpace(): number {
+    return this.breakWidths[this.visibleItemsLength - 1];
   }
 
   /**
@@ -128,7 +144,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   @HostListener('window:resize')
   onResize() {
-    this.updateNavbarLayout();
+    this.updateLists();
   }
 
 
@@ -163,7 +179,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     // HACK: This timeout is needed to stop the Error:
     // `ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.`
     setTimeout(() => {
-      this.updateNavbarLayout();
+      this.updateLists();
     });
   }
 
@@ -186,15 +202,11 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
 
   /**
-   * Update the navbar and sort the lists of items
+   * Move items between the two lists as required by the available space
    */
-  private updateNavbarLayout(): void {
-    const NAV_WIDTH_BUFFER = 10;
-    const availableSpace: number = this.visibleItemsList.nativeElement.offsetWidth - NAV_WIDTH_BUFFER;
-    const requiredSpace: number = this.breakWidths[this.visibleItemsLength - 1];
-
+  private updateLists(): void {
     // If there is not enough space
-    if (requiredSpace > availableSpace) {
+    if (this.requiredSpace > this.availableSpace) {
       // Pull the last link out of the visible array
       const currentVisible = this.visibleItems.getValue();
       const itemToMove = currentVisible.pop();
@@ -206,8 +218,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       this.hiddenItems.next(updateHiddenArray);
 
       // Trigger another layout check
-      this.updateNavbarLayout();
-    } else if (availableSpace > this.breakWidths[this.visibleItemsLength]) {
+      this.updateLists();
+    } else if (this.availableSpace > this.breakWidths[this.visibleItemsLength]) {
       // Else, if there is more than enough space
 
       // Pull the first item from the hidden array
@@ -215,7 +227,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       const itemToMove = currentHidden.shift();
       const visibleArray: TsNavigationItem[] = this.visibleItems.getValue();
 
-      // QUESTION: Why does `visibleArray.push(itemToMove)` return a number?
+      // QUESTION[B$]: Why does `visibleArray.push(itemToMove)` return a number?
       const updatedVisibleArray: TsNavigationItem[] = visibleArray.concat([itemToMove]);
 
       // Add it to the end of the visible array
