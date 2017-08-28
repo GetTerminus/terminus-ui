@@ -97,7 +97,7 @@
     "@compodoc/compodoc": "git+https://github.com/compodoc/compodoc.git#master",
     "@types/jasmine": "2.5.54",
     "@types/node": "^8.0.1",
-    "angular2-ladda": "^1.2.1",
+    "angular2-ladda": "1.2.1",
     "camelcase": "^4.0.0",
     "code-notes": "^1.0.4",
     "codelyzer": "^3.0.1",
