@@ -27,6 +27,7 @@ import {
   TsCheckboxModule,
   TsLoginFormModule,
   TsLinkModule,
+  TsNavigationModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -52,6 +53,7 @@ import { LoginFormComponent } from './components/login-form.component';
 import { LinkComponent } from './components/link.component';
 import { WindowServiceComponent } from './components/window-service.component';
 import { SpacingStylesComponent } from './components/spacing-styles.component';
+import { NavigationComponent } from './components/navigation.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -83,6 +85,7 @@ import { SpacingStylesComponent } from './components/spacing-styles.component';
     TsCheckboxModule,
     TsLoginFormModule,
     TsLinkModule,
+    TsNavigationModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -106,6 +109,7 @@ import { SpacingStylesComponent } from './components/spacing-styles.component';
     LinkComponent,
     WindowServiceComponent,
     SpacingStylesComponent,
+    NavigationComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
