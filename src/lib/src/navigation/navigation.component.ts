@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   Output,
-  ContentChildren,
   ViewChildren,
   ViewChild,
   QueryList,
@@ -14,23 +13,20 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import * as Rx from 'rxjs/Rx';
-import { Router } from '@angular/router';
 
 import { TsNavigationItem } from './../utilities/interfaces/';
 import { groupBy } from './../utilities/groupBy';
-import { TsWindowService } from './../services/window/window.service';
 
 
 /**
  * This is the navigation UI Component
- * TODO: Fix rollup issues with rxjs external dependencies
  *
  * @example
  * <ts-navigation
  *              [items]="navigationItems$ | async"
  *              [user]="currentUser$ | async"
  *              [welcomeMessage]=" 'Hi!' "
+ *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  */
 @Component({
@@ -52,7 +48,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Define the list of hidden items
    */
-  public hiddenItems: BehaviorSubject<TsNavigationItem[]> = new Rx.BehaviorSubject([]);
+  public hiddenItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([]);
 
   /**
    * Getter to return the count of hidden items
@@ -74,7 +70,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * My definition
    */
-  public visibleItems: BehaviorSubject<TsNavigationItem[]> = new Rx.BehaviorSubject([]);
+  public visibleItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([]);
 
   /**
    * Getter to return the count of visible items
@@ -137,8 +133,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
 
   constructor(
-    private router: Router,
-    private windowService: TsWindowService,
   ) {}
 
 

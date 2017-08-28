@@ -11,7 +11,6 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
     action: 'navigate',
     destination: ['/components'],
     onlyHidden: false,
-    isDisabled: true,
   },
   {
     name: 'Buttons',
@@ -58,6 +57,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
     name: 'Action: Log In As',
     action: 'log-in-as',
     onlyHidden: true,
+    isDisabled: true,
   },
 ];
 
