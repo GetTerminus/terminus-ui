@@ -102,6 +102,9 @@
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsNavigationModule.html" >TsNavigationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                 </li>
                                 <li class="link">
@@ -162,6 +165,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsNavigationComponent.html" >TsNavigationComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
@@ -241,6 +247,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -369,6 +378,9 @@
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsNavigationModule.html" >TsNavigationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                        </li>
                                        <li class="link">
@@ -429,6 +441,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsMenuComponent.html" >TsMenuComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsNavigationComponent.html" >TsNavigationComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
@@ -508,6 +523,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -1550,7 +1568,12 @@ export class TsLoginFormComponent implements OnChanges {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;loginForm&quot; fxLayout&#x3D;&quot;column&quot; *ngIf&#x3D;&quot;showForm&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;form
+  [formGroup]&#x3D;&quot;loginForm&quot;
+  fxLayout&#x3D;&quot;column&quot;
+  *ngIf&#x3D;&quot;showForm&quot;
+  (keydown.enter)&#x3D;&quot;loginForm.valid &amp;&amp; submit.emit(loginForm.value)&quot;
+&gt;
 
   &lt;ts-input
     label&#x3D;&quot;Email&quot;
@@ -1592,6 +1615,7 @@ export class TsLoginFormComponent implements OnChanges {
   &lt;div fxLayout&#x3D;&quot;row&quot; fxFlexAlign&#x3D;&quot;end&quot;&gt;
     &lt;ts-button
       actionName&#x3D;&quot;Submit&quot;
+      buttonType&#x3D;&quot;submit&quot;
       [showProgress]&#x3D;&quot;inProgress&quot;
       [isDisabled]&#x3D;&quot;!loginForm.valid&quot;
       (clickEvent)&#x3D;&quot;submit.emit(loginForm.value)&quot;
@@ -1627,8 +1651,8 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="loginForm" fxLayout="column" *ngIf="showForm">  <ts-input    label="Email"    formControlName="email"    [formControl]="getControl(\'email\')"    tsVerticalSpacing    isRequired="true"    spellcheck="false"    autocapitalize="false"  ></ts-input>  <ts-input    label="Password"    formControlName="password"    [formControl]="getControl(\'password\')"    tsVerticalSpacing    hideRequiredMarker="false"    isRequired="true"    autocomplete="false"    autocapitalize="false"    spellcheck="false"    minlength="{{ PASSWORD_MINLENGTH }}"  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    tsVerticalSpacing    [text]="forgotPasswordText"  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCta }}    </ts-button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><form  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    label="Email"    formControlName="email"    [formControl]="getControl(\'email\')"    tsVerticalSpacing    isRequired="true"    spellcheck="false"    autocapitalize="false"  ></ts-input>  <ts-input    label="Password"    formControlName="password"    [formControl]="getControl(\'password\')"    tsVerticalSpacing    hideRequiredMarker="false"    isRequired="true"    autocomplete="false"    autocapitalize="false"    spellcheck="false"    minlength="{{ PASSWORD_MINLENGTH }}"  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    tsVerticalSpacing    [text]="forgotPasswordText"  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCta }}    </ts-button>  </div></form></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
 </script>

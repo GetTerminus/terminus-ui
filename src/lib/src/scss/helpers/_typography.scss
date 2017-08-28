@@ -41,6 +41,14 @@ $typography-typefaces: (
 $type__size--base: 16px !default;
 
 /**
+ * The base typography weight
+ *
+ * @nuclide
+ * @section Typography
+ */
+$type__weight--base: 300 !default;
+
+/**
  * The available typography formats
  *
  * @nuclide

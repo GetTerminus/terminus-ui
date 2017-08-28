@@ -17,6 +17,7 @@ import { LoginFormComponent } from './login-form.component';
 import { LinkComponent } from './link.component';
 import { WindowServiceComponent } from './window-service.component';
 import { SpacingStylesComponent } from './spacing-styles.component';
+import { NavigationComponent } from './navigation.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -138,6 +139,13 @@ export const componentsList: Routes = [
     component: SpacingStylesComponent,
     data: {
       name: 'Spacing SCSS',
+    },
+  },
+  {
+    path: 'navigation',
+    component: NavigationComponent,
+    data: {
+      name: 'Navigation',
     },
   },
   // INJECT: Add route for demo component

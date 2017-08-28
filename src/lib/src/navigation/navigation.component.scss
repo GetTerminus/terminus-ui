@@ -1,0 +1,127 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/buttons';
+
+:host {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+//
+// @component
+//  Navigation
+// @description
+//  A fully responsive navigation bar. Items that cannot fit inside the navigation bar will be
+//  pulled out into the dropdown menu.
+//
+.c-navigation {
+  // Top level styles should be nested here
+  &#{&} {
+    @include typography;
+    background: color(pure, dark);
+    color: color(pure);
+  }
+
+  // <div> wrapper for list of navigation items
+  .c-navigation__items {
+    overflow: hidden;
+    padding-right: spacing();
+  }
+
+  // <button> individual nav item
+  .c-navigation__item {
+    @include button-base;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+
+    // <span> inner wrapper
+    &-inner {
+      display: inline-block;
+      margin: 0 spacing();
+      width: 100%;
+    }
+  }
+
+  // <button> trigger to show hidden nav items (Welcome, user)
+  .c-navigation__trigger {
+    @include button-base;
+    display: block;
+    line-height: spacing(large);
+
+    // override material styles on the inner wrapper
+    ::ng-deep .mat-button-wrapper {
+      display: inline-block;
+      padding: spacing(small, 2x) spacing(large) spacing(small, 2x) spacing();
+      position: relative;
+      text-align: right;
+    }
+
+    // <span> wrapper for welcome message
+    &-welcome {
+      font-weight: 300;
+    }
+
+    // <md-icon>
+    &-icon {
+      position: absolute;
+      right: 0;
+      // HACK: vertical alignment just doesn't seem right without this
+      transform: translateY(1px);
+    }
+  }
+}
+
+
+//
+// These must live outside `c-navigation` since the menu panel is not nested
+//
+
+// <div> container for hidden nav items
+::ng-deep .c-navigation__hidden-items {
+  // set up for spacer div
+  position: relative;
+
+  $material-spacing: 8px;
+
+  ::ng-deep .mat-menu-content {
+    background-color: color(pure, dark);
+    // override material styles
+    padding: 0;
+
+    // needed for specificity since we are no longer nested below primary class
+    .mat-menu-item {
+      color: color(pure);
+    }
+  }
+
+  // <button> individual nav item
+  ::ng-deep .c-navigation__hidden-item {
+    &--admin {
+      background-color: color(utility, xdark);
+
+      // needed for specificity since we are no longer nested below primary class
+      &.mat-menu-item {
+        color: color(utility, light);
+      }
+    }
+
+    // target the first item with the admin class
+    &:not(.c-navigation__hidden-item--admin) + .c-navigation__hidden-item--admin {
+      // create the line separator
+      &::before {
+        background-color: color(utility);
+        content: '';
+        display: block;
+        height: 1px;
+        left: 0;
+        opacity: .6;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+}
