@@ -937,7 +937,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </table>
 <h2 id="installation">Installation</h2>
 <p>Install the library and all required dependencies:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm i &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material angular2-ladda hammerjs --save</code></pre><h2 id="adding-a-component">Adding a Component</h2>
+<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material angular2-ladda hammerjs</code></pre><h2 id="adding-a-component">Adding a Component</h2>
 <blockquote>
 <p>NOTE: You can also use the <a href="https://github.com/GetTerminus/generator-terminus-ui">yeoman generator</a> to quickly scaffold a new component</p>
 </blockquote>
@@ -965,35 +965,36 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <li>Comment all methods, constants &amp; <code>@Input</code>s using the supported <a href="https://compodoc.github.io/website/guides/comments.html">JSDoc style</a>.</li>
 <li>Add a usage example in the component documentation with every possible input included.</li>
 <li>Document styles using <a href="https://holidaypirates.github.io/nucleus/annotation-reference.html">nucleus comments</a>.</li>
-<li>Run <code>npm run docs</code> to generate all documentation.</li>
+<li>Run <code>yarn run docs</code> to generate all documentation.</li>
 <li>Add the new component to available scopes in <code>tooling/cz-config.js</code></li>
 <li>Update the status for the component in the <a href="#components">components table</a></li>
 </ol>
 <h2 id="developing">Developing</h2>
 <pre class="line-numbers"><code class="language-bash"># Start the demo project and watch demo and lib files for changes
-$ npm run start
+$ yarn run start
 
 # Generate TypeScript and SCSS docs
-$ npm run docs
+$ yarn run docs
 
 # Update the README table of contents
-$ npm run docs:toc
+$ yarn run docs:toc
 
 # Build the library
-$ npm run build
+$ yarn run build
 
 # Test JiT and AoT integration
-$ npm run integration
+$ yarn run integration
 
 # Run TypeScript and SCSS linters
-$ npm run lint
+$ yarn run lint
 
 # Run all TypeScript tests
-$ npm run test
-
-# Check package.json for all available commands</code></pre><h3 id="demos">Demos</h3>
+$ yarn run test</code></pre><blockquote>
+<p>Check <a href="https://github.com/GetTerminus/terminus-ui/blob/master/package.json">package.json</a> for all available commands</p>
+</blockquote>
+<h3 id="demos">Demos</h3>
 <ol>
-<li><code>npm run install &amp;&amp; npm run start</code></li>
+<li><code>yarn install &amp;&amp; yarn run start</code></li>
 <li>Navigate to <code>http://localhost:4300/components/</code></li>
 <li>Select a component from the menu</li>
 </ol>
@@ -1061,12 +1062,12 @@ type(scope): message
 # Examples:
 fix(Button): Aria label is now correctly read by JAWS
 feat(Tooltip): Add a tooltip component
-chore(): Bump lodash version</code></pre><p>For a friendlier prompt, you can run <code>npm run cm</code> in the repo. This will ask several questions
+chore(): Bump lodash version</code></pre><p>For a friendlier prompt, you can run <code>yarn run cm</code> in the repo. This will ask several questions
 and then construct the commit in the proper format for you. The prompt will allow you to choose
 from a list of types and then a list of scopes. This is much easier than trying to remember all
 possible scopes.</p>
 <blockquote>
-<p>Optional: Installing <a href="https://github.com/commitizen/cz-cli">committizen</a> (<code>npm i -g committizen</code>) will allow you
+<p>Optional: Installing <a href="https://github.com/commitizen/cz-cli">committizen</a> (<code>yarn add -g committizen</code>) will allow you
 to run <code>git cz</code> or even alias to your preferred git command.</p>
 </blockquote>
 <p>You <strong>must</strong> use one of the defined types since the types have specific meaning to the automatic
