@@ -608,11 +608,6 @@
     </p>
     <p class="comment">
         <p>A presentational component to render a text input.</p>
-<p>Why we are not masking passwords:</p>
-<ul>
-<li><a href="https://www.nngroup.com/articles/stop-password-masking/">https://www.nngroup.com/articles/stop-password-masking/</a></li>
-<li><a href="https://www.lukew.com/ff/entry.asp?1653">https://www.lukew.com/ff/entry.asp?1653</a></li>
-</ul>
 
     </p>
 
@@ -632,20 +627,22 @@
                     <pre class="line-numbers"><code class="language-html">&lt;ts-input
   formControlName=&quot;email&quot;
   [formControl]=&quot;yourHelperToGetFormControl('email')&quot;
-  hint=&quot;Fill this out!&quot;
   required
   minlength=&quot;3&quot;
-  label=&quot;My Input&quot;
-  isDisabled=&quot;false&quot;
-  isRequired=&quot;false&quot;
-  hideRequiredMarker=&quot;false&quot;
-  prefixIcon=&quot;link&quot;
-  isClearable=&quot;true&quot;
-  isFocused=&quot;false&quot;
-  autocomplete=&quot;off&quot;
-  autocorrect=&quot;off&quot;
-  autocapitalize=&quot;off&quot;
-  spellcheck=&quot;false&quot;
+  [hint]=&quot;'Fill this out!'&quot;
+  [label]=&quot;'My Input'&quot;
+  [name]=&quot;'password'&quot;
+  [prefixIcon]=&quot;'icon_name'&quot;
+  [type]=&quot;'text'&quot;
+  [isDisabled]=&quot;false&quot;
+  [isRequired]=&quot;false&quot;
+  [hideRequiredMarker]=&quot;false&quot;
+  [isClearable]=&quot;true&quot;
+  [isFocused]=&quot;false&quot;
+  [autocomplete]=&quot;false&quot;
+  [autocorrect]=&quot;false&quot;
+  [autocapitalize]=&quot;false&quot;
+  [spellcheck]=&quot;false&quot;
 &gt;&lt;/ts-input&gt;</code></pre>
                 </div>
     </div>
@@ -709,7 +706,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#reset">reset</a>
+                                <span class="modifier">Public</span> <a href="#reset">reset</a>
                             </li>
                         </ul>
                     </td>
@@ -747,10 +744,16 @@
                                 <a href="#label">label</a>
                             </li>
                             <li>
+                                <a href="#name">name</a>
+                            </li>
+                            <li>
                                 <a href="#prefixIcon">prefixIcon</a>
                             </li>
                             <li>
                                 <a href="#spellcheck">spellcheck</a>
+                            </li>
+                            <li>
+                                <a href="#type">type</a>
                             </li>
                         </ul>
                     </td>
@@ -784,7 +787,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/input/input.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/input/input.component.ts:62</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -797,21 +800,20 @@
                             <code>autocomplete</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the input should autocomplete
-(standard HTML5 property)</p>
+                            <div><p>Define if the input should autocomplete</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsInputAutocompleteTypes</a></code>
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>true</code>
+                              <em>Default value: </em><code>on</code>
                             </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/input/input.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/input/input.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -837,7 +839,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/input/input.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/input/input.component.ts:92</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -860,7 +862,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/input/input.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/input/input.component.ts:99</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -886,7 +888,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/input/input.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/input/input.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -935,7 +937,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/input/input.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/input/input.component.ts:86</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -958,7 +960,30 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/src/input/input.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/input/input.component.ts:105</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="name"></a>
+                            <code>name</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the name attribute value</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/src/input/input.component.ts:111</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -981,7 +1006,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/input/input.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/lib/src/input/input.component.ts:117</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1008,7 +1033,33 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/input/input.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/src/input/input.component.ts:124</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="type"></a>
+                            <code>type</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the input type (text, password etc.) See {@link TsInputTypes}</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsInputTypes</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>text</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/input/input.component.ts:130</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1026,19 +1077,20 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="reset"></a>
-                            <b> reset</b>
+                            <b><span class="modifier">Public</span> reset</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>reset()</code>
+                                <span class="modifier-icon method fa fa-play "></span>
+                            <code>reset()</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/input/input.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/lib/src/input/input.component.ts:136</a></div>
                                 </td>
                             </tr>
     
@@ -1066,11 +1118,10 @@
   Input,
   forwardRef,
 } from &#x27;@angular/core&#x27;;
-import {
-  NG_VALUE_ACCESSOR,
-} from &#x27;@angular/forms&#x27;;
+import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
+import { TsInputTypes, TsInputAutocompleteTypes } from &#x27;./../utilities/types/input.types&#x27;;
 
 
 /**
@@ -1089,28 +1140,26 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
 /**
  * A presentational component to render a text input.
  *
- * Why we are not masking passwords:
- *   - https://www.nngroup.com/articles/stop-password-masking/
- *   - https://www.lukew.com/ff/entry.asp?1653
- *
  * @example
  * &lt;ts-input
  *              formControlName&#x3D;&quot;email&quot;
  *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;email&#x27;)&quot;
- *              hint&#x3D;&quot;Fill this out!&quot;
  *              required
  *              minlength&#x3D;&quot;3&quot;
- *              label&#x3D;&quot;My Input&quot;
- *              isDisabled&#x3D;&quot;false&quot;
- *              isRequired&#x3D;&quot;false&quot;
- *              hideRequiredMarker&#x3D;&quot;false&quot;
- *              prefixIcon&#x3D;&quot;link&quot;
- *              isClearable&#x3D;&quot;true&quot;
- *              isFocused&#x3D;&quot;false&quot;
- *              autocomplete&#x3D;&quot;off&quot;
- *              autocorrect&#x3D;&quot;off&quot;
- *              autocapitalize&#x3D;&quot;off&quot;
- *              spellcheck&#x3D;&quot;false&quot;
+ *              [hint]&#x3D;&quot;&#x27;Fill this out!&#x27;&quot;
+ *              [label]&#x3D;&quot;&#x27;My Input&#x27;&quot;
+ *              [name]&#x3D;&quot;&#x27;password&#x27;&quot;
+ *              [prefixIcon]&#x3D;&quot;&#x27;icon_name&#x27;&quot;
+ *              [type]&#x3D;&quot;&#x27;text&#x27;&quot;
+ *              [isDisabled]&#x3D;&quot;false&quot;
+ *              [isRequired]&#x3D;&quot;false&quot;
+ *              [hideRequiredMarker]&#x3D;&quot;false&quot;
+ *              [isClearable]&#x3D;&quot;true&quot;
+ *              [isFocused]&#x3D;&quot;false&quot;
+ *              [autocomplete]&#x3D;&quot;false&quot;
+ *              [autocorrect]&#x3D;&quot;false&quot;
+ *              [autocapitalize]&#x3D;&quot;false&quot;
+ *              [spellcheck]&#x3D;&quot;false&quot;
  * &gt;&lt;/ts-input&gt;
  */
 @Component({
@@ -1124,61 +1173,82 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    * Define if the input should autocapitalize
    * (standard HTML5 property)
    */
-  @Input() autocapitalize: boolean &#x3D; true;
+  @Input()
+  public autocapitalize: boolean &#x3D; true;
 
   /**
    * Define if the input should autocomplete
-   * (standard HTML5 property)
    */
-  @Input() autocomplete: boolean &#x3D; true;
+  @Input()
+  public autocomplete: TsInputAutocompleteTypes &#x3D; &#x27;on&#x27;;
 
   /**
    * Define a Material icon to include after the input
    */
-  @Input() isClearable: boolean &#x3D; false;
+  @Input()
+  public isClearable: boolean &#x3D; false;
 
   /**
    * Define if the input should be focused
    */
-  @Input() isFocused: boolean;
+  @Input()
+  public isFocused: boolean;
 
   /**
    * Define if the input is required
    */
-  @Input() isRequired: boolean &#x3D; false;
+  @Input()
+  public isRequired: boolean &#x3D; false;
 
   /**
    * Define if a required marker should be included
    */
-  @Input() hideRequiredMarker: boolean &#x3D; false;
+  @Input()
+  public hideRequiredMarker: boolean &#x3D; false;
 
   /**
    * Define a hint for the input
    */
-  // TODO: Fix potential overlap of hint and error messages
-  @Input() hint: string;
+  // FIXME: Fix potential overlap of hint and error messages
+  @Input()
+  public hint: string;
 
   /**
    * Define the label
    */
-  @Input() label: string;
+  @Input()
+  public label: string;
+
+  /**
+   * Define the name attribute value
+   */
+  @Input(&#x27;name&#x27;)
+  public name: string;
 
   /**
    * Define a Material icon to include before the input
    */
-  @Input() prefixIcon: string;
+  @Input()
+  public prefixIcon: string;
 
   /**
    * Define if the input should spellcheck
    * (standard HTML5 property)
    */
-  @Input() spellcheck: boolean &#x3D; true;
+  @Input()
+  public spellcheck: boolean &#x3D; true;
+
+  /**
+   * Define the input type (text, password etc.) See {@link TsInputTypes}
+   */
+  @Input(&#x27;type&#x27;)
+  public type: TsInputTypes &#x3D; &#x27;text&#x27;;
 
 
   /**
    * Clear the input&#x27;s value
    */
-  reset(): void {
+  public reset(): void {
     this.value &#x3D; &#x27;&#x27;;
   }
 
@@ -1199,16 +1269,17 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
 
   &lt;input
     mdInput
-    placeholder&#x3D;&quot;{{ label }}&quot;
-    autofocus&#x3D;&quot;{{ isFocused }}&quot;
-    type&#x3D;&quot;text&quot;
-    [required]&#x3D;&quot;isRequired ? &#x27;&#x27; : null&quot;
     class&#x3D;&quot;c-input__text&quot;
+    type&#x3D;&quot;{{ type }}&quot;
+    placeholder&#x3D;&quot;{{ label }}&quot;
+    [attr.name]&#x3D;&quot;name&quot;
+    [autofocus]&#x3D;&quot;isFocused&quot;
+    [attr.required]&#x3D;&quot;isRequired ? &#x27;&#x27; : null&quot;
+    [attr.autocomplete]&#x3D;&quot;autocomplete&quot;
+    [attr.autocapitalize]&#x3D;&quot;autocapitalize ? &#x27;on&#x27; : &#x27;off&#x27;&quot;
+    [attr.spellcheck]&#x3D;&quot;spellcheck ? &#x27;on&#x27; : &#x27;off&#x27;&quot;
     [(ngModel)]&#x3D;&quot;value&quot;
     (blur)&#x3D;&quot;onBlur()&quot;
-    autocomplete&#x3D;&quot;{{ autocomplete ? &#x27;on&#x27; : &#x27;off&#x27; }}&quot;
-    autocapitalize&#x3D;&quot;{{ autocapitalize ? &#x27;on&#x27; : &#x27;off&#x27; }}&quot;
-    spellcheck&#x3D;&quot;{{ spellcheck ? &#x27;on&#x27; : &#x27;off&#x27; }}&quot;
   &gt;
 
   &lt;md-icon
@@ -1254,7 +1325,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input c-input"  [hideRequiredMarker]="hideRequiredMarker">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    placeholder="{{ label }}"    autofocus="{{ isFocused }}"    type="text"    [required]="isRequired ? \'\' : null"    class="c-input__text"    [(ngModel)]="value"    (blur)="onBlur()"    autocomplete="{{ autocomplete ? \'on\' : \'off\' }}"    autocapitalize="{{ autocapitalize ? \'on\' : \'off\' }}"    spellcheck="{{ spellcheck ? \'on\' : \'off\' }}"  >  <md-icon    mdSuffix    *ngIf="isClearable"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</md-icon>  <md-hint align="end" *ngIf="hint">    {{ hint }}  </md-hint>  <ts-validation-messages    [control]="formControl"  ></ts-validation-messages></md-input-container></div>'
+        var COMPONENT_TEMPLATE = '<div><md-input-container  class="c-input c-input"  [hideRequiredMarker]="hideRequiredMarker">  <md-icon    mdPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</md-icon>  <input    mdInput    class="c-input__text"    type="{{ type }}"    placeholder="{{ label }}"    [attr.name]="name"    [autofocus]="isFocused"    [attr.required]="isRequired ? \'\' : null"    [attr.autocomplete]="autocomplete"    [attr.autocapitalize]="autocapitalize ? \'on\' : \'off\'"    [attr.spellcheck]="spellcheck ? \'on\' : \'off\'"    [(ngModel)]="value"    (blur)="onBlur()"  >  <md-icon    mdSuffix    *ngIf="isClearable"    class="c-input__clear"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</md-icon>  <md-hint align="end" *ngIf="hint">    {{ hint }}  </md-hint>  <ts-validation-messages    [control]="formControl"  ></ts-validation-messages></md-input-container></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};

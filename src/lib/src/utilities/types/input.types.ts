@@ -15,6 +15,7 @@ export type TsInputTypes =
 
 /**
  * Define the allowed autocomplete variations for {@link TsInputComponent}
+ *
  * NOTE: This is not all valid types; only the ones this library supports.
  */
 export type TsInputAutocompleteTypes =
