@@ -10,5 +10,5 @@
 # `.bin` items, this should be switched back to `yarn install`. The missing bin items break testing,
 # scss linting, and docs generation (compodoc)
 # Issue: https://github.com/yarnpkg/yarn/issues/760
-npm install
+yarn install
 

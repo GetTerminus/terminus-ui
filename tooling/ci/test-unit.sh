@@ -10,8 +10,8 @@
 . ~/.bashrc
 
 # Run tests
-npm run test:ci || {
-    echo 'npm run test:ci failed!';
+yarn run test:ci || {
+    echo 'yarn run test:ci failed!';
     exit 1;
 }
 

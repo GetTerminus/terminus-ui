@@ -12,19 +12,19 @@
 . ~/.bashrc
 
 echo "RUN: semantic-release pre"
-npm run semantic-release-pre || {
+yarn run semantic-release-pre || {
   echo 'No release needed.';
   exit 0;
 }
 
 echo "BUILD"
-npm run build
+yarn run build
 
 echo "RUN: npm publish"
 npm publish dist/
 
 echo "RUN: semantic-release post"
-npm run semantic-release-post || {
+yarn run semantic-release-post || {
   echo 'Error creating release notes';
 }
 
