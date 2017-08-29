@@ -642,6 +642,10 @@
     <table class="table table-sm table-hover">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -758,7 +762,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:56</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -784,7 +788,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:62</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -810,7 +814,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -836,7 +840,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -862,7 +866,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:80</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -887,7 +891,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:92</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -908,7 +912,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:86</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -926,6 +930,7 @@
   Output,
   EventEmitter,
   forwardRef,
+  ChangeDetectionStrategy,
 } from &#x27;@angular/core&#x27;;
 import {
   NG_VALUE_ACCESSOR,
@@ -967,6 +972,7 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   templateUrl: &#x27;./checkbox.component.html&#x27;,
   styleUrls: [&#x27;./checkbox.component.scss&#x27;],
   providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**

@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -46,6 +47,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
   providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**

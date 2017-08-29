@@ -630,6 +630,10 @@
     <table class="table table-sm table-hover">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -712,7 +716,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:30</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -735,7 +739,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:36</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -751,6 +755,7 @@
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from &#x27;@angular/core&#x27;;
 
 import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
@@ -769,6 +774,7 @@ import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
   selector: &#x27;ts-tooltip&#x27;,
   templateUrl: &#x27;./tooltip.component.html&#x27;,
   styleUrls: [&#x27;./tooltip.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsTooltipComponent {
   /**
