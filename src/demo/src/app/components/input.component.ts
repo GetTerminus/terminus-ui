@@ -16,6 +16,10 @@ import {
         [isClearable]="clearable"
         hint="A valid email is required."
         [isRequired]="true"
+        name="password"
+        [spellcheck]="false"
+        [autocomplete]="'email'"
+        type="password"
       ></ts-input>
 
       <button (click)="submit(myForm.value)">Submit</button>

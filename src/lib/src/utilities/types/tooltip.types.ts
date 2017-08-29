@@ -7,4 +7,5 @@ export type TsTooltipPositionTypes =
   'above' |
   'below' |
   'before' |
-  'after';
+  'after'
+;

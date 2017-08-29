@@ -3,7 +3,8 @@
  */
 export type TsMenuPositionTypesX =
   'before'
-  | 'after';
+  | 'after'
+;
 
 
 /**
@@ -11,4 +12,5 @@ export type TsMenuPositionTypesX =
  */
 export type TsMenuPositionTypesY =
   'above'
-  | 'below';
+  | 'below'
+;

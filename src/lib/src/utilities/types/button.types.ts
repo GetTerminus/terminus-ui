@@ -5,7 +5,8 @@ export type TsButtonActionTypes =
   'Button'
   | 'Submit'
   | 'Menu'
-  | 'Reset';
+  | 'Reset'
+;
 
 
 /**
@@ -14,4 +15,5 @@ export type TsButtonActionTypes =
 export type TsButtonFunctionTypes =
   'button'
   | 'search'
-  | 'submit';
+  | 'submit'
+;

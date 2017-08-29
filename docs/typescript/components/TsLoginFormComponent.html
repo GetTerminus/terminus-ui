@@ -1552,25 +1552,27 @@ export class TsLoginFormComponent implements OnChanges {
 
   &lt;ts-input
     label&#x3D;&quot;Email&quot;
+    type&#x3D;&quot;email&quot;
     formControlName&#x3D;&quot;email&quot;
     [formControl]&#x3D;&quot;getControl(&#x27;email&#x27;)&quot;
-    tsVerticalSpacing
     isRequired&#x3D;&quot;true&quot;
-    spellcheck&#x3D;&quot;false&quot;
-    autocapitalize&#x3D;&quot;false&quot;
+    [spellcheck]&#x3D;&quot;false&quot;
+    [autocapitalize]&#x3D;&quot;false&quot;
+    tsVerticalSpacing
   &gt;&lt;/ts-input&gt;
 
   &lt;ts-input
     label&#x3D;&quot;Password&quot;
+    type&#x3D;&quot;password&quot;
     formControlName&#x3D;&quot;password&quot;
     [formControl]&#x3D;&quot;getControl(&#x27;password&#x27;)&quot;
-    tsVerticalSpacing
     hideRequiredMarker&#x3D;&quot;false&quot;
     isRequired&#x3D;&quot;true&quot;
-    autocomplete&#x3D;&quot;false&quot;
-    autocapitalize&#x3D;&quot;false&quot;
-    spellcheck&#x3D;&quot;false&quot;
+    [autocomplete]&#x3D;&quot;&#x27;off&#x27;&quot;
+    [autocapitalize]&#x3D;&quot;false&quot;
+    [spellcheck]&#x3D;&quot;false&quot;
     minlength&#x3D;&quot;{{ PASSWORD_MINLENGTH }}&quot;
+    tsVerticalSpacing
   &gt;&lt;/ts-input&gt;
 
   &lt;ts-checkbox
@@ -1583,8 +1585,8 @@ export class TsLoginFormComponent implements OnChanges {
 
   &lt;ts-link
     [destination]&#x3D;&quot;forgotPasswordLink&quot;
-    tsVerticalSpacing
     [text]&#x3D;&quot;forgotPasswordText&quot;
+    tsVerticalSpacing
   &gt;&lt;/ts-link&gt;
 
   &lt;div fxLayout&#x3D;&quot;row&quot; fxFlexAlign&#x3D;&quot;end&quot;&gt;
@@ -1626,7 +1628,7 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    label="Email"    formControlName="email"    [formControl]="getControl(\'email\')"    tsVerticalSpacing    isRequired="true"    spellcheck="false"    autocapitalize="false"  ></ts-input>  <ts-input    label="Password"    formControlName="password"    [formControl]="getControl(\'password\')"    tsVerticalSpacing    hideRequiredMarker="false"    isRequired="true"    autocomplete="false"    autocapitalize="false"    spellcheck="false"    minlength="{{ PASSWORD_MINLENGTH }}"  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    tsVerticalSpacing    [text]="forgotPasswordText"  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    label="Email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tsVerticalSpacing  ></ts-input>  <ts-input    label="Password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'off\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    [text]="forgotPasswordText"    tsVerticalSpacing  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
