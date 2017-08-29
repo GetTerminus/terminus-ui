@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -45,6 +46,7 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**

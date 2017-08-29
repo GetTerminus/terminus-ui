@@ -6,6 +6,7 @@ import {
   OnInit,
   EventEmitter,
   AfterViewInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MdMenuTrigger } from '@angular/material';
 
@@ -30,6 +31,7 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
   selector: 'ts-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsMenuComponent implements OnInit, AfterViewInit {
   /**

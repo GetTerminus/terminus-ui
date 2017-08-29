@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { TsTooltipPositionTypes } from './../utilities/types';
@@ -19,6 +20,7 @@ import { TsTooltipPositionTypes } from './../utilities/types';
   selector: 'ts-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsTooltipComponent {
   /**

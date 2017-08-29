@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   Output,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 
@@ -26,6 +27,7 @@ import {
   selector: 'ts-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsLinkComponent {
   /**

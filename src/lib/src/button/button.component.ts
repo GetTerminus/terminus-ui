@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   ElementRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
@@ -31,6 +32,7 @@ import {
   selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsButtonComponent {
   /**

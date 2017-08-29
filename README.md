@@ -203,7 +203,7 @@ $ npm run test
 
 ### Demos
 
-1. `$ npm run start`
+1. `npm run install && npm run start`
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu
 
