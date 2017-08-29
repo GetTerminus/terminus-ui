@@ -11,4 +11,5 @@ export type TsVerticalSpacingTypes =
   'large--4x' |
   'large--5x' |
   'large--6x' |
-  'large--7x';
+  'large--7x'
+;
