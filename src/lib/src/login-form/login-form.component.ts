@@ -51,8 +51,10 @@ const FORM_GROUP = {
  * @example
  * <ts-login-form
  *              [inProgress]="true"
- *              forgotPasswordLink="path/to/password/reset"
+ *              [forgotPasswordLink]="['my/', 'path']"
  *              [resetForm]="myBoolean"
+ *              [loginCTA]=" 'Sign In' "
+ *              [forgotPasswordText]=" 'Forget something?' "
  *              (submit)="myMethod($event)"
  * ></ts-login-form>
  */
@@ -66,16 +68,6 @@ export class TsLoginFormComponent implements OnChanges {
    * Define the minimum length for a password
    */
   public PASSWORD_MINLENGTH: number = 8;
-
-  /**
-   * Define the text for the 'forgot password' link
-   */
-  public forgotPasswordText: string = 'Forgot your password?';
-
-  /**
-   * Define the login call to action
-   */
-  public loginCta: string = `Log In`;
 
   /**
    * Initialize the login form
@@ -120,13 +112,25 @@ export class TsLoginFormComponent implements OnChanges {
    * Define the link to the 'forgot password' view
    */
   @Input()
-  public forgotPasswordLink: string = '/forgot';
+  public forgotPasswordLink: string[] = ['/forgot'];
+
+  /**
+   * Define the text for the 'forgot password' link
+   */
+  @Input('forgotPasswordText')
+  public forgotPasswordText: string = 'Forgot your password?';
 
   /**
    * Define if the form button is showing progress
    */
   @Input()
   public inProgress: Boolean = false;
+
+  /**
+   * Define the login call to action
+   */
+  @Input('loginCTA')
+  public loginCTA: string = 'Log In';
 
   /**
    * Allow a consumer to reset the form via an input
