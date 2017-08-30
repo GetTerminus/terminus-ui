@@ -16,7 +16,7 @@
   }
 
   // Primary message container
-  ::ng-deep &.mat-input-error {
+  ::ng-deep &.mat-error {
     margin-top: .6em;
     padding: .3em .4em .2em;
     position: absolute;
@@ -25,7 +25,7 @@
 
   // When the input has an icon prefix, we need to cancel out the space added on the left to retain
   // alignment
-  ::ng-deep .mat-input-prefix + .mat-input-infix &.mat-input-error {
+  ::ng-deep .mat-input-prefix + .mat-input-infix &.mat-error {
     margin-left: -16px;
   }
 }

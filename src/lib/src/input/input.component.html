@@ -1,4 +1,4 @@
-<md-input-container
+<md-form-field
   class="c-input c-input"
   [hideRequiredMarker]="hideRequiredMarker"
 >
@@ -10,16 +10,17 @@
 
   <input
     mdInput
-    placeholder="{{ label }}"
-    autofocus="{{ isFocused }}"
-    type="text"
-    [required]="isRequired ? '' : null"
     class="c-input__text"
+    type="{{ type }}"
+    placeholder="{{ label }}"
+    [attr.name]="name"
+    [autofocus]="isFocused"
+    [attr.required]="isRequired ? '' : null"
+    [attr.autocomplete]="autocomplete"
+    [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+    [attr.spellcheck]="spellcheck ? 'on' : 'off'"
     [(ngModel)]="value"
     (blur)="onBlur()"
-    autocomplete="{{ autocomplete ? 'on' : 'off' }}"
-    autocapitalize="{{ autocapitalize ? 'on' : 'off' }}"
-    spellcheck="{{ spellcheck ? 'on' : 'off' }}"
   >
 
   <md-icon
@@ -38,4 +39,4 @@
     [control]="formControl"
   ></ts-validation-messages>
 
-</md-input-container>
+</md-form-field>

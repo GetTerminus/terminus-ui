@@ -3,11 +3,10 @@ import {
   Input,
   forwardRef,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/input.types';
 
 
 /**
@@ -26,28 +25,26 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * A presentational component to render a text input.
  *
- * Why we are not masking passwords:
- *   - https://www.nngroup.com/articles/stop-password-masking/
- *   - https://www.lukew.com/ff/entry.asp?1653
- *
  * @example
  * <ts-input
  *              formControlName="email"
  *              [formControl]="yourHelperToGetFormControl('email')"
- *              hint="Fill this out!"
  *              required
  *              minlength="3"
- *              label="My Input"
- *              isDisabled="false"
- *              isRequired="false"
- *              hideRequiredMarker="false"
- *              prefixIcon="link"
- *              isClearable="true"
- *              isFocused="false"
- *              autocomplete="off"
- *              autocorrect="off"
- *              autocapitalize="off"
- *              spellcheck="false"
+ *              [hint]="'Fill this out!'"
+ *              [label]="'My Input'"
+ *              [name]="'password'"
+ *              [prefixIcon]="'icon_name'"
+ *              [type]="'text'"
+ *              [isDisabled]="false"
+ *              [isRequired]="false"
+ *              [hideRequiredMarker]="false"
+ *              [isClearable]="true"
+ *              [isFocused]="false"
+ *              [autocomplete]="false"
+ *              [autocorrect]="false"
+ *              [autocapitalize]="false"
+ *              [spellcheck]="false"
  * ></ts-input>
  */
 @Component({
@@ -61,61 +58,82 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    * Define if the input should autocapitalize
    * (standard HTML5 property)
    */
-  @Input() autocapitalize: boolean = true;
+  @Input()
+  public autocapitalize: boolean = true;
 
   /**
    * Define if the input should autocomplete
-   * (standard HTML5 property)
    */
-  @Input() autocomplete: boolean = true;
+  @Input()
+  public autocomplete: TsInputAutocompleteTypes = 'on';
 
   /**
-   * Define a Material icon to include after the input
+   * Define if the input should surface the ability to clear it's value
    */
-  @Input() isClearable: boolean = false;
+  @Input()
+  public isClearable: boolean = false;
 
   /**
    * Define if the input should be focused
    */
-  @Input() isFocused: boolean;
+  @Input()
+  public isFocused: boolean;
 
   /**
    * Define if the input is required
    */
-  @Input() isRequired: boolean = false;
+  @Input()
+  public isRequired: boolean = false;
 
   /**
    * Define if a required marker should be included
    */
-  @Input() hideRequiredMarker: boolean = false;
+  @Input()
+  public hideRequiredMarker: boolean = false;
 
   /**
    * Define a hint for the input
    */
-  // TODO: Fix potential overlap of hint and error messages
-  @Input() hint: string;
+  // FIXME: Fix potential overlap of hint and error messages
+  @Input()
+  public hint: string;
 
   /**
    * Define the label
    */
-  @Input() label: string;
+  @Input()
+  public label: string;
+
+  /**
+   * Define the name attribute value
+   */
+  @Input('name')
+  public name: string;
 
   /**
    * Define a Material icon to include before the input
    */
-  @Input() prefixIcon: string;
+  @Input()
+  public prefixIcon: string;
 
   /**
    * Define if the input should spellcheck
    * (standard HTML5 property)
    */
-  @Input() spellcheck: boolean = true;
+  @Input()
+  public spellcheck: boolean = true;
+
+  /**
+   * Define the input type (text, password etc.) See {@link TsInputTypes}
+   */
+  @Input('type')
+  public type: TsInputTypes = 'text';
 
 
   /**
    * Clear the input's value
    */
-  reset(): void {
+  public reset(): void {
     this.value = '';
   }
 

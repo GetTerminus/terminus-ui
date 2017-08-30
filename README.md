@@ -145,7 +145,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ npm i @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs --save
+$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs
 ```
 
 
@@ -168,7 +168,7 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.
 1. Document styles using [nucleus comments][nucleus_annotation].
-1. Run `npm run docs` to generate all documentation.
+1. Run `yarn run docs` to generate all documentation.
 1. Add the new component to available scopes in `tooling/cz-config.js`
 1. Update the status for the component in the [components table](#components)
 
@@ -177,33 +177,33 @@ $ npm i @terminus/ui @angular/forms @angular/animations @angular/material angula
 
 ```bash
 # Start the demo project and watch demo and lib files for changes
-$ npm run start
+$ yarn run start
 
 # Generate TypeScript and SCSS docs
-$ npm run docs
+$ yarn run docs
 
 # Update the README table of contents
-$ npm run docs:toc
+$ yarn run docs:toc
 
 # Build the library
-$ npm run build
+$ yarn run build
 
 # Test JiT and AoT integration
-$ npm run integration
+$ yarn run integration
 
 # Run TypeScript and SCSS linters
-$ npm run lint
+$ yarn run lint
 
 # Run all TypeScript tests
-$ npm run test
-
-# Check package.json for all available commands
+$ yarn run test
 ```
+
+> Check [package.json][pkg-json] for all available commands
 
 
 ### Demos
 
-1. `npm run install && npm run start`
+1. `yarn install && yarn run start`
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu
 
@@ -281,12 +281,12 @@ feat(Tooltip): Add a tooltip component
 chore(): Bump lodash version
 ```
 
-For a friendlier prompt, you can run `npm run cm` in the repo. This will ask several questions
+For a friendlier prompt, you can run `yarn run cm` in the repo. This will ask several questions
 and then construct the commit in the proper format for you. The prompt will allow you to choose
 from a list of types and then a list of scopes. This is much easier than trying to remember all
 possible scopes.
 
-> Optional: Installing [committizen][commitizen-cli] (`npm i -g committizen`) will allow you
+> Optional: Installing [committizen][commitizen-cli] (`yarn add -g committizen`) will allow you
 > to run `git cz` or even alias to your preferred git command.
 
 You **must** use one of the defined types since the types have specific meaning to the automatic
@@ -573,6 +573,7 @@ machines.
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
+[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
 
 <!-- Demos -->
 [demo-button]: https://embed.plnkr.co/plunk/W1t5Awrg7LLp4tyM?show=app,preview
