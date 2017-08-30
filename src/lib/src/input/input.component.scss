@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
 
 :host {
   display: inline-block;
@@ -10,11 +11,22 @@
 // @description
 //  A text input component with support for icon prefix, hints and validation messages
 //
+// sass-lint:disable no-qualifying-elements
 .c-input {
   // Top level styles should be nested here
-  &#{&} {
+  // NOTE: As of Material v2.0.0-beta.10 `md-form-field` removes duplicate classes from itself.
+  // When this is fixed, we should revert to the standard double class format of all other
+  // components.
+  // https://github.com/angular/material2/issues/6737
+  &.mat-form-field {
     @include typography;
     width: 100%;
+  }
+
+  ::ng-deep .mat-input-prefix,
+  ::ng-deep .mat-input-suffix {
+    position: relative;
+    top: spacing(small, 3x);
   }
 
   // Button to clear the value of the input

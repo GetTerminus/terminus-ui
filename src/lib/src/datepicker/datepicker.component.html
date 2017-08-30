@@ -1,4 +1,4 @@
-<md-input-container class="c-datepicker  c-datepicker">
+<md-form-field class="c-datepicker  c-datepicker">
   <input
     mdInput
     [(ngModel)]="value"
@@ -9,12 +9,9 @@
     [mdDatepickerFilter]="dateFilter"
     [disabled]="isDisabled"
   >
-  <button
-    mdSuffix
-    [mdDatepickerToggle]="picker"
-    [disabled]="isDisabled"
-  ></button>
-</md-input-container>
+  <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+</md-form-field>
+
 <md-datepicker
   #picker
   [startView]="startingView"
