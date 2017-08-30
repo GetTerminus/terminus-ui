@@ -21,7 +21,7 @@ echo "BUILD"
 yarn run build
 
 echo "RUN: npm publish"
-npm publish dist/
+yarn publish dist/
 
 echo "RUN: semantic-release post"
 yarn run semantic-release-post || {
