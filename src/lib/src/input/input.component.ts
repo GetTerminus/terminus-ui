@@ -68,7 +68,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   public autocomplete: TsInputAutocompleteTypes = 'on';
 
   /**
-   * Define a Material icon to include after the input
+   * Define if the input should surface the ability to clear it's value
    */
   @Input()
   public isClearable: boolean = false;

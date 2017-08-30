@@ -192,7 +192,7 @@ $typography-body-levels: (
       font-weight: 400;
 
       // Don't apply custom line-height to buttons
-      &:not(.c-button) {
+      &:not(.c-button):not(.c-input) {
         line-height: 20px;
       }
     }
