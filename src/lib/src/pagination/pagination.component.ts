@@ -36,24 +36,24 @@ import { TsStyleThemeTypes } from './../utilities/types';
 })
 export class TsPaginationComponent implements OnChanges, OnInit {
   /**
-   * Define the default count of records per page
+   * @private Define the default count of records per page
    */
-  private DEFAULT_PER_PAGE: number = 10;
+  DEFAULT_PER_PAGE: number = 10;
 
   /**
-   * Default max records before message is shown
+   * @private Default max records before message is shown
    */
-  private DEFAULT_MAX_PREFERED_RECORDS: number = 100;
+  DEFAULT_MAX_PREFERED_RECORDS: number = 100;
 
   /**
-   * Define the default options for the records per page select menu
+   * @private Define the default options for the records per page select menu
    */
-  private DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
+  DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
 
   /**
-   * Define the default message to show when too many records are returned
+   * @private Define the default message to show when too many records are returned
    */
-  private DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
+  DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
     'Try refining your filters for better results.';
 
   /**
@@ -87,9 +87,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public currentPageLabel: string;
 
   /**
-   * Define the amount of records show per page
+   * @private Define the amount of records show per page
    */
-  private recordsPerPage: number = this.DEFAULT_PER_PAGE;
+  recordsPerPage: number = this.DEFAULT_PER_PAGE;
 
   /**
    * Define the current page
@@ -175,9 +175,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * Set up initial resources
+   * @private Set up initial resources
    */
-  private initialize() {
+   initialize() {
     this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
     this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
@@ -308,13 +308,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * Create a new label based on the current page
+   * @private Create a new label based on the current page
    *
    * @param {Number} currentPage The current page
    * @param {Array} pages The array of all pages
    * @return {String} timeAgo The difference in time
    */
-  private createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
+  createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
     const findPage = (allPages: any[], number: number) => {
       return pages.find((page: any) => {
         return page.value === number.toString();
@@ -335,13 +335,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * Create an array containing objects that represent each available page of records
+   * @private Create an array containing objects that represent each available page of records
    *
    * @param {Number} total The total records remaining
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  private createPagesArray(total: number, perPage: number): any {
+  createPagesArray(total: number, perPage: number): any {
     const paginationArray: any[] = [];
     let recordsRemaining = total;
     let currentPage = 1;

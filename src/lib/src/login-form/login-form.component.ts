@@ -97,16 +97,16 @@ export class TsLoginFormComponent implements OnChanges {
   public showForm: boolean = true;
 
   /**
-   * Provide access to the text inputs
+   * @private Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
-  private inputComponents: QueryList<TsInputComponent>;
+  inputComponents: QueryList<TsInputComponent>;
 
   /**
-   * Provide access to the checkbox inputs
+   * @private Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
-  private checkbox: TsCheckboxComponent;
+  checkbox: TsCheckboxComponent;
 
   /**
    * Define the link to the 'forgot password' view
@@ -133,10 +133,10 @@ export class TsLoginFormComponent implements OnChanges {
   public loginCTA: string = 'Log In';
 
   /**
-   * Allow a consumer to reset the form via an input
+   * @private Allow a consumer to reset the form via an input
    */
   @Input()
-  private resetForm: boolean = false;
+  resetForm: boolean = false;
 
   /**
    * Emit an event on form submission
@@ -178,7 +178,7 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * Reset the form
+   * @private Reset the form
    *
    * This is a hack. Currently there doesn't seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
@@ -187,7 +187,7 @@ export class TsLoginFormComponent implements OnChanges {
    * form from the dom and re-adding it. This method won't break if the Material team changes any
    * validation classes but it may be more performant to simply remove the classes.
    */
-  private _resetForm() {
+  _resetForm() {
     // Destroy the form
     this.showForm = false;
 
