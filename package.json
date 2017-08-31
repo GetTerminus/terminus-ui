@@ -145,7 +145,7 @@
     "semantic-release": "^8.0.0",
     "systemjs": "^0.20.14",
     "tslint": "^5.4.3",
-    "typescript": "~2.4.2",
+    "typescript": "~2.5.2",
     "validate-commit-msg": "^2.14.0",
     "zone.js": "^0.8.4"
   },
