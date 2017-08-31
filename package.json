@@ -30,7 +30,7 @@
     "build": "node tooling/build.js",
     "build:watch": "onchange 'src/lib/**/*.ts' 'src/lib/**/!(helpers).scss' 'src/lib/**/*.html' -- yarn run build",
     "build-demo": "cd src/demo && ng build --prod",
-    "build-demo:watch": "cd src/demo && ng serve --port 4300",
+    "build-demo:watch": "cd src/demo && ng serve --port 4300 --preserve-symlink",
     "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
     "build-scss:watch": "node-sass src/lib -o src/lib --output-style expanded -w",
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
