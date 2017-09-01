@@ -20,6 +20,7 @@ import { TsCheckboxModule } from './checkbox/checkbox.module';
 import { TsLoginFormModule } from './login-form/login-form.module';
 import { TsLinkModule } from './link/link.module';
 import { TsNavigationModule } from './navigation/navigation.module';
+import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -45,6 +46,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLoginFormModule,
     TsLinkModule,
     TsNavigationModule,
+    TsLoadingOverlayModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -72,6 +74,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLoginFormModule,
     TsLinkModule,
     TsNavigationModule,
+    TsLoadingOverlayModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

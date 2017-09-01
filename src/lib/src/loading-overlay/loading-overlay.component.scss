@@ -1,0 +1,31 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/z-index';
+
+$overlay-color: color(pure);
+$debug: $overlay-color;
+$overlay-color-opaque: transparentize($overlay-color, .2);
+$debug: $overlay-color-opaque;
+
+:host {
+  align-content: center;
+  align-items: center;
+  background-color: $overlay-color-opaque;
+  bottom: 0;
+  display: flex;
+  left: 0;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: z(overlay);
+}
+
+
+
+.c-loading-overlay {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

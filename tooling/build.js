@@ -118,6 +118,7 @@ return Promise.resolve()
         '@angular/platform-browser/animations',
         '@angular/platform-browser-dynamic',
         '@angular/material',
+        '@angular/cdk/portal',
         'rxjs/Subject',
         'rxjs/Observable',
         'rxjs/add/observable/of',
