@@ -39,7 +39,7 @@
     "integration": "yarn run integration:aot && yarn run integration:jit",
     "integration:jit": "cd integration && yarn run e2e",
     "integration:aot": "cd integration && yarn run e2e:aot",
-    "lint:ts": "tslint ./src/**/*.ts -t verbose",
+    "lint:ts": "./node_modules/.bin/tslint ./src/**/*.ts --format verbose",
     "lint:scss": "./node_modules/.bin/sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
