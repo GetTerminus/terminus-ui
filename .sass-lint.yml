@@ -5,6 +5,7 @@ files:
   include: 'src/**/*.s+(a|c)ss'
   ignore:
     - 'node_modules/**/*.s+(a|c)ss'
+    - 'src/**/helpers.s+(a|c)ss'
 options:
   formatter: stylish
 rules:

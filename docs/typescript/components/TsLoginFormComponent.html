@@ -96,6 +96,9 @@
                                     <a href="../modules/TsLinkModule.html" >TsLinkModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsLoadingOverlayModule.html" >TsLoadingOverlayModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                 </li>
                                 <li class="link">
@@ -140,6 +143,9 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
+                                    <a href="../components/TestHostComponent.html" >TestHostComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
@@ -159,6 +165,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsLoginFormComponent.html"  data-type="entity-link" class="active" >TsLoginFormComponent</a>
@@ -204,6 +213,9 @@
                         <ul class="links collapse "
                                 id="xs-directives-links"
                             >
+                                <li class="link">
+                                    <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
+                                </li>
                                 <li class="link">
                                     <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
                                 </li>
@@ -372,6 +384,9 @@
                                            <a href="../modules/TsLinkModule.html" >TsLinkModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsLoadingOverlayModule.html" >TsLoadingOverlayModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                        </li>
                                        <li class="link">
@@ -416,6 +431,9 @@
                                        id="components-links"
                    >
                                        <li class="link">
+                                           <a href="../components/TestHostComponent.html" >TestHostComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
@@ -435,6 +453,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsLoginFormComponent.html"  data-type="entity-link" class="active" >TsLoginFormComponent</a>
@@ -480,6 +501,9 @@
                                <ul class="links collapse "
                                        id="directives-links"
                    >
+                                       <li class="link">
+                                           <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
                                        </li>
@@ -686,10 +710,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Private</span> <a href="#checkbox">checkbox</a>
+                                 <a href="#checkbox">checkbox</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#inputComponents">inputComponents</a>
+                                 <a href="#inputComponents">inputComponents</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#loginForm">loginForm</a>
@@ -712,7 +736,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Private</span> <a href="#_resetForm">_resetForm</a>
+                                 <a href="#_resetForm">_resetForm</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#getControl">getControl</a>
@@ -901,8 +925,6 @@
                             <code>resetForm</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Allow a consumer to reset the form via an input</p>
-</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
@@ -956,13 +978,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="_resetForm"></a>
-                            <b><span class="modifier">Private</span> _resetForm</b>
+                            <b> _resetForm</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play lock"></span>
-                            <code>_resetForm()</code>
+    <code>_resetForm()</code>
                         </td>
                     </tr>
     
@@ -975,18 +996,16 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Reset the form</p>
-    <p>This is a hack. Currently there doesn&#39;t seem to be a good way to reset the form value and
-    validations without simply re-initializing the form each time.</p>
-    <p>NOTE: The <code>showForm</code> value is a &#39;hack&#39; to reset the input validation styles by removing the
-    form from the dom and re-adding it. This method won&#39;t break if the Material team changes any
-    validation classes but it may be more performant to simply remove the classes.</p>
-    </div>
     
+                                <div>
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1136,12 +1155,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="checkbox"></a>
-                            <b><span class="modifier">Private</span> checkbox</b>
+                            <b> checkbox</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>checkbox:     <code><a href="../components/TsCheckboxComponent.html" target="_self" >TsCheckboxComponent</a></code>
+                            <code>checkbox:     <code><a href="../components/TsCheckboxComponent.html" target="_self" >TsCheckboxComponent</a></code>
     </code>
                         </td>
                     </tr>
@@ -1162,12 +1181,6 @@
                                 </td>
                             </tr>
     
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Provide access to the checkbox inputs</p>
-    </div>
-                        </td>
-                    </tr>
     
                 </tbody>
             </table>
@@ -1176,12 +1189,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="inputComponents"></a>
-                            <b><span class="modifier">Private</span> inputComponents</b>
+                            <b> inputComponents</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>inputComponents:     <code><a href="../components/TsInputComponent.html" target="_self" >QueryList&lt;TsInputComponent&gt;</a></code>
+                            <code>inputComponents:     <code><a href="../components/TsInputComponent.html" target="_self" >QueryList&lt;TsInputComponent&gt;</a></code>
     </code>
                         </td>
                     </tr>
@@ -1202,12 +1215,6 @@
                                 </td>
                             </tr>
     
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Provide access to the text inputs</p>
-    </div>
-                        </td>
-                    </tr>
     
                 </tbody>
             </table>
@@ -1430,16 +1437,16 @@ export class TsLoginFormComponent implements OnChanges {
   public showForm: boolean &#x3D; true;
 
   /**
-   * Provide access to the text inputs
+   * @private Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
-  private inputComponents: QueryList&lt;TsInputComponent&gt;;
+  inputComponents: QueryList&lt;TsInputComponent&gt;;
 
   /**
-   * Provide access to the checkbox inputs
+   * @private Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
-  private checkbox: TsCheckboxComponent;
+  checkbox: TsCheckboxComponent;
 
   /**
    * Define the link to the &#x27;forgot password&#x27; view
@@ -1466,10 +1473,10 @@ export class TsLoginFormComponent implements OnChanges {
   public loginCTA: string &#x3D; &#x27;Log In&#x27;;
 
   /**
-   * Allow a consumer to reset the form via an input
+   * @private Allow a consumer to reset the form via an input
    */
   @Input()
-  private resetForm: boolean &#x3D; false;
+  resetForm: boolean &#x3D; false;
 
   /**
    * Emit an event on form submission
@@ -1511,7 +1518,7 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * Reset the form
+   * @private Reset the form
    *
    * This is a hack. Currently there doesn&#x27;t seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
@@ -1520,7 +1527,7 @@ export class TsLoginFormComponent implements OnChanges {
    * form from the dom and re-adding it. This method won&#x27;t break if the Material team changes any
    * validation classes but it may be more performant to simply remove the classes.
    */
-  private _resetForm() {
+  _resetForm() {
     // Destroy the form
     this.showForm &#x3D; false;
 
@@ -1629,8 +1636,8 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><form  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    label="Email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tsVerticalSpacing  ></ts-input>  <ts-input    label="Password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'off\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    [destination]="forgotPasswordLink"    [text]="forgotPasswordText"    tsVerticalSpacing  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
 </script>
 <script src="../js/tree.js"></script>
