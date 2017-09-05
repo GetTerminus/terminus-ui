@@ -27,7 +27,6 @@ import { Component, OnInit } from '@angular/core';
   `,
 })
 export class LoadingOverlayComponent implements OnInit {
-
   public isLoading = true;
 
   constructor() {}
@@ -37,7 +36,6 @@ export class LoadingOverlayComponent implements OnInit {
       this.isLoading = false;
     }, 3000);
   }
-
 
 
 }
