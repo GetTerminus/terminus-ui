@@ -36,14 +36,14 @@ import { groupBy } from './../utilities/groupBy';
 })
 export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
-   * Store a pristine copy of the navigation items
+   * @private Store a pristine copy of the navigation items
    */
-  private _pristineItems: TsNavigationItem[];
+  _pristineItems: TsNavigationItem[];
 
   /**
-   * Getter to return the available navigation width
+   * @private Getter to return the available navigation width
    */
-  private get availableSpace(): number {
+  get availableSpace(): number {
     const NAV_WIDTH_BUFFER = 10;
 
     return this.visibleItemsList.nativeElement.offsetWidth - NAV_WIDTH_BUFFER;
@@ -67,9 +67,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Getter to return the space currently required for the navigation layout
+   * @private Getter to return the space currently required for the navigation layout
    */
-  private get requiredSpace(): number {
+  get requiredSpace(): number {
     return this.breakWidths[this.visibleItemsLength - 1];
   }
 
@@ -202,9 +202,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
 
   /**
-   * Move items between the two lists as required by the available space
+   * @private Move items between the two lists as required by the available space
    */
-  private updateLists(): void {
+  updateLists(): void {
     // If there is not enough space
     if (this.requiredSpace > this.availableSpace) {
       // Pull the last link out of the visible array

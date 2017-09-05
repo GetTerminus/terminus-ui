@@ -18,6 +18,7 @@ import { LinkComponent } from './link.component';
 import { WindowServiceComponent } from './window-service.component';
 import { SpacingStylesComponent } from './spacing-styles.component';
 import { NavigationComponent } from './navigation.component';
+import { LoadingOverlayComponent } from './loading-overlay.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -146,6 +147,13 @@ export const componentsList: Routes = [
     component: NavigationComponent,
     data: {
       name: 'Navigation',
+    },
+  },
+  {
+    path: 'loading-overlay',
+    component: LoadingOverlayComponent,
+    data: {
+      name: 'Loading Overlay',
     },
   },
   // INJECT: Add route for demo component

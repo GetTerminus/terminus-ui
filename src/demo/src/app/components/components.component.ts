@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { componentsList } from './components.constant';
-import orderArrayByProperty from './../utilities/orderArrayByProperty';
+import { orderArrayByProperty } from './../utilities/orderArrayByProperty';
 
 @Component({
   selector: 'demo-components',
