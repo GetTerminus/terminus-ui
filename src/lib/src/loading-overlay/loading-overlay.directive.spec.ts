@@ -155,7 +155,7 @@ export class TsWindowServiceMockStatic {
   get nativeWindow(): any {
     return {
       getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('static');
+        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('static'),
       }),
     };
   }
@@ -169,7 +169,7 @@ export class TsWindowServiceMockUnset {
   get nativeWindow(): any {
     return {
       getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('');
+        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue(''),
       }),
     };
   }
@@ -183,7 +183,7 @@ export class TsWindowServiceMockAbsolute {
   get nativeWindow(): any {
     return {
       getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('absolute');
+        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('absolute'),
       }),
     };
   }
@@ -197,7 +197,7 @@ export class TsWindowServiceMockRelative {
   get nativeWindow(): any {
     return {
       getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('relative');
+        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('relative'),
       }),
     };
   }
