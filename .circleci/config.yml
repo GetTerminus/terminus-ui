@@ -38,7 +38,6 @@ jobs:
 
       - run:
           name: Release
-          # Note: Currently `yarn publish` hangs (known issue) 4.4.17
           command: tooling/ci/publish.sh
 
       - store_artifacts:
