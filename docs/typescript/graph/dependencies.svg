@@ -38,7 +38,7 @@
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_TerminusUIModule_providers</title>
-<polygon fill="none" stroke="#000000" points="5431,-78 5431,-130 5613,-130 5613,-78 5431,-78"/>
+<polygon fill="none" stroke="#000000" points="5052,-78 5052,-130 5234,-130 5234,-78 5052,-78"/>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_TsButtonModule</title>
@@ -529,7 +529,7 @@
 <text text-anchor="middle" x="5503" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsMenuModule -->
-<g id="edge69" class="edge">
+<g id="edge70" class="edge">
 <title>TsButtonModule&#45;&gt;TsMenuModule</title>
 <path fill="none" stroke="#000000" d="M5485.8646,-255.0109C5485.8646,-255.0109 5485.8646,-284.855 5485.8646,-284.855"/>
 <polygon fill="#000000" stroke="#000000" points="5482.3647,-284.8549 5485.8646,-294.855 5489.3647,-284.855 5482.3647,-284.8549"/>
@@ -541,7 +541,7 @@
 <text text-anchor="middle" x="5230" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsSearchModule -->
-<g id="edge80" class="edge">
+<g id="edge81" class="edge">
 <title>TsButtonModule&#45;&gt;TsSearchModule</title>
 <path fill="none" stroke="#000000" d="M5437.2237,-255.027C5437.2237,-271.3976 5437.2237,-293 5437.2237,-293 5437.2237,-293 5278.406,-293 5278.406,-293 5278.406,-293 5278.406,-293.1846 5278.406,-293.1846"/>
 <polygon fill="#000000" stroke="#000000" points="5274.9067,-284.8455 5278.406,-294.8457 5281.9067,-284.8459 5274.9067,-284.8455"/>
@@ -553,7 +553,7 @@
 <text text-anchor="middle" x="5394" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginationModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsPaginationModule -->
-<g id="edge74" class="edge">
+<g id="edge75" class="edge">
 <title>TsButtonModule&#45;&gt;TsPaginationModule</title>
 <path fill="none" stroke="#000000" d="M5443.5603,-255.0333C5443.5603,-255.0333 5443.5603,-360.9902 5443.5603,-360.9902"/>
 <polygon fill="#000000" stroke="#000000" points="5440.0604,-360.9901 5443.5603,-370.9902 5447.0604,-360.9902 5440.0604,-360.9901"/>
@@ -565,7 +565,7 @@
 <text text-anchor="middle" x="5088" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLoginFormModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsLoginFormModule -->
-<g id="edge65" class="edge">
+<g id="edge66" class="edge">
 <title>TsButtonModule&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M5430.8871,-255.1243C5430.8871,-269.7832 5430.8871,-288 5430.8871,-288 5430.8871,-288 5134.5403,-288 5134.5403,-288 5134.5403,-288 5134.5403,-288.6831 5134.5403,-288.6831"/>
 <polygon fill="#000000" stroke="#000000" points="5131.0404,-284.8313 5134.5403,-294.8314 5138.0404,-284.8314 5131.0404,-284.8313"/>
@@ -595,13 +595,13 @@
 <polygon fill="#000000" stroke="#000000" points="5816.3935,-360.5096 5819.8934,-370.5096 5823.3935,-360.5097 5816.3935,-360.5096"/>
 </g>
 <!-- TsInputModule&#45;&gt;TsSearchModule -->
-<g id="edge79" class="edge">
+<g id="edge80" class="edge">
 <title>TsInputModule&#45;&gt;TsSearchModule</title>
 <path fill="none" stroke="#000000" d="M5296.7868,-255.0109C5296.7868,-277.4852 5296.7868,-313 5296.7868,-313 5296.7868,-313 5295.684,-313 5295.684,-313"/>
 <polygon fill="#000000" stroke="#000000" points="5295.7584,-309.5001 5285.7583,-313 5295.7583,-316.5001 5295.7584,-309.5001"/>
 </g>
 <!-- TsInputModule&#45;&gt;TsLoginFormModule -->
-<g id="edge62" class="edge">
+<g id="edge63" class="edge">
 <title>TsInputModule&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M5293.1189,-255.1467C5293.1189,-268.7395 5293.1189,-285 5293.1189,-285 5293.1189,-285 5115.9242,-285 5115.9242,-285 5115.9242,-285 5115.9242,-285.9793 5115.9242,-285.9793"/>
 <polygon fill="#000000" stroke="#000000" points="5112.4243,-284.793 5115.9242,-294.793 5119.4243,-284.7931 5112.4243,-284.793"/>
@@ -643,7 +643,7 @@
 <text text-anchor="middle" x="7629" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesComponent </text>
 </g>
 <!-- TsValidationMessagesModule&#45;&gt;TsValidationMessagesComponent  -->
-<g id="edge93" class="edge">
+<g id="edge94" class="edge">
 <title>TsValidationMessagesModule&#45;&gt;TsValidationMessagesComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4914.8906,-190.2434C4914.8906,-197.4297 4914.8906,-204 4914.8906,-204 4914.8906,-204 7569.8291,-204 7569.8291,-204 7569.8291,-204 7569.8291,-132.3415 7569.8291,-132.3415"/>
 <polygon fill="#000000" stroke="#000000" points="7573.3291,-132.3415 7569.8291,-122.3415 7566.3291,-132.3416 7573.3291,-132.3415"/>
@@ -655,7 +655,7 @@
 <polygon fill="#000000" stroke="#000000" points="5801.7862,-386.5001 5811.7862,-383 5801.7861,-379.5001 5801.7862,-386.5001"/>
 </g>
 <!-- TsMenuModule&#45;&gt;TsPaginationModule -->
-<g id="edge76" class="edge">
+<g id="edge77" class="edge">
 <title>TsMenuModule&#45;&gt;TsPaginationModule</title>
 <path fill="none" stroke="#000000" d="M5455.3061,-331.0109C5455.3061,-331.0109 5455.3061,-360.855 5455.3061,-360.855"/>
 <polygon fill="#000000" stroke="#000000" points="5451.8062,-360.8549 5455.3061,-370.855 5458.8062,-360.855 5451.8062,-360.8549"/>
@@ -667,7 +667,7 @@
 <text text-anchor="middle" x="7403" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent </text>
 </g>
 <!-- TsMenuModule&#45;&gt;TsMenuComponent  -->
-<g id="edge70" class="edge">
+<g id="edge71" class="edge">
 <title>TsMenuModule&#45;&gt;TsMenuComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5545.8536,-331.32C5545.8536,-339.7883 5545.8536,-348 5545.8536,-348 5545.8536,-348 7402,-348 7402,-348 7402,-348 7402,-360.8975 7402,-360.8975"/>
 <polygon fill="#000000" stroke="#000000" points="7398.5001,-360.8974 7402,-370.8975 7405.5001,-360.8975 7398.5001,-360.8974"/>
@@ -685,7 +685,7 @@
 <polygon fill="#000000" stroke="#000000" points="5811.6664,-360.8097 5815.1662,-370.8097 5818.6664,-360.8098 5811.6664,-360.8097"/>
 </g>
 <!-- TsSelectModule&#45;&gt;TsPaginationModule -->
-<g id="edge75" class="edge">
+<g id="edge76" class="edge">
 <title>TsSelectModule&#45;&gt;TsPaginationModule</title>
 <path fill="none" stroke="#000000" d="M5355.4822,-331.0109C5355.4822,-331.0109 5355.4822,-360.855 5355.4822,-360.855"/>
 <polygon fill="#000000" stroke="#000000" points="5351.9823,-360.8549 5355.4822,-370.855 5358.9823,-360.855 5351.9823,-360.8549"/>
@@ -697,7 +697,7 @@
 <text text-anchor="middle" x="3701" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSelectComponent </text>
 </g>
 <!-- TsSelectModule&#45;&gt;TsSelectComponent  -->
-<g id="edge84" class="edge">
+<g id="edge85" class="edge">
 <title>TsSelectModule&#45;&gt;TsSelectComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5311.8434,-331.1097C5311.8434,-340.897 5311.8434,-351 5311.8434,-351 5311.8434,-351 3701,-351 3701,-351 3701,-351 3701,-360.8903 3701,-360.8903"/>
 <polygon fill="#000000" stroke="#000000" points="3697.5001,-360.8903 3701,-370.8903 3704.5001,-360.8904 3697.5001,-360.8903"/>
@@ -721,7 +721,7 @@
 <text text-anchor="middle" x="8830" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsToggleComponent </text>
 </g>
 <!-- TsToggleModule&#45;&gt;TsToggleComponent  -->
-<g id="edge89" class="edge">
+<g id="edge90" class="edge">
 <title>TsToggleModule&#45;&gt;TsToggleComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5795.6227,-172C6215.6101,-172 8830,-172 8830,-172 8830,-172 8830,-208.8939 8830,-208.8939"/>
 <polygon fill="#000000" stroke="#000000" points="8826.5001,-208.8938 8830,-218.8939 8833.5001,-208.8939 8826.5001,-208.8938"/>
@@ -739,7 +739,7 @@
 <text text-anchor="middle" x="2982" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchComponent </text>
 </g>
 <!-- TsSearchModule&#45;&gt;TsSearchComponent  -->
-<g id="edge81" class="edge">
+<g id="edge82" class="edge">
 <title>TsSearchModule&#45;&gt;TsSearchComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5195.4582,-331.1686C5195.4582,-335.0459 5195.4582,-338 5195.4582,-338 5195.4582,-338 2982,-338 2982,-338 2982,-338 2982,-360.8757 2982,-360.8757"/>
 <polygon fill="#000000" stroke="#000000" points="2978.5001,-360.8757 2982,-370.8757 2985.5001,-360.8757 2978.5001,-360.8757"/>
@@ -757,7 +757,7 @@
 <text text-anchor="middle" x="4379" y="-460.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginationComponent </text>
 </g>
 <!-- TsPaginationModule&#45;&gt;TsPaginationComponent  -->
-<g id="edge77" class="edge">
+<g id="edge78" class="edge">
 <title>TsPaginationModule&#45;&gt;TsPaginationComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5327.0105,-383C5100.7567,-383 4379,-383 4379,-383 4379,-383 4379,-436.8015 4379,-436.8015"/>
 <polygon fill="#000000" stroke="#000000" points="4375.5001,-436.8015 4379,-446.8015 4382.5001,-436.8016 4375.5001,-436.8015"/>
@@ -805,7 +805,7 @@
 <text text-anchor="middle" x="7727" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTooltipComponent </text>
 </g>
 <!-- TsTooltipModule&#45;&gt;TsTooltipComponent  -->
-<g id="edge91" class="edge">
+<g id="edge92" class="edge">
 <title>TsTooltipModule&#45;&gt;TsTooltipComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5344.5987,-190.1686C5344.5987,-194.0459 5344.5987,-197 5344.5987,-197 5344.5987,-197 7696.074,-197 7696.074,-197 7696.074,-197 7696.074,-208.8726 7696.074,-208.8726"/>
 <polygon fill="#000000" stroke="#000000" points="7692.5741,-208.8725 7696.074,-218.8726 7699.5741,-208.8726 7692.5741,-208.8725"/>
@@ -877,7 +877,7 @@
 <polygon fill="#000000" stroke="#000000" points="5872.9392,-360.9671 5876.4391,-370.9672 5879.9392,-360.9672 5872.9392,-360.9671"/>
 </g>
 <!-- TsSpacingModule&#45;&gt;TsLoginFormModule -->
-<g id="edge64" class="edge">
+<g id="edge65" class="edge">
 <title>TsSpacingModule&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M4983.9321,-255.308C4983.9321,-275.1455 4983.9321,-304 4983.9321,-304 4983.9321,-304 5009.1647,-304 5009.1647,-304"/>
 <polygon fill="#000000" stroke="#000000" points="5009.1648,-307.5001 5019.1647,-304 5009.1647,-300.5001 5009.1648,-307.5001"/>
@@ -889,7 +889,7 @@
 <text text-anchor="middle" x="858" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsVerticalSpacingDirective </text>
 </g>
 <!-- TsSpacingModule&#45;&gt;TsVerticalSpacingDirective  -->
-<g id="edge86" class="edge">
+<g id="edge87" class="edge">
 <title>TsSpacingModule&#45;&gt;TsVerticalSpacingDirective </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4895.9133,-255.0579C4895.9133,-259.4945 4895.9133,-263 4895.9133,-263 4895.9133,-263 858,-263 858,-263 858,-263 858,-284.9489 858,-284.9489"/>
 <polygon fill="#000000" stroke="#000000" points="854.5001,-284.9488 858,-294.9489 861.5001,-284.9489 854.5001,-284.9488"/>
@@ -907,7 +907,7 @@
 <polygon fill="#000000" stroke="#000000" points="5813.242,-360.8418 5816.7419,-370.8419 5820.242,-360.8419 5813.242,-360.8418"/>
 </g>
 <!-- TsCheckboxModule&#45;&gt;TsLoginFormModule -->
-<g id="edge63" class="edge">
+<g id="edge64" class="edge">
 <title>TsCheckboxModule&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M5078.6919,-255.0109C5078.6919,-255.0109 5078.6919,-284.855 5078.6919,-284.855"/>
 <polygon fill="#000000" stroke="#000000" points="5075.192,-284.8549 5078.6919,-294.855 5082.192,-284.855 5075.192,-284.8549"/>
@@ -937,7 +937,7 @@
 <text text-anchor="middle" x="3329" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLoginFormComponent </text>
 </g>
 <!-- TsLoginFormModule&#45;&gt;TsLoginFormComponent  -->
-<g id="edge67" class="edge">
+<g id="edge68" class="edge">
 <title>TsLoginFormModule&#45;&gt;TsLoginFormComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5019.3153,-313C4694.588,-313 3329,-313 3329,-313 3329,-313 3329,-360.9891 3329,-360.9891"/>
 <polygon fill="#000000" stroke="#000000" points="3325.5001,-360.989 3329,-370.9891 3332.5001,-360.9891 3325.5001,-360.989"/>
@@ -955,7 +955,7 @@
 <polygon fill="#000000" stroke="#000000" points="5814.8177,-360.5362 5818.3176,-370.5362 5821.8177,-360.5362 5814.8177,-360.5362"/>
 </g>
 <!-- TsLinkModule&#45;&gt;TsLoginFormModule -->
-<g id="edge66" class="edge">
+<g id="edge67" class="edge">
 <title>TsLinkModule&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M5170.8432,-237C5166.569,-237 5163.8335,-237 5163.8335,-237 5163.8335,-237 5163.8335,-313 5163.8335,-313 5163.8335,-313 5163.1336,-313 5163.1336,-313"/>
 <polygon fill="#000000" stroke="#000000" points="5166.8352,-309.5002 5156.8351,-313 5166.8351,-316.5002 5166.8352,-309.5002"/>
@@ -991,9 +991,9 @@
 <text text-anchor="middle" x="8458" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsNavigationComponent </text>
 </g>
 <!-- TsNavigationModule&#45;&gt;TsNavigationComponent  -->
-<g id="edge72" class="edge">
+<g id="edge73" class="edge">
 <title>TsNavigationModule&#45;&gt;TsNavigationComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5644.8857,-153.8777C5644.8857,-151.0271 5644.8857,-149 5644.8857,-149 5644.8857,-149 8387.0093,-149 8387.0093,-149 8387.0093,-149 8387.0093,-208.7663 8387.0093,-208.7663"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5619.6258,-153.8777C5619.6258,-151.0271 5619.6258,-149 5619.6258,-149 5619.6258,-149 8387.0093,-149 8387.0093,-149 8387.0093,-149 8387.0093,-208.7663 8387.0093,-208.7663"/>
 <polygon fill="#000000" stroke="#000000" points="8383.5094,-208.7663 8387.0093,-218.7663 8390.5094,-208.7664 8383.5094,-208.7663"/>
 </g>
 <!-- TsLoadingOverlayModule -->
@@ -1017,26 +1017,32 @@
 <!-- TsLoadingOverlayModule&#45;&gt;TsLoadingOverlayDirective  -->
 <g id="edge60" class="edge">
 <title>TsLoadingOverlayModule&#45;&gt;TsLoadingOverlayDirective </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5184.323,-153.8495C5184.323,-141.7292 5184.323,-128 5184.323,-128 5184.323,-128 8082.2279,-128 8082.2279,-128 8082.2279,-128 8082.2279,-127.419 8082.2279,-127.419"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M5192.5875,-153.8495C5192.5875,-141.7292 5192.5875,-128 5192.5875,-128 5192.5875,-128 8082.2279,-128 8082.2279,-128 8082.2279,-128 8082.2279,-127.419 8082.2279,-127.419"/>
 <polygon fill="#000000" stroke="#000000" points="8085.7281,-132.1902 8082.2279,-122.1903 8078.7281,-132.1903 8085.7281,-132.1902"/>
 </g>
 <!-- TsWindowService -->
 <g id="node39" class="node">
 <title>TsWindowService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="5522" cy="-104" rx="82.8052" ry="18"/>
-<text text-anchor="middle" x="5522" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsWindowService</text>
+<ellipse fill="#fdb462" stroke="#000000" cx="5143" cy="-104" rx="82.8052" ry="18"/>
+<text text-anchor="middle" x="5143" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsWindowService</text>
 </g>
 <!-- TsWindowService&#45;&gt;TerminusUIModule -->
 <g id="edge38" class="edge">
 <title>TsWindowService&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M5605.2081,-104C5697.1817,-104 5832.4993,-104 5832.4993,-104 5832.4993,-104 5832.4993,-360.7384 5832.4993,-360.7384"/>
+<path fill="none" stroke="#000000" d="M5226.1697,-104C5409.5555,-104 5832.4993,-104 5832.4993,-104 5832.4993,-104 5832.4993,-360.7384 5832.4993,-360.7384"/>
 <polygon fill="#000000" stroke="#000000" points="5828.9994,-360.7384 5832.4993,-370.7384 5835.9994,-360.7385 5828.9994,-360.7384"/>
 </g>
 <!-- TsWindowService&#45;&gt;TsCopyModule -->
 <g id="edge46" class="edge">
 <title>TsWindowService&#45;&gt;TsCopyModule</title>
-<path fill="none" stroke="#000000" d="M5438.875,-104C5289.25,-104 4990,-104 4990,-104 4990,-104 4990,-143.7772 4990,-143.7772"/>
+<path fill="none" stroke="#000000" d="M5059.7841,-104C5023.8989,-104 4990,-104 4990,-104 4990,-104 4990,-143.7772 4990,-143.7772"/>
 <polygon fill="#000000" stroke="#000000" points="4986.5001,-143.7772 4990,-153.7772 4993.5001,-143.7773 4986.5001,-143.7772"/>
+</g>
+<!-- TsWindowService&#45;&gt;TsLoadingOverlayModule -->
+<g id="edge61" class="edge">
+<title>TsWindowService&#45;&gt;TsLoadingOverlayModule</title>
+<path fill="none" stroke="#000000" d="M5093.4125,-118.755C5093.4125,-118.755 5093.4125,-143.8833 5093.4125,-143.8833"/>
+<polygon fill="#000000" stroke="#000000" points="5089.9126,-143.8833 5093.4125,-153.8833 5096.9126,-143.8833 5089.9126,-143.8833"/>
 </g>
 <!-- TsButtonComponent -->
 <g id="node40" class="node">
@@ -1155,8 +1161,8 @@
 <!-- TsLoadingOverlayDirective&#45;&gt;TsLoadingOverlayModule -->
 <g id="edge58" class="edge">
 <title>TsLoadingOverlayDirective&#45;&gt;TsLoadingOverlayModule</title>
-<path fill="none" stroke="#000000" d="M8476.3031,-122.1944C8476.3031,-130.2782 8476.3031,-138 8476.3031,-138 8476.3031,-138 5143,-138 5143,-138 5143,-138 5143,-143.8056 5143,-143.8056"/>
-<polygon fill="#000000" stroke="#000000" points="5139.5001,-143.8055 5143,-153.8056 5146.5001,-143.8056 5139.5001,-143.8055"/>
+<path fill="none" stroke="#000000" d="M8476.3031,-122.1944C8476.3031,-130.2782 8476.3031,-138 8476.3031,-138 8476.3031,-138 5159.5292,-138 5159.5292,-138 5159.5292,-138 5159.5292,-143.8056 5159.5292,-143.8056"/>
+<polygon fill="#000000" stroke="#000000" points="5156.0293,-143.8055 5159.5292,-153.8056 5163.0293,-143.8056 5156.0293,-143.8055"/>
 </g>
 <!-- TsLoadingOverlayComponent -->
 <g id="node57" class="node">
@@ -1167,8 +1173,8 @@
 <!-- TsLoadingOverlayComponent&#45;&gt;TsLoadingOverlayModule -->
 <g id="edge59" class="edge">
 <title>TsLoadingOverlayComponent&#45;&gt;TsLoadingOverlayModule</title>
-<path fill="none" stroke="#000000" d="M8273.4155,-122.2015C8273.4155,-128.028 8273.4155,-133 8273.4155,-133 8273.4155,-133 5101.6771,-133 5101.6771,-133 5101.6771,-133 5101.6771,-143.8701 5101.6771,-143.8701"/>
-<polygon fill="#000000" stroke="#000000" points="5098.1771,-143.8701 5101.6771,-153.8701 5105.1771,-143.8701 5098.1771,-143.8701"/>
+<path fill="none" stroke="#000000" d="M8273.4155,-122.2015C8273.4155,-128.028 8273.4155,-133 8273.4155,-133 8273.4155,-133 5126.4708,-133 5126.4708,-133 5126.4708,-133 5126.4708,-143.8701 5126.4708,-143.8701"/>
+<polygon fill="#000000" stroke="#000000" points="5122.9709,-143.8701 5126.4708,-153.8701 5129.9709,-143.8701 5122.9709,-143.8701"/>
 </g>
 <!-- TsLoginFormComponent -->
 <g id="node59" class="node">
@@ -1177,7 +1183,7 @@
 <text text-anchor="middle" x="3514" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsLoginFormComponent</text>
 </g>
 <!-- TsLoginFormComponent&#45;&gt;TsLoginFormModule -->
-<g id="edge61" class="edge">
+<g id="edge62" class="edge">
 <title>TsLoginFormComponent&#45;&gt;TsLoginFormModule</title>
 <path fill="none" stroke="#000000" d="M3514,-370.692C3514,-350.8545 3514,-322 3514,-322 3514,-322 5009.101,-322 5009.101,-322"/>
 <polygon fill="#000000" stroke="#000000" points="5009.101,-325.5001 5019.101,-322 5009.101,-318.5001 5009.101,-325.5001"/>
@@ -1189,7 +1195,7 @@
 <text text-anchor="middle" x="7557" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent</text>
 </g>
 <!-- TsMenuComponent&#45;&gt;TsMenuModule -->
-<g id="edge68" class="edge">
+<g id="edge69" class="edge">
 <title>TsMenuComponent&#45;&gt;TsMenuModule</title>
 <path fill="none" stroke="#000000" d="M7554.9194,-370.8495C7554.9194,-358.7292 7554.9194,-345 7554.9194,-345 7554.9194,-345 5540.7289,-345 5540.7289,-345 5540.7289,-345 5540.7289,-341.2434 5540.7289,-341.2434"/>
 <polygon fill="#000000" stroke="#000000" points="5544.2289,-341.2434 5540.7289,-331.2434 5537.2289,-341.2434 5544.2289,-341.2434"/>
@@ -1201,10 +1207,10 @@
 <text text-anchor="middle" x="8642" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsNavigationComponent</text>
 </g>
 <!-- TsNavigationComponent&#45;&gt;TsNavigationModule -->
-<g id="edge71" class="edge">
+<g id="edge72" class="edge">
 <title>TsNavigationComponent&#45;&gt;TsNavigationModule</title>
-<path fill="none" stroke="#000000" d="M8575.5719,-218.6262C8575.5719,-191.5231 8575.5719,-144 8575.5719,-144 8575.5719,-144 5624.8941,-144 5624.8941,-144 5624.8941,-144 5624.8941,-144.9793 5624.8941,-144.9793"/>
-<polygon fill="#000000" stroke="#000000" points="5621.3942,-143.793 5624.8941,-153.793 5628.3942,-143.7931 5621.3942,-143.793"/>
+<path fill="none" stroke="#000000" d="M8575.5719,-218.6262C8575.5719,-191.5231 8575.5719,-144 8575.5719,-144 8575.5719,-144 5574.3742,-144 5574.3742,-144 5574.3742,-144 5574.3742,-144.9793 5574.3742,-144.9793"/>
+<polygon fill="#000000" stroke="#000000" points="5570.8743,-143.793 5574.3742,-153.793 5577.8743,-143.7931 5570.8743,-143.793"/>
 </g>
 <!-- TsPaginationComponent -->
 <g id="node65" class="node">
@@ -1213,7 +1219,7 @@
 <text text-anchor="middle" x="4560" y="-460.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginationComponent</text>
 </g>
 <!-- TsPaginationComponent&#45;&gt;TsPaginationModule -->
-<g id="edge73" class="edge">
+<g id="edge74" class="edge">
 <title>TsPaginationComponent&#45;&gt;TsPaginationModule</title>
 <path fill="none" stroke="#000000" d="M4560,-446.9733C4560,-426.2328 4560,-395 4560,-395 4560,-395 5317.1601,-395 5317.1601,-395"/>
 <polygon fill="#000000" stroke="#000000" points="5317.1601,-398.5001 5327.1601,-395 5317.16,-391.5001 5317.1601,-398.5001"/>
@@ -1225,7 +1231,7 @@
 <text text-anchor="middle" x="3141" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchComponent</text>
 </g>
 <!-- TsSearchComponent&#45;&gt;TsSearchModule -->
-<g id="edge78" class="edge">
+<g id="edge79" class="edge">
 <title>TsSearchComponent&#45;&gt;TsSearchModule</title>
 <path fill="none" stroke="#000000" d="M3141,-370.8533C3141,-357.2605 3141,-341 3141,-341 3141,-341 5216.7334,-341 5216.7334,-341 5216.7334,-341 5216.7334,-340.0207 5216.7334,-340.0207"/>
 <polygon fill="#000000" stroke="#000000" points="5220.2335,-341.2069 5216.7334,-331.207 5213.2335,-341.207 5220.2335,-341.2069"/>
@@ -1237,7 +1243,7 @@
 <text text-anchor="middle" x="3862" y="-460.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSelectComponent</text>
 </g>
 <!-- TsSelectComponent&#45;&gt;TsSelectModule -->
-<g id="edge82" class="edge">
+<g id="edge83" class="edge">
 <title>TsSelectComponent&#45;&gt;TsSelectModule</title>
 <path fill="none" stroke="#000000" d="M3883.5895,-446.8129C3883.5895,-431.8176 3883.5895,-413 3883.5895,-413 3883.5895,-413 5319.564,-413 5319.564,-413 5319.564,-413 5319.564,-341.3415 5319.564,-341.3415"/>
 <polygon fill="#000000" stroke="#000000" points="5323.0641,-341.3415 5319.564,-331.3415 5316.0641,-341.3416 5323.0641,-341.3415"/>
@@ -1249,7 +1255,7 @@
 <text text-anchor="middle" x="4026" y="-384.8" font-family="Times,serif" font-size="14.00" fill="#000000">CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR</text>
 </g>
 <!-- CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR&#45;&gt;TsSelectComponent -->
-<g id="edge83" class="edge">
+<g id="edge84" class="edge">
 <title>CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR&#45;&gt;TsSelectComponent</title>
 <path fill="none" stroke="#000000" d="M3840.4105,-400.2141C3840.4105,-400.2141 3840.4105,-436.9559 3840.4105,-436.9559"/>
 <polygon fill="#000000" stroke="#000000" points="3836.9106,-436.9559 3840.4105,-446.9559 3843.9106,-436.956 3836.9106,-436.9559"/>
@@ -1261,7 +1267,7 @@
 <text text-anchor="middle" x="1056" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsVerticalSpacingDirective</text>
 </g>
 <!-- TsVerticalSpacingDirective&#45;&gt;TsSpacingModule -->
-<g id="edge85" class="edge">
+<g id="edge86" class="edge">
 <title>TsVerticalSpacingDirective&#45;&gt;TsSpacingModule</title>
 <path fill="none" stroke="#000000" d="M1056,-294.8533C1056,-281.2605 1056,-265 1056,-265 1056,-265 4905.1513,-265 4905.1513,-265 4905.1513,-265 4905.1513,-264.0207 4905.1513,-264.0207"/>
 <polygon fill="#000000" stroke="#000000" points="4908.6514,-265.2069 4905.1513,-255.207 4901.6514,-265.207 4908.6514,-265.2069"/>
@@ -1273,7 +1279,7 @@
 <text text-anchor="middle" x="8994" y="-308.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsToggleComponent</text>
 </g>
 <!-- TsToggleComponent&#45;&gt;TsToggleModule -->
-<g id="edge87" class="edge">
+<g id="edge88" class="edge">
 <title>TsToggleComponent&#45;&gt;TsToggleModule</title>
 <path fill="none" stroke="#000000" d="M8926.1584,-313C8917.132,-313 8910.9203,-313 8910.9203,-313 8910.9203,-313 8910.9203,-163 8910.9203,-163 8910.9203,-163 5805.7398,-163 5805.7398,-163"/>
 <polygon fill="#000000" stroke="#000000" points="5805.7398,-159.5001 5795.7398,-163 5805.7397,-166.5001 5805.7398,-159.5001"/>
@@ -1285,7 +1291,7 @@
 <text text-anchor="middle" x="9160" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR</text>
 </g>
 <!-- CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR&#45;&gt;TsToggleComponent -->
-<g id="edge88" class="edge">
+<g id="edge89" class="edge">
 <title>CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR&#45;&gt;TsToggleComponent</title>
 <path fill="none" stroke="#000000" d="M8994,-249.8924C8994,-249.8924 8994,-284.9077 8994,-284.9077"/>
 <polygon fill="#000000" stroke="#000000" points="8990.5001,-284.9077 8994,-294.9077 8997.5001,-284.9078 8990.5001,-284.9077"/>
@@ -1297,7 +1303,7 @@
 <text text-anchor="middle" x="7889" y="-232.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTooltipComponent</text>
 </g>
 <!-- TsTooltipComponent&#45;&gt;TsTooltipModule -->
-<g id="edge90" class="edge">
+<g id="edge91" class="edge">
 <title>TsTooltipComponent&#45;&gt;TsTooltipModule</title>
 <path fill="none" stroke="#000000" d="M7889,-218.8975C7889,-207.9141 7889,-196 7889,-196 7889,-196 5317.0248,-196 5317.0248,-196 5317.0248,-196 5317.0248,-195.419 5317.0248,-195.419"/>
 <polygon fill="#000000" stroke="#000000" points="5320.525,-200.1902 5317.0248,-190.1903 5313.525,-200.1903 5320.525,-200.1902"/>
@@ -1309,7 +1315,7 @@
 <text text-anchor="middle" x="7863" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesComponent</text>
 </g>
 <!-- TsValidationMessagesComponent&#45;&gt;TsValidationMessagesModule -->
-<g id="edge92" class="edge">
+<g id="edge93" class="edge">
 <title>TsValidationMessagesComponent&#45;&gt;TsValidationMessagesModule</title>
 <path fill="none" stroke="#000000" d="M7777.801,-122.2356C7777.801,-151.5744 7777.801,-206 7777.801,-206 7777.801,-206 4892.3184,-206 4892.3184,-206 4892.3184,-206 4892.3184,-200.1944 4892.3184,-200.1944"/>
 <polygon fill="#000000" stroke="#000000" points="4895.8185,-200.1944 4892.3184,-190.1944 4888.8185,-200.1945 4895.8185,-200.1944"/>
@@ -1321,7 +1327,7 @@
 <text text-anchor="middle" x="7418" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValidationService</text>
 </g>
 <!-- ValidationService&#45;&gt;TsValidationMessagesModule -->
-<g id="edge94" class="edge">
+<g id="edge95" class="edge">
 <title>ValidationService&#45;&gt;TsValidationMessagesModule</title>
 <path fill="none" stroke="#000000" d="M7423.5277,-121.9747C7423.5277,-150.2665 7423.5277,-202 7423.5277,-202 7423.5277,-202 4897.9614,-202 4897.9614,-202 4897.9614,-202 4897.9614,-200.1432 4897.9614,-200.1432"/>
 <polygon fill="#000000" stroke="#000000" points="4901.4615,-200.1432 4897.9614,-190.1432 4894.4615,-200.1432 4901.4615,-200.1432"/>

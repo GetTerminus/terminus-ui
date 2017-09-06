@@ -50,6 +50,7 @@
   .c-navigation__trigger {
     @include button-base;
     display: block;
+    letter-spacing: .04em;
     line-height: spacing(large);
 
     // override material styles on the inner wrapper
@@ -86,6 +87,12 @@
   position: relative;
 
   $material-spacing: 8px;
+
+  // The top border radius leaves a 1px gap between the primary nav bar and the menu
+  &.mat-menu-panel {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 
   ::ng-deep .mat-menu-content {
     background-color: color(pure, dark);
