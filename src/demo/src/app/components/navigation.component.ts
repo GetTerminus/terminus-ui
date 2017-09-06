@@ -111,24 +111,5 @@ export class NavigationComponent implements OnInit {
    */
   triggerAction(item: TsNavigationItem): void {
     console.log('triggerAction: ', item);
-
-/*
- *    // Navigate
- *    if (item.action === 'navigate' && item.destination) {
- *      console.log('should navigate; destination: ', item.destination);
- *
- *      if (typeof item.destination !== 'string') {
- *        this.router.navigate(item.destination);
- *      } else {
- *        this.windowService.nativeWindow.open(item.destination, '_blank');
- *      }
- *
- *    } else if (item.action === 'log-out') {
- *      // Log Out
- *      console.log('should log out');
- *    } else if (item.action === 'log-in-as') {
- *      console.log('trigger log in as user');
- *    }
- */
   }
 }
