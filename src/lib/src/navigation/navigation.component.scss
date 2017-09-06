@@ -50,6 +50,7 @@
   .c-navigation__trigger {
     @include button-base;
     display: block;
+    letter-spacing: .04em;
     line-height: spacing(large);
 
     // override material styles on the inner wrapper

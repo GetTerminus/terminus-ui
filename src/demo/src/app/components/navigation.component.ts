@@ -92,7 +92,7 @@ export class NavigationComponent implements OnInit {
     fullName: 'Max Rockatansky',
   }]);
   public navigationItems$: Observable<any> = Observable.from([NAV_ITEMS_MOCK]);
-  public myMessage = 'Hello dear,';
+  public myMessage = 'Hello dear';
 
 
   ngOnInit(): void {
@@ -109,7 +109,17 @@ export class NavigationComponent implements OnInit {
    *
    * @param {Object} item The navigation item
    */
-  triggerAction(item: TsNavigationItem): void {
-    console.log('triggerAction: ', item);
+  triggerAction(payload: any): void {
+    console.log('triggerAction: ', payload);
+
+    if (payload.event.metaKey) {
+      // open the link in a new window
+      console.log('meta key was used');
+    } else {
+      // redirect in app
+      console.log('meta key was NOT used');
+    }
+
   }
+
 }
