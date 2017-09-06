@@ -229,6 +229,4 @@ describe(`TsNavigationComponent`, () => {
 
   });
 
-
-
 });

@@ -5,6 +5,7 @@ import 'rxjs/add/observable/from';
 
 import { TsNavigationItem } from '@terminus/ui';
 
+
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
     name: 'Components',
