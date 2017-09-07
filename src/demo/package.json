@@ -23,7 +23,7 @@
     "@angular/platform-browser": "~4.3.6",
     "@angular/platform-browser-dynamic": "~4.3.6",
     "@angular/router": "~4.3.6",
-    "@terminus/ui": "^0.20.3",
+    "@terminus/ui": "^0.20.5",
     "angular2-ladda": "1.2.1",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",

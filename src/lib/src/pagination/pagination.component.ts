@@ -188,6 +188,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
   /**
    * Perform tasks when the current page is changed
+   * TODO: Create interface to enforce type for 'event'
    *
    * @param {Object} event The selected page
    */
@@ -312,7 +313,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Number} currentPage The current page
    * @param {Array} pages The array of all pages
-   * @return {String} timeAgo The difference in time
+   * @return {String} label The string to use as the current page label
    */
   createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
     const findPage = (allPages: any[], number: number) => {
