@@ -21,7 +21,7 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
-    background: color(pure, dark);
+    background-color: color(utility, dark);
     color: color(pure);
   }
 
@@ -96,7 +96,7 @@
   }
 
   ::ng-deep .mat-menu-content {
-    background-color: color(pure, dark);
+    background-color: color(utility, dark);
     // override material styles
     padding: 0;
 
