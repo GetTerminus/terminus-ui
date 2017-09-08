@@ -100,28 +100,28 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Define the tooltip message for the first page tooltip
    */
   @Input()
-  public firstPageTooltip = 'View the first results';
+  public firstPageTooltip: string = 'View the first results';
 
 
   /**
    * Define the tooltip message for the previous page tooltip
    */
   @Input()
-  public previousPageTooltip = 'View the previous results';
+  public previousPageTooltip: string = 'View the previous results';
 
 
   /**
    * Define the tooltip message for the next page tooltip
    */
   @Input()
-  public nextPageTooltip = 'View the next results';
+  public nextPageTooltip: string = 'View the next results';
 
 
   /**
    * Define the tooltip message for the last page tooltip
    */
   @Input()
-  public lastPageTooltip = 'View the last results';
+  public lastPageTooltip: string= 'View the last results';
 
   /**
    * Define the current page
