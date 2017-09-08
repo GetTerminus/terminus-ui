@@ -26,6 +26,10 @@ import { TsMenuItem } from './../utilities/interfaces';
  *              recordCountTooHighMessage="Please refine your filters."
  *              recordsPerPageChoices="[10, 20, 50]"
  *              showRecordsPerPageSelector="true"
+ *              firstPageTooltip="View first results"
+ *              previousPageTooltip="View previous results"
+ *              nextPageTooltip="View next results"
+ *              lastPageTooltip="View last results"
  *              (pageSelect)="myMethod($event)"
  *              (recordsPerPageChange)="myMethod($event)"
  * ></ts-pagination>
@@ -91,6 +95,33 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @private Define the amount of records show per page
    */
   recordsPerPage: number = this.DEFAULT_PER_PAGE;
+
+  /**
+   * Define the tooltip message for the first page tooltip
+   */
+  @Input()
+  public firstPageTooltip = 'View the first results';
+
+
+  /**
+   * Define the tooltip message for the previous page tooltip
+   */
+  @Input()
+  public previousPageTooltip = 'View the previous results';
+
+
+  /**
+   * Define the tooltip message for the next page tooltip
+   */
+  @Input()
+  public nextPageTooltip = 'View the next results';
+
+
+  /**
+   * Define the tooltip message for the last page tooltip
+   */
+  @Input()
+  public lastPageTooltip = 'View the last results';
 
   /**
    * Define the current page
