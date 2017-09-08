@@ -135,7 +135,7 @@
     "remap-istanbul": "^0.9.5",
     "replace-in-file": "^2.5.4",
     "rimraf": "^2.6.1",
-    "rollup": "^0.47.4",
+    "rollup": "^0.49.3",
     "rollup-plugin-absolute-module-fix": "0.0.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
