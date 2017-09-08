@@ -10,10 +10,15 @@ export interface TsMenuItem {
   /**
    * The icon name
    */
-  icon: string;
+  icon?: string;
 
   /**
    * The action attached to the menu item
    */
-  action: string;
+  action?: string;
+
+  /**
+   * A value for to the item
+   */
+  value?: string;
 }
