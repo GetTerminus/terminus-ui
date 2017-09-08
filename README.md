@@ -177,6 +177,9 @@ $ yarn add @terminus/ui @angular/forms @angular/animations @angular/material ang
 ## Developing
 
 ```bash
+# Install and build all dependencies
+$ yarn run setup
+
 # Start the demo project and watch demo and lib files for changes
 $ yarn run start
 

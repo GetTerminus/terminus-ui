@@ -45,6 +45,7 @@
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "semantic-release-pre": "semantic-release pre",
     "semantic-release-post": "semantic-release post",
+    "setup": "node ./tooling/setup.js",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "yarn run build && yarn run build-demo && yarn run build-scss",
     "start": "concurrently \"yarn run build:watch\" \"yarn run build-demo:watch\"",
