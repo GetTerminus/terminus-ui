@@ -96,6 +96,9 @@
                                     <a href="../modules/TsLinkModule.html" >TsLinkModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsLoadingOverlayModule.html" >TsLoadingOverlayModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                 </li>
                                 <li class="link">
@@ -140,6 +143,9 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
+                                    <a href="../components/TestHostComponent.html" >TestHostComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
@@ -159,6 +165,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsLoginFormComponent.html" >TsLoginFormComponent</a>
@@ -205,6 +214,9 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
+                                    <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
                                 </li>
                         </ul>
@@ -250,6 +262,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -372,6 +387,9 @@
                                            <a href="../modules/TsLinkModule.html" >TsLinkModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsLoadingOverlayModule.html" >TsLoadingOverlayModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                        </li>
                                        <li class="link">
@@ -416,6 +434,9 @@
                                        id="components-links"
                    >
                                        <li class="link">
+                                           <a href="../components/TestHostComponent.html" >TestHostComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TsButtonComponent.html"  data-type="entity-link" class="active" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
@@ -435,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsLoginFormComponent.html" >TsLoginFormComponent</a>
@@ -481,6 +505,9 @@
                                        id="directives-links"
                    >
                                        <li class="link">
+                                           <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
                                        </li>
                                </ul>
@@ -526,6 +553,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -1040,8 +1070,8 @@ export class TsButtonComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="theme"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
 </script>
 <script src="../js/tree.js"></script>

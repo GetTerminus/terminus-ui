@@ -14,7 +14,7 @@ import {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { TsNavigationItem } from './../utilities/interfaces/';
+import { TsNavigationItem, TsNavigationPayload } from './../utilities/interfaces/';
 import { groupBy } from './../utilities/groupBy';
 
 
@@ -36,14 +36,14 @@ import { groupBy } from './../utilities/groupBy';
 })
 export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
-   * Store a pristine copy of the navigation items
+   * @private Store a pristine copy of the navigation items
    */
-  private _pristineItems: TsNavigationItem[];
+  _pristineItems: TsNavigationItem[];
 
   /**
-   * Getter to return the available navigation width
+   * @private Getter to return the available navigation width
    */
-  private get availableSpace(): number {
+  get availableSpace(): number {
     const NAV_WIDTH_BUFFER = 10;
 
     return this.visibleItemsList.nativeElement.offsetWidth - NAV_WIDTH_BUFFER;
@@ -67,9 +67,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Getter to return the space currently required for the navigation layout
+   * @private Getter to return the space currently required for the navigation layout
    */
-  private get requiredSpace(): number {
+  get requiredSpace(): number {
     return this.breakWidths[this.visibleItemsLength - 1];
   }
 
@@ -110,7 +110,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Accept the user data
-   * FIXME: Is it better to use `any` or to manage a user model in core and in library?
+   * FIXME: Is it better to use `any`? Or to manage a user model in core and in library?
    */
   @Input('user')
   public user: any;
@@ -134,10 +134,10 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public visibleLinkElement: QueryList<ElementRef>;
 
   /**
-   * Emit the click event with the navigation item payload
+   * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public itemSelected: EventEmitter<TsNavigationItem> = new EventEmitter;
+  public itemSelected: EventEmitter<TsNavigationPayload> = new EventEmitter;
 
   /**
    * Trigger a layout update when the window resizes
@@ -146,10 +146,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   onResize() {
     this.updateLists();
   }
-
-
-  constructor(
-  ) {}
 
 
   /**
@@ -202,9 +198,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
 
   /**
-   * Move items between the two lists as required by the available space
+   * @private Move items between the two lists as required by the available space
    */
-  private updateLists(): void {
+  updateLists(): void {
     // If there is not enough space
     if (this.requiredSpace > this.availableSpace) {
       // Pull the last link out of the visible array

@@ -45,16 +45,16 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   public shouldOverlapTrigger: boolean = false;
 
   /**
-   * Provide access to the trigger
+   * @private Provide access to the trigger
    */
   @ViewChild(MdMenuTrigger)
-  private trigger: MdMenuTrigger;
+  trigger: MdMenuTrigger;
 
   /**
-   * Define if the menu should be opened by default
+   * @private Define if the menu should be opened by default
    */
   @Input()
-  private defaultOpened: boolean = false;
+  defaultOpened: boolean = false;
 
   /**
    * Define if the menu should be disabled
@@ -112,12 +112,12 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
 
 
   /**
-   * Determine if at least one item has a non-null icon
+   * @private Determine if at least one item has a non-null icon
    *
    * @param {Array} items The collection of items to look through
    * @return {Boolean} hasIcon Value that represents if at least one icon is present
    */
-  private hasAtLeastOneIcon(items: TsMenuItem[]): boolean {
+  hasAtLeastOneIcon(items: TsMenuItem[]): boolean {
     if (!items || items.length < 1) {
       return false;
     }

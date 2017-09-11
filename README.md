@@ -83,41 +83,42 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ### Components
 
-| Feature          | Notes                                                  | Status             | Demo                    |
-|------------------|--------------------------------------------------------|        :---:       |-------------------------|
-| alert            |                                                        |                :x: |                         |
-| autocomplete     |                                                        |                :x: |                         |
-| badge            |                                                        |                :x: |                         |
-| button           |                                                        | :white_check_mark: |     [Demo][demo-button] |
-| breadcrumbs      |                                                        |                :x: |                         |
-| chip             |                                                        |                :x: |                         |
-| checkbox         |                                                        | :white_check_mark: |   [Demo][demo-checkbox] |
-| copy             |                                                        | :white_check_mark: |       [Demo][demo-copy] |
-| datavis          |                                                        |                :x: |                         |
-| datetable        |                                                        |                :x: |                         |
-| datepicker       |                                                        | :white_check_mark: | [Demo][demo-datepicker] |
-| date-range       |                                                        | :white_check_mark: | [Demo][demo-date-range] |
-| dialog           |                                                        |                :x: |                         |
-| divider          |                                                        |                :x: |                         |
-| expansion        |                                                        |                :x: |                         |
-| file-picker      |                                                        |                :x: |                         |
-| input-masking    |                                                        |                :x: |                         |
-| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |                         |
-| input            |                                                        | :white_check_mark: |      [Demo][demo-input] |
-| link             |                                                        | :white_check_mark: |       [Demo][demo-link] |
-| login form       |                                                        | :white_check_mark: | [Demo][demo-login-form] |
-| menu             |                                                        | :white_check_mark: |       [Demo][demo-menu] |
-| navigation       |                                                        | :white_check_mark: | [Demo][demo-navigation] |
-| pagination       |                                                        | :white_check_mark: | [Demo][demo-pagination] |
-| picklist         |                                                        |                :x: |                         |
-| progress         |                                                        |                :x: |                         |
-| progression      |                                                        |                :x: |                         |
-| radio            |                                                        |                :x: |                         |
-| search           |                                                        | :white_check_mark: |                         |
-| select           |                                                        | :white_check_mark: |     [Demo][demo-select] |
-| tabs             |                                                        |                :x: |                         |
-| toggle           |                                                        | :white_check_mark: |     [Demo][demo-toggle] |
-| tooltip          |                                                        | :white_check_mark: |                         |
+| Feature          | Notes                                                  | Status             | Demo                         |
+|------------------|--------------------------------------------------------|        :---:       |------------------------------|
+| alert            |                                                        |                :x: |                              |
+| autocomplete     |                                                        |                :x: |                              |
+| badge            |                                                        |                :x: |                              |
+| button           |                                                        | :white_check_mark: |          [Demo][demo-button] |
+| breadcrumbs      |                                                        |                :x: |                              |
+| chip             |                                                        |                :x: |                              |
+| checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
+| copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
+| datavis          |                                                        |                :x: |                              |
+| datetable        |                                                        |                :x: |                              |
+| datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
+| date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
+| dialog           |                                                        |                :x: |                              |
+| divider          |                                                        |                :x: |                              |
+| expansion        |                                                        |                :x: |                              |
+| file-picker      |                                                        |                :x: |                              |
+| input-masking    |                                                        |                :x: |                              |
+| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |                              |
+| input            |                                                        | :white_check_mark: |           [Demo][demo-input] |
+| link             |                                                        | :white_check_mark: |            [Demo][demo-link] |
+| loading overlay  |                                                        | :white_check_mark: | [Demo][demo-loading-overlay] |
+| login form       |                                                        | :white_check_mark: |      [Demo][demo-login-form] |
+| menu             |                                                        | :white_check_mark: |            [Demo][demo-menu] |
+| navigation       |                                                        | :white_check_mark: |      [Demo][demo-navigation] |
+| pagination       |                                                        | :white_check_mark: |      [Demo][demo-pagination] |
+| picklist         |                                                        |                :x: |                              |
+| progress         |                                                        |                :x: |                              |
+| progression      |                                                        |                :x: |                              |
+| radio            |                                                        |                :x: |                              |
+| search           |                                                        | :white_check_mark: |                              |
+| select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
+| tabs             |                                                        |                :x: |                              |
+| toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
+| tooltip          |                                                        | :white_check_mark: |                              |
 
 
 ### Services
@@ -176,6 +177,9 @@ $ yarn add @terminus/ui @angular/forms @angular/animations @angular/material ang
 ## Developing
 
 ```bash
+# Install and build all dependencies
+$ yarn run setup
+
 # Start the demo project and watch demo and lib files for changes
 $ yarn run start
 
@@ -589,4 +593,5 @@ machines.
 [demo-select]: https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=app,preview
 [demo-toggle]: https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=app,preview
 [demo-navigation]: https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=app,preview
+[demo-loading-overlay]: https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show=app,preview
 

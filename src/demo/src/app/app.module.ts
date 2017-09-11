@@ -28,6 +28,7 @@ import {
   TsLoginFormModule,
   TsLinkModule,
   TsNavigationModule,
+  TsLoadingOverlayModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -54,6 +55,7 @@ import { LinkComponent } from './components/link.component';
 import { WindowServiceComponent } from './components/window-service.component';
 import { SpacingStylesComponent } from './components/spacing-styles.component';
 import { NavigationComponent } from './components/navigation.component';
+import { LoadingOverlayComponent } from './components/loading-overlay.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -86,6 +88,7 @@ import { NavigationComponent } from './components/navigation.component';
     TsLoginFormModule,
     TsLinkModule,
     TsNavigationModule,
+    TsLoadingOverlayModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -110,6 +113,7 @@ import { NavigationComponent } from './components/navigation.component';
     WindowServiceComponent,
     SpacingStylesComponent,
     NavigationComponent,
+    LoadingOverlayComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

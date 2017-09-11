@@ -3,7 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
 
-import { TsNavigationItem } from '@terminus/ui';
+import { TsNavigationItem, TsNavigationPayload } from '@terminus/ui';
+
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
@@ -62,6 +63,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
 ];
 
 
+
 @Component({
   selector: 'demo-navigation',
   styleUrls: ['./navigation.component.scss'],
@@ -74,7 +76,6 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
       </div>
 
       <ts-navigation
-        fxFlex="1 1 auto" class="inner"
         [items]="navigationItems$ | async"
         [user]="currentUser$ | async"
         [welcomeMessage]="myMessage"
@@ -92,7 +93,7 @@ export class NavigationComponent implements OnInit {
     fullName: 'Max Rockatansky',
   }]);
   public navigationItems$: Observable<any> = Observable.from([NAV_ITEMS_MOCK]);
-  public myMessage = 'Hello dear,';
+  public myMessage = 'Hello dear';
 
 
   ngOnInit(): void {
@@ -109,26 +110,17 @@ export class NavigationComponent implements OnInit {
    *
    * @param {Object} item The navigation item
    */
-  triggerAction(item: TsNavigationItem): void {
-    console.log('triggerAction: ', item);
+  triggerAction(payload: TsNavigationPayload): void {
+    console.log('triggerAction: ', payload);
 
-/*
- *    // Navigate
- *    if (item.action === 'navigate' && item.destination) {
- *      console.log('should navigate; destination: ', item.destination);
- *
- *      if (typeof item.destination !== 'string') {
- *        this.router.navigate(item.destination);
- *      } else {
- *        this.windowService.nativeWindow.open(item.destination, '_blank');
- *      }
- *
- *    } else if (item.action === 'log-out') {
- *      // Log Out
- *      console.log('should log out');
- *    } else if (item.action === 'log-in-as') {
- *      console.log('trigger log in as user');
- *    }
- */
+    if (payload.event.metaKey) {
+      // open the link in a new window
+      console.log('meta key was used');
+    } else {
+      // redirect in app
+      console.log('meta key was NOT used');
+    }
+
   }
+
 }

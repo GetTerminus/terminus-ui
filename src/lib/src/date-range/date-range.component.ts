@@ -35,14 +35,14 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 })
 export class TsDateRangeComponent {
   /**
-   * @Private Store the selected start date
+   * @private Store the selected start date
    */
-  private _startDate: Date;
+  _startDate: Date;
 
   /**
-   * @Private Store the selected end date
+   * @private Store the selected end date
    */
-  private _endDate: Date;
+  _endDate: Date;
 
   /**
    * Allow access to child directive
@@ -176,11 +176,11 @@ export class TsDateRangeComponent {
 
 
   /**
-   * Getter to return the date range as an object
+   * @private Getter to return the date range as an object
    *
    * @return {Object} dateRange The current date range
    */
-  private get dateRange(): any {
+  get dateRange(): any {
     return {
       start: this._startDate || null,
       end: this._endDate || null,

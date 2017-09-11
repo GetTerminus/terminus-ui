@@ -12,7 +12,7 @@
       *ngFor="let item of visibleItems | async"
       #visibleLinkElement
       fxFlex="none"
-      (click)="itemSelected.emit(item)"
+      (click)="itemSelected.emit({event: $event, item: item})"
     >
       <span class="c-navigation__item-inner">
         {{ item.name }}
@@ -54,7 +54,7 @@
       *ngFor="let item of hiddenItems | async"
       #hiddenLinkElement
       md-menu-item
-      (click)="itemSelected.emit(item)"
+      (click)="itemSelected.emit({event: $event, item: item})"
     >
       {{ item.name }}
     </button>

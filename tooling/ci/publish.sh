@@ -20,8 +20,10 @@ yarn run semantic-release-pre || {
 echo "BUILD"
 yarn run build
 
+# Currently, yarn publish requires user interaction:
+# https://github.com/yarnpkg/yarn/issues/610#issuecomment-298116487
 echo "RUN: npm publish"
-yarn publish dist/
+npm publish dist/
 
 echo "RUN: semantic-release post"
 yarn run semantic-release-post || {

@@ -9,10 +9,10 @@ export { TsVerticalSpacingDirective } from './vertical-spacing.directive';
   imports: [
     CommonModule,
   ],
-  exports: [
+  declarations: [
     TsVerticalSpacingDirective,
   ],
-  declarations: [
+  exports: [
     TsVerticalSpacingDirective,
   ],
 })
