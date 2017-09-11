@@ -26,7 +26,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
     onlyHidden: false,
   },
   {
-    name: 'Fake Link',
+    name: 'Ad Library',
     action: 'navigate',
     destination: ['/creatives'],
     onlyHidden: false,
