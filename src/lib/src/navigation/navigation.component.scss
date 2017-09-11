@@ -38,11 +38,12 @@
     font-family: inherit;
     font-size: inherit;
     letter-spacing: .04em;
+    padding: 0 spacing();
 
     // <span> inner wrapper
     &-inner {
-      display: inline-block;
-      margin: 0 spacing();
+      display: block;
+      white-space: nowrap;
       width: 100%;
     }
   }
