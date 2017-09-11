@@ -11,7 +11,6 @@
       class="c-navigation__item"
       *ngFor="let item of visibleItems | async"
       #visibleLinkElement
-      fxFlex="none"
       (click)="itemSelected.emit({event: $event, item: item})"
     >
       <span class="c-navigation__item-inner">
@@ -20,12 +19,13 @@
     </button>
   </div>
 
+
   <button
     class="c-navigation__trigger"
     [ngClass]="{'c-navigation__trigger--separator': visibleItemsLength}"
     md-button
     [mdMenuTriggerFor]="secondaryNav"
-    fxFlex="0 0 auto"
+    fxFlex="none"
   >
     <span class="c-navigation__trigger-welcome">
       {{ welcomeMessage }}
