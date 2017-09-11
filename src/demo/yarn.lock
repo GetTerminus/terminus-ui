@@ -181,9 +181,9 @@
     magic-string "^0.22.3"
     source-map "^0.5.6"
 
-"@terminus/ui@^0.20.3":
-  version "0.20.3"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-0.20.3.tgz#e3164df6d988eba00efc79cd01b3bc6576d3c0a1"
+"@terminus/ui@^0.20.5":
+  version "0.20.5"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-0.20.5.tgz#cffe9b07d7c58b386d1ca84343b44b8301ad16df"
   dependencies:
     "@angular/cdk" "^2.0.0-beta.10"
 
