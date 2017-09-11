@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'demo-pagination',
   template: `
@@ -65,4 +66,5 @@ export class PaginationComponent {
   last(e) {
     console.log('DEMO last: ', e);
   }
+
 }
