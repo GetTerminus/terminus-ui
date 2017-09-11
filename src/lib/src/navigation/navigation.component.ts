@@ -14,7 +14,7 @@ import {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { TsNavigationItem } from './../utilities/interfaces/';
+import { TsNavigationItem, TsNavigationPayload } from './../utilities/interfaces/';
 import { groupBy } from './../utilities/groupBy';
 
 
@@ -110,7 +110,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Accept the user data
-   * FIXME: Is it better to use `any` or to manage a user model in core and in library?
+   * FIXME: Is it better to use `any`? Or to manage a user model in core and in library?
    */
   @Input('user')
   public user: any;
@@ -134,10 +134,10 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public visibleLinkElement: QueryList<ElementRef>;
 
   /**
-   * Emit the click event with the navigation item payload
+   * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public itemSelected: EventEmitter<TsNavigationItem> = new EventEmitter;
+  public itemSelected: EventEmitter<TsNavigationPayload> = new EventEmitter;
 
   /**
    * Trigger a layout update when the window resizes
@@ -146,10 +146,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   onResize() {
     this.updateLists();
   }
-
-
-  constructor(
-  ) {}
 
 
   /**

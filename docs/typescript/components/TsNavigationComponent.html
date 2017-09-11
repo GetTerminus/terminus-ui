@@ -264,6 +264,9 @@
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
@@ -552,6 +555,9 @@
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
@@ -808,24 +814,6 @@
         </table>
     </section>
 
-    <section>
-        <h3 id="constructor">Constructor</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>constructor()</code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:148</a></div>
-                                </td>
-                            </tr>
-    
-                </tbody>
-            </table>
-    </section>
 
     <section>
         <h3 id="inputs">Inputs</h3>
@@ -857,7 +845,7 @@
                         </td>
                         <td class="col-md-10">
                             <div><p>Accept the user data
-FIXME: Is it better to use <code>any</code> or to manage a user model in core and in library?</p>
+FIXME: Is it better to use <code>any</code>? Or to manage a user model in core and in library?</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -910,9 +898,9 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
                             <code>itemSelected</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Emit the click event with the navigation item payload</p>
+                            <div><p>Emit the click event with the <a href="../interfaces/TsNavigationPayload.html">TsNavigationPayload</a></p>
 </div>
-                            <em><code>$event</code> type:</em>    <code><a href="../interfaces/TsNavigationItem.html" target="_self" >EventEmitter&lt;TsNavigationItem&gt;</a></code>
+                            <em><code>$event</code> type:</em>    <code><a href="../interfaces/TsNavigationPayload.html" target="_self" >EventEmitter&lt;TsNavigationPayload&gt;</a></code>
 
                         </td>
                     </tr>
@@ -947,7 +935,7 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:166</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:162</a></div>
                                 </td>
                             </tr>
     
@@ -981,7 +969,7 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:154</a></div>
                                 </td>
                             </tr>
     
@@ -1054,7 +1042,7 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:192</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:188</a></div>
                                 </td>
                             </tr>
     
@@ -1115,7 +1103,7 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:207</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:203</a></div>
                                 </td>
                             </tr>
     
@@ -1540,7 +1528,7 @@ FIXME: Is it better to use <code>any</code> or to manage a user model in core an
 import { BehaviorSubject } from &#x27;rxjs/BehaviorSubject&#x27;;
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 
-import { TsNavigationItem } from &#x27;./../utilities/interfaces/&#x27;;
+import { TsNavigationItem, TsNavigationPayload } from &#x27;./../utilities/interfaces/&#x27;;
 import { groupBy } from &#x27;./../utilities/groupBy&#x27;;
 
 
@@ -1636,7 +1624,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Accept the user data
-   * FIXME: Is it better to use &#x60;any&#x60; or to manage a user model in core and in library?
+   * FIXME: Is it better to use &#x60;any&#x60;? Or to manage a user model in core and in library?
    */
   @Input(&#x27;user&#x27;)
   public user: any;
@@ -1660,10 +1648,10 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public visibleLinkElement: QueryList&lt;ElementRef&gt;;
 
   /**
-   * Emit the click event with the navigation item payload
+   * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public itemSelected: EventEmitter&lt;TsNavigationItem&gt; &#x3D; new EventEmitter;
+  public itemSelected: EventEmitter&lt;TsNavigationPayload&gt; &#x3D; new EventEmitter;
 
   /**
    * Trigger a layout update when the window resizes
@@ -1672,10 +1660,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   onResize() {
     this.updateLists();
   }
-
-
-  constructor(
-  ) {}
 
 
   /**
@@ -1780,7 +1764,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       *ngFor&#x3D;&quot;let item of visibleItems | async&quot;
       #visibleLinkElement
       fxFlex&#x3D;&quot;none&quot;
-      (click)&#x3D;&quot;itemSelected.emit(item)&quot;
+      (click)&#x3D;&quot;itemSelected.emit({event: $event, item: item})&quot;
     &gt;
       &lt;span class&#x3D;&quot;c-navigation__item-inner&quot;&gt;
         {{ item.name }}
@@ -1822,7 +1806,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       *ngFor&#x3D;&quot;let item of hiddenItems | async&quot;
       #hiddenLinkElement
       md-menu-item
-      (click)&#x3D;&quot;itemSelected.emit(item)&quot;
+      (click)&#x3D;&quot;itemSelected.emit({event: $event, item: item})&quot;
     &gt;
       {{ item.name }}
     &lt;/button&gt;
@@ -1855,7 +1839,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark" fxLayout="row">  <div    class="c-navigation__items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <button      class="c-navigation__item"      *ngFor="let item of visibleItems | async"      #visibleLinkElement      fxFlex="none"      (click)="itemSelected.emit(item)"    >      <span class="c-navigation__item-inner">        {{ item.name }}      </span>    </button>  </div>  <button    class="c-navigation__trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    md-button    [mdMenuTriggerFor]="secondaryNav"    fxFlex="0 0 auto"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <md-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </md-icon>  </button>  <md-menu    class="c-navigation__hidden-items"    #secondaryNav="mdMenu"    xPosition="before"    [overlapTrigger]="false"  >    <button      class="c-navigation__hidden-item"      [ngClass]="{\'c-navigation__hidden-item--admin\': item.onlyHidden}"      *ngFor="let item of hiddenItems | async"      #hiddenLinkElement      md-menu-item      (click)="itemSelected.emit(item)"    >      {{ item.name }}    </button>  </md-menu></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark" fxLayout="row">  <div    class="c-navigation__items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <button      class="c-navigation__item"      *ngFor="let item of visibleItems | async"      #visibleLinkElement      fxFlex="none"      (click)="itemSelected.emit({event: $event, item: item})"    >      <span class="c-navigation__item-inner">        {{ item.name }}      </span>    </button>  </div>  <button    class="c-navigation__trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    md-button    [mdMenuTriggerFor]="secondaryNav"    fxFlex="0 0 auto"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <md-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </md-icon>  </button>  <md-menu    class="c-navigation__hidden-items"    #secondaryNav="mdMenu"    xPosition="before"    [overlapTrigger]="false"  >    <button      class="c-navigation__hidden-item"      [ngClass]="{\'c-navigation__hidden-item--admin\': item.onlyHidden}"      *ngFor="let item of hiddenItems | async"      #hiddenLinkElement      md-menu-item      (click)="itemSelected.emit({event: $event, item: item})"    >      {{ item.name }}    </button>  </md-menu></nav></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsNavigationComponent'};

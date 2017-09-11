@@ -5,6 +5,7 @@
 
 :host {
   display: inline-block;
+  flex: 1 1 auto;
   max-width: 100%;
   overflow: hidden;
 }
@@ -20,7 +21,7 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
-    background: color(pure, dark);
+    background-color: color(utility, dark);
     color: color(pure);
   }
 
@@ -36,11 +37,13 @@
     color: inherit;
     font-family: inherit;
     font-size: inherit;
+    letter-spacing: .04em;
+    padding: 0 spacing();
 
     // <span> inner wrapper
     &-inner {
-      display: inline-block;
-      margin: 0 spacing();
+      display: block;
+      white-space: nowrap;
       width: 100%;
     }
   }
@@ -49,6 +52,7 @@
   .c-navigation__trigger {
     @include button-base;
     display: block;
+    letter-spacing: .04em;
     line-height: spacing(large);
 
     // override material styles on the inner wrapper
@@ -86,8 +90,14 @@
 
   $material-spacing: 8px;
 
+  // The top border radius leaves a 1px gap between the primary nav bar and the menu
+  &.mat-menu-panel {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
   ::ng-deep .mat-menu-content {
-    background-color: color(pure, dark);
+    background-color: color(utility, dark);
     // override material styles
     padding: 0;
 
