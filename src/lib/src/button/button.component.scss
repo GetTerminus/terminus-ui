@@ -1,11 +1,45 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
+@import './../scss/helpers/spacing';
 
 :host {
   display: inline-block;
 
   &.disabled {
     pointer-events: none;
+  }
+}
+
+// This makes the bottom padding space look better than the default 36px
+$button-line-height: 35px;
+$rotation: 360deg;
+// NOTE: All transition durations are based off of the content transition. We should only need to
+// adjust this value.
+$content-transition-duration: 500ms;
+$icon-transition-duration-collapse: $content-transition-duration - 100ms; // 400
+$icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms; // 300
+$label-transition-duration: $icon-transition-duration-expand - 100ms; // 200
+$no-interaction-opacity: .7;
+
+
+// Styles applied when the button should collapse
+@mixin collapsed {
+  ::ng-deep .ladda-label {
+    padding-left: spacing(small, 3x);
+    padding-right: spacing(small, 3x);
+  }
+
+  ::ng-deep md-icon {
+    // center the icon
+    left: .1em;
+    position: relative;
+    transform: rotate(#{$rotation});
+    transition-duration: $icon-transition-duration-collapse;
+  }
+
+  // collapse the text content
+  .c-button__content {
+    max-width: 0;
   }
 }
 
@@ -20,24 +54,27 @@
   // Top level styles should be nested here
   ::ng-deep &#{&} {
     @include typography;
-    /*
-     *@include theme-color('background-color');
-     */
-    // This makes the bottom padding space look better than the default 36px
-    line-height: 35px;
+    border: 1px solid transparent;
+    color: color(pure);
+    line-height: $button-line-height;
     // Overwrite material min-width
     min-width: auto;
     padding: 0;
-    will-change: contents;
+    will-change: background-color, color, contents;
 
     &[disabled] {
-      pointer-events: none;
+      cursor: not-allowed;
+
+      // Lighten text when disabled
+      ::ng-deep .ladda-label {
+        opacity: $no-interaction-opacity;
+      }
     }
 
     &.ladda-button {
       &[data-loading] {
         ::ng-deep .ladda-label {
-          opacity: .7;
+          opacity: $no-interaction-opacity;
         }
       }
 
@@ -52,11 +89,14 @@
 
   // Adjust icon vertical layout
   md-icon {
-    margin-top: -.2em;
+    // Fix small vertical aligment issue between icon & text
+    margin-top: -.1em;
+    transition: transform $icon-transition-duration-expand ease-out;
+    will-change: transform;
   }
 
   // Force the ladda label to fill the entire button. (the md-ripple will be inside the ladda-label
-  // and will be cut off otherwise)
+  // and will appear cut off otherwise)
   ::ng-deep .ladda-label {
     $padding-horizontal: 16px;
     $padding-horizontal-total: $padding-horizontal * 2;
@@ -65,17 +105,78 @@
     height: 100%;
     padding: 0 $padding-horizontal;
     position: static;
+    transition: padding $label-transition-duration ease-out;
+    will-change: padding;
+  }
 
-    // Fix small vertical aligment issue between icon & text
-    md-icon {
-      margin-top: -.2em;
+
+
+
+  // Define theme styles
+  $themes: primary accent warn;
+
+  // Loop through using each theme name to create styles
+  @each $theme in $themes {
+
+    // Theme class sets the colors for standard buttons
+    &.c-button--#{$theme} {
+      background-color: color(#{$theme});
+
+      &[disabled] {
+        background-color: color(utility, light);
+        color: color(utility);
+      }
+
+      // Collapsable button
+      &.c-button--collapsable {
+        border-radius: 2em;
+
+        .c-button__content {
+          display: inline-block;
+          max-width: 400px;
+          overflow: hidden;
+          transition: max-width $content-transition-duration ease-out;
+          white-space: nowrap;
+          will-change: max-width;
+        }
+      }
+
+      // Hollow button
+      &.c-button--hollow {
+        background-color: transparent;
+        border-color: color(#{$theme});
+        box-shadow: none;
+        color: color(#{$theme});
+
+        &:focus,
+        &:hover {
+          background-color: color(#{$theme});
+          color: color(pure);
+        }
+
+        &[disabled] {
+          background-color: transparent;
+          border-color: color(utility);
+          color: color(utility);
+        }
+      }
     }
   }
 
-  // Push back the text when the button is disabled
-  [disabled] {
-    ::ng-deep .ladda-label {
-      opacity: .7;
+  // Collapsed and not focused or hovered
+  &--collapsed {
+    &:not(:hover) {
+      &:not(:focus) {
+        @include collapsed;
+      }
     }
   }
+
+  // When collapsable AND disabled
+  &.c-button--collapsable {
+    &[disabled] {
+      @include collapsed;
+    }
+  }
+
 }

@@ -15,9 +15,8 @@ export { TsButtonComponent } from './button.component';
     CommonModule,
     LaddaModule.forRoot({
       style: 'expand-right',
-      // TODO: This color should be one of our chosen palette grays
       // TODO: This color should be abstracted out to a shared constant
-      spinnerColor: '#aaa',
+      spinnerColor: '#999',
     }),
     MdButtonModule,
     MdIconModule,
