@@ -1763,7 +1763,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       class&#x3D;&quot;c-navigation__item&quot;
       *ngFor&#x3D;&quot;let item of visibleItems | async&quot;
       #visibleLinkElement
-      fxFlex&#x3D;&quot;none&quot;
       (click)&#x3D;&quot;itemSelected.emit({event: $event, item: item})&quot;
     &gt;
       &lt;span class&#x3D;&quot;c-navigation__item-inner&quot;&gt;
@@ -1772,12 +1771,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     &lt;/button&gt;
   &lt;/div&gt;
 
+
   &lt;button
     class&#x3D;&quot;c-navigation__trigger&quot;
     [ngClass]&#x3D;&quot;{&#x27;c-navigation__trigger--separator&#x27;: visibleItemsLength}&quot;
     md-button
     [mdMenuTriggerFor]&#x3D;&quot;secondaryNav&quot;
-    fxFlex&#x3D;&quot;0 0 auto&quot;
+    fxFlex&#x3D;&quot;none&quot;
   &gt;
     &lt;span class&#x3D;&quot;c-navigation__trigger-welcome&quot;&gt;
       {{ welcomeMessage }}
@@ -1839,7 +1839,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark" fxLayout="row">  <div    class="c-navigation__items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <button      class="c-navigation__item"      *ngFor="let item of visibleItems | async"      #visibleLinkElement      fxFlex="none"      (click)="itemSelected.emit({event: $event, item: item})"    >      <span class="c-navigation__item-inner">        {{ item.name }}      </span>    </button>  </div>  <button    class="c-navigation__trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    md-button    [mdMenuTriggerFor]="secondaryNav"    fxFlex="0 0 auto"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <md-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </md-icon>  </button>  <md-menu    class="c-navigation__hidden-items"    #secondaryNav="mdMenu"    xPosition="before"    [overlapTrigger]="false"  >    <button      class="c-navigation__hidden-item"      [ngClass]="{\'c-navigation__hidden-item--admin\': item.onlyHidden}"      *ngFor="let item of hiddenItems | async"      #hiddenLinkElement      md-menu-item      (click)="itemSelected.emit({event: $event, item: item})"    >      {{ item.name }}    </button>  </md-menu></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark" fxLayout="row">  <div    class="c-navigation__items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <button      class="c-navigation__item"      *ngFor="let item of visibleItems | async"      #visibleLinkElement      (click)="itemSelected.emit({event: $event, item: item})"    >      <span class="c-navigation__item-inner">        {{ item.name }}      </span>    </button>  </div>  <button    class="c-navigation__trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    md-button    [mdMenuTriggerFor]="secondaryNav"    fxFlex="none"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <md-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </md-icon>  </button>  <md-menu    class="c-navigation__hidden-items"    #secondaryNav="mdMenu"    xPosition="before"    [overlapTrigger]="false"  >    <button      class="c-navigation__hidden-item"      [ngClass]="{\'c-navigation__hidden-item--admin\': item.onlyHidden}"      *ngFor="let item of hiddenItems | async"      #hiddenLinkElement      md-menu-item      (click)="itemSelected.emit({event: $event, item: item})"    >      {{ item.name }}    </button>  </md-menu></nav></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsNavigationComponent'};
