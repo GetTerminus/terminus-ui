@@ -1,4 +1,4 @@
-import {
+import{
   Component,
   OnInit,
   Input,
@@ -114,7 +114,9 @@ export class TsButtonComponent implements OnInit {
     // If the button is collapsable
     if (this.definedFormat === 'collapsable') {
       // Set the collapse delay
-      this.collapseDelay = this.collapseDelay || this._COLLAPSE_DEFAULT_DELAY;
+      if (!this.collapseDelay) {
+        this.collapseDelay = this._COLLAPSE_DEFAULT_DELAY;
+      }
     } else {
       // If the format is NOT collapsable, remove the delay
       if (this.collapseDelay) {
