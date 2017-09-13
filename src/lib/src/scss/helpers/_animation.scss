@@ -1,0 +1,23 @@
+/**
+ * The primary easing definition
+ *
+ * @nuclide easing
+ * @section Animation
+ */
+$g-easing: cubic-bezier(.26, .86, .44, .985) !default;
+
+/**
+ * The material background easing definition
+ *
+ * @nuclide easing
+ * @section Animation
+ */
+$g-material-background-easing: cubic-bezier(.25, .8, .25, 1) !default;
+
+/**
+ * The material shadow easing definition
+ *
+ * @nuclide easing
+ * @section Animation
+ */
+$g-material-shadow-easing: cubic-bezier(.4, 0, .2, 1) !default;
