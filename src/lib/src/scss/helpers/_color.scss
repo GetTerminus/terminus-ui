@@ -233,6 +233,9 @@ $color__highlight--light: #f4eb6e !default;
 /**
  * The map of colors
  *
+ * Note: Currently, warn and error are the same color in the $palettes map. More work needs to be
+ * done to solidify our palette.
+ *
  * @nuclide palettes
  * @section Config
  */
@@ -257,9 +260,9 @@ $palettes: (
     dark: $color__error--dark
   ),
   warn: (
-    light: $color__warn--light,
-    base: $color__warn,
-    dark: $color__warn--dark
+    light: $color__error--light,
+    base: $color__error,
+    dark: $color__error--dark
   ),
   highlight: (
     light: $color__highlight--light,

@@ -642,6 +642,12 @@
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
+    </p>
 
     <p class="comment">
         <h3>Example</h3>
@@ -651,10 +657,13 @@
                     <pre class="line-numbers"><code class="language-html">&lt;ts-button
   actionName=&quot;Submit&quot;
   theme=&quot;primary&quot;
+  format=&quot;filled&quot;
   buttonType=&quot;search&quot;
   iconName=&quot;search&quot;
   isDisabled=&quot;false&quot;
   showProgress=&quot;true&quot;
+  collapsed=&quot;false&quot;
+  collapseDelay=&quot;500&quot;
   (clickEvent)=&quot;myMethod($event)&quot;
 &gt;Click Me!&lt;/ts-button&gt;</code></pre>
                 </div>
@@ -708,6 +717,46 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                 <a href="#_COLLAPSE_DEFAULT_DELAY">_COLLAPSE_DEFAULT_DELAY</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#collapseDelay">collapseDelay</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#definedFormat">definedFormat</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#isCollapsed">isCollapsed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                 <a href="#_collapseWithDelay">_collapseWithDelay</a>
+                            </li>
+                            <li>
+                                 <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
@@ -719,6 +768,12 @@
                             </li>
                             <li>
                                 <a href="#buttonType">buttonType</a>
+                            </li>
+                            <li>
+                                <a href="#collapsed">collapsed</a>
+                            </li>
+                            <li>
+                                <a href="#format">format</a>
                             </li>
                             <li>
                                 <a href="#iconName">iconName</a>
@@ -753,6 +808,24 @@
         </table>
     </section>
 
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor(changeDetectorRef: <a href="https://angular.io/docs/ts/latest/api/core/index/ChangeDetectorRef-class.html" target="_blank">ChangeDetectorRef</a>)</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/lib/src/button/button.component.ts:139</a></div>
+                                </td>
+                            </tr>
+    
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="inputs">Inputs</h3>
@@ -764,7 +837,7 @@
                             <code>actionName</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the action for the aria-label</p>
+                            <div><p>Define the action for the aria-label. {@link TsButtonActionTypes}</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsButtonActionTypes</a></code>
@@ -777,7 +850,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/button/button.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/button/button.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -790,7 +863,7 @@
                             <code>buttonType</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the button type</p>
+                            <div><p>Define the button type. {@link TsButtonFunctionTypes}</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsButtonFunctionTypes</a></code>
@@ -803,7 +876,45 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/src/button/button.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/button/button.component.ts:74</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="collapsed"></a>
+                            <code>collapsed</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the collapsed value and trigger the delay if needed</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/button/button.component.ts:80</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="format"></a>
+                            <code>format</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the button format. {@link TsButtonFormatTypes}</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/button/button.component.ts:112</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -826,7 +937,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/button/button.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/lib/src/button/button.component.ts:94</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -852,7 +963,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/button/button.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/button/button.component.ts:100</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -878,7 +989,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/button/button.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/button/button.component.ts:106</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -904,7 +1015,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/button/button.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/lib/src/button/button.component.ts:133</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -923,36 +1034,293 @@
                         <td class="col-md-10">
                             <div><p>Pass the click event through to the parent</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MouseEvent&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/button/button.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/lib/src/button/button.component.ts:139</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
     </section>
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_collapseWithDelay"></a>
+                            <b> _collapseWithDelay</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>_collapseWithDelay(delay: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/lib/src/button/button.component.ts:169</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>delay</td>
+                                                      <td>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                      </td>
+                                                      <td><p>The time to delay before collapsing the button</p>
+    </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="ngOnInit"></a>
+                            <b> ngOnInit</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngOnInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/lib/src/button/button.component.ts:149</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Collapse after delay (if set)</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_COLLAPSE_DEFAULT_DELAY"></a>
+                            <b> _COLLAPSE_DEFAULT_DELAY</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>_COLLAPSE_DEFAULT_DELAY:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>2000</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/button/button.component.ts:47</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="collapseDelay"></a>
+                            <b><span class="modifier">Public</span> collapseDelay</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>collapseDelay:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/button/button.component.ts:52</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the delay before the rounded button automatically collapses</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="definedFormat"></a>
+                            <b><span class="modifier">Public</span> definedFormat</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>definedFormat:     <code><a href="../miscellaneous/typealiases.html" target="_self" >TsButtonFormatTypes</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsButtonFormatTypes</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>filled</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/button/button.component.ts:57</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The defined button format</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="isCollapsed"></a>
+                            <b><span class="modifier">Public</span> isCollapsed</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>isCollapsed:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/button/button.component.ts:62</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The flag that defines if the button is collapsed or expanded</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
+  OnInit,
   Input,
   Output,
   EventEmitter,
   ElementRef,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from &#x27;@angular/core&#x27;;
 
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
+  TsButtonFormatTypes,
   TsStyleThemeTypes,
 } from &#x27;./../utilities/types&#x27;;
 
@@ -964,10 +1332,13 @@ import {
  * &lt;ts-button
  *              actionName&#x3D;&quot;Submit&quot;
  *              theme&#x3D;&quot;primary&quot;
+ *              format&#x3D;&quot;filled&quot;
  *              buttonType&#x3D;&quot;search&quot;
  *              iconName&#x3D;&quot;search&quot;
  *              isDisabled&#x3D;&quot;false&quot;
  *              showProgress&#x3D;&quot;true&quot;
+ *              collapsed&#x3D;&quot;false&quot;
+ *              collapseDelay&#x3D;&quot;500&quot;
  *              (clickEvent)&#x3D;&quot;myMethod($event)&quot;
  * &gt;Click Me!&lt;/ts-button&gt;
  */
@@ -977,18 +1348,52 @@ import {
   styleUrls: [&#x27;./button.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TsButtonComponent {
+export class TsButtonComponent implements OnInit {
   /**
-   * Define the action for the aria-label
+   * @private Define the default delay for collapsable buttons
+   */
+  _COLLAPSE_DEFAULT_DELAY: number &#x3D; 2000;
+
+  /**
+   * Define the delay before the rounded button automatically collapses
+   */
+  public collapseDelay: number;
+
+  /**
+   * The defined button format
+   */
+  public definedFormat: TsButtonFormatTypes &#x3D; &#x27;filled&#x27;;
+
+  /**
+   * The flag that defines if the button is collapsed or expanded
+   */
+  public isCollapsed: boolean &#x3D; false;
+
+  /**
+   * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
   @Input()
   public actionName: TsButtonActionTypes &#x3D; &#x27;Button&#x27;;
 
   /**
-   * Define the button type
+   * Define the button type. {@link TsButtonFunctionTypes}
    */
   @Input()
   public buttonType: TsButtonFunctionTypes &#x3D; &#x27;button&#x27;;
+
+  /**
+   * Define the collapsed value and trigger the delay if needed
+   */
+  @Input()
+  public set collapsed(value: boolean) {
+    this.isCollapsed &#x3D; value;
+
+    // If the value is &#x60;false&#x60; and a collapse delay is set
+    if (value &#x3D;&#x3D;&#x3D; false &amp;&amp; this.collapseDelay) {
+      // Trigger the delayed close
+      this._collapseWithDelay(this.collapseDelay);
+    }
+  }
 
   /**
    * Define a Material icon to include
@@ -1009,6 +1414,27 @@ export class TsButtonComponent {
   public showProgress: boolean &#x3D; false;
 
   /**
+   * Define the button format. {@link TsButtonFormatTypes}
+   */
+  @Input()
+  public set format(value: TsButtonFormatTypes) {
+    this.definedFormat &#x3D; value;
+
+    // If the button is collapsable
+    if (this.definedFormat &#x3D;&#x3D;&#x3D; &#x27;collapsable&#x27;) {
+      // Set the collapse delay
+      if (!this.collapseDelay) {
+        this.collapseDelay &#x3D; this._COLLAPSE_DEFAULT_DELAY;
+      }
+    } else {
+      // If the format is NOT collapsable, remove the delay
+      if (this.collapseDelay) {
+        this.collapseDelay &#x3D; undefined;
+      }
+    }
+  }
+
+  /**
    * Define the theme
    */
   @Input()
@@ -1018,7 +1444,43 @@ export class TsButtonComponent {
    * Pass the click event through to the parent
    */
   @Output()
-  public clickEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
+  public clickEvent: EventEmitter&lt;MouseEvent&gt; &#x3D; new EventEmitter;
+
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
+  /**
+   * Collapse after delay (if set)
+   */
+  ngOnInit(): void {
+    if (this.collapseDelay) {
+      this._collapseWithDelay(this.collapseDelay);
+    }
+
+    // If the format is &#x60;collapsable&#x60;, verify an &#x60;iconName&#x60; is set
+    if (this.format &#x3D;&#x3D;&#x3D; &#x27;collapsable&#x27; &amp;&amp; !this.iconName) {
+      throw new Error(&#x27;&#x60;iconName&#x60; must be defined for collapsable buttons.&#x27;);
+    }
+  }
+
+
+  /**
+   * @private Collapse the button after a delay
+   *
+   * NOTE: I&#x27;m not entirely sure why this &#x60;detectChanges&#x60; is needed. Supposedly zone.js should be
+   * patching setTimeout automatically.
+   *
+   * @param {Number} delay The time to delay before collapsing the button
+   */
+  _collapseWithDelay(delay: number): void {
+    setTimeout(() &#x3D;&gt; {
+      this.isCollapsed &#x3D; true;
+      this.changeDetectorRef.detectChanges();
+    }, delay);
+  }
+
 }
 </code></pre>
     </div>
@@ -1026,10 +1488,10 @@ export class TsButtonComponent {
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;button
   md-raised-button
-  [color]&#x3D;&quot;theme&quot;
+  class&#x3D;&quot;c-button c-button c-button--{{ definedFormat }} c-button--{{ theme }} mat-raised-button&quot;
+  [ngClass]&#x3D;&quot;{&#x27;c-button--collapsed&#x27;: isCollapsed}&quot;
   [attr.aria-label]&#x3D;&quot;actionName&quot;
   [attr.type]&#x3D;&quot;buttonType&quot;
-  class&#x3D;&quot;c-button c-button&quot;
   [disabled]&#x3D;&quot;isDisabled&quot;
   [ladda]&#x3D;&quot;showProgress&quot;
   (click)&#x3D;&quot;clickEvent.emit($event)&quot;
@@ -1041,7 +1503,9 @@ export class TsButtonComponent {
     {{ iconName }}
   &lt;/md-icon&gt;
 
-  &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;span class&#x3D;&quot;c-button__content&quot;&gt;
+    &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;/span&gt;
 &lt;/button&gt;
 </code></pre>
     </div>
@@ -1069,7 +1533,7 @@ export class TsButtonComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  md-raised-button  [color]="theme"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  class="c-button c-button"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <ng-content></ng-content></button></div>'
+        var COMPONENT_TEMPLATE = '<div><button  md-raised-button  class="c-button c-button c-button--{{ definedFormat }} c-button--{{ theme }} mat-raised-button"  [ngClass]="{\'c-button--collapsed\': isCollapsed}"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  [disabled]="isDisabled"  [ladda]="showProgress"  (click)="clickEvent.emit($event)">  <md-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </md-icon>  <span class="c-button__content">    <ng-content></ng-content>  </span></button></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
