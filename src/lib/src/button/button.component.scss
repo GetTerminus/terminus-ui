@@ -35,7 +35,6 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   ::ng-deep .ladda-label {
     padding-left: spacing(small, 3x);
     padding-right: spacing(small, 3x);
-    transition-delay: 1000ms;
   }
 
   ::ng-deep md-icon {
