@@ -24,6 +24,7 @@ The library of UI components used for Terminus applications.
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
+- [Global Styles](#global-styles)
 - [Developing](#developing)
   - [Demos](#demos)
   - [Branching](#branching)
@@ -57,17 +58,17 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
     - Unit (cross-browser)
     - JiT integration
     - AoT integration
-    - Style regression (not yet implemented)
+    - ~~Style regression~~ (TODO)
 1. Linting
     - TypeScript
     - SCSS
-1. Documentation
+1. Documentation (`docs/`)
     - Manual docs for basic project flow (README)
       - Automated Table of Contents updates
       - Automated markdown link checking
-    - Generated docs for TypeScript (`docs/`)
-    - Generated docs for SCSS (`styleguide/`)
-1. Automated semantic versioning & publishing to NPM
+    - Generated docs for TypeScript (`docs/typescript/`)
+    - Generated docs for SCSS (`docs/styleguide/`)
+1. Automated semantic versioning & publishing to [NPM][npm-url]
 1. Enforced commit style
 1. Tree-shaking via Rollup.js
 1. SCSS variables & functions exposed to the consuming application
@@ -132,10 +133,11 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 | Feature          | Notes                                                  | Status             |
 |------------------|--------------------------------------------------------|        :---:       |
+| animation        |                                                        | :white_check_mark: |
 | assets           |                                                        |           :hammer: |
 | breakpoints      |                                                        | :white_check_mark: |
-| colors           |                                                        |           :hammer: |
-| layout           |                                                        |           :hammer: |
+| colors           |                                                        | :white_check_mark: |
+| layout           |                                                        | :white_check_mark: |
 | spacing          |                                                        | :white_check_mark: |
 | typography       |                                                        | :white_check_mark: |
 | z-index          |                                                        | :white_check_mark: |
@@ -174,10 +176,19 @@ $ yarn add @terminus/ui @angular/forms @angular/animations @angular/material ang
 1. Update the status for the component in the [components table](#components)
 
 
+## Global Styles
+
+To use the global styles, import the CSS file into your stylesheets:
+
+```scss
+@import '@terminus/ui/terminus-ui.css'
+```
+
+
 ## Developing
 
 ```bash
-# Install and build all dependencies
+# Install, build and link dependencies
 $ yarn run setup
 
 # Start the demo project and watch demo and lib files for changes

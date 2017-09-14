@@ -267,6 +267,9 @@
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../interfaces/TsUser.html" >TsUser</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
@@ -556,6 +559,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsUser.html" >TsUser</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
@@ -995,7 +1001,7 @@
                             <div><p>Define the menu location (open up or open down)</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>|</code>
+                                <em>Type:</em>    <code>&quot;above&quot; | &quot;below&quot;</code>
 
                               </p>
                             <p>
@@ -1171,7 +1177,7 @@
                             <div><p>Define the color theme</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsStyleThemeTypes</a></code>
+                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes</a></code>
 
                               </p>
                             <p>
@@ -1260,6 +1266,8 @@
             </table>
     </section>
 
+
+
     <section>
         
             <h3 id="methods">
@@ -1270,13 +1278,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="changePage"></a>
-                            <b><span class="modifier">Public</span> changePage</b>
+                            <span class="name"><b><span class="modifier">Public</span> changePage</b><a href="#changePage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
-                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: [])</code>
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>)</code>
                         </td>
                     </tr>
     
@@ -1299,6 +1307,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1306,7 +1315,9 @@
                                                     <tr>
                                                       <td>destinationPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected page number</p>
     </td>
@@ -1314,7 +1325,9 @@
                                                     <tr>
                                                       <td>currentPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The current page number</p>
     </td>
@@ -1322,7 +1335,9 @@
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The collection of pages</p>
     </td>
@@ -1348,12 +1363,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="createCurrentPageLabel"></a>
-                            <b> createCurrentPageLabel</b>
+                            <span class="name"><b> createCurrentPageLabel</b><a href="#createCurrentPageLabel"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: [], totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
     
@@ -1374,6 +1389,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1381,7 +1397,9 @@
                                                     <tr>
                                                       <td>currentPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The current page</p>
     </td>
@@ -1389,10 +1407,21 @@
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The array of all pages</p>
     </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>totalRecords</td>
+                                                      <td>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -1415,7 +1444,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="createPagesArray"></a>
-                            <b> createPagesArray</b>
+                            <span class="name"><b> createPagesArray</b><a href="#createPagesArray"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1441,6 +1470,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1448,7 +1478,9 @@
                                                     <tr>
                                                       <td>total</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The total records remaining</p>
     </td>
@@ -1456,7 +1488,9 @@
                                                     <tr>
                                                       <td>perPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>How many records are shown per page</p>
     </td>
@@ -1482,12 +1516,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="currentPageChanged"></a>
-                            <b><span class="modifier">Public</span> currentPageChanged</b>
+                            <span class="name"><b><span class="modifier">Public</span> currentPageChanged</b><a href="#currentPageChanged"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>currentPageChanged(page: <a href="../interfaces/TsMenuItem.html">TsMenuItem</a>)</code>
                         </td>
                     </tr>
@@ -1511,6 +1545,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1518,7 +1553,9 @@
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected page</p>
     </td>
@@ -1544,12 +1581,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="disableRecordsPerPage"></a>
-                            <b><span class="modifier">Public</span> disableRecordsPerPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> disableRecordsPerPage</b><a href="#disableRecordsPerPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>disableRecordsPerPage(totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, recordsPerPageChoices: number[])</code>
                         </td>
                     </tr>
@@ -1573,22 +1610,26 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>total</td>
+                                                      <td>totalRecords</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                       </td>
-                                                      <td><p>The total number of records</p>
-    </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
                                                     </tr>
                                                     <tr>
                                                       <td>recordsPerPageChoices</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code>number[]</code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The array of counts representing how many records may be show per
     page</p>
@@ -1615,7 +1656,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="initialize"></a>
-                            <b> initialize</b>
+                            <span class="name"><b> initialize</b><a href="#initialize"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1634,15 +1675,10 @@
                     <tr>
                         <td class="col-md-4">
     
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1652,12 +1688,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="isFirstPage"></a>
-                            <b><span class="modifier">Public</span> isFirstPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> isFirstPage</b><a href="#isFirstPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>isFirstPage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1681,6 +1717,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1688,7 +1725,9 @@
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of the current page</p>
     </td>
@@ -1714,12 +1753,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="isLastPage"></a>
-                            <b><span class="modifier">Public</span> isLastPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> isLastPage</b><a href="#isLastPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>isLastPage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1743,6 +1782,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1750,7 +1790,9 @@
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of the current page</p>
     </td>
@@ -1776,12 +1818,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="menuIsDisabled"></a>
-                            <b><span class="modifier">Public</span> menuIsDisabled</b>
+                            <span class="name"><b><span class="modifier">Public</span> menuIsDisabled</b><a href="#menuIsDisabled"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>menuIsDisabled(pagesCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1805,6 +1847,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1812,7 +1855,9 @@
                                                     <tr>
                                                       <td>pagesCount</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of pages</p>
     </td>
@@ -1838,12 +1883,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnChanges"></a>
-                            <b><span class="modifier">Public</span> ngOnChanges</b>
+                            <span class="name"><b><span class="modifier">Public</span> ngOnChanges</b><a href="#ngOnChanges"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>ngOnChanges()</code>
                         </td>
                     </tr>
@@ -1873,12 +1918,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnInit"></a>
-                            <b><span class="modifier">Public</span> ngOnInit</b>
+                            <span class="name"><b><span class="modifier">Public</span> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>ngOnInit()</code>
                         </td>
                     </tr>
@@ -1908,12 +1953,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="recordsPerPageUpdated"></a>
-                            <b><span class="modifier">Public</span> recordsPerPageUpdated</b>
+                            <span class="name"><b><span class="modifier">Public</span> recordsPerPageUpdated</b><a href="#recordsPerPageUpdated"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>recordsPerPageUpdated(selection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1937,6 +1982,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1944,7 +1990,9 @@
                                                     <tr>
                                                       <td>selection</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected records-per-page count</p>
     </td>
@@ -1970,12 +2018,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="shouldShowRecordsMessage"></a>
-                            <b><span class="modifier">Public</span> shouldShowRecordsMessage</b>
+                            <span class="name"><b><span class="modifier">Public</span> shouldShowRecordsMessage</b><a href="#shouldShowRecordsMessage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>shouldShowRecordsMessage(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, max: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1999,6 +2047,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -2006,7 +2055,9 @@
                                                     <tr>
                                                       <td>message</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The help message when too many results are returned</p>
     </td>
@@ -2014,7 +2065,9 @@
                                                     <tr>
                                                       <td>max</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The max number of records before the message should be shown</p>
     </td>
@@ -2022,7 +2075,9 @@
                                                     <tr>
                                                       <td>totalRecords</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of records</p>
     </td>
@@ -2055,12 +2110,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="currentPageLabel"></a>
-                            <b><span class="modifier">Public</span> currentPageLabel</b>
+                            <span class="name"><b><span class="modifier">Public</span> currentPageLabel</b><a href="#currentPageLabel"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>currentPageLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>currentPageLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2090,7 +2145,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_HIGH_RECORD_MESSAGE"></a>
-                            <b> DEFAULT_HIGH_RECORD_MESSAGE</b>
+                            <span class="name"><b> DEFAULT_HIGH_RECORD_MESSAGE</b><a href="#DEFAULT_HIGH_RECORD_MESSAGE"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2119,7 +2174,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_MAX_PREFERED_RECORDS"></a>
-                            <b> DEFAULT_MAX_PREFERED_RECORDS</b>
+                            <span class="name"><b> DEFAULT_MAX_PREFERED_RECORDS</b><a href="#DEFAULT_MAX_PREFERED_RECORDS"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2153,7 +2208,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_PER_PAGE"></a>
-                            <b> DEFAULT_PER_PAGE</b>
+                            <span class="name"><b> DEFAULT_PER_PAGE</b><a href="#DEFAULT_PER_PAGE"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2187,7 +2242,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_RECORDS_PER_PAGE_OPTIONS"></a>
-                            <b> DEFAULT_RECORDS_PER_PAGE_OPTIONS</b>
+                            <span class="name"><b> DEFAULT_RECORDS_PER_PAGE_OPTIONS</b><a href="#DEFAULT_RECORDS_PER_PAGE_OPTIONS"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2216,12 +2271,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="firstPageIcon"></a>
-                            <b><span class="modifier">Public</span> firstPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> firstPageIcon</b><a href="#firstPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>firstPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>firstPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2256,12 +2311,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="lastPageIcon"></a>
-                            <b><span class="modifier">Public</span> lastPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> lastPageIcon</b><a href="#lastPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>lastPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>lastPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2296,12 +2351,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="nextPageIcon"></a>
-                            <b><span class="modifier">Public</span> nextPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> nextPageIcon</b><a href="#nextPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>nextPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>nextPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2336,18 +2391,18 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="pagesArray"></a>
-                            <b><span class="modifier">Public</span> pagesArray</b>
+                            <span class="name"><b><span class="modifier">Public</span> pagesArray</b><a href="#pagesArray"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>pagesArray:     <code>[]</code>
+                            <span class="modifier-icon fa fa-reset"></span><code>pagesArray:     <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code>[]</code>
+                                <i>Type : </i>    <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
     
                             </td>
                         </tr>
@@ -2371,12 +2426,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="previousPageIcon"></a>
-                            <b><span class="modifier">Public</span> previousPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> previousPageIcon</b><a href="#previousPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>previousPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>previousPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2411,7 +2466,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="recordsPerPage"></a>
-                            <b> recordsPerPage</b>
+                            <span class="name"><b> recordsPerPage</b><a href="#recordsPerPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>

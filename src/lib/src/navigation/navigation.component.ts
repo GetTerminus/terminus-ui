@@ -14,7 +14,11 @@ import {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { TsNavigationItem, TsNavigationPayload } from './../utilities/interfaces/';
+import {
+  TsNavigationItem,
+  TsNavigationPayload,
+  TsUser,
+} from './../utilities/interfaces/';
 import { groupBy } from './../utilities/groupBy';
 
 
@@ -100,7 +104,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   @Input('items')
   set items(value: TsNavigationItem[]) {
-    // Filter out any disabled items
+    // Filter out disabled items
     const enabledItems = value.filter((item) => {
       return !item.isDisabled;
     });
@@ -110,10 +114,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Accept the user data
-   * FIXME: Is it better to use `any`? Or to manage a user model in core and in library?
    */
   @Input('user')
-  public user: any;
+  public user: TsUser;
 
   /**
    * Define the welcome message

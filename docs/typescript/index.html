@@ -267,6 +267,9 @@
                                     <a href="./interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./interfaces/TsUser.html" >TsUser</a>
+                                </li>
+                                <li class="link">
                                     <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
@@ -558,6 +561,9 @@
                                            <a href="./interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./interfaces/TsUser.html" >TsUser</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
@@ -624,6 +630,7 @@
 </li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#adding-a-component">Adding a Component</a></li>
+<li><a href="#global-styles">Global Styles</a></li>
 <li><a href="#developing">Developing</a><ul>
 <li><a href="#demos">Demos</a></li>
 <li><a href="#branching">Branching</a><ul>
@@ -658,7 +665,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <li>Unit (cross-browser)</li>
 <li>JiT integration</li>
 <li>AoT integration</li>
-<li>Style regression (not yet implemented)</li>
+<li><del>Style regression</del> (TODO)</li>
 </ul>
 </li>
 <li>Linting<ul>
@@ -666,17 +673,17 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <li>SCSS</li>
 </ul>
 </li>
-<li>Documentation<ul>
+<li>Documentation (<code>docs/</code>)<ul>
 <li>Manual docs for basic project flow (README)<ul>
 <li>Automated Table of Contents updates</li>
 <li>Automated markdown link checking</li>
 </ul>
 </li>
-<li>Generated docs for TypeScript (<code>docs/</code>)</li>
-<li>Generated docs for SCSS (<code>styleguide/</code>)</li>
+<li>Generated docs for TypeScript (<code>docs/typescript/</code>)</li>
+<li>Generated docs for SCSS (<code>docs/styleguide/</code>)</li>
 </ul>
 </li>
-<li>Automated semantic versioning &amp; publishing to NPM</li>
+<li>Automated semantic versioning &amp; publishing to <a href="https://npmjs.org/package/@terminus/ui">NPM</a></li>
 <li>Enforced commit style</li>
 <li>Tree-shaking via Rollup.js</li>
 <li>SCSS variables &amp; functions exposed to the consuming application</li>
@@ -935,6 +942,11 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </thead>
 <tbody>
 <tr>
+<td>animation</td>
+<td></td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
 <td>assets</td>
 <td></td>
 <td style="text-align:center">:hammer:</td>
@@ -947,12 +959,12 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>colors</td>
 <td></td>
-<td style="text-align:center">:hammer:</td>
+<td style="text-align:center">:white_check_mark:</td>
 </tr>
 <tr>
 <td>layout</td>
 <td></td>
-<td style="text-align:center">:hammer:</td>
+<td style="text-align:center">:white_check_mark:</td>
 </tr>
 <tr>
 <td>spacing</td>
@@ -1005,8 +1017,10 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <li>Add the new component to available scopes in <code>tooling/cz-config.js</code></li>
 <li>Update the status for the component in the <a href="#components">components table</a></li>
 </ol>
-<h2 id="developing">Developing</h2>
-<pre class="line-numbers"><code class="language-bash"># Install and build all dependencies
+<h2 id="global-styles">Global Styles</h2>
+<p>To use the global styles, import the CSS file into your stylesheets:</p>
+<pre class="line-numbers"><code class="language-scss">&#64;import &#39;&#64;terminus/ui/terminus-ui.css&#39;</code></pre><h2 id="developing">Developing</h2>
+<pre class="line-numbers"><code class="language-bash"># Install, build and link dependencies
 $ yarn run setup
 
 # Start the demo project and watch demo and lib files for changes
