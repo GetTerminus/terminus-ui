@@ -40,8 +40,6 @@ const scssHelpersInputPathList = [
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
 
 
-
-
 return Promise.resolve()
   // Copy library to temporary folder, compile sass files and inline html/css.
   .then(() => _relativeCopy(`**/*`, srcFolder, tempLibFolder)
@@ -198,6 +196,11 @@ return Promise.resolve()
     .then(() => _relativeCopy('helpers.scss', srcFolder, distFolder))
     .then(() => console.log('SCSS helpers merged and copied.'))
   )
+  // Generate CSS for shared styles
+  .then(() => Promise.resolve()
+    .then(() => compileGeneratedCss())
+    .then(() => console.log('Generated CSS created.'))
+  )
   .catch(e => {
     console.error('\Build failed. See below for errors.\n');
     console.error(e);
@@ -241,3 +244,16 @@ function compileSassFiles() {
     '--source-map-contents'
   ]);
 }
+
+function compileGeneratedCss() {
+  return execa('node-sass', [
+    ['src/lib/src/scss/global/terminus-ui.scss'],
+    '-o', './dist',
+    '--output-style',
+    'compressed',
+    '--source-map',
+    true,
+    '--source-map-contents'
+  ]);
+}
+

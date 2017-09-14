@@ -66,28 +66,3 @@ $g-spacings: (
 
   @return map-get(map-get($g-spacings, $type), $size);
 }
-
-
-/**
- * Base vertical spacing class
- */
-::ng-deep .u-vertical-spacing {
-  margin-bottom: $g-spacing;
-}
-
-
-/**
- * Loop over the map and create vertical layout utility classes
- * Example: `.u-spacing__large--2x`
- */
-// Loop over the vertical spacing map
-@each $size, $collection in $g-spacings {
-
-  // Loop over each collection (ie 'small')
-  @each $x, $spacing in $collection {
-    ::ng-deep .u-vertical-spacing__#{$size}--#{$x} {
-      margin-bottom: $spacing;
-    }
-  }
-
-}
