@@ -110,8 +110,6 @@ export class ButtonComponent {
 
 
 
-
-
   run(progress: any) {
     console.log('in run!');
     this[progress] = true;
