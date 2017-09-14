@@ -5,6 +5,7 @@
 
 :host {
   display: inline-block;
+  flex: 1 1 auto;
   max-width: 100%;
   overflow: hidden;
 }
@@ -20,7 +21,7 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
-    background: color(pure, dark);
+    background-color: color(utility, dark);
     color: color(pure);
   }
 
@@ -37,11 +38,12 @@
     font-family: inherit;
     font-size: inherit;
     letter-spacing: .04em;
+    padding: 0 spacing();
 
     // <span> inner wrapper
     &-inner {
-      display: inline-block;
-      margin: 0 spacing();
+      display: block;
+      white-space: nowrap;
       width: 100%;
     }
   }
@@ -95,7 +97,7 @@
   }
 
   ::ng-deep .mat-menu-content {
-    background-color: color(pure, dark);
+    background-color: color(utility, dark);
     // override material styles
     padding: 0;
 

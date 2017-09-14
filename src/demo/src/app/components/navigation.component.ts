@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
 
-import { TsNavigationItem } from '@terminus/ui';
+import { TsNavigationItem, TsNavigationPayload } from '@terminus/ui';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
@@ -26,7 +26,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
     onlyHidden: false,
   },
   {
-    name: 'Fake Link',
+    name: 'Ad Library',
     action: 'navigate',
     destination: ['/creatives'],
     onlyHidden: false,
@@ -63,6 +63,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
 ];
 
 
+
 @Component({
   selector: 'demo-navigation',
   styleUrls: ['./navigation.component.scss'],
@@ -75,7 +76,6 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
       </div>
 
       <ts-navigation
-        fxFlex="1 1 auto" class="inner"
         [items]="navigationItems$ | async"
         [user]="currentUser$ | async"
         [welcomeMessage]="myMessage"
@@ -110,7 +110,7 @@ export class NavigationComponent implements OnInit {
    *
    * @param {Object} item The navigation item
    */
-  triggerAction(payload: any): void {
+  triggerAction(payload: TsNavigationPayload): void {
     console.log('triggerAction: ', payload);
 
     if (payload.event.metaKey) {

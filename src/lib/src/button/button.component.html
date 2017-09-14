@@ -1,9 +1,9 @@
 <button
   md-raised-button
-  [color]="theme"
+  class="c-button c-button c-button--{{ definedFormat }} c-button--{{ theme }} mat-raised-button"
+  [ngClass]="{'c-button--collapsed': isCollapsed}"
   [attr.aria-label]="actionName"
   [attr.type]="buttonType"
-  class="c-button c-button"
   [disabled]="isDisabled"
   [ladda]="showProgress"
   (click)="clickEvent.emit($event)"
@@ -15,5 +15,7 @@
     {{ iconName }}
   </md-icon>
 
-  <ng-content></ng-content>
+  <span class="c-button__content">
+    <ng-content></ng-content>
+  </span>
 </button>

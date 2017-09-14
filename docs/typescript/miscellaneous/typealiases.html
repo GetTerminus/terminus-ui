@@ -267,6 +267,9 @@
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../interfaces/TsUser.html" >TsUser</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
@@ -558,6 +561,9 @@
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../interfaces/TsUser.html" >TsUser</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
@@ -614,37 +620,61 @@
   <li>Miscellaneous - Type aliases</li>
 </ol>
 
-    <h3>src/lib/src/utilities/interfaces/navigation-item.interface.ts</h3>
-    <section>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>TsNavigationItemAction</b>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-description"><p>Define the action types for a navigation item</p>
-    </div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>TsNavigationItemAction:     <code>||</code>
-    </code>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
+<section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#TsButtonActionTypes">TsButtonActionTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsButtonFormatTypes">TsButtonFormatTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsButtonFunctionTypes">TsButtonFunctionTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsInputAutocompleteTypes">TsInputAutocompleteTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsInputTypes">TsInputTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsMenuPositionTypesX">TsMenuPositionTypesX</a>
+                        </li>
+                        <li>
+                            <a href="#TsMenuPositionTypesY">TsMenuPositionTypesY</a>
+                        </li>
+                        <li>
+                            <a href="#TsNavigationItemAction">TsNavigationItemAction</a>
+                        </li>
+                        <li>
+                            <a href="#TsStyleThemeTypes">TsStyleThemeTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsTooltipPositionTypes">TsTooltipPositionTypes</a>
+                        </li>
+                        <li>
+                            <a href="#TsVerticalSpacingTypes">TsVerticalSpacingTypes</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
     <h3>src/lib/src/utilities/types/button.types.ts</h3>
     <section>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsButtonActionTypes</b>
+                            <a name="TsButtonActionTypes"></a>
+                            <span class="name"><b>TsButtonActionTypes</b><a href="#TsButtonActionTypes"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -655,7 +685,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsButtonActionTypes:     <code>|||</code>
+                            <code>TsButtonActionTypes:     <code>&quot;Button&quot; | &quot;Submit&quot; | &quot;Menu&quot; | &quot;Reset&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -665,7 +695,30 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsButtonFunctionTypes</b>
+                            <a name="TsButtonFormatTypes"></a>
+                            <span class="name"><b>TsButtonFormatTypes</b><a href="#TsButtonFormatTypes"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-description"><p>Define the allowed <a href="components/TsButtonComponent.html">TsButtonComponent</a> format types</p>
+    </div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>TsButtonFormatTypes:     <code>&quot;filled&quot; | &quot;hollow&quot; | &quot;collapsable&quot;</code>
+    </code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="TsButtonFunctionTypes"></a>
+                            <span class="name"><b>TsButtonFunctionTypes</b><a href="#TsButtonFunctionTypes"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -676,7 +729,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsButtonFunctionTypes:     <code>||</code>
+                            <code>TsButtonFunctionTypes:     <code>&quot;button&quot; | &quot;search&quot; | &quot;submit&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -689,28 +742,8 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsInputTypes</b>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-description"><p>Define the allowed <a href="components/TsInputComponent.html">TsInputComponent</a> input types</p>
-    </div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>TsInputTypes:     <code>|||||||</code>
-    </code>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>TsInputAutocompleteTypes</b>
+                            <a name="TsInputAutocompleteTypes"></a>
+                            <span class="name"><b>TsInputAutocompleteTypes</b><a href="#TsInputAutocompleteTypes"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -722,7 +755,29 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsInputAutocompleteTypes:     <code>|||||||</code>
+                            <code>TsInputAutocompleteTypes:     <code>&quot;off&quot; | &quot;on&quot; | &quot;name&quot; | &quot;email&quot; | &quot;username&quot; | &quot;new-password&quot; | &quot;current-password&quot; | &quot;tel&quot;</code>
+    </code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="TsInputTypes"></a>
+                            <span class="name"><b>TsInputTypes</b><a href="#TsInputTypes"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-description"><p>Define the allowed <a href="components/TsInputComponent.html">TsInputComponent</a> input types</p>
+    </div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>TsInputTypes:     <code>&quot;text&quot; | &quot;password&quot; | &quot;email&quot; | &quot;hidden&quot; | &quot;number&quot; | &quot;search&quot; | &quot;tel&quot; | &quot;url&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -735,7 +790,8 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsMenuPositionTypesX</b>
+                            <a name="TsMenuPositionTypesX"></a>
+                            <span class="name"><b>TsMenuPositionTypesX</b><a href="#TsMenuPositionTypesX"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -746,7 +802,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsMenuPositionTypesX:     <code>|</code>
+                            <code>TsMenuPositionTypesX:     <code>&quot;before&quot; | &quot;after&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -756,7 +812,8 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsMenuPositionTypesY</b>
+                            <a name="TsMenuPositionTypesY"></a>
+                            <span class="name"><b>TsMenuPositionTypesY</b><a href="#TsMenuPositionTypesY"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -767,31 +824,32 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsMenuPositionTypesY:     <code>|</code>
+                            <code>TsMenuPositionTypesY:     <code>&quot;above&quot; | &quot;below&quot;</code>
     </code>
                         </td>
                     </tr>
                 </tbody>
             </table>
     </section>
-    <h3>src/lib/src/utilities/types/spacing.types.ts</h3>
+    <h3>src/lib/src/utilities/interfaces/navigation-item.interface.ts</h3>
     <section>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsVerticalSpacingTypes</b>
+                            <a name="TsNavigationItemAction"></a>
+                            <span class="name"><b>TsNavigationItemAction</b><a href="#TsNavigationItemAction"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-description"><p>Define the accepted string values for <a href="directives/TsVerticalSpacingDirective.html">TsVerticalSpacingDirective</a></p>
+                                <div class="io-description"><p>Define the action types for a navigation item</p>
     </div>
                             </td>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsVerticalSpacingTypes:     <code>|||||||||</code>
+                            <code>TsNavigationItemAction:     <code>&quot;navigate&quot; | &quot;log-out&quot; | &quot;log-in-as&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -804,7 +862,8 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsStyleThemeTypes</b>
+                            <a name="TsStyleThemeTypes"></a>
+                            <span class="name"><b>TsStyleThemeTypes</b><a href="#TsStyleThemeTypes"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -815,7 +874,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsStyleThemeTypes:     <code>||</code>
+                            <code>TsStyleThemeTypes:     <code>&quot;primary&quot; | &quot;accent&quot; | &quot;warn&quot;</code>
     </code>
                         </td>
                     </tr>
@@ -828,7 +887,8 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b>TsTooltipPositionTypes</b>
+                            <a name="TsTooltipPositionTypes"></a>
+                            <span class="name"><b>TsTooltipPositionTypes</b><a href="#TsTooltipPositionTypes"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                         <tr>
@@ -839,7 +899,32 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>TsTooltipPositionTypes:     <code>|||||</code>
+                            <code>TsTooltipPositionTypes:     <code>&quot;left&quot; | &quot;right&quot; | &quot;above&quot; | &quot;below&quot; | &quot;before&quot; | &quot;after&quot;</code>
+    </code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+    <h3>src/lib/src/utilities/types/spacing.types.ts</h3>
+    <section>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="TsVerticalSpacingTypes"></a>
+                            <span class="name"><b>TsVerticalSpacingTypes</b><a href="#TsVerticalSpacingTypes"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-description"><p>Define the accepted string values for <a href="directives/TsVerticalSpacingDirective.html">TsVerticalSpacingDirective</a></p>
+    </div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>TsVerticalSpacingTypes:     <code>&quot;small--1x&quot; | &quot;small--2x&quot; | &quot;small--3x&quot; | &quot;large--1x&quot; | &quot;large--2x&quot; | &quot;large--3x&quot; | &quot;large--4x&quot; | &quot;large--5x&quot; | &quot;large--6x&quot; | &quot;large--7x&quot;</code>
     </code>
                         </td>
                     </tr>

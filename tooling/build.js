@@ -35,10 +35,9 @@ const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_layout.scss',
   'src/lib/src/scss/helpers/_z-index.scss',
   'src/lib/src/scss/helpers/_spacing.scss',
+  'src/lib/src/scss/helpers/_animation.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
-
-
 
 
 return Promise.resolve()
@@ -197,6 +196,11 @@ return Promise.resolve()
     .then(() => _relativeCopy('helpers.scss', srcFolder, distFolder))
     .then(() => console.log('SCSS helpers merged and copied.'))
   )
+  // Generate CSS for shared styles
+  .then(() => Promise.resolve()
+    .then(() => compileGeneratedCss())
+    .then(() => console.log('Generated CSS created.'))
+  )
   .catch(e => {
     console.error('\Build failed. See below for errors.\n');
     console.error(e);
@@ -240,3 +244,16 @@ function compileSassFiles() {
     '--source-map-contents'
   ]);
 }
+
+function compileGeneratedCss() {
+  return execa('node-sass', [
+    ['src/lib/src/scss/global/terminus-ui.scss'],
+    '-o', './dist',
+    '--output-style',
+    'compressed',
+    '--source-map',
+    true,
+    '--source-map-contents'
+  ]);
+}
+

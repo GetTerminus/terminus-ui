@@ -11,23 +11,27 @@
       (ngModelChange)="recordsPerPageUpdated($event)"
     ></ts-select>
 
-    <!-- First -->
-    <ts-button
-      [theme]="theme"
-      [iconName]="firstPageIcon"
-      [isDisabled]="isFirstPage(currentPage)"
-      (clickEvent)="changePage(1, currentPage, pagesArray)"
-    ></ts-button>
 
-    <!-- Previous -->
-    <ts-button
-      [theme]="theme"
-      [iconName]="previousPageIcon"
-      [isDisabled]="isFirstPage(currentPage)"
-      (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
-    ></ts-button>
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : firstPageTooltip">
+      <ts-button
+        [theme]="theme"
+        [iconName]="firstPageIcon"
+        [isDisabled]="isFirstPage(currentPage)"
+        (clickEvent)="changePage(1, currentPage, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
 
-    <!-- current / select -->
+
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : previousPageTooltip">
+      <ts-button
+        [theme]="theme"
+        [iconName]="previousPageIcon"
+        [isDisabled]="isFirstPage(currentPage)"
+        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+
+
     <ts-menu
       [theme]="theme"
       [menuItems]="pagesArray"
@@ -35,23 +39,27 @@
       [isDisabled]="menuIsDisabled(pagesArray?.length)"
       (selected)="currentPageChanged($event)"
       [ngClass]="{'disabled': menuIsDisabled(pagesArray?.length)}"
-      >{{ currentPageLabel }}</ts-menu>
+    >{{ currentPageLabel }}</ts-menu>
 
-    <!-- Next -->
-    <ts-button
-      [theme]="theme"
-      [iconName]="nextPageIcon"
-      [isDisabled]="isLastPage(currentPage)"
-      (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
-    ></ts-button>
 
-    <!-- Last -->
-    <ts-button
-      [theme]="theme"
-      [iconName]="lastPageIcon"
-      [isDisabled]="isLastPage(currentPage)"
-      (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"
-    ></ts-button>
+    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : nextPageTooltip">
+      <ts-button
+        [theme]="theme"
+        [iconName]="nextPageIcon"
+        [isDisabled]="isLastPage(currentPage)"
+        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+
+
+    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : lastPageTooltip">
+      <ts-button
+        [theme]="theme"
+        [iconName]="lastPageIcon"
+        [isDisabled]="isLastPage(currentPage)"
+        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
   </div>
 
   <div

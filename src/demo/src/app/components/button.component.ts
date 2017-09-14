@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'demo-button',
+  styles: [`
+    ts-button {
+      margin-bottom: 1rem;
+    }
+  `],
   template: `
     <ts-button
       [theme]="style"
@@ -22,31 +28,76 @@ import { Component } from '@angular/core';
     >Primary</ts-button>
 
     <ts-button
+      theme="primary"
+      format="hollow"
+      icon="home"
+    >Primary Hollow</ts-button>
+
+    <br>
+
+    <ts-button
       theme="accent"
     >Accent</ts-button>
+
+    <ts-button
+      theme="accent"
+      format="hollow"
+    >Accent Hollow</ts-button>
+
+    <br>
 
     <ts-button
       theme="warn"
     >Warn</ts-button>
 
-    <!--
     <ts-button
-      theme="error"
-    >Error</ts-button>
+      theme="warn"
+      format="hollow"
+    >Warn Hollow</ts-button>
 
-    <ts-button
-      theme="highlight"
-    >Highlight</ts-button>
-
-    <ts-button
-      theme="pure"
-    >Pure</ts-button>
+    <br>
 
     <ts-button
       theme="primary"
       [isDisabled]="true"
     >I'm disabled :(</ts-button>
-    -->
+
+    <ts-button
+      theme="primary"
+      format="hollow"
+      [isDisabled]="true"
+      [showProgress]="progress2"
+      (clickEvent)="run('progress2')"
+    >I'm disabled AND empty inside :(</ts-button>
+
+    <br>
+
+    <div fxLayout="column" fxLayoutAlign="start end" style="padding-right: 2rem;">
+      <ts-button
+        theme="primary"
+        iconName="add"
+        [format]="'collapsable'"
+      >New Campaign / New Tactic</ts-button>
+
+      <ts-button
+        theme="accent"
+        iconName="add"
+        format="collapsable"
+      >New Campaign / New Tactic</ts-button>
+
+      <ts-button
+        theme="warn"
+        iconName="add"
+        format="collapsable"
+      >New Campaign / New Tactic</ts-button>
+
+      <ts-button
+        theme="primary"
+        iconName="add"
+        format="collapsable"
+        [isDisabled]="true"
+      >Rounded - Disabled</ts-button>
+    </div>
   `,
 })
 export class ButtonComponent {
@@ -58,11 +109,14 @@ export class ButtonComponent {
   icon = 'home';
 
 
+
   run(progress: any) {
+    console.log('in run!');
     this[progress] = true;
 
     setTimeout(() => {
       this[progress] = false;
-    }, 2000);
+    }, 3000);
   }
+
 }

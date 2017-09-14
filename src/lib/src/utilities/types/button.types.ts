@@ -17,3 +17,13 @@ export type TsButtonFunctionTypes =
   | 'search'
   | 'submit'
 ;
+
+
+/**
+ * Define the allowed {@link TsButtonComponent} format types
+ */
+export type TsButtonFormatTypes =
+  'filled'
+  | 'hollow'
+  | 'collapsable'
+;

@@ -267,6 +267,9 @@
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../interfaces/TsUser.html" >TsUser</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                 </li>
                         </ul>
@@ -558,6 +561,9 @@
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../interfaces/TsUser.html" >TsUser</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ValidationResponse.html" >ValidationResponse</a>
                                        </li>
                                </ul>
@@ -663,6 +669,10 @@
   recordCountTooHighMessage=&quot;Please refine your filters.&quot;
   recordsPerPageChoices=&quot;[10, 20, 50]&quot;
   showRecordsPerPageSelector=&quot;true&quot;
+  firstPageTooltip=&quot;View first results&quot;
+  previousPageTooltip=&quot;View previous results&quot;
+  nextPageTooltip=&quot;View next results&quot;
+  lastPageTooltip=&quot;View last results&quot;
   (pageSelect)=&quot;myMethod($event)&quot;
   (recordsPerPageChange)=&quot;myMethod($event)&quot;
 &gt;&lt;/ts-pagination&gt;</code></pre>
@@ -817,10 +827,22 @@
                                 <a href="#currentPage">currentPage</a>
                             </li>
                             <li>
+                                <a href="#firstPageTooltip">firstPageTooltip</a>
+                            </li>
+                            <li>
+                                <a href="#lastPageTooltip">lastPageTooltip</a>
+                            </li>
+                            <li>
                                 <a href="#maxPreferredRecords">maxPreferredRecords</a>
                             </li>
                             <li>
                                 <a href="#menuLocation">menuLocation</a>
+                            </li>
+                            <li>
+                                <a href="#nextPageTooltip">nextPageTooltip</a>
+                            </li>
+                            <li>
+                                <a href="#previousPageTooltip">previousPageTooltip</a>
                             </li>
                             <li>
                                 <a href="#recordCountTooHighMessage">recordCountTooHighMessage</a>
@@ -888,7 +910,59 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:130</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="firstPageTooltip"></a>
+                            <code>firstPageTooltip</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tooltip message for the first page tooltip</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>View the first results</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:103</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="lastPageTooltip"></a>
+                            <code>lastPageTooltip</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tooltip message for the last page tooltip</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>View the last results</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:124</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -911,7 +985,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:136</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -927,11 +1001,63 @@
                             <div><p>Define the menu location (open up or open down)</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code>|</code>
+                                <em>Type:</em>    <code>&quot;above&quot; | &quot;below&quot;</code>
 
                               </p>
                             <p>
                               <em>Default value: </em><code>above</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:142</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="nextPageTooltip"></a>
+                            <code>nextPageTooltip</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tooltip message for the next page tooltip</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>View the next results</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:117</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="previousPageTooltip"></a>
+                            <code>previousPageTooltip</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tooltip message for the previous page tooltip</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>View the previous results</code>
                             </p>
                         </td>
                     </tr>
@@ -960,7 +1086,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:160</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -983,7 +1109,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:166</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1009,7 +1135,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:172</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1035,7 +1161,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:178</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1051,7 +1177,7 @@
                             <div><p>Define the color theme</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html" target="_self" >TsStyleThemeTypes</a></code>
+                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes</a></code>
 
                               </p>
                             <p>
@@ -1061,7 +1187,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:148</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1087,7 +1213,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:154</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1112,7 +1238,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:184</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1133,12 +1259,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:190</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
     </section>
+
+
 
     <section>
         
@@ -1150,20 +1278,20 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="changePage"></a>
-                            <b><span class="modifier">Public</span> changePage</b>
+                            <span class="name"><b><span class="modifier">Public</span> changePage</b><a href="#changePage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
-                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: any[])</code>
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:246</a></div>
                                 </td>
                             </tr>
     
@@ -1179,6 +1307,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1186,7 +1315,9 @@
                                                     <tr>
                                                       <td>destinationPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected page number</p>
     </td>
@@ -1194,7 +1325,9 @@
                                                     <tr>
                                                       <td>currentPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The current page number</p>
     </td>
@@ -1202,7 +1335,9 @@
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The collection of pages</p>
     </td>
@@ -1228,19 +1363,19 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="createCurrentPageLabel"></a>
-                            <b> createCurrentPageLabel</b>
+                            <span class="name"><b> createCurrentPageLabel</b><a href="#createCurrentPageLabel"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:317</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:350</a></div>
                                 </td>
                             </tr>
     
@@ -1254,6 +1389,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1261,7 +1397,9 @@
                                                     <tr>
                                                       <td>currentPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The current page</p>
     </td>
@@ -1269,10 +1407,21 @@
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The array of all pages</p>
     </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>totalRecords</td>
+                                                      <td>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -1295,7 +1444,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="createPagesArray"></a>
-                            <b> createPagesArray</b>
+                            <span class="name"><b> createPagesArray</b><a href="#createPagesArray"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1307,7 +1456,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:344</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:377</a></div>
                                 </td>
                             </tr>
     
@@ -1321,6 +1470,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1328,7 +1478,9 @@
                                                     <tr>
                                                       <td>total</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The total records remaining</p>
     </td>
@@ -1336,7 +1488,9 @@
                                                     <tr>
                                                       <td>perPage</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>How many records are shown per page</p>
     </td>
@@ -1347,7 +1501,7 @@
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    <b>Returns : </b>    <code>[]</code>
     
                                 </div>
                                     <div class="io-description">
@@ -1362,20 +1516,20 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="currentPageChanged"></a>
-                            <b><span class="modifier">Public</span> currentPageChanged</b>
+                            <span class="name"><b><span class="modifier">Public</span> currentPageChanged</b><a href="#currentPageChanged"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
-                            <code>currentPageChanged(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>currentPageChanged(page: <a href="../interfaces/TsMenuItem.html">TsMenuItem</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:226</a></div>
                                 </td>
                             </tr>
     
@@ -1391,14 +1545,17 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>event</td>
+                                                      <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
+                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected page</p>
     </td>
@@ -1424,12 +1581,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="disableRecordsPerPage"></a>
-                            <b><span class="modifier">Public</span> disableRecordsPerPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> disableRecordsPerPage</b><a href="#disableRecordsPerPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>disableRecordsPerPage(totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, recordsPerPageChoices: number[])</code>
                         </td>
                     </tr>
@@ -1437,7 +1594,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:336</a></div>
                                 </td>
                             </tr>
     
@@ -1453,22 +1610,26 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>total</td>
+                                                      <td>totalRecords</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                       </td>
-                                                      <td><p>The total number of records</p>
-    </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
                                                     </tr>
                                                     <tr>
                                                       <td>recordsPerPageChoices</td>
                                                       <td>
-                                                              <code>Array</code>
+                                                              <code>number[]</code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The array of counts representing how many records may be show per
     page</p>
@@ -1495,7 +1656,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="initialize"></a>
-                            <b> initialize</b>
+                            <span class="name"><b> initialize</b><a href="#initialize"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1507,22 +1668,17 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:212</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
     
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1532,12 +1688,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="isFirstPage"></a>
-                            <b><span class="modifier">Public</span> isFirstPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> isFirstPage</b><a href="#isFirstPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>isFirstPage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1545,7 +1701,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:266</a></div>
                                 </td>
                             </tr>
     
@@ -1561,6 +1717,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1568,7 +1725,9 @@
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of the current page</p>
     </td>
@@ -1594,12 +1753,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="isLastPage"></a>
-                            <b><span class="modifier">Public</span> isLastPage</b>
+                            <span class="name"><b><span class="modifier">Public</span> isLastPage</b><a href="#isLastPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>isLastPage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1607,7 +1766,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:244</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:277</a></div>
                                 </td>
                             </tr>
     
@@ -1623,6 +1782,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1630,7 +1790,9 @@
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of the current page</p>
     </td>
@@ -1656,12 +1818,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="menuIsDisabled"></a>
-                            <b><span class="modifier">Public</span> menuIsDisabled</b>
+                            <span class="name"><b><span class="modifier">Public</span> menuIsDisabled</b><a href="#menuIsDisabled"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>menuIsDisabled(pagesCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1669,7 +1831,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:290</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:323</a></div>
                                 </td>
                             </tr>
     
@@ -1685,6 +1847,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1692,7 +1855,9 @@
                                                     <tr>
                                                       <td>pagesCount</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of pages</p>
     </td>
@@ -1718,12 +1883,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnChanges"></a>
-                            <b><span class="modifier">Public</span> ngOnChanges</b>
+                            <span class="name"><b><span class="modifier">Public</span> ngOnChanges</b><a href="#ngOnChanges"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>ngOnChanges()</code>
                         </td>
                     </tr>
@@ -1731,7 +1896,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:204</a></div>
                                 </td>
                             </tr>
     
@@ -1753,12 +1918,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnInit"></a>
-                            <b><span class="modifier">Public</span> ngOnInit</b>
+                            <span class="name"><b><span class="modifier">Public</span> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>ngOnInit()</code>
                         </td>
                     </tr>
@@ -1766,7 +1931,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:196</a></div>
                                 </td>
                             </tr>
     
@@ -1788,12 +1953,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="recordsPerPageUpdated"></a>
-                            <b><span class="modifier">Public</span> recordsPerPageUpdated</b>
+                            <span class="name"><b><span class="modifier">Public</span> recordsPerPageUpdated</b><a href="#recordsPerPageUpdated"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>recordsPerPageUpdated(selection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1801,7 +1966,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:275</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:308</a></div>
                                 </td>
                             </tr>
     
@@ -1817,6 +1982,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1824,7 +1990,9 @@
                                                     <tr>
                                                       <td>selection</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The selected records-per-page count</p>
     </td>
@@ -1850,12 +2018,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="shouldShowRecordsMessage"></a>
-                            <b><span class="modifier">Public</span> shouldShowRecordsMessage</b>
+                            <span class="name"><b><span class="modifier">Public</span> shouldShowRecordsMessage</b><a href="#shouldShowRecordsMessage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play "></span>
+                                <span class="modifier-icon fa fa-reset"></span>
                             <code>shouldShowRecordsMessage(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, max: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
@@ -1863,7 +2031,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:294</a></div>
                                 </td>
                             </tr>
     
@@ -1879,6 +2047,7 @@
                                                 <tr>
                                                     <td>Name</td>
                                                     <td>Type</td>
+                                                    <td>Optional</td>
                                                     <td>Description</td>
                                                 </tr>
                                             </thead>
@@ -1886,7 +2055,9 @@
                                                     <tr>
                                                       <td>message</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The help message when too many results are returned</p>
     </td>
@@ -1894,7 +2065,9 @@
                                                     <tr>
                                                       <td>max</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The max number of records before the message should be shown</p>
     </td>
@@ -1902,7 +2075,9 @@
                                                     <tr>
                                                       <td>totalRecords</td>
                                                       <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
                                                       </td>
                                                       <td><p>The number of records</p>
     </td>
@@ -1935,12 +2110,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="currentPageLabel"></a>
-                            <b><span class="modifier">Public</span> currentPageLabel</b>
+                            <span class="name"><b><span class="modifier">Public</span> currentPageLabel</b><a href="#currentPageLabel"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>currentPageLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>currentPageLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -1952,7 +2127,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:92</a></div>
                                 </td>
                             </tr>
     
@@ -1970,7 +2145,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_HIGH_RECORD_MESSAGE"></a>
-                            <b> DEFAULT_HIGH_RECORD_MESSAGE</b>
+                            <span class="name"><b> DEFAULT_HIGH_RECORD_MESSAGE</b><a href="#DEFAULT_HIGH_RECORD_MESSAGE"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1987,7 +2162,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:61</a></div>
                                 </td>
                             </tr>
     
@@ -1999,7 +2174,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_MAX_PREFERED_RECORDS"></a>
-                            <b> DEFAULT_MAX_PREFERED_RECORDS</b>
+                            <span class="name"><b> DEFAULT_MAX_PREFERED_RECORDS</b><a href="#DEFAULT_MAX_PREFERED_RECORDS"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2021,7 +2196,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:51</a></div>
                                 </td>
                             </tr>
     
@@ -2033,7 +2208,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_PER_PAGE"></a>
-                            <b> DEFAULT_PER_PAGE</b>
+                            <span class="name"><b> DEFAULT_PER_PAGE</b><a href="#DEFAULT_PER_PAGE"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2055,7 +2230,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:46</a></div>
                                 </td>
                             </tr>
     
@@ -2067,7 +2242,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="DEFAULT_RECORDS_PER_PAGE_OPTIONS"></a>
-                            <b> DEFAULT_RECORDS_PER_PAGE_OPTIONS</b>
+                            <span class="name"><b> DEFAULT_RECORDS_PER_PAGE_OPTIONS</b><a href="#DEFAULT_RECORDS_PER_PAGE_OPTIONS"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2084,7 +2259,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:56</a></div>
                                 </td>
                             </tr>
     
@@ -2096,12 +2271,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="firstPageIcon"></a>
-                            <b><span class="modifier">Public</span> firstPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> firstPageIcon</b><a href="#firstPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>firstPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>firstPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2118,7 +2293,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:67</a></div>
                                 </td>
                             </tr>
     
@@ -2136,12 +2311,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="lastPageIcon"></a>
-                            <b><span class="modifier">Public</span> lastPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> lastPageIcon</b><a href="#lastPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>lastPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>lastPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2158,7 +2333,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:82</a></div>
                                 </td>
                             </tr>
     
@@ -2176,12 +2351,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="nextPageIcon"></a>
-                            <b><span class="modifier">Public</span> nextPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> nextPageIcon</b><a href="#nextPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>nextPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>nextPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2198,7 +2373,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:77</a></div>
                                 </td>
                             </tr>
     
@@ -2216,24 +2391,24 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="pagesArray"></a>
-                            <b><span class="modifier">Public</span> pagesArray</b>
+                            <span class="name"><b><span class="modifier">Public</span> pagesArray</b><a href="#pagesArray"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>pagesArray:     <code>object[]</code>
+                            <span class="modifier-icon fa fa-reset"></span><code>pagesArray:     <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code>object[]</code>
+                                <i>Type : </i>    <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
     
                             </td>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:87</a></div>
                                 </td>
                             </tr>
     
@@ -2251,12 +2426,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="previousPageIcon"></a>
-                            <b><span class="modifier">Public</span> previousPageIcon</b>
+                            <span class="name"><b><span class="modifier">Public</span> previousPageIcon</b><a href="#previousPageIcon"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-"></span><code>previousPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>previousPageIcon:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -2273,7 +2448,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:72</a></div>
                                 </td>
                             </tr>
     
@@ -2291,7 +2466,7 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="recordsPerPage"></a>
-                            <b> recordsPerPage</b>
+                            <span class="name"><b> recordsPerPage</b><a href="#recordsPerPage"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2308,7 +2483,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:97</a></div>
                                 </td>
                             </tr>
     
@@ -2330,6 +2505,7 @@
 } from &#x27;@angular/core&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
+import { TsMenuItem } from &#x27;./../utilities/interfaces&#x27;;
 
 
 // TODO: Add tooltips for all buttons
@@ -2347,6 +2523,10 @@ import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
  *              recordCountTooHighMessage&#x3D;&quot;Please refine your filters.&quot;
  *              recordsPerPageChoices&#x3D;&quot;[10, 20, 50]&quot;
  *              showRecordsPerPageSelector&#x3D;&quot;true&quot;
+ *              firstPageTooltip&#x3D;&quot;View first results&quot;
+ *              previousPageTooltip&#x3D;&quot;View previous results&quot;
+ *              nextPageTooltip&#x3D;&quot;View next results&quot;
+ *              lastPageTooltip&#x3D;&quot;View last results&quot;
  *              (pageSelect)&#x3D;&quot;myMethod($event)&quot;
  *              (recordsPerPageChange)&#x3D;&quot;myMethod($event)&quot;
  * &gt;&lt;/ts-pagination&gt;
@@ -2401,7 +2581,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Store the array of objects that represent pages of collections
    */
-  public pagesArray: object[];
+  public pagesArray: TsMenuItem[];
 
   /**
    * Store the label for the current page
@@ -2412,6 +2592,33 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @private Define the amount of records show per page
    */
   recordsPerPage: number &#x3D; this.DEFAULT_PER_PAGE;
+
+  /**
+   * Define the tooltip message for the first page tooltip
+   */
+  @Input()
+  public firstPageTooltip: string &#x3D; &#x27;View the first results&#x27;;
+
+
+  /**
+   * Define the tooltip message for the previous page tooltip
+   */
+  @Input()
+  public previousPageTooltip: string &#x3D; &#x27;View the previous results&#x27;;
+
+
+  /**
+   * Define the tooltip message for the next page tooltip
+   */
+  @Input()
+  public nextPageTooltip: string &#x3D; &#x27;View the next results&#x27;;
+
+
+  /**
+   * Define the tooltip message for the last page tooltip
+   */
+  @Input()
+  public lastPageTooltip: string&#x3D; &#x27;View the last results&#x27;;
 
   /**
    * Define the current page
@@ -2471,7 +2678,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Emit a page selected event
    */
   @Output()
-  public pageSelect &#x3D; new EventEmitter&lt;number&gt;();
+  public pageSelect &#x3D; new EventEmitter&lt;TsMenuItem&gt;();
 
   /**
    * Emit a change event when the records per page changes
@@ -2511,17 +2718,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Perform tasks when the current page is changed
    *
-   * @param {Object} event The selected page
+   * @param {Object} page The selected page
    */
-  public currentPageChanged(event: any): void {
+  public currentPageChanged(page: TsMenuItem): void {
     // Set the current page
-    this.currentPage &#x3D; parseInt(event.value, 10);
+    this.currentPage &#x3D; parseInt(page.value, 10);
 
     // Create a new label for the menu
-    this.currentPageLabel &#x3D; this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+    this.currentPageLabel &#x3D;
+      this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
     // Emit an event
-    this.pageSelect.emit(event);
+    this.pageSelect.emit(page);
   }
 
 
@@ -2532,12 +2740,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  public changePage(destinationPage: number, currentPage: number, pages: any[]): void {
+  public changePage(destinationPage: number, currentPage: number, pages: TsMenuItem[]): void {
     const destinationIsValid &#x3D; destinationPage &gt; 0 &amp;&amp; destinationPage &lt;&#x3D; pages.length;
     const notAlreadyOnPage &#x3D; destinationPage !&#x3D;&#x3D; currentPage;
 
     if (destinationIsValid &amp;&amp; notAlreadyOnPage) {
-      const foundPage: any &#x3D; pages.find((page) &#x3D;&gt; {
+      const foundPage: TsMenuItem &#x3D; pages.find((page) &#x3D;&gt; {
         return page.value &#x3D;&#x3D;&#x3D; destinationPage.toString();
       });
 
@@ -2634,16 +2842,16 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Number} currentPage The current page
    * @param {Array} pages The array of all pages
-   * @return {String} timeAgo The difference in time
+   * @return {String} label The string to use as the current page label
    */
-  createCurrentPageLabel(currentPage: number, pages: any, totalRecords: number): string {
-    const findPage &#x3D; (allPages: any[], number: number) &#x3D;&gt; {
+  createCurrentPageLabel(currentPage: number, pages: TsMenuItem[], totalRecords: number): string {
+    const findPage &#x3D; (allPages: TsMenuItem[], number: number) &#x3D;&gt; {
       return pages.find((page: any) &#x3D;&gt; {
         return page.value &#x3D;&#x3D;&#x3D; number.toString();
       });
     };
 
-    let foundPage &#x3D; findPage(pages, currentPage);
+    let foundPage: TsMenuItem &#x3D; findPage(pages, currentPage);
 
     if (!foundPage) {
       foundPage &#x3D; findPage(pages, currentPage - 1);
@@ -2663,8 +2871,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  createPagesArray(total: number, perPage: number): any {
-    const paginationArray: any[] &#x3D; [];
+  createPagesArray(total: number, perPage: number): TsMenuItem[] {
+    const paginationArray: TsMenuItem[] &#x3D; [];
     let recordsRemaining &#x3D; total;
     let currentPage &#x3D; 1;
 
@@ -2733,23 +2941,27 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       (ngModelChange)&#x3D;&quot;recordsPerPageUpdated($event)&quot;
     &gt;&lt;/ts-select&gt;
 
-    &lt;!-- First --&gt;
-    &lt;ts-button
-      [theme]&#x3D;&quot;theme&quot;
-      [iconName]&#x3D;&quot;firstPageIcon&quot;
-      [isDisabled]&#x3D;&quot;isFirstPage(currentPage)&quot;
-      (clickEvent)&#x3D;&quot;changePage(1, currentPage, pagesArray)&quot;
-    &gt;&lt;/ts-button&gt;
 
-    &lt;!-- Previous --&gt;
-    &lt;ts-button
-      [theme]&#x3D;&quot;theme&quot;
-      [iconName]&#x3D;&quot;previousPageIcon&quot;
-      [isDisabled]&#x3D;&quot;isFirstPage(currentPage)&quot;
-      (clickEvent)&#x3D;&quot;changePage(this.currentPage - 1, currentPage, pagesArray)&quot;
-    &gt;&lt;/ts-button&gt;
+    &lt;ts-tooltip [tooltipValue]&#x3D;&quot;isFirstPage(currentPage) ? &#x27;&#x27; : firstPageTooltip&quot;&gt;
+      &lt;ts-button
+        [theme]&#x3D;&quot;theme&quot;
+        [iconName]&#x3D;&quot;firstPageIcon&quot;
+        [isDisabled]&#x3D;&quot;isFirstPage(currentPage)&quot;
+        (clickEvent)&#x3D;&quot;changePage(1, currentPage, pagesArray)&quot;
+      &gt;&lt;/ts-button&gt;
+    &lt;/ts-tooltip&gt;
 
-    &lt;!-- current / select --&gt;
+
+    &lt;ts-tooltip [tooltipValue]&#x3D;&quot;isFirstPage(currentPage) ? &#x27;&#x27; : previousPageTooltip&quot;&gt;
+      &lt;ts-button
+        [theme]&#x3D;&quot;theme&quot;
+        [iconName]&#x3D;&quot;previousPageIcon&quot;
+        [isDisabled]&#x3D;&quot;isFirstPage(currentPage)&quot;
+        (clickEvent)&#x3D;&quot;changePage(this.currentPage - 1, currentPage, pagesArray)&quot;
+      &gt;&lt;/ts-button&gt;
+    &lt;/ts-tooltip&gt;
+
+
     &lt;ts-menu
       [theme]&#x3D;&quot;theme&quot;
       [menuItems]&#x3D;&quot;pagesArray&quot;
@@ -2757,23 +2969,27 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       [isDisabled]&#x3D;&quot;menuIsDisabled(pagesArray?.length)&quot;
       (selected)&#x3D;&quot;currentPageChanged($event)&quot;
       [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: menuIsDisabled(pagesArray?.length)}&quot;
-      &gt;{{ currentPageLabel }}&lt;/ts-menu&gt;
+    &gt;{{ currentPageLabel }}&lt;/ts-menu&gt;
 
-    &lt;!-- Next --&gt;
-    &lt;ts-button
-      [theme]&#x3D;&quot;theme&quot;
-      [iconName]&#x3D;&quot;nextPageIcon&quot;
-      [isDisabled]&#x3D;&quot;isLastPage(currentPage)&quot;
-      (clickEvent)&#x3D;&quot;changePage(this.currentPage + 1, currentPage, pagesArray)&quot;
-    &gt;&lt;/ts-button&gt;
 
-    &lt;!-- Last --&gt;
-    &lt;ts-button
-      [theme]&#x3D;&quot;theme&quot;
-      [iconName]&#x3D;&quot;lastPageIcon&quot;
-      [isDisabled]&#x3D;&quot;isLastPage(currentPage)&quot;
-      (clickEvent)&#x3D;&quot;changePage(pagesArray?.length, currentPage, pagesArray)&quot;
-    &gt;&lt;/ts-button&gt;
+    &lt;ts-tooltip [tooltipValue]&#x3D;&quot;isLastPage(currentPage) ? &#x27;&#x27; : nextPageTooltip&quot;&gt;
+      &lt;ts-button
+        [theme]&#x3D;&quot;theme&quot;
+        [iconName]&#x3D;&quot;nextPageIcon&quot;
+        [isDisabled]&#x3D;&quot;isLastPage(currentPage)&quot;
+        (clickEvent)&#x3D;&quot;changePage(this.currentPage + 1, currentPage, pagesArray)&quot;
+      &gt;&lt;/ts-button&gt;
+    &lt;/ts-tooltip&gt;
+
+
+    &lt;ts-tooltip [tooltipValue]&#x3D;&quot;isLastPage(currentPage) ? &#x27;&#x27; : lastPageTooltip&quot;&gt;
+      &lt;ts-button
+        [theme]&#x3D;&quot;theme&quot;
+        [iconName]&#x3D;&quot;lastPageIcon&quot;
+        [isDisabled]&#x3D;&quot;isLastPage(currentPage)&quot;
+        (clickEvent)&#x3D;&quot;changePage(pagesArray?.length, currentPage, pagesArray)&quot;
+      &gt;&lt;/ts-button&gt;
+    &lt;/ts-tooltip&gt;
   &lt;/div&gt;
 
   &lt;div
@@ -2810,7 +3026,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="c-pagination">  <div class="c-pagination__buttons">    <ts-select      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <!-- First -->    <ts-button      [theme]="theme"      [iconName]="firstPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(1, currentPage, pagesArray)"    ></ts-button>    <!-- Previous -->    <ts-button      [theme]="theme"      [iconName]="previousPageIcon"      [isDisabled]="isFirstPage(currentPage)"      (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"    ></ts-button>    <!-- current / select -->    <ts-menu      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"      >{{ currentPageLabel }}</ts-menu>    <!-- Next -->    <ts-button      [theme]="theme"      [iconName]="nextPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"    ></ts-button>    <!-- Last -->    <ts-button      [theme]="theme"      [iconName]="lastPageIcon"      [isDisabled]="isLastPage(currentPage)"      (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"    ></ts-button>  </div>  <div    class="c-pagination__message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="c-pagination">  <div class="c-pagination__buttons">    <ts-select      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-pagination__message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
