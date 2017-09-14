@@ -24,6 +24,7 @@ The library of UI components used for Terminus applications.
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
+- [Global Styles](#global-styles)
 - [Developing](#developing)
   - [Demos](#demos)
   - [Branching](#branching)
