@@ -12,6 +12,10 @@ import { ValidationService } from './../services/validation/validation.service';
 /**
  * A presentational component to render validation messages
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-validation-message : Placed on the md-error element used for this component
+ *
  * @example
  * <ts-validation-messages
  *              [control]="myForm.controls.email"

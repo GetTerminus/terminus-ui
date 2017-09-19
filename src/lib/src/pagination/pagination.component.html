@@ -1,8 +1,9 @@
-<div class="c-pagination">
+<div class="qa-pagination c-pagination">
 
   <div class="c-pagination__buttons">
 
     <ts-select
+      class="qa-pagination-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
       [items]="recordsPerPageChoices"
       [label]="recordsSelectLabel"
@@ -14,6 +15,7 @@
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : firstPageTooltip">
       <ts-button
+        class="qa-pagination-first-page-button"
         [theme]="theme"
         [iconName]="firstPageIcon"
         [isDisabled]="isFirstPage(currentPage)"
@@ -24,6 +26,7 @@
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : previousPageTooltip">
       <ts-button
+        class="qa-pagination-previous-page-button"
         [theme]="theme"
         [iconName]="previousPageIcon"
         [isDisabled]="isFirstPage(currentPage)"
@@ -33,6 +36,7 @@
 
 
     <ts-menu
+      class="qa-pagination-current-page-menu"
       [theme]="theme"
       [menuItems]="pagesArray"
       [menuPositionY]="menuLocation"
@@ -44,6 +48,7 @@
 
     <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : nextPageTooltip">
       <ts-button
+        class="qa-pagination-next-page-button"
         [theme]="theme"
         [iconName]="nextPageIcon"
         [isDisabled]="isLastPage(currentPage)"
@@ -54,6 +59,7 @@
 
     <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : lastPageTooltip">
       <ts-button
+        class="qa-pagination-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"
         [isDisabled]="isLastPage(currentPage)"
@@ -63,7 +69,7 @@
   </div>
 
   <div
-    class="c-pagination__message"
+    class="qa-pagination-message c-pagination__message"
     *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"
   >
     {{ recordCountTooHighMessage }}

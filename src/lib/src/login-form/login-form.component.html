@@ -1,4 +1,5 @@
 <form
+  class="qa-login-form"
   [formGroup]="loginForm"
   fxLayout="column"
   *ngIf="showForm"
@@ -6,6 +7,7 @@
 >
 
   <ts-input
+    class="qa-login-form-email"
     label="Email"
     type="email"
     formControlName="email"
@@ -17,6 +19,7 @@
   ></ts-input>
 
   <ts-input
+  class="qa-login-form-password"
     label="Password"
     type="password"
     formControlName="password"
@@ -31,6 +34,7 @@
   ></ts-input>
 
   <ts-checkbox
+    class="qa-login-form-remember-me"
     formControlName="rememberMe"
     [formControl]="getControl('rememberMe')"
     tsVerticalSpacing
@@ -39,6 +43,7 @@
   </ts-checkbox>
 
   <ts-link
+    class="qa-login-form-forgot-password"
     [destination]="forgotPasswordLink"
     [text]="forgotPasswordText"
     tsVerticalSpacing
@@ -46,6 +51,7 @@
 
   <div fxLayout="row" fxFlexAlign="end">
     <ts-button
+      class="qa-login-form-submit"
       actionName="Submit"
       buttonType="submit"
       [showProgress]="inProgress"

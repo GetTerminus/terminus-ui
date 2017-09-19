@@ -17,6 +17,24 @@ import { TsMenuItem } from './../utilities/interfaces';
 /**
  * A pagination component
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-pagination : Placed on the div element which contains this component
+ *
+ * qa-pagination-per-page-select : Placed on the {@link TsSelectComponent} used for specifying the number of results per page
+ *
+ * qa-pagination-first-page-button : Placed on the {@link TsButtonComponent} used for the "first page" button
+ *
+ * qa-pagination-previous-page-button : Placed on the {@link TsButtonComponent} used for the "previous page" button
+ *
+ * qa-pagination-current-page-menu : Placed on the {@link TsMenuComponent} used for the "current page" menu control
+ *
+ * qa-pagination-next-page-button : Placed on the {@link TsButtonComponent} used for the "next page" button
+ *
+ * qa-pagination-last-page-button : Placed on the {@link TsButtonComponent} used for the "last page" button
+ *
+ * qa-pagination-message : Placed on the div element which will contain any messaging regarding the record count being too high
+ *
  * @example
  * <ts-pagination
  *              currentPage="1"

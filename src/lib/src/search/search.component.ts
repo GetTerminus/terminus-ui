@@ -16,6 +16,14 @@ import {
 /**
  * A presentational component to render a search form
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-search : Placed on the form element which contains this component
+ *
+ * qa-search-input : Placed on the {@link TsInputComponent} used for the search text input
+ *
+ * qa-search-button : Placed on the {@link TsButtonComponent} used for the submit button
+ *
  * @example
  * <t-search
  *              userCanClear="false"
