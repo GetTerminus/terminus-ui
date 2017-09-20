@@ -13,4 +13,3 @@ src/lib/helpers.scss
 *.css.map
 e2e/**/*.js
 e2e/**/*.js.map
-yarn.lock
