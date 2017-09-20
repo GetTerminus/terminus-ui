@@ -1,5 +1,5 @@
 <div
-  class="c-copy c-copy"
+  class="qa-copy c-copy c-copy"
   fxLayout="row"
   tabindex="1"
   title="{{ textContent }}"
@@ -8,14 +8,14 @@
 >
   <div
     #content
-    class="c-copy__content"
+    class="qa-copy-content c-copy__content"
     fxFlex="auto"
   >
     <ng-content></ng-content>
   </div>
 
   <div
-    class="c-copy__icon"
+    class="qa-copy-icon c-copy__icon"
     *ngIf="enableQuickCopy"
     (click)="copyToClipboard(textContent)"
     md-ripple

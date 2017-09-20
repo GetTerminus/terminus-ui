@@ -1,5 +1,5 @@
 <md-select
-  class="c-select"
+  class="qa-select c-select"
   [color]="theme"
   [placeholder]="label"
   [(ngModel)]="value"
@@ -8,12 +8,18 @@
   (onOpen)="open.emit(true)"
   (change)="change.emit(value)"
 >
-  <md-option *ngIf="blankChoice && !multipleAllowed">
+  <md-option 
+    class="qa-select-option"
+    *ngIf="blankChoice && !multipleAllowed"
+  >
     {{ blankChoice }}
   </md-option>
 
   <md-option
+    class="qa-select-option"
     *ngFor="let item of items"
     [value]="getValueKey(item, valueKey)"
-  >{{ item.name || item }}</md-option>
+  >
+    {{ item.name || item }}
+  </md-option>
 </md-select>

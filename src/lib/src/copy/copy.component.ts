@@ -17,6 +17,14 @@ import { TsWindowService } from './../services/window/window.service';
 /**
  * This is the TsCopyComponent UI Component
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-copy : Placed on the div element which contains this component
+ *
+ * qa-copy-content : Placed on a div element which contains the content which will be copied
+ *
+ * qa-copy-icon : Placed on the icon which copies the content to the clipboard when clicked
+ *
  * @example
  * <ts-copy
  *              disableInitialSelection="true"

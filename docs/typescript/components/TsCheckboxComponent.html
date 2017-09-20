@@ -644,6 +644,8 @@
     </p>
     <p class="comment">
         <p>This is the checkbox UI Component</p>
+<p>-- QA CSS CLASSES</p>
+<p>qa-checkbox : Placed on the checkbox input element used for this component</p>
 
     </p>
 
@@ -798,7 +800,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:60</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -824,7 +826,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:66</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -850,7 +852,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:72</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -876,7 +878,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:78</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -902,7 +904,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:84</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -927,7 +929,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:96</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -948,7 +950,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:90</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -992,6 +994,10 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any &#x3D; {
 
 /**
  * This is the checkbox UI Component
+ *
+ * -- QA CSS CLASSES
+ *
+ * qa-checkbox : Placed on the checkbox input element used for this component
  *
  * @example
  * &lt;ts-checkbox
@@ -1060,7 +1066,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;md-checkbox
-  class&#x3D;&quot;c-checkbox&quot;
+  class&#x3D;&quot;qa-checkbox c-checkbox&quot;
   [color]&#x3D;&quot;theme&quot;
   [checked]&#x3D;&quot;isChecked&quot;
   [indeterminate]&#x3D;&quot;isIndeterminate&quot;
@@ -1099,7 +1105,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-checkbox  class="c-checkbox"  [color]="theme"  [checked]="isChecked"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  (blur)="onBlur()"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></md-checkbox></div>'
+        var COMPONENT_TEMPLATE = '<div><md-checkbox  class="qa-checkbox c-checkbox"  [color]="theme"  [checked]="isChecked"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  (blur)="onBlur()"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></md-checkbox></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCheckboxComponent'};

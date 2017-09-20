@@ -1,5 +1,6 @@
-<md-form-field class="c-datepicker  c-datepicker">
+<md-form-field class="qa-datepicker c-datepicker  c-datepicker">
   <input
+    class="qa-datepicker-input"
     mdInput
     [(ngModel)]="value"
     [mdDatepicker]="picker"
@@ -9,10 +10,15 @@
     [mdDatepickerFilter]="dateFilter"
     [disabled]="isDisabled"
   >
-  <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+  <md-datepicker-toggle 
+    class="qa-datepicker-toggle"
+    mdSuffix 
+    [for]="picker"
+  ></md-datepicker-toggle>
 </md-form-field>
 
 <md-datepicker
+  class="qa-datepicker-calendar"
   #picker
   [startView]="startingView"
   [startAt]="initialDate"

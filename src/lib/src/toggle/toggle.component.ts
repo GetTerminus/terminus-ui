@@ -29,6 +29,10 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * The is a toggle component
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-toggle : Placed on the md-slide-toggle element used for this component
+ *
  * @example
  * <ts-toggle
  *              formControlName="thingIsDisabled"

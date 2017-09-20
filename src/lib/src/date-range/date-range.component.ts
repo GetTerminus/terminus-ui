@@ -11,6 +11,14 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 /**
  * This is the date-range UI Component
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-date-range : Placed on the div element which contains this component
+ *
+ * qa-date-range-start-datepicker : Placed on the {@link TsDatepickerComponent} which represents the start date
+ *
+ * qa-date-range-end-datepicker : Placed on the {@link TsDatepickerComponent} which represents the end date
+ *
  * @example
  * <ts-date-range
  *              startingView="year"
