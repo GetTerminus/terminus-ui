@@ -29,6 +29,10 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * This is the checkbox UI Component
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-checkbox : Placed on the checkbox input element used for this component
+ *
  * @example
  * <ts-checkbox
  *              formControlName="rememberMe"

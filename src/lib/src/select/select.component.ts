@@ -29,6 +29,12 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * A component to create a select menu
  *
+ * -- QA CSS CLASSES
+ *
+ * qa-select : Placed on the md-select element which contains this component
+ *
+ * qa-select-option : Placed on the md-option element which represents each option in the select box
+ *
  * @example
  * <ts-select
  *              formControlName="email"

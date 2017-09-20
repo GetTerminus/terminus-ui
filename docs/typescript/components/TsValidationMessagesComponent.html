@@ -644,6 +644,8 @@
     </p>
     <p class="comment">
         <p>A presentational component to render validation messages</p>
+<p>-- QA CSS CLASSES</p>
+<p>qa-validation-message : Placed on the md-error element used for this component</p>
 
     </p>
 
@@ -745,7 +747,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:34</a></div>
                                 </td>
                             </tr>
     
@@ -801,7 +803,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:34</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -839,7 +841,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:47</a></div>
                                 </td>
                             </tr>
     
@@ -870,6 +872,10 @@ import { ValidationService } from &#x27;./../services/validation/validation.serv
 
 /**
  * A presentational component to render validation messages
+ *
+ * -- QA CSS CLASSES
+ *
+ * qa-validation-message : Placed on the md-error element used for this component
  *
  * @example
  * &lt;ts-validation-messages
@@ -919,7 +925,7 @@ export class TsValidationMessagesComponent {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;md-error
-  class&#x3D;&quot;c-validation-message  c-validation-message&quot;
+  class&#x3D;&quot;qa-validation-message c-validation-message  c-validation-message&quot;
 &gt;
   {{ validationMessage }}
 &lt;/md-error&gt;
@@ -949,7 +955,7 @@ export class TsValidationMessagesComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-error  class="c-validation-message  c-validation-message">  {{ validationMessage }}</md-error></div>'
+        var COMPONENT_TEMPLATE = '<div><md-error  class="qa-validation-message c-validation-message  c-validation-message">  {{ validationMessage }}</md-error></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsValidationMessagesComponent'};

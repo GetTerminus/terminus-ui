@@ -1,16 +1,17 @@
 <md-form-field
-  class="c-input c-input"
+  class="qa-input c-input c-input"
   [hideRequiredMarker]="hideRequiredMarker"
 >
 
   <md-icon
+    class="qa-input-prefix-icon"
     mdPrefix
     *ngIf="prefixIcon"
   >{{ prefixIcon }}</md-icon>
 
   <input
     mdInput
-    class="c-input__text"
+    class="qa-input-text c-input__text"
     type="{{ type }}"
     placeholder="{{ label }}"
     [attr.name]="name"
@@ -26,16 +27,20 @@
   <md-icon
     mdSuffix
     *ngIf="isClearable"
-    class="c-input__clear"
+    class="qa-input-suffix-icon c-input__clear"
     [ngClass]="{'c-input__clear--visible': value?.length > 0}"
     (click)="reset()"
   >clear</md-icon>
 
-  <md-hint align="end" *ngIf="hint">
+  <md-hint 
+    class="qa-input-hint"
+    align="end" 
+    *ngIf="hint">
     {{ hint }}
   </md-hint>
 
   <ts-validation-messages
+    class="qa-input-validation-messages"
     [control]="formControl"
   ></ts-validation-messages>
 

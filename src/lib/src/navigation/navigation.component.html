@@ -1,14 +1,14 @@
-<nav class="c-navigation c-navigation t-dark" fxLayout="row">
+<nav class="qa-navigation c-navigation c-navigation t-dark" fxLayout="row">
 
   <div
-    class="c-navigation__items"
+    class="qa-navigation-items c-navigation__items"
     #visibleItemsList
     fxFlex="1 1 auto"
     fxLayout="row"
     fxLayoutAlign="end stretch"
   >
     <button
-      class="c-navigation__item"
+      class="qa-navigation-item c-navigation__item"
       *ngFor="let item of visibleItems | async"
       #visibleLinkElement
       (click)="itemSelected.emit({event: $event, item: item})"
@@ -21,7 +21,7 @@
 
 
   <button
-    class="c-navigation__trigger"
+    class="qa-navigation-secondary-trigger c-navigation__trigger"
     [ngClass]="{'c-navigation__trigger--separator': visibleItemsLength}"
     md-button
     [mdMenuTriggerFor]="secondaryNav"
@@ -43,13 +43,13 @@
 
 
   <md-menu
-    class="c-navigation__hidden-items"
+    class="qa-navigation-secondary-items c-navigation__hidden-items"
     #secondaryNav="mdMenu"
     xPosition="before"
     [overlapTrigger]="false"
   >
     <button
-      class="c-navigation__hidden-item"
+      class="qa-navigation-secondary-item c-navigation__hidden-item"
       [ngClass]="{'c-navigation__hidden-item--admin': item.onlyHidden}"
       *ngFor="let item of hiddenItems | async"
       #hiddenLinkElement

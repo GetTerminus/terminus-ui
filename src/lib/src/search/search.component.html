@@ -1,11 +1,12 @@
 <form
-  class="c-search"
+  class="qa-search c-search"
   #form="ngForm"
   (ngSubmit)="submitSearch(form.value)"
   [ngClass]="{'c-search--disabled': loading}"
 >
 
   <ts-input
+    class="qa-search-input"
     [label]="inputLabel"
     [prefixIcon]="icon"
     [isClearable]="userCanClear"
@@ -18,6 +19,7 @@
   ></ts-input>
 
   <ts-button
+    class="qa-search-button"
     [actionName]="buttonAction"
     [theme]="theme"
     [isDisabled]="!form.valid"

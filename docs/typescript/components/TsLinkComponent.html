@@ -644,6 +644,10 @@
     </p>
     <p class="comment">
         <p>This is the link UI Component</p>
+<p>-- QA CSS CLASSES</p>
+<p>qa-link : Placed on the the link element used for this component</p>
+<p>qa-link-internal : Also placed on the link element if the link is internal</p>
+<p>qa-link-external : Also placed on the link element if the link is external</p>
 
     </p>
 
@@ -774,7 +778,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/link/link.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/link/link.component.ts:50</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -800,7 +804,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/src/link/link.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/link/link.component.ts:56</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -823,7 +827,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/link/link.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/link/link.component.ts:62</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -866,7 +870,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/link/link.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/link/link.component.ts:44</a></div>
                                 </td>
                             </tr>
     
@@ -894,6 +898,14 @@
 
 /**
  * This is the link UI Component
+ *
+ * -- QA CSS CLASSES
+ *
+ * qa-link : Placed on the the link element used for this component
+ *
+ * qa-link-internal : Also placed on the link element if the link is internal
+ *
+ * qa-link-external : Also placed on the link element if the link is external
  *
  * @example
  * &lt;ts-link
@@ -944,7 +956,7 @@ export class TsLinkComponent {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;a
-  class&#x3D;&quot;c-link c-link&quot;
+  class&#x3D;&quot;qa-link qa-link-internal c-link c-link&quot;
   [routerLink]&#x3D;&quot;destination&quot;
   *ngIf&#x3D;&quot;!isExternal&quot;
 &gt;
@@ -952,7 +964,7 @@ export class TsLinkComponent {
 &lt;/a&gt;
 
 &lt;a
-  class&#x3D;&quot;c-link c-link&quot;
+  class&#x3D;&quot;qa-link qa-link-external c-link c-link&quot;
   [href]&#x3D;&quot;destination&quot;
   target&#x3D;&quot;_blank&quot;
   *ngIf&#x3D;&quot;isExternal&quot;
@@ -989,7 +1001,7 @@ export class TsLinkComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="c-link c-link"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <md-icon *ngIf="isExternal">    open_in_new  </md-icon></a></div>'
+        var COMPONENT_TEMPLATE = '<div><a  class="qa-link qa-link-internal c-link c-link"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="qa-link qa-link-external c-link c-link"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <md-icon *ngIf="isExternal">    open_in_new  </md-icon></a></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLinkComponent'};
