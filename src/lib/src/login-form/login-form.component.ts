@@ -141,6 +141,12 @@ export class TsLoginFormComponent implements OnChanges {
   public inProgress: Boolean = false;
 
   /**
+   * Define if the user has successfully logged in and is being redirected
+   */
+  @Input()
+  public isRedirecting: Boolean = false;
+
+  /**
    * Define the login call to action
    */
   @Input('loginCTA')
