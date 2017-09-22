@@ -9,8 +9,16 @@ import { TsLoginFormResponse } from '@terminus/ui';
 @Component({
   selector: 'demo-login-form',
   template: `
+    <div>
+      <label for="isRedirecting">
+        Signal that the user is being redirected:
+      </label>
+      <input name="isRedirecting" type="checkbox" [(ngModel)]="isRedirecting">
+    </div>
+
     <ts-login-form
       [inProgress]="progress"
+      [isRedirecting]="isRedirecting"
       [resetForm]="reset"
       (submit)="formSubmission($event)"
     ></ts-login-form>
@@ -20,7 +28,7 @@ export class LoginFormComponent {
   public progress = false;
   public link = '/reset';
   public reset = false;
-
+  public isRedirecting = false;
 
   formSubmission(e: TsLoginFormResponse) {
     console.warn('Form value: ', e);

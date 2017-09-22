@@ -54,7 +54,7 @@
       class="qa-login-form-submit"
       actionName="Submit"
       buttonType="submit"
-      [showProgress]="inProgress"
+      [showProgress]="inProgress || isRedirecting"
       [isDisabled]="!loginForm.valid"
       (clickEvent)="submit.emit(loginForm.value)"
     >
