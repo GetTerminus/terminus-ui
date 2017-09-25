@@ -48,7 +48,7 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 
   // NOTE: This is a hack of sorts to disable a ts-menu from opening. The menu trigger still seems
   // to be bound even when disabled.
-  &[data-disabled="true"] {
+  &[data-disabled='true'] {
     .c-button {
       pointer-events: none;
     }

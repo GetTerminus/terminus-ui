@@ -8,9 +8,11 @@
   }
 
   // <ts-button> trigger to show the menu
-  ::ng-deep ts-button[data-disabled="true"] {
-    cursor: not-allowed;
-    pointer-events: none;
+  ::ng-deep ts-button {
+    &[data-disabled='true'] {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 }
 
