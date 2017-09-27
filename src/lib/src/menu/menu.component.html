@@ -22,9 +22,9 @@
 
 <ts-button
   class="qa-menu-trigger"
-  [theme]="theme"
   [mdMenuTriggerFor]="menu"
   [isDisabled]="isDisabled"
+  [attr.data-disabled]="isDisabled"
 >
   <ng-content></ng-content>
   <md-icon>arrow_drop_down</md-icon>
