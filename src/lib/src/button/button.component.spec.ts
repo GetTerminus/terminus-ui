@@ -111,9 +111,25 @@ describe(`ButtonComponent`, () => {
       });
 
 
-      it(`should throw an error if the format is collapsable and no icon is set`, () => {
-        this.component.format = 'filled';
-        expect(this.component.ngOnInit).toThrow();
+      describe(`when format === collapsable`, () => {
+
+        beforeEach(() => {
+          this.component.definedFormat = 'collapsable';
+          this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+          this.component.collapseDelay = 500;
+        });
+
+
+        it(`should throw an error if the format is collapsable and no icon is set`, () => {
+          expect(() => {this.component.ngOnInit()}).toThrow();
+        });
+
+
+        it(`should not throw an error if the format is collapsable and there is an icon set`, () => {
+          this.component.iconName = 'home';
+
+          expect(() => {this.component.ngOnInit()}).not.toThrow();
+        });
       });
 
     });

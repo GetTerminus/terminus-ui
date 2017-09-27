@@ -22,6 +22,7 @@ export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.mo
 
 // Utilities & Services
 export { TsWindowService } from './src/services/window/window.service';
+export { TsDocumentService } from './src/services/document/document.service';
 export * from './src/utilities/interfaces';
 export * from './src/utilities/types';
 

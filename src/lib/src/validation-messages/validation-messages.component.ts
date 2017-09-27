@@ -2,9 +2,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import {
-  FormControl,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 import { ValidationService } from './../services/validation/validation.service';
 

@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   TestBed,
-  ComponentFixture,
   async,
   fakeAsync,
   tick,
@@ -75,6 +74,34 @@ describe(`TsLoginFormComponent`, () => {
   });
 
 
+  describe(`ngOnChanges()`, () => {
+
+    it(`should reset the form if 'resetForm' was the passed in change`, () => {
+      this.component._resetForm = jasmine.createSpy('_resetForm');
+      this.fixture.detectChanges();
+      this.component.ngOnChanges({
+        resetForm: {
+          currentValue: {},
+        },
+      });
+
+      expect(this.component._resetForm).toHaveBeenCalled();
+    });
+
+
+    it(`should not reset the form if 'resetForm' was not passed in with changes`, () => {
+      this.component._resetForm = jasmine.createSpy('_resetForm');
+      this.fixture.detectChanges();
+      this.component.ngOnChanges({
+        foo: 'bar',
+      });
+
+      expect(this.component._resetForm).not.toHaveBeenCalled();
+    });
+
+  });
+
+
   describe(`getControl()`, () => {
 
     it(`should return a form control`, () => {
@@ -86,6 +113,24 @@ describe(`TsLoginFormComponent`, () => {
       const control = this.component.getControl('password', this.component.loginForm);
 
       expect(control.value).toEqual('foo');
+    });
+
+
+    it(`should return a custom form control`, () => {
+      this.component.testForm = this.component.formBuilder.group({
+        myInput: [
+          null,
+          [],
+        ],
+      });
+      this.fixture.detectChanges();
+      // Seed the value so that we can verify we grabbed the correct control below
+      this.component.testForm.patchValue({
+        myInput: 'bar',
+      });
+      const control = this.component.getControl('myInput', this.component.testForm);
+
+      expect(control.value).toEqual('bar');
     });
 
   });

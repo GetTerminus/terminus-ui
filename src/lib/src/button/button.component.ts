@@ -156,7 +156,7 @@ export class TsButtonComponent implements OnInit {
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
-    if (this.format === 'collapsable' && !this.iconName) {
+    if (this.definedFormat === 'collapsable' && !this.iconName) {
       throw new Error('`iconName` must be defined for collapsable buttons.');
     }
   }

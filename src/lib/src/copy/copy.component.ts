@@ -10,6 +10,7 @@ import {
 import { DOCUMENT } from '@angular/platform-browser';
 
 import { TsWindowService } from './../services/window/window.service';
+import { TsDocumentService } from '../services/document/document.service';
 
 // TODO: Add a tooltip to the copy button telling users it will copy to clipboard
 // TODO: Add a snackbar or alert to give the user feedback on copy success & failure
@@ -78,7 +79,7 @@ export class TsCopyComponent {
 
 
   constructor(
-    @Inject(DOCUMENT) private document: any,
+    private documentService: TsDocumentService,
     private windowService: TsWindowService,
   ) {}
 
@@ -114,21 +115,12 @@ export class TsCopyComponent {
       return false;
     }
 
-    let range;
-    let selection;
+    const selection = this.window.getSelection();
+    const range = this.documentService.document.createRange();
 
-    // Select text using document.body or window.getSelection
-    if (this.document.body.createTextRange) {
-      range = this.document.body.createTextRange();
-      range.moveToElementText(element);
-      range.select();
-    } else if (this.window.getSelection) {
-      selection = this.window.getSelection();
-      range = this.document.createRange();
-      range.selectNodeContents(element);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
+    range.selectNodeContents(element);
+    selection.removeAllRanges();
+    selection.addRange(range);
 
     this.hasSelected = true;
     return true;
@@ -151,7 +143,7 @@ export class TsCopyComponent {
    */
   public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
-    const target = this.document.createElement('textarea');
+    const target = this.documentService.document.createElement('textarea');
     target.className = 'targetElement';
     target.style.position = 'absolute';
     target.style.left = '101%';
@@ -161,13 +153,13 @@ export class TsCopyComponent {
     target.textContent = text;
 
     // Add the textarea, focus and select the text
-    this.document.body.appendChild(target);
+    this.documentService.document.body.appendChild(target);
     target.focus();
     target.setSelectionRange(0, target.value.length);
 
     // Copy the selection or fall back to prompt
     try {
-      this.document.execCommand('copy');
+      this.documentService.document.execCommand('copy');
       target.remove();
     } catch (error) {
       // Fall back to the native alert

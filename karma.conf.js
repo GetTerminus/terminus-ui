@@ -106,21 +106,21 @@ module.exports = function(config) {
       '/base/src/lib/node_modules/': '/base/node_modules/',
     },
 
-    exclude: [],
+    exclude: [
+    ],
 
     preprocessors: {
-      'src/lib/**/*.js': ['coverage'],
+      'src/lib/**/!(systemjs-angular-loader).js': ['coverage'],
     },
     reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage', 'saucelabs'],
     coverageReporter: {
-      type : 'json',
-      subdir : '.',
-      file : 'coverage-final.json'
+      type: 'in-memory'
     },
     remapCoverageReporter: {
       'text-summary': null, // to show summary in console
-      html: './coverage/html',
+      'html': './coverage/html/',
       'text-lcov': './coverage/lcov/',
+      'json': './coverage/json/',
     },
 
     port: 9876,

@@ -9,37 +9,6 @@ import {
 import { TsMenuComponent } from './menu.component';
 
 
-@Component({
-  template: `
-  <div>
-    <ts-menu
-      [menuItems]="items"
-      [defaultOpened]="menuOpened"
-    ></ts-menu>
-  </div>`,
-})
-class TestHostComponent {
-  items = [
-    {
-      name: 'Item 1',
-      icon: 'build',
-      action: 'foobar',
-    },
-    {
-      name: 'Item 2',
-      icon: null,
-      action: 'barbaz',
-    },
-    {
-      name: 'Item 3',
-      icon: 'announcement',
-      action: 'bing',
-    },
-  ];
-  menuOpened = true;
-}
-
-
 describe(`TsMenuComponent`, () => {
 
   beforeEach(async(() => {
@@ -51,10 +20,6 @@ describe(`TsMenuComponent`, () => {
       ],
       declarations: [
         TsMenuComponent,
-        TestHostComponent,
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
       .overrideComponent(TsMenuComponent, {
@@ -76,6 +41,18 @@ describe(`TsMenuComponent`, () => {
     this.fixture.detectChanges();
 
     expect(this.component).toBeTruthy();
+  });
+
+
+  describe(`ngOnInit()`, () => {
+
+    it(`should set the hasIcons flag`, () => {
+      this.component.hasAtLeastOneIcon = jasmine.createSpy('hasAtLeastOneIcon');
+      this.fixture.detectChanges();
+
+      expect(this.component.hasAtLeastOneIcon).toHaveBeenCalled();
+    });
+
   });
 
 

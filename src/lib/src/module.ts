@@ -25,6 +25,7 @@ import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 import { TsWindowService } from './services/window/window.service';
+import { TsDocumentService } from './services/document/document.service';
 import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.component';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
   ],
   providers: [
     TsWindowService,
+    TsDocumentService,
   ],
   exports: [
     TsButtonModule,
