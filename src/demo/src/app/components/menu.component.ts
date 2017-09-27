@@ -1,8 +1,18 @@
 import { Component } from '@angular/core';
 
+import { TsMenuItem } from '@terminus/ui';
+
+
 @Component({
   selector: 'demo-menu',
   template: `
+    <label>
+      Disabled:
+      <input type="checkbox" [(ngModel)]="disabled"/>
+    </label>
+
+    <hr>
+
     <ts-menu
       [theme]="myTheme"
       [menuItems]="demoItems"
@@ -29,10 +39,16 @@ export class MenuComponent {
       action: 'bing',
     },
   ];
-  disabled = false;
+  disabled = true;
   myTheme = 'primary';
 
-  itemSelected(item: any): void {
+
+
+
+
+
+  itemSelected(item: TsMenuItem): void {
     console.log('Item selected: ', item.name);
   }
+
 }
