@@ -71,18 +71,6 @@ describe(`TsReactiveFormBaseComponent`, () => {
   });
 
 
-  describe(`writeValue()`, () => {
-
-    it(`should save the value to innerValue`, () => {
-      const VALUE = 'baz';
-      this.component.writeValue(VALUE);
-
-      expect(this.component.innerValue).toEqual(VALUE);
-    });
-
-  });
-
-
   describe(`registerOnChange()`, () => {
 
     it(`should assign the passed in method`, () => {
@@ -98,6 +86,18 @@ describe(`TsReactiveFormBaseComponent`, () => {
     it(`should assign the passed in method`, () => {
       this.component.registerOnTouched(METHOD_MOCK);
       expect(this.component.onTouchedCallback).toEqual(METHOD_MOCK);
+    });
+
+  });
+
+
+  describe(`writeValue()`, () => {
+
+    it(`should save the value to innerValue`, () => {
+      const VALUE = 'baz';
+      this.component.writeValue(VALUE);
+
+      expect(this.component.innerValue).toEqual(VALUE);
     });
 
   });

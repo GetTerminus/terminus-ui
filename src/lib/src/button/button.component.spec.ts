@@ -75,10 +75,18 @@ describe(`ButtonComponent`, () => {
 
       describe('when format === collapsable', () => {
 
-        it(`should set the collapseDelay`, () => {
+        it(`should set the collapseDelay to default if unset`, () => {
           this.component.format = 'collapsable';
 
-          expect(this.component.collapseDelay).not.toBeUndefined(1);
+          expect(this.component.collapseDelay).toEqual(this.component._COLLAPSE_DEFAULT_DELAY);
+        });
+
+
+        it(`should not set the collapseDelay to default if a value is passed in`, () => {
+          this.component.collapseDelay = 1000;
+          this.component.format = 'collapsable';
+
+          expect(this.component.collapseDelay).toEqual(1000);
         });
 
       });
@@ -102,12 +110,19 @@ describe(`ButtonComponent`, () => {
 
       it(`should call _collapseWithDelay if collapseDelay is set`, () => {
         this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
-        this.component.format = 'collapsable';
-        this.component.iconName = 'home';
         this.component.collapseDelay = 500;
         this.component.ngOnInit();
 
         expect(this.component._collapseWithDelay).toHaveBeenCalled();
+      });
+
+
+      it(`should call not _collapseWithDelay if collapseDelay is not set`, () => {
+        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+        this.component.collapseDelay = undefined;
+        this.component.ngOnInit();
+
+        expect(this.component._collapseWithDelay).not.toHaveBeenCalled();
       });
 
 

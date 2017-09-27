@@ -48,7 +48,7 @@ export class TsButtonComponent implements OnInit {
   /**
    * @private Define the default delay for collapsable buttons
    */
-  _COLLAPSE_DEFAULT_DELAY: number = 2000;
+  _COLLAPSE_DEFAULT_DELAY: number = 4000;
 
   /**
    * Define the delay before the rounded button automatically collapses
