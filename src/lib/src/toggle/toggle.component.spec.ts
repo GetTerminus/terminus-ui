@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import {
-  MdSlideToggleModule,
-} from '@angular/material';
+  Component,
+} from '@angular/core';
+import {
+  TestBed,
+  async,
+} from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { MdSlideToggleModule } from '@angular/material';
 
 import { TsToggleComponent } from './toggle.component';
+
 
 @Component({
   template: `
     <div>
-      <ts-toggle
-        [(ngModel)]="myModel"
-      >My toggle</ts-toggle>
+      <ts-toggle>
+        My checkbox!
+      </ts-toggle>
     </div>
   `,
 })
-class TestHostComponent {
-  myModel = false;
-}
+class TestHostComponent {}
+
 
 describe(`ToggleComponent`, () => {
 
@@ -34,6 +36,12 @@ describe(`ToggleComponent`, () => {
         TestHostComponent,
       ],
     })
+      .overrideComponent(TsToggleComponent, {
+        set: {
+          template: '',
+          templateUrl: null,
+        }
+      })
       .compileComponents().then(() => {
         this.fixture = TestBed.createComponent(TsToggleComponent);
         this.component = this.fixture.componentInstance;
@@ -42,10 +50,7 @@ describe(`ToggleComponent`, () => {
 
 
   it(`should exist`, () => {
-    this.fixture.detectChanges();
-
     expect(this.component).toBeTruthy();
   });
 
 });
-

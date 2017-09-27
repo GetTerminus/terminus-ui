@@ -12,6 +12,8 @@ import { MdIconModule, MdRippleModule } from '@angular/material';
 
 import { TsCopyComponent } from './copy.component';
 import { TsWindowService } from '../services/window/window.service';
+import { TsDocumentService } from '../services/document/document.service';
+
 
 @Component({
   template: `
@@ -40,7 +42,10 @@ describe(`TsCopyComponent`, () => {
         FlexLayoutModule,
       ],
       providers: [
+        // NOTE: We are not using mock services here since this component needs to test actual
+        // interaction with the window and document objects
         TsWindowService,
+        TsDocumentService,
       ],
       declarations: [
         TsCopyComponent,
@@ -111,14 +116,14 @@ describe(`TsCopyComponent`, () => {
     });
 
 
-    it(`should select the text within the passed in element`, fakeAsync(() => {
+    it(`should select the text within the passed in element`, () => {
       this.fixture.detectChanges();
       this.component.selectText(this.component.content.nativeElement, false, false)
       const actual = this.component.window.getSelection().toString();
       const expected = this.hostComponent.fakeContent;
 
       expect(actual).toEqual(expected);
-    }));
+    });
 
   });
 
@@ -141,17 +146,17 @@ describe(`TsCopyComponent`, () => {
   describe(`copyToClipboard()`, () => {
 
     it(`should set the text to the clipboard`, () => {
-      this.component.document.execCommand = jasmine.createSpy('execCommand');
+      this.component.documentService.document.execCommand = jasmine.createSpy('execCommand');
       this.fixture.detectChanges();
       this.component.copyToClipboard('foo')
 
-      expect(this.component.document.execCommand).toHaveBeenCalledWith('copy');
+      expect(this.component.documentService.document.execCommand).toHaveBeenCalledWith('copy');
     });
 
 
     it(`should fall back to a prompt if execCommand fails`, () => {
       this.component.window.prompt = jasmine.createSpy('prompt');
-      this.component.document.execCommand = () => {
+      this.component.documentService.document.execCommand = () => {
         throw new Error('fake error');
       }
 
