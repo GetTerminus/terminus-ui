@@ -175,6 +175,14 @@ describe(`TsLoadingOverlayDirective`, () => {
       expect(this.directive.bodyPortalHost.dispose).toHaveBeenCalled();
     });
 
+
+    it(`should not throw an error if the bodyPortalHost doesn't exist`, () => {
+      this.directive.bodyPortalHost = undefined;
+      this.directive.ngOnDestroy();
+
+      expect(() => {this.directive.ngOnDestroy()}).not.toThrow();
+    });
+
   });
 
 });

@@ -110,7 +110,7 @@ describe(`TsLoginFormComponent`, () => {
       this.component.loginForm.patchValue({
         password: 'foo',
       });
-      const control = this.component.getControl('password', this.component.loginForm);
+      const control = this.component.getControl('password');
 
       expect(control.value).toEqual('foo');
     });
