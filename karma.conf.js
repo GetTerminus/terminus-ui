@@ -120,7 +120,7 @@ module.exports = function(config) {
       'text-summary': null, // to show summary in console
       'html': './coverage/html/',
       'text-lcov': './coverage/lcov/',
-      'json': './coverage/json/',
+      'json': './coverage/coverage.json',
     },
 
     port: 9876,
