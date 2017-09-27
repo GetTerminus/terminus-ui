@@ -4,14 +4,6 @@
 @import './../scss/helpers/animation';
 
 
-:host {
-  display: inline-block;
-
-  &.disabled {
-    pointer-events: none;
-  }
-}
-
 // This makes the bottom padding space look better than the default 36px
 $button-line-height: 35px;
 $rotation: 360deg;
@@ -48,6 +40,18 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   // collapse the text content
   .c-button__content {
     max-width: 0;
+  }
+}
+
+:host {
+  display: inline-block;
+
+  // NOTE: This is a hack of sorts to disable a ts-menu from opening. The menu trigger still seems
+  // to be bound even when disabled.
+  &[data-disabled='true'] {
+    .c-button {
+      pointer-events: none;
+    }
   }
 }
 
