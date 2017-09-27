@@ -48,7 +48,7 @@ export class TsButtonComponent implements OnInit {
   /**
    * @private Define the default delay for collapsable buttons
    */
-  _COLLAPSE_DEFAULT_DELAY: number = 2000;
+  _COLLAPSE_DEFAULT_DELAY: number = 4000;
 
   /**
    * Define the delay before the rounded button automatically collapses
@@ -156,7 +156,7 @@ export class TsButtonComponent implements OnInit {
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
-    if (this.format === 'collapsable' && !this.iconName) {
+    if (this.definedFormat === 'collapsable' && !this.iconName) {
       throw new Error('`iconName` must be defined for collapsable buttons.');
     }
   }

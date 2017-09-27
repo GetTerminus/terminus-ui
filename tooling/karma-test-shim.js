@@ -11,7 +11,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 // builtPaths: root paths for output ("built") files
 // get from karma.config.js, then prefix with '/base/' (default is 'src/')
 var builtPaths = (__karma__.config.builtPaths || ['src/'])
-                 .map(function(p) { return '/base/' + p;});
+                 .map(function(p) {return '/base/' + p;});
 
 __karma__.loaded = function() { };
 
@@ -125,26 +125,28 @@ System.config({
   },
 });
 
+// START
 initTestBed().then(initTesting);
 
-function initTestBed(){
+// Initialize the TestBed
+function initTestBed() {
   return Promise.all([
     System.import('@angular/core/testing'),
     System.import('@angular/platform-browser-dynamic/testing')
   ])
-
   .then(function(providers) {
     var coreTesting = providers[0];
     var browserTesting = providers[1];
 
     coreTesting.TestBed.initTestEnvironment(
       browserTesting.BrowserDynamicTestingModule,
-      browserTesting.platformBrowserDynamicTesting());
+      browserTesting.platformBrowserDynamicTesting()
+    );
   })
 }
 
 // Import all spec files and start karma
-function initTesting () {
+function initTesting() {
   return Promise.all(
     allSpecFiles.map(function(moduleName) {
       return System.import(moduleName);
