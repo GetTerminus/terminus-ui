@@ -97,6 +97,8 @@ export class TsReactiveFormBaseComponent {
    * (for form control support)
    */
   protected writeValue(value: any) {
+    // NOTE: Currently, this 'else' path seems untestable
+    // istanbul ignore else
     if (value !== this.innerValue) {
       this.innerValue = value;
     }

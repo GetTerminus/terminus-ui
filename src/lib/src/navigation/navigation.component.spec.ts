@@ -141,6 +141,29 @@ describe(`TsNavigationComponent`, () => {
   });
 
 
+  describe(`onResize()`, () => {
+
+    it(`should call updateLists()`, () => {
+      this.component.updateLists = jasmine.createSpy('updateLists');
+      this.component.onResize();
+
+      expect(this.component.updateLists).toHaveBeenCalled();
+    });
+
+  });
+
+
+  describe(`ngOnInit()`, () => {
+
+    it(`should call to set up the initial array`, () => {
+      this.component.setUpInitialArrays = jasmine.createSpy('setUpInitialArrays');
+      this.component.ngOnInit();
+      expect(this.component.setUpInitialArrays).toHaveBeenCalled();
+    });
+
+  });
+
+
   describe(`ngAfterViewInit()`, () => {
 
     beforeEach(() => {

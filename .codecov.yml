@@ -21,4 +21,5 @@ ignore:
   - "styleguide"
   - "tooling"
   - "src/lib/src/**/*.spec.ts"
+  - "src/lib/src/**/*.mock.ts"
 

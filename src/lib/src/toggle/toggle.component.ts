@@ -44,7 +44,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
  *              name="My toggle"
  *              theme="accent"
  *              (change)="myMethod($event)"
- * ></ts-toggle>
+ * >My Toggle!</ts-toggle>
  */
 @Component({
   selector: 'ts-toggle',

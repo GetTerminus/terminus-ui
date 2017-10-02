@@ -380,6 +380,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       this.currentPage -= 1;
     }
 
+    // This may be the case if there are no records
+    if (!foundPage || !foundPage.name) {
+      foundPage = {
+        name: '0',
+      }
+    }
+
     // '1 - 10 of 243'
     return `${foundPage.name} of ${totalRecords}`;
   }
