@@ -3,11 +3,9 @@ codecov:
     require_ci_to_pass: yes
 
 coverage:
-  range: "40...80"
-  status:
-    project:
-      default:
-        threshold: 1
+  range: 90..100
+  round: down
+  precision: 2
 
 ignore:
   - "coverage"
