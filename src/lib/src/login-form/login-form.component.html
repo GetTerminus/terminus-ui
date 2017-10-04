@@ -9,6 +9,7 @@
   <ts-input
     class="qa-login-form-email"
     label="Email"
+    name="email"
     type="email"
     formControlName="email"
     [formControl]="getControl('email')"
@@ -19,14 +20,15 @@
   ></ts-input>
 
   <ts-input
-  class="qa-login-form-password"
+    class="qa-login-form-password"
     label="Password"
+    name="password"
     type="password"
     formControlName="password"
     [formControl]="getControl('password')"
     hideRequiredMarker="false"
     isRequired="true"
-    [autocomplete]="'off'"
+    [autocomplete]="'current-password'"
     [autocapitalize]="false"
     [spellcheck]="false"
     minlength="{{ PASSWORD_MINLENGTH }}"
