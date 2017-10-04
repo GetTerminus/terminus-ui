@@ -10,9 +10,12 @@ import {
 } from '@angular/core';
 import { MdMenuTrigger } from '@angular/material';
 
-import { TsMenuPositionTypesX, TsMenuPositionTypesY } from './../utilities/types';
+import {
+  TsMenuPositionTypesX,
+  TsMenuPositionTypesY,
+  TsStyleThemeTypes,
+} from './../utilities/types';
 import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
-import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**

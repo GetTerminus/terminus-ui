@@ -76,25 +76,25 @@ import { Component } from '@angular/core';
       <ts-button
         theme="primary"
         iconName="add"
-        [format]="'collapsable'"
+        [format]="formatCollapsable"
       >New Campaign / New Tactic</ts-button>
 
       <ts-button
         theme="accent"
         iconName="add"
-        format="collapsable"
+        [format]="formatCollapsable"
       >New Campaign / New Tactic</ts-button>
 
       <ts-button
         theme="warn"
         iconName="add"
-        format="collapsable"
+        [format]="formatCollapsable"
       >New Campaign / New Tactic</ts-button>
 
       <ts-button
         theme="primary"
         iconName="add"
-        format="collapsable"
+        [format]="formatCollapsable"
         [isDisabled]="true"
       >Rounded - Disabled</ts-button>
     </div>
@@ -107,6 +107,7 @@ export class ButtonComponent {
   progress1 = false;
   progress2 = false;
   icon = 'home';
+  formatCollapsable = 'collapsable';
 
 
 

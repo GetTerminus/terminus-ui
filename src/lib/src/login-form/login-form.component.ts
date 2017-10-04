@@ -86,24 +86,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Initialize the login form
    */
-  public loginForm: FormGroup = this.formBuilder.group({
-    email: [
-      null,
-      [
-        Validators.required,
-        validateEmail,
-      ],
-    ],
-    password: [
-      null,
-      [
-        Validators.required,
-      ],
-    ],
-    rememberMe: [
-      false,
-    ],
-  });
+  public loginForm: FormGroup = this.formBuilder.group(FORM_GROUP);
 
   /**
    * Define a flag to add/remove the form from the DOM
@@ -193,7 +176,7 @@ export class TsLoginFormComponent implements OnChanges {
    * @return {AbstractControl} control The requested form control
    */
   public getControl(name: string, form: FormGroup = this.loginForm): AbstractControl {
-    return form.controls[name];
+    return form.get(name)
   }
 
 

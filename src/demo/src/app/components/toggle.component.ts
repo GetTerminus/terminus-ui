@@ -46,6 +46,6 @@ export class ToggleComponent {
   }
 
   getControl(name: string): AbstractControl {
-    return this.myForm.controls[name];
+    return this.myForm.get(name);
   }
 }

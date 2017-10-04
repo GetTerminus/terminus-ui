@@ -32,12 +32,11 @@
     (click)="reset()"
   >clear</md-icon>
 
-  <md-hint 
+  <md-hint
     class="qa-input-hint"
-    align="end" 
-    *ngIf="hint">
-    {{ hint }}
-  </md-hint>
+    align="end"
+    *ngIf="hint"
+  >{{ hint }}</md-hint>
 
   <ts-validation-messages
     class="qa-input-validation-messages"
