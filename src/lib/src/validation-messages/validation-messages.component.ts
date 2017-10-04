@@ -16,7 +16,7 @@ import { ValidationService } from './../services/validation/validation.service';
  *
  * @example
  * <ts-validation-messages
- *              [control]="myForm.controls.email"
+ *              [control]="myForm.get('controlName')"
  * ></ts-validation-messages>
  */
 @Component({

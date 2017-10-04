@@ -73,6 +73,6 @@ export class SelectComponent {
   }
 
   getControl(name: string): AbstractControl {
-    return this.myForm.controls[name];
+    return this.myForm.get(name);
   }
 }

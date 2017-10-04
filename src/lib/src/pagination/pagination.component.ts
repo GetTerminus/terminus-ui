@@ -228,12 +228,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @private Set up initial resources
    */
    initialize() {
-    this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
-    this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+     this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
+     this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
-    // Go to the initially set page
-    this.changePage(this.currentPage, 1, this.pagesArray);
-  }
+     // Go to the initially set page
+     this.changePage(this.currentPage, 1, this.pagesArray);
+   }
 
 
   /**

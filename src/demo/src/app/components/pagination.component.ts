@@ -47,6 +47,9 @@ export class PaginationComponent {
   location = 'below';
   pages = [1, 2, 3, 4, 5];
 
+
+
+
   onPageSelect(e) {
     console.log('DEMO page selected: ', e);
   }

@@ -43,10 +43,6 @@ export class MenuComponent {
   myTheme = 'primary';
 
 
-
-
-
-
   itemSelected(item: TsMenuItem): void {
     console.log('Item selected: ', item.name);
   }
