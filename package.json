@@ -97,7 +97,7 @@
     "@angular/router": "4.4.3",
     "@compodoc/compodoc": "1.0.1",
     "@types/jasmine": "2.6.0",
-    "@types/node": "8.0.32",
+    "@types/node": "8.0.33",
     "angular2-ladda": "1.2.2",
     "camelcase": "4.1.0",
     "code-notes": "1.0.4",
