@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MdMenuModule,
-  MdIconModule,
+  MatMenuModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { TsButtonModule } from './../button/button.module';
@@ -14,8 +14,8 @@ export { TsMenuComponent } from './menu.component';
 @NgModule({
   imports: [
     CommonModule,
-    MdMenuModule,
-    MdIconModule,
+    MatMenuModule,
+    MatIconModule,
     TsButtonModule,
   ],
   exports: [

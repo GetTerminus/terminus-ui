@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -644,8 +650,10 @@
     </p>
     <p class="comment">
         <p>A presentational component to render validation messages</p>
-<p>-- QA CSS CLASSES</p>
-<p>qa-validation-message : Placed on the md-error element used for this component</p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<ul>
+<li><code>qa-validation-message</code>: Placed on the error element used for this component</li>
+</ul>
 
     </p>
 
@@ -657,7 +665,7 @@
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-validation-messages
-  [control]=&quot;myForm.controls.email&quot;
+  [control]=&quot;myForm.get('controlName')&quot;
 &gt;&lt;/ts-validation-messages&gt;</code></pre>
                 </div>
     </div>
@@ -747,7 +755,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:31</a></div>
                                 </td>
                             </tr>
     
@@ -803,7 +811,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:31</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -841,7 +849,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:44</a></div>
                                 </td>
                             </tr>
     
@@ -863,9 +871,7 @@
   Component,
   Input,
 } from &#x27;@angular/core&#x27;;
-import {
-  FormControl,
-} from &#x27;@angular/forms&#x27;;
+import { FormControl } from &#x27;@angular/forms&#x27;;
 
 import { ValidationService } from &#x27;./../services/validation/validation.service&#x27;;
 
@@ -873,13 +879,12 @@ import { ValidationService } from &#x27;./../services/validation/validation.serv
 /**
  * A presentational component to render validation messages
  *
- * -- QA CSS CLASSES
- *
- * qa-validation-message : Placed on the md-error element used for this component
+ * #### QA CSS CLASSES
+ * - &#x60;qa-validation-message&#x60;: Placed on the error element used for this component
  *
  * @example
  * &lt;ts-validation-messages
- *              [control]&#x3D;&quot;myForm.controls.email&quot;
+ *              [control]&#x3D;&quot;myForm.get(&#x27;controlName&#x27;)&quot;
  * &gt;&lt;/ts-validation-messages&gt;
  */
 @Component({
@@ -897,7 +902,7 @@ export class TsValidationMessagesComponent {
 
   constructor(
     private validationService: ValidationService,
-  ) { }
+  ) {}
 
 
   /**
@@ -924,11 +929,11 @@ export class TsValidationMessagesComponent {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;md-error
-  class&#x3D;&quot;qa-validation-message c-validation-message  c-validation-message&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-error
+  class&#x3D;&quot;c-validation-message c-validation-message qa-validation-message&quot;
 &gt;
   {{ validationMessage }}
-&lt;/md-error&gt;
+&lt;/mat-error&gt;
 </code></pre>
     </div>
 
@@ -955,7 +960,7 @@ export class TsValidationMessagesComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-error  class="qa-validation-message c-validation-message  c-validation-message">  {{ validationMessage }}</md-error></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-error  class="c-validation-message c-validation-message qa-validation-message">  {{ validationMessage }}</mat-error></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsValidationMessagesComponent'};

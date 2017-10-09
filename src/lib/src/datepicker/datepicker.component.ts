@@ -12,15 +12,11 @@ import {
 /**
  * This is the datepicker UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-datepicker : Placed on the md-form-field element which contains the input and toggle button elements
- *
- * qa-datepicker-input : Placed on the input element which contains the chosen date
- *
- * qa-datepicker-toggle : Placed on the toggle button which displays the calendar when clicked
- *
- * qa-datepicker-calendar : Placed on the calendar control used for picking a date
+ * #### QA CSS CLASSES
+ * - `qa-datepicker`: Placed on the mat-form-field element which contains the input and toggle button elements
+ * - `qa-datepicker-input`: Placed on the input element which contains the chosen date
+ * - `qa-datepicker-toggle`: Placed on the toggle button which displays the calendar when clicked
+ * - `qa-datepicker-calendar`: Placed on the calendar control used for picking a date
  *
  * @example
  * <ts-datepicker

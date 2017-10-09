@@ -112,6 +112,7 @@ System.config({
     '@angular/cdk/collections': 'npm:/@angular/cdk/bundles/cdk-collections.umd.js',
     '@angular/cdk/rxjs': 'npm:/@angular/cdk/bundles/cdk-rxjs.umd.js',
     '@angular/cdk/table': 'npm:/@angular/cdk/bundles/cdk-table.umd.js',
+    '@angular/cdk/stepper': 'npm:/@angular/cdk/bundles/cdk-stepper.umd.js',
 
     // other libraries
     'rxjs': 'npm:rxjs',

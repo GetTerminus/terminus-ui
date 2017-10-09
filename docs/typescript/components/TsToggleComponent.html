@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -644,8 +650,10 @@
     </p>
     <p class="comment">
         <p>The is a toggle component</p>
-<p>-- QA CSS CLASSES</p>
-<p>qa-toggle : Placed on the md-slide-toggle element used for this component</p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<ul>
+<li><code>qa-toggle</code>: Placed on the toggle element</li>
+</ul>
 
     </p>
 
@@ -672,7 +680,7 @@
   name=&quot;My toggle&quot;
   theme=&quot;accent&quot;
   (change)=&quot;myMethod($event)&quot;
-&gt;&lt;/ts-toggle&gt;</code></pre>
+&gt;My Toggle!&lt;/ts-toggle&gt;</code></pre>
                 </div>
     </div>
 
@@ -798,7 +806,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:59</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -824,7 +832,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:65</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -850,7 +858,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:71</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -876,7 +884,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:77</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -902,7 +910,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:83</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -928,7 +936,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:89</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -947,13 +955,13 @@
                         <td class="col-md-10">
                             <div><p>Emit an event each time the toggle value changes</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MdSlideToggleChange&gt;</code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MatSlideToggleChange&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:95</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -978,29 +986,27 @@
 import {
   NG_VALUE_ACCESSOR,
 } from &#x27;@angular/forms&#x27;;
-import { MdSlideToggleChange } from &#x27;@angular/material&#x27;;
+import { MatSlideToggleChange } from &#x27;@angular/material&#x27;;
 
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 
 /**
  * Custom control value accessor for our component
+ * This allows our custom components to access the underlying form validation via our base class
  */
-// FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
-// a base class that others can extend? (Not sure how to pass in a named component like below)
 export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() &#x3D;&gt; TsToggleComponent),
-  multi: true
+  multi: true,
 };
 
 
 /**
  * The is a toggle component
  *
- * -- QA CSS CLASSES
- *
- * qa-toggle : Placed on the md-slide-toggle element used for this component
+ * #### QA CSS CLASSES
+ * - &#x60;qa-toggle&#x60;: Placed on the toggle element
  *
  * @example
  * &lt;ts-toggle
@@ -1013,7 +1019,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              name&#x3D;&quot;My toggle&quot;
  *              theme&#x3D;&quot;accent&quot;
  *              (change)&#x3D;&quot;myMethod($event)&quot;
- * &gt;&lt;/ts-toggle&gt;
+ * &gt;My Toggle!&lt;/ts-toggle&gt;
  */
 @Component({
   selector: &#x27;ts-toggle&#x27;,
@@ -1063,14 +1069,14 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Emit an event each time the toggle value changes
    */
   @Output()
-  public change: EventEmitter&lt;MdSlideToggleChange&gt; &#x3D; new EventEmitter();
+  public change: EventEmitter&lt;MatSlideToggleChange&gt; &#x3D; new EventEmitter();
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;md-slide-toggle
-  class&#x3D;&quot;qa-toggle c-toggle&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-slide-toggle
+  class&#x3D;&quot;c-toggle c-toggle qa-toggle&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
   [required]&#x3D;&quot;isRequired&quot;
   [labelPosition]&#x3D;&quot;labelPosition&quot;
@@ -1081,7 +1087,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
   (change)&#x3D;&quot;change.emit($event)&quot;
 &gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;/md-slide-toggle&gt;
+&lt;/mat-slide-toggle&gt;
 </code></pre>
     </div>
 
@@ -1108,7 +1114,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-slide-toggle  class="qa-toggle c-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></md-slide-toggle></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-slide-toggle  class="c-toggle c-toggle qa-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></mat-slide-toggle></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsToggleComponent'};

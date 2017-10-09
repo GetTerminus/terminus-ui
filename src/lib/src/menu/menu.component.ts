@@ -8,7 +8,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { MdMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material';
 
 import {
   TsMenuPositionTypesX,
@@ -21,13 +21,10 @@ import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
 /**
  * A presentational component to render a dropdown menu.
  *
- * -- QA CSS CLASSES
- *
- * qa-menu : Placed on the md-menu element which contains the menu
- *
- * qa-menu-item : Placed on the button element which represents each menu item
- *
- * qa-menu-trigger : Placed on the {@link TsButtonComponent} which displays the menu when clicked
+ * #### QA CSS CLASSES
+ * -`qa-menu`: Placed on the menu element which contains the menu
+ * -`qa-menu-item`: Placed on the button element which represents each menu item
+ * -`qa-menu-trigger`: Placed on the {@link TsButtonComponent} which displays the menu when clicked
  *
  * @example
  * <ts-menu
@@ -58,8 +55,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * @private Provide access to the trigger
    */
-  @ViewChild(MdMenuTrigger)
-  trigger: MdMenuTrigger;
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
 
   /**
    * @private Define if the menu should be opened by default

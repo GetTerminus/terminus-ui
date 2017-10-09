@@ -55,7 +55,7 @@
     calc(-#{$margin__vertical} - 1px)
     0;
     padding: .25em .2em .2em .3em;
-    // Set up for md-ripple
+    // Set up for mat-ripple
     position: relative;
     transition: background-color 200ms ease-in;
     // Double the width of the 24px icon
@@ -63,7 +63,7 @@
     will-change: background-color;
   }
 
-  md-icon {
+  .mat-icon {
     // Set up for zindex
     position: relative;
     vertical-align: bottom;
