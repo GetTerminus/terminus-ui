@@ -1,14 +1,14 @@
-<nav class="qa-navigation c-navigation c-navigation t-dark" fxLayout="row">
+<nav class="c-navigation c-navigation t-dark qa-navigation" fxLayout="row">
 
   <div
-    class="qa-navigation-items c-navigation__items"
+    class="c-navigation__items qa-navigation-items"
     #visibleItemsList
     fxFlex="1 1 auto"
     fxLayout="row"
     fxLayoutAlign="end stretch"
   >
     <button
-      class="qa-navigation-item c-navigation__item"
+      class="c-navigation__item qa-navigation-item"
       *ngFor="let item of visibleItems | async"
       #visibleLinkElement
       (click)="itemSelected.emit({event: $event, item: item})"
@@ -21,10 +21,10 @@
 
 
   <button
-    class="qa-navigation-secondary-trigger c-navigation__trigger"
+    class="c-navigation__trigger qa-navigation-secondary-trigger"
     [ngClass]="{'c-navigation__trigger--separator': visibleItemsLength}"
-    md-button
-    [mdMenuTriggerFor]="secondaryNav"
+    mat-button
+    [matMenuTriggerFor]="secondaryNav"
     fxFlex="none"
   >
     <span class="c-navigation__trigger-welcome">
@@ -34,30 +34,30 @@
     <br *ngIf="usersFullName">
     {{ usersFullName }}
 
-    <md-icon class="c-navigation__trigger-icon">
+    <mat-icon class="c-navigation__trigger-icon">
       keyboard_arrow_down
-    </md-icon>
+    </mat-icon>
   </button>
 
 
 
 
-  <md-menu
-    class="qa-navigation-secondary-items c-navigation__hidden-items"
-    #secondaryNav="mdMenu"
+  <mat-menu
+    class="c-navigation__hidden-items qa-navigation-secondary-items"
+    #secondaryNav="matMenu"
     xPosition="before"
     [overlapTrigger]="false"
   >
     <button
-      class="qa-navigation-secondary-item c-navigation__hidden-item"
+      class="c-navigation__hidden-item qa-navigation-secondary-item"
       [ngClass]="{'c-navigation__hidden-item--admin': item.onlyHidden}"
       *ngFor="let item of hiddenItems | async"
       #hiddenLinkElement
-      md-menu-item
+      mat-menu-item
       (click)="itemSelected.emit({event: $event, item: item})"
     >
       {{ item.name }}
     </button>
-  </md-menu>
+  </mat-menu>
 
 </nav>

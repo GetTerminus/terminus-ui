@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -765,7 +771,7 @@
         <pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
-import { MdInputModule } from &#x27;@angular/material&#x27;;
+import { MatInputModule } from &#x27;@angular/material&#x27;;
 
 import { ValidationService } from &#x27;./../services/validation/validation.service&#x27;;
 import { TsValidationMessagesComponent } from &#x27;./validation-messages.component&#x27;;
@@ -776,7 +782,7 @@ export { TsValidationMessagesComponent } from &#x27;./validation-messages.compon
   imports: [
     CommonModule,
     FormsModule,
-    MdInputModule,
+    MatInputModule,
   ],
   providers: [
     ValidationService,

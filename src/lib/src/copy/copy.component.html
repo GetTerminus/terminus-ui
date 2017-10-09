@@ -1,5 +1,5 @@
 <div
-  class="qa-copy c-copy c-copy"
+  class="c-copy c-copy qa-copy"
   fxLayout="row"
   tabindex="1"
   title="{{ textContent }}"
@@ -8,21 +8,21 @@
 >
   <div
     #content
-    class="qa-copy-content c-copy__content"
+    class="c-copy__content qa-copy-content"
     fxFlex="auto"
   >
     <ng-content></ng-content>
   </div>
 
   <div
-    class="qa-copy-icon c-copy__icon"
+    class="c-copy__icon qa-copy-icon"
     *ngIf="enableQuickCopy"
     (click)="copyToClipboard(textContent)"
-    md-ripple
-    [mdRippleColor]="rippleColor"
+    mat-ripple
+    [matRippleColor]="rippleColor"
   >
-    <md-icon mdSuffix>
+    <mat-icon matSuffix>
       {{ icon }}
-    </md-icon>
+    </mat-icon>
   </div>
 </div>

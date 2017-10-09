@@ -18,13 +18,10 @@ import { TsDocumentService } from '../services/document/document.service';
 /**
  * This is the TsCopyComponent UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-copy : Placed on the div element which contains this component
- *
- * qa-copy-content : Placed on a div element which contains the content which will be copied
- *
- * qa-copy-icon : Placed on the icon which copies the content to the clipboard when clicked
+ * #### QA CSS CLASSES
+ * `qa-copy`: Placed on the div element which contains this component
+ * `qa-copy-content`: Placed on a div element which contains the content which will be copied
+ * `qa-copy-icon`: Placed on the icon which copies the content to the clipboard when clicked
  *
  * @example
  * <ts-copy
@@ -49,7 +46,7 @@ export class TsCopyComponent {
   icon: string = 'content_copy';
 
   /**
-   * Define the color of the md-ripple
+   * Define the color of the material ripple
    */
   // FIXME: This color should be coming from a config
   public rippleColor: string = '#1a237e';

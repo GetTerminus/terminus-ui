@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -644,10 +650,12 @@
     </p>
     <p class="comment">
         <p>This is the link UI Component</p>
-<p>-- QA CSS CLASSES</p>
-<p>qa-link : Placed on the the link element used for this component</p>
-<p>qa-link-internal : Also placed on the link element if the link is internal</p>
-<p>qa-link-external : Also placed on the link element if the link is external</p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<ul>
+<li><code>qa-link</code>: Placed on the link element</li>
+<li><code>qa-link-internal</code>: Placed on the link element if the link is internal</li>
+<li><code>qa-link-external</code>: Placed on the link element if the link is external</li>
+</ul>
 
     </p>
 
@@ -659,7 +667,7 @@
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-link
-  [destination]=&quot;['/', 'your', 'path']&quot;
+  [destination]=&quot;['your/', 'path/']&quot;
   text=&quot;Click me!&quot;
   color=&quot;accent&quot;
 &gt;&lt;/ts-link&gt;
@@ -778,7 +786,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/link/link.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/link/link.component.ts:47</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -804,7 +812,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/link/link.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/src/link/link.component.ts:53</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -827,7 +835,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/link/link.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/link/link.component.ts:59</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -870,7 +878,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/link/link.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/link/link.component.ts:41</a></div>
                                 </td>
                             </tr>
     
@@ -899,17 +907,14 @@
 /**
  * This is the link UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-link : Placed on the the link element used for this component
- *
- * qa-link-internal : Also placed on the link element if the link is internal
- *
- * qa-link-external : Also placed on the link element if the link is external
+ * #### QA CSS CLASSES
+ * - &#x60;qa-link&#x60;: Placed on the link element
+ * - &#x60;qa-link-internal&#x60;: Placed on the link element if the link is internal
+ * - &#x60;qa-link-external&#x60;: Placed on the link element if the link is external
  *
  * @example
  * &lt;ts-link
- *              [destination]&#x3D;&quot;[&#x27;/&#x27;, &#x27;your&#x27;, &#x27;path&#x27;]&quot;
+ *              [destination]&#x3D;&quot;[&#x27;your/&#x27;, &#x27;path/&#x27;]&quot;
  *              text&#x3D;&quot;Click me!&quot;
  *              color&#x3D;&quot;accent&quot;
  * &gt;&lt;/ts-link&gt;
@@ -956,7 +961,7 @@ export class TsLinkComponent {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;a
-  class&#x3D;&quot;qa-link qa-link-internal c-link c-link&quot;
+  class&#x3D;&quot;c-link c-link qa-link qa-link-internal&quot;
   [routerLink]&#x3D;&quot;destination&quot;
   *ngIf&#x3D;&quot;!isExternal&quot;
 &gt;
@@ -964,16 +969,16 @@ export class TsLinkComponent {
 &lt;/a&gt;
 
 &lt;a
-  class&#x3D;&quot;qa-link qa-link-external c-link c-link&quot;
+  class&#x3D;&quot;c-link c-link qa-link qa-link-external&quot;
   [href]&#x3D;&quot;destination&quot;
   target&#x3D;&quot;_blank&quot;
   *ngIf&#x3D;&quot;isExternal&quot;
 &gt;
   {{ text }}
 
-  &lt;md-icon *ngIf&#x3D;&quot;isExternal&quot;&gt;
+  &lt;mat-icon *ngIf&#x3D;&quot;isExternal&quot;&gt;
     open_in_new
-  &lt;/md-icon&gt;
+  &lt;/mat-icon&gt;
 &lt;/a&gt;
 </code></pre>
     </div>
@@ -1001,7 +1006,7 @@ export class TsLinkComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a  class="qa-link qa-link-internal c-link c-link"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="qa-link qa-link-external c-link c-link"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <md-icon *ngIf="isExternal">    open_in_new  </md-icon></a></div>'
+        var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link qa-link qa-link-internal"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="c-link c-link qa-link qa-link-external"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <mat-icon *ngIf="isExternal">    open_in_new  </mat-icon></a></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLinkComponent'};

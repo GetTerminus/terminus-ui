@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import {
-  MdCheckboxModule,
+  MatCheckboxModule,
 } from '@angular/material';
 
 import { TsCheckboxComponent } from './checkbox.component';
@@ -14,7 +14,7 @@ export { TsCheckboxComponent } from './checkbox.component';
   imports: [
     CommonModule,
     FormsModule,
-    MdCheckboxModule,
+    MatCheckboxModule,
   ],
   exports: [
     TsCheckboxComponent,

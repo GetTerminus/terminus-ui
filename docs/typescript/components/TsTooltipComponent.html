@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -528,6 +531,9 @@
                                <ul class="links collapse "
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
@@ -838,9 +844,9 @@ export class TsTooltipComponent {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;span
-  [mdTooltip]&#x3D;&quot;tooltipValue&quot;
-  [mdTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
-  class&#x3D;&quot;qa-tooltip c-tooltip  c-tooltip&quot;
+  [matTooltip]&#x3D;&quot;tooltipValue&quot;
+  [matTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
+  class&#x3D;&quot;c-tooltip c-tooltip qa-tooltip&quot;
 &gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/span&gt;
@@ -870,7 +876,7 @@ export class TsTooltipComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span  [mdTooltip]="tooltipValue"  [mdTooltipPosition]="tooltipPosition"  class="qa-tooltip c-tooltip  c-tooltip">  <ng-content></ng-content></span></div>'
+        var COMPONENT_TEMPLATE = '<div><span  [matTooltip]="tooltipValue"  [matTooltipPosition]="tooltipPosition"  class="c-tooltip c-tooltip qa-tooltip">  <ng-content></ng-content></span></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsTooltipComponent'};
