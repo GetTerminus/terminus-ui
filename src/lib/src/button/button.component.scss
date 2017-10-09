@@ -92,7 +92,7 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
         $padding-horizontal: 16px;
         $padding-horizontal-total: $padding-horizontal * 2;
 
-        // Force the ladda label to fill the entire button. (the md-ripple will be inside the
+        // Force the ladda label to fill the entire button. (the mat-ripple will be inside the
         // ladda-label and will appear cut off otherwise)
         display: inline-block;
         height: 100%;

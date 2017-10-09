@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -636,9 +642,28 @@
     <code>src/lib/src/loading-overlay/loading-overlay.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The loading overlay component. Implemented by <a href="../directives/TsLoadingOverlayDirective.html">TsLoadingOverlayDirective</a></p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<ul>
+<li><code>qa-loading-overlay</code>: Placed on the div overlay containing the loading spinner</li>
+</ul>
+
+    </p>
 
 
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">See {</code></pre>
+                </div>
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -669,9 +694,23 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;qa-loading-overlay c-loading-overlay&quot;&gt;
-  &lt;svg class&#x3D;&quot;c-loading-overlay__spinner&quot; width&#x3D;&quot;65px&quot; height&#x3D;&quot;65px&quot; viewBox&#x3D;&quot;0 0 66 66&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-     &lt;circle class&#x3D;&quot;path&quot; fill&#x3D;&quot;none&quot; stroke-width&#x3D;&quot;6&quot; stroke-linecap&#x3D;&quot;round&quot; cx&#x3D;&quot;33&quot; cy&#x3D;&quot;33&quot; r&#x3D;&quot;30&quot;&gt;&lt;/circle&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;c-loading-overlay qa-loading-overlay&quot;&gt;
+  &lt;svg
+    class&#x3D;&quot;c-loading-overlay__spinner&quot;
+    width&#x3D;&quot;65px&quot;
+    height&#x3D;&quot;65px&quot;
+    viewBox&#x3D;&quot;0 0 66 66&quot;
+    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+  &gt;
+    &lt;circle
+      class&#x3D;&quot;path&quot;
+      fill&#x3D;&quot;none&quot;
+      stroke-width&#x3D;&quot;6&quot;
+      stroke-linecap&#x3D;&quot;round&quot;
+      cx&#x3D;&quot;33&quot;
+      cy&#x3D;&quot;33&quot;
+      r&#x3D;&quot;30&quot;
+    &gt;&lt;/circle&gt;
   &lt;/svg&gt;
 &lt;/div&gt;
 </code></pre></td>
@@ -696,19 +735,42 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
+
+/**
+ * The loading overlay component. Implemented by {@link TsLoadingOverlayDirective}
+ *
+ * #### QA CSS CLASSES
+ * - &#x60;qa-loading-overlay&#x60;: Placed on the div overlay containing the loading spinner
+ *
+ * @example
+ * See {@link TsLoadingOverlayDirective}
+ */
 @Component({
   selector: &#x27;ts-loading-overlay&#x27;,
   styleUrls: [&#x27;./loading-overlay.component.scss&#x27;],
   template: &#x60;
-    &lt;div class&#x3D;&quot;qa-loading-overlay c-loading-overlay&quot;&gt;
-      &lt;svg class&#x3D;&quot;c-loading-overlay__spinner&quot; width&#x3D;&quot;65px&quot; height&#x3D;&quot;65px&quot; viewBox&#x3D;&quot;0 0 66 66&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-         &lt;circle class&#x3D;&quot;path&quot; fill&#x3D;&quot;none&quot; stroke-width&#x3D;&quot;6&quot; stroke-linecap&#x3D;&quot;round&quot; cx&#x3D;&quot;33&quot; cy&#x3D;&quot;33&quot; r&#x3D;&quot;30&quot;&gt;&lt;/circle&gt;
+    &lt;div class&#x3D;&quot;c-loading-overlay qa-loading-overlay&quot;&gt;
+      &lt;svg
+        class&#x3D;&quot;c-loading-overlay__spinner&quot;
+        width&#x3D;&quot;65px&quot;
+        height&#x3D;&quot;65px&quot;
+        viewBox&#x3D;&quot;0 0 66 66&quot;
+        xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+      &gt;
+        &lt;circle
+          class&#x3D;&quot;path&quot;
+          fill&#x3D;&quot;none&quot;
+          stroke-width&#x3D;&quot;6&quot;
+          stroke-linecap&#x3D;&quot;round&quot;
+          cx&#x3D;&quot;33&quot;
+          cy&#x3D;&quot;33&quot;
+          r&#x3D;&quot;30&quot;
+        &gt;&lt;/circle&gt;
       &lt;/svg&gt;
     &lt;/div&gt;
   &#x60;,
 })
-export class TsLoadingOverlayComponent {
-}
+export class TsLoadingOverlayComponent {}
 </code></pre>
     </div>
 
@@ -736,7 +798,7 @@ export class TsLoadingOverlayComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="qa-loading-overlay c-loading-overlay">  <svg class="c-loading-overlay__spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>  </svg></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="c-loading-overlay qa-loading-overlay">  <svg    class="c-loading-overlay__spinner"    width="65px"    height="65px"    viewBox="0 0 66 66"    xmlns="http://www.w3.org/2000/svg"  >    <circle      class="path"      fill="none"      stroke-width="6"      stroke-linecap="round"      cx="33"      cy="33"      r="30"    ></circle>  </svg></div></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoadingOverlayComponent'};

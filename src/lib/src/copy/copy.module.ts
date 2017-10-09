@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdIconModule, MdRippleModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatRippleModule,
+} from '@angular/material';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsDocumentService } from './../services/document/document.service';
@@ -13,8 +16,8 @@ export { TsCopyComponent } from './copy.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MdIconModule,
-    MdRippleModule,
+    MatIconModule,
+    MatRippleModule,
   ],
   providers: [
     TsWindowService,

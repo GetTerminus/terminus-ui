@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -529,6 +532,9 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -644,10 +650,10 @@
     </p>
     <p class="comment">
         <p>A presentational component to render a dropdown menu.</p>
-<p>-- QA CSS CLASSES</p>
-<p>qa-menu : Placed on the md-menu control</p>
-<p>qa-menu-item : Placed on each menu item element</p>
-<p>qa-menu-trigger : Placed on the {@link TsButtonoComponent} which displays the menu when clicked</p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<p>-<code>qa-menu</code>: Placed on the menu element which contains the menu
+-<code>qa-menu-item</code>: Placed on the button element which represents each menu item
+-<code>qa-menu-trigger</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a> which displays the menu when clicked</p>
 
     </p>
 
@@ -1225,13 +1231,13 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>trigger:     <code>MdMenuTrigger</code>
+                            <code>trigger:     <code>MatMenuTrigger</code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code>MdMenuTrigger</code>
+                                <i>Type : </i>    <code>MatMenuTrigger</code>
     
                             </td>
                         </tr>
@@ -1264,23 +1270,23 @@
   AfterViewInit,
   ChangeDetectionStrategy,
 } from &#x27;@angular/core&#x27;;
-import { MdMenuTrigger } from &#x27;@angular/material&#x27;;
+import { MatMenuTrigger } from &#x27;@angular/material&#x27;;
 
-import { TsMenuPositionTypesX, TsMenuPositionTypesY } from &#x27;./../utilities/types&#x27;;
+import {
+  TsMenuPositionTypesX,
+  TsMenuPositionTypesY,
+  TsStyleThemeTypes,
+} from &#x27;./../utilities/types&#x27;;
 import { TsMenuItem } from &#x27;./../utilities/interfaces/menu-item.interface&#x27;;
-import { TsStyleThemeTypes } from &#x27;./../utilities/types/style-theme.types&#x27;;
 
 
 /**
  * A presentational component to render a dropdown menu.
  *
- * -- QA CSS CLASSES
- *
- * qa-menu : Placed on the md-menu control
- *
- * qa-menu-item : Placed on each menu item element
- *
- * qa-menu-trigger : Placed on the {@link TsButtonoComponent} which displays the menu when clicked
+ * #### QA CSS CLASSES
+ * -&#x60;qa-menu&#x60;: Placed on the menu element which contains the menu
+ * -&#x60;qa-menu-item&#x60;: Placed on the button element which represents each menu item
+ * -&#x60;qa-menu-trigger&#x60;: Placed on the {@link TsButtonComponent} which displays the menu when clicked
  *
  * @example
  * &lt;ts-menu
@@ -1311,8 +1317,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * @private Provide access to the trigger
    */
-  @ViewChild(MdMenuTrigger)
-  trigger: MdMenuTrigger;
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
 
   /**
    * @private Define if the menu should be opened by default
@@ -1398,36 +1404,38 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;md-menu
-  class&#x3D;&quot;qa-menu c-menu&quot;
-  #menu&#x3D;&quot;mdMenu&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-menu
+  class&#x3D;&quot;c-menu c-menu qa-menu&quot;
+  #menu&#x3D;&quot;matMenu&quot;
   [yPosition]&#x3D;&quot;menuPositionY&quot;
   [xPosition]&#x3D;&quot;menuPositionX&quot;
   [overlapTrigger]&#x3D;&quot;shouldOverlapTrigger&quot;
 &gt;
   &lt;button
-    md-menu-item
-    class&#x3D;&quot;qa-menu-item c-menu__item&quot;
+    mat-menu-item
+    class&#x3D;&quot;c-menu__item qa-menu-item&quot;
     [ngClass]&#x3D;&quot;{&#x27;c-menu__item--fake-icon&#x27;: (hasIcons &amp;&amp; !item.icon)}&quot;
     *ngFor&#x3D;&quot;let item of menuItems&quot;
     (click)&#x3D;&quot;selected.emit(item)&quot;
   &gt;
-    &lt;md-icon *ngIf&#x3D;&quot;item.icon&quot;&gt;
+    &lt;mat-icon *ngIf&#x3D;&quot;item.icon&quot;&gt;
       {{ item.icon }}
-    &lt;/md-icon&gt;
+    &lt;/mat-icon&gt;
 
     {{ item.name }}
   &lt;/button&gt;
-&lt;/md-menu&gt;
+&lt;/mat-menu&gt;
 
 &lt;ts-button
   class&#x3D;&quot;qa-menu-trigger&quot;
   [theme]&#x3D;&quot;theme&quot;
-  [mdMenuTriggerFor]&#x3D;&quot;menu&quot;
+  [matMenuTriggerFor]&#x3D;&quot;menu&quot;
   [isDisabled]&#x3D;&quot;isDisabled&quot;
+  [attr.data-disabled]&#x3D;&quot;isDisabled&quot;
+  format&#x3D;&quot;filled&quot;
 &gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
-  &lt;md-icon&gt;arrow_drop_down&lt;/md-icon&gt;
+  &lt;mat-icon&gt;arrow_drop_down&lt;/mat-icon&gt;
 &lt;/ts-button&gt;
 </code></pre>
     </div>
@@ -1455,7 +1463,7 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><md-menu  class="qa-menu c-menu"  #menu="mdMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger">  <button    md-menu-item    class="qa-menu-item c-menu__item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <md-icon *ngIf="item.icon">      {{ item.icon }}    </md-icon>    {{ item.name }}  </button></md-menu><ts-button  class="qa-menu-trigger"  [theme]="theme"  [mdMenuTriggerFor]="menu"  [isDisabled]="isDisabled">  <ng-content></ng-content>  <md-icon>arrow_drop_down</md-icon></ts-button></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-menu  class="c-menu c-menu qa-menu"  #menu="matMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger">  <button    mat-menu-item    class="c-menu__item qa-menu-item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <mat-icon *ngIf="item.icon">      {{ item.icon }}    </mat-icon>    {{ item.name }}  </button></mat-menu><ts-button  class="qa-menu-trigger"  [theme]="theme"  [matMenuTriggerFor]="menu"  [isDisabled]="isDisabled"  [attr.data-disabled]="isDisabled"  format="filled">  <ng-content></ng-content>  <mat-icon>arrow_drop_down</mat-icon></ts-button></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};

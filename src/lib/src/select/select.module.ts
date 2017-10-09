@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MdSelectModule,
+  MatSelectModule,
 } from '@angular/material';
 
 import { TsSelectComponent } from './select.component';
@@ -13,7 +13,7 @@ export { TsSelectComponent } from './select.component';
   imports: [
     CommonModule,
     FormsModule,
-    MdSelectModule,
+    MatSelectModule,
   ],
   exports: [
     TsSelectComponent,
