@@ -1,6 +1,6 @@
 <button
-  md-raised-button
-  class="qa-button c-button c-button c-button--{{ definedFormat }} c-button--{{ theme }} mat-raised-button"
+  mat-raised-button
+  class="c-button c-button c-button--{{ definedFormat }} c-button--{{ theme }} mat-raised-button qa-button"
   [ngClass]="{'c-button--collapsed': isCollapsed}"
   [attr.aria-label]="actionName"
   [attr.type]="buttonType"
@@ -8,12 +8,12 @@
   [ladda]="showProgress"
   (click)="clickEvent.emit($event)"
 >
-  <md-icon
+  <mat-icon
     *ngIf="iconName"
     class="c-button__icon"
   >
     {{ iconName }}
-  </md-icon>
+  </mat-icon>
 
   <span class="c-button__content">
     <ng-content></ng-content>

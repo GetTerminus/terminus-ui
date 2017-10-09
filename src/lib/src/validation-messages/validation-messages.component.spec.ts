@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MdInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
 
 import { TsValidationMessagesComponent } from './validation-messages.component';
 import { ValidationService } from './../services/validation/validation.service';
@@ -11,7 +11,7 @@ describe('InputMessagesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MdInputModule,
+        MatInputModule,
       ],
       declarations: [
         TsValidationMessagesComponent,

@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -528,6 +531,9 @@
                                <ul class="links collapse "
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
@@ -1288,6 +1294,8 @@ export class TsReactiveFormBaseComponent {
    * (for form control support)
    */
   protected writeValue(value: any) {
+    // NOTE: Currently, this &#x27;else&#x27; path seems untestable
+    // istanbul ignore else
     if (value !&#x3D;&#x3D; this.innerValue) {
       this.innerValue &#x3D; value;
     }

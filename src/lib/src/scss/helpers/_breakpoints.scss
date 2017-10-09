@@ -9,8 +9,8 @@ $breakpoints: (
   'layout-gt-xs',
   'layout-sm',
   'layout-gt-sm',
-  'layout-md',
-  'layout-gt-md',
+  'layout-mat',
+  'layout-gt-mat',
   'layout-lg',
   'layout-gt-lg',
   'layout-xl'
@@ -52,11 +52,11 @@ $breakpoints: (
       @media (min-width: 960px) { @content; }
     }
 
-    @if $point == 'layout-md' {
+    @if $point == 'layout-mat' {
       @media (min-width: 960px) and (max-width: 1279px) { @content; }
     }
 
-    @if $point == 'layout-gt-md' {
+    @if $point == 'layout-gt-mat' {
       @media (min-width: 1280px) { @content; }
     }
 

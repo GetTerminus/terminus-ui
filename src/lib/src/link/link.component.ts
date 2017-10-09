@@ -9,17 +9,14 @@ import {
 /**
  * This is the link UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-link : Placed on the the link element used for this component
- *
- * qa-link-internal : Also placed on the link element if the link is internal
- *
- * qa-link-external : Also placed on the link element if the link is external
+ * #### QA CSS CLASSES
+ * - `qa-link`: Placed on the link element
+ * - `qa-link-internal`: Placed on the link element if the link is internal
+ * - `qa-link-external`: Placed on the link element if the link is external
  *
  * @example
  * <ts-link
- *              [destination]="['/', 'your', 'path']"
+ *              [destination]="['your/', 'path/']"
  *              text="Click me!"
  *              color="accent"
  * ></ts-link>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MdSlideToggleModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
 import { TsToggleComponent } from './toggle.component';
@@ -13,7 +13,7 @@ export { TsToggleComponent } from './toggle.component';
   imports: [
     CommonModule,
     FormsModule,
-    MdSlideToggleModule,
+    MatSlideToggleModule,
   ],
   exports: [
     TsToggleComponent,

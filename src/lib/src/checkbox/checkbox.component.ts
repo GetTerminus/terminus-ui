@@ -16,9 +16,8 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 
 /**
  * @private Custom control value accessor for our component
+ * This allows our custom components to access the underlying form validation via our base class
  */
-// FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
-// a base class that others can extend? (Not sure how to pass in a named component like below)
 export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsCheckboxComponent),
@@ -29,9 +28,8 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * This is the checkbox UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-checkbox : Placed on the checkbox input element used for this component
+ * #### QA CSS CLASSES
+ * - `qa-checkbox`: Placed on the checkbox input element used for this component
  *
  * @example
  * <ts-checkbox

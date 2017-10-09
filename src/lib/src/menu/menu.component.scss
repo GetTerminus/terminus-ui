@@ -37,7 +37,7 @@
 
     // Create the space that an icon would fill.
     ::ng-deep &.c-menu__item--fake-icon {
-      // FIXME: I'm not sure why this '4' is needed.
+      // FIXME: I'm not sure why this magic '4' is needed.
       padding-left: $icon-width + $icon-margin + $icon-margin + 4;
     }
   }

@@ -14,10 +14,10 @@
 // sass-lint:disable no-qualifying-elements
 .c-input {
   // Top level styles should be nested here
-  // NOTE: As of Material v2.0.0-beta.10 `md-form-field` removes duplicate classes from itself.
-  // When this is fixed, we should revert to the standard double class format of all other
-  // components.
-  // https://github.com/angular/material2/issues/6737
+  // FIXME: Any component that uses the JavaScript classList methods will remove the duplicate class
+  // since duplicate classes are not valid in the classList (although browsers handle them fine). We
+  // need another way to enforce the correct specificity level. One possible fix is to wrap all
+  // components in a top level element that no one uses classList on.
   &.mat-form-field {
     @include typography;
     width: 100%;
