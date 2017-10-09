@@ -1,5 +1,5 @@
 <a
-  class="qa-link qa-link-internal c-link c-link"
+  class="c-link c-link qa-link qa-link-internal"
   [routerLink]="destination"
   *ngIf="!isExternal"
 >
@@ -7,14 +7,14 @@
 </a>
 
 <a
-  class="qa-link qa-link-external c-link c-link"
+  class="c-link c-link qa-link qa-link-external"
   [href]="destination"
   target="_blank"
   *ngIf="isExternal"
 >
   {{ text }}
 
-  <md-icon *ngIf="isExternal">
+  <mat-icon *ngIf="isExternal">
     open_in_new
-  </md-icon>
+  </mat-icon>
 </a>

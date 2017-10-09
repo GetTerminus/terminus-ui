@@ -6,7 +6,7 @@ import {
   async,
 } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { MdSlideToggleModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material';
 
 import { TsToggleComponent } from './toggle.component';
 
@@ -29,7 +29,7 @@ describe(`ToggleComponent`, () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        MdSlideToggleModule,
+        MatSlideToggleModule,
       ],
       declarations: [
         TsToggleComponent,

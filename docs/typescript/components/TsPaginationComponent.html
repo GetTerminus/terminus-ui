@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -528,6 +531,9 @@
                                <ul class="links collapse "
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
@@ -1465,7 +1471,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="395" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:395</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="402" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:402</a></div>
                                 </td>
                             </tr>
     
@@ -2734,12 +2740,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @private Set up initial resources
    */
    initialize() {
-    this.pagesArray &#x3D; this.createPagesArray(this.totalRecords, this.recordsPerPage);
-    this.currentPageLabel &#x3D; this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+     this.pagesArray &#x3D; this.createPagesArray(this.totalRecords, this.recordsPerPage);
+     this.currentPageLabel &#x3D; this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
-    // Go to the initially set page
-    this.changePage(this.currentPage, 1, this.pagesArray);
-  }
+     // Go to the initially set page
+     this.changePage(this.currentPage, 1, this.pagesArray);
+   }
 
 
   /**
@@ -2886,6 +2892,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       this.currentPage -&#x3D; 1;
     }
 
+    // This may be the case if there are no records
+    if (!foundPage || !foundPage.name) {
+      foundPage &#x3D; {
+        name: &#x27;0&#x27;,
+      }
+    }
+
     // &#x27;1 - 10 of 243&#x27;
     return &#x60;${foundPage.name} of ${totalRecords}&#x60;;
   }
@@ -2955,7 +2968,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;qa-pagination c-pagination&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;c-pagination qa-pagination&quot;&gt;
 
   &lt;div class&#x3D;&quot;c-pagination__buttons&quot;&gt;
 
@@ -3026,7 +3039,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   &lt;/div&gt;
 
   &lt;div
-    class&#x3D;&quot;qa-pagination-message c-pagination__message&quot;
+    class&#x3D;&quot;c-pagination__message qa-pagination-message&quot;
     *ngIf&#x3D;&quot;shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)&quot;
   &gt;
     {{ recordCountTooHighMessage }}
@@ -3059,7 +3072,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="qa-pagination c-pagination">  <div class="c-pagination__buttons">    <ts-select      class="qa-pagination-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        class="qa-pagination-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        class="qa-pagination-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-pagination-current-page-menu"      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        class="qa-pagination-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        class="qa-pagination-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="qa-pagination-message c-pagination__message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="c-pagination qa-pagination">  <div class="c-pagination__buttons">    <ts-select      class="qa-pagination-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        class="qa-pagination-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        class="qa-pagination-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-pagination-current-page-menu"      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        class="qa-pagination-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        class="qa-pagination-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-pagination__message qa-pagination-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
