@@ -21,13 +21,10 @@ import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
 /**
  * A presentational component to render a dropdown menu.
  *
- * -- QA CSS CLASSES
- *
- * qa-menu : Placed on the md-menu element which contains the menu
- *
- * qa-menu-item : Placed on the button element which represents each menu item
- *
- * qa-menu-trigger : Placed on the {@link TsButtonComponent} which displays the menu when clicked
+ * #### QA CSS CLASSES
+ * -`qa-menu`: Placed on the menu element which contains the menu
+ * -`qa-menu-item`: Placed on the button element which represents each menu item
+ * -`qa-menu-trigger`: Placed on the {@link TsButtonComponent} which displays the menu when clicked
  *
  * @example
  * <ts-menu

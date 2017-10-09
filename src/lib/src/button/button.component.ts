@@ -20,9 +20,8 @@ import {
 /**
  * A presentational component to render a button
  *
- * -- QA CSS CLASSES
- *
- * qa-button : Placed on the button element used for this component
+ * #### QA CSS CLASSES
+ * - `qa-button`: Placed on the button element used for this component
  *
  * @example
  * <ts-button

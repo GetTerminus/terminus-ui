@@ -1,17 +1,17 @@
-<md-form-field
-  class="qa-input c-input c-input"
+<mat-form-field
+  class="c-input c-input qa-input"
   [hideRequiredMarker]="hideRequiredMarker"
 >
 
-  <md-icon
+  <mat-icon
     class="qa-input-prefix-icon"
-    mdPrefix
+    matPrefix
     *ngIf="prefixIcon"
-  >{{ prefixIcon }}</md-icon>
+  >{{ prefixIcon }}</mat-icon>
 
   <input
-    mdInput
-    class="qa-input-text c-input__text"
+    matInput
+    class="c-input__text qa-input-text"
     type="{{ type }}"
     placeholder="{{ label }}"
     [attr.name]="name"
@@ -24,23 +24,23 @@
     (blur)="onBlur()"
   >
 
-  <md-icon
-    mdSuffix
+  <mat-icon
+    matSuffix
     *ngIf="isClearable"
-    class="qa-input-suffix-icon c-input__clear"
+    class="c-input__clear qa-input-suffix-icon"
     [ngClass]="{'c-input__clear--visible': value?.length > 0}"
     (click)="reset()"
-  >clear</md-icon>
+  >clear</mat-icon>
 
-  <md-hint
+  <mat-hint
     class="qa-input-hint"
     align="end"
     *ngIf="hint"
-  >{{ hint }}</md-hint>
+  >{{ hint }}</mat-hint>
 
   <ts-validation-messages
     class="qa-input-validation-messages"
     [control]="formControl"
   ></ts-validation-messages>
 
-</md-form-field>
+</mat-form-field>

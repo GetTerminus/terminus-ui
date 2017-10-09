@@ -1,5 +1,5 @@
-<md-slide-toggle
-  class="qa-toggle c-toggle"
+<mat-slide-toggle
+  class="c-toggle c-toggle qa-toggle"
   [(ngModel)]="value"
   [required]="isRequired"
   [labelPosition]="labelPosition"
@@ -10,4 +10,4 @@
   (change)="change.emit($event)"
 >
   <ng-content></ng-content>
-</md-slide-toggle>
+</mat-slide-toggle>

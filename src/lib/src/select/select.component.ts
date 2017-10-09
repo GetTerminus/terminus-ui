@@ -15,25 +15,22 @@ import { TsStyleThemeTypes } from './../utilities/types';
 
 
 /**
- * Custom control value accessor for our component
+ * @private Custom control value accessor for our component
+ * This allows our custom components to access the underlying form validation via our base class
  */
-// FIXME: Is there any way to abstract the items needed to make an input work with a FormGroup into
-// a base class that others can extend? (Not sure how to pass in a named component like below)
 export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsSelectComponent),
-  multi: true
+  multi: true,
 };
 
 
 /**
  * A component to create a select menu
  *
- * -- QA CSS CLASSES
- *
- * qa-select : Placed on the md-select element which contains this component
- *
- * qa-select-option : Placed on the md-option element which represents each option in the select box
+ * #### QA CSS CLASSES
+ * - `qa-select`: Placed on the select element which contains this component
+ * - `qa-select-option`: Placed on the option element which represents each option in the select box
  *
  * @example
  * <ts-select

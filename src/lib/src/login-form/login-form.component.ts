@@ -48,19 +48,15 @@ const FORM_GROUP = {
 /**
  * This is the login-form UI Component
  *
- * -- QA CSS CLASSES
- *
- * qa-login-form : Placed on the form element which contains this component
- *
- * qa-login-form-email : Placed on the {@link TsInputComponent} used for the "email" field
- *
- * qa-login-form-password : Placed on the {@link TsInputComponent} used for the "password" field
- *
- * qa-login-form-remember-me : Placed on the {@link TsCheckboxComponent} used for the "remember me" checkbox
- *
- * qa-login-form-forgot-password : Placed on the {@link TsLinkComponent} used for the "forgot password" link
- *
- * qa-login-form-submit : Placed on the {@link TsButtonComponent} used for the submit button
+ * #### QA CSS CLASSES
+ * - `qa-login-form`: Placed on the form element which contains this component
+ * - `qa-login-form-email`: Placed on the {@link TsInputComponent} used for the "email" field
+ * - `qa-login-form-password`: Placed on the {@link TsInputComponent} used for the "password" field
+ * - `qa-login-form-remember-me`: Placed on the {@link TsCheckboxComponent} used for the "remember
+ * me" checkbox
+ * - `qa-login-form-forgot-password`: Placed on the {@link TsLinkComponent} used for the "forgot
+ * password" link
+ * - `qa-login-form-submit`: Placed on the {@link TsButtonComponent} used for the submit button
  *
  * @example
  * <ts-login-form

@@ -22,8 +22,8 @@ import { TsLoadingOverlayComponent } from './loading-overlay.component';
 
 
 /**
- * TODO: Fill this section out
- * This is the tsLoadingOverlay UI Directive
+ * The tsLoadingOverlay UI Directive.
+ * Provides a spinner overlay to demonstrate loading for async data.
  *
  * @example
  * <div [tsLoadingOverlay]="true"></div>

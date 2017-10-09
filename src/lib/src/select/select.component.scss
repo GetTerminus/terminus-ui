@@ -28,7 +28,7 @@
 // @description
 //  A select input component
 //
-// <md-select>
+// <mat-select>
 .c-select {
   // Top level styles should be nested here
   &#{&} {
@@ -47,9 +47,7 @@
 
     ::ng-deep .mat-select-placeholder {
       position: absolute;
-      /*
-       * NOTE: We must overwrite an inline style from Material
-       */
+      // NOTE: We must overwrite an inline style from Material
       // sass-lint:disable no-important
       width: 5rem !important;
       // sass-lint:enable no-important
