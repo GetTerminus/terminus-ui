@@ -235,6 +235,9 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
+                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -528,6 +531,9 @@
                                <ul class="links collapse "
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
@@ -1395,7 +1401,7 @@ export class TsSearchComponent implements OnInit {
 
     <div class="tab-pane fade" id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;form
-  class&#x3D;&quot;qa-search c-search&quot;
+  class&#x3D;&quot;c-search c-search qa-search&quot;
   #form&#x3D;&quot;ngForm&quot;
   (ngSubmit)&#x3D;&quot;submitSearch(form.value)&quot;
   [ngClass]&#x3D;&quot;{&#x27;c-search--disabled&#x27;: loading}&quot;
@@ -1450,7 +1456,7 @@ export class TsSearchComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  class="qa-search c-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    class="qa-search-input"    [label]="inputLabel"    [prefixIcon]="icon"    [isClearable]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"  ></ts-input>  <ts-button    class="qa-search-button"    [actionName]="buttonAction"    [theme]="theme"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form  class="c-search c-search qa-search"  #form="ngForm"  (ngSubmit)="submitSearch(form.value)"  [ngClass]="{\'c-search--disabled\': loading}">  <ts-input    class="qa-search-input"    [label]="inputLabel"    [prefixIcon]="icon"    [isClearable]="userCanClear"    [(ngModel)]="query"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"  ></ts-input>  <ts-button    class="qa-search-button"    [actionName]="buttonAction"    [theme]="theme"    [isDisabled]="!form.valid"    [buttonType]="buttonType"    [showProgress]="loading"  >Search</ts-button></form></div>'
     var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsSearchComponent'};
