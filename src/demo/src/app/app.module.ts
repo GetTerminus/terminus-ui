@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MdButtonModule,
-  MdIconModule,
-  MdInputModule,
-  MdSlideToggleModule,
-} from '@angular/material';
+/*
+ *import {
+ *  MatButtonModule,
+ *  MatIconModule,
+ *  MatInputModule,
+ *  MatSlideToggleModule,
+ *} from '@angular/material';
+ */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LaddaModule } from 'angular2-ladda';
 import 'hammerjs';
@@ -69,9 +71,11 @@ import { LoadingOverlayComponent } from './components/loading-overlay.component'
     LaddaModule.forRoot({}),
     FlexLayoutModule,
 
-    MdButtonModule,
-    MdIconModule,
-    MdSlideToggleModule,
+    /*
+     *MatButtonModule,
+     *MatIconModule,
+     *MatSlideToggleModule,
+     */
 
     TsButtonModule,
     TsInputModule,

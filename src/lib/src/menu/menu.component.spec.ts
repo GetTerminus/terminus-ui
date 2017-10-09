@@ -2,8 +2,8 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MdIconModule,
-  MdMenuModule,
+  MatIconModule,
+  MatMenuModule,
 } from '@angular/material';
 
 import { TsMenuComponent } from './menu.component';
@@ -15,8 +15,8 @@ describe(`TsMenuComponent`, () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MdIconModule,
-        MdMenuModule,
+        MatIconModule,
+        MatMenuModule,
       ],
       declarations: [
         TsMenuComponent,

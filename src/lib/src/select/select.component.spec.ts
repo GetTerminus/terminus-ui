@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MdSelectModule,
+  MatSelectModule,
 } from '@angular/material';
 
 import { TsSelectComponent } from './select.component';
@@ -26,7 +26,7 @@ describe(`TsSelectComponent`, () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
-        MdSelectModule,
+        MatSelectModule,
       ],
       declarations: [
         TsSelectComponent,

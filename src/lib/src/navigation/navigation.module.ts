@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-  MdButtonModule,
-  MdIconModule,
-  MdMenuModule,
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
 } from '@angular/material';
 
 import { TsNavigationComponent } from './navigation.component';
@@ -15,9 +15,9 @@ export { TsNavigationComponent } from './navigation.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MdButtonModule,
-    MdIconModule,
-    MdMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   declarations: [
     TsNavigationComponent,

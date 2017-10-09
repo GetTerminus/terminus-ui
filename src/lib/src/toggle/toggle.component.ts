@@ -9,7 +9,7 @@ import {
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { MdSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange } from '@angular/material';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types';
@@ -94,5 +94,5 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Emit an event each time the toggle value changes
    */
   @Output()
-  public change: EventEmitter<MdSlideToggleChange> = new EventEmitter();
+  public change: EventEmitter<MatSlideToggleChange> = new EventEmitter();
 }

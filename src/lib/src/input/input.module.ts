@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  MdInputModule,
-  MdIconModule,
+  MatInputModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
@@ -17,8 +17,8 @@ export { TsInputComponent } from './input.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MdInputModule,
-    MdIconModule,
+    MatInputModule,
+    MatIconModule,
     TsValidationMessagesModule,
   ],
   exports: [

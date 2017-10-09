@@ -8,7 +8,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdIconModule, MdRippleModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatRippleModule,
+} from '@angular/material';
 
 import { TsCopyComponent } from './copy.component';
 import { TsWindowService } from '../services/window/window.service';
@@ -37,8 +40,8 @@ describe(`TsCopyComponent`, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MdIconModule,
-        MdRippleModule,
+        MatIconModule,
+        MatRippleModule,
         FlexLayoutModule,
       ],
       providers: [

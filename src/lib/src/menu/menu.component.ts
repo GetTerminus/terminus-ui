@@ -8,7 +8,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { MdMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material';
 
 import {
   TsMenuPositionTypesX,
@@ -58,8 +58,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   /**
    * @private Provide access to the trigger
    */
-  @ViewChild(MdMenuTrigger)
-  trigger: MdMenuTrigger;
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
 
   /**
    * @private Define if the menu should be opened by default
