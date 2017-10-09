@@ -17,15 +17,15 @@ import { Component } from '@angular/core';
     <div class="c-loading-overlay qa-loading-overlay">
       <svg
         class="c-loading-overlay__spinner"
-        width="{{ size }}px"
-        height="{{ size }}px"
-        viewBox="0 0 {{ viewBoxSize }} {{ viewBoxSize }}"
+        width="65px"
+        height="65px"
+        viewBox="0 0 66 66"
         xmlns="http://www.w3.org/2000/svg"
       >
         <circle
           class="path"
           fill="none"
-          stroke-width="{{ strokeWidth }}"
+          stroke-width="6"
           stroke-linecap="round"
           cx="33"
           cy="33"
@@ -35,8 +35,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class TsLoadingOverlayComponent {
-  public size: number = 65;
-  public viewBoxSize: number = this.size + 1;
-  public strokeWidth: number = 6;
-}
+export class TsLoadingOverlayComponent {}
