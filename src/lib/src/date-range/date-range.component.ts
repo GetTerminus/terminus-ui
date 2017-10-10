@@ -32,6 +32,8 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
  *              (endSelected)="myMethod($event)"
  *              (dateSelected)="myMethod($event)"
  * ></ts-date-range>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=preview</example-url>
  */
 @Component({
   selector: 'ts-date-range',

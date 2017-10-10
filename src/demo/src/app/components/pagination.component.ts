@@ -40,7 +40,7 @@ import { Component } from '@angular/core';
   `,
 })
 export class PaginationComponent {
-  myTheme = 'accent';
+  myTheme = 'primary';
   recordCount = 111;
   showSelector = true;
   currentPage = 1;

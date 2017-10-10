@@ -43,6 +43,8 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
  *              theme="accent"
  *              (change)="myMethod($event)"
  * >My Toggle!</ts-toggle>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=preview</example-url>
  */
 @Component({
   selector: 'ts-toggle',

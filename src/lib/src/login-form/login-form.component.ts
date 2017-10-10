@@ -67,6 +67,8 @@ const FORM_GROUP = {
  *              [forgotPasswordText]=" 'Forget something?' "
  *              (submit)="myMethod($event)"
  * ></ts-login-form>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/rbPXFU8FtCUJv5HR?show=preview</example-url>
  */
 @Component({
   selector: 'ts-login-form',

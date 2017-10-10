@@ -595,7 +595,7 @@ machines.
 [demo-link]: https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=app,preview
 [demo-checkbox]: https://embed.plnkr.co/plunk/S3nMGAO5ov1qswnl?show=app,preview
 [demo-copy]: https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show=app,preview
-[demo-datepicker]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
+[demo-datepicker]: https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show=app,preview
 [demo-date-range]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
 [demo-input]: https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=app,preview
 [demo-login-form]: https://embed.plnkr.co/plunk/rbPXFU8FtCUJv5HR?show=app,preview

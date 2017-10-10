@@ -26,7 +26,6 @@ import { groupBy } from './../utilities/groupBy';
  * This is the navigation UI Component
  *
  * #### QA CSS CLASSES
- *
  * - `qa-navigation`: Placed on the nav element which contains this component
  * - `qa-navigation-items`: Placed on the div element which contains the navigation items
  * - `qa-navigation-item`: Placed on the button elements which represent each visible navigation
@@ -45,6 +44,8 @@ import { groupBy } from './../utilities/groupBy';
  *              [welcomeMessage]=" 'Hi!' "
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=preview</example-url>
  */
 @Component({
   selector: 'ts-navigation',

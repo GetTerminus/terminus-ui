@@ -16,8 +16,14 @@
 
   // Custom rules when nested inside the pagination component
   .c-pagination & {
-    vertical-align: bottom;
+    position: relative;
+    top: 0.2em;
+    vertical-align: middle;
     width: 4rem;
+
+    .mat-form-field {
+      width: auto;
+    }
   }
 }
 
@@ -33,30 +39,5 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
-  }
-
-  // Custom rules when nested inside a pagination component
-  ::ng-deep .c-pagination & {
-    max-width: 4rem;
-    vertical-align: bottom;
-    width: 100%;
-
-    ::ng-deep .mat-select-trigger {
-      min-width: auto;
-    }
-
-    ::ng-deep .mat-select-placeholder {
-      position: absolute;
-      // NOTE: We must overwrite an inline style from Material
-      // sass-lint:disable no-important
-      width: 5rem !important;
-      // sass-lint:enable no-important
-    }
-
-    ::ng-deep .mat-select-arrow {
-      position: absolute;
-      right: 0;
-      top: 50%;
-    }
   }
 }

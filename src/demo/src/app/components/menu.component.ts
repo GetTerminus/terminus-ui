@@ -39,7 +39,7 @@ export class MenuComponent {
       action: 'bing',
     },
   ];
-  disabled = true;
+  disabled = false;
   myTheme = 'primary';
 
 

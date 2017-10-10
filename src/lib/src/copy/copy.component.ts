@@ -28,6 +28,8 @@ import { TsDocumentService } from '../services/document/document.service';
  *              disableInitialSelection="true"
  *              enableQuickCopy="true"
  * >My text to copy!</ts-copy>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show=preview</example-url>
  */
 @Component({
   selector: 'ts-copy',

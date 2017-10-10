@@ -45,6 +45,8 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              (close)="myMethod($event)"
  *              (change)="myMethod($event)"
  * ></ts-select>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=preview</example-url>
  */
 @Component({
   selector: 'ts-select',
