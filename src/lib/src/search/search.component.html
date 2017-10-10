@@ -24,6 +24,8 @@
     [theme]="theme"
     [isDisabled]="!searchForm.valid"
     [showProgress]="isSubmitting"
+    [buttonType]="buttonType"
+    [actionName]="buttonAction"
     (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
   >Search</ts-button>
 

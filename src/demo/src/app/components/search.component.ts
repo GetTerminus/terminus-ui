@@ -18,7 +18,7 @@ export class SearchComponent {
 
 
 
-  onSubmit(query: any) {
+  onSubmit(query: string) {
     console.log('DEMO submission!', query);
     this.inProgress = true;
 

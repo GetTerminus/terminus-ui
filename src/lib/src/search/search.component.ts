@@ -31,11 +31,16 @@ import { TsLoginFormResponse } from '../utilities/interfaces';
  *
  * @example
  * <t-search
- *              userCanClear="false"
+ *              initialValue="My starting value"
  *              inputLabel="Search for a tactic"
+ *              inputHint="Enter at least 17 characters"
+ *              isSubmitting="false"
+ *              theme="primary"
+ *              userCanClear="true"
+ *              (submitted)="doSomething($event)"
  * ></t-search>
  *
- * TODO: add example url
+ * <example-url>https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=preview</example-url>
  */
 @Component({
   selector: 'ts-search',

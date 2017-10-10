@@ -1,9 +1,4 @@
-import {
-  FormGroup,
-  AbstractControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { TsSearchComponent } from './search.component';
 
