@@ -54,6 +54,8 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              [autocapitalize]="false"
  *              [spellcheck]="false"
  * ></ts-input>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=preview</example-url>
  */
 @Component({
   selector: 'ts-input',

@@ -27,6 +27,8 @@ import {
  *              text="Click me too!"
  *              color="warn"
  * ></ts-link>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=preview</example-url>
  */
 @Component({
   selector: 'ts-link',

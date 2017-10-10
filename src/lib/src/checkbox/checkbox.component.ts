@@ -42,6 +42,8 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
  *              (inputChange)="myMethod($event)"
  *              (indeterminateChange)="myMethod($event)"
  * ></ts-checkbox>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/S3nMGAO5ov1qswnl?show=preview</example-url>
  */
 @Component({
   selector: 'ts-checkbox',

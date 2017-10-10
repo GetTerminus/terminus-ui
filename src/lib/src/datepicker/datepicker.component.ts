@@ -29,6 +29,8 @@ import {
  *              initialDate="{{ new Date(1990, 1, 1) }}"
  *              (selected)="changeSelected($event)"
  * ></ts-datepicker>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show=preview</example-url>
  */
 @Component({
   selector: 'ts-datepicker',

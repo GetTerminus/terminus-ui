@@ -36,6 +36,8 @@ import {
  *              collapseDelay="500"
  *              (clickEvent)="myMethod($event)"
  * >Click Me!</ts-button>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/W1t5Awrg7LLp4tyM?show=preview</example-url>
  */
 @Component({
   selector: 'ts-button',

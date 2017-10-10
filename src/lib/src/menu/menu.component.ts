@@ -34,6 +34,8 @@ import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
  *              isDisabled="false"
  *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
+ *
+ * <example-url>https://embed.plnkr.co/plunk/ZDPGxMuPoA2CAp35?show=preview</example-url>
  */
 @Component({
   selector: 'ts-menu',
