@@ -1,8 +1,8 @@
 <form
   class="c-search c-search qa-search"
-  #form="ngForm"
-  (ngSubmit)="submitSearch(form.value)"
-  [ngClass]="{'c-search--disabled': loading}"
+  [formGroup]="searchForm"
+  [ngClass]="{'c-search--disabled': isSubmitting}"
+  (keydown.enter)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
 >
 
   <ts-input
@@ -10,7 +10,8 @@
     [label]="inputLabel"
     [prefixIcon]="icon"
     [isClearable]="userCanClear"
-    [(ngModel)]="query"
+    formControlName="query"
+    [formControl]="searchForm.get('query')"
     [hint]="inputHint"
     name="query"
     required
@@ -20,11 +21,10 @@
 
   <ts-button
     class="qa-search-button"
-    [actionName]="buttonAction"
     [theme]="theme"
-    [isDisabled]="!form.valid"
-    [buttonType]="buttonType"
-    [showProgress]="loading"
+    [isDisabled]="!searchForm.valid"
+    [showProgress]="isSubmitting"
+    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
   >Search</ts-button>
 
 </form>
