@@ -31,6 +31,7 @@ import {
   TsLinkModule,
   TsNavigationModule,
   TsLoadingOverlayModule,
+  TsSearchModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -58,6 +59,7 @@ import { WindowServiceComponent } from './components/window-service.component';
 import { SpacingStylesComponent } from './components/spacing-styles.component';
 import { NavigationComponent } from './components/navigation.component';
 import { LoadingOverlayComponent } from './components/loading-overlay.component';
+import { SearchComponent } from './components/search.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -70,12 +72,6 @@ import { LoadingOverlayComponent } from './components/loading-overlay.component'
     BrowserAnimationsModule,
     LaddaModule.forRoot({}),
     FlexLayoutModule,
-
-    /*
-     *MatButtonModule,
-     *MatIconModule,
-     *MatSlideToggleModule,
-     */
 
     TsButtonModule,
     TsInputModule,
@@ -93,6 +89,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay.component'
     TsLinkModule,
     TsNavigationModule,
     TsLoadingOverlayModule,
+    TsSearchModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -118,6 +115,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay.component'
     SpacingStylesComponent,
     NavigationComponent,
     LoadingOverlayComponent,
+    SearchComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -125,4 +123,4 @@ import { LoadingOverlayComponent } from './components/loading-overlay.component'
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

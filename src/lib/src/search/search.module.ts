@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { TsInputModule } from './../input/input.module';
 import { TsButtonModule } from './../button/button.module';
@@ -12,7 +12,7 @@ export { TsSearchComponent } from './search.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     TsInputModule,
     TsButtonModule,
   ],

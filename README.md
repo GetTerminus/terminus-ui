@@ -115,7 +115,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | progress         |                                                        |                :x: |                              |
 | progression      |                                                        |                :x: |                              |
 | radio            |                                                        |                :x: |                              |
-| search           |                                                        | :white_check_mark: |                              |
+| search           |                                                        | :white_check_mark: |          [Demo][demo-search] |
 | select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
 | tabs             |                                                        |                :x: |                              |
 | toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
@@ -605,4 +605,5 @@ machines.
 [demo-toggle]: https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=app,preview
 [demo-navigation]: https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=app,preview
 [demo-loading-overlay]: https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show=app,preview
+[demo-search]: https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=app,preview
 
