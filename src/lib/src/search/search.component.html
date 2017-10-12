@@ -3,6 +3,8 @@
   [formGroup]="searchForm"
   [ngClass]="{'c-search--disabled': isSubmitting}"
   (keydown.enter)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
+  fxLayout="row"
+  fxLayoutAlign="start center"
 >
 
   <ts-input
@@ -17,6 +19,8 @@
     required
     minlength="2"
     pattern="[a-zA-Z]+"
+    (cleared)="cleared.emit(true)"
+    fxFlex="grow"
   ></ts-input>
 
   <ts-button

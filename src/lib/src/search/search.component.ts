@@ -18,7 +18,7 @@ import {
   TsButtonFunctionTypes,
   TsStyleThemeTypes,
 } from './../utilities/types';
-import { TsLoginFormResponse } from '../utilities/interfaces';
+import { TsSearchResponse } from '../utilities/interfaces';
 
 
 /**
@@ -120,8 +120,13 @@ export class TsSearchComponent implements OnInit {
    * The event to emit when the form is submitted
    */
   @Output()
-  submitted: EventEmitter<any> = new EventEmitter();
+  submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
 
+  /**
+   * The event to emit when the internal input value is cleared
+   */
+  @Output()
+  cleared: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * @private
