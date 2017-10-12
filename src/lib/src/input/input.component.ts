@@ -1,6 +1,8 @@
 import {
   Component,
   Input,
+  Output,
+  EventEmitter,
   forwardRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -16,7 +18,7 @@ import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/inp
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsInputComponent),
-  multi: true
+  multi: true,
 };
 
 
@@ -53,6 +55,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              [autocorrect]="false"
  *              [autocapitalize]="false"
  *              [spellcheck]="false"
+ *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
  * <example-url>https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=preview</example-url>
@@ -139,12 +142,19 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   @Input('type')
   public type: TsInputTypes = 'text';
 
+  /**
+   * The event to emit when the input value is cleared
+   */
+  @Output()
+  cleared: EventEmitter<boolean> = new EventEmitter();
+
 
   /**
    * Clear the input's value
    */
   public reset(): void {
     this.value = '';
+    this.cleared.emit(true);
   }
 
 }
