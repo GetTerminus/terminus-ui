@@ -109,7 +109,7 @@
   },
   "devDependencies": {
     "@angular/animations": "4.4.3",
-    "@angular/cli": "1.4.5",
+    "@angular/cli": "1.4.6",
     "@angular/common": "4.4.3",
     "@angular/compiler": "4.4.3",
     "@angular/compiler-cli": "4.4.3",
