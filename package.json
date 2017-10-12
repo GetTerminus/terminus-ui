@@ -120,7 +120,7 @@
     "@angular/material": "2.0.0-beta.12",
     "@angular/platform-browser": "4.4.3",
     "@angular/platform-browser-dynamic": "4.4.3",
-    "@angular/router": "4.4.3",
+    "@angular/router": "4.4.5",
     "@compodoc/compodoc": "1.0.1",
     "@types/jasmine": "2.6.0",
     "@types/node": "8.0.33",
