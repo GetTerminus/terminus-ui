@@ -108,7 +108,7 @@
     "angular2-ladda": "1.2.2"
   },
   "devDependencies": {
-    "@angular/animations": "4.4.3",
+    "@angular/animations": "4.4.5",
     "@angular/cli": "1.4.5",
     "@angular/common": "4.4.3",
     "@angular/compiler": "4.4.3",
