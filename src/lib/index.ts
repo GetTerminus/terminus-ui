@@ -23,8 +23,8 @@ export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.mo
 // Utilities & Services
 export { TsWindowService } from './src/services/window/window.service';
 export { TsDocumentService } from './src/services/document/document.service';
-export * from './src/utilities/interfaces';
-export * from './src/utilities/types';
+export * from './src/utilities/interfaces/index';
+export * from './src/utilities/types/index';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';
