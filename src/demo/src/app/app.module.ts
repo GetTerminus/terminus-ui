@@ -1,16 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-/*
- *import {
- *  MatButtonModule,
- *  MatIconModule,
- *  MatInputModule,
- *  MatSlideToggleModule,
- *} from '@angular/material';
- */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LaddaModule } from 'angular2-ladda';
 import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -70,7 +61,6 @@ import { SearchComponent } from './components/search.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    LaddaModule.forRoot({}),
     FlexLayoutModule,
 
     TsButtonModule,

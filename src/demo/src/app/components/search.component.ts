@@ -8,13 +8,13 @@ import { Component } from '@angular/core';
       [isSubmitting]="inProgress"
       [initialValue]="startingValue"
       (submitted)="onSubmit($event)"
+      (cleared)="onClear()"
     ></ts-search>
   `,
 })
 export class SearchComponent {
   inProgress = false;
-  startingValue = 'boop';
-
+  startingValue = '';
 
 
 
@@ -26,4 +26,10 @@ export class SearchComponent {
       this.inProgress = false;
     }, 1000);
   }
+
+
+  onClear() {
+    console.log('DEMO search cleared!');
+  }
+
 }

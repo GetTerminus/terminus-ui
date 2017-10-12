@@ -1,3 +1,4 @@
+@import 'node_modules/ladda/css/ladda';
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
 @import './../scss/helpers/spacing';
@@ -117,6 +118,23 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
           padding-right: 30px;
         }
       }
+    }
+
+    // Added by ladda
+    &[data-loading] {
+      .ladda-spinner {
+        display: block;
+      }
+    }
+
+    // Needed because of a conflict between Material and Ladda
+    .ladda-spinner {
+      // Initially hidden since the inner HTML is not removed until after the `data-loading` attr is
+      // removed from the button
+      display: none;
+      position: absolute;
+      right: spacing(large);
+      top: 50%;
     }
   }
 

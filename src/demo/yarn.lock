@@ -314,11 +314,11 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular2-ladda@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/angular2-ladda/-/angular2-ladda-1.2.2.tgz#bf9003bf9996a94da6a1e73c3fc21b434569ddcf"
+angular2-ladda@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/angular2-ladda/-/angular2-ladda-1.2.1.tgz#1356d294ccc0b43b5db366b781ca298127f68b48"
   dependencies:
-    ladda "^1.0.5"
+    ladda "^1.0.0"
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -2979,7 +2979,7 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-ladda@^1.0.5:
+ladda@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ladda/-/ladda-1.0.5.tgz#3fc33066516615c0bc73d3740d12e31a554a57da"
   dependencies:
