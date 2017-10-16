@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 
 /**
@@ -10,6 +11,8 @@ import {
  * @example
  * <ts-card
  *              centeredContent="true"
+ *              hasInteraction="true"
+ *              (clicked)="myMethod($event)
  * >My card!</ts-card>
  */
 @Component({
@@ -21,5 +24,11 @@ export class TsCardComponent {
 
   @Input()
   public centeredContent: boolean = false;
+
+  @Input()
+  public hasInteraction: boolean = false;
+
+  @Output()
+  clicked: EventEmitter<boolean> = new EventEmitter();
 
 }
