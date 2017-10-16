@@ -38,6 +38,7 @@ const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_z-index.scss',
   'src/lib/src/scss/helpers/_spacing.scss',
   'src/lib/src/scss/helpers/_animation.scss',
+  'src/lib/src/scss/helpers/_shadows.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
 
