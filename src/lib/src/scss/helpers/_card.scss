@@ -1,0 +1,9 @@
+@import './typography';
+@import './spacing';
+@import './shadows';
+
+@mixin card {
+  @include elevationElement(card);
+  padding: spacing(large);
+}
+

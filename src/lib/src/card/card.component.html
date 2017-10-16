@@ -1,0 +1,19 @@
+<ng-container *ngIf="!centeredContent; else centeredCard">
+  <mat-card class="c-card c-card qa-card">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </mat-card>
+</ng-container>
+
+
+<ng-template #centeredCard>
+  <mat-card class="c-card c-card qa-card" fxLayout="row" fxLayoutAlign="center center">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </mat-card>
+</ng-template>
+
+
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

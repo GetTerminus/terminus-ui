@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+}
+
+//
+// @component
+//  Card
+// @description
+//  A component for a simple card with elevation
+//
+.c-card {
+  // Top level styles should be nested here
+  &#{&} {
+    height: 100%;
+  }
+}
