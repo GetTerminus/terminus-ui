@@ -3,7 +3,7 @@
   [routerLink]="destination"
   *ngIf="!isExternal"
 >
-  {{ text }}
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 </a>
 
 <a
@@ -12,9 +12,14 @@
   target="_blank"
   *ngIf="isExternal"
 >
-  {{ text }}
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 
   <mat-icon *ngIf="isExternal">
     open_in_new
   </mat-icon>
 </a>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

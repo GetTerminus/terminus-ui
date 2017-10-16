@@ -17,16 +17,14 @@ import {
  * @example
  * <ts-link
  *              [destination]="['your/', 'path/']"
- *              text="Click me!"
  *              color="accent"
- * ></ts-link>
+ * >My link</ts-link>
  *
  * <ts-link
  *              destination="http://google.com"
  *              [isExternal]="true"
- *              text="Click me too!"
  *              color="warn"
- * ></ts-link>
+ * >My link</ts-link>
  *
  * <example-url>https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=preview</example-url>
  */
@@ -53,10 +51,4 @@ export class TsLinkComponent {
    */
   @Input()
   public isExternal: boolean = false;
-
-  /**
-   * Define the link text content
-   */
-  @Input()
-  public text: string;
 }
