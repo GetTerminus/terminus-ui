@@ -14,6 +14,7 @@ const mergeFiles = require('merge-files');
 const absModuleFix = require('rollup-plugin-absolute-module-fix');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
+const replace = require('replace-in-file');
 
 const libNameWithScope = require('./../package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -25,20 +26,25 @@ const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
 
+
 /*
  * Define all SCSS files that need to be exposed to the consuming library
  * NOTE: Typography must be before `_spacing.scss`
  */
 const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_typography.scss',
+  'src/lib/src/scss/helpers/_cursors.scss',
   'src/lib/src/scss/helpers/_color.scss',
   'src/lib/src/scss/helpers/_assets.scss',
   'src/lib/src/scss/helpers/_breakpoints.scss',
   'src/lib/src/scss/helpers/_layout.scss',
   'src/lib/src/scss/helpers/_z-index.scss',
+  // Spacing must be after typography
   'src/lib/src/scss/helpers/_spacing.scss',
   'src/lib/src/scss/helpers/_animation.scss',
   'src/lib/src/scss/helpers/_shadows.scss',
+  // Card must be after spacing and shadows
+  'src/lib/src/scss/helpers/_card.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
 
@@ -191,10 +197,20 @@ return Promise.resolve()
     .then(() => _relativeCopy('README.md', rootFolder, distFolder))
     .then(() => console.log('Package files copy succeeded.'))
   )
+  // Merge SCSS helper files and move to dist
   .then(() => Promise.resolve()
     .then(() => mergeFiles(scssHelpersInputPathList, scssHelpersOutputPath))
     .then(() => _relativeCopy('helpers.scss', srcFolder, distFolder))
-    .then(() => console.log('SCSS helpers merged and copied.'))
+    .then(() => replace({
+      files: path.join(distFolder, 'helpers.scss'),
+      from: [/@import.*/g],
+      to: '',
+    }))
+    .then(() => {
+      // Remove the temp file from the lib folder
+      fs.unlinkSync(path.join(srcFolder, 'helpers.scss'))
+      console.log('SCSS helpers merged and copied.');
+    })
   )
   // Generate CSS for shared styles
   .then(() => Promise.resolve()
