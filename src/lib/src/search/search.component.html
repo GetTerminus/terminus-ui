@@ -16,7 +16,6 @@
     [formControl]="searchForm.get('query')"
     [hint]="inputHint"
     name="query"
-    required
     minlength="2"
     pattern="[a-zA-Z]+"
     (cleared)="cleared.emit(true)"
@@ -26,7 +25,7 @@
   <ts-button
     class="qa-search-button"
     [theme]="theme"
-    [isDisabled]="!searchForm.valid"
+    [isDisabled]="!searchForm.valid || !searchForm.get('query').value"
     [showProgress]="isSubmitting"
     [buttonType]="buttonType"
     [actionName]="buttonAction"

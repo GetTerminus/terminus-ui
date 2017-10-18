@@ -54,9 +54,7 @@ export class TsSearchComponent implements OnInit {
   public searchForm: FormGroup = this.formBuilder.group({
     query: [
       null,
-      [
-        Validators.required,
-      ],
+      [],
     ],
   });
 
