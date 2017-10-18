@@ -1,0 +1,69 @@
+/**
+ * The map of available cursors
+ *
+ * @nuclide
+ * @section Cursors
+ */
+$g-cursors:
+  // Let the browser decide
+  'auto',
+
+  // Indicates text controls
+  'text',
+
+  // Indicates interaction
+  'pointer',
+
+  // Indicates no available interaction
+  'not-allowed',
+
+  // Indicates ability to copy
+  'copy',
+
+  // Indicates an alias or copy will be made
+  'alias',
+
+  // Indicates help is available
+  'help',
+;
+
+
+/**
+ * Retrieve a space from the $g-cursors list.
+ *
+ * The primary purpose for this function is to enforce which cursors can be used.
+ *
+ * @mixin cursor
+ * @section Functions
+ * @param $type
+ *  The cursor value to use. Default: auto
+ * @example
+ *  cursor: cursor();
+ *  cursor: cursor(pointer);
+ */
+@function cursor($type: auto) {
+  $index: index($g-cursors, $type);
+
+  // Verify the type exists
+  @if ($index == null) {
+    @error 'Invalid cursor type name: `#{$type}`. Allowed types: "#{$g-cursors}"';
+  }
+
+  @return nth($g-cursors, $index);
+}
+
+
+/**
+ * Include a custom cursor
+ *
+ * @mixin cursor
+ * @section Mixins
+ * @param $type
+ *  The cursor value to use.
+ * @example
+ *  @include cursor;
+ *  @include cursor(pointer);
+ */
+@mixin cursor($type) {
+  cursor: cursor($type);
+}
