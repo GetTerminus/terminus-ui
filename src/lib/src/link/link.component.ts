@@ -3,6 +3,7 @@ import {
   Input,
   Output,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 
 
@@ -33,6 +34,7 @@ import {
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsLinkComponent {
   /**
