@@ -3,6 +3,7 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/spacing';
 @import './../scss/helpers/animation';
+@import './../scss/helpers/cursors';
 
 
 // This makes the bottom padding space look better than the default 36px
@@ -18,6 +19,8 @@ $color-transition-duration: $label-transition-duration - 100ms; // 100
 $no-interaction-opacity: .7;
 
 $color-transition: color $color-transition-duration $g-easing;
+// FIXME: This exact transition is needed in the link styles (when inside a menu, links emulate
+// button styles). How can we share something this specific? Or simply make this more generic
 $background-transition: background $icon-transition-duration-collapse $g-material-background-easing;
 $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shadow-easing;
 $padding-transition: padding $label-transition-duration $g-easing;
@@ -49,9 +52,10 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 
   // NOTE: This is a hack of sorts to disable a ts-menu from opening. The menu trigger still seems
   // to be bound even when disabled.
+  // pointer-events: none;
   &[data-disabled='true'] {
     .c-button {
-      pointer-events: none;
+      @include cursor(not-allowed);
     }
   }
 }
@@ -80,7 +84,7 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
     will-change: background, color, contents;
 
     &[disabled] {
-      cursor: not-allowed;
+      @include cursor(not-allowed);
 
       // Lighten text when disabled
       ::ng-deep .ladda-label {
@@ -216,5 +220,30 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
       @include collapsed;
     }
   }
-
 }
+
+
+//
+// Target button instances nested inside a TsMenuComponent
+.c-button {
+  ::ng-deep .mat-menu-panel & {
+    // needed for specificity
+    &.c-button {
+      box-shadow: none;
+      background-color: transparent;
+      color: color(pure, dark);
+      text-align: left;
+      width: 100%;
+
+      &:focus,
+      &:active,
+      &:hover {
+        background-color: color(utility, xlight);
+        box-shadow: none;
+        color: color(primary);
+      }
+    }
+  }
+}
+
+

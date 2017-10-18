@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/cursors';
 
 :host {
   display: inline-block;
@@ -10,7 +11,7 @@
   // <ts-button> trigger to show the menu
   ::ng-deep ts-button {
     &[data-disabled='true'] {
-      cursor: not-allowed;
+      @include cursor(not-allowed);
       pointer-events: none;
     }
   }

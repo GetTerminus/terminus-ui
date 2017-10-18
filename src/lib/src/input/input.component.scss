@@ -1,5 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/cursors';
 
 :host {
   display: inline-block;
@@ -31,7 +32,7 @@
 
   // Button to clear the value of the input
   .c-input__clear {
-    cursor: pointer;
+    @include cursor(pointer);
     opacity: 0;
     transition: opacity 200ms ease;
     will-change: opacity;
