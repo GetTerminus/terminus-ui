@@ -31,14 +31,12 @@
     @include typography;
     max-height: 12rem;
   }
+}
 
-  // <button> individual menu item
-  .c-menu__item {
-
-    // Create the space that an icon would fill.
-    ::ng-deep &.c-menu__item--fake-icon {
-      // FIXME: I'm not sure why this magic '4' is needed.
-      padding-left: $icon-width + $icon-margin + $icon-margin + 4;
+::ng-deep .mat-menu-panel {
+  .mat-menu-content {
+    > * {
+      display: block;
     }
   }
 }
