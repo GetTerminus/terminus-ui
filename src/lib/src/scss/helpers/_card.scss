@@ -1,6 +1,7 @@
 @import './typography';
 @import './spacing';
 @import './shadows';
+@import './cursors';
 
 @mixin card(
   $allowsInteraction: false
@@ -9,6 +10,7 @@
   // If the card allows interaction, give it a hover state
   @if $allowsInteraction == true {
     @include elevationElement(card);
+    cursor: cursor(pointer);
   } @else {
     // Otherwise include standard elevation
     @include elevation(2);
