@@ -56,7 +56,7 @@
 //
 // Styles when nested inside a TsMenuComponent
 .c-link {
-  .c-menu & {
+  .mat-menu-content & {
     color: color(pure, dark);
     display: block;
     padding: spacing(small, 2x) spacing();
