@@ -73,6 +73,7 @@ const GLOBALS = {
   '@angular/cdk': 'ng.cdk',
   '@angular/cdk/overlay': 'ng.cdk.overlay',
   '@angular/cdk/portal': 'ng.cdk.portal',
+  '@angular/cdk/keycodes': 'ng.cdk.keycodes',
 
   // Rxjs dependencies
   'rxjs/Subject': 'Rx',
@@ -150,6 +151,8 @@ return Promise.resolve()
         console.error(warning.message);
       }
     };
+
+    // TODO: Remove unused builds (likely fesm5config and fesm2015config)
 
     // UMD bundle.
     const umdConfig = Object.assign({}, rollupBaseConfig, {

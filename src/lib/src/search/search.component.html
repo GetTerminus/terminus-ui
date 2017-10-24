@@ -1,8 +1,10 @@
+IS valid: {{ searchForm.valid }}
+
 <form
   class="c-search c-search qa-search"
   [formGroup]="searchForm"
   [ngClass]="{'c-search--disabled': isSubmitting}"
-  (keydown.enter)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
+  (keyup)="keyup()"
   fxLayout="row"
   fxLayoutAlign="start center"
 >
@@ -16,20 +18,21 @@
     [formControl]="searchForm.get('query')"
     [hint]="inputHint"
     name="query"
-    minlength="2"
-    pattern="[a-zA-Z]+"
+    minlength="{{ queryMinLength }}"
+    pattern="{{ inputPatternRegex }}"
     (cleared)="cleared.emit(true)"
     fxFlex="grow"
   ></ts-input>
 
   <ts-button
     class="qa-search-button"
+    *ngIf="!autoSubmit"
     [theme]="theme"
-    [isDisabled]="!searchForm.valid || !searchForm.get('query').value"
+    [isDisabled]="!searchForm.valid || !currentQuery"
     [showProgress]="isSubmitting"
     [buttonType]="buttonType"
     [actionName]="buttonAction"
-    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"
+    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"
   >Search</ts-button>
 
 </form>

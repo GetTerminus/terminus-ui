@@ -19,6 +19,7 @@ import {
   TsStyleThemeTypes,
 } from './../utilities/types';
 import { TsSearchResponse } from '../utilities/interfaces';
+import { debounce } from './../utilities/debounce';
 
 
 /**
@@ -30,15 +31,18 @@ import { TsSearchResponse } from '../utilities/interfaces';
  * - `qa-search-button`: Placed on the {@link TsButtonComponent} used for the submit button
  *
  * @example
- * <t-search
+ * <ts-search
+ *              autoSubmit="true
  *              initialValue="My starting value"
  *              inputLabel="Search for a tactic"
  *              inputHint="Enter at least 17 characters"
  *              isSubmitting="false"
  *              theme="primary"
  *              userCanClear="true"
+ *              (changed)="doSomething($event)"
  *              (submitted)="doSomething($event)"
- * ></t-search>
+ *              (cleared)="doSomething()"
+ * ></ts-search>
  *
  * <example-url>https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=preview</example-url>
  */
@@ -49,14 +53,9 @@ import { TsSearchResponse } from '../utilities/interfaces';
 })
 export class TsSearchComponent implements OnInit {
   /**
-   * Initialize the form
+   * Define the time to wait for user interaction to stop before auto-submitting
    */
-  public searchForm: FormGroup = this.formBuilder.group({
-    query: [
-      null,
-      [],
-    ],
-  });
+  private INPUT_DEBOUNCE_TIME: number = 200;
 
   /**
    * Define the button action label
@@ -69,14 +68,55 @@ export class TsSearchComponent implements OnInit {
   public buttonType: TsButtonFunctionTypes = 'search';
 
   /**
+   * Define a helper to return the current query string
+   */
+  public get currentQuery(): string {
+    return this.searchForm.value.query.trim();
+  }
+
+  /**
+   * Define a debounced method to emit the submission event
+   */
+  public debouncedEmit = debounce(this.emitSubmit, this.INPUT_DEBOUNCE_TIME);
+
+  /**
    * Define the icon name
    */
   public icon: string = 'search';
 
   /**
+   * Define the regular expression to validate the query
+   */
+  public inputPatternRegex: string = '[a-zA-Z0-9_ ]*';
+
+  /**
+   * Define the minimum length of a valid query
+   */
+  public queryMinLength: number = 2;
+
+  /**
+   * Initialize the form
+   */
+  public searchForm: FormGroup = this.formBuilder.group({
+    query: [
+      null,
+      [
+        Validators.minLength(this.queryMinLength),
+        Validators.pattern(this.inputPatternRegex),
+      ],
+    ],
+  });
+
+  /**
    * Store the search query
    */
   public query: string = '';
+
+  /**
+   * Define if the input should automatically submit values as typed
+   */
+  @Input()
+  public autoSubmit: boolean = false;
 
   /**
    * Define an initial value for the search input
@@ -95,6 +135,12 @@ export class TsSearchComponent implements OnInit {
    */
   @Input()
   public inputLabel: string = 'Search';
+
+  /**
+   * Define if the search should be disabled
+   */
+  @Input()
+  public isDisabled: boolean = false;
 
   /**
    * Define if the search is currently submitting a query
@@ -121,6 +167,12 @@ export class TsSearchComponent implements OnInit {
   submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
 
   /**
+   * The event to emit when the internal input value is changed
+   */
+  @Output()
+  changed: EventEmitter<string> = new EventEmitter();
+
+  /**
    * The event to emit when the internal input value is cleared
    */
   @Output()
@@ -143,6 +195,30 @@ export class TsSearchComponent implements OnInit {
       this.searchForm.patchValue({
         query: this.initialValue,
       });
+    }
+  }
+
+
+  /**
+   * Emit the submitted event
+   *
+   * NOTE: This wrapper is needed so that we can pass a value to the emitter
+   */
+  emitSubmit(): void {
+    if (this.searchForm.valid) {
+      this.submitted.emit({query: this.currentQuery});
+    }
+  }
+
+
+  /**
+   * Fire events as needed after keyup events
+   */
+  keyup(): void {
+    this.changed.emit(this.currentQuery)
+
+    if (this.autoSubmit && this.searchForm.valid) {
+      this.debouncedEmit();
     }
   }
 

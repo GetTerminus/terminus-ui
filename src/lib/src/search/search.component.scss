@@ -13,12 +13,8 @@
 //
 // <form> primary container
 .c-search {
-  // Top level styles should be nested here
   &#{&} {
-
-    &--disabled {
-      pointer-events: none;
-    }
+    // Top level styles should be nested here
   }
 
   ts-input {
