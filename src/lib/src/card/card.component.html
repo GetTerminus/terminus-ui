@@ -1,0 +1,20 @@
+<div
+  class="c-card c-card qa-card"
+  [ngClass]="{
+    'c-card--interaction': supportsInteraction,
+    'c-card--centered': centeredContent
+  }"
+>
+  <div
+    class="c-card__inner"
+    mat-ripple
+    [matRippleDisabled]="!supportsInteraction"
+  >
+    <ng-content></ng-content>
+  </div>
+
+  <ng-container
+    *ngIf="utilityMenuTemplate"
+    [ngTemplateOutlet]="utilityMenuTemplate"
+  ></ng-container>
+</div>

@@ -23,6 +23,7 @@ import {
   TsNavigationModule,
   TsLoadingOverlayModule,
   TsSearchModule,
+  TsCardModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -51,6 +52,7 @@ import { SpacingStylesComponent } from './components/spacing-styles.component';
 import { NavigationComponent } from './components/navigation.component';
 import { LoadingOverlayComponent } from './components/loading-overlay.component';
 import { SearchComponent } from './components/search.component';
+import { CardComponent } from './components/card.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -80,6 +82,7 @@ import { SearchComponent } from './components/search.component';
     TsNavigationModule,
     TsLoadingOverlayModule,
     TsSearchModule,
+    TsCardModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -106,6 +109,7 @@ import { SearchComponent } from './components/search.component';
     NavigationComponent,
     LoadingOverlayComponent,
     SearchComponent,
+    CardComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

@@ -34,6 +34,7 @@ module.exports = {
     {name: 'Link'},
     {name: 'Navigation'},
     {name: 'LoadingOverlay'},
+    {name: 'Card'},
     // INJECT: Add commitizen scope
     // NB! The above line is required for our yeoman generator and should not be changed.
 
