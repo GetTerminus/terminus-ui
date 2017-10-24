@@ -1,38 +1,41 @@
-<mat-menu
+<div
   class="c-menu c-menu qa-menu"
   [ngClass]="{'c-menu--utility': isUtilityMenu}"
-  #menu="matMenu"
-  [yPosition]="menuPositionY"
-  [xPosition]="menuPositionX"
-  [overlapTrigger]="shouldOverlapTrigger"
 >
-  <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>
-</mat-menu>
+  <mat-menu
+    #menu="matMenu"
+    [yPosition]="menuPositionY"
+    [xPosition]="menuPositionX"
+    [overlapTrigger]="shouldOverlapTrigger"
+  >
+    <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>
+  </mat-menu>
 
-<ts-button
-  *ngIf="!isUtilityMenu"
-  class="c-menu__trigger qa-menu-trigger"
-  [theme]="theme"
-  [matMenuTriggerFor]="menu"
-  [isDisabled]="isDisabled"
-  [attr.data-disabled]="isDisabled"
-  format="filled"
->
-  <ng-content></ng-content>
+  <ts-button
+    *ngIf="!isUtilityMenu"
+    class="c-menu__trigger qa-menu-trigger"
+    [theme]="theme"
+    [matMenuTriggerFor]="menu"
+    [isDisabled]="isDisabled"
+    [attr.data-disabled]="isDisabled"
+    format="filled"
+  >
+    <ng-content></ng-content>
 
-  <mat-icon>
-    {{ triggerIcon }}
-  </mat-icon>
-</ts-button>
+    <mat-icon>
+      {{ triggerIcon }}
+    </mat-icon>
+  </ts-button>
 
-<button
-  *ngIf="isUtilityMenu"
-  class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"
-  mat-icon-button
-  [matMenuTriggerFor]="menu"
-  [disabled]="isDisabled"
->
-  <mat-icon>
-    {{ triggerIcon }}
-  </mat-icon>
-</button>
+  <button
+    *ngIf="isUtilityMenu"
+    class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    [disabled]="isDisabled"
+  >
+    <mat-icon>
+      {{ triggerIcon }}
+    </mat-icon>
+  </button>
+</div>

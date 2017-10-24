@@ -1,5 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/spacing';
 
 :host {
   display: inline-block;
@@ -38,6 +39,18 @@
   .mat-menu-content {
     > * {
       display: block;
+    }
+  }
+}
+
+
+// Target a utility instance within a card
+::ng-deep .c-card {
+  .c-menu {
+    &.c-menu--utility {
+      position: absolute;
+      right: spacing(small, 3x);
+      top: spacing(small, 3x);
     }
   }
 }
