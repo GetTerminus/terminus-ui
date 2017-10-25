@@ -41,20 +41,21 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              required
  *              minlength="3"
- *              [hint]="'Fill this out!'"
- *              [label]="'My Input'"
- *              [name]="'password'"
- *              [prefixIcon]="'icon_name'"
- *              [type]="'text'"
- *              [isDisabled]="false"
- *              [isRequired]="false"
- *              [hideRequiredMarker]="false"
- *              [isClearable]="true"
- *              [isFocused]="false"
- *              [autocomplete]="false"
- *              [autocorrect]="false"
- *              [autocapitalize]="false"
- *              [spellcheck]="false"
+ *              hint="Fill this out!"
+ *              label="My Input"
+ *              name="'password'"
+ *              prefixIcon="'icon_name'"
+ *              type="text"
+ *              isDisabled="false"
+ *              isRequired="false"
+ *              hideRequiredMarker="false"
+ *              isClearable="true"
+ *              isFocused="false"
+ *              autocomplete="false"
+ *              autocorrect="false"
+ *              autocapitalize="false"
+ *              spellcheck="false"
+ *              validateOnChange="false"
  *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
@@ -120,7 +121,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the name attribute value
    */
-  @Input('name')
+  @Input()
   public name: string;
 
   /**
@@ -139,8 +140,14 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}
    */
-  @Input('type')
+  @Input()
   public type: TsInputTypes = 'text';
+
+  /**
+   * Define if validation messages should be shown immediately or on blur
+   */
+  @Input()
+  public validateOnChange: boolean = false;
 
   /**
    * The event to emit when the input value is cleared
