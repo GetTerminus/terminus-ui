@@ -26,12 +26,6 @@
     minimist "^1.2.0"
     rxjs "^5.4.2"
 
-"@angular/animations@4.4.4":
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.4.4.tgz#a2f9353604347abe15df98292058842f52f08bc2"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/animations@4.4.6":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.4.6.tgz#fa661899a8a4e38cb7c583c7a5c97ce65d592a35"
@@ -125,12 +119,6 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@4.4.4":
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.4.4.tgz#bd37ecf54158f97489996c9386bd222f80a32f5c"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/core@4.4.6":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.4.6.tgz#13031fd10dcfe438875419b38f21120958bc2354"
@@ -140,12 +128,6 @@
 "@angular/flex-layout@2.0.0-beta.9":
   version "2.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-beta.9.tgz#3e54f898e805d0b1426d15e6139db415d04ee75f"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/forms@4.4.4":
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.4.4.tgz#4db3790509b6b10f1db8a7c1b7f52187cf64cfd4"
   dependencies:
     tslib "^1.7.1"
 
@@ -177,21 +159,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@4.4.4":
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.4.4.tgz#a3898e2e7ba9d84ffa0d47144c6971179c75aee6"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/platform-browser@4.4.6":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.4.6.tgz#a9839c547e1b654fa1d24a89780c8ba6ab8dcce0"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/router@4.4.4":
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.4.4.tgz#7be391096e843cb3e04f9f05d1d65a88df9bc7cf"
   dependencies:
     tslib "^1.7.1"
 
@@ -226,26 +196,26 @@
   dependencies:
     "@angular-devkit/core" "0.0.20"
 
-"@terminus/ui@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-0.22.0.tgz#024a83747355fd0e7a61b029b3b42492d42e7297"
+"@terminus/ui@0.22.1":
+  version "0.22.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-0.22.1.tgz#9858348c47902e72ac475dff35b152f581ec4799"
   dependencies:
-    "@angular/animations" "4.4.4"
+    "@angular/animations" "4.4.6"
     "@angular/cdk" "2.0.0-beta.12"
-    "@angular/core" "4.4.4"
-    "@angular/forms" "4.4.4"
+    "@angular/core" "4.4.6"
+    "@angular/forms" "4.4.6"
     "@angular/material" "2.0.0-beta.12"
-    "@angular/platform-browser" "4.4.4"
-    "@angular/router" "4.4.4"
+    "@angular/platform-browser" "4.4.6"
+    "@angular/router" "4.4.6"
     angular2-ladda "1.2.2"
 
 "@types/jasmine@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.6.2.tgz#6e6d4cb183cd55c7a1ad6270bced10fdd5367a3c"
 
-"@types/node@8.0.34":
-  version "8.0.34"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.34.tgz#55f801fa2ddb2a40dd6dfc15ecfe1dde9c129fe9"
+"@types/node@8.0.47":
+  version "8.0.47"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.47.tgz#968e596f91acd59069054558a00708c445ca30c2"
 
 "@types/node@^6.0.46":
   version "6.0.78"
