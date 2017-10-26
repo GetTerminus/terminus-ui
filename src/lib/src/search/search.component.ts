@@ -5,6 +5,8 @@ import {
   EventEmitter,
   ViewChild,
   OnInit,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormGroup,
@@ -50,6 +52,8 @@ import { debounce } from './../utilities/debounce';
   selector: 'ts-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsSearchComponent implements OnInit {
   /**
