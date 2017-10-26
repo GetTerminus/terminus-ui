@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -655,19 +673,14 @@
         <p>A pagination component</p>
 <h4 id="qa-css-classes">QA CSS CLASSES</h4>
 <ul>
-<li><code>qa-pagination</code>: Placed on the div element which contains this component</li>
-<li><code>qa-pagination-per-page-select</code>: Placed on the <a href="../components/TsSelectComponent.html">TsSelectComponent</a> used for specifying
-the number of results per page</li>
-<li><code>qa-pagination-first-page-button</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a> used for the &quot;first
-page&quot; button</li>
-<li><code>qa-pagination-previous-page-button</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a> used for the
-&quot;previous page&quot; button</li>
-<li><code>qa-pagination-current-page-menu</code>: Placed on the <a href="../components/TsMenuComponent.html">TsMenuComponent</a> used for the &quot;current
-page&quot; menu control - <code>qa-pagination-next-page-button</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a>
-used for the &quot;next page&quot; button</li>
-<li><code>qa-pagination-last-page-button</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a> used for the &quot;last
-page&quot; button - <code>qa-pagination-message</code>: Placed on the div element which will contain any
-messaging regarding the record count being too high</li>
+<li><code>qa-pagination</code>: Placed on the primary container</li>
+<li><code>qa-pagination-per-page-select</code>: Placed on the results per page select menu</li>
+<li><code>qa-pagination-first-page-button</code>: Placed on the &#39;first page&#39; button</li>
+<li><code>qa-pagination-previous-page-button</code>: Placed on the &#39;previous page&#39; button</li>
+<li><code>qa-pagination-current-page-menu</code>: Placed on the &#39;current page&#39; menu dropdown</li>
+<li><code>qa-pagination-next-page-button</code>: Placed on the &#39;next page&#39; button</li>
+<li><code>qa-pagination-last-page-button</code>: Placed on the the &#39;last page&#39; button</li>
+<li><code>qa-pagination-message</code>: Placed on the messaging regarding the record count being too high</li>
 </ul>
 
     </p>
@@ -698,9 +711,15 @@ messaging regarding the record count being too high</li>
   previousPageTooltip=&quot;View previous results&quot;
   nextPageTooltip=&quot;View next results&quot;
   lastPageTooltip=&quot;View last results&quot;
+  paginationMessageTemplate=&quot;myTemplate
   (pageSelect)=&quot;myMethod($event)&quot;
   (recordsPerPageChange)=&quot;myMethod($event)&quot;
 &gt;&lt;/ts-pagination&gt;
+
+&lt;ng-template #myTemplate let-message&gt;
+&lt;strong&gt;{{ message }}&lt;/strong&gt;
+&lt;a href=&quot;/faq&quot;&gt;Learn more&lt;/a&gt;
+&lt;/ng-template&gt;
 
 &lt;example-url&gt;https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show=preview&lt;/example-url&gt;</code></pre>
                 </div>
@@ -789,6 +808,9 @@ messaging regarding the record count being too high</li>
                             <li>
                                  <a href="#recordsPerPage">recordsPerPage</a>
                             </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#templateContext">templateContext</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -839,6 +861,9 @@ messaging regarding the record count being too high</li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#shouldShowRecordsMessage">shouldShowRecordsMessage</a>
                             </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#trackPagesArray">trackPagesArray</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -867,6 +892,9 @@ messaging regarding the record count being too high</li>
                             </li>
                             <li>
                                 <a href="#nextPageTooltip">nextPageTooltip</a>
+                            </li>
+                            <li>
+                                <a href="#paginationMessageTemplate">paginationMessageTemplate</a>
                             </li>
                             <li>
                                 <a href="#previousPageTooltip">previousPageTooltip</a>
@@ -1073,6 +1101,29 @@ messaging regarding the record count being too high</li>
                 <tbody>
                     <tr>
                         <td class="col-md-2">
+                            <a name="paginationMessageTemplate"></a>
+                            <code>paginationMessageTemplate</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Allow a custom template to be used for the pagination message</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>TemplateRef&lt;ElementRef&gt;</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:165</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
                             <a name="previousPageTooltip"></a>
                             <code>previousPageTooltip</code>
                         </td>
@@ -1113,7 +1164,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:177</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:183</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1136,7 +1187,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:189</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1162,7 +1213,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:195</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1188,7 +1239,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:195</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:201</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1214,7 +1265,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:171</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1240,7 +1291,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:177</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1259,13 +1310,13 @@ messaging regarding the record count being too high</li>
                         <td class="col-md-10">
                             <div><p>Emit a page selected event</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+                            <em><code>$event</code> type:</em>    <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >EventEmitter&lt;TsPaginationMenuItem&gt;</a></code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:201</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:207</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1286,7 +1337,7 @@ messaging regarding the record count being too high</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:207</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:213</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1311,14 +1362,14 @@ messaging regarding the record count being too high</li>
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>)</code>
+                            <code>changePage(destinationPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsPaginationMenuItem.html">TsPaginationMenuItem[]</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:273</a></div>
                                 </td>
                             </tr>
     
@@ -1362,7 +1413,7 @@ messaging regarding the record count being too high</li>
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                              <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >TsPaginationMenuItem[]</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1395,14 +1446,14 @@ messaging regarding the record count being too high</li>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+    <code>createCurrentPageLabel(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pages: <a href="../interfaces/TsPaginationMenuItem.html">TsPaginationMenuItem[]</a>, totalRecords: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:367</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:377</a></div>
                                 </td>
                             </tr>
     
@@ -1434,7 +1485,7 @@ messaging regarding the record count being too high</li>
                                                     <tr>
                                                       <td>pages</td>
                                                       <td>
-                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                                              <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >TsPaginationMenuItem[]</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1483,7 +1534,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="401" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:401</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="415" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:415</a></div>
                                 </td>
                             </tr>
     
@@ -1549,14 +1600,14 @@ messaging regarding the record count being too high</li>
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>currentPageChanged(page: <a href="../interfaces/TsMenuItem.html">TsMenuItem</a>)</code>
+                            <code>currentPageChanged(page: <a href="../interfaces/TsPaginationMenuItem.html">TsPaginationMenuItem</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:243</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:253</a></div>
                                 </td>
                             </tr>
     
@@ -1580,7 +1631,7 @@ messaging regarding the record count being too high</li>
                                                     <tr>
                                                       <td>page</td>
                                                       <td>
-                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem</a></code>
+                                                              <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >TsPaginationMenuItem</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1621,7 +1672,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="353" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:353</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:363</a></div>
                                 </td>
                             </tr>
     
@@ -1695,7 +1746,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:239</a></div>
                                 </td>
                             </tr>
     
@@ -1728,7 +1779,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:283</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:293</a></div>
                                 </td>
                             </tr>
     
@@ -1793,7 +1844,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:294</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:304</a></div>
                                 </td>
                             </tr>
     
@@ -1858,7 +1909,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:340</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:350</a></div>
                                 </td>
                             </tr>
     
@@ -1923,7 +1974,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:231</a></div>
                                 </td>
                             </tr>
     
@@ -1958,7 +2009,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:223</a></div>
                                 </td>
                             </tr>
     
@@ -1993,7 +2044,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="325" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:325</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:335</a></div>
                                 </td>
                             </tr>
     
@@ -2058,7 +2109,7 @@ messaging regarding the record count being too high</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:311</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:321</a></div>
                                 </td>
                             </tr>
     
@@ -2116,6 +2167,81 @@ messaging regarding the record count being too high</li>
                                 </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="trackPagesArray"></a>
+                            <span class="name"><b><span class="modifier">Public</span> trackPagesArray</b><a href="#trackPagesArray"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>trackPagesArray(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, page: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="475" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:475</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Tracking method for the pagesArray ngFor</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>index</td>
+                                                      <td>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><p>The current index</p>
+    </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>page</td>
+                                                      <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><p>The page object</p>
+    </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string | </code>
     
                                 </div>
                                     <div class="io-description">
@@ -2423,13 +2549,13 @@ messaging regarding the record count being too high</li>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>pagesArray:     <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>pagesArray:     <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >TsPaginationMenuItem[]</a></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                <i>Type : </i>    <code><a href="../interfaces/TsPaginationMenuItem.html" target="_self" >TsPaginationMenuItem[]</a></code>
     
                             </td>
                         </tr>
@@ -2517,6 +2643,29 @@ messaging regarding the record count being too high</li>
     
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="templateContext"></a>
+                            <span class="name"><b><span class="modifier">Public</span> templateContext</b><a href="#templateContext"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>templateContext:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/lib/src/pagination/pagination.component.ts:215</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
     </section>
 </div>
 
@@ -2529,32 +2678,26 @@ messaging regarding the record count being too high</li>
   EventEmitter,
   OnChanges,
   OnInit,
+  TemplateRef,
+  ElementRef,
 } from &#x27;@angular/core&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
-import { TsMenuItem } from &#x27;./../utilities/interfaces&#x27;;
+import { TsPaginationMenuItem } from &#x27;./../utilities/interfaces&#x27;;
 
-
-// TODO: recordCountTooHighMessage should support rich HTML so it can link to filters/help/etc
 
 /**
  * A pagination component
  *
  * #### QA CSS CLASSES
- *
- * - &#x60;qa-pagination&#x60;: Placed on the div element which contains this component
- * - &#x60;qa-pagination-per-page-select&#x60;: Placed on the {@link TsSelectComponent} used for specifying
- * the number of results per page
- * - &#x60;qa-pagination-first-page-button&#x60;: Placed on the {@link TsButtonComponent} used for the &quot;first
- * page&quot; button
- * - &#x60;qa-pagination-previous-page-button&#x60;: Placed on the {@link TsButtonComponent} used for the
- * &quot;previous page&quot; button
- * - &#x60;qa-pagination-current-page-menu&#x60;: Placed on the {@link TsMenuComponent} used for the &quot;current
- * page&quot; menu control - &#x60;qa-pagination-next-page-button&#x60;: Placed on the {@link TsButtonComponent}
- * used for the &quot;next page&quot; button
- * - &#x60;qa-pagination-last-page-button&#x60;: Placed on the {@link TsButtonComponent} used for the &quot;last
- * page&quot; button - &#x60;qa-pagination-message&#x60;: Placed on the div element which will contain any
- * messaging regarding the record count being too high
+ * - &#x60;qa-pagination&#x60;: Placed on the primary container
+ * - &#x60;qa-pagination-per-page-select&#x60;: Placed on the results per page select menu
+ * - &#x60;qa-pagination-first-page-button&#x60;: Placed on the &#x27;first page&#x27; button
+ * - &#x60;qa-pagination-previous-page-button&#x60;: Placed on the &#x27;previous page&#x27; button
+ * - &#x60;qa-pagination-current-page-menu&#x60;: Placed on the &#x27;current page&#x27; menu dropdown
+ * - &#x60;qa-pagination-next-page-button&#x60;: Placed on the &#x27;next page&#x27; button
+ * - &#x60;qa-pagination-last-page-button&#x60;: Placed on the the &#x27;last page&#x27; button
+ * - &#x60;qa-pagination-message&#x60;: Placed on the messaging regarding the record count being too high
  *
  * @example
  * &lt;ts-pagination
@@ -2569,9 +2712,15 @@ import { TsMenuItem } from &#x27;./../utilities/interfaces&#x27;;
  *              previousPageTooltip&#x3D;&quot;View previous results&quot;
  *              nextPageTooltip&#x3D;&quot;View next results&quot;
  *              lastPageTooltip&#x3D;&quot;View last results&quot;
+ *              paginationMessageTemplate&#x3D;&quot;myTemplate
  *              (pageSelect)&#x3D;&quot;myMethod($event)&quot;
  *              (recordsPerPageChange)&#x3D;&quot;myMethod($event)&quot;
  * &gt;&lt;/ts-pagination&gt;
+ *
+ * &lt;ng-template #myTemplate let-message&gt;
+ *   &lt;strong&gt;{{ message }}&lt;/strong&gt;
+ *   &lt;a href&#x3D;&quot;/faq&quot;&gt;Learn more&lt;/a&gt;
+ * &lt;/ng-template&gt;
  *
  * &lt;example-url&gt;https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show&#x3D;preview&lt;/example-url&gt;
  */
@@ -2625,7 +2774,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Store the array of objects that represent pages of collections
    */
-  public pagesArray: TsMenuItem[];
+  public pagesArray: TsPaginationMenuItem[];
 
   /**
    * Store the label for the current page
@@ -2683,6 +2832,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public menuLocation: &#x27;above&#x27; | &#x27;below&#x27; &#x3D; &#x27;above&#x27;;
 
   /**
+   * Allow a custom template to be used for the pagination message
+   */
+  @Input()
+  public paginationMessageTemplate: TemplateRef&lt;ElementRef&gt;;
+
+  /**
    * Define the color theme
    */
   @Input()
@@ -2722,13 +2877,17 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Emit a page selected event
    */
   @Output()
-  public pageSelect &#x3D; new EventEmitter&lt;TsMenuItem&gt;();
+  public pageSelect: EventEmitter&lt;TsPaginationMenuItem&gt; &#x3D; new EventEmitter();
 
   /**
    * Emit a change event when the records per page changes
    */
   @Output()
   public recordsPerPageChange: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
+
+  public templateContext &#x3D; {
+    $implicit: this.recordCountTooHighMessage,
+  }
 
 
   /**
@@ -2764,7 +2923,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Object} page The selected page
    */
-  public currentPageChanged(page: TsMenuItem): void {
+  public currentPageChanged(page: TsPaginationMenuItem): void {
     // Set the current page
     this.currentPage &#x3D; parseInt(page.value, 10);
 
@@ -2784,12 +2943,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  public changePage(destinationPage: number, currentPage: number, pages: TsMenuItem[]): void {
+  public changePage(destinationPage: number, currentPage: number, pages: TsPaginationMenuItem[]): void {
     const destinationIsValid &#x3D; destinationPage &gt; 0 &amp;&amp; destinationPage &lt;&#x3D; pages.length;
     const notAlreadyOnPage &#x3D; destinationPage !&#x3D;&#x3D; currentPage;
 
     if (destinationIsValid &amp;&amp; notAlreadyOnPage) {
-      const foundPage: TsMenuItem &#x3D; pages.find((page) &#x3D;&gt; {
+      const foundPage: TsPaginationMenuItem &#x3D; pages.find((page) &#x3D;&gt; {
         return page.value &#x3D;&#x3D;&#x3D; destinationPage.toString();
       });
 
@@ -2888,14 +3047,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Array} pages The array of all pages
    * @return {String} label The string to use as the current page label
    */
-  createCurrentPageLabel(currentPage: number, pages: TsMenuItem[], totalRecords: number): string {
-    const findPage &#x3D; (allPages: TsMenuItem[], number: number) &#x3D;&gt; {
+  createCurrentPageLabel(
+    currentPage: number,
+    pages: TsPaginationMenuItem[],
+    totalRecords: number,
+  ): string {
+    const findPage &#x3D; (allPages: TsPaginationMenuItem[], number: number) &#x3D;&gt; {
       return pages.find((page: any) &#x3D;&gt; {
         return page.value &#x3D;&#x3D;&#x3D; number.toString();
       });
     };
 
-    let foundPage: TsMenuItem &#x3D; findPage(pages, currentPage);
+    let foundPage: TsPaginationMenuItem &#x3D; findPage(pages, currentPage);
 
     if (!foundPage) {
       foundPage &#x3D; findPage(pages, currentPage - 1);
@@ -2922,8 +3085,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  createPagesArray(total: number, perPage: number): TsMenuItem[] {
-    const paginationArray: TsMenuItem[] &#x3D; [];
+  createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
+    const paginationArray: TsPaginationMenuItem[] &#x3D; [];
     let recordsRemaining &#x3D; total;
     let currentPage &#x3D; 1;
 
@@ -2974,6 +3137,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     return paginationArray;
   }
 
+
+  /**
+   * Tracking method for the pagesArray ngFor
+   *
+   * @param {Number} index The current index
+   * @param {Object} page The page object
+   * @return {String|Undefined} result The value to be used
+   */
+  public trackPagesArray(index: number, page: any): string | undefined {
+    return page ? page.name : undefined;
+  }
+
 }
 </code></pre>
     </div>
@@ -3019,10 +3194,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     &lt;ts-menu
       class&#x3D;&quot;qa-pagination-current-page-menu&quot;
       [theme]&#x3D;&quot;theme&quot;
-      [menuItems]&#x3D;&quot;pagesArray&quot;
+      [menuItemsTemplate]&#x3D;&quot;menuItems&quot;
       [menuPositionY]&#x3D;&quot;menuLocation&quot;
       [isDisabled]&#x3D;&quot;menuIsDisabled(pagesArray?.length)&quot;
-      (selected)&#x3D;&quot;currentPageChanged($event)&quot;
       [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: menuIsDisabled(pagesArray?.length)}&quot;
     &gt;{{ currentPageLabel }}&lt;/ts-menu&gt;
 
@@ -3053,10 +3227,27 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     class&#x3D;&quot;c-pagination__message qa-pagination-message&quot;
     *ngIf&#x3D;&quot;shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)&quot;
   &gt;
-    {{ recordCountTooHighMessage }}
+    &lt;ng-container
+      [ngTemplateOutlet]&#x3D;&quot;paginationMessageTemplate || defaultPaginationMessageTemplate&quot;
+      [ngTemplateOutletContext]&#x3D;&quot;templateContext&quot;
+    &gt;&lt;/ng-container&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
+
+
+&lt;ng-template #menuItems&gt;
+  &lt;ts-button
+    *ngFor&#x3D;&quot;let page of pagesArray; trackBy: trackPagesArray&quot;
+    (clickEvent)&#x3D;&quot;currentPageChanged(page)&quot;
+  &gt;
+    {{ page.name }}
+  &lt;/ts-button&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #defaultPaginationMessageTemplate let-message&gt;
+  {{ message }}
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -3088,8 +3279,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="c-pagination qa-pagination">  <div class="c-pagination__buttons">    <ts-select      class="qa-pagination-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        class="qa-pagination-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        class="qa-pagination-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-pagination-current-page-menu"      [theme]="theme"      [menuItems]="pagesArray"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      (selected)="currentPageChanged($event)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        class="qa-pagination-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        class="qa-pagination-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-pagination__message qa-pagination-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    {{ recordCountTooHighMessage }}  </div></div></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><div class="c-pagination qa-pagination">  <div class="c-pagination__buttons">    <ts-select      class="qa-pagination-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        class="qa-pagination-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        class="qa-pagination-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-pagination-current-page-menu"      [theme]="theme"      [menuItemsTemplate]="menuItems"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        class="qa-pagination-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        class="qa-pagination-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-pagination__message qa-pagination-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    <ng-container      [ngTemplateOutlet]="paginationMessageTemplate || defaultPaginationMessageTemplate"      [ngTemplateOutletContext]="templateContext"    ></ng-container>  </div></div><ng-template #menuItems>  <ts-button    *ngFor="let page of pagesArray; trackBy: trackPagesArray"    (clickEvent)="currentPageChanged(page)"  >    {{ page.name }}  </ts-button></ng-template><ng-template #defaultPaginationMessageTemplate let-message>  {{ message }}</ng-template></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
 </script>

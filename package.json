@@ -17,7 +17,7 @@
   },
   "scripts": {
     "//=> Section: Documentation": "",
-    "predocs": "yarn run markdown:test-links && yarn run docs:toc",
+    "predocs": "yarn run docs:toc",
     "docs": "yarn run docs:ts && yarn run docs:scss",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs/typescript --hideGenerator --toggleMenuItems all --theme stripe",
