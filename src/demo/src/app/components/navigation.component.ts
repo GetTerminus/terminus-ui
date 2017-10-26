@@ -2,64 +2,67 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
+import { of } from 'rxjs/observable/of';
 
 import { TsNavigationItem, TsNavigationPayload } from '@terminus/ui';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
-    name: 'Components',
+    name: '1 Components',
     action: 'navigate',
     destination: ['/components'],
     onlyHidden: false,
   },
   {
-    name: 'Buttons',
+    name: '2 Buttons',
     action: 'navigate',
     destination: ['/components/button'],
     onlyHidden: false,
   },
   {
-    name: 'Menus',
+    name: '3 Menus',
     action: 'navigate',
     destination: ['/components/menu'],
     onlyHidden: false,
   },
   {
-    name: 'Ad Library',
+    name: '4 Ad Library',
     action: 'navigate',
     destination: ['/creatives'],
     onlyHidden: false,
   },
   {
-    name: 'Fake Link',
+    name: '5 Fake Link',
     action: 'navigate',
     destination: ['/settings'],
     onlyHidden: false,
   },
   {
-    name: 'External',
+    name: '6 External',
     action: 'navigate',
     destination: 'https://google.com',
     onlyHidden: false,
   },
   {
-    name: 'Action: Log Out',
+    name: '7 Action: Log Out',
     action: 'log-out',
-    onlyHidden: false,
+    onlyHidden: true,
   },
   {
-    name: 'Fake Link',
+    name: '8 Fake Link',
     action: 'navigate',
     destination: ['/admin'],
     onlyHidden: true,
   },
-  {
-    name: 'Action: Log In As',
-    action: 'log-in-as',
-    onlyHidden: true,
-    isDisabled: true,
-  },
+  /*
+   *{
+   *  name: '9 Action: Log In As',
+   *  action: 'log-in-as',
+   *  onlyHidden: true,
+   *  isDisabled: true,
+   *},
+   */
 ];
 
 
@@ -81,6 +84,16 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
         [welcomeMessage]="myMessage"
         (itemSelected)="triggerAction($event)"
       ></ts-navigation>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
+      <button (click)="updateNav()">Update Nav</button>
     </div>
   `,
 })
@@ -123,4 +136,18 @@ export class NavigationComponent implements OnInit {
 
   }
 
+  updateNav() {
+    console.log('current nav length: ', NAV_ITEMS_MOCK.length);
+    const newNav = NAV_ITEMS_MOCK.slice(0);
+    newNav.unshift({
+      name: 'FOO',
+      action: 'navigate',
+      destination: ['/foo'],
+      onlyHidden: false,
+    });
+    /*
+     *console.log('newNav: ', newNav, newNav.length);
+     */
+    this.navigationItems$ = of(newNav);
+  }
 }
