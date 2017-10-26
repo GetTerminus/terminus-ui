@@ -380,7 +380,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     totalRecords: number,
   ): string {
     const findPage = (allPages: TsPaginationMenuItem[], number: number) => {
-      return pages.find((page: any) => {
+      return pages.find((page: TsPaginationMenuItem) => {
         return page.value === number.toString();
       });
     };
@@ -472,7 +472,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Object} page The page object
    * @return {String|Undefined} result The value to be used
    */
-  public trackPagesArray(index: number, page: any): string | undefined {
+  public trackPagesArray(index: number, page: TsPaginationMenuItem): string | undefined {
     return page ? page.name : undefined;
   }
 
