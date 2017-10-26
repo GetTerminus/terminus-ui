@@ -3,35 +3,39 @@ import {
   Input,
   Output,
   ViewChild,
-  OnInit,
   EventEmitter,
   AfterViewInit,
   ChangeDetectionStrategy,
+  ElementRef,
+  TemplateRef,
+  OnInit,
 } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 import {
   TsMenuPositionTypesX,
   TsMenuPositionTypesY,
   TsStyleThemeTypes,
+  TsMenuTriggerTypes,
 } from './../utilities/types';
-import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
 
 
 /**
  * A presentational component to render a dropdown menu.
  *
  * #### QA CSS CLASSES
- * -`qa-menu`: Placed on the menu element which contains the menu
- * -`qa-menu-item`: Placed on the button element which represents each menu item
- * -`qa-menu-trigger`: Placed on the {@link TsButtonComponent} which displays the menu when clicked
+ * -`qa-menu`: Placed on the wrapper around the menu items
+ * -`qa-menu-trigger`: Placed on the menu trigger
  *
  * @example
  * <ts-menu
- *              menuItems="[{},{},{}]"
+ *              defaultOpened="false"
+ *              isDisabled="false"
+ *              [menuItemsTemplate]="myTemplate"
  *              menuPositionX="20px"
  *              menuPositionY="20px"
- *              isDisabled="false"
+ *              theme="accent"
+ *              triggerType="utility"
  *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
  *
@@ -43,16 +47,33 @@ import { TsMenuItem } from './../utilities/interfaces/menu-item.interface';
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TsMenuComponent implements OnInit, AfterViewInit {
+export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
-   * Define if there is at least one icon
+   * Define the default icon for the trigger button
    */
-  public hasIcons: boolean = false;
+  private TRIGGER_ICON_DEFAULT: 'arrow_drop_down' = 'arrow_drop_down';
+
+  /**
+   * Define the utility icon for the trigger button
+   */
+  private TRIGGER_ICON_UTILITY: 'more_vert' = 'more_vert';
+
+  /**
+   * Return if the current menu is a utility menu
+   */
+  public get isUtilityMenu(): boolean {
+    return this.triggerType === 'utility';
+  }
 
   /**
    * Define if the menu should overlap the trigger
    */
   public shouldOverlapTrigger: boolean = false;
+
+  /**
+   * The icon to be used in the trigger button
+   */
+  public triggerIcon: 'arrow_drop_down' | 'more_vert';
 
   /**
    * @private Provide access to the trigger
@@ -61,10 +82,10 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   trigger: MatMenuTrigger;
 
   /**
-   * @private Define if the menu should be opened by default
+   * Define if the menu should be opened by default
    */
   @Input()
-  defaultOpened: boolean = false;
+  public defaultOpened: boolean = false;
 
   /**
    * Define if the menu should be disabled
@@ -73,10 +94,10 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   public isDisabled: boolean = false;
 
   /**
-   * Accept an array of menu items to display
+   * Allow a custom template for menu items
    */
   @Input()
-  public menuItems: TsMenuItem[];
+  public menuItemsTemplate: TemplateRef<ElementRef>;
 
   /**
    * Define the X menu position
@@ -97,17 +118,21 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   public theme: TsStyleThemeTypes = 'primary';
 
   /**
-   * Output a selection event with the item payload
+   * Define the type of trigger {@link TsMenuTriggerTypes}
+   *
+   * - 'utility' will expose a simple fab trigger: `⋮`
+   * - 'default' will expose a standard {@link TsButtonComponent}
    */
-  @Output()
-  public selected: EventEmitter<TsMenuItem> = new EventEmitter();
+  @Input()
+  public triggerType: TsMenuTriggerTypes = 'default';
 
 
   /**
-   * On initialization check to see if at least 1 icon exists in the menu items
+   * @private Set the triggerIcon based on the triggerType
    */
-  public ngOnInit(): void {
-    this.hasIcons = this.hasAtLeastOneIcon(this.menuItems);
+  ngOnInit(): void {
+    this.triggerIcon = (this.triggerType === 'default') ?
+      this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
   }
 
 
@@ -120,23 +145,4 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-  /**
-   * @private Determine if at least one item has a non-null icon
-   *
-   * @param {Array} items The collection of items to look through
-   * @return {Boolean} hasIcon Value that represents if at least one icon is present
-   */
-  hasAtLeastOneIcon(items: TsMenuItem[]): boolean {
-    if (!items || items.length < 1) {
-      return false;
-    }
-
-    const found: any = items.find((item: TsMenuItem) => {
-      return item.icon ? true : false;
-    });
-
-    return found ? true : false;
-  }
 }
-

@@ -1,5 +1,5 @@
 import { TsPaginationComponent } from './pagination.component';
-import { TsMenuItem } from '../utilities/interfaces';
+import { TsPaginationMenuItem } from '../utilities/interfaces';
 
 
 describe(`PaginationComponent`, () => {
@@ -284,7 +284,7 @@ describe(`PaginationComponent`, () => {
     it(`should return an empty array if there are no records`, () => {
       this.component.ngOnInit();
       const actual = this.component.createPagesArray(0, 10);
-      const expected: TsMenuItem[] = [];
+      const expected: TsPaginationMenuItem[] = [];
 
       expect(actual).toEqual(expected);
     });
@@ -319,6 +319,17 @@ describe(`PaginationComponent`, () => {
 
       expect(array.length).toEqual(expected);
       expect(array[array.length - 1].name).toEqual('1 - 8');
+    });
+
+  });
+
+
+  describe(`trackPagesArray()`, () => {
+
+    it(`should return a tracking property or undefined`, () => {
+      expect(this.component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
+      expect(this.component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
+      expect(this.component.trackPagesArray(3, null)).toBeUndefined();
     });
 
   });

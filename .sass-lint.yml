@@ -101,7 +101,7 @@ rules:
   no-invalid-hex:
     - 1
   no-mergeable-selectors:
-    - 1
+    - 0
   no-misspelled-properties:
     - 2
   no-qualifying-elements:

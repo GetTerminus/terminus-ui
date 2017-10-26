@@ -31,12 +31,17 @@ import { Component } from '@angular/core';
       [showRecordsPerPageSelector]="showSelector"
       [currentPage]="currentPage"
       [menuLocation]="location"
+      [paginationMessageTemplate]="myTemplate"
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
       (nextPageChosen)="next($event)"
       (lastPageChosen)="last($event)"
     ></ts-pagination>
+
+    <ng-template #myTemplate let-message>
+      <a href="components/link">{{ message }}</a>
+    </ng-template>
   `,
 })
 export class PaginationComponent {

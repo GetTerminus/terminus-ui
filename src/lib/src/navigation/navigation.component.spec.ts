@@ -1,3 +1,4 @@
+import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
 import { fakeAsync, tick } from '@angular/core/testing';
 
 import { TsNavigationComponent } from './navigation.component';
@@ -59,7 +60,7 @@ const visibleLinkElementMock = [
 
 const visibleItemsListMock = {
   nativeElement: {
-    offsetWidth: 100,
+    offsetWidth: 180,
   },
 };
 
@@ -67,7 +68,7 @@ const visibleItemsListMock = {
 describe(`TsNavigationComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsNavigationComponent();
+    this.component = new TsNavigationComponent(new ChangeDetectorRefMock());
   });
 
 
@@ -126,16 +127,22 @@ describe(`TsNavigationComponent`, () => {
   });
 
 
-  describe(`@Input('items')`, () => {
+  describe(`set items`, () => {
 
     beforeEach(() => {
+      this.component.setUpInitialArrays = jasmine.createSpy('setUpInitialArrays');
+      this.component.generateBreakWidths = jasmine.createSpy('generateBreakWidths');
+      this.component.updateLists = jasmine.createSpy('updateLists');
       this.component.items = NAV_ITEMS_MOCK;
     });
 
 
-    it(`should filter out any disabled items and save the array to _pristineItems`, () => {
+    it(`should filter out disabled items and save the array to pristineItems`, () => {
       // Expect one item to be filtered out
-      expect(this.component._pristineItems.length).toEqual(3);
+      expect(this.component.pristineItems.length).toEqual(3);
+      expect(this.component.setUpInitialArrays).toHaveBeenCalled();
+      expect(this.component.generateBreakWidths).toHaveBeenCalled();
+      expect(this.component.updateLists).toHaveBeenCalled();
     });
 
   });
@@ -200,25 +207,31 @@ describe(`TsNavigationComponent`, () => {
 
   describe(`updateLists()`, () => {
 
+    // NOTE: For some reason we need to re-declare the visibleItemsList element each time. Using the
+    // mock created very odd issues even when using Object.assign or {...}
+    beforeEach(() => {
+      this.component.visibleItemsList = {
+        nativeElement: {
+          offsetWidth: 180,
+        },
+      };
+      this.component.visibleLinkElement = visibleLinkElementMock;
+      this.component.breakWidths = [50, 150, 350];
+      this.component.items = NAV_ITEMS_MOCK;
+    });
+
+
     describe(`when there is not enough space`, () => {
 
-      beforeEach(() => {
-        this.component.visibleItemsList = visibleItemsListMock;
-        this.component.visibleLinkElement = visibleLinkElementMock;
-        this.component.items = NAV_ITEMS_MOCK;
-        this.component.ngOnInit();
-        this.component.ngAfterViewInit();
-      });
+      it(`should move one item to hiddenItems`, () => {
+        expect(this.component.visibleItemsLength).toEqual(2);
+        expect(this.component.hiddenItemsLength).toEqual(1);
 
-
-      it(`should move an item to hiddenItems`, () => {
-        expect(this.component.visibleItems.getValue().length).toEqual(2);
-        expect(this.component.hiddenItems.getValue().length).toEqual(1);
-
+        this.component.visibleItemsList.nativeElement.offsetWidth = 140;
         this.component.updateLists();
 
-        expect(this.component.visibleItems.getValue().length).toEqual(1);
-        expect(this.component.hiddenItems.getValue().length).toEqual(2);
+        expect(this.component.visibleItemsLength).toEqual(1);
+        expect(this.component.hiddenItemsLength).toEqual(2);
       });
 
     });
@@ -226,26 +239,19 @@ describe(`TsNavigationComponent`, () => {
 
     describe(`when there is enough space`, () => {
 
-      beforeEach(() => {
-        this.component.visibleItemsList = visibleItemsListMock;
-        this.component.visibleLinkElement = visibleLinkElementMock;
-        this.component.items = NAV_ITEMS_MOCK;
-        this.component.ngOnInit();
-        this.component.ngAfterViewInit();
-      });
-
-
       it(`should move an item to visibleItems if there is enough space`, () => {
+        expect(this.component.visibleItemsLength).toEqual(2);
+        expect(this.component.hiddenItemsLength).toEqual(1);
+
+        this.component.visibleItemsList = {
+          nativeElement: {
+            offsetWidth: 380,
+          },
+        };
         this.component.updateLists();
 
-        expect(this.component.visibleItems.getValue().length).toEqual(1);
-        expect(this.component.hiddenItems.getValue().length).toEqual(2);
-
-        this.component.visibleItemsList.nativeElement.offsetWidth = 200;
-        this.component.updateLists();
-
-        expect(this.component.visibleItems.getValue().length).toEqual(2);
-        expect(this.component.hiddenItems.getValue().length).toEqual(1);
+        expect(this.component.visibleItems.getValue().length).toEqual(3);
+        expect(this.component.hiddenItems.getValue().length).toEqual(0);
       });
 
     });

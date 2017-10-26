@@ -110,7 +110,6 @@ export class ButtonComponent {
   formatCollapsable = 'collapsable';
 
 
-
   run(progress: any) {
     console.log('in run!');
     this[progress] = true;

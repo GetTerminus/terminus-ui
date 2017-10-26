@@ -16,6 +16,7 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
+    display: inline-block;
   }
 
   // <div> container for the message about too many records

@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -671,16 +689,14 @@
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-link
   [destination]=&quot;['your/', 'path/']&quot;
-  text=&quot;Click me!&quot;
   color=&quot;accent&quot;
-&gt;&lt;/ts-link&gt;
+&gt;My link&lt;/ts-link&gt;
 
 &lt;ts-link
   destination=&quot;http://google.com&quot;
   [isExternal]=&quot;true&quot;
-  text=&quot;Click me too!&quot;
   color=&quot;warn&quot;
-&gt;&lt;/ts-link&gt;
+&gt;My link&lt;/ts-link&gt;
 
 &lt;example-url&gt;https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=preview&lt;/example-url&gt;</code></pre>
                 </div>
@@ -696,6 +712,10 @@
                 <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
 
 
 
@@ -760,9 +780,6 @@
                             <li>
                                 <a href="#isExternal">isExternal</a>
                             </li>
-                            <li>
-                                <a href="#text">text</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -818,29 +835,6 @@
                             <tr>
                                 <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/link/link.component.ts:55</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="text"></a>
-                            <code>text</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the link text content</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/link/link.component.ts:61</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -906,6 +900,7 @@
   Input,
   Output,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 
 
@@ -920,16 +915,14 @@
  * @example
  * &lt;ts-link
  *              [destination]&#x3D;&quot;[&#x27;your/&#x27;, &#x27;path/&#x27;]&quot;
- *              text&#x3D;&quot;Click me!&quot;
  *              color&#x3D;&quot;accent&quot;
- * &gt;&lt;/ts-link&gt;
+ * &gt;My link&lt;/ts-link&gt;
  *
  * &lt;ts-link
  *              destination&#x3D;&quot;http://google.com&quot;
  *              [isExternal]&#x3D;&quot;true&quot;
- *              text&#x3D;&quot;Click me too!&quot;
  *              color&#x3D;&quot;warn&quot;
- * &gt;&lt;/ts-link&gt;
+ * &gt;My link&lt;/ts-link&gt;
  *
  * &lt;example-url&gt;https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show&#x3D;preview&lt;/example-url&gt;
  */
@@ -938,6 +931,7 @@
   templateUrl: &#x27;./link.component.html&#x27;,
   styleUrls: [&#x27;./link.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsLinkComponent {
   /**
@@ -956,12 +950,6 @@ export class TsLinkComponent {
    */
   @Input()
   public isExternal: boolean &#x3D; false;
-
-  /**
-   * Define the link text content
-   */
-  @Input()
-  public text: string;
 }
 </code></pre>
     </div>
@@ -972,7 +960,7 @@ export class TsLinkComponent {
   [routerLink]&#x3D;&quot;destination&quot;
   *ngIf&#x3D;&quot;!isExternal&quot;
 &gt;
-  {{ text }}
+  &lt;ng-template *ngTemplateOutlet&#x3D;&quot;contentTemplate&quot;&gt;&lt;/ng-template&gt;
 &lt;/a&gt;
 
 &lt;a
@@ -981,12 +969,17 @@ export class TsLinkComponent {
   target&#x3D;&quot;_blank&quot;
   *ngIf&#x3D;&quot;isExternal&quot;
 &gt;
-  {{ text }}
+  &lt;ng-template *ngTemplateOutlet&#x3D;&quot;contentTemplate&quot;&gt;&lt;/ng-template&gt;
 
   &lt;mat-icon *ngIf&#x3D;&quot;isExternal&quot;&gt;
     open_in_new
   &lt;/mat-icon&gt;
 &lt;/a&gt;
+
+
+&lt;ng-template #contentTemplate&gt;
+  &lt;ng-content&gt;&lt;/ng-content&gt;
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -1018,8 +1011,8 @@ export class TsLinkComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link qa-link qa-link-internal"  [routerLink]="destination"  *ngIf="!isExternal">  {{ text }}</a><a  class="c-link c-link qa-link qa-link-external"  [href]="destination"  target="_blank"  *ngIf="isExternal">  {{ text }}  <mat-icon *ngIf="isExternal">    open_in_new  </mat-icon></a></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link qa-link qa-link-internal"  [routerLink]="destination"  *ngIf="!isExternal">  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template></a><a  class="c-link c-link qa-link qa-link-external"  [href]="destination"  target="_blank"  *ngIf="isExternal">  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>  <mat-icon *ngIf="isExternal">    open_in_new  </mat-icon></a><ng-template #contentTemplate>  <ng-content></ng-content></ng-template></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLinkComponent'};
 </script>

@@ -1,3 +1,6 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+
 :host {
   display: inline-block;
 }
@@ -6,15 +9,17 @@
 // @component
 //  Search form
 // @description
-//  A component to display validation messages for form inputs.
+//  A search form with an input and a button
 //
 // <form> primary container
 .c-search {
   // Top level styles should be nested here
-  &#{&} {
+  /*
+   *&#{&} {
+   *}
+   */
 
-    &--disabled {
-      pointer-events: none;
-    }
+  ts-input {
+    margin-right: spacing;
   }
 }

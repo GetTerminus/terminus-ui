@@ -1,65 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
+import { of } from 'rxjs/observable/of';
 
 import { TsNavigationItem, TsNavigationPayload } from '@terminus/ui';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
-    name: 'Components',
+    name: '1 Components',
     action: 'navigate',
     destination: ['/components'],
     onlyHidden: false,
   },
   {
-    name: 'Buttons',
+    name: '2 Buttons',
     action: 'navigate',
     destination: ['/components/button'],
     onlyHidden: false,
   },
   {
-    name: 'Menus',
+    name: '3 Menus',
     action: 'navigate',
     destination: ['/components/menu'],
     onlyHidden: false,
   },
   {
-    name: 'Ad Library',
+    name: '4 Ad Library',
     action: 'navigate',
     destination: ['/creatives'],
     onlyHidden: false,
   },
   {
-    name: 'Fake Link',
+    name: '5 Fake Link',
     action: 'navigate',
     destination: ['/settings'],
     onlyHidden: false,
   },
   {
-    name: 'External',
+    name: '6 External',
     action: 'navigate',
     destination: 'https://google.com',
     onlyHidden: false,
   },
   {
-    name: 'Action: Log Out',
+    name: '7 Action: Log Out',
     action: 'log-out',
-    onlyHidden: false,
+    onlyHidden: true,
   },
   {
-    name: 'Fake Link',
+    name: '8 Fake Link',
     action: 'navigate',
     destination: ['/admin'],
     onlyHidden: true,
   },
-  {
-    name: 'Action: Log In As',
-    action: 'log-in-as',
-    onlyHidden: true,
-    isDisabled: true,
-  },
+  /*
+   *{
+   *  name: '9 Action: Log In As',
+   *  action: 'log-in-as',
+   *  onlyHidden: true,
+   *  isDisabled: true,
+   *},
+   */
 ];
 
 
@@ -82,27 +85,28 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
         (itemSelected)="triggerAction($event)"
       ></ts-navigation>
     </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
+      <button (click)="updateNav()">Update Nav</button>
+    </div>
   `,
 })
-export class NavigationComponent implements OnInit {
-  public currentUser$: Observable<any> = Observable.from([{
+export class NavigationComponent {
+  public currentUser$: Observable<any> = of({
     id: 1,
     email: 'max@roadwarrior.com',
     firstname: 'Max',
     lastname: 'Rockatansky',
     fullName: 'Max Rockatansky',
-  }]);
-  public navigationItems$: Observable<any> = Observable.from([NAV_ITEMS_MOCK]);
+  });
+  public navigationItems$: Observable<any> = of(NAV_ITEMS_MOCK);
   public myMessage = 'Hello dear';
-
-
-  ngOnInit(): void {
-    /*
-     *this.currentUser$.subscribe((v: any) => {
-     *  console.log('currentUser$: ', v);
-     *})
-     */
-  }
 
 
   /**
@@ -123,4 +127,14 @@ export class NavigationComponent implements OnInit {
 
   }
 
+  updateNav() {
+    const newNav = NAV_ITEMS_MOCK.slice(0);
+    newNav.unshift({
+      name: '0 Foo',
+      action: 'navigate',
+      destination: ['/foo'],
+      onlyHidden: false,
+    });
+    this.navigationItems$ = of(newNav);
+  }
 }

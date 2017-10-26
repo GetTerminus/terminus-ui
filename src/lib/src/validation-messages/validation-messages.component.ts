@@ -16,6 +16,7 @@ import { ValidationService } from './../services/validation/validation.service';
  * @example
  * <ts-validation-messages
  *              [control]="myForm.get('controlName')"
+ *              validateOnChange="true"
  * ></ts-validation-messages>
  */
 @Component({
@@ -30,6 +31,12 @@ export class TsValidationMessagesComponent {
   @Input()
   public control: FormControl;
 
+  /**
+   * Define if validation should occur on blur or immediately
+   */
+  @Input()
+  public validateOnChange: boolean = false;
+
 
   constructor(
     private validationService: ValidationService,
@@ -42,10 +49,9 @@ export class TsValidationMessagesComponent {
    * @return {String|Null} errorMessage The error message or null if no error
    */
   public get validationMessage(): string | null {
-    // tslint:disable-next-line
     for (const propertyName in this.control.errors) {
-
-      if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched) {
+      // Only show after 'touched' if we are NOT validating on every change
+      if (this.validateOnChange || (!this.validateOnChange && this.control.touched)) {
         const errors = this.control.errors[propertyName];
 
         return this.validationService.getValidatorErrorMessage(propertyName, errors);

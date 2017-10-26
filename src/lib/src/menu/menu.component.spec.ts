@@ -11,46 +11,41 @@ import { TsMenuComponent } from './menu.component';
 
 describe(`TsMenuComponent`, () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatMenuModule,
-      ],
-      declarations: [
-        TsMenuComponent,
-      ],
-    })
-      .overrideComponent(TsMenuComponent, {
-        set: {
-          template: '',
-          templateUrl: null,
-        }
-      })
-      .compileComponents()
-      .then(() => {
-        this.fixture = TestBed.createComponent(TsMenuComponent);
-        this.component = this.fixture.componentInstance;
-      })
-    ;
-  }));
+  beforeEach(() => {
+    this.component = new TsMenuComponent();
+  });
 
 
   it(`should exist`, () => {
-    this.fixture.detectChanges();
-
     expect(this.component).toBeTruthy();
+  });
+
+
+  describe(`isUtilityMenu()`, () => {
+
+    it(`should return true if the menu is a utility menu`, () => {
+      this.component.triggerType = 'utility';
+      expect(this.component.isUtilityMenu).toEqual(true);
+
+      this.component.triggerType = 'default';
+      expect(this.component.isUtilityMenu).toEqual(false);
+    });
+
   });
 
 
   describe(`ngOnInit()`, () => {
 
-    it(`should set the hasIcons flag`, () => {
-      this.component.hasAtLeastOneIcon = jasmine.createSpy('hasAtLeastOneIcon');
-      this.fixture.detectChanges();
+    it(`should set the correct trigger icon`, () => {
+      this.component.triggerType = 'default';
+      this.component.ngOnInit();
 
-      expect(this.component.hasAtLeastOneIcon).toHaveBeenCalled();
+      expect(this.component.triggerIcon).toEqual(this.component.TRIGGER_ICON_DEFAULT);
+
+      this.component.triggerType = 'utility';
+      this.component.ngOnInit();
+
+      expect(this.component.triggerIcon).toEqual(this.component.TRIGGER_ICON_UTILITY);
     });
 
   });
@@ -62,7 +57,7 @@ describe(`TsMenuComponent`, () => {
       this.component.trigger = {
         openMenu: jasmine.createSpy('openMenu'),
       };
-      this.fixture.detectChanges();
+      this.component.ngAfterViewInit();
 
       expect(this.component.trigger.openMenu).not.toHaveBeenCalled();
     });
@@ -73,49 +68,11 @@ describe(`TsMenuComponent`, () => {
       this.component.trigger = {
         openMenu: jasmine.createSpy('openMenu'),
       };
-      this.fixture.detectChanges();
+      this.component.ngAfterViewInit();
 
       expect(this.component.trigger.openMenu).toHaveBeenCalled();
     });
 
   });
 
-
-  describe(`hasAtLeastOneIcon()`, () => {
-
-    it(`should return TRUE if any array item has a value for 'icon'`, () => {
-      this.fixture.detectChanges();
-      const arrayMock = [
-        {
-          name: 'a',
-          icon: 'a',
-        },
-        {
-          name: 'b',
-          icon: null,
-        },
-        {
-          name: 'c',
-          icon: 'c',
-        },
-      ];
-
-      expect(this.component.hasAtLeastOneIcon(arrayMock)).toEqual(true);
-    });
-
-
-    it(`should return FALSE if no array items have a value for 'icon'`, () => {
-      this.fixture.detectChanges();
-      const arrayMock = [
-        {
-          name: 'foo',
-        },
-      ];
-      expect(this.component.hasAtLeastOneIcon(arrayMock)).toEqual(false);
-    });
-
-  });
-
-
 });
-

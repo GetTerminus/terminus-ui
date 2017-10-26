@@ -20,3 +20,11 @@ $ts-default-warn:    mat-palette($ts-material-warn, 500, 100, 700);
 $ts-app-theme: mat-light-theme($ts-default-primary, $ts-default-accent, $ts-default-warn);
 
 @include angular-material-theme($ts-app-theme);
+
+
+router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 1rem;
+}

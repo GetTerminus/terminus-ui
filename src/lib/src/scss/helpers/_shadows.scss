@@ -1,0 +1,327 @@
+/**
+ * Box Shadow values from Material Shadow Interpolator
+ *
+ * - Existing library reference: http://bnj.bz/0F3o3Y1e1D3f
+ * - Angular Material design notes here: http://bnj.bz/0b0Q1z3t3m38
+ * - Reference CodePen: http://bnj.bz/1y311u0L083m
+ */
+
+
+/**
+ * Shadow colors.
+ * http://codepen.io/shyndman/pen/ojxmdY
+ *
+ * - UMBRA: "A conical shadow excluding all light from a given source; _specifically_: the conical
+ * part of the shadow of a celestial body excluding all light from the primary source"
+ * - PENUMBRA: "A space of partial illumination (as in an eclipse) between the perfect shadow on all
+ * sides and the full light"
+ *
+ * @nuclide Shadow-Colors
+ * @section Config > Shadows
+ */
+$key-umbra: rgba(0, 0, 0, .2);
+$key-penumbra: rgba(0, 0, 0, .14);
+$ambient: rgba(0, 0, 0, .12);
+
+
+/**
+ * Hand-designed reference shadow sets
+ *
+ * Source: http://codepen.io/shyndman/pen/ojxmdY
+ *
+ * @nuclide Shadow-Sets
+ * @section Config > Shadows
+ */
+$reference-shadows: (
+  (elevation: 0,
+    shadows: (
+      (0, 0, 0, 0, $key-umbra),
+      (0, 0, 0, 0, $key-penumbra),
+      (0, 0, 0, 0, $ambient),
+    )
+  ),
+  (elevation: 2,
+    shadows: (
+      (0, 3, 1, -2, $key-umbra),
+      (0, 2, 2, 0, $key-penumbra),
+      (0, 1, 5, 0, $ambient),
+    )
+  ),
+  (elevation: 3,
+    shadows: (
+      (0, 3, 3, -2, $key-umbra),
+      (0, 3, 4, 0, $key-penumbra),
+      (0, 1, 8, 0, $ambient),
+    )
+  ),
+  (elevation: 4,
+    shadows: (
+      (0, 2, 4, -1, $key-umbra),
+      (0, 4, 5, 0, $key-penumbra),
+      (0, 1, 10, 0, $ambient),
+    )
+  ),
+  (elevation: 6,
+    shadows: (
+      (0, 3, 5, -1, $key-umbra),
+      (0, 6, 10, 0, $key-penumbra),
+      (0, 1, 18, 0, $ambient),
+    )
+  ),
+  (elevation: 8,
+    shadows: (
+      (0, 5, 5, -3, $key-umbra),
+      (0, 8, 10, 1, $key-penumbra),
+      (0, 3, 14, 2, $ambient),
+    )
+  ),
+  (elevation: 16,
+    shadows: (
+      (0, 8, 10, -5, $key-umbra),
+      (0, 16, 24, 2, $key-penumbra),
+      (0, 6, 30, 5, $ambient),
+    )
+  )
+);
+
+
+/**
+ * Animation durations
+ *
+ * @nuclide Shadow-Animation-Durations
+ * @section Config > Shadows
+ */
+$min-animation-length: 250ms;
+$max-animation-length: 400ms;
+
+
+/**
+ * Material Design element elevations
+ *
+ * Source: http://bnj.bz/150D1u0J3u0r
+ *
+ * @nuclide Shadow-Elements-Map
+ * @section Config > Shadows
+ */
+$material-elements: (
+  dialog: (24),
+  picker: (24),
+  nav-drawer: (16),
+  right-drawer: 16,
+  bottom-sheet: 16,
+  fab: 6 12 active,
+  sub-menu-3: 11,
+  sub-menu-2: 10,
+  sub-menu-1: 9,
+  menu: 8,
+  bottom-nav-bar: 8,
+  card: 2 8 hover,
+  raised-button: 2 8 active,
+  snackbar: 6,
+  app-bar: 4,
+  refresh-indicator: 3,
+  quick-entry: 2 3 active,
+  search-bar: 2 3 active,
+  switch: 1
+);
+
+
+/**
+ * Returns the two reference shadows whose elevations bound the specified elevation
+ *
+ * In the case where the supplied elevation exceeds the maximum reference elevation, the last two
+ * reference shadows are returned.
+ *
+ * @mixin find-bounding-shadow-sets
+ * @section Shadow-Functions
+ * @param $elevation
+ *  The elevation
+ * @example
+ *  $foo = find-bounding-shadow-sets();
+ */
+@function find-bounding-shadow-sets($elevation) {
+  @if $elevation < 0 {
+    @warn 'Elevation is less than zero';
+  }
+
+  @for $i from 1 to length($reference-shadows) {
+    $lower: nth($reference-shadows, $i);
+    $upper: nth($reference-shadows, $i + 1);
+    @if (map-get($lower, 'elevation') <= $elevation) and (map-get($upper, 'elevation') > $elevation) {
+      @return ($lower, $upper);
+    }
+  }
+
+  $lower: nth($reference-shadows, length($reference-shadows) - 1);
+  $upper: nth($reference-shadows, length($reference-shadows));
+
+  @return ($lower, $upper);
+}
+
+
+/**
+ * Performs linear interpolation between values a and b
+ *
+ * Returns the value between a and b proportional to x (when x is between 0 and 1. When x is outside
+ * this range, the return value is a linear extrapolation)
+ *
+ * @mixin lerp
+ * @section Shadow-Functions
+ * @param $x
+ *  The proportional control
+ * @param $a
+ *  The starting value
+ * @param $b
+ *  The ending value
+ * @example
+ *  $foo = lerp(.2, 3, 6);
+ */
+@function lerp($x, $a, $b) {
+  @return $a + $x * ($b - $a);
+}
+
+
+/**
+ * Performs linear interpolation between shadows by interpolating each property individually
+ *
+ * Returns the value between shadow1 and shadow2 proportional to x (when x is between 0 and 1. When
+ * x is outside this range, the return value is a linear extrapolation).
+ *
+ * @mixin lerp-shadow
+ * @section Shadow-Functions
+ * @param $x
+ *  The proportional control
+ * @param $shadow1
+ *  The starting shadow
+ * @param $shadow2
+ *  The ending shadow
+ * @example
+ *  $foo = calculate-shadow-set-at-depth(2);
+ */
+@function lerp-shadow($x, $shadow1, $shadow2) {
+  // Round all parameters, as shadow definitions do not support subpixels
+  // NOTE: Zero unit needed to coerce to a PX value
+  // sass-lint:disable zero-unit
+  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + 0px;
+  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + 0px;
+  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + 0px;
+  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + 0px;
+  // sass-lint:enable zero-unit
+  // No need to lerp the shadow color
+  $new-color: nth($shadow1, 5);
+
+  @return ($new-x $new-y $new-blur $new-spread $new-color);
+}
+
+
+/**
+ * Calculates the set of shadows at a given elevation
+ *
+ * @mixin calculate-shadow-set-at-depth
+ * @section Shadow-Functions
+ * @param $elevation
+ *  The desired elevation
+ * @example
+ *  $foo = calculate-shadow-set-at-depth(2);
+ */
+@function calculate-shadow-set-at-depth($elevation) {
+  $bounds: find-bounding-shadow-sets($elevation);
+  $min: nth($bounds, 1);
+  $max: nth($bounds, 2);
+  $x: ($elevation - map-get($min, 'elevation')) / (map-get($max, 'elevation') - map-get($min, 'elevation'));
+  $elevation-shadows: ();
+
+  @for $i from 1 to length(map-get($min, 'shadows')) + 1 {
+    $new-shadow: lerp-shadow($x, nth(map-get($min, 'shadows'), $i), nth(map-get($max, 'shadows'), $i));
+    $elevation-shadows: append($elevation-shadows, $new-shadow, comma);
+  }
+
+  @return $elevation-shadows;
+}
+
+
+
+/**
+ * Generates the transition for a change between 2 elevations
+ *
+ * The larger the elevation change the longer the animation takes
+ *
+ * @mixin elevation-transition
+ * @section Shadow-Mixins
+ * @param $elevation-change
+ *  The elevation change amount
+ * @param $easing
+ *  The easing function or name
+ * @example
+ *  @include elevation-transition(dialog);
+ */
+@mixin elevation-transition($elevation-change: 6, $easing: cubic-bezier(.4, 0, .2, 1)) {
+  $duration: lerp($elevation-change / 24, $min-animation-length, $max-animation-length);
+
+  transition: box-shadow $duration $easing;
+}
+
+
+/**
+ * Generates box-shadow and the transition for a given elevation
+ *
+ * - A single elevation will generate a single box-shadow set
+ * - Two elevations and a state will generate a default box-shadow set and another set that is
+ * activated by the state tested with :hover and :active
+ *
+ * @mixin elevation
+ * @section Shadow-Mixins
+ * @param $elevation1
+ *  The starting elevation
+ * @param $elevation2
+ *  The destination elevation
+ * @param $state
+ *  hover, focus, active
+ * @example
+ *  @include elevation(2, 8, active);
+ */
+@mixin elevation($elevation1, $elevation2: null, $state: null) {
+  @if $elevation1 == 0 {
+    // sass-lint:disable no-important
+    box-shadow: none !important;
+    // sass-lint:enable no-important
+  } @else {
+    box-shadow: calculate-shadow-set-at-depth($elevation1);
+  }
+
+  @if $elevation2 != null {
+    @include elevation-transition($elevation2 -$elevation2);
+
+    &:#{$state} {
+      @if $elevation1 == 0 {
+        // sass-lint:disable no-important
+        box-shadow: none !important;
+        // sass-lint:enable no-important
+      } @else {
+        box-shadow: calculate-shadow-set-at-depth($elevation2);
+      }
+    }
+  }
+}
+
+
+/**
+ * Returns box-shadow and transition properties for specific elements. See $material-elements.
+ *
+ * @mixin elevation-element
+ * @section Shadow-Mixins
+ * @param $element-name
+ *  The element to add a shadow to
+ * @example
+ *  @include elevation-element(dialog);
+ */
+@mixin elevation-element($element-name) {
+  $attr: map-get($material-elements, $element-name);
+
+  @if length($attr) == 1 {
+    @include elevation(nth($attr, 1));
+  } @else {
+    @include elevation(nth($attr, 1), nth($attr, 2), nth($attr, 3));
+  }
+}
+

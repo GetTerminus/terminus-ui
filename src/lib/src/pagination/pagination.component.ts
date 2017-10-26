@@ -5,32 +5,26 @@ import {
   EventEmitter,
   OnChanges,
   OnInit,
+  TemplateRef,
+  ElementRef,
 } from '@angular/core';
 
 import { TsStyleThemeTypes } from './../utilities/types';
-import { TsMenuItem } from './../utilities/interfaces';
+import { TsPaginationMenuItem } from './../utilities/interfaces';
 
-
-// TODO: recordCountTooHighMessage should support rich HTML so it can link to filters/help/etc
 
 /**
  * A pagination component
  *
  * #### QA CSS CLASSES
- *
- * - `qa-pagination`: Placed on the div element which contains this component
- * - `qa-pagination-per-page-select`: Placed on the {@link TsSelectComponent} used for specifying
- * the number of results per page
- * - `qa-pagination-first-page-button`: Placed on the {@link TsButtonComponent} used for the "first
- * page" button
- * - `qa-pagination-previous-page-button`: Placed on the {@link TsButtonComponent} used for the
- * "previous page" button
- * - `qa-pagination-current-page-menu`: Placed on the {@link TsMenuComponent} used for the "current
- * page" menu control - `qa-pagination-next-page-button`: Placed on the {@link TsButtonComponent}
- * used for the "next page" button
- * - `qa-pagination-last-page-button`: Placed on the {@link TsButtonComponent} used for the "last
- * page" button - `qa-pagination-message`: Placed on the div element which will contain any
- * messaging regarding the record count being too high
+ * - `qa-pagination`: Placed on the primary container
+ * - `qa-pagination-per-page-select`: Placed on the results per page select menu
+ * - `qa-pagination-first-page-button`: Placed on the 'first page' button
+ * - `qa-pagination-previous-page-button`: Placed on the 'previous page' button
+ * - `qa-pagination-current-page-menu`: Placed on the 'current page' menu dropdown
+ * - `qa-pagination-next-page-button`: Placed on the 'next page' button
+ * - `qa-pagination-last-page-button`: Placed on the the 'last page' button
+ * - `qa-pagination-message`: Placed on the messaging regarding the record count being too high
  *
  * @example
  * <ts-pagination
@@ -45,9 +39,15 @@ import { TsMenuItem } from './../utilities/interfaces';
  *              previousPageTooltip="View previous results"
  *              nextPageTooltip="View next results"
  *              lastPageTooltip="View last results"
+ *              paginationMessageTemplate="myTemplate
  *              (pageSelect)="myMethod($event)"
  *              (recordsPerPageChange)="myMethod($event)"
  * ></ts-pagination>
+ *
+ * <ng-template #myTemplate let-message>
+ *   <strong>{{ message }}</strong>
+ *   <a href="/faq">Learn more</a>
+ * </ng-template>
  *
  * <example-url>https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show=preview</example-url>
  */
@@ -101,7 +101,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Store the array of objects that represent pages of collections
    */
-  public pagesArray: TsMenuItem[];
+  public pagesArray: TsPaginationMenuItem[];
 
   /**
    * Store the label for the current page
@@ -159,6 +159,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public menuLocation: 'above' | 'below' = 'above';
 
   /**
+   * Allow a custom template to be used for the pagination message
+   */
+  @Input()
+  public paginationMessageTemplate: TemplateRef<ElementRef>;
+
+  /**
    * Define the color theme
    */
   @Input()
@@ -198,13 +204,17 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Emit a page selected event
    */
   @Output()
-  public pageSelect = new EventEmitter<TsMenuItem>();
+  public pageSelect: EventEmitter<TsPaginationMenuItem> = new EventEmitter();
 
   /**
    * Emit a change event when the records per page changes
    */
   @Output()
   public recordsPerPageChange: EventEmitter<number> = new EventEmitter();
+
+  public templateContext = {
+    $implicit: this.recordCountTooHighMessage,
+  }
 
 
   /**
@@ -240,7 +250,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param {Object} page The selected page
    */
-  public currentPageChanged(page: TsMenuItem): void {
+  public currentPageChanged(page: TsPaginationMenuItem): void {
     // Set the current page
     this.currentPage = parseInt(page.value, 10);
 
@@ -260,12 +270,12 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  public changePage(destinationPage: number, currentPage: number, pages: TsMenuItem[]): void {
+  public changePage(destinationPage: number, currentPage: number, pages: TsPaginationMenuItem[]): void {
     const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: TsMenuItem = pages.find((page) => {
+      const foundPage: TsPaginationMenuItem = pages.find((page) => {
         return page.value === destinationPage.toString();
       });
 
@@ -364,14 +374,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Array} pages The array of all pages
    * @return {String} label The string to use as the current page label
    */
-  createCurrentPageLabel(currentPage: number, pages: TsMenuItem[], totalRecords: number): string {
-    const findPage = (allPages: TsMenuItem[], number: number) => {
+  createCurrentPageLabel(
+    currentPage: number,
+    pages: TsPaginationMenuItem[],
+    totalRecords: number,
+  ): string {
+    const findPage = (allPages: TsPaginationMenuItem[], number: number) => {
       return pages.find((page: any) => {
         return page.value === number.toString();
       });
     };
 
-    let foundPage: TsMenuItem = findPage(pages, currentPage);
+    let foundPage: TsPaginationMenuItem = findPage(pages, currentPage);
 
     if (!foundPage) {
       foundPage = findPage(pages, currentPage - 1);
@@ -398,8 +412,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  createPagesArray(total: number, perPage: number): TsMenuItem[] {
-    const paginationArray: TsMenuItem[] = [];
+  createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
+    const paginationArray: TsPaginationMenuItem[] = [];
     let recordsRemaining = total;
     let currentPage = 1;
 
@@ -448,6 +462,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     }
 
     return paginationArray;
+  }
+
+
+  /**
+   * Tracking method for the pagesArray ngFor
+   *
+   * @param {Number} index The current index
+   * @param {Object} page The page object
+   * @return {String|Undefined} result The value to be used
+   */
+  public trackPagesArray(index: number, page: any): string | undefined {
+    return page ? page.name : undefined;
   }
 
 }
