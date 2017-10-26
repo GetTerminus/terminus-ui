@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -675,15 +693,18 @@
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;t-search
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-search
+  autoSubmit=&quot;true
   initialValue=&quot;My starting value&quot;
   inputLabel=&quot;Search for a tactic&quot;
   inputHint=&quot;Enter at least 17 characters&quot;
   isSubmitting=&quot;false&quot;
   theme=&quot;primary&quot;
   userCanClear=&quot;true&quot;
+  (changed)=&quot;doSomething($event)&quot;
   (submitted)=&quot;doSomething($event)&quot;
-&gt;&lt;/t-search&gt;
+  (cleared)=&quot;doSomething()&quot;
+&gt;&lt;/ts-search&gt;
 
 &lt;example-url&gt;https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=preview&lt;/example-url&gt;</code></pre>
                 </div>
@@ -746,10 +767,25 @@
                                 <span class="modifier">Public</span> <a href="#buttonType">buttonType</a>
                             </li>
                             <li>
+                                <span class="modifier">Public</span> <a href="#currentQuery">currentQuery</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#debouncedEmit">debouncedEmit</a>
+                            </li>
+                            <li>
                                 <span class="modifier">Public</span> <a href="#icon">icon</a>
                             </li>
                             <li>
+                                <span class="modifier">Private</span> <a href="#INPUT_DEBOUNCE_TIME">INPUT_DEBOUNCE_TIME</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#inputPatternRegex">inputPatternRegex</a>
+                            </li>
+                            <li>
                                 <span class="modifier">Public</span> <a href="#query">query</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#queryMinLength">queryMinLength</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#searchForm">searchForm</a>
@@ -766,6 +802,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                 <a href="#emitSubmit">emitSubmit</a>
+                            </li>
+                            <li>
+                                 <a href="#keyup">keyup</a>
+                            </li>
+                            <li>
                                 <span class="modifier">Public</span> <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
@@ -780,6 +822,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#autoSubmit">autoSubmit</a>
+                            </li>
+                            <li>
                                 <a href="#initialValue">initialValue</a>
                             </li>
                             <li>
@@ -787,6 +832,9 @@
                             </li>
                             <li>
                                 <a href="#inputLabel">inputLabel</a>
+                            </li>
+                            <li>
+                                <a href="#isDisabled">isDisabled</a>
                             </li>
                             <li>
                                 <a href="#isSubmitting">isSubmitting</a>
@@ -809,6 +857,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#changed">changed</a>
+                            </li>
+                            <li>
+                                <a href="#cleared">cleared</a>
+                            </li>
+                            <li>
                                 <a href="#submitted">submitted</a>
                             </li>
                         </ul>
@@ -829,7 +883,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/lib/src/search/search.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/lib/src/search/search.component.ts:179</a></div>
                                 </td>
                             </tr>
     
@@ -871,6 +925,32 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
+                            <a name="autoSubmit"></a>
+                            <code>autoSubmit</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the input should automatically submit values as typed</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/search/search.component.ts:119</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
                             <a name="initialValue"></a>
                             <code>initialValue</code>
                         </td>
@@ -885,7 +965,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/search/search.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/lib/src/search/search.component.ts:125</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -911,7 +991,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/src/search/search.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/src/search/search.component.ts:131</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -937,7 +1017,33 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/search/search.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/search/search.component.ts:137</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="isDisabled"></a>
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the search should be disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/lib/src/search/search.component.ts:143</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -963,7 +1069,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/search/search.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/lib/src/search/search.component.ts:149</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -989,7 +1095,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/src/search/search.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/lib/src/search/search.component.ts:155</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1015,7 +1121,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/lib/src/search/search.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/lib/src/search/search.component.ts:161</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1028,19 +1134,61 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
+                            <a name="changed"></a>
+                            <code>changed</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>The event to emit when the internal input value is changed</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/lib/src/search/search.component.ts:173</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="cleared"></a>
+                            <code>cleared</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>The event to emit when the internal input value is cleared</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/lib/src/search/search.component.ts:179</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
                             <a name="submitted"></a>
                             <code>submitted</code>
                         </td>
                         <td class="col-md-10">
                             <div><p>The event to emit when the form is submitted</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
+                            <em><code>$event</code> type:</em>    <code><a href="../interfaces/TsSearchResponse.html" target="_self" >EventEmitter&lt;TsSearchResponse&gt;</a></code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/lib/src/search/search.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/lib/src/search/search.component.ts:167</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1054,6 +1202,75 @@
             <h3 id="methods">
                 Methods
             </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="emitSubmit"></a>
+                            <span class="name"><b> emitSubmit</b><a href="#emitSubmit"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>emitSubmit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/lib/src/search/search.component.ts:207</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Emit the submitted event</p>
+    <p>NOTE: This wrapper is needed so that we can pass a value to the emitter</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="keyup"></a>
+                            <span class="name"><b> keyup</b><a href="#keyup"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>keyup()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/lib/src/search/search.component.ts:217</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Fire events as needed after keyup events</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1072,7 +1289,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/search/search.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/lib/src/search/search.component.ts:192</a></div>
                                 </td>
                             </tr>
     
@@ -1123,7 +1340,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/search/search.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/src/search/search.component.ts:63</a></div>
                                 </td>
                             </tr>
     
@@ -1163,13 +1380,77 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/search/search.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/search/search.component.ts:68</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Define the button type</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="currentQuery"></a>
+                            <span class="name"><b><span class="modifier">Public</span> currentQuery</b><a href="#currentQuery"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>currentQuery:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/search/search.component.ts:73</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define a helper to return the current query string</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="debouncedEmit"></a>
+                            <span class="name"><b><span class="modifier">Public</span> debouncedEmit</b><a href="#debouncedEmit"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>debouncedEmit:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/search/search.component.ts:80</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define a debounced method to emit the submission event</p>
     </div>
                         </td>
                     </tr>
@@ -1203,13 +1484,93 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/search/search.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/search/search.component.ts:85</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Define the icon name</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="INPUT_DEBOUNCE_TIME"></a>
+                            <span class="name"><b><span class="modifier">Private</span> INPUT_DEBOUNCE_TIME</b><a href="#INPUT_DEBOUNCE_TIME"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>INPUT_DEBOUNCE_TIME:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>200</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/src/search/search.component.ts:58</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the time to wait for user interaction to stop before auto-submitting</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="inputPatternRegex"></a>
+                            <span class="name"><b><span class="modifier">Public</span> inputPatternRegex</b><a href="#inputPatternRegex"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>inputPatternRegex:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>[a-zA-Z0-9_ ]*</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/search/search.component.ts:90</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the regular expression to validate the query</p>
     </div>
                         </td>
                     </tr>
@@ -1238,13 +1599,53 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/src/search/search.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/search/search.component.ts:113</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Store the search query</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="queryMinLength"></a>
+                            <span class="name"><b><span class="modifier">Public</span> queryMinLength</b><a href="#queryMinLength"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>queryMinLength:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>2</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/src/search/search.component.ts:95</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the minimum length of a valid query</p>
     </div>
                         </td>
                     </tr>
@@ -1273,7 +1674,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/search/search.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/search/search.component.ts:100</a></div>
                                 </td>
                             </tr>
     
@@ -1311,7 +1712,8 @@ import {
   TsButtonFunctionTypes,
   TsStyleThemeTypes,
 } from &#x27;./../utilities/types&#x27;;
-import { TsLoginFormResponse } from &#x27;../utilities/interfaces&#x27;;
+import { TsSearchResponse } from &#x27;../utilities/interfaces&#x27;;
+import { debounce } from &#x27;./../utilities/debounce&#x27;;
 
 
 /**
@@ -1323,15 +1725,18 @@ import { TsLoginFormResponse } from &#x27;../utilities/interfaces&#x27;;
  * - &#x60;qa-search-button&#x60;: Placed on the {@link TsButtonComponent} used for the submit button
  *
  * @example
- * &lt;t-search
+ * &lt;ts-search
+ *              autoSubmit&#x3D;&quot;true
  *              initialValue&#x3D;&quot;My starting value&quot;
  *              inputLabel&#x3D;&quot;Search for a tactic&quot;
  *              inputHint&#x3D;&quot;Enter at least 17 characters&quot;
  *              isSubmitting&#x3D;&quot;false&quot;
  *              theme&#x3D;&quot;primary&quot;
  *              userCanClear&#x3D;&quot;true&quot;
+ *              (changed)&#x3D;&quot;doSomething($event)&quot;
  *              (submitted)&#x3D;&quot;doSomething($event)&quot;
- * &gt;&lt;/t-search&gt;
+ *              (cleared)&#x3D;&quot;doSomething()&quot;
+ * &gt;&lt;/ts-search&gt;
  *
  * &lt;example-url&gt;https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show&#x3D;preview&lt;/example-url&gt;
  */
@@ -1342,16 +1747,9 @@ import { TsLoginFormResponse } from &#x27;../utilities/interfaces&#x27;;
 })
 export class TsSearchComponent implements OnInit {
   /**
-   * Initialize the form
+   * Define the time to wait for user interaction to stop before auto-submitting
    */
-  public searchForm: FormGroup &#x3D; this.formBuilder.group({
-    query: [
-      null,
-      [
-        Validators.required,
-      ],
-    ],
-  });
+  private INPUT_DEBOUNCE_TIME: number &#x3D; 200;
 
   /**
    * Define the button action label
@@ -1364,14 +1762,55 @@ export class TsSearchComponent implements OnInit {
   public buttonType: TsButtonFunctionTypes &#x3D; &#x27;search&#x27;;
 
   /**
+   * Define a helper to return the current query string
+   */
+  public get currentQuery(): string {
+    return this.searchForm.value.query ? this.searchForm.value.query.trim() : &#x27;&#x27;;
+  }
+
+  /**
+   * Define a debounced method to emit the submission event
+   */
+  public debouncedEmit &#x3D; debounce(this.emitSubmit, this.INPUT_DEBOUNCE_TIME);
+
+  /**
    * Define the icon name
    */
   public icon: string &#x3D; &#x27;search&#x27;;
 
   /**
+   * Define the regular expression to validate the query
+   */
+  public inputPatternRegex: string &#x3D; &#x27;[a-zA-Z0-9_ ]*&#x27;;
+
+  /**
+   * Define the minimum length of a valid query
+   */
+  public queryMinLength: number &#x3D; 2;
+
+  /**
+   * Initialize the form
+   */
+  public searchForm: FormGroup &#x3D; this.formBuilder.group({
+    query: [
+      null,
+      [
+        Validators.minLength(this.queryMinLength),
+        Validators.pattern(this.inputPatternRegex),
+      ],
+    ],
+  });
+
+  /**
    * Store the search query
    */
   public query: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Define if the input should automatically submit values as typed
+   */
+  @Input()
+  public autoSubmit: boolean &#x3D; false;
 
   /**
    * Define an initial value for the search input
@@ -1390,6 +1829,12 @@ export class TsSearchComponent implements OnInit {
    */
   @Input()
   public inputLabel: string &#x3D; &#x27;Search&#x27;;
+
+  /**
+   * Define if the search should be disabled
+   */
+  @Input()
+  public isDisabled: boolean &#x3D; false;
 
   /**
    * Define if the search is currently submitting a query
@@ -1413,8 +1858,19 @@ export class TsSearchComponent implements OnInit {
    * The event to emit when the form is submitted
    */
   @Output()
-  submitted: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  submitted: EventEmitter&lt;TsSearchResponse&gt; &#x3D; new EventEmitter();
 
+  /**
+   * The event to emit when the internal input value is changed
+   */
+  @Output()
+  changed: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+
+  /**
+   * The event to emit when the internal input value is cleared
+   */
+  @Output()
+  cleared: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
 
   /**
    * @private
@@ -1436,6 +1892,32 @@ export class TsSearchComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Emit the submitted event
+   *
+   * NOTE: This wrapper is needed so that we can pass a value to the emitter
+   */
+  emitSubmit(): void {
+    if (this.searchForm.valid) {
+      this.submitted.emit({query: this.currentQuery});
+    }
+  }
+
+
+  /**
+   * Fire events as needed after keyup events
+   */
+  keyup(): void {
+    this.changed.emit(this.currentQuery)
+
+    // NOTE: We need to check for a valid query length here even though we are using a minLength
+    // validator. When the length is 0 the minLength validator returns valid.
+    if (this.autoSubmit &amp;&amp; this.searchForm.valid &amp;&amp; this.currentQuery.length &gt; 0) {
+      this.debouncedEmit();
+    }
+  }
+
 }
 </code></pre>
     </div>
@@ -1445,7 +1927,9 @@ export class TsSearchComponent implements OnInit {
   class&#x3D;&quot;c-search c-search qa-search&quot;
   [formGroup]&#x3D;&quot;searchForm&quot;
   [ngClass]&#x3D;&quot;{&#x27;c-search--disabled&#x27;: isSubmitting}&quot;
-  (keydown.enter)&#x3D;&quot;searchForm.valid &amp;&amp; !isSubmitting &amp;&amp; submitted.emit(searchForm.value)&quot;
+  (keyup)&#x3D;&quot;keyup()&quot;
+  fxLayout&#x3D;&quot;row&quot;
+  fxLayoutAlign&#x3D;&quot;start center&quot;
 &gt;
 
   &lt;ts-input
@@ -1457,19 +1941,22 @@ export class TsSearchComponent implements OnInit {
     [formControl]&#x3D;&quot;searchForm.get(&#x27;query&#x27;)&quot;
     [hint]&#x3D;&quot;inputHint&quot;
     name&#x3D;&quot;query&quot;
-    required
-    minlength&#x3D;&quot;2&quot;
-    pattern&#x3D;&quot;[a-zA-Z]+&quot;
+    minlength&#x3D;&quot;{{ queryMinLength }}&quot;
+    pattern&#x3D;&quot;{{ inputPatternRegex }}&quot;
+    [validateOnChange]&#x3D;&quot;autoSubmit&quot;
+    (cleared)&#x3D;&quot;cleared.emit(true)&quot;
+    fxFlex&#x3D;&quot;grow&quot;
   &gt;&lt;/ts-input&gt;
 
   &lt;ts-button
     class&#x3D;&quot;qa-search-button&quot;
+    *ngIf&#x3D;&quot;!autoSubmit&quot;
     [theme]&#x3D;&quot;theme&quot;
-    [isDisabled]&#x3D;&quot;!searchForm.valid&quot;
+    [isDisabled]&#x3D;&quot;!searchForm.valid || !currentQuery&quot;
     [showProgress]&#x3D;&quot;isSubmitting&quot;
     [buttonType]&#x3D;&quot;buttonType&quot;
     [actionName]&#x3D;&quot;buttonAction&quot;
-    (clickEvent)&#x3D;&quot;searchForm.valid &amp;&amp; !isSubmitting &amp;&amp; submitted.emit(searchForm.value)&quot;
+    (clickEvent)&#x3D;&quot;searchForm.valid &amp;&amp; !isSubmitting &amp;&amp; submitted.emit({query: currentQuery})&quot;
   &gt;Search&lt;/ts-button&gt;
 
 &lt;/form&gt;
@@ -1504,8 +1991,8 @@ export class TsSearchComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  class="c-search c-search qa-search"  [formGroup]="searchForm"  [ngClass]="{\'c-search--disabled\': isSubmitting}"  (keydown.enter)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)">  <ts-input    class="qa-search-input"    [label]="inputLabel"    [prefixIcon]="icon"    [isClearable]="userCanClear"    formControlName="query"    [formControl]="searchForm.get(\'query\')"    [hint]="inputHint"    name="query"    required    minlength="2"    pattern="[a-zA-Z]+"  ></ts-input>  <ts-button    class="qa-search-button"    [theme]="theme"    [isDisabled]="!searchForm.valid"    [showProgress]="isSubmitting"    [buttonType]="buttonType"    [actionName]="buttonAction"    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit(searchForm.value)"  >Search</ts-button></form></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><form  class="c-search c-search qa-search"  [formGroup]="searchForm"  [ngClass]="{\'c-search--disabled\': isSubmitting}"  (keyup)="keyup()"  fxLayout="row"  fxLayoutAlign="start center">  <ts-input    class="qa-search-input"    [label]="inputLabel"    [prefixIcon]="icon"    [isClearable]="userCanClear"    formControlName="query"    [formControl]="searchForm.get(\'query\')"    [hint]="inputHint"    name="query"    minlength="{{ queryMinLength }}"    pattern="{{ inputPatternRegex }}"    [validateOnChange]="autoSubmit"    (cleared)="cleared.emit(true)"    fxFlex="grow"  ></ts-input>  <ts-button    class="qa-search-button"    *ngIf="!autoSubmit"    [theme]="theme"    [isDisabled]="!searchForm.valid || !currentQuery"    [showProgress]="isSubmitting"    [buttonType]="buttonType"    [actionName]="buttonAction"    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"  >Search</ts-button></form></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsSearchComponent'};
 </script>

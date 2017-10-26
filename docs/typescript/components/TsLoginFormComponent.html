@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -1692,9 +1710,8 @@ export class TsLoginFormComponent implements OnChanges {
   &lt;ts-link
     class&#x3D;&quot;qa-login-form-forgot-password&quot;
     [destination]&#x3D;&quot;forgotPasswordLink&quot;
-    [text]&#x3D;&quot;forgotPasswordText&quot;
     tsVerticalSpacing
-  &gt;&lt;/ts-link&gt;
+  &gt;{{ forgotPasswordText }}&lt;/ts-link&gt;
 
   &lt;div fxLayout&#x3D;&quot;row&quot; fxFlexAlign&#x3D;&quot;end&quot;&gt;
     &lt;ts-button
@@ -1741,8 +1758,8 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  class="qa-login-form"  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    class="qa-login-form-email"    label="Email"    name="email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tsVerticalSpacing  ></ts-input>  <ts-input    class="qa-login-form-password"    label="Password"    name="password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'current-password\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    class="qa-login-form-remember-me"    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    class="qa-login-form-forgot-password"    [destination]="forgotPasswordLink"    [text]="forgotPasswordText"    tsVerticalSpacing  ></ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      class="qa-login-form-submit"      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress || isRedirecting"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><form  class="qa-login-form"  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    class="qa-login-form-email"    label="Email"    name="email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tsVerticalSpacing  ></ts-input>  <ts-input    class="qa-login-form-password"    label="Password"    name="password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'current-password\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    class="qa-login-form-remember-me"    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    class="qa-login-form-forgot-password"    [destination]="forgotPasswordLink"    tsVerticalSpacing  >{{ forgotPasswordText }}</ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      class="qa-login-form-submit"      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress || isRedirecting"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
 </script>

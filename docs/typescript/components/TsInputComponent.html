@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -685,20 +703,22 @@ contain any validation messages</li>
   [formControl]=&quot;yourHelperToGetFormControl('email')&quot;
   required
   minlength=&quot;3&quot;
-  [hint]=&quot;'Fill this out!'&quot;
-  [label]=&quot;'My Input'&quot;
-  [name]=&quot;'password'&quot;
-  [prefixIcon]=&quot;'icon_name'&quot;
-  [type]=&quot;'text'&quot;
-  [isDisabled]=&quot;false&quot;
-  [isRequired]=&quot;false&quot;
-  [hideRequiredMarker]=&quot;false&quot;
-  [isClearable]=&quot;true&quot;
-  [isFocused]=&quot;false&quot;
-  [autocomplete]=&quot;false&quot;
-  [autocorrect]=&quot;false&quot;
-  [autocapitalize]=&quot;false&quot;
-  [spellcheck]=&quot;false&quot;
+  hint=&quot;Fill this out!&quot;
+  label=&quot;My Input&quot;
+  name=&quot;'password'&quot;
+  prefixIcon=&quot;'icon_name'&quot;
+  type=&quot;text&quot;
+  isDisabled=&quot;false&quot;
+  isRequired=&quot;false&quot;
+  hideRequiredMarker=&quot;false&quot;
+  isClearable=&quot;true&quot;
+  isFocused=&quot;false&quot;
+  autocomplete=&quot;false&quot;
+  autocorrect=&quot;false&quot;
+  autocapitalize=&quot;false&quot;
+  spellcheck=&quot;false&quot;
+  validateOnChange=&quot;false&quot;
+  (cleared)=&quot;doSomething($event)&quot;
 &gt;&lt;/ts-input&gt;
 
 &lt;example-url&gt;https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=preview&lt;/example-url&gt;</code></pre>
@@ -813,6 +833,23 @@ contain any validation messages</li>
                             <li>
                                 <a href="#type">type</a>
                             </li>
+                            <li>
+                                <a href="#validateOnChange">validateOnChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cleared">cleared</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -845,7 +882,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/input/input.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/input/input.component.ts:76</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -871,7 +908,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/input/input.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/input/input.component.ts:82</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -897,7 +934,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/src/input/input.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/input/input.component.ts:106</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -920,7 +957,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/src/input/input.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/input/input.component.ts:113</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -946,7 +983,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/input/input.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/src/input/input.component.ts:88</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -969,7 +1006,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/input/input.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/lib/src/input/input.component.ts:94</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -995,7 +1032,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/input/input.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/input/input.component.ts:100</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1018,7 +1055,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/src/input/input.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/input/input.component.ts:119</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1041,7 +1078,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/src/input/input.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/lib/src/input/input.component.ts:125</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1064,7 +1101,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/lib/src/input/input.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/src/input/input.component.ts:131</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1091,7 +1128,7 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/src/input/input.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/lib/src/input/input.component.ts:138</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1117,13 +1154,63 @@ contain any validation messages</li>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/src/input/input.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/lib/src/input/input.component.ts:144</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="validateOnChange"></a>
+                            <code>validateOnChange</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if validation messages should be shown immediately or on blur</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/lib/src/input/input.component.ts:150</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
     </section>
 
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="cleared"></a>
+                            <code>cleared</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>The event to emit when the input value is cleared</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/lib/src/input/input.component.ts:156</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
 
 
 
@@ -1150,7 +1237,7 @@ contain any validation messages</li>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/lib/src/input/input.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/lib/src/input/input.component.ts:162</a></div>
                                 </td>
                             </tr>
     
@@ -1176,6 +1263,8 @@ contain any validation messages</li>
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   Input,
+  Output,
+  EventEmitter,
   forwardRef,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
@@ -1191,7 +1280,7 @@ import { TsInputTypes, TsInputAutocompleteTypes } from &#x27;./../utilities/type
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() &#x3D;&gt; TsInputComponent),
-  multi: true
+  multi: true,
 };
 
 
@@ -1214,20 +1303,22 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;email&#x27;)&quot;
  *              required
  *              minlength&#x3D;&quot;3&quot;
- *              [hint]&#x3D;&quot;&#x27;Fill this out!&#x27;&quot;
- *              [label]&#x3D;&quot;&#x27;My Input&#x27;&quot;
- *              [name]&#x3D;&quot;&#x27;password&#x27;&quot;
- *              [prefixIcon]&#x3D;&quot;&#x27;icon_name&#x27;&quot;
- *              [type]&#x3D;&quot;&#x27;text&#x27;&quot;
- *              [isDisabled]&#x3D;&quot;false&quot;
- *              [isRequired]&#x3D;&quot;false&quot;
- *              [hideRequiredMarker]&#x3D;&quot;false&quot;
- *              [isClearable]&#x3D;&quot;true&quot;
- *              [isFocused]&#x3D;&quot;false&quot;
- *              [autocomplete]&#x3D;&quot;false&quot;
- *              [autocorrect]&#x3D;&quot;false&quot;
- *              [autocapitalize]&#x3D;&quot;false&quot;
- *              [spellcheck]&#x3D;&quot;false&quot;
+ *              hint&#x3D;&quot;Fill this out!&quot;
+ *              label&#x3D;&quot;My Input&quot;
+ *              name&#x3D;&quot;&#x27;password&#x27;&quot;
+ *              prefixIcon&#x3D;&quot;&#x27;icon_name&#x27;&quot;
+ *              type&#x3D;&quot;text&quot;
+ *              isDisabled&#x3D;&quot;false&quot;
+ *              isRequired&#x3D;&quot;false&quot;
+ *              hideRequiredMarker&#x3D;&quot;false&quot;
+ *              isClearable&#x3D;&quot;true&quot;
+ *              isFocused&#x3D;&quot;false&quot;
+ *              autocomplete&#x3D;&quot;false&quot;
+ *              autocorrect&#x3D;&quot;false&quot;
+ *              autocapitalize&#x3D;&quot;false&quot;
+ *              spellcheck&#x3D;&quot;false&quot;
+ *              validateOnChange&#x3D;&quot;false&quot;
+ *              (cleared)&#x3D;&quot;doSomething($event)&quot;
  * &gt;&lt;/ts-input&gt;
  *
  * &lt;example-url&gt;https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show&#x3D;preview&lt;/example-url&gt;
@@ -1292,7 +1383,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the name attribute value
    */
-  @Input(&#x27;name&#x27;)
+  @Input()
   public name: string;
 
   /**
@@ -1311,8 +1402,20 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}
    */
-  @Input(&#x27;type&#x27;)
+  @Input()
   public type: TsInputTypes &#x3D; &#x27;text&#x27;;
+
+  /**
+   * Define if validation messages should be shown immediately or on blur
+   */
+  @Input()
+  public validateOnChange: boolean &#x3D; false;
+
+  /**
+   * The event to emit when the input value is cleared
+   */
+  @Output()
+  cleared: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
 
 
   /**
@@ -1320,6 +1423,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    */
   public reset(): void {
     this.value &#x3D; &#x27;&#x27;;
+    this.cleared.emit(true);
   }
 
 }
@@ -1370,6 +1474,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   &lt;ts-validation-messages
     class&#x3D;&quot;qa-input-validation-messages&quot;
     [control]&#x3D;&quot;formControl&quot;
+    [validateOnChange]&#x3D;&quot;validateOnChange&quot;
   &gt;&lt;/ts-validation-messages&gt;
 
 &lt;/mat-form-field&gt;
@@ -1404,8 +1509,8 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-input c-input qa-input"  [hideRequiredMarker]="hideRequiredMarker">  <mat-icon    class="qa-input-prefix-icon"    matPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</mat-icon>  <input    matInput    class="c-input__text qa-input-text"    type="{{ type }}"    placeholder="{{ label }}"    [attr.name]="name"    [autofocus]="isFocused"    [attr.required]="isRequired ? \'\' : null"    [attr.autocomplete]="autocomplete"    [attr.autocapitalize]="autocapitalize ? \'on\' : \'off\'"    [attr.spellcheck]="spellcheck ? \'on\' : \'off\'"    [(ngModel)]="value"    (blur)="onBlur()"  >  <mat-icon    matSuffix    *ngIf="isClearable"    class="c-input__clear qa-input-suffix-icon"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</mat-icon>  <mat-hint    class="qa-input-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-input-validation-messages"    [control]="formControl"  ></ts-validation-messages></mat-form-field></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-input c-input qa-input"  [hideRequiredMarker]="hideRequiredMarker">  <mat-icon    class="qa-input-prefix-icon"    matPrefix    *ngIf="prefixIcon"  >{{ prefixIcon }}</mat-icon>  <input    matInput    class="c-input__text qa-input-text"    type="{{ type }}"    placeholder="{{ label }}"    [attr.name]="name"    [autofocus]="isFocused"    [attr.required]="isRequired ? \'\' : null"    [attr.autocomplete]="autocomplete"    [attr.autocapitalize]="autocapitalize ? \'on\' : \'off\'"    [attr.spellcheck]="spellcheck ? \'on\' : \'off\'"    [(ngModel)]="value"    (blur)="onBlur()"  >  <mat-icon    matSuffix    *ngIf="isClearable"    class="c-input__clear qa-input-suffix-icon"    [ngClass]="{\'c-input__clear--visible\': value?.length > 0}"    (click)="reset()"  >clear</mat-icon>  <mat-hint    class="qa-input-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-input-validation-messages"    [control]="formControl"    [validateOnChange]="validateOnChange"  ></ts-validation-messages></mat-form-field></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsInputComponent'};
 </script>

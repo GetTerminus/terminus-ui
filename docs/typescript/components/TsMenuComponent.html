@@ -78,6 +78,9 @@
                                     <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                 </li>
                                 <li class="link">
@@ -147,6 +150,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -261,13 +267,16 @@
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -375,6 +384,9 @@
                                            <a href="../modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsCardModule.html" >TsCardModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsCheckboxModule.html" >TsCheckboxModule</a>
                                        </li>
                                        <li class="link">
@@ -444,6 +456,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsCardComponent.html" >TsCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsCheckboxComponent.html" >TsCheckboxComponent</a>
@@ -558,13 +573,16 @@
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsMenuItem.html" >TsMenuItem</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsUser.html" >TsUser</a>
@@ -654,9 +672,8 @@
     <p class="comment">
         <p>A presentational component to render a dropdown menu.</p>
 <h4 id="qa-css-classes">QA CSS CLASSES</h4>
-<p>-<code>qa-menu</code>: Placed on the menu element which contains the menu
--<code>qa-menu-item</code>: Placed on the button element which represents each menu item
--<code>qa-menu-trigger</code>: Placed on the <a href="../components/TsButtonComponent.html">TsButtonComponent</a> which displays the menu when clicked</p>
+<p>-<code>qa-menu</code>: Placed on the wrapper around the menu items
+-<code>qa-menu-trigger</code>: Placed on the menu trigger</p>
 
     </p>
 
@@ -665,8 +682,8 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
                 <code><a href="https://angular.io/docs/ts/latest/api/core/index/AfterViewInit-interface.html" target="_blank" >AfterViewInit</a></code>
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
     </p>
 
     <p class="comment">
@@ -675,10 +692,13 @@
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-menu
-  menuItems=&quot;[{},{},{}]&quot;
+  defaultOpened=&quot;false&quot;
+  isDisabled=&quot;false&quot;
+  [menuItemsTemplate]=&quot;myTemplate&quot;
   menuPositionX=&quot;20px&quot;
   menuPositionY=&quot;20px&quot;
-  isDisabled=&quot;false&quot;
+  theme=&quot;accent&quot;
+  triggerType=&quot;utility&quot;
   (selected)=&quot;myMethod($event)&quot;
 &gt;Select Item&lt;/ts-menu&gt;
 
@@ -741,13 +761,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#hasIcons">hasIcons</a>
+                                <span class="modifier">Public</span> <a href="#isUtilityMenu">isUtilityMenu</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#shouldOverlapTrigger">shouldOverlapTrigger</a>
                             </li>
                             <li>
                                  <a href="#trigger">trigger</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Private</span> <a href="#TRIGGER_ICON_DEFAULT">TRIGGER_ICON_DEFAULT</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Private</span> <a href="#TRIGGER_ICON_UTILITY">TRIGGER_ICON_UTILITY</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Public</span> <a href="#triggerIcon">triggerIcon</a>
                             </li>
                         </ul>
                     </td>
@@ -761,13 +790,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#hasAtLeastOneIcon">hasAtLeastOneIcon</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Public</span> <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
-                                <span class="modifier">Public</span> <a href="#ngOnInit">ngOnInit</a>
+                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
                     </td>
@@ -787,7 +813,7 @@
                                 <a href="#isDisabled">isDisabled</a>
                             </li>
                             <li>
-                                <a href="#menuItems">menuItems</a>
+                                <a href="#menuItemsTemplate">menuItemsTemplate</a>
                             </li>
                             <li>
                                 <a href="#menuPositionX">menuPositionX</a>
@@ -798,19 +824,8 @@
                             <li>
                                 <a href="#theme">theme</a>
                             </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
                             <li>
-                                <a href="#selected">selected</a>
+                                <a href="#triggerType">triggerType</a>
                             </li>
                         </ul>
                     </td>
@@ -830,6 +845,8 @@
                             <code>defaultOpened</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Define if the menu should be opened by default</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
@@ -841,7 +858,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/menu/menu.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/src/menu/menu.component.ts:88</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -867,7 +884,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/menu/menu.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/lib/src/menu/menu.component.ts:94</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -876,21 +893,21 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <a name="menuItems"></a>
-                            <code>menuItems</code>
+                            <a name="menuItemsTemplate"></a>
+                            <code>menuItemsTemplate</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Accept an array of menu items to display</p>
+                            <div><p>Allow a custom template for menu items</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
+                                <em>Type:</em>    <code>TemplateRef&lt;ElementRef&gt;</code>
 
                               </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/menu/menu.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/lib/src/menu/menu.component.ts:100</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -916,7 +933,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/menu/menu.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/menu/menu.component.ts:106</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -942,7 +959,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/menu/menu.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/menu/menu.component.ts:112</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -968,37 +985,43 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/menu/menu.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/menu/menu.component.ts:118</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
-    </section>
-
-    <section>
-        <h3 id="outputs">Outputs</h3>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <a name="selected"></a>
-                            <code>selected</code>
+                            <a name="triggerType"></a>
+                            <code>triggerType</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Output a selection event with the item payload</p>
+                            <div><p>Define the type of trigger {@link TsMenuTriggerTypes}</p>
+<ul>
+<li>&#39;utility&#39; will expose a simple fab trigger: <code>⋮</code></li>
+<li>&#39;default&#39; will expose a standard {@link TsButtonComponent}</li>
+</ul>
 </div>
-                            <em><code>$event</code> type:</em>    <code><a href="../interfaces/TsMenuItem.html" target="_self" >EventEmitter&lt;TsMenuItem&gt;</a></code>
+                              <p>
+                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html#TsMenuTriggerTypes" target="_self" >TsMenuTriggerTypes</a></code>
 
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>default</code>
+                            </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/menu/menu.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/lib/src/menu/menu.component.ts:127</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
     </section>
+
 
 
 
@@ -1007,68 +1030,6 @@
             <h3 id="methods">
                 Methods
             </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="hasAtLeastOneIcon"></a>
-                            <span class="name"><b> hasAtLeastOneIcon</b><a href="#hasAtLeastOneIcon"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>hasAtLeastOneIcon(items: <a href="../interfaces/TsMenuItem.html">TsMenuItem[]</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/menu/menu.component.ts:130</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>items</td>
-                                                      <td>
-                                                              <code><a href="../interfaces/TsMenuItem.html" target="_self" >TsMenuItem[]</a></code>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>The collection of items to look through</p>
-    </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1087,7 +1048,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/lib/src/menu/menu.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/lib/src/menu/menu.component.ts:142</a></div>
                                 </td>
                             </tr>
     
@@ -1109,27 +1070,24 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnInit"></a>
-                            <span class="name"><b><span class="modifier">Public</span> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon fa fa-reset"></span>
-                            <code>ngOnInit()</code>
+    <code>ngOnInit()</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/src/menu/menu.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/lib/src/menu/menu.component.ts:133</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>On initialization check to see if at least 1 icon exists in the menu items</p>
-    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1150,13 +1108,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="hasIcons"></a>
-                            <span class="name"><b><span class="modifier">Public</span> hasIcons</b><a href="#hasIcons"><span class="fa fa-link"></span></a></span>
+                            <a name="isUtilityMenu"></a>
+                            <span class="name"><b><span class="modifier">Public</span> isUtilityMenu</b><a href="#isUtilityMenu"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>hasIcons:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>isUtilityMenu:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
     </code>
                         </td>
                     </tr>
@@ -1166,20 +1124,15 @@
     
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>false</code>
-                            </td>
-                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/menu/menu.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/menu/menu.component.ts:64</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>Define if there is at least one icon</p>
+                            <div class="io-description"><p>Return if the current menu is a utility menu</p>
     </div>
                         </td>
                     </tr>
@@ -1213,7 +1166,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/src/menu/menu.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/menu/menu.component.ts:71</a></div>
                                 </td>
                             </tr>
     
@@ -1253,10 +1206,113 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/src/menu/menu.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/src/menu/menu.component.ts:82</a></div>
                                 </td>
                             </tr>
     
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="TRIGGER_ICON_DEFAULT"></a>
+                            <span class="name"><b><span class="modifier">Private</span> TRIGGER_ICON_DEFAULT</b><a href="#TRIGGER_ICON_DEFAULT"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>TRIGGER_ICON_DEFAULT:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>arrow_drop_down</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/menu/menu.component.ts:54</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the default icon for the trigger button</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="TRIGGER_ICON_UTILITY"></a>
+                            <span class="name"><b><span class="modifier">Private</span> TRIGGER_ICON_UTILITY</b><a href="#TRIGGER_ICON_UTILITY"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>TRIGGER_ICON_UTILITY:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>more_vert</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/menu/menu.component.ts:59</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Define the utility icon for the trigger button</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="triggerIcon"></a>
+                            <span class="name"><b><span class="modifier">Public</span> triggerIcon</b><a href="#triggerIcon"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>triggerIcon:     <code>&quot;arrow_drop_down&quot; | &quot;more_vert&quot;</code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>&quot;arrow_drop_down&quot; | &quot;more_vert&quot;</code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/menu/menu.component.ts:76</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The icon to be used in the trigger button</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1270,35 +1326,39 @@
   Input,
   Output,
   ViewChild,
-  OnInit,
   EventEmitter,
   AfterViewInit,
   ChangeDetectionStrategy,
+  ElementRef,
+  TemplateRef,
+  OnInit,
 } from &#x27;@angular/core&#x27;;
-import { MatMenuTrigger } from &#x27;@angular/material&#x27;;
+import { MatMenuTrigger } from &#x27;@angular/material/menu&#x27;;
 
 import {
   TsMenuPositionTypesX,
   TsMenuPositionTypesY,
   TsStyleThemeTypes,
+  TsMenuTriggerTypes,
 } from &#x27;./../utilities/types&#x27;;
-import { TsMenuItem } from &#x27;./../utilities/interfaces/menu-item.interface&#x27;;
 
 
 /**
  * A presentational component to render a dropdown menu.
  *
  * #### QA CSS CLASSES
- * -&#x60;qa-menu&#x60;: Placed on the menu element which contains the menu
- * -&#x60;qa-menu-item&#x60;: Placed on the button element which represents each menu item
- * -&#x60;qa-menu-trigger&#x60;: Placed on the {@link TsButtonComponent} which displays the menu when clicked
+ * -&#x60;qa-menu&#x60;: Placed on the wrapper around the menu items
+ * -&#x60;qa-menu-trigger&#x60;: Placed on the menu trigger
  *
  * @example
  * &lt;ts-menu
- *              menuItems&#x3D;&quot;[{},{},{}]&quot;
+ *              defaultOpened&#x3D;&quot;false&quot;
+ *              isDisabled&#x3D;&quot;false&quot;
+ *              [menuItemsTemplate]&#x3D;&quot;myTemplate&quot;
  *              menuPositionX&#x3D;&quot;20px&quot;
  *              menuPositionY&#x3D;&quot;20px&quot;
- *              isDisabled&#x3D;&quot;false&quot;
+ *              theme&#x3D;&quot;accent&quot;
+ *              triggerType&#x3D;&quot;utility&quot;
  *              (selected)&#x3D;&quot;myMethod($event)&quot;
  * &gt;Select Item&lt;/ts-menu&gt;
  *
@@ -1310,16 +1370,33 @@ import { TsMenuItem } from &#x27;./../utilities/interfaces/menu-item.interface&#
   styleUrls: [&#x27;./menu.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TsMenuComponent implements OnInit, AfterViewInit {
+export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
-   * Define if there is at least one icon
+   * Define the default icon for the trigger button
    */
-  public hasIcons: boolean &#x3D; false;
+  private TRIGGER_ICON_DEFAULT: &#x27;arrow_drop_down&#x27; &#x3D; &#x27;arrow_drop_down&#x27;;
+
+  /**
+   * Define the utility icon for the trigger button
+   */
+  private TRIGGER_ICON_UTILITY: &#x27;more_vert&#x27; &#x3D; &#x27;more_vert&#x27;;
+
+  /**
+   * Return if the current menu is a utility menu
+   */
+  public get isUtilityMenu(): boolean {
+    return this.triggerType &#x3D;&#x3D;&#x3D; &#x27;utility&#x27;;
+  }
 
   /**
    * Define if the menu should overlap the trigger
    */
   public shouldOverlapTrigger: boolean &#x3D; false;
+
+  /**
+   * The icon to be used in the trigger button
+   */
+  public triggerIcon: &#x27;arrow_drop_down&#x27; | &#x27;more_vert&#x27;;
 
   /**
    * @private Provide access to the trigger
@@ -1328,10 +1405,10 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   trigger: MatMenuTrigger;
 
   /**
-   * @private Define if the menu should be opened by default
+   * Define if the menu should be opened by default
    */
   @Input()
-  defaultOpened: boolean &#x3D; false;
+  public defaultOpened: boolean &#x3D; false;
 
   /**
    * Define if the menu should be disabled
@@ -1340,10 +1417,10 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   public isDisabled: boolean &#x3D; false;
 
   /**
-   * Accept an array of menu items to display
+   * Allow a custom template for menu items
    */
   @Input()
-  public menuItems: TsMenuItem[];
+  public menuItemsTemplate: TemplateRef&lt;ElementRef&gt;;
 
   /**
    * Define the X menu position
@@ -1364,17 +1441,21 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
   public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
-   * Output a selection event with the item payload
+   * Define the type of trigger {@link TsMenuTriggerTypes}
+   *
+   * - &#x27;utility&#x27; will expose a simple fab trigger: &#x60;⋮&#x60;
+   * - &#x27;default&#x27; will expose a standard {@link TsButtonComponent}
    */
-  @Output()
-  public selected: EventEmitter&lt;TsMenuItem&gt; &#x3D; new EventEmitter();
+  @Input()
+  public triggerType: TsMenuTriggerTypes &#x3D; &#x27;default&#x27;;
 
 
   /**
-   * On initialization check to see if at least 1 icon exists in the menu items
+   * @private Set the triggerIcon based on the triggerType
    */
-  public ngOnInit(): void {
-    this.hasIcons &#x3D; this.hasAtLeastOneIcon(this.menuItems);
+  ngOnInit(): void {
+    this.triggerIcon &#x3D; (this.triggerType &#x3D;&#x3D;&#x3D; &#x27;default&#x27;) ?
+      this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
   }
 
 
@@ -1387,63 +1468,52 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-  /**
-   * @private Determine if at least one item has a non-null icon
-   *
-   * @param {Array} items The collection of items to look through
-   * @return {Boolean} hasIcon Value that represents if at least one icon is present
-   */
-  hasAtLeastOneIcon(items: TsMenuItem[]): boolean {
-    if (!items || items.length &lt; 1) {
-      return false;
-    }
-
-    const found: any &#x3D; items.find((item: TsMenuItem) &#x3D;&gt; {
-      return item.icon ? true : false;
-    });
-
-    return found ? true : false;
-  }
 }
-
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-menu
+        <pre class="line-numbers"><code class="language-html">&lt;div
   class&#x3D;&quot;c-menu c-menu qa-menu&quot;
-  #menu&#x3D;&quot;matMenu&quot;
-  [yPosition]&#x3D;&quot;menuPositionY&quot;
-  [xPosition]&#x3D;&quot;menuPositionX&quot;
-  [overlapTrigger]&#x3D;&quot;shouldOverlapTrigger&quot;
+  [ngClass]&#x3D;&quot;{&#x27;c-menu--utility&#x27;: isUtilityMenu}&quot;
 &gt;
-  &lt;button
-    mat-menu-item
-    class&#x3D;&quot;c-menu__item qa-menu-item&quot;
-    [ngClass]&#x3D;&quot;{&#x27;c-menu__item--fake-icon&#x27;: (hasIcons &amp;&amp; !item.icon)}&quot;
-    *ngFor&#x3D;&quot;let item of menuItems&quot;
-    (click)&#x3D;&quot;selected.emit(item)&quot;
+  &lt;mat-menu
+    #menu&#x3D;&quot;matMenu&quot;
+    [yPosition]&#x3D;&quot;menuPositionY&quot;
+    [xPosition]&#x3D;&quot;menuPositionX&quot;
+    [overlapTrigger]&#x3D;&quot;shouldOverlapTrigger&quot;
   &gt;
-    &lt;mat-icon *ngIf&#x3D;&quot;item.icon&quot;&gt;
-      {{ item.icon }}
+    &lt;ng-container [ngTemplateOutlet]&#x3D;&quot;menuItemsTemplate&quot;&gt;&lt;/ng-container&gt;
+  &lt;/mat-menu&gt;
+
+  &lt;ts-button
+    *ngIf&#x3D;&quot;!isUtilityMenu&quot;
+    class&#x3D;&quot;c-menu__trigger qa-menu-trigger&quot;
+    [theme]&#x3D;&quot;theme&quot;
+    [matMenuTriggerFor]&#x3D;&quot;menu&quot;
+    [isDisabled]&#x3D;&quot;isDisabled&quot;
+    [attr.data-disabled]&#x3D;&quot;isDisabled&quot;
+    format&#x3D;&quot;filled&quot;
+  &gt;
+    &lt;ng-content&gt;&lt;/ng-content&gt;
+
+    &lt;mat-icon&gt;
+      {{ triggerIcon }}
     &lt;/mat-icon&gt;
+  &lt;/ts-button&gt;
 
-    {{ item.name }}
+  &lt;button
+    *ngIf&#x3D;&quot;isUtilityMenu&quot;
+    class&#x3D;&quot;c-menu__trigger c-menu__trigger--utility qa-menu-trigger&quot;
+    mat-icon-button
+    [matMenuTriggerFor]&#x3D;&quot;menu&quot;
+    [disabled]&#x3D;&quot;isDisabled&quot;
+  &gt;
+    &lt;mat-icon&gt;
+      {{ triggerIcon }}
+    &lt;/mat-icon&gt;
   &lt;/button&gt;
-&lt;/mat-menu&gt;
-
-&lt;ts-button
-  class&#x3D;&quot;qa-menu-trigger&quot;
-  [theme]&#x3D;&quot;theme&quot;
-  [matMenuTriggerFor]&#x3D;&quot;menu&quot;
-  [isDisabled]&#x3D;&quot;isDisabled&quot;
-  [attr.data-disabled]&#x3D;&quot;isDisabled&quot;
-  format&#x3D;&quot;filled&quot;
-&gt;
-  &lt;ng-content&gt;&lt;/ng-content&gt;
-  &lt;mat-icon&gt;arrow_drop_down&lt;/mat-icon&gt;
-&lt;/ts-button&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -1475,8 +1545,8 @@ export class TsMenuComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-menu  class="c-menu c-menu qa-menu"  #menu="matMenu"  [yPosition]="menuPositionY"  [xPosition]="menuPositionX"  [overlapTrigger]="shouldOverlapTrigger">  <button    mat-menu-item    class="c-menu__item qa-menu-item"    [ngClass]="{\'c-menu__item--fake-icon\': (hasIcons && !item.icon)}"    *ngFor="let item of menuItems"    (click)="selected.emit(item)"  >    <mat-icon *ngIf="item.icon">      {{ item.icon }}    </mat-icon>    {{ item.name }}  </button></mat-menu><ts-button  class="qa-menu-trigger"  [theme]="theme"  [matMenuTriggerFor]="menu"  [isDisabled]="isDisabled"  [attr.data-disabled]="isDisabled"  format="filled">  <ng-content></ng-content>  <mat-icon>arrow_drop_down</mat-icon></ts-button></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><div  class="c-menu c-menu qa-menu"  [ngClass]="{\'c-menu--utility\': isUtilityMenu}">  <mat-menu    #menu="matMenu"    [yPosition]="menuPositionY"    [xPosition]="menuPositionX"    [overlapTrigger]="shouldOverlapTrigger"  >    <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>  </mat-menu>  <ts-button    *ngIf="!isUtilityMenu"    class="c-menu__trigger qa-menu-trigger"    [theme]="theme"    [matMenuTriggerFor]="menu"    [isDisabled]="isDisabled"    [attr.data-disabled]="isDisabled"    format="filled"  >    <ng-content></ng-content>    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </ts-button>  <button    *ngIf="isUtilityMenu"    class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"    mat-icon-button    [matMenuTriggerFor]="menu"    [disabled]="isDisabled"  >    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </button></div></div>'
+    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};
 </script>

@@ -127,11 +127,12 @@ $material-elements: (
 
 
 /**
- * @private Returns the two reference shadows whose elevations bound the specified elevation
+ * Returns the two reference shadows whose elevations bound the specified elevation
  *
  * In the case where the supplied elevation exceeds the maximum reference elevation, the last two
  * reference shadows are returned.
  *
+ * @mixin find-bounding-shadow-sets
  * @section Shadow-Functions
  * @param $elevation
  *  The elevation
@@ -159,11 +160,12 @@ $material-elements: (
 
 
 /**
- * @private Performs linear interpolation between values a and b
+ * Performs linear interpolation between values a and b
  *
  * Returns the value between a and b proportional to x (when x is between 0 and 1. When x is outside
  * this range, the return value is a linear extrapolation)
  *
+ * @mixin lerp
  * @section Shadow-Functions
  * @param $x
  *  The proportional control
@@ -180,11 +182,12 @@ $material-elements: (
 
 
 /**
- * @private Performs linear interpolation between shadows by interpolating each property individually
+ * Performs linear interpolation between shadows by interpolating each property individually
  *
  * Returns the value between shadow1 and shadow2 proportional to x (when x is between 0 and 1. When
  * x is outside this range, the return value is a linear extrapolation).
  *
+ * @mixin lerp-shadow
  * @section Shadow-Functions
  * @param $x
  *  The proportional control
@@ -212,8 +215,9 @@ $material-elements: (
 
 
 /**
- * @private Calculates the set of shadows at a given elevation
+ * Calculates the set of shadows at a given elevation
  *
+ * @mixin calculate-shadow-set-at-depth
  * @section Shadow-Functions
  * @param $elevation
  *  The desired elevation
@@ -238,10 +242,11 @@ $material-elements: (
 
 
 /**
- * @private Generates the transition for a change between 2 elevations
+ * Generates the transition for a change between 2 elevations
  *
  * The larger the elevation change the longer the animation takes
  *
+ * @mixin elevation-transition
  * @section Shadow-Mixins
  * @param $elevation-change
  *  The elevation change amount
@@ -264,6 +269,7 @@ $material-elements: (
  * - Two elevations and a state will generate a default box-shadow set and another set that is
  * activated by the state tested with :hover and :active
  *
+ * @mixin elevation
  * @section Shadow-Mixins
  * @param $elevation1
  *  The starting elevation
@@ -302,6 +308,7 @@ $material-elements: (
 /**
  * Returns box-shadow and transition properties for specific elements. See $material-elements.
  *
+ * @mixin elevation-element
  * @section Shadow-Mixins
  * @param $element-name
  *  The element to add a shadow to
