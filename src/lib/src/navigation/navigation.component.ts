@@ -11,6 +11,7 @@ import {
   OnInit,
   EventEmitter,
   ChangeDetectorRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
@@ -42,7 +43,7 @@ import { groupBy } from './../utilities/groupBy';
  * <ts-navigation
  *              [items]="navigationItems$ | async"
  *              [user]="currentUser$ | async"
- *              [welcomeMessage]=" 'Hi!' "
+ *              welcomeMessage="Hi!"
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
@@ -52,6 +53,7 @@ import { groupBy } from './../utilities/groupBy';
   selector: 'ts-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
@@ -85,12 +87,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     return this.hiddenItems.getValue().length;
   }
 
-  /**
-   * Getter to return the space currently required for the navigation layout
-   */
-  private get requiredSpace(): number {
-    return this.breakWidths[this.visibleItemsLength - 1];
-  }
 
   /**
    * Getter to return the user's full name if it exists
@@ -115,18 +111,19 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Define the navigation items
+   * Accept the array of navigation items and trigger setup
    */
   @Input()
   public set items(value: TsNavigationItem[]) {
     // Filter out disabled items
-    const enabledItems = value.filter((item) => {
+    const enabledItems = value.filter((item: TsNavigationItem) => {
       return !item.isDisabled;
     });
 
     this.pristineItems = enabledItems;
     this.setUpInitialArrays(this.pristineItems);
-    this.ngAfterViewInit();
+    this.generateBreakWidths();
+    this.updateLists();
   }
 
   /**
@@ -163,7 +160,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Trigger a layout update when the window resizes
    */
   @HostListener('window:resize')
-  onResize() {
+  onResize(): void {
     this.updateLists();
   }
 
@@ -185,6 +182,16 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Trigger initial layout update after the view initializes
    */
   ngAfterViewInit(): void {
+    this.generateBreakWidths();
+    this.updateLists();
+    this.changeDetectorRef.detectChanges();
+  }
+
+
+  /**
+   * Generate the array of breakWidths
+   */
+  private generateBreakWidths(): void {
     let totalSpace = 0;
     this.breakWidths.length = 0;
 
@@ -196,10 +203,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       // Add the total space as a breakpoint
       this.breakWidths.push(totalSpace);
     })
-
-    // Trigger the initial layout
-    this.updateLists();
-    this.changeDetectorRef.detectChanges();
   }
 
 
@@ -208,7 +211,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    *
    * @param {Array} items The complete list of navigation items
    */
-  setUpInitialArrays(items: TsNavigationItem[]): void {
+  private setUpInitialArrays(items: TsNavigationItem[]): void {
     // Clone the items so we can work freely with the array.
     const allItems = Array.from(items);
     // Create an object with the arrays separated
@@ -217,16 +220,19 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     // Push the separated arrays
     this.visibleItems.next(splitArrays.false);
     this.hiddenItems.next(splitArrays.true);
+
     this.changeDetectorRef.detectChanges();
   }
 
 
   /**
-   * @private Move items between the two lists as required by the available space
+   * Move items between the two lists as required by the available space
    */
-  updateLists(): void {
+  private updateLists(): void {
+    const requiredSpace = this.breakWidths[this.visibleItemsLength - 1];
+
     // If there is not enough space
-    if (this.requiredSpace > this.availableSpace) {
+    if (requiredSpace > this.availableSpace) {
       // Pull the last link out of the visible array
       const currentVisible = this.visibleItems.getValue();
       const itemToMove = currentVisible.pop();
@@ -253,6 +259,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       // Add it to the end of the visible array
       this.visibleItems.next(updatedVisibleArray);
     }
+
     this.changeDetectorRef.detectChanges();
   }
 

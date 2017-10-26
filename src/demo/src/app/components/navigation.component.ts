@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
@@ -97,25 +97,16 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
     </div>
   `,
 })
-export class NavigationComponent implements OnInit {
-  public currentUser$: Observable<any> = Observable.from([{
+export class NavigationComponent {
+  public currentUser$: Observable<any> = of({
     id: 1,
     email: 'max@roadwarrior.com',
     firstname: 'Max',
     lastname: 'Rockatansky',
     fullName: 'Max Rockatansky',
-  }]);
-  public navigationItems$: Observable<any> = Observable.from([NAV_ITEMS_MOCK]);
+  });
+  public navigationItems$: Observable<any> = of(NAV_ITEMS_MOCK);
   public myMessage = 'Hello dear';
-
-
-  ngOnInit(): void {
-    /*
-     *this.currentUser$.subscribe((v: any) => {
-     *  console.log('currentUser$: ', v);
-     *})
-     */
-  }
 
 
   /**
@@ -137,17 +128,13 @@ export class NavigationComponent implements OnInit {
   }
 
   updateNav() {
-    console.log('current nav length: ', NAV_ITEMS_MOCK.length);
     const newNav = NAV_ITEMS_MOCK.slice(0);
     newNav.unshift({
-      name: 'FOO',
+      name: '0 Foo',
       action: 'navigate',
       destination: ['/foo'],
       onlyHidden: false,
     });
-    /*
-     *console.log('newNav: ', newNav, newNav.length);
-     */
     this.navigationItems$ = of(newNav);
   }
 }

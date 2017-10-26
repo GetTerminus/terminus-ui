@@ -46,11 +46,12 @@ describe('InputMessagesComponent', () => {
 
   describe(`get validationMessage()`, () => {
 
-    it(`should return messges for validation errors`, () => {
+    it(`should return messages for validation errors if the control has been touched`, () => {
       const ERROR = {
         valid: false,
       };
       this.component.validationService.getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
+      this.component.validateOnChange = false;
       this.component.control = {
         touched: true,
         errors: {
@@ -61,6 +62,21 @@ describe('InputMessagesComponent', () => {
       const message = this.component.validationMessage;
 
       expect(this.component.validationService.getValidatorErrorMessage).toHaveBeenCalledWith('invalidEmail', ERROR);
+    });
+
+
+    it(`should return messages for validation errors if validateOnChange is true`, () => {
+      this.component.validationService.getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
+      this.component.validateOnChange = true;
+      this.component.control = {
+        touched: false,
+        errors: {},
+      };
+      this.fixture.detectChanges();
+      const message = this.component.validationMessage;
+
+      expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(message).toEqual(null);
     });
 
 

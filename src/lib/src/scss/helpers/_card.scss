@@ -4,12 +4,12 @@
 @import './cursors';
 
 @mixin card(
-  $allowsInteraction: false
+  $allows-interaction: false
 ) {
 
   // If the card allows interaction, give it a hover state
-  @if $allowsInteraction == true {
-    @include elevationElement(card);
+  @if $allows-interaction == true {
+    @include elevation-element(card);
     cursor: cursor(pointer);
   } @else {
     // Otherwise include standard elevation

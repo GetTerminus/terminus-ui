@@ -49,17 +49,12 @@ export class TsValidationMessagesComponent {
    * @return {String|Null} errorMessage The error message or null if no error
    */
   public get validationMessage(): string | null {
-    // tslint:disable-next-line
     for (const propertyName in this.control.errors) {
+      // Only show after 'touched' if we are NOT validating on every change
+      if (this.validateOnChange || (!this.validateOnChange && this.control.touched)) {
+        const errors = this.control.errors[propertyName];
 
-      // Verify the property exist
-      if (this.control.errors.hasOwnProperty(propertyName)) {
-        // Only show after 'touched' if we are NOT validating on every change
-        if (this.validateOnChange || (!this.validateOnChange && this.control.touched)) {
-          const errors = this.control.errors[propertyName];
-
-          return this.validationService.getValidatorErrorMessage(propertyName, errors);
-        }
+        return this.validationService.getValidatorErrorMessage(propertyName, errors);
       }
     }
 

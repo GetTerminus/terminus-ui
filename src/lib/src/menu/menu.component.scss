@@ -37,9 +37,12 @@
 
 ::ng-deep .mat-menu-panel {
   .mat-menu-content {
+    // NOTE: Universal selector needed since we don't know what the first child will be
+    // sass-lint:disable no-universal-selectors
     > * {
       display: block;
     }
+    // sass-lint:enable no-universal-selectors
   }
 }
 

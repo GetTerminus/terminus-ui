@@ -23,7 +23,7 @@
 
   &.c-card--interaction {
     .c-card__inner {
-      @include card($allowsInteraction: true);
+      @include card($allows-interaction: true);
     }
   }
 
@@ -36,6 +36,6 @@
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include take-space;
-    @include card();
+    @include card;
   }
 }

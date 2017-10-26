@@ -19,9 +19,9 @@
  * @nuclide Shadow-Colors
  * @section Config > Shadows
  */
-$KEY_UMBRA    : rgba(0, 0, 0, .2);
-$KEY_PENUMBRA : rgba(0, 0, 0, .14);
-$AMBIENT      : rgba(0, 0, 0, .12);
+$key-umbra: rgba(0, 0, 0, .2);
+$key-penumbra: rgba(0, 0, 0, .14);
+$ambient: rgba(0, 0, 0, .12);
 
 
 /**
@@ -32,54 +32,54 @@ $AMBIENT      : rgba(0, 0, 0, .12);
  * @nuclide Shadow-Sets
  * @section Config > Shadows
  */
-$REFERENCE_SHADOWS: (
+$reference-shadows: (
   (elevation: 0,
     shadows: (
-      (0, 0, 0, 0, $KEY_UMBRA),
-      (0, 0, 0, 0, $KEY_PENUMBRA),
-      (0, 0, 0, 0, $AMBIENT),
+      (0, 0, 0, 0, $key-umbra),
+      (0, 0, 0, 0, $key-penumbra),
+      (0, 0, 0, 0, $ambient),
     )
   ),
   (elevation: 2,
     shadows: (
-      (0, 3, 1, -2, $KEY_UMBRA),
-      (0, 2, 2, 0, $KEY_PENUMBRA),
-      (0, 1, 5, 0, $AMBIENT),
+      (0, 3, 1, -2, $key-umbra),
+      (0, 2, 2, 0, $key-penumbra),
+      (0, 1, 5, 0, $ambient),
     )
   ),
   (elevation: 3,
     shadows: (
-      (0, 3, 3, -2, $KEY_UMBRA),
-      (0, 3, 4, 0, $KEY_PENUMBRA),
-      (0, 1, 8, 0, $AMBIENT),
+      (0, 3, 3, -2, $key-umbra),
+      (0, 3, 4, 0, $key-penumbra),
+      (0, 1, 8, 0, $ambient),
     )
   ),
   (elevation: 4,
     shadows: (
-      (0, 2, 4, -1, $KEY_UMBRA),
-      (0, 4, 5, 0, $KEY_PENUMBRA),
-      (0, 1, 10, 0, $AMBIENT),
+      (0, 2, 4, -1, $key-umbra),
+      (0, 4, 5, 0, $key-penumbra),
+      (0, 1, 10, 0, $ambient),
     )
   ),
   (elevation: 6,
     shadows: (
-      (0, 3, 5, -1, $KEY_UMBRA),
-      (0, 6, 10, 0, $KEY_PENUMBRA),
-      (0, 1, 18, 0, $AMBIENT),
+      (0, 3, 5, -1, $key-umbra),
+      (0, 6, 10, 0, $key-penumbra),
+      (0, 1, 18, 0, $ambient),
     )
   ),
   (elevation: 8,
     shadows: (
-      (0, 5, 5, -3, $KEY_UMBRA),
-      (0, 8, 10, 1, $KEY_PENUMBRA),
-      (0, 3, 14, 2, $AMBIENT),
+      (0, 5, 5, -3, $key-umbra),
+      (0, 8, 10, 1, $key-penumbra),
+      (0, 3, 14, 2, $ambient),
     )
   ),
   (elevation: 16,
     shadows: (
-      (0, 8, 10, -5, $KEY_UMBRA),
-      (0, 16, 24, 2, $KEY_PENUMBRA),
-      (0, 6, 30, 5, $AMBIENT),
+      (0, 8, 10, -5, $key-umbra),
+      (0, 16, 24, 2, $key-penumbra),
+      (0, 6, 30, 5, $ambient),
     )
   )
 );
@@ -91,8 +91,8 @@ $REFERENCE_SHADOWS: (
  * @nuclide Shadow-Animation-Durations
  * @section Config > Shadows
  */
-$MIN_ANIMATION_LENGTH: 250ms;
-$MAX_ANIMATION_LENGTH: 400ms;
+$min-animation-length: 250ms;
+$max-animation-length: 400ms;
 
 
 /**
@@ -103,7 +103,7 @@ $MAX_ANIMATION_LENGTH: 400ms;
  * @nuclide Shadow-Elements-Map
  * @section Config > Shadows
  */
-$materialElements: (
+$material-elements: (
   dialog: (24),
   picker: (24),
   nav-drawer: (16),
@@ -136,23 +136,23 @@ $materialElements: (
  * @param $elevation
  *  The elevation
  * @example
- *  $foo = _findBoundingShadowSets();
+ *  $foo = find-bounding-shadow-sets();
  */
-@function _findBoundingShadowSets($elevation) {
+@function find-bounding-shadow-sets($elevation) {
   @if $elevation < 0 {
     @warn 'Elevation is less than zero';
   }
 
-  @for $i from 1 to length($REFERENCE_SHADOWS) {
-    $lower: nth($REFERENCE_SHADOWS, $i);
-    $upper: nth($REFERENCE_SHADOWS, $i + 1);
+  @for $i from 1 to length($reference-shadows) {
+    $lower: nth($reference-shadows, $i);
+    $upper: nth($reference-shadows, $i + 1);
     @if (map-get($lower, 'elevation') <= $elevation) and (map-get($upper, 'elevation') > $elevation) {
       @return ($lower, $upper);
     }
   }
 
-  $lower: nth($REFERENCE_SHADOWS, length($REFERENCE_SHADOWS) - 1);
-  $upper: nth($REFERENCE_SHADOWS, length($REFERENCE_SHADOWS));
+  $lower: nth($reference-shadows, length($reference-shadows) - 1);
+  $upper: nth($reference-shadows, length($reference-shadows));
 
   @return ($lower, $upper);
 }
@@ -172,9 +172,9 @@ $materialElements: (
  * @param $b
  *  The ending value
  * @example
- *  $foo = _lerp(.2, 3, 6);
+ *  $foo = lerp(.2, 3, 6);
  */
-@function _lerp($x, $a, $b) {
+@function lerp($x, $a, $b) {
   @return $a + $x * ($b - $a);
 }
 
@@ -193,18 +193,21 @@ $materialElements: (
  * @param $shadow2
  *  The ending shadow
  * @example
- *  $foo = _calculateShadowSetAtDepth(2);
+ *  $foo = calculate-shadow-set-at-depth(2);
  */
-@function _lerpShadow($x, $shadow1, $shadow2) {
+@function lerp-shadow($x, $shadow1, $shadow2) {
   // Round all parameters, as shadow definitions do not support subpixels
-  $newX: round(_lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + 0px;
-  $newY: round(_lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + 0px;
-  $newBlur: round(_lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + 0px;
-  $newSpread: round(_lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + 0px;
-  // No need to _lerp the shadow color
-  $newColor: nth($shadow1, 5);
+  // NOTE: Zero unit needed to coerce to a PX value
+  // sass-lint:disable zero-unit
+  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + 0px;
+  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + 0px;
+  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + 0px;
+  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + 0px;
+  // sass-lint:enable zero-unit
+  // No need to lerp the shadow color
+  $new-color: nth($shadow1, 5);
 
-  @return ($newX $newY $newBlur $newSpread $newColor);
+  @return ($new-x $new-y $new-blur $new-spread $new-color);
 }
 
 
@@ -215,21 +218,21 @@ $materialElements: (
  * @param $elevation
  *  The desired elevation
  * @example
- *  $foo = _calculateShadowSetAtDepth(2);
+ *  $foo = calculate-shadow-set-at-depth(2);
  */
-@function _calculateShadowSetAtDepth($elevation) {
-  $bounds: _findBoundingShadowSets($elevation);
+@function calculate-shadow-set-at-depth($elevation) {
+  $bounds: find-bounding-shadow-sets($elevation);
   $min: nth($bounds, 1);
   $max: nth($bounds, 2);
   $x: ($elevation - map-get($min, 'elevation')) / (map-get($max, 'elevation') - map-get($min, 'elevation'));
-  $elevationShadows: ();
+  $elevation-shadows: ();
 
   @for $i from 1 to length(map-get($min, 'shadows')) + 1 {
-    $newShadow: _lerpShadow($x, nth(map-get($min, 'shadows'), $i), nth(map-get($max, 'shadows'), $i));
-    $elevationShadows: append($elevationShadows, $newShadow, comma);
+    $new-shadow: lerp-shadow($x, nth(map-get($min, 'shadows'), $i), nth(map-get($max, 'shadows'), $i));
+    $elevation-shadows: append($elevation-shadows, $new-shadow, comma);
   }
 
-  @return $elevationShadows;
+  @return $elevation-shadows;
 }
 
 
@@ -240,15 +243,15 @@ $materialElements: (
  * The larger the elevation change the longer the animation takes
  *
  * @section Shadow-Mixins
- * @param $elevationChange
+ * @param $elevation-change
  *  The elevation change amount
  * @param $easing
  *  The easing function or name
  * @example
- *  @include _elevationTransition(dialog);
+ *  @include elevation-transition(dialog);
  */
-@mixin _elevationTransition($elevationChange: 6, $easing: cubic-bezier(.4, 0, .2, 1)) {
-  $duration: _lerp($elevationChange / 24, $MIN_ANIMATION_LENGTH, $MAX_ANIMATION_LENGTH);
+@mixin elevation-transition($elevation-change: 6, $easing: cubic-bezier(.4, 0, .2, 1)) {
+  $duration: lerp($elevation-change / 24, $min-animation-length, $max-animation-length);
 
   transition: box-shadow $duration $easing;
 }
@@ -273,19 +276,23 @@ $materialElements: (
  */
 @mixin elevation($elevation1, $elevation2: null, $state: null) {
   @if $elevation1 == 0 {
+    // sass-lint:disable no-important
     box-shadow: none !important;
+    // sass-lint:enable no-important
   } @else {
-    box-shadow: _calculateShadowSetAtDepth($elevation1);
+    box-shadow: calculate-shadow-set-at-depth($elevation1);
   }
 
   @if $elevation2 != null {
-    @include _elevationTransition($elevation2 -$elevation2);
+    @include elevation-transition($elevation2 -$elevation2);
 
     &:#{$state} {
-      @if $elevation1==0 {
+      @if $elevation1 == 0 {
+        // sass-lint:disable no-important
         box-shadow: none !important;
+        // sass-lint:enable no-important
       } @else {
-        box-shadow: _calculateShadowSetAtDepth($elevation2);
+        box-shadow: calculate-shadow-set-at-depth($elevation2);
       }
     }
   }
@@ -293,16 +300,16 @@ $materialElements: (
 
 
 /**
- * Returns box-shadow and transition properties for specific elements. See $materialElements.
+ * Returns box-shadow and transition properties for specific elements. See $material-elements.
  *
  * @section Shadow-Mixins
- * @param $elementName
+ * @param $element-name
  *  The element to add a shadow to
  * @example
- *  @include elevationElement(dialog);
+ *  @include elevation-element(dialog);
  */
-@mixin elevationElement($elementName) {
-  $attr: map-get($materialElements, $elementName);
+@mixin elevation-element($element-name) {
+  $attr: map-get($material-elements, $element-name);
 
   @if length($attr) == 1 {
     @include elevation(nth($attr, 1));

@@ -229,8 +229,8 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   ::ng-deep .mat-menu-panel & {
     // needed for specificity
     &.c-button {
-      box-shadow: none;
       background-color: transparent;
+      box-shadow: none;
       color: color(pure, dark);
       text-align: left;
       width: 100%;

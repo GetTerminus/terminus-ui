@@ -26,6 +26,11 @@ describe('TsSearchComponent', () => {
         query: ' foo 23 ',
       });
       expect(this.component.currentQuery).toEqual('foo 23');
+
+      this.component.searchForm.patchValue({
+        query: null,
+      });
+      expect(this.component.currentQuery).toEqual('');
     });
 
   });
