@@ -1,5 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
+@import './../scss/helpers/cursors';
 
 :host {
   display: inline-block;
@@ -45,10 +46,10 @@
 
   // <div> The container for the icon
   .c-copy__icon {
+    @include cursor(pointer);
     background-color: color(primary, light);
     border-radius: 0 $radius $radius 0;
     color: color(pure);
-    cursor: pointer;
     margin:
     calc(-#{$margin__vertical} - 1px)
     calc(-#{$margin__horizontal} - 1px)

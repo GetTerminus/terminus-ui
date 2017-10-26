@@ -20,9 +20,6 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ],
-      "angular2-ladda": [
-        "../node_modules/angular2-ladda"
-      ],
       "rxjs/*": [
         "../node_modules/rxjs/*"
       ]

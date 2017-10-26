@@ -7,16 +7,17 @@ import { orderArrayByProperty } from './../utilities/orderArrayByProperty';
 @Component({
   selector: 'demo-components',
   template: `
-    <h2>{{ title }}</h2>
+    <div [style.marginBottom]="height" fxLayout="column" fxLayoutAlign="start start">
+      <h2>{{ title }}</h2>
 
-    <select [(ngModel)]="path" (ngModelChange)="goToComponent($event)" class="form-control">
-      <option value="">Select Component</option>
-      <option *ngFor="let component of components" [value]="component.path">
-        {{ component.data.name }}
-      </option>
-    </select>
+      <select [(ngModel)]="path" (ngModelChange)="goToComponent($event)" class="form-control">
+        <option value="">Select Component</option>
+        <option *ngFor="let component of components" [value]="component.path">
+          {{ component.data.name }}
+        </option>
+      </select>
 
-    <div [style.height]="height"></div>
+    </div>
 
     <router-outlet></router-outlet>
   `,

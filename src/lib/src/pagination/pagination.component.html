@@ -38,10 +38,9 @@
     <ts-menu
       class="qa-pagination-current-page-menu"
       [theme]="theme"
-      [menuItems]="pagesArray"
+      [menuItemsTemplate]="menuItems"
       [menuPositionY]="menuLocation"
       [isDisabled]="menuIsDisabled(pagesArray?.length)"
-      (selected)="currentPageChanged($event)"
       [ngClass]="{'disabled': menuIsDisabled(pagesArray?.length)}"
     >{{ currentPageLabel }}</ts-menu>
 
@@ -72,7 +71,24 @@
     class="c-pagination__message qa-pagination-message"
     *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"
   >
-    {{ recordCountTooHighMessage }}
+    <ng-container
+      [ngTemplateOutlet]="paginationMessageTemplate || defaultPaginationMessageTemplate"
+      [ngTemplateOutletContext]="templateContext"
+    ></ng-container>
   </div>
 
 </div>
+
+
+<ng-template #menuItems>
+  <ts-button
+    *ngFor="let page of pagesArray; trackBy: trackPagesArray"
+    (clickEvent)="currentPageChanged(page)"
+  >
+    {{ page.name }}
+  </ts-button>
+</ng-template>
+
+<ng-template #defaultPaginationMessageTemplate let-message>
+  {{ message }}
+</ng-template>

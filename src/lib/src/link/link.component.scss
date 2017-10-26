@@ -1,8 +1,14 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/animation';
 
 :host {
   display: inline-block;
+
+  .c-menu & {
+    margin: spacing(small, 2x) 0;
+  }
 }
 
 //
@@ -16,6 +22,7 @@
   &#{&} {
     @include typography;
     color: color('primary');
+    display: inline-block;
     text-decoration: underline;
     transition: color 200ms ease;
     will-change: color;
@@ -42,5 +49,25 @@
   // Align the icon to the text
   .mat-icon {
     vertical-align: bottom;
+  }
+}
+
+
+//
+// Styles when nested inside a TsMenuComponent
+.c-link {
+  .mat-menu-content & {
+    color: color(pure, dark);
+    display: block;
+    padding: spacing(small, 2x) spacing();
+    text-decoration: none;
+    transition: background 400ms $g-material-background-easing;
+    will-change: background-color;
+
+    &:focus,
+    &:hover {
+      background-color: color(utility, xlight);
+      color: color(primary);
+    }
   }
 }

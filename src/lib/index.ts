@@ -17,14 +17,15 @@ export { TsLoginFormModule } from './src/login-form/login-form.module';
 export { TsLinkModule } from './src/link/link.module';
 export { TsNavigationModule } from './src/navigation/navigation.module';
 export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.module';
+export { TsCardModule } from './src/card/card.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 // Utilities & Services
 export { TsWindowService } from './src/services/window/window.service';
 export { TsDocumentService } from './src/services/document/document.service';
-export * from './src/utilities/interfaces';
-export * from './src/utilities/types';
+export * from './src/utilities/interfaces/index';
+export * from './src/utilities/types/index';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';

@@ -12,6 +12,9 @@ const execa = require('execa');
 const inlineResources = require('./inline-resources');
 const mergeFiles = require('merge-files');
 const absModuleFix = require('rollup-plugin-absolute-module-fix');
+const nodeResolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const replace = require('replace-in-file');
 
 const libNameWithScope = require('./../package.json').name;
 const libName = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -23,21 +26,65 @@ const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
 
+
 /*
  * Define all SCSS files that need to be exposed to the consuming library
  * NOTE: Typography must be before `_spacing.scss`
  */
 const scssHelpersInputPathList = [
   'src/lib/src/scss/helpers/_typography.scss',
+  'src/lib/src/scss/helpers/_cursors.scss',
   'src/lib/src/scss/helpers/_color.scss',
   'src/lib/src/scss/helpers/_assets.scss',
   'src/lib/src/scss/helpers/_breakpoints.scss',
   'src/lib/src/scss/helpers/_layout.scss',
   'src/lib/src/scss/helpers/_z-index.scss',
+  // Spacing must be after typography
   'src/lib/src/scss/helpers/_spacing.scss',
   'src/lib/src/scss/helpers/_animation.scss',
+  'src/lib/src/scss/helpers/_shadows.scss',
+  // Card must be after spacing and shadows
+  'src/lib/src/scss/helpers/_card.scss',
 ];
 const scssHelpersOutputPath = 'src/lib/helpers.scss';
+
+
+// Add any dependency or peer dependency your library has to `globals` and `external`.
+// This is required for UMD bundle users.
+// The key here is library name, and the value is the the name of the global variable name
+// the window object.
+// See https://rollupjs.org/#javascript-api for more.
+const GLOBALS = {
+  // Angular dependencies
+  '@angular/animations': 'ng.animations',
+  '@angular/animations/browser': 'ng.animations.browser',
+  '@angular/core': 'ng.core',
+  '@angular/common': 'ng.common',
+  '@angular/flex-layout': 'ng.flex-layout',
+  '@angular/forms': 'ng.forms',
+  '@angular/http': 'ng.http',
+  '@angular/router': 'ng.router',
+  '@angular/platform-browser': 'ng.platformBrowser',
+  '@angular/platform-browser/animations': 'ng.platformBrowser.animations',
+  '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+
+  // Material
+  '@angular/material': 'ng.material',
+  '@angular/cdk': 'ng.cdk',
+  '@angular/cdk/overlay': 'ng.cdk.overlay',
+  '@angular/cdk/portal': 'ng.cdk.portal',
+  '@angular/cdk/keycodes': 'ng.cdk.keycodes',
+
+  // Rxjs dependencies
+  'rxjs/Subject': 'Rx',
+  'rxjs/Observable': 'Rx',
+  'rxjs/add/observable/of': 'Rx.Observable',
+  'rxjs/add/observable/fromEvent': 'Rx.Observable',
+  'rxjs/add/operator/distinctUntilChanged': 'Rx.Operator',
+  'rxjs/add/operator/pluck': 'Rx.Operator',
+  'rxjs/add/operator/debounceTime': 'Rx.Operator',
+  'rxjs/BehaviorSubject': 'Rx.BehaviorSubject',
+};
 
 
 return Promise.resolve()
@@ -71,67 +118,27 @@ return Promise.resolve()
     const rollupBaseConfig = {
       moduleName: camelCase(libName),
       sourceMap: true,
-      // ATTENTION:
-      // Add any dependency or peer dependency your library has to `globals` and `external`.
-      // This is required for UMD bundle users.
-      globals: {
-        // The key here is library name, and the value is the the name of the global variable name
-        // the window object.
-        // See https://rollupjs.org/#javascript-api for more.
-        // Angular dependencies
-        '@angular/animations': 'ng.animations',
-        '@angular/animations/browser': 'ng.animations.browser',
-        '@angular/core': 'ng.core',
-        '@angular/common': 'ng.common',
-        '@angular/flex-layout': 'ng.flex-layout',
-        '@angular/forms': 'ng.forms',
-        '@angular/http': 'ng.http',
-        '@angular/router': 'ng.router',
-        '@angular/platform-browser': 'ng.platformBrowser',
-        '@angular/platform-browser/animations': 'ng.platformBrowser.animations',
-        '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
-        '@angular/material': 'ng.material',
 
-        // Rxjs dependencies
-        'rxjs/Subject': 'Rx',
-        'rxjs/Observable': 'Rx',
-        'rxjs/add/observable/of': 'Rx.Observable',
-        'rxjs/add/observable/fromEvent': 'Rx.Observable',
-        'rxjs/add/operator/distinctUntilChanged': 'Rx.Operator',
-        'rxjs/add/operator/pluck': 'Rx.Operator',
-        'rxjs/add/operator/debounceTime': 'Rx.Operator',
-        'rxjs/BehaviorSubject': 'Rx.BehaviorSubject',
-      },
-      external: [
-        // List of dependencies
-        // See https://rollupjs.org/#javascript-api for more.
-        '@angular/core',
-        '@angular/common',
-        '@angular/animations',
-        '@angular/animations/browser',
-        '@angular/flex-layout',
-        '@angular/forms',
-        '@angular/http',
-        '@angular/router',
-        '@angular/platform-browser',
-        '@angular/platform-browser/animations',
-        '@angular/platform-browser-dynamic',
-        '@angular/material',
-        '@angular/cdk/portal',
-        'rxjs/Subject',
-        'rxjs/Observable',
-        'rxjs/add/observable/of',
-        'rxjs/add/observable/fromEvent',
-        'rxjs/add/operator/distinctUntilChanged',
-        'rxjs/add/operator/pluck',
-        'rxjs/add/operator/debounceTime',
-        'rxjs/BehaviorSubject',
-        // NOTE: I would prefer this library to be bundled with terminus/ui. However, doing so
-        // breaks the build. We need the commonjs rollup plugin to include this library, but adding
-        // the commonjs plugin seems to break other @angular core includes.
-        'angular2-ladda',
-      ],
+      globals: GLOBALS,
+
+      // List of dependencies
+      // See https://rollupjs.org/#javascript-api for more.
+      external: Object.keys(GLOBALS),
+
       plugins: [
+        nodeResolve({
+          es2015: true,
+          module: true,
+          main: true,
+        }),
+        commonjs({
+          include: [
+            'node_modules/angular2-ladda/**',
+            'node_modules/ladda/**',
+            'node_modules/spin.js/**',
+            'node_modules/rxjs/**',
+          ],
+        }),
         sourcemaps(),
         absModuleFix(),
       ],
@@ -144,6 +151,8 @@ return Promise.resolve()
         console.error(warning.message);
       }
     };
+
+    // TODO: Remove unused builds (likely fesm5config and fesm2015config)
 
     // UMD bundle.
     const umdConfig = Object.assign({}, rollupBaseConfig, {
@@ -191,10 +200,20 @@ return Promise.resolve()
     .then(() => _relativeCopy('README.md', rootFolder, distFolder))
     .then(() => console.log('Package files copy succeeded.'))
   )
+  // Merge SCSS helper files and move to dist
   .then(() => Promise.resolve()
     .then(() => mergeFiles(scssHelpersInputPathList, scssHelpersOutputPath))
     .then(() => _relativeCopy('helpers.scss', srcFolder, distFolder))
-    .then(() => console.log('SCSS helpers merged and copied.'))
+    .then(() => replace({
+      files: path.join(distFolder, 'helpers.scss'),
+      from: [/@import.*/g],
+      to: '',
+    }))
+    .then(() => {
+      // Remove the temp file from the lib folder
+      fs.unlinkSync(path.join(srcFolder, 'helpers.scss'))
+      console.log('SCSS helpers merged and copied.');
+    })
   )
   // Generate CSS for shared styles
   .then(() => Promise.resolve()

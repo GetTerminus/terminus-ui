@@ -91,6 +91,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | badge            |                                                        |                :x: |                              |
 | button           |                                                        | :white_check_mark: |          [Demo][demo-button] |
 | breadcrumbs      |                                                        |                :x: |                              |
+| card             |                                                        | :white_check_mark: |            [Demo][demo-card] |
 | chip             |                                                        |                :x: |                              |
 | checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
 | copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
@@ -606,4 +607,5 @@ machines.
 [demo-navigation]: https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=app,preview
 [demo-loading-overlay]: https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show=app,preview
 [demo-search]: https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=app,preview
+[demo-card]: https://embed.plnkr.co/plunk/E5syTKxdLMmfBeS3?show=app,preview
 

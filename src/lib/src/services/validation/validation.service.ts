@@ -31,6 +31,9 @@ export class ValidationService {
       invalidCreditCard: creditCardMessage,
       invalidEmail: emailMessage,
       invalidPassword: passwordMessage,
+      // TODO: Figure out how to abstract pattern messages out so they can be customized per
+      // pattern. (showing a regex pattern to an end user isn't helpful)
+      pattern: `Must contain only letters, numbers or spaces`,
     };
 
     return config[validatorName];

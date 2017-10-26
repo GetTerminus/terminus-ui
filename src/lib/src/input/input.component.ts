@@ -1,6 +1,8 @@
 import {
   Component,
   Input,
+  Output,
+  EventEmitter,
   forwardRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -16,7 +18,7 @@ import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/inp
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsInputComponent),
-  multi: true
+  multi: true,
 };
 
 
@@ -39,20 +41,22 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              required
  *              minlength="3"
- *              [hint]="'Fill this out!'"
- *              [label]="'My Input'"
- *              [name]="'password'"
- *              [prefixIcon]="'icon_name'"
- *              [type]="'text'"
- *              [isDisabled]="false"
- *              [isRequired]="false"
- *              [hideRequiredMarker]="false"
- *              [isClearable]="true"
- *              [isFocused]="false"
- *              [autocomplete]="false"
- *              [autocorrect]="false"
- *              [autocapitalize]="false"
- *              [spellcheck]="false"
+ *              hint="Fill this out!"
+ *              label="My Input"
+ *              name="'password'"
+ *              prefixIcon="'icon_name'"
+ *              type="text"
+ *              isDisabled="false"
+ *              isRequired="false"
+ *              hideRequiredMarker="false"
+ *              isClearable="true"
+ *              isFocused="false"
+ *              autocomplete="false"
+ *              autocorrect="false"
+ *              autocapitalize="false"
+ *              spellcheck="false"
+ *              validateOnChange="false"
+ *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
  * <example-url>https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=preview</example-url>
@@ -117,7 +121,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the name attribute value
    */
-  @Input('name')
+  @Input()
   public name: string;
 
   /**
@@ -136,8 +140,20 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}
    */
-  @Input('type')
+  @Input()
   public type: TsInputTypes = 'text';
+
+  /**
+   * Define if validation messages should be shown immediately or on blur
+   */
+  @Input()
+  public validateOnChange: boolean = false;
+
+  /**
+   * The event to emit when the input value is cleared
+   */
+  @Output()
+  cleared: EventEmitter<boolean> = new EventEmitter();
 
 
   /**
@@ -145,6 +161,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    */
   public reset(): void {
     this.value = '';
+    this.cleared.emit(true);
   }
 
 }

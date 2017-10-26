@@ -20,6 +20,7 @@ import { SpacingStylesComponent } from './spacing-styles.component';
 import { NavigationComponent } from './navigation.component';
 import { LoadingOverlayComponent } from './loading-overlay.component';
 import { SearchComponent } from './search.component';
+import { CardComponent } from './card.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -162,6 +163,13 @@ export const componentsList: Routes = [
     component: SearchComponent,
     data: {
       name: 'Search',
+    },
+  },
+  {
+    path: 'card',
+    component: CardComponent,
+    data: {
+      name: 'Card',
     },
   },
   // INJECT: Add route for demo component

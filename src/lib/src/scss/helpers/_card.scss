@@ -1,0 +1,21 @@
+@import './typography';
+@import './spacing';
+@import './shadows';
+@import './cursors';
+
+@mixin card(
+  $allows-interaction: false
+) {
+
+  // If the card allows interaction, give it a hover state
+  @if $allows-interaction == true {
+    @include elevation-element(card);
+    cursor: cursor(pointer);
+  } @else {
+    // Otherwise include standard elevation
+    @include elevation(2);
+  }
+
+  padding: spacing(large);
+  vertical-align: top;
+}

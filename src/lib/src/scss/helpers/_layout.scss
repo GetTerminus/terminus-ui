@@ -59,3 +59,18 @@
     background-size: cover;
   }
 }
+
+
+/**
+ * Center child content vertically and horizontally
+ *
+ * @mixin center-content
+ * @section Layout
+ * @example
+ *  @include center-content;
+ */
+@mixin center-content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
