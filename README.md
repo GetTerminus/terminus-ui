@@ -489,48 +489,6 @@ machines.
 - [CodeCov][codecov] - Code coverage reporting.
 
 
-## Suggested Tools
-
-1. [Committizen CLI][commitizen-cli]
-    - When you commit with Commitizen, you'll be prompted to fill out any required commit fields at
-    commit time.
-1. [Github Desktop][github-gui]
-    - GitHub Desktop is a seamless way to contribute to projects on GitHub.
-1. [CCMenu][ccmenu]
-    - CCMenu displays the build status of projects on a continuous integration server as an item in
-    the Mac's menu bar.
-1. [Hub for Git][hub]
-    - Hub is a command line tool that wraps git in order to extend it with extra features and commands
-    that make working with GitHub easier.
-1. [KeepingYouAwake][keeping-you-awake]
-    - A Caffeine clone for macOS Yosemite, El Capitan and Sierra.
-1. [Npm Task List][ntl]
-    - Interactive CLI menu to list & run NPM tasks.
-1. [Migrating from NPM to Yarn][npm-to-yarn]
-    - Migration cheat-sheet
-1. [ImageOptim][imageoptim]
-    - Removes bloated metadata. Saves disk space & bandwidth by compressing images without losing
-    quality.
-1. [NPM commands cheatsheet][npm-cheatsheet]
-    - A useful NPM commands cheat sheet.
-1. [Refined Github][refined-github]
-    - Chrome extension that simplifies the GitHub interface and adds useful features.
-1. [Octotree][octotree]
-    - Chrome extension that adds a code tree for GitHub.
-1. [Github with a Cape][github-cape]
-    - Chrome Extension which adds a bunch of new features to GitHub.
-1. [CodeCov Browser Extensions][codecov_browser]
-    - Browser extensions for CodeCov.
-1. [Github Highlight Selected][github-highlight]
-    - Chrome extension for highlighting selected word in GitHub source view like Sublime Text.
-1. [Octopatcher][octopatcher]
-    - Chrome extension to make GitHub content collapsable.
-1. [PR Deetz][pr-deetz]
-    - Chrome extension that shows details of pull requests related to a commit.
-1. [Neo Vision][neo-vision]
-    - Chrome extension that syntax-highlights source code files with customizable themes.
-
-
 
 
 <!-- LINKS -->
@@ -563,26 +521,9 @@ machines.
 [codecov_browser]: https://docs.codecov.io/docs/browser-extension
 [semantic-release-video]: https://youtu.be/tc2UgG5L7WM
 [markdown]: https://daringfireball.net/projects/markdown/syntax
-[imageoptim]: https://imageoptim.com/mac
 [conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
 [commitizen-cli]: https://github.com/commitizen/cz-cli
-[github-gui]: https://desktop.github.com/
-[ccmenu]: http://ccmenu.org/
-[refined-github]: https://github.com/sindresorhus/refined-github
-[octotree]: https://github.com/buunguyen/octotree
-[hub]: https://github.com/github/hub
-[npm-cheatsheet]: https://gist.github.com/martinheidegger/5554941
-[keeping-you-awake]: https://github.com/newmarcel/KeepingYouAwake
-[code-climate-chrome]: https://codeclimate.com/browser-extension
-[ntl]: https://github.com/ruyadorno/ntl
 [validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
-[github-highlight]: https://github.com/Nuclides/github-highlight-selected
-[octopatcher]: https://github.com/Mottie/Octopatcher
-[pr-deetz]: https://github.com/steveklebanoff/pr_deetz
-[neo-vision]: https://github.com/desandro/neo-vision
-[github-cape]: https://github-with-a-cape.nicosantangelo.com/
-[npm-to-yarn]: https://yarnpkg.com/lang/en/docs/migrating-from-npm/
-[npm-dist-tag]: https://docs.npmjs.com/cli/dist-tag
 [ui-npm]: https://www.npmjs.com/package/@terminus/ui
 [ui-github]: https://github.com/GetTerminus/terminus-ui
 [semver]: http://semver.org/

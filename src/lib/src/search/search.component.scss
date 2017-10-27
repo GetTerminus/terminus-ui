@@ -14,12 +14,10 @@
 // <form> primary container
 .c-search {
   // Top level styles should be nested here
-  /*
-   *&#{&} {
-   *}
-   */
+  //&#{&} {
+  //}
 
-  ts-input {
-    margin-right: spacing;
+  ts-button {
+    margin-left: spacing();
   }
 }
