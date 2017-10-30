@@ -248,7 +248,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
    private initialize() {
      this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
-     this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+     this.currentPageLabel =
+       this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
      // Go to the initially set page
      this.changePage(this.currentPage, 1, this.pagesArray);
@@ -280,7 +281,11 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  public changePage(destinationPage: number, currentPage: number, pages: TsPaginationMenuItem[]): void {
+  public changePage(
+    destinationPage: number,
+    currentPage: number,
+    pages: TsPaginationMenuItem[],
+  ): void {
     const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
@@ -366,8 +371,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Determine if the records-per-page menu should be disabled
    *
    * @param {Number} total The total number of records
-   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be show per
-   * page
+   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be
+   * show per page
    * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
    */
   public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
