@@ -7,6 +7,7 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import {
@@ -44,12 +45,13 @@ import {
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsButtonComponent implements OnInit {
   /**
-   * @private Define the default delay for collapsable buttons
+   * Define the default delay for collapsable buttons
    */
-  _COLLAPSE_DEFAULT_DELAY: number = 4000;
+  private COLLAPSE_DEFAULT_DELAY: number = 4000;
 
   /**
    * Define the delay before the rounded button automatically collapses
@@ -69,7 +71,6 @@ export class TsButtonComponent implements OnInit {
   /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
-  @Input()
   public actionName: TsButtonActionTypes = 'Button';
 
   /**
@@ -88,7 +89,7 @@ export class TsButtonComponent implements OnInit {
     // If the value is `false` and a collapse delay is set
     if (value === false && this.collapseDelay) {
       // Trigger the delayed close
-      this._collapseWithDelay(this.collapseDelay);
+      this.collapseWithDelay(this.collapseDelay);
     }
   }
 
@@ -121,7 +122,7 @@ export class TsButtonComponent implements OnInit {
     if (this.definedFormat === 'collapsable') {
       // Set the collapse delay
       if (!this.collapseDelay) {
-        this.collapseDelay = this._COLLAPSE_DEFAULT_DELAY;
+        this.collapseDelay = this.COLLAPSE_DEFAULT_DELAY;
       }
     } else {
       // If the format is NOT collapsable, remove the delay
@@ -153,7 +154,7 @@ export class TsButtonComponent implements OnInit {
    */
   ngOnInit(): void {
     if (this.collapseDelay) {
-      this._collapseWithDelay(this.collapseDelay);
+      this.collapseWithDelay(this.collapseDelay);
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
@@ -162,20 +163,18 @@ export class TsButtonComponent implements OnInit {
     }
   }
 
-
   /**
-   * @private Collapse the button after a delay
+   * Collapse the button after a delay
    *
    * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be
    * patching setTimeout automatically.
    *
    * @param {Number} delay The time to delay before collapsing the button
    */
-  _collapseWithDelay(delay: number): void {
+  private collapseWithDelay(delay: number): void {
     setTimeout(() => {
       this.isCollapsed = true;
       this.changeDetectorRef.detectChanges();
     }, delay);
   }
-
 }
