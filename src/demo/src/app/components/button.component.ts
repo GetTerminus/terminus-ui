@@ -9,13 +9,31 @@ import { Component } from '@angular/core';
     }
   `],
   template: `
-    <ts-button
-      [theme]="style"
-      (clickEvent)="run('progress2')"
-      [isDisabled]="disabled"
-      [showProgress]="progress2"
-      [iconName]="icon"
-    >Click Me!</ts-button>
+    <div>
+      <label>
+        Format:
+        <select name="myFormat" [(ngModel)]="myFormat">
+          <option value="{{ format }}" *ngFor="let format of formats">
+            {{ format | titlecase }}
+          </option>
+        </select>
+      </label>
+
+      <br>
+      <br>
+
+      <ts-button
+        [theme]="style"
+        (clickEvent)="run('progress2')"
+        [isDisabled]="disabled"
+        [showProgress]="progress2"
+        [iconName]="icon"
+        [format]="myFormat"
+      >Click Me!</ts-button>
+    </div>
+
+    <br>
+    <br>
 
     <hr>
 
@@ -108,7 +126,8 @@ export class ButtonComponent {
   progress2 = false;
   icon = 'home';
   formatCollapsable = 'collapsable';
-
+  formats = ['filled', 'hollow', 'collapsable'];
+  myFormat = 'filled';
 
   run(progress: any) {
     console.log('in run!');
@@ -116,7 +135,7 @@ export class ButtonComponent {
 
     setTimeout(() => {
       this[progress] = false;
-    }, 3000);
+    }, 1000);
   }
 
 }

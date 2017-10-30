@@ -29,30 +29,30 @@ describe(`ButtonComponent`, () => {
 
     describe(`when format === collapsable`, () => {
 
-      it(`should call _collapseWithDelay if a delay is set and the value is FALSE`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
-        this.component.collapseDelay = this.component._COLLAPSE_DEFAULT_DELAY;
+      it(`should call collapseWithDelay if a delay is set and the value is FALSE`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
+        this.component.collapseDelay = this.component.COLLAPSE_DEFAULT_DELAY;
         this.component.collapsed = false;
 
-        expect(this.component._collapseWithDelay).toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).toHaveBeenCalled();
         expect(this.component.isCollapsed).toEqual(false);
       });
 
 
-      it(`should not call _collapseWithDelay if no delay is set and the value is FALSE`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+      it(`should not call collapseWithDelay if no delay is set and the value is FALSE`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
         this.component.collapsed = false;
 
-        expect(this.component._collapseWithDelay).not.toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
       });
 
 
-      it(`should not call _collapseWithDelay if delay is set and the value is TRUE`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
-        this.component.collapseDelay = this.component._COLLAPSE_DEFAULT_DELAY;
+      it(`should not call collapseWithDelay if delay is set and the value is TRUE`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
+        this.component.collapseDelay = this.component.COLLAPSE_DEFAULT_DELAY;
         this.component.collapsed = true;
 
-        expect(this.component._collapseWithDelay).not.toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
       });
 
     });
@@ -60,12 +60,12 @@ describe(`ButtonComponent`, () => {
 
     describe(`when format !== collapsable`, () => {
 
-      it(`should not call _collapseWithDelay if the type is not collapsable`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+      it(`should not call collapseWithDelay if the type is not collapsable`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
         this.component.format = 'filled';
         this.component.collapsed = false;
 
-        expect(this.component._collapseWithDelay).not.toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
       });
 
     });
@@ -78,7 +78,7 @@ describe(`ButtonComponent`, () => {
         it(`should set the collapseDelay to default if unset`, () => {
           this.component.format = 'collapsable';
 
-          expect(this.component.collapseDelay).toEqual(this.component._COLLAPSE_DEFAULT_DELAY);
+          expect(this.component.collapseDelay).toEqual(this.component.COLLAPSE_DEFAULT_DELAY);
         });
 
 
@@ -108,21 +108,21 @@ describe(`ButtonComponent`, () => {
 
     describe(`ngOnInit()`, () => {
 
-      it(`should call _collapseWithDelay if collapseDelay is set`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+      it(`should call collapseWithDelay if collapseDelay is set`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
         this.component.collapseDelay = 500;
         this.component.ngOnInit();
 
-        expect(this.component._collapseWithDelay).toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).toHaveBeenCalled();
       });
 
 
-      it(`should call not _collapseWithDelay if collapseDelay is not set`, () => {
-        this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+      it(`should call not collapseWithDelay if collapseDelay is not set`, () => {
+        this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
         this.component.collapseDelay = undefined;
         this.component.ngOnInit();
 
-        expect(this.component._collapseWithDelay).not.toHaveBeenCalled();
+        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
       });
 
 
@@ -130,7 +130,7 @@ describe(`ButtonComponent`, () => {
 
         beforeEach(() => {
           this.component.definedFormat = 'collapsable';
-          this.component._collapseWithDelay = jasmine.createSpy('_collapseWithDelay');
+          this.component.collapseWithDelay = jasmine.createSpy('collapseWithDelay');
           this.component.collapseDelay = 500;
         });
 
@@ -150,11 +150,11 @@ describe(`ButtonComponent`, () => {
     });
 
 
-    describe(`_collapseWithDelay()`, () => {
+    describe(`collapseWithDelay()`, () => {
 
       it(`should set isCollapsed and trigger change detection after the delay`, (done) => {
         const DELAY = 100;
-        this.component._collapseWithDelay(DELAY);
+        this.component.collapseWithDelay(DELAY);
 
         setTimeout(() => {
           expect(this.component.changeDetectorRef.detectChanges).toHaveBeenCalled();

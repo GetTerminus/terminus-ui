@@ -7,6 +7,7 @@ import {
   OnInit,
   TemplateRef,
   ElementRef,
+  SimpleChanges,
 } from '@angular/core';
 
 import { TsStyleThemeTypes } from './../utilities/types';
@@ -39,7 +40,7 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
  *              previousPageTooltip="View previous results"
  *              nextPageTooltip="View next results"
  *              lastPageTooltip="View last results"
- *              paginationMessageTemplate="myTemplate
+ *              [paginationMessageTemplate]="myTemplate"
  *              (pageSelect)="myMethod($event)"
  *              (recordsPerPageChange)="myMethod($event)"
  * ></ts-pagination>
@@ -58,24 +59,24 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
 })
 export class TsPaginationComponent implements OnChanges, OnInit {
   /**
-   * @private Define the default count of records per page
+   * Define the default count of records per page
    */
-  DEFAULT_PER_PAGE: number = 10;
+  private DEFAULT_PER_PAGE: number = 10;
 
   /**
-   * @private Default max records before message is shown
+   * Default max records before message is shown
    */
-  DEFAULT_MAX_PREFERED_RECORDS: number = 100;
+  private DEFAULT_MAX_PREFERED_RECORDS: number = 100;
 
   /**
-   * @private Define the default options for the records per page select menu
+   * Define the default options for the records per page select menu
    */
-  DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
+  private DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
 
   /**
-   * @private Define the default message to show when too many records are returned
+   * Define the default message to show when too many records are returned
    */
-  DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
+  private DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
     'Try refining your filters for better results.';
 
   /**
@@ -109,9 +110,16 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public currentPageLabel: string;
 
   /**
-   * @private Define the amount of records show per page
+   * Define the amount of records show per page
    */
-  recordsPerPage: number = this.DEFAULT_PER_PAGE;
+  public recordsPerPage: number = this.DEFAULT_PER_PAGE;
+
+  /**
+   * Define the template context for the record count message
+   */
+  public templateContext = {
+    $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
+  }
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -212,10 +220,6 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   @Output()
   public recordsPerPageChange: EventEmitter<number> = new EventEmitter();
 
-  public templateContext = {
-    $implicit: this.recordCountTooHighMessage,
-  }
-
 
   /**
    * Initialize on init
@@ -228,17 +232,24 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Initialize on any changes
    */
-  public ngOnChanges(): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     this.initialize();
+
+    // If the record count changed, assign the new value to the template context
+    // istanbul ignore else
+    if (changes.recordCountTooHighMessage) {
+      this.templateContext.$implicit = this.recordCountTooHighMessage;
+    }
   }
 
 
   /**
-   * @private Set up initial resources
+   * Set up initial resources
    */
-   initialize() {
+   private initialize() {
      this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
-     this.currentPageLabel = this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+     this.currentPageLabel =
+       this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
      // Go to the initially set page
      this.changePage(this.currentPage, 1, this.pagesArray);
@@ -270,7 +281,11 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param {Number} currentPage The current page number
    * @param {Array} pages The collection of pages
    */
-  public changePage(destinationPage: number, currentPage: number, pages: TsPaginationMenuItem[]): void {
+  public changePage(
+    destinationPage: number,
+    currentPage: number,
+    pages: TsPaginationMenuItem[],
+  ): void {
     const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
@@ -356,8 +371,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Determine if the records-per-page menu should be disabled
    *
    * @param {Number} total The total number of records
-   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be show per
-   * page
+   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be
+   * show per page
    * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
    */
   public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {

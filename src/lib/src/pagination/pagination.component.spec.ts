@@ -34,9 +34,24 @@ describe(`PaginationComponent`, () => {
 
     it(`should call the initialization method`, () => {
       this.component.initialize = jasmine.createSpy('initialize');
-      this.component.ngOnChanges();
+      this.component.ngOnChanges({});
 
       expect(this.component.initialize).toHaveBeenCalled();
+    });
+
+
+    it(`should set the recordCountTooHighMessage if passed in`, () => {
+      this.component.initialize = jasmine.createSpy('initialize');
+      this.component.recordCountTooHighMessage = 'my new message';
+      // Fake the change event that Angular would normally trigger
+      this.component.ngOnChanges({
+        recordCountTooHighMessage: {
+          previousValue: 'old message',
+          currentValue: 'my new message',
+        },
+      });
+
+      expect(this.component.templateContext.$implicit).toEqual('my new message');
     });
 
   });
