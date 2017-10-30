@@ -110,7 +110,7 @@
     "@angular/platform-browser": "4.4.6",
     "@angular/platform-browser-dynamic": "4.4.6",
     "@angular/router": "4.4.6",
-    "@compodoc/compodoc": "1.0.1",
+    "@compodoc/compodoc": "1.0.2",
     "@types/jasmine": "2.6.2",
     "@types/node": "8.0.47",
     "camelcase": "4.1.0",
