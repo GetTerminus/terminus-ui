@@ -110,7 +110,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/lib/**/!(systemjs-angular-loader).js': ['coverage'],
+      'src/lib/**/!(systemjs-angular-loader|*.spec).js': ['coverage'],
     },
     reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage', 'saucelabs'],
     coverageReporter: {
