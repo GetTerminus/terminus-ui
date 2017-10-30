@@ -32,6 +32,7 @@ import { Component } from '@angular/core';
       [currentPage]="currentPage"
       [menuLocation]="location"
       [paginationMessageTemplate]="myTemplate"
+      recordCountTooHighMessage="Please refine your filters."
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
