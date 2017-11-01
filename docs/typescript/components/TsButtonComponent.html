@@ -862,6 +862,8 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Inject services</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1137,7 +1139,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/lib/src/button/button.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/lib/src/button/button.component.ts:180</a></div>
                                 </td>
                             </tr>
     
@@ -1203,7 +1205,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/lib/src/button/button.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/lib/src/button/button.component.ts:160</a></div>
                                 </td>
                             </tr>
     
@@ -1535,9 +1537,13 @@ export class TsButtonComponent implements OnInit {
   public clickEvent: EventEmitter&lt;MouseEvent&gt; &#x3D; new EventEmitter;
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
+
 
   /**
    * Collapse after delay (if set)
@@ -1553,6 +1559,7 @@ export class TsButtonComponent implements OnInit {
     }
   }
 
+
   /**
    * Collapse the button after a delay
    *
@@ -1567,6 +1574,7 @@ export class TsButtonComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     }, delay);
   }
+
 }
 </code></pre>
     </div>

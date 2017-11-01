@@ -891,6 +891,8 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Inject services</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1864,22 +1866,22 @@ export class TsSearchComponent implements OnInit {
    * The event to emit when the form is submitted
    */
   @Output()
-  submitted: EventEmitter&lt;TsSearchResponse&gt; &#x3D; new EventEmitter();
+  public submitted: EventEmitter&lt;TsSearchResponse&gt; &#x3D; new EventEmitter();
 
   /**
    * The event to emit when the internal input value is changed
    */
   @Output()
-  changed: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+  public changed: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
 
   /**
    * The event to emit when the internal input value is cleared
    */
   @Output()
-  cleared: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
+  public cleared: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
 
   /**
-   * @private
+   * Inject services
    */
   constructor(
     private formBuilder: FormBuilder,

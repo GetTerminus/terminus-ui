@@ -60,9 +60,12 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    * Alias the position back as a style attribute
    */
   @HostBinding('style.position')
-  position: string;
+  public position: string;
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private elementRef: ElementRef,
     private windowService: TsWindowService,
@@ -112,7 +115,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    * @param {String} position The current position value
    * @return {String} position The correct position value
    */
-  determinePosition(position: string): string {
+  private determinePosition(position: string): string {
     return (position === 'relative' || position === 'absolute') ? position : 'relative';
   }
 

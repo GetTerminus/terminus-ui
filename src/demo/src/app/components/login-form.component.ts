@@ -19,7 +19,7 @@ import { TsLoginFormResponse } from '@terminus/ui';
     <ts-login-form
       [inProgress]="progress"
       [isRedirecting]="isRedirecting"
-      [resetForm]="reset"
+      [triggerFormReset]="reset"
       (submit)="formSubmission($event)"
     ></ts-login-form>
   `,

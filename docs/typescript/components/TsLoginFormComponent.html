@@ -782,13 +782,13 @@ password&quot; link</li>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#_resetForm">_resetForm</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Public</span> <a href="#getControl">getControl</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                <span class="modifier">Private</span> <a href="#resetForm">resetForm</a>
                             </li>
                         </ul>
                     </td>
@@ -817,7 +817,7 @@ password&quot; link</li>
                                 <a href="#loginCTA">loginCTA</a>
                             </li>
                             <li>
-                                <a href="#resetForm">resetForm</a>
+                                <a href="#triggerFormReset">triggerFormReset</a>
                             </li>
                         </ul>
                     </td>
@@ -857,6 +857,8 @@ password&quot; link</li>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Inject services</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1020,10 +1022,12 @@ password&quot; link</li>
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <a name="resetForm"></a>
-                            <code>resetForm</code>
+                            <a name="triggerFormReset"></a>
+                            <code>triggerFormReset</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Allow a consumer to reset the form via an input</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
@@ -1074,38 +1078,6 @@ password&quot; link</li>
             <h3 id="methods">
                 Methods
             </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="_resetForm"></a>
-                            <span class="name"><b> _resetForm</b><a href="#_resetForm"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>_resetForm()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/lib/src/login-form/login-form.component.ts:191</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1205,8 +1177,8 @@ password&quot; link</li>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Trigger a form reset if <code>resetForm</code> is changed to TRUE
-    (explanation at <code>_resetForm</code> method)</p>
+                                <div class="io-description"><p>Trigger a form reset if <code>triggerFormReset</code> is changed to TRUE
+    (explanation at <code>resetForm</code> method)</p>
     </div>
     
                                 <div class="io-description">
@@ -1243,6 +1215,46 @@ password&quot; link</li>
                                     <div class="io-description">
                                         
                                     </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="resetForm"></a>
+                            <span class="name"><b><span class="modifier">Private</span> resetForm</b><a href="#resetForm"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-lock"></span>
+                            <code>resetForm()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/lib/src/login-form/login-form.component.ts:191</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Reset the form</p>
+    <p>This is a hack. Currently there doesn&#39;t seem to be a good way to reset the form value and
+    validations without simply re-initializing the form each time.</p>
+    <p>HACK: The <code>showForm</code> value is a &#39;hack&#39; to reset the input validation styles by removing the
+    form from the dom and re-adding it. This method won&#39;t break if the Material team changes any
+    validation classes but it may be more performant to simply remove the classes.</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1285,6 +1297,12 @@ password&quot; link</li>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the checkbox inputs</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1319,6 +1337,12 @@ password&quot; link</li>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the text inputs</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1536,13 +1560,13 @@ export class TsLoginFormComponent implements OnChanges {
   public showForm: boolean &#x3D; true;
 
   /**
-   * @private Provide access to the text inputs
+   * Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
   inputComponents: QueryList&lt;TsInputComponent&gt;;
 
   /**
-   * @private Provide access to the checkbox inputs
+   * Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
   checkbox: TsCheckboxComponent;
@@ -1556,7 +1580,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Define the text for the &#x27;forgot password&#x27; link
    */
-  @Input(&#x27;forgotPasswordText&#x27;)
+  @Input()
   public forgotPasswordText: string &#x3D; &#x27;Forgot your password?&#x27;;
 
   /**
@@ -1574,14 +1598,14 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Define the login call to action
    */
-  @Input(&#x27;loginCTA&#x27;)
+  @Input()
   public loginCTA: string &#x3D; &#x27;Log In&#x27;;
 
   /**
-   * @private Allow a consumer to reset the form via an input
+   * Allow a consumer to reset the form via an input
    */
   @Input()
-  resetForm: boolean &#x3D; false;
+  public triggerFormReset: boolean &#x3D; false;
 
   /**
    * Emit an event on form submission
@@ -1591,7 +1615,7 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * @private
+   * Inject services
    */
   constructor(
     private formBuilder: FormBuilder,
@@ -1599,14 +1623,14 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * Trigger a form reset if &#x60;resetForm&#x60; is changed to TRUE
-   * (explanation at &#x60;_resetForm&#x60; method)
+   * Trigger a form reset if &#x60;triggerFormReset&#x60; is changed to TRUE
+   * (explanation at &#x60;resetForm&#x60; method)
    *
    * @param {Object} changes The inputs that have changed
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty(&#x27;resetForm&#x27;) &amp;&amp; changes.resetForm.currentValue) {
-      this._resetForm();
+    if (changes.hasOwnProperty(&#x27;triggerFormReset&#x27;) &amp;&amp; changes.triggerFormReset.currentValue) {
+      this.resetForm();
     }
   }
 
@@ -1623,16 +1647,16 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * @private Reset the form
+   * Reset the form
    *
    * This is a hack. Currently there doesn&#x27;t seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
    *
-   * NOTE: The &#x60;showForm&#x60; value is a &#x27;hack&#x27; to reset the input validation styles by removing the
+   * HACK: The &#x60;showForm&#x60; value is a &#x27;hack&#x27; to reset the input validation styles by removing the
    * form from the dom and re-adding it. This method won&#x27;t break if the Material team changes any
    * validation classes but it may be more performant to simply remove the classes.
    */
-  _resetForm() {
+  private resetForm() {
     // Destroy the form
     this.showForm &#x3D; false;
 

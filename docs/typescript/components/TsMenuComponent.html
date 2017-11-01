@@ -761,7 +761,7 @@
                                 <span class="modifier">Public</span> <a href="#shouldOverlapTrigger">shouldOverlapTrigger</a>
                             </li>
                             <li>
-                                 <a href="#trigger">trigger</a>
+                                <span class="modifier">Public</span> <a href="#trigger">trigger</a>
                             </li>
                             <li>
                                 <span class="modifier">Private</span> <a href="#TRIGGER_ICON_DEFAULT">TRIGGER_ICON_DEFAULT</a>
@@ -1082,6 +1082,8 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Set the triggerIcon based on the triggerType</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1178,12 +1180,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="trigger"></a>
-                            <span class="name"><b> trigger</b><a href="#trigger"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> trigger</b><a href="#trigger"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>trigger:     <code>MatMenuTrigger</code>
+                            <span class="modifier-icon fa fa-reset"></span><code>trigger:     <code>MatMenuTrigger</code>
     </code>
                         </td>
                     </tr>
@@ -1204,6 +1206,12 @@
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Provide access to the trigger</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1393,10 +1401,10 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   public triggerIcon: &#x27;arrow_drop_down&#x27; | &#x27;more_vert&#x27;;
 
   /**
-   * @private Provide access to the trigger
+   * Provide access to the trigger
    */
   @ViewChild(MatMenuTrigger)
-  trigger: MatMenuTrigger;
+  public trigger: MatMenuTrigger;
 
   /**
    * Define if the menu should be opened by default
@@ -1445,7 +1453,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 
 
   /**
-   * @private Set the triggerIcon based on the triggerType
+   * Set the triggerIcon based on the triggerType
    */
   ngOnInit(): void {
     this.triggerIcon &#x3D; (this.triggerType &#x3D;&#x3D;&#x3D; &#x27;default&#x27;) ?

@@ -658,7 +658,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Define a service that exposes the native window object</p>
+                <p>Define a service that exposes the DOCUMENT object</p>
 
             </p>
 
@@ -702,7 +702,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Expose &#39;document&#39; to consumers</p>
+                                        <div class="io-description"><p>Inject the Angular DOCUMENT</p>
             </div>
                                         <div>
                                                 <b>Parameters :</b>
@@ -784,13 +784,13 @@ import { DOCUMENT } from &#x27;@angular/platform-browser&#x27;;
 
 
 /**
- * Define a service that exposes the native window object
+ * Define a service that exposes the DOCUMENT object
  */
 @Injectable()
 export class TsDocumentService {
 
   /**
-   * Expose &#x27;document&#x27; to consumers
+   * Inject the Angular DOCUMENT
    */
   constructor(
     @Inject(DOCUMENT) public document: any,

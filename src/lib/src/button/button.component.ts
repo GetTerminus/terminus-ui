@@ -146,9 +146,13 @@ export class TsButtonComponent implements OnInit {
   public clickEvent: EventEmitter<MouseEvent> = new EventEmitter;
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
+
 
   /**
    * Collapse after delay (if set)
@@ -164,6 +168,7 @@ export class TsButtonComponent implements OnInit {
     }
   }
 
+
   /**
    * Collapse the button after a delay
    *
@@ -178,4 +183,5 @@ export class TsButtonComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     }, delay);
   }
+
 }

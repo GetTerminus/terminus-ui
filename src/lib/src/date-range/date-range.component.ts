@@ -42,14 +42,26 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 })
 export class TsDateRangeComponent {
   /**
-   * @private Store the selected start date
+   * Getter to return the date range as an object
+   *
+   * @return {Object} dateRange The current date range
    */
-  _startDate: Date;
+  private get dateRange(): any {
+    return {
+      start: this.startDate || null,
+      end: this.endDate || null,
+    };
+  }
 
   /**
-   * @private Store the selected end date
+   * Store the selected end date
    */
-  _endDate: Date;
+  private endDate: Date;
+
+  /**
+   * Store the selected start date
+   */
+  private startDate: Date;
 
   /**
    * Allow access to child directive
@@ -143,19 +155,19 @@ export class TsDateRangeComponent {
    */
   public startDateSelected(date: Date): void {
     if (date) {
-      this._startDate = date;
+      this.startDate = date;
       /*
        * NOTE: We don't want an end date that is before the start date, so when a start date is
        * chosen, we set it as the minimum end date
        */
-      this.endMinDate = this._startDate;
+      this.endMinDate = this.startDate;
 
-      const dateIsAfter = this._endDate && date.getTime() > this._endDate.getTime();
+      const dateIsAfter = this.endDate && date.getTime() > this.endDate.getTime();
 
       // If the new start date is after the existing end date
       if (dateIsAfter) {
         // Clear the existing end date
-        this._endDate = null;
+        this.endDate = null;
         // TODO: If the end datepicker has a default value, 'reset' doesn't clear the value
         // We should amend this or add a separate method to clear.
         this.end.resetValue();
@@ -174,24 +186,11 @@ export class TsDateRangeComponent {
    */
   public endDateSelected(date: Date): void {
     if (date) {
-      this._endDate = date;
+      this.endDate = date;
 
       this.endSelected.emit(date);
       this.selectedDate.emit(this.dateRange);
     }
-  }
-
-
-  /**
-   * @private Getter to return the date range as an object
-   *
-   * @return {Object} dateRange The current date range
-   */
-  get dateRange(): any {
-    return {
-      start: this._startDate || null,
-      end: this._endDate || null,
-    };
   }
 
 }

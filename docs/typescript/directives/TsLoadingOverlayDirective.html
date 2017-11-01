@@ -729,7 +729,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                         <a href="#determinePosition">determinePosition</a>
+                                        <span class="modifier">Private</span> <a href="#determinePosition">determinePosition</a>
                                     </li>
                                     <li>
                                          <a href="#ngOnDestroy">ngOnDestroy</a>
@@ -789,6 +789,8 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Inject services</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -928,19 +930,20 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                             <tr>
                                 <td class="col-md-4">
                                     <a name="determinePosition"></a>
-                                    <span class="name"><b> determinePosition</b><a href="#determinePosition"><span class="fa fa-link"></span></a></span>
+                                    <span class="name"><b><span class="modifier">Private</span> determinePosition</b><a href="#determinePosition"><span class="fa fa-link"></span></a></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>determinePosition(position: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                        <span class="modifier-icon fa fa-lock"></span>
+                                    <code>determinePosition(position: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:115</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:118</a></div>
                                         </td>
                                     </tr>
             
@@ -1004,7 +1007,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:102</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:105</a></div>
                                         </td>
                                     </tr>
             
@@ -1038,7 +1041,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:89</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:92</a></div>
                                         </td>
                                     </tr>
             
@@ -1200,9 +1203,12 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    * Alias the position back as a style attribute
    */
   @HostBinding(&#x27;style.position&#x27;)
-  position: string;
+  public position: string;
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private elementRef: ElementRef,
     private windowService: TsWindowService,
@@ -1252,7 +1258,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    * @param {String} position The current position value
    * @return {String} position The correct position value
    */
-  determinePosition(position: string): string {
+  private determinePosition(position: string): string {
     return (position &#x3D;&#x3D;&#x3D; &#x27;relative&#x27; || position &#x3D;&#x3D;&#x3D; &#x27;absolute&#x27;) ? position : &#x27;relative&#x27;;
   }
 

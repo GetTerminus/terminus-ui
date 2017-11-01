@@ -168,22 +168,22 @@ export class TsSearchComponent implements OnInit {
    * The event to emit when the form is submitted
    */
   @Output()
-  submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
+  public submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
 
   /**
    * The event to emit when the internal input value is changed
    */
   @Output()
-  changed: EventEmitter<string> = new EventEmitter();
+  public changed: EventEmitter<string> = new EventEmitter();
 
   /**
    * The event to emit when the internal input value is cleared
    */
   @Output()
-  cleared: EventEmitter<boolean> = new EventEmitter();
+  public cleared: EventEmitter<boolean> = new EventEmitter();
 
   /**
-   * @private
+   * Inject services
    */
   constructor(
     private formBuilder: FormBuilder,
