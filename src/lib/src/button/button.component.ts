@@ -71,6 +71,7 @@ export class TsButtonComponent implements OnInit {
   /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
+  @Input()
   public actionName: TsButtonActionTypes = 'Button';
 
   /**
