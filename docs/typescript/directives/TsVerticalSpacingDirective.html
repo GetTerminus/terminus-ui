@@ -146,9 +146,6 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
@@ -452,9 +449,6 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
@@ -737,6 +731,8 @@
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Inject services</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -848,6 +844,9 @@ export class TsVerticalSpacingDirective {
   }
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private renderer: Renderer,
     private elementRef: ElementRef,

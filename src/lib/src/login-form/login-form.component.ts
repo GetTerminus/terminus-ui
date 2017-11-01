@@ -92,13 +92,13 @@ export class TsLoginFormComponent implements OnChanges {
   public showForm: boolean = true;
 
   /**
-   * @private Provide access to the text inputs
+   * Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
   inputComponents: QueryList<TsInputComponent>;
 
   /**
-   * @private Provide access to the checkbox inputs
+   * Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
   checkbox: TsCheckboxComponent;
@@ -112,7 +112,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Define the text for the 'forgot password' link
    */
-  @Input('forgotPasswordText')
+  @Input()
   public forgotPasswordText: string = 'Forgot your password?';
 
   /**
@@ -130,14 +130,14 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Define the login call to action
    */
-  @Input('loginCTA')
+  @Input()
   public loginCTA: string = 'Log In';
 
   /**
-   * @private Allow a consumer to reset the form via an input
+   * Allow a consumer to reset the form via an input
    */
   @Input()
-  resetForm: boolean = false;
+  public triggerFormReset: boolean = false;
 
   /**
    * Emit an event on form submission
@@ -147,7 +147,7 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * @private
+   * Inject services
    */
   constructor(
     private formBuilder: FormBuilder,
@@ -155,14 +155,14 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * Trigger a form reset if `resetForm` is changed to TRUE
-   * (explanation at `_resetForm` method)
+   * Trigger a form reset if `triggerFormReset` is changed to TRUE
+   * (explanation at `resetForm` method)
    *
    * @param {Object} changes The inputs that have changed
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('resetForm') && changes.resetForm.currentValue) {
-      this._resetForm();
+    if (changes.hasOwnProperty('triggerFormReset') && changes.triggerFormReset.currentValue) {
+      this.resetForm();
     }
   }
 
@@ -179,16 +179,16 @@ export class TsLoginFormComponent implements OnChanges {
 
 
   /**
-   * @private Reset the form
+   * Reset the form
    *
    * This is a hack. Currently there doesn't seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
    *
-   * NOTE: The `showForm` value is a 'hack' to reset the input validation styles by removing the
+   * HACK: The `showForm` value is a 'hack' to reset the input validation styles by removing the
    * form from the dom and re-adding it. This method won't break if the Material team changes any
    * validation classes but it may be more performant to simply remove the classes.
    */
-  _resetForm() {
+  private resetForm() {
     // Destroy the form
     this.showForm = false;
 

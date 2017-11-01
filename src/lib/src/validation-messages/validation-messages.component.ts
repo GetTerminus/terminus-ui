@@ -26,24 +26,6 @@ import { ValidationService } from './../services/validation/validation.service';
 })
 export class TsValidationMessagesComponent {
   /**
-   * Define the associated form control
-   */
-  @Input()
-  public control: FormControl;
-
-  /**
-   * Define if validation should occur on blur or immediately
-   */
-  @Input()
-  public validateOnChange: boolean = false;
-
-
-  constructor(
-    private validationService: ValidationService,
-  ) {}
-
-
-  /**
    * Define the error message
    *
    * @return {String|Null} errorMessage The error message or null if no error
@@ -60,5 +42,25 @@ export class TsValidationMessagesComponent {
 
     return null;
   }
+
+  /**
+   * Define the associated form control
+   */
+  @Input()
+  public control: FormControl;
+
+  /**
+   * Define if validation should occur on blur or immediately
+   */
+  @Input()
+  public validateOnChange: boolean = false;
+
+
+  /**
+   * Inject services
+   */
+  constructor(
+    private validationService: ValidationService,
+  ) {}
 
 }

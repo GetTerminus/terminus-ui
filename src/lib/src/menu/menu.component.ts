@@ -76,10 +76,10 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   public triggerIcon: 'arrow_drop_down' | 'more_vert';
 
   /**
-   * @private Provide access to the trigger
+   * Provide access to the trigger
    */
   @ViewChild(MatMenuTrigger)
-  trigger: MatMenuTrigger;
+  public trigger: MatMenuTrigger;
 
   /**
    * Define if the menu should be opened by default
@@ -128,7 +128,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 
 
   /**
-   * @private Set the triggerIcon based on the triggerType
+   * Set the triggerIcon based on the triggerType
    */
   ngOnInit(): void {
     this.triggerIcon = (this.triggerType === 'default') ?

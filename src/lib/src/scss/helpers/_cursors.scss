@@ -4,28 +4,28 @@
  * @nuclide
  * @section Cursors
  */
-$g-cursors:
-// Let the browser decide
-auto,
+$g-cursors: (
+  // Let the browser decide
+  auto,
 
-// Indicates text controls
-text,
+  // Indicates text controls
+  text,
 
-// Indicates interaction
-pointer,
+  // Indicates interaction
+  pointer,
 
-// Indicates no available interaction
-not-allowed,
+  // Indicates no available interaction
+  not-allowed,
 
-// Indicates ability to copy
-copy,
+  // Indicates ability to copy
+  copy,
 
-// Indicates an alias or copy will be made
-alias,
+  // Indicates an alias or copy will be made
+  alias,
 
-// Indicates help is available
-help,
-;
+  // Indicates help is available
+  help,
+);
 
 
 /**

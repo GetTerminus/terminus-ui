@@ -15,40 +15,71 @@
 // @component
 //  Link
 // @description
-//  Basic link styles
+//  Basic link styles.
+//
+//  NOTE: Typography/color/size should be inherited from the context.
 //
 .c-link {
   // Top level styles should be nested here
   &#{&} {
-    @include typography;
-    color: color('primary');
+    color: inherit;
     display: inline-block;
     text-decoration: underline;
     transition: color 200ms ease;
     will-change: color;
 
-    &:visited {
-      color: color('primary', dark);
+    // Primary theme
+    [color='primary'] & {
+      color: color('primary');
+
+      &:focus,
+      &:hover {
+        color: color('primary', light);
+      }
+
+      &:visited {
+        color: color('primary', dark);
+      }
     }
 
-    &:focus,
-    &:hover {
-      color: color('pure', dark);
-    }
-
-    // Add support for theme colors
-    ::ng-deep [color='accent'] & {
+    // Accent theme
+    [color='accent'] & {
       color: color('accent');
+
+      &:focus,
+      &:hover {
+        color: color('accent', light);
+      }
+
+      &:visited {
+        color: color('accent', dark);
+      }
     }
 
-    ::ng-deep [color='warn'] & {
+    // Warn theme
+    [color='warn'] & {
       color: color('warn');
+
+      &:focus,
+      &:hover {
+        color: color('warn', light);
+      }
+
+      &:visited {
+        color: color('warn', dark);
+      }
     }
   }
 
-  // Align the icon to the text
+  // Force the icon to assume the size of it's context
   .mat-icon {
-    vertical-align: bottom;
+    &.material-icons {
+      font-size: 1.2em;
+      height: auto;
+      line-height: 1em;
+      vertical-align: middle;
+      width: auto;
+    }
   }
 }
 
@@ -59,6 +90,7 @@
   .mat-menu-content & {
     color: color(pure, dark);
     display: block;
+    font-weight: 400;
     padding: spacing(small, 2x) spacing();
     text-decoration: none;
     transition: background 400ms $g-material-background-easing;

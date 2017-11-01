@@ -76,27 +76,27 @@ describe(`TsLoginFormComponent`, () => {
 
   describe(`ngOnChanges()`, () => {
 
-    it(`should reset the form if 'resetForm' was the passed in change`, () => {
-      this.component._resetForm = jasmine.createSpy('_resetForm');
+    it(`should reset the form if 'triggerFormReset' was the passed in change`, () => {
+      this.component.resetForm = jasmine.createSpy('resetForm');
       this.fixture.detectChanges();
       this.component.ngOnChanges({
-        resetForm: {
+        triggerFormReset: {
           currentValue: {},
         },
       });
 
-      expect(this.component._resetForm).toHaveBeenCalled();
+      expect(this.component.resetForm).toHaveBeenCalled();
     });
 
 
     it(`should not reset the form if 'resetForm' was not passed in with changes`, () => {
-      this.component._resetForm = jasmine.createSpy('_resetForm');
+      this.component.resetForm = jasmine.createSpy('resetForm');
       this.fixture.detectChanges();
       this.component.ngOnChanges({
         foo: 'bar',
       });
 
-      expect(this.component._resetForm).not.toHaveBeenCalled();
+      expect(this.component.resetForm).not.toHaveBeenCalled();
     });
 
   });
@@ -151,7 +151,7 @@ describe(`TsLoginFormComponent`, () => {
       const passwordValueBefore = this.component.getControl('password', this.component.loginForm).value;
       expect(passwordValueBefore).toEqual('bar');
 
-      this.component._resetForm();
+      this.component.resetForm();
       tick();
 
       const emailValueAfter = this.component.getControl('email', this.component.loginForm).value;

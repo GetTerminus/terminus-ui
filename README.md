@@ -40,7 +40,6 @@ The library of UI components used for Terminus applications.
   - [Code Comments](#code-comments)
 - [Issues](#issues)
 - [Project Resources](#project-resources)
-- [Suggested Tools](#suggested-tools)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

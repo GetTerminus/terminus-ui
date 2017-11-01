@@ -127,20 +127,17 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   @Input()
   public firstPageTooltip: string = 'View the first results';
 
-
   /**
    * Define the tooltip message for the previous page tooltip
    */
   @Input()
   public previousPageTooltip: string = 'View the previous results';
 
-
   /**
    * Define the tooltip message for the next page tooltip
    */
   @Input()
   public nextPageTooltip: string = 'View the next results';
-
 
   /**
    * Define the tooltip message for the last page tooltip
@@ -231,6 +228,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
   /**
    * Initialize on any changes
+   *
+   * @param {Object} changes The object containing all changes since last cycle
    */
   public ngOnChanges(changes: SimpleChanges): void {
     this.initialize();
@@ -246,7 +245,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Set up initial resources
    */
-   private initialize() {
+   private initialize(): void {
      this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
      this.currentPageLabel =
        this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
@@ -383,13 +382,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * @private Create a new label based on the current page
+   * Create a new label based on the current page
    *
    * @param {Number} currentPage The current page
    * @param {Array} pages The array of all pages
    * @return {String} label The string to use as the current page label
    */
-  createCurrentPageLabel(
+  private createCurrentPageLabel(
     currentPage: number,
     pages: TsPaginationMenuItem[],
     totalRecords: number,
@@ -421,13 +420,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * @private Create an array containing objects that represent each available page of records
+   * Create an array containing objects that represent each available page of records
    *
    * @param {Number} total The total records remaining
    * @param {Number} perPage How many records are shown per page
    * @return {Array} paginationArray The array representing all possible pages of records
    */
-  createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
+  private createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
     const paginationArray: TsPaginationMenuItem[] = [];
     let recordsRemaining = total;
     let currentPage = 1;

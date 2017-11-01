@@ -87,7 +87,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     return this.hiddenItems.getValue().length;
   }
 
-
   /**
    * Getter to return the user's full name if it exists
    */
@@ -165,6 +164,9 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Inject services
+   */
   constructor(
    private changeDetectorRef: ChangeDetectorRef,
   ) {}

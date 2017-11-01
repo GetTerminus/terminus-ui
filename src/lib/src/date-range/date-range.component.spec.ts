@@ -65,24 +65,24 @@ describe(`TsDateRangeComponent`, () => {
     });
 
 
-    it(`should set the _startDate`, () => {
+    it(`should set the startDate`, () => {
       const date = new Date(2017, 4, 1);
       this.fixture.detectChanges();
-      expect(this.component._startDate).toEqual(undefined);
+      expect(this.component.startDate).toEqual(undefined);
 
       this.component.startDateSelected(date);
-      expect(this.component._startDate).toEqual(date);
+      expect(this.component.startDate).toEqual(date);
     });
 
 
-    it(`should clear the _endDate if the new start is after the current end`, () => {
-      this.component._startDate = new Date(2017, 4, 1);
-      this.component._endDate = new Date(2017, 4, 2);
+    it(`should clear the endDate if the new start is after the current end`, () => {
+      this.component.startDate = new Date(2017, 4, 1);
+      this.component.endDate = new Date(2017, 4, 2);
       this.component.end.resetValue = jasmine.createSpy('resetValue');
       this.fixture.detectChanges();
 
       this.component.startDateSelected(new Date(2017, 4, 3));
-      expect(this.component._endDate).toEqual(null);
+      expect(this.component.endDate).toEqual(null);
       expect(this.component.end.resetValue).toHaveBeenCalled();
     });
 
@@ -117,25 +117,25 @@ describe(`TsDateRangeComponent`, () => {
 
       this.component.endDateSelected();
 
-      expect(this.component._endDate).toEqual(undefined);
+      expect(this.component.endDate).toEqual(undefined);
       expect(this.component.endSelected.emit).not.toHaveBeenCalled();
     });
 
 
-    it(`should set the _endDate and emit the endSelected event`, () => {
+    it(`should set the endDate and emit the endSelected event`, () => {
       this.fixture.detectChanges();
       this.component.endSelected.emit = jasmine.createSpy('emit');
       const date = new Date(2017, 4, 1);
 
-      expect(this.component._endDate).toEqual(undefined);
+      expect(this.component.endDate).toEqual(undefined);
       this.component.endDateSelected(date);
 
-      expect(this.component._endDate).toEqual(date);
+      expect(this.component.endDate).toEqual(date);
       expect(this.component.endSelected.emit).toHaveBeenCalled();
     });
 
 
-    it(`should set the _endDate and emit the selectedDate event`, () => {
+    it(`should set the endDate and emit the selectedDate event`, () => {
       this.fixture.detectChanges();
       this.component.selectedDate.emit = jasmine.createSpy('emit');
       const date = new Date(2017, 4, 1);
@@ -150,22 +150,22 @@ describe(`TsDateRangeComponent`, () => {
   describe(`dateRange()`, () => {
 
     it(`should return the date range object`, () => {
-      this.component._startDate = new Date(2017, 4, 1);
-      this.component._endDate = new Date(2017, 4, 2);
+      this.component.startDate = new Date(2017, 4, 1);
+      this.component.endDate = new Date(2017, 4, 2);
       this.fixture.detectChanges();
       const actual = this.component.dateRange;
 
       expect(actual).toEqual(jasmine.any(Object));
-      expect(actual.start).toEqual(this.component._startDate)
+      expect(actual.start).toEqual(this.component.startDate)
     });
 
 
     it(`should return null if no date is found`, () => {
-      this.component._startDate = new Date(2017, 4, 1);
+      this.component.startDate = new Date(2017, 4, 1);
       this.fixture.detectChanges();
       const actual = this.component.dateRange;
 
-      expect(actual.start).toEqual(this.component._startDate)
+      expect(actual.start).toEqual(this.component.startDate)
       expect(actual.end).toEqual(null);
     });
 

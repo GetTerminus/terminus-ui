@@ -38,6 +38,9 @@ export class TsVerticalSpacingDirective {
   }
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private renderer: Renderer,
     private elementRef: ElementRef,

@@ -43,9 +43,9 @@ export class TsCopyComponent {
   public hasSelected: boolean = false;
 
   /**
-   * @private Define the copy icon
+   * Define the copy icon
    */
-  icon: string = 'content_copy';
+  public icon: string = 'content_copy';
 
   /**
    * Define the color of the material ripple
@@ -54,9 +54,9 @@ export class TsCopyComponent {
   public rippleColor: string = '#1a237e';
 
   /**
-   * @private Store a reference to the window object
+   * Store a reference to the window object
    */
-  window: any = this.windowService.nativeWindow;
+  private window: any = this.windowService.nativeWindow;
 
   /**
    * Define access to the wrapper around the content to be copied
@@ -77,6 +77,9 @@ export class TsCopyComponent {
   public enableQuickCopy: boolean = false;
 
 
+  /**
+   * Inject services
+   */
   constructor(
     private documentService: TsDocumentService,
     private windowService: TsWindowService,
