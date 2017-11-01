@@ -170,7 +170,7 @@
                                     <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsLoadingOverlayComponent.html"  data-type="entity-link" class="active" >TsLoadingOverlayComponent</a>
+                                    <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsLoginFormComponent.html" >TsLoginFormComponent</a>
@@ -261,7 +261,7 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
-                                    <a href="../interfaces/Subject.html" >Subject</a>
+                                    <a href="../interfaces/Subject.html"  data-type="entity-link" class="active" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -476,7 +476,7 @@
                                            <a href="../components/TsLinkComponent.html" >TsLinkComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsLoadingOverlayComponent.html"  data-type="entity-link" class="active" >TsLoadingOverlayComponent</a>
+                                           <a href="../components/TsLoadingOverlayComponent.html" >TsLoadingOverlayComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsLoginFormComponent.html" >TsLoginFormComponent</a>
@@ -567,7 +567,7 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
-                                           <a href="../interfaces/Subject.html" >Subject</a>
+                                           <a href="../interfaces/Subject.html"  data-type="entity-link" class="active" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -627,15 +627,20 @@
                    
                    </nav>
                </div>
-               <div class="content component">
+               <div class="content interface">
                    <div class="content-data">
 
 
 
 
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>TsLoadingOverlayComponent</li>
+  <li>Interfaces</li>
+  <li>Subject</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -643,168 +648,152 @@
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
 
-    <li>
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
 
     <li>
-        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/lib/src/loading-overlay/loading-overlay.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/src/utilities/rxjs-lift-hack.ts</code>
+        </p>
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>The loading overlay component. Implemented by <a href="../directives/TsLoadingOverlayDirective.html">TsLoadingOverlayDirective</a></p>
-<h4 id="qa-css-classes">QA CSS CLASSES</h4>
-<ul>
-<li><code>qa-loading-overlay</code>: Placed on the div overlay containing the loading spinner</li>
-</ul>
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Add new Subject interface</p>
 
-    </p>
+            </p>
 
 
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Methods</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                     <a href="#lift">lift</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-                <div>
-                    <pre class="line-numbers"><code class="language-html">See {</code></pre>
-                </div>
+            <section>
+                
+                    <h3 id="methods">
+                        Methods
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="lift"></a>
+                                    <span class="name"><b> lift</b><a href="#lift"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>lift(operator: Operator<T | R>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/lib/src/utilities/rxjs-lift-hack.ts:19</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>The lift method signature</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Optional</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>operator</td>
+                                                              <td>
+                                                                      <code>Operator&lt;T | R&gt;</code>
+                                                              </td>
+                                                              <td>
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code>Observable&lt;R&gt;</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+
     </div>
-
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-loading-overlay</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>loading-overlay.component.scss</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
-
-
-
-
-</div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-
+        <pre class="line-numbers"><code class="language-typescript">import { Operator } from &#x27;rxjs/Operator&#x27;
+import { Observable } from &#x27;rxjs/Observable&#x27;;
 
 /**
- * The loading overlay component. Implemented by {@link TsLoadingOverlayDirective}
+ * A HACK module to fix a bug with the declaration of &#x27;Subject&#x27;
  *
- * #### QA CSS CLASSES
- * - &#x60;qa-loading-overlay&#x60;: Placed on the div overlay containing the loading spinner
- *
- * @example
- * See {@link TsLoadingOverlayDirective}
+ * TODO: Remove this when RxJS releases a stable version with a correct declaration of &#x60;Subject&#x60;.
+ * https://github.com/ReactiveX/rxjs/issues/2539#issuecomment-312683629
  */
-@Component({
-  selector: &#x27;ts-loading-overlay&#x27;,
-  styleUrls: [&#x27;./loading-overlay.component.scss&#x27;],
-  template: &#x60;
-    &lt;div class&#x3D;&quot;c-loading-overlay qa-loading-overlay&quot;&gt;
-      &lt;svg
-        class&#x3D;&quot;c-loading-overlay__spinner&quot;
-        width&#x3D;&quot;65px&quot;
-        height&#x3D;&quot;65px&quot;
-        viewBox&#x3D;&quot;0 0 66 66&quot;
-        xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-      &gt;
-        &lt;circle
-          class&#x3D;&quot;path&quot;
-          fill&#x3D;&quot;none&quot;
-          stroke-width&#x3D;&quot;6&quot;
-          stroke-linecap&#x3D;&quot;round&quot;
-          cx&#x3D;&quot;33&quot;
-          cy&#x3D;&quot;33&quot;
-          r&#x3D;&quot;30&quot;
-        &gt;&lt;/circle&gt;
-      &lt;/svg&gt;
-    &lt;/div&gt;
-  &#x60;,
-})
-export class TsLoadingOverlayComponent {}
+declare module &#x27;rxjs/Subject&#x27; {
+
+  /**
+   * Add new Subject interface
+   */
+  interface Subject&lt;T&gt; {
+    /**
+     * The lift method signature
+     */
+    lift&lt;R&gt;(operator: Operator&lt;T, R&gt;): Observable&lt;R&gt;
+  }
+
+}
 </code></pre>
     </div>
-
-
-    <div class="tab-pane fade" id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
-    var ACTUAL_COMPONENT = {'name': 'TsLoadingOverlayComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
-
 
 
 

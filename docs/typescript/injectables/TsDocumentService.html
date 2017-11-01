@@ -49,8 +49,8 @@
                                   <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
-                                    <a href="./license.html"
-                                        >
+                                        <a href="../license.html"
+                                    >
                                         <span class="fa fa-file-text-o"></span>LICENSE
                                     </a>
                                 </li>
@@ -261,6 +261,9 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/Subject.html" >Subject</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
@@ -352,8 +355,8 @@
                                          <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
-                                           <a href="./license.html"
-                                               >
+                                               <a href="../license.html"
+                                           >
                                                <span class="fa fa-file-text-o"></span>LICENSE
                                            </a>
                                        </li>
@@ -564,6 +567,9 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/Subject.html" >Subject</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
@@ -767,14 +773,21 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/lib/src/services/document/document.service.ts:15</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/lib/src/services/document/document.service.ts:17</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The Angular document object</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
             </section>
+
     </div>
 
 
@@ -791,6 +804,8 @@ export class TsDocumentService {
 
   /**
    * Inject the Angular DOCUMENT
+   *
+   * @param {Object} document The Angular document object
    */
   constructor(
     @Inject(DOCUMENT) public document: any,
