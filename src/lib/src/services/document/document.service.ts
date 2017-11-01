@@ -10,6 +10,8 @@ export class TsDocumentService {
 
   /**
    * Inject the Angular DOCUMENT
+   *
+   * @param {Object} document The Angular document object
    */
   constructor(
     @Inject(DOCUMENT) public document: any,

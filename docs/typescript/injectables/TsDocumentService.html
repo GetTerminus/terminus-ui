@@ -767,10 +767,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/lib/src/services/document/document.service.ts:15</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/lib/src/services/document/document.service.ts:17</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The Angular document object</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -791,6 +797,8 @@ export class TsDocumentService {
 
   /**
    * Inject the Angular DOCUMENT
+   *
+   * @param {Object} document The Angular document object
    */
   constructor(
     @Inject(DOCUMENT) public document: any,
