@@ -49,8 +49,8 @@
                                   <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
-                                    <a href="./license.html"
-                                        >
+                                        <a href="../license.html"
+                                    >
                                         <span class="fa fa-file-text-o"></span>LICENSE
                                     </a>
                                 </li>
@@ -261,6 +261,9 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/Subject.html" >Subject</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
@@ -352,8 +355,8 @@
                                          <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
-                                           <a href="./license.html"
-                                               >
+                                               <a href="../license.html"
+                                           >
                                                <span class="fa fa-file-text-o"></span>LICENSE
                                            </a>
                                        </li>
@@ -564,6 +567,9 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/Subject.html" >Subject</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
@@ -670,8 +676,8 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
-                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnDestroy-interface.html" target="_blank" >OnDestroy</a></code>
+                        <code>OnInit</code>
+                        <code>OnDestroy</code>
             </p>
 
             <p class="comment">
@@ -768,6 +774,20 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                 </ul>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Accessors</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                         <a href="#tsLoadingOverlay">tsLoadingOverlay</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -778,7 +798,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(elementRef: <a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank">ElementRef</a>, windowService: <a href="../injectables/TsWindowService.html">TsWindowService</a>, componentFactoryResolver: <a href="https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html" target="_blank">ComponentFactoryResolver</a>, appRef: <a href="https://angular.io/docs/ts/latest/api/core/index/ApplicationRef-class.html" target="_blank">ApplicationRef</a>, injector: <a href="https://angular.io/docs/ts/latest/api/core/index/Injector-class.html" target="_blank">Injector</a>)</code>
+                                    <code>constructor(elementRef: ElementRef, windowService: <a href="../injectables/TsWindowService.html">TsWindowService</a>, componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, injector: Injector)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -806,7 +826,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                                             <tr>
                                                               <td>elementRef</td>
                                                               <td>
-                                                                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+                                                                        <code>ElementRef</code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -824,7 +844,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                                             <tr>
                                                               <td>componentFactoryResolver</td>
                                                               <td>
-                                                                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html" target="_blank" >ComponentFactoryResolver</a></code>
+                                                                        <code>ComponentFactoryResolver</code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -833,7 +853,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                                             <tr>
                                                               <td>appRef</td>
                                                               <td>
-                                                                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/ApplicationRef-class.html" target="_blank" >ApplicationRef</a></code>
+                                                                        <code>ApplicationRef</code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -842,7 +862,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                                             <tr>
                                                               <td>injector</td>
                                                               <td>
-                                                                        <code><a href="https://angular.io/docs/ts/latest/api/core/index/Injector-class.html" target="_blank" >Injector</a></code>
+                                                                        <code>Injector</code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -869,6 +889,10 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                 <td class="col-md-10">
                                     <div><p>Define a setter to show/hide the loading overlay</p>
 </div>
+                                      <p>
+                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                      </p>
                                 </td>
                             </tr>
                                     <tr>
@@ -1133,6 +1157,71 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                                 </td>
                             </tr>
             
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                <h3 id="accessors">
+                    Accessors
+                </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="tsLoadingOverlay"></a>
+                                    <span class="name"><b>tsLoadingOverlay</b><a href="#tsLoadingOverlay"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+            
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="accessor"><b>set</b><code>tsLoadingOverlay(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                                </td>
+                            </tr>
+                                        <tr>
+                                            <td class="col-md-4">
+                                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/src/loading-overlay/loading-overlay.directive.ts:51</a></div>
+                                            </td>
+                                        </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                            <div class="io-description"><p>Define a setter to show/hide the loading overlay</p>
+            </div>
+            
+                                            <div class="io-description">
+                                                    <b>Parameters :</b>
+                                                    <table class="params">
+                                                        <thead>
+                                                            <tr>
+                                                                <td>Name</td>
+                                                                <td>Type</td>
+                                                                <td>Optional</td>
+                                                                <td>Description</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                  <td>value</td>
+                                                                  <td>
+                                                                          <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                                  </td>
+                                                                  <td>
+                                                                  </td>
+                                                                  <td></td>
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                            <div>
+                                            </div>
+                                            <div class="io-description">
+                                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                            </div>
+                                    </td>
+                                </tr>
                         </tbody>
                     </table>
             </section>

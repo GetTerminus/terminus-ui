@@ -7,11 +7,11 @@
     "lib": ["es2015", "dom"]
   },
   "include": [
-    "src/lib"
+    "src/**"
   ],
   "exclude": [
-    "**/*.spec.ts",
-    "**/*.mock.ts",
-    "**/utilities/testing/**/*.ts"
+    "src/**/*.spec.ts",
+    "src/**/*.mock.ts",
+    "src/**/utilities/testing/**/*.ts"
   ]
 }

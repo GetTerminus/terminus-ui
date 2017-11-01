@@ -49,8 +49,8 @@
                                   <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
-                                    <a href="./license.html"
-                                        >
+                                        <a href="../license.html"
+                                    >
                                         <span class="fa fa-file-text-o"></span>LICENSE
                                     </a>
                                 </li>
@@ -261,6 +261,9 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/Subject.html" >Subject</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
@@ -352,8 +355,8 @@
                                          <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
-                                           <a href="./license.html"
-                                               >
+                                               <a href="../license.html"
+                                           >
                                                <span class="fa fa-file-text-o"></span>LICENSE
                                            </a>
                                        </li>
@@ -564,6 +567,9 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/Subject.html" >Subject</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
@@ -686,8 +692,8 @@ navigation item</li>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
-                <code><a href="https://angular.io/docs/ts/latest/api/core/index/AfterViewInit-interface.html" target="_blank" >AfterViewInit</a></code>
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
     </p>
 
     <p class="comment">
@@ -761,28 +767,16 @@ navigation item</li>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Private</span> <a href="#availableSpace">availableSpace</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Private</span> <a href="#breakWidths">breakWidths</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#hiddenItems">hiddenItems</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#hiddenItemsLength">hiddenItemsLength</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Private</span> <a href="#pristineItems">pristineItems</a>
                             </li>
                             <li>
-                                <span class="modifier">Public</span> <a href="#usersFullName">usersFullName</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Public</span> <a href="#visibleItems">visibleItems</a>
-                            </li>
-                            <li>
-                                <span class="modifier">Public</span> <a href="#visibleItemsLength">visibleItemsLength</a>
                             </li>
                             <li>
                                 <span class="modifier">Public</span> <a href="#visibleItemsList">visibleItemsList</a>
@@ -867,6 +861,32 @@ navigation item</li>
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                 <a href="#availableSpace">availableSpace</a>
+                            </li>
+                            <li>
+                                 <a href="#hiddenItemsLength">hiddenItemsLength</a>
+                            </li>
+                            <li>
+                                 <a href="#usersFullName">usersFullName</a>
+                            </li>
+                            <li>
+                                 <a href="#visibleItemsLength">visibleItemsLength</a>
+                            </li>
+                            <li>
+                                 <a href="#items">items</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -877,7 +897,7 @@ navigation item</li>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(changeDetectorRef: <a href="https://angular.io/docs/ts/latest/api/core/index/ChangeDetectorRef-class.html" target="_blank">ChangeDetectorRef</a>)</code>
+                            <code>constructor(changeDetectorRef: ChangeDetectorRef)</code>
                         </td>
                     </tr>
                             <tr>
@@ -905,7 +925,7 @@ navigation item</li>
                                                     <tr>
                                                       <td>changeDetectorRef</td>
                                                       <td>
-                                                                <code><a href="https://angular.io/docs/ts/latest/api/core/index/ChangeDetectorRef-class.html" target="_blank" >ChangeDetectorRef</a></code>
+                                                                <code>ChangeDetectorRef</code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -932,6 +952,10 @@ navigation item</li>
                         <td class="col-md-10">
                             <div><p>Accept the array of navigation items and trigger setup</p>
 </div>
+                              <p>
+                                <em>Type:</em>    <code>[]</code>
+
+                              </p>
                         </td>
                     </tr>
                             <tr>
@@ -1263,41 +1287,6 @@ navigation item</li>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="availableSpace"></a>
-                            <span class="name"><b><span class="modifier">Private</span> availableSpace</b><a href="#availableSpace"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>availableSpace:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:67</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Getter to return the available navigation width</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="breakWidths"></a>
                             <span class="name"><b><span class="modifier">Private</span> breakWidths</b><a href="#breakWidths"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -1339,13 +1328,13 @@ navigation item</li>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>hiddenItems:     <code>BehaviorSubject&lt;[]&gt;</code>
+                            <span class="modifier-icon fa fa-reset"></span><code>hiddenItems:     <code><a href="../interfaces/Subject.html" target="_self" >BehaviorSubject&lt;[]&gt;</a></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code>BehaviorSubject&lt;[]&gt;</code>
+                                <i>Type : </i>    <code><a href="../interfaces/Subject.html" target="_self" >BehaviorSubject&lt;[]&gt;</a></code>
     
                             </td>
                         </tr>
@@ -1358,41 +1347,6 @@ navigation item</li>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Define the list of hidden items</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="hiddenItemsLength"></a>
-                            <span class="name"><b><span class="modifier">Private</span> hiddenItemsLength</b><a href="#hiddenItemsLength"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>hiddenItemsLength:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:86</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Getter to return the count of hidden items</p>
     </div>
                         </td>
                     </tr>
@@ -1438,54 +1392,19 @@ navigation item</li>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="usersFullName"></a>
-                            <span class="name"><b><span class="modifier">Public</span> usersFullName</b><a href="#usersFullName"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>usersFullName:     <code>string | null</code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code>string | null</code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:93</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Getter to return the user&#39;s full name if it exists</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="visibleItems"></a>
                             <span class="name"><b><span class="modifier">Public</span> visibleItems</b><a href="#visibleItems"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>visibleItems:     <code>BehaviorSubject&lt;[]&gt;</code>
+                            <span class="modifier-icon fa fa-reset"></span><code>visibleItems:     <code><a href="../interfaces/Subject.html" target="_self" >BehaviorSubject&lt;[]&gt;</a></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code>BehaviorSubject&lt;[]&gt;</code>
+                                <i>Type : </i>    <code><a href="../interfaces/Subject.html" target="_self" >BehaviorSubject&lt;[]&gt;</a></code>
     
                             </td>
                         </tr>
@@ -1508,54 +1427,19 @@ navigation item</li>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="visibleItemsLength"></a>
-                            <span class="name"><b><span class="modifier">Public</span> visibleItemsLength</b><a href="#visibleItemsLength"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>visibleItemsLength:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:108</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Getter to return the count of visible items</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="visibleItemsList"></a>
                             <span class="name"><b><span class="modifier">Public</span> visibleItemsList</b><a href="#visibleItemsList"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>visibleItemsList:     <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>visibleItemsList:     <code>ElementRef</code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+                                <i>Type : </i>    <code>ElementRef</code>
     
                             </td>
                         </tr>
@@ -1617,6 +1501,203 @@ navigation item</li>
                         </td>
                     </tr>
     
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="availableSpace"></a>
+                            <span class="name"><b>availableSpace</b><a href="#availableSpace"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>availableSpace()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:67</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the available navigation width</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="hiddenItemsLength"></a>
+                            <span class="name"><b>hiddenItemsLength</b><a href="#hiddenItemsLength"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>hiddenItemsLength()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:86</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the count of hidden items</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="usersFullName"></a>
+                            <span class="name"><b>usersFullName</b><a href="#usersFullName"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>usersFullName()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:93</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the user&#39;s full name if it exists</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code>string | null</code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="visibleItemsLength"></a>
+                            <span class="name"><b>visibleItemsLength</b><a href="#visibleItemsLength"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>visibleItemsLength()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:108</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the count of visible items</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="items"></a>
+                            <span class="name"><b>items</b><a href="#items"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>items(value: [])</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/lib/src/navigation/navigation.component.ts:116</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Accept the array of navigation items and trigger setup</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                                  <code>[]</code>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
     </section>
@@ -1991,7 +2072,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark qa-navigation" fxLayout="row">  <div    class="c-navigation__items qa-navigation-items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <button      class="c-navigation__item qa-navigation-item"      *ngFor="let item of visibleItems | async"      #visibleLinkElement      (click)="itemSelected.emit({event: $event, item: item})"    >      <span class="c-navigation__item-inner">        {{ item?.name }}      </span>    </button>  </div>  <button    class="c-navigation__trigger qa-navigation-secondary-trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    mat-button    [matMenuTriggerFor]="secondaryNav"    fxFlex="none"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <mat-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </mat-icon>  </button>  <mat-menu    class="c-navigation__hidden-items qa-navigation-secondary-items"    #secondaryNav="matMenu"    xPosition="before"    [overlapTrigger]="false"  >    <button      class="c-navigation__hidden-item qa-navigation-secondary-item"      [ngClass]="{\'c-navigation__hidden-item--admin\': item.onlyHidden}"      *ngFor="let item of hiddenItems | async"      #hiddenLinkElement      mat-menu-item      (click)="itemSelected.emit({event: $event, item: item})"    >      {{ item?.name }}    </button>  </mat-menu></nav></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsNavigationComponent'};
 </script>
