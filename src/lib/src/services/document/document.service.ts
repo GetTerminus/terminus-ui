@@ -8,6 +8,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 @Injectable()
 export class TsDocumentService {
 
+  /**
+   * Expose 'document' to consumers
+   */
   constructor(
     @Inject(DOCUMENT) public document: any,
   ) {}

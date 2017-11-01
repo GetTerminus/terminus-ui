@@ -146,9 +146,6 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
@@ -451,9 +448,6 @@
                                <ul class="links collapse "
                                        id="components-links"
                    >
-                                       <li class="link">
-                                           <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                       </li>
                                        <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
@@ -1546,7 +1540,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div  class="c-menu c-menu qa-menu"  [ngClass]="{\'c-menu--utility\': isUtilityMenu}">  <mat-menu    #menu="matMenu"    [yPosition]="menuPositionY"    [xPosition]="menuPositionX"    [overlapTrigger]="shouldOverlapTrigger"  >    <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>  </mat-menu>  <ts-button    *ngIf="!isUtilityMenu"    class="c-menu__trigger qa-menu-trigger"    [theme]="theme"    [matMenuTriggerFor]="menu"    [isDisabled]="isDisabled"    [attr.data-disabled]="isDisabled"    format="filled"  >    <ng-content></ng-content>    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </ts-button>  <button    *ngIf="isUtilityMenu"    class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"    mat-icon-button    [matMenuTriggerFor]="menu"    [disabled]="isDisabled"  >    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </button></div></div>'
-    var COMPONENTS = [{'name': 'TestHostComponent', 'selector': 'ts-test-host'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};
 </script>

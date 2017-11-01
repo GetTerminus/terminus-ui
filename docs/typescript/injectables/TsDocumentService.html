@@ -146,9 +146,6 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                 </li>
                                 <li class="link">
@@ -452,9 +449,6 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/TestHostComponent.html" >TestHostComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/TsButtonComponent.html" >TsButtonComponent</a>
                                        </li>
                                        <li class="link">
@@ -708,6 +702,8 @@
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Expose &#39;document&#39; to consumers</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -771,7 +767,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/lib/src/services/document/document.service.ts:12</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/lib/src/services/document/document.service.ts:15</a></div>
                                         </td>
                                     </tr>
             
@@ -793,6 +789,9 @@ import { DOCUMENT } from &#x27;@angular/platform-browser&#x27;;
 @Injectable()
 export class TsDocumentService {
 
+  /**
+   * Expose &#x27;document&#x27; to consumers
+   */
   constructor(
     @Inject(DOCUMENT) public document: any,
   ) {}
