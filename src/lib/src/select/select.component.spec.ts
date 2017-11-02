@@ -1,56 +1,14 @@
-import { Component } from '@angular/core';
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatSelectModule,
-} from '@angular/material';
-
 import { TsSelectComponent } from './select.component';
-
-@Component({
-  template: `
-    <div>
-      <ts-select>Search</ts-select>
-    </div>
-  `,
-})
-class TestHostComponent {}
 
 
 describe(`TsSelectComponent`, () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        MatSelectModule,
-      ],
-      declarations: [
-        TsSelectComponent,
-        TestHostComponent,
-      ],
-    })
-      .overrideComponent(TsSelectComponent, {
-        set: {
-          template: '',
-          templateUrl: null,
-        }
-      })
-      .compileComponents()
-      .then(() => {
-        this.fixture = TestBed.createComponent(TsSelectComponent);
-        this.component = this.fixture.componentInstance;
-      })
-    ;
-  }));
+  beforeEach(() => {
+    this.component = new TsSelectComponent();
+  });
 
 
   it(`should exist`, () => {
-    this.fixture.detectChanges();
-
     expect(this.component).toBeTruthy();
   });
 
@@ -58,15 +16,14 @@ describe(`TsSelectComponent`, () => {
   describe(`getValueKey()`, () => {
 
     it(`should return the item if no valueKey was passed in`, () => {
-      this.fixture.detectChanges();
       const items = ['a', 'b'];
 
       expect(this.component.getValueKey(items[0])).toEqual('a');
       expect(this.component.getValueKey(items[1])).toEqual('b');
     });
 
+
     it(`should return the correct value for the valueKey`, () => {
-      this.fixture.detectChanges();
       const items = [
         {
           name: 'AAA',
@@ -84,4 +41,3 @@ describe(`TsSelectComponent`, () => {
   });
 
 });
-
