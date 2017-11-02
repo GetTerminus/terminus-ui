@@ -6,7 +6,6 @@
   [disabled]="isDisabled ? '' : null"
   [required]="isRequired ? '' : null"
   [(ngModel)]="value"
-  (blur)="onBlur()"
   (change)="inputChange.emit($event.checked)"
   (indeterminateChange)="indeterminateChange.emit($event)"
 >
