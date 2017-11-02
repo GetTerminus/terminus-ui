@@ -1,45 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatInputModule } from '@angular/material';
-
 import { TsValidationMessagesComponent } from './validation-messages.component';
-import { ValidationService } from './../services/validation/validation.service';
 import { ValidationServiceMock } from './../services/validation/validation.service.mock';
 
 
 describe('InputMessagesComponent', () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MatInputModule,
-      ],
-      declarations: [
-        TsValidationMessagesComponent,
-      ],
-      providers: [
-        {
-          provide: ValidationService,
-          useClass: ValidationServiceMock,
-        }
-      ],
-    })
-      .overrideComponent(TsValidationMessagesComponent, {
-        set: {
-          template: '',
-          templateUrl: null,
-        }
-      })
-      .compileComponents()
-      .then(() => {
-        this.fixture = TestBed.createComponent(TsValidationMessagesComponent);
-        this.component = this.fixture.componentInstance;
-      })
-    ;
-  }));
+  beforeEach(() => {
+    this.component = new TsValidationMessagesComponent(new ValidationServiceMock());
+  });
 
 
-  it('should exist', () => {
-    this.fixture.detectChanges();
+  it(`should exist`, () => {
     expect(this.component).toBeTruthy();
   });
 
@@ -50,7 +20,6 @@ describe('InputMessagesComponent', () => {
       const ERROR = {
         valid: false,
       };
-      this.component.validationService.getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
       this.component.validateOnChange = false;
       this.component.control = {
         touched: true,
@@ -58,21 +27,19 @@ describe('InputMessagesComponent', () => {
           invalidEmail: ERROR,
         },
       };
-      this.fixture.detectChanges();
       const message = this.component.validationMessage;
 
-      expect(this.component.validationService.getValidatorErrorMessage).toHaveBeenCalledWith('invalidEmail', ERROR);
+      expect(this.component.validationService.getValidatorErrorMessage)
+        .toHaveBeenCalledWith('invalidEmail', ERROR);
     });
 
 
     it(`should return messages for validation errors if validateOnChange is true`, () => {
-      this.component.validationService.getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
       this.component.validateOnChange = true;
       this.component.control = {
         touched: false,
         errors: {},
       };
-      this.fixture.detectChanges();
       const message = this.component.validationMessage;
 
       expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
@@ -84,14 +51,12 @@ describe('InputMessagesComponent', () => {
       const ERROR = {
         valid: false,
       };
-      this.component.validationService.getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
       this.component.control = {
         touched: false,
         errors: {
           invalidEmail: ERROR,
         },
       };
-      this.fixture.detectChanges();
       const message = this.component.validationMessage;
 
       expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
