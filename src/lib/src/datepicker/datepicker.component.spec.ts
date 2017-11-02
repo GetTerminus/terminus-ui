@@ -1,80 +1,44 @@
-import {
-  Component,
-  ViewChild,
-} from '@angular/core';
-import {
-  TestBed,
-  ComponentFixture,
-  async,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-
 import { TsDatepickerComponent } from './datepicker.component';
 
-@Component({
-  template: `
-    <div>
-      <ts-datepicker
-        [initialDate]="myDate"
-      ></ts-datepicker>
-    </div>
-  `,
-})
-class TestHostComponent {
-  @ViewChild(TsDatepickerComponent)
-  public datepicker: TsDatepickerComponent;
-
-  myDate = new Date(1990, 3, 1);
-}
 
 describe(`TsDatepickerComponent`, () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-      ],
-      declarations: [
-        TsDatepickerComponent,
-        TestHostComponent,
-      ],
-    })
-      .overrideComponent(TsDatepickerComponent, {
-        set: {
-          template: '',
-          templateUrl: null,
-        }
-      })
-      .compileComponents().then(() => {
-        this.fixture = TestBed.createComponent(TestHostComponent);
-        this.hostComponent = this.fixture.componentInstance;
-        this.component = this.hostComponent.datepicker;
-      });
-  }));
+  beforeEach(() => {
+    this.component = new TsDatepickerComponent();
+  });
 
 
   it(`should exist`, () => {
-    this.fixture.detectChanges();
-
     expect(this.component).toBeTruthy();
+  });
+
+
+  describe(`ngOnChanges()`, () => {
+    const date = new Date(1990, 3, 1);
+
+    it(`should seed the date if an initial date exist`, () => {
+      expect(this.component.value).toBeFalsy();
+
+      this.component.initialDate = date;
+      this.component.ngOnChanges();
+
+      expect(this.component.value).toEqual(date);
+    });
+
   });
 
 
   describe(`resetValue()`, () => {
 
-    it(`should reset the input value`, fakeAsync(() => {
-      this.fixture.detectChanges();
-      tick();
-
+    it(`should reset the input value`, () => {
+      this.component.value = new Date(1990, 3, 1);
       expect(this.component.value.toString()).toBeTruthy();
 
       this.component.resetValue();
 
       expect(this.component.value).toEqual(null);
-    }));
+    });
 
   });
+
 });
