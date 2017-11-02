@@ -5,17 +5,11 @@ import {
   OnInit,
   OnDestroy,
   HostBinding,
-  ViewContainerRef,
-  ViewChild,
-  Compiler,
-  NgModule,
-  Type,
   ComponentFactoryResolver,
   ApplicationRef,
   Injector,
 } from '@angular/core';
 import { Portal, ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-import { ComponentType } from '@angular/cdk/overlay';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
@@ -47,7 +41,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Define a setter to show/hide the loading overlay
    */
-  @Input('tsLoadingOverlay')
+  @Input()
   public set tsLoadingOverlay(value: boolean) {
     if (value) {
       this.bodyPortalHost.attach(this.loadingOverlayPortal);
@@ -57,7 +51,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   };
 
   /**
-   * Alias the position back as a style attribute
+   * Alias the position back onto the component as a style attribute
    */
   @HostBinding('style.position')
   public position: string;
@@ -89,7 +83,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Determine and set the needed position
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     // Determine the CSS position of the element
     const position = this.windowService.nativeWindow
       .getComputedStyle(this.elementRef.nativeElement).getPropertyValue('position');
@@ -102,7 +96,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Destroy the portal host if it exists
    */
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.bodyPortalHost) {
       this.bodyPortalHost.dispose();
     }
