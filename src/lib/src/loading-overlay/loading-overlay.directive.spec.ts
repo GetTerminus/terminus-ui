@@ -1,145 +1,43 @@
-import { Injectable } from '@angular/core';
-import {
-  TestBed,
-  async,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
 import {
   createTestComponent,
   TestHostComponent,
 } from './../utilities/testing/createTestComponent';
-import { queryFor } from './../utilities/testing/queryFor';
-
-import { TsLoadingOverlayModule } from './loading-overlay.module';
+import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
 import { TsLoadingOverlayDirective } from './loading-overlay.directive';
-import { TsWindowService } from './../services/window/window.service';
 import { TsWindowServiceMock } from './../services/window/window.service.mock';
-import { DebugElement } from '@angular/core/src/debug/debug_node';
 
-const templateString = `<div tsLoadingOverlay="true"></div>`;
+const componentFactoryResolver: any = null;
+const applicationRef: any = null;
+const injector: any = null;
 
 
 describe(`TsLoadingOverlayDirective`, () => {
 
-  beforeEach(async(() => {
-    this.create = function(windowServiceMock = TsWindowServiceMock) {
-      TestBed.configureTestingModule({
-        imports: [
-          TsLoadingOverlayModule,
-        ],
-        providers: [
-          {
-            provide: TsWindowService,
-            useClass: windowServiceMock,
-          },
-        ],
-        declarations: [
-          TestHostComponent,
-        ],
-      })
-
-      this.fixture = createTestComponent(templateString);
-      const inputElement: DebugElement =
-        this.fixture.debugElement.query(By.directive(TsLoadingOverlayDirective));
-      this.directive = inputElement.injector.get(TsLoadingOverlayDirective);
-      this.fixture.detectChanges();
-    }
-
-  }));
+  beforeEach(() => {
+    this.directive = new TsLoadingOverlayDirective(
+      new ElementRefMock(),
+      new TsWindowServiceMock(),
+      componentFactoryResolver,
+      applicationRef,
+      injector,
+    );
+  });
 
 
   describe(`tsLoadingOverlay`, () => {
 
-    beforeEach(() => {
-      this.create();
-    });
-
-
     it(`should exist`, () => {
-      expect(this.fixture).toBeDefined();
+      expect(this.directive).toBeDefined();
+      expect(this.directive.bodyPortalHost).toBeDefined();
+      expect(this.directive.loadingOverlayPortal).toBeDefined();
     });
 
   });
 
 
-  describe(`@HostBinding`, () => {
-
-    describe(`if position is static`, () => {
-
-      beforeEach(() => {
-        this.create(TsWindowServiceMockStatic);
-      });
-
-
-      it(`should set the position to relative`, () => {
-        const element = queryFor(this.fixture, '[tsLoadingOverlay]').nativeElement;
-        const position = element.style['position'];
-
-        expect(position).toEqual('relative');
-      });
-
-    });
-
-
-    describe(`if position is unset`, () => {
-
-      beforeEach(() => {
-        this.create(TsWindowServiceMockUnset);
-      });
-
-
-      it(`should set the position to relative`, () => {
-        const element = queryFor(this.fixture, '[tsLoadingOverlay]').nativeElement;
-        const position = element.style['position'];
-
-        expect(position).toEqual('relative');
-      });
-
-    });
-
-
-    describe(`if position is relative`, () => {
-
-      beforeEach(() => {
-        this.create(TsWindowServiceMockRelative);
-      });
-
-
-      it(`should not change the position`, () => {
-        const element = queryFor(this.fixture, '[tsLoadingOverlay]').nativeElement;
-        const position = element.style['position'];
-
-        expect(position).toEqual('relative');
-      });
-
-    });
-
-
-    describe(`if position is absolute`, () => {
-
-      beforeEach(() => {
-        this.create(TsWindowServiceMockAbsolute);
-      });
-
-
-      it(`should not change the position`, () => {
-        const element = queryFor(this.fixture, '[tsLoadingOverlay]').nativeElement;
-        const position = element.style['position'];
-
-        expect(position).toEqual('absolute');
-      });
-
-    });
-
-  });
-
-
-  describe(`tsLoadingOverlay()`, () => {
+  describe(`set tsLoadingOverlay()`, () => {
 
     beforeEach(() => {
-      this.create();
-
       this.directive.bodyPortalHost.attach = jasmine.createSpy('attach');
       this.directive.bodyPortalHost.detach = jasmine.createSpy('detach');
     });
@@ -148,6 +46,7 @@ describe(`TsLoadingOverlayDirective`, () => {
       this.directive.tsLoadingOverlay = true;
 
       expect(this.directive.bodyPortalHost.attach).toHaveBeenCalled();
+      expect(this.directive.bodyPortalHost.detach).not.toHaveBeenCalled();
     });
 
 
@@ -155,6 +54,7 @@ describe(`TsLoadingOverlayDirective`, () => {
       this.directive.tsLoadingOverlay = false;
 
       expect(this.directive.bodyPortalHost.detach).toHaveBeenCalled();
+      expect(this.directive.bodyPortalHost.attach).not.toHaveBeenCalled();
     });
 
   });
@@ -163,8 +63,6 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`ngOnDestroy()`, () => {
 
     beforeEach(() => {
-      this.create();
-
       this.directive.bodyPortalHost.dispose = jasmine.createSpy('dispose');
     });
 
@@ -185,68 +83,20 @@ describe(`TsLoadingOverlayDirective`, () => {
 
   });
 
+
+  describe(`determinePosition()`, () => {
+
+    it(`should return the existing position if it is relative|absolute`, () => {
+      expect(this.directive.determinePosition('relative')).toEqual('relative');
+      expect(this.directive.determinePosition('absolute')).toEqual('absolute');
+    });
+
+
+    it(`should return relative if the position is anything other than relative|absolute`, () => {
+      expect(this.directive.determinePosition('fixed')).toEqual('relative');
+      expect(this.directive.determinePosition('static')).toEqual('relative');
+    });
+
+  });
+
 });
-
-
-
-
-//
-// Helper window mocks
-//
-
-
-/*
- * STATIC
- */
-@Injectable()
-export class TsWindowServiceMockStatic {
-  get nativeWindow(): any {
-    return {
-      getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('static'),
-      }),
-    };
-  }
-}
-
-/*
- * UNSET
- */
-@Injectable()
-export class TsWindowServiceMockUnset {
-  get nativeWindow(): any {
-    return {
-      getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue(''),
-      }),
-    };
-  }
-}
-
-/*
- * ABSOLUTE
- */
-@Injectable()
-export class TsWindowServiceMockAbsolute {
-  get nativeWindow(): any {
-    return {
-      getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('absolute'),
-      }),
-    };
-  }
-}
-
-/*
- * RELATIVE
- */
-@Injectable()
-export class TsWindowServiceMockRelative {
-  get nativeWindow(): any {
-    return {
-      getComputedStyle: jasmine.createSpy('getComputedStyle').and.returnValue({
-        getPropertyValue: jasmine.createSpy('getPropertyValue').and.returnValue('relative'),
-      }),
-    };
-  }
-}
