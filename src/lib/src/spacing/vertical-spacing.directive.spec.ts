@@ -1,65 +1,46 @@
-import {
-  Component,
-} from '@angular/core';
-import {
-  TestBed,
-  ComponentFixture,
-  async,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
 import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
 import { TsVerticalSpacingTypes } from './../utilities/types';
+import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
+import { RendererMock } from './../utilities/testing/mocks/renderer.mock';
 
-@Component({
-  template: `
-    <div [tsVerticalSpacing]="spacing">
-      Foo
-    </div>
-  `,
-})
-class TestHostComponent {
-  spacing: TsVerticalSpacingTypes;
-}
 
-describe(`TsSpacingComponent`, () => {
+describe(`TsVerticalSpacingDirective`, () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-      ],
-      declarations: [
-        TsVerticalSpacingDirective,
-        TestHostComponent,
-      ],
-    })
-      .compileComponents().then(() => {
-        this.fixture = TestBed.createComponent(TestHostComponent);
-        this.testComponent = this.fixture.componentInstance;
-      });
-  }));
+  beforeEach(() => {
+    this.defaultClass = 'u-vertical-spacing';
+
+    this.directive = new TsVerticalSpacingDirective(
+      RendererMock,
+      new ElementRefMock(),
+    );
+  });
+
+
+  it(`should exist`, () => {
+    expect(this.directive).toBeTruthy();
+  });
 
 
   describe(`set tsVerticalSpacing()`, () => {
 
-    it(`should add the default class if no value is passed in`, () => {
-      this.fixture.detectChanges();
-      const defaultClass = 'u-vertical-spacing';
-      const de = this.fixture.debugElement.query(By.css('div'));
-      const classList = de.nativeElement.classList;
+    afterEach(() => {
+      this.directive.renderer.setElementClass.calls.reset();
+    });
 
-      expect(classList.contains(defaultClass)).toEqual(true);
+
+    it(`should add the default class if no value is passed in`, () => {
+      this.directive.tsVerticalSpacing = '';
+
+      expect(this.directive.renderer.setElementClass.calls.argsFor(0)[1])
+        .toEqual(this.defaultClass);
     });
 
 
     it(`should add the expected spacing class`, () => {
-      const setClass = 'u-vertical-spacing__large--2x';
-      this.testComponent.spacing = 'large--2x';
-      this.fixture.detectChanges();
-      const de = this.fixture.debugElement.query(By.css('div'));
-      const classList = de.nativeElement.classList;
+      this.directive.tsVerticalSpacing = 'large--2x';
 
-      expect(classList.contains(setClass)).toEqual(true);
+      expect(this.directive.renderer.setElementClass.calls.argsFor(0)[1])
+        .toEqual(this.defaultClass + '__large--2x');
     });
 
   });

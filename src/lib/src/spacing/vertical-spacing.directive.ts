@@ -31,6 +31,7 @@ export class TsVerticalSpacingDirective {
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
+    // TODO: Throw an error if the passed in value is not found in TsVerticalSpacingTypes
     // Fall back to default class if no value is passed in
     const className = (value && value.length > 0) ? `u-vertical-spacing__${value}` : `u-vertical-spacing`;
 
