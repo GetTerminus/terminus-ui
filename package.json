@@ -150,7 +150,7 @@
     "remap-istanbul": "0.9.5",
     "replace-in-file": "3.0.0-beta.2",
     "rimraf": "2.6.2",
-    "rollup": "0.47.4",
+    "rollup": "0.50.1",
     "rollup-plugin-absolute-module-fix": "0.0.2",
     "rollup-plugin-commonjs": "8.2.1",
     "rollup-plugin-node-resolve": "3.0.0",
