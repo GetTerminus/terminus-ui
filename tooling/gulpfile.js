@@ -70,12 +70,15 @@ const config = {
   paths: {
     rootFolder: rootFolder,
     distFolder: path.join(rootFolder, 'dist'),
+    // NOTE: The temp dist folder allows us to generate a new build without removing the existing
+    // dist files. This stops `ng-serve` from throwing errors during a recompile.
+    distTempFolder: path.join(rootFolder, 'dist-temp'),
     srcFolder: path.join(rootFolder, 'src/lib'),
     tempLibFolder: path.join(rootFolder, 'out-tsc', 'lib'),
     es2015OutputFolder: path.join(rootFolder, 'out-tsc', 'lib-es2015'),
     es5Entry: path.join(rootFolder, 'out-tsc', 'lib-es5', `${libName}.js`),
-    libFinalOutputFile: path.join(rootFolder, 'dist', `bundles`, `${libName}.umd.js`),
-    libFinalOutputMinifiedFile: path.join(rootFolder, 'dist', `bundles`, `${libName}.umd.min.js`),
+    libFinalOutputFile: path.join(rootFolder, 'dist-temp', `bundles`, `${libName}.umd.js`),
+    libFinalOutputMinifiedFile: path.join(rootFolder, 'dist-temp', `bundles`, `${libName}.umd.min.js`),
     scss: {
       helpersInputs: [
         path.join(rootFolder, 'src/lib', 'src/scss/helpers/_typography.scss'),
@@ -93,7 +96,7 @@ const config = {
         path.join(rootFolder, 'src/lib', 'src/scss/helpers/_card.scss'),
       ],
       helpersLibOutput: path.join(rootFolder, 'src/lib', 'helpers.scss'),
-      helpersDistOutput: path.join(rootFolder, 'dist', 'helpers.scss'),
+      helpersDistOutput: path.join(rootFolder, 'dist-temp', 'helpers.scss'),
       globalStylesInput: path.join(rootFolder, 'src/lib', `src/scss/global/terminus-ui.scss`),
     },
   },
@@ -121,6 +124,7 @@ const config = {
     ],
   },
   delOptions: {
+    // Necessary to run the delete process outside of the workspace
     force: true,
   },
 };
@@ -186,7 +190,7 @@ const rollupConfig = {
  */
 gulp.task('clean-generated-files', () => {
   return del([
-    path.join(config.paths.distFolder, `**/*`),
+    path.join(config.paths.distTempFolder, `**/*`),
     path.join(config.paths.tempLibFolder, `**/*`),
     path.join(config.paths.srcFolder, `**/!(systemjs-angular-loader).js`),
     path.join(config.paths.srcFolder, `**/*.map`),
@@ -216,7 +220,7 @@ gulp.task('copy-lib', () => {
 gulp.task('compile-sass', () => {
   return gulp.src(path.join(config.paths.tempLibFolder, `**/*.scss`))
     .pipe(gulpSourcemaps.init())
-    .pipe(gulpSass(config.sass.default).on('error', sass.logError))
+    .pipe(gulpSass(config.sass.default).on('error', gulpSass.logError))
     .pipe(gulpStripComments())
     .pipe(gulpSourcemaps.write())
     .pipe(postcss(config.sass.postCss))
@@ -255,7 +259,7 @@ gulp.task('bundle', () => {
   return rollup.rollup(rollupConfig.input).then((bundle) => {
     return bundle.generate(rollupConfig.output).then((result) => {
       // Create bundles dir
-      recursiveMkDir(path.join(config.paths.distFolder, `bundles`));
+      recursiveMkDir(path.join(config.paths.distTempFolder, `bundles`));
 
       // Write the output file
       fs.writeFileSync(config.paths.libFinalOutputFile, result.code);
@@ -294,7 +298,7 @@ gulp.task('copy-package-files', () => {
     path.join(config.paths.es2015OutputFolder, '**/*.metadata.json'),
     path.join(config.paths.es2015OutputFolder, '**/*.d.ts'),
   ])
-    .pipe(gulp.dest(config.paths.distFolder));
+    .pipe(gulp.dest(config.paths.distTempFolder));
 });
 
 
@@ -307,7 +311,7 @@ gulp.task('copy-package-files', () => {
 gulp.task('bundle-exposed-scss', () => {
   return gulp.src(config.paths.scss.helpersInputs)
     .pipe(gulpConcat('helpers.scss'))
-    .pipe(gulp.dest(config.paths.distFolder));
+    .pipe(gulp.dest(config.paths.distTempFolder));
 });
 
 
@@ -319,11 +323,11 @@ gulp.task('bundle-exposed-scss', () => {
  * 3) Remove empty lines
  */
 gulp.task('sanitize-exposed-scss', () => {
-  return gulp.src(path.join(config.paths.distFolder, 'helpers.scss'))
+  return gulp.src(path.join(config.paths.distTempFolder, 'helpers.scss'))
     .pipe(gulpStripComments())
     .pipe(gulpReplace(/@import.*/g, ''))
     .pipe(gulpRemoveEmptyLines())
-    .pipe(gulp.dest(config.paths.distFolder));
+    .pipe(gulp.dest(config.paths.distTempFolder));
 });
 
 
@@ -335,9 +339,9 @@ gulp.task('sanitize-exposed-scss', () => {
  */
 gulp.task('generate:css', () => {
   return gulp.src(config.paths.scss.globalStylesInput)
-    .pipe(gulpSass(config.sass.shared).on('error', sass.logError))
+    .pipe(gulpSass(config.sass.shared).on('error', gulpSass.logError))
     .pipe(postcss(config.sass.postCss))
-    .pipe(gulp.dest(config.paths.distFolder));
+    .pipe(gulp.dest(config.paths.distTempFolder));
 });
 
 
@@ -350,13 +354,31 @@ gulp.task('generate:css', () => {
  */
 gulp.task('compile-sass-dev', () => {
   return gulp.src(path.join(config.paths.srcFolder, `**/*.scss`))
-    .pipe(gulpSass(config.sass.dev).on('error', sass.logError))
+    .pipe(gulpSass(config.sass.dev).on('error', gulpSass.logError))
     .pipe(gulpStripComments())
     .pipe(postcss(config.sass.postCss))
     .pipe(gulp.dest(config.paths.srcFolder))
 });
 
 
+/**
+ * Move all files from dist-temp to dist
+ */
+gulp.task('overwrite-dist', () => {
+  return gulp.src(config.paths.distTempFolder + `**/*`)
+    .pipe(gulp.dest(config.paths.distFolder));
+});
+
+
+/**
+ * Remove temporary dist artifacts
+ */
+gulp.task('clean:temp-dist-files', () => {
+  return del([
+    config.paths.distTempFolder,
+    path.join(config.paths.distFolder, `dist-temp`),
+  ], config.delOptions);
+});
 
 
 //
@@ -383,7 +405,9 @@ gulp.task('generate:build', gulp.series(
   'bundle',
   'bundleMinified',
   'generate:exposed-scss',
-  'generate:css'
+  'generate:css',
+  'overwrite-dist',
+  'clean:temp-dist-files'
 ));
 
 
