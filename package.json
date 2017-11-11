@@ -27,18 +27,16 @@
     "prestart": "yarn run build && yarn run build-demo && yarn run build-scss",
     "start": "concurrently \"yarn run build:watch\" \"yarn run build-demo:watch\"",
     "//=> Section: Build": "",
-    "prebuild": "yarn run clean:lib",
-    "build": "node tooling/build.js",
-    "build:gulp": "./node_modules/.bin/gulp build --gulpfile tooling/gulpfile.js",
+    "build": "./node_modules/.bin/gulp generate:build --gulpfile tooling/gulpfile.js",
     "build:watch": "onchange 'src/lib/**/*.ts' 'src/lib/**/!(helpers).scss' 'src/lib/**/*.html' -- yarn run build",
     "build-demo": "cd src/demo && ng build --prod",
     "build-demo:watch": "cd src/demo && ng serve --port 4300 --preserve-symlink --progress false",
-    "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
+    "build-scss": "./node_modules/.bin/gulp compile-sass-dev --gulpfile tooling/gulpfile.js",
     "build-scss:watch": "node-sass src/lib -o src/lib --output-style expanded -w",
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
     "build-test:watch": "tsc -p src/lib/tsconfig.spec.json -w",
     "//=> Section: Cleanup": "",
-    "clean:lib": "rimraf out-tsc dist \"src/lib/**/!(systemjs-angular-loader).js\" \"src/lib/**/*.map\" \"src/lib/helpers.scss\" \"src/lib/helpers.css\"",
+    "clean:lib": "./node_modules/.bin/gulp clean-lib --gulpfile tooling/gulpfile.js",
     "clean:demo:node_modules": "cd src/demo rm -rf node_modules && yarn install",
     "clean:lib:node_modules": "rm -rf node_modules && yarn install",
     "//=> Section: NPM Management": "",
@@ -69,10 +67,7 @@
     "//=> Section: Tooling": "",
     "commitmsg": "validate-commit-msg",
     "cm": "./node_modules/.bin/git-cz",
-    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
-    "update-scss-lib-extensions": "node tooling/replace-scss-lib-extension.js",
-    "update-scss-demo-extensions": "node tooling/replace-scss-demo-extension.js",
-    "watch-for-lib-css-extension": "onchange 'src/lib/**/*.js' -- yarn run update-scss-lib-extensions"
+    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss"
   },
   "config": {
     "loglevel": "verbose",
@@ -96,7 +91,13 @@
     "@angular/material": "2.0.0-beta.12",
     "@angular/platform-browser": "4.4.6",
     "@angular/router": "4.4.6",
-    "angular2-ladda": "1.2.2"
+    "angular2-ladda": "1.2.2",
+    "gulp-concat": "2.6.1",
+    "gulp-remove-empty-lines": "0.1.0",
+    "gulp-replace": "0.6.1",
+    "gulp-strip-json-comments": "2.1.0",
+    "lodash.clonedeep": "4.5.0",
+    "scssfmt": "1.0.2"
   },
   "devDependencies": {
     "@angular/animations": "4.4.6",
