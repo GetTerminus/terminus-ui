@@ -1,101 +1,42 @@
-import { Component, ViewChild } from '@angular/core';
 import {
-  TestBed,
-  ComponentFixture,
-  async,
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MatIconModule,
-  MatRippleModule,
-} from '@angular/material';
-
 import { TsCopyComponent } from './copy.component';
-import { TsWindowService } from '../services/window/window.service';
-import { TsDocumentService } from '../services/document/document.service';
+import { TsWindowServiceMock } from '../services/window/window.service.mock';
+import { TsDocumentServiceMock } from '../services/document/document.service.mock';
+import { ElementRefMock } from '../utilities/testing/mocks/elementRef.mock';
 
-
-@Component({
-  template: `
-    <div>
-      <ts-copy
-        [enableQuickCopy]="canCopy"
-      >{{ fakeContent }}</ts-copy>
-    </div>
-  `,
-})
-class TestHostComponent {
-  fakeContent = 'foobar';
-  canCopy = true;
-
-  @ViewChild(TsCopyComponent)
-  public copyComponent: TsCopyComponent;
-}
 
 describe(`TsCopyComponent`, () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MatIconModule,
-        MatRippleModule,
-        FlexLayoutModule,
-      ],
-      providers: [
-        // NOTE: We are not using mock services here since this component needs to test actual
-        // interaction with the window and document objects
-        TsWindowService,
-        TsDocumentService,
-      ],
-      declarations: [
-        TsCopyComponent,
-        TestHostComponent,
-      ],
-    })
-      .compileComponents().then(() => {
-        this.fixture = TestBed.createComponent(TestHostComponent);
-        this.hostComponent = this.fixture.componentInstance;
-        this.component = this.hostComponent.copyComponent;
-      });
-  }));
+  beforeEach(() => {
+    this.component = new TsCopyComponent(
+      new TsDocumentServiceMock(),
+      new TsWindowServiceMock(),
+    );
+    this.component.content = new ElementRefMock();
+  });
 
 
   it(`should exist`, () => {
-    this.fixture.detectChanges();
-
     expect(this.component).toBeTruthy();
   });
 
 
-  it(`should expose passed in text`, () => {
-    this.fixture.detectChanges();
-    const element = this.fixture.nativeElement;
-    const actual = element.querySelector('.c-copy__content').innerText;
-    const expected = this.hostComponent.fakeContent;
-
-    expect(actual).toBe(expected);
-  });
-
-
-  describe(`textContent()`, () => {
+  describe(`get textContent()`, () => {
 
     it(`should return the content if accessible`, () => {
-      this.fixture.detectChanges();
-      const actual = this.component.textContent;
-      const expected = this.hostComponent.fakeContent;
-      expect(actual).toEqual(expected);
+      this.component.content.nativeElement.innerText = 'foo';
+
+      expect(this.component.textContent).toEqual('foo');
     });
 
 
     it(`should return an empty string if the content is not accessible`, () => {
-      this.fixture.detectChanges();
       this.component.content.nativeElement.innerText = null;
-      const actual = this.component.textContent;
-      const expected = '';
-      expect(actual).toEqual(expected);
+
+      expect(this.component.textContent).toEqual('');
     });
 
   });
@@ -104,28 +45,24 @@ describe(`TsCopyComponent`, () => {
   describe(`selectText()`, () => {
 
     it(`should return false if disabled`, () => {
-      this.fixture.detectChanges();
-      const actual = this.component.selectText(this.component.content, false, true);
-      const expected = false;
-      expect(actual).toEqual(expected);
+      expect(this.component.selectText(this.component.content, false, true)).toEqual(false);
     });
 
 
     it(`should return if already selected`, () => {
-      this.fixture.detectChanges();
-      const actual = this.component.selectText(this.component.content, true, false);
-      const expected = false;
-      expect(actual).toEqual(expected);
+      expect(this.component.selectText(this.component.content, true, false)).toEqual(false);
     });
 
 
+    // TODO: The integration test for this will actually test the functionality.
     it(`should select the text within the passed in element`, () => {
-      this.fixture.detectChanges();
-      this.component.selectText(this.component.content.nativeElement, false, false)
-      const actual = this.component.window.getSelection().toString();
-      const expected = this.hostComponent.fakeContent;
+      this.component.selectText(this.component.content, false, false);
 
-      expect(actual).toEqual(expected);
+      const result = this.component.selectText(this.component.content.nativeElement, false, false);
+
+      expect(this.component.window.getSelection).toHaveBeenCalled();
+      expect(this.component.documentService.document.createRange).toHaveBeenCalled();
+      expect(this.component.hasSelected).toEqual(true);
     });
 
   });
@@ -135,7 +72,6 @@ describe(`TsCopyComponent`, () => {
 
     it(`should set the flag to false`, () => {
       this.component.hasSelected = true;
-      this.fixture.detectChanges();
 
       expect(this.component.hasSelected).toEqual(true);
 
@@ -148,22 +84,41 @@ describe(`TsCopyComponent`, () => {
 
   describe(`copyToClipboard()`, () => {
 
+    beforeEach(() => {
+      // NOTE: I tried letting the mock return this value, but could not get the value returned for
+      // some reason.
+      const MOCK_TEXTAREA = {
+        className: '',
+        style: {},
+        textContent: '',
+        value: 'foo',
+        focus: jasmine.createSpy('focus'),
+        remove: jasmine.createSpy('remove'),
+        setSelectionRange: jasmine.createSpy('setSelectionRange'),
+      };
+      this.component.documentService.document.createElement =
+        jasmine.createSpy('createElement').and.callFake(() => {
+          return MOCK_TEXTAREA;
+        });
+    });
+
+
     it(`should set the text to the clipboard`, () => {
       this.component.documentService.document.execCommand = jasmine.createSpy('execCommand');
-      this.fixture.detectChanges();
-      this.component.copyToClipboard('foo')
+      this.component.copyToClipboard('foo');
 
+      expect(this.component.documentService.document.createElement).toHaveBeenCalledWith('textarea');
+      expect(this.component.documentService.document.body.appendChild).toHaveBeenCalled();
+      expect(this.component.documentService.document.execCommand).toHaveBeenCalledWith('copy');
       expect(this.component.documentService.document.execCommand).toHaveBeenCalledWith('copy');
     });
 
 
     it(`should fall back to a prompt if execCommand fails`, () => {
-      this.component.window.prompt = jasmine.createSpy('prompt');
       this.component.documentService.document.execCommand = () => {
         throw new Error('fake error');
       }
 
-      this.fixture.detectChanges();
       this.component.copyToClipboard('foo');
 
       expect(this.component.window.prompt).toHaveBeenCalled();
