@@ -9,6 +9,7 @@ import {
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -29,7 +30,7 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
  * This is the checkbox UI Component
  *
  * #### QA CSS CLASSES
- * - `qa-checkbox`: Placed on the checkbox input element used for this component
+ * - `qa-checkbox`: The checkbox input element
  *
  * @example
  * <ts-checkbox
@@ -87,11 +88,11 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  public inputChange: EventEmitter<any> = new EventEmitter;
+  public inputChange: EventEmitter<boolean> = new EventEmitter;
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public indeterminateChange: EventEmitter<any> = new EventEmitter;
+  public indeterminateChange: EventEmitter<MatCheckboxChange> = new EventEmitter;
 }
