@@ -1,4 +1,7 @@
-import { TsInputComponent } from './input.component';
+import {
+  TsInputComponent,
+  CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
+} from './input.component';
 
 
 describe(`TsInputComponent`, () => {
@@ -23,6 +26,15 @@ describe(`TsInputComponent`, () => {
 
       this.component.reset();
       expect(this.component.value).toEqual('');
+    });
+
+  });
+
+
+  describe(`Custom select control value accessor`, () => {
+
+    it(`should forward a reference to this component`, () => {
+      expect(CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsInputComponent);
     });
 
   });

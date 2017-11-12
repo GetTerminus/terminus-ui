@@ -9,6 +9,11 @@ const windowMock: Window = <any>{
     href: 'foo/bar',
   },
   alert: jasmine.createSpy('alert'),
+  getSelection: jasmine.createSpy('getSelection').and.returnValue({
+    removeAllRanges: jasmine.createSpy('removeAllRanges'),
+    addRange: jasmine.createSpy('addRange'),
+  }),
+  prompt: jasmine.createSpy('prompt'),
 };
 
 @Injectable()

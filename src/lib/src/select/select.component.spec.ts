@@ -1,4 +1,7 @@
-import { TsSelectComponent } from './select.component';
+import {
+  TsSelectComponent,
+  CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR,
+} from './select.component';
 
 
 describe(`TsSelectComponent`, () => {
@@ -36,6 +39,15 @@ describe(`TsSelectComponent`, () => {
       ];
 
       expect(this.component.getValueKey(items[0], 'thing')).toEqual('aaa');
+    });
+
+  });
+
+
+  describe(`Custom select control value accessor`, () => {
+
+    it(`should forward a reference to this component`, () => {
+      expect(CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsSelectComponent);
     });
 
   });

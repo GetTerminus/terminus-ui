@@ -38,7 +38,7 @@ jobs:
 
       - run:
           name: Build Project
-          command: npm run build
+          command: yarn run build
 
       - run:
           name: Release

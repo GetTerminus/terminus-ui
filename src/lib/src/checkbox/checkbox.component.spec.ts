@@ -1,4 +1,7 @@
-import { TsCheckboxComponent } from './checkbox.component';
+import {
+  TsCheckboxComponent,
+  CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR,
+} from './checkbox.component';
 
 
 describe(`TsCheckboxComponent`, () => {
@@ -10,6 +13,15 @@ describe(`TsCheckboxComponent`, () => {
 
   it(`should exist`, () => {
     expect(this.component).toBeTruthy();
+  });
+
+
+  describe(`Custom select control value accessor`, () => {
+
+    it(`should forward a reference to this component`, () => {
+      expect(CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsCheckboxComponent);
+    });
+
   });
 
 });
