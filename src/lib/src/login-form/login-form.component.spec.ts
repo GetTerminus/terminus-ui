@@ -5,12 +5,16 @@ import {
 import { FormBuilder } from '@angular/forms';
 
 import { TsLoginFormComponent } from './login-form.component';
+import { TsValidatorsServiceMock } from './../services/validators/validators.service.mock';
 
 
 describe(`TsLoginFormComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsLoginFormComponent(new FormBuilder());
+    this.component = new TsLoginFormComponent(
+      new FormBuilder(),
+      new TsValidatorsServiceMock(),
+    );
   });
 
 

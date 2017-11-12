@@ -4,6 +4,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { TsValidatorsService } from '@terminus/ui';
 
 @Component({
   selector: 'demo-input',
@@ -61,6 +62,7 @@ export class InputComponent {
       null,
       [
         Validators.required,
+        this.validatorsService.validateEmail,
       ],
     ],
   });
@@ -68,6 +70,7 @@ export class InputComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private validatorsService: TsValidatorsService,
   ) {}
 
   submit(v: any) {
