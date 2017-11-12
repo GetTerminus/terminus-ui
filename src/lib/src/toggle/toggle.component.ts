@@ -29,7 +29,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
  * The is a toggle component
  *
  * #### QA CSS CLASSES
- * - `qa-toggle`: Placed on the toggle element
+ * - `qa-toggle`: The toggle element
  *
  * @example
  * <ts-toggle

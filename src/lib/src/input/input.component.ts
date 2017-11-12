@@ -26,14 +26,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  * A presentational component to render a text input.
  *
  * #### QA CSS CLASSES
- * - `qa-input`: Placed on the div element which contains this component
- * - `qa-input-text`: Placed on the input element
- * - `qa-input-prefix-icon`: Placed on the icon element for the prefix icon, if one is set
- * - `qa-input-suffix-icon`: Placed on the icon element for the clickable "clear" icon, if this
- * control is clearable
- * - `qa-input-hint`: Placed on the hint element, if hint content is provided
- * - `qa-input-validation-messages`: Placed on the {@link TsValidationMessagesComponent} which will
- * contain any validation messages
+ * - `qa-input`: The container element
+ * - `qa-input-text`: The input element
+ * - `qa-input-prefix-icon`: The icon element for the prefix icon, if one is set
+ * - `qa-input-suffix-icon`: The icon element for the clickable "clear" icon, if this control is
+ * clearable
+ * - `qa-input-hint`: The hint element, if hint content is provided
+ * - `qa-input-validation-messages`: The {@link TsValidationMessagesComponent} which will contain
+ * any validation messages
  *
  * @example
  * <ts-input
