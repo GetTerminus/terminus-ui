@@ -241,6 +241,9 @@
                                     <a href="./injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="./injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -248,6 +251,7 @@
                                 </li>
                         </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -547,6 +551,9 @@
                                            <a href="./injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -554,6 +561,7 @@
                                        </li>
                                </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -632,14 +640,14 @@
 
 <h1 id="terminus-ui-library">Terminus UI Library</h1>
 <p>The library of UI components used for Terminus applications.</p>
-<p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master">undefined</a>
-<a href="https://codecov.io/gh/GetTerminus/terminus-ui">undefined</a>
-<a href="https://getterminus.github.io/terminus-ui/">undefined</a>
-<a href="https://npmjs.org/package/@terminus/ui">undefined</a>
-<a href="https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js">undefined</a>
-<a href="https://greenkeeper.io/">undefined</a>
-<a href="https://github.com/semantic-release/semantic-release">undefined</a>
-<a href="LICENSE">undefined</a></p>
+<p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield" alt="CircleCI" class="img-responsive"</a>
+<a href="https://codecov.io/gh/GetTerminus/terminus-ui"><img src="https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"</a>
+<a href="https://getterminus.github.io/terminus-ui/"><img src="https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"</a>
+<a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"</a>
+<a href="https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js"><img src="http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip" alt="Library size" class="img-responsive"</a>
+<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg" alt="Greenkeeper badge" class="img-responsive"</a>
+<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"</a>
+<a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"</a></p>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
@@ -649,6 +657,7 @@
 <li><a href="#available-features">Available Features</a><ul>
 <li><a href="#components">Components</a></li>
 <li><a href="#services">Services</a></li>
+<li><a href="#typescript-utilities">TypeScript Utilities</a></li>
 <li><a href="#style-helpers">Style Helpers</a></li>
 </ul>
 </li>
@@ -793,7 +802,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td></td>
 </tr>
 <tr>
-<td>datetable</td>
+<td>datatable</td>
 <td></td>
 <td style="text-align:center">:x:</td>
 <td></td>
@@ -954,8 +963,40 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </thead>
 <tbody>
 <tr>
-<td>WindowService</td>
+<td>Window</td>
 <td>Provide access to the native window object</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>Provide access to the native document object</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
+<td>Validators</td>
+<td>Expose custom validation methods for reactive forms</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+</tbody>
+</table>
+<h3 id="typescript-utilities">TypeScript Utilities</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Notes</th>
+<th style="text-align:center">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Types</td>
+<td>Provide TypeScript types for various parameters</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
+<td>Interfaces</td>
+<td>Provide TypeScript interfaces for various objects</td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 </tbody>
@@ -991,7 +1032,17 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 <tr>
+<td>cursors</td>
+<td></td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
 <td>layout</td>
+<td></td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
+<td>shadows</td>
 <td></td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
@@ -1080,7 +1131,7 @@ $ yarn run test</code></pre><blockquote>
 <li>Navigate to <code>http://localhost:4300/components/</code></li>
 <li>Select a component from the menu</li>
 </ol>
-<p>undefined</p>
+<p><img src="https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png" alt="select a demo component" class="img-responsive"</p>
 <h3 id="branching">Branching</h3>
 <p>Note: <code>master</code> is <strong>always deployable</strong>.</p>
 <h4 id="naming">Naming</h4>
@@ -1310,6 +1361,7 @@ development Slack channel.</li>
 </ul>
 <!-- LINKS -->
 <!-- Demos -->
+
 
 
 
