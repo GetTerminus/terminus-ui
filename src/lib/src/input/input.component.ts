@@ -56,6 +56,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              autocapitalize="false"
  *              spellcheck="false"
  *              validateOnChange="false"
+ *              tabIndex="2"
  *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
@@ -136,6 +137,12 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public spellcheck: boolean = true;
+
+  /**
+   * Define the tabindex for the input
+   */
+  @Input()
+  public tabIndex: number = 0;
 
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}

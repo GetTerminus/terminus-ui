@@ -79,6 +79,12 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   public isRequired: boolean = false;
 
   /**
+   * Define the tabindex
+   */
+  @Input()
+  public tabIndex: number = 0;
+
+  /**
    * Define the theme
    */
   @Input()
