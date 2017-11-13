@@ -241,6 +241,9 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -248,6 +251,7 @@
                                 </li>
                         </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -547,6 +551,9 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -554,6 +561,7 @@
                                        </li>
                                </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -673,10 +681,10 @@
         <p>This is the datepicker UI Component</p>
 <h4 id="qa-css-classes">QA CSS CLASSES</h4>
 <ul>
-<li><code>qa-datepicker</code>: Placed on the mat-form-field element which contains the input and toggle button elements</li>
-<li><code>qa-datepicker-input</code>: Placed on the input element which contains the chosen date</li>
-<li><code>qa-datepicker-toggle</code>: Placed on the toggle button which displays the calendar when clicked</li>
-<li><code>qa-datepicker-calendar</code>: Placed on the calendar control used for picking a date</li>
+<li><code>qa-datepicker</code>: The form-field wrapper which contains the input and button</li>
+<li><code>qa-datepicker-input</code>: The input element which contains the chosen date</li>
+<li><code>qa-datepicker-toggle</code>: The button which displays the calendar when clicked</li>
+<li><code>qa-datepicker-calendar</code>: The calendar control used for picking a date</li>
 </ul>
 
     </p>
@@ -686,7 +694,7 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code>OnChanges</code>
+                <code><a href="https://angular.io/docs/ts/latest/api/api/core/OnChanges" target="_blank" >OnChanges</a></code>
     </p>
 
     <p class="comment">
@@ -1050,7 +1058,7 @@
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>ngOnChanges(changes: SimpleChanges)</code>
+                            <code>ngOnChanges(changes: <a href="https://angular.io/docs/ts/latest/api/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                         </td>
                     </tr>
     
@@ -1081,7 +1089,7 @@
                                                     <tr>
                                                       <td>changes</td>
                                                       <td>
-                                                              <code>SimpleChanges</code>
+                                                              <code><a href="https://angular.io/docs/ts/latest/api/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1121,7 +1129,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:109</a></div>
                                 </td>
                             </tr>
     
@@ -1201,10 +1209,10 @@
  * This is the datepicker UI Component
  *
  * #### QA CSS CLASSES
- * - &#x60;qa-datepicker&#x60;: Placed on the mat-form-field element which contains the input and toggle button elements
- * - &#x60;qa-datepicker-input&#x60;: Placed on the input element which contains the chosen date
- * - &#x60;qa-datepicker-toggle&#x60;: Placed on the toggle button which displays the calendar when clicked
- * - &#x60;qa-datepicker-calendar&#x60;: Placed on the calendar control used for picking a date
+ * - &#x60;qa-datepicker&#x60;: The form-field wrapper which contains the input and button
+ * - &#x60;qa-datepicker-input&#x60;: The input element which contains the chosen date
+ * - &#x60;qa-datepicker-toggle&#x60;: The button which displays the calendar when clicked
+ * - &#x60;qa-datepicker-calendar&#x60;: The calendar control used for picking a date
  *
  * @example
  * &lt;ts-datepicker
@@ -1284,6 +1292,7 @@ export class TsDatepickerComponent implements OnChanges {
    * Set the initial date if it exists
    */
   public ngOnChanges(changes: SimpleChanges): void {
+    // istanbul ignore else
     if (this.initialDate) {
       this.value &#x3D; this.initialDate;
     }
@@ -1364,6 +1373,7 @@ export class TsDatepickerComponent implements OnChanges {
     var ACTUAL_COMPONENT = {'name': 'TsDatepickerComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
 
 
 

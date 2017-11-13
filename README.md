@@ -21,6 +21,7 @@ The library of UI components used for Terminus applications.
 - [Available Features](#available-features)
   - [Components](#components)
   - [Services](#services)
+  - [TypeScript Utilities](#typescript-utilities)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Adding a Component](#adding-a-component)
@@ -95,7 +96,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
 | copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
 | datavis          |                                                        |                :x: |                              |
-| datetable        |                                                        |                :x: |                              |
+| datatable        |                                                        |                :x: |                              |
 | datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
 | date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
 | dialog           |                                                        |                :x: |                              |
@@ -126,7 +127,17 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 | Feature          | Notes                                                  | Status             |
 |------------------|--------------------------------------------------------|        :---:       |
-| WindowService    |             Provide access to the native window object | :white_check_mark: |
+| Window           |             Provide access to the native window object | :white_check_mark: |
+| Document         |           Provide access to the native document object | :white_check_mark: |
+| Validators       |    Expose custom validation methods for reactive forms | :white_check_mark: |
+
+
+### TypeScript Utilities
+
+| Feature          | Notes                                                  | Status             |
+|------------------|--------------------------------------------------------|        :---:       |
+| Types            |        Provide TypeScript types for various parameters | :white_check_mark: |
+| Interfaces       |      Provide TypeScript interfaces for various objects | :white_check_mark: |
 
 
 ### Style Helpers
@@ -137,7 +148,9 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | assets           |                                                        |           :hammer: |
 | breakpoints      |                                                        | :white_check_mark: |
 | colors           |                                                        | :white_check_mark: |
+| cursors          |                                                        | :white_check_mark: |
 | layout           |                                                        | :white_check_mark: |
+| shadows          |                                                        | :white_check_mark: |
 | spacing          |                                                        | :white_check_mark: |
 | typography       |                                                        | :white_check_mark: |
 | z-index          |                                                        | :white_check_mark: |
