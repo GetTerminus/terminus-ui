@@ -25,6 +25,8 @@ const gulpRemoveEmptyLines = require('gulp-remove-empty-lines');
 const gulpConcat           = require('gulp-concat');
 const gulpReplace          = require('gulp-replace');
 const cloneDeep            = require('lodash.clonedeep');
+// For dev
+const gulpPrint            = require('gulp-print');
 
 const libNameWithScope     = require('./../package.json').name;
 const libName              = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -365,7 +367,7 @@ gulp.task('compile-sass-dev', () => {
  * Move all files from dist-temp to dist
  */
 gulp.task('overwrite-dist', () => {
-  return gulp.src(config.paths.distTempFolder + `**/*`)
+  return gulp.src([`${config.paths.distTempFolder}/**/*`])
     .pipe(gulp.dest(config.paths.distFolder));
 });
 
