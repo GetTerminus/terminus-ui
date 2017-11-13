@@ -6,6 +6,7 @@
   [attr.type]="buttonType"
   [disabled]="isDisabled"
   [ladda]="showProgress"
+  tabindex="{{ tabIndex }}"
   (click)="clickEvent.emit($event)"
 >
   <mat-icon

@@ -24,6 +24,7 @@ import {
  * <ts-link
  *              destination="http://google.com"
  *              [isExternal]="true"
+ *              tabIndex="2"
  *              color="warn"
  * >My link</ts-link>
  *
@@ -53,4 +54,10 @@ export class TsLinkComponent {
    */
   @Input()
   public isExternal: boolean = false;
+
+  /**
+   * Define the tabindex
+   */
+  @Input()
+  public tabIndex: number = 0;
 }

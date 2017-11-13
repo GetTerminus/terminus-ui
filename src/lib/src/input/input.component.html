@@ -20,6 +20,7 @@
     [attr.autocomplete]="autocomplete"
     [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
     [attr.spellcheck]="spellcheck ? 'on' : 'off'"
+    tabIndex="{{ tabIndex }}"
     [(ngModel)]="value"
     (blur)="onBlur()"
   >

@@ -16,6 +16,8 @@
     isRequired="true"
     [spellcheck]="false"
     [autocapitalize]="false"
+    tabindex="-1"
+    tabIndex="1"
     tsVerticalSpacing
   ></ts-input>
 
@@ -32,6 +34,8 @@
     [autocapitalize]="false"
     [spellcheck]="false"
     minlength="{{ PASSWORD_MINLENGTH }}"
+    tabindex="-1"
+    tabIndex="2"
     tsVerticalSpacing
   ></ts-input>
 
@@ -39,6 +43,8 @@
     class="qa-login-form-remember-me"
     formControlName="rememberMe"
     [formControl]="getControl('rememberMe')"
+    tabindex="-1"
+    tabIndex="3"
     tsVerticalSpacing
   >
     Remember me
@@ -48,6 +54,8 @@
     class="qa-login-form-forgot-password"
     [destination]="forgotPasswordLink"
     tsVerticalSpacing
+    tabindex="-1"
+    tabIndex="5"
   >{{ forgotPasswordText }}</ts-link>
 
   <div fxLayout="row" fxFlexAlign="end">
@@ -58,6 +66,8 @@
       [showProgress]="inProgress || isRedirecting"
       [isDisabled]="!loginForm.valid"
       (clickEvent)="submit.emit(loginForm.value)"
+      tabindex="-1"
+      tabIndex="4"
     >
       {{ loginCTA }}
     </ts-button>
