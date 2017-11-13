@@ -18,31 +18,8 @@ import {
 
 import { TsInputComponent } from './../input/input.component';
 import { TsCheckboxComponent } from './../checkbox/checkbox.component';
-import { validateEmail } from './../utilities/validators/email.validator';
+import { TsValidatorsService } from './../services/validators/validators.service';
 import { TsLoginFormResponse } from './../utilities/interfaces/login-form-response.interface';
-
-
-/**
- * Define the form group for re-use
- */
-const FORM_GROUP = {
-  email: [
-    null,
-    [
-      Validators.required,
-      validateEmail,
-    ],
-  ],
-  password: [
-    null,
-    [
-      Validators.required,
-    ],
-  ],
-  rememberMe: [
-    false,
-  ],
-};
 
 
 /**
@@ -77,6 +54,28 @@ const FORM_GROUP = {
 })
 export class TsLoginFormComponent implements OnChanges {
   /**
+   * Define the form group for re-use
+   */
+  private FORM_GROUP = {
+    email: [
+      null,
+      [
+        Validators.required,
+        this.validatorsService.validateEmail,
+      ],
+    ],
+    password: [
+      null,
+      [
+        Validators.required,
+      ],
+    ],
+    rememberMe: [
+      false,
+    ],
+  };
+
+  /**
    * Define the minimum length for a password
    */
   public PASSWORD_MINLENGTH: number = 8;
@@ -84,7 +83,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Initialize the login form
    */
-  public loginForm: FormGroup = this.formBuilder.group(FORM_GROUP);
+  public loginForm: FormGroup = this.formBuilder.group(this.FORM_GROUP);
 
   /**
    * Define a flag to add/remove the form from the DOM
@@ -151,6 +150,7 @@ export class TsLoginFormComponent implements OnChanges {
    */
   constructor(
     private formBuilder: FormBuilder,
+    private validatorsService: TsValidatorsService,
   ) {}
 
 
@@ -196,7 +196,7 @@ export class TsLoginFormComponent implements OnChanges {
     this.loginForm = null;
 
     // Re-initialize the form
-    this.loginForm = this.formBuilder.group(FORM_GROUP);
+    this.loginForm = this.formBuilder.group(this.FORM_GROUP);
 
     // This timeout let's one change detection cycle pass so that the form is actually removed from
     // the DOM

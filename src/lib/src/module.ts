@@ -27,6 +27,7 @@ import { TsCardModule } from './card/card.module';
 
 import { TsWindowService } from './services/window/window.service';
 import { TsDocumentService } from './services/document/document.service';
+import { TsValidatorsService } from './services/validators/validators.service';
 import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.component';
 
 @NgModule({
@@ -59,6 +60,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
   providers: [
     TsWindowService,
     TsDocumentService,
+    TsValidatorsService,
   ],
   exports: [
     TsButtonModule,

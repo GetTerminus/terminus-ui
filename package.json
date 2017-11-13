@@ -93,6 +93,7 @@
     "@angular/router": "4.4.6",
     "angular2-ladda": "1.2.2",
     "gulp-concat": "2.6.1",
+    "gulp-print": "2.0.1",
     "gulp-remove-empty-lines": "0.1.0",
     "gulp-replace": "0.6.1",
     "gulp-strip-json-comments": "2.1.0",
