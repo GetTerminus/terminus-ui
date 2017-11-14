@@ -33,7 +33,7 @@ jobs:
           name: Save Yarn Cache
           key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - .cache/yarn
+            - ./node_modules
 
       - run:
           name: Lint Styles
