@@ -12,7 +12,7 @@ import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/inp
 
 
 /**
- * @private Custom control value accessor for our component.
+ * Custom control value accessor for our component.
  * This allows our custom components to access the underlying form validation via our base class
  */
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
