@@ -155,6 +155,7 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 
   // Define theme styles
   $themes: primary accent warn;
+  $collapsable-radius: 2em;
 
   // Loop through using each theme name to create styles
   @each $theme in $themes {
@@ -170,7 +171,7 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 
       // Collapsable button
       &.c-button--collapsable {
-        border-radius: 2em;
+        border-radius: $collapsable-radius;
 
         .c-button__content {
           display: inline-block;
@@ -179,6 +180,10 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
           transition: max-width $content-transition-duration $g-easing;
           white-space: nowrap;
           will-change: max-width;
+        }
+
+        .mat-ripple {
+          border-radius: $collapsable-radius;
         }
       }
 
