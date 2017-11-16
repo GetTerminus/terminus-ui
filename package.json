@@ -164,7 +164,7 @@
     "replace-in-file": "3.0.0",
     "require-dir": "0.3.2",
     "rimraf": "2.6.2",
-    "rollup": "0.51.5",
+    "rollup": "0.51.6",
     "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-resolve": "3.0.0",
     "rollup-plugin-uglify": "2.0.1",
