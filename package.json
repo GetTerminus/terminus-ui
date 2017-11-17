@@ -66,6 +66,7 @@
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "//=> Section: Tooling": "",
     "commitmsg": "validate-commit-msg",
+    "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "cm": "./node_modules/.bin/git-cz",
     "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss"
   },
@@ -114,8 +115,8 @@
     "@angular/platform-browser-dynamic": "4.4.6",
     "@angular/router": "4.4.6",
     "@compodoc/compodoc": "1.0.4",
-    "@types/jasmine": "2.6.2",
-    "@types/node": "8.0.47",
+    "@types/jasmine": "2.8.2",
+    "@types/node": "8.0.53",
     "autoprefixer": "7.1.6",
     "camelcase": "4.1.0",
     "code-notes": "1.0.4",
