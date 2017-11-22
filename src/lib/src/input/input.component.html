@@ -41,6 +41,7 @@
 
   <ts-validation-messages
     class="qa-input-validation-messages"
+    *ngIf="formControl"
     [control]="formControl"
     [validateOnChange]="validateOnChange"
   ></ts-validation-messages>
