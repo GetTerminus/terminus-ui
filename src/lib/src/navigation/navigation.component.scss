@@ -46,15 +46,15 @@
     // Set up for bottom pseudo element
     position: relative;
 
-      &:focus,
-      &:hover {
-        .c-navigation__item-inner {
-          &::after {
-            opacity: 1;
-            transition-duration: 200ms;
-          }
+    &:focus,
+    &:hover {
+      .c-navigation__item-inner {
+        &::after {
+          opacity: 1;
+          transition-duration: 200ms;
         }
       }
+    }
 
     // <span> inner wrapper
     &-inner {
@@ -70,8 +70,8 @@
         left: 50%;
         opacity: 0;
         position: absolute;
-        transition: opacity 100ms ease-in-out;
         transform: translateX(-50%);
+        transition: opacity 100ms ease-in-out;
         width: calc(100% - #{$horizontal-padding * 2});
         will-change: opacity;
       }
@@ -87,16 +87,17 @@
 
     $separator-height: 70%;
     $separator-vertical-spacing: #{(100% - $separator-height) / 2};
+    $separator-color: rgba(color(pure), .5);
 
     // Create vertical separator between top-level nav items and dropdown
     &::after {
-      background-color: rgba(color(pure), .5);
+      background-color: $separator-color;
+      bottom: $separator-vertical-spacing;
       content: '';
       height: $separator-height;
-      position: absolute;
       left: 0;
+      position: absolute;
       top: $separator-vertical-spacing;
-      bottom: $separator-vertical-spacing;
       width: 1px;
     }
 
