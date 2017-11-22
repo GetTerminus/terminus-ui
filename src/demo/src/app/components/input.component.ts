@@ -9,8 +9,23 @@ import { TsValidatorsService } from '@terminus/ui';
 @Component({
   selector: 'demo-input',
   template: `
+    <ts-input
+      style="width:100%;"
+      [(ngModel)]="myValue"
+      label="static"
+      isClearable="true"
+      isRequired="true"
+      name="static input"
+    ></ts-input>
+
+    <br>
+    <strong>myValue: {{myValue}}</strong>
+    <br>
+    <br>
+
     <form [formGroup]="myForm" novalidate>
       <ts-input
+        style="width:100%;"
         formControlName="name"
         [formControl]="getControl('name')"
         [label]="label1"
@@ -25,6 +40,7 @@ import { TsValidatorsService } from '@terminus/ui';
       <br>
 
       <ts-input
+        style="width:100%;"
         formControlName="email"
         [formControl]="getControl('email')"
         [label]="label2"
