@@ -25,6 +25,7 @@ export { TsCardModule } from './src/card/card.module';
 export { TsWindowService } from './src/services/window/window.service';
 export { TsDocumentService } from './src/services/document/document.service';
 export { TsValidatorsService } from './src/services/validators/validators.service';
+export { TsSpacingService } from './src/spacing/spacing.service';
 export * from './src/utilities/interfaces/index';
 export * from './src/utilities/types/index';
 

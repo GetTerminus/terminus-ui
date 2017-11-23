@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TsSpacingService } from '@terminus/ui';
 
 @Component({
   selector: 'demo-spacing',
@@ -55,8 +56,17 @@ import { Component } from '@angular/core';
 
     <div>
       Standard content...
+      <br>
+      {{ spacing1 }}
+      {{ spacing2 }}
     </div>
   `,
 })
 export class SpacingComponent {
+  spacing1 = this.spacingService.getSpacing();
+  spacing2 = this.spacingService.getSpacing('small', 2);
+
+  constructor(
+    private spacingService: TsSpacingService,
+  ) {}
 }
