@@ -10,7 +10,7 @@
   }
 
   // <ts-button> trigger to show the menu
-  ::ng-deep ts-button {
+  ts-button {
     &[data-disabled='true'] {
       @include cursor(not-allowed);
       pointer-events: none;
@@ -35,25 +35,23 @@
   }
 }
 
-::ng-deep .mat-menu-panel {
+.mat-menu-panel {
   .mat-menu-content {
     // NOTE: Universal selector needed since we don't know what the first child will be
-    // sass-lint:disable no-universal-selectors
     > * {
       display: block;
     }
-    // sass-lint:enable no-universal-selectors
   }
 }
 
 
 // Target a utility instance within a card
-::ng-deep .c-card {
+.c-card {
   .c-menu {
     &.c-menu--utility {
       position: absolute;
-      right: spacing(small, 3x);
-      top: spacing(small, 3x);
+      right: spacing(small, 3);
+      top: spacing(small, 3);
     }
   }
 }

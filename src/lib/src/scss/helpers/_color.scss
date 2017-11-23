@@ -1,6 +1,3 @@
-// sass-lint:disable no-color-hex
-
-
 /**
  * Pure - Dark
  *
@@ -227,8 +224,6 @@ $color__highlight: #efe557 !default;
  */
 $color__highlight--light: #f4eb6e !default;
 
-// sass-lint:enable no-color-hex
-
 
 /**
  * The map of colors
@@ -352,6 +347,10 @@ $theme-and-color: (
 
   @each $key, $value in $theme-and-color {
     ::ng-deep .u-theme--#{$key} & {
+      &[disabled] {
+        background-color: color(utility, light);
+        color: color(utility);
+      }
       #{$property}: $value;
 
       @if ($property == 'background-color') and (not(($key == 'pure')) and not(($key == 'highlight'))) {
@@ -361,16 +360,12 @@ $theme-and-color: (
       @if ($property == 'background-color') and ($key == 'highlight') {
         color: $color__pure--dark;
       }
-
-      &[disabled] {
-        background-color: color(utility, light);
-        color: color(utility);
-      }
     }
   }
 }
 
 
+// stylelint-disable value-keyword-case
 
 /**
  * Define the material based primary map
@@ -488,3 +483,5 @@ $ts-material-warn: (
     A700: $color__pure--light,
   )
 );
+
+// stylelint-enable value-keyword-case

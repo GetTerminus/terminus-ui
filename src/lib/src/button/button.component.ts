@@ -89,7 +89,7 @@ export class TsButtonComponent implements OnInit {
     this.isCollapsed = value;
 
     // If the value is `false` and a collapse delay is set
-    if (value === false && this.collapseDelay) {
+    if (!value && this.collapseDelay) {
       // Trigger the delayed close
       this.collapseWithDelay(this.collapseDelay);
     }

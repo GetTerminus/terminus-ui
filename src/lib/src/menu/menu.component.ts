@@ -9,6 +9,7 @@ import {
   ElementRef,
   TemplateRef,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -46,6 +47,7 @@ import {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsMenuComponent implements AfterViewInit, OnInit {
   /**

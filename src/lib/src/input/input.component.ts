@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -15,11 +16,13 @@ import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/inp
  * Custom control value accessor for our component.
  * This allows our custom components to access the underlying form validation via our base class
  */
+/* tslint:disable:no-use-before-declare */
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsInputComponent),
   multi: true,
 };
+/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -67,6 +70,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**

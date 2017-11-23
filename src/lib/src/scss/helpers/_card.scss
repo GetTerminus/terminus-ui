@@ -6,6 +6,8 @@
 @mixin card(
   $allows-interaction: false
 ) {
+  padding: spacing(large);
+  vertical-align: top;
 
   // If the card allows interaction, give it a hover state
   @if $allows-interaction == true {
@@ -15,7 +17,4 @@
     // Otherwise include standard elevation
     @include elevation(2);
   }
-
-  padding: spacing(large);
-  vertical-align: top;
 }

@@ -50,8 +50,8 @@
     "integration:jit": "cd integration && yarn run e2e",
     "integration:aot": "cd integration && yarn run e2e:aot",
     "//=> Section: Linting": "",
-    "lint:ts": "./node_modules/.bin/tslint ./src/**/*.ts --format verbose",
-    "lint:scss": "./node_modules/.bin/sass-lint -c .sass-lint.yml 'src/lib/**/*.scss' -v -q",
+    "lint:ts": "./node_modules/.bin/tslint --fix --project src/lib/tsconfig.json",
+    "lint:scss": "./node_modules/.bin/stylelint 'src/lib/**/*.scss' --fix",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
     "//=> Section: Release": "",
@@ -68,7 +68,19 @@
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "cm": "./node_modules/.bin/git-cz",
-    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss"
+    "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
+    "precommit": "lint-staged",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "src/lib/**/*.ts": [
+      "lint:ts",
+      "git add"
+    ],
+    "src/lib/**/*.scss": [
+      "lint:scss",
+      "git add"
+    ]
   },
   "config": {
     "loglevel": "verbose",
@@ -152,6 +164,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-typescript": "3.0.7",
     "last-release-git": "0.0.3",
+    "lint-staged": "5.0.0",
     "lite-server": "2.3.0",
     "lodash.clonedeep": "4.5.0",
     "markdown-link-check": "3.1.5",
@@ -173,6 +186,8 @@
     "sass-module-importer": "1.4.0",
     "scssfmt": "1.0.2",
     "semantic-release": "8.2.0",
+    "stylelint": "8.2.0",
+    "stylelint-order": "0.7.0",
     "systemjs": "0.20.19",
     "tslint": "5.8.0",
     "typescript": "2.5.3",
