@@ -12,7 +12,6 @@
 // @description
 //  A text input component with support for icon prefix, hints and validation messages
 //
-// sass-lint:disable no-qualifying-elements
 .c-input {
   // Top level styles should be nested here
   // FIXME: Any component that uses the JavaScript classList methods will remove the duplicate class
@@ -24,10 +23,10 @@
     width: 100%;
   }
 
-  ::ng-deep .mat-input-prefix,
-  ::ng-deep .mat-input-suffix {
+  .mat-input-prefix,
+  .mat-input-suffix {
     position: relative;
-    top: spacing(small, 3x);
+    top: spacing(small, 3);
   }
 
   // Button to clear the value of the input

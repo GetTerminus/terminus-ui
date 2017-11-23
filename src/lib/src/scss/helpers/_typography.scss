@@ -178,13 +178,13 @@ $typography-body-levels: (
 
   // BODY
   @if $format == 'body' {
+    font-size: 16px;
+    letter-spacing: .01em;
+
     // Verify the level is valid for this format
     @if index($typography-body-levels, $level) == null {
       @error 'Invalid body format level: `#{$level}`. Allowed levels: #{$typography-body-levels}';
     }
-
-    font-size: 16px;
-    letter-spacing: .01em;
 
     @if $level == 1 {
       font-weight: 400;
