@@ -104,7 +104,7 @@
     // override material styles on the inner wrapper
     ::ng-deep .mat-button-wrapper {
       display: inline-block;
-      padding: spacing(small, 2) spacing(large) spacing(small, 2) spacing();
+      padding: spacing(small, 1) spacing(large) spacing(small, 1) spacing();
       position: relative;
       text-align: right;
     }

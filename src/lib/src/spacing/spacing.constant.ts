@@ -1,19 +1,26 @@
+/**
+ * NOTE: The base value and the mathmatics behind these spacings must exactly reflect the spacings
+ * defined in lib/src/scss/helpers/_spacing.scss
+ */
+const base = 16;
+
 export const TS_SPACING = {
-  small: {
-    'one': '12px',
-    'two': '8px',
-    'three': '4px',
-  },
-  default: {
-    'one': '16px',
-  },
-  large: {
-    'x1': '24px',
-    'x2': '32px',
-    'x3': '40px',
-    'x4': '48px',
-    'x5': '56px',
-    'x6': '72px',
-    'x7': '96px',
-  },
+  small: [
+    Math.floor(base - 4) + 'px',
+    Math.floor(base / 2) + 'px',
+    Math.floor(base / 4) + 'px',
+  ],
+  default: [
+    base + 'px',
+  ],
+  large : [
+    Math.floor(base / 4)      + 'px',
+    Math.floor(base / 2 * 3)  + 'px',
+    Math.floor(base / 2 * 4)  + 'px',
+    Math.floor(base / 2 * 5)  + 'px',
+    Math.floor(base / 2 * 6)  + 'px',
+    Math.floor(base / 2 * 7)  + 'px',
+    Math.floor(base / 2 * 9)  + 'px',
+    Math.floor(base / 2 * 12) + 'px',
+  ],
 }

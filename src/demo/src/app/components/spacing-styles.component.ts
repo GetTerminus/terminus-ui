@@ -1,51 +1,52 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'demo-spacing-styles',
   styleUrls: ['./spacing-styles.component.scss'],
   template: `
-    <div class="box box--small--3x">
-      padding: spacing(small, 3x)
+    <div class="box box--small--2">
+      padding: spacing(small, 2)
     </div>
 
-    <div class="box box--small--2x">
-      padding: spacing(small, 2x)
+    <div class="box box--small--1">
+      padding: spacing(small, 1)
     </div>
 
-    <div class="box box--small--1x">
-      padding: spacing(small, 1x)
+    <div class="box box--small--0">
+      padding: spacing(small)
     </div>
 
-    <div class="box box--default--1x">
+    <div class="box box--default--0">
       padding: spacing()
     </div>
 
-    <div class="box box--large--1x">
-      padding: spacing(large, 1x)
+    <div class="box box--large--0">
+      padding: spacing(large)
     </div>
 
-    <div class="box box--large--2x">
-      padding: spacing(large, 2x)
+    <div class="box box--large--1">
+      padding: spacing(large, 1)
     </div>
 
-    <div class="box box--large--3x">
-      padding: spacing(large, 3x)
+    <div class="box box--large--2">
+      padding: spacing(large, 2)
     </div>
 
-    <div class="box box--large--4x">
-      padding: spacing(large, 4x)
+    <div class="box box--large--3">
+      padding: spacing(large, 3)
     </div>
 
-    <div class="box box--large--5x">
-      padding: spacing(large, 5x)
+    <div class="box box--large--4">
+      padding: spacing(large, 4)
     </div>
 
-    <div class="box box--large--6x">
-      padding: spacing(large, 6x)
+    <div class="box box--large--5">
+      padding: spacing(large, 5)
     </div>
 
-    <div class="box box--large--7x">
-      padding: spacing(large, 7x)
+    <div class="box box--large--6">
+      padding: spacing(large, 6)
     </div>
   `,
 })

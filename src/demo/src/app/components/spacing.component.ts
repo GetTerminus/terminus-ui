@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsSpacingService } from '@terminus/ui';
+
 
 @Component({
   selector: 'demo-spacing',
@@ -10,63 +10,55 @@ import { TsSpacingService } from '@terminus/ui';
     }
   `],
   template: `
-    <div tsVerticalSpacing="small--3x">
-      tsVerticalSpacing="small--3x"
+    <div tsVerticalSpacing="small--2">
+      tsVerticalSpacing="small--2"
     </div>
 
-    <div tsVerticalSpacing="small--2x">
-      tsVerticalSpacing="small--2x"
+    <div tsVerticalSpacing="small--1">
+      tsVerticalSpacing="small--1"
     </div>
 
-    <div tsVerticalSpacing="small--1x">
-      tsVerticalSpacing="small--1x"
+    <div tsVerticalSpacing="small--0">
+      tsVerticalSpacing="small--0"
     </div>
 
     <div tsVerticalSpacing>
       tsVerticalSpacing
     </div>
 
-    <div tsVerticalSpacing="large--1x">
-      tsVerticalSpacing="large--1x"
+    <div tsVerticalSpacing="large--0">
+      tsVerticalSpacing="large--0"
     </div>
 
-    <div tsVerticalSpacing="large--2x">
-      tsVerticalSpacing="large--2x"
+    <div tsVerticalSpacing="large--1">
+      tsVerticalSpacing="large--1"
     </div>
 
-    <div tsVerticalSpacing="large--3x">
-      tsVerticalSpacing="large--3x"
+    <div tsVerticalSpacing="large--2">
+      tsVerticalSpacing="large--2"
     </div>
 
-    <div tsVerticalSpacing="large--4x">
-      tsVerticalSpacing="large--4x"
+    <div tsVerticalSpacing="large--3">
+      tsVerticalSpacing="large--3"
     </div>
 
-    <div tsVerticalSpacing="large--5x">
-      tsVerticalSpacing="large--5x"
+    <div tsVerticalSpacing="large--4">
+      tsVerticalSpacing="large--4"
     </div>
 
-    <div tsVerticalSpacing="large--6x">
-      tsVerticalSpacing="large--6x"
+    <div tsVerticalSpacing="large--5">
+      tsVerticalSpacing="large--5"
     </div>
 
-    <div tsVerticalSpacing="large--7x">
-      tsVerticalSpacing="large--7x"
+    <div tsVerticalSpacing="large--6">
+      tsVerticalSpacing="large--6"
     </div>
 
     <div>
       Standard content...
       <br>
-      {{ spacing1 }}
-      {{ spacing2 }}
     </div>
   `,
 })
 export class SpacingComponent {
-  spacing1 = this.spacingService.getSpacing();
-  spacing2 = this.spacingService.getSpacing('small', 2);
-
-  constructor(
-    private spacingService: TsSpacingService,
-  ) {}
 }

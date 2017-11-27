@@ -19,21 +19,21 @@ $g-spacing: $type__size--base !default;
  */
 $g-spacings: (
   small:  (
-    1: floor($g-spacing - 4),
-    2: floor($g-spacing / 2),
-    3: floor($g-spacing / 4),
+    0: floor($g-spacing - 4),
+    1: floor($g-spacing / 2),
+    2: floor($g-spacing / 4),
   ),
   default: (
-    1: $g-spacing,
+    0: $g-spacing,
   ),
   large: (
-    1: ceil($g-spacing / 2 * 3),
-    2: ceil($g-spacing / 2 * 4),
-    3: ceil($g-spacing / 2 * 5),
-    4: ceil($g-spacing / 2 * 6),
-    5: ceil($g-spacing / 2 * 7),
-    6: ceil($g-spacing / 2 * 9),
-    7: ceil($g-spacing / 2 * 12),
+    0: ceil($g-spacing / 2 * 3),
+    1: ceil($g-spacing / 2 * 4),
+    2: ceil($g-spacing / 2 * 5),
+    3: ceil($g-spacing / 2 * 6),
+    4: ceil($g-spacing / 2 * 7),
+    5: ceil($g-spacing / 2 * 9),
+    6: ceil($g-spacing / 2 * 12),
   )
 );
 
@@ -51,7 +51,7 @@ $g-spacings: (
  *  padding: spacing();
  *  padding: spacing(large, 4x);
  */
-@function spacing($type: default, $size: 1x) {
+@function spacing($type: default, $size: 0) {
   // Verify the type exists
   @if not(map-has-key($g-spacings, $type)) {
     $allowed: map-keys($g-spacings);
