@@ -26,11 +26,11 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 $padding-transition: padding $label-transition-duration $g-easing;
 $ladda-background-transition: background $color-transition-duration $g-easing;
 
-// Styles applied when the button should collapse
+// Styles applied when the button is collapsed
 @mixin collapsed {
   .ladda-label {
-    padding-left: spacing(small, 3);
-    padding-right: spacing(small, 3);
+    padding-left: spacing(small, 2);
+    padding-right: spacing(small, 2);
   }
 
   .mat-icon {
@@ -44,19 +44,6 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   // collapse the text content
   .c-button__content {
     max-width: 0;
-  }
-}
-
-:host {
-  display: inline-block;
-
-  // NOTE: This is a hack of sorts to disable a ts-menu from opening. The menu trigger still seems
-  // to be bound even when disabled.
-  // pointer-events: none;
-  &[data-disabled='true'] {
-    .c-button {
-      @include cursor(not-allowed);
-    }
   }
 }
 
@@ -166,7 +153,11 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   // When collapsable AND disabled
   &.c-button--collapsable {
     &[disabled] {
-      @include collapsed;
+      &:not(:hover) {
+        &:not(:focus) {
+          @include collapsed;
+        }
+      }
     }
   }
 

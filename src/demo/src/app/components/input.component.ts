@@ -66,6 +66,7 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
+  myValue;
 
   myForm = this.formBuilder.group({
     name: [
