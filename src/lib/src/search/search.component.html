@@ -22,7 +22,6 @@
     [validateOnChange]="autoSubmit"
     fxFlex="grow"
     (cleared)="cleared.emit(true)"
-    (blur)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"
   ></ts-input>
 
   <ts-button

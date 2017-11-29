@@ -58,8 +58,8 @@ describe(`TsInputComponent`, () => {
     it(`should focus the input in the next event loop if isFocused is true`, fakeAsync(() => {
       this.component.isFocused = true;
       this.component.ngAfterViewInit();
-
       tick();
+
       expect(this.component.input.nativeElement.focus).toHaveBeenCalled();
     }));
 
