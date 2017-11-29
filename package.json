@@ -73,7 +73,7 @@
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "src/lib/**/*.ts": [
+    "src/lib/**/!(*.spec).ts": [
       "lint:ts",
       "git add"
     ],
