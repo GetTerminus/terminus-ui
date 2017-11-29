@@ -12,14 +12,14 @@ import { TsValidatorsService } from '@terminus/ui';
     <ts-input
       style="width:100%;"
       [(ngModel)]="myValue"
-      label="static"
+      label="Input with ngModel"
       isClearable="true"
       isRequired="true"
       name="static input"
     ></ts-input>
 
     <br>
-    <strong>myValue: {{myValue}}</strong>
+    <strong>ngModel value: {{myValue}}</strong>
     <br>
     <br>
 

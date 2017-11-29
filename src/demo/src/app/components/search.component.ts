@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
     <br>
     <ts-search
       [isSubmitting]="inProgress"
+      isFocused="true"
       [initialValue]="startingValue"
       [autoSubmit]="shouldAutoSubmit"
       (submitted)="onSubmit($event)"

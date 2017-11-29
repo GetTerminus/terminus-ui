@@ -51,6 +51,7 @@
     "integration:aot": "cd integration && yarn run e2e:aot",
     "//=> Section: Linting": "",
     "lint:ts": "./node_modules/.bin/tslint --fix --project src/lib/tsconfig.json",
+    "lint:ts-spec": "./node_modules/.bin/tslint --fix --project src/lib/tsconfig.spec.json",
     "lint:scss": "./node_modules/.bin/stylelint 'src/lib/**/*.scss' --fix",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
@@ -73,7 +74,11 @@
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "src/lib/**/*.ts": [
+    "src/lib/**/*.spec.ts": [
+      "lint:ts-spec",
+      "git add"
+    ],
+    "src/lib/**/*!(.(spec|mock)).ts": [
       "lint:ts",
       "git add"
     ],

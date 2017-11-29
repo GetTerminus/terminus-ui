@@ -117,6 +117,12 @@ export class TsSearchComponent implements OnInit {
   public query: string = '';
 
   /**
+   * Define if the search input should be focused initially
+   */
+  @Input()
+  public isFocused: boolean = false;
+
+  /**
    * Define if the input should automatically submit values as typed
    */
   @Input()
