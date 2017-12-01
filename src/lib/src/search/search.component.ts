@@ -38,6 +38,7 @@ import { debounce } from './../utilities/debounce';
  *              initialValue="My starting value"
  *              inputLabel="Search for a tactic"
  *              inputHint="Enter at least 17 characters"
+ *              isFocused="false"
  *              isSubmitting="false"
  *              theme="primary"
  *              userCanClear="true"
@@ -117,12 +118,6 @@ export class TsSearchComponent implements OnInit {
   public query: string = '';
 
   /**
-   * Define if the search input should be focused initially
-   */
-  @Input()
-  public isFocused: boolean = false;
-
-  /**
    * Define if the input should automatically submit values as typed
    */
   @Input()
@@ -151,6 +146,12 @@ export class TsSearchComponent implements OnInit {
    */
   @Input()
   public isDisabled: boolean = false;
+
+  /**
+   * Define if the search input should be focused initially
+   */
+  @Input()
+  public isFocused: boolean = false;
 
   /**
    * Define if the search is currently submitting a query
