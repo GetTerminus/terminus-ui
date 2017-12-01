@@ -3150,9 +3150,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     pages: TsPaginationMenuItem[],
     totalRecords: number,
   ): string {
-    const findPage &#x3D; (allPages: TsPaginationMenuItem[], number: number) &#x3D;&gt; {
+    const findPage &#x3D; (allPages: TsPaginationMenuItem[], index: number) &#x3D;&gt; {
       return pages.find((page: TsPaginationMenuItem) &#x3D;&gt; {
-        return page.value &#x3D;&#x3D;&#x3D; number.toString();
+        return page.value &#x3D;&#x3D;&#x3D; index.toString();
       });
     };
 
