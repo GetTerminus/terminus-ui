@@ -17,18 +17,16 @@
  *  @include triangle(left, red, 2em);
  */
 @mixin triangle($direction, $color: currentcolor, $size: 1em) {
-  @if not index(top right bottom left, $direction) {
-    @error 'Direction must be either `top`, `right`, `bottom` or `left`.';
-  }
-
-  border-#{opposite-direction($direction)}: ($size * 1.5) solid $color;
+  $perpendicular-borders: $size solid transparent;
   content: '';
   height: 0;
   position: absolute;
   width: 0;
   z-index: z('tooltip');
 
-  $perpendicular-borders: $size solid transparent;
+  @if not index(top right bottom left, $direction) {
+    @error 'Direction must be either `top`, `right`, `bottom` or `left`.';
+  }
 
   @if $direction == top or $direction == bottom {
     border-left:   $perpendicular-borders;
@@ -45,4 +43,6 @@
   @if $direction == bottom {
     top: 100%;
   }
+
+  border-#{opposite-direction($direction)}: ($size * 1.5) solid $color;
 }

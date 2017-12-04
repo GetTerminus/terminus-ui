@@ -9,6 +9,6 @@ export interface ValidationResponse {
     /**
      * The expected validation result
      */
-    valid: boolean,
+    valid: boolean;
   },
 }

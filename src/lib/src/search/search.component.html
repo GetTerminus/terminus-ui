@@ -15,12 +15,13 @@
     formControlName="query"
     [formControl]="searchForm.get('query')"
     [hint]="inputHint"
+    [isFocused]="isFocused"
     name="query"
     minlength="{{ queryMinLength }}"
     pattern="{{ inputPatternRegex }}"
     [validateOnChange]="autoSubmit"
-    (cleared)="cleared.emit(true)"
     fxFlex="grow"
+    (cleared)="cleared.emit(true)"
   ></ts-input>
 
   <ts-button

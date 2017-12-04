@@ -15,7 +15,7 @@
     type="{{ type }}"
     placeholder="{{ label }}"
     [attr.name]="name"
-    [autofocus]="isFocused"
+    [attr.autofocus]="isFocused ? '' : null"
     [attr.required]="isRequired ? '' : null"
     [attr.autocomplete]="autocomplete"
     [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
@@ -23,6 +23,7 @@
     tabIndex="{{ tabIndex }}"
     [(ngModel)]="value"
     (blur)="onBlur()"
+    #input
   >
 
   <mat-icon
@@ -41,6 +42,7 @@
 
   <ts-validation-messages
     class="qa-input-validation-messages"
+    *ngIf="formControl"
     [control]="formControl"
     [validateOnChange]="validateOnChange"
   ></ts-validation-messages>

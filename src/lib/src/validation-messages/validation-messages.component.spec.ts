@@ -63,6 +63,12 @@ describe('InputMessagesComponent', () => {
       expect(message).toEqual(null);
     });
 
+
+    it(`should return null if no control was passed in`, () => {
+      expect(this.component.validationMessage).toEqual(null);
+      expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
+    });
+
   });
 
 });

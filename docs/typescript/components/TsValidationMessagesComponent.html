@@ -785,7 +785,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:58</a></div>
                                 </td>
                             </tr>
     
@@ -843,7 +843,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:52</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -869,7 +869,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/src/validation-messages/validation-messages.component.ts:58</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -958,12 +958,14 @@ export class TsValidationMessagesComponent {
    * @return {String|Null} errorMessage The error message or null if no error
    */
   public get validationMessage(): string | null {
-    for (const propertyName in this.control.errors) {
-      // Only show after &#x27;touched&#x27; if we are NOT validating on every change
-      if (this.validateOnChange || (!this.validateOnChange &amp;&amp; this.control.touched)) {
-        const errors &#x3D; this.control.errors[propertyName];
+    if (this.control) {
+      for (const propertyName in this.control.errors) {
+        // Only show after &#x27;touched&#x27; if we are NOT validating on every change
+        if (this.validateOnChange || (!this.validateOnChange &amp;&amp; this.control.touched)) {
+          const errors &#x3D; this.control.errors[propertyName];
 
-        return this.validationService.getValidatorErrorMessage(propertyName, errors);
+          return this.validationService.getValidatorErrorMessage(propertyName, errors);
+        }
       }
     }
 
