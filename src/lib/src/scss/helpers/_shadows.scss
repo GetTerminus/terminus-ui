@@ -207,17 +207,15 @@ $material-elements: (
  */
 @function lerp-shadow($x, $shadow1, $shadow2) {
   // Round all parameters, as shadow definitions do not support subpixels
-  // NOTE: The `(1px - 1px)` hack is to coerce the value to a `px` value. Normally we would only
-  // need to add `+ 1px` to the end. However stylelint will try to 'fix' this by removing the unit.
-  // See: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/cli.md#autofixing-errors
-  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + (1px -1px);
-  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + (1px -1px);
-  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + (1px -1px);
-  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + (1px -1px);
+  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1)));
+  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2)));
+  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3)));
+  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4)));
   // No need to lerp the shadow color
   $new-color: nth($shadow1, 5);
 
-  @return ($new-x $new-y $new-blur $new-spread $new-color);
+  // Coerce to pixel values when returning
+  @return (#{$new-x + px} #{$new-y + px} #{$new-blur + px} #{$new-spread + px} $new-color);
 }
 
 
