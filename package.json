@@ -127,7 +127,7 @@
     "@compodoc/compodoc": "1.0.4",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.0.53",
-    "autoprefixer": "7.1.6",
+    "autoprefixer": "7.2.0",
     "camelcase": "4.1.0",
     "code-notes": "1.0.4",
     "codelyzer": "3.2.2",
