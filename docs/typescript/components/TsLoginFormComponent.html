@@ -1753,6 +1753,8 @@ export class TsLoginFormComponent implements OnChanges {
     isRequired&#x3D;&quot;true&quot;
     [spellcheck]&#x3D;&quot;false&quot;
     [autocapitalize]&#x3D;&quot;false&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    tabIndex&#x3D;&quot;1&quot;
     tsVerticalSpacing
   &gt;&lt;/ts-input&gt;
 
@@ -1769,6 +1771,8 @@ export class TsLoginFormComponent implements OnChanges {
     [autocapitalize]&#x3D;&quot;false&quot;
     [spellcheck]&#x3D;&quot;false&quot;
     minlength&#x3D;&quot;{{ PASSWORD_MINLENGTH }}&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    tabIndex&#x3D;&quot;2&quot;
     tsVerticalSpacing
   &gt;&lt;/ts-input&gt;
 
@@ -1776,6 +1780,8 @@ export class TsLoginFormComponent implements OnChanges {
     class&#x3D;&quot;qa-login-form-remember-me&quot;
     formControlName&#x3D;&quot;rememberMe&quot;
     [formControl]&#x3D;&quot;getControl(&#x27;rememberMe&#x27;)&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    tabIndex&#x3D;&quot;3&quot;
     tsVerticalSpacing
   &gt;
     Remember me
@@ -1785,6 +1791,8 @@ export class TsLoginFormComponent implements OnChanges {
     class&#x3D;&quot;qa-login-form-forgot-password&quot;
     [destination]&#x3D;&quot;forgotPasswordLink&quot;
     tsVerticalSpacing
+    tabindex&#x3D;&quot;-1&quot;
+    tabIndex&#x3D;&quot;5&quot;
   &gt;{{ forgotPasswordText }}&lt;/ts-link&gt;
 
   &lt;div fxLayout&#x3D;&quot;row&quot; fxFlexAlign&#x3D;&quot;end&quot;&gt;
@@ -1795,6 +1803,8 @@ export class TsLoginFormComponent implements OnChanges {
       [showProgress]&#x3D;&quot;inProgress || isRedirecting&quot;
       [isDisabled]&#x3D;&quot;!loginForm.valid&quot;
       (clickEvent)&#x3D;&quot;submit.emit(loginForm.value)&quot;
+      tabindex&#x3D;&quot;-1&quot;
+      tabIndex&#x3D;&quot;4&quot;
     &gt;
       {{ loginCTA }}
     &lt;/ts-button&gt;
@@ -1832,7 +1842,7 @@ export class TsLoginFormComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form  class="qa-login-form"  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    class="qa-login-form-email"    label="Email"    name="email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tsVerticalSpacing  ></ts-input>  <ts-input    class="qa-login-form-password"    label="Password"    name="password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'current-password\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    class="qa-login-form-remember-me"    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    class="qa-login-form-forgot-password"    [destination]="forgotPasswordLink"    tsVerticalSpacing  >{{ forgotPasswordText }}</ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      class="qa-login-form-submit"      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress || isRedirecting"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form  class="qa-login-form"  [formGroup]="loginForm"  fxLayout="column"  *ngIf="showForm"  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)">  <ts-input    class="qa-login-form-email"    label="Email"    name="email"    type="email"    formControlName="email"    [formControl]="getControl(\'email\')"    isRequired="true"    [spellcheck]="false"    [autocapitalize]="false"    tabindex="-1"    tabIndex="1"    tsVerticalSpacing  ></ts-input>  <ts-input    class="qa-login-form-password"    label="Password"    name="password"    type="password"    formControlName="password"    [formControl]="getControl(\'password\')"    hideRequiredMarker="false"    isRequired="true"    [autocomplete]="\'current-password\'"    [autocapitalize]="false"    [spellcheck]="false"    minlength="{{ PASSWORD_MINLENGTH }}"    tabindex="-1"    tabIndex="2"    tsVerticalSpacing  ></ts-input>  <ts-checkbox    class="qa-login-form-remember-me"    formControlName="rememberMe"    [formControl]="getControl(\'rememberMe\')"    tabindex="-1"    tabIndex="3"    tsVerticalSpacing  >    Remember me  </ts-checkbox>  <ts-link    class="qa-login-form-forgot-password"    [destination]="forgotPasswordLink"    tsVerticalSpacing    tabindex="-1"    tabIndex="5"  >{{ forgotPasswordText }}</ts-link>  <div fxLayout="row" fxFlexAlign="end">    <ts-button      class="qa-login-form-submit"      actionName="Submit"      buttonType="submit"      [showProgress]="inProgress || isRedirecting"      [isDisabled]="!loginForm.valid"      (clickEvent)="submit.emit(loginForm.value)"      tabindex="-1"      tabIndex="4"    >      {{ loginCTA }}    </ts-button>  </div></form></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoginFormComponent'};
