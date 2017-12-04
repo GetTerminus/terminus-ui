@@ -174,7 +174,7 @@
     "lodash.clonedeep": "4.5.0",
     "markdown-link-check": "3.1.5",
     "merge-files": "0.1.1",
-    "node-sass": "4.6.1",
+    "node-sass": "4.7.2",
     "node-sass-import": "1.1.1",
     "nucleus-styleguide": "1.1.1",
     "onchange": "3.2.1",
