@@ -131,7 +131,7 @@ export class TsCopyComponent {
 
   /**
    * Reset the text selection
-   * NOTE: The div must have a `tabindex` set or no blur event will be fired
+   * NOTE: The containing div must have a `tabindex` set or no blur event will be fired
    */
   public resetSelection(): void {
     this.hasSelected = false;

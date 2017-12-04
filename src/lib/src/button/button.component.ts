@@ -35,6 +35,7 @@ import {
  *              showProgress="true"
  *              collapsed="false"
  *              collapseDelay="500"
+ *              tabIndex="2"
  *              (clickEvent)="myMethod($event)"
  * >Click Me!</ts-button>
  *
@@ -88,7 +89,7 @@ export class TsButtonComponent implements OnInit {
     this.isCollapsed = value;
 
     // If the value is `false` and a collapse delay is set
-    if (value === false && this.collapseDelay) {
+    if (!value && this.collapseDelay) {
       // Trigger the delayed close
       this.collapseWithDelay(this.collapseDelay);
     }
@@ -111,6 +112,12 @@ export class TsButtonComponent implements OnInit {
    */
   @Input()
   public showProgress: boolean = false;
+
+  /**
+   * Define the tabindex for the button
+   */
+  @Input()
+  public tabIndex: number = 0;
 
   /**
    * Define the button format. {@link TsButtonFormatTypes}

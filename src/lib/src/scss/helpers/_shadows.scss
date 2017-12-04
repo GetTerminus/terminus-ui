@@ -33,49 +33,56 @@ $ambient: rgba(0, 0, 0, .12);
  * @section Config > Shadows
  */
 $reference-shadows: (
-  (elevation: 0,
+  (
+    elevation: 0,
     shadows: (
       (0, 0, 0, 0, $key-umbra),
       (0, 0, 0, 0, $key-penumbra),
       (0, 0, 0, 0, $ambient),
     )
   ),
-  (elevation: 2,
+  (
+    elevation: 2,
     shadows: (
       (0, 3, 1, -2, $key-umbra),
       (0, 2, 2, 0, $key-penumbra),
       (0, 1, 5, 0, $ambient),
     )
   ),
-  (elevation: 3,
+  (
+    elevation: 3,
     shadows: (
       (0, 3, 3, -2, $key-umbra),
       (0, 3, 4, 0, $key-penumbra),
       (0, 1, 8, 0, $ambient),
     )
   ),
-  (elevation: 4,
+  (
+    elevation: 4,
     shadows: (
       (0, 2, 4, -1, $key-umbra),
       (0, 4, 5, 0, $key-penumbra),
       (0, 1, 10, 0, $ambient),
     )
   ),
-  (elevation: 6,
+  (
+    elevation: 6,
     shadows: (
       (0, 3, 5, -1, $key-umbra),
       (0, 6, 10, 0, $key-penumbra),
       (0, 1, 18, 0, $ambient),
     )
   ),
-  (elevation: 8,
+  (
+    elevation: 8,
     shadows: (
       (0, 5, 5, -3, $key-umbra),
       (0, 8, 10, 1, $key-penumbra),
       (0, 3, 14, 2, $ambient),
     )
   ),
-  (elevation: 16,
+  (
+    elevation: 16,
     shadows: (
       (0, 8, 10, -5, $key-umbra),
       (0, 16, 24, 2, $key-penumbra),
@@ -140,6 +147,9 @@ $material-elements: (
  *  $foo = find-bounding-shadow-sets();
  */
 @function find-bounding-shadow-sets($elevation) {
+  $lower: nth($reference-shadows, length($reference-shadows) - 1);
+  $upper: nth($reference-shadows, length($reference-shadows));
+
   @if $elevation < 0 {
     @warn 'Elevation is less than zero';
   }
@@ -151,9 +161,6 @@ $material-elements: (
       @return ($lower, $upper);
     }
   }
-
-  $lower: nth($reference-shadows, length($reference-shadows) - 1);
-  $upper: nth($reference-shadows, length($reference-shadows));
 
   @return ($lower, $upper);
 }
@@ -200,17 +207,15 @@ $material-elements: (
  */
 @function lerp-shadow($x, $shadow1, $shadow2) {
   // Round all parameters, as shadow definitions do not support subpixels
-  // NOTE: Zero unit needed to coerce to a PX value
-  // sass-lint:disable zero-unit
-  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + 0px;
-  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + 0px;
-  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + 0px;
-  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + 0px;
-  // sass-lint:enable zero-unit
+  $new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1)));
+  $new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2)));
+  $new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3)));
+  $new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4)));
   // No need to lerp the shadow color
   $new-color: nth($shadow1, 5);
 
-  @return ($new-x $new-y $new-blur $new-spread $new-color);
+  // Coerce to pixel values when returning
+  @return (#{$new-x + px} #{$new-y + px} #{$new-blur + px} #{$new-spread + px} $new-color);
 }
 
 
@@ -282,9 +287,9 @@ $material-elements: (
  */
 @mixin elevation($elevation1, $elevation2: null, $state: null) {
   @if $elevation1 == 0 {
-    // sass-lint:disable no-important
+    // stylelint-disable declaration-no-important
     box-shadow: none !important;
-    // sass-lint:enable no-important
+    // stylelint-enable declaration-no-important
   } @else {
     box-shadow: calculate-shadow-set-at-depth($elevation1);
   }
@@ -294,9 +299,9 @@ $material-elements: (
 
     &:#{$state} {
       @if $elevation1 == 0 {
-        // sass-lint:disable no-important
+        // stylelint-disable declaration-no-important
         box-shadow: none !important;
-        // sass-lint:enable no-important
+        // stylelint-enable declaration-no-important
       } @else {
         box-shadow: calculate-shadow-set-at-depth($elevation2);
       }

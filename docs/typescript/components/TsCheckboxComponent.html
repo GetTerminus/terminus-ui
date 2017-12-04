@@ -241,6 +241,9 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -248,6 +251,7 @@
                                 </li>
                         </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -547,6 +551,9 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -554,6 +561,7 @@
                                        </li>
                                </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -673,7 +681,7 @@
         <p>This is the checkbox UI Component</p>
 <h4 id="qa-css-classes">QA CSS CLASSES</h4>
 <ul>
-<li><code>qa-checkbox</code>: Placed on the checkbox input element used for this component</li>
+<li><code>qa-checkbox</code>: The checkbox input element</li>
 </ul>
 
     </p>
@@ -781,6 +789,9 @@
                                 <a href="#isRequired">isRequired</a>
                             </li>
                             <li>
+                                <a href="#tabIndex">tabIndex</a>
+                            </li>
+                            <li>
                                 <a href="#theme">theme</a>
                             </li>
                         </ul>
@@ -831,7 +842,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:63</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -857,7 +868,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:69</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -883,7 +894,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:75</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -909,7 +920,33 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:81</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="tabIndex"></a>
+                            <code>tabIndex</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tabindex</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>0</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:87</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -935,7 +972,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:93</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -954,13 +991,13 @@
                         <td class="col-md-10">
                             <div><p>Emit a change when moving from the indeterminate state</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MatCheckboxChange&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:105</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -975,13 +1012,13 @@
                         <td class="col-md-10">
                             <div><p>Emit an event on input change</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;boolean&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/checkbox/checkbox.component.ts:99</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1007,6 +1044,7 @@
 import {
   NG_VALUE_ACCESSOR,
 } from &#x27;@angular/forms&#x27;;
+import { MatCheckboxChange } from &#x27;@angular/material&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
@@ -1016,18 +1054,20 @@ import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-b
  * @private Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
+/* tslint:disable:no-use-before-declare */
 export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() &#x3D;&gt; TsCheckboxComponent),
-  multi: true
+  multi: true,
 };
+/* tslint-enable: no-use-before-declare */
 
 
 /**
  * This is the checkbox UI Component
  *
  * #### QA CSS CLASSES
- * - &#x60;qa-checkbox&#x60;: Placed on the checkbox input element used for this component
+ * - &#x60;qa-checkbox&#x60;: The checkbox input element
  *
  * @example
  * &lt;ts-checkbox
@@ -1076,6 +1116,12 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   public isRequired: boolean &#x3D; false;
 
   /**
+   * Define the tabindex
+   */
+  @Input()
+  public tabIndex: number &#x3D; 0;
+
+  /**
    * Define the theme
    */
   @Input()
@@ -1085,13 +1131,13 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  public inputChange: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
+  public inputChange: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter;
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public indeterminateChange: EventEmitter&lt;any&gt; &#x3D; new EventEmitter;
+  public indeterminateChange: EventEmitter&lt;MatCheckboxChange&gt; &#x3D; new EventEmitter;
 }
 </code></pre>
     </div>
@@ -1105,7 +1151,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   [disabled]&#x3D;&quot;isDisabled ? &#x27;&#x27; : null&quot;
   [required]&#x3D;&quot;isRequired ? &#x27;&#x27; : null&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
-  (blur)&#x3D;&quot;onBlur()&quot;
+  tabIndex&#x3D;&quot;{{ tabIndex }}&quot;
   (change)&#x3D;&quot;inputChange.emit($event.checked)&quot;
   (indeterminateChange)&#x3D;&quot;indeterminateChange.emit($event)&quot;
 &gt;
@@ -1142,12 +1188,13 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-checkbox  class="c-checkbox qa-checkbox"  [color]="theme"  [checked]="isChecked"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  (blur)="onBlur()"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></mat-checkbox></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-checkbox  class="c-checkbox qa-checkbox"  [color]="theme"  [checked]="isChecked"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  tabIndex="{{ tabIndex }}"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></mat-checkbox></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCheckboxComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
 
 
 

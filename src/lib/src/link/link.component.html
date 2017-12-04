@@ -10,6 +10,7 @@
   class="c-link c-link qa-link qa-link-external"
   [href]="destination"
   target="_blank"
+  tabindex="{{ tabIndex }}"
   *ngIf="isExternal"
 >
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>

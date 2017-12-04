@@ -4,6 +4,10 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  ViewEncapsulation,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -12,28 +16,30 @@ import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/inp
 
 
 /**
- * @private Custom control value accessor for our component.
+ * Custom control value accessor for our component.
  * This allows our custom components to access the underlying form validation via our base class
  */
+/* tslint:disable:no-use-before-declare */
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsInputComponent),
   multi: true,
 };
+/* tslint-enable: no-use-before-declare */
 
 
 /**
  * A presentational component to render a text input.
  *
  * #### QA CSS CLASSES
- * - `qa-input`: Placed on the div element which contains this component
- * - `qa-input-text`: Placed on the input element
- * - `qa-input-prefix-icon`: Placed on the icon element for the prefix icon, if one is set
- * - `qa-input-suffix-icon`: Placed on the icon element for the clickable "clear" icon, if this
- * control is clearable
- * - `qa-input-hint`: Placed on the hint element, if hint content is provided
- * - `qa-input-validation-messages`: Placed on the {@link TsValidationMessagesComponent} which will
- * contain any validation messages
+ * - `qa-input`: The container element
+ * - `qa-input-text`: The input element
+ * - `qa-input-prefix-icon`: The icon element for the prefix icon, if one is set
+ * - `qa-input-suffix-icon`: The icon element for the clickable "clear" icon, if this control is
+ * clearable
+ * - `qa-input-hint`: The hint element, if hint content is provided
+ * - `qa-input-validation-messages`: The {@link TsValidationMessagesComponent} which will contain
+ * any validation messages
  *
  * @example
  * <ts-input
@@ -56,6 +62,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              autocapitalize="false"
  *              spellcheck="false"
  *              validateOnChange="false"
+ *              tabIndex="2"
  *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
@@ -66,8 +73,15 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent {
+export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterViewInit {
+  /**
+   * Provide access to the input element
+   */
+  @ViewChild('input')
+  public input: ElementRef;
+
   /**
    * Define if the input should autocapitalize
    * (standard HTML5 property)
@@ -91,7 +105,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    * Define if the input should be focused
    */
   @Input()
-  public isFocused: boolean;
+  public isFocused: boolean = false;
 
   /**
    * Define if the input is required
@@ -138,6 +152,12 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   public spellcheck: boolean = true;
 
   /**
+   * Define the tabindex for the input
+   */
+  @Input()
+  public tabIndex: number = 0;
+
+  /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}
    */
   @Input()
@@ -155,6 +175,20 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   @Output()
   cleared: EventEmitter<boolean> = new EventEmitter();
 
+
+  /**
+   * Focus the input on load if the flag is set
+   */
+  public ngAfterViewInit(): void {
+    // istanbul ignore else
+    if (this.isFocused) {
+      // Make sure the focus event doesn't take place until the next event loop. Otherwise we will
+      // see a `Expression changed..` error
+      setTimeout(() => {
+        this.input.nativeElement.focus();
+      });
+    }
+  }
 
   /**
    * Clear the input's value

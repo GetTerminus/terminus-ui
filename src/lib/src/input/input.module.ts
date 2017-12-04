@@ -7,6 +7,7 @@ import {
 } from '@angular/material';
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
+import { TsValidatorsService } from './../services/validators/validators.service';
 
 import { TsInputComponent } from './input.component';
 export { TsInputComponent } from './input.component';
@@ -20,6 +21,9 @@ export { TsInputComponent } from './input.component';
     MatInputModule,
     MatIconModule,
     TsValidationMessagesModule,
+  ],
+  providers: [
+    TsValidatorsService,
   ],
   exports: [
     TsInputComponent,

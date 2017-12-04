@@ -9,6 +9,7 @@ import {
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -18,18 +19,20 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
  * @private Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
+/* tslint:disable:no-use-before-declare */
 export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TsCheckboxComponent),
-  multi: true
+  multi: true,
 };
+/* tslint-enable: no-use-before-declare */
 
 
 /**
  * This is the checkbox UI Component
  *
  * #### QA CSS CLASSES
- * - `qa-checkbox`: Placed on the checkbox input element used for this component
+ * - `qa-checkbox`: The checkbox input element
  *
  * @example
  * <ts-checkbox
@@ -78,6 +81,12 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   public isRequired: boolean = false;
 
   /**
+   * Define the tabindex
+   */
+  @Input()
+  public tabIndex: number = 0;
+
+  /**
    * Define the theme
    */
   @Input()
@@ -87,11 +96,11 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  public inputChange: EventEmitter<any> = new EventEmitter;
+  public inputChange: EventEmitter<boolean> = new EventEmitter;
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public indeterminateChange: EventEmitter<any> = new EventEmitter;
+  public indeterminateChange: EventEmitter<MatCheckboxChange> = new EventEmitter;
 }

@@ -1,12 +1,11 @@
 @import '~@terminus/ui/helpers';
 
 .outer {
-  /*
-   *outline: 2px solid lightblue;
-   */
-  padding: 6px;
+  @include elevation-element(app-bar);
+  background-color: color(primary);
 
   span {
+    color: color(pure);
     padding: 0 1rem;
   }
 }

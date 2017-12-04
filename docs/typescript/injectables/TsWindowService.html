@@ -241,6 +241,9 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html"  data-type="entity-link" class="active" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -248,6 +251,7 @@
                                 </li>
                         </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -547,6 +551,9 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html"  data-type="entity-link" class="active" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -554,6 +561,7 @@
                                        </li>
                                </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -704,7 +712,7 @@
                                             <div>
                                             </div>
                                             <div class="io-description">
-                                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                <b>Returns : </b>    <code>Window</code>
             
                                             </div>
                                     </td>
@@ -725,7 +733,7 @@
  *
  * @return {Object} window The native window object
  */
-function _window(): any {
+function _window(): Window {
   // return the native window object
   return window;
 }
@@ -741,7 +749,7 @@ export class TsWindowService {
    *
    * @return {Object} _window The function that returns the native window object
    */
-  get nativeWindow(): any {
+  get nativeWindow(): Window {
     return _window();
   }
 
@@ -749,6 +757,7 @@ export class TsWindowService {
 </code></pre>
     </div>
 </div>
+
 
 
 

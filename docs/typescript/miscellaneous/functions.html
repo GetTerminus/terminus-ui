@@ -241,6 +241,9 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                                 <li class="link">
@@ -248,6 +251,7 @@
                                 </li>
                         </ul>
                     </li>
+            
             
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse"
@@ -547,6 +551,9 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                        <li class="link">
@@ -554,6 +561,7 @@
                                        </li>
                                </ul>
                            </li>
+                   
                    
                            <li class="chapter">
                                <div class="simple menu-toggler" data-toggle="collapse"
@@ -640,6 +648,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Miscellaneous - Functions</li>
 </ol>
@@ -662,15 +671,6 @@
                         </li>
                         <li>
                             <a href="#noop">noop</a>
-                        </li>
-                        <li>
-                            <a href="#validateCreditCard">validateCreditCard</a>
-                        </li>
-                        <li>
-                            <a href="#validateEmail">validateEmail</a>
-                        </li>
-                        <li>
-                            <a href="#validatePassword">validatePassword</a>
                         </li>
                     </ul>
                 </td>
@@ -721,7 +721,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>debounce(func: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>, wait: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>)</code>
+    <code>debounce(func: undefined, wait: undefined)</code>
                         </td>
                     </tr>
     
@@ -785,7 +785,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>groupBy(array: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>, property: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>)</code>
+    <code>groupBy(array: undefined, property: undefined)</code>
                         </td>
                     </tr>
     
@@ -854,168 +854,6 @@
     
     
     
-                </tbody>
-            </table>
-    </section>
-    <h3>src/lib/src/utilities/validators/credit-card.validator.ts</h3>
-    <section>
-        <h3></h3>        <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="validateCreditCard"></a>
-                            <span class="name"><b> validateCreditCard</b><a href="#validateCreditCard"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>validateCreditCard(control: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>A custom credit card validator for use in a reactive form.</p>
-    </div>
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>control</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>The form control</p>
-    </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-    <h3>src/lib/src/utilities/validators/email.validator.ts</h3>
-    <section>
-        <h3></h3>        <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="validateEmail"></a>
-                            <span class="name"><b> validateEmail</b><a href="#validateEmail"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>validateEmail(control: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>A custom email validator for use in a reactive form. (See <a href="components/TsLoginFormComponent.html">TsLoginFormComponent</a>)</p>
-    </div>
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>control</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>The form control</p>
-    </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-    <h3>src/lib/src/utilities/validators/password.validator.ts</h3>
-    <section>
-        <h3></h3>        <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="validatePassword"></a>
-                            <span class="name"><b> validatePassword</b><a href="#validatePassword"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>validatePassword(control: <a href="https://angular.io/docs/ts/latest/api/undefined" target="_blank">undefined</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>A custom email validator for use in a reactive form. (See <a href="components/TsLoginFormComponent.html">TsLoginFormComponent</a>)</p>
-    </div>
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>control</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>The form control</p>
-    </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
     </section>

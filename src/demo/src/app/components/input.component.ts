@@ -4,12 +4,28 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { TsValidatorsService } from '@terminus/ui';
 
 @Component({
   selector: 'demo-input',
   template: `
+    <ts-input
+      style="width:100%;"
+      [(ngModel)]="myValue"
+      label="Input with ngModel"
+      isClearable="true"
+      isRequired="true"
+      name="static input"
+    ></ts-input>
+
+    <br>
+    <strong>ngModel value: {{myValue}}</strong>
+    <br>
+    <br>
+
     <form [formGroup]="myForm" novalidate>
       <ts-input
+        style="width:100%;"
         formControlName="name"
         [formControl]="getControl('name')"
         [label]="label1"
@@ -24,6 +40,7 @@ import {
       <br>
 
       <ts-input
+        style="width:100%;"
         formControlName="email"
         [formControl]="getControl('email')"
         [label]="label2"
@@ -49,6 +66,7 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
+  myValue;
 
   myForm = this.formBuilder.group({
     name: [
@@ -61,6 +79,7 @@ export class InputComponent {
       null,
       [
         Validators.required,
+        this.validatorsService.validateEmail,
       ],
     ],
   });
@@ -68,6 +87,7 @@ export class InputComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private validatorsService: TsValidatorsService,
   ) {}
 
   submit(v: any) {

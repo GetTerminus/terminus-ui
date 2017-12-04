@@ -2,6 +2,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { noop } from './noop';
 
@@ -43,7 +44,7 @@ export class TsReactiveFormBaseComponent {
    * (for form control support)
    */
   @Input()
-  public formControl: any;
+  public formControl: FormControl;
 
   /**
    * Return the value

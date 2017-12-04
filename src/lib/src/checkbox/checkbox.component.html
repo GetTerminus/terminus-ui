@@ -6,6 +6,7 @@
   [disabled]="isDisabled ? '' : null"
   [required]="isRequired ? '' : null"
   [(ngModel)]="value"
+  tabIndex="{{ tabIndex }}"
   (change)="inputChange.emit($event.checked)"
   (indeterminateChange)="indeterminateChange.emit($event)"
 >

@@ -36,11 +36,11 @@
  *  @include responsive-ratio(20, 9, true, url('/images/landing-hero.jpg'));
  */
 @mixin responsive-ratio($x, $y, $pseudo: false, $image: null) {
+  $padding: unquote(( $y / $x ) * 100 + '%');
+
   @if $x == null or $y == null {
     @warn 'Both the x and y ratios must be passed in.';
   }
-
-  $padding: unquote(( $y / $x ) * 100 + '%');
 
   @if $pseudo {
     &::before {
