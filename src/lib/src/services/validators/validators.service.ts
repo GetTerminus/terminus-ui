@@ -24,8 +24,8 @@ export class TsValidatorsService {
   validateCreditCard(control: FormControl): null | ValidationResponse {
     return creditCardRegex.test(control.value) ? null : {
       invalidCreditCard: {
-        valid: false
-      }
+        valid: false,
+      },
     };
   }
 
@@ -39,8 +39,8 @@ export class TsValidatorsService {
   validateEmail(control: FormControl): null | ValidationResponse {
     return emailRegex.test(control.value) ? null : {
       invalidEmail: {
-        valid: false
-      }
+        valid: false,
+      },
     };
   }
 
@@ -54,8 +54,8 @@ export class TsValidatorsService {
   validatePassword(control: FormControl): null | ValidationResponse {
     return passwordRegex.test(control.value) ? null : {
       invalidPassword: {
-        valid: false
-      }
+        valid: false,
+      },
     };
   }
 

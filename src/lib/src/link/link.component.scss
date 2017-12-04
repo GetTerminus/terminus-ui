@@ -7,7 +7,7 @@
   display: inline-block;
 
   .c-menu & {
-    margin: spacing(small, 2x) 0;
+    margin: spacing(small, 1) 0;
   }
 }
 
@@ -91,7 +91,7 @@
     color: color(pure, dark);
     display: block;
     font-weight: 400;
-    padding: spacing(small, 2x) spacing();
+    padding: spacing(small, 1) spacing();
     text-decoration: none;
     transition: background 400ms $g-material-background-easing;
     will-change: background-color;

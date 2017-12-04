@@ -72,7 +72,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
       this.elementRef.nativeElement,
       this.componentFactoryResolver,
       this.appRef,
-      this.injector
+      this.injector,
     );
 
     // Create the component portal

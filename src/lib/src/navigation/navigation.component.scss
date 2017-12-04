@@ -46,15 +46,15 @@
     // Set up for bottom pseudo element
     position: relative;
 
-      &:focus,
-      &:hover {
-        .c-navigation__item-inner {
-          &::after {
-            opacity: 1;
-            transition-duration: 200ms;
-          }
+    &:focus,
+    &:hover {
+      .c-navigation__item-inner {
+        &::after {
+          opacity: 1;
+          transition-duration: 200ms;
         }
       }
+    }
 
     // <span> inner wrapper
     &-inner {
@@ -70,8 +70,8 @@
         left: 50%;
         opacity: 0;
         position: absolute;
-        transition: opacity 100ms ease-in-out;
         transform: translateX(-50%);
+        transition: opacity 100ms ease-in-out;
         width: calc(100% - #{$horizontal-padding * 2});
         will-change: opacity;
       }
@@ -80,30 +80,31 @@
 
   // <button> trigger to show hidden nav items (Welcome, user)
   .c-navigation__trigger {
+    $separator-height: 70%;
+    $separator-vertical-spacing: #{(100% - $separator-height) / 2};
+    $separator-color: rgba(color(pure), .5);
+
     @include button-base;
     display: block;
     letter-spacing: .04em;
     line-height: spacing(large);
 
-    $separator-height: 70%;
-    $separator-vertical-spacing: #{(100% - $separator-height) / 2};
-
     // Create vertical separator between top-level nav items and dropdown
     &::after {
-      background-color: rgba(color(pure), .5);
+      background-color: $separator-color;
+      bottom: $separator-vertical-spacing;
       content: '';
       height: $separator-height;
-      position: absolute;
       left: 0;
+      position: absolute;
       top: $separator-vertical-spacing;
-      bottom: $separator-vertical-spacing;
       width: 1px;
     }
 
     // override material styles on the inner wrapper
     ::ng-deep .mat-button-wrapper {
       display: inline-block;
-      padding: spacing(small, 2x) spacing(large) spacing(small, 2x) spacing();
+      padding: spacing(small, 1) spacing(large) spacing(small, 1) spacing();
       position: relative;
       text-align: right;
     }
@@ -130,10 +131,10 @@
 
 // <div> container for hidden nav items
 ::ng-deep .c-navigation__hidden-items {
+  $material-spacing: 8px;
+
   // set up for spacer div
   position: relative;
-
-  $material-spacing: 8px;
 
   // The top border radius leaves a 1px gap between the primary nav bar and the menu
   &.mat-menu-panel {

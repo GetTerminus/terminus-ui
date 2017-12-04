@@ -26,11 +26,11 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 $padding-transition: padding $label-transition-duration $g-easing;
 $ladda-background-transition: background $color-transition-duration $g-easing;
 
-// Styles applied when the button should collapse
+// Styles applied when the button is collapsed
 @mixin collapsed {
   .ladda-label {
-    padding-left: spacing(small, 3x);
-    padding-right: spacing(small, 3x);
+    padding-left: spacing(small, 2);
+    padding-right: spacing(small, 2);
   }
 
   .mat-icon {
@@ -47,19 +47,6 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
   }
 }
 
-:host {
-  display: inline-block;
-
-  // NOTE: This is a hack of sorts to disable a ts-menu from opening. The menu trigger still seems
-  // to be bound even when disabled.
-  // pointer-events: none;
-  &[data-disabled='true'] {
-    .c-button {
-      @include cursor(not-allowed);
-    }
-  }
-}
-
 
 //
 // @component
@@ -68,6 +55,10 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 //  A button component
 //
 .c-button {
+  // Define theme styles
+  $themes: primary accent warn;
+  $collapsable-radius: 2em;
+
   // Top level styles should be nested here
   &#{&} {
     @include typography;
@@ -77,10 +68,10 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
     // Overwrite material min-width
     min-width: auto;
     padding: 0;
-    // sass-lint:disable no-important
+    // stylelint-disable declaration-no-important
     // Important needed to override the `!important` within the ladda styles
     transition: $color-transition, $background-transition, $shadow-transition !important;
-    // sass-lint:enable no-important
+    // stylelint-enable declaration-no-important
     will-change: background, color, contents;
 
     &[disabled] {
@@ -103,10 +94,10 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
         height: 100%;
         padding: 0 $padding-horizontal;
         position: static;
-        // sass-lint:disable no-important
+        // stylelint-disable declaration-no-important
         // Important needed to override the `!important` within the ladda styles
         transition: $color-transition, $ladda-background-transition, $padding-transition !important;
-        // sass-lint:enable no-important
+        // stylelint-enable declaration-no-important
         will-change: color, background, padding;
       }
 
@@ -150,12 +141,25 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
     will-change: transform;
   }
 
+  // Collapsed and not focused or hovered
+  &.c-button--collapsed {
+    &:not(:hover) {
+      &:not(:focus) {
+        @include collapsed;
+      }
+    }
+  }
 
-
-
-  // Define theme styles
-  $themes: primary accent warn;
-  $collapsable-radius: 2em;
+  // When collapsable AND disabled
+  &.c-button--collapsable {
+    &[disabled] {
+      &:not(:hover) {
+        &:not(:focus) {
+          @include collapsed;
+        }
+      }
+    }
+  }
 
   // Loop through using each theme name to create styles
   @each $theme in $themes {
@@ -206,22 +210,6 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
           color: color(utility);
         }
       }
-    }
-  }
-
-  // Collapsed and not focused or hovered
-  &.c-button--collapsed {
-    &:not(:hover) {
-      &:not(:focus) {
-        @include collapsed;
-      }
-    }
-  }
-
-  // When collapsable AND disabled
-  &.c-button--collapsable {
-    &[disabled] {
-      @include collapsed;
     }
   }
 }
