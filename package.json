@@ -126,7 +126,7 @@
     "@angular/router": "4.4.6",
     "@compodoc/compodoc": "1.0.5",
     "@types/jasmine": "2.8.2",
-    "@types/node": "8.0.54",
+    "@types/node": "8.0.55",
     "autoprefixer": "7.1.6",
     "camelcase": "4.1.0",
     "code-notes": "1.0.4",
