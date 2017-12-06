@@ -25,7 +25,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
     name: 'NAV_ITEM_FOUR',
     destination: ['/foo/bar/baz/bing'],
-    alwaysHidden: true,
+    alwaysHidden: false,
     isDisabled: true,
   },
 ];
@@ -252,6 +252,25 @@ describe(`TsNavigationComponent`, () => {
         expect(this.component.hiddenItems.getValue().length).toEqual(0);
       });
 
+    });
+
+  });
+
+
+  describe(`isExternalLink()`, () => {
+
+    it(`should return true if the destination is a string to an external link`, () => {
+      expect(this.component.isExternalLink('http://google.com')).toEqual(true);
+    });
+
+
+    it(`should return false if the destination doesn't begin with http`, () => {
+      expect(this.component.isExternalLink('foo/bar')).toEqual(false);
+    });
+
+
+    it(`should return false if the destination is an array`, () => {
+      expect(this.component.isExternalLink(['foo', '/bar'])).toEqual(false);
     });
 
   });
