@@ -114,7 +114,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   @Input()
   public set items(value: TsNavigationItem[]) {
-    console.log('set items: ', value)
     // Filter out disabled items
     const enabledItems = value.filter((item: TsNavigationItem) => {
       return !item.isDisabled;
