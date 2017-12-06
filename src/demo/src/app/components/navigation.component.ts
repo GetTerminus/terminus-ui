@@ -4,67 +4,61 @@ import 'rxjs/add/observable/pairs';
 import 'rxjs/add/observable/from';
 import { of } from 'rxjs/observable/of';
 
-import { TsNavigationItem, TsNavigationPayload } from '@terminus/ui';
+import {
+  TsNavigationItem,
+  TsNavigationPayload,
+} from '@terminus/ui';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
     name: '1 Components',
-    action: 'navigate',
-    destination: ['/components'],
-    onlyHidden: false,
+    destination: '/components',
+    alwaysHidden: false,
   },
   {
-    name: '2 Buttons',
-    action: 'navigate',
+    name: '2 Nav',
+    destination: '/components/navigation',
+    alwaysHidden: false,
+  },
+  {
+    name: '3 Buttons',
     destination: ['/components/button'],
-    onlyHidden: false,
+    alwaysHidden: false,
   },
   {
-    name: '3 Menus',
-    action: 'navigate',
+    name: '4 Action',
+    action: {
+      type: 'Do:thing',
+    },
+    alwaysHidden: false,
+  },
+  {
+    name: '5 Menus',
     destination: ['/components/menu'],
-    onlyHidden: false,
+    alwaysHidden: false,
   },
   {
-    name: '4 Ad Library',
-    action: 'navigate',
-    destination: ['/creatives'],
-    onlyHidden: false,
-  },
-  {
-    name: '5 Fake Link',
-    action: 'navigate',
-    destination: ['/settings'],
-    onlyHidden: false,
-  },
-  {
-    name: '6 External',
-    action: 'navigate',
+    name: '7 External',
     destination: 'https://google.com',
-    onlyHidden: false,
+    alwaysHidden: true,
   },
   {
-    name: '7 Action: Log Out',
-    action: 'log-out',
-    onlyHidden: true,
+    name: '8 Hidden',
+    action: {
+      type: 'Do:another:thing',
+    },
+    alwaysHidden: true,
   },
-  {
-    name: '8 Fake Link',
-    action: 'navigate',
-    destination: ['/admin'],
-    onlyHidden: true,
-  },
-  /*
-   *{
-   *  name: '9 Action: Log In As',
-   *  action: 'log-in-as',
-   *  onlyHidden: true,
-   *  isDisabled: true,
-   *},
-   */
 ];
 
+const NEW_NAV_ITEM = {
+  name: '0 Foo',
+  action: {
+    type: 'my:action'
+  },
+  alwaysHidden: false,
+};
 
 
 @Component({
@@ -82,7 +76,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
         [items]="navigationItems$ | async"
         [user]="currentUser$ | async"
         [welcomeMessage]="myMessage"
-        (itemSelected)="triggerAction($event)"
+        (action)="triggerAction($event)"
       ></ts-navigation>
     </div>
 
@@ -129,12 +123,7 @@ export class NavigationComponent {
 
   updateNav() {
     const newNav = NAV_ITEMS_MOCK.slice(0);
-    newNav.unshift({
-      name: '0 Foo',
-      action: 'navigate',
-      destination: ['/foo'],
-      onlyHidden: false,
-    });
+    newNav.unshift(NEW_NAV_ITEM);
     this.navigationItems$ = of(newNav);
   }
 }

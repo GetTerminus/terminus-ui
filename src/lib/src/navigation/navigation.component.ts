@@ -153,7 +153,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public itemSelected: EventEmitter<TsNavigationPayload> = new EventEmitter;
+  public action: EventEmitter<TsNavigationPayload> = new EventEmitter;
 
   /**
    * Trigger a layout update when the window resizes
@@ -217,7 +217,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     // Clone the items so we can work freely with the array.
     const allItems = Array.from(items);
     // Create an object with the arrays separated
-    const splitArrays = groupBy(allItems, 'onlyHidden');
+    const splitArrays = groupBy(allItems, 'alwaysHidden');
 
     // Push the separated arrays
     this.visibleItems.next(splitArrays.false);
@@ -263,6 +263,17 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     }
 
     this.changeDetectorRef.detectChanges();
+  }
+
+
+  /**
+   * If the destination is a string and begins with `http`
+   *
+   * @param destination - The destination to check
+   * @return Boolean determining if the link is external
+   */
+  private isExternalLink(destination: string | string[]): boolean {
+    return destination.indexOf('http') >= 0;
   }
 
 }

@@ -8,10 +8,12 @@ export interface TsNavigationPayload {
   /**
    * The mouse click event
    */
-  event: MouseEvent,
+  event: MouseEvent;
 
   /**
    * The selected item
    */
-  item: TsNavigationItem,
+  action: {
+    type: string;
+  };
 }

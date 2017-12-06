@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"8fold-marked@^0.3.8":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/8fold-marked/-/8fold-marked-0.3.8.tgz#c529a89bb90d3559fcab3ba4f7d4fa31c80fbb13"
+"8fold-marked@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/8fold-marked/-/8fold-marked-0.3.9.tgz#bb89c645612f8ccfaffac1ca6e3c11f168c9cf59"
 
 "@angular-devkit/build-optimizer@~0.0.28":
   version "0.0.31"
@@ -177,16 +177,16 @@
   dependencies:
     tsickle "^0.21.0"
 
-"@compodoc/compodoc@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.0.4.tgz#67a00d764b69033831881b04487925d2223812e6"
+"@compodoc/compodoc@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.0.5.tgz#82c867e223a6c5a5186f1e22c5f882a64c30fc74"
   dependencies:
-    "8fold-marked" "^0.3.8"
+    "8fold-marked" "^0.3.9"
     "@compodoc/ngd-transformer" "^2.0.0-alpha.4"
     cheerio "^1.0.0-rc.2"
     chokidar "^1.7.0"
     colors "^1.1.2"
-    commander "2.11.0"
+    commander "2.12.2"
     findit "^2.0.0"
     fs-extra "^4.0.2"
     glob "^7.1.2"
@@ -200,7 +200,7 @@
     os-name "^2.0.1"
     shelljs "^0.7.8"
     traverse "^0.6.6"
-    ts-simple-ast "^0.86.0"
+    ts-simple-ast "^0.97.0"
     typescript "2.6.1"
 
 "@compodoc/ngd-core@2.0.0-alpha.3":
@@ -302,13 +302,19 @@
     lodash "^4.17.4"
     pify "^3.0.0"
 
+"@types/events@*":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/events/-/events-1.1.0.tgz#93b1be91f63c184450385272c47b6496fd028e02"
+
 "@types/jasmine@2.8.2":
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.2.tgz#6ae4d8740c0da5d5a627df725b4eed71b8e36668"
 
-"@types/node@8.0.53":
-  version "8.0.53"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+"@types/node@8.0.54":
+  version "8.0.54"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.54.tgz#3fd9357db4af388b79e03845340259440edffde6"
+  dependencies:
+    "@types/events" "*"
 
 "@types/node@^6.0.46":
   version "6.0.88"
@@ -1596,9 +1602,9 @@ coa@~1.0.1:
   dependencies:
     q "^1.1.2"
 
-code-block-writer@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-4.2.1.tgz#c93075dc05c58520714fd909497189a60ff15e9f"
+code-block-writer@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-5.0.0.tgz#51c95723208c1af3003767b82170572dd2aff6e6"
 
 code-notes@1.0.4:
   version "1.0.4"
@@ -1616,9 +1622,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codelyzer@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-3.2.2.tgz#abbd4e5956c435677740846e5858c915f89679c3"
+codelyzer@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-4.0.1.tgz#0bb4cf52a325b257790f4980bb3c63833db10789"
   dependencies:
     app-root-path "^2.0.1"
     css-selector-tokenizer "^0.7.0"
@@ -1708,9 +1714,13 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.0, commander@2.11.x, commander@^2.11.0, commander@^2.2.0, commander@^2.8.1, commander@^2.9.0, commander@~2.11.0:
+commander@2.11.x, commander@^2.11.0, commander@^2.2.0, commander@^2.8.1, commander@^2.9.0, commander@~2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
+
+commander@2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
 commander@2.6.0:
   version "2.6.0"
@@ -2425,7 +2435,7 @@ debug@2.6.7:
   dependencies:
     ms "2.0.0"
 
-debug@3.X, debug@^3.0.0:
+debug@3.X, debug@^3.0.0, debug@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
@@ -5374,7 +5384,11 @@ karma-jasmine-html-reporter@0.2.2:
   dependencies:
     karma-jasmine "^1.0.2"
 
-karma-jasmine@1.1.0, karma-jasmine@^1.0.2:
+karma-jasmine@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.1.tgz#6fe840e75a11600c9d91e84b33c458e1c46a3529"
+
+karma-jasmine@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.0.tgz#22e4c06bf9a182e5294d1f705e3733811b810acf"
 
@@ -5634,14 +5648,15 @@ link-check@^4.3.3:
     ms "^2.0.0"
     request "^2.83.0"
 
-lint-staged@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-5.0.0.tgz#f1c670e03e2fdf3f3d0eb81f72d3bcf658770e54"
+lint-staged@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-6.0.0.tgz#7ab7d345f2fe302ff196f1de6a005594ace03210"
   dependencies:
     app-root-path "^2.0.0"
     chalk "^2.1.0"
     commander "^2.11.0"
     cosmiconfig "^3.1.0"
+    debug "^3.1.0"
     dedent "^0.7.0"
     execa "^0.8.0"
     find-parent-dir "^0.3.0"
@@ -6623,9 +6638,9 @@ node-sass-import@1.1.1:
     resolve "^1.1.7"
     yargs "^3.15.0"
 
-node-sass@4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.6.1.tgz#9b331cf943ee5440f199e858941a90d13bc9bfc5"
+node-sass@4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.7.2.tgz#9366778ba1469eb01438a9e8592f4262bcb6794e"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -6642,9 +6657,10 @@ node-sass@4.6.1:
     nan "^2.3.2"
     node-gyp "^3.3.1"
     npmlog "^4.0.0"
-    request "^2.79.0"
+    request "~2.79.0"
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
+    "true-case-path" "^1.0.2"
 
 node-sass@^4.2.0, node-sass@^4.3.0:
   version "4.5.3"
@@ -8361,7 +8377,7 @@ request@2, request@2.81.0, request@^2.72.0, request@^2.74.0, request@^2.79.0, re
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
-request@2.79.0:
+request@2.79.0, request@~2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -9896,15 +9912,21 @@ trough@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.1.tgz#a9fd8b0394b0ae8fff82e0633a0a36ccad5b5f86"
 
+"true-case-path@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/true-case-path/-/true-case-path-1.0.2.tgz#7ec91130924766c7f573be3020c34f8fdfd00d62"
+  dependencies:
+    glob "^6.0.4"
+
 tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
-ts-simple-ast@^0.86.0:
-  version "0.86.0"
-  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-0.86.0.tgz#8a3c358bb0c88e614dadde38d088c108a6def653"
+ts-simple-ast@^0.97.0:
+  version "0.97.1"
+  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-0.97.1.tgz#bb3027ad774229074a73aa20072578b53ec6cf58"
   dependencies:
-    code-block-writer "^4.2.1"
+    code-block-writer "^5.0.0"
     globby "^6.1.0"
     minimatch "^3.0.4"
     object-assign "^4.1.1"

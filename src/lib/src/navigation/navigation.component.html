@@ -7,16 +7,51 @@
     fxLayout="row"
     fxLayoutAlign="end stretch"
   >
-    <button
-      class="c-navigation__item qa-navigation-item"
-      *ngFor="let item of visibleItems | async"
-      #visibleLinkElement
-      (click)="itemSelected.emit({event: $event, item: item})"
-    >
-      <span class="c-navigation__item-inner">
-        {{ item?.name }}
-      </span>
-    </button>
+
+    <ng-container *ngFor="let item of visibleItems | async">
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        routerLink="{{ item.destination }}"
+        routerLinkActive="c-navigation__item--active"
+        [routerLinkActiveOptions]="{exact: true}"
+        *ngIf="item.destination && !isExternalLink(item.destination)"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        *ngIf="item.destination && isExternalLink(item.destination)"
+        href="{{ item.destination }}"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        *ngIf="!item.destination"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        (click)="action.emit({event: $event, action: item.action})"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+    </ng-container>
+
   </div>
 
 
@@ -48,16 +83,31 @@
     xPosition="before"
     [overlapTrigger]="false"
   >
-    <button
-      class="c-navigation__hidden-item qa-navigation-secondary-item"
-      [ngClass]="{'c-navigation__hidden-item--admin': item.onlyHidden}"
-      *ngFor="let item of hiddenItems | async"
-      #hiddenLinkElement
-      mat-menu-item
-      (click)="itemSelected.emit({event: $event, item: item})"
-    >
-      {{ item?.name }}
-    </button>
+
+    <ng-container *ngFor="let item of hiddenItems | async">
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        routerLink="{{ item.destination }}"
+        *ngIf="item.destination"
+        mat-menu-item
+        #hiddenLinkElement
+      >
+        {{ item.name }}
+      </a>
+
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        *ngIf="!item.destination"
+        mat-menu-item
+        #hiddenLinkElement
+        (click)="action.emit({event: $event, action: item.action})"
+      >
+        {{ item.name }}
+      </a>
+    </ng-container>
+
   </mat-menu>
 
 </nav>

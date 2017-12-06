@@ -3,6 +3,7 @@
 @import './../scss/helpers/spacing';
 @import './../scss/helpers/buttons';
 @import './../scss/helpers/shadows';
+@import './../scss/helpers/cursors';
 
 
 :host {
@@ -37,17 +38,21 @@
   .c-navigation__item {
     $horizontal-padding: spacing();
 
-    @include button-base;
     color: inherit;
+    // NOTE: If a link has an action rather than a destination, the default cursor will be used.
+    // Force the pointer cursor type.
+    cursor: cursor(pointer);
     font-family: inherit;
     font-size: inherit;
     letter-spacing: .04em;
     padding: 0 $horizontal-padding;
     // Set up for bottom pseudo element
     position: relative;
+    text-decoration: none;
 
     &:focus,
-    &:hover {
+    &:hover,
+    &--active {
       .c-navigation__item-inner {
         &::after {
           opacity: 1;
@@ -133,6 +138,7 @@
 ::ng-deep .c-navigation__hidden-items {
   $material-spacing: 8px;
 
+  @include typography;
   // set up for spacer div
   position: relative;
 
