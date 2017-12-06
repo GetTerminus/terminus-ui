@@ -7,27 +7,25 @@ import { TsNavigationItem } from './../utilities/interfaces/';
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   {
     name: 'NAV_ITEM_ONE',
-    action: 'navigate',
     destination: ['/foo'],
-    onlyHidden: false,
+    alwaysHidden: false,
   },
   {
     name: 'NAV_ITEM_TWO',
-    action: 'navigate',
     destination: ['/foo/bar'],
-    onlyHidden: false,
+    alwaysHidden: false,
   },
   {
     name: 'NAV_ITEM_THREE',
-    action: 'navigate',
-    destination: ['/foo/bar/baz'],
-    onlyHidden: true,
+    action: {
+      type: 'foo:bar',
+    },
+    alwaysHidden: true,
   },
   {
     name: 'NAV_ITEM_FOUR',
-    action: 'navigate',
     destination: ['/foo/bar/baz/bing'],
-    onlyHidden: false,
+    alwaysHidden: true,
     isDisabled: true,
   },
 ];
