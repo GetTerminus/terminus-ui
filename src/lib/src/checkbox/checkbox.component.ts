@@ -16,7 +16,7 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 
 
 /**
- * @private Custom control value accessor for our component
+ * Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
 /* tslint:disable:no-use-before-declare */

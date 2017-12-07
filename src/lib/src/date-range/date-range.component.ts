@@ -44,7 +44,7 @@ export class TsDateRangeComponent {
   /**
    * Getter to return the date range as an object
    *
-   * @return {Object} dateRange The current date range
+   * @return The current date range
    */
   private get dateRange(): any {
     return {
@@ -151,7 +151,7 @@ export class TsDateRangeComponent {
   /**
    * Emit the selected start date and date range
    *
-   * @param {date} date The selected date
+   * @param date - The selected date
    */
   public startDateSelected(date: Date): void {
     if (date) {
@@ -182,7 +182,7 @@ export class TsDateRangeComponent {
   /**
    * Emit the selected end date and date range
    *
-   * @param {date} date The selected date
+   * @param date - The selected date
    */
   public endDateSelected(date: Date): void {
     if (date) {

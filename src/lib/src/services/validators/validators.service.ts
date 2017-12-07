@@ -18,8 +18,8 @@ export class TsValidatorsService {
   /**
    * A custom credit card validator.
    *
-   * @param {FormControl} control The form control
-   * @return {null|ValidationResponse} response The validation object or null
+   * @param control - The form control
+   * @return The validation object or null
    */
   validateCreditCard(control: FormControl): null | ValidationResponse {
     return creditCardRegex.test(control.value) ? null : {
@@ -33,8 +33,8 @@ export class TsValidatorsService {
   /**
    * A custom email validator
    *
-   * @param {FormControl} control The form control
-   * @return {null|ValidationResponse} response The validation object or null
+   * @param control - The form control
+   * @return The validation object or null
    */
   validateEmail(control: FormControl): null | ValidationResponse {
     return emailRegex.test(control.value) ? null : {
@@ -48,8 +48,8 @@ export class TsValidatorsService {
   /**
    * A custom password validator.
    *
-   * @param {FormControl} control The form control
-   * @return {null|ValidationResponse} response The validation object or null
+   * @param control - The form control
+   * @return The validation object or null
    */
   validatePassword(control: FormControl): null | ValidationResponse {
     return passwordRegex.test(control.value) ? null : {

@@ -28,7 +28,7 @@ export class TsValidationMessagesComponent {
   /**
    * Define the error message
    *
-   * @return {String|Null} errorMessage The error message or null if no error
+   * @return The error message or null if no error
    */
   public get validationMessage(): string | null {
     if (this.control) {

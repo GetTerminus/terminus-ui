@@ -18,9 +18,9 @@ export class ValidationService {
   /**
    * Return the correct error message for a validator
    *
-   * @param {String} validatorName The name of the validator
-   * @param {Object} validatorValue The value of the validator
-   * @return {String} errorMessage The error message
+   * @param validatorName - The name of the validator
+   * @param validatorValue - The value of the validator
+   * @return The error message
    */
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
     const config = {
