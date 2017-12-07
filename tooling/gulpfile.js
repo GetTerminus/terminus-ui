@@ -239,18 +239,32 @@ gulp.task('inline-resources', () => {
 
 
 /**
- * Compile TypeScript to ES5
+ * Compile TypeScript to ES2015
  */
-gulp.task('compile-ngc-es5', () => {
-  return ngc({project: `${config.paths.tempLibFolder}/tsconfig.es5.json`});
+gulp.task('compile-ngc', () => {
+  return Promise.resolve()
+  .then(() => {
+    return ngc(['-p', `${config.paths.tempLibFolder}/tsconfig.json`], (error) => {
+      if (error) {
+        throw new Error('compile-ngc-es5 compilation failed: ' + error);
+      }
+    });
+  });
 });
 
 
 /**
- * Compile TypeScript to ES2015
+ * Compile TypeScript to ES5
  */
-gulp.task('compile-ngc', () => {
-  return ngc({project: `${config.paths.tempLibFolder}/tsconfig.json`});
+gulp.task('compile-ngc-es5', () => {
+  return Promise.resolve()
+  .then(() => {
+    return ngc(['-p', `${config.paths.tempLibFolder}/tsconfig.es5.json`], (error) => {
+      if (error) {
+        throw new Error('compile-ngc-es5 compilation failed: ' + error);
+      }
+    });
+  });
 });
 
 
