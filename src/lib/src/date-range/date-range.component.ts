@@ -85,7 +85,7 @@ export class TsDateRangeComponent {
    * Define the start date placeholder
    */
   @Input()
-  public startPlaceholder: string;
+  public startPlaceholder: string = 'Select a date';
 
   /**
    * Define the max date for the starting date
@@ -109,7 +109,7 @@ export class TsDateRangeComponent {
    * Define the end date placeholder
    */
   @Input()
-  public endPlaceholder: string;
+  public endPlaceholder: string = 'Select a date';
 
   /**
    * Define the max date for the end date
