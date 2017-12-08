@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Input,
   Output,
   EventEmitter,
@@ -48,11 +49,16 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsButtonComponent implements OnInit {
+export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Define the default delay for collapsable buttons
    */
   private COLLAPSE_DEFAULT_DELAY: number = 4000;
+
+  /**
+   * Store a reference to the timeout needed for collapsable buttons
+   */
+  private timeout: any;
 
   /**
    * Define the delay before the rounded button automatically collapses
@@ -164,7 +170,7 @@ export class TsButtonComponent implements OnInit {
   /**
    * Collapse after delay (if set)
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.collapseDelay) {
       this.collapseWithDelay(this.collapseDelay);
     }
@@ -172,6 +178,17 @@ export class TsButtonComponent implements OnInit {
     // If the format is `collapsable`, verify an `iconName` is set
     if (this.definedFormat === 'collapsable' && !this.iconName) {
       throw new Error('`iconName` must be defined for collapsable buttons.');
+    }
+  }
+
+
+  /**
+   * Clear any existing timeout
+   */
+  public ngOnDestroy(): void {
+    // istanbul ignore else
+    if (this.timeout) {
+      clearTimeout(this.timeout);
     }
   }
 
@@ -185,7 +202,7 @@ export class TsButtonComponent implements OnInit {
    * @param {Number} delay The time to delay before collapsing the button
    */
   private collapseWithDelay(delay: number): void {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.isCollapsed = true;
       this.changeDetectorRef.detectChanges();
     }, delay);

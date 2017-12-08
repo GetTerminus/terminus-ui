@@ -150,6 +150,24 @@ describe(`ButtonComponent`, () => {
     });
 
 
+    describe(`ngOnDestroy()`, () => {
+
+      beforeEach(() => {
+        window.clearTimeout = jasmine.createSpy('clearTimeout');
+        this.component.definedFormat = 'collapsable';
+      });
+
+
+      it(`should clear any existing timeouts`, () => {
+        this.component.collapseWithDelay(this.component.collapseDelay);
+        this.component.ngOnDestroy();
+
+        expect(window.clearTimeout).toHaveBeenCalledWith(this.component.timeout);
+      });
+
+    });
+
+
     describe(`collapseWithDelay()`, () => {
 
       it(`should set isCollapsed and trigger change detection after the delay`, (done) => {
