@@ -13,6 +13,17 @@ describe(`TsDateRangeComponent`, () => {
   });
 
 
+  describe(`startInitialDate`, () => {
+
+    it(`should set the startDate`, () => {
+      const newDate = new Date();
+      this.component.startInitialDate = newDate;
+      expect(this.component.startDate).toEqual(newDate);
+    });
+
+  });
+
+
   describe(`endInitialDate`, () => {
 
     it(`should set the endDate`, () => {
