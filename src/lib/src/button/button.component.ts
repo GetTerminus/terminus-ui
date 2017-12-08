@@ -182,7 +182,7 @@ export class TsButtonComponent implements OnInit {
    * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be
    * patching setTimeout automatically.
    *
-   * @param {Number} delay The time to delay before collapsing the button
+   * @param delay - The time to delay before collapsing the button
    */
   private collapseWithDelay(delay: number): void {
     setTimeout(() => {

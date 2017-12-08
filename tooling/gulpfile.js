@@ -144,9 +144,11 @@ const rollupInputOptionsBase = {
     }),
     rollupCommonjs({
       include: [
-        './../node_modules/angular2-ladda/**',
-        './../node_modules/ladda/**',
-        './../node_modules/spin.js/**',
+        /*
+         *'./../node_modules/angular2-ladda/**',
+         *'./../node_modules/ladda/**',
+         *'./../node_modules/spin.js/**',
+         */
         './../node_modules/rxjs/**',
       ],
     }),
