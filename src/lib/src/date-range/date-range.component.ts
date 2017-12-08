@@ -103,7 +103,9 @@ export class TsDateRangeComponent {
    * Define the initial date for the starting date
    */
   @Input()
-  public startInitialDate: string;
+  public set startInitialDate(value: Date) {
+    this.startDate = value;
+  }
 
   /**
    * Define the end date placeholder
@@ -127,7 +129,9 @@ export class TsDateRangeComponent {
    * Define the initial date for the end date
    */
   @Input()
-  public endInitialDate: string;
+  public set endInitialDate(value: Date) {
+    this.endDate = value;
+  }
 
   /**
    * Output the start date when selected
@@ -168,8 +172,6 @@ export class TsDateRangeComponent {
       if (dateIsAfter) {
         // Clear the existing end date
         this.endDate = null;
-        // TODO: If the end datepicker has a default value, 'reset' doesn't clear the value
-        // We should amend this or add a separate method to clear.
         this.end.resetValue();
       }
 

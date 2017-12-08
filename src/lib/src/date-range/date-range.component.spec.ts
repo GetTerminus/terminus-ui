@@ -13,6 +13,17 @@ describe(`TsDateRangeComponent`, () => {
   });
 
 
+  describe(`endInitialDate`, () => {
+
+    it(`should set the endDate`, () => {
+      const newDate = new Date();
+      this.component.endInitialDate = newDate;
+      expect(this.component.endDate).toEqual(newDate);
+    });
+
+  });
+
+
   describe(`startDateSelected()`, () => {
 
     it(`should not emit event if no date is passed in`, () => {
