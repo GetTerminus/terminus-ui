@@ -62,7 +62,7 @@ describe(`TsLoadingOverlayDirective`, () => {
 
   describe(`ngOnInit()`, () => {
 
-    it(`should set get the current position and pass to determinePosition()`, () => {
+    it(`should get the current position and pass to determinePosition()`, () => {
       this.directive.determinePosition = jasmine.createSpy('determinePosition');
       this.directive.ngOnInit();
 

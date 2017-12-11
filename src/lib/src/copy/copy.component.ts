@@ -38,6 +38,11 @@ import { TsDocumentService } from '../services/document/document.service';
 })
 export class TsCopyComponent {
   /**
+   * Store a reference to the document object
+   */
+  private document: Document = this.documentService.document;
+
+  /**
    * Internal flag to track if the contents have been selected
    */
   public hasSelected: boolean = false;
@@ -56,7 +61,7 @@ export class TsCopyComponent {
   /**
    * Store a reference to the window object
    */
-  private window: any = this.windowService.nativeWindow;
+  private window: Window = this.windowService.nativeWindow;
 
   /**
    * Define access to the wrapper around the content to be copied
@@ -118,9 +123,11 @@ export class TsCopyComponent {
     }
 
     const selection = this.window.getSelection();
-    const range = this.documentService.document.createRange();
+    // NOTE: Adding the type of 'Range' to this causes an error with `range.selectNodeContents`
+    // `Argument of type ElementRef is not assignable to type 'Node'`
+    const range = this.document.createRange();
 
-    range.selectNodeContents(element);
+    range.selectNodeContents(element as any);
     selection.removeAllRanges();
     selection.addRange(range);
 
@@ -145,7 +152,7 @@ export class TsCopyComponent {
    */
   public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
-    const target = this.documentService.document.createElement('textarea');
+    const target = this.document.createElement('textarea');
     target.className = 'targetElement';
     target.style.position = 'absolute';
     target.style.left = '101%';
@@ -155,13 +162,13 @@ export class TsCopyComponent {
     target.textContent = text;
 
     // Add the textarea, focus and select the text
-    this.documentService.document.body.appendChild(target);
+    this.document.body.appendChild(target);
     target.focus();
     target.setSelectionRange(0, target.value.length);
 
     // Copy the selection or fall back to prompt
     try {
-      this.documentService.document.execCommand('copy');
+      this.document.execCommand('copy');
       target.remove();
     } catch (error) {
       // Fall back to the native alert

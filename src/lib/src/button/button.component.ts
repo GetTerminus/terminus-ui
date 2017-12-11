@@ -17,6 +17,7 @@ import {
   TsButtonFormatTypes,
   TsStyleThemeTypes,
 } from './../utilities/types';
+import { TsWindowService } from './../services/window/window.service';
 
 
 /**
@@ -58,7 +59,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Store a reference to the timeout needed for collapsable buttons
    */
-  private timeout: any;
+  private collapseTimeoutId: number;
 
   /**
    * Define the delay before the rounded button automatically collapses
@@ -164,6 +165,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    private windowService: TsWindowService,
   ) {}
 
 
@@ -172,7 +174,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   public ngOnInit(): void {
     if (this.collapseDelay) {
-      this.collapseWithDelay(this.collapseDelay);
+      this.collapseTimeoutId = this.collapseWithDelay(this.collapseDelay);
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
@@ -187,8 +189,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   public ngOnDestroy(): void {
     // istanbul ignore else
-    if (this.timeout) {
-      clearTimeout(this.timeout);
+    if (this.collapseTimeoutId) {
+      this.windowService.nativeWindow.clearTimeout(this.collapseTimeoutId);
     }
   }
 
@@ -200,9 +202,10 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * patching setTimeout automatically.
    *
    * @param {Number} delay The time to delay before collapsing the button
+   * @return The ID of the timeout
    */
-  private collapseWithDelay(delay: number): void {
-    this.timeout = setTimeout(() => {
+  private collapseWithDelay(delay: number): number {
+    return this.windowService.nativeWindow.setTimeout(() => {
       this.isCollapsed = true;
       this.changeDetectorRef.detectChanges();
     }, delay);

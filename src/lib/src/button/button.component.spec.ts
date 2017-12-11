@@ -10,13 +10,17 @@ import {
 } from '@angular/core/testing';
 
 import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
+import { TsWindowServiceMock } from './../services/window/window.service.mock';
 import { TsButtonComponent } from './button.component';
 
 
 describe(`ButtonComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsButtonComponent(new ChangeDetectorRefMock());
+    this.component = new TsButtonComponent(
+      new ChangeDetectorRefMock(),
+      new TsWindowServiceMock(),
+    );
   });
 
 
@@ -153,16 +157,21 @@ describe(`ButtonComponent`, () => {
     describe(`ngOnDestroy()`, () => {
 
       beforeEach(() => {
-        window.clearTimeout = jasmine.createSpy('clearTimeout');
-        this.component.definedFormat = 'collapsable';
+        this.component.format = 'collapsable';
+        this.component.iconName = 'home';
+        this.component.changeDetectorRef.detectChanges();
+        this.component.windowService.nativeWindow.clearTimeout = jasmine.createSpy('clearTimeout');
+        this.component.windowService.nativeWindow.setTimeout =
+          jasmine.createSpy('setTimeout').and.returnValue(123);
       });
 
 
       it(`should clear any existing timeouts`, () => {
-        this.component.collapseWithDelay(this.component.collapseDelay);
-        this.component.ngOnDestroy();
+        this.component.ngOnInit();
+        expect(this.component.collapseTimeoutId).toEqual(123);
 
-        expect(window.clearTimeout).toHaveBeenCalledWith(this.component.timeout);
+        this.component.ngOnDestroy();
+        expect(this.component.windowService.nativeWindow.clearTimeout).toHaveBeenCalledWith(123);
       });
 
     });
@@ -171,6 +180,7 @@ describe(`ButtonComponent`, () => {
     describe(`collapseWithDelay()`, () => {
 
       it(`should set isCollapsed and trigger change detection after the delay`, (done) => {
+        this.component.windowService.nativeWindow.setTimeout = window.setTimeout;
         const DELAY = 100;
         this.component.collapseWithDelay(DELAY);
 
