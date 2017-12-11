@@ -44,7 +44,6 @@
       "spaces"
     ],
     "interface-over-type-literal": true,
-    "invoke-injectable": true,
     "jsdoc-format": [
       true,
       "check-multiline-start"
@@ -139,9 +138,7 @@
       true,
       0
     ],
-    "template-to-ng-template": true,
     "templates-no-negated-async": true,
-    "templates-use-public": true,
     "trailing-comma": [
       true,
       {

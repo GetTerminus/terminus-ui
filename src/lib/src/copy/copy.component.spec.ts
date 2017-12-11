@@ -54,14 +54,19 @@ describe(`TsCopyComponent`, () => {
     });
 
 
-    // TODO: The integration test for this will actually test the functionality.
+    // TODO: The integration test for this will actually test the selection functionality.
+    // NOTE: For some reason, the component does not seem to get the mocked value unless we redefine
+    // it here
     it(`should select the text within the passed in element`, () => {
-      this.component.selectText(this.component.content, false, false);
+      this.component.window.getSelection = jasmine.createSpy('getSelection').and.returnValue({
+        removeAllRanges: jasmine.createSpy('removeAllRanges'),
+        addRange: jasmine.createSpy('addRange'),
+      });
 
       const result = this.component.selectText(this.component.content.nativeElement, false, false);
 
       expect(this.component.window.getSelection).toHaveBeenCalled();
-      expect(this.component.documentService.document.createRange).toHaveBeenCalled();
+      expect(this.component.document.createRange).toHaveBeenCalled();
       expect(this.component.hasSelected).toEqual(true);
     });
 
@@ -96,7 +101,7 @@ describe(`TsCopyComponent`, () => {
         remove: jasmine.createSpy('remove'),
         setSelectionRange: jasmine.createSpy('setSelectionRange'),
       };
-      this.component.documentService.document.createElement =
+      this.component.document.createElement =
         jasmine.createSpy('createElement').and.callFake(() => {
           return MOCK_TEXTAREA;
         });
@@ -104,20 +109,21 @@ describe(`TsCopyComponent`, () => {
 
 
     it(`should set the text to the clipboard`, () => {
-      this.component.documentService.document.execCommand = jasmine.createSpy('execCommand');
+      this.component.document.execCommand = jasmine.createSpy('execCommand');
       this.component.copyToClipboard('foo');
 
-      expect(this.component.documentService.document.createElement).toHaveBeenCalledWith('textarea');
-      expect(this.component.documentService.document.body.appendChild).toHaveBeenCalled();
-      expect(this.component.documentService.document.execCommand).toHaveBeenCalledWith('copy');
-      expect(this.component.documentService.document.execCommand).toHaveBeenCalledWith('copy');
+      expect(this.component.document.createElement).toHaveBeenCalledWith('textarea');
+      expect(this.component.document.body.appendChild).toHaveBeenCalled();
+      expect(this.component.document.execCommand).toHaveBeenCalledWith('copy');
+      expect(this.component.document.execCommand).toHaveBeenCalledWith('copy');
     });
 
 
     it(`should fall back to a prompt if execCommand fails`, () => {
-      this.component.documentService.document.execCommand = () => {
+      this.component.document.execCommand = () => {
         throw new Error('fake error');
       }
+      this.component.window.prompt = jasmine.createSpy('prompt');
 
       this.component.copyToClipboard('foo');
 

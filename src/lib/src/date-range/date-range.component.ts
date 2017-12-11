@@ -56,12 +56,12 @@ export class TsDateRangeComponent {
   /**
    * Store the selected end date
    */
-  private endDate: Date;
+  public endDate: Date;
 
   /**
    * Store the selected start date
    */
-  private startDate: Date;
+  public startDate: Date;
 
   /**
    * Allow access to child directive

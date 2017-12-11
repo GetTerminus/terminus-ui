@@ -198,7 +198,7 @@ export class TsLoginFormComponent implements OnChanges {
     // Re-initialize the form
     this.loginForm = this.formBuilder.group(this.FORM_GROUP);
 
-    // This timeout let's one change detection cycle pass so that the form is actually removed from
+    // This timeout lets one change detection cycle pass so that the form is actually removed from
     // the DOM
     setTimeout(() => {
       // Add the form back to the DOM

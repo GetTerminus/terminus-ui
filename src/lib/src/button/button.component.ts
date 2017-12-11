@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Input,
   Output,
   EventEmitter,
@@ -16,6 +17,7 @@ import {
   TsButtonFormatTypes,
   TsStyleThemeTypes,
 } from './../utilities/types';
+import { TsWindowService } from './../services/window/window.service';
 
 
 /**
@@ -48,11 +50,16 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsButtonComponent implements OnInit {
+export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Define the default delay for collapsable buttons
    */
   private COLLAPSE_DEFAULT_DELAY: number = 4000;
+
+  /**
+   * Store a reference to the timeout needed for collapsable buttons
+   */
+  private collapseTimeoutId: number;
 
   /**
    * Define the delay before the rounded button automatically collapses
@@ -158,20 +165,32 @@ export class TsButtonComponent implements OnInit {
    */
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    private windowService: TsWindowService,
   ) {}
 
 
   /**
    * Collapse after delay (if set)
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.collapseDelay) {
-      this.collapseWithDelay(this.collapseDelay);
+      this.collapseTimeoutId = this.collapseWithDelay(this.collapseDelay);
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
     if (this.definedFormat === 'collapsable' && !this.iconName) {
       throw new Error('`iconName` must be defined for collapsable buttons.');
+    }
+  }
+
+
+  /**
+   * Clear any existing timeout
+   */
+  public ngOnDestroy(): void {
+    // istanbul ignore else
+    if (this.collapseTimeoutId) {
+      this.windowService.nativeWindow.clearTimeout(this.collapseTimeoutId);
     }
   }
 
@@ -183,9 +202,10 @@ export class TsButtonComponent implements OnInit {
    * patching setTimeout automatically.
    *
    * @param {Number} delay The time to delay before collapsing the button
+   * @return The ID of the timeout
    */
-  private collapseWithDelay(delay: number): void {
-    setTimeout(() => {
+  private collapseWithDelay(delay: number): number {
+    return this.windowService.nativeWindow.setTimeout(() => {
       this.isCollapsed = true;
       this.changeDetectorRef.detectChanges();
     }, delay);
