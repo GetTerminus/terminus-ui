@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -667,7 +679,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -766,13 +778,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#end">end</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#end">end</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#endDate">endDate</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#endDate">endDate</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#startDate">startDate</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#startDate">startDate</a>
                             </li>
                         </ul>
                     </td>
@@ -786,10 +801,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#endDateSelected">endDateSelected</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#endDateSelected">endDateSelected</a>
                             </li>
                             <li>
-                                <span class="modifier">Public</span> <a href="#startDateSelected">startDateSelected</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#startDateSelected">startDateSelected</a>
                             </li>
                         </ul>
                     </td>
@@ -864,7 +881,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#dateRange">dateRange</a>
+                                <a href="#dateRange">dateRange</a>
+                            </li>
+                            <li>
+                                <a href="#startInitialDate">startInitialDate</a>
+                            </li>
+                            <li>
+                                <a href="#endInitialDate">endInitialDate</a>
                             </li>
                         </ul>
                     </td>
@@ -886,15 +909,11 @@
                         <td class="col-md-10">
                             <div><p>Define the initial date for the end date</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:132</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -917,7 +936,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:120</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -940,7 +959,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:126</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -959,11 +978,14 @@
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                               </p>
+                            <p>
+                              <em>Default value: </em><code>&#x27;Select a date&#x27;</code>
+                            </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:114</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -983,7 +1005,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>-</code>
+                              <em>Default value: </em><code>&#x27;-&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -1009,7 +1031,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>month</code>
+                              <em>Default value: </em><code>&#x27;month&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -1030,10 +1052,6 @@
                         <td class="col-md-10">
                             <div><p>Define the initial date for the starting date</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
                         </td>
                     </tr>
                             <tr>
@@ -1103,6 +1121,9 @@
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                               </p>
+                            <p>
+                              <em>Default value: </em><code>&#x27;Select a date&#x27;</code>
+                            </p>
                         </td>
                     </tr>
                             <tr>
@@ -1132,7 +1153,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:146</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1153,7 +1174,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:152</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1174,7 +1195,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:140</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1193,7 +1214,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="endDateSelected"></a>
-                            <span class="name"><b><span class="modifier">Public</span> endDateSelected</b><a href="#endDateSelected"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                endDateSelected
+                                </b>
+                                <a href="#endDateSelected"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1206,7 +1233,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:189</a></div>
                                 </td>
                             </tr>
     
@@ -1258,7 +1285,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="startDateSelected"></a>
-                            <span class="name"><b><span class="modifier">Public</span> startDateSelected</b><a href="#startDateSelected"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                startDateSelected
+                                </b>
+                                <a href="#startDateSelected"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1271,7 +1304,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:160</a></div>
                                 </td>
                             </tr>
     
@@ -1330,7 +1363,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="end"></a>
-                            <span class="name"><b><span class="modifier">Public</span> end</b><a href="#end"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                end
+                                </b>
+                                <a href="#end"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1370,12 +1409,18 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="endDate"></a>
-                            <span class="name"><b><span class="modifier">Private</span> endDate</b><a href="#endDate"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                endDate
+                                </b>
+                                <a href="#endDate"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>endDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>endDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
     </code>
                         </td>
                     </tr>
@@ -1405,12 +1450,18 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="startDate"></a>
-                            <span class="name"><b><span class="modifier">Private</span> startDate</b><a href="#startDate"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                startDate
+                                </b>
+                                <a href="#startDate"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>startDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>startDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
     </code>
                         </td>
                     </tr>
@@ -1476,11 +1527,127 @@
     
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="startInitialDate"></a>
+                            <span class="name"><b>startInitialDate</b><a href="#startInitialDate"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>startInitialDate(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:106</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define the initial date for the starting date</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="endInitialDate"></a>
+                            <span class="name"><b>endInitialDate</b><a href="#endInitialDate"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>endInitialDate(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/lib/src/date-range/date-range.component.ts:132</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define the initial date for the end date</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
     </section>
 </div>
 
 
-    <div class="tab-pane fade tab-source-code" id="source">
+    <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   Input,
@@ -1539,12 +1706,12 @@ export class TsDateRangeComponent {
   /**
    * Store the selected end date
    */
-  private endDate: Date;
+  public endDate: Date;
 
   /**
    * Store the selected start date
    */
-  private startDate: Date;
+  public startDate: Date;
 
   /**
    * Allow access to child directive
@@ -1568,7 +1735,7 @@ export class TsDateRangeComponent {
    * Define the start date placeholder
    */
   @Input()
-  public startPlaceholder: string;
+  public startPlaceholder: string &#x3D; &#x27;Select a date&#x27;;
 
   /**
    * Define the max date for the starting date
@@ -1586,13 +1753,15 @@ export class TsDateRangeComponent {
    * Define the initial date for the starting date
    */
   @Input()
-  public startInitialDate: string;
+  public set startInitialDate(value: Date) {
+    this.startDate &#x3D; value;
+  }
 
   /**
    * Define the end date placeholder
    */
   @Input()
-  public endPlaceholder: string;
+  public endPlaceholder: string &#x3D; &#x27;Select a date&#x27;;
 
   /**
    * Define the max date for the end date
@@ -1610,7 +1779,9 @@ export class TsDateRangeComponent {
    * Define the initial date for the end date
    */
   @Input()
-  public endInitialDate: string;
+  public set endInitialDate(value: Date) {
+    this.endDate &#x3D; value;
+  }
 
   /**
    * Output the start date when selected
@@ -1651,8 +1822,6 @@ export class TsDateRangeComponent {
       if (dateIsAfter) {
         // Clear the existing end date
         this.endDate &#x3D; null;
-        // TODO: If the end datepicker has a default value, &#x27;reset&#x27; doesn&#x27;t clear the value
-        // We should amend this or add a separate method to clear.
         this.end.resetValue();
       }
 
@@ -1680,7 +1849,7 @@ export class TsDateRangeComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="templateData">
+    <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;c-date-range c-date-range qa-date-range&quot;&gt;
   &lt;ts-datepicker
     class&#x3D;&quot;qa-date-range-start-datepicker&quot;
@@ -1688,7 +1857,7 @@ export class TsDateRangeComponent {
     [maxDate]&#x3D;&quot;startMaxDate&quot;
     [minDate]&#x3D;&quot;startMinDate&quot;
     [startingView]&#x3D;&quot;startingView&quot;
-    [initialDate]&#x3D;&quot;startInitialDate&quot;
+    [initialDate]&#x3D;&quot;startDate&quot;
     (selected)&#x3D;&quot;startDateSelected($event)&quot;
   &gt;&lt;/ts-datepicker&gt;
 
@@ -1705,7 +1874,7 @@ export class TsDateRangeComponent {
     [maxDate]&#x3D;&quot;endMaxDate&quot;
     [minDate]&#x3D;&quot;endMinDate&quot;
     [startingView]&#x3D;&quot;startingView&quot;
-    [initialDate]&#x3D;&quot;endInitialDate&quot;
+    [initialDate]&#x3D;&quot;endDate&quot;
     (selected)&#x3D;&quot;endDateSelected($event)&quot;
     #end
   &gt;&lt;/ts-datepicker&gt;
@@ -1713,7 +1882,7 @@ export class TsDateRangeComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="tree">
+    <div class="tab-pane fade" id="c-tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1730,7 +1899,7 @@ export class TsDateRangeComponent {
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="example">
+    <div class="tab-pane fade" id="c-example">
             <iframe src="https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show&#x3D;preview" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
@@ -1741,8 +1910,8 @@ export class TsDateRangeComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="c-date-range c-date-range qa-date-range">  <ts-datepicker    class="qa-date-range-start-datepicker"    [inputPlaceholder]="startPlaceholder"    [maxDate]="startMaxDate"    [minDate]="startMinDate"    [startingView]="startingView"    [initialDate]="startInitialDate"    (selected)="startDateSelected($event)"  ></ts-datepicker>  <span    class="c-date-range__seperator"    *ngIf="separator"  >    {{ separator }}  </span>  <ts-datepicker    class="qa-date-range-end-datepicker"    [inputPlaceholder]="endPlaceholder"    [maxDate]="endMaxDate"    [minDate]="endMinDate"    [startingView]="startingView"    [initialDate]="endInitialDate"    (selected)="endDateSelected($event)"    #end  ></ts-datepicker></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><div class="c-date-range c-date-range qa-date-range">  <ts-datepicker    class="qa-date-range-start-datepicker"    [inputPlaceholder]="startPlaceholder"    [maxDate]="startMaxDate"    [minDate]="startMinDate"    [startingView]="startingView"    [initialDate]="startDate"    (selected)="startDateSelected($event)"  ></ts-datepicker>  <span    class="c-date-range__seperator"    *ngIf="separator"  >    {{ separator }}  </span>  <ts-datepicker    class="qa-date-range-end-datepicker"    [inputPlaceholder]="endPlaceholder"    [maxDate]="endMaxDate"    [minDate]="endMinDate"    [startingView]="startingView"    [initialDate]="endDate"    (selected)="endDateSelected($event)"    #end  ></ts-datepicker></div></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDateRangeComponent'};
 </script>
