@@ -185,7 +185,7 @@ View the [wiki page][dev-wiki].
 [compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
 [docs-url]: https://getterminus.github.io/terminus-ui/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: LICENSE
+[license-url]: https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE
 [npm-url]: https://npmjs.org/package/@terminus/ui
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
 [circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield
