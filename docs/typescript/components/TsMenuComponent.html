@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -667,7 +679,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -690,8 +702,8 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/docs/ts/latest/api/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
-                <code><a href="https://angular.io/docs/ts/latest/api/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
     <p class="comment">
@@ -773,19 +785,24 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#shouldOverlapTrigger">shouldOverlapTrigger</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#shouldOverlapTrigger">shouldOverlapTrigger</a>
                             </li>
                             <li>
-                                <span class="modifier">Public</span> <a href="#trigger">trigger</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#trigger">trigger</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#TRIGGER_ICON_DEFAULT">TRIGGER_ICON_DEFAULT</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#TRIGGER_ICON_DEFAULT">TRIGGER_ICON_DEFAULT</a>
                             </li>
                             <li>
-                                <span class="modifier">Private</span> <a href="#TRIGGER_ICON_UTILITY">TRIGGER_ICON_UTILITY</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#TRIGGER_ICON_UTILITY">TRIGGER_ICON_UTILITY</a>
                             </li>
                             <li>
-                                <span class="modifier">Public</span> <a href="#triggerIcon">triggerIcon</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#triggerIcon">triggerIcon</a>
                             </li>
                         </ul>
                     </td>
@@ -799,10 +816,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
-                                 <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
                     </td>
@@ -848,7 +866,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#isUtilityMenu">isUtilityMenu</a>
+                                <a href="#isUtilityMenu">isUtilityMenu</a>
                             </li>
                         </ul>
                     </td>
@@ -950,7 +968,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>after</code>
+                              <em>Default value: </em><code>&#x27;after&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -976,7 +994,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>below</code>
+                              <em>Default value: </em><code>&#x27;below&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -1002,7 +1020,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>primary</code>
+                              <em>Default value: </em><code>&#x27;primary&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -1032,7 +1050,7 @@
 
                               </p>
                             <p>
-                              <em>Default value: </em><code>default</code>
+                              <em>Default value: </em><code>&#x27;default&#x27;</code>
                             </p>
                         </td>
                     </tr>
@@ -1058,7 +1076,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngAfterViewInit"></a>
-                            <span class="name"><b><span class="modifier">Public</span> ngAfterViewInit</b><a href="#ngAfterViewInit"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                ngAfterViewInit
+                                </b>
+                                <a href="#ngAfterViewInit"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1093,7 +1117,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="ngOnInit"></a>
-                            <span class="name"><b> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                ngOnInit
+                                </b>
+                                <a href="#ngOnInit"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1134,7 +1163,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="shouldOverlapTrigger"></a>
-                            <span class="name"><b><span class="modifier">Public</span> shouldOverlapTrigger</b><a href="#shouldOverlapTrigger"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                shouldOverlapTrigger
+                                </b>
+                                <a href="#shouldOverlapTrigger"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1174,7 +1209,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="trigger"></a>
-                            <span class="name"><b><span class="modifier">Public</span> trigger</b><a href="#trigger"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                trigger
+                                </b>
+                                <a href="#trigger"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1214,18 +1255,24 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="TRIGGER_ICON_DEFAULT"></a>
-                            <span class="name"><b><span class="modifier">Private</span> TRIGGER_ICON_DEFAULT</b><a href="#TRIGGER_ICON_DEFAULT"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                TRIGGER_ICON_DEFAULT
+                                </b>
+                                <a href="#TRIGGER_ICON_DEFAULT"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>TRIGGER_ICON_DEFAULT:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>TRIGGER_ICON_DEFAULT:     <code></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value : </i><code>arrow_drop_down</code>
+                                <i>Default value : </i><code>&#x27;arrow_drop_down&#x27;</code>
                             </td>
                         </tr>
                             <tr>
@@ -1248,18 +1295,24 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="TRIGGER_ICON_UTILITY"></a>
-                            <span class="name"><b><span class="modifier">Private</span> TRIGGER_ICON_UTILITY</b><a href="#TRIGGER_ICON_UTILITY"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                TRIGGER_ICON_UTILITY
+                                </b>
+                                <a href="#TRIGGER_ICON_UTILITY"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>TRIGGER_ICON_UTILITY:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>TRIGGER_ICON_UTILITY:     <code></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value : </i><code>more_vert</code>
+                                <i>Default value : </i><code>&#x27;more_vert&#x27;</code>
                             </td>
                         </tr>
                             <tr>
@@ -1282,7 +1335,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="triggerIcon"></a>
-                            <span class="name"><b><span class="modifier">Public</span> triggerIcon</b><a href="#triggerIcon"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                triggerIcon
+                                </b>
+                                <a href="#triggerIcon"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -1355,7 +1414,7 @@
 </div>
 
 
-    <div class="tab-pane fade tab-source-code" id="source">
+    <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   Input,
@@ -1509,7 +1568,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="templateData">
+    <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div
   class&#x3D;&quot;c-menu c-menu qa-menu&quot;
   [ngClass]&#x3D;&quot;{&#x27;c-menu--utility&#x27;: isUtilityMenu}&quot;
@@ -1554,7 +1613,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="tree">
+    <div class="tab-pane fade" id="c-tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1571,7 +1630,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="example">
+    <div class="tab-pane fade" id="c-example">
             <iframe src="https://embed.plnkr.co/plunk/ZDPGxMuPoA2CAp35?show&#x3D;preview" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
@@ -1583,7 +1642,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div  class="c-menu c-menu qa-menu"  [ngClass]="{\'c-menu--utility\': isUtilityMenu}">  <mat-menu    #menu="matMenu"    [yPosition]="menuPositionY"    [xPosition]="menuPositionX"    [overlapTrigger]="shouldOverlapTrigger"  >    <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>  </mat-menu>  <ts-button    *ngIf="!isUtilityMenu"    class="c-menu__trigger qa-menu-trigger"    [theme]="theme"    [matMenuTriggerFor]="menu"    [isDisabled]="isDisabled"    [attr.data-disabled]="isDisabled"    format="filled"  >    <ng-content></ng-content>    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </ts-button>  <button    *ngIf="isUtilityMenu"    class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"    mat-icon-button    [matMenuTriggerFor]="menu"    [disabled]="isDisabled"  >    <mat-icon>      {{ triggerIcon }}    </mat-icon>  </button></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsMenuComponent'};
 </script>

@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -661,7 +673,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -718,6 +730,29 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;c-loading-overlay qa-loading-overlay&quot;&gt;
+  &lt;svg
+    class&#x3D;&quot;c-loading-overlay__spinner&quot;
+    width&#x3D;&quot;65px&quot;
+    height&#x3D;&quot;65px&quot;
+    viewBox&#x3D;&quot;0 0 66 66&quot;
+    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+  &gt;
+    &lt;circle
+      class&#x3D;&quot;path&quot;
+      fill&#x3D;&quot;none&quot;
+      stroke-width&#x3D;&quot;6&quot;
+      stroke-linecap&#x3D;&quot;round&quot;
+      cx&#x3D;&quot;33&quot;
+      cy&#x3D;&quot;33&quot;
+      r&#x3D;&quot;30&quot;
+    &gt;&lt;/circle&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
 
 
 
@@ -736,7 +771,7 @@
 </div>
 
 
-    <div class="tab-pane fade tab-source-code" id="source">
+    <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
 
@@ -779,7 +814,7 @@ export class TsLoadingOverlayComponent {}
     </div>
 
 
-    <div class="tab-pane fade" id="tree">
+    <div class="tab-pane fade" id="c-tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -802,8 +837,8 @@ export class TsLoadingOverlayComponent {}
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+        var COMPONENT_TEMPLATE = '<div><div class="c-loading-overlay qa-loading-overlay">  <svg    class="c-loading-overlay__spinner"    width="65px"    height="65px"    viewBox="0 0 66 66"    xmlns="http://www.w3.org/2000/svg"  >    <circle      class="path"      fill="none"      stroke-width="6"      stroke-linecap="round"      cx="33"      cy="33"      r="30"    ></circle>  </svg></div></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLoadingOverlayComponent'};
 </script>

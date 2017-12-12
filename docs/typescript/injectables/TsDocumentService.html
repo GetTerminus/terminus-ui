@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -660,7 +672,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -690,7 +702,8 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <span class="modifier">Public</span> <a href="#document">document</a>
+                                            <span class="modifier">Public</span>
+                                        <a href="#document">document</a>
                                     </li>
                                 </ul>
                             </td>
@@ -759,7 +772,13 @@
                             <tr>
                                 <td class="col-md-4">
                                     <a name="document"></a>
-                                    <span class="name"><b><span class="modifier">Public</span> document</b><a href="#document"><span class="fa fa-link"></span></a></span>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        document
+                                        </b>
+                                        <a href="#document"><span class="fa fa-link"></span></a>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
@@ -799,7 +818,7 @@
     </div>
 
 
-    <div class="tab-pane fade tab-source-code" id="source">
+    <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { DOCUMENT } from &#x27;@angular/platform-browser&#x27;;
 
