@@ -13,7 +13,7 @@
 
 /**
  * Loop over the map and create vertical layout utility classes
- * Example: `.u-spacing__large--2x`
+ * Example: `.u-spacing__large--2`
  */
 // Loop over the vertical spacing map
 @each $size, $collection in $g-spacings {
