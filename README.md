@@ -64,9 +64,9 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ## Available Features
 
-> - :x:: not started
-> - :hammer:: started
-> - :white_check_mark:: available
+> - :x: not started
+> - :hammer: started
+> - :white_check_mark: available
 
 ### Components
 
@@ -82,7 +82,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
 | copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
 | datavis          |                                                        |                :x: |                              |
-| datatable        |                                                        |                :x: |                              |
+| datatable        |                                                        |           :hammer: |                              |
 | datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
 | date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
 | dialog           |                                                        |                :x: |                              |
@@ -101,7 +101,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | picklist         |                                                        |                :x: |                              |
 | progress         |                                                        |                :x: |                              |
 | progression      |                                                        |                :x: |                              |
-| radio            |                                                        |                :x: |                              |
+| radio            |                                                        | :white_check_mark: |                              |
 | search           |                                                        | :white_check_mark: |          [Demo][demo-search] |
 | select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
 | tabs             |                                                        |                :x: |                              |
@@ -113,9 +113,10 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 | Feature          | Notes                                                  | Status             |
 |------------------|--------------------------------------------------------|        :---:       |
-| Window           |             Provide access to the native window object | :white_check_mark: |
 | Document         |           Provide access to the native document object | :white_check_mark: |
+| Spacing          |              Expose custom spacing sizes via a service | :white_check_mark: |
 | Validators       |    Expose custom validation methods for reactive forms | :white_check_mark: |
+| Window           |             Provide access to the native window object | :white_check_mark: |
 
 
 ### TypeScript Utilities
