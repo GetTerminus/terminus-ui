@@ -13,7 +13,7 @@ import { passwordMessage } from './../../utilities/regex/password.regex';
  * Define a service that offers custom validators
  */
 @Injectable()
-export class ValidationService {
+export class TsValidationService {
 
   /**
    * Return the correct error message for a validator

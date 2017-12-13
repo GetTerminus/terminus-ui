@@ -1,11 +1,11 @@
 import { TsValidationMessagesComponent } from './validation-messages.component';
-import { ValidationServiceMock } from './../services/validation/validation.service.mock';
+import { TsValidationServiceMock } from './../services/validation/validation.service.mock';
 
 
 describe('InputMessagesComponent', () => {
 
   beforeEach(() => {
-    this.component = new TsValidationMessagesComponent(new ValidationServiceMock());
+    this.component = new TsValidationMessagesComponent(new TsValidationServiceMock());
   });
 
 
