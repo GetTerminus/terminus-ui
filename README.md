@@ -123,8 +123,8 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 | Feature          | Notes                                                  | Status             |
 |------------------|--------------------------------------------------------|        :---:       |
-| Types            |        Provide TypeScript types for various parameters | :white_check_mark: |
 | Interfaces       |      Provide TypeScript interfaces for various objects | :white_check_mark: |
+| Types            |        Provide TypeScript types for various parameters | :white_check_mark: |
 
 
 ### Style Helpers
@@ -148,7 +148,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs
+$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs --exact
 ```
 
 
