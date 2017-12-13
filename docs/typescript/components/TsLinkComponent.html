@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -667,7 +679,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -770,7 +782,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Public</span> <a href="#externalIcon">externalIcon</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#externalIcon">externalIcon</a>
                             </li>
                         </ul>
                     </td>
@@ -893,7 +906,13 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="externalIcon"></a>
-                            <span class="name"><b><span class="modifier">Public</span> externalIcon</b><a href="#externalIcon"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                externalIcon
+                                </b>
+                                <a href="#externalIcon"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -910,7 +929,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value : </i><code>open_in_new</code>
+                                <i>Default value : </i><code>&#x60;open_in_new&#x60;</code>
                             </td>
                         </tr>
                             <tr>
@@ -933,7 +952,7 @@
 </div>
 
 
-    <div class="tab-pane fade tab-source-code" id="source">
+    <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   Input,
@@ -1000,7 +1019,7 @@ export class TsLinkComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="templateData">
+    <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;a
   class&#x3D;&quot;c-link c-link qa-link qa-link-internal&quot;
   [routerLink]&#x3D;&quot;destination&quot;
@@ -1030,7 +1049,7 @@ export class TsLinkComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="tree">
+    <div class="tab-pane fade" id="c-tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1047,7 +1066,7 @@ export class TsLinkComponent {
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="example">
+    <div class="tab-pane fade" id="c-example">
             <iframe src="https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show&#x3D;preview" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
@@ -1059,7 +1078,7 @@ export class TsLinkComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><a  class="c-link c-link qa-link qa-link-internal"  [routerLink]="destination"  *ngIf="!isExternal">  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template></a><a  class="c-link c-link qa-link qa-link-external"  [href]="destination"  target="_blank"  tabindex="{{ tabIndex }}"  *ngIf="isExternal">  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>  <mat-icon *ngIf="isExternal">    open_in_new  </mat-icon></a><ng-template #contentTemplate>  <ng-content></ng-content></ng-template></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': ''},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsLinkComponent'};
 </script>

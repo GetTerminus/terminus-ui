@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'demo-date-range',
   template: `
     <ts-date-range
-      (selectedDate)="printRange($event)"
       [startInitialDate]="myDate"
       [endInitialDate]="myDate2"
+      (selectedDate)="printRange($event)"
     ></ts-date-range>
   `,
 })

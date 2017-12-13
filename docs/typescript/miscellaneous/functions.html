@@ -265,13 +265,19 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                    <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -575,13 +581,19 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsNavigationItem.html" >TsNavigationItem</a>
+                                           <a href="../interfaces/TsNavigationActionItem.html" >TsNavigationActionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsNavigationLinkItem.html" >TsNavigationLinkItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsNavigationPayload.html" >TsNavigationPayload</a>
@@ -686,7 +698,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="_window"></a>
-                            <span class="name"><b> _window</b><a href="#_window"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                _window
+                                </b>
+                                <a href="#_window"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -697,15 +714,6 @@
     
     
     
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Return the native window object</p>
-    </div>
-    
-                                <div>
-                                </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
     </section>
@@ -716,12 +724,17 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="debounce"></a>
-                            <span class="name"><b> debounce</b><a href="#debounce"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                debounce
+                                </b>
+                                <a href="#debounce"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>debounce(func: undefined, wait: undefined)</code>
+    <code>debounce(func: typeReference, wait: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
     
@@ -748,6 +761,7 @@
                                                     <tr>
                                                       <td>func</td>
                                                       <td>
+                                                              <code>typeReference</code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -757,6 +771,7 @@
                                                     <tr>
                                                       <td>wait</td>
                                                       <td>
+                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -780,12 +795,17 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="groupBy"></a>
-                            <span class="name"><b> groupBy</b><a href="#groupBy"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                groupBy
+                                </b>
+                                <a href="#groupBy"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>groupBy(array: undefined, property: undefined)</code>
+    <code>groupBy(array: undefined, key: typeReference)</code>
                         </td>
                     </tr>
     
@@ -818,18 +838,24 @@
     </td>
                                                     </tr>
                                                     <tr>
-                                                      <td>property</td>
+                                                      <td>key</td>
                                                       <td>
+                                                              <code>typeReference</code>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The object property to split by</p>
-    </td>
+                                                      <td></td>
                                                     </tr>
                                             </tbody>
                                         </table>
                                 </div>
                                 <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">const arr = [{a: &amp;#39;foo&amp;#39;, b: 1}, {a: &amp;#39;bar&amp;#39;, b: 6}, {a: &amp;#39;foo&amp;#39;, b: 6}];
+    const result = groupBy(arr, &amp;#39;a&amp;#39;);
+    // Return is &lt;code&gt;{foo: [{a: &amp;#39;foo&amp;#39;, b: 1}, {a: &amp;#39;foo&amp;#39;, b: 6}], bar: [{a: &amp;#39;bar&amp;#39;, b: 6}]}&lt;/code&gt;</code></pre>
+                                            </div>
                                 </div>
                         </td>
                     </tr>
@@ -843,7 +869,12 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="noop"></a>
-                            <span class="name"><b> noop</b><a href="#noop"><span class="fa fa-link"></span></a></span>
+                            <span class="name">
+                                <b>
+                                noop
+                                </b>
+                                <a href="#noop"><span class="fa fa-link"></span></a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
