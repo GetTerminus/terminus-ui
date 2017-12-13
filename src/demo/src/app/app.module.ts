@@ -113,8 +113,6 @@ import { CardComponent } from './components/card.component';
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
-  providers: [
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

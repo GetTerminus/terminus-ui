@@ -1,10 +1,10 @@
-import { ValidationService } from './validation.service';
+import { TsValidationService } from './validation.service';
 
 
-describe(`ValidationService`, () => {
+describe(`TsValidationService`, () => {
 
   beforeEach(() => {
-    this.service = new ValidationService();
+    this.service = new TsValidationService();
   });
 
   it(`should exist`, () => {

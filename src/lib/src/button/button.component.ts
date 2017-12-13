@@ -5,7 +5,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewEncapsulation,
@@ -47,6 +46,9 @@ import { TsWindowService } from './../services/window/window.service';
   selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  host: {
+    class: 'ts-button',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -103,6 +105,29 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Define the button format. {@link TsButtonFormatTypes}
+   */
+  @Input()
+  public set format(value: TsButtonFormatTypes) {
+    this.definedFormat = value;
+
+    // If the button is collapsable
+    if (this.definedFormat === 'collapsable') {
+      // Set the collapse delay
+      if (!this.collapseDelay) {
+        this.collapseDelay = this.COLLAPSE_DEFAULT_DELAY;
+      }
+    } else {
+      // If the format is NOT collapsable, remove the delay
+      if (this.collapseDelay) {
+        this.collapseDelay = undefined;
+      }
+    }
+
+    this.changeDetectorRef.detectChanges();
+  }
+
+  /**
    * Define a Material icon to include
    */
   @Input()
@@ -125,27 +150,6 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public tabIndex: number = 0;
-
-  /**
-   * Define the button format. {@link TsButtonFormatTypes}
-   */
-  @Input()
-  public set format(value: TsButtonFormatTypes) {
-    this.definedFormat = value;
-
-    // If the button is collapsable
-    if (this.definedFormat === 'collapsable') {
-      // Set the collapse delay
-      if (!this.collapseDelay) {
-        this.collapseDelay = this.COLLAPSE_DEFAULT_DELAY;
-      }
-    } else {
-      // If the format is NOT collapsable, remove the delay
-      if (this.collapseDelay) {
-        this.collapseDelay = undefined;
-      }
-    }
-  }
 
   /**
    * Define the theme
@@ -201,7 +205,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be
    * patching setTimeout automatically.
    *
-   * @param {Number} delay The time to delay before collapsing the button
+   * @param delay - The time to delay before collapsing the button
    * @return The ID of the timeout
    */
   private collapseWithDelay(delay: number): number {

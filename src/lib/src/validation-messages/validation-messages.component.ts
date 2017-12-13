@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ValidationService } from './../services/validation/validation.service';
+import { TsValidationService } from './../services/validation/validation.service';
 
 
 /**
@@ -28,7 +28,7 @@ export class TsValidationMessagesComponent {
   /**
    * Define the error message
    *
-   * @return {String|Null} errorMessage The error message or null if no error
+   * @return The error message or null if no error
    */
   public get validationMessage(): string | null {
     if (this.control) {
@@ -62,7 +62,7 @@ export class TsValidationMessagesComponent {
    * Inject services
    */
   constructor(
-    private validationService: ValidationService,
+    private validationService: TsValidationService,
   ) {}
 
 }

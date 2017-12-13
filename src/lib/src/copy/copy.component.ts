@@ -94,7 +94,7 @@ export class TsCopyComponent {
   /**
    * Return the inner text content
    *
-   * @return {String} textContent The text content of the inner <ng-content>
+   * @return The text content of the inner <ng-content>
    */
   public get textContent(): string {
     const hasInnerText =
@@ -111,9 +111,10 @@ export class TsCopyComponent {
   /**
    * Select the text content of the passed in element
    *
-   * @param {Element} element The element whose text should be selected
-   * @param {Boolean} hasSelected The flag defining if the selection has already been made
-   * @param {Boolean} disabled The flag defining if the selection functionality should be disabled
+   * @param element - The element whose text should be selected
+   * @param hasSelected - The flag defining if the selection has already been made
+   * @param disabled - The flag defining if the selection functionality should be disabled
+   * @return The value representing if the copy was successful
    */
   public selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
     // If this functionality is disabled OR the text has already been selected,
@@ -148,7 +149,7 @@ export class TsCopyComponent {
   /**
    * Copy text to the user's clipboard
    *
-   * @param {String} text The text to copy
+   * @param text - The text to copy
    */
   public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content

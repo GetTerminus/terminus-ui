@@ -6,9 +6,9 @@
  * const result = groupBy(arr, 'a');
  * // Return is `{foo: [{a: 'foo', b: 1}, {a: 'foo', b: 6}], bar: [{a: 'bar', b: 6}]}`
  *
- * @param {Array} array The array to split
- * @param {String} property The object property to split by
- * @return {Object} An object containing arrays separated by property value
+ * @param array - The array to split
+ * @param property - The object property to split by
+ * @return An object containing arrays separated by property value
  */
 export function groupBy<T, K extends (keyof T & (number | string))>(array: T[], key: K):
   { [id: string]: T[] } {

@@ -13,14 +13,14 @@ import { passwordMessage } from './../../utilities/regex/password.regex';
  * Define a service that offers custom validators
  */
 @Injectable()
-export class ValidationService {
+export class TsValidationService {
 
   /**
    * Return the correct error message for a validator
    *
-   * @param {String} validatorName The name of the validator
-   * @param {Object} validatorValue The value of the validator
-   * @return {String} errorMessage The error message
+   * @param validatorName - The name of the validator
+   * @param validatorValue - The value of the validator
+   * @return The error message
    */
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
     const config = {

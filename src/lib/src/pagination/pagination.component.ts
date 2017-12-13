@@ -229,7 +229,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Initialize on any changes
    *
-   * @param {Object} changes The object containing all changes since last cycle
+   * @param changes - The object containing all changes since last cycle
    */
   public ngOnChanges(changes: SimpleChanges): void {
     this.initialize();
@@ -258,7 +258,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Perform tasks when the current page is changed
    *
-   * @param {Object} page The selected page
+   * @param page - The selected page
    */
   public currentPageChanged(page: TsPaginationMenuItem): void {
     // Set the current page
@@ -276,9 +276,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Manually trigger a page change event from a number
    *
-   * @param {Number} destinationPage The selected page number
-   * @param {Number} currentPage The current page number
-   * @param {Array} pages The collection of pages
+   * @param destinationPage - The selected page number
+   * @param currentPage - The current page number
+   * @param pages - The collection of pages
    */
   public changePage(
     destinationPage: number,
@@ -301,8 +301,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Check if a page is the first page
    *
-   * @param {Number} page The number of the current page
-   * @return {Boolean} isFirstPage A boolean representing if this is the first page
+   * @param page - The number of the current page
+   * @return A boolean representing if this is the first page
    */
   public isFirstPage(page: number): boolean {
     return page === 1;
@@ -312,8 +312,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Check if a page is the last page
    *
-   * @param {Number} page The number of the current page
-   * @return {Boolean} isLastPage A boolean representing if this is the last page
+   * @param page - The number of the current page
+   * @return A boolean representing if this is the last page
    */
   public isLastPage(page: number): boolean {
     if (this.pagesArray) {
@@ -327,10 +327,10 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Determine if the string exists
    *
-   * @param {String} message The help message when too many results are returned
-   * @param {String} max The max number of records before the message should be shown
-   * @param {String} totalRecords The number of records
-   * @return {Boolean} shouldShow A boolean representing if the message should be shown
+   * @param message - The help message when too many results are returned
+   * @param max - The max number of records before the message should be shown
+   * @param totalRecords - The number of records
+   * @return A boolean representing if the message should be shown
    */
   public shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
     if (totalRecords > max) {
@@ -344,7 +344,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Re-initialize the pagination when records per page changes
    *
-   * @param {Number} selection The selected records-per-page count
+   * @param selection - The selected records-per-page count
    */
   public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage = selection;
@@ -358,8 +358,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Determine if the page select menu should be disabled
    *
-   * @param {Number} pagesCount The number of pages
-   * @return {Boolean} shouldDisable A boolean representing if the menu should be disabled
+   * @param pagesCount - The number of pages
+   * @return A boolean representing if the menu should be disabled
    */
   public menuIsDisabled(pagesCount: number): boolean {
     return pagesCount < 2;
@@ -369,10 +369,10 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Determine if the records-per-page menu should be disabled
    *
-   * @param {Number} total The total number of records
-   * @param {Array} recordsPerPageChoices The array of counts representing how many records may be
-   * show per page
-   * @return {Boolean} shouldDisable A boolean representing if the records select should be disabled
+   * @param total - The total number of records
+   * @param recordsPerPageChoices - The array of counts representing how many records may be show
+   * per page
+   * @return A boolean representing if the records select should be disabled
    */
   public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
     const lowestPerPage = Math.min.apply(Math, recordsPerPageChoices);
@@ -384,9 +384,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Create a new label based on the current page
    *
-   * @param {Number} currentPage The current page
-   * @param {Array} pages The array of all pages
-   * @return {String} label The string to use as the current page label
+   * @param currentPage - The current page
+   * @param pages - The array of all pages
+   * @return The string to use as the current page label
    */
   private createCurrentPageLabel(
     currentPage: number,
@@ -422,9 +422,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Create an array containing objects that represent each available page of records
    *
-   * @param {Number} total The total records remaining
-   * @param {Number} perPage How many records are shown per page
-   * @return {Array} paginationArray The array representing all possible pages of records
+   * @param total - The total records remaining
+   * @param perPage - How many records are shown per page
+   * @return The array representing all possible pages of records
    */
   private createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
     const paginationArray: TsPaginationMenuItem[] = [];
@@ -482,9 +482,9 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Tracking method for the pagesArray ngFor
    *
-   * @param {Number} index The current index
-   * @param {Object} page The page object
-   * @return {String|Undefined} result The value to be used
+   * @param index - The current index
+   * @param page - The page object
+   * @return The value to be used
    */
   public trackPagesArray(index: number, page: TsPaginationMenuItem): string | undefined {
     return page ? page.name : undefined;

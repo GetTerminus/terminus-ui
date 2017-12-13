@@ -55,7 +55,7 @@
       calc(-#{$margin__horizontal} - 1px)
       calc(-#{$margin__vertical} - 1px)
       0;
-    padding: .25em .2em .2em .3em;
+    padding: .25em .2em .2em .5em;
     // Set up for mat-ripple
     position: relative;
     transition: background-color 200ms ease-in;

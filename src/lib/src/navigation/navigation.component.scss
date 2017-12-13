@@ -53,6 +53,8 @@
     &:focus,
     &:hover,
     &--active {
+      outline: 0;
+
       .c-navigation__item-inner {
         &::after {
           opacity: 1;

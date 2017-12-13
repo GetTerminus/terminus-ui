@@ -1,6 +1,14 @@
-import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Injectable } from '@angular/core';
 
+
+/**
+ * Return the native document object
+ *
+ * @return The native document object
+ */
+export function _document(): any {
+  return document;
+}
 
 /**
  * Define a service that exposes the DOCUMENT object
@@ -9,12 +17,12 @@ import { DOCUMENT } from '@angular/platform-browser';
 export class TsDocumentService {
 
   /**
-   * Inject the Angular DOCUMENT
+   * Return a function that returns the native document object
    *
-   * @param {Object} document The Angular document object
+   * @return The function that returns the native document object
    */
-  constructor(
-    @Inject(DOCUMENT) public document: any,
-  ) {}
+  get document() {
+    return _document();
+  }
 
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class ValidationServiceMock {
+export class TsValidationServiceMock {
 
   getValidatorErrorMessage = jasmine.createSpy('getValidatorErrorMessage');
 

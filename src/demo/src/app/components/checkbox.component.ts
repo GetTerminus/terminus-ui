@@ -21,7 +21,7 @@ export class CheckboxComponent {
   disabled = false;
   required = true;
   indeterminate = false;
-  myTheme = 'warn';
+  myTheme = 'primary';
 
   changed(e: any) {
     console.log('Input changed: ', e);

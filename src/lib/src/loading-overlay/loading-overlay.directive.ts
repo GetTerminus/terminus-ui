@@ -106,8 +106,8 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Return the correct position
    *
-   * @param {String} position The current position value
-   * @return {String} position The correct position value
+   * @param position The current position value
+   * @return The correct position value
    */
   private determinePosition(position: string): string {
     return (position === 'relative' || position === 'absolute') ? position : 'relative';

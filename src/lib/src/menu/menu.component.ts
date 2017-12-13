@@ -46,6 +46,9 @@ import {
   selector: 'ts-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  host: {
+    class: 'ts-menu',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

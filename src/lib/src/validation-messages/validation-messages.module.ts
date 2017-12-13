@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material';
 
-import { ValidationService } from './../services/validation/validation.service';
+import { TsValidationService } from './../services/validation/validation.service';
 import { TsValidationMessagesComponent } from './validation-messages.component';
 export { TsValidationMessagesComponent } from './validation-messages.component';
 
@@ -15,7 +15,7 @@ export { TsValidationMessagesComponent } from './validation-messages.component';
     MatInputModule,
   ],
   providers: [
-    ValidationService,
+    TsValidationService,
   ],
   exports: [
     TsValidationMessagesComponent,

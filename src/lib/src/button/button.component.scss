@@ -1,4 +1,3 @@
-@import 'ladda/css/ladda';
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
 @import './../scss/helpers/spacing';
@@ -16,22 +15,17 @@ $icon-transition-duration-collapse: $content-transition-duration - 100ms; // 400
 $icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms; // 300
 $label-transition-duration: $icon-transition-duration-expand - 100ms; // 200
 $color-transition-duration: $label-transition-duration - 100ms; // 100
-$no-interaction-opacity: .7;
 
 $color-transition: color $color-transition-duration $g-easing;
 // FIXME: This exact transition is needed in the link styles (when inside a menu, links emulate
 // button styles). How can we share something this specific? Or simply make this more generic
 $background-transition: background $icon-transition-duration-collapse $g-material-background-easing;
 $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shadow-easing;
-$padding-transition: padding $label-transition-duration $g-easing;
-$ladda-background-transition: background $color-transition-duration $g-easing;
 
 // Styles applied when the button is collapsed
 @mixin collapsed {
-  .ladda-label {
-    padding-left: spacing(small, 2);
-    padding-right: spacing(small, 2);
-  }
+  padding-left: spacing(small, 2);
+  padding-right: spacing(small, 2);
 
   .mat-icon {
     // center the icon
@@ -48,87 +42,52 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
 }
 
 
+
+
 //
 // @component
 //  Button
 // @description
 //  A button component
 //
-.c-button {
-  // Define theme styles
-  $themes: primary accent warn;
-  $collapsable-radius: 2em;
-
+.ts-button {
   // Top level styles should be nested here
-  &#{&} {
+  .c-button {
     @include typography;
     border: 1px solid transparent;
     color: color(pure);
     line-height: $button-line-height;
     // Overwrite material min-width
     min-width: auto;
-    padding: 0;
     // stylelint-disable declaration-no-important
     // Important needed to override the `!important` within the ladda styles
     transition: $color-transition, $background-transition, $shadow-transition !important;
     // stylelint-enable declaration-no-important
     will-change: background, color, contents;
+  }
+}
 
-    &[disabled] {
-      @include cursor(not-allowed);
 
-      // Lighten text when disabled
-      .ladda-label {
-        opacity: $no-interaction-opacity;
-      }
-    }
+.c-button {
+  // Define theme styles
+  $themes: primary accent warn;
+  $collapsable-radius: 2em;
 
-    &.ladda-button {
-      .ladda-label {
-        $padding-horizontal: 16px;
-        $padding-horizontal-total: $padding-horizontal * 2;
+  &[disabled] {
+    @include cursor(not-allowed);
+  }
 
-        // Force the ladda label to fill the entire button. (the mat-ripple will be inside the
-        // ladda-label and will appear cut off otherwise)
-        display: inline-block;
-        height: 100%;
-        padding: 0 $padding-horizontal;
-        position: static;
-        // stylelint-disable declaration-no-important
-        // Important needed to override the `!important` within the ladda styles
-        transition: $color-transition, $ladda-background-transition, $padding-transition !important;
-        // stylelint-enable declaration-no-important
-        will-change: color, background, padding;
-      }
+  .mat-button-wrapper {
+    // Set up for spinner
+    position: relative;
+    transition: padding 200ms ease-out;
+    will-change: padding;
+  }
 
-      &[data-loading] {
-        .ladda-label {
-          opacity: $no-interaction-opacity;
-        }
-      }
-
-      &[data-style='expand-right'] {
-        // Lessen the right side padding while expanded
-        &[data-loading] {
-          padding-right: 30px;
-        }
-      }
-    }
-
-    // Added by ladda
-    &[data-loading] {
-      .ladda-spinner {
-        display: block;
-      }
-    }
-
-    // Needed because of a conflict between Material and Ladda
-    .ladda-spinner {
-      // Initially hidden since the inner HTML is not removed until after the `data-loading` attr is
-      // removed from the button
-      display: none;
-      position: absolute;
-      top: 50%;
+  // Class added when progress indicator is shown
+  &.c-button--progress {
+    .mat-button-wrapper {
+      padding-right: 36px;
     }
   }
 
@@ -139,6 +98,25 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
     transition: transform $icon-transition-duration-expand $g-easing;
     vertical-align: middle;
     will-change: transform;
+  }
+
+  // Overwrite the Material spinner to fit our layout
+  .c-button__spinner {
+    display: inline-block;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity $label-transition-duration $g-easing;
+    will-change: opacity;
+
+    &--active {
+      opacity: 1;
+    }
+
+    circle {
+      stroke: color(utility);
+    }
   }
 
   // Collapsed and not focused or hovered
@@ -213,6 +191,8 @@ $ladda-background-transition: background $color-transition-duration $g-easing;
     }
   }
 }
+
+
 
 
 //

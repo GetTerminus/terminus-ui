@@ -63,6 +63,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Getter to return the available navigation width
+   *
+   * @return The available navigation space
    */
   private get availableSpace(): number {
     const NAV_WIDTH_BUFFER = 10;
@@ -82,6 +84,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Getter to return the count of hidden items
+   *
+   * @return The number of hidden navigation items
    */
   private get hiddenItemsLength(): number {
     return this.hiddenItems.getValue().length;
@@ -89,6 +93,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Getter to return the user's full name if it exists
+   *
+   * @return The user's full name
    */
   public get usersFullName(): string | null {
     const userExists = this.user ? true : false;
@@ -104,6 +110,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Getter to return the count of visible items
+   *
+   * @return The number of visible items
    */
   public get visibleItemsLength(): number {
     return this.visibleItems.getValue().length;
@@ -175,7 +183,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Set up initial link groups
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setUpInitialArrays(this.pristineItems);
   }
 
@@ -183,7 +191,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Trigger initial layout update after the view initializes
    */
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.generateBreakWidths();
     this.updateLists();
     this.changeDetectorRef.detectChanges();
@@ -211,7 +219,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Clone the nav items and split into the initially visible/hidden lists
    *
-   * @param {Array} items The complete list of navigation items
+   * @param items - The complete list of navigation items
    */
   private setUpInitialArrays(items: TsNavigationItem[]): void {
     // Clone the items so we can work freely with the array.

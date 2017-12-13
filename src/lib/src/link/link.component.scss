@@ -28,6 +28,10 @@
     transition: color 200ms ease;
     will-change: color;
 
+    &:focus {
+      outline: 0;
+    }
+
     // Primary theme
     [color='primary'] & {
       color: color('primary');

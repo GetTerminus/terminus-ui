@@ -27,7 +27,7 @@ export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value
    *
-   * @param {String} value The spacing value passed in.
+   * @param value - The spacing value passed in.
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {

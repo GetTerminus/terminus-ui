@@ -15,7 +15,7 @@ import { TsStyleThemeTypes } from './../utilities/types';
 
 
 /**
- * @private Custom control value accessor for our component
+ * Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
 /* tslint:disable:no-use-before-declare */
@@ -117,9 +117,9 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   /**
    * Return the specified value from the object
    *
-   * @param {Object} item The object representing the item
-   * @param {String} valueKey The string representing the value key
-   * @return {String} value The value of the valueKey or the item itself
+   * @param item - The object representing the item
+   * @param valueKey - The string representing the value key
+   * @return The value of the valueKey or the item itself
    */
   public getValueKey(item: object, valueKey?: string): string {
     return valueKey ? item[valueKey] : item;
