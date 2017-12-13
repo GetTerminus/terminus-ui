@@ -22,14 +22,24 @@ import { Component } from '@angular/core';
       <br>
       <br>
 
-      <ts-button
-        [theme]="style"
-        (clickEvent)="run('progress2')"
-        [isDisabled]="disabled"
-        [showProgress]="progress2"
-        [iconName]="icon"
-        [format]="myFormat"
-      >Click Me!</ts-button>
+      <label>
+        Right-align layout:
+        <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
+      </label>
+
+      <br>
+      <br>
+
+      <div [style.textAlign]="layout">
+        <ts-button
+          [theme]="style"
+          (clickEvent)="run('progress2')"
+          [isDisabled]="disabled"
+          [showProgress]="progress2"
+          [iconName]="icon"
+          [format]="myFormat"
+        >Click Me!</ts-button>
+      </div>
     </div>
 
     <br>
@@ -128,14 +138,18 @@ export class ButtonComponent {
   formatCollapsable = 'collapsable';
   formats = ['filled', 'hollow', 'collapsable'];
   myFormat = 'filled';
+  layoutIsRightAligned = false;
+  get layout(): string {
+    return this.layoutIsRightAligned ? 'right' : 'left';
+  }
 
   run(progress: any) {
-    console.log('in run!');
+    console.log('Demo: In run!');
     this[progress] = true;
 
     setTimeout(() => {
       this[progress] = false;
-    }, 1000);
+    }, 2000);
   }
 
 }
