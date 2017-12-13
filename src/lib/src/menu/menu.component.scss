@@ -2,7 +2,17 @@
 @import './../scss/helpers/cursors';
 @import './../scss/helpers/spacing';
 
-:host {
+
+//
+// @component
+//  Menu
+// @description
+//  A dropdown menu component
+//
+.ts-menu {
+  $icon-width: 24px;
+  $icon-margin: 16px;
+
   display: inline-block;
 
   &.disabled {
@@ -16,24 +26,14 @@
       pointer-events: none;
     }
   }
-}
-
-//
-// @component
-//  Menu
-// @description
-//  A dropdown menu component
-//
-.c-menu {
-  $icon-width: 24px;
-  $icon-margin: 16px;
 
   // Top level styles should be nested here
-  ::ng-deep &#{&} {
+  .c-menu {
     @include typography;
     max-height: 12rem;
   }
 }
+
 
 .mat-menu-panel {
   .mat-menu-content {

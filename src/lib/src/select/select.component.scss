@@ -39,5 +39,6 @@
   // Top level styles should be nested here
   &#{&} {
     @include typography;
+    max-width: 100%;
   }
 }
