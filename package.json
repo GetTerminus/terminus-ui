@@ -130,7 +130,7 @@
     "codelyzer": "4.0.2",
     "commitizen": "2.9.6",
     "concurrently": "3.5.1",
-    "condition-circle": "1.5.0",
+    "condition-circle": "2.0.1",
     "core-js": "2.5.3",
     "cz-customizable": "5.2.0",
     "del": "3.0.0",
