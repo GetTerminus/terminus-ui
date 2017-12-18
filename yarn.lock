@@ -9261,9 +9261,9 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.6.33"
 
-semantic-release-npm@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/semantic-release-npm/-/semantic-release-npm-0.0.4.tgz#88a43dda24c56ae684fbc27029adcd09af8283ab"
+semantic-release-npm@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/semantic-release-npm/-/semantic-release-npm-0.0.5.tgz#465929cb28154af104f8a81bf6fcfd337a539dc7"
   dependencies:
     "@semantic-release/error" "^2.1.0"
     execa "^0.8.0"
