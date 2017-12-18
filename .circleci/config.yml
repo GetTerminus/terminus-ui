@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: Release
-          command: yarn run semantic-release --publish dist
+          command: yarn run semantic-release
 
       - store_artifacts:
           path: coverage/
