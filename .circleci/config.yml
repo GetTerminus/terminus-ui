@@ -49,7 +49,7 @@ jobs:
 
       - run:
           name: Release
-          command: tooling/ci/publish.sh
+          command: yarn run semantic-release
 
       - store_artifacts:
           path: coverage/
