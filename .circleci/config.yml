@@ -48,6 +48,10 @@ jobs:
           command: yarn run build
 
       - run:
+          name: Release Test
+          command: yarn run semantic-release --dry-run
+
+      - run:
           name: Release
           command: yarn run semantic-release
 

@@ -6,6 +6,7 @@
   "typings": "./ui.d.ts",
   "author": "@terminus",
   "license": "MIT",
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "https://github.com/GetTerminus/terminus-ui.git"
