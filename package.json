@@ -102,6 +102,7 @@
     "publish": [
       {
         "path": "@semantic-release/npm",
+        "assets": ["dist"],
         "npmPublish": false
       }
     ]

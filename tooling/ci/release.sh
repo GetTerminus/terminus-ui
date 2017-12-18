@@ -21,5 +21,5 @@ PACKAGE_VERSION=$(cat dist/package.json \
 echo "PACKAGE VERSION: " $PACKAGE_VERSION
 
 # Publish
-npm publish dist
+#npm publish dist
 
