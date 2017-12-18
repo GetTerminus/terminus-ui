@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
     <ts-datepicker
       [dateFilter]="myFilter"
       [startingView]="startView"
-      [initialDate]="myDate"
+      initialDate="{{ myDate }}"
       [isDisabled]="isDisabled"
+      maxDate="{{ maxDate }}"
+      minDate="{{ minDate }}"
       (selected)="dateSelected($event)"
     ></ts-datepicker>
   `,
@@ -15,8 +17,9 @@ import { Component } from '@angular/core';
 export class DatepickerComponent {
   isDisabled = false;
   startView = 'month';
-
-  myDate = new Date(2017, 4, 1);
+  minDate = new Date(2017, 4, 2);
+  myDate = new Date(2017, 4, 14);
+  maxDate = new Date(2017, 4, 20);
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
