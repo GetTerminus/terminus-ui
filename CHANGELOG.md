@@ -1,3 +1,11 @@
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/GetTerminus/terminus-ui/compare/v1.1.3...v1.1.4) (2017-12-18)
+
+
+### Bug Fixes
+
+* **CI:** fake to trigger build ([c915a51](https://github.com/GetTerminus/terminus-ui/commit/c915a51))
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/GetTerminus/terminus-ui/compare/v1.1.1...v1.1.2) (2017-12-18)
 
