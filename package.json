@@ -105,8 +105,7 @@
         "assets": ["dist"]
       },
       {
-        "path": "@semantic-release/github",
-        "assets": ["dist"]
+        "path": "@semantic-release/github"
       }
     ]
   },
