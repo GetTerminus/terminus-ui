@@ -241,13 +241,13 @@
                                     <a href="./injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="./injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="./injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="./injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="./injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="./injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="./injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -717,9 +717,9 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <h2 id="available-features">Available Features</h2>
 <blockquote>
 <ul>
-<li>:x:: not started</li>
-<li>:hammer:: started</li>
-<li>:white_check_mark:: available</li>
+<li>:x: not started</li>
+<li>:hammer: started</li>
+<li>:white_check_mark: available</li>
 </ul>
 </blockquote>
 <h3 id="components">Components</h3>
@@ -796,7 +796,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>datatable</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center">:hammer:</td>
 <td></td>
 </tr>
 <tr>
@@ -910,7 +910,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>radio</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center">:white_check_mark:</td>
 <td></td>
 </tr>
 <tr>
@@ -955,18 +955,23 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </thead>
 <tbody>
 <tr>
-<td>Window</td>
-<td>Provide access to the native window object</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
 <td>Document</td>
 <td>Provide access to the native document object</td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 <tr>
+<td>Spacing</td>
+<td>Expose custom spacing sizes via a service</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
 <td>Validators</td>
 <td>Expose custom validation methods for reactive forms</td>
+<td style="text-align:center">:white_check_mark:</td>
+</tr>
+<tr>
+<td>Window</td>
+<td>Provide access to the native window object</td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 </tbody>
@@ -982,13 +987,13 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </thead>
 <tbody>
 <tr>
-<td>Types</td>
-<td>Provide TypeScript types for various parameters</td>
+<td>Interfaces</td>
+<td>Provide TypeScript interfaces for various objects</td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 <tr>
-<td>Interfaces</td>
-<td>Provide TypeScript interfaces for various objects</td>
+<td>Types</td>
+<td>Provide TypeScript types for various parameters</td>
 <td style="text-align:center">:white_check_mark:</td>
 </tr>
 </tbody>
@@ -1057,7 +1062,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </table>
 <h2 id="installation">Installation</h2>
 <p>Install the library and all required dependencies:</p>
-<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material angular2-ladda hammerjs</code></pre><h2 id="global-styles">Global Styles</h2>
+<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material angular2-ladda hammerjs --exact</code></pre><h2 id="global-styles">Global Styles</h2>
 <p>To use the global styles, import the CSS file into your stylesheets:</p>
 <pre class="line-numbers"><code class="language-scss">&#64;import &#39;&#64;terminus/ui/terminus-ui.css&#39;</code></pre><h2 id="development-workflow">Development Workflow</h2>
 <p>View the <a href="https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow">wiki page</a>.</p>

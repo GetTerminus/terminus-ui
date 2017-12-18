@@ -5,8 +5,8 @@
     [(ngModel)]="value"
     [matDatepicker]="picker"
     placeholder="{{ inputPlaceholder }}"
-    [min]="minDate"
-    [max]="maxDate"
+    [min]="_minDate"
+    [max]="_maxDate"
     [matDatepickerFilter]="dateFilter"
     [disabled]="isDisabled"
   >

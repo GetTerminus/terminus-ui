@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -781,6 +781,18 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#_initialDate">_initialDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_maxDate">_maxDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_minDate">_minDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#value">value</a>
                             </li>
                         </ul>
@@ -794,6 +806,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertISOToString">convertISOToString</a>
+                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#ngOnChanges">ngOnChanges</a>
@@ -851,6 +867,26 @@
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#maxDate">maxDate</a>
+                            </li>
+                            <li>
+                                <a href="#minDate">minDate</a>
+                            </li>
+                            <li>
+                                <a href="#initialDate">initialDate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -876,7 +912,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:65</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -891,15 +927,11 @@
                         <td class="col-md-10">
                             <div><p>Define a starting date for the datepicker</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:99</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -925,7 +957,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:71</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -951,7 +983,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:77</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -964,17 +996,13 @@
                             <code>maxDate</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the maximum date requirement</p>
+                            <div><p>Define the maximum date requirement and confirm it is a Date object</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:83</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -987,17 +1015,13 @@
                             <code>minDate</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define the minimum date requirement</p>
+                            <div><p>Define the minimum date requirement and confirm it is a Date object</p>
 </div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:91</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1023,7 +1047,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:107</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1048,7 +1072,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:113</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1062,6 +1086,81 @@
             <h3 id="methods">
                 Methods
             </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="convertISOToString"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                convertISOToString
+                                </b>
+                                <a href="#convertISOToString"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>convertISOToString(date: string | Date)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:144</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Convert an ISO string to a date if needed.</p>
+    <p>NOTE: When using 1 time bindings we are required to pass in ISO stringified dates. Adding this
+    method to our setters adds support for either version</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>date</td>
+                                                      <td>
+                                                              <code>string | Date</code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><ul>
+    <li>The time chosen</li>
+    </ul>
+    </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1086,7 +1185,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:119</a></div>
                                 </td>
                             </tr>
     
@@ -1156,7 +1255,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:130</a></div>
                                 </td>
                             </tr>
     
@@ -1180,6 +1279,129 @@
             <h3 id="inputs">
                 Properties
             </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_initialDate"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                _initialDate
+                                </b>
+                                <a href="#_initialDate"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_initialDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:44</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Expose the initial date to the template</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_maxDate"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                _maxDate
+                                </b>
+                                <a href="#_maxDate"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_maxDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:49</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Expose the max date to the template</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_minDate"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                _minDate
+                                </b>
+                                <a href="#_minDate"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_minDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:54</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Expose the min date to the template</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1208,7 +1430,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:59</a></div>
                                 </td>
                             </tr>
     
@@ -1223,6 +1445,185 @@
             </table>
     </section>
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="maxDate"></a>
+                            <span class="name"><b>maxDate</b><a href="#maxDate"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>maxDate(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:83</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define the maximum date requirement and confirm it is a Date object</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="minDate"></a>
+                            <span class="name"><b>minDate</b><a href="#minDate"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>minDate(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:91</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define the minimum date requirement and confirm it is a Date object</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="initialDate"></a>
+                            <span class="name"><b>initialDate</b><a href="#initialDate"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>initialDate(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:99</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a starting date for the datepicker</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
@@ -1268,6 +1669,21 @@
 })
 export class TsDatepickerComponent implements OnChanges {
   /**
+   * Expose the initial date to the template
+   */
+  public _initialDate: Date;
+
+  /**
+   * Expose the max date to the template
+   */
+  public _maxDate: Date;
+
+  /**
+   * Expose the min date to the template
+   */
+  public _minDate: Date;
+
+  /**
    * Store the value of the input
    */
   public value: any;
@@ -1291,22 +1707,28 @@ export class TsDatepickerComponent implements OnChanges {
   public isDisabled: boolean &#x3D; false;
 
   /**
-   * Define the maximum date requirement
+   * Define the maximum date requirement and confirm it is a Date object
    */
   @Input()
-  public maxDate: Date;
+  public set maxDate(value: string | Date) {
+    this._maxDate &#x3D; this.convertISOToString(value);
+  }
 
   /**
-   * Define the minimum date requirement
+   * Define the minimum date requirement and confirm it is a Date object
    */
   @Input()
-  public minDate: Date;
+  public set minDate(value: string | Date) {
+    this._minDate &#x3D; this.convertISOToString(value);
+  }
 
   /**
    * Define a starting date for the datepicker
    */
   @Input()
-  public initialDate: Date;
+  public set initialDate(value: string | Date) {
+    this._initialDate &#x3D; this.convertISOToString(value);
+  }
 
   /**
    * Define the starting view of the datepicker
@@ -1326,8 +1748,8 @@ export class TsDatepickerComponent implements OnChanges {
    */
   public ngOnChanges(changes: SimpleChanges): void {
     // istanbul ignore else
-    if (this.initialDate) {
-      this.value &#x3D; this.initialDate;
+    if (this._initialDate) {
+      this.value &#x3D; this._initialDate;
     }
   }
 
@@ -1338,6 +1760,26 @@ export class TsDatepickerComponent implements OnChanges {
   public resetValue(): void {
     this.value &#x3D; null;
   }
+
+
+  /**
+   * Convert an ISO string to a date if needed.
+   *
+   * NOTE: When using 1 time bindings we are required to pass in ISO stringified dates. Adding this
+   * method to our setters adds support for either version
+   *
+   * @param date - The time chosen
+   * @return A date object
+   */
+  private convertISOToString(date: string | Date) {
+    // If value is an ISO string, convert to a date
+    if (!(date instanceof Date)) {
+      return new Date(date);
+    } else {
+      return date;
+    }
+  }
+
 }
 </code></pre>
     </div>
@@ -1350,8 +1792,8 @@ export class TsDatepickerComponent implements OnChanges {
     [(ngModel)]&#x3D;&quot;value&quot;
     [matDatepicker]&#x3D;&quot;picker&quot;
     placeholder&#x3D;&quot;{{ inputPlaceholder }}&quot;
-    [min]&#x3D;&quot;minDate&quot;
-    [max]&#x3D;&quot;maxDate&quot;
+    [min]&#x3D;&quot;_minDate&quot;
+    [max]&#x3D;&quot;_maxDate&quot;
     [matDatepickerFilter]&#x3D;&quot;dateFilter&quot;
     [disabled]&#x3D;&quot;isDisabled&quot;
   &gt;
@@ -1400,7 +1842,7 @@ export class TsDatepickerComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field class="c-datepicker c-datepicker qa-datepicker">  <input    class="qa-datepicker-input"    matInput    [(ngModel)]="value"    [matDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="minDate"    [max]="maxDate"    [matDatepickerFilter]="dateFilter"    [disabled]="isDisabled"  >  <mat-datepicker-toggle    class="qa-datepicker-toggle"    matSuffix    [for]="picker"  ></mat-datepicker-toggle></mat-form-field><mat-datepicker  class="qa-datepicker-calendar"  #picker  [startView]="startingView"  [startAt]="initialDate"  (selectedChanged)="selected.emit($event)"></mat-datepicker></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field class="c-datepicker c-datepicker qa-datepicker">  <input    class="qa-datepicker-input"    matInput    [(ngModel)]="value"    [matDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="_minDate"    [max]="_maxDate"    [matDatepickerFilter]="dateFilter"    [disabled]="isDisabled"  >  <mat-datepicker-toggle    class="qa-datepicker-toggle"    matSuffix    [for]="picker"  ></mat-datepicker-toggle></mat-form-field><mat-datepicker  class="qa-datepicker-calendar"  #picker  [startView]="startingView"  [startAt]="initialDate"  (selectedChanged)="selected.emit($event)"></mat-datepicker></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDatepickerComponent'};

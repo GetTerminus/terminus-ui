@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -1261,7 +1261,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The selected date</p>
+                                                      <td><ul>
+    <li>The selected date</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1332,7 +1334,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The selected date</p>
+                                                      <td><ul>
+    <li>The selected date</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1694,7 +1698,7 @@ export class TsDateRangeComponent {
   /**
    * Getter to return the date range as an object
    *
-   * @return {Object} dateRange The current date range
+   * @return The current date range
    */
   private get dateRange(): any {
     return {
@@ -1805,7 +1809,7 @@ export class TsDateRangeComponent {
   /**
    * Emit the selected start date and date range
    *
-   * @param {date} date The selected date
+   * @param date - The selected date
    */
   public startDateSelected(date: Date): void {
     if (date) {
@@ -1834,7 +1838,7 @@ export class TsDateRangeComponent {
   /**
    * Emit the selected end date and date range
    *
-   * @param {date} date The selected date
+   * @param date - The selected date
    */
   public endDateSelected(date: Date): void {
     if (date) {
