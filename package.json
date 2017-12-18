@@ -102,8 +102,11 @@
     "publish": [
       {
         "path": "@semantic-release/npm",
-        "assets": ["dist"],
-        "npmPublish": false
+        "assets": ["dist"]
+      },
+      {
+        "path": "@semantic-release/github",
+        "assets": ["dist"]
       }
     ]
   },
