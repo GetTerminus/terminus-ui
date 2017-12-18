@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -1178,7 +1178,9 @@ password&quot; link</li>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The name of the form control</p>
+                                                      <td><ul>
+    <li>The name of the form control</li>
+    </ul>
     </td>
                                                     </tr>
                                                     <tr>
@@ -1188,7 +1190,9 @@ password&quot; link</li>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The primary form group</p>
+                                                      <td><ul>
+    <li>The primary form group</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1260,7 +1264,9 @@ password&quot; link</li>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The inputs that have changed</p>
+                                                      <td><ul>
+    <li>The inputs that have changed</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1783,7 +1789,7 @@ export class TsLoginFormComponent implements OnChanges {
    * Trigger a form reset if &#x60;triggerFormReset&#x60; is changed to TRUE
    * (explanation at &#x60;resetForm&#x60; method)
    *
-   * @param {Object} changes The inputs that have changed
+   * @param changes - The inputs that have changed
    */
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty(&#x27;triggerFormReset&#x27;) &amp;&amp; changes.triggerFormReset.currentValue) {
@@ -1794,9 +1800,9 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Helper method to get a form control
    *
-   * @param {String} name The name of the form control
-   * @param {FormGroup} form The primary form group
-   * @return {AbstractControl} control The requested form control
+   * @param name - The name of the form control
+   * @param form - The primary form group
+   * @return The requested form control
    */
   public getControl(name: string, form: FormGroup &#x3D; this.loginForm): AbstractControl {
     return form.get(name)
@@ -1813,7 +1819,7 @@ export class TsLoginFormComponent implements OnChanges {
    * form from the dom and re-adding it. This method won&#x27;t break if the Material team changes any
    * validation classes but it may be more performant to simply remove the classes.
    */
-  private resetForm() {
+  private resetForm(): void {
     // Destroy the form
     this.showForm &#x3D; false;
 

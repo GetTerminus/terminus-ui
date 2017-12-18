@@ -22,11 +22,11 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsValidationMessagesModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="35,-70 35,-268 461,-268 461,-70 35,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="26,-70 26,-268 470,-268 470,-70 26,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsValidationMessagesModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="229,-78 229,-130 453,-130 453,-78 229,-78"/>
+<polygon fill="none" stroke="#000000" points="238,-78 238,-130 462,-130 462,-78 238,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsValidationMessagesModule_exports</title>
@@ -34,13 +34,13 @@
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_TsValidationMessagesModule_providers</title>
-<polygon fill="none" stroke="#000000" points="43,-78 43,-130 221,-130 221,-78 43,-78"/>
+<polygon fill="none" stroke="#000000" points="34,-78 34,-130 230,-130 230,-78 34,-78"/>
 </g>
 <!-- TsValidationMessagesComponent -->
 <g id="node1" class="node">
 <title>TsValidationMessagesComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="445.3501,-122 236.6499,-122 236.6499,-86 445.3501,-86 445.3501,-122"/>
-<text text-anchor="middle" x="341" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="454.3501,-122 245.6499,-122 245.6499,-86 454.3501,-86 454.3501,-122"/>
+<text text-anchor="middle" x="350" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesComponent</text>
 </g>
 <!-- TsValidationMessagesModule -->
 <g id="node2" class="node">
@@ -51,8 +51,8 @@
 <!-- TsValidationMessagesComponent&#45;&gt;TsValidationMessagesModule -->
 <g id="edge1" class="edge">
 <title>TsValidationMessagesComponent&#45;&gt;TsValidationMessagesModule</title>
-<path fill="none" stroke="#000000" d="M289.0544,-122.1061C289.0544,-122.1061 289.0544,-140.991 289.0544,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="285.5544,-140.9909 289.0544,-150.991 292.5544,-140.991 285.5544,-140.9909"/>
+<path fill="none" stroke="#000000" d="M293.5544,-122.1061C293.5544,-122.1061 293.5544,-140.991 293.5544,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="290.0544,-140.9909 293.5544,-150.991 297.0544,-140.991 290.0544,-140.9909"/>
 </g>
 <!-- TsValidationMessagesComponent  -->
 <g id="node3" class="node">
@@ -66,17 +66,17 @@
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
 </g>
-<!-- ValidationService -->
+<!-- TsValidationService -->
 <g id="node4" class="node">
-<title>ValidationService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="132" cy="-104" rx="80.5142" ry="18"/>
-<text text-anchor="middle" x="132" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValidationService</text>
+<title>TsValidationService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="132" cy="-104" rx="90.3236" ry="18"/>
+<text text-anchor="middle" x="132" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationService</text>
 </g>
-<!-- ValidationService&#45;&gt;TsValidationMessagesModule -->
+<!-- TsValidationService&#45;&gt;TsValidationMessagesModule -->
 <g id="edge3" class="edge">
-<title>ValidationService&#45;&gt;TsValidationMessagesModule</title>
-<path fill="none" stroke="#000000" d="M183.6115,-118.104C183.6115,-118.104 183.6115,-140.7209 183.6115,-140.7209"/>
-<polygon fill="#000000" stroke="#000000" points="180.1116,-140.7209 183.6115,-150.7209 187.1116,-140.7209 180.1116,-140.7209"/>
+<title>TsValidationService&#45;&gt;TsValidationMessagesModule</title>
+<path fill="none" stroke="#000000" d="M188.439,-118.104C188.439,-118.104 188.439,-140.7209 188.439,-140.7209"/>
+<polygon fill="#000000" stroke="#000000" points="184.9391,-140.7209 188.439,-150.7209 191.9391,-140.7209 184.9391,-140.7209"/>
 </g>
 </g>
 </svg>

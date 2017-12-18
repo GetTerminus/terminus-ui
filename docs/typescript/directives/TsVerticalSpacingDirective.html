@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -887,7 +887,9 @@
                                                                   </td>
                                                                   <td>
                                                                   </td>
-                                                                  <td><p>The spacing value passed in.</p>
+                                                                  <td><ul>
+            <li>The spacing value passed in.</li>
+            </ul>
             </td>
                                                                 </tr>
                                                         </tbody>
@@ -938,7 +940,7 @@ export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value
    *
-   * @param {String} value The spacing value passed in.
+   * @param value - The spacing value passed in.
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
