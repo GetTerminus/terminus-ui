@@ -48,8 +48,12 @@ jobs:
           command: yarn run build
 
       - run:
+          name: Release Test
+          command: yarn run semantic-release --dry-run
+
+      - run:
           name: Release
-          command: tooling/ci/publish.sh
+          command: yarn run semantic-release --publish dist
 
       - store_artifacts:
           path: coverage/
