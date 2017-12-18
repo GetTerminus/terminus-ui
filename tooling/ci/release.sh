@@ -9,6 +9,8 @@
 
 . ~/.bashrc
 
+cd dist
+
 # Prep the release
-yarn run semantic-release
+./../node_modules/.bin/semantic-release
 
