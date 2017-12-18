@@ -261,6 +261,14 @@
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.0.10.tgz#b27b49a1a5482dc6c1c93fb3c20371c95874938b"
 
+"@semantic-release/changelog@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-1.0.0.tgz#df918410ec04c72fed8328b8f583f4a2667b7584"
+  dependencies:
+    "@semantic-release/error" "^2.1.0"
+    fs-extra "^5.0.0"
+    lodash "^4.17.4"
+
 "@semantic-release/commit-analyzer@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-5.0.0.tgz#767a2055b5cd0a67421b1d504f3ca7db97055c42"
@@ -284,7 +292,7 @@
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-2.1.0.tgz#44771f676f5b148da309111285a97901aa95a6e0"
 
-"@semantic-release/github@^2.0.0":
+"@semantic-release/github@2.2.3", "@semantic-release/github@^2.0.0":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-2.2.3.tgz#2323d6c9f6ba602fea1eda4f7efdc8ec96333ac0"
   dependencies:
@@ -5642,12 +5650,6 @@ known-css-properties@^0.3.0:
 known-css-properties@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.4.1.tgz#baaaf704e5f8a5f10e0e221212aae3ea738ea372"
-
-last-release-git@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/last-release-git/-/last-release-git-0.0.3.tgz#7c82611022b134a87415981a936e26c521f2ef91"
-  dependencies:
-    semver "^5.3.0"
 
 last-run@^1.1.0:
   version "1.1.1"
