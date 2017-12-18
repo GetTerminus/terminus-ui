@@ -9,9 +9,6 @@
 
 . ~/.bashrc
 
-# Move to dist
-cd dist/
-
 # Prep the release
 yarn run semantic-release
 
