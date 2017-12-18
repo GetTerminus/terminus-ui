@@ -97,16 +97,22 @@
     }
   },
   "release": {
-    "verifyConditions": "condition-circle",
-    "branch": "master",
+    "verifyConditions": [
+      "condition-circle",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/npm",
     "publish": [
+      "@semantic-release/changelog",
       {
         "path": "@semantic-release/npm",
-        "assets": ["dist"]
+        "assets": ["dist/**/*.{js|css|scss|ts|map}"]
       },
-      {
-        "path": "@semantic-release/github"
-      }
+      "@semantic-release/git",
+      "@semantic-release/github"
     ]
   },
   "dependencies": {
