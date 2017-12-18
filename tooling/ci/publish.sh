@@ -17,13 +17,21 @@ yarn run semantic-release-pre || {
   exit 0;
 }
 
+PACKAGE_VERSION=$(cat dist/package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g')
+
+echo $PACKAGE_VERSION
+
 echo "BUILD"
 yarn run build
 
 # Currently, yarn publish requires user interaction:
 # https://github.com/yarnpkg/yarn/issues/610#issuecomment-298116487
 echo "RUN: npm publish"
-npm publish dist/
+npm publish
 
 echo "RUN: semantic-release post"
 yarn run semantic-release-post || {
