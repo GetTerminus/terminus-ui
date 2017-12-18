@@ -134,9 +134,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/flex-layout@2.0.0-beta.10-4905443":
-  version "2.0.0-beta.10-4905443"
-  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-beta.10-4905443.tgz#c62915c8f9a379d1da4800c12e3751e32cc7f855"
+"@angular/flex-layout@2.0.0-beta.12":
+  version "2.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-beta.12.tgz#80970dc1d60f27fa41537659926f3238f759f343"
   dependencies:
     tslib "^1.7.1"
 
@@ -282,7 +282,7 @@
     semver "^5.0.3"
     travis-deploy-once "^3.0.0"
 
-"@semantic-release/error@^2.0.0":
+"@semantic-release/error@2.1.0", "@semantic-release/error@^2.0.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-2.1.0.tgz#44771f676f5b148da309111285a97901aa95a6e0"
 
@@ -1812,12 +1812,13 @@ concurrently@3.5.1:
     supports-color "^3.2.3"
     tree-kill "^1.1.0"
 
-condition-circle@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/condition-circle/-/condition-circle-1.5.0.tgz#0bbf3a716441bdaada159684ab88863d1ec0e64d"
+condition-circle@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/condition-circle/-/condition-circle-2.0.1.tgz#39cfd9eaa37985b5d7c5b5c538bf872f016b743c"
   dependencies:
-    cross-spawn "4.0.0"
-    debug "2.2.0"
+    "@semantic-release/error" "2.1.0"
+    cross-spawn "5.1.0"
+    debug "3.1.0"
     safe-env "1.2.0"
 
 config-chain@~1.1.8:
@@ -2093,11 +2094,12 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-spawn@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.0.tgz#8254774ab4786b8c5b3cf4dfba66ce563932c252"
+cross-spawn@5.1.0, cross-spawn@^5.0.1, cross-spawn@~5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
     lru-cache "^4.0.1"
+    shebang-command "^1.2.0"
     which "^1.2.9"
 
 cross-spawn@^3.0.0:
@@ -2105,14 +2107,6 @@ cross-spawn@^3.0.0:
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
   dependencies:
     lru-cache "^4.0.1"
-    which "^1.2.9"
-
-cross-spawn@^5.0.1, cross-spawn@~5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
-  dependencies:
-    lru-cache "^4.0.1"
-    shebang-command "^1.2.0"
     which "^1.2.9"
 
 crypt@~0.0.1:
@@ -2363,7 +2357,7 @@ debug-fabulous@>=0.1.1:
     memoizee "0.4.X"
     object-assign "4.X"
 
-debug@*, debug@3.X, debug@^3.0.0, debug@^3.1.0:
+debug@*, debug@3.1.0, debug@3.X, debug@^3.0.0, debug@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
