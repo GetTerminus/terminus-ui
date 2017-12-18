@@ -100,7 +100,12 @@
   "release": {
     "verifyConditions": "condition-circle",
     "branch": "master",
-    "publish": ["@semantic-release/npm"]
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      }
+    ]
   },
   "dependencies": {
     "@angular/animations": "5.1.1",
