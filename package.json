@@ -107,7 +107,12 @@
     "getLastRelease": "@semantic-release/npm",
     "publish": [
       "@semantic-release/changelog",
-      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/npm",
+        "assets": [
+          "dist/**/*.{js|css|scss|ts|map}"
+        ]
+      },
       "@semantic-release/git",
       "@semantic-release/github"
     ]
