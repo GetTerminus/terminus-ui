@@ -10,7 +10,7 @@
 . ~/.bashrc
 
 # Prep the release
-yarn run semantic-release --dry-run
+yarn run semantic-release
 
 # Publish
 npm publish dist
