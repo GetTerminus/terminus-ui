@@ -91,7 +91,7 @@ export class InputComponent {
   ) {}
 
   submit(v: any) {
-    console.log('Submit!: ', v);
+    console.log('Demo submit!: ', v);
   }
 
   getControl(name: string): AbstractControl {
