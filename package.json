@@ -71,7 +71,8 @@
     "cm": "./node_modules/.bin/git-cz",
     "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
     "precommit": "lint-staged",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "src/lib/**/*.spec.ts": [
