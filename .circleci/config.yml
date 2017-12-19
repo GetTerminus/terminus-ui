@@ -31,17 +31,17 @@ jobs:
           paths:
             - ./node_modules
 
-      - run:
-          name: Lint Styles
-          command: tooling/ci/lint-scss.sh
+      #- run:
+          #name: Lint Styles
+          #command: tooling/ci/lint-scss.sh
 
-      - run:
-          name: Lint TypeScript
-          command: tooling/ci/lint-typescript.sh
+      #- run:
+          #name: Lint TypeScript
+          #command: tooling/ci/lint-typescript.sh
 
-      - run:
-          name: Run Tests
-          command: tooling/ci/test-unit.sh
+      #- run:
+          #name: Run Tests
+          #command: tooling/ci/test-unit.sh
 
       - run:
           name: Build Project
@@ -49,7 +49,7 @@ jobs:
 
       - run:
           name: Release
-          command: cd build && ../node_modules/.bin/semantic-release
+          command: cd dist && ../node_modules/.bin/semantic-release
 
       - store_artifacts:
           path: coverage/
