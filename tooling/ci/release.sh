@@ -10,6 +10,5 @@
 . ~/.bashrc
 
 # Prep the release
-yarn run semantic-release
-
+cd dist && semantic-release
 

@@ -100,21 +100,14 @@
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
-      "semantic-release-npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
+      "@semantic-release/npm",
+      "@semantic-release/git"
     ],
     "getLastRelease": "semantic-release-npm",
     "publish": [
       "@semantic-release/changelog",
-      {
-        "path": "semantic-release-npm",
-        "assets": [
-          "dist/**/*.{js|css|scss|ts|map}"
-        ]
-      },
-      "@semantic-release/git",
-      "@semantic-release/github"
+      "@semantic-release/npm",
+      "@semantic-release/git"
     ]
   },
   "dependencies": {
