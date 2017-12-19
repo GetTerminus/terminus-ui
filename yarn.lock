@@ -308,7 +308,7 @@
     p-reduce "^1.0.0"
     semver "^5.4.1"
 
-"@semantic-release/github@^2.0.0":
+"@semantic-release/github@2.2.3", "@semantic-release/github@^2.0.0":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-2.2.3.tgz#2323d6c9f6ba602fea1eda4f7efdc8ec96333ac0"
   dependencies:

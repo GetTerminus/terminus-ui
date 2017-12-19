@@ -102,13 +102,15 @@
       "condition-circle",
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/git",
+      "@semantic-release/github"
     ],
     "getLastRelease": "@semantic-release/npm",
     "publish": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/git",
+      "@semantic-release/github"
     ]
   },
   "dependencies": {
@@ -131,6 +133,7 @@
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/changelog": "1.0.0",
     "@semantic-release/git": "2.0.0",
+    "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.3.1",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.0",
