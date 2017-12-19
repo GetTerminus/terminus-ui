@@ -9,8 +9,8 @@
 
 . ~/.bashrc
 
-sudo npm install -g semantic-release-cli
+npm install -g semantic-release
 
 # Prep the release
-cd dist && semantic-release
+cd dist && npm run semantic-release
 
