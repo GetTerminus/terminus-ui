@@ -261,14 +261,6 @@
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.0.10.tgz#b27b49a1a5482dc6c1c93fb3c20371c95874938b"
 
-"@semantic-release/changelog@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-1.0.0.tgz#df918410ec04c72fed8328b8f583f4a2667b7584"
-  dependencies:
-    "@semantic-release/error" "^2.1.0"
-    fs-extra "^5.0.0"
-    lodash "^4.17.4"
-
 "@semantic-release/commit-analyzer@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-5.0.0.tgz#767a2055b5cd0a67421b1d504f3ca7db97055c42"
@@ -308,7 +300,7 @@
     p-reduce "^1.0.0"
     semver "^5.4.1"
 
-"@semantic-release/github@2.2.3", "@semantic-release/github@^2.0.0":
+"@semantic-release/github@^2.0.0":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-2.2.3.tgz#2323d6c9f6ba602fea1eda4f7efdc8ec96333ac0"
   dependencies:
