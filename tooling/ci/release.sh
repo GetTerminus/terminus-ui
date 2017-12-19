@@ -10,5 +10,5 @@
 . ~/.bashrc
 
 # Prep the release
-cd dist && npm run semantic-release
+npm run semantic-release
 
