@@ -6,7 +6,24 @@ import {
   EventEmitter,
   ViewChild,
   SimpleChanges,
+  forwardRef,
 } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+
+
+/**
+ * Custom control value accessor for our component.
+ * This allows our custom components to access the underlying form validation via our base class
+ */
+/* tslint:disable:no-use-before-declare */
+export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => TsDatepickerComponent),
+  multi: true,
+};
+/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -17,15 +34,19 @@ import {
  * - `qa-datepicker-input`: The input element which contains the chosen date
  * - `qa-datepicker-toggle`: The button which displays the calendar when clicked
  * - `qa-datepicker-calendar`: The calendar control used for picking a date
+ * - `qa-datepicker-validation-messages`: The validation messages container
  *
  * @example
  * <ts-datepicker
+ *              formControlName="date"
+ *              [formControl]="yourHelperToGetFormControl('date')"
  *              [(ngModel)]="myModel"
  *              [dateFilter]="myDateFilter"
  *              inputPlaceholder="Set a date"
  *              maxDate="{{ new Date(1990, 1, 1) }}"
  *              minDate="{{ new Date(1990, 1, 1) }}"
  *              startingView="year"
+ *              tabIndex="{{ '2' }}"
  *              initialDate="{{ new Date(1990, 1, 1) }}"
  *              (selected)="changeSelected($event)"
  * ></ts-datepicker>
@@ -36,8 +57,9 @@ import {
   selector: 'ts-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
+  providers: [CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR],
 })
-export class TsDatepickerComponent implements OnChanges {
+export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnChanges {
   /**
    * Expose the initial date to the template
    */
@@ -105,6 +127,18 @@ export class TsDatepickerComponent implements OnChanges {
    */
   @Input()
   public startingView: 'month' | 'year' = 'month';
+
+  /**
+   * Define the tabindex for the input
+   */
+  @Input()
+  public tabIndex: number = 0;
+
+  /**
+   * Define if validation messages should be shown immediately or on blur
+   */
+  @Input()
+  public validateOnChange: boolean = false;
 
   /**
    * Define an event emitter to alert consumers that a date was selected
