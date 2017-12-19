@@ -100,11 +100,13 @@
   "release": {
     "verifyConditions": [
       "condition-circle",
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
     "getLastRelease": "@semantic-release/npm",
     "publish": [
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git"
     ]
@@ -127,6 +129,7 @@
     "@angular/http": "5.1.1",
     "@angular/platform-browser-dynamic": "5.1.1",
     "@compodoc/compodoc": "1.0.5",
+    "@semantic-release/changelog": "1.0.0",
     "@semantic-release/git": "2.0.0",
     "@semantic-release/npm": "2.3.1",
     "@types/jasmine": "2.8.2",
