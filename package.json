@@ -103,7 +103,7 @@
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
-    "getLastRelease": "semantic-release-npm",
+    "getLastRelease": "@semantic-release/npm",
     "publish": [
       "@semantic-release/npm",
       "@semantic-release/git"
