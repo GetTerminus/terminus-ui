@@ -51,7 +51,7 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
  *              (selected)="changeSelected($event)"
  * ></ts-datepicker>
  *
- * <example-url>https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-datepicker',

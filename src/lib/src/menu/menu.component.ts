@@ -40,7 +40,7 @@ import {
  *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
  *
- * <example-url>https://embed.plnkr.co/plunk/ZDPGxMuPoA2CAp35?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-menu',

@@ -28,7 +28,7 @@ import {
  *              color="warn"
  * >My link</ts-link>
  *
- * <example-url>https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-link',

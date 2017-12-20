@@ -40,7 +40,7 @@ import { TsWindowService } from './../services/window/window.service';
  *              (clickEvent)="myMethod($event)"
  * >Click Me!</ts-button>
  *
- * <example-url>https://embed.plnkr.co/plunk/W1t5Awrg7LLp4tyM?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-button',

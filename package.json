@@ -65,6 +65,8 @@
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
+    "//=> Section: Release": "",
+    "check:next-release": "cd dist/ && ../node_modules/.bin/semantic-release --dry-run",
     "//=> Section: Tooling": "",
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
@@ -109,7 +111,7 @@
       "@semantic-release/github"
     ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "@angular/animations": "5.1.1",
     "@angular/cdk": "5.0.1",
     "@angular/core": "5.1.1",
@@ -119,13 +121,20 @@
     "@angular/router": "5.1.1"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.0",
+    "@angular/animations": "5.1.1",
+    "@angular/cdk": "5.0.1",
+    "@angular/cli": "1.6.1",
     "@angular/common": "5.1.1",
     "@angular/compiler": "5.1.1",
     "@angular/compiler-cli": "5.1.1",
+    "@angular/core": "5.1.1",
     "@angular/flex-layout": "2.0.0-beta.12",
+    "@angular/forms": "5.1.1",
     "@angular/http": "5.1.1",
+    "@angular/material": "5.0.1",
+    "@angular/platform-browser": "5.1.1",
     "@angular/platform-browser-dynamic": "5.1.1",
+    "@angular/router": "5.1.1",
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.3.1",
