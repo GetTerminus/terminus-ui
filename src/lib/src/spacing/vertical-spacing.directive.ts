@@ -9,6 +9,26 @@ import { TsVerticalSpacingTypes } from './../utilities/types';
 
 
 /**
+ * An array of all accepted sizes.
+ *
+ * NOTE: This should reflect {@link TsVerticalSpacingTypes} exactly
+ */
+const ALLOWED_TYPES = [
+  'small--2',
+  'small--1',
+  'small--0',
+  'none',
+  'large--0',
+  'large--1',
+  'large--2',
+  'large--3',
+  'large--4',
+  'large--5',
+  'large--6',
+];
+
+
+/**
  * This is the vertical spacing UI directive. Accepts {@link TsVerticalSpacingTypes}
  *
  * @example
@@ -18,6 +38,10 @@ import { TsVerticalSpacingTypes } from './../utilities/types';
  *
  * <div
  *              tsVerticalSpacing="large--1x"
+ * ></div>
+ *
+ * <div
+ *              tsVerticalSpacing="none"
  * ></div>
  */
 @Directive({
@@ -31,9 +55,16 @@ export class TsVerticalSpacingDirective {
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
-    // TODO: Throw an error if the passed in value is not found in TsVerticalSpacingTypes
+    if (value && ALLOWED_TYPES.indexOf(value) < 0) {
+      const errorMessage =
+        `${value} is not a valid spacing definition for TsVerticalSpacingDirective.`;
+      const errorHelp = `See all TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11`;
+      throw new Error(`${errorMessage} ${errorHelp}`);
+    }
+
+    const isSpacingDefinition = value && value.length > 0;
     // Fall back to default class if no value is passed in
-    const className = (value && value.length > 0) ? `u-vertical-spacing__${value}` : `u-vertical-spacing`;
+    const className = isSpacingDefinition ? `u-vertical-spacing__${value}` : `u-vertical-spacing`;
 
     this.renderer.setElementClass(this.elementRef.nativeElement, className, true)
   }
