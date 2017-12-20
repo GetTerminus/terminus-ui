@@ -19,9 +19,9 @@ $g-spacing: $type__size--base !default;
  */
 $g-spacings: (
   small:  (
-    0: floor($g-spacing - 4),
-    1: floor($g-spacing / 2),
     2: floor($g-spacing / 4),
+    1: floor($g-spacing / 2),
+    0: floor($g-spacing - 4),
   ),
   default: (
     0: $g-spacing,
