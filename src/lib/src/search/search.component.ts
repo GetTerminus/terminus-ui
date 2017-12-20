@@ -47,7 +47,7 @@ import { debounce } from './../utilities/debounce';
  *              (cleared)="doSomething()"
  * ></ts-search>
  *
- * <example-url>https://embed.plnkr.co/plunk/12I7GkqB1tjeN7Q3?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-search',

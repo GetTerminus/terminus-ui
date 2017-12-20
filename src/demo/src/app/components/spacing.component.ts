@@ -10,6 +10,11 @@ import { Component } from '@angular/core';
     }
   `],
   template: `
+    <p>
+      Spacing added as 'margin-bottom' to each outlined div.
+    </p>
+
+
     <div tsVerticalSpacing="small--2">
       tsVerticalSpacing="small--2"
     </div>
@@ -54,9 +59,12 @@ import { Component } from '@angular/core';
       tsVerticalSpacing="large--6"
     </div>
 
+    <div tsVerticalSpacing="none">
+      tsVerticalSpacing="none"
+    </div>
+
     <div>
       Standard content...
-      <br>
     </div>
   `,
 })
