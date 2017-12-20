@@ -45,7 +45,7 @@ import { TsLoginFormResponse } from './../utilities/interfaces/login-form-respon
  *              (submit)="myMethod($event)"
  * ></ts-login-form>
  *
- * <example-url>https://embed.plnkr.co/plunk/rbPXFU8FtCUJv5HR?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-login-form',

@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -725,7 +725,7 @@
   (change)=&quot;myMethod($event)&quot;
 &gt;&lt;/ts-select&gt;
 
-&lt;example-url&gt;https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=preview&lt;/example-url&gt;</code></pre>
+&lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;</code></pre>
                 </div>
     </div>
 
@@ -1133,7 +1133,9 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The object representing the item</p>
+                                                      <td><ul>
+    <li>The object representing the item</li>
+    </ul>
     </td>
                                                     </tr>
                                                     <tr>
@@ -1144,7 +1146,9 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                                       <td>
                                                           true
                                                       </td>
-                                                      <td><p>The string representing the value key</p>
+                                                      <td><ul>
+    <li>The string representing the value key</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1187,7 +1191,7 @@ import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 
 
 /**
- * @private Custom control value accessor for our component
+ * Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
 /* tslint:disable:no-use-before-declare */
@@ -1220,7 +1224,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              (change)&#x3D;&quot;myMethod($event)&quot;
  * &gt;&lt;/ts-select&gt;
  *
- * &lt;example-url&gt;https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show&#x3D;preview&lt;/example-url&gt;
+ * &lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;
  */
 @Component({
   selector: &#x27;ts-select&#x27;,
@@ -1289,9 +1293,9 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   /**
    * Return the specified value from the object
    *
-   * @param {Object} item The object representing the item
-   * @param {String} valueKey The string representing the value key
-   * @return {String} value The value of the valueKey or the item itself
+   * @param item - The object representing the item
+   * @param valueKey - The string representing the value key
+   * @return The value of the valueKey or the item itself
    */
   public getValueKey(item: object, valueKey?: string): string {
     return valueKey ? item[valueKey] : item;
@@ -1348,7 +1352,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
         </div>
     </div>
     <div class="tab-pane fade" id="c-example">
-            <iframe src="https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show&#x3D;preview" style="height: 100vh; width: 100%;">
+            <iframe src="http://bnj.bz/3J0j450T2x2b" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
     </div>

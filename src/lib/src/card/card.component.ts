@@ -25,7 +25,7 @@ import {
  *              [utilityMenuTemplate]="myTemplate"
  * >Here is my card!</ts-card>
  *
- * <example-url>https://embed.plnkr.co/plunk/E5syTKxdLMmfBeS3?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-card',

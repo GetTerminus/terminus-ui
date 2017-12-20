@@ -51,6 +51,8 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 //  A button component
 //
 .ts-button {
+  display: inline-block;
+
   // Top level styles should be nested here
   .c-button {
     @include typography;

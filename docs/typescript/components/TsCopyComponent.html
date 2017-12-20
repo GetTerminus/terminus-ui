@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -710,7 +710,7 @@
   enableQuickCopy=&quot;true&quot;
 &gt;My text to copy!&lt;/ts-copy&gt;
 
-&lt;example-url&gt;https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show=preview&lt;/example-url&gt;</code></pre>
+&lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;</code></pre>
                 </div>
     </div>
 
@@ -995,7 +995,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/lib/src/copy/copy.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/lib/src/copy/copy.component.ts:154</a></div>
                                 </td>
                             </tr>
     
@@ -1023,7 +1023,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The text to copy</p>
+                                                      <td><ul>
+    <li>The text to copy</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1066,7 +1068,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/lib/src/copy/copy.component.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/lib/src/copy/copy.component.ts:144</a></div>
                                 </td>
                             </tr>
     
@@ -1108,7 +1110,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/src/copy/copy.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/copy/copy.component.ts:119</a></div>
                                 </td>
                             </tr>
     
@@ -1136,7 +1138,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The element whose text should be selected</p>
+                                                      <td><ul>
+    <li>The element whose text should be selected</li>
+    </ul>
     </td>
                                                     </tr>
                                                     <tr>
@@ -1146,7 +1150,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The flag defining if the selection has already been made</p>
+                                                      <td><ul>
+    <li>The flag defining if the selection has already been made</li>
+    </ul>
     </td>
                                                     </tr>
                                                     <tr>
@@ -1156,7 +1162,9 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td><p>The flag defining if the selection functionality should be disabled</p>
+                                                      <td><ul>
+    <li>The flag defining if the selection functionality should be disabled</li>
+    </ul>
     </td>
                                                     </tr>
                                             </tbody>
@@ -1535,7 +1543,7 @@ import { TsDocumentService } from &#x27;../services/document/document.service&#x
  *              enableQuickCopy&#x3D;&quot;true&quot;
  * &gt;My text to copy!&lt;/ts-copy&gt;
  *
- * &lt;example-url&gt;https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show&#x3D;preview&lt;/example-url&gt;
+ * &lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;
  */
 @Component({
   selector: &#x27;ts-copy&#x27;,
@@ -1600,7 +1608,7 @@ export class TsCopyComponent {
   /**
    * Return the inner text content
    *
-   * @return {String} textContent The text content of the inner &lt;ng-content&gt;
+   * @return The text content of the inner &lt;ng-content&gt;
    */
   public get textContent(): string {
     const hasInnerText &#x3D;
@@ -1617,9 +1625,10 @@ export class TsCopyComponent {
   /**
    * Select the text content of the passed in element
    *
-   * @param {Element} element The element whose text should be selected
-   * @param {Boolean} hasSelected The flag defining if the selection has already been made
-   * @param {Boolean} disabled The flag defining if the selection functionality should be disabled
+   * @param element - The element whose text should be selected
+   * @param hasSelected - The flag defining if the selection has already been made
+   * @param disabled - The flag defining if the selection functionality should be disabled
+   * @return The value representing if the copy was successful
    */
   public selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
     // If this functionality is disabled OR the text has already been selected,
@@ -1654,7 +1663,7 @@ export class TsCopyComponent {
   /**
    * Copy text to the user&#x27;s clipboard
    *
-   * @param {String} text The text to copy
+   * @param text - The text to copy
    */
   public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
@@ -1736,7 +1745,7 @@ export class TsCopyComponent {
         </div>
     </div>
     <div class="tab-pane fade" id="c-example">
-            <iframe src="https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show&#x3D;preview" style="height: 100vh; width: 100%;">
+            <iframe src="http://bnj.bz/3J0j450T2x2b" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
     </div>

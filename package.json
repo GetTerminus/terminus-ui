@@ -58,9 +58,6 @@
     "lint:scss": "./node_modules/.bin/stylelint 'src/lib/**/*.scss' --fix",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "markdown:test-links": "./node_modules/.bin/markdown-link-check ./README.md",
-    "//=> Section: Release": "",
-    "semantic-release-pre": "semantic-release pre",
-    "semantic-release-post": "semantic-release post",
     "//=> Section: Setup": "",
     "setup": "node ./tooling/setup.js",
     "//=> Section: Testing": "",
@@ -68,13 +65,16 @@
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
+    "//=> Section: Release": "",
+    "check:next-release": "cd dist/ && ../node_modules/.bin/semantic-release --dry-run",
     "//=> Section: Tooling": "",
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "cm": "./node_modules/.bin/git-cz",
     "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
     "precommit": "lint-staged",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "src/lib/**/*.spec.ts": [
@@ -100,11 +100,18 @@
     }
   },
   "release": {
-    "getLastRelease": "last-release-git",
-    "verifyConditions": "condition-circle",
-    "branch": "master"
+    "verifyConditions": [
+      "condition-circle",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/npm",
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "@angular/animations": "5.1.1",
     "@angular/cdk": "5.0.1",
     "@angular/core": "5.1.1",
@@ -114,14 +121,23 @@
     "@angular/router": "5.1.1"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.0",
+    "@angular/animations": "5.1.1",
+    "@angular/cdk": "5.0.1",
+    "@angular/cli": "1.6.1",
     "@angular/common": "5.1.1",
     "@angular/compiler": "5.1.1",
     "@angular/compiler-cli": "5.1.1",
-    "@angular/flex-layout": "2.0.0-beta.10-4905443",
+    "@angular/core": "5.1.1",
+    "@angular/flex-layout": "2.0.0-beta.12",
+    "@angular/forms": "5.1.1",
     "@angular/http": "5.1.1",
+    "@angular/material": "5.0.1",
+    "@angular/platform-browser": "5.1.1",
     "@angular/platform-browser-dynamic": "5.1.1",
+    "@angular/router": "5.1.1",
     "@compodoc/compodoc": "1.0.5",
+    "@semantic-release/github": "2.2.3",
+    "@semantic-release/npm": "2.3.1",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.1",
     "autoprefixer": "7.2.3",
@@ -130,7 +146,7 @@
     "codelyzer": "4.0.2",
     "commitizen": "2.9.6",
     "concurrently": "3.5.1",
-    "condition-circle": "1.5.0",
+    "condition-circle": "2.0.1",
     "core-js": "2.5.3",
     "cz-customizable": "5.2.0",
     "del": "3.0.0",
@@ -165,7 +181,6 @@
     "karma-sauce-launcher": "1.2.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-typescript": "3.0.8",
-    "last-release-git": "0.0.3",
     "lint-staged": "6.0.0",
     "lite-server": "2.3.0",
     "lodash.clonedeep": "4.5.0",
@@ -187,7 +202,8 @@
     "sass-lint": "1.12.1",
     "sass-module-importer": "1.4.0",
     "scssfmt": "1.0.2",
-    "semantic-release": "8.2.0",
+    "semantic-release": "11.0.2",
+    "semantic-release-npm": "0.0.5",
     "stylelint": "8.3.1",
     "stylelint-order": "0.8.0",
     "systemjs": "0.20.19",

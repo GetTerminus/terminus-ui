@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -700,6 +700,10 @@
 
 &lt;div
   tsVerticalSpacing=&quot;large--1x&quot;
+&gt;&lt;/div&gt;
+
+&lt;div
+  tsVerticalSpacing=&quot;none&quot;
 &gt;&lt;/div&gt;</code></pre>
                         </div>
             </div>
@@ -765,7 +769,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:39</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:70</a></div>
                                         </td>
                                     </tr>
             
@@ -828,7 +832,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:33</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:57</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -861,7 +865,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:33</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:57</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -887,7 +891,9 @@
                                                                   </td>
                                                                   <td>
                                                                   </td>
-                                                                  <td><p>The spacing value passed in.</p>
+                                                                  <td><ul>
+            <li>The spacing value passed in.</li>
+            </ul>
             </td>
                                                                 </tr>
                                                         </tbody>
@@ -920,6 +926,26 @@ import { TsVerticalSpacingTypes } from &#x27;./../utilities/types&#x27;;
 
 
 /**
+ * An array of all accepted sizes.
+ *
+ * NOTE: This should reflect {@link TsVerticalSpacingTypes} exactly
+ */
+const ALLOWED_TYPES &#x3D; [
+  &#x27;small--2&#x27;,
+  &#x27;small--1&#x27;,
+  &#x27;small--0&#x27;,
+  &#x27;none&#x27;,
+  &#x27;large--0&#x27;,
+  &#x27;large--1&#x27;,
+  &#x27;large--2&#x27;,
+  &#x27;large--3&#x27;,
+  &#x27;large--4&#x27;,
+  &#x27;large--5&#x27;,
+  &#x27;large--6&#x27;,
+];
+
+
+/**
  * This is the vertical spacing UI directive. Accepts {@link TsVerticalSpacingTypes}
  *
  * @example
@@ -930,6 +956,10 @@ import { TsVerticalSpacingTypes } from &#x27;./../utilities/types&#x27;;
  * &lt;div
  *              tsVerticalSpacing&#x3D;&quot;large--1x&quot;
  * &gt;&lt;/div&gt;
+ *
+ * &lt;div
+ *              tsVerticalSpacing&#x3D;&quot;none&quot;
+ * &gt;&lt;/div&gt;
  */
 @Directive({
   selector: &#x27;[tsVerticalSpacing]&#x27;,
@@ -938,13 +968,20 @@ export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value
    *
-   * @param {String} value The spacing value passed in.
+   * @param value - The spacing value passed in.
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
-    // TODO: Throw an error if the passed in value is not found in TsVerticalSpacingTypes
+    if (value &amp;&amp; ALLOWED_TYPES.indexOf(value) &lt; 0) {
+      const errorMessage &#x3D;
+        &#x60;${value} is not a valid spacing definition for TsVerticalSpacingDirective.&#x60;;
+      const errorHelp &#x3D; &#x60;See all TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11&#x60;;
+      throw new Error(&#x60;${errorMessage} ${errorHelp}&#x60;);
+    }
+
+    const isSpacingDefinition &#x3D; value &amp;&amp; value.length &gt; 0;
     // Fall back to default class if no value is passed in
-    const className &#x3D; (value &amp;&amp; value.length &gt; 0) ? &#x60;u-vertical-spacing__${value}&#x60; : &#x60;u-vertical-spacing&#x60;;
+    const className &#x3D; isSpacingDefinition ? &#x60;u-vertical-spacing__${value}&#x60; : &#x60;u-vertical-spacing&#x60;;
 
     this.renderer.setElementClass(this.elementRef.nativeElement, className, true)
   }
