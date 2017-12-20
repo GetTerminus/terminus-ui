@@ -128,7 +128,7 @@
     "@angular/platform-browser-dynamic": "5.1.1",
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
-    "@semantic-release/npm": "2.3.1",
+    "@semantic-release/npm": "2.3.2",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.0",
     "autoprefixer": "7.2.3",
