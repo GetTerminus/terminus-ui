@@ -1,4 +1,7 @@
-import { TsDatepickerComponent } from './datepicker.component';
+import {
+  TsDatepickerComponent,
+  CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR,
+} from './datepicker.component';
 
 
 describe(`TsDatepickerComponent`, () => {
@@ -10,6 +13,15 @@ describe(`TsDatepickerComponent`, () => {
 
   it(`should exist`, () => {
     expect(this.component).toBeTruthy();
+  });
+
+
+  describe(`Custom select control value accessor`, () => {
+
+    it(`should forward a reference to this component`, () => {
+      expect(CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsDatepickerComponent);
+    });
+
   });
 
 

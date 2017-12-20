@@ -2,25 +2,36 @@
   <input
     class="qa-datepicker-input"
     matInput
-    [(ngModel)]="value"
     [matDatepicker]="picker"
     placeholder="{{ inputPlaceholder }}"
     [min]="_minDate"
     [max]="_maxDate"
     [matDatepickerFilter]="dateFilter"
     [disabled]="isDisabled"
+    tabIndex="{{ tabIndex }}"
+    [(ngModel)]="value"
+    (blur)="onBlur()"
   >
   <mat-datepicker-toggle
     class="qa-datepicker-toggle"
     matSuffix
     [for]="picker"
   ></mat-datepicker-toggle>
+
+  <ts-validation-messages
+    class="qa-datepicker-validation-messages"
+    *ngIf="formControl"
+    [control]="formControl"
+    [validateOnChange]="validateOnChange"
+  ></ts-validation-messages>
 </mat-form-field>
+
 
 <mat-datepicker
   class="qa-datepicker-calendar"
   #picker
   [startView]="startingView"
   [startAt]="initialDate"
-  (selectedChanged)="selected.emit($event)"
+  (dateChange)="selected.emit($event)"
 ></mat-datepicker>
+
