@@ -109,7 +109,7 @@
       "@semantic-release/github"
     ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "@angular/animations": "5.1.1",
     "@angular/cdk": "5.0.1",
     "@angular/core": "5.1.1",
