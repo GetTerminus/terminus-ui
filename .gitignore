@@ -1,4 +1,5 @@
 dist/
+dist-temp/
 node_modules/
 out-tsc/
 debug.log

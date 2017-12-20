@@ -241,13 +241,13 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ValidationService.html" >ValidationService</a>
                                 </li>
                         </ul>
                     </li>
@@ -557,13 +557,13 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsWindowService.html" >TsWindowService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ValidationService.html" >ValidationService</a>
                                        </li>
                                </ul>
                            </li>
@@ -707,7 +707,7 @@ Provides a spinner overlay to demonstrate loading for async data.</p>
                         <div>
                             <pre class="line-numbers"><code class="language-html">&lt;div [tsLoadingOverlay]=&quot;true&quot;&gt;&lt;/div&gt;
 
-&lt;example-url&gt;https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show=preview&lt;/example-url&gt;</code></pre>
+&lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;</code></pre>
                         </div>
             </div>
 
@@ -1316,7 +1316,7 @@ import { TsLoadingOverlayComponent } from &#x27;./loading-overlay.component&#x27
  * @example
  * &lt;div [tsLoadingOverlay]&#x3D;&quot;true&quot;&gt;&lt;/div&gt;
  *
- * &lt;example-url&gt;https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show&#x3D;preview&lt;/example-url&gt;
+ * &lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;
  */
 @Directive({
   selector: &#x27;[tsLoadingOverlay]&#x27;,
@@ -1400,8 +1400,8 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Return the correct position
    *
-   * @param {String} position The current position value
-   * @return {String} position The correct position value
+   * @param position The current position value
+   * @return The correct position value
    */
   private determinePosition(position: string): string {
     return (position &#x3D;&#x3D;&#x3D; &#x27;relative&#x27; || position &#x3D;&#x3D;&#x3D; &#x27;absolute&#x27;) ? position : &#x27;relative&#x27;;
@@ -1412,7 +1412,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
     </div>
 
     <div class="tab-pane fade" id="c-example">
-            <iframe src="https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show&#x3D;preview" style="height: 100vh; width: 100%;">
+            <iframe src="http://bnj.bz/3J0j450T2x2b" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
     </div>

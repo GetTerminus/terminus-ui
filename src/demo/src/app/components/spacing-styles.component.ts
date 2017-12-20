@@ -5,6 +5,11 @@ import { Component } from '@angular/core';
   selector: 'demo-spacing-styles',
   styleUrls: ['./spacing-styles.component.scss'],
   template: `
+    <p>
+      Spacing added as 'padding' to each outlined div.
+    </p>
+
+
     <div class="box box--small--2">
       padding: spacing(small, 2)
     </div>

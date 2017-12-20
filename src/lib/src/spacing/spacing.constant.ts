@@ -4,6 +4,9 @@
  */
 const base = 16;
 
+/**
+ * JS representation of the values in _spacing.scss
+ */
 export const TS_SPACING = {
   small: [
     Math.floor(base - 4) + 'px',

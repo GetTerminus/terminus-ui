@@ -37,10 +37,21 @@ describe(`TsVerticalSpacingDirective`, () => {
 
 
     it(`should add the expected spacing class`, () => {
-      this.directive.tsVerticalSpacing = 'large--2x';
+      this.directive.tsVerticalSpacing = 'large--2';
 
       expect(this.directive.renderer.setElementClass.calls.argsFor(0)[1])
-        .toEqual(this.defaultClass + '__large--2x');
+        .toEqual(this.defaultClass + '__large--2');
+    });
+
+
+    it(`should throw an error if an unexpected value is passed in`, () => {
+      expect(() => {
+        try {
+          this.directive.tsVerticalSpacing = 'small--5';
+        } catch (e) {
+          throw new Error(e);
+        }
+      }).toThrowError();
     });
 
   });
