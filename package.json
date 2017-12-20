@@ -65,6 +65,8 @@
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
+    "//=> Section: Release": "",
+    "check:next-release": "cd dist/ && ../node_modules/.bin/semantic-release --dry-run",
     "//=> Section: Tooling": "",
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
