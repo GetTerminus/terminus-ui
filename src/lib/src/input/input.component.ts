@@ -66,7 +66,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
- * <example-url>https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-input',

@@ -697,10 +697,17 @@
 <li><code>qa-datepicker-input</code>: The input element which contains the chosen date</li>
 <li><code>qa-datepicker-toggle</code>: The button which displays the calendar when clicked</li>
 <li><code>qa-datepicker-calendar</code>: The calendar control used for picking a date</li>
+<li><code>qa-datepicker-validation-messages</code>: The validation messages container</li>
 </ul>
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../components/TsReactiveFormBaseComponent.html" target="_self" >TsReactiveFormBaseComponent</a></code>
+    </p>
 
     <p class="comment">
         <h3>Implements</h3>
@@ -715,17 +722,20 @@
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
+  formControlName=&quot;date&quot;
+  [formControl]=&quot;yourHelperToGetFormControl('date')&quot;
   [(ngModel)]=&quot;myModel&quot;
   [dateFilter]=&quot;myDateFilter&quot;
   inputPlaceholder=&quot;Set a date&quot;
   maxDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
   minDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
   startingView=&quot;year&quot;
+  tabIndex=&quot;{{ '2' }}&quot;
   initialDate=&quot;{{ new Date(1990, 1, 1) }}&quot;
   (selected)=&quot;changeSelected($event)&quot;
 &gt;&lt;/ts-datepicker&gt;
 
-&lt;example-url&gt;https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show=preview&lt;/example-url&gt;</code></pre>
+&lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;</code></pre>
                 </div>
     </div>
 
@@ -743,6 +753,14 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                    <code>
+                        CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR
+                    </code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -850,6 +868,12 @@
                             <li>
                                 <a href="#startingView">startingView</a>
                             </li>
+                            <li>
+                                <a href="#tabIndex">tabIndex</a>
+                            </li>
+                            <li>
+                                <a href="#validateOnChange">validateOnChange</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -912,7 +936,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:87</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -931,7 +955,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:121</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -957,7 +981,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:93</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -983,7 +1007,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:99</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1002,7 +1026,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:105</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1021,7 +1045,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:113</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1047,7 +1071,59 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:129</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="tabIndex"></a>
+                            <code>tabIndex</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define the tabindex for the input</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>0</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:135</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="validateOnChange"></a>
+                            <code>validateOnChange</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if validation messages should be shown immediately or on blur</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:141</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1072,7 +1148,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:147</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1110,7 +1186,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:178</a></div>
                                 </td>
                             </tr>
     
@@ -1185,7 +1261,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:153</a></div>
                                 </td>
                             </tr>
     
@@ -1255,7 +1331,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:164</a></div>
                                 </td>
                             </tr>
     
@@ -1307,7 +1383,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:66</a></div>
                                 </td>
                             </tr>
     
@@ -1348,7 +1424,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:71</a></div>
                                 </td>
                             </tr>
     
@@ -1389,7 +1465,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:76</a></div>
                                 </td>
                             </tr>
     
@@ -1430,7 +1506,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:81</a></div>
                                 </td>
                             </tr>
     
@@ -1466,7 +1542,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:83</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:105</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -1524,7 +1600,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:91</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:113</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -1582,7 +1658,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:99</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/src/datepicker/datepicker.component.ts:121</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -1636,7 +1712,24 @@
   EventEmitter,
   ViewChild,
   SimpleChanges,
+  forwardRef,
 } from &#x27;@angular/core&#x27;;
+import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
+
+import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
+
+
+/**
+ * Custom control value accessor for our component.
+ * This allows our custom components to access the underlying form validation via our base class
+ */
+/* tslint:disable:no-use-before-declare */
+export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any &#x3D; {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() &#x3D;&gt; TsDatepickerComponent),
+  multi: true,
+};
+/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -1647,27 +1740,32 @@
  * - &#x60;qa-datepicker-input&#x60;: The input element which contains the chosen date
  * - &#x60;qa-datepicker-toggle&#x60;: The button which displays the calendar when clicked
  * - &#x60;qa-datepicker-calendar&#x60;: The calendar control used for picking a date
+ * - &#x60;qa-datepicker-validation-messages&#x60;: The validation messages container
  *
  * @example
  * &lt;ts-datepicker
+ *              formControlName&#x3D;&quot;date&quot;
+ *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;date&#x27;)&quot;
  *              [(ngModel)]&#x3D;&quot;myModel&quot;
  *              [dateFilter]&#x3D;&quot;myDateFilter&quot;
  *              inputPlaceholder&#x3D;&quot;Set a date&quot;
  *              maxDate&#x3D;&quot;{{ new Date(1990, 1, 1) }}&quot;
  *              minDate&#x3D;&quot;{{ new Date(1990, 1, 1) }}&quot;
  *              startingView&#x3D;&quot;year&quot;
+ *              tabIndex&#x3D;&quot;{{ &#x27;2&#x27; }}&quot;
  *              initialDate&#x3D;&quot;{{ new Date(1990, 1, 1) }}&quot;
  *              (selected)&#x3D;&quot;changeSelected($event)&quot;
  * &gt;&lt;/ts-datepicker&gt;
  *
- * &lt;example-url&gt;https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show&#x3D;preview&lt;/example-url&gt;
+ * &lt;example-url&gt;http://bnj.bz/3J0j450T2x2b&lt;/example-url&gt;
  */
 @Component({
   selector: &#x27;ts-datepicker&#x27;,
   templateUrl: &#x27;./datepicker.component.html&#x27;,
   styleUrls: [&#x27;./datepicker.component.scss&#x27;],
+  providers: [CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR],
 })
-export class TsDatepickerComponent implements OnChanges {
+export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnChanges {
   /**
    * Expose the initial date to the template
    */
@@ -1737,6 +1835,18 @@ export class TsDatepickerComponent implements OnChanges {
   public startingView: &#x27;month&#x27; | &#x27;year&#x27; &#x3D; &#x27;month&#x27;;
 
   /**
+   * Define the tabindex for the input
+   */
+  @Input()
+  public tabIndex: number &#x3D; 0;
+
+  /**
+   * Define if validation messages should be shown immediately or on blur
+   */
+  @Input()
+  public validateOnChange: boolean &#x3D; false;
+
+  /**
    * Define an event emitter to alert consumers that a date was selected
    */
   @Output()
@@ -1789,28 +1899,39 @@ export class TsDatepickerComponent implements OnChanges {
   &lt;input
     class&#x3D;&quot;qa-datepicker-input&quot;
     matInput
-    [(ngModel)]&#x3D;&quot;value&quot;
     [matDatepicker]&#x3D;&quot;picker&quot;
     placeholder&#x3D;&quot;{{ inputPlaceholder }}&quot;
     [min]&#x3D;&quot;_minDate&quot;
     [max]&#x3D;&quot;_maxDate&quot;
     [matDatepickerFilter]&#x3D;&quot;dateFilter&quot;
     [disabled]&#x3D;&quot;isDisabled&quot;
+    tabIndex&#x3D;&quot;{{ tabIndex }}&quot;
+    [(ngModel)]&#x3D;&quot;value&quot;
+    (blur)&#x3D;&quot;onBlur()&quot;
   &gt;
   &lt;mat-datepicker-toggle
     class&#x3D;&quot;qa-datepicker-toggle&quot;
     matSuffix
     [for]&#x3D;&quot;picker&quot;
   &gt;&lt;/mat-datepicker-toggle&gt;
+
+  &lt;ts-validation-messages
+    class&#x3D;&quot;qa-datepicker-validation-messages&quot;
+    *ngIf&#x3D;&quot;formControl&quot;
+    [control]&#x3D;&quot;formControl&quot;
+    [validateOnChange]&#x3D;&quot;validateOnChange&quot;
+  &gt;&lt;/ts-validation-messages&gt;
 &lt;/mat-form-field&gt;
+
 
 &lt;mat-datepicker
   class&#x3D;&quot;qa-datepicker-calendar&quot;
   #picker
   [startView]&#x3D;&quot;startingView&quot;
   [startAt]&#x3D;&quot;initialDate&quot;
-  (selectedChanged)&#x3D;&quot;selected.emit($event)&quot;
+  (dateChange)&#x3D;&quot;selected.emit($event)&quot;
 &gt;&lt;/mat-datepicker&gt;
+
 </code></pre>
     </div>
 
@@ -1832,7 +1953,7 @@ export class TsDatepickerComponent implements OnChanges {
         </div>
     </div>
     <div class="tab-pane fade" id="c-example">
-            <iframe src="https://embed.plnkr.co/plunk/6PFosHqpA4tuqdre?show&#x3D;preview" style="height: 100vh; width: 100%;">
+            <iframe src="http://bnj.bz/3J0j450T2x2b" style="height: 100vh; width: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
     </div>
@@ -1842,7 +1963,7 @@ export class TsDatepickerComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field class="c-datepicker c-datepicker qa-datepicker">  <input    class="qa-datepicker-input"    matInput    [(ngModel)]="value"    [matDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="_minDate"    [max]="_maxDate"    [matDatepickerFilter]="dateFilter"    [disabled]="isDisabled"  >  <mat-datepicker-toggle    class="qa-datepicker-toggle"    matSuffix    [for]="picker"  ></mat-datepicker-toggle></mat-form-field><mat-datepicker  class="qa-datepicker-calendar"  #picker  [startView]="startingView"  [startAt]="initialDate"  (selectedChanged)="selected.emit($event)"></mat-datepicker></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field class="c-datepicker c-datepicker qa-datepicker">  <input    class="qa-datepicker-input"    matInput    [matDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="_minDate"    [max]="_maxDate"    [matDatepickerFilter]="dateFilter"    [disabled]="isDisabled"    tabIndex="{{ tabIndex }}"    [(ngModel)]="value"    (blur)="onBlur()"  >  <mat-datepicker-toggle    class="qa-datepicker-toggle"    matSuffix    [for]="picker"  ></mat-datepicker-toggle>  <ts-validation-messages    class="qa-datepicker-validation-messages"    *ngIf="formControl"    [control]="formControl"    [validateOnChange]="validateOnChange"  ></ts-validation-messages></mat-form-field><mat-datepicker  class="qa-datepicker-calendar"  #picker  [startView]="startingView"  [startAt]="initialDate"  (dateChange)="selected.emit($event)"></mat-datepicker></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDatepickerComponent'};

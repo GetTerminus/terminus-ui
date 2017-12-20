@@ -47,7 +47,7 @@ import { groupBy } from './../utilities/groupBy';
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
- * <example-url>https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=preview</example-url>
+ * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
  */
 @Component({
   selector: 'ts-navigation',
