@@ -12,7 +12,6 @@ const camelCase            = require('camelcase');
 const rollupUglify         = require('rollup-plugin-uglify');
 const rollupNodeResolve    = require('rollup-plugin-node-resolve');
 const rollupCommonjs       = require('rollup-plugin-commonjs');
-const replace              = require('replace-in-file');
 const del                  = require('del');
 const gulpSourcemaps       = require('gulp-sourcemaps');
 const gulpSass             = require('gulp-sass');
