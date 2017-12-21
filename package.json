@@ -133,7 +133,7 @@
     "@angular/http": "5.1.1",
     "@angular/material": "5.0.1",
     "@angular/platform-browser": "5.1.1",
-    "@angular/platform-browser-dynamic": "5.1.1",
+    "@angular/platform-browser-dynamic": "5.1.2",
     "@angular/router": "5.1.1",
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
