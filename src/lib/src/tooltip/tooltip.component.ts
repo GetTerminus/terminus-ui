@@ -15,10 +15,10 @@ import { TsTooltipPositionTypes } from './../utilities/types';
  * qa-tooltip : Placed on the span element used for this component
  *
  * @example
- * <tooltip
+ * <ts-tooltip
  *              [tooltipValue]="myTooltip"
  *              [tooltipPosition]="myPosition"
- * >My Tooltip!</tooltip>
+ * >My Tooltip!</ts-tooltip>
  */
 @Component({
   selector: 'ts-tooltip',
