@@ -156,7 +156,7 @@
     "global": "4.3.2",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-better-rollup": "2.0.0",
-    "gulp-cli": "1.4.0",
+    "gulp-cli": "2.0.0",
     "gulp-concat": "2.6.1",
     "gulp-postcss": "7.0.0",
     "gulp-print": "2.0.1",
