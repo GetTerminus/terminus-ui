@@ -42,7 +42,7 @@ module.exports = {
     // NB! The above line is required for our yeoman generator and should not be changed.
 
     {name: 'Demo'},
-    {name: 'Dependencies'},
+    {name: 'Packages'},
     {name: 'CI'},
   ],
 
