@@ -137,7 +137,7 @@
     "@angular/router": "5.1.2",
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
-    "@semantic-release/npm": "2.4.0",
+    "@semantic-release/npm": "2.4.1",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.2",
     "autoprefixer": "7.2.3",
