@@ -1,35 +1,39 @@
 'use strict';
 
-const fs                   = require('fs');
-const path                 = require('path');
-const rollup               = require('rollup');
-const gulp                 = require('gulp');
-const glob                 = require('glob');
-const ngc                  = require('@angular/compiler-cli/src/main').main;
-const execa                = require('execa');
-const inlineResources      = require('./inline-resources');
-const camelCase            = require('camelcase');
-const rollupUglify         = require('rollup-plugin-uglify');
-const rollupNodeResolve    = require('rollup-plugin-node-resolve');
-const rollupCommonjs       = require('rollup-plugin-commonjs');
-const del                  = require('del');
-const gulpSourcemaps       = require('gulp-sourcemaps');
-const gulpSass             = require('gulp-sass');
-const sassModuleImporter   = require('sass-module-importer');
-const postcss              = require('gulp-postcss');
-const autoprefixer         = require('autoprefixer');
-const nodeSassImport       = require('node-sass-import');
-const gulpStripComments    = require('gulp-strip-json-comments');
-const gulpRemoveEmptyLines = require('gulp-remove-empty-lines');
-const gulpConcat           = require('gulp-concat');
-const gulpReplace          = require('gulp-replace');
-const cloneDeep            = require('lodash.clonedeep');
+const fs                                = require('fs');
+const path                              = require('path');
+const rollup                            = require('rollup');
+const gulp                              = require('gulp');
+const glob                              = require('glob');
+const ngc                               = require('@angular/compiler-cli/src/main').main;
+const execa                             = require('execa');
+const inlineResources                   = require('./inline-resources');
+const camelCase                         = require('camelcase');
+const rollupUglify                      = require('rollup-plugin-uglify');
+const rollupNodeResolve                 = require('rollup-plugin-node-resolve');
+const rollupCommonjs                    = require('rollup-plugin-commonjs');
+const del                               = require('del');
+const gulpSourcemaps                    = require('gulp-sourcemaps');
+const gulpSass                          = require('gulp-sass');
+const sassModuleImporter                = require('sass-module-importer');
+const postcss                           = require('gulp-postcss');
+const autoprefixer                      = require('autoprefixer');
+const nodeSassImport                    = require('node-sass-import');
+const gulpStripComments                 = require('gulp-strip-json-comments');
+const gulpRemoveEmptyLines              = require('gulp-remove-empty-lines');
+const gulpConcat                        = require('gulp-concat');
+const gulpReplace                       = require('gulp-replace');
+const cloneDeep                         = require('lodash.clonedeep');
+const rollupPluginTypescriptPathMapping = require('rollup-plugin-typescript-path-mapping');
 // For dev
-const gulpPrint            = require('gulp-print');
+const gulpPrint                         = require('gulp-print');
 
-const libNameWithScope     = require('./../package.json').name;
-const libName              = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
-const rootFolder           = path.join(__dirname, '../');
+const libNameWithScope                  = require('./../package.json').name;
+const libName                           = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
+const rootFolder                        = path.join(__dirname, '../');
+const tsConfigSrc                       = require('./../src/lib/tsconfig.json');
+const tsConfigMain                      = require('./../tsconfig.json');
+const tsCompilerOptions                 = Object.assign({}, tsConfigMain.compilerOptions, tsConfigSrc.compilerOptions);
 
 // This is the list of dependencies and peer dependencies this library has.
 // This is required for UMD bundle users.
@@ -136,6 +140,7 @@ const rollupInputOptionsBase = {
   // but when switching to `input` the build is no longer generated (silent failure)
   entry: config.paths.es5Entry,
   plugins: [
+    rollupPluginTypescriptPathMapping(tsCompilerOptions),
     rollupNodeResolve({
       es2015: true,
       module: true,

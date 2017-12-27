@@ -9,8 +9,8 @@ import {
   async,
 } from '@angular/core/testing';
 
-import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
-import { TsWindowServiceMock } from './../services/window/window.service.mock';
+import { ChangeDetectorRefMock } from '@utilities/testing/mocks/changeDetectorRef.mock';
+import { TsWindowServiceMock } from '@services/window/window.service.mock';
 import { TsButtonComponent } from './button.component';
 
 
