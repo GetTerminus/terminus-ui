@@ -6,13 +6,11 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material';
 
-import { TsStyleThemeTypes } from './../utilities/types';
-import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+import { TsStyleThemeTypes } from '@utilities/types/style-theme.types';
+import { TsReactiveFormBaseComponent } from '@utilities/reactive-form-base.component';
 
 
 /**

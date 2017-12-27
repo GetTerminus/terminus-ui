@@ -1,7 +1,7 @@
 import {
   TsDatepickerComponent,
   CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR,
-} from './datepicker.component';
+} from '@datepicker/datepicker.component';
 
 
 describe(`TsDatepickerComponent`, () => {

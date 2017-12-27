@@ -4,10 +4,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-import { TsButtonModule } from './../button/button.module';
+import { TsButtonModule } from '@button/button.module';
 
-import { TsMenuComponent } from './menu.component';
-export { TsMenuComponent } from './menu.component';
+import { TsMenuComponent } from '@menu/menu.component';
+export { TsMenuComponent } from '@menu/menu.component';
 
 
 @NgModule({

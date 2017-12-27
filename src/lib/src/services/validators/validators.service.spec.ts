@@ -1,4 +1,4 @@
-import { TsValidatorsService } from './validators.service';
+import { TsValidatorsService } from '@services/validators/validators.service';
 
 
 describe(`TsValidatorsService`, () => {
@@ -7,7 +7,7 @@ describe(`TsValidatorsService`, () => {
     this.service = new TsValidatorsService();
 
     this.controlMock = {
-      value: <any>null,
+      value: null as any,
     };
   });
 

@@ -18,10 +18,10 @@ import {
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
-  TsStyleThemeTypes,
-} from './../utilities/types';
-import { TsSearchResponse } from '../utilities/interfaces';
-import { debounce } from './../utilities/debounce';
+} from '@utilities/types/button.types';
+import { TsStyleThemeTypes } from '@utilities/types/style-theme.types';
+import { TsSearchResponse } from '@interfaces/search.interface';
+import { debounce } from '@utilities/debounce';
 
 
 /**

@@ -1,9 +1,9 @@
 const mock = () => {
   let storage = {};
   return {
-    getItem: (key) => key in storage ? storage[key] : null,
-    setItem: (key, value) => storage[key] = value || '',
-    removeItem: (key) => delete storage[key],
+    getItem: (key: string) => key in storage ? storage[key] : null,
+    setItem: (key: string, value: any) => storage[key] = value || '',
+    removeItem: (key: string) => delete storage[key],
     clear: () => storage = {},
   };
 };
@@ -27,11 +27,11 @@ const WARN_SUPPRESSING_PATTERNS = [
 ];
 const warn = console.warn;
 Object.defineProperty(console, 'warn', {
- value: (...params: string[]) => {
-   if (!WARN_SUPPRESSING_PATTERNS.some((pattern) => pattern.test(params[0]))) {
-     warn(...params);
-   }
- },
+  value: (...params: string[]) => {
+    if (!WARN_SUPPRESSING_PATTERNS.some((pattern) => pattern.test(params[0]))) {
+      warn(...params);
+    }
+  },
 });
 Object.defineProperty(window, 'matchMedia', {
   value: () => (
@@ -44,8 +44,8 @@ Object.defineProperty(window, 'matchMedia', {
 });
 Object.defineProperty(document.body.style, 'transform', {
   value: () =>
-    ({
-      enumerable: true,
-      configurable: true,
-    }),
+  ({
+    enumerable: true,
+    configurable: true,
+  }),
 });

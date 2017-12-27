@@ -6,20 +6,20 @@ export class TsValidatorsServiceMock {
 
   validateCreditCard = jasmine.createSpy('validateCreditCard').and.returnValue({
     invalidCreditCard: {
-      valid: false
-    }
+      valid: false,
+    },
   });
 
   validateEmail = jasmine.createSpy('validateEmail').and.returnValue({
     invalidEmail: {
-      valid: false
-    }
+      valid: false,
+    },
   });
 
   validatePassword = jasmine.createSpy('validatePassword').and.returnValue({
     invalidPassword: {
-      valid: false
-    }
+      valid: false,
+    },
   });
 
 }

@@ -1,7 +1,7 @@
-import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
-import { TsVerticalSpacingTypes } from './../utilities/types';
-import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
-import { RendererMock } from './../utilities/testing/mocks/renderer.mock';
+import { ElementRefMock } from '@testing/mocks/elementRef.mock';
+import { RendererMock } from '@testing/mocks/renderer.mock';
+import { TsVerticalSpacingTypes } from '@utilities/types/spacing.types';
+import { TsVerticalSpacingDirective } from '@spacing/vertical-spacing.directive';
 
 
 describe(`TsVerticalSpacingDirective`, () => {

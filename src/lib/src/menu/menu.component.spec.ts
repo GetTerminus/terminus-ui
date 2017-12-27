@@ -6,7 +6,7 @@ import {
   MatMenuModule,
 } from '@angular/material';
 
-import { TsMenuComponent } from './menu.component';
+import { TsMenuComponent } from '@menu/menu.component';
 
 
 describe(`TsMenuComponent`, () => {

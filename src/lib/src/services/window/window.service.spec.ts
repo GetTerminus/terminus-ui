@@ -1,4 +1,4 @@
-import { TsWindowService } from './window.service';
+import { TsWindowService } from '@services/window/window.service';
 
 
 describe(`TsWindowService`, () => {

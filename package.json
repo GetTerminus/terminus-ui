@@ -230,13 +230,33 @@
     "testRegex": "(^((?!.*(out-tsc/|coverage/|dist/|src/demo/|e2e/)).).*spec\\.ts.*$)",
     "moduleFileExtensions": [
       "ts",
-      "js",
-      "html"
+      "js"
     ],
     "moduleNameMapper": {
-      "app/(.*)": "<rootDir>/src/app/$1",
-      "assets/(.*)": "<rootDir>/src/assets/$1",
-      "environments/(.*)": "<rootDir>/src/environments/$1"
+      "@components/(.*)": "<rootDir>/src/lib/src/$1",
+      "@utilities/(.*)": "<rootDir>/src/lib/src/utilities/$1",
+      "@interfaces/(.*)": "<rootDir>/src/lib/src/utilities/interfaces/$1",
+      "@testing/(.*)": "<rootDir>/src/lib/src/utilities/testing/$1",
+      "@services/(.*)": "<rootDir>/src/lib/src/services/$1",
+      "@button/(.*)": "<rootDir>/src/lib/src/button/$1",
+      "@card/(.*)": "<rootDir>/src/lib/src/card/$1",
+      "@copy/(.*)": "<rootDir>/src/lib/src/copy/$1",
+      "@checkbox/(.*)": "<rootDir>/src/lib/src/checkbox/$1",
+      "@date-range/(.*)": "<rootDir>/src/lib/src/date-range/$1",
+      "@datepicker/(.*)": "<rootDir>/src/lib/src/datepicker/$1",
+      "@input/(.*)": "<rootDir>/src/lib/src/input/$1",
+      "@link/(.*)": "<rootDir>/src/lib/src/link/$1",
+      "@loading-overlay/(.*)": "<rootDir>/src/lib/src/loading-overlay/$1",
+      "@login-form/(.*)": "<rootDir>/src/lib/src/login-form/$1",
+      "@menu/(.*)": "<rootDir>/src/lib/src/menu/$1",
+      "@navigation/(.*)": "<rootDir>/src/lib/src/navigation/$1",
+      "@pagination/(.*)": "<rootDir>/src/lib/src/pagination/$1",
+      "@search/(.*)": "<rootDir>/src/lib/src/search/$1",
+      "@select/(.*)": "<rootDir>/src/lib/src/select/$1",
+      "@spacing/(.*)": "<rootDir>/src/lib/src/spacing/$1",
+      "@toggle/(.*)": "<rootDir>/src/lib/src/toggle/$1",
+      "@tooltip/(.*)": "<rootDir>/src/lib/src/tooltip/$1",
+      "@validation-messages/(.*)": "<rootDir>/src/lib/src/validation-messages/$1"
     },
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx)"

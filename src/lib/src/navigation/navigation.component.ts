@@ -16,12 +16,10 @@ import {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import {
-  TsNavigationItem,
-  TsNavigationPayload,
-  TsUser,
-} from './../utilities/interfaces/';
-import { groupBy } from './../utilities/groupBy';
+import { TsNavigationItem } from '@interfaces/navigation-item.interface';
+import { TsNavigationPayload } from '@interfaces/navigation-payload.interface';
+import { TsUser } from '@interfaces/user.interface';
+import { groupBy } from '@utilities/groupBy';
 
 
 /**

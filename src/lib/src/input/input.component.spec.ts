@@ -2,7 +2,7 @@ import 'jest';
 import {
   TsInputComponent,
   CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
-} from './input.component';
+} from '@input/input.component';
 
 
 describe(`TsInputComponent`, () => {

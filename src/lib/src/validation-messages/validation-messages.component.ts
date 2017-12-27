@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { TsValidationService } from './../services/validation/validation.service';
+import { TsValidationService } from '@services/validation/validation.service';
 
 
 /**

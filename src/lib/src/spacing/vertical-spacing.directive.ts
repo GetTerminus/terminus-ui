@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 
-import { TsVerticalSpacingTypes } from './../utilities/types';
+import { TsVerticalSpacingTypes } from '@utilities/types/spacing.types';
 
 
 /**

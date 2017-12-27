@@ -16,9 +16,30 @@
       "dom"
     ],
     "paths": {
-      "@utilities/*": ["src/utilities/*"],
       "@components/*": ["src/*"],
-      "@services/*": ["src/services/*"]
+      "@utilities/*": ["src/utilities/*"],
+      "@interfaces/*": ["src/utilities/interfaces/*"],
+      "@testing/*": ["src/utilities/testing/*"],
+      "@services/*": ["src/services/*"],
+      "@button/*": ["src/button/*"],
+      "@card/*": ["src/card/*"],
+      "@copy/*": ["src/copy/*"],
+      "@checkbox/*": ["src/checkbox/*"],
+      "@date-range/*": ["src/date-range/*"],
+      "@datepicker/*": ["src/datepicker/*"],
+      "@input/*": ["src/input/*"],
+      "@link/*": ["src/link/*"],
+      "@loading-overlay/*": ["src/loading-overlay/*"],
+      "@login-form/*": ["src/login-form/*"],
+      "@menu/*": ["src/menu/*"],
+      "@navigation/*": ["src/navigation/*"],
+      "@pagination/*": ["src/pagination/*"],
+      "@search/*": ["src/search/*"],
+      "@select/*": ["src/select/*"],
+      "@spacing/*": ["src/spacing/*"],
+      "@toggle/*": ["src/toggle/*"],
+      "@tooltip/*": ["src/tooltip/*"],
+      "@validation-messages/*": ["src/validation-messages/*"]
     }
   }
 }

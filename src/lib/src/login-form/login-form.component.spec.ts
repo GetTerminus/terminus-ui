@@ -1,8 +1,8 @@
 import 'jest';
 import { FormBuilder } from '@angular/forms';
 
-import { TsLoginFormComponent } from './login-form.component';
-import { TsValidatorsServiceMock } from './../services/validators/validators.service.mock';
+import { TsValidatorsServiceMock } from '@services/validators/validators.service.mock';
+import { TsLoginFormComponent } from '@login-form/login-form.component';
 
 
 describe(`TsLoginFormComponent`, () => {

@@ -1,5 +1,5 @@
-import { TsPaginationComponent } from './pagination.component';
-import { TsPaginationMenuItem } from '../utilities/interfaces';
+import { TsPaginationMenuItem } from '@utilities/interfaces';
+import { TsPaginationComponent } from '@pagination/pagination.component';
 
 
 describe(`PaginationComponent`, () => {

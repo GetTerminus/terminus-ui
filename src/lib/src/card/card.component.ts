@@ -7,9 +7,7 @@ import {
   ElementRef,
 } from '@angular/core';
 
-import {
-  TsStyleThemeTypes,
-} from './../utilities/types';
+import { TsStyleThemeTypes } from '@utilities/types/style-theme.types';
 
 
 /**

@@ -8,8 +8,8 @@ import {
   MatMenuModule,
 } from '@angular/material';
 
-import { TsNavigationComponent } from './navigation.component';
-export { TsNavigationComponent } from './navigation.component';
+import { TsNavigationComponent } from '@navigation/navigation.component';
+export { TsNavigationComponent } from '@navigation/navigation.component';
 
 
 @NgModule({

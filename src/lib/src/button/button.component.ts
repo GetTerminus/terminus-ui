@@ -14,8 +14,8 @@ import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
   TsButtonFormatTypes,
-  TsStyleThemeTypes,
-} from '@utilities/types';
+} from '@utilities/types/button.types';
+import { TsStyleThemeTypes } from '@utilities/types/style-theme.types';
 import { TsWindowService } from '@services/window/window.service';
 
 

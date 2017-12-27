@@ -16,9 +16,9 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import {
   TsMenuPositionTypesX,
   TsMenuPositionTypesY,
-  TsStyleThemeTypes,
   TsMenuTriggerTypes,
-} from './../utilities/types';
+} from '@utilities/types/menu.types';
+import { TsStyleThemeTypes } from '@utilities/types/style-theme.types';
 
 
 /**
