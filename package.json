@@ -66,7 +66,7 @@
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "test:jest": "jest --watch --runInBand",
-    "test:jest:ci": "jest --runInBand --coverage --no-cache",
+    "test:jest:ci": "jest --runInBand --coverage",
     "test:jest:debug": "jest --debug --runInBand",
     "//=> Section: Release": "",
     "check:next-release": "cd dist/ && ../node_modules/.bin/semantic-release --dry-run",
@@ -239,6 +239,7 @@
     },
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx)"
-    ]
+    ],
+    "mapCoverage": true
   }
 }
