@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { emailMessage } from './../../utilities/regex/email.regex';
-import { creditCardMessage } from './../../utilities/regex/credit-card.regex';
-import { passwordMessage } from './../../utilities/regex/password.regex';
+import { emailMessage } from '@utilities/regex/email.regex';
+import { creditCardMessage } from '@utilities/regex/credit-card.regex';
+import { passwordMessage } from '@utilities/regex/password.regex';
 
 
 // TODO: The consuming app will need a way to pass in the error messages config object so that

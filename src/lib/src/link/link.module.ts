@@ -5,8 +5,8 @@ import {
   MatIconModule,
 } from '@angular/material';
 
-import { TsLinkComponent } from './link.component';
-export { TsLinkComponent } from './link.component';
+import { TsLinkComponent } from '@link/link.component';
+export { TsLinkComponent } from '@link/link.component';
 
 
 @NgModule({

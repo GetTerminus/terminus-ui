@@ -1,4 +1,4 @@
-import { TsDateRangeComponent } from './date-range.component';
+import { TsDateRangeComponent } from '@date-range/date-range.component';
 
 
 describe(`TsDateRangeComponent`, () => {

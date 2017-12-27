@@ -1,7 +1,7 @@
 import {
   TsSelectComponent,
   CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR,
-} from './select.component';
+} from '@select/select.component';
 
 
 describe(`TsSelectComponent`, () => {

@@ -1,4 +1,4 @@
-import { TsValidationService } from './validation.service';
+import { TsValidationService } from '@services/validation/validation.service';
 
 
 describe(`TsValidationService`, () => {
@@ -6,6 +6,7 @@ describe(`TsValidationService`, () => {
   beforeEach(() => {
     this.service = new TsValidationService();
   });
+
 
   it(`should exist`, () => {
     expect(this.service).toBeTruthy();

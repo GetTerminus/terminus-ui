@@ -6,11 +6,11 @@ import {
   MatIconModule,
 } from '@angular/material';
 
-import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
-import { TsValidatorsService } from './../services/validators/validators.service';
+import { TsValidationMessagesModule } from '@validation-messages/validation-messages.module';
+import { TsValidatorsService } from '@services/validators/validators.service';
 
-import { TsInputComponent } from './input.component';
-export { TsInputComponent } from './input.component';
+import { TsInputComponent } from '@input/input.component';
+export { TsInputComponent } from '@input/input.component';
 
 
 @NgModule({

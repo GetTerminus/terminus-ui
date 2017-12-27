@@ -1,4 +1,4 @@
-import { TsCardComponent } from './card.component';
+import { TsCardComponent } from '@card/card.component';
 
 
 describe('TsCardComponent', () => {

@@ -72,11 +72,6 @@ module.exports = function(config) {
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
 
-      // Ladda
-      { pattern: 'node_modules/angular2-ladda/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/angular2-ladda/**/*.js.map', included: false, watched: false },
-      { pattern: 'node_modules/ladda/**/*.js', included: false, watched: false },
-
       { pattern: 'node_modules/lodash/*.js', included: false, watched: false },
 
       // Material styles

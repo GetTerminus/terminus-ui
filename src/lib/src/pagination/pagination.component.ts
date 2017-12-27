@@ -10,8 +10,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { TsStyleThemeTypes } from './../utilities/types';
-import { TsPaginationMenuItem } from './../utilities/interfaces';
+import { TsStyleThemeTypes } from '@utilities/types/index';
+import { TsPaginationMenuItem } from '@interfaces/index';
 
 
 /**

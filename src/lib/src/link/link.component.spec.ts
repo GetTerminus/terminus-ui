@@ -1,4 +1,4 @@
-import { TsLinkComponent } from './link.component';
+import { TsLinkComponent } from '@link/link.component';
 
 
 describe(`TsLinkComponent`, () => {

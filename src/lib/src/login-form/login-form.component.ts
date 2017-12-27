@@ -16,10 +16,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { TsInputComponent } from './../input/input.component';
-import { TsCheckboxComponent } from './../checkbox/checkbox.component';
-import { TsValidatorsService } from './../services/validators/validators.service';
-import { TsLoginFormResponse } from './../utilities/interfaces/login-form-response.interface';
+import { TsValidatorsService } from '@services/validators/validators.service';
+import { TsLoginFormResponse } from '@interfaces/login-form-response.interface';
+import { TsInputComponent } from '@input/input.component';
+import { TsCheckboxComponent } from '@checkbox/checkbox.component';
 
 
 /**

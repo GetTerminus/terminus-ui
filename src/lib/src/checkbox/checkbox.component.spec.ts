@@ -1,7 +1,7 @@
 import {
   TsCheckboxComponent,
   CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR,
-} from './checkbox.component';
+} from '@checkbox/checkbox.component';
 
 
 describe(`TsCheckboxComponent`, () => {

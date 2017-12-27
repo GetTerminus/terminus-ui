@@ -8,9 +8,9 @@ import {
   MatInputModule,
 } from '@angular/material';
 
-import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
-import { TsDatepickerComponent } from './datepicker.component';
-export { TsDatepickerComponent } from './datepicker.component';
+import { TsValidationMessagesModule } from '@validation-messages/validation-messages.module';
+import { TsDatepickerComponent } from '@datepicker/datepicker.component';
+export { TsDatepickerComponent } from '@datepicker/datepicker.component';
 
 
 @NgModule({

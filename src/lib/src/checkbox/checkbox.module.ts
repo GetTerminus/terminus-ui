@@ -6,8 +6,8 @@ import {
   MatCheckboxModule,
 } from '@angular/material';
 
-import { TsCheckboxComponent } from './checkbox.component';
-export { TsCheckboxComponent } from './checkbox.component';
+import { TsCheckboxComponent } from '@checkbox/checkbox.component';
+export { TsCheckboxComponent } from '@checkbox/checkbox.component';
 
 
 @NgModule({

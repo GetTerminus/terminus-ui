@@ -1,11 +1,8 @@
-import {
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import 'jest';
 import { FormBuilder } from '@angular/forms';
 
-import { TsLoginFormComponent } from './login-form.component';
-import { TsValidatorsServiceMock } from './../services/validators/validators.service.mock';
+import { TsValidatorsServiceMock } from '@services/validators/validators.service.mock';
+import { TsLoginFormComponent } from '@login-form/login-form.component';
 
 
 describe(`TsLoginFormComponent`, () => {
@@ -83,7 +80,8 @@ describe(`TsLoginFormComponent`, () => {
 
   describe(`resetForm()`, () => {
 
-    it(`should reset all inputs to their initial value`, fakeAsync(() => {
+    it(`should reset all inputs to their initial value`, () => {
+      jest.useFakeTimers();
       this.component.loginForm.patchValue({
         email: 'foo',
         password: 'bar',
@@ -96,14 +94,14 @@ describe(`TsLoginFormComponent`, () => {
       expect(passwordValueBefore).toEqual('bar');
 
       this.component.resetForm();
-      tick();
+      jest.runAllTimers();
 
       const emailValueAfter = this.component.getControl('email', this.component.loginForm).value;
       expect(emailValueAfter).toEqual(null);
 
       const passwordValueAfter = this.component.getControl('password', this.component.loginForm).value;
       expect(passwordValueAfter).toEqual(null);
-    }));
+    });
 
   });
 

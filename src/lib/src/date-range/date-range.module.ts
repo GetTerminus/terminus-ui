@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TsDatepickerModule } from './../datepicker/datepicker.module';
+import { TsDatepickerModule } from '@datepicker/datepicker.module';
 
-import { TsDateRangeComponent } from './date-range.component';
-export { TsDateRangeComponent } from './date-range.component';
+import { TsDateRangeComponent } from '@date-range/date-range.component';
+export { TsDateRangeComponent } from '@date-range/date-range.component';
 
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { TsDocumentService } from './document.service';
+import { TsDocumentService } from '@services/document/document.service';
 
 
 describe(`TsDocumentService`, () => {

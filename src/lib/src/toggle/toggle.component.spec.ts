@@ -1,7 +1,7 @@
 import {
   TsToggleComponent,
   CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR,
-} from './toggle.component';
+} from '@toggle/toggle.component';
 
 
 describe(`ToggleComponent`, () => {

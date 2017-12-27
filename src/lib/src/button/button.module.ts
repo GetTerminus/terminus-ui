@@ -6,8 +6,8 @@ import {
   MatProgressSpinnerModule,
 } from '@angular/material';
 
-import { TsButtonComponent } from './button.component';
-export { TsButtonComponent } from './button.component';
+import { TsButtonComponent } from '@button/button.component';
+export { TsButtonComponent } from '@button/button.component';
 
 
 @NgModule({

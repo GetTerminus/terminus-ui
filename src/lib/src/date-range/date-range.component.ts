@@ -5,7 +5,7 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
-import { TsDatepickerComponent } from './../datepicker/datepicker.component';
+import { TsDatepickerComponent } from '@datepicker/datepicker.component';
 
 
 /**

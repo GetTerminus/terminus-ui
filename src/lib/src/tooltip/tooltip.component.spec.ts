@@ -1,4 +1,4 @@
-import { TsTooltipComponent } from './tooltip.component';
+import { TsTooltipComponent } from '@tooltip/tooltip.component';
 
 
 describe(`TsTooltipComponent`, () => {

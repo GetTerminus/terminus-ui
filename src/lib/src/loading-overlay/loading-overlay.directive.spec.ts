@@ -1,10 +1,10 @@
 import {
   createTestComponent,
   TestHostComponent,
-} from './../utilities/testing/createTestComponent';
-import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
-import { TsLoadingOverlayDirective } from './loading-overlay.directive';
-import { TsWindowServiceMock } from './../services/window/window.service.mock';
+} from '@testing/createTestComponent';
+import { ElementRefMock } from '@testing/mocks/elementRef.mock';
+import { TsWindowServiceMock } from '@services/window/window.service.mock';
+import { TsLoadingOverlayDirective } from '@loading-overlay/loading-overlay.directive';
 
 const componentFactoryResolver: any = null;
 const applicationRef: any = null;

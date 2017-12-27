@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ValidationResponse } from './../../utilities/interfaces/validator-response.interface';
-import { creditCardRegex } from './../../utilities/regex/credit-card.regex';
-import { emailRegex } from './../../utilities/regex/email.regex';
-import { passwordRegex } from './../../utilities/regex/password.regex';
+import { ValidationResponse } from '@interfaces/validator-response.interface';
+import { creditCardRegex } from '@utilities/regex/credit-card.regex';
+import { emailRegex } from '@utilities/regex/email.regex';
+import { passwordRegex } from '@utilities/regex/password.regex';
 
 
 /**

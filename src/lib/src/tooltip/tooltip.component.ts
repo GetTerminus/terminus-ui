@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { TsTooltipPositionTypes } from './../utilities/types';
+import { TsTooltipPositionTypes } from '@utilities/types/tooltip.types';
 
 
 /**

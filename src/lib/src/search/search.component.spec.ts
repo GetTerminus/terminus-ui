@@ -1,6 +1,6 @@
 import { FormBuilder } from '@angular/forms';
 
-import { TsSearchComponent } from './search.component';
+import { TsSearchComponent } from '@search/search.component';
 
 
 describe('TsSearchComponent', () => {

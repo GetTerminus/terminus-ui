@@ -6,10 +6,10 @@ import {
   MatRippleModule,
 } from '@angular/material';
 
-import { TsWindowService } from './../services/window/window.service';
-import { TsDocumentService } from './../services/document/document.service';
-import { TsCopyComponent } from './copy.component';
-export { TsCopyComponent } from './copy.component';
+import { TsWindowService } from '@services/window/window.service';
+import { TsDocumentService } from '@services/document/document.service';
+import { TsCopyComponent } from '@copy/copy.component';
+export { TsCopyComponent } from '@copy/copy.component';
 
 
 @NgModule({
