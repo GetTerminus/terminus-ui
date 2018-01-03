@@ -22,6 +22,7 @@ import { TsLinkModule } from './link/link.module';
 import { TsNavigationModule } from './navigation/navigation.module';
 import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module';
 import { TsCardModule } from './card/card.module';
+import { TsRadioGroupModule } from './radio-group/radio-group.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -51,6 +52,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsNavigationModule,
     TsLoadingOverlayModule,
     TsCardModule,
+    TsRadioGroupModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -82,6 +84,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsNavigationModule,
     TsLoadingOverlayModule,
     TsCardModule,
+    TsRadioGroupModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

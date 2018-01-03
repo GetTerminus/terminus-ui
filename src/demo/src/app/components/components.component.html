@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" fxLayout="row">
+  <span>
+    Demos
+    <sup>
+      ({{ components.length }})
+    </sup>
+  </span>
+
+  <span fxFlex></span>
+
+  <span>
+    <mat-menu #appMenu="matMenu">
+      <a
+        mat-menu-item
+        *ngFor="let component of components"
+        routerLink="{{component.path}}"
+      >
+        {{ component.data.name }}
+      </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="appMenu">
+      Select Demo
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
+
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

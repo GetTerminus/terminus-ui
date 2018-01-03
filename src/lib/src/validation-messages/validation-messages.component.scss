@@ -8,24 +8,29 @@
 // @description
 //  A component to display validation messages for form inputs.
 //
-.c-validation-message {
+.ts-validation-messages {
   // Top level styles should be nested here
-  &#{&} {
+  .c-validation-message {
     @include typography('caption');
     z-index: z('tooltip');
   }
 
   // Primary message container
-  ::ng-deep &.mat-error {
+  .mat-error {
     margin-top: .6em;
     padding: .3em .4em .2em;
     position: absolute;
     top: 90%;
+
+    // Adjust the vertical layout when inside a radio button component
+    .c-radio & {
+      top: 68%;
+    }
   }
 
   // When the input has an icon prefix, we need to cancel out the space added on the left to retain
   // alignment
-  ::ng-deep .mat-input-prefix + .mat-input-infix &.mat-error {
+  .mat-input-prefix + .mat-input-infix .mat-error {
     margin-left: -16px;
   }
 }

@@ -29,6 +29,7 @@ module.exports = {
     {name: 'Menu'},
     {name: 'Navigation'},
     {name: 'Pagination'},
+    {name: 'RadioGroup'},
     {name: 'Search'},
     {name: 'Select'},
     {name: 'Services'},

@@ -6,6 +6,13 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
+  MatToolbarModule,
+} from '@angular/material';
+
+import {
   TsButtonModule,
   TsCardModule,
   TsCheckboxModule,
@@ -19,6 +26,7 @@ import {
   TsMenuModule,
   TsNavigationModule,
   TsPaginationModule,
+  TsRadioGroupModule,
   TsSearchModule,
   TsSelectModule,
   TsSpacingModule,
@@ -33,27 +41,28 @@ import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 
 import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { SelectComponent } from './components/select/select.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
-import { ToggleComponent } from './components/toggle/toggle.component';
-import { CopyComponent } from './components/copy/copy.component';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { DatepickerComponent } from './components/datepicker/datepicker.component';
-import { DateRangeComponent } from './components/date-range/date-range.component';
-import { SpacingComponent } from './components/spacing/spacing.component';
-import { TypographyComponent } from './components/typography/typography.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { LinkComponent } from './components/link/link.component';
-import { WindowServiceComponent } from './components/services/window-service.component';
-import { SpacingStylesComponent } from './components/spacing/spacing-styles.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
-import { SearchComponent } from './components/search/search.component';
 import { CardComponent } from './components/card/card.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { CopyComponent } from './components/copy/copy.component';
+import { DateRangeComponent } from './components/date-range/date-range.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { InputComponent } from './components/input/input.component';
+import { LinkComponent } from './components/link/link.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { RadioComponent } from './components/radio/radio.component';
+import { SearchComponent } from './components/search/search.component';
+import { SelectComponent } from './components/select/select.component';
+import { SpacingComponent } from './components/spacing/spacing.component';
+import { SpacingStylesComponent } from './components/spacing/spacing-styles.component';
+import { ToggleComponent } from './components/toggle/toggle.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
+import { WindowServiceComponent } from './components/services/window-service.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -66,52 +75,60 @@ import { ValidationComponent } from './components/validation/validation.componen
     BrowserAnimationsModule,
     FlexLayoutModule,
 
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
+
     TsButtonModule,
-    TsInputModule,
-    TsMenuModule,
-    TsSelectModule,
-    TsPaginationModule,
-    TsToggleModule,
-    TsCopyModule,
-    TsTooltipModule,
-    TsDatepickerModule,
-    TsDateRangeModule,
-    TsSpacingModule,
-    TsCheckboxModule,
-    TsLoginFormModule,
-    TsLinkModule,
-    TsNavigationModule,
-    TsLoadingOverlayModule,
-    TsSearchModule,
     TsCardModule,
+    TsCheckboxModule,
+    TsCopyModule,
+    TsDateRangeModule,
+    TsDatepickerModule,
+    TsInputModule,
+    TsLinkModule,
+    TsLoadingOverlayModule,
+    TsLoginFormModule,
+    TsMenuModule,
+    TsNavigationModule,
+    TsPaginationModule,
+    TsRadioGroupModule,
+    TsSearchModule,
+    TsSelectModule,
+    TsSpacingModule,
+    TsToggleModule,
+    TsTooltipModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   declarations: [
     AppComponent,
     ComponentsComponent,
+
     ButtonComponent,
-    InputComponent,
-    MenuComponent,
-    SelectComponent,
-    PaginationComponent,
-    ToggleComponent,
-    CopyComponent,
-    TooltipComponent,
-    DatepickerComponent,
-    DateRangeComponent,
-    SpacingComponent,
-    TypographyComponent,
-    CheckboxComponent,
-    LoginFormComponent,
-    LinkComponent,
-    WindowServiceComponent,
-    SpacingStylesComponent,
-    NavigationComponent,
-    LoadingOverlayComponent,
-    SearchComponent,
     CardComponent,
+    CheckboxComponent,
+    CopyComponent,
+    DateRangeComponent,
+    DatepickerComponent,
+    InputComponent,
+    LinkComponent,
+    LoadingOverlayComponent,
+    LoginFormComponent,
+    MenuComponent,
+    NavigationComponent,
+    PaginationComponent,
+    RadioComponent,
+    SearchComponent,
+    SelectComponent,
+    SpacingComponent,
+    SpacingStylesComponent,
+    ToggleComponent,
+    TooltipComponent,
+    TypographyComponent,
     ValidationComponent,
+    WindowServiceComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

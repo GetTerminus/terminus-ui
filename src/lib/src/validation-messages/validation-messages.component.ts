@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -23,6 +24,10 @@ import { TsValidationMessageService } from './../services/validation-message/val
   selector: 'ts-validation-messages',
   templateUrl: './validation-messages.component.html',
   styleUrls: ['./validation-messages.component.scss'],
+  host: {
+    class: 'ts-validation-messages',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsValidationMessagesComponent {
   /**
@@ -33,12 +38,18 @@ export class TsValidationMessagesComponent {
   public get validationMessage(): string | null {
     if (this.control) {
       for (const propertyName in this.control.errors) {
-        // Only show after 'touched' if we are NOT validating on every change
-        if (this.validateOnChange || (!this.validateOnChange && this.control.touched)) {
-          const errors = this.control.errors[propertyName];
 
-          return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
+        // istanbul ignore else
+        if (propertyName) {
+          // Only show after 'touched' if we are NOT validating on every change
+          const immediatelyOrOnChange = this.validateImmediately || this.validateOnChange;
+          if (immediatelyOrOnChange || (!this.validateOnChange && this.control.touched)) {
+            const errors = this.control.errors[propertyName];
+
+            return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
+          }
         }
+
       }
     }
 
@@ -56,6 +67,9 @@ export class TsValidationMessagesComponent {
    */
   @Input()
   public validateOnChange: boolean = false;
+
+  @Input()
+  public validateImmediately: boolean = false;
 
 
   /**

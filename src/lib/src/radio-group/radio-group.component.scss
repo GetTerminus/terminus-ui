@@ -1,0 +1,28 @@
+@import './../scss/helpers/typography';
+
+//
+// @component
+//  Radio Group
+// @description
+//  A component to display a group of radio buttons
+//
+.ts-radio-group {
+  display: block;
+
+  // Top level styles belong here
+  .c-radio {
+    @include typography;
+    display: block;
+    // Create space for validation messages (this is usually handled by `mat-form-field`
+    padding-bottom: 1.25em;
+    // set up for absolutely positioned validation messages
+    position: relative;
+  }
+}
+
+.c-radio {
+  // Nested classes belong here
+  .c-radio__control {
+    display: block;
+  }
+}

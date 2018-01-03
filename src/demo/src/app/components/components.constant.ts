@@ -4,8 +4,8 @@ import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CopyComponent } from './copy/copy.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
 import { DateRangeComponent } from './date-range/date-range.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
@@ -13,6 +13,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { RadioComponent } from './radio/radio.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { SpacingComponent } from './spacing/spacing.component';
@@ -115,6 +116,13 @@ export const componentsList: Routes = [
     component: NavigationComponent,
     data: {
       name: 'Navigation',
+    },
+  },
+  {
+    path: 'radio',
+    component: RadioComponent,
+    data: {
+      name: 'Radio',
     },
   },
   {

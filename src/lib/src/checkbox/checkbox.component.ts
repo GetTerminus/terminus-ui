@@ -6,9 +6,7 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material';
 
 import { TsStyleThemeTypes } from './../utilities/types';
@@ -17,7 +15,7 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 
 /**
  * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via our base class
+ * This allows our custom components to access the underlying form validation via the base class
  */
 /* tslint:disable:no-use-before-declare */
 export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {

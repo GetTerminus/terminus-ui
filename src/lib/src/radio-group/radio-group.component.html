@@ -1,0 +1,28 @@
+<mat-radio-group
+  class="c-radio qa-radio-group"
+  [(ngModel)]="value"
+>
+  <ng-container *ngFor="let option of options">
+
+    <mat-radio-button
+      class="c-radio__control qa-radio-control"
+      [value]="option.value"
+      [id]="option.value"
+      [disabled]="option.disabled"
+      [checked]="option.checked"
+      [name]="option.name"
+      [required]="option.required"
+      (change)="change.emit($event)"
+    >
+      {{ option.displayValue }}
+    </mat-radio-button>
+
+  </ng-container>
+
+  <ts-validation-messages
+    class="qa-radio-validation-messages"
+    *ngIf="formControl"
+    [control]="formControl"
+    validateImmediately="true"
+  ></ts-validation-messages>
+</mat-radio-group>

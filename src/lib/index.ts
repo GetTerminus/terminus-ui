@@ -18,6 +18,7 @@ export { TsLinkModule } from './src/link/link.module';
 export { TsNavigationModule } from './src/navigation/navigation.module';
 export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.module';
 export { TsCardModule } from './src/card/card.module';
+export { TsRadioGroupModule } from './src/radio-group/radio-group.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
