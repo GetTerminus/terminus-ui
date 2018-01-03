@@ -33,7 +33,7 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
  *              (dateSelected)="myMethod($event)"
  * ></ts-date-range>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-date-range',

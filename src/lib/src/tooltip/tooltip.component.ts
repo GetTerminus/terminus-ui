@@ -19,6 +19,8 @@ import { TsTooltipPositionTypes } from './../utilities/types';
  *              [tooltipValue]="myTooltip"
  *              [tooltipPosition]="myPosition"
  * >My Tooltip!</ts-tooltip>
+ *
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-tooltip',

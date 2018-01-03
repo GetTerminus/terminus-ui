@@ -673,6 +673,9 @@
     <li>
         <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
+    <li>
+        <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+    </li>
 </ul>
 
 <div class="tab-content">
@@ -703,7 +706,9 @@
                     <pre class="line-numbers"><code class="language-html">&lt;ts-tooltip
   [tooltipValue]=&quot;myTooltip&quot;
   [tooltipPosition]=&quot;myPosition&quot;
-&gt;My Tooltip!&lt;/ts-tooltip&gt;</code></pre>
+&gt;My Tooltip!&lt;/ts-tooltip&gt;
+
+&lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;</code></pre>
                 </div>
     </div>
 
@@ -798,7 +803,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:36</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -821,7 +826,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:42</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -858,6 +863,8 @@ import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
  *              [tooltipValue]&#x3D;&quot;myTooltip&quot;
  *              [tooltipPosition]&#x3D;&quot;myPosition&quot;
  * &gt;My Tooltip!&lt;/ts-tooltip&gt;
+ *
+ * &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;
  */
 @Component({
   selector: &#x27;ts-tooltip&#x27;,
@@ -908,6 +915,11 @@ export class TsTooltipComponent {
                 <div class="color directive"></div><span>Html element with directive</span>
             </div>
         </div>
+    </div>
+    <div class="tab-pane fade" id="c-example">
+            <iframe src="https://goo.gl/ieUPaG" style="height: 100vh; width: 100%;">
+                <p>Your browser does not support iframes.</p>
+            </iframe>
     </div>
 </div>
 

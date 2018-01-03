@@ -43,6 +43,8 @@ const ALLOWED_TYPES = [
  * <div
  *              tsVerticalSpacing="none"
  * ></div>
+ *
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Directive({
   selector: '[tsVerticalSpacing]',
