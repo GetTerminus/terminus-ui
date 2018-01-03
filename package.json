@@ -43,7 +43,7 @@
     "demo-yarn-install": "cd src/demo && yarn install",
     "prefresh-yarn-install": "rm -rf node_modules && cd src/demo && rm -rf node_modules",
     "fresh-yarn-install": "yarn install && yarn run demo-yarn-install",
-    "postfresh-yarn-install": "cd src/demo && yarn link @terminus/ui",
+    "postfresh-yarn-install": "cd dist/ && yarn link && cd ../src/demo && yarn link @terminus/ui",
     "update:angular:ui": "yarn add @angular/animations@latest @angular/cdk@latest @angular/core@latest @angular/forms@latest @angular/material@latest @angular/platform-browser@latest @angular/router@latest --exact && yarn add @angular/cli@latest @angular/common@latest @angular/core@latest @angular/compiler@latest @angular/compiler-cli@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/http@latest @angular/http@latest @angular/flex-layout@latest -D --exact",
     "update:angular:demo": "cd src/demo && yarn add @angular/animations@latest @angular/common@latest @angular/compiler@latest @angular/core@latest @angular/flex-layout@latest @angular/forms@latest @angular/http@latest @angular/material@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/router@latest @angular/cdk@latest --exact && yarn add @angular/cli@latest @angular/compiler-cli@latest @angular/language-service@latest -D --exact",
     "update:angular": "yr update:angular:ui && yr update:angular:demo",
