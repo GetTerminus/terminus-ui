@@ -20,7 +20,7 @@
     "predocs": "yarn run docs:toc",
     "docs": "yarn run docs:ts && yarn run docs:scss",
     "docs:scss": "node ./node_modules/.bin/nucleus --config config.nucleus.json",
-    "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs/typescript --hideGenerator --toggleMenuItems all --theme stripe",
+    "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs/typescript --hideGenerator --toggleMenuItems all --theme postmark",
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "//=> Section: Development": "",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
