@@ -28,7 +28,7 @@ import {
  *              color="warn"
  * >My link</ts-link>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-link',

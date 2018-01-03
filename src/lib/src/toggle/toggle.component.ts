@@ -46,7 +46,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
  *              (change)="myMethod($event)"
  * >My Toggle!</ts-toggle>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-toggle',

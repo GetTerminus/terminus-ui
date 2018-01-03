@@ -22,7 +22,7 @@ import { TsLoadingOverlayComponent } from './loading-overlay.component';
  * @example
  * <div [tsLoadingOverlay]="true"></div>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Directive({
   selector: '[tsLoadingOverlay]',

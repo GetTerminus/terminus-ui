@@ -40,7 +40,7 @@ import {
  *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-menu',

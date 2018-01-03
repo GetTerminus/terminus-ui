@@ -50,7 +50,7 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
  *   <a href="/faq">Learn more</a>
  * </ng-template>
  *
- * <example-url>http://bnj.bz/3J0j450T2x2b</example-url>
+ * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
   selector: 'ts-pagination',
