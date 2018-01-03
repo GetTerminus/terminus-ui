@@ -6,36 +6,45 @@
   display: inline-block;
 }
 
+
 //
 // @component
 //  Card
 // @description
 //  A simple card component
 //
-.c-card {
+.ts-card {
   // Top level styles should be nested here
-  &#{&} {
+  .c-card {
     @include typography;
     height: 100%;
     // set up for card inner
     position: relative;
   }
+}
 
-  &.c-card--interaction {
-    .c-card__inner {
-      @include card($allows-interaction: true);
-    }
-  }
-
-  &.c-card--centered {
-    .c-card__inner {
-      @include center-content;
-    }
-  }
-
+.c-card {
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
-    @include take-space;
     @include card;
+    position: relative;
+  }
+}
+
+.c-card--interaction {
+  .c-card__inner {
+    @include card($allows-interaction: true);
+  }
+}
+
+.c-card--centered {
+  .c-card__inner {
+    @include center-content;
+  }
+}
+
+.c-card--aspect {
+  .c-card__inner {
+    @include take-space;
   }
 }

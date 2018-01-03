@@ -4,3 +4,4 @@ export * from './menu.types';
 export * from './spacing.types';
 export * from './tooltip.types';
 export * from './input.types';
+export * from './aspect-ratio.types';
