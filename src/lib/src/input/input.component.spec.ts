@@ -1,7 +1,4 @@
-import {
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import 'jest';
 import {
   TsInputComponent,
   CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
@@ -55,13 +52,14 @@ describe(`TsInputComponent`, () => {
     });
 
 
-    it(`should focus the input in the next event loop if isFocused is true`, fakeAsync(() => {
+    it(`should focus the input in the next event loop if isFocused is true`, () => {
+      jest.useFakeTimers();
       this.component.isFocused = true;
       this.component.ngAfterViewInit();
-      tick();
+      jest.runAllTimers();
 
       expect(this.component.input.nativeElement.focus).toHaveBeenCalled();
-    }));
+    });
 
 
     it(`should do nothing if isFocused is false`, () => {
