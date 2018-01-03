@@ -21,7 +21,6 @@ import { Component } from '@angular/core';
     <ts-card
       [supportsInteraction]="supportsInteraction"
       [centeredContent]="centered"
-      style="height: 200px;"
     >
       Standard card
 
@@ -40,10 +39,10 @@ import { Component } from '@angular/core';
     <ts-card
       supportsInteraction="true"
       centeredContent="true"
-      style="height: 300px;"
       [utilityMenuTemplate]="myTemplate"
+      aspectRatio="4:3"
     >
-      Standard card with utility menu
+      Standard card with utility menu and aspect ratio
     </ts-card>
 
     <ng-template #myTemplate>
@@ -55,15 +54,21 @@ import { Component } from '@angular/core';
 
 
       <ng-template #utilityButtons>
-        <ts-link [destination]="['foo/', 'bar/']">
-          My link
-        </ts-link>
+        <ts-button>
+          My menu item
+        </ts-button>
       </ng-template>
     </ng-template>
+
+    <hr>
+    <br>
+
+    <ts-card aspectRatio="16:9">
+      16:9 aspect ratio
+    </ts-card>
   `,
 })
 export class CardComponent {
   supportsInteraction = false;
   centered = false;
-
 }

@@ -2,8 +2,10 @@
   class="c-card c-card qa-card"
   [ngClass]="{
     'c-card--interaction': supportsInteraction,
-    'c-card--centered': centeredContent
+    'c-card--centered': centeredContent,
+    'c-card--aspect': aspectRatioPadding
   }"
+  [style.paddingTop]="aspectRatioPadding"
 >
   <div
     class="c-card__inner"

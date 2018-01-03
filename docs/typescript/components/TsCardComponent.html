@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	    <link rel="stylesheet" href="../styles/style.css">
-                 <link rel="stylesheet" href="../styles/stripe.css">
+                 <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -662,6 +662,9 @@
     <li class="active">
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -708,6 +711,7 @@
                     <pre class="line-numbers"><code class="language-html">&lt;ts-card
   supportsInteraction=&quot;true&quot;
   centeredContent=&quot;true&quot;
+  aspectRatio=&quot;3:5&quot;
   [utilityMenuTemplate]=&quot;myTemplate&quot;
 &gt;Here is my card!&lt;/ts-card&gt;
 
@@ -732,6 +736,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -767,12 +775,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#aspectRatioPadding">aspectRatioPadding</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#aspectRatio">aspectRatio</a>
+                            </li>
                             <li>
                                 <a href="#centeredContent">centeredContent</a>
                             </li>
@@ -785,6 +811,20 @@
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#aspectRatio">aspectRatio</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -792,6 +832,25 @@
 
     <section>
         <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="aspectRatio"></a>
+                            <code>aspectRatio</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the card should conform to a fixed aspect ratio</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/card/card.component.ts:54</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -813,7 +872,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/card/card.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/card/card.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -826,7 +885,7 @@
                             <code>supportsInteraction</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Define if the card should support interaction (via click)</p>
+                            <div><p>Define if the card should support interaction (via hover)</p>
 <p>NOTE: This only alters style; not functionality</p>
 </div>
                               <p>
@@ -840,7 +899,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/src/card/card.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/card/card.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -863,7 +922,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/card/card.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/card/card.component.ts:80</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -874,9 +933,164 @@
 
 
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="aspectRatioPadding"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                aspectRatioPadding
+                                </b>
+                                <a href="#aspectRatioPadding"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>aspectRatioPadding:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/card/card.component.ts:46</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Expose the aspect ratio as a percentage</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    </section>
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="aspectRatio"></a>
+                            <span class="name"><b>aspectRatio</b><a href="#aspectRatio"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>aspectRatio(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/card/card.component.ts:54</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define if the card should conform to a fixed aspect ratio</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Type</td>
+                                                        <td>Optional</td>
+                                                        <td>Description</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                          <td>value</td>
+                                                          <td>
+                                                          </td>
+                                                          <td>
+                                                          </td>
+                                                          <td><ul>
+    <li>The aspect ratio. See {</li>
+    </ul>
+    </td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><h2 id="basic-usage">Basic usage</h2>
+<p>Wrap the card component around your content:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card&gt;
+  Here is my content!
+&lt;/ts-card&gt;</code></pre><h4 id="interactivity">Interactivity</h4>
+<p>To make the card feel interactive, pass <code>true</code> to the <code>supportsInteraction</code> input.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card supportsInteraction=&quot;true&quot;&gt;
+  Now my card responds to hover and click!
+&lt;/ts-card&gt;</code></pre><h4 id="centered-content">Centered content</h4>
+<p>To center the content, pass <code>true</code> to the <code>centeredContent</code> input.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card centeredContent=&quot;true&quot;&gt;
+  Now my content is centered!
+&lt;/ts-card&gt;</code></pre><h4 id="aspect-ratio">Aspect ratio</h4>
+<p>Pass your desired aspect ratio in the format <code>3:4</code> to the <code>aspectRatio</code> input.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card aspectRatio=&quot;16:9&quot;&gt;
+  Here is a card with a fixed aspect ratio!
+&lt;/ts-card&gt;</code></pre><h4 id="utility-menu">Utility menu</h4>
+<p>To include a utility menu, pass a template which includes the menu trigger and the menu contents.</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- This template name should point to the ng-template --&gt;
+&lt;ts-card [utilityMenuTemplate]=&quot;myTemplate&quot;&gt;
+  Here is a card with a utility menu!
+&lt;/ts-card&gt;
+
+&lt;ng-template #myTemplate&gt;
+  &lt;!-- Include the trigger to open/close the menu --&gt;
+  &lt;!-- Reference the ng-template for the menu content in `menuItemsTemplate` --&gt;
+  &lt;ts-menu
+    triggerType=&quot;utility&quot;
+    menuPositionX=&quot;before&quot;
+    [menuItemsTemplate]=&quot;utilityButtons&quot;
+  &gt;&lt;/ts-menu&gt;
+
+
+  &lt;!-- This template includes all items that should appear in the menu --&gt;
+  &lt;ng-template #utilityButtons&gt;
+    &lt;ts-link [destination]=&quot;[&#39;foo/&#39;, &#39;bar/&#39;]&quot;&gt;
+      My link
+    &lt;/ts-link&gt;
+  &lt;/ng-template&gt;
+&lt;/ng-template&gt;</code></pre></p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
@@ -890,6 +1104,7 @@
 
 import {
   TsStyleThemeTypes,
+  TsAspectRatioTypes,
 } from &#x27;./../utilities/types&#x27;;
 
 
@@ -903,6 +1118,7 @@ import {
  * &lt;ts-card
  *              supportsInteraction&#x3D;&quot;true&quot;
  *              centeredContent&#x3D;&quot;true&quot;
+ *              aspectRatio&#x3D;&quot;3:5&quot;
  *              [utilityMenuTemplate]&#x3D;&quot;myTemplate&quot;
  * &gt;Here is my card!&lt;/ts-card&gt;
  *
@@ -912,12 +1128,34 @@ import {
   selector: &#x27;ts-card&#x27;,
   templateUrl: &#x27;./card.component.html&#x27;,
   styleUrls: [&#x27;./card.component.scss&#x27;],
+  host: {
+    class: &#x27;ts-card&#x27;,
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TsCardComponent {
   /**
-   * Define if the card should support interaction (via click)
+   * Expose the aspect ratio as a percentage
+   */
+  public aspectRatioPadding: string;
+
+  /**
+   * Define if the card should conform to a fixed aspect ratio
+   *
+   * @param value - The aspect ratio. See {@link TsAspectRatioTypes} for possible values.
+   */
+  @Input()
+  public set aspectRatio(value: TsAspectRatioTypes) {
+    const x: number &#x3D; parseInt(value.split(&#x27;:&#x27;)[0], 10);
+    const y: number &#x3D; parseInt(value.split(&#x27;:&#x27;)[1], 10);
+    const percentage: number &#x3D; ((y / x) * 100);
+
+    this.aspectRatioPadding &#x3D; &#x60;${percentage.toFixed(2)}%&#x60;;
+  }
+
+  /**
+   * Define if the card should support interaction (via hover)
    *
    * NOTE: This only alters style; not functionality
    */
@@ -935,6 +1173,7 @@ export class TsCardComponent {
    */
   @Input()
   public utilityMenuTemplate: TemplateRef&lt;ElementRef&gt;;
+
 }
 </code></pre>
     </div>
@@ -944,8 +1183,10 @@ export class TsCardComponent {
   class&#x3D;&quot;c-card c-card qa-card&quot;
   [ngClass]&#x3D;&quot;{
     &#x27;c-card--interaction&#x27;: supportsInteraction,
-    &#x27;c-card--centered&#x27;: centeredContent
+    &#x27;c-card--centered&#x27;: centeredContent,
+    &#x27;c-card--aspect&#x27;: aspectRatioPadding
   }&quot;
+  [style.paddingTop]&#x3D;&quot;aspectRatioPadding&quot;
 &gt;
   &lt;div
     class&#x3D;&quot;c-card__inner&quot;
@@ -991,7 +1232,7 @@ export class TsCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent  }">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding  }"  [style.paddingTop]="aspectRatioPadding">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container></div></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCardComponent'};

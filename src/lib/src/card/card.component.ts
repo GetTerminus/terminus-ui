@@ -9,6 +9,7 @@ import {
 
 import {
   TsStyleThemeTypes,
+  TsAspectRatioTypes,
 } from './../utilities/types';
 
 
@@ -22,6 +23,7 @@ import {
  * <ts-card
  *              supportsInteraction="true"
  *              centeredContent="true"
+ *              aspectRatio="3:5"
  *              [utilityMenuTemplate]="myTemplate"
  * >Here is my card!</ts-card>
  *
@@ -31,12 +33,34 @@ import {
   selector: 'ts-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  host: {
+    class: 'ts-card',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TsCardComponent {
   /**
-   * Define if the card should support interaction (via click)
+   * Expose the aspect ratio as a percentage
+   */
+  public aspectRatioPadding: string;
+
+  /**
+   * Define if the card should conform to a fixed aspect ratio
+   *
+   * @param value - The aspect ratio. See {@link TsAspectRatioTypes} for possible values.
+   */
+  @Input()
+  public set aspectRatio(value: TsAspectRatioTypes) {
+    const x: number = parseInt(value.split(':')[0], 10);
+    const y: number = parseInt(value.split(':')[1], 10);
+    const percentage: number = ((y / x) * 100);
+
+    this.aspectRatioPadding = `${percentage.toFixed(2)}%`;
+  }
+
+  /**
+   * Define if the card should support interaction (via hover)
    *
    * NOTE: This only alters style; not functionality
    */
@@ -54,4 +78,5 @@ export class TsCardComponent {
    */
   @Input()
   public utilityMenuTemplate: TemplateRef<ElementRef>;
+
 }

@@ -19,6 +19,29 @@
 
 
 /**
+ * Pseudo element base styles
+ *
+ * @mixin psuedo
+ * @section Layout
+ * @param $display
+ *  The display value (block/inline/etc)
+ * @param $position
+ *  The position style (absolute/static/etc)
+ * @param $content
+ *  The content value
+ */
+@mixin pseudo(
+  $display: block,
+  $position: absolute,
+  $content: ''
+) {
+  content: $content;
+  display: $display;
+  position: $position;
+}
+
+
+/**
  * Control the ratio for responsive elements
  *
  * @mixin responsive-ratio
@@ -36,7 +59,10 @@
  *  @include responsive-ratio(20, 9, true, url('/images/landing-hero.jpg'));
  */
 @mixin responsive-ratio($x, $y, $pseudo: false, $image: null) {
-  $padding: unquote(( $y / $x ) * 100 + '%');
+  $padding: unquote((( $y / $x ) * 100) + '%');
+  @debug $y;
+  @debug $x;
+  @debug $padding;
 
   @if $x == null or $y == null {
     @warn 'Both the x and y ratios must be passed in.';
