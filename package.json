@@ -162,7 +162,7 @@
     "gulp-better-rollup": "2.0.0",
     "gulp-cli": "1.4.0",
     "gulp-concat": "2.6.1",
-    "gulp-postcss": "7.0.0",
+    "gulp-postcss": "7.0.1",
     "gulp-print": "2.0.1",
     "gulp-remove-empty-lines": "0.1.0",
     "gulp-replace": "0.6.1",
