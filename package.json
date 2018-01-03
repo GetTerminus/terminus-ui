@@ -65,6 +65,9 @@
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
+    "test:jest": "jest --watch --runInBand",
+    "test:jest:ci": "jest --runInBand --coverage",
+    "test:jest:debug": "jest --debug --runInBand",
     "//=> Section: Release": "",
     "check:next-release": "cd dist/ && ../node_modules/.bin/semantic-release --dry-run",
     "//=> Section: Tooling": "",
@@ -122,7 +125,7 @@
   },
   "devDependencies": {
     "@angular/animations": "5.1.2",
-    "@angular/cdk": "5.0.2",
+    "@angular/cdk": "5.0.3",
     "@angular/cli": "1.6.2",
     "@angular/common": "5.1.2",
     "@angular/compiler": "5.1.2",
@@ -131,7 +134,7 @@
     "@angular/flex-layout": "2.0.0-beta.12",
     "@angular/forms": "5.1.2",
     "@angular/http": "5.1.2",
-    "@angular/material": "5.0.2",
+    "@angular/material": "5.0.3",
     "@angular/platform-browser": "5.1.2",
     "@angular/platform-browser-dynamic": "5.1.2",
     "@angular/router": "5.1.2",
@@ -139,6 +142,7 @@
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
     "@types/jasmine": "2.8.2",
+    "@types/jest": "21.1.9",
     "@types/node": "8.5.2",
     "autoprefixer": "7.2.4",
     "camelcase": "4.1.0",
@@ -168,6 +172,8 @@
     "hammerjs": "2.0.8",
     "husky": "0.14.3",
     "jasmine-core": "2.8.0",
+    "jest": "22.0.4",
+    "jest-preset-angular": "5.0.0",
     "karma": "2.0.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-cli": "1.0.1",
@@ -209,5 +215,31 @@
     "typescript": "2.6.2",
     "validate-commit-msg": "2.14.0",
     "zone.js": "0.8.18"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "src/lib/tsconfig.spec.json"
+      },
+      "__TRANSFORM_HTML__": true
+    },
+    "transform": {
+      "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
+    },
+    "testRegex": "(^((?!.*(out-tsc/|coverage/|dist/|src/demo/|e2e/)).).*spec\\.ts.*$)",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "html"
+    ],
+    "moduleNameMapper": {
+      "app/(.*)": "<rootDir>/src/app/$1",
+      "assets/(.*)": "<rootDir>/src/assets/$1",
+      "environments/(.*)": "<rootDir>/src/environments/$1"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx)"
+    ],
+    "mapCoverage": true
   }
 }
