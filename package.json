@@ -190,7 +190,7 @@
     "lint-staged": "6.0.0",
     "lite-server": "2.3.0",
     "lodash.clonedeep": "4.5.0",
-    "markdown-link-check": "3.1.5",
+    "markdown-link-check": "3.1.6",
     "merge-files": "0.1.1",
     "node-sass": "4.7.2",
     "node-sass-import": "1.1.1",
