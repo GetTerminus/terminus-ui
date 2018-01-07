@@ -1,26 +1,26 @@
-import { CopyComponent } from './copy.component';
 import { Routes } from '@angular/router';
 
-import { ButtonComponent } from './button.component';
-import { InputComponent } from './input.component';
-import { MenuComponent } from './menu.component';
-import { SelectComponent } from './select.component';
-import { PaginationComponent } from './pagination.component';
-import { ToggleComponent } from './toggle.component';
-import { TooltipComponent } from './tooltip.component';
-import { DatepickerComponent } from './datepicker.component';
-import { DateRangeComponent } from './date-range.component';
-import { SpacingComponent } from './spacing.component';
-import { TypographyComponent } from './typography.component';
-import { CheckboxComponent } from './checkbox.component';
-import { LoginFormComponent } from './login-form.component';
-import { LinkComponent } from './link.component';
-import { WindowServiceComponent } from './window-service.component';
-import { SpacingStylesComponent } from './spacing-styles.component';
-import { NavigationComponent } from './navigation.component';
-import { LoadingOverlayComponent } from './loading-overlay.component';
-import { SearchComponent } from './search.component';
-import { CardComponent } from './card.component';
+import { ButtonComponent } from './button/button.component';
+import { CardComponent } from './card/card.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { CopyComponent } from './copy/copy.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
+import { DateRangeComponent } from './date-range/date-range.component';
+import { InputComponent } from './input/input.component';
+import { LinkComponent } from './link/link.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { MenuComponent } from './menu/menu.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { SearchComponent } from './search/search.component';
+import { SelectComponent } from './select/select.component';
+import { SpacingComponent } from './spacing/spacing.component';
+import { SpacingStylesComponent } from './spacing/spacing-styles.component';
+import { ToggleComponent } from './toggle/toggle.component';
+import { TooltipComponent } from './tooltip/tooltip.component';
+import { TypographyComponent } from './typography/typography.component';
+import { WindowServiceComponent } from './services/window-service.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -33,38 +33,17 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'input',
-    component: InputComponent,
+    path: 'card',
+    component: CardComponent,
     data: {
-      name: 'Input',
+      name: 'Card',
     },
   },
   {
-    path: 'menu',
-    component: MenuComponent,
+    path: 'checkbox',
+    component: CheckboxComponent,
     data: {
-      name: 'Menu',
-    },
-  },
-  {
-    path: 'select',
-    component: SelectComponent,
-    data: {
-      name: 'Select',
-    },
-  },
-  {
-    path: 'pagination',
-    component: PaginationComponent,
-    data: {
-      name: 'Pagination',
-    },
-  },
-  {
-    path: 'toggle',
-    component: ToggleComponent,
-    data: {
-      name: 'Toggle',
+      name: 'Checkbox',
     },
   },
   {
@@ -72,13 +51,6 @@ export const componentsList: Routes = [
     component: CopyComponent,
     data: {
       name: 'Copy',
-    },
-  },
-  {
-    path: 'tooltip',
-    component: TooltipComponent,
-    data: {
-      name: 'Tooltip',
     },
   },
   {
@@ -96,31 +68,10 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'spacing',
-    component: SpacingComponent,
+    path: 'input',
+    component: InputComponent,
     data: {
-      name: 'Spacing',
-    },
-  },
-  {
-    path: 'typography',
-    component: TypographyComponent,
-    data: {
-      name: 'Typography',
-    },
-  },
-  {
-    path: 'checkbox',
-    component: CheckboxComponent,
-    data: {
-      name: 'Checkbox',
-    },
-  },
-  {
-    path: 'login-form',
-    component: LoginFormComponent,
-    data: {
-      name: 'Login Form',
+      name: 'Input',
     },
   },
   {
@@ -131,17 +82,31 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'window-service',
-    component: WindowServiceComponent,
+    path: 'loading-overlay',
+    component: LoadingOverlayComponent,
     data: {
-      name: 'Window Service',
+      name: 'Loading Overlay',
     },
   },
   {
-    path: 'spacing-styles',
-    component: SpacingStylesComponent,
+    path: 'login-form',
+    component: LoginFormComponent,
     data: {
-      name: 'Spacing SCSS',
+      name: 'Login Form',
+    },
+  },
+  {
+    path: 'menu',
+    component: MenuComponent,
+    data: {
+      name: 'Menu',
+    },
+  },
+  {
+    path: 'pagination',
+    component: PaginationComponent,
+    data: {
+      name: 'Pagination',
     },
   },
   {
@@ -152,13 +117,6 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'loading-overlay',
-    component: LoadingOverlayComponent,
-    data: {
-      name: 'Loading Overlay',
-    },
-  },
-  {
     path: 'search',
     component: SearchComponent,
     data: {
@@ -166,10 +124,52 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'card',
-    component: CardComponent,
+    path: 'select',
+    component: SelectComponent,
     data: {
-      name: 'Card',
+      name: 'Select',
+    },
+  },
+  {
+    path: 'spacing',
+    component: SpacingComponent,
+    data: {
+      name: 'Spacing',
+    },
+  },
+  {
+    path: 'spacing-styles',
+    component: SpacingStylesComponent,
+    data: {
+      name: 'Spacing SCSS',
+    },
+  },
+  {
+    path: 'toggle',
+    component: ToggleComponent,
+    data: {
+      name: 'Toggle',
+    },
+  },
+  {
+    path: 'tooltip',
+    component: TooltipComponent,
+    data: {
+      name: 'Tooltip',
+    },
+  },
+  {
+    path: 'typography',
+    component: TypographyComponent,
+    data: {
+      name: 'Typography',
+    },
+  },
+  {
+    path: 'window-service',
+    component: WindowServiceComponent,
+    data: {
+      name: 'Window Service',
     },
   },
   // INJECT: Add route for demo component

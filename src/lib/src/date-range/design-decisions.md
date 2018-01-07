@@ -1,6 +1,7 @@
 # Date Range Design Decisions
 
-1. If a selected start date invalidates a previously set end date, the end date should be 'unset'.
-  - A user could easily miss the change if the UI updates the end date while the user is focused on
-      the start date. Clearing the end date should invalidate their date range which will allow the
-      form to direct the user's attention to the empty input.
+1. While the component dynamically sets/unsets the startMax and endMin based on any existing date
+   range, we cannot enforce validation internally. When setting validators on a FormControl _all_
+   validators are removed/replaced. This means that we would be removing any validators set by the
+   consumer. Because of this, while we expose the needed validator, we leave the implementation up
+   to the consumer.

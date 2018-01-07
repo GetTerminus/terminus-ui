@@ -61,7 +61,7 @@ export class TsLoginFormComponent implements OnChanges {
       null,
       [
         Validators.required,
-        this.validatorsService.validateEmail,
+        this.validatorsService.email,
       ],
     ],
     password: [
@@ -164,17 +164,6 @@ export class TsLoginFormComponent implements OnChanges {
     if (changes.hasOwnProperty('triggerFormReset') && changes.triggerFormReset.currentValue) {
       this.resetForm();
     }
-  }
-
-  /**
-   * Helper method to get a form control
-   *
-   * @param name - The name of the form control
-   * @param form - The primary form group
-   * @return The requested form control
-   */
-  public getControl(name: string, form: FormGroup = this.loginForm): AbstractControl {
-    return form.get(name)
   }
 
 

@@ -9,7 +9,6 @@ import {
   template: `
     <form [formGroup]="myForm" novalidate>
       <ts-toggle
-        formControlName="myToggle"
         [formControl]="getControl('myToggle')"
         [isDisabled]="isDisabled"
         [name]="name"

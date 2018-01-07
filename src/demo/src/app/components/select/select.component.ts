@@ -14,7 +14,6 @@ import {
         [blankChoice]="blank"
         [multipleAllowed]="multipleAllowed"
         [valueKey]="key"
-        formControlName="myChoices"
         [formControl]="getControl('myChoices')"
         (open)="isOpened($event)"
         (close)="isClosed($event)"

@@ -36,7 +36,6 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-select
- *              formControlName="email"
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              blankChoice="Please choose one."
  *              label="Please select one: "

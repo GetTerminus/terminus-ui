@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { TsValidationService } from './../services/validation/validation.service';
+import { TsValidationMessageService } from './../services/validation-message/validation-message.service';
 
 
 /**
@@ -37,7 +37,7 @@ export class TsValidationMessagesComponent {
         if (this.validateOnChange || (!this.validateOnChange && this.control.touched)) {
           const errors = this.control.errors[propertyName];
 
-          return this.validationService.getValidatorErrorMessage(propertyName, errors);
+          return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
         }
       }
     }
@@ -62,7 +62,7 @@ export class TsValidationMessagesComponent {
    * Inject services
    */
   constructor(
-    private validationService: TsValidationService,
+    private validationMessageService: TsValidationMessageService,
   ) {}
 
 }

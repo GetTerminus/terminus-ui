@@ -43,7 +43,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-input
- *              formControlName="email"
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              required
  *              minlength="3"

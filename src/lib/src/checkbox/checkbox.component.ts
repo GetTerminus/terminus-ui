@@ -36,7 +36,6 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-checkbox
- *              formControlName="rememberMe"
  *              [formControl]="yourHelperToGetFormControl('rememberMe')"
  *              isChecked="true"
  *              isDisabled="false"

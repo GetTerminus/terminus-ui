@@ -35,7 +35,6 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-toggle
- *              formControlName="thingIsDisabled"
  *              [formControl]="yourHelperToGetFormControl('thingIsDisabled')"
  *              arialLabel="Disable my thing"
  *              isDisabled="true"

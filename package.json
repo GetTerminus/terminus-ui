@@ -65,7 +65,8 @@
     "test": "concurrently \"yarn run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:ci": "yarn run build-test",
     "test:ci": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
-    "test:jest": "jest --watch --runInBand",
+    "test:jest:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
+    "test:jest": "jest --watch",
     "test:jest:ci": "jest --runInBand --coverage",
     "test:jest:debug": "jest --debug --runInBand",
     "//=> Section: Release": "",
@@ -142,7 +143,7 @@
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
     "@types/jasmine": "2.8.3",
-    "@types/jest": "21.1.9",
+    "@types/jest": "22.0.1",
     "@types/node": "8.5.2",
     "autoprefixer": "7.2.4",
     "camelcase": "4.1.0",
@@ -240,6 +241,15 @@
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx)"
     ],
+    "collectCoverageFrom": [
+      "src/lib/src/**/!(*.module|*.interface|*.constant|*.mock|*.d).ts",
+      "!src/lib/src/utilities/testing/**",
+      "!src/lib/src/utilities/rxjs-lift-hack.ts",
+      "!src/lib/src/module.ts"
+    ],
     "mapCoverage": true
+  },
+  "dependencies": {
+    "date-fns": "2.0.0-alpha.7"
   }
 }
