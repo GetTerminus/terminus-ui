@@ -206,7 +206,7 @@
     "rxjs": "5.5.6",
     "sass-lint": "1.12.1",
     "sass-module-importer": "1.4.0",
-    "scssfmt": "1.0.3",
+    "scssfmt": "1.0.4",
     "semantic-release": "11.0.2",
     "stylelint": "8.4.0",
     "stylelint-order": "0.8.0",
