@@ -241,7 +241,7 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                    <a href="../injectables/TsValidationMessageService.html" >TsValidationMessageService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsValidatorsService.html"  data-type="entity-link" class="active" >TsValidatorsService</a>
@@ -269,6 +269,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsDateRange.html" >TsDateRange</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -557,7 +560,7 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                           <a href="../injectables/TsValidationMessageService.html" >TsValidationMessageService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsValidatorsService.html"  data-type="entity-link" class="active" >TsValidatorsService</a>
@@ -585,6 +588,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsDateRange.html" >TsDateRange</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -696,20 +702,26 @@
                     <tbody>
                         <tr>
                             <td class="col-md-4">
-                                <h6><b>Methods</b></h6>
+                                <h6><b>Properties</b></h6>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <a href="#validateCreditCard">validateCreditCard</a>
+                                        <a href="#creditCard">creditCard</a>
                                     </li>
                                     <li>
-                                        <a href="#validateEmail">validateEmail</a>
+                                        <a href="#email">email</a>
                                     </li>
                                     <li>
-                                        <a href="#validatePassword">validatePassword</a>
+                                        <a href="#maxDate">maxDate</a>
+                                    </li>
+                                    <li>
+                                        <a href="#minDate">minDate</a>
+                                    </li>
+                                    <li>
+                                        <a href="#password">password</a>
                                     </li>
                                 </ul>
                             </td>
@@ -719,238 +731,190 @@
             </section>
 
 
+
             <section>
                 
-                    <h3 id="methods">
-                        Methods
+                    <h3 id="inputs">
+                        Properties
                     </h3>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="validateCreditCard"></a>
+                                    <a name="creditCard"></a>
                                     <span class="name">
                                         <b>
-                                        validateCreditCard
+                                        creditCard
                                         </b>
-                                        <a href="#validateCreditCard"><span class="fa fa-link"></span></a>
+                                        <a href="#creditCard"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>validateCreditCard(control: <a href="https://angular.io/api/forms/FormControl" target="_blank">FormControl</a>)</code>
+                                    <code>creditCard:     <code></code>
+            </code>
                                 </td>
                             </tr>
-            
-            
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>creditCardValidator</code>
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:24</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:19</a></div>
                                         </td>
                                     </tr>
             
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>A custom credit card validator.</p>
-            </div>
             
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td><ul>
-            <li>The form control</li>
-            </ul>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="../interfaces/ValidationResponse.html" target="_self" >null | ValidationResponse</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="validateEmail"></a>
+                                    <a name="email"></a>
                                     <span class="name">
                                         <b>
-                                        validateEmail
+                                        email
                                         </b>
-                                        <a href="#validateEmail"><span class="fa fa-link"></span></a>
+                                        <a href="#email"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>validateEmail(control: <a href="https://angular.io/api/forms/FormControl" target="_blank">FormControl</a>)</code>
+                                    <code>email:     <code></code>
+            </code>
                                 </td>
                             </tr>
-            
-            
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>emailValidator</code>
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:39</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:21</a></div>
                                         </td>
                                     </tr>
             
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>A custom email validator</p>
-            </div>
             
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td><ul>
-            <li>The form control</li>
-            </ul>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="../interfaces/ValidationResponse.html" target="_self" >null | ValidationResponse</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="validatePassword"></a>
+                                    <a name="maxDate"></a>
                                     <span class="name">
                                         <b>
-                                        validatePassword
+                                        maxDate
                                         </b>
-                                        <a href="#validatePassword"><span class="fa fa-link"></span></a>
+                                        <a href="#maxDate"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>validatePassword(control: <a href="https://angular.io/api/forms/FormControl" target="_blank">FormControl</a>)</code>
+                                    <code>maxDate:     <code></code>
+            </code>
                                 </td>
                             </tr>
-            
-            
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>maxDateValidator</code>
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:54</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:18</a></div>
                                         </td>
                                     </tr>
             
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>A custom password validator.</p>
-            </div>
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>control</td>
-                                                              <td>
-                                                                      <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td><ul>
-            <li>The form control</li>
-            </ul>
-            </td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="../interfaces/ValidationResponse.html" target="_self" >null | ValidationResponse</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
+                                    <a name="minDate"></a>
+                                    <span class="name">
+                                        <b>
+                                        minDate
+                                        </b>
+                                        <a href="#minDate"><span class="fa fa-link"></span></a>
+                                    </span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>minDate:     <code></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>minDateValidator</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:17</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="password"></a>
+                                    <span class="name">
+                                        <b>
+                                        password
+                                        </b>
+                                        <a href="#password"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>password:     <code></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>passwordValidator</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/src/services/validators/validators.service.ts:20</a></div>
+                                        </td>
+                                    </tr>
+            
+            
                         </tbody>
                     </table>
             </section>
-
 
     </div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { FormControl } from &#x27;@angular/forms&#x27;;
 
-import { ValidationResponse } from &#x27;./../../utilities/interfaces/validator-response.interface&#x27;;
-import { creditCardRegex } from &#x27;./../../utilities/regex/credit-card.regex&#x27;;
-import { emailRegex } from &#x27;./../../utilities/regex/email.regex&#x27;;
-import { passwordRegex } from &#x27;./../../utilities/regex/password.regex&#x27;;
+import { maxDateValidator } from &#x27;./validators/maxDate/maxDate&#x27;;
+import { minDateValidator } from &#x27;./validators/minDate/minDate&#x27;;
+import { creditCardValidator } from &#x27;./validators/creditCard/creditCard&#x27;;
+import { passwordValidator } from &#x27;./validators/password/password&#x27;;
+import { emailValidator } from &#x27;./validators/email/email&#x27;;
 
 
 /**
@@ -960,51 +924,11 @@ import { passwordRegex } from &#x27;./../../utilities/regex/password.regex&#x27;
  */
 @Injectable()
 export class TsValidatorsService {
-
-  /**
-   * A custom credit card validator.
-   *
-   * @param control - The form control
-   * @return The validation object or null
-   */
-  validateCreditCard(control: FormControl): null | ValidationResponse {
-    return creditCardRegex.test(control.value) ? null : {
-      invalidCreditCard: {
-        valid: false,
-      },
-    };
-  }
-
-
-  /**
-   * A custom email validator
-   *
-   * @param control - The form control
-   * @return The validation object or null
-   */
-  validateEmail(control: FormControl): null | ValidationResponse {
-    return emailRegex.test(control.value) ? null : {
-      invalidEmail: {
-        valid: false,
-      },
-    };
-  }
-
-
-  /**
-   * A custom password validator.
-   *
-   * @param control - The form control
-   * @return The validation object or null
-   */
-  validatePassword(control: FormControl): null | ValidationResponse {
-    return passwordRegex.test(control.value) ? null : {
-      invalidPassword: {
-        valid: false,
-      },
-    };
-  }
-
+  minDate &#x3D; minDateValidator;
+  maxDate &#x3D; maxDateValidator;
+  creditCard &#x3D; creditCardValidator;
+  password &#x3D; passwordValidator;
+  email &#x3D; emailValidator;
 }
 </code></pre>
     </div>

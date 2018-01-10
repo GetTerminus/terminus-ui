@@ -241,7 +241,7 @@
                                     <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                    <a href="../injectables/TsValidationMessageService.html" >TsValidationMessageService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
@@ -269,6 +269,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/Subject.html" >Subject</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsDateRange.html" >TsDateRange</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -557,7 +560,7 @@
                                            <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../injectables/TsValidationService.html" >TsValidationService</a>
+                                           <a href="../injectables/TsValidationMessageService.html" >TsValidationMessageService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
@@ -585,6 +588,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/Subject.html" >Subject</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsDateRange.html" >TsDateRange</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsLoginFormResponse.html" >TsLoginFormResponse</a>
@@ -792,7 +798,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(validationService: <a href="../injectables/TsValidationService.html">TsValidationService</a>)</code>
+                            <code>constructor(validationMessageService: <a href="../injectables/TsValidationMessageService.html">TsValidationMessageService</a>)</code>
                         </td>
                     </tr>
                             <tr>
@@ -818,9 +824,9 @@
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>validationService</td>
+                                                      <td>validationMessageService</td>
                                                       <td>
-                                                                <code><a href="../injectables/TsValidationService.html" target="_self" >TsValidationService</a></code>
+                                                                <code><a href="../injectables/TsValidationMessageService.html" target="_self" >TsValidationMessageService</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -943,7 +949,7 @@
 } from &#x27;@angular/core&#x27;;
 import { FormControl } from &#x27;@angular/forms&#x27;;
 
-import { TsValidationService } from &#x27;./../services/validation/validation.service&#x27;;
+import { TsValidationMessageService } from &#x27;./../services/validation-message/validation-message.service&#x27;;
 
 
 /**
@@ -976,7 +982,7 @@ export class TsValidationMessagesComponent {
         if (this.validateOnChange || (!this.validateOnChange &amp;&amp; this.control.touched)) {
           const errors &#x3D; this.control.errors[propertyName];
 
-          return this.validationService.getValidatorErrorMessage(propertyName, errors);
+          return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
         }
       }
     }
@@ -1001,7 +1007,7 @@ export class TsValidationMessagesComponent {
    * Inject services
    */
   constructor(
-    private validationService: TsValidationService,
+    private validationMessageService: TsValidationMessageService,
   ) {}
 
 }
