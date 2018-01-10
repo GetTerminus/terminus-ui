@@ -6,23 +6,7 @@ import {
 
 @Component({
   selector: 'demo-select',
-  template: `
-    <form [formGroup]="myForm" novalidate>
-      <ts-select
-        [items]="items"
-        [label]="label"
-        [blankChoice]="blank"
-        [multipleAllowed]="multipleAllowed"
-        [valueKey]="key"
-        [formControl]="getControl('myChoices')"
-        (open)="isOpened($event)"
-        (close)="isClosed($event)"
-        (change)="isChanged($event)"
-      >Click Me!</ts-select>
-
-      <button (click)="submit(myForm.value)">Submit</button>
-    </form>
-  `,
+  templateUrl: './select.component.html',
 })
 export class SelectComponent {
   items = [
@@ -34,15 +18,21 @@ export class SelectComponent {
       name: 'Bar',
       slug: 'bar',
     },
+    {
+      name: 'Baz',
+      slug: 'baz',
+    },
   ];
   key = 'slug';
   label = 'Select a Thing';
   blank = 'none';
   multipleAllowed = true;
   myForm = this.formBuilder.group({
-    myChoices: [
+    myChoices1: [
       null,
-      [],
+    ],
+    myChoices2: [
+      null,
     ],
   });
 

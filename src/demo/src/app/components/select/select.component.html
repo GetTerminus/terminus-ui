@@ -1,0 +1,27 @@
+<form [formGroup]="myForm" novalidate>
+  <ts-select
+    [items]="items"
+    label="Single select"
+    [blankChoice]="blank"
+    multipleAllowed="false"
+    [valueKey]="key"
+    [formControl]="getControl('myChoices1')"
+    (open)="isOpened($event)"
+    (close)="isClosed($event)"
+    (change)="isChanged($event)"
+  ></ts-select>
+
+  <ts-select
+    [items]="items"
+    label="Multiple select"
+    [blankChoice]="blank"
+    multipleAllowed="true"
+    [valueKey]="key"
+    [formControl]="getControl('myChoices2')"
+    (open)="isOpened($event)"
+    (close)="isClosed($event)"
+    (change)="isChanged($event)"
+  ></ts-select>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>

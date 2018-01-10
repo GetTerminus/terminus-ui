@@ -76,9 +76,11 @@ test@test.com
 
   <hr>
 
-  <ts-datepicker
-    [formControl]="myForm.get('date')"
-  ></ts-datepicker>
+  <div>
+    <ts-datepicker
+      [formControl]="myForm.get('date')"
+    ></ts-datepicker>
+  </div>
 
 
   <button (click)="submit(myForm.value)">Submit</button>
