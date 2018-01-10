@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -12,20 +15,22 @@ import { TsValidatorsService } from '@terminus/ui';
   selector: 'demo-datepicker',
   templateUrl: './datepicker.component.html',
 })
-export class DatepickerComponent {
+export class DatepickerComponent implements OnInit {
   // SIMPLE EXAMPLE:
   formOneSettings = {
     isDisabled: false,
     startView: 'month',
-    minDate: new Date(2017, 4, 2),
-    myDate: new Date(2017, 4, 14),
-    maxDate: new Date(2017, 4, 20),
+    minDate: new Date(2018, 0, 2),
+    myDate: new Date(2018, 0, 14),
+    maxDate: new Date(2018, 0, 25),
   };
 
   formOne = this.formBuilder.group({
     date: [
-      null,
+      this.formOneSettings.myDate,
       [
+        this.validatorsService.minDate(new Date(2018, 0, 2).toISOString()),
+        this.validatorsService.maxDate(new Date(2018, 0, 25).toISOString()),
         Validators.required,
       ],
     ],
@@ -36,6 +41,7 @@ export class DatepickerComponent {
     startDate: [
       null,
       [
+        this.validatorsService.email(),
         Validators.required,
       ],
     ],
@@ -64,6 +70,10 @@ export class DatepickerComponent {
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
   ) {}
+
+  ngOnInit() {
+    this.formOne.valueChanges.subscribe(data => console.log('DEMO: Subscribed formOne changes', data));
+  }
 
   /**
    * COMMON

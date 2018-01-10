@@ -20,6 +20,7 @@ import { SpacingStylesComponent } from './spacing/spacing-styles.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
+import { ValidationComponent } from './validation/validation.component';
 import { WindowServiceComponent } from './services/window-service.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
@@ -163,6 +164,13 @@ export const componentsList: Routes = [
     component: TypographyComponent,
     data: {
       name: 'Typography',
+    },
+  },
+  {
+    path: 'validation',
+    component: ValidationComponent,
+    data: {
+      name: 'Validation',
     },
   },
   {

@@ -7,23 +7,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   TsButtonModule,
-  TsInputModule,
-  TsMenuModule,
-  TsSelectModule,
-  TsPaginationModule,
-  TsToggleModule,
+  TsCardModule,
+  TsCheckboxModule,
   TsCopyModule,
-  TsTooltipModule,
   TsDatepickerModule,
   TsDateRangeModule,
-  TsSpacingModule,
-  TsCheckboxModule,
-  TsLoginFormModule,
+  TsInputModule,
   TsLinkModule,
-  TsNavigationModule,
   TsLoadingOverlayModule,
+  TsLoginFormModule,
+  TsMenuModule,
+  TsNavigationModule,
+  TsPaginationModule,
   TsSearchModule,
-  TsCardModule,
+  TsSelectModule,
+  TsSpacingModule,
+  TsToggleModule,
+  TsTooltipModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -53,6 +53,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { SearchComponent } from './components/search/search.component';
 import { CardComponent } from './components/card/card.component';
+import { ValidationComponent } from './components/validation/validation.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -110,6 +111,7 @@ import { CardComponent } from './components/card/card.component';
     LoadingOverlayComponent,
     SearchComponent,
     CardComponent,
+    ValidationComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

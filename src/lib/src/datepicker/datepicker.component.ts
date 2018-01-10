@@ -146,9 +146,11 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define if validation messages should be shown immediately or on blur
+   *
+   * NOTE: Since the user may never focus the actual input, we should validate immediately
    */
   @Input()
-  public validateOnChange: boolean = false;
+  public validateOnChange: boolean = true;
 
   /**
    * Define an event emitter to alert consumers that a date was selected

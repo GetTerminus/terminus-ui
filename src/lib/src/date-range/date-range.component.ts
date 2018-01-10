@@ -66,7 +66,7 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the endDate form control
    */
-  private get endDateControl(): AbstractControl {
+  public get endDateControl(): AbstractControl {
     return this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
   }
 
@@ -88,7 +88,7 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the startDate form control
    */
-  private get startDateControl(): AbstractControl {
+  public get startDateControl(): AbstractControl {
     return this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
   }
 
