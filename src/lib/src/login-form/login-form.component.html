@@ -11,11 +11,10 @@
     label="Email"
     name="email"
     type="email"
-    formControlName="email"
-    [formControl]="getControl('email')"
+    [formControl]="loginForm.get('email')"
     isRequired="true"
-    [spellcheck]="false"
-    [autocapitalize]="false"
+    spellcheck="false"
+    autocapitalize="false"
     tabindex="-1"
     tabIndex="1"
     tsVerticalSpacing
@@ -26,14 +25,11 @@
     label="Password"
     name="password"
     type="password"
-    formControlName="password"
-    [formControl]="getControl('password')"
-    hideRequiredMarker="false"
+    [formControl]="loginForm.get('password')"
     isRequired="true"
-    [autocomplete]="'current-password'"
-    [autocapitalize]="false"
-    [spellcheck]="false"
-    minlength="{{ PASSWORD_MINLENGTH }}"
+    autocomplete="current-password"
+    autocapitalize="false"
+    spellcheck="false"
     tabindex="-1"
     tabIndex="2"
     tsVerticalSpacing
@@ -41,8 +37,7 @@
 
   <ts-checkbox
     class="qa-login-form-remember-me"
-    formControlName="rememberMe"
-    [formControl]="getControl('rememberMe')"
+    [formControl]="loginForm.get('rememberMe')"
     tabindex="-1"
     tabIndex="3"
     tsVerticalSpacing

@@ -46,38 +46,6 @@ describe(`TsLoginFormComponent`, () => {
   });
 
 
-  describe(`getControl()`, () => {
-
-    it(`should return a form control`, () => {
-      // Seed the value so that we can verify we grabbed the correct control below
-      this.component.loginForm.patchValue({
-        password: 'foo',
-      });
-      const control = this.component.getControl('password');
-
-      expect(control.value).toEqual('foo');
-    });
-
-
-    it(`should return a custom form control`, () => {
-      this.component.testForm = this.component.formBuilder.group({
-        myInput: [
-          null,
-          [],
-        ],
-      });
-      // Seed the value so that we can verify we grabbed the correct control below
-      this.component.testForm.patchValue({
-        myInput: 'bar',
-      });
-      const control = this.component.getControl('myInput', this.component.testForm);
-
-      expect(control.value).toEqual('bar');
-    });
-
-  });
-
-
   describe(`resetForm()`, () => {
 
     it(`should reset all inputs to their initial value`, () => {
@@ -87,23 +55,22 @@ describe(`TsLoginFormComponent`, () => {
         password: 'bar',
       });
 
-      const emailValueBefore = this.component.getControl('email', this.component.loginForm).value;
+      const emailValueBefore = this.component.loginForm.get('email').value;
       expect(emailValueBefore).toEqual('foo');
 
-      const passwordValueBefore = this.component.getControl('password', this.component.loginForm).value;
+      const passwordValueBefore = this.component.loginForm.get('password').value;
       expect(passwordValueBefore).toEqual('bar');
 
       this.component.resetForm();
       jest.runAllTimers();
 
-      const emailValueAfter = this.component.getControl('email', this.component.loginForm).value;
+      const emailValueAfter = this.component.loginForm.get('email').value;
       expect(emailValueAfter).toEqual(null);
 
-      const passwordValueAfter = this.component.getControl('password', this.component.loginForm).value;
+      const passwordValueAfter = this.component.loginForm.get('password').value;
       expect(passwordValueAfter).toEqual(null);
     });
 
   });
-
 
 });

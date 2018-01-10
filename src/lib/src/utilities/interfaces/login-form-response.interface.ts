@@ -1,5 +1,5 @@
 /**
- * Define the structure of the login form responce
+ * Define the structure of the login form response
  */
 export interface TsLoginFormResponse {
   /**

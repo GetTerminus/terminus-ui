@@ -1,0 +1,22 @@
+<form [formGroup]="myForm" novalidate>
+
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+
+  <br>
+  <br>
+
+  <ts-date-range
+    startMaxDate="{{ myMin }}"
+    [dateFormGroup]="group"
+    (selectedDate)="printRange()"
+  ></ts-date-range>
+
+  <br>
+  <br>
+
+  <button (click)="printRange()">Print Range</button>
+
+</form>

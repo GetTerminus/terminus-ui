@@ -9,8 +9,7 @@ import {
   template: `
     <form [formGroup]="myForm" novalidate>
       <ts-toggle
-        formControlName="myToggle"
-        [formControl]="getControl('myToggle')"
+        [formControl]="myForm.get('myToggle')"
         [isDisabled]="isDisabled"
         [name]="name"
         [isRequired]="required"
@@ -43,9 +42,5 @@ export class ToggleComponent {
 
   submit(v: any) {
     console.log('Submit!: ', v);
-  }
-
-  getControl(name: string): AbstractControl {
-    return this.myForm.get(name);
   }
 }

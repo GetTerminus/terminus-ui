@@ -11,7 +11,7 @@ import { TsLoginFormResponse } from '@terminus/ui';
   template: `
     <div>
       <label for="isRedirecting">
-        Signal that the user is being redirected:
+        Signal that the user is being redirected (form must be valid):
       </label>
       <input name="isRedirecting" type="checkbox" [(ngModel)]="isRedirecting">
     </div>
@@ -31,7 +31,7 @@ export class LoginFormComponent {
   public isRedirecting = false;
 
   formSubmission(e: TsLoginFormResponse) {
-    console.warn('Form value: ', e);
+    console.warn('Demo: Form value: ', e);
     this.progress = true;
 
     setTimeout(() => {

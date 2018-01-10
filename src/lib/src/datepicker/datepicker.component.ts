@@ -2,13 +2,15 @@ import {
   Component,
   Input,
   Output,
-  OnChanges,
+  OnInit,
   EventEmitter,
   ViewChild,
   SimpleChanges,
   forwardRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
@@ -38,16 +40,18 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-datepicker
- *              formControlName="date"
  *              [formControl]="yourHelperToGetFormControl('date')"
  *              [(ngModel)]="myModel"
  *              [dateFilter]="myDateFilter"
  *              inputPlaceholder="Set a date"
+ *              isDisabled="false"
  *              maxDate="{{ new Date(1990, 1, 1) }}"
  *              minDate="{{ new Date(1990, 1, 1) }}"
+ *              initialDate="{{ new Date(1990, 1, 1) }}"
+ *              openTo="{{ new Date(1990, 1, 1) }}"
  *              startingView="year"
  *              tabIndex="{{ '2' }}"
- *              initialDate="{{ new Date(1990, 1, 1) }}"
+ *              validateOnChange="true"
  *              (selected)="changeSelected($event)"
  * ></ts-datepicker>
  *
@@ -59,7 +63,7 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./datepicker.component.scss'],
   providers: [CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR],
 })
-export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnChanges {
+export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**
    * Expose the initial date to the template
    */
@@ -103,7 +107,7 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set maxDate(value: string | Date) {
-    this._maxDate = this.convertISOToString(value);
+    this._maxDate = value ? this.verifyIsDateObject(value) : null;
   }
 
   /**
@@ -111,7 +115,7 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set minDate(value: string | Date) {
-    this._minDate = this.convertISOToString(value);
+    this._minDate = value ? this.verifyIsDateObject(value) : null;
   }
 
   /**
@@ -119,8 +123,14 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set initialDate(value: string | Date) {
-    this._initialDate = this.convertISOToString(value);
+    this._initialDate = value ? this.verifyIsDateObject(value) : null;
   }
+
+  /**
+   * Define a date that the datepicker calendar should open to
+   */
+  @Input()
+  public openTo: Date;
 
   /**
    * Define the starting view of the datepicker
@@ -136,22 +146,23 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define if validation messages should be shown immediately or on blur
+   *
+   * NOTE: Since the user may never focus the actual input, we should validate immediately
    */
   @Input()
-  public validateOnChange: boolean = false;
+  public validateOnChange: boolean = true;
 
   /**
    * Define an event emitter to alert consumers that a date was selected
    */
   @Output()
-  public selected: EventEmitter<any> = new EventEmitter();
+  public selected: EventEmitter<MatDatepickerInputEvent<Date>> = new EventEmitter();
 
 
   /**
    * Set the initial date if it exists
    */
-  public ngOnChanges(changes: SimpleChanges): void {
-    // istanbul ignore else
+  public ngOnInit() {
     if (this._initialDate) {
       this.value = this._initialDate;
     }
@@ -167,16 +178,16 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
 
 
   /**
-   * Convert an ISO string to a date if needed.
+   * Convert an valid date string to a Date if needed
    *
    * NOTE: When using 1 time bindings we are required to pass in ISO stringified dates. Adding this
    * method to our setters adds support for either version
    *
-   * @param date - The time chosen
-   * @return A date object
+   * @param date - The date
+   * @return The Date object
    */
-  private convertISOToString(date: string | Date) {
-    // If value is an ISO string, convert to a date
+  private verifyIsDateObject(date: string | Date): Date {
+    // If value is a valid date string, convert to a date
     if (!(date instanceof Date)) {
       return new Date(date);
     } else {

@@ -1,0 +1,49 @@
+<form [formGroup]="formOne" novalidate>
+  <ts-datepicker
+    [formControl]="getControl('formOne', 'date')"
+    [dateFilter]="myFilter"
+    [startingView]="formOneSettings.startView"
+    initialDate="{{ formOneSettings.myDate }}"
+    [isDisabled]="formOneSettings.isDisabled"
+    name="date"
+    (selected)="dateSelected($event)"
+  ></ts-datepicker>
+
+  <br>
+  <br>
+
+  <button (click)="submit('Form One', formOne.value)">Submit</button>
+</form>
+
+
+<br>
+<hr>
+<br>
+
+
+<h4>Range example using two Datepickers</h4>
+
+<p>
+  Dynamically adding form validation based on the selected dates.
+</p>
+
+<form [formGroup]="formTwo" novalidate>
+  <ts-datepicker
+    [formControl]="getControl('formTwo', 'startDate')"
+    validateOnChange="true"
+    name="startDate"
+    (selected)="rangeStartChange($event)"
+  ></ts-datepicker>
+  -
+  <ts-datepicker
+    [formControl]="getControl('formTwo', 'endDate')"
+    validateOnChange="true"
+    name="endDate"
+    (selected)="rangeEndChange($event)"
+  ></ts-datepicker>
+
+  <br>
+  <br>
+
+  <button (click)="submit('Form Two', formTwo.value)">Submit</button>
+</form>

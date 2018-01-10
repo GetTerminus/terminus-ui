@@ -4,8 +4,14 @@ import {
   Output,
   ViewChild,
   EventEmitter,
+  OnInit,
 } from '@angular/core';
+import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 import { TsDatepickerComponent } from './../datepicker/datepicker.component';
+import { TsDateRange } from './../utilities/interfaces/date-range.interface';
 
 
 /**
@@ -18,16 +24,15 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
  *
  * @example
  * <ts-date-range
- *              startingView="year"
- *              separator="~"
- *              startPlaceholder="Select a date"
- *              startMaxDate="{{ new Date(2017, 4, 30) }}"
- *              startMinDate="{{ new Date(2017, 4, 1) }}"
- *              startInitialDate="{{ new Date(2017, 4, 10) }}"
- *              endPlaceholder="value"
  *              endMaxDate="{{ new Date(2017, 4, 30) }}"
  *              endMinDate="{{ new Date(2017, 4, 1) }}"
  *              endInitialDate="{{ new Date(2017, 4, 10) }}"
+ *              separator="~"
+ *              startingView="months"
+ *              startMaxDate="{{ new Date(2017, 4, 30) }}"
+ *              startMinDate="{{ new Date(2017, 4, 1) }}"
+ *              startInitialDate="{{ new Date(2017, 4, 10) }}"
+ *              [dateFormGroup]="myForm.get('dateRange')"
  *              (startSelected)="myMethod($event)"
  *              (endSelected)="myMethod($event)"
  *              (dateSelected)="myMethod($event)"
@@ -40,13 +45,13 @@ import { TsDatepickerComponent } from './../datepicker/datepicker.component';
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
 })
-export class TsDateRangeComponent {
+export class TsDateRangeComponent implements OnInit {
   /**
    * Getter to return the date range as an object
    *
    * @return The current date range
    */
-  private get dateRange(): any {
+  private get dateRange(): TsDateRange {
     return {
       start: this.startDate || null,
       end: this.endDate || null,
@@ -59,59 +64,43 @@ export class TsDateRangeComponent {
   public endDate: Date;
 
   /**
+   * Provide quick access to the endDate form control
+   */
+  public get endDateControl(): AbstractControl {
+    return this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
+  }
+
+  /**
+   * Expose the minimum date for the endDate
+   */
+  public _endMinDate$: BehaviorSubject<Date> = new BehaviorSubject(null);
+
+  /**
+   * Define the end date placeholder
+   */
+  public endPlaceholder: string = 'Select end date';
+
+  /**
    * Store the selected start date
    */
   public startDate: Date;
 
   /**
-   * Allow access to child directive
+   * Provide quick access to the startDate form control
    */
-  @ViewChild('end')
-  public end: TsDatepickerComponent;
+  public get startDateControl(): AbstractControl {
+    return this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
+  }
 
   /**
-   * Define the starting view for both datepickers
+   * Expose the maximum date for the startDate
    */
-  @Input()
-  public startingView: 'month' | 'year' = 'month';
-
-  /**
-   * Define the separator between the two date inputs
-   */
-  @Input()
-  public separator: string = '-';
+  public _startMaxDate$: BehaviorSubject<Date> = new BehaviorSubject(null);
 
   /**
    * Define the start date placeholder
    */
-  @Input()
-  public startPlaceholder: string = 'Select a date';
-
-  /**
-   * Define the max date for the starting date
-   */
-  @Input()
-  public startMaxDate: Date;
-
-  /**
-   * Define the min date for the starting date
-   */
-  @Input()
-  public startMinDate: Date;
-
-  /**
-   * Define the initial date for the starting date
-   */
-  @Input()
-  public set startInitialDate(value: Date) {
-    this.startDate = value;
-  }
-
-  /**
-   * Define the end date placeholder
-   */
-  @Input()
-  public endPlaceholder: string = 'Select a date';
+  public startPlaceholder: string = 'Select start date';
 
   /**
    * Define the max date for the end date
@@ -129,54 +118,139 @@ export class TsDateRangeComponent {
    * Define the initial date for the end date
    */
   @Input()
-  public set endInitialDate(value: Date) {
-    this.endDate = value;
-  }
+  public endInitialDate: Date;
+
+  /**
+   * Define the separator between the two date inputs
+   */
+  @Input()
+  public separator: string = '-';
+
+  /**
+   * Define the starting view for both datepickers
+   */
+  @Input()
+  public startingView: 'month' | 'year' = 'month';
+
+  /**
+   * Define the max date for the starting date
+   */
+  @Input()
+  public startMaxDate: Date;
+
+  /**
+   * Define the min date for the starting date
+   */
+  @Input()
+  public startMinDate: Date;
+
+  /**
+   * Define the initial date for the starting date
+   */
+  @Input()
+  public startInitialDate: Date;
+
+  /**
+   * Define the form group to attach the date range to
+   */
+  @Input()
+  public dateFormGroup: FormGroup;
 
   /**
    * Output the start date when selected
    */
   @Output()
-  public startSelected: EventEmitter<any> = new EventEmitter();
+  public startSelected: EventEmitter<Date> = new EventEmitter();
 
   /**
    * Output the end date when selected
    */
   @Output()
-  public endSelected: EventEmitter<any> = new EventEmitter();
+  public endSelected: EventEmitter<Date> = new EventEmitter();
 
   /**
-   * Output the selected date range
+   * Output the selected date range as {@link TsDateRange}
    */
   @Output()
-  public selectedDate: EventEmitter<any> = new EventEmitter();
+  public selectedDate: EventEmitter<TsDateRange> = new EventEmitter();
+
+
+  /**
+   * Seed initial date range values
+   */
+  public ngOnInit(): void {
+    // Seed values from @Inputs
+    this.seedDateRange(this.startInitialDate, this.endInitialDate);
+
+    // Seed values from a passed in form group
+    if (this.dateFormGroup) {
+      this.seedWithFormValues(this.dateFormGroup);
+    }
+  }
+
+
+  /**
+   * Seed the date range with initial values
+   *
+   * @param start - The initial start date
+   * @param end - The initial end date
+   */
+  private seedDateRange(start: Date | null, end: Date | null): void {
+    if (start) {
+      this.startDate = start;
+    }
+
+    if (end) {
+      this.endDate = end;
+    }
+  }
+
+
+  /**
+   * Seed date values from a passed in form
+   *
+   * @param formGroup - The date form group
+   */
+  private seedWithFormValues(formGroup: FormGroup): void {
+    const startValue = formGroup.get('startDate').value;
+    const endValue = formGroup.get('endDate').value;
+
+    // istanbul ignore else
+    if (startValue) {
+      this.startInitialDate = startValue;
+      this._endMinDate$.next(this.startInitialDate);
+    }
+
+    // istanbul ignore else
+    if (endValue) {
+      this.endInitialDate = endValue;
+      this._startMaxDate$.next(this.endInitialDate);
+    }
+  }
 
 
   /**
    * Emit the selected start date and date range
    *
-   * @param date - The selected date
+   * @param datepickerEvent - The event received from the range start event
+   * {@link TsDatepickerComponent}
    */
-  public startDateSelected(date: Date): void {
-    if (date) {
-      this.startDate = date;
-      /*
-       * NOTE: We don't want an end date that is before the start date, so when a start date is
-       * chosen, we set it as the minimum end date
-       */
-      this.endMinDate = this.startDate;
+  public startDateSelected(datepickerEvent: MatDatepickerInputEvent<Date>): void {
+    if (datepickerEvent && datepickerEvent.value) {
+      this._endMinDate$.next(datepickerEvent.value);
+      this.startDate = datepickerEvent.value;
 
-      const dateIsAfter = this.endDate && date.getTime() > this.endDate.getTime();
-
-      // If the new start date is after the existing end date
-      if (dateIsAfter) {
-        // Clear the existing end date
-        this.endDate = null;
-        this.end.resetValue();
+      // Update the form value if a formGroup was passed in
+      // istanbul ignore else
+      if (this.dateFormGroup) {
+        this.startDateControl.setValue(datepickerEvent.value);
       }
 
-      this.startSelected.emit(date);
+      this.startSelected.emit(datepickerEvent.value);
       this.selectedDate.emit(this.dateRange);
+    } else {
+      // If no startDate was selected, reset to the original endMinDate
+      this._endMinDate$.next(this.endMinDate);
     }
   }
 
@@ -184,14 +258,25 @@ export class TsDateRangeComponent {
   /**
    * Emit the selected end date and date range
    *
-   * @param date - The selected date
+   * @param datepickerEvent - The event received from the range end event
+   * {@link TsDatepickerComponent}
    */
-  public endDateSelected(date: Date): void {
-    if (date) {
-      this.endDate = date;
+  public endDateSelected(datepickerEvent: MatDatepickerInputEvent<Date>): void {
+    if (datepickerEvent && datepickerEvent.value) {
+      this._startMaxDate$.next(datepickerEvent.value);
+      this.endDate = datepickerEvent.value;
 
-      this.endSelected.emit(date);
+      // Update the form value if a formGroup was passed in
+      // istanbul ignore else
+      if (this.dateFormGroup) {
+        this.endDateControl.setValue(datepickerEvent.value);
+      }
+
+      this.endSelected.emit(datepickerEvent.value);
       this.selectedDate.emit(this.dateRange);
+    } else {
+      // If no endDate was selected, reset to the original startMaxDate
+      this._startMaxDate$.next(this.startMaxDate);
     }
   }
 

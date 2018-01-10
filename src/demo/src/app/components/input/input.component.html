@@ -1,0 +1,59 @@
+<ts-input
+  style="width:100%;"
+  [(ngModel)]="myValue"
+  label="Input with ngModel"
+  isClearable="true"
+  isRequired="true"
+  name="static input"
+></ts-input>
+
+<br>
+<strong>ngModel value: {{myValue}}</strong>
+<br>
+<br>
+
+<form [formGroup]="myForm" novalidate>
+  <ts-input
+    style="width:100%;"
+    [formControl]="getControl('name')"
+    [label]="label1"
+    [isClearable]="clearable"
+    hint="Name input with validation"
+    isRequired="true"
+    [spellcheck]="false"
+    [prefixIcon]="icon"
+  ></ts-input>
+
+  <br>
+  <br>
+
+  <ts-input
+    style="width:100%;"
+    [formControl]="getControl('email')"
+    [label]="label2"
+    [isClearable]="clearable"
+    hint="Email input with validation"
+    name="email"
+    [spellcheck]="false"
+    [autocomplete]="'email'"
+    type="email"
+  ></ts-input>
+
+  <br>
+  <br>
+
+  <ts-input
+    style="width:100%;"
+    [formControl]="getControl('password')"
+    label="Password"
+    hint="Password input with validation"
+    [spellcheck]="false"
+    [autocomplete]="'password'"
+    type="password"
+  ></ts-input>
+
+  <br>
+  <br>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>

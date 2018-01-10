@@ -1,12 +1,14 @@
 <div class="c-date-range c-date-range qa-date-range">
   <ts-datepicker
     class="qa-date-range-start-datepicker"
+    [formControl]="startDateControl"
     [inputPlaceholder]="startPlaceholder"
-    [maxDate]="startMaxDate"
+    [maxDate]="_startMaxDate$ | async"
     [minDate]="startMinDate"
     [startingView]="startingView"
-    [initialDate]="startDate"
+    initialDate="{{ startInitialDate }}"
     (selected)="startDateSelected($event)"
+    #start
   ></ts-datepicker>
 
   <span
@@ -18,11 +20,12 @@
 
   <ts-datepicker
     class="qa-date-range-end-datepicker"
+    [formControl]="endDateControl"
     [inputPlaceholder]="endPlaceholder"
     [maxDate]="endMaxDate"
-    [minDate]="endMinDate"
+    [minDate]="_endMinDate$ | async"
     [startingView]="startingView"
-    [initialDate]="endDate"
+    initialDate="{{ endInitialDate }}"
     (selected)="endDateSelected($event)"
     #end
   ></ts-datepicker>

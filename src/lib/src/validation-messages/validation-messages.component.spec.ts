@@ -1,11 +1,11 @@
 import { TsValidationMessagesComponent } from './validation-messages.component';
-import { TsValidationServiceMock } from './../services/validation/validation.service.mock';
+import { TsValidationMessageServiceMock } from './../services/validation-message/validation-message.service.mock';
 
 
 describe('InputMessagesComponent', () => {
 
   beforeEach(() => {
-    this.component = new TsValidationMessagesComponent(new TsValidationServiceMock());
+    this.component = new TsValidationMessagesComponent(new TsValidationMessageServiceMock());
   });
 
 
@@ -29,7 +29,7 @@ describe('InputMessagesComponent', () => {
       };
       const message = this.component.validationMessage;
 
-      expect(this.component.validationService.getValidatorErrorMessage)
+      expect(this.component.validationMessageService.getValidatorErrorMessage)
         .toHaveBeenCalledWith('invalidEmail', ERROR);
     });
 
@@ -42,7 +42,7 @@ describe('InputMessagesComponent', () => {
       };
       const message = this.component.validationMessage;
 
-      expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
       expect(message).toEqual(null);
     });
 
@@ -59,14 +59,14 @@ describe('InputMessagesComponent', () => {
       };
       const message = this.component.validationMessage;
 
-      expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
       expect(message).toEqual(null);
     });
 
 
     it(`should return null if no control was passed in`, () => {
       expect(this.component.validationMessage).toEqual(null);
-      expect(this.component.validationService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
     });
 
   });

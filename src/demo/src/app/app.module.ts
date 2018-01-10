@@ -7,23 +7,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   TsButtonModule,
-  TsInputModule,
-  TsMenuModule,
-  TsSelectModule,
-  TsPaginationModule,
-  TsToggleModule,
+  TsCardModule,
+  TsCheckboxModule,
   TsCopyModule,
-  TsTooltipModule,
   TsDatepickerModule,
   TsDateRangeModule,
-  TsSpacingModule,
-  TsCheckboxModule,
-  TsLoginFormModule,
+  TsInputModule,
   TsLinkModule,
-  TsNavigationModule,
   TsLoadingOverlayModule,
+  TsLoginFormModule,
+  TsMenuModule,
+  TsNavigationModule,
+  TsPaginationModule,
   TsSearchModule,
-  TsCardModule,
+  TsSelectModule,
+  TsSpacingModule,
+  TsToggleModule,
+  TsTooltipModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -32,27 +32,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 
-import { ButtonComponent } from './components/button.component';
-import { InputComponent } from './components/input.component';
-import { MenuComponent } from './components/menu.component';
-import { SelectComponent } from './components/select.component';
-import { PaginationComponent } from './components/pagination.component';
-import { ToggleComponent } from './components/toggle.component';
-import { CopyComponent } from './components/copy.component';
-import { TooltipComponent } from './components/tooltip.component';
-import { DatepickerComponent } from './components/datepicker.component';
-import { DateRangeComponent } from './components/date-range.component';
-import { SpacingComponent } from './components/spacing.component';
-import { TypographyComponent } from './components/typography.component';
-import { CheckboxComponent } from './components/checkbox.component';
-import { LoginFormComponent } from './components/login-form.component';
-import { LinkComponent } from './components/link.component';
-import { WindowServiceComponent } from './components/window-service.component';
-import { SpacingStylesComponent } from './components/spacing-styles.component';
-import { NavigationComponent } from './components/navigation.component';
-import { LoadingOverlayComponent } from './components/loading-overlay.component';
-import { SearchComponent } from './components/search.component';
-import { CardComponent } from './components/card.component';
+import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SelectComponent } from './components/select/select.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ToggleComponent } from './components/toggle/toggle.component';
+import { CopyComponent } from './components/copy/copy.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { DateRangeComponent } from './components/date-range/date-range.component';
+import { SpacingComponent } from './components/spacing/spacing.component';
+import { TypographyComponent } from './components/typography/typography.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { LinkComponent } from './components/link/link.component';
+import { WindowServiceComponent } from './components/services/window-service.component';
+import { SpacingStylesComponent } from './components/spacing/spacing-styles.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { SearchComponent } from './components/search/search.component';
+import { CardComponent } from './components/card/card.component';
+import { ValidationComponent } from './components/validation/validation.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -110,6 +111,7 @@ import { CardComponent } from './components/card.component';
     LoadingOverlayComponent,
     SearchComponent,
     CardComponent,
+    ValidationComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

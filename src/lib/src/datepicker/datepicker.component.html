@@ -11,6 +11,7 @@
     tabIndex="{{ tabIndex }}"
     [(ngModel)]="value"
     (blur)="onBlur()"
+    (dateChange)="selected.emit($event)"
   >
   <mat-datepicker-toggle
     class="qa-datepicker-toggle"
@@ -31,7 +32,5 @@
   class="qa-datepicker-calendar"
   #picker
   [startView]="startingView"
-  [startAt]="initialDate"
-  (dateChange)="selected.emit($event)"
+  [startAt]="openTo"
 ></mat-datepicker>
-

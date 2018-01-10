@@ -1,0 +1,88 @@
+<form [formGroup]="myForm" novalidate>
+
+  <div fxLayout="row">
+<pre fxFlex>
+// Valid emails:
+foo@bar.co
+foo@bar.baz.net
+</pre>
+
+<pre fxFlex>
+// Invalid emails:
+foo
+foo@
+foo@bar
+foo@bar.
+foo@bar.c
+</pre>
+  </div>
+
+  <ts-input
+    [formControl]="myForm.get('email')"
+    label="Email"
+  ></ts-input>
+
+<hr>
+
+  <div fxLayout="row">
+<pre fxFlex>
+// Valid passwords:
+7GmfvH
+V9Cpp7RGB9
+29N74UV9ogt2UKpT3pZN3oLngp8Trkk4mCZfCgdE
+FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xNFQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdN
+</pre>
+
+<pre fxFlex>
+// Invalid passwords:
+MA9Lv
+xnhoQzDwAv
+yGiUf>DfQ2
+FQ49j BQ29
+FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdNFQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdN1
+</pre>
+  </div>
+
+  <ts-input
+    [formControl]="myForm.get('password')"
+    label="Password"
+  ></ts-input>
+
+<hr>
+
+  <div fxLayout="row">
+<pre fxFlex>
+// Valid card numbers:
+4242424242424242
+38520000023237
+6011111111111117
+378282246310005
+</pre>
+
+<pre fxFlex>
+// Invalid card numbers:
+1234
+e
+test@test.com
+3852000023237
+424242424242424242
+</pre>
+  </div>
+
+  <ts-input
+    [formControl]="myForm.get('creditCard')"
+    label="Credit Card Number"
+  ></ts-input>
+
+  <hr>
+
+  <div>
+    <ts-datepicker
+      [formControl]="myForm.get('date')"
+    ></ts-datepicker>
+  </div>
+
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>
+
