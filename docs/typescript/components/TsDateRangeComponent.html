@@ -114,6 +114,9 @@
                                     <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -183,6 +186,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -287,6 +293,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -433,6 +442,9 @@
                                            <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -502,6 +514,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -606,6 +621,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -2403,7 +2421,7 @@ export class TsDateRangeComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-date-range c-date-range qa-date-range">  <ts-datepicker    class="qa-date-range-start-datepicker"    [formControl]="startDateControl"    [inputPlaceholder]="startPlaceholder"    [maxDate]="_startMaxDate$ | async"    [minDate]="startMinDate"    [startingView]="startingView"    initialDate="{{ startInitialDate }}"    (selected)="startDateSelected($event)"    #start  ></ts-datepicker>  <span    class="c-date-range__seperator"    *ngIf="separator"  >    {{ separator }}  </span>  <ts-datepicker    class="qa-date-range-end-datepicker"    [formControl]="endDateControl"    [inputPlaceholder]="endPlaceholder"    [maxDate]="endMaxDate"    [minDate]="_endMinDate$ | async"    [startingView]="startingView"    initialDate="{{ endInitialDate }}"    (selected)="endDateSelected($event)"    #end  ></ts-datepicker></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDateRangeComponent'};
 </script>

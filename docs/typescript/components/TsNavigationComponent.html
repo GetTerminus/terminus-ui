@@ -114,6 +114,9 @@
                                     <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -183,6 +186,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -287,6 +293,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -433,6 +442,9 @@
                                            <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -502,6 +514,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsPaginationComponent.html" >TsPaginationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -606,6 +621,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -2353,7 +2371,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><nav class="c-navigation c-navigation t-dark qa-navigation" fxLayout="row">  <div    class="c-navigation__items qa-navigation-items"    #visibleItemsList    fxFlex="1 1 auto"    fxLayout="row"    fxLayoutAlign="end stretch"  >    <ng-container *ngFor="let item of visibleItems | async">      <a        class="c-navigation__item qa-navigation-item"        routerLink="{{ item.destination }}"        routerLinkActive="c-navigation__item--active"        [routerLinkActiveOptions]="{exact: true}"        *ngIf="item.destination && !isExternalLink(item.destination)"        #visibleLinkElement        fxLayout="row"        fxLayoutAlign="center center"      >        <span class="c-navigation__item-inner">          {{ item.name }}        </span>      </a>      <a        class="c-navigation__item qa-navigation-item"        *ngIf="item.destination && isExternalLink(item.destination)"        href="{{ item.destination }}"        #visibleLinkElement        fxLayout="row"        fxLayoutAlign="center center"      >        <span class="c-navigation__item-inner">          {{ item.name }}        </span>      </a>      <a        class="c-navigation__item qa-navigation-item"        *ngIf="!item.destination"        #visibleLinkElement        fxLayout="row"        fxLayoutAlign="center center"        (click)="action.emit({event: $event, action: item.action})"      >        <span class="c-navigation__item-inner">          {{ item.name }}        </span>      </a>    </ng-container>  </div>  <button    class="c-navigation__trigger qa-navigation-secondary-trigger"    [ngClass]="{\'c-navigation__trigger--separator\': visibleItemsLength}"    mat-button    [matMenuTriggerFor]="secondaryNav"    fxFlex="none"  >    <span class="c-navigation__trigger-welcome">      {{ welcomeMessage }}      <span *ngIf="usersFullName">,</span>    </span>    <br *ngIf="usersFullName">    {{ usersFullName }}    <mat-icon class="c-navigation__trigger-icon">      keyboard_arrow_down    </mat-icon>  </button>  <mat-menu    class="c-navigation__hidden-items qa-navigation-secondary-items"    #secondaryNav="matMenu"    xPosition="before"    [overlapTrigger]="false"  >    <ng-container *ngFor="let item of hiddenItems | async">      <a        class="c-navigation__hidden-item qa-navigation-secondary-item"        [ngClass]="{\'c-navigation__hidden-item--admin\': item.alwaysHidden}"        routerLink="{{ item.destination }}"        *ngIf="item.destination"        mat-menu-item        #hiddenLinkElement      >        {{ item.name }}      </a>      <a        class="c-navigation__hidden-item qa-navigation-secondary-item"        [ngClass]="{\'c-navigation__hidden-item--admin\': item.alwaysHidden}"        *ngIf="!item.destination"        mat-menu-item        #hiddenLinkElement        (click)="action.emit({event: $event, action: item.action})"      >        {{ item.name }}      </a>    </ng-container>  </mat-menu></nav></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsNavigationComponent'};
 </script>
