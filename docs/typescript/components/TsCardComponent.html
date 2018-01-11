@@ -1211,11 +1211,14 @@ export class TsCardComponent {
     &#x27;c-card--aspect&#x27;: aspectRatioPadding
   }&quot;
   [style.paddingTop]&#x3D;&quot;aspectRatioPadding&quot;
+  fxFlexFill
+  fxLayout&#x3D;&quot;row&quot;
 &gt;
   &lt;div
     class&#x3D;&quot;c-card__inner&quot;
     mat-ripple
     [matRippleDisabled]&#x3D;&quot;!supportsInteraction&quot;
+    fxFlexFill
   &gt;
     &lt;ng-content&gt;&lt;/ng-content&gt;
   &lt;/div&gt;
@@ -1256,7 +1259,7 @@ export class TsCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding  }"  [style.paddingTop]="aspectRatioPadding">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding  }"  [style.paddingTop]="aspectRatioPadding"  fxFlexFill  fxLayout="row">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"    fxFlexFill  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container></div></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCardComponent'};

@@ -1,0 +1,91 @@
+<label>
+  Supports interaction:
+  <input type="checkbox" [(ngModel)]="supportsInteraction">
+</label>
+
+
+<label>
+  Centered content:
+  <input type="checkbox" [(ngModel)]="centered">
+</label>
+
+<hr>
+<br>
+
+<ts-card
+  [supportsInteraction]="supportsInteraction"
+  [centeredContent]="centered"
+>
+  Standard card
+
+  <ng-container *ngIf="centered">
+    (centered content)
+  </ng-container>
+
+  <ng-container *ngIf="supportsInteraction">
+    (with interaction)
+  </ng-container>
+</ts-card>
+
+<hr>
+<br>
+
+<ts-card
+  supportsInteraction="true"
+  centeredContent="true"
+  [utilityMenuTemplate]="myTemplate"
+  aspectRatio="4:3"
+>
+  Standard card with utility menu and aspect ratio
+</ts-card>
+
+<ng-template #myTemplate>
+  <ts-menu
+    triggerType="utility"
+    menuPositionX="before"
+    [menuItemsTemplate]="utilityButtons"
+  ></ts-menu>
+
+
+  <ng-template #utilityButtons>
+    <ts-button>
+      My menu item
+    </ts-button>
+  </ng-template>
+</ng-template>
+
+<hr>
+<br>
+
+<ts-card aspectRatio="16:9">
+  16:9 aspect ratio
+</ts-card>
+
+<hr>
+<br>
+
+<p>
+  Nested within flex layout.
+</p>
+
+<div fxFlex>
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <ts-card fxFlex style="background: lightblue">
+      Card 1
+      Foo
+      Bar
+    </ts-card>
+
+    <ts-card fxFlex>
+      Card 1
+      <br>
+      Foo
+      <br>
+      Bar
+      <br>
+      baz
+      <br>
+      nitch
+    </ts-card>
+  </div>
+</div>
