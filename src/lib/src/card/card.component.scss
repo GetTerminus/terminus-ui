@@ -27,7 +27,7 @@
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include card;
-    position: relative;
+    @include take-space;
   }
 }
 
