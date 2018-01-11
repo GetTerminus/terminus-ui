@@ -6,11 +6,14 @@
     'c-card--aspect': aspectRatioPadding
   }"
   [style.paddingTop]="aspectRatioPadding"
+  fxFlexFill
+  fxLayout="row"
 >
   <div
     class="c-card__inner"
     mat-ripple
     [matRippleDisabled]="!supportsInteraction"
+    fxFlexFill
   >
     <ng-content></ng-content>
   </div>

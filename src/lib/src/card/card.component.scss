@@ -14,12 +14,13 @@
 //  A simple card component
 //
 .ts-card {
+  display: flex;
+  flex-flow: row nowrap;
+
   // Top level styles should be nested here
   .c-card {
     @include typography;
-    height: 100%;
-    // set up for card inner
-    position: relative;
+    width: 100%;
   }
 }
 
@@ -27,6 +28,7 @@
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include card;
+    // Needed to contain the ripple effect
     position: relative;
   }
 }
@@ -44,6 +46,9 @@
 }
 
 .c-card--aspect {
+  // set up for take-space
+  position: relative;
+
   .c-card__inner {
     @include take-space;
   }
