@@ -1,0 +1,22 @@
+<ts-checkbox
+  [(ngModel)]="myValue"
+  [isChecked]="checked"
+  [theme]="myTheme"
+  [isDisabled]="disabled"
+  [isRequired]="required"
+  [isIndeterminate]="indeterminate"
+  (inputChange)="changed($event)"
+  (indeterminateChange)="interChanged($event)"
+>My (ngModel) checkbox!</ts-checkbox>
+
+Value: {{ myValue }}
+
+<hr>
+
+<form [formGroup]="myForm">
+  <ts-checkbox
+    [formControl]="myForm.get('myCheck')"
+  >My (form) checkbox!</ts-checkbox>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>

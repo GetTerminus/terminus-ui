@@ -16,7 +16,7 @@ describe(`TsCheckboxComponent`, () => {
   });
 
 
-  describe(`Custom select control value accessor`, () => {
+  describe(`Custom checkbox control value accessor`, () => {
 
     it(`should forward a reference to this component`, () => {
       expect(CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsCheckboxComponent);

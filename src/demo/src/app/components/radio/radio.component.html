@@ -1,0 +1,29 @@
+<p>
+  ngModel version:
+</p>
+
+<ts-radio-group
+  [options]="items | async"
+  (change)="selected($event)"
+></ts-radio-group>
+
+Selected value: {{ selectedItem }}
+
+<hr>
+
+
+<p>
+  Reactive form version:
+</p>
+
+
+<form [formGroup]="myForm" novalidate>
+  <div>
+    <ts-radio-group
+      [formControl]="myForm.get('myRadioGroup')"
+      [options]="items2 | async"
+    ></ts-radio-group>
+  </div>
+
+  <button (click)="submit(myForm)">Submit</button>
+</form>

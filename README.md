@@ -101,7 +101,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | picklist         |                                                        |                :x: |                              |
 | progress         |                                                        |                :x: |                              |
 | progression      |                                                        |                :x: |                              |
-| radio            |                                                        |                :x: |                              |
+| radio-group      |                                                        | :white_check_mark: |     [Demo][demo-radio-group] |
 | search           |                                                        | :white_check_mark: |          [Demo][demo-search] |
 | select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
 | tabs             |                                                        |                :x: |                              |
@@ -241,4 +241,5 @@ View the [wiki page][dev-wiki].
 [demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
 [demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
+[demo-radio-group]: https://terminus-ui-demos.stackblitz.io/components/radio
 

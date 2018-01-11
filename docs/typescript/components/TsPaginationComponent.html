@@ -114,6 +114,9 @@
                                     <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                 </li>
                                 <li class="link">
@@ -183,6 +186,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsPaginationComponent.html"  data-type="entity-link" class="active" >TsPaginationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -287,6 +293,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -433,6 +442,9 @@
                                            <a href="../modules/TsPaginationModule.html" >TsPaginationModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsSearchModule.html" >TsSearchModule</a>
                                        </li>
                                        <li class="link">
@@ -502,6 +514,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsPaginationComponent.html"  data-type="entity-link" class="active" >TsPaginationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsRadioGroupComponent.html" >TsRadioGroupComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsReactiveFormBaseComponent.html" >TsReactiveFormBaseComponent</a>
@@ -606,6 +621,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsPaginationMenuItem.html" >TsPaginationMenuItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/TsRadioOption.html" >TsRadioOption</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
@@ -3648,7 +3666,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-pagination qa-pagination">  <div class="c-pagination__buttons">    <ts-select      class="qa-pagination-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (ngModelChange)="recordsPerPageUpdated($event)"    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : firstPageTooltip">      <ts-button        class="qa-pagination-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? \'\' : previousPageTooltip">      <ts-button        class="qa-pagination-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPage)"        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-pagination-current-page-menu"      [theme]="theme"      [menuItemsTemplate]="menuItems"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : nextPageTooltip">      <ts-button        class="qa-pagination-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? \'\' : lastPageTooltip">      <ts-button        class="qa-pagination-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPage)"        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-pagination__message qa-pagination-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    <ng-container      [ngTemplateOutlet]="paginationMessageTemplate || defaultPaginationMessageTemplate"      [ngTemplateOutletContext]="templateContext"    ></ng-container>  </div></div><ng-template #menuItems>  <ts-button    *ngFor="let page of pagesArray; trackBy: trackPagesArray"    (clickEvent)="currentPageChanged(page)"  >    {{ page.name }}  </ts-button></ng-template><ng-template #defaultPaginationMessageTemplate let-message>  {{ message }}</ng-template></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginationComponent'};
 </script>

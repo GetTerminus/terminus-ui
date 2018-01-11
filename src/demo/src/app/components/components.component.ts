@@ -6,21 +6,7 @@ import { orderArrayByProperty } from './../utilities/orderArrayByProperty';
 
 @Component({
   selector: 'demo-components',
-  template: `
-    <div [style.marginBottom]="height" fxLayout="column" fxLayoutAlign="start start">
-      <h2>{{ title }}</h2>
-
-      <select [(ngModel)]="path" (ngModelChange)="goToComponent($event)" class="form-control">
-        <option value="">Select Component</option>
-        <option *ngFor="let component of components" [value]="component.path">
-          {{ component.data.name }}
-        </option>
-      </select>
-
-    </div>
-
-    <router-outlet></router-outlet>
-  `,
+  templateUrl: './components.component.html',
 })
 export class ComponentsComponent implements OnInit {
   components = orderArrayByProperty(componentsList, 'path');
@@ -49,18 +35,5 @@ export class ComponentsComponent implements OnInit {
     }
   }
 
-
-  /**
-   * Go to a component  selected by the menu
-   *
-   * @param {Object} value The selected component info
-   */
-  goToComponent(value: any): void {
-    if (value) {
-      this.router.navigate(['components', value]);
-    } else {
-      this.router.navigate(['components']);
-    }
-  }
 
 }

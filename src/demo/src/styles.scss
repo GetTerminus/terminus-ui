@@ -9,6 +9,10 @@ html {
   font-weight: $type__weight--base;
 }
 
+body {
+  margin: 0;
+}
+
 hr {
   margin: 1rem;
 }
@@ -22,9 +26,14 @@ $ts-app-theme: mat-light-theme($ts-default-primary, $ts-default-accent, $ts-defa
 @include angular-material-theme($ts-app-theme);
 
 
+// stylelint-disable selector-type-no-unknown
 router-outlet + * {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  padding: 1rem;
+
+  .content {
+    padding: 2rem;
+  }
 }
+// stylelint-enable selector-type-no-unknown
