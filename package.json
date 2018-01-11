@@ -212,7 +212,7 @@
     "stylelint": "8.4.0",
     "stylelint-order": "0.8.0",
     "systemjs": "0.20.19",
-    "tslint": "5.8.0",
+    "tslint": "5.9.0",
     "typescript": "2.6.2",
     "validate-commit-msg": "2.14.0",
     "zone.js": "0.8.19"
