@@ -197,7 +197,7 @@
     "node-sass-import": "1.1.1",
     "nucleus-styleguide": "1.1.1",
     "onchange": "3.3.0",
-    "remap-istanbul": "0.9.5",
+    "remap-istanbul": "0.10.0",
     "require-dir": "0.3.2",
     "rimraf": "2.6.2",
     "rollup": "0.53.3",
