@@ -105,17 +105,17 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'pagination',
-    component: PaginationComponent,
-    data: {
-      name: 'Pagination',
-    },
-  },
-  {
     path: 'navigation',
     component: NavigationComponent,
     data: {
       name: 'Navigation',
+    },
+  },
+  {
+    path: 'pagination',
+    component: PaginationComponent,
+    data: {
+      name: 'Pagination',
     },
   },
   {
