@@ -1,5 +1,13 @@
-<!-- Make sure to add the appropriate labels! -->
+<!-- Please attach the appropriate labels! -->
 
 
-<!-- If reporting an issue, fork the StackBlitz demo and paste the link here: -->
-https://stackblitz.com/edit/terminus-ui-demos
+<!--
+
+If reporting an issue:
+
+1. Fork the StackBlitz demo project: https://stackblitz.com/edit/terminus-ui-demos
+2. Recreate the issue
+3. Include the link here
+
+-->
+
