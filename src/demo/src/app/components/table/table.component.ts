@@ -1,0 +1,259 @@
+import {
+  Component,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/observable/of';
+import { merge } from 'rxjs/observable/merge';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { catchError } from 'rxjs/operators/catchError';
+import { Observable } from 'rxjs/Observable';
+
+import {
+  TsTableDataSource,
+  TsSortDirective,
+  TsPaginationComponent,
+  TsPaginationMenuItem,
+} from '@terminus/ui';
+
+
+export interface TableItem {
+  username: string;
+  age: number;
+  title: string;
+  active: boolean;
+  visible: boolean;
+}
+
+const DATA_MOCK: TableItem[] = [
+  {
+    username: 'foo',
+    age: 12,
+    title: 'foo title',
+    active: true,
+    visible: true,
+  },
+  {
+    username: 'bar',
+    age: 34,
+    title: 'bar title',
+    active: true,
+    visible: false,
+  },
+  {
+    username: 'baz',
+    age: 22,
+    title: 'baz title',
+    active: true,
+    visible: true,
+  },
+  {
+    username: 'bing',
+    age: 47,
+    title: 'bing title',
+    active: false,
+    visible: true,
+  },
+  {
+    username: 'boom',
+    age: 111,
+    title: 'boom title',
+    active: false,
+    visible: false,
+  },
+  {
+    username: 'bang',
+    age: 61,
+    title: 'bang title',
+    active: true,
+    visible: false,
+  },
+];
+
+const COLUMNS_SOURCE = [
+  {
+    name: 'Username',
+    value: 'username',
+  },
+  {
+    name: 'Age',
+    value: 'age',
+  },
+  {
+    name: 'Title',
+    value: 'title',
+  },
+  {
+    name: 'Is Active',
+    value: 'active',
+  },
+  {
+    name: 'Is Visible',
+    value: 'visible',
+  },
+];
+
+const COLUMNS_SOURCE_GITHUB = [
+  {
+    name: 'Created',
+    value: 'created',
+  },
+  {
+    name: 'State',
+    value: 'state',
+  },
+  {
+    name: 'Title',
+    value: 'title',
+  },
+  {
+    name: 'Number',
+    value: 'number',
+  },
+];
+
+@Component({
+  selector: 'demo-table',
+  templateUrl: './table.component.html',
+})
+export class TableComponent implements AfterViewInit {
+  /*
+   *tableData = of(DATA_MOCK);
+   *dataSource: TsTableDataSource<TableItem> = new TsTableDataSource(DATA_MOCK);
+   *allColumns = COLUMNS_SOURCE.slice(0);
+   *displayedColumns: string[] = ['username', 'age', 'title', 'active', 'visible'];
+   */
+  allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
+
+  @ViewChild(TsSortDirective)
+  sort: TsSortDirective;
+
+  @ViewChild(TsPaginationComponent)
+  paginator: TsPaginationComponent;
+
+  displayedColumns = ['number', 'title', 'state', 'comments', 'created'];
+  exampleDatabase: ExampleHttpDao | null;
+  dataSource = new TsTableDataSource();
+  resultsLength = 0;
+  isLoadingResults = false;
+  isRateLimitReached = false;
+
+
+  constructor(
+    private http: HttpClient,
+  ) {}
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.exampleDatabase = new ExampleHttpDao(this.http);
+    console.log('this.paginator: ', this.paginator)
+    console.log('this.sort: ', this.sort)
+
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    merge(this.sort.sortChange, this.paginator.pageSelect)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          console.log('this.sort.active: ', this.sort.active)
+          console.log('this.sort.direction: ', this.sort.direction)
+          console.log('this.paginator.pageIndex: ', this.paginator.pageIndex)
+
+          return this.exampleDatabase.getRepoIssues(
+            this.sort.active,
+            this.sort.direction,
+            this.paginator.pageIndex,
+            this.paginator.recordsPerPage,
+          );
+        }),
+        map(data => {
+          console.log('data: ', data)
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data.total_count;
+
+          return data.items;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return of([]);
+        })
+      ).subscribe(data => this.dataSource.data = data);
+  }
+
+
+  /*
+   *{
+   *  search_term: 'foo',
+   *  s: [
+   *    {
+   *      name: 'name',
+   *      dir: 'asc',
+   *    },
+   *    {
+   *      name: 'id',
+   *      dir: 'desc',
+   *    },
+   *  ],
+   *}
+   */
+
+
+  onPageSelect(e: TsPaginationMenuItem) {
+    console.log('DEMO page selected: ', e);
+  }
+
+  first(e: any) {
+    console.log('DEMO first: ', e);
+  }
+
+  previous(e: any) {
+    console.log('DEMO previous: ', e);
+  }
+
+  next(e: any) {
+    console.log('DEMO next: ', e);
+  }
+
+  last(e: any) {
+    console.log('DEMO last: ', e);
+  }
+
+
+
+
+}
+
+
+export interface GithubApi {
+  items: GithubIssue[];
+  total_count: number;
+}
+
+export interface GithubIssue {
+  created_at: string;
+  number: string;
+  state: string;
+  title: string;
+}
+
+/** An example database that the data source uses to retrieve data for the table. */
+export class ExampleHttpDao {
+  constructor(private http: HttpClient) {}
+
+  getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
+    const href = 'https://api.github.com/search/issues';
+    const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
+    const requestQuery = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
+
+    return this.http.get<GithubApi>(`${requestUrl}${requestQuery}`);
+  }
+}

@@ -1,0 +1,102 @@
+<div class="example-header" fxLayout="row" fxLayoutAlign="end center">
+
+  <ts-select
+    multipleAllowed="true"
+    valueKey="value"
+    [(ngModel)]="displayedColumns"
+    [items]="allColumns"
+  ></ts-select>
+
+</div>
+
+
+<ts-table [dataSource]="dataSource" tsSort>
+
+<!--
+   -  <ng-container tsColumnDef="username">
+   -    <ts-header-cell *tsHeaderCellDef ts-sort-header>Username</ts-header-cell>
+   -    <ts-cell *tsCellDef="let item">
+   -      {{ item.username }}
+   -    </ts-cell>
+   -  </ng-container>
+   -
+   -  <ng-container tsColumnDef="age">
+   -    <ts-header-cell *tsHeaderCellDef ts-sort-header>Age</ts-header-cell>
+   -    <ts-cell *tsCellDef="let item">
+   -      {{ item.age }}
+   -    </ts-cell>
+   -  </ng-container>
+   -
+   -  <ng-container tsColumnDef="title">
+   -    <ts-header-cell *tsHeaderCellDef ts-sort-header>Title</ts-header-cell>
+   -    <ts-cell *tsCellDef="let item">
+   -      {{ item.title }}
+   -    </ts-cell>
+   -  </ng-container>
+   -
+   -  <ng-container tsColumnDef="active">
+   -    <ts-header-cell *tsHeaderCellDef ts-sort-header>Is Active</ts-header-cell>
+   -    <ts-cell *tsCellDef="let item">
+   -      {{ item.active }}
+   -    </ts-cell>
+   -  </ng-container>
+   -
+   -  <ng-container tsColumnDef="visible">
+   -    <ts-header-cell *tsHeaderCellDef ts-sort-header>Is Visible</ts-header-cell>
+   -    <ts-cell *tsCellDef="let item">
+   -      {{ item.visible }}
+   -    </ts-cell>
+   -  </ng-container>
+   -->
+
+
+
+
+  <ng-container tsColumnDef="created">
+    <ts-header-cell *tsHeaderCellDef ts-sort-header>Created</ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.created_at | date:shortDate }}
+    </ts-cell>
+  </ng-container>
+  <ng-container tsColumnDef="state">
+    <ts-header-cell *tsHeaderCellDef>State</ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.state }}
+    </ts-cell>
+  </ng-container>
+  <ng-container tsColumnDef="number">
+    <ts-header-cell *tsHeaderCellDef>Number</ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.number }}
+    </ts-cell>
+  </ng-container>
+  <ng-container tsColumnDef="title">
+    <ts-header-cell *tsHeaderCellDef>Title</ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.title }}
+    </ts-cell>
+  </ng-container>
+  <ng-container tsColumnDef="comments">
+    <ts-header-cell *tsHeaderCellDef ts-sort-header>Comments</ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.comments }}
+    </ts-cell>
+  </ng-container>
+
+  <ts-header-row *tsHeaderRowDef="displayedColumns" fxLayout="row">
+  </ts-header-row>
+
+  <ts-row *tsRowDef="let row; columns: displayedColumns;" fxLayout="row">
+  </ts-row>
+
+</ts-table>
+
+<ts-pagination
+  [totalRecords]="resultsLength"
+  recordCountTooHighMessage="Please refine your filters."
+  (pageSelect)="onPageSelect($event)"
+  (firstPageChosen)="first($event)"
+  (previousPageChosen)="previous($event)"
+  (nextPageChosen)="next($event)"
+  (lastPageChosen)="last($event)"
+></ts-pagination>

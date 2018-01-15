@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
   MatToolbarModule,
+  MatSortModule,
 } from '@angular/material';
 
 import {
@@ -29,9 +31,11 @@ import {
   TsRadioGroupModule,
   TsSearchModule,
   TsSelectModule,
+  TsSortModule,
   TsSpacingModule,
   TsToggleModule,
   TsTooltipModule,
+  TsTableModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -58,6 +62,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
 import { SpacingComponent } from './components/spacing/spacing.component';
 import { SpacingStylesComponent } from './components/spacing/spacing-styles.component';
+import { TableComponent } from './components/table/table.component';
 import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
@@ -74,6 +79,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HttpClientModule,
 
     MatButtonModule,
     MatIconModule,
@@ -96,7 +102,9 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
+    TsSortModule,
     TsSpacingModule,
+    TsTableModule,
     TsToggleModule,
     TsTooltipModule,
     // INJECT: Add new UI component to demo module imports array
@@ -124,6 +132,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     SelectComponent,
     SpacingComponent,
     SpacingStylesComponent,
+    TableComponent,
     ToggleComponent,
     TooltipComponent,
     TypographyComponent,
