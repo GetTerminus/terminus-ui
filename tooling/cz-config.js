@@ -35,6 +35,7 @@ module.exports = {
     {name: 'Services'},
     {name: 'SCSS'},
     {name: 'Spacing'},
+    {name: 'Table'},
     {name: 'Toggle'},
     {name: 'Tooltip'},
     {name: 'Utilities'},

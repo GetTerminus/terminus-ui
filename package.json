@@ -85,7 +85,7 @@
       "lint:ts-spec",
       "git add"
     ],
-    "src/lib/**/*!(.(spec|mock)).ts": [
+    "src/lib/src/**/!(*.spec|*.mock).ts": [
       "lint:ts",
       "git add"
     ],

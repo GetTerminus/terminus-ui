@@ -18,6 +18,7 @@ import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { SpacingComponent } from './spacing/spacing.component';
 import { SpacingStylesComponent } from './spacing/spacing-styles.component';
+import { TableComponent } from './table/table.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
@@ -151,6 +152,13 @@ export const componentsList: Routes = [
     component: SpacingStylesComponent,
     data: {
       name: 'Spacing SCSS',
+    },
+  },
+  {
+    path: 'table',
+    component: TableComponent,
+    data: {
+      name: 'Table',
     },
   },
   {

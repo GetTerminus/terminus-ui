@@ -47,7 +47,7 @@ import { Component } from '@angular/core';
 })
 export class PaginationComponent {
   myTheme = 'primary';
-  recordCount = 111;
+  recordCount = 114;
   showSelector = true;
   currentPage = 1;
   location = 'below';
