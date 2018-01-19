@@ -19,7 +19,7 @@
         [theme]="theme"
         [iconName]="firstPageIcon"
         [isDisabled]="isFirstPage(currentPage)"
-        (clickEvent)="changePage(1, currentPage, pagesArray)"
+        (clickEvent)="changePage(0, currentPage, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
@@ -62,7 +62,7 @@
         [theme]="theme"
         [iconName]="lastPageIcon"
         [isDisabled]="isLastPage(currentPage)"
-        (clickEvent)="changePage(pagesArray?.length, currentPage, pagesArray)"
+        (clickEvent)="changePage(pagesArray?.length - 1, currentPage, pagesArray)"
       ></ts-button>
     </ts-tooltip>
   </div>

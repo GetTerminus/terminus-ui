@@ -154,7 +154,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Define the current page
    */
   @Input()
-  public currentPage: number = 1;
+  public currentPage: number = 0;
 
   /**
    * Define how many pages exist to show a prompt about better filtering
@@ -256,7 +256,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
        this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
 
      // Go to the initially set page
-     this.changePage(this.currentPage, 1, this.pagesArray);
+     this.changePage(this.currentPage, 0, this.pagesArray);
    }
 
 
@@ -290,7 +290,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     currentPage: number,
     pages: TsPaginationMenuItem[],
   ): void {
-    const destinationIsValid = destinationPage > 0 && destinationPage <= pages.length;
+    const destinationIsValid = destinationPage >= 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
@@ -310,7 +310,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @return A boolean representing if this is the first page
    */
   public isFirstPage(page: number): boolean {
-    return page === 1;
+    return page === 0;
   }
 
 
@@ -322,7 +322,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
   public isLastPage(page: number): boolean {
     if (this.pagesArray) {
-      return page === this.pagesArray.length;
+      return page === (this.pagesArray.length - 1);
     } else {
       return false;
     }
@@ -353,7 +353,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
   public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage = selection;
-    this.currentPage = 1;
+    this.currentPage = 0;
 
     // Re-init pagination
     this.initialize();
@@ -406,10 +406,15 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
     let foundPage: TsPaginationMenuItem = findPage(pages, currentPage);
 
+    // If no found page, try the previous page
     if (!foundPage) {
       foundPage = findPage(pages, currentPage - 1);
-      // Save the current page change back to the primary variable
-      this.currentPage -= 1;
+
+      if (foundPage) {
+        // If we found the previous page,
+        // save the current page change back to the primary variable
+        this.currentPage -= 1;
+      }
     }
 
     // This may be the case if there are no records
@@ -434,7 +439,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   private createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
     const paginationArray: TsPaginationMenuItem[] = [];
     let recordsRemaining = total;
-    let currentPage = 1;
+    let currentPage = 0;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining < 1) {
@@ -442,13 +447,18 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     }
 
     while (recordsRemaining >= perPage) {
-      const rangeEnd = (currentPage * perPage);
+      // We are creating the text for the range here so we are dealing with records based on 1
+      // (while the pages themselves are based on 0)
+      const pageNumber = (currentPage < 1) ? 1 : currentPage;
+      const rangeStart = pageNumber * perPage - (perPage - 1);
+      const rangeEnd = (pageNumber * perPage);
       const page: number = paginationArray.length + 1;
 
       // Create a page object
       paginationArray.push({
-        name: `${currentPage * perPage - (perPage - 1)} - ${rangeEnd}`,
-        value: `${page.toString()}`,
+        name: `${rangeStart} - ${rangeEnd}`,
+        // The value is zero based
+        value: `${(page - 1).toString()}`,
       });
 
       // Update the remaining count
@@ -465,13 +475,14 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     if (recordsRemaining > 0) {
       let name;
       let value;
+      const pageNumber = (currentPage < 1) ? 1 : currentPage;
 
       if (paginationArray.length > 0) {
-        name = `${currentPage * perPage + 1} - ${currentPage * perPage + recordsRemaining}`;
-        value = `${currentPage + 1}`;
+        name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
+        value = `${pageNumber}`;
       } else {
-        name = `${currentPage} - ${recordsRemaining}`;
-        value = currentPage;
+        name = `${pageNumber} - ${recordsRemaining}`;
+        value = pageNumber;
       }
 
       paginationArray.push({
