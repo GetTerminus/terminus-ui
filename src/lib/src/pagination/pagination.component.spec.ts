@@ -62,7 +62,7 @@ describe(`PaginationComponent`, () => {
     it(`should set the current page, and trigger methods`, () => {
       const eventMock = {
         name: '21 - 30 of 125',
-        value: '3',
+        value: '2',
       };
       spyOn(this.component.pageSelect, 'emit').and.callThrough();
       spyOn(this.component, 'createPagesArray').and.callThrough();
@@ -70,11 +70,11 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
-      expect(this.component.currentPage).toEqual(1);
+      expect(this.component.currentPage).toEqual(0);
 
       this.component.currentPageChanged(eventMock);
 
-      expect(this.component.currentPage).toEqual(3);
+      expect(this.component.currentPage).toEqual(2);
       expect(this.component.createPagesArray).toHaveBeenCalled();
       expect(this.component.createCurrentPageLabel).toHaveBeenCalled();
       expect(this.component.pageSelect.emit).toHaveBeenCalled();
@@ -123,20 +123,20 @@ describe(`PaginationComponent`, () => {
 
   describe(`isFirstPage()`, () => {
 
-    it(`should return TRUE when the passed in page is 1`, () => {
+    it(`should return TRUE when the passed in page is 0`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
-      expect(this.component.isFirstPage(1)).toEqual(true);
+      expect(this.component.isFirstPage(0)).toEqual(true);
     });
 
 
-    it(`should return FALSE when the passed in page is not 1`, () => {
+    it(`should return FALSE when the passed in page is not 0`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
       expect(this.component.isFirstPage(7)).toEqual(false);
-      expect(this.component.isFirstPage(0)).toEqual(false);
+      expect(this.component.isFirstPage(1)).toEqual(false);
       expect(this.component.isFirstPage(-2)).toEqual(false);
     });
 
@@ -149,7 +149,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 20;
       this.component.ngOnInit();
 
-      expect(this.component.isLastPage(2)).toEqual(true);
+      expect(this.component.isLastPage(1)).toEqual(true);
     });
 
 
@@ -157,7 +157,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 20;
       this.component.ngOnInit();
 
-      expect(this.component.isLastPage(1)).toEqual(false);
+      expect(this.component.isLastPage(0)).toEqual(false);
     });
 
 

@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
+
+import { TsPaginationComponent } from '@terminus/ui';
 
 
 @Component({
@@ -41,19 +47,28 @@ import { Component } from '@angular/core';
     ></ts-pagination>
 
     <ng-template #myTemplate let-message>
-      <a href="components/link">{{ message }}</a>
+      <a routerLink="/components/link">{{ message }}</a>
     </ng-template>
   `,
 })
-export class PaginationComponent {
+export class PaginationComponent implements AfterViewInit {
   myTheme = 'primary';
   recordCount = 114;
   showSelector = true;
-  currentPage = 1;
+  currentPage = 0;
   location = 'below';
-  pages = [1, 2, 3, 4, 5];
+  pages: number[] = [0, 1, 2, 3, 4, 5];
 
 
+  @ViewChild(TsPaginationComponent)
+  paginator: TsPaginationComponent;
+
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.pages = Array.apply(null, {length: this.paginator.pagesArray.length}).map(Number.call, Number);
+    });
+  }
 
 
   onPageSelect(e) {
