@@ -100,22 +100,16 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public valueKey: string;
 
   /**
-   * Emit event when the select is opened
+   * Emit event when the select has been opened
    */
   @Output()
-  public open: EventEmitter<boolean> = new EventEmitter();
-
-  /**
-   * Emit event when the select is closed
-   */
-  @Output()
-  public close: EventEmitter<boolean> = new EventEmitter();
+  public openedChange: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Emit event when the select value is changed
    */
   @Output()
-  public change: EventEmitter<any[]> = new EventEmitter();
+  public selectionChange: EventEmitter<any[]> = new EventEmitter();
 
 
   /**
