@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   Output,
-  ViewChild,
   EventEmitter,
   OnInit,
   ViewEncapsulation,
@@ -15,7 +14,6 @@ import {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
-import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 import { TsDateRange } from './../utilities/interfaces/date-range.interface';
 
 

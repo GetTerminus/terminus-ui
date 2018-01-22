@@ -1,14 +1,10 @@
 import {
   Component,
   Input,
-  Output,
   ViewChild,
   ElementRef,
-  Inject,
-  HostListener,
   ViewEncapsulation,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsDocumentService } from '../services/document/document.service';

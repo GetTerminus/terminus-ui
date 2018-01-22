@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import {
-  TsStyleThemeTypes,
   TsAspectRatioTypes,
 } from './../utilities/types';
 

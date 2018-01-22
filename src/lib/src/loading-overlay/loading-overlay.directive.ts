@@ -9,7 +9,7 @@ import {
   ApplicationRef,
   Injector,
 } from '@angular/core';
-import { Portal, ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
