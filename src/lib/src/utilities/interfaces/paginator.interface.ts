@@ -1,8 +1,8 @@
 /**
  * Define the allowed keys and types for an item passed to the {@link TsMenuComponent} within a
- * {@link TsPaginationComponent}
+ * {@link TsPaginatorComponent}
  */
-export interface TsPaginationMenuItem {
+export interface TsPaginatorMenuItem {
   /**
    * The menu item name
    */

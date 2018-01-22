@@ -15,7 +15,7 @@ import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module
 import { TsLoginFormModule } from './login-form/login-form.module';
 import { TsMenuModule } from './menu/menu.module';
 import { TsNavigationModule } from './navigation/navigation.module';
-import { TsPaginationModule } from './pagination/pagination.module';
+import { TsPaginatorModule } from './paginator/paginator.module';
 import { TsRadioGroupModule } from './radio-group/radio-group.module';
 import { TsSearchModule } from './search/search.module';
 import { TsSelectModule } from './select/select.module';
@@ -47,7 +47,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLoginFormModule,
     TsMenuModule,
     TsNavigationModule,
-    TsPaginationModule,
+    TsPaginatorModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
@@ -81,7 +81,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLoginFormModule,
     TsMenuModule,
     TsNavigationModule,
-    TsPaginationModule,
+    TsPaginatorModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,

@@ -4,11 +4,11 @@ import {
   AfterViewInit,
 } from '@angular/core';
 
-import { TsPaginationComponent } from '@terminus/ui';
+import { TsPaginatorComponent } from '@terminus/ui';
 
 
 @Component({
-  selector: 'demo-pagination',
+  selector: 'demo-paginator',
   template: `
     <div>
       <label for="page">
@@ -31,13 +31,13 @@ import { TsPaginationComponent } from '@terminus/ui';
     <br>
     <br>
 
-    <ts-pagination
+    <ts-paginator
       [theme]="myTheme"
       [totalRecords]="recordCount"
       [showRecordsPerPageSelector]="showSelector"
       [currentPageIndex]="currentPageIndex"
       [menuLocation]="location"
-      [paginationMessageTemplate]="myTemplate"
+      [paginatorMessageTemplate]="myTemplate"
       recordCountTooHighMessage="Please refine your filters."
       (recordsPerPageChange)="perPageChange($event)"
       (pageSelect)="onPageSelect($event)"
@@ -45,14 +45,14 @@ import { TsPaginationComponent } from '@terminus/ui';
       (previousPageChosen)="previous($event)"
       (nextPageChosen)="next($event)"
       (lastPageChosen)="last($event)"
-    ></ts-pagination>
+    ></ts-paginator>
 
     <ng-template #myTemplate let-message>
       <a routerLink="/components/link">{{ message }}</a>
     </ng-template>
   `,
 })
-export class PaginationComponent implements AfterViewInit {
+export class PaginatorComponent implements AfterViewInit {
   myTheme = 'primary';
   recordCount = 114;
   showSelector = true;
@@ -61,8 +61,8 @@ export class PaginationComponent implements AfterViewInit {
   pages: number[] = [0, 1, 2, 3, 4, 5];
 
 
-  @ViewChild(TsPaginationComponent)
-  paginator: TsPaginationComponent;
+  @ViewChild(TsPaginatorComponent)
+  paginator: TsPaginatorComponent;
 
 
   ngAfterViewInit(): void {

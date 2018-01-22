@@ -8,28 +8,30 @@ import {
   TemplateRef,
   ElementRef,
   SimpleChanges,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types';
-import { TsPaginationMenuItem } from './../utilities/interfaces';
+import { TsPaginatorMenuItem } from './../utilities/interfaces';
 
 
 /**
- * A pagination component
+ * A paginator component
  *
  * #### QA CSS CLASSES
- * - `qa-pagination`: Placed on the primary container
- * - `qa-pagination-per-page-select`: Placed on the results per page select menu
- * - `qa-pagination-first-page-button`: Placed on the 'first page' button
- * - `qa-pagination-previous-page-button`: Placed on the 'previous page' button
- * - `qa-pagination-current-page-menu`: Placed on the 'current page' menu dropdown
- * - `qa-pagination-next-page-button`: Placed on the 'next page' button
- * - `qa-pagination-last-page-button`: Placed on the the 'last page' button
- * - `qa-pagination-message`: Placed on the messaging regarding the record count being too high
+ * - `qa-paginator`: Placed on the primary container
+ * - `qa-paginator-per-page-select`: Placed on the results per page select menu
+ * - `qa-paginator-first-page-button`: Placed on the 'first page' button
+ * - `qa-paginator-previous-page-button`: Placed on the 'previous page' button
+ * - `qa-paginator-current-page-menu`: Placed on the 'current page' menu dropdown
+ * - `qa-paginator-next-page-button`: Placed on the 'next page' button
+ * - `qa-paginator-last-page-button`: Placed on the the 'last page' button
+ * - `qa-paginator-message`: Placed on the messaging regarding the record count being too high
  *
  * @example
- * <ts-pagination
+ * <ts-paginator
  *              currentPageIndex="1"
  *              maxPreferredRecords="100"
  *              menuLocation="below"
@@ -41,10 +43,10 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
  *              previousPageTooltip="View previous results"
  *              nextPageTooltip="View next results"
  *              lastPageTooltip="View last results"
- *              [paginationMessageTemplate]="myTemplate"
+ *              [paginatorMessageTemplate]="myTemplate"
  *              (pageSelect)="myMethod($event)"
  *              (recordsPerPageChange)="myMethod($event)"
- * ></ts-pagination>
+ * ></ts-paginator>
  *
  * <ng-template #myTemplate let-message>
  *   <strong>{{ message }}</strong>
@@ -54,11 +56,16 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
  * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
-  selector: 'ts-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
+  selector: 'ts-paginator',
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.scss'],
+  host: {
+    class: 'ts-paginator',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class TsPaginationComponent implements OnChanges, OnInit {
+export class TsPaginatorComponent implements OnChanges, OnInit {
   /**
    * Define the default count of records per page
    */
@@ -103,7 +110,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   /**
    * Store the array of objects that represent pages of collections
    */
-  public pagesArray: TsPaginationMenuItem[];
+  public pagesArray: TsPaginatorMenuItem[];
 
   /**
    * Store the label for the current page
@@ -171,16 +178,16 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public menuLocation: 'above' | 'below' = 'above';
 
   /**
-   * Allow a custom template to be used for the pagination message
+   * Allow a custom template to be used for the paginator message
    */
   @Input()
-  public paginationMessageTemplate: TemplateRef<ElementRef>;
+  public paginatorMessageTemplate: TemplateRef<ElementRef>;
 
   /**
    * Define the color theme
    */
   @Input()
-  public theme: TsStyleThemeTypes = 'primary';
+  public theme: TsStyleThemeTypes = 'accent';
 
   /**
    * Define the total number of records
@@ -222,7 +229,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Emit a page selected event
    */
   @Output()
-  public pageSelect: EventEmitter<TsPaginationMenuItem> = new EventEmitter();
+  public pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
 
   /**
    * Emit a change event when the records per page changes
@@ -273,7 +280,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    *
    * @param page - The selected page
    */
-  public currentPageChanged(page: TsPaginationMenuItem): void {
+  public currentPageChanged(page: TsPaginatorMenuItem): void {
     // Set the current page
     this.currentPageIndex = coerceNumberProperty(page.value);
 
@@ -296,13 +303,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   public changePage(
     destinationPage: number,
     currentPage: number,
-    pages: TsPaginationMenuItem[],
+    pages: TsPaginatorMenuItem[],
   ): void {
     const destinationIsValid = destinationPage >= 0 && destinationPage <= pages.length;
     const notAlreadyOnPage = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: TsPaginationMenuItem = pages.find((page) => {
+      const foundPage: TsPaginatorMenuItem = pages.find((page) => {
         return page.value === destinationPage.toString();
       });
 
@@ -318,7 +325,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @return A boolean representing if this is the first page
    */
   public isFirstPage(page: number): boolean {
-    return page === 0;
+    return coerceNumberProperty(page) === 0;
   }
 
 
@@ -355,7 +362,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
 
   /**
-   * Re-initialize the pagination when records per page changes
+   * Re-initialize the paginator when records per page changes
    *
    * @param selection - The selected records-per-page count
    */
@@ -364,7 +371,6 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     this.currentPageIndex = 0;
     this.recordsPerPageChange.emit(selection);
 
-    // Re-init pagination
     this.initialize();
   }
 
@@ -376,7 +382,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @return A boolean representing if the menu should be disabled
    */
   public menuIsDisabled(pagesCount: number): boolean {
-    return pagesCount < 2;
+    return coerceNumberProperty(pagesCount) < 2;
   }
 
 
@@ -404,16 +410,16 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
   private createCurrentPageLabel(
     currentPage: number,
-    pages: TsPaginationMenuItem[],
+    pages: TsPaginatorMenuItem[],
     totalRecords: number,
   ): string {
-    const findPage = (allPages: TsPaginationMenuItem[], index: number) => {
-      return pages.find((page: TsPaginationMenuItem) => {
+    const findPage = (allPages: TsPaginatorMenuItem[], index: number) => {
+      return pages.find((page: TsPaginatorMenuItem) => {
         return page.value === index.toString();
       });
     };
 
-    let foundPage: TsPaginationMenuItem = findPage(pages, currentPage);
+    let foundPage: TsPaginatorMenuItem = findPage(pages, currentPage);
 
     // If no found page, try the previous page
     if (!foundPage) {
@@ -445,14 +451,14 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param perPage - How many records are shown per page
    * @return The array representing all possible pages of records
    */
-  private createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
-    const paginationArray: TsPaginationMenuItem[] = [];
+  private createPagesArray(total: number, perPage: number): TsPaginatorMenuItem[] {
+    const paginatorArray: TsPaginatorMenuItem[] = [];
     let recordsRemaining = total;
     let page = 0;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining < 1) {
-      return paginationArray;
+      return paginatorArray;
     }
 
     while (recordsRemaining >= perPage) {
@@ -461,10 +467,10 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       const pageNumber = (page < 1) ? 1 : page;
       const rangeStart = pageNumber * perPage - (perPage - 1);
       const rangeEnd = (pageNumber * perPage);
-      const pageValue: number = paginationArray.length + 1;
+      const pageValue: number = paginatorArray.length + 1;
 
       // Create a page object
-      paginationArray.push({
+      paginatorArray.push({
         name: `${rangeStart} - ${rangeEnd}`,
         // The value is zero based
         value: `${(pageValue - 1).toString()}`,
@@ -486,7 +492,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       let value;
       const pageNumber = (page < 1) ? 1 : page;
 
-      if (paginationArray.length > 0) {
+      if (paginatorArray.length > 0) {
         name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
         value = `${pageNumber}`;
       } else {
@@ -494,13 +500,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
         value = pageNumber;
       }
 
-      paginationArray.push({
+      paginatorArray.push({
         name: name,
         value: value.toString(),
       });
     }
 
-    return paginationArray;
+    return paginatorArray;
   }
 
 
@@ -511,7 +517,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * @param page - The page object
    * @return The value to be used
    */
-  public trackPagesArray(index: number, page: TsPaginationMenuItem): string | undefined {
+  public trackPagesArray(index: number, page: TsPaginatorMenuItem): string | undefined {
     return page ? page.name : undefined;
   }
 

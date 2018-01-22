@@ -97,7 +97,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | login form       |                                                        | :white_check_mark: |     [Demo][demo-log-in-form] |
 | menu             |                                                        | :white_check_mark: |            [Demo][demo-menu] |
 | navigation       |                                                        | :white_check_mark: |      [Demo][demo-navigation] |
-| pagination       |                                                        | :white_check_mark: |      [Demo][demo-pagination] |
+| paginator        |                                                        | :white_check_mark: |      [Demo][demo-paginator] |
 | picklist         |                                                        |                :x: |                              |
 | progress         |                                                        |                :x: |                              |
 | progression      |                                                        |                :x: |                              |
@@ -233,7 +233,7 @@ View the [wiki page][dev-wiki].
 [demo-input]: https://terminus-ui-demos.stackblitz.io/components/input
 [demo-log-in-form]: https://terminus-ui-demos.stackblitz.io/components/log-in-form
 [demo-menu]: https://terminus-ui-demos.stackblitz.io/components/menu
-[demo-pagination]: https://terminus-ui-demos.stackblitz.io/components/pagination
+[demo-paginator]: https://terminus-ui-demos.stackblitz.io/components/paginator
 [demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
 [demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-navigation]: https://terminus-ui-demos.stackblitz.io/components/navigation
