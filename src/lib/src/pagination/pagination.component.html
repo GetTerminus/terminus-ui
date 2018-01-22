@@ -9,28 +9,28 @@
       [label]="recordsSelectLabel"
       [ngClass]="{'disabled': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"
       [(ngModel)]="recordsPerPage"
-      (ngModelChange)="recordsPerPageUpdated($event)"
+      (selectionChange)="recordsPerPageUpdated($event)"
     ></ts-select>
 
 
-    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : firstPageTooltip">
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : firstPageTooltip">
       <ts-button
         class="qa-pagination-first-page-button"
         [theme]="theme"
         [iconName]="firstPageIcon"
-        [isDisabled]="isFirstPage(currentPage)"
-        (clickEvent)="changePage(0, currentPage, pagesArray)"
+        [isDisabled]="isFirstPage(currentPageIndex)"
+        (clickEvent)="changePage(0, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
 
-    <ts-tooltip [tooltipValue]="isFirstPage(currentPage) ? '' : previousPageTooltip">
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : previousPageTooltip">
       <ts-button
         class="qa-pagination-previous-page-button"
         [theme]="theme"
         [iconName]="previousPageIcon"
-        [isDisabled]="isFirstPage(currentPage)"
-        (clickEvent)="changePage(this.currentPage - 1, currentPage, pagesArray)"
+        [isDisabled]="isFirstPage(currentPageIndex)"
+        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
@@ -45,24 +45,24 @@
     >{{ currentPageLabel }}</ts-menu>
 
 
-    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : nextPageTooltip">
+    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : nextPageTooltip">
       <ts-button
         class="qa-pagination-next-page-button"
         [theme]="theme"
         [iconName]="nextPageIcon"
-        [isDisabled]="isLastPage(currentPage)"
-        (clickEvent)="changePage(this.currentPage + 1, currentPage, pagesArray)"
+        [isDisabled]="isLastPage(currentPageIndex)"
+        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
 
-    <ts-tooltip [tooltipValue]="isLastPage(currentPage) ? '' : lastPageTooltip">
+    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip">
       <ts-button
         class="qa-pagination-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"
-        [isDisabled]="isLastPage(currentPage)"
-        (clickEvent)="changePage(pagesArray?.length - 1, currentPage, pagesArray)"
+        [isDisabled]="isLastPage(currentPageIndex)"
+        (clickEvent)="changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
   </div>

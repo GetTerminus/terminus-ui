@@ -15,7 +15,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
 
 import {
   TsNavigationItem,
@@ -285,7 +284,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * @param destination - The destination to check
    * @return Boolean determining if the link is external
    */
-  private isExternalLink(destination: string | string[]): boolean {
+  public isExternalLink(destination: string | string[]): boolean {
     return destination.indexOf('http') >= 0;
   }
 

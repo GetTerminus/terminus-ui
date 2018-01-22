@@ -102,12 +102,16 @@ const COLUMNS_SOURCE_GITHUB = [
     value: 'created',
   },
   {
-    name: 'State',
-    value: 'state',
-  },
-  {
     name: 'Title',
     value: 'title',
+  },
+  {
+    name: 'Comments',
+    value: 'comments',
+  },
+  {
+    name: 'State',
+    value: 'state',
   },
   {
     name: 'Number',
@@ -134,7 +138,13 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(TsPaginationComponent)
   paginator: TsPaginationComponent;
 
-  displayedColumns = ['number', 'title', 'state', 'comments', 'created'];
+  displayedColumns = [
+    'created',
+    'number',
+    'title',
+    'state',
+    'comments',
+  ];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new TsTableDataSource();
   resultsLength = 0;
@@ -148,26 +158,31 @@ export class TableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.exampleDatabase = new ExampleHttpDao(this.http);
-    console.log('this.paginator: ', this.paginator)
-    console.log('this.sort: ', this.sort)
 
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.sort.sortChange.subscribe(() => {
+      console.log('in sortChange subscribe');
+      this.paginator.currentPageIndex = 0;
+    });
 
-    merge(this.sort.sortChange, this.paginator.pageSelect)
+    merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          console.log('this.sort.active: ', this.sort.active)
-          console.log('this.sort.direction: ', this.sort.direction)
-          console.log('this.paginator.pageIndex: ', this.paginator.pageIndex)
+          /*
+           *console.log('this.sort.active: ', this.sort.active)
+           *console.log('this.sort.direction: ', this.sort.direction)
+           *console.log('this.paginator.currentPageIndex: ', this.paginator.currentPageIndex)
+           *console.log('this.paginator.recordsPerPage: ', this.paginator.recordsPerPage)
+           */
 
           return this.exampleDatabase.getRepoIssues(
             this.sort.active,
             this.sort.direction,
-            this.paginator.pageIndex,
+            this.paginator.currentPageIndex,
             this.paginator.recordsPerPage,
           );
         }),
@@ -186,7 +201,9 @@ export class TableComponent implements AfterViewInit {
           this.isRateLimitReached = true;
           return of([]);
         })
-      ).subscribe(data => this.dataSource.data = data);
+      ).subscribe(data => {
+        this.dataSource.data = data;
+      });
   }
 
 
@@ -206,6 +223,10 @@ export class TableComponent implements AfterViewInit {
    *}
    */
 
+
+  perPageChange(e: number) {
+    console.log('DEMO records per page changed: ', e);
+  }
 
   onPageSelect(e: TsPaginationMenuItem) {
     console.log('DEMO page selected: ', e);

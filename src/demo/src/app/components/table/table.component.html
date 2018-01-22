@@ -1,6 +1,7 @@
 <div class="example-header" fxLayout="row" fxLayoutAlign="end center">
 
   <ts-select
+    label="Show/hide columns"
     multipleAllowed="true"
     valueKey="value"
     [(ngModel)]="displayedColumns"
@@ -10,7 +11,11 @@
 </div>
 
 
-<ts-table [dataSource]="dataSource" tsSort>
+<ts-table
+  [dataSource]="dataSource"
+  tsSort
+  tsVerticalSpacing
+>
 
 <!--
    -  <ng-container tsColumnDef="username">
@@ -52,51 +57,69 @@
 
 
 
-  <ng-container tsColumnDef="created">
-    <ts-header-cell *tsHeaderCellDef ts-sort-header>Created</ts-header-cell>
+  <ng-container tsColumnDef="created" noWrap="true" minWidth="100px">
+    <ts-header-cell *tsHeaderCellDef ts-sort-header>
+      Created
+    </ts-header-cell>
     <ts-cell *tsCellDef="let item">
       {{ item.created_at | date:shortDate }}
     </ts-cell>
   </ng-container>
-  <ng-container tsColumnDef="state">
-    <ts-header-cell *tsHeaderCellDef>State</ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.state }}
-    </ts-cell>
-  </ng-container>
-  <ng-container tsColumnDef="number">
-    <ts-header-cell *tsHeaderCellDef>Number</ts-header-cell>
+
+  <ng-container tsColumnDef="number" noWrap="true">
+    <ts-header-cell *tsHeaderCellDef>
+      Number
+    </ts-header-cell>
     <ts-cell *tsCellDef="let item">
       {{ item.number }}
     </ts-cell>
   </ng-container>
+
   <ng-container tsColumnDef="title">
-    <ts-header-cell *tsHeaderCellDef>Title</ts-header-cell>
+    <ts-header-cell *tsHeaderCellDef>
+      Title
+    </ts-header-cell>
     <ts-cell *tsCellDef="let item">
       {{ item.title }}
     </ts-cell>
   </ng-container>
-  <ng-container tsColumnDef="comments">
-    <ts-header-cell *tsHeaderCellDef ts-sort-header>Comments</ts-header-cell>
+
+  <ng-container tsColumnDef="state" noWrap="true">
+    <ts-header-cell *tsHeaderCellDef>
+      State
+    </ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.state }}
+    </ts-cell>
+  </ng-container>
+
+  <ng-container tsColumnDef="comments" noWrap="true">
+    <ts-header-cell *tsHeaderCellDef ts-sort-header>
+      Comments
+    </ts-header-cell>
     <ts-cell *tsCellDef="let item">
       {{ item.comments }}
     </ts-cell>
   </ng-container>
 
-  <ts-header-row *tsHeaderRowDef="displayedColumns" fxLayout="row">
+  <ts-header-row *tsHeaderRowDef="displayedColumns">
   </ts-header-row>
 
-  <ts-row *tsRowDef="let row; columns: displayedColumns;" fxLayout="row">
+  <ts-row *tsRowDef="let row; columns: displayedColumns;">
   </ts-row>
 
 </ts-table>
 
-<ts-pagination
-  [totalRecords]="resultsLength"
-  recordCountTooHighMessage="Please refine your filters."
-  (pageSelect)="onPageSelect($event)"
-  (firstPageChosen)="first($event)"
-  (previousPageChosen)="previous($event)"
-  (nextPageChosen)="next($event)"
-  (lastPageChosen)="last($event)"
-></ts-pagination>
+
+<div class="example-header" fxLayout="row" fxLayoutAlign="end center">
+  <ts-pagination
+    [totalRecords]="resultsLength"
+    recordCountTooHighMessage="Please refine your filters."
+    (pageSelect)="onPageSelect($event)"
+    (recordsPerPageChange)="perPageChange($event)"
+    (firstPageChosen)="first($event)"
+    (previousPageChosen)="previous($event)"
+    (nextPageChosen)="next($event)"
+    (lastPageChosen)="last($event)"
+  ></ts-pagination>
+</div>

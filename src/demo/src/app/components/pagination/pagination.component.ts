@@ -14,7 +14,7 @@ import { TsPaginationComponent } from '@terminus/ui';
       <label for="page">
         Set the current page from the parent component:
       </label>
-      <select name="page" [(ngModel)]="currentPage">
+      <select name="page" [(ngModel)]="currentPageIndex">
         <option *ngFor="let page of pages">{{ page }}</option>
       </select>
 
@@ -35,10 +35,11 @@ import { TsPaginationComponent } from '@terminus/ui';
       [theme]="myTheme"
       [totalRecords]="recordCount"
       [showRecordsPerPageSelector]="showSelector"
-      [currentPage]="currentPage"
+      [currentPageIndex]="currentPageIndex"
       [menuLocation]="location"
       [paginationMessageTemplate]="myTemplate"
       recordCountTooHighMessage="Please refine your filters."
+      (recordsPerPageChange)="perPageChange($event)"
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
@@ -55,7 +56,7 @@ export class PaginationComponent implements AfterViewInit {
   myTheme = 'primary';
   recordCount = 114;
   showSelector = true;
-  currentPage = 0;
+  currentPageIndex = 0;
   location = 'below';
   pages: number[] = [0, 1, 2, 3, 4, 5];
 
@@ -89,6 +90,10 @@ export class PaginationComponent implements AfterViewInit {
 
   last(e) {
     console.log('DEMO last: ', e);
+  }
+
+  perPageChange(e: number) {
+    console.log('DEMO records per page changed: ', e);
   }
 
 }

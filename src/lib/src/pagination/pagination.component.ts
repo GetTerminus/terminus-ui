@@ -10,6 +10,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsPaginationMenuItem } from './../utilities/interfaces';
@@ -30,7 +31,7 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
  *
  * @example
  * <ts-pagination
- *              currentPage="1"
+ *              currentPageIndex="1"
  *              maxPreferredRecords="100"
  *              menuLocation="below"
  *              totalRecords="1450"
@@ -154,7 +155,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Define the current page
    */
   @Input()
-  public currentPage: number = 0;
+  public set currentPageIndex(page: number) {
+    this._currentPageIndex = coerceNumberProperty(page);
+  }
+  public get currentPageIndex(): number {
+    return this._currentPageIndex;
+  }
+  private _currentPageIndex: number = 0;
 
   /**
    * Define how many pages exist to show a prompt about better filtering
@@ -184,7 +191,13 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    * Define the total number of records
    */
   @Input()
-  public totalRecords: number = 0;
+  public set totalRecords(records: number) {
+    this._totalRecords = coerceNumberProperty(records);
+  }
+  public get totalRecords(): number {
+    return this._totalRecords;
+  }
+  private _totalRecords: number = 0;
 
   /**
    * Define the message to show when too many pages exist
@@ -253,10 +266,10 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    private initialize(): void {
      this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
      this.currentPageLabel =
-       this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+       this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
 
      // Go to the initially set page
-     this.changePage(this.currentPage, 0, this.pagesArray);
+     this.changePage(this.currentPageIndex, 0, this.pagesArray);
    }
 
 
@@ -267,11 +280,11 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
   public currentPageChanged(page: TsPaginationMenuItem): void {
     // Set the current page
-    this.currentPage = parseInt(page.value, 10);
+    this.currentPageIndex = coerceNumberProperty(page.value);
 
     // Create a new label for the menu
     this.currentPageLabel =
-      this.createCurrentPageLabel(this.currentPage, this.pagesArray, this.totalRecords);
+      this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
 
     // Emit an event
     this.pageSelect.emit(page);
@@ -353,7 +366,8 @@ export class TsPaginationComponent implements OnChanges, OnInit {
    */
   public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage = selection;
-    this.currentPage = 0;
+    this.currentPageIndex = 0;
+    this.recordsPerPageChange.emit(selection);
 
     // Re-init pagination
     this.initialize();
@@ -413,7 +427,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
       if (foundPage) {
         // If we found the previous page,
         // save the current page change back to the primary variable
-        this.currentPage -= 1;
+        this.currentPageIndex -= 1;
       }
     }
 
@@ -439,7 +453,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
   private createPagesArray(total: number, perPage: number): TsPaginationMenuItem[] {
     const paginationArray: TsPaginationMenuItem[] = [];
     let recordsRemaining = total;
-    let currentPage = 0;
+    let page = 0;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining < 1) {
@@ -449,16 +463,16 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     while (recordsRemaining >= perPage) {
       // We are creating the text for the range here so we are dealing with records based on 1
       // (while the pages themselves are based on 0)
-      const pageNumber = (currentPage < 1) ? 1 : currentPage;
+      const pageNumber = (page < 1) ? 1 : page;
       const rangeStart = pageNumber * perPage - (perPage - 1);
       const rangeEnd = (pageNumber * perPage);
-      const page: number = paginationArray.length + 1;
+      const pageValue: number = paginationArray.length + 1;
 
       // Create a page object
       paginationArray.push({
         name: `${rangeStart} - ${rangeEnd}`,
         // The value is zero based
-        value: `${(page - 1).toString()}`,
+        value: `${(pageValue - 1).toString()}`,
       });
 
       // Update the remaining count
@@ -466,7 +480,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
 
       // Set up for next loop if enough records exist
       if (recordsRemaining >= perPage) {
-        currentPage = page + 1;
+        page = pageValue + 1;
       }
 
     }
@@ -475,7 +489,7 @@ export class TsPaginationComponent implements OnChanges, OnInit {
     if (recordsRemaining > 0) {
       let name;
       let value;
-      const pageNumber = (currentPage < 1) ? 1 : currentPage;
+      const pageNumber = (page < 1) ? 1 : page;
 
       if (paginationArray.length > 0) {
         name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;

@@ -2,20 +2,15 @@
 // tslint:disable: no-non-null-assertion
 import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-// TODO: replace/remove?
-import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs/Subscription';
-import { combineLatest } from 'rxjs/operators/combineLatest';
-import { map } from 'rxjs/operators/map';
-import { startWith } from 'rxjs/operators/startWith';
-import { empty } from 'rxjs/observable/empty';
 
 import { TsSortDirective } from './../sort/sort.directive';
+import { TsPaginationComponent } from './../pagination/pagination.component';
 
 
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
- * sorting (using {@link TsSortDirective}), and pagination (using MatPaginator).
+ * sorting (using {@link TsSortDirective}), and pagination (using {@link TsPaginationComponent}).
  *
  * Allows for sort customization by overriding sortingDataAccessor, which defines how data
  * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
@@ -86,23 +81,18 @@ export class TsTableDataSource<T> implements DataSource<T> {
   private _sort: TsSortDirective|null;
 
   /**
-   * Instance of the MatPaginator component used by the table to control what page of the data is
-   * displayed. Page changes emitted by the MatPaginator will trigger an update to the
+   * Instance of the TsPaginationComponent component used by the table to control what page of the data is
+   * displayed. Page changes emitted by the TsPaginationComponent will trigger an update to the
    * table's rendered data.
-   *
-   * Note that the data source uses the paginator's properties to calculate which page of data
-   * should be displayed. If the paginator receives its properties as template inputs,
-   * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
-   * initialized before assigning it to this data source.
    */
-  set paginator(paginator: MatPaginator|null) {
+  set paginator(paginator: TsPaginationComponent|null) {
     this._paginator = paginator;
     this._updateChangeSubscription();
   }
-  get paginator(): MatPaginator|null {
+  get paginator(): TsPaginationComponent|null {
     return this._paginator;
   }
-  private _paginator: MatPaginator|null;
+  private _paginator: TsPaginationComponent|null;
 
 
   /**
@@ -129,28 +119,6 @@ export class TsTableDataSource<T> implements DataSource<T> {
 
 
   /**
-   * Checks if a data object matches the data source's filter string. By default, each data object
-   * is converted to a string of its properties and returns true if the filter has at least one
-   * occurrence in that string. By default, the filter string has its whitespace trimmed and the
-   * match is case-insensitive. May be overriden for a custom implementation of filter matching.
-   *
-   * @param data - Data object used to check against the filter.
-   * @param filter - Filter string that has been set on the data source.
-   * @returns Whether the filter matches against the data
-   */
-  filterPredicate: ((data: T, filter: string) => boolean) = (data: T, filter: string): boolean => {
-    // Transform the data into a lowercase string of all property values.
-    const accumulator = (currentTerm: any, key: string) => currentTerm + data[key];
-    const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
-
-    // Transform the filter by converting it to lowercase and removing whitespace.
-    const transformedFilter = filter.trim().toLowerCase();
-
-    return dataStr.indexOf(transformedFilter) !== -1;
-  }
-
-
-  /**
    * Set up data and change subscriptions
    */
   constructor(initialData: T[] = []) {
@@ -166,47 +134,21 @@ export class TsTableDataSource<T> implements DataSource<T> {
    */
   _updateChangeSubscription(): void {
     /**
-     * Sorting and/or pagination should be watched if {@link TsSortDirective} and/or MatPaginator
-     * are provided. Otherwise, use an empty observable stream to take their place
+     * Sorting should be watched if {@link TsSortDirective} is provided. Otherwise, use an empty
+     * observable stream to take it's place
      */
-    const sortChange = this._sort ? this._sort.sortChange : empty();
-    const pageChange = this._paginator ? this._paginator.page : empty();
+    /*
+     *const sortChange = this._sort ? this._sort.sortChange : empty();
+     */
 
     if (this._renderChangesSubscription) {
       this._renderChangesSubscription.unsubscribe();
     }
 
     // Watch for base data or filter changes to provide a filtered set of data.
-    this._renderChangesSubscription = this._data.pipe(
-      combineLatest(this._filter),
-      map(([data]) => this._filterData(data)),
-      // Watch for filtered data or sort changes to provide an ordered set of data.
-      combineLatest(sortChange.pipe(startWith(null!))),
-      map(([data]) => this._orderData(data)),
-      // Watch for ordered data or page changes to provide a paged set of data.
-      combineLatest(pageChange.pipe(startWith(null!))),
-      map(([data]) => this._pageData(data)),
-    )
+    this._renderChangesSubscription = this._data
     // Watched for paged data changes and send the result to the table to render.
     .subscribe((data) => this._renderData.next(data));
-  }
-
-
-  /**
-   * Returns a filtered data array where each filter object contains the filter string within
-   * the result of the filterTermAccessor function. If no filter is set, returns the data array
-   * as provided.
-   */
-  _filterData(data: T[]): T[] {
-    // If there is a filter string, filter out data that does not contain it.
-    // Each data object is converted to a string using the function defined by filterTermAccessor.
-    // May be overriden for customization.
-    this.filteredData =
-        !this.filter ? data : data.filter((obj) => this.filterPredicate(obj, this.filter));
-
-    if (this.paginator) { this._updatePaginator(this.filteredData.length); }
-
-    return this.filteredData;
   }
 
 
@@ -231,35 +173,25 @@ export class TsTableDataSource<T> implements DataSource<T> {
 
 
   /**
-   * Returns a paged splice of the provided data array according to the provided MatPaginator's page
-   * index and length. If there is no paginator provided, returns the data array as provided.
-   */
-  _pageData(data: T[]): T[] {
-    if (!this.paginator) { return data; }
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-
-    return data.slice().splice(startIndex, this.paginator.pageSize);
-  }
-
-
-  /**
    * Updates the paginator to reflect the length of the filtered data, and makes sure that the page
    * index does not exceed the paginator's last page. Values are changed in a resolved promise to
    * guard against making property changes within a round of change detection.
    */
-  _updatePaginator(filteredDataLength: number) {
-    Promise.resolve().then(() => {
-      if (!this.paginator) { return; }
-
-      this.paginator.length = filteredDataLength;
-
-      // If the page index is set beyond the page, reduce it to the last page.
-      if (this.paginator.pageIndex > 0) {
-        const lastPageIndex = Math.ceil(this.paginator.length / this.paginator.pageSize) - 1 || 0;
-        this.paginator.pageIndex = Math.min(this.paginator.pageIndex, lastPageIndex);
-      }
-    });
-  }
+/*
+ *  _updatePaginator(filteredDataLength: number) {
+ *    Promise.resolve().then(() => {
+ *      if (!this.paginator) { return; }
+ *
+ *      this.paginator.length = filteredDataLength;
+ *
+ *      // If the page index is set beyond the page, reduce it to the last page.
+ *      if (this.paginator.pageIndex > 0) {
+ *        const lastPageIndex = Math.ceil(this.paginator.length / this.paginator.pageSize) - 1 || 0;
+ *        this.paginator.pageIndex = Math.min(this.paginator.pageIndex, lastPageIndex);
+ *      }
+ *    });
+ *  }
+ */
 
 
   /**
