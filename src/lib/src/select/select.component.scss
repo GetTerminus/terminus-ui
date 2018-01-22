@@ -42,3 +42,10 @@
     max-width: 100%;
   }
 }
+
+// Overwrite the default max-height set by Material since the menu was spilling off outside the page
+.cdk-overlay-container {
+  .mat-menu-panel {
+    max-height: calc(80vh - 48px);
+  }
+}
