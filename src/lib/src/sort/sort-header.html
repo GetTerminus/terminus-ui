@@ -1,4 +1,3 @@
-
 <div
   class="ts-sort-header-container"
   [class.ts-sort-header-position-before]="arrowPosition == 'before'"
@@ -10,21 +9,21 @@
     [attr.disabled]="_isDisabled() || null"
   >
     <ng-content></ng-content>
-  </button>
 
-  <div
-    *ngIf="_isSorted()"
-    class="ts-sort-header-arrow"
-    [@indicatorToggle]="_sort.direction"
-  >
-    <div class="ts-sort-header-stem"></div>
+    <div
+      class="ts-sort-header-arrow"
+      *ngIf="_isSorted()"
+      [@indicatorToggle]="_sort.direction"
+    >
+      <div class="ts-sort-header-stem"></div>
 
-    <div class="ts-sort-header-indicator" [@indicator]="_sort.direction" >
-      <div class="ts-sort-header-pointer-left" [@leftPointer]="_sort.direction"></div>
-      <div class="ts-sort-header-pointer-right" [@rightPointer]="_sort.direction"></div>
-      <div class="ts-sort-header-pointer-middle"></div>
+      <div class="ts-sort-header-indicator" [@indicator]="_sort.direction" >
+        <div class="ts-sort-header-pointer-left" [@leftPointer]="_sort.direction"></div>
+        <div class="ts-sort-header-pointer-right" [@rightPointer]="_sort.direction"></div>
+        <div class="ts-sort-header-pointer-middle"></div>
+      </div>
     </div>
-  </div>
+  </button>
 </div>
 
 <span class="cdk-visually-hidden" *ngIf="_isSorted()">

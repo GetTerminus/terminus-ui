@@ -1,11 +1,12 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/typography';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/layout';
 
 $ts-header-row-height: 56px;
 $ts-row-height: 48px;
 $ts-row-horizontal-padding: 24px;
-$ts-row-hover: color(accent, xlight);
+$ts-row-hover: rgba(color(utility, xlight), .5);
 
 
 
@@ -17,9 +18,16 @@ $ts-row-hover: color(accent, xlight);
 //
 .ts-table {
   @include typography;
-  display: block;
+  border-collapse:collapse;
+  display: table;
   // Set up for column hover styles
   overflow: hidden;
+  width: 100%;
+
+
+  //
+  // Rows
+  //
 
   // Header row
   .ts-header-row {
@@ -38,30 +46,7 @@ $ts-row-hover: color(accent, xlight);
     will-change: background-color;
 
     &:hover {
-      background-color: $color__accent--xlight;
-    }
-  }
-
-  // Any row
-  .ts-row,
-  .ts-header-row {
-    align-items: stretch;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    // Set up for pseudo border
-    position: relative;
-
-    // Create pseudo bottom border
-    &::before {
-      background-color: color(utility, light);
-      bottom: 0;
-      content: '';
-      display: block;
-      height: 1px;
-      left: 0;
-      position: absolute;
-      right: 0;
+      background-color: $ts-row-hover;
     }
 
     // Workaround for https://goo.gl/pFmjJD in IE 11. Adds a pseudo
@@ -74,6 +59,19 @@ $ts-row-hover: color(accent, xlight);
     }
   }
 
+  // Any row
+  .ts-row,
+  .ts-header-row {
+    border-bottom: 1px solid color(utility, xlight);
+    box-sizing: border-box;
+    display: table-row;
+  }
+
+
+  //
+  // Cells
+  //
+
   // Body cell
   .ts-cell {
     padding: spacing();
@@ -81,15 +79,16 @@ $ts-row-hover: color(accent, xlight);
 
   // Header cell
   .ts-header-cell {
-    border-bottom: 3px solid transparent;
-    transition: border-bottom 200ms ease-out;
-    will-change: border-bottom-color;
-
-    // Inner container
-    .ts-sort-header-container {
-      height: 100%;
+    // If the column isn't sortable, add padding here that would normally be added by
+    // `ts-sort-header-container`
+    &:not(.ts-sortable) {
       padding: spacing();
-      width: 100%;
+    }
+
+    &.ts-sortable {
+      border-bottom: 3px solid color(utility, light);
+      transition: border-bottom 200ms ease-out;
+      will-change: border-bottom-color;
     }
 
     // Class added when the column is sorted
@@ -97,37 +96,45 @@ $ts-row-hover: color(accent, xlight);
       border-bottom-color: color(primary);
       color: color(primary);
     }
+
+    // <div> inner container wrapping the sort control
+    .ts-sort-header-container {
+      padding: spacing();
+    }
   }
 
   // Any cell
   .ts-cell,
   .ts-header-cell {
-    align-items: center;
-    display: flex;
-    flex: 1;
+    display: table-cell;
     // Set up for column hover styles
     position: relative;
-    word-wrap: break-word;
 
     // Pseudo element used for column hover
     &::after {
-      background-color: color(accent, xlight);
+      background-color: $ts-row-hover;
       content: '';
-      display: none;
-      height: 1000px;
+      display: block;
+      height: 200vh;
       left: 0;
       opacity: 0;
       position: absolute;
-      top: -500px;
+      top: -100vh;
+      transition: opacity 200ms ease-out;
       width: 100%;
+      will-change: opacity;
       z-index: -1;
     }
 
     &:hover {
       &::after {
-        display: block;
         opacity: 1;
       }
+    }
+
+    // Class added if a column should not wrap
+    &.ts-column-no-wrap {
+      white-space: nowrap;
     }
   }
 }

@@ -46,9 +46,10 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
   templateUrl: './sort-header.html',
   styleUrls: ['./sort-header.scss'],
   host: {
-    '(click)': '_handleClick()',
+    class: 'ts-sortable',
     '[class.ts-sort-header-sorted]': '_isSorted()',
     '[class.ts-sort-header-disabled]': '_isDisabled()',
+    '(click)': '_handleClick()',
   },
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None,
