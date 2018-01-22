@@ -93,8 +93,8 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
     // Class added when the column is sorted
     &.ts-sort-header-sorted {
-      border-bottom-color: color(primary);
-      color: color(primary);
+      border-bottom-color: color(accent);
+      color: color(accent);
     }
 
     // <div> inner container wrapping the sort control
