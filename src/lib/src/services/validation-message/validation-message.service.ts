@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
 import { format } from 'date-fns';
 
 import { emailMessage } from './../../utilities/regex/email.regex';

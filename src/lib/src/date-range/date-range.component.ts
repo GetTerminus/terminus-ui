@@ -2,15 +2,13 @@ import {
   Component,
   Input,
   Output,
-  ViewChild,
   EventEmitter,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
-import { TsDatepickerComponent } from './../datepicker/datepicker.component';
 import { TsDateRange } from './../utilities/interfaces/date-range.interface';
 
 
