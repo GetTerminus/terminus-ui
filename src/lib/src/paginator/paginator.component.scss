@@ -4,24 +4,24 @@
 
 //
 // @component
-//  Pagination
+//  Paginator
 // @description
-//  A component to show pagination controls
+//  A component to show paginator controls
 //
-.ts-pagination {
+.ts-paginator {
   display: inline-block;
 
   // Top level styles should be nested here
-  .c-pagination {
+  .c-paginator {
     @include typography;
     display: inline-block;
   }
 }
 
 // <div> primary wrapper
-.c-pagination {
+.c-paginator {
   // <div> container for the message about too many records
-  .c-pagination__message {
+  .c-paginator__message {
     @include typography('caption');
     color: color(utility, dark);
     margin: .4em 0;

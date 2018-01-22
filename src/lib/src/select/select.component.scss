@@ -21,8 +21,8 @@
     }
   }
 
-  // Custom rules when nested inside the pagination component
-  .c-pagination & {
+  // Custom rules when nested inside the paginator component
+  .c-paginator & {
     position: relative;
     top: .2em;
     vertical-align: middle;

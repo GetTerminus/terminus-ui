@@ -15,8 +15,8 @@ import { Observable } from 'rxjs/Observable';
 import {
   TsTableDataSource,
   TsSortDirective,
-  TsPaginationComponent,
-  TsPaginationMenuItem,
+  TsPaginatorComponent,
+  TsPaginatorMenuItem,
 } from '@terminus/ui';
 
 
@@ -124,19 +124,13 @@ const COLUMNS_SOURCE_GITHUB = [
   templateUrl: './table.component.html',
 })
 export class TableComponent implements AfterViewInit {
-  /*
-   *tableData = of(DATA_MOCK);
-   *dataSource: TsTableDataSource<TableItem> = new TsTableDataSource(DATA_MOCK);
-   *allColumns = COLUMNS_SOURCE.slice(0);
-   *displayedColumns: string[] = ['username', 'age', 'title', 'active', 'visible'];
-   */
   allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
 
   @ViewChild(TsSortDirective)
   sort: TsSortDirective;
 
-  @ViewChild(TsPaginationComponent)
-  paginator: TsPaginationComponent;
+  @ViewChild(TsPaginatorComponent)
+  paginator: TsPaginatorComponent;
 
   displayedColumns = [
     'created',
@@ -172,12 +166,6 @@ export class TableComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          /*
-           *console.log('this.sort.active: ', this.sort.active)
-           *console.log('this.sort.direction: ', this.sort.direction)
-           *console.log('this.paginator.currentPageIndex: ', this.paginator.currentPageIndex)
-           *console.log('this.paginator.recordsPerPage: ', this.paginator.recordsPerPage)
-           */
 
           return this.exampleDatabase.getRepoIssues(
             this.sort.active,
@@ -187,7 +175,7 @@ export class TableComponent implements AfterViewInit {
           );
         }),
         map(data => {
-          console.log('data: ', data)
+          console.log('Demo: fetched data: ', data)
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
@@ -228,7 +216,7 @@ export class TableComponent implements AfterViewInit {
     console.log('DEMO records per page changed: ', e);
   }
 
-  onPageSelect(e: TsPaginationMenuItem) {
+  onPageSelect(e: TsPaginatorMenuItem) {
     console.log('DEMO page selected: ', e);
   }
 

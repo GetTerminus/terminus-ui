@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 
 import { TsSortDirective } from './../sort/sort.directive';
-import { TsPaginationComponent } from './../pagination/pagination.component';
+import { TsPaginatorComponent } from './../paginator/paginator.component';
 
 
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
- * sorting (using {@link TsSortDirective}), and pagination (using {@link TsPaginationComponent}).
+ * sorting (using {@link TsSortDirective}), and paginator (using {@link TsPaginatorComponent}).
  *
  * Allows for sort customization by overriding sortingDataAccessor, which defines how data
  * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
@@ -81,18 +81,18 @@ export class TsTableDataSource<T> implements DataSource<T> {
   private _sort: TsSortDirective|null;
 
   /**
-   * Instance of the TsPaginationComponent component used by the table to control what page of the data is
-   * displayed. Page changes emitted by the TsPaginationComponent will trigger an update to the
-   * table's rendered data.
+   * Instance of the {@link TsPaginatorComponent} component used by the table to control what page
+   * of the data is displayed. Page changes emitted by the {@link TsPaginatorComponent} will trigger
+   * an update to the table's rendered data.
    */
-  set paginator(paginator: TsPaginationComponent|null) {
+  set paginator(paginator: TsPaginatorComponent|null) {
     this._paginator = paginator;
     this._updateChangeSubscription();
   }
-  get paginator(): TsPaginationComponent|null {
+  get paginator(): TsPaginatorComponent|null {
     return this._paginator;
   }
-  private _paginator: TsPaginationComponent|null;
+  private _paginator: TsPaginatorComponent|null;
 
 
   /**

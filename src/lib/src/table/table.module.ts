@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import { TsSortModule } from './../sort/sort.module';
-import { TsPaginationModule } from './../pagination/pagination.module';
+import { TsPaginatorModule } from './../paginator/paginator.module';
 
 import {
   TsCellDirective,
@@ -26,7 +26,7 @@ import { TsTableComponent } from './table.component';
     CommonModule,
     CdkTableModule,
     TsSortModule,
-    TsPaginationModule,
+    TsPaginatorModule,
   ],
   declarations: [
     TsCellDefDirective,

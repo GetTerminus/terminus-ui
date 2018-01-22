@@ -27,7 +27,7 @@ import {
   TsLoginFormModule,
   TsMenuModule,
   TsNavigationModule,
-  TsPaginationModule,
+  TsPaginatorModule,
   TsRadioGroupModule,
   TsSearchModule,
   TsSelectModule,
@@ -56,7 +56,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
@@ -98,7 +98,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsLoginFormModule,
     TsMenuModule,
     TsNavigationModule,
-    TsPaginationModule,
+    TsPaginatorModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
@@ -126,7 +126,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     LoginFormComponent,
     MenuComponent,
     NavigationComponent,
-    PaginationComponent,
+    PaginatorComponent,
     RadioComponent,
     SearchComponent,
     SelectComponent,

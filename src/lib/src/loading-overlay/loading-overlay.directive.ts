@@ -10,6 +10,7 @@ import {
   Injector,
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
@@ -43,7 +44,8 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    */
   @Input()
   public set tsLoadingOverlay(value: boolean) {
-    if (value) {
+    const shouldSet = coerceBooleanProperty(value);
+    if (shouldSet) {
       this.bodyPortalHost.attach(this.loadingOverlayPortal);
     } else {
       this.bodyPortalHost.detach();

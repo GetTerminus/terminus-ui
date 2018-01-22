@@ -72,7 +72,7 @@
 
 
 <div class="example-header" fxLayout="row" fxLayoutAlign="end center">
-  <ts-pagination
+  <ts-paginator
     [totalRecords]="resultsLength"
     recordCountTooHighMessage="Please refine your filters."
     (pageSelect)="onPageSelect($event)"
@@ -81,5 +81,5 @@
     (previousPageChosen)="previous($event)"
     (nextPageChosen)="next($event)"
     (lastPageChosen)="last($event)"
-  ></ts-pagination>
+  ></ts-paginator>
 </div>

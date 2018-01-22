@@ -28,7 +28,7 @@ module.exports = {
     {name: 'LoginForm'},
     {name: 'Menu'},
     {name: 'Navigation'},
-    {name: 'Pagination'},
+    {name: 'Paginator'},
     {name: 'RadioGroup'},
     {name: 'Search'},
     {name: 'Select'},

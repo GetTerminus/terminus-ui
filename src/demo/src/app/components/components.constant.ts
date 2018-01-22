@@ -12,7 +12,7 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 import { RadioComponent } from './radio/radio.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
@@ -113,10 +113,10 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'pagination',
-    component: PaginationComponent,
+    path: 'pagaginator',
+    component: PaginatorComponent,
     data: {
-      name: 'Pagination',
+      name: 'Paginator',
     },
   },
   {

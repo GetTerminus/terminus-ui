@@ -1,9 +1,9 @@
-<div class="c-pagination qa-pagination">
+<div class="c-paginator qa-paginator">
 
-  <div class="c-pagination__buttons">
+  <div class="c-paginator__buttons">
 
     <ts-select
-      class="qa-pagination-per-page-select"
+      class="qa-paginator-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
       [items]="recordsPerPageChoices"
       [label]="recordsSelectLabel"
@@ -15,7 +15,7 @@
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : firstPageTooltip">
       <ts-button
-        class="qa-pagination-first-page-button"
+        class="qa-paginator-first-page-button"
         [theme]="theme"
         [iconName]="firstPageIcon"
         [isDisabled]="isFirstPage(currentPageIndex)"
@@ -26,7 +26,7 @@
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : previousPageTooltip">
       <ts-button
-        class="qa-pagination-previous-page-button"
+        class="qa-paginator-previous-page-button"
         [theme]="theme"
         [iconName]="previousPageIcon"
         [isDisabled]="isFirstPage(currentPageIndex)"
@@ -36,7 +36,7 @@
 
 
     <ts-menu
-      class="qa-pagination-current-page-menu"
+      class="qa-paginator-current-page-menu"
       [theme]="theme"
       [menuItemsTemplate]="menuItems"
       [menuPositionY]="menuLocation"
@@ -47,7 +47,7 @@
 
     <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : nextPageTooltip">
       <ts-button
-        class="qa-pagination-next-page-button"
+        class="qa-paginator-next-page-button"
         [theme]="theme"
         [iconName]="nextPageIcon"
         [isDisabled]="isLastPage(currentPageIndex)"
@@ -58,7 +58,7 @@
 
     <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip">
       <ts-button
-        class="qa-pagination-last-page-button"
+        class="qa-paginator-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"
         [isDisabled]="isLastPage(currentPageIndex)"
@@ -68,11 +68,11 @@
   </div>
 
   <div
-    class="c-pagination__message qa-pagination-message"
+    class="c-paginator__message qa-paginator-message"
     *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"
   >
     <ng-container
-      [ngTemplateOutlet]="paginationMessageTemplate || defaultPaginationMessageTemplate"
+      [ngTemplateOutlet]="paginatorMessageTemplate || defaultPaginatorMessageTemplate"
       [ngTemplateOutletContext]="templateContext"
     ></ng-container>
   </div>
@@ -89,6 +89,6 @@
   </ts-button>
 </ng-template>
 
-<ng-template #defaultPaginationMessageTemplate let-message>
+<ng-template #defaultPaginatorMessageTemplate let-message>
   {{ message }}
 </ng-template>

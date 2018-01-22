@@ -11,7 +11,7 @@ export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.mo
 export { TsLoginFormModule } from './src/login-form/login-form.module';
 export { TsMenuModule } from './src/menu/menu.module';
 export { TsNavigationModule } from './src/navigation/navigation.module';
-export { TsPaginationModule } from './src/pagination/pagination.module';
+export { TsPaginatorModule } from './src/paginator/paginator.module';
 export { TsRadioGroupModule } from './src/radio-group/radio-group.module';
 export { TsSearchModule } from './src/search/search.module';
 export { TsSelectModule } from './src/select/select.module';
@@ -31,7 +31,7 @@ export * from './src/table/table-data-source';
 export * from './src/table/row';
 export * from './src/table/cell';
 export * from './src/sort/sort.directive';
-export * from './src/pagination/pagination.component';
+export * from './src/paginator/paginator.component';
 
 // Utilities & Services
 export { TsDocumentService } from './src/services/document/document.service';
