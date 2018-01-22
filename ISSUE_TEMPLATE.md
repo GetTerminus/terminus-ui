@@ -1,6 +1,3 @@
-<!-- Please attach the appropriate labels! -->
-
-
 <!--
 
 If reporting an issue:
@@ -10,4 +7,3 @@ If reporting an issue:
 3. Include the link here
 
 -->
-
