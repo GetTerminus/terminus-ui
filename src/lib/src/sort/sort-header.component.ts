@@ -43,8 +43,8 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
   selector: '[ts-sort-header]',
   // tslint:enable: component-selector
   exportAs: 'tsSortHeader',
-  templateUrl: './sort-header.html',
-  styleUrls: ['./sort-header.scss'],
+  templateUrl: './sort-header.component.html',
+  styleUrls: ['./sort-header.component.scss'],
   host: {
     class: 'ts-sortable',
     '[class.ts-sort-header-sorted]': '_isSorted()',
