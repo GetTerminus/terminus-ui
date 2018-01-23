@@ -425,6 +425,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     if (!foundPage) {
       foundPage = findPage(pages, currentPage - 1);
 
+      // istanbul ignore else
       if (foundPage) {
         // If we found the previous page,
         // save the current page change back to the primary variable
