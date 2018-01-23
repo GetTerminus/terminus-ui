@@ -1,11 +1,11 @@
-import { TsPaginationComponent } from './pagination.component';
-import { TsPaginationMenuItem } from '../utilities/interfaces';
+import { TsPaginatorComponent } from './paginator.component';
+import { TsPaginatorMenuItem } from '../utilities/interfaces';
 
 
-describe(`PaginationComponent`, () => {
+describe(`PaginatorComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsPaginationComponent();
+    this.component = new TsPaginatorComponent();
     this.TOTAL_RECORDS = 100;
   });
 
@@ -282,16 +282,14 @@ describe(`PaginationComponent`, () => {
     });
 
 
-/*
- *    it(`should return a valid title when the requested page doesn't exist`, () => {
- *      this.component.totalRecords = this.TOTAL_RECORDS;
- *      this.component.ngOnInit();
- *      const actual = this.component.createCurrentPageLabel(11, this.component.pagesArray, this.TOTAL_RECORDS);
- *      const expected = '91 - 100 of 100';
- *
- *      expect(actual).toEqual(expected);
- *    });
- */
+    it(`should return a valid title when the requested page doesn't exist`, () => {
+      this.component.totalRecords = this.TOTAL_RECORDS;
+      this.component.ngOnInit();
+      const actual = this.component.createCurrentPageLabel(10, this.component.pagesArray, this.TOTAL_RECORDS);
+      const expected = '91 - 100 of 100';
+
+      expect(actual).toEqual(expected);
+    });
 
   });
 
@@ -301,7 +299,7 @@ describe(`PaginationComponent`, () => {
     it(`should return an empty array if there are no records`, () => {
       this.component.ngOnInit();
       const actual = this.component.createPagesArray(0, 10);
-      const expected: TsPaginationMenuItem[] = [];
+      const expected: TsPaginatorMenuItem[] = [];
 
       expect(actual).toEqual(expected);
     });
