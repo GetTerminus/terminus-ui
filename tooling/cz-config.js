@@ -34,6 +34,7 @@ module.exports = {
     {name: 'Select'},
     {name: 'Services'},
     {name: 'SCSS'},
+    {name: 'Sort'},
     {name: 'Spacing'},
     {name: 'Table'},
     {name: 'Toggle'},
