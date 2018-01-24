@@ -23,6 +23,7 @@
 
   // Custom rules when nested inside the paginator component
   .c-paginator & {
+    display: inline-block;
     position: relative;
     top: .2em;
     vertical-align: middle;

@@ -11,7 +11,6 @@ import {
   MatIconModule,
   MatMenuModule,
   MatToolbarModule,
-  MatSortModule,
 } from '@angular/material';
 
 import {
