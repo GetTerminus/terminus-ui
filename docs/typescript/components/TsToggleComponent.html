@@ -760,9 +760,17 @@
                 <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -872,7 +880,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:67</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -898,7 +906,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:73</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -924,7 +932,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:79</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -950,7 +958,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:85</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -976,7 +984,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:91</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1002,7 +1010,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:97</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1027,7 +1035,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:103</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1049,6 +1057,7 @@
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 import {
   NG_VALUE_ACCESSOR,
@@ -1095,8 +1104,12 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   selector: &#x27;ts-toggle&#x27;,
   templateUrl: &#x27;./toggle.component.html&#x27;,
   styleUrls: [&#x27;./toggle.component.scss&#x27;],
+  host: {
+    class: &#x27;ts-toggle&#x27;,
+  },
   providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**
@@ -1146,7 +1159,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
 
     <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;mat-slide-toggle
-  class&#x3D;&quot;c-toggle c-toggle qa-toggle&quot;
+  class&#x3D;&quot;c-toggle qa-toggle&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
   [required]&#x3D;&quot;isRequired&quot;
   [labelPosition]&#x3D;&quot;labelPosition&quot;
@@ -1189,7 +1202,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-slide-toggle  class="c-toggle c-toggle qa-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></mat-slide-toggle></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-slide-toggle  class="c-toggle qa-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></mat-slide-toggle></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsToggleComponent'};

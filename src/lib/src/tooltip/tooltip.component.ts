@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { TsTooltipPositionTypes } from './../utilities/types';
@@ -10,9 +11,9 @@ import { TsTooltipPositionTypes } from './../utilities/types';
 /**
  * This is the tooltip UI Component
  *
- * -- QA CSS CLASSES
+ * #### QA CSS CLASSES
  *
- * qa-tooltip : Placed on the span element used for this component
+ * - qa-tooltip : Placed on the span element used for this component
  *
  * @example
  * <ts-tooltip
@@ -26,7 +27,11 @@ import { TsTooltipPositionTypes } from './../utilities/types';
   selector: 'ts-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
+  host: {
+    class: 'ts-tooltip',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsTooltipComponent {
   /**

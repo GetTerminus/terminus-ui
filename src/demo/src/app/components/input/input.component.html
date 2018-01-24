@@ -1,5 +1,4 @@
 <ts-input
-  style="width:100%;"
   [(ngModel)]="myValue"
   label="Input with ngModel"
   isClearable="true"
@@ -14,7 +13,6 @@
 
 <form [formGroup]="myForm" novalidate>
   <ts-input
-    style="width:100%;"
     [formControl]="getControl('name')"
     [label]="label1"
     [isClearable]="clearable"
@@ -28,7 +26,6 @@
   <br>
 
   <ts-input
-    style="width:100%;"
     [formControl]="getControl('email')"
     [label]="label2"
     [isClearable]="clearable"
@@ -43,7 +40,6 @@
   <br>
 
   <ts-input
-    style="width:100%;"
     [formControl]="getControl('password')"
     label="Password"
     hint="Password input with validation"

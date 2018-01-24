@@ -3,13 +3,12 @@ import {
   Input,
   ViewChild,
   ElementRef,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsDocumentService } from '../services/document/document.service';
 
-// TODO: Add a tooltip to the copy button telling users it will copy to clipboard
-// TODO: Add a snackbar or alert to give the user feedback on copy success & failure
 
 /**
  * This is the TsCopyComponent UI Component
@@ -31,6 +30,10 @@ import { TsDocumentService } from '../services/document/document.service';
   selector: 'ts-copy',
   templateUrl: './copy.component.html',
   styleUrls: ['./copy.component.scss'],
+  host: {
+    class: 'ts-copy',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsCopyComponent {
   /**

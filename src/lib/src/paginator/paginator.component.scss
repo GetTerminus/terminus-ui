@@ -11,17 +11,15 @@
 .ts-paginator {
   display: inline-block;
 
+  // Top level styles should be nested here
   .c-paginator {
     @include typography;
     display: inline-block;
   }
 }
 
-
+// <div> primary wrapper
 .c-paginator {
-  @include typography;
-  display: inline-block;
-
   // <div> container for the message about too many records
   .c-paginator__message {
     @include typography('caption');

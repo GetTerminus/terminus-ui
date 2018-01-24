@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -53,8 +54,12 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'ts-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
+  host: {
+    class: 'ts-select',
+  },
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsSelectComponent extends TsReactiveFormBaseComponent {
   /**

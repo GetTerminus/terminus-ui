@@ -5,6 +5,7 @@ import {
   OnInit,
   EventEmitter,
   forwardRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -59,6 +60,10 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
   providers: [CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR],
+  host: {
+    class: 'ts-datepicker',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**

@@ -3,13 +3,6 @@
 @import './../scss/helpers/spacing';
 @import './../scss/helpers/animation';
 
-:host {
-  display: inline-block;
-
-  .c-menu & {
-    margin: spacing(small, 1) 0;
-  }
-}
 
 //
 // @component
@@ -19,9 +12,11 @@
 //
 //  NOTE: Typography/color/size should be inherited from the context.
 //
-.c-link {
+.ts-link {
+  display: inline-block;
+
   // Top level styles should be nested here
-  &#{&} {
+  .c-link {
     color: inherit;
     display: inline-block;
     text-decoration: underline;
@@ -74,7 +69,9 @@
       }
     }
   }
+}
 
+.c-link {
   // Force the icon to assume the size of it's context
   .mat-icon {
     &.material-icons {
@@ -85,16 +82,17 @@
       width: auto;
     }
   }
-}
 
+  // Target links inside a TsMenuComponent
+  .c-menu & {
+    margin: spacing(small, 1) 0;
+  }
 
-//
-// Styles when nested inside a TsMenuComponent
-.c-link {
+  // Target links inside a TsMenuComponent
   .mat-menu-content & {
     color: color(pure, dark);
     display: block;
-    font-weight: 400;
+    font-weight: 300;
     padding: spacing(small, 1) spacing();
     text-decoration: none;
     transition: background 400ms $g-material-background-easing;

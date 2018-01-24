@@ -28,19 +28,25 @@
 </p>
 
 <form [formGroup]="formTwo" novalidate>
-  <ts-datepicker
-    [formControl]="getControl('formTwo', 'startDate')"
-    validateOnChange="true"
-    name="startDate"
-    (selected)="rangeStartChange($event)"
-  ></ts-datepicker>
-  -
-  <ts-datepicker
-    [formControl]="getControl('formTwo', 'endDate')"
-    validateOnChange="true"
-    name="endDate"
-    (selected)="rangeEndChange($event)"
-  ></ts-datepicker>
+  <div fxLayout="row" [fxLayoutGap]="layoutGap">
+    <div>
+      <ts-datepicker
+        [formControl]="getControl('formTwo', 'startDate')"
+        validateOnChange="true"
+        name="startDate"
+        (selected)="rangeStartChange($event)"
+      ></ts-datepicker>
+    </div>
+
+    <div>
+      <ts-datepicker
+        [formControl]="getControl('formTwo', 'endDate')"
+        validateOnChange="true"
+        name="endDate"
+        (selected)="rangeEndChange($event)"
+      ></ts-datepicker>
+    </div>
+  </div>
 
   <br>
   <br>

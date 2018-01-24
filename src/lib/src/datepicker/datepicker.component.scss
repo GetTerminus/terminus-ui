@@ -1,8 +1,5 @@
 @import './../scss/helpers/typography';
 
-:host {
-  display: inline-block;
-}
 
 //
 // @component
@@ -10,9 +7,11 @@
 // @description
 //  A datepicker component
 //
-.c-datepicker {
+.ts-datepicker {
+  display: block;
+
   // Top level styles should be nested here
-  &#{&} {
+  .c-datepicker {
     @include typography;
   }
 }

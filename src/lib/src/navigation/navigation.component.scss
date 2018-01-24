@@ -6,13 +6,6 @@
 @import './../scss/helpers/cursors';
 
 
-:host {
-  display: inline-block;
-  flex: 1 1 auto;
-  max-width: 100%;
-  overflow: hidden;
-}
-
 //
 // @component
 //  Navigation
@@ -20,14 +13,21 @@
 //  A fully responsive navigation bar. Items that cannot fit inside the navigation bar will be
 //  pulled out into the dropdown menu.
 //
-.c-navigation {
+.ts-navigation {
+  display: inline-block;
+  flex: 1 1 auto;
+  max-width: 100%;
+  overflow: hidden;
+
   // Top level styles should be nested here
-  &#{&} {
+  .c-navigation {
     @include typography;
     background-color: color(primary);
     color: color(pure);
   }
+}
 
+.c-navigation {
   // <div> wrapper for list of navigation items
   .c-navigation__items {
     overflow: hidden;
@@ -109,7 +109,7 @@
     }
 
     // override material styles on the inner wrapper
-    ::ng-deep .mat-button-wrapper {
+    .mat-button-wrapper {
       display: inline-block;
       padding: spacing(small, 1) spacing(large) spacing(small, 1) spacing();
       position: relative;
@@ -137,7 +137,7 @@
 //
 
 // <div> container for hidden nav items
-::ng-deep .c-navigation__hidden-items {
+.c-navigation__hidden-items {
   $material-spacing: 8px;
 
   @include typography;
@@ -150,7 +150,7 @@
     border-top-right-radius: 0;
   }
 
-  ::ng-deep .mat-menu-content {
+  .mat-menu-content {
     background-color: color(primary);
     // override material styles
     padding: 0;
@@ -162,7 +162,7 @@
   }
 
   // <button> individual nav item
-  ::ng-deep .c-navigation__hidden-item {
+  .c-navigation__hidden-item {
     &--admin {
       background-color: color(primary, dark);
 

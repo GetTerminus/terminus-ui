@@ -1,17 +1,14 @@
-:host {
-  display: inline-block;
-}
-
 //
 // @component
 //  Date Range
 // @description
 //  Two datepicker components to create a date range component
 //
+.ts-date-range {
+  display: block;
+}
+
 .c-date-range {
-  // Top level styles should be nested here
-  //&#{&} {
-  //}
   .c-date-range__seperator {
     margin: auto .6em;
   }

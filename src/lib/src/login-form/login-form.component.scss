@@ -1,16 +1,20 @@
-:host {
-  display: inline-block;
-  width: 100%;
-}
-
 //
 // @component
-//  Login Form
+//  Log In Form
 // @description
-//  NOTE: Currently no custom styles
+//  The log in form component
 //
-//.c-login-form {
-//  // Top level styles should be nested here
-//  &#{&} {
-//  }
-//}
+.ts-login-form {
+  display: block;
+  width: 100%;
+
+  // Top level styles should be nested here
+  //.c-login-form {
+  //}
+}
+
+/*
+ *.c-login-form {
+ *  // Lower-level styles should be here
+ *}
+ */

@@ -2,9 +2,6 @@
 @import './../scss/helpers/spacing';
 @import './../scss/helpers/cursors';
 
-:host {
-  display: inline-block;
-}
 
 //
 // @component
@@ -12,12 +9,15 @@
 // @description
 //  A text input component with support for icon prefix, hints and validation messages
 //
-.c-input {
+.ts-input {
+  display: block;
+
   // Top level styles should be nested here
-  // FIXME: Any component that uses the JavaScript classList methods will remove the duplicate class
-  // since duplicate classes are not valid in the classList (although browsers handle them fine). We
-  // need another way to enforce the correct specificity level. One possible fix is to wrap all
-  // components in a top level element that no one uses classList on.
+  //.c-input {
+  //}
+}
+
+.c-input {
   &.mat-form-field {
     @include typography;
     width: 100%;

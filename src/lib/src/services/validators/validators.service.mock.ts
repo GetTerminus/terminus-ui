@@ -1,69 +1,54 @@
 import { Injectable } from '@angular/core';
+import { emailValidator } from './validators/email/email';
 
 
 @Injectable()
 export class TsValidatorsServiceMock {
-  isValid = false;
+  isValid = true;
 
-  creditCard = jest.fn().mockReturnValue(this.isValid ? null : {
-    creditCard: {
-      valid: false,
-      actual: '1234',
-    },
-  });
+  creditCard = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      creditCard: {
+        valid: false,
+        actual: '1234',
+      },
+    });
+  }
 
-  password = jest.fn().mockReturnValue(this.isValid ? null : {
-    password: {
-      valid: false,
-      actual: 'foo',
-    },
-  });
+  password = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      password: {
+        valid: false,
+        actual: 'foo',
+      },
+    });
+  }
 
-  email = jest.fn().mockReturnValue(this.isValid ? null : {
-    email: {
-      valid: false,
-      actual: 'foo',
-    },
-  });
+  email = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      email: {
+        valid: false,
+        actual: 'foo',
+      },
+    });
+  }
 
-  maxDate = jest.fn().mockReturnValue(this.isValid ? null : {
-    maxDate: {
-      valid: false,
-      actual: new Date(2020, 1, 1),
-    },
-  });
+  maxDate = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      maxDate: {
+        valid: false,
+        actual: new Date(2020, 1, 1),
+      },
+    });
+  }
 
-  minDate = jest.fn().mockReturnValue(this.isValid ? null : {
-    minDate: {
-      valid: false,
-      actual: new Date(2017, 1, 1),
-    },
-  });
-
-
-
-  /*
-   *creditCard = jasmine.createSpy('validateCreditCard').and.returnValue({
-   *  invalidCreditCard: {
-   *    valid: false,
-   *  },
-   *});
-   */
-
-  /*
-   *password = jasmine.createSpy('validatePassword').and.returnValue({
-   *  invalidPassword: {
-   *    valid: false,
-   *  },
-   *});
-   */
-
-  /*
-   *email = jasmine.createSpy('validateEmail').and.returnValue({
-   *  invalidEmail: {
-   *    valid: false,
-   *  },
-   *});
-   */
+  minDate = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      minDate: {
+        valid: false,
+        actual: new Date(2017, 1, 1),
+      },
+    });
+  }
 
 }

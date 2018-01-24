@@ -733,9 +733,17 @@
         <tbody>
 
 
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -796,7 +804,10 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Component,
+  ViewEncapsulation,
+} from &#x27;@angular/core&#x27;;
 
 
 /**
@@ -811,6 +822,9 @@
 @Component({
   selector: &#x27;ts-loading-overlay&#x27;,
   styleUrls: [&#x27;./loading-overlay.component.scss&#x27;],
+  host: {
+    class: &#x27;ts-loading-overlay&#x27;,
+  },
   template: &#x60;
     &lt;div class&#x3D;&quot;c-loading-overlay qa-loading-overlay&quot;&gt;
       &lt;svg
@@ -832,6 +846,7 @@
       &lt;/svg&gt;
     &lt;/div&gt;
   &#x60;,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsLoadingOverlayComponent {}
 </code></pre>

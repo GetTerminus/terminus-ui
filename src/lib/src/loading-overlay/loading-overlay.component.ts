@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 
 
 /**
@@ -13,6 +16,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ts-loading-overlay',
   styleUrls: ['./loading-overlay.component.scss'],
+  host: {
+    class: 'ts-loading-overlay',
+  },
   template: `
     <div class="c-loading-overlay qa-loading-overlay">
       <svg
@@ -34,5 +40,6 @@ import { Component } from '@angular/core';
       </svg>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsLoadingOverlayComponent {}

@@ -1,16 +1,10 @@
-:host {
-  display: inline-block;
-}
-
 //
 // @component
 //  Tooltip
 // @description
-//  NOTE: Currently no custom styles needed.
+//  A tooltip component
 //
-//.c-tooltip {
-//  // Top level styles should be nested here
-//  &#{&} {
-//    //
-//  }
-//}
+.ts-tooltip {
+  display: inline-block;
+  // Top level styles should be nested here
+}

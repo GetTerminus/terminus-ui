@@ -2,15 +2,21 @@
 @import './../scss/helpers/color';
 
 
-:host {
-  display: inline-block;
+//
+// @component
+//  Select
+// @description
+//  A select input component
+//
+.ts-select {
+  display: block;
 
   // disabled state
   &.disabled {
     pointer-events: none;
 
     // Overwrite color to appear disabled
-    ::ng-deep .mat-select-value-text {
+    .mat-select-value-text {
       color: color(utility);
     }
   }
@@ -26,20 +32,12 @@
       width: auto;
     }
   }
-}
 
-
-//
-// @component
-//  Select
-// @description
-//  A select input component
-//
-// <mat-select>
-.c-select {
-  // Top level styles should be nested here
-  &#{&} {
+  // <mat-select>
+  .c-select {
+    // Top level styles should be nested here
     @include typography;
+    display: block;
     max-width: 100%;
   }
 }
