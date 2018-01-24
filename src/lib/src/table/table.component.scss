@@ -40,7 +40,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Body row
   .ts-row {
-    @include typography(body, 2);
+    @include typography;
     min-height: $ts-row-height;
     transition: background-color 200ms ease-out;
     will-change: background-color;
