@@ -1,4 +1,3 @@
-import 'jest';
 import { FormBuilder } from '@angular/forms';
 
 import { TsLoginFormComponent } from './login-form.component';
