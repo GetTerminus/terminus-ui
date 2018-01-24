@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
 
 //
 // @component
@@ -24,5 +25,6 @@
   // Nested classes belong here
   .c-radio__control {
     display: block;
+    margin-bottom: spacing(small, 2);
   }
 }
