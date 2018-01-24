@@ -52,7 +52,7 @@
         class="qa-paginator-next-page-button"
         [theme]="theme"
         [iconName]="nextPageIcon"
-        [isDisabled]="isLastPage(currentPageIndex)"
+        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
         (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
@@ -63,7 +63,7 @@
         class="qa-paginator-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"
-        [isDisabled]="isLastPage(currentPageIndex)"
+        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
         (clickEvent)="changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>

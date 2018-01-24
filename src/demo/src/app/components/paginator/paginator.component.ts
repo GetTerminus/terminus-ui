@@ -9,48 +9,7 @@ import { TsPaginatorComponent } from '@terminus/ui';
 
 @Component({
   selector: 'demo-paginator',
-  template: `
-    <div>
-      <label for="page">
-        Set the current page from the parent component:
-      </label>
-      <select name="page" [(ngModel)]="currentPageIndex">
-        <option *ngFor="let page of pages">{{ page }}</option>
-      </select>
-
-      <br>
-      <br>
-
-      <label for="records">
-        Set the total number of records from the parent component:
-      </label>
-      <input name="records" type="number" [(ngModel)]="recordCount">
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-    <ts-paginator
-      [theme]="myTheme"
-      [totalRecords]="recordCount"
-      [showRecordsPerPageSelector]="showSelector"
-      [currentPageIndex]="currentPageIndex"
-      [menuLocation]="location"
-      [paginatorMessageTemplate]="myTemplate"
-      recordCountTooHighMessage="Please refine your filters."
-      (recordsPerPageChange)="perPageChange($event)"
-      (pageSelect)="onPageSelect($event)"
-      (firstPageChosen)="first($event)"
-      (previousPageChosen)="previous($event)"
-      (nextPageChosen)="next($event)"
-      (lastPageChosen)="last($event)"
-    ></ts-paginator>
-
-    <ng-template #myTemplate let-message>
-      <a routerLink="/components/link">{{ message }}</a>
-    </ng-template>
-  `,
+  templateUrl: './paginator.component.html',
 })
 export class PaginatorComponent implements AfterViewInit {
   myTheme = 'primary';
