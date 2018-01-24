@@ -1,0 +1,140 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/layout';
+
+$ts-header-row-height: 56px;
+$ts-row-height: 48px;
+$ts-row-horizontal-padding: 24px;
+$ts-row-hover: rgba(color(utility, xlight), .5);
+
+
+
+//
+// @component
+//  Table
+// @description
+//  A table component
+//
+.ts-table {
+  @include typography;
+  border-collapse:collapse;
+  display: table;
+  // Set up for column hover styles
+  overflow: hidden;
+  width: 100%;
+
+
+  //
+  // Rows
+  //
+
+  // Header row
+  .ts-header-row {
+    @include typography(caption);
+    color: color(utility);
+    min-height: $ts-header-row-height;
+    transition: background-color 200ms ease-out;
+    will-change: background-color;
+  }
+
+  // Body row
+  .ts-row {
+    @include typography(body, 2);
+    min-height: $ts-row-height;
+    transition: background-color 200ms ease-out;
+    will-change: background-color;
+
+    &:hover {
+      background-color: $ts-row-hover;
+    }
+
+    // Workaround for https://goo.gl/pFmjJD in IE 11. Adds a pseudo
+    // element that will stretch the row the correct height. See:
+    // https://connect.microsoft.com/IE/feedback/details/802625
+    &::after {
+      content: '';
+      display: inline-block;
+      min-height: inherit;
+    }
+  }
+
+  // Any row
+  .ts-row,
+  .ts-header-row {
+    border-bottom: 1px solid color(utility, xlight);
+    box-sizing: border-box;
+    display: table-row;
+  }
+
+
+  //
+  // Cells
+  //
+
+  // Body cell
+  .ts-cell {
+    padding: spacing();
+  }
+
+  // Header cell
+  .ts-header-cell {
+    // If the column isn't sortable, add padding here that would normally be added by
+    // `ts-sort-header-container`
+    &:not(.ts-sortable) {
+      padding: spacing();
+    }
+
+    &.ts-sortable {
+      border-bottom: 3px solid color(utility, light);
+      transition: border-bottom 200ms ease-out;
+      will-change: border-bottom-color;
+    }
+
+    // Class added when the column is sorted
+    &.ts-sort-header-sorted {
+      border-bottom-color: color(accent);
+      color: color(accent);
+    }
+
+    // <div> inner container wrapping the sort control
+    .ts-sort-header-container {
+      padding: spacing();
+    }
+  }
+
+  // Any cell
+  .ts-cell,
+  .ts-header-cell {
+    display: table-cell;
+    // Set up for column hover styles
+    position: relative;
+
+    // Pseudo element used for column hover
+    &::after {
+      background-color: $ts-row-hover;
+      content: '';
+      display: block;
+      height: 200vh;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: -100vh;
+      transition: opacity 200ms ease-out;
+      width: 100%;
+      will-change: opacity;
+      z-index: -1;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    // Class added if a column should not wrap
+    &.ts-column-no-wrap {
+      white-space: nowrap;
+    }
+  }
+}

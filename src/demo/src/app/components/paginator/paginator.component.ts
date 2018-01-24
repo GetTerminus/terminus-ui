@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
+
+import { TsPaginatorComponent } from '@terminus/ui';
 
 
 @Component({
-  selector: 'demo-pagination',
+  selector: 'demo-paginator',
   template: `
     <div>
       <label for="page">
         Set the current page from the parent component:
       </label>
-      <select name="page" [(ngModel)]="currentPage">
+      <select name="page" [(ngModel)]="currentPageIndex">
         <option *ngFor="let page of pages">{{ page }}</option>
       </select>
 
@@ -25,35 +31,45 @@ import { Component } from '@angular/core';
     <br>
     <br>
 
-    <ts-pagination
+    <ts-paginator
       [theme]="myTheme"
       [totalRecords]="recordCount"
       [showRecordsPerPageSelector]="showSelector"
-      [currentPage]="currentPage"
+      [currentPageIndex]="currentPageIndex"
       [menuLocation]="location"
-      [paginationMessageTemplate]="myTemplate"
+      [paginatorMessageTemplate]="myTemplate"
       recordCountTooHighMessage="Please refine your filters."
+      (recordsPerPageChange)="perPageChange($event)"
       (pageSelect)="onPageSelect($event)"
       (firstPageChosen)="first($event)"
       (previousPageChosen)="previous($event)"
       (nextPageChosen)="next($event)"
       (lastPageChosen)="last($event)"
-    ></ts-pagination>
+    ></ts-paginator>
 
     <ng-template #myTemplate let-message>
-      <a href="components/link">{{ message }}</a>
+      <a routerLink="/components/link">{{ message }}</a>
     </ng-template>
   `,
 })
-export class PaginationComponent {
+export class PaginatorComponent implements AfterViewInit {
   myTheme = 'primary';
-  recordCount = 111;
+  recordCount = 114;
   showSelector = true;
-  currentPage = 1;
+  currentPageIndex = 0;
   location = 'below';
-  pages = [1, 2, 3, 4, 5];
+  pages: number[] = [0, 1, 2, 3, 4, 5];
 
 
+  @ViewChild(TsPaginatorComponent)
+  paginator: TsPaginatorComponent;
+
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.pages = Array.apply(null, {length: this.paginator.pagesArray.length}).map(Number.call, Number);
+    });
+  }
 
 
   onPageSelect(e) {
@@ -74,6 +90,10 @@ export class PaginationComponent {
 
   last(e) {
     console.log('DEMO last: ', e);
+  }
+
+  perPageChange(e: number) {
+    console.log('DEMO records per page changed: ', e);
   }
 
 }

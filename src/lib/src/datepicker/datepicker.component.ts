@@ -4,12 +4,9 @@ import {
   Output,
   OnInit,
   EventEmitter,
-  ViewChild,
-  SimpleChanges,
   forwardRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';

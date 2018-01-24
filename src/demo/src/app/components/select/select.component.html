@@ -5,10 +5,9 @@
     [blankChoice]="blank"
     multipleAllowed="false"
     [valueKey]="key"
-    [formControl]="getControl('myChoices1')"
-    (open)="isOpened($event)"
-    (close)="isClosed($event)"
-    (change)="isChanged($event)"
+    [formControl]="myForm.get('myChoices1')"
+    (openedChange)="openStateChange($event)"
+    (selectionChange)="isChanged($event)"
   ></ts-select>
 
   <ts-select
@@ -17,10 +16,9 @@
     [blankChoice]="blank"
     multipleAllowed="true"
     [valueKey]="key"
-    [formControl]="getControl('myChoices2')"
-    (open)="isOpened($event)"
-    (close)="isClosed($event)"
-    (change)="isChanged($event)"
+    [formControl]="myForm.get('myChoices2')"
+    (openedChange)="openStateChange($event)"
+    (selectionChange)="isChanged($event)"
   ></ts-select>
 
   <button (click)="submit(myForm.value)">Submit</button>

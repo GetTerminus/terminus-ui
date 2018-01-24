@@ -3,9 +3,8 @@
     [placeholder]="label"
     [(ngModel)]="value"
     [multiple]="multipleAllowed"
-    (onClose)="close.emit(true)"
-    (onOpen)="open.emit(true)"
-    (change)="change.emit(value)"
+    (openedChange)="openedChange.emit(true)"
+    (selectionChange)="selectionChange.emit(value)"
   >
     <mat-option
       class="qa-select-option"

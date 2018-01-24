@@ -1,0 +1,96 @@
+<div class="c-paginator qa-paginator">
+
+  <div class="c-paginator__buttons">
+
+    <ts-select
+      class="qa-paginator-per-page-select"
+      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
+      [items]="recordsPerPageChoices"
+      name="recordsPerPageChoices"
+      [label]="recordsSelectLabel"
+      [ngClass]="{'disabled': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"
+      [(ngModel)]="recordsPerPage"
+      (selectionChange)="recordsPerPageUpdated($event)"
+      ngDefaultControl
+    ></ts-select>
+
+
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : firstPageTooltip">
+      <ts-button
+        class="qa-paginator-first-page-button"
+        [theme]="theme"
+        [iconName]="firstPageIcon"
+        [isDisabled]="isFirstPage(currentPageIndex)"
+        (clickEvent)="changePage(0, currentPageIndex, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+
+
+    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : previousPageTooltip">
+      <ts-button
+        class="qa-paginator-previous-page-button"
+        [theme]="theme"
+        [iconName]="previousPageIcon"
+        [isDisabled]="isFirstPage(currentPageIndex)"
+        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+
+
+    <ts-menu
+      class="qa-paginator-current-page-menu"
+      [theme]="theme"
+      [menuItemsTemplate]="menuItems"
+      [menuPositionY]="menuLocation"
+      [isDisabled]="menuIsDisabled(pagesArray?.length)"
+      [ngClass]="{'disabled': menuIsDisabled(pagesArray?.length)}"
+    >{{ currentPageLabel }}</ts-menu>
+
+
+    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : nextPageTooltip">
+      <ts-button
+        class="qa-paginator-next-page-button"
+        [theme]="theme"
+        [iconName]="nextPageIcon"
+        [isDisabled]="isLastPage(currentPageIndex)"
+        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+
+
+    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip">
+      <ts-button
+        class="qa-paginator-last-page-button"
+        [theme]="theme"
+        [iconName]="lastPageIcon"
+        [isDisabled]="isLastPage(currentPageIndex)"
+        (clickEvent)="changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)"
+      ></ts-button>
+    </ts-tooltip>
+  </div>
+
+  <div
+    class="c-paginator__message qa-paginator-message"
+    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"
+  >
+    <ng-container
+      [ngTemplateOutlet]="paginatorMessageTemplate || defaultPaginatorMessageTemplate"
+      [ngTemplateOutletContext]="templateContext"
+    ></ng-container>
+  </div>
+
+</div>
+
+
+<ng-template #menuItems>
+  <ts-button
+    *ngFor="let page of pagesArray; trackBy: trackPagesArray"
+    (clickEvent)="currentPageChanged(page)"
+  >
+    {{ page.name }}
+  </ts-button>
+</ng-template>
+
+<ng-template #defaultPaginatorMessageTemplate let-message>
+  {{ message }}
+</ng-template>

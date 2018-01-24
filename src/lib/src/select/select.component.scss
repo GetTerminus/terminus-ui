@@ -1,6 +1,7 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
 
+
 :host {
   display: inline-block;
 
@@ -14,8 +15,8 @@
     }
   }
 
-  // Custom rules when nested inside the pagination component
-  .c-pagination & {
+  // Custom rules when nested inside the paginator component
+  .c-paginator & {
     position: relative;
     top: .2em;
     vertical-align: middle;
@@ -40,5 +41,12 @@
   &#{&} {
     @include typography;
     max-width: 100%;
+  }
+}
+
+// Overwrite the default max-height set by Material since the menu was spilling off outside the page
+.cdk-overlay-container {
+  .mat-menu-panel {
+    max-height: calc(80vh - 48px);
   }
 }

@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
   MatToolbarModule,
+  MatSortModule,
 } from '@angular/material';
 
 import {
@@ -25,13 +27,15 @@ import {
   TsLoginFormModule,
   TsMenuModule,
   TsNavigationModule,
-  TsPaginationModule,
+  TsPaginatorModule,
   TsRadioGroupModule,
   TsSearchModule,
   TsSelectModule,
+  TsSortModule,
   TsSpacingModule,
   TsToggleModule,
   TsTooltipModule,
+  TsTableModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -52,12 +56,13 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
 import { SpacingComponent } from './components/spacing/spacing.component';
 import { SpacingStylesComponent } from './components/spacing/spacing-styles.component';
+import { TableComponent } from './components/table/table.component';
 import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
@@ -74,6 +79,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HttpClientModule,
 
     MatButtonModule,
     MatIconModule,
@@ -92,11 +98,13 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsLoginFormModule,
     TsMenuModule,
     TsNavigationModule,
-    TsPaginationModule,
+    TsPaginatorModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
+    TsSortModule,
     TsSpacingModule,
+    TsTableModule,
     TsToggleModule,
     TsTooltipModule,
     // INJECT: Add new UI component to demo module imports array
@@ -118,12 +126,13 @@ import { WindowServiceComponent } from './components/services/window-service.com
     LoginFormComponent,
     MenuComponent,
     NavigationComponent,
-    PaginationComponent,
+    PaginatorComponent,
     RadioComponent,
     SearchComponent,
     SelectComponent,
     SpacingComponent,
     SpacingStylesComponent,
+    TableComponent,
     ToggleComponent,
     TooltipComponent,
     TypographyComponent,

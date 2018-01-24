@@ -1,11 +1,11 @@
-import { TsPaginationComponent } from './pagination.component';
-import { TsPaginationMenuItem } from '../utilities/interfaces';
+import { TsPaginatorComponent } from './paginator.component';
+import { TsPaginatorMenuItem } from '../utilities/interfaces';
 
 
-describe(`PaginationComponent`, () => {
+describe(`PaginatorComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsPaginationComponent();
+    this.component = new TsPaginatorComponent();
     this.TOTAL_RECORDS = 100;
   });
 
@@ -62,7 +62,7 @@ describe(`PaginationComponent`, () => {
     it(`should set the current page, and trigger methods`, () => {
       const eventMock = {
         name: '21 - 30 of 125',
-        value: '3',
+        value: '2',
       };
       spyOn(this.component.pageSelect, 'emit').and.callThrough();
       spyOn(this.component, 'createPagesArray').and.callThrough();
@@ -70,11 +70,11 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
-      expect(this.component.currentPage).toEqual(1);
+      expect(this.component.currentPageIndex).toEqual(0);
 
       this.component.currentPageChanged(eventMock);
 
-      expect(this.component.currentPage).toEqual(3);
+      expect(this.component.currentPageIndex).toEqual(2);
       expect(this.component.createPagesArray).toHaveBeenCalled();
       expect(this.component.createCurrentPageLabel).toHaveBeenCalled();
       expect(this.component.pageSelect.emit).toHaveBeenCalled();
@@ -100,7 +100,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
-      this.component.changePage(0, 1, this.component.pagesArray);
+      this.component.changePage(-1, 1, this.component.pagesArray);
       expect(this.component.currentPageChanged).not.toHaveBeenCalled();
 
       const invalidLength = this.component.pagesArray.length + 2;
@@ -123,20 +123,20 @@ describe(`PaginationComponent`, () => {
 
   describe(`isFirstPage()`, () => {
 
-    it(`should return TRUE when the passed in page is 1`, () => {
+    it(`should return TRUE when the passed in page is 0`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
-      expect(this.component.isFirstPage(1)).toEqual(true);
+      expect(this.component.isFirstPage(0)).toEqual(true);
     });
 
 
-    it(`should return FALSE when the passed in page is not 1`, () => {
+    it(`should return FALSE when the passed in page is not 0`, () => {
       this.component.totalRecords = 125;
       this.component.ngOnInit();
 
       expect(this.component.isFirstPage(7)).toEqual(false);
-      expect(this.component.isFirstPage(0)).toEqual(false);
+      expect(this.component.isFirstPage(1)).toEqual(false);
       expect(this.component.isFirstPage(-2)).toEqual(false);
     });
 
@@ -149,7 +149,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 20;
       this.component.ngOnInit();
 
-      expect(this.component.isLastPage(2)).toEqual(true);
+      expect(this.component.isLastPage(1)).toEqual(true);
     });
 
 
@@ -157,7 +157,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = 20;
       this.component.ngOnInit();
 
-      expect(this.component.isLastPage(1)).toEqual(false);
+      expect(this.component.isLastPage(0)).toEqual(false);
     });
 
 
@@ -213,7 +213,7 @@ describe(`PaginationComponent`, () => {
       this.component.recordsPerPageUpdated(25);
 
       expect(this.component.recordsPerPage).toEqual(25);
-      expect(this.component.currentPage).toEqual(1);
+      expect(this.component.currentPageIndex).toEqual(0);
       expect(this.component.initialize).toHaveBeenCalled();
     });
 
@@ -267,7 +267,7 @@ describe(`PaginationComponent`, () => {
       this.component.totalRecords = this.TOTAL_RECORDS;
       this.component.ngOnInit();
       const actual = this.component.createCurrentPageLabel(2, this.component.pagesArray, 100);
-      const expected = '11 - 20 of 100';
+      const expected = '21 - 30 of 100';
 
       expect(actual).toEqual(expected);
     });
@@ -285,7 +285,7 @@ describe(`PaginationComponent`, () => {
     it(`should return a valid title when the requested page doesn't exist`, () => {
       this.component.totalRecords = this.TOTAL_RECORDS;
       this.component.ngOnInit();
-      const actual = this.component.createCurrentPageLabel(11, this.component.pagesArray, this.TOTAL_RECORDS);
+      const actual = this.component.createCurrentPageLabel(10, this.component.pagesArray, this.TOTAL_RECORDS);
       const expected = '91 - 100 of 100';
 
       expect(actual).toEqual(expected);
@@ -299,7 +299,7 @@ describe(`PaginationComponent`, () => {
     it(`should return an empty array if there are no records`, () => {
       this.component.ngOnInit();
       const actual = this.component.createPagesArray(0, 10);
-      const expected: TsPaginationMenuItem[] = [];
+      const expected: TsPaginatorMenuItem[] = [];
 
       expect(actual).toEqual(expected);
     });

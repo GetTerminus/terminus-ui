@@ -188,10 +188,11 @@ const rollupConfig = {
  */
 gulp.task('clean-generated-files', () => {
   return del([
+    path.join(rootFolder, 'out-tsc'),
     path.join(config.paths.distTempFolder, `**/*`),
-    path.join(config.paths.tempLibFolder, `**/*`),
     path.join(config.paths.srcFolder, `**/!(systemjs-angular-loader).js`),
     path.join(config.paths.srcFolder, `**/*.map`),
+    path.join(config.paths.srcFolder, `**/!(typings).d.ts`),
     path.join(config.paths.srcFolder, `helpers.+(scss|css)`),
     path.join(config.paths.srcFolder, `**/*.css`),
   ], config.delOptions);
