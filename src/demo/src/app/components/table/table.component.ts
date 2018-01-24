@@ -125,13 +125,6 @@ const COLUMNS_SOURCE_GITHUB = [
 })
 export class TableComponent implements AfterViewInit {
   allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
-
-  @ViewChild(TsSortDirective)
-  sort: TsSortDirective;
-
-  @ViewChild(TsPaginatorComponent)
-  paginator: TsPaginatorComponent;
-
   displayedColumns = [
     'created',
     'number',
@@ -142,8 +135,12 @@ export class TableComponent implements AfterViewInit {
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new TsTableDataSource();
   resultsLength = 0;
-  isLoadingResults = false;
-  isRateLimitReached = false;
+
+  @ViewChild(TsSortDirective)
+  sort: TsSortDirective;
+
+  @ViewChild(TsPaginatorComponent)
+  paginator: TsPaginatorComponent;
 
 
   constructor(
@@ -151,22 +148,19 @@ export class TableComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
     this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => {
-      console.log('in sortChange subscribe');
       this.paginator.currentPageIndex = 0;
     });
 
+    // Fetch new data anytime the sort is changed, the page is changed, or the records shown per
+    // page is changed
     merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
         switchMap(() => {
-          this.isLoadingResults = true;
-
           return this.exampleDatabase.getRepoIssues(
             this.sort.active,
             this.sort.direction,
@@ -176,40 +170,18 @@ export class TableComponent implements AfterViewInit {
         }),
         map(data => {
           console.log('Demo: fetched data: ', data)
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
           this.resultsLength = data.total_count;
 
           return data.items;
         }),
         catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
+          console.warn('GitHub API rate limit has been reached!')
           return of([]);
         })
       ).subscribe(data => {
         this.dataSource.data = data;
       });
   }
-
-
-  /*
-   *{
-   *  search_term: 'foo',
-   *  s: [
-   *    {
-   *      name: 'name',
-   *      dir: 'asc',
-   *    },
-   *    {
-   *      name: 'id',
-   *      dir: 'desc',
-   *    },
-   *  ],
-   *}
-   */
 
 
   perPageChange(e: number) {
@@ -254,15 +226,17 @@ export interface GithubIssue {
   title: string;
 }
 
-/** An example database that the data source uses to retrieve data for the table. */
+/**
+ * An example database that the data source uses to retrieve data for the table.
+ */
 export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
   getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
     const href = 'https://api.github.com/search/issues';
     const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
-    const requestQuery = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
+    const requestParams = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
 
-    return this.http.get<GithubApi>(`${requestUrl}${requestQuery}`);
+    return this.http.get<GithubApi>(`${requestUrl}${requestParams}`);
   }
 }

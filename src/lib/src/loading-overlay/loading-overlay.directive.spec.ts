@@ -1,7 +1,3 @@
-import {
-  createTestComponent,
-  TestHostComponent,
-} from './../utilities/testing/createTestComponent';
 import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
 import { TsLoadingOverlayDirective } from './loading-overlay.directive';
 import { TsWindowServiceMock } from './../services/window/window.service.mock';

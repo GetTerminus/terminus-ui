@@ -1,8 +1,6 @@
-import { ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
-import { queryFor } from './queryFor';
-import { createTestComponent } from './createTestComponent';
+import { queryFor } from './query-for';
+import { createTestComponent } from './create-test-component';
 
 /**
  * Create component instance using custom template, the query for the native DOM node

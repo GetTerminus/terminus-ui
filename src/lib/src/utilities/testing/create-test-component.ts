@@ -10,13 +10,12 @@ import {
 
 @Component({
   selector: 'ts-test-host',
-  template: `<span>PlaceHolder HTML to be Replaced</span>`
+  template: `<span>PlaceHolder HTML to be Replaced</span>`,
 })
 export class TestHostComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 }
-
 
 
 /*
@@ -25,9 +24,6 @@ export class TestHostComponent implements OnInit {
  */
 export function createTestComponent(template: string): ComponentFixture<TestHostComponent> {
   return TestBed
-    .overrideComponent(TestHostComponent, {set: {template: template}} )
+    .overrideComponent(TestHostComponent, {set: {template: template}})
     .createComponent(TestHostComponent);
 }
-
-
-
