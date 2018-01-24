@@ -11,9 +11,9 @@ import { TsTooltipPositionTypes } from './../utilities/types';
 /**
  * This is the tooltip UI Component
  *
- * -- QA CSS CLASSES
+ * #### QA CSS CLASSES
  *
- * qa-tooltip : Placed on the span element used for this component
+ * - qa-tooltip : Placed on the span element used for this component
  *
  * @example
  * <ts-tooltip
