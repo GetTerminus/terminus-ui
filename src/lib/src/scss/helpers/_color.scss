@@ -141,7 +141,11 @@ $color__accent--light: #3b9b5c !default;
  * @color
  * @section UI: Accent
  */
-$color__accent--xlight: #48ac6a !default;
+
+/*
+ *$color__accent--xlight: #48ac6a !default;
+ */
+$color__accent--xlight: lighten($color__accent, 60%) !default;
 
 
 

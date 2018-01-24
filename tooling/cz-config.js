@@ -28,13 +28,15 @@ module.exports = {
     {name: 'LoginForm'},
     {name: 'Menu'},
     {name: 'Navigation'},
-    {name: 'Pagination'},
+    {name: 'Paginator'},
     {name: 'RadioGroup'},
     {name: 'Search'},
     {name: 'Select'},
     {name: 'Services'},
     {name: 'SCSS'},
+    {name: 'Sort'},
     {name: 'Spacing'},
+    {name: 'Table'},
     {name: 'Toggle'},
     {name: 'Tooltip'},
     {name: 'Utilities'},
@@ -60,6 +62,6 @@ module.exports = {
   */
 
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix']
+  allowBreakingChanges: ['feat', 'fix', 'refactor']
 
 };

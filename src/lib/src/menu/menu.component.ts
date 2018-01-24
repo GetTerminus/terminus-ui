@@ -1,9 +1,7 @@
 import {
   Component,
   Input,
-  Output,
   ViewChild,
-  EventEmitter,
   AfterViewInit,
   ChangeDetectionStrategy,
   ElementRef,

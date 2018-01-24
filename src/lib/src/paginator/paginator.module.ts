@@ -7,8 +7,8 @@ import { TsSelectModule } from './../select/select.module';
 import { TsMenuModule } from './../menu/menu.module';
 import { TsTooltipModule } from './../tooltip/tooltip.module';
 
-import { TsPaginationComponent } from './pagination.component';
-export { TsPaginationComponent } from './pagination.component';
+import { TsPaginatorComponent } from './paginator.component';
+export { TsPaginatorComponent } from './paginator.component';
 
 
 @NgModule({
@@ -21,10 +21,10 @@ export { TsPaginationComponent } from './pagination.component';
     TsTooltipModule,
   ],
   exports: [
-    TsPaginationComponent,
+    TsPaginatorComponent,
   ],
   declarations: [
-    TsPaginationComponent,
+    TsPaginatorComponent,
   ],
 })
-export class TsPaginationModule {}
+export class TsPaginatorModule {}

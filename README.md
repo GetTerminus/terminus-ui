@@ -82,7 +82,6 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
 | copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
 | datavis          |                                                        |                :x: |                              |
-| datatable        |                                                        |           :hammer: |                              |
 | datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
 | date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
 | dialog           |                                                        |                :x: |                              |
@@ -90,20 +89,22 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | expansion        |                                                        |                :x: |                              |
 | file-picker      |                                                        |                :x: |                              |
 | input-masking    |                                                        |                :x: |                              |
-| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |                              |
+| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |             (see input demo) |
 | input            |                                                        | :white_check_mark: |           [Demo][demo-input] |
 | link             |                                                        | :white_check_mark: |            [Demo][demo-link] |
 | loading overlay  |                                                        | :white_check_mark: | [Demo][demo-loading-overlay] |
 | login form       |                                                        | :white_check_mark: |     [Demo][demo-log-in-form] |
 | menu             |                                                        | :white_check_mark: |            [Demo][demo-menu] |
 | navigation       |                                                        | :white_check_mark: |      [Demo][demo-navigation] |
-| pagination       |                                                        | :white_check_mark: |      [Demo][demo-pagination] |
+| paginator        |                                                        | :white_check_mark: |       [Demo][demo-paginator] |
 | picklist         |                                                        |                :x: |                              |
 | progress         |                                                        |                :x: |                              |
 | progression      |                                                        |                :x: |                              |
 | radio-group      |                                                        | :white_check_mark: |     [Demo][demo-radio-group] |
 | search           |                                                        | :white_check_mark: |          [Demo][demo-search] |
 | select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
+| sort             |               Used by `table` to manage column sorting | :white_check_mark: |             (see table demo) |
+| table            |                                                        | :white_check_mark: |           [Demo][demo-table] |
 | tabs             |                                                        |                :x: |                              |
 | toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
 | tooltip          |                                                        | :white_check_mark: |         [Demo][demo-tooltip] |
@@ -132,7 +133,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | Feature          | Notes                                                  | Status             |
 |------------------|--------------------------------------------------------|        :---:       |
 | animation        |                                                        | :white_check_mark: |
-| assets           |                                                        |           :hammer: |
+| assets           |                                                        | :white_check_mark: |
 | breakpoints      |                                                        | :white_check_mark: |
 | colors           |                                                        | :white_check_mark: |
 | cursors          |                                                        | :white_check_mark: |
@@ -148,7 +149,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs --exact
+$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material hammerjs --exact
 ```
 
 
@@ -160,6 +161,14 @@ To use the global styles, import the CSS file into your stylesheets:
 @import '@terminus/ui/terminus-ui.css'
 ```
 
+
+## SCSS Helpers
+
+To use the provided SCSS helper methods/variables/mixins, import the helpers file from `@terminus/ui`:
+
+```scss
+@import '~@terminus/ui/helpers'
+```
 
 ## Development Workflow
 
@@ -183,63 +192,64 @@ View the [wiki page][dev-wiki].
 
 <!-- LINKS -->
 
-[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
-[docs-url]: https://getterminus.github.io/terminus-ui/
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE
-[npm-url]: https://npmjs.org/package/@terminus/ui
-[npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
 [circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield
 [circle-link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master
-[greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
-[greenkeeper]: https://greenkeeper.io/
-[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release]: https://github.com/semantic-release/semantic-release
 [codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
-[raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
-[commitizen]: https://github.com/commitizen
-[commitizen_vsc]: https://github.com/commitizen
-[saucelab_platforms]: https://saucelabs.com/platforms
-[compodoc]: https://compodoc.github.io/website/
-[compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
-[nucleus]: https://github.com/holidaypirates/nucleus/
-[nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
-[doctoc]: https://github.com/thlorenz/doctoc
 [codecov]: https://codecov.io
 [codecov_browser]: https://docs.codecov.io/docs/browser-extension
-[semantic-release-video]: https://youtu.be/tc2UgG5L7WM
-[markdown]: https://daringfireball.net/projects/markdown/syntax
-[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
 [commitizen-cli]: https://github.com/commitizen/cz-cli
-[validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
-[ui-npm]: https://www.npmjs.com/package/@terminus/ui
-[ui-github]: https://github.com/GetTerminus/terminus-ui
-[semver]: http://semver.org/
-[generator]: https://github.com/GetTerminus/generator-terminus-ui
+[commitizen]: https://github.com/commitizen
+[commitizen_vsc]: https://github.com/commitizen
+[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
+[compodoc]: https://compodoc.github.io/website/
+[compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
-[unpkg-terminus]: https://unpkg.com/@terminus/ui/
-[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
+[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
 [dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
+[docs-url]: https://getterminus.github.io/terminus-ui/
+[doctoc]: https://github.com/thlorenz/doctoc
+[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
+[generator]: https://github.com/GetTerminus/generator-terminus-ui
+[greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
+[greenkeeper]: https://greenkeeper.io/
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg
+[license-url]: https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE
+[markdown]: https://daringfireball.net/projects/markdown/syntax
+[npm-url]: https://npmjs.org/package/@terminus/ui
+[npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
+[nucleus]: https://github.com/holidaypirates/nucleus/
+[nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
+[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
+[raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
+[saucelab_platforms]: https://saucelabs.com/platforms
+[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-video]: https://youtu.be/tc2UgG5L7WM
+[semantic-release]: https://github.com/semantic-release/semantic-release
+[semver]: http://semver.org/
+[ui-github]: https://github.com/GetTerminus/terminus-ui
+[ui-npm]: https://www.npmjs.com/package/@terminus/ui
+[unpkg-terminus]: https://unpkg.com/@terminus/ui/
+[validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
 
 <!-- Demos -->
 [demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
-[demo-link]: https://terminus-ui-demos.stackblitz.io/components/link
+[demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
 [demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
 [demo-copy]: https://terminus-ui-demos.stackblitz.io/components/copy
-[demo-datepicker]: https://terminus-ui-demos.stackblitz.io/components/datepicker
 [demo-date-range]: https://terminus-ui-demos.stackblitz.io/components/date-range
+[demo-datepicker]: https://terminus-ui-demos.stackblitz.io/components/datepicker
 [demo-input]: https://terminus-ui-demos.stackblitz.io/components/input
+[demo-link]: https://terminus-ui-demos.stackblitz.io/components/link
+[demo-loading-overlay]: https://terminus-ui-demos.stackblitz.io/components/loading-overlay
 [demo-log-in-form]: https://terminus-ui-demos.stackblitz.io/components/log-in-form
 [demo-menu]: https://terminus-ui-demos.stackblitz.io/components/menu
-[demo-pagination]: https://terminus-ui-demos.stackblitz.io/components/pagination
-[demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
-[demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-navigation]: https://terminus-ui-demos.stackblitz.io/components/navigation
-[demo-loading-overlay]: https://terminus-ui-demos.stackblitz.io/components/loading-overlay
-[demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
-[demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
-[demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
+[demo-paginator]: https://terminus-ui-demos.stackblitz.io/components/paginator
 [demo-radio-group]: https://terminus-ui-demos.stackblitz.io/components/radio
+[demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
+[demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
+[demo-table]: https://terminus-ui-demos.stackblitz.io/components/table
+[demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
+[demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
 

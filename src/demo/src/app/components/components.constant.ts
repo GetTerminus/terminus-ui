@@ -12,12 +12,13 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 import { RadioComponent } from './radio/radio.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { SpacingComponent } from './spacing/spacing.component';
 import { SpacingStylesComponent } from './spacing/spacing-styles.component';
+import { TableComponent } from './table/table.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
@@ -112,10 +113,10 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'pagination',
-    component: PaginationComponent,
+    path: 'pagaginator',
+    component: PaginatorComponent,
     data: {
-      name: 'Pagination',
+      name: 'Paginator',
     },
   },
   {
@@ -151,6 +152,13 @@ export const componentsList: Routes = [
     component: SpacingStylesComponent,
     data: {
       name: 'Spacing SCSS',
+    },
+  },
+  {
+    path: 'table',
+    component: TableComponent,
+    data: {
+      name: 'Table',
     },
   },
   {

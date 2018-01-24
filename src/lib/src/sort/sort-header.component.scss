@@ -1,0 +1,111 @@
+$ts-sort-header-arrow-margin: 6px;
+$ts-sort-header-arrow-container-size: 12px;
+$ts-sort-header-arrow-stem-size: 10px;
+$ts-sort-header-arrow-pointer-length: 6px;
+$ts-sort-header-arrow-thickness: 2px;
+$ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
+
+
+//
+// @component
+//  Sort Header
+// @description
+//  A component to add sorting styles
+//
+// <div> primary container
+.ts-sort-header-container {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+
+  .ts-sort-header-disabled & {
+    cursor: default;
+  }
+}
+
+// Class added if arrow is before text (defaults to after)
+.ts-sort-header-position-before {
+  flex-direction: row-reverse;
+}
+
+// <button> container for sort title and arrow
+.ts-sort-header-button {
+  align-items: center;
+  background: 0 0;
+  border: none;
+  color: currentColor;
+  cursor: inherit;
+  display: flex;
+  font: inherit;
+  outline: 0;
+  padding: 0 1.4em 0 0;
+  // Set up for absolutely positioned arrow
+  position: relative;
+}
+
+// <div> container for sorting arrow
+.ts-sort-header-arrow {
+  display: flex;
+  height: $ts-sort-header-arrow-container-size;
+  margin: -2px 0 0 $ts-sort-header-arrow-margin;
+  min-width: $ts-sort-header-arrow-container-size;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $ts-sort-header-arrow-container-size;
+
+  .ts-sort-header-position-before & {
+    margin: 0 $ts-sort-header-arrow-margin 0 0;
+  }
+}
+
+// <div> stem of the arrow
+.ts-sort-header-stem {
+  align-items: center;
+  background: currentColor;
+  display: flex;
+  height: $ts-sort-header-arrow-stem-size;
+  margin: auto;
+  width: $ts-sort-header-arrow-thickness;
+}
+
+// <div> container for the head of the arrow
+.ts-sort-header-indicator {
+  align-items: center;
+  display: flex;
+  height: $ts-sort-header-arrow-thickness;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: $ts-sort-header-arrow-transition;
+  width: 100%;
+}
+
+.ts-sort-header-pointer-middle {
+  background: currentColor;
+  height: $ts-sort-header-arrow-thickness;
+  margin: auto;
+  transform: rotate(45deg);
+  width: $ts-sort-header-arrow-thickness;
+}
+
+.ts-sort-header-pointer-left,
+.ts-sort-header-pointer-right {
+  background: currentColor;
+  height: $ts-sort-header-arrow-thickness;
+  position: absolute;
+  top: 0;
+  transition: $ts-sort-header-arrow-transition;
+  width: $ts-sort-header-arrow-pointer-length;
+}
+
+.ts-sort-header-pointer-left {
+  left: 0;
+  transform-origin: right;
+}
+
+.ts-sort-header-pointer-right {
+  right: 0;
+  transform-origin: left;
+}

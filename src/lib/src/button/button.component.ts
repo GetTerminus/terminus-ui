@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import {
   TsButtonActionTypes,
@@ -95,7 +96,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set collapsed(value: boolean) {
-    this.isCollapsed = value;
+    this.isCollapsed = coerceBooleanProperty(value);
 
     // If the value is `false` and a collapse delay is set
     if (!value && this.collapseDelay) {

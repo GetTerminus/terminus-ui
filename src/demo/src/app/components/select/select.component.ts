@@ -42,26 +42,19 @@ export class SelectComponent {
 
 
   run() {
-    console.log('in run');
+    console.log('Demo: in run');
   }
 
-  isOpened(e) {
-    console.log('opened: ', e);
-  }
-
-  isClosed(e) {
-    console.log('closed: ', e);
+  openStateChange(e) {
+    console.log('Demo: opened/closed: ', e);
   }
 
   isChanged(e) {
-    console.log('changed: ', e);
+    console.log('Demo: changed: ', e);
   }
 
   submit(v: any) {
-    console.log('Submit!: ', v);
+    console.log('Demo: Submit!: ', v);
   }
 
-  getControl(name: string): AbstractControl {
-    return this.myForm.get(name);
-  }
 }
