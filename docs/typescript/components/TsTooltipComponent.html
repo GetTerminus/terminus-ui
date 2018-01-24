@@ -715,8 +715,10 @@
     </p>
     <p class="comment">
         <p>This is the tooltip UI Component</p>
-<p>-- QA CSS CLASSES</p>
-<p>qa-tooltip : Placed on the span element used for this component</p>
+<h4 id="qa-css-classes">QA CSS CLASSES</h4>
+<ul>
+<li>qa-tooltip : Placed on the span element used for this component</li>
+</ul>
 
     </p>
 
@@ -746,9 +748,17 @@
                 <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -827,7 +837,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:41</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -850,7 +860,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:47</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -870,6 +880,7 @@
   Component,
   Input,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 
 import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
@@ -878,9 +889,9 @@ import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
 /**
  * This is the tooltip UI Component
  *
- * -- QA CSS CLASSES
+ * #### QA CSS CLASSES
  *
- * qa-tooltip : Placed on the span element used for this component
+ * - qa-tooltip : Placed on the span element used for this component
  *
  * @example
  * &lt;ts-tooltip
@@ -894,7 +905,11 @@ import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
   selector: &#x27;ts-tooltip&#x27;,
   templateUrl: &#x27;./tooltip.component.html&#x27;,
   styleUrls: [&#x27;./tooltip.component.scss&#x27;],
+  host: {
+    class: &#x27;ts-tooltip&#x27;,
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsTooltipComponent {
   /**
@@ -914,9 +929,9 @@ export class TsTooltipComponent {
 
     <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;span
+  class&#x3D;&quot;c-tooltip qa-tooltip&quot;
   [matTooltip]&#x3D;&quot;tooltipValue&quot;
   [matTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
-  class&#x3D;&quot;c-tooltip c-tooltip qa-tooltip&quot;
 &gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/span&gt;
@@ -951,7 +966,7 @@ export class TsTooltipComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span  [matTooltip]="tooltipValue"  [matTooltipPosition]="tooltipPosition"  class="c-tooltip c-tooltip qa-tooltip">  <ng-content></ng-content></span></div>'
+        var COMPONENT_TEMPLATE = '<div><span  class="c-tooltip qa-tooltip"  [matTooltip]="tooltipValue"  [matTooltipPosition]="tooltipPosition">  <ng-content></ng-content></span></div>'
     var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginationComponent', 'selector': 'ts-pagination'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsTooltipComponent'};
