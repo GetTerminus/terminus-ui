@@ -238,6 +238,43 @@ export class TableComponent implements AfterViewInit {
 Possible but not implemented until a valid use-case arises.
 
 
+### No-wrap for a column
+
+Sometimes a column's content should not wrap even at small viewport sizes. Adding the directive
+`noWrap="true"` to the column will keep then contents from wrapping regardless of the viewport
+width.
+
+```html
+<!-- set noWrap on the column -->
+<ng-container tsColumnDef="created" noWrap="true">
+  <ts-header-cell *tsHeaderCellDef ts-sort-header>
+    Created
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.created_at | date:shortDate }}
+  </ts-cell>
+</ng-container>
+```
+
+
+### Min-width for a column
+
+Defining a minimum width for specific columns can help the layout not compress certain columns past
+a readable point. Add the directive `minWidth` and pass it any valid CSS min-width value (`100px`,
+`10%`, `12rem`, etc..).
+
+```html
+<!-- set minWidth on the column -->
+<ng-container tsColumnDef="created" minWidth="100px">
+  <ts-header-cell *tsHeaderCellDef ts-sort-header>
+    Created
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.created_at | date:shortDate }}
+  </ts-cell>
+</ng-container>
+```
+
 ---
 
 
