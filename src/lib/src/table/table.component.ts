@@ -21,7 +21,6 @@ import {
     class: 'ts-table',
   },
   encapsulation: ViewEncapsulation.None,
-  preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsTableComponent<T> extends CdkTable<T> { }

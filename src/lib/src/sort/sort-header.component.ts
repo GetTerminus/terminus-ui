@@ -79,9 +79,8 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   id: string;
   // tslint:enable: no-input-rename
 
-  /** Sets the position of the arrow that displays when sorted. */
   /**
-   * TODO
+   * Sets the position of the arrow that displays when sorted
    */
   @Input()
   arrowPosition: 'before' | 'after' = 'after';

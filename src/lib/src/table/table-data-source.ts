@@ -4,17 +4,11 @@ import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 
-import { TsSortDirective } from './../sort/sort.directive';
-import { TsPaginatorComponent } from './../paginator/paginator.component';
 
 
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using {@link TsSortDirective}), and paginator (using {@link TsPaginatorComponent}).
- *
- * Allows for sort customization by overriding sortingDataAccessor, which defines how data
- * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
- * which defines how row data is converted to a string for filter matching.
  */
 export class TsTableDataSource<T> implements DataSource<T> {
   /**
@@ -26,11 +20,6 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * Stream emitting render data to the table (depends on ordered data changes).
    */
   private _renderData = new BehaviorSubject<T[]>([]);
-
-  /**
-   * Stream that emits when a new filter string is set on the data source.
-   */
-  private _filter = new BehaviorSubject<string>('');
 
   /**
    * Subscription to the changes that should trigger an update to the table's rendered rows, such
@@ -56,67 +45,6 @@ export class TsTableDataSource<T> implements DataSource<T> {
     return this._data.value;
   }
 
-  /**
-   * Filter term that should be used to filter out objects from the data array. To override how
-   * data objects match to this filter string, provide a custom function for filterPredicate.
-   */
-  set filter(filter: string) {
-    this._filter.next(filter);
-  }
-  get filter(): string {
-    return this._filter.value;
-  }
-
-  /**
-   * Instance of the {@link TsSortDirective} used by the table to control its sorting. Sort changes
-   * emitted by the {@link TsSortDirective} will trigger an update to the table's rendered data.
-   */
-  set sort(sort: TsSortDirective|null) {
-    this._sort = sort;
-    this._updateChangeSubscription();
-  }
-  get sort(): TsSortDirective|null {
-    return this._sort;
-  }
-  private _sort: TsSortDirective|null;
-
-  /**
-   * Instance of the {@link TsPaginatorComponent} component used by the table to control what page
-   * of the data is displayed. Page changes emitted by the {@link TsPaginatorComponent} will trigger
-   * an update to the table's rendered data.
-   */
-  set paginator(paginator: TsPaginatorComponent|null) {
-    this._paginator = paginator;
-    this._updateChangeSubscription();
-  }
-  get paginator(): TsPaginatorComponent|null {
-    return this._paginator;
-  }
-  private _paginator: TsPaginatorComponent|null;
-
-
-  /**
-   * Data accessor function that is used for accessing data properties for sorting.
-   * This default function assumes that the sort header IDs (which defaults to the column name)
-   * matches the data's properties (e.g. column Xyz represents data['Xyz']).
-   * May be set to a custom function for different behavior.
-   *
-   * @param data - Data object that is being accessed.
-   * @param sortHeaderId - The name of the column that represents the data.
-   */
-  sortingDataAccessor: ((data: T, sortHeaderId: string) => string|number) =
-      (data: T, sortHeaderId: string): string|number => {
-    const value: any = data[sortHeaderId];
-
-    // If the value is a string and only whitespace, return the value.
-    // Otherwise +value will convert it to 0.
-    if (typeof value === 'string' && !value.trim()) {
-      return value;
-    }
-
-    return isNaN(+value) ? value : +value;
-  }
-
 
   /**
    * Set up data and change subscriptions
@@ -133,14 +61,6 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * provided base data and send it to the table for rendering.
    */
   _updateChangeSubscription(): void {
-    /**
-     * Sorting should be watched if {@link TsSortDirective} is provided. Otherwise, use an empty
-     * observable stream to take it's place
-     */
-    /*
-     *const sortChange = this._sort ? this._sort.sortChange : empty();
-     */
-
     if (this._renderChangesSubscription) {
       this._renderChangesSubscription.unsubscribe();
     }
@@ -150,48 +70,6 @@ export class TsTableDataSource<T> implements DataSource<T> {
     // Watched for paged data changes and send the result to the table to render.
     .subscribe((data) => this._renderData.next(data));
   }
-
-
-  /**
-   * Returns a sorted copy of the data if TsSortDirective has a sort applied, otherwise just returns
-   * the data array as provided. Uses the default data accessor for data lookup, unless a
-   * sortDataAccessor function is defined.
-   */
-  _orderData(data: T[]): T[] {
-    // If there is no active sort or direction, return the data without trying to sort.
-    if (!this.sort || !this.sort.active || this.sort.direction === '') { return data; }
-
-    const active = this.sort.active;
-    const direction = this.sort.direction;
-
-    return data.slice().sort((a, b) => {
-      const valueA = this.sortingDataAccessor(a, active);
-      const valueB = this.sortingDataAccessor(b, active);
-      return (valueA < valueB ? -1 : 1) * (direction === 'asc' ? 1 : -1);
-    });
-  }
-
-
-  /**
-   * Updates the paginator to reflect the length of the filtered data, and makes sure that the page
-   * index does not exceed the paginator's last page. Values are changed in a resolved promise to
-   * guard against making property changes within a round of change detection.
-   */
-/*
- *  _updatePaginator(filteredDataLength: number) {
- *    Promise.resolve().then(() => {
- *      if (!this.paginator) { return; }
- *
- *      this.paginator.length = filteredDataLength;
- *
- *      // If the page index is set beyond the page, reduce it to the last page.
- *      if (this.paginator.pageIndex > 0) {
- *        const lastPageIndex = Math.ceil(this.paginator.length / this.paginator.pageSize) - 1 || 0;
- *        this.paginator.pageIndex = Math.min(this.paginator.pageIndex, lastPageIndex);
- *      }
- *    });
- *  }
- */
 
 
   /**

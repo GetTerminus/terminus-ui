@@ -21,6 +21,12 @@ import {
 import { TsTableComponent } from './table.component';
 
 
+/**
+ * Much of this was lifted directly from Angular Material. I highly recommend checking out their
+ * source code: https://github.com/angular/material2/tree/master/src/lib/table
+ */
+
+
 @NgModule({
   imports: [
     CommonModule,

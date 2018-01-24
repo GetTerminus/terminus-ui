@@ -1,13 +1,13 @@
 
 ### Adding sort to table headers
 
-To add sorting behavior and styling to a set of table headers, add the `<ts-sort-header>` component
-to each header and provide an id that will identify it. These headers should be contained within a
-parent element with the `tsSort` directive, which will emit a `tsSortChange` event when the user
-triggers sorting on the header.
+To add sorting behavior and styling to a set of table headers, add `ts-sort-header` to each header
+and provide an id that will identify it. These headers should be contained within a parent element
+with the `tsSort` directive, which will emit a `sortChange` event when the user triggers sorting
+on the header.
 
 Users can trigger the sort header through a mouse click or keyboard action. When this happens, the
-`tsSort` will emit an `tsSortChange` event that contains the ID of the header triggered and the
+`tsSort` will emit an `sortChange` event that contains the ID of the header triggered and the
 direction to sort (`asc` or `desc`).
 
 
