@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material';
@@ -49,8 +50,12 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'ts-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
+  host: {
+    class: 'ts-checkbox',
+  },
   providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**

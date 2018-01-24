@@ -1,6 +1,7 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/z-index';
 
+
 $overlay-color: color(pure);
 $debug: $overlay-color;
 $overlay-color-opaque: transparentize($overlay-color, .2);
@@ -34,23 +35,31 @@ $duration: 1.4s;
   }
 }
 
-:host {
-  align-content: center;
-  align-items: center;
-  background-color: $overlay-color-opaque;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: z(overlay);
+
+//
+// @component
+//  Loading Overlay
+// @description
+//  A loading overlay with spinner.
+//
+.ts-loading-overlay {
+  .c-loading-overlay {
+    align-content: center;
+    align-items: center;
+    background-color: $overlay-color-opaque;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    will-change: opacity;
+    z-index: z(overlay);
+  }
 }
 
 .c-loading-overlay {
-  will-change: opacity;
-
   &--hidden {
     opacity: 0;
     transition: opacity 200ms ease;

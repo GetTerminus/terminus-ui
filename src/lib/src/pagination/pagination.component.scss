@@ -1,9 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/color';
 
-:host {
-  display: inline-block;
-}
 
 //
 // @component
@@ -11,14 +8,18 @@
 // @description
 //  A component to show pagination controls
 //
-// <div> primary wrapper
-.c-pagination {
+.ts-pagination {
+  display: inline-block;
+
   // Top level styles should be nested here
-  &#{&} {
+  .c-pagination {
     @include typography;
     display: inline-block;
   }
+}
 
+// <div> primary wrapper
+.c-pagination {
   // <div> container for the message about too many records
   .c-pagination__message {
     @include typography('caption');

@@ -1,1 +1,5 @@
 @import './generated-classes';
+
+*:focus {
+  outline: 0;
+}

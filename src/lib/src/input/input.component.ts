@@ -71,6 +71,9 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'ts-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
+  host: {
+    class: 'ts-input',
+  },
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
 })

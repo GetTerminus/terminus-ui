@@ -8,6 +8,7 @@ import {
   QueryList,
   OnChanges,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormGroup,
@@ -51,6 +52,10 @@ import { TsLoginFormResponse } from './../utilities/interfaces/login-form-respon
   selector: 'ts-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
+  host: {
+    class: 'ts-login-form',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsLoginFormComponent implements OnChanges {
   /**
@@ -61,7 +66,7 @@ export class TsLoginFormComponent implements OnChanges {
       null,
       [
         Validators.required,
-        this.validatorsService.email,
+        this.validatorsService.email(),
       ],
     ],
     password: [

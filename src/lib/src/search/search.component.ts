@@ -53,6 +53,9 @@ import { debounce } from './../utilities/debounce';
   selector: 'ts-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  host: {
+    class: 'ts-search',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -5,8 +5,13 @@ import {
   ViewChild,
   EventEmitter,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  AbstractControl,
+} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
@@ -44,6 +49,10 @@ import { TsDateRange } from './../utilities/interfaces/date-range.interface';
   selector: 'ts-date-range',
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
+  host: {
+    class: 'ts-date-range',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsDateRangeComponent implements OnInit {
   /**

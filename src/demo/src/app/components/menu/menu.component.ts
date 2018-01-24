@@ -32,19 +32,15 @@ import { Component } from '@angular/core';
 
     <ng-template #myTemplate>
       <ts-button (click)="customItemSelected('yup')">
-        I'm an idiot.
+        Roger, Roger.
       </ts-button>
 
       <ts-button (click)="customItemSelected('nope')">
-        You're an idiot.
+        Don't call me Shirley.
       </ts-button>
 
       <ts-link [destination]="'foo/'">
-        My cool link
-      </ts-link>
-
-      <ts-link [destination]="'foo/'">
-        Here we are again
+        A tasty link
       </ts-link>
 
       <ts-button (click)="customItemSelected('nope')">

@@ -2,23 +2,22 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/cursors';
 
-:host {
-  display: inline-block;
-  max-width: 100%;
-}
+
+$margin__vertical: .2em;
+$margin__horizontal: $margin__vertical * 2;
+$radius: 3px;
 
 //
 // @component
 //  Copy component allows for a string of text to be quickly copied to the clipboard
 // @description
 //
-.c-copy {
-  $margin__vertical: .2em;
-  $margin__horizontal: $margin__vertical * 2;
-  $radius: 3px;
+.ts-copy {
+  display: block;
+  max-width: 100%;
 
   // Top level styles should be nested here
-  &#{&} {
+  .c-copy {
     @include typography;
     background-color: color(utility, xlight);
     border: 1px solid color(utility, light);
@@ -35,7 +34,9 @@
       transition-delay: 0;
     }
   }
+}
 
+.c-copy {
   // <div> Container for text content
   .c-copy__content {
     // Match the line height of the copy icon

@@ -9,7 +9,10 @@ import {
   FormGroup,
 } from '@angular/forms';
 
-import { TsValidatorsService } from '@terminus/ui';
+import {
+  TsValidatorsService,
+  TS_SPACING,
+} from '@terminus/ui';
 
 @Component({
   selector: 'demo-datepicker',
@@ -54,6 +57,7 @@ export class DatepickerComponent implements OnInit {
   });
 
   defaultMax = '2017-10-03';
+  layoutGap = TS_SPACING.default[0];
 
   get endDate(): string {
     const date = this.getControl('formTwo', 'endDate');

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -51,8 +52,12 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'ts-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
+  host: {
+    class: 'ts-toggle',
+  },
   providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**

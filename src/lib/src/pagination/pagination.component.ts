@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ElementRef,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { TsStyleThemeTypes } from './../utilities/types';
@@ -56,6 +57,10 @@ import { TsPaginationMenuItem } from './../utilities/interfaces';
   selector: 'ts-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
+  host: {
+    class: 'ts-pagination',
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 export class TsPaginationComponent implements OnChanges, OnInit {
   /**

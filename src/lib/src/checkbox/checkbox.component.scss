@@ -1,8 +1,5 @@
 @import './../scss/helpers/typography';
 
-:host {
-  display: inline-block;
-}
 
 //
 // @component
@@ -10,9 +7,12 @@
 // @description
 //  A simple checkbox component
 //
-.c-checkbox {
+.ts-checkbox {
+  display: block;
+
   // Top level styles should be nested here
-  &#{&} {
+  .c-checkbox {
     @include typography;
+    display: block;
   }
 }
