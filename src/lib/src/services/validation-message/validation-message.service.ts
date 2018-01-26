@@ -37,6 +37,8 @@ export class TsValidationMessageService {
       pattern: `Must contain only letters, numbers or spaces`,
       maxDate: '',
       minDate: '',
+      greaterThan: `${validatorValue.actual} is not greater than ${validatorValue.greaterThan}`,
+      lessThan: `${validatorValue.actual} is not less than ${validatorValue.lessThan}`,
     };
 
     if (validatorName === 'maxDate') {

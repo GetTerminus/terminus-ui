@@ -4,7 +4,10 @@ import {
   FormBuilder,
 } from '@angular/forms';
 
-import { TsValidatorsService } from '@terminus/ui';
+import {
+  TsValidatorsService,
+  TS_SPACING,
+} from '@terminus/ui';
 
 
 @Component({
@@ -13,6 +16,7 @@ import { TsValidatorsService } from '@terminus/ui';
   templateUrl: './validation.component.html',
 })
 export class ValidationComponent {
+  flexGap = TS_SPACING.default[0];
   minDate = new Date(2018, 0, 5).toISOString();
   maxDate = new Date(2018, 0, 25).toISOString();
   myForm = this.formBuilder.group({
@@ -39,6 +43,18 @@ export class ValidationComponent {
       [
         this.validatorsService.minDate(this.minDate),
         this.validatorsService.maxDate(this.maxDate),
+      ],
+    ],
+    greaterThanNumber: [
+      null,
+      [
+        this.validatorsService.greaterThan(10),
+      ],
+    ],
+    lessThanNumber: [
+      null,
+      [
+        this.validatorsService.lessThan(10),
       ],
     ],
   });

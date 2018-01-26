@@ -41,6 +41,7 @@ module.exports = {
     {name: 'Tooltip'},
     {name: 'Utilities'},
     {name: 'ValidationMessages'},
+    {name: 'Validators'},
     // INJECT: Add commitizen scope
     // NB! The above line is required for our yeoman generator and should not be changed.
 

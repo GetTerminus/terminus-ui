@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { emailValidator } from './validators/email/email';
 
 
 @Injectable()
@@ -47,6 +46,26 @@ export class TsValidatorsServiceMock {
       minDate: {
         valid: false,
         actual: new Date(2017, 1, 1),
+      },
+    });
+  }
+
+  greaterThan = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      greaterThan: {
+        valid: false,
+        greaterThan: 10,
+        actual: 5,
+      },
+    });
+  }
+
+  lessThan = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      lessThan: {
+        valid: false,
+        lessThan: 10,
+        actual: 15,
       },
     });
   }

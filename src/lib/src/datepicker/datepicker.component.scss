@@ -13,5 +13,6 @@
   // Top level styles should be nested here
   .c-datepicker {
     @include typography;
+    display: block;
   }
 }
