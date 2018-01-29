@@ -11,4 +11,9 @@ export interface TsSelectItem {
    * The object key to be used as the value for the select option
    */
   valueKey?: string;
+
+  /**
+   * Allow other items to be added to the interface
+   */
+  [index: string]: any;
 }
