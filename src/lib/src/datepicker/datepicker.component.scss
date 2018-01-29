@@ -16,3 +16,9 @@
     display: block;
   }
 }
+
+// <mat-datepicker> The calendar pop-up
+.c-datepicker__calendar {
+  // NOTE(B$): It is currently not possible to theme the calendar popup due to no custom classes
+  // being added.
+}

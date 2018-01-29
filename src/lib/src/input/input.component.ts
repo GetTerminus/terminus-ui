@@ -13,6 +13,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/input.types';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**
@@ -158,6 +159,12 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
    */
   @Input()
   public tabIndex: number = 0;
+
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}

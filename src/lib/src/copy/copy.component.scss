@@ -34,6 +34,25 @@ $radius: 3px;
       transition-delay: 0;
     }
   }
+
+  //
+  // Theme support
+  //
+  &[theme='primary'] {
+    // These are the default styles
+  }
+
+  &[theme='accent'] {
+    .c-copy__icon {
+      background-color: color(accent);
+    }
+  }
+
+  &[theme='warn'] {
+    .c-copy__icon {
+      background-color: color(warn);
+    }
+  }
 }
 
 .c-copy {
@@ -48,7 +67,7 @@ $radius: 3px;
   // <div> The container for the icon
   .c-copy__icon {
     @include cursor(pointer);
-    background-color: color(primary, light);
+    background-color: color(primary);
     border-radius: 0 $radius $radius 0;
     color: color(pure);
     margin:

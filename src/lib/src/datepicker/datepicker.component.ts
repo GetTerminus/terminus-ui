@@ -10,6 +10,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
 
@@ -145,6 +146,12 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public tabIndex: number = 0;
+
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Define if validation messages should be shown immediately or on blur

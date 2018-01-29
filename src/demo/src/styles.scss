@@ -1,7 +1,5 @@
 @import '~@terminus/ui/helpers';
 @import '~@terminus/ui/terminus-ui.css';
-@import '~@angular/material/theming';
-@include mat-core;
 
 html {
   font-family: $type__family--base;
@@ -16,14 +14,6 @@ body {
 hr {
   margin: 1rem;
 }
-
-
-$ts-default-primary: mat-palette($ts-material-primary, 500, 100, 700);
-$ts-default-accent:  mat-palette($ts-material-accent, 500, 100, 700);
-$ts-default-warn:    mat-palette($ts-material-warn, 500, 100, 700);
-$ts-app-theme: mat-light-theme($ts-default-primary, $ts-default-accent, $ts-default-warn);
-
-@include angular-material-theme($ts-app-theme);
 
 
 // stylelint-disable selector-type-no-unknown
