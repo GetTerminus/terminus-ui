@@ -3,13 +3,15 @@ import {
   AbstractControl,
   FormBuilder,
 } from '@angular/forms';
+import { TsSelectItem } from '@terminus/ui';
+
 
 @Component({
   selector: 'demo-select',
   templateUrl: './select.component.html',
 })
 export class SelectComponent {
-  items = [
+  items: TsSelectItem[] = [
     {
       name: 'Foo',
       slug: 'foo',
