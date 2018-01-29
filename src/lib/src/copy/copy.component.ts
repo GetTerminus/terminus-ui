@@ -8,6 +8,7 @@ import {
 
 import { TsWindowService } from './../services/window/window.service';
 import { TsDocumentService } from '../services/document/document.service';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types'
 
 
 /**
@@ -22,6 +23,7 @@ import { TsDocumentService } from '../services/document/document.service';
  * <ts-copy
  *              disableInitialSelection="true"
  *              enableQuickCopy="true"
+ *              theme="accent"
  * >My text to copy!</ts-copy>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -79,6 +81,12 @@ export class TsCopyComponent {
    */
   @Input()
   public enableQuickCopy: boolean = false;
+
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
 
   /**

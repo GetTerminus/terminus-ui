@@ -51,7 +51,7 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
   disabled = false;
-  myTheme = 'primary';
+  myTheme = 'accent';
 
 
   customItemSelected(item: any): void {

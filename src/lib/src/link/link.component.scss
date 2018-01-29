@@ -26,11 +26,15 @@
     &:focus {
       outline: 0;
     }
+  }
 
-    // Primary theme
-    [color='primary'] & {
-      color: color('primary');
+  // Primary theme
+  &[theme='primary'],
+  // @deprecated 'color'
+  &[color='primary'] {
+    color: color('primary');
 
+    .c-link {
       &:focus,
       &:hover {
         color: color('primary', light);
@@ -40,11 +44,15 @@
         color: color('primary', dark);
       }
     }
+  }
 
-    // Accent theme
-    [color='accent'] & {
-      color: color('accent');
+  // Accent theme
+  &[theme='accent'],
+  // @deprecated 'color'
+  &[color='accent'] {
+    color: color('accent');
 
+    .c-link {
       &:focus,
       &:hover {
         color: color('accent', light);
@@ -54,11 +62,15 @@
         color: color('accent', dark);
       }
     }
+  }
 
-    // Warn theme
-    [color='warn'] & {
-      color: color('warn');
+  // Warn theme
+  &[theme='warn'],
+  // @deprecated 'color'
+  &[color='warn'] {
+    color: color('warn');
 
+    .c-link {
       &:focus,
       &:hover {
         color: color('warn', light);
@@ -70,6 +82,7 @@
     }
   }
 }
+
 
 .c-link {
   // Force the icon to assume the size of it's context

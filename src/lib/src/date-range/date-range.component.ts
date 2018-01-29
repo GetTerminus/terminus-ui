@@ -7,7 +7,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  FormControl,
   FormGroup,
   AbstractControl,
 } from '@angular/forms';
@@ -15,6 +14,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { TsDateRange } from './../utilities/interfaces/date-range.interface';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**
@@ -180,6 +180,12 @@ export class TsDateRangeComponent implements OnInit {
    */
   @Output()
   public selectedDate: EventEmitter<TsDateRange> = new EventEmitter();
+
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
 
   /**

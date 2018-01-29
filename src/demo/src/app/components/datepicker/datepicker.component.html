@@ -1,5 +1,6 @@
 <form [formGroup]="formOne" novalidate>
   <ts-datepicker
+    theme="accent"
     [formControl]="getControl('formOne', 'date')"
     [dateFilter]="myFilter"
     [startingView]="formOneSettings.startView"
@@ -31,6 +32,7 @@
   <div fxLayout="row" [fxLayoutGap]="layoutGap">
     <div>
       <ts-datepicker
+        theme="warn"
         [formControl]="getControl('formTwo', 'startDate')"
         validateOnChange="true"
         name="startDate"

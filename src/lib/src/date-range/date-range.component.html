@@ -7,6 +7,7 @@
     [minDate]="startMinDate"
     [startingView]="startingView"
     initialDate="{{ startInitialDate }}"
+    [theme]="theme"
     (selected)="startDateSelected($event)"
     #start
   ></ts-datepicker>
@@ -26,6 +27,7 @@
     [minDate]="_endMinDate$ | async"
     [startingView]="startingView"
     initialDate="{{ endInitialDate }}"
+    [theme]="theme"
     (selected)="endDateSelected($event)"
     #end
   ></ts-datepicker>
