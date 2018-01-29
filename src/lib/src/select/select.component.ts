@@ -13,6 +13,7 @@ import {
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types';
+import { TsSelectItem } from './../utilities/interfaces/select.interface';
 
 
 /**
@@ -79,7 +80,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define a list of select items
    */
   @Input()
-  public items: any = [];
+  public items: TsSelectItem[] = [];
 
   /**
    * Define if multiple selections are allowed
@@ -97,7 +98,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define the key that represents the value item from the object
    */
   @Input()
-  public valueKey: string;
+  public valueKey: string = 'value';
 
   /**
    * Emit event when the select has been opened
@@ -109,7 +110,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Emit event when the select value is changed
    */
   @Output()
-  public selectionChange: EventEmitter<any[]> = new EventEmitter();
+  public selectionChange: EventEmitter<TsSelectItem[]> = new EventEmitter();
 
 
   /**
