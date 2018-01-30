@@ -41,5 +41,8 @@ export { TS_SPACING } from './src/spacing/spacing.constant';
 export * from './src/utilities/interfaces/index';
 export * from './src/utilities/types/index';
 
+// Pipes
+export { TsDatePipe } from './src/pipes/date/date.pipe';
+
 // Export the Module
 export { TerminusUIModule } from './src/module';

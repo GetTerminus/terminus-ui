@@ -19,6 +19,7 @@ import {
   TsCheckboxModule,
   TsCopyModule,
   TsDatepickerModule,
+  TsDatePipe,
   TsDateRangeModule,
   TsInputModule,
   TsLinkModule,
@@ -56,6 +57,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { PipesComponent } from './components/pipes/pipes.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
@@ -113,6 +115,8 @@ import { WindowServiceComponent } from './components/services/window-service.com
     AppComponent,
     ComponentsComponent,
 
+    TsDatePipe,
+
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
@@ -126,6 +130,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     MenuComponent,
     NavigationComponent,
     PaginatorComponent,
+    PipesComponent,
     RadioComponent,
     SearchComponent,
     SelectComponent,
