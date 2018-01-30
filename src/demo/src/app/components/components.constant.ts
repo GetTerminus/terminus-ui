@@ -13,6 +13,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { PipesComponent } from './pipes/pipes.component';
 import { RadioComponent } from './radio/radio.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
@@ -117,6 +118,13 @@ export const componentsList: Routes = [
     component: PaginatorComponent,
     data: {
       name: 'Paginator',
+    },
+  },
+  {
+    path: 'pipes',
+    component: PipesComponent,
+    data: {
+      name: 'Pipes',
     },
   },
   {

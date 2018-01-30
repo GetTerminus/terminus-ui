@@ -5,3 +5,4 @@ export * from './spacing.types';
 export * from './tooltip.types';
 export * from './input.types';
 export * from './aspect-ratio.types';
+export * from './date.types';
