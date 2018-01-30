@@ -247,7 +247,7 @@
                                     <a href="../directives/TsCellDirective.html" >TsCellDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../directives/TsColumnDefDirective.html"  data-type="entity-link" class="active" >TsColumnDefDirective</a>
+                                    <a href="../directives/TsColumnDefDirective.html" >TsColumnDefDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/TsHeaderCellDefDirective.html" >TsHeaderCellDefDirective</a>
@@ -368,7 +368,7 @@
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
+                                    <a href="../interfaces/TsSelectItem.html"  data-type="entity-link" class="active" >TsSelectItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -670,7 +670,7 @@
                                            <a href="../directives/TsCellDirective.html" >TsCellDirective</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../directives/TsColumnDefDirective.html"  data-type="entity-link" class="active" >TsColumnDefDirective</a>
+                                           <a href="../directives/TsColumnDefDirective.html" >TsColumnDefDirective</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/TsHeaderCellDefDirective.html" >TsHeaderCellDefDirective</a>
@@ -791,7 +791,7 @@
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
+                                           <a href="../interfaces/TsSelectItem.html"  data-type="entity-link" class="active" >TsSelectItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -861,16 +861,21 @@
                    
                    </nav>
                </div>
-               <div class="content directive">
+               <div class="content interface">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Directives</li>
-  <li>TsColumnDefDirective</li>
+  <li>Interfaces</li>
+  <li>TsSelectItem</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -882,7 +887,6 @@
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
-
 </ul>
 
 <div class="tab-content">
@@ -891,293 +895,173 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/src/table/cell.ts</code>
+            <code>src/lib/src/utilities/interfaces/select.interface.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Column definition for the <a href="../components/TsTableComponent.html">TsTableComponent</a>.</p>
-<p>Defines a set of cells available for a table column.</p>
+                <p>Interface for a directive that holds sorting state consumed by <code>TsSortHeaderComponent</code></p>
 
             </p>
 
 
-
         <section>
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
                 <tbody>
                     <tr>
-                        <td class="col-md-3">providers</td>
-                        <td class="col-md-9">
-                            <code>
-                                { : , :  }
-                            </code>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
                         </td>
                     </tr>
-
                     <tr>
-                        <td class="col-md-3">selector</td>
-                        <td class="col-md-9"><code>[tsColumnDef]</code></td>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#name">name</a>
+                                </li>
+                                <li>
+                                        <a href="#valueKey">valueKey</a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
-
                 </tbody>
             </table>
         </section>
 
-            <section>
-                <h3 id="index">Index</h3>
-                <table class="table table-sm table-bordered index-table">
-                    <tbody>
-                        <tr>
-                            <td class="col-md-4">
-                                <h6><b>Inputs</b></h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <ul class="index-list">
-                                    <li>
-                                        <a href="#minWidth">minWidth</a>
-                                    </li>
-                                    <li>
-                                        <a href="#noWrap">noWrap</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tsColumnDef">tsColumnDef</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
 
             <section>
-                <h3 id="inputs">Inputs</h3>
+                <h3 id="inputs">Indexable</h3>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
-                                <td class="col-md-2">
-                                    <a name="minWidth"></a>
-                                    <code>minWidth</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>Define a minimum width for the column</p>
-</div>
-                                      <p>
-                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                      </p>
+                                <td class="col-md-4">
+                                    <code>[index: string]:    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            </code>
                                 </td>
                             </tr>
                                     <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/lib/src/table/cell.ts:129</a></div>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/lib/src/utilities/interfaces/select.interface.ts:13</a></div>
                                         </td>
                                     </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
                             <tr>
-                                <td class="col-md-2">
-                                    <a name="noWrap"></a>
-                                    <code>noWrap</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>Define if a column&#39;s contents should wrap when long</p>
-</div>
-                                      <p>
-                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                                      </p>
-                                    <p>
-                                      <em>Default value: </em><code>false</code>
-                                    </p>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Allow other items to be added to the interface</p>
+            </div>
                                 </td>
                             </tr>
-                                    <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/lib/src/table/cell.ts:123</a></div>
-                                        </td>
-                                    </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-2">
-                                    <a name="tsColumnDef"></a>
-                                    <code>tsColumnDef</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>Define a unique name for this column</p>
-</div>
-                                      <p>
-                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                      </p>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/lib/src/table/cell.ts:116</a></div>
-                                        </td>
-                                    </tr>
                         </tbody>
                     </table>
             </section>
 
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="name"></a>
+                                        <span class="name"><b>name</b><a href="#name"><span class="fa fa-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>name:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
 
 
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/lib/src/utilities/interfaces/select.interface.ts:8</a></div>
+                                        </td>
+                                    </tr>
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The text shown in the UI</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="valueKey"></a>
+                                        <span class="name"><b>valueKey</b><a href="#valueKey"><span class="fa fa-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>valueKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
 
 
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/lib/src/utilities/interfaces/select.interface.ts:13</a></div>
+                                        </td>
+                                    </tr>
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The object key to be used as the value for the select option</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
     </div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import {
-  Directive,
-  ElementRef,
-  Input,
-  Renderer,
-} from &#x27;@angular/core&#x27;;
-import {
-  CdkCell,
-  CdkCellDef,
-  CdkColumnDef,
-  CdkHeaderCell,
-  CdkHeaderCellDef,
-} from &#x27;@angular/cdk/table&#x27;;
-
-
-/**
- * Cell definition for the {@link TsTableComponent}.
- *
- * Captures the template of a column&#x27;s data row cell as well as cell-specific properties.
- */
-@Directive({
-  selector: &#x27;[tsCellDef]&#x27;,
-  providers: [{provide: CdkCellDef, useExisting: TsCellDefDirective}],
-})
-export class TsCellDefDirective extends CdkCellDef {}
-
-
-/**
- * Header cell definition for the {@link TsTableComponent}.
- *
- * Captures the template of a column&#x27;s header cell and as well as cell-specific properties.
- */
-@Directive({
-  selector: &#x27;[tsHeaderCellDef]&#x27;,
-  providers: [{provide: CdkHeaderCellDef, useExisting: TsHeaderCellDefDirective}],
-})
-export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
-
-
-
-/**
- * Header cell template container that adds the right classes and role.
- */
-@Directive({
-  selector: &#x27;ts-header-cell&#x27;,
-  host: {
-    class: &#x27;ts-header-cell&#x27;,
-    role: &#x27;columnheader&#x27;,
-  },
-})
-export class TsHeaderCellDirective extends CdkHeaderCell {
-  constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
-    super(columnDef, elementRef);
-    elementRef.nativeElement.classList.add(&#x60;ts-column-${columnDef.cssClassFriendlyName}&#x60;);
-  }
-}
-
-
-/**
- * Cell template container that adds the right classes and role.
- */
-@Directive({
-  selector: &#x27;ts-cell&#x27;,
-  host: {
-    class: &#x27;ts-cell&#x27;,
-    role: &#x27;gridcell&#x27;,
-  },
-})
-export class TsCellDirective extends CdkCell {
-  constructor(
-    columnDef: CdkColumnDef,
-    elementRef: ElementRef,
-    public renderer: Renderer,
-  ) {
-    super(columnDef, elementRef);
-
-    // NOTE(B$): We are adding &#x60;noWrap&#x60; to the column in &#x60;TsColumnDefDirective&#x60; which doesn&#x27;t exist
-    // in the &#x60;CdkColumnDef&#x60; so we cast it to &#x27;any&#x27;.
-    const column: any &#x3D; columnDef;
-
-    // Set a custom class for each column
-    elementRef.nativeElement.classList.add(&#x60;ts-column-${columnDef.cssClassFriendlyName}&#x60;);
-
-    // Set the no-wrap class if needed
-    if (column.noWrap) {
-      elementRef.nativeElement.classList.add(&#x60;ts-column-no-wrap&#x60;);
-    }
-
-    // Set inline style for min-width if passed in
-    if (column.minWidth) {
-      renderer.setElementStyle(elementRef.nativeElement, &#x27;minWidth&#x27;, column.minWidth);
-    }
-  }
-}
-
-
-/**
- * Column definition for the {@link TsTableComponent}.
- *
- * Defines a set of cells available for a table column.
- */
-@Directive({
-  selector: &#x27;[tsColumnDef]&#x27;,
-  providers: [{provide: CdkColumnDef, useExisting: TsColumnDefDirective}],
-})
-export class TsColumnDefDirective extends CdkColumnDef {
-  // NOTE(B$): We must rename here so that the property matches the extended CdkColumnDef class
-  // tslint:disable: no-input-rename
+        <pre class="line-numbers"><code class="language-typescript">export interface TsSelectItem {
   /**
-   * Define a unique name for this column
+   * The text shown in the UI
    */
-  @Input(&#x27;tsColumnDef&#x27;)
   name: string;
-  // tslint:enable: no-input-rename
 
   /**
-   * Define if a column&#x27;s contents should wrap when long
+   * The object key to be used as the value for the select option
    */
-  @Input()
-  public noWrap: boolean &#x3D; false;
+  valueKey?: string;
 
   /**
-   * Define a minimum width for the column
+   * Allow other items to be added to the interface
    */
-  @Input()
-  public minWidth: string;
+  [index: string]: any;
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
-
 
 
 
