@@ -47,6 +47,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              required
  *              minlength="3"
+ *              maxlength="8"
  *              hint="Fill this out!"
  *              label="My Input"
  *              name="'password'"
