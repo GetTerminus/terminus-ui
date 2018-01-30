@@ -6,6 +6,20 @@ describe(`TsDatePipe`, () => {
   beforeEach(() => {
     this.pipe = new TsDatePipe().transform;
     this.date = '2018-02-08T05:00:00.000Z';
+
+    // Save a reference to the original timezone method
+    this.originalGetTimezoneOffset = Date.prototype.getTimezoneOffset;
+
+    // Path the method to always return Eastern timezone offset
+    Date.prototype.getTimezoneOffset = function() {
+      return 300; // Eastern
+    }
+  });
+
+
+  afterEach(() => {
+    // Reset the timezone offset method
+    Date.prototype.getTimezoneOffset = this.originalGetTimezoneOffset;
   });
 
 
@@ -25,7 +39,6 @@ describe(`TsDatePipe`, () => {
 
       expect(actual).toEqual(expected);
     });
-
 
   });
 
