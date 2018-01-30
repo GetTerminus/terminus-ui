@@ -20,6 +20,7 @@ The library of UI components used for Terminus applications.
 - [Primary Library Features](#primary-library-features)
 - [Available Features](#available-features)
   - [Components](#components)
+  - [Pipes](#pipes)
   - [Services](#services)
   - [TypeScript Utilities](#typescript-utilities)
   - [Style Helpers](#style-helpers)
@@ -109,6 +110,14 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | tabs             |                                                        |                :x: |                              |
 | toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
 | tooltip          |                                                        | :white_check_mark: |         [Demo][demo-tooltip] |
+
+
+### Pipes
+
+| Pipe             | Notes                                                  | Status             | Demo                         |
+|------------------|--------------------------------------------------------|        :---:       |------------------------------|
+| `tsDate`         |             `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |           [Demo][demo-pipes] |
+| `tsTimeAgo`      |                             a human-readable time span | :white_check_mark: |           [Demo][demo-pipes] |
 
 
 ### Services
@@ -253,4 +262,5 @@ View the [wiki page][dev-wiki].
 [demo-table]: https://terminus-ui-demos.stackblitz.io/components/table
 [demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
+[demo-pipes]: https://terminus-ui-demos.stackblitz.io/components/pipes
 
