@@ -33,9 +33,10 @@ import {
   TsSelectModule,
   TsSortModule,
   TsSpacingModule,
+  TsTableModule,
+  TsTimeAgoPipe,
   TsToggleModule,
   TsTooltipModule,
-  TsTableModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -116,6 +117,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     ComponentsComponent,
 
     TsDatePipe,
+    TsTimeAgoPipe,
 
     ButtonComponent,
     CardComponent,

@@ -43,6 +43,7 @@ export * from './src/utilities/types/index';
 
 // Pipes
 export { TsDatePipe } from './src/pipes/date/date.pipe';
+export { TsTimeAgoPipe } from './src/pipes/time-ago/time-ago.pipe';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';

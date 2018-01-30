@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './pipes.component.html',
 })
 export class PipesComponent {
-  date = new Date();
-  dateString = new Date().toISOString();
+  date = new Date(2018, 1, 8);
+  dateString = this.date.toISOString();
+  oldDate = new Date(2018, 1, 3);
 }
