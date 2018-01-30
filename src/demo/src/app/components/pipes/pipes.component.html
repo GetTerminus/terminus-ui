@@ -1,4 +1,3 @@
-
 <ts-card tsVerticalSpacing>
 
   <h2>Date</h2>
@@ -20,9 +19,9 @@ Date String:
 
   <div tsVerticalSpacing>
     <strong>
-      medium
+      medium (using date string)
     </strong>
-    {{ date | tsDate:'medium' }}
+    {{ dateString | tsDate:'medium' }}
   </div>
 
   <div tsVerticalSpacing>
@@ -37,6 +36,25 @@ Date String:
       timestamp
     </strong>
     {{ date | tsDate:'timestamp' }}
+  </div>
+
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+
+  <h2>TimeAgo</h2>
+
+<pre tsVerticalSpacing>
+Date:
+{{ date }}
+
+Old date:
+{{ oldDate }}
+</pre>
+
+  <div tsVerticalSpacing>
+    {{ date | tsTimeAgo:oldDate }} since I did any work
   </div>
 
 </ts-card>
