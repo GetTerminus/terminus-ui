@@ -31,7 +31,7 @@ describe(`TsValidationMessageService`, () => {
         requiredLength: 12,
       };
       const actual = this.service.getValidatorErrorMessage('maxlength', validatorValueMock);
-      const expected = `Maximum Length 12`;
+      const expected = `Maximum length 12`;
 
       expect(actual).toEqual(expected);
     });
