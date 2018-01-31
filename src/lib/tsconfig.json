@@ -22,6 +22,7 @@
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "ui.js",
     "flatModuleId": "@terminus/ui",
-    "genDir": "../../out-tsc/lib-gen-dir/"
+    "genDir": "../../out-tsc/lib-gen-dir/",
+    "preserveWhitespaces": false
   }
 }
