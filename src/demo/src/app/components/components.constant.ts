@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
@@ -29,6 +30,13 @@ import { WindowServiceComponent } from './services/window-service.component';
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
+  {
+    path: 'breakpoints',
+    component: BreakpointsComponent,
+    data: {
+      name: 'Breakpoints',
+    },
+  },
   {
     path: 'button',
     component: ButtonComponent,
