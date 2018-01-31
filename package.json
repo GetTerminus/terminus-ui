@@ -79,8 +79,9 @@
     "precommit": "lint-staged",
     "lint-staged": "lint-staged",
     "semantic-release": "semantic-release",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:add": "./node_modules/.bin/all-contributors add",
+    "contributors:generate": "./node_modules/.bin/all-contributors generate",
+    "contributors:check": "./node_modules/.bin/all-contributors check"
   },
   "lint-staged": {
     "src/lib/**/*.spec.ts": [
