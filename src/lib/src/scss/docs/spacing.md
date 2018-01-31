@@ -17,6 +17,8 @@ is a valid spacing within our design language.
 
 ## Available spacing options
 
+[Live Example][demo]
+
 - Small: 12, 8, 4
 - Base: 16
 - Large: 24, 32, 40, 48, 56, 72, 96
@@ -32,4 +34,8 @@ spacing(large) // 24px
 spacing(large, 4) // 56px
 ```
 
-Passing in an invalid spacing will throw a Sass compile error.
+Passing an invalid spacing will throw a Sass compile error.
+
+
+<!-- Links -->
+[demo]: https://terminus-ui-demos.stackblitz.io/components/spacing-styles
