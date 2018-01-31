@@ -78,7 +78,9 @@
     "todo": "./node_modules/.bin/notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x src/lib/helpers.scss",
     "precommit": "lint-staged",
     "lint-staged": "lint-staged",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "lint-staged": {
     "src/lib/**/*.spec.ts": [
@@ -145,6 +147,7 @@
     "@types/jasmine": "2.8.3",
     "@types/jest": "22.0.1",
     "@types/node": "8.5.2",
+    "all-contributors-cli": "4.10.1",
     "autoprefixer": "7.2.4",
     "camelcase": "4.1.0",
     "code-notes": "1.0.4",
