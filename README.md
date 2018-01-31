@@ -75,86 +75,86 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ### Components
 
-| Feature          | Notes                                                  | Status             | Demo                         |
-|------------------|--------------------------------------------------------|        :---:       |------------------------------|
-| alert            |                                                        |                :x: |                              |
-| autocomplete     |                                                        |                :x: |                              |
-| badge            |                                                        |                :x: |                              |
-| button           |                                                        | :white_check_mark: |          [Demo][demo-button] |
-| breadcrumbs      |                                                        |                :x: |                              |
-| card             |                                                        | :white_check_mark: |            [Demo][demo-card] |
-| chip             |                                                        |                :x: |                              |
-| checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
-| copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
-| datavis          |                                                        |                :x: |                              |
-| datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
-| date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
-| dialog           |                                                        |                :x: |                              |
-| divider          |                                                        |                :x: |                              |
-| expansion        |                                                        |                :x: |                              |
-| file-picker      |                                                        |                :x: |                              |
-| input-masking    |                                                        |                :x: |                              |
-| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |             (see input demo) |
-| input            |                                                        | :white_check_mark: |           [Demo][demo-input] |
-| link             |                                                        | :white_check_mark: |            [Demo][demo-link] |
-| loading overlay  |                                                        | :white_check_mark: | [Demo][demo-loading-overlay] |
-| login form       |                                                        | :white_check_mark: |     [Demo][demo-log-in-form] |
-| menu             |                                                        | :white_check_mark: |            [Demo][demo-menu] |
-| navigation       |                                                        | :white_check_mark: |      [Demo][demo-navigation] |
-| paginator        |                                                        | :white_check_mark: |       [Demo][demo-paginator] |
-| picklist         |                                                        |                :x: |                              |
-| progress         |                                                        |                :x: |                              |
-| progression      |                                                        |                :x: |                              |
-| radio-group      |                                                        | :white_check_mark: |     [Demo][demo-radio-group] |
-| search           |                                                        | :white_check_mark: |          [Demo][demo-search] |
-| select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
-| sort             |               Used by `table` to manage column sorting | :white_check_mark: |             (see table demo) |
-| table            |                                                        | :white_check_mark: |           [Demo][demo-table] |
-| tabs             |                                                        |                :x: |                              |
-| toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
-| tooltip          |                                                        | :white_check_mark: |         [Demo][demo-tooltip] |
+| Feature         | Notes                                          | Status             | Demo                         |
+|-----------------|------------------------------------------------|:------------------:|------------------------------|
+| alert           |                                                | :x:                |                              |
+| autocomplete    |                                                | :x:                |                              |
+| badge           |                                                | :x:                |                              |
+| button          |                                                | :white_check_mark: | [Demo][demo-button]          |
+| breadcrumbs     |                                                | :x:                |                              |
+| card            |                                                | :white_check_mark: | [Demo][demo-card]            |
+| chip            |                                                | :x:                |                              |
+| checkbox        |                                                | :white_check_mark: | [Demo][demo-checkbox]        |
+| copy            |                                                | :white_check_mark: | [Demo][demo-copy]            |
+| datavis         |                                                | :x:                |                              |
+| datepicker      |                                                | :white_check_mark: | [Demo][demo-datepicker]      |
+| date-range      |                                                | :white_check_mark: | [Demo][demo-date-range]      |
+| dialog          |                                                | :x:                |                              |
+| divider         |                                                | :x:                |                              |
+| expansion       |                                                | :x:                |                              |
+| file-picker     |                                                | :x:                |                              |
+| input-masking   |                                                | :x:                |                              |
+| input-messages  | Used by `input` to display validation messages | :white_check_mark: | (see input demo)             |
+| input           |                                                | :white_check_mark: | [Demo][demo-input]           |
+| link            |                                                | :white_check_mark: | [Demo][demo-link]            |
+| loading overlay |                                                | :white_check_mark: | [Demo][demo-loading-overlay] |
+| login form      |                                                | :white_check_mark: | [Demo][demo-log-in-form]     |
+| menu            |                                                | :white_check_mark: | [Demo][demo-menu]            |
+| navigation      |                                                | :white_check_mark: | [Demo][demo-navigation]      |
+| paginator       |                                                | :white_check_mark: | [Demo][demo-paginator]       |
+| picklist        |                                                | :x:                |                              |
+| progress        |                                                | :x:                |                              |
+| progression     |                                                | :x:                |                              |
+| radio-group     |                                                | :white_check_mark: | [Demo][demo-radio-group]     |
+| search          |                                                | :white_check_mark: | [Demo][demo-search]          |
+| select          |                                                | :white_check_mark: | [Demo][demo-select]          |
+| sort            | Used by `table` to manage column sorting       | :white_check_mark: | (see table demo)             |
+| table           |                                                | :white_check_mark: | [Demo][demo-table]           |
+| tabs            |                                                | :x:                |                              |
+| toggle          |                                                | :white_check_mark: | [Demo][demo-toggle]          |
+| tooltip         |                                                | :white_check_mark: | [Demo][demo-tooltip]         |
 
 
 ### Pipes
 
-| Pipe             | Notes                                                  | Status             | Demo                         |
-|------------------|--------------------------------------------------------|        :---:       |------------------------------|
-| `tsDate`         |             `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |           [Demo][demo-pipes] |
-| `tsTimeAgo`      |                             a human-readable time span | :white_check_mark: |           [Demo][demo-pipes] |
+| Pipe        | Notes                                      | Status             | Demo               |
+|-------------|--------------------------------------------|:------------------:|--------------------|
+| `tsDate`    | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: | [Demo][demo-pipes] |
+| `tsTimeAgo` | a human-readable time span                 | :white_check_mark: | [Demo][demo-pipes] |
 
 
 ### Services
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| Document         |           Provide access to the native document object | :white_check_mark: |
-| Spacing          |              Expose custom spacing sizes via a service | :white_check_mark: |
-| Validators       |    Expose custom validation methods for reactive forms | :white_check_mark: |
-| Window           |             Provide access to the native window object | :white_check_mark: |
+| Feature    | Notes                                               | Status             |
+|------------|-----------------------------------------------------|:------------------:|
+| Document   | Provide access to the native document object        | :white_check_mark: |
+| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |
+| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |
+| Window     | Provide access to the native window object          | :white_check_mark: |
 
 
 ### TypeScript Utilities
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| Interfaces       |      Provide TypeScript interfaces for various objects | :white_check_mark: |
-| Types            |        Provide TypeScript types for various parameters | :white_check_mark: |
+| Feature    | Notes                                             | Status             |
+|------------|---------------------------------------------------|:------------------:|
+| Interfaces | Provide TypeScript interfaces for various objects | :white_check_mark: |
+| Types      | Provide TypeScript types for various parameters   | :white_check_mark: |
 
 
 ### Style Helpers
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| animation        |                                                        | :white_check_mark: |
-| assets           |                                                        | :white_check_mark: |
-| breakpoints      |                                                        | :white_check_mark: |
-| colors           |                                                        | :white_check_mark: |
-| cursors          |                                                        | :white_check_mark: |
-| layout           |                                                        | :white_check_mark: |
-| shadows          |                                                        | :white_check_mark: |
-| spacing          |                                                        | :white_check_mark: |
-| typography       |                                                        | :white_check_mark: |
-| z-index          |                                                        | :white_check_mark: |
+| Feature     | Notes | Status             | Docs                     |
+|-------------|-------|:------------------:|--------------------------|
+| animation   |       | :hammer:           |                          |
+| assets      |       | :hammer:           |                          |
+| breakpoints |       | :white_check_mark: | [Docs][breakpoints-docs] |
+| colors      |       | :white_check_mark: | [Docs][color-docs]       |
+| cursors     |       | :white_check_mark: | [Docs][cursors-docs]     |
+| layout      |       | :white_check_mark: | [Docs][layout-docs]      |
+| shadows     |       | :white_check_mark: | [Docs][shadows-docs]     |
+| spacing     |       | :white_check_mark: | [Docs][spacing-docs]     |
+| typography  |       | :white_check_mark: | [Docs][typography-docs]  |
+| z-index     |       | :white_check_mark: | [Docs][z-index-docs]     |
 
 
 ## Installation
@@ -190,7 +190,7 @@ View the [wiki page][dev-wiki].
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -258,6 +258,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
 [validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
 [contributor-shield]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
+[all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
+
 
 <!-- Demos -->
 [demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
@@ -280,3 +282,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
 [demo-pipes]: https://terminus-ui-demos.stackblitz.io/components/pipes
+
+
+<!-- Docs -->
+[breakpoints-docs]: ./src/lib/src/scss/docs/breakpoints.md
+[color-docs]: ./src/lib/src/scss/docs/color.md
+[cursors-docs]: ./src/lib/src/scss/docs/cursors.md
+[layout-docs]: ./src/lib/src/scss/docs/layout.md
+[shadows-docs]: ./src/lib/src/scss/docs/shadows.md
+[spacing-docs]: ./src/lib/src/scss/docs/spacing.md
+[typography-docs]: ./src/lib/src/scss/docs/typography.md
+[z-index-docs]: ./src/lib/src/scss/docs/z-index.md
