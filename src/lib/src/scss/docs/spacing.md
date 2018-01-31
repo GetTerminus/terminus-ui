@@ -34,7 +34,7 @@ spacing(large) // 24px
 spacing(large, 4) // 56px
 ```
 
-Passing an invalid spacing will throw a Sass compile error.
+Passing an invalid spacing will throw a Sass compilation error.
 
 
 <!-- Links -->

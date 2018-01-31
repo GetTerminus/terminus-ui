@@ -27,4 +27,4 @@ of `z-index` values while at the same time guaranteeing that no two `z-index` va
 
 More `z-index` values will be added as needed.
 
-Passing an invalid `z-index` `$name` will throw a Sass compile warning.
+Passing an invalid `z-index` `$name` will throw a Sass compilation warning.

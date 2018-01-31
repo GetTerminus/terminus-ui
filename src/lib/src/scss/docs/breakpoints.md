@@ -25,26 +25,20 @@ The general rule for responsive development:
 
 [Live Example][demo]
 
-- `layout-xs`,
-    - `max-width: 599px`
-- `layout-gt-xs`,
-    - `min-width: 600px`
-- `layout-sm`,
-    - `min-width: 600px and max-width: 959px`
-- `layout-gt-sm`,
-    - `min-width: 960px`
-- `layout-mat`,
-    - `min-width: 960px and max-width: 1279px`
-- `layout-gt-mat`,
-    - `min-width: 1280px`
-- `layout-lg`,
-    - `min-width: 1280px and max-width: 1919px`
-- `layout-gt-lg`,
-    - `min-width: 1920px`
-- `layout-xl`
-    - `min-width: 1920px`
+| Value           | When it is applied                        |
+|-----------------|-------------------------------------------|
+| `layout-xs`     | `max-width: 599px`                        |
+| `layout-gt-xs`  | `min-width: 600px`                        |
+| `layout-sm`     | `min-width: 600px and max-width: 959px`   |
+| `layout-gt-sm`  | `min-width: 960px`                        |
+| `layout-mat`    | `min-width: 960px and max-width: 1279px`  |
+| `layout-gt-mat` | `min-width: 1280px`                       |
+| `layout-lg`     | `min-width: 1280px and max-width: 1919px` |
+| `layout-gt-lg`  | `min-width: 1920px`                       |
+| `layout-xl`     | `min-width: 1920px`                       |
 
-Passing an invalid `$breakpoint` will throw a Sass compile error.
+
+Passing an invalid `$breakpoint` will throw a Sass compilation error.
 
 
 <!-- Links -->
