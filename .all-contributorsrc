@@ -1,0 +1,54 @@
+{
+  "projectName": "terminus-ui",
+  "projectOwner": "GetTerminus",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "benjamincharity",
+      "name": "Benjamin Charity",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/270193?s=460&v=4",
+      "profile": "https://github.com/benjamincharity",
+      "contributions": [
+        "code",
+        "doc",
+        "test",
+        "design",
+        "ideas",
+        "review",
+        "tool"
+      ]
+    },
+    {
+      "login": "coreyterminator",
+      "name": "coreyterminator",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/31667397?v=4",
+      "profile": "https://github.com/coreyterminator",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "atlwendy",
+      "name": "Wendy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/377552?v=4",
+      "profile": "https://github.com/atlwendy",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "bmalinconico",
+      "name": "Brian Malinconico",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19909708?v=4",
+      "profile": "https://github.com/bmalinconico",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
+    }
+  ]
+}
