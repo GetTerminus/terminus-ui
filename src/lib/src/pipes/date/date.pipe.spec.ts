@@ -23,6 +23,12 @@ describe(`TsDatePipe`, () => {
   });
 
 
+  it(`should return null if no value is passed in`, () => {
+    expect(this.pipe(null)).toEqual(null);
+    expect(this.pipe('')).toEqual(null);
+  });
+
+
   describe(`short format`, () => {
 
     it(`should format a date`, () => {
