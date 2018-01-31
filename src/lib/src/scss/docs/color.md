@@ -23,7 +23,7 @@ color(primary)
 color(primary, base)
 ```
 
-Then most colors provide `light` and `dark` versions:
+Most colors provide `light` and `dark` versions:
 
 ```scss
 color(accent, dark)
