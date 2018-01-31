@@ -24,6 +24,18 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   overflow: hidden;
   width: 100%;
 
+  // Target a table inside of a card component
+  // When inside a card we adjust the top|right|left margins to cancel the default card padding
+  .c-card & {
+    $table-adjustment-for-margins: spacing(large) * 2;
+
+    // NOTE: Currently the table component does not include pagination so the table's bottom margin
+    // is not adjusted here. Once we have a `paged-table` that includes pagination we can add the
+    // negative bottom margin.
+    margin: -#{spacing(large)} -#{spacing(large)} 0 -#{spacing(large)};
+    width: calc(100% + #{$table-adjustment-for-margins});
+  }
+
 
   //
   // Rows
