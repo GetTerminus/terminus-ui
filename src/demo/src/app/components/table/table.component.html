@@ -11,75 +11,77 @@
 </div>
 
 
-<ts-table
-  [dataSource]="dataSource"
-  tsSort
-  tsVerticalSpacing
->
+<ts-card>
+  <ts-table
+    [dataSource]="dataSource"
+    tsSort
+    tsVerticalSpacing
+  >
 
-  <ng-container tsColumnDef="created" noWrap="true" minWidth="100px">
-    <ts-header-cell *tsHeaderCellDef ts-sort-header>
-      Created
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.created_at | date:shortDate }}
-    </ts-cell>
-  </ng-container>
+    <ng-container tsColumnDef="created" noWrap="true" minWidth="100px">
+      <ts-header-cell *tsHeaderCellDef ts-sort-header>
+        Created
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.created_at | date:shortDate }}
+      </ts-cell>
+    </ng-container>
 
-  <ng-container tsColumnDef="number" noWrap="true">
-    <ts-header-cell *tsHeaderCellDef>
-      Number
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.number }}
-    </ts-cell>
-  </ng-container>
+    <ng-container tsColumnDef="number" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef>
+        Number
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.number }}
+      </ts-cell>
+    </ng-container>
 
-  <ng-container tsColumnDef="title">
-    <ts-header-cell *tsHeaderCellDef>
-      Title
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.title }}
-    </ts-cell>
-  </ng-container>
+    <ng-container tsColumnDef="title">
+      <ts-header-cell *tsHeaderCellDef>
+        Title
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.title }}
+      </ts-cell>
+    </ng-container>
 
-  <ng-container tsColumnDef="state" noWrap="true">
-    <ts-header-cell *tsHeaderCellDef>
-      State
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.state }}
-    </ts-cell>
-  </ng-container>
+    <ng-container tsColumnDef="state" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef>
+        State
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.state }}
+      </ts-cell>
+    </ng-container>
 
-  <ng-container tsColumnDef="comments" noWrap="true">
-    <ts-header-cell *tsHeaderCellDef ts-sort-header>
-      Comments
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.comments }}
-    </ts-cell>
-  </ng-container>
+    <ng-container tsColumnDef="comments" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef ts-sort-header>
+        Comments
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.comments }}
+      </ts-cell>
+    </ng-container>
 
-  <ts-header-row *tsHeaderRowDef="displayedColumns">
-  </ts-header-row>
+    <ts-header-row *tsHeaderRowDef="displayedColumns">
+    </ts-header-row>
 
-  <ts-row *tsRowDef="let row; columns: displayedColumns;">
-  </ts-row>
+    <ts-row *tsRowDef="let row; columns: displayedColumns;">
+    </ts-row>
 
-</ts-table>
+  </ts-table>
 
 
-<div class="example-header" fxLayout="row" fxLayoutAlign="end center">
-  <ts-paginator
-    [totalRecords]="resultsLength"
-    recordCountTooHighMessage="Please refine your filters."
-    (pageSelect)="onPageSelect($event)"
-    (recordsPerPageChange)="perPageChange($event)"
-    (firstPageChosen)="first($event)"
-    (previousPageChosen)="previous($event)"
-    (nextPageChosen)="next($event)"
-    (lastPageChosen)="last($event)"
-  ></ts-paginator>
-</div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ts-paginator
+      [totalRecords]="resultsLength"
+      recordCountTooHighMessage="Please refine your filters."
+      (pageSelect)="onPageSelect($event)"
+      (recordsPerPageChange)="perPageChange($event)"
+      (firstPageChosen)="first($event)"
+      (previousPageChosen)="previous($event)"
+      (nextPageChosen)="next($event)"
+      (lastPageChosen)="last($event)"
+    ></ts-paginator>
+  </div>
+</ts-card>
