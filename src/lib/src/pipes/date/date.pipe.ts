@@ -42,9 +42,9 @@ export class TsDatePipe implements PipeTransform {
       (format === 'short')
       ? formatDate(date, 'MM/DD/YYYY')
       : (format === 'medium')
-      ? formatDate(date, 'MMMM Do, YYYY')
+      ? formatDate(date, 'MMM D YYYY')
       : (format === 'extended')
-      ? formatDate(date, 'dddd, MMMM Do, YYYY, h:mm:ssa')
+      ? formatDate(date, 'MMM D YYYY h:mm:ssa')
       : (format === 'timestamp')
       ? new Date(date).toISOString()
       : '';
