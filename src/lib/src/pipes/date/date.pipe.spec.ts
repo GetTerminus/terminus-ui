@@ -23,6 +23,12 @@ describe(`TsDatePipe`, () => {
   });
 
 
+  it(`should return null if no value is passed in`, () => {
+    expect(this.pipe(null)).toEqual(null);
+    expect(this.pipe('')).toEqual(null);
+  });
+
+
   describe(`short format`, () => {
 
     it(`should format a date`, () => {
@@ -47,7 +53,7 @@ describe(`TsDatePipe`, () => {
 
     it(`should format a date`, () => {
       const actual = this.pipe(this.date, 'medium');
-      const expected = 'February 8th, 2018';
+      const expected = 'Feb 8 2018';
 
       expect(actual).toEqual(expected);
     });
@@ -59,7 +65,7 @@ describe(`TsDatePipe`, () => {
 
     it(`should format a date`, () => {
       const actual = this.pipe(this.date, 'extended');
-      const expected = 'Thursday, February 8th, 2018, 12:00:00am';
+      const expected = 'Feb 8 2018 12:00:00am';
 
       expect(actual).toEqual(expected);
     });

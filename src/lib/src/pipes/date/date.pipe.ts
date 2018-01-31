@@ -23,6 +23,10 @@ export class TsDatePipe implements PipeTransform {
       'timestamp', // 2018-02-08T05:00:00.000Z
     ];
 
+    // Check for null values to avoid issues during data-binding
+    if (value == null || value === '') {
+      return null;
+    }
 
     // Check for date validity
     if (!isValid(value) && isDevMode()) {
@@ -42,9 +46,9 @@ export class TsDatePipe implements PipeTransform {
       (format === 'short')
       ? formatDate(date, 'MM/DD/YYYY')
       : (format === 'medium')
-      ? formatDate(date, 'MMMM Do, YYYY')
+      ? formatDate(date, 'MMM D YYYY')
       : (format === 'extended')
-      ? formatDate(date, 'dddd, MMMM Do, YYYY, h:mm:ssa')
+      ? formatDate(date, 'MMM D YYYY h:mm:ssa')
       : (format === 'timestamp')
       ? new Date(date).toISOString()
       : '';

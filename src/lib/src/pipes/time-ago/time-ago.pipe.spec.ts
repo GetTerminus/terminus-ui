@@ -10,6 +10,12 @@ describe(`TsTimeAgoPipe`, () => {
   });
 
 
+  it(`should return null if no value is passed in`, () => {
+    expect(this.pipe(null, this.oldDate)).toEqual(null);
+    expect(this.pipe('', this.oldDate)).toEqual(null);
+  });
+
+
   it(`should format a date`, () => {
     const actual = this.pipe(this.date, this.oldDate);
     const expected = '5 days';
