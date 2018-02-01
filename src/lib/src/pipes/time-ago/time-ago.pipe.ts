@@ -14,7 +14,12 @@ import {
 })
 export class TsTimeAgoPipe implements PipeTransform {
   transform(value: string|Date, comparedDate: string|Date): string {
+    // Check for null values to avoid issues during data-binding
+    if (value == null || value === '') {
+      return null;
+    }
 
+    console.log('VALUE: ', value, value == null)
     // Check for date validity
     if (!isValid(value) && isDevMode()) {
       throw Error(`'${value}' is not a valid date.`);

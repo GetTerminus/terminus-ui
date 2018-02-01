@@ -45,6 +45,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 
+import { BreakpointsComponent } from './components/breakpoints/breakpoints.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
@@ -119,6 +120,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsDatePipe,
     TsTimeAgoPipe,
 
+    BreakpointsComponent,
     ButtonComponent,
     CardComponent,
     CheckboxComponent,

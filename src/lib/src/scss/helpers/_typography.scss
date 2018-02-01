@@ -99,7 +99,7 @@ $typography-body-levels: (
  *  One of the available typefaces defined in $typography-typefaces. Default: 'primary'
  * @example
  *  @include typography;
- *  @include typography('display', 4);
+ *  @include typography(display, 4);
  */
 @mixin typography($format: 'body', $level: 1, $typeface: 'primary') {
   // Verify the format is valid
@@ -125,19 +125,19 @@ $typography-body-levels: (
 
     @if $level == 1 {
       font-size: 34px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 40px;
     }
 
     @if $level == 2 {
       font-size: 45px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 64px;
     }
 
     @if $level == 3 {
       font-size: 56px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: -.005em;
       line-height: 56px;
     }
@@ -154,7 +154,7 @@ $typography-body-levels: (
   // HEADLINE
   @if $format == 'headline' {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 32px;
   }
 
@@ -170,7 +170,7 @@ $typography-body-levels: (
   // SUBHEAD
   @if $format == 'subhead' {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: .01em;
     line-height: 24px;
   }
@@ -198,7 +198,7 @@ $typography-body-levels: (
     }
 
     @if $level == 2 {
-      font-weight: 400;
+      font-weight: 500;
 
       // Don't apply custom line-height to buttons
       &:not(.c-button) {
