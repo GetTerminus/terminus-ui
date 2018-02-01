@@ -26,6 +26,16 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
+    test(`should return a maxLength message`, () => {
+      const validatorValueMock = {
+        requiredLength: 12,
+      };
+      const actual = this.service.getValidatorErrorMessage('maxlength', validatorValueMock);
+      const expected = `Maximum length 12`;
+
+      expect(actual).toEqual(expected);
+    });
+
 
     test(`should return the maxDate validation message`, () => {
       const date = new Date(2017, 3, 1);

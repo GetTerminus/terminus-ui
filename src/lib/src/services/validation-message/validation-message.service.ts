@@ -27,6 +27,7 @@ export class TsValidationMessageService {
       // Standard responses:
       required: `Required`,
       minlength: `Minimum length ${validatorValue.requiredLength}`,
+      maxlength: `Maximum length ${validatorValue.requiredLength}`,
       // Custom responses:
       creditCard: creditCardMessage,
       email: emailMessage,
