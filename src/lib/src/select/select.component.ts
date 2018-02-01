@@ -98,7 +98,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define the key that represents the value item from the object
    */
   @Input()
-  public valueKey: string = 'value';
+  public valueKey: string;
 
   /**
    * Emit event when the select has been opened
