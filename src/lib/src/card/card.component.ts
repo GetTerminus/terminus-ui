@@ -78,4 +78,10 @@ export class TsCardComponent {
   @Input()
   public utilityMenuTemplate: TemplateRef<ElementRef>;
 
+  /**
+   * Define if the card is disabled
+   */
+  @Input()
+  public disabled: boolean = false;
+
 }

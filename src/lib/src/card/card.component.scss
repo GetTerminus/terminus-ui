@@ -40,8 +40,10 @@
 }
 
 .c-card--interaction {
-  .c-card__inner {
-    @include card($allows-interaction: true);
+  &:not(.c-card--disabled) {
+    .c-card__inner {
+      @include card($allows-interaction: true);
+    }
   }
 }
 
@@ -57,5 +59,11 @@
 
   .c-card__inner {
     @include take-space;
+  }
+}
+
+.c-card--disabled {
+  .c-card__inner {
+    opacity: .6;
   }
 }
