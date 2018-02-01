@@ -60,9 +60,6 @@
  */
 @mixin responsive-ratio($x, $y, $pseudo: false, $image: null) {
   $padding: unquote((( $y / $x ) * 100) + '%');
-  @debug $y;
-  @debug $x;
-  @debug $padding;
 
   @if $x == null or $y == null {
     @warn 'Both the x and y ratios must be passed in.';

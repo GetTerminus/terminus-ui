@@ -1,0 +1,57 @@
+@import '~@terminus/ui/helpers';
+
+$color1: #e74c3c;
+$color2: #27ae60;
+$color3: #2980b9;
+$color4: #7f8c8d;
+$color5: #9b59b6;
+$color6: #f39c12;
+$color7: #34495e;
+$color8: #3498db;
+$color9: #7f8c8d;
+$color10: #8e44ad;
+
+
+.example {
+  @include typography(body, 2);
+  @include bp(layout-xs) {
+    color: $color2;
+  }
+
+  @include bp(layout-gt-xs) {
+    color: $color3;
+  }
+
+  @include bp(layout-sm) {
+    color: $color4;
+  }
+
+  @include bp(layout-gt-sm) {
+    color: $color5;
+  }
+
+  @include bp(layout-mat) {
+    color: $color6;
+  }
+
+  @include bp(layout-gt-mat) {
+    color: $color7;
+  }
+
+  @include bp(layout-lg) {
+    color: $color8;
+  }
+
+  @include bp(layout-gt-lg) {
+    color: $color9;
+  }
+
+  @include bp(layout-xl) {
+    color: $color10;
+  }
+
+  color: $color1;
+  transition: color 200ms ease;
+  will-change: color;
+}
+

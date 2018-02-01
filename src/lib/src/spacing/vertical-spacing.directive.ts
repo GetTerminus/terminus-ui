@@ -34,15 +34,21 @@ const ALLOWED_TYPES = [
  * @example
  * <div
  *              tsVerticalSpacing
- * ></div>
+ * >
+ *   My content!
+ * </div>
  *
  * <div
- *              tsVerticalSpacing="large--1x"
- * ></div>
+ *              tsVerticalSpacing="large--1"
+ * >
+ *   My content!
+ * </div>
  *
  * <div
  *              tsVerticalSpacing="none"
- * ></div>
+ * >
+ *   My content!
+ * </div>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
  */
