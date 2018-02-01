@@ -39,7 +39,7 @@ const ALLOWED_TYPES = [
  * </div>
  *
  * <div
- *              tsVerticalSpacing="large--1x"
+ *              tsVerticalSpacing="large--1"
  * >
  *   My content!
  * </div>
