@@ -4,6 +4,9 @@
     "baseUrl": "",
     "module": "commonjs",
     "declaration": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": [
+      "jest"
+    ]
   }
 }

@@ -15,6 +15,7 @@
 <ts-card
   [supportsInteraction]="supportsInteraction"
   [centeredContent]="centered"
+  tsVerticalSpacing
 >
   Standard card
 
@@ -27,14 +28,13 @@
   </ng-container>
 </ts-card>
 
-<hr>
-<br>
 
 <ts-card
   supportsInteraction="true"
   centeredContent="true"
   [utilityMenuTemplate]="myTemplate"
   aspectRatio="4:3"
+  tsVerticalSpacing
 >
   Standard card with utility menu and aspect ratio
 </ts-card>
@@ -54,21 +54,17 @@
   </ng-template>
 </ng-template>
 
-<hr>
-<br>
 
-<ts-card aspectRatio="16:9">
+<ts-card aspectRatio="16:9" tsVerticalSpacing>
   16:9 aspect ratio
 </ts-card>
 
-<hr>
-<br>
 
-<p>
+<p tsVerticalSpacing>
   Nested within flex layout.
 </p>
 
-<div fxFlex>
+<div fxFlex tsVerticalSpacing>
   <div fxLayout="row" fxLayoutGap="1rem">
     <ts-card fxFlex style="background: lightblue">
       Card 1
@@ -89,3 +85,8 @@
     </ts-card>
   </div>
 </div>
+
+
+<ts-card aspectRatio="16:9" tsVerticalSpacing>
+  <h3 tsCardTitle>Card with Title</h3>
+</ts-card>

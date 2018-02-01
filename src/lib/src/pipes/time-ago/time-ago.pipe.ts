@@ -19,7 +19,6 @@ export class TsTimeAgoPipe implements PipeTransform {
       return null;
     }
 
-    console.log('VALUE: ', value, value == null)
     // Check for date validity
     if (!isValid(value) && isDevMode()) {
       throw Error(`'${value}' is not a valid date.`);
