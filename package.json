@@ -179,6 +179,7 @@
     "jasmine-core": "2.8.0",
     "jest": "22.0.4",
     "jest-preset-angular": "5.0.0",
+    "jest-zone-patch": "0.0.8",
     "karma": "2.0.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-cli": "1.0.1",
@@ -247,11 +248,13 @@
     ],
     "collectCoverageFrom": [
       "src/lib/src/**/!(*.module|*.interface|*.constant|*.mock|*.d).ts",
+      "src/lib/src/**/*.directive?(.spec).ts",
       "!src/lib/src/utilities/testing/**",
       "!src/lib/src/utilities/rxjs-lift-hack.ts",
       "!src/lib/src/module.ts"
     ],
-    "mapCoverage": true
+    "mapCoverage": true,
+    "setupTestFrameworkScriptFile": "<rootDir>/src/lib/setupJest.ts"
   },
   "dependencies": {
     "date-fns": "2.0.0-alpha.7"

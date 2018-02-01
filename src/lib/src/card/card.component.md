@@ -66,3 +66,15 @@ To include a utility menu, pass a template which includes the menu trigger and t
   </ng-template>
 </ng-template>
 ```
+
+#### Card with a Title
+
+Attach the `tsCardTitle` directive to your title element. This directive simply adds a class to the
+element which provides the needed styles.
+
+```html
+<ts-card>
+  <h3 tsCardTitle>My Title</h3>
+</ts-card>
+```
+

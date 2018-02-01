@@ -31,6 +31,12 @@
     // Needed to contain the ripple effect
     position: relative;
   }
+
+  // Class added by the TsCardTitleDirective
+  .c-card__title {
+    @include typography(title);
+    margin: 0;
+  }
 }
 
 .c-card--interaction {
