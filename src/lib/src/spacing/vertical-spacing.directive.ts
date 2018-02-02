@@ -1,31 +1,11 @@
 import {
   Directive,
   ElementRef,
-  Renderer,
   Input,
 } from '@angular/core';
 
+import { TS_SPACING } from './spacing.constant';
 import { TsVerticalSpacingTypes } from './../utilities/types';
-
-
-/**
- * An array of all accepted sizes.
- *
- * NOTE: This should reflect {@link TsVerticalSpacingTypes} exactly
- */
-const ALLOWED_TYPES = [
-  'small--2',
-  'small--1',
-  'small--0',
-  'none',
-  'large--0',
-  'large--1',
-  'large--2',
-  'large--3',
-  'large--4',
-  'large--5',
-  'large--6',
-];
 
 
 /**
@@ -63,18 +43,32 @@ export class TsVerticalSpacingDirective {
    */
   @Input()
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
-    if (value && ALLOWED_TYPES.indexOf(value) < 0) {
-      const errorMessage =
-        `${value} is not a valid spacing definition for TsVerticalSpacingDirective.`;
-      const errorHelp = `See all TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11`;
-      throw new Error(`${errorMessage} ${errorHelp}`);
+    // Set a default value if nothing was passed in
+    if (!value) {
+      value = 'default--0'
     }
 
-    const isSpacingDefinition = value && value.length > 0;
-    // Fall back to default class if no value is passed in
-    const className = isSpacingDefinition ? `u-vertical-spacing__${value}` : `u-vertical-spacing`;
+    // Split the string to get the type and size
+    const [type, size] = value.split('--');
+    const valueIsNone = value === 'none';
 
-    this.renderer.setElementClass(this.elementRef.nativeElement, className, true)
+    // Verify type and size are valid options
+    const typeIsInvalid = !!(!TS_SPACING[type] || TS_SPACING[type].length < 0);
+    const sizeIsInvalid =
+      !!(typeIsInvalid || !TS_SPACING[type][size] || TS_SPACING[type][size].length < 0);
+
+    // Only throw an error if type or size is invalid and the value is not 'none'
+    if ((typeIsInvalid || sizeIsInvalid) && !valueIsNone) {
+      const errorMessage =
+        `${value} is not a valid spacing definition for TsVerticalSpacingDirective.`;
+      const errorHelp = `See all valid TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11`;
+      throw Error(`${errorMessage} ${errorHelp}`);
+    }
+
+    const margin = valueIsNone ? '0' : TS_SPACING[type][size];
+
+    // Set the margin on the element
+    this.elementRef.nativeElement.style.marginBottom = margin;
   }
 
 
@@ -82,7 +76,6 @@ export class TsVerticalSpacingDirective {
    * Inject services
    */
   constructor(
-    private renderer: Renderer,
     private elementRef: ElementRef,
   ) {}
 

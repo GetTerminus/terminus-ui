@@ -1,16 +1,12 @@
 import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
-import { TsVerticalSpacingTypes } from './../utilities/types';
 import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
-import { RendererMock } from './../utilities/testing/mocks/renderer.mock';
+import { TS_SPACING } from './spacing.constant';
 
 
 describe(`TsVerticalSpacingDirective`, () => {
 
   beforeEach(() => {
-    this.defaultClass = 'u-vertical-spacing';
-
     this.directive = new TsVerticalSpacingDirective(
-      RendererMock,
       new ElementRefMock(),
     );
   });
@@ -23,24 +19,27 @@ describe(`TsVerticalSpacingDirective`, () => {
 
   describe(`set tsVerticalSpacing()`, () => {
 
-    afterEach(() => {
-      this.directive.renderer.setElementClass.calls.reset();
-    });
-
-
-    it(`should add the default class if no value is passed in`, () => {
+    it(`should set the default margin if no value is passed in`, () => {
       this.directive.tsVerticalSpacing = '';
 
-      expect(this.directive.renderer.setElementClass.calls.argsFor(0)[1])
-        .toEqual(this.defaultClass);
+      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+        .toEqual(TS_SPACING.default[0]);
     });
 
 
     it(`should add the expected spacing class`, () => {
       this.directive.tsVerticalSpacing = 'large--2';
 
-      expect(this.directive.renderer.setElementClass.calls.argsFor(0)[1])
-        .toEqual(this.defaultClass + '__large--2');
+      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+        .toEqual(TS_SPACING.large[2]);
+    });
+
+
+    it(`should add the expected spacing class for 'none'`, () => {
+      this.directive.tsVerticalSpacing = 'none';
+
+      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+        .toEqual(TS_SPACING.none[0]);
     });
 
 

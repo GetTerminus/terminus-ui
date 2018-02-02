@@ -8,6 +8,9 @@ const base = 16;
  * JS representation of the values in _spacing.scss
  */
 export const TS_SPACING = {
+  none: [
+    '0',
+  ],
   small: [
     Math.floor(base - 4) + 'px',
     Math.floor(base / 2) + 'px',
@@ -17,7 +20,6 @@ export const TS_SPACING = {
     base + 'px',
   ],
   large : [
-    Math.floor(base / 4)      + 'px',
     Math.floor(base / 2 * 3)  + 'px',
     Math.floor(base / 2 * 4)  + 'px',
     Math.floor(base / 2 * 5)  + 'px',
