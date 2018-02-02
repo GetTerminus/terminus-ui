@@ -23,4 +23,11 @@
     *ngIf="utilityMenuTemplate"
     [ngTemplateOutlet]="utilityMenuTemplate"
   ></ng-container>
+
+  <mat-icon
+    *ngIf="disabled"
+    class="c-card__lock"
+  >
+    lock_outline
+  </mat-icon>
 </div>

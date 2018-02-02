@@ -1,10 +1,8 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/card';
 @import './../scss/helpers/layout';
-
-:host {
-  display: inline-block;
-}
+@import './../scss/helpers/color';
+@import './../scss/helpers/reset';
 
 
 //
@@ -14,6 +12,7 @@
 //  A simple card component
 //
 .ts-card {
+  @include reset;
   display: flex;
   flex-flow: row nowrap;
 
@@ -25,6 +24,7 @@
 }
 
 .c-card {
+
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include card;
@@ -35,7 +35,6 @@
   // Class added by the TsCardTitleDirective
   .c-card__title {
     @include typography(title);
-    margin: 0;
   }
 }
 
@@ -63,7 +62,19 @@
 }
 
 .c-card--disabled {
+  // Set up for absolutely positioned icon
+  position: relative;
+
   .c-card__inner {
-    opacity: .6;
+    opacity: .5;
+    padding-right: spacing(large, 1);
+  }
+
+  // Lock icon
+  .c-card__lock {
+    color: color(utility);
+    position: absolute;
+    right: spacing(small);
+    top: spacing(small);
   }
 }
