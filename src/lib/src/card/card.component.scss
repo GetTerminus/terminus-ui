@@ -24,17 +24,11 @@
 }
 
 .c-card {
-
   // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include card;
     // Needed to contain the ripple effect
     position: relative;
-  }
-
-  // Class added by the TsCardTitleDirective
-  .c-card__title {
-    @include typography(title);
   }
 }
 

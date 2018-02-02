@@ -18,4 +18,9 @@
     // Otherwise include standard elevation
     @include elevation(2);
   }
+
+  // Class added by the TsCardTitleDirective
+  .c-card__title {
+    @include typography(title);
+  }
 }
