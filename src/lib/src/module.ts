@@ -16,6 +16,7 @@ import { TsLoginFormModule } from './login-form/login-form.module';
 import { TsMenuModule } from './menu/menu.module';
 import { TsNavigationModule } from './navigation/navigation.module';
 import { TsPaginatorModule } from './paginator/paginator.module';
+import { TsPipesModule } from './pipes/pipes.module';
 import { TsRadioGroupModule } from './radio-group/radio-group.module';
 import { TsSearchModule } from './search/search.module';
 import { TsSelectModule } from './select/select.module';
@@ -48,6 +49,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
+    TsPipesModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
@@ -82,6 +84,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
+    TsPipesModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,

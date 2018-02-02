@@ -12,6 +12,7 @@ export { TsLoginFormModule } from './src/login-form/login-form.module';
 export { TsMenuModule } from './src/menu/menu.module';
 export { TsNavigationModule } from './src/navigation/navigation.module';
 export { TsPaginatorModule } from './src/paginator/paginator.module';
+export { TsPipesModule } from './src/pipes/pipes.module';
 export { TsRadioGroupModule } from './src/radio-group/radio-group.module';
 export { TsSearchModule } from './src/search/search.module';
 export { TsSelectModule } from './src/select/select.module';
@@ -40,10 +41,6 @@ export { TsWindowService } from './src/services/window/window.service';
 export { TS_SPACING } from './src/spacing/spacing.constant';
 export * from './src/utilities/interfaces/index';
 export * from './src/utilities/types/index';
-
-// Pipes
-export { TsDatePipe } from './src/pipes/date/date.pipe';
-export { TsTimeAgoPipe } from './src/pipes/time-ago/time-ago.pipe';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';
