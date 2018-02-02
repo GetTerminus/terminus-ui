@@ -19,7 +19,6 @@ import {
   TsCheckboxModule,
   TsCopyModule,
   TsDatepickerModule,
-  TsDatePipe,
   TsDateRangeModule,
   TsInputModule,
   TsLinkModule,
@@ -28,13 +27,13 @@ import {
   TsMenuModule,
   TsNavigationModule,
   TsPaginatorModule,
+  TsPipesModule,
   TsRadioGroupModule,
   TsSearchModule,
   TsSelectModule,
   TsSortModule,
   TsSpacingModule,
   TsTableModule,
-  TsTimeAgoPipe,
   TsToggleModule,
   TsTooltipModule,
   // INJECT: Add new UI component to demo UI imports
@@ -102,6 +101,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
+    TsPipesModule,
     TsRadioGroupModule,
     TsSearchModule,
     TsSelectModule,
@@ -116,9 +116,6 @@ import { WindowServiceComponent } from './components/services/window-service.com
   declarations: [
     AppComponent,
     ComponentsComponent,
-
-    TsDatePipe,
-    TsTimeAgoPipe,
 
     BreakpointsComponent,
     ButtonComponent,
