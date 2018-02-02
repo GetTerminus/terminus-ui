@@ -17,7 +17,6 @@ export const TS_SPACING = {
     base + 'px',
   ],
   large : [
-    Math.floor(base / 4)      + 'px',
     Math.floor(base / 2 * 3)  + 'px',
     Math.floor(base / 2 * 4)  + 'px',
     Math.floor(base / 2 * 5)  + 'px',
