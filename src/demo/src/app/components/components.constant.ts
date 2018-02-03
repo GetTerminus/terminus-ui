@@ -26,6 +26,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
 import { WindowServiceComponent } from './services/window-service.component';
+import { IconComponent } from './icon/icon.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -210,6 +211,13 @@ export const componentsList: Routes = [
     component: WindowServiceComponent,
     data: {
       name: 'Window Service',
+    },
+  },
+  {
+    path: 'icon',
+    component: IconComponent,
+    data: {
+      name: 'Icon',
     },
   },
   // INJECT: Add route for demo component
