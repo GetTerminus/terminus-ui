@@ -22,6 +22,7 @@ export { TsTableModule } from './src/table/table.module';
 export { TsToggleModule } from './src/toggle/toggle.module';
 export { TsTooltipModule } from './src/tooltip/tooltip.module';
 export { TsValidationMessagesModule } from './src/validation-messages/validation-messages.module';
+export { TsIconModule } from './src/icon/icon.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 

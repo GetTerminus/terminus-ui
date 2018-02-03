@@ -1,0 +1,40 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+
+
+//
+// @component
+//  Icon
+// @description
+//  TODO:
+//    1. Add description
+//    2. Verify the 'c-' prefix should be used
+//    3. Add needed styles
+//
+.ts-icon {
+  display: inline-block;
+
+  &.ts-icon--inline {
+    $margin: spacing(small, 2);
+
+    // Custom spacing values to match horizontal text rhythm
+    margin-left: calc(-#{$margin} - 2px);
+    margin-right: calc(-#{$margin} - 2px);
+    // Match the 16px type size as close as possible
+    transform: scale(.666);
+  }
+
+  // Top level styles belong here
+  .c-icon {
+    //
+  }
+}
+
+// Nested classes belong here
+.c-icon {
+  &.c-icon--inline {
+    // Better align to the text baseline
+    margin-bottom: -1px;
+    vertical-align: bottom;
+  }
+}

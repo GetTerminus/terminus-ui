@@ -18,6 +18,8 @@
 }
 
 .c-input {
+  $icon-top-adjustment: 6px;
+
   &.mat-form-field {
     @include typography;
     width: 100%;
@@ -26,7 +28,7 @@
   .mat-input-prefix,
   .mat-input-suffix {
     position: relative;
-    top: spacing(small, 2);
+    top: $icon-top-adjustment;
   }
 
   // Button to clear the value of the input

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatInputModule,
-  MatIconModule,
-} from '@angular/material';
+import { MatInputModule } from '@angular/material';
 
+import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../services/validators/validators.service';
 
@@ -19,8 +17,8 @@ export { TsInputComponent } from './input.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatIconModule,
     TsValidationMessagesModule,
+    TsIconModule,
   ],
   providers: [
     TsValidatorsService,

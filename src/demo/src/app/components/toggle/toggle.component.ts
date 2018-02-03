@@ -16,6 +16,9 @@ import {
         (change)="isChanged($event)"
       >Toggle Me!</ts-toggle>
 
+      <br>
+      <br>
+
       <button (click)="submit(myForm.value)">Submit</button>
     </form>
   `,

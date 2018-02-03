@@ -7,6 +7,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CopyComponent } from './copy/copy.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
+import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
@@ -77,6 +78,13 @@ export const componentsList: Routes = [
     component: DateRangeComponent,
     data: {
       name: 'Date Range',
+    },
+  },
+  {
+    path: 'icon',
+    component: IconComponent,
+    data: {
+      name: 'Icon',
     },
   },
   {

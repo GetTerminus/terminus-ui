@@ -4,11 +4,11 @@
   [color]="theme"
 >
 
-  <mat-icon
+  <ts-icon
     class="qa-input-prefix-icon"
     matPrefix
     *ngIf="prefixIcon"
-  >{{ prefixIcon }}</mat-icon>
+  >{{ prefixIcon }}</ts-icon>
 
   <input
     matInput
@@ -27,13 +27,13 @@
     #input
   >
 
-  <mat-icon
+  <ts-icon
     matSuffix
     *ngIf="isClearable"
     class="c-input__clear qa-input-suffix-icon"
     [ngClass]="{'c-input__clear--visible': value?.length > 0}"
     (click)="reset()"
-  >clear</mat-icon>
+  >clear</ts-icon>
 
   <mat-hint
     class="qa-input-hint"
