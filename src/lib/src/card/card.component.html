@@ -3,7 +3,8 @@
   [ngClass]="{
     'c-card--interaction': supportsInteraction,
     'c-card--centered': centeredContent,
-    'c-card--aspect': aspectRatioPadding
+    'c-card--aspect': aspectRatioPadding,
+    'c-card--disabled': disabled
   }"
   [style.paddingTop]="aspectRatioPadding"
   fxFlexFill
@@ -22,4 +23,11 @@
     *ngIf="utilityMenuTemplate"
     [ngTemplateOutlet]="utilityMenuTemplate"
   ></ng-container>
+
+  <mat-icon
+    *ngIf="disabled"
+    class="c-card__lock"
+  >
+    lock_outline
+  </mat-icon>
 </div>

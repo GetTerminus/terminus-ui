@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatRippleModule } from '@angular/material';
+import {
+  MatRippleModule,
+  MatIconModule,
+} from '@angular/material';
 
 import { TsCardComponent } from './card.component';
 export { TsCardComponent } from './card.component';
@@ -13,6 +16,7 @@ export { TsCardTitleDirective } from './card-title.directive';
   imports: [
     CommonModule,
     MatRippleModule,
+    MatIconModule,
   ],
   declarations: [
     TsCardComponent,

@@ -1,10 +1,8 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/card';
 @import './../scss/helpers/layout';
-
-:host {
-  display: inline-block;
-}
+@import './../scss/helpers/color';
+@import './../scss/helpers/reset';
 
 
 //
@@ -14,6 +12,7 @@
 //  A simple card component
 //
 .ts-card {
+  @include reset;
   display: flex;
   flex-flow: row nowrap;
 
@@ -31,17 +30,13 @@
     // Needed to contain the ripple effect
     position: relative;
   }
-
-  // Class added by the TsCardTitleDirective
-  .c-card__title {
-    @include typography(title);
-    margin: 0;
-  }
 }
 
 .c-card--interaction {
-  .c-card__inner {
-    @include card($allows-interaction: true);
+  &:not(.c-card--disabled) {
+    .c-card__inner {
+      @include card($allows-interaction: true);
+    }
   }
 }
 
@@ -57,5 +52,28 @@
 
   .c-card__inner {
     @include take-space;
+  }
+}
+
+.c-card--disabled {
+  // Set up for absolutely positioned icon
+  position: relative;
+
+  .c-card__inner {
+    opacity: .5;
+  }
+
+  .c-card__title {
+    padding-right: spacing(large);
+  }
+
+  // Lock icon
+  .c-card__lock {
+    color: color(utility);
+    position: absolute;
+    right: spacing(large);
+    // Magic number adjustment to align with title
+    top: calc(#{spacing(large)} - 2px);
+    transform: scale(.7);
   }
 }
