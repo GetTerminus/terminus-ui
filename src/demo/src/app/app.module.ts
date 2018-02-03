@@ -52,6 +52,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { CopyComponent } from './components/copy/copy.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { IconComponent } from './components/icon/icon.component';
 import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
@@ -71,7 +72,6 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
 import { WindowServiceComponent } from './components/services/window-service.component';
-import { IconComponent } from './components/icon/icon.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -127,6 +127,7 @@ import { IconComponent } from './components/icon/icon.component';
     CopyComponent,
     DateRangeComponent,
     DatepickerComponent,
+    IconComponent,
     InputComponent,
     LinkComponent,
     LoadingOverlayComponent,
@@ -146,7 +147,6 @@ import { IconComponent } from './components/icon/icon.component';
     TypographyComponent,
     ValidationComponent,
     WindowServiceComponent,
-    IconComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

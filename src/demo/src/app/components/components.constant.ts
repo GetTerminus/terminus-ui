@@ -7,6 +7,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CopyComponent } from './copy/copy.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
+import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
@@ -26,7 +27,6 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
 import { WindowServiceComponent } from './services/window-service.component';
-import { IconComponent } from './icon/icon.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -78,6 +78,13 @@ export const componentsList: Routes = [
     component: DateRangeComponent,
     data: {
       name: 'Date Range',
+    },
+  },
+  {
+    path: 'icon',
+    component: IconComponent,
+    data: {
+      name: 'Icon',
     },
   },
   {
@@ -211,13 +218,6 @@ export const componentsList: Routes = [
     component: WindowServiceComponent,
     data: {
       name: 'Window Service',
-    },
-  },
-  {
-    path: 'icon',
-    component: IconComponent,
-    data: {
-      name: 'Icon',
     },
   },
   // INJECT: Add route for demo component
