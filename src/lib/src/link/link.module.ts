@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {
-  MatIconModule,
-} from '@angular/material';
 
+import { TsIconModule } from './../icon/icon.module';
 import { TsLinkComponent } from './link.component';
 export { TsLinkComponent } from './link.component';
 
@@ -13,7 +11,7 @@ export { TsLinkComponent } from './link.component';
   imports: [
     CommonModule,
     RouterModule,
-    MatIconModule,
+    TsIconModule,
   ],
   exports: [
     TsLinkComponent,

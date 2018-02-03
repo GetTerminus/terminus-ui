@@ -17,12 +17,12 @@
   tabindex="{{ tabIndex }}"
   (click)="clickEvent.emit($event)"
 >
-  <mat-icon
+  <ts-icon
     *ngIf="iconName"
     class="c-button__icon"
   >
     {{ iconName }}
-  </mat-icon>
+  </ts-icon>
 
   <span class="c-button__content">
     <ng-content></ng-content>

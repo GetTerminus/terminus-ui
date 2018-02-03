@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import {
   MatNativeDateModule,
   MatDatepickerModule,
-  MatIconModule,
   MatInputModule,
 } from '@angular/material';
 
@@ -19,7 +18,6 @@ export { TsDatepickerComponent } from './datepicker.component';
     FormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatIconModule,
     MatInputModule,
     TsValidationMessagesModule,
   ],

@@ -4,10 +4,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import {
   MatButtonModule,
-  MatIconModule,
   MatMenuModule,
 } from '@angular/material';
 
+import { TsIconModule } from './../icon/icon.module';
 import { TsNavigationComponent } from './navigation.component';
 export { TsNavigationComponent } from './navigation.component';
 
@@ -17,9 +17,9 @@ export { TsNavigationComponent } from './navigation.component';
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatIconModule,
     MatMenuModule,
     RouterModule,
+    TsIconModule,
   ],
   declarations: [
     TsNavigationComponent,

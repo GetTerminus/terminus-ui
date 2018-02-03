@@ -1,10 +1,3 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatIconModule,
-  MatMenuModule,
-} from '@angular/material';
 
 import { TsMenuComponent } from './menu.component';
 
