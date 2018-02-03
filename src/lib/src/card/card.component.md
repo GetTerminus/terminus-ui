@@ -78,3 +78,13 @@ element which provides the needed styles.
 </ts-card>
 ```
 
+#### Disabled Card
+
+This will push the opacity of the card contents back and add a lock icon in the top right corner.
+
+```html
+<ts-card disabled="true">
+  My card
+</ts-card>
+```
+
