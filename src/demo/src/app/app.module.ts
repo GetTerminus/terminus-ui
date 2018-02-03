@@ -6,6 +6,7 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
+// Native Material modules only needed for demo shell
 import {
   MatButtonModule,
   MatIconModule,
@@ -85,6 +86,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     FlexLayoutModule,
     HttpClientModule,
 
+    // Native Material modules only needed for demo shell
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
