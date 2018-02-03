@@ -61,14 +61,19 @@
 
   .c-card__inner {
     opacity: .5;
-    padding-right: spacing(large, 1);
+  }
+
+  .c-card__title {
+    padding-right: spacing(large);
   }
 
   // Lock icon
   .c-card__lock {
     color: color(utility);
     position: absolute;
-    right: spacing(small);
-    top: spacing(small);
+    right: spacing(large);
+    // Magic number adjustment to align with title
+    top: calc(#{spacing(large)} - 2px);
+    transform: scale(.7);
   }
 }
