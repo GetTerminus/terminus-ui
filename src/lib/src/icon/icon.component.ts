@@ -34,7 +34,8 @@ export class TsIconComponent {
   /**
    * Name of the icon in the SVG icon set
    */
-  @Input() svgIcon: string;
+  @Input()
+  public svgIcon: string;
 
   /**
    * Define if the icon should be aligned inline with text
