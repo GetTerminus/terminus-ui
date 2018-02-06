@@ -93,6 +93,9 @@
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                 </li>
                                 <li class="link">
@@ -112,6 +115,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -174,6 +180,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -240,6 +249,9 @@
                         <ul class="links collapse "
                                 id="xs-directives-links"
                             >
+                                <li class="link">
+                                    <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                </li>
                                 <li class="link">
                                     <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                 </li>
@@ -516,6 +528,9 @@
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                        </li>
                                        <li class="link">
@@ -535,6 +550,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -597,6 +615,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -663,6 +684,9 @@
                                <ul class="links collapse "
                                        id="directives-links"
                    >
+                                       <li class="link">
+                                           <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                        </li>
@@ -2194,12 +2218,12 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   tabindex&#x3D;&quot;{{ tabIndex }}&quot;
   (click)&#x3D;&quot;clickEvent.emit($event)&quot;
 &gt;
-  &lt;mat-icon
+  &lt;ts-icon
     *ngIf&#x3D;&quot;iconName&quot;
     class&#x3D;&quot;c-button__icon&quot;
   &gt;
     {{ iconName }}
-  &lt;/mat-icon&gt;
+  &lt;/ts-icon&gt;
 
   &lt;span class&#x3D;&quot;c-button__content&quot;&gt;
     &lt;ng-content&gt;&lt;/ng-content&gt;
@@ -2244,9 +2268,9 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  mat-raised-button  class="c-button mat-raised-button qa-button"  [ngClass]="{    \'c-button--collapsed\': isCollapsed,    \'c-button--progress\': showProgress && !isDisabled,    \'c-button--filled\': definedFormat === \'filled\',    \'c-button--hollow\': definedFormat === \'hollow\',    \'c-button--collapsable\': definedFormat === \'collapsable\',    \'c-button--primary\': theme === \'primary\',    \'c-button--accent\': theme === \'accent\',    \'c-button--warn\': theme === \'warn\'  }"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  [disabled]="isDisabled || showProgress"  tabindex="{{ tabIndex }}"  (click)="clickEvent.emit($event)">  <mat-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </mat-icon>  <span class="c-button__content">    <ng-content></ng-content>  </span>  <mat-progress-spinner    *ngIf="showProgress && !isDisabled"    class="c-button__spinner qa-button-spinner"    [ngClass]="{\'c-button__spinner--active\': showProgress && !isDisabled}"    diameter="21"    mode="indeterminate"  ></mat-progress-spinner></button></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+        var COMPONENT_TEMPLATE = '<div><button  mat-raised-button  class="c-button mat-raised-button qa-button"  [ngClass]="{    \'c-button--collapsed\': isCollapsed,    \'c-button--progress\': showProgress && !isDisabled,    \'c-button--filled\': definedFormat === \'filled\',    \'c-button--hollow\': definedFormat === \'hollow\',    \'c-button--collapsable\': definedFormat === \'collapsable\',    \'c-button--primary\': theme === \'primary\',    \'c-button--accent\': theme === \'accent\',    \'c-button--warn\': theme === \'warn\'  }"  [attr.aria-label]="actionName"  [attr.type]="buttonType"  [disabled]="isDisabled || showProgress"  tabindex="{{ tabIndex }}"  (click)="clickEvent.emit($event)">  <ts-icon    *ngIf="iconName"    class="c-button__icon"  >    {{ iconName }}  </ts-icon>  <span class="c-button__content">    <ng-content></ng-content>  </span>  <mat-progress-spinner    *ngIf="showProgress && !isDisabled"    class="c-button__spinner qa-button-spinner"    [ngClass]="{\'c-button__spinner--active\': showProgress && !isDisabled}"    diameter="21"    mode="indeterminate"  ></mat-progress-spinner></button></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var DIRECTIVES = [{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsButtonComponent'};
 </script>
 <script src="../js/tree.js"></script>

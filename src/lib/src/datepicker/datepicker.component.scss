@@ -15,6 +15,11 @@
     @include typography;
     display: block;
   }
+
+  // Display inline block when inside a TsDateRange component
+  .ts-date-range & {
+    display: inline-block;
+  }
 }
 
 // <mat-datepicker> The calendar pop-up
@@ -22,3 +27,4 @@
   // NOTE(B$): It is currently not possible to theme the calendar popup due to no custom classes
   // being added.
 }
+
