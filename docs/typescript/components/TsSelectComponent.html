@@ -93,6 +93,9 @@
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                 </li>
                                 <li class="link">
@@ -112,6 +115,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -174,6 +180,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -240,6 +249,9 @@
                         <ul class="links collapse "
                                 id="xs-directives-links"
                             >
+                                <li class="link">
+                                    <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                </li>
                                 <li class="link">
                                     <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                 </li>
@@ -516,6 +528,9 @@
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                        </li>
                                        <li class="link">
@@ -535,6 +550,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -597,6 +615,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -663,6 +684,9 @@
                                <ul class="links collapse "
                                        id="directives-links"
                    >
+                                       <li class="link">
+                                           <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                        </li>
@@ -1214,9 +1238,6 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                               </p>
-                            <p>
-                              <em>Default value: </em><code>&#x27;value&#x27;</code>
-                            </p>
                         </td>
                     </tr>
                             <tr>
@@ -1474,7 +1495,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define the key that represents the value item from the object
    */
   @Input()
-  public valueKey: string &#x3D; &#x27;value&#x27;;
+  public valueKey: string;
 
   /**
    * Emit event when the select has been opened
@@ -1564,8 +1585,8 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-select qa-select"  [color]="theme">  <mat-select    [placeholder]="label"    [(ngModel)]="value"    [multiple]="multipleAllowed"    (openedChange)="openedChange.emit(true)"    (selectionChange)="selectionChange.emit(value)"  >    <mat-option      class="qa-select-option"      *ngIf="blankChoice && !multipleAllowed"    >      {{ blankChoice }}    </mat-option>    <mat-option      class="qa-select-option"      *ngFor="let item of items"      [value]="getValueKey(item, valueKey)"    >      {{ item.name || item }}    </mat-option>  </mat-select></mat-form-field></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var DIRECTIVES = [{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};
 </script>
 <script src="../js/tree.js"></script>

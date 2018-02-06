@@ -1,4 +1,4 @@
-<div class="c-date-range qa-date-range">
+<div class="c-date-range qa-date-range" fxLayout="row">
   <ts-datepicker
     class="qa-date-range-start-datepicker"
     [formControl]="startDateControl"
@@ -10,6 +10,7 @@
     [theme]="theme"
     (selected)="startDateSelected($event)"
     #start
+    fxFlex
   ></ts-datepicker>
 
   <span
@@ -30,5 +31,6 @@
     [theme]="theme"
     (selected)="endDateSelected($event)"
     #end
+    fxFlex
   ></ts-datepicker>
 </div>

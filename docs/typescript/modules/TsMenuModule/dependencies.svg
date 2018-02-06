@@ -22,61 +22,73 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsMenuModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="100,-70 100,-268 396,-268 396,-70 100,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="42,-70 42,-268 454,-268 454,-70 42,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsMenuModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="244,-78 244,-130 388,-130 388,-78 244,-78"/>
+<polygon fill="none" stroke="#000000" points="302,-78 302,-130 446,-130 446,-78 302,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_TsMenuModule_imports</title>
-<polygon fill="none" stroke="#000000" points="108,-78 108,-130 236,-130 236,-78 108,-78"/>
+<polygon fill="none" stroke="#000000" points="50,-78 50,-130 294,-130 294,-78 50,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsMenuModule_exports</title>
-<polygon fill="none" stroke="#000000" points="174,-208 174,-260 322,-260 322,-208 174,-208"/>
+<polygon fill="none" stroke="#000000" points="163,-208 163,-260 311,-260 311,-208 163,-208"/>
 </g>
 <!-- TsMenuComponent -->
 <g id="node1" class="node">
 <title>TsMenuComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="379.9888,-122 252.0112,-122 252.0112,-86 379.9888,-86 379.9888,-122"/>
-<text text-anchor="middle" x="316" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="437.9888,-122 310.0112,-122 310.0112,-86 437.9888,-86 437.9888,-122"/>
+<text text-anchor="middle" x="374" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent</text>
 </g>
 <!-- TsMenuModule -->
 <g id="node2" class="node">
 <title>TsMenuModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="301.2064,-187 298.2064,-191 277.2064,-191 274.2064,-187 194.7936,-187 194.7936,-151 301.2064,-151 301.2064,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="290.2064,-187 287.2064,-191 266.2064,-191 263.2064,-187 183.7936,-187 183.7936,-151 290.2064,-151 290.2064,-187"/>
+<text text-anchor="middle" x="237" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuModule</text>
 </g>
 <!-- TsMenuComponent&#45;&gt;TsMenuModule -->
 <g id="edge1" class="edge">
 <title>TsMenuComponent&#45;&gt;TsMenuModule</title>
-<path fill="none" stroke="#000000" d="M276.5544,-122.1061C276.5544,-122.1061 276.5544,-140.991 276.5544,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="273.0544,-140.9909 276.5544,-150.991 280.0544,-140.991 273.0544,-140.9909"/>
+<path fill="none" stroke="#000000" d="M374,-122.1061C374,-141.3391 374,-169 374,-169 374,-169 300.3601,-169 300.3601,-169"/>
+<polygon fill="#000000" stroke="#000000" points="300.3601,-165.5001 290.3601,-169 300.36,-172.5001 300.3601,-165.5001"/>
 </g>
 <!-- TsMenuComponent  -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>TsMenuComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="313.9897,-252 182.0103,-252 182.0103,-216 313.9897,-216 313.9897,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="302.9897,-252 171.0103,-252 171.0103,-216 302.9897,-216 302.9897,-252"/>
+<text text-anchor="middle" x="237" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuComponent </text>
 </g>
 <!-- TsMenuModule&#45;&gt;TsMenuComponent  -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>TsMenuModule&#45;&gt;TsMenuComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M237,-187.1061C237,-187.1061 237,-205.991 237,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="233.5001,-205.9909 237,-215.991 240.5001,-205.991 233.5001,-205.9909"/>
+</g>
+<!-- TsIconModule -->
+<g id="node3" class="node">
+<title>TsIconModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="286.4231,-122 283.4231,-126 262.4231,-126 259.4231,-122 187.5769,-122 187.5769,-86 286.4231,-86 286.4231,-122"/>
+<text text-anchor="middle" x="237" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
+</g>
+<!-- TsIconModule&#45;&gt;TsMenuModule -->
+<g id="edge2" class="edge">
+<title>TsIconModule&#45;&gt;TsMenuModule</title>
+<path fill="none" stroke="#000000" d="M237,-122.1061C237,-122.1061 237,-140.991 237,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="233.5001,-140.9909 237,-150.991 240.5001,-140.991 233.5001,-140.9909"/>
 </g>
 <!-- TsButtonModule -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>TsButtonModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="227.6653,-122 224.6653,-126 203.6653,-126 200.6653,-122 116.3347,-122 116.3347,-86 227.6653,-86 227.6653,-122"/>
-<text text-anchor="middle" x="172" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="169.6653,-122 166.6653,-126 145.6653,-126 142.6653,-122 58.3347,-122 58.3347,-86 169.6653,-86 169.6653,-122"/>
+<text text-anchor="middle" x="114" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsMenuModule -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>TsButtonModule&#45;&gt;TsMenuModule</title>
-<path fill="none" stroke="#000000" d="M211.3647,-122.1061C211.3647,-122.1061 211.3647,-140.991 211.3647,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="207.8647,-140.9909 211.3647,-150.991 214.8647,-140.991 207.8647,-140.9909"/>
+<path fill="none" stroke="#000000" d="M114,-122.1061C114,-141.3391 114,-169 114,-169 114,-169 173.7658,-169 173.7658,-169"/>
+<polygon fill="#000000" stroke="#000000" points="173.7658,-172.5001 183.7658,-169 173.7658,-165.5001 173.7658,-172.5001"/>
 </g>
 </g>
 </svg>

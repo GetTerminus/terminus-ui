@@ -93,6 +93,9 @@
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                 </li>
                                 <li class="link">
@@ -112,6 +115,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -174,6 +180,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -240,6 +249,9 @@
                         <ul class="links collapse "
                                 id="xs-directives-links"
                             >
+                                <li class="link">
+                                    <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                </li>
                                 <li class="link">
                                     <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                 </li>
@@ -516,6 +528,9 @@
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsIconModule.html" >TsIconModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsInputModule.html" >TsInputModule</a>
                                        </li>
                                        <li class="link">
@@ -535,6 +550,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsPaginatorModule.html" >TsPaginatorModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TsPipesModule.html" >TsPipesModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TsRadioGroupModule.html" >TsRadioGroupModule</a>
@@ -597,6 +615,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsIconComponent.html" >TsIconComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsInputComponent.html" >TsInputComponent</a>
@@ -663,6 +684,9 @@
                                <ul class="links collapse "
                                        id="directives-links"
                    >
+                                       <li class="link">
+                                           <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../directives/TsCellDefDirective.html" >TsCellDefDirective</a>
                                        </li>
@@ -1017,6 +1041,9 @@
                                 <a href="#centeredContent">centeredContent</a>
                             </li>
                             <li>
+                                <a href="#disabled">disabled</a>
+                            </li>
+                            <li>
                                 <a href="#supportsInteraction">supportsInteraction</a>
                             </li>
                             <li>
@@ -1087,6 +1114,32 @@
                             <tr>
                                 <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/card/card.component.ts:73</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="disabled"></a>
+                            <code>disabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the card is disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/card/card.component.ts:85</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1303,7 +1356,16 @@
       My link
     &lt;/ts-link&gt;
   &lt;/ng-template&gt;
-&lt;/ng-template&gt;</code></pre></p>
+&lt;/ng-template&gt;</code></pre><h4 id="card-with-a-title">Card with a Title</h4>
+<p>Attach the <code>tsCardTitle</code> directive to your title element. This directive simply adds a class to the
+element which provides the needed styles.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card&gt;
+  &lt;h3 tsCardTitle&gt;My Title&lt;/h3&gt;
+&lt;/ts-card&gt;</code></pre><h4 id="disabled-card">Disabled Card</h4>
+<p>This will push the opacity of the card contents back and add a lock icon in the top right corner.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-card disabled=&quot;true&quot;&gt;
+  My card
+&lt;/ts-card&gt;</code></pre></p>
     </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
@@ -1387,6 +1449,12 @@ export class TsCardComponent {
   @Input()
   public utilityMenuTemplate: TemplateRef&lt;ElementRef&gt;;
 
+  /**
+   * Define if the card is disabled
+   */
+  @Input()
+  public disabled: boolean &#x3D; false;
+
 }
 </code></pre>
     </div>
@@ -1397,7 +1465,8 @@ export class TsCardComponent {
   [ngClass]&#x3D;&quot;{
     &#x27;c-card--interaction&#x27;: supportsInteraction,
     &#x27;c-card--centered&#x27;: centeredContent,
-    &#x27;c-card--aspect&#x27;: aspectRatioPadding
+    &#x27;c-card--aspect&#x27;: aspectRatioPadding,
+    &#x27;c-card--disabled&#x27;: disabled
   }&quot;
   [style.paddingTop]&#x3D;&quot;aspectRatioPadding&quot;
   fxFlexFill
@@ -1416,6 +1485,13 @@ export class TsCardComponent {
     *ngIf&#x3D;&quot;utilityMenuTemplate&quot;
     [ngTemplateOutlet]&#x3D;&quot;utilityMenuTemplate&quot;
   &gt;&lt;/ng-container&gt;
+
+  &lt;ts-icon
+    *ngIf&#x3D;&quot;disabled&quot;
+    class&#x3D;&quot;c-card__lock&quot;
+  &gt;
+    lock_outline
+  &lt;/ts-icon&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1448,9 +1524,9 @@ export class TsCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding  }"  [style.paddingTop]="aspectRatioPadding"  fxFlexFill  fxLayout="row">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"    fxFlexFill  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+        var COMPONENT_TEMPLATE = '<div><div  class="c-card c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding,    \'c-card--disabled\': disabled  }"  [style.paddingTop]="aspectRatioPadding"  fxFlexFill  fxLayout="row">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"    fxFlexFill  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container>  <ts-icon    *ngIf="disabled"    class="c-card__lock"  >    lock_outline  </ts-icon></div></div>'
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var DIRECTIVES = [{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCardComponent'};
 </script>
 <script src="../js/tree.js"></script>

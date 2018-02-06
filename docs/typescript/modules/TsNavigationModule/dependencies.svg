@@ -22,11 +22,15 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsNavigationModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="151,-70 151,-268 345,-268 345,-70 151,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="92,-70 92,-268 404,-268 404,-70 92,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsNavigationModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="161,-78 161,-130 335,-130 335,-78 161,-78"/>
+<polygon fill="none" stroke="#000000" points="222,-78 222,-130 396,-130 396,-78 222,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_TsNavigationModule_imports</title>
+<polygon fill="none" stroke="#000000" points="100,-78 100,-130 214,-130 214,-78 100,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsNavigationModule_exports</title>
@@ -35,8 +39,8 @@
 <!-- TsNavigationComponent -->
 <g id="node1" class="node">
 <title>TsNavigationComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="326.5379,-122 169.4621,-122 169.4621,-86 326.5379,-86 326.5379,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsNavigationComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="387.5379,-122 230.4621,-122 230.4621,-86 387.5379,-86 387.5379,-122"/>
+<text text-anchor="middle" x="309" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsNavigationComponent</text>
 </g>
 <!-- TsNavigationModule -->
 <g id="node2" class="node">
@@ -47,20 +51,32 @@
 <!-- TsNavigationComponent&#45;&gt;TsNavigationModule -->
 <g id="edge1" class="edge">
 <title>TsNavigationComponent&#45;&gt;TsNavigationModule</title>
-<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M273.0544,-122.1061C273.0544,-122.1061 273.0544,-140.991 273.0544,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="269.5544,-140.9909 273.0544,-150.991 276.5544,-140.991 269.5544,-140.9909"/>
 </g>
 <!-- TsNavigationComponent  -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>TsNavigationComponent </title>
 <polygon fill="#fb8072" stroke="#000000" points="328.5372,-252 167.4628,-252 167.4628,-216 328.5372,-216 328.5372,-252"/>
 <text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsNavigationComponent </text>
 </g>
 <!-- TsNavigationModule&#45;&gt;TsNavigationComponent  -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>TsNavigationModule&#45;&gt;TsNavigationComponent </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+</g>
+<!-- TsIconModule -->
+<g id="node3" class="node">
+<title>TsIconModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="206.4231,-122 203.4231,-126 182.4231,-126 179.4231,-122 107.5769,-122 107.5769,-86 206.4231,-86 206.4231,-122"/>
+<text text-anchor="middle" x="157" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
+</g>
+<!-- TsIconModule&#45;&gt;TsNavigationModule -->
+<g id="edge2" class="edge">
+<title>TsIconModule&#45;&gt;TsNavigationModule</title>
+<path fill="none" stroke="#000000" d="M193.1669,-122.1061C193.1669,-122.1061 193.1669,-140.991 193.1669,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="189.667,-140.9909 193.1669,-150.991 196.667,-140.991 189.667,-140.9909"/>
 </g>
 </g>
 </svg>
