@@ -12,6 +12,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { debounce } from '@terminus/ngx-tools';
 
 import {
   TsButtonActionTypes,
@@ -19,7 +20,6 @@ import {
   TsStyleThemeTypes,
 } from './../utilities/types';
 import { TsSearchResponse } from '../utilities/interfaces';
-import { debounce } from './../utilities/debounce';
 
 
 /**

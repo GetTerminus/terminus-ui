@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
-import { passwordRegex } from './../../../../utilities/regex/password.regex';
+import { passwordRegex } from '@terminus/ngx-tools/regex';
 
 
 /**

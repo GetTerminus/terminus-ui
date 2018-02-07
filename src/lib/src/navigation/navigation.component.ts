@@ -15,13 +15,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { groupBy } from '@terminus/ngx-tools';
 
 import {
   TsNavigationItem,
   TsNavigationPayload,
   TsUser,
 } from './../utilities/interfaces/';
-import { groupBy } from './../utilities/groupBy';
 
 
 /**

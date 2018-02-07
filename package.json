@@ -118,6 +118,9 @@
       "@semantic-release/github"
     ]
   },
+  "dependencies": {
+    "date-fns": "2.0.0-alpha.7"
+  },
   "peerDependencies": {
     "@angular/animations": "5.1.2",
     "@angular/cdk": "5.0.2",
@@ -125,7 +128,8 @@
     "@angular/forms": "5.1.2",
     "@angular/material": "5.0.2",
     "@angular/platform-browser": "5.1.2",
-    "@angular/router": "5.1.2"
+    "@angular/router": "5.1.2",
+    "@terminus/ngx-tools": "0.0.4"
   },
   "devDependencies": {
     "@angular/animations": "5.1.2",
@@ -255,8 +259,5 @@
     ],
     "mapCoverage": true,
     "setupTestFrameworkScriptFile": "<rootDir>/src/lib/setupJest.ts"
-  },
-  "dependencies": {
-    "date-fns": "2.0.0-alpha.7"
   }
 }
