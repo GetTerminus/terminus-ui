@@ -354,6 +354,10 @@
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.6.0.tgz#383f456b26bc96c7889f0332079f4358b16c58dc"
 
+"@terminus/ngx-tools@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-0.0.4.tgz#4fc1e96be6408fc5c1bad4dde93636f06b31bfc6"
+
 "@types/jasmine@2.8.3":
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.3.tgz#f910edc67d69393d562d10f8f3d205ea3f3306bf"

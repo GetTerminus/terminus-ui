@@ -202,6 +202,10 @@
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.0.11.tgz#c8f70f270ed38f29b2873248126fd59abd635862"
 
+"@terminus/ngx-tools@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-0.0.4.tgz#4fc1e96be6408fc5c1bad4dde93636f06b31bfc6"
+
 "@terminus/ui@2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-2.0.0.tgz#26e420206e5ee9e10396f9c7bec1a12dd0fda41b"
