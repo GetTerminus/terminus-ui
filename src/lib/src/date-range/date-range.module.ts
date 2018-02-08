@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TsDatepickerModule } from './../datepicker/datepicker.module';
 
@@ -11,6 +12,7 @@ export { TsDateRangeComponent } from './date-range.component';
   imports: [
     CommonModule,
     TsDatepickerModule,
+    FlexLayoutModule,
   ],
   exports: [
     TsDateRangeComponent,

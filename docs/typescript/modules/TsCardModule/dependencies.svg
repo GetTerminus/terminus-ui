@@ -22,45 +22,85 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsCardModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="169,-70 169,-268 327,-268 327,-70 169,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="33,-70 33,-268 463,-268 463,-70 33,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsCardModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="179,-78 179,-130 317,-130 317,-78 179,-78"/>
+<polygon fill="none" stroke="#000000" points="163,-78 163,-130 455,-130 455,-78 163,-78"/>
 </g>
 <g id="clust5" class="cluster">
+<title>cluster_TsCardModule_imports</title>
+<polygon fill="none" stroke="#000000" points="41,-78 41,-130 155,-130 155,-78 41,-78"/>
+</g>
+<g id="clust6" class="cluster">
 <title>cluster_TsCardModule_exports</title>
-<polygon fill="none" stroke="#000000" points="177,-208 177,-260 319,-260 319,-208 177,-208"/>
+<polygon fill="none" stroke="#000000" points="98,-208 98,-260 398,-260 398,-208 98,-208"/>
 </g>
 <!-- TsCardComponent -->
 <g id="node1" class="node">
 <title>TsCardComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="309.0423,-122 186.9577,-122 186.9577,-86 309.0423,-86 309.0423,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="447.0423,-122 324.9577,-122 324.9577,-86 447.0423,-86 447.0423,-122"/>
+<text text-anchor="middle" x="386" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardComponent</text>
 </g>
 <!-- TsCardModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>TsCardModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="298.2591,-187 295.2591,-191 274.2591,-191 271.2591,-187 197.7409,-187 197.7409,-151 298.2591,-151 298.2591,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="289.2591,-187 286.2591,-191 265.2591,-191 262.2591,-187 188.7409,-187 188.7409,-151 289.2591,-151 289.2591,-187"/>
+<text text-anchor="middle" x="239" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardModule</text>
 </g>
 <!-- TsCardComponent&#45;&gt;TsCardModule -->
 <g id="edge1" class="edge">
 <title>TsCardComponent&#45;&gt;TsCardModule</title>
-<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M357.375,-122.1061C357.375,-141.3391 357.375,-169 357.375,-169 357.375,-169 299.545,-169 299.545,-169"/>
+<polygon fill="#000000" stroke="#000000" points="299.5451,-165.5001 289.545,-169 299.545,-172.5001 299.5451,-165.5001"/>
+</g>
+<!-- TsCardTitleDirective -->
+<g id="node2" class="node">
+<title>TsCardTitleDirective</title>
+<polygon fill="#ffffb3" stroke="#000000" points="306.7311,-122 171.2689,-122 171.2689,-86 306.7311,-86 306.7311,-122"/>
+<text text-anchor="middle" x="239" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardTitleDirective</text>
+</g>
+<!-- TsCardTitleDirective&#45;&gt;TsCardModule -->
+<g id="edge2" class="edge">
+<title>TsCardTitleDirective&#45;&gt;TsCardModule</title>
+<path fill="none" stroke="#000000" d="M239,-122.1061C239,-122.1061 239,-140.991 239,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="235.5001,-140.9909 239,-150.991 242.5001,-140.991 235.5001,-140.9909"/>
 </g>
 <!-- TsCardComponent  -->
-<g id="node3" class="node">
+<g id="node5" class="node">
 <title>TsCardComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="311.0414,-252 184.9586,-252 184.9586,-216 311.0414,-216 311.0414,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="390.0414,-252 263.9586,-252 263.9586,-216 390.0414,-216 390.0414,-252"/>
+<text text-anchor="middle" x="327" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardComponent </text>
 </g>
 <!-- TsCardModule&#45;&gt;TsCardComponent  -->
-<g id="edge2" class="edge">
+<g id="edge4" class="edge">
 <title>TsCardModule&#45;&gt;TsCardComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M276.6794,-187.1061C276.6794,-187.1061 276.6794,-205.991 276.6794,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="273.1794,-205.9909 276.6794,-215.991 280.1794,-205.991 273.1794,-205.9909"/>
+</g>
+<!-- TsCardTitleDirective  -->
+<g id="node6" class="node">
+<title>TsCardTitleDirective </title>
+<polygon fill="#fb8072" stroke="#000000" points="245.731,-252 106.269,-252 106.269,-216 245.731,-216 245.731,-252"/>
+<text text-anchor="middle" x="176" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardTitleDirective </text>
+</g>
+<!-- TsCardModule&#45;&gt;TsCardTitleDirective  -->
+<g id="edge5" class="edge">
+<title>TsCardModule&#45;&gt;TsCardTitleDirective </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M217.118,-187.1061C217.118,-187.1061 217.118,-205.991 217.118,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="213.6181,-205.9909 217.118,-215.991 220.6181,-205.991 213.6181,-205.9909"/>
+</g>
+<!-- TsIconModule -->
+<g id="node4" class="node">
+<title>TsIconModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="147.4231,-122 144.4231,-126 123.4231,-126 120.4231,-122 48.5769,-122 48.5769,-86 147.4231,-86 147.4231,-122"/>
+<text text-anchor="middle" x="98" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
+</g>
+<!-- TsIconModule&#45;&gt;TsCardModule -->
+<g id="edge3" class="edge">
+<title>TsIconModule&#45;&gt;TsCardModule</title>
+<path fill="none" stroke="#000000" d="M126.7979,-122.1061C126.7979,-141.3391 126.7979,-169 126.7979,-169 126.7979,-169 178.4789,-169 178.4789,-169"/>
+<polygon fill="#000000" stroke="#000000" points="178.4789,-172.5001 188.4789,-169 178.4789,-165.5001 178.4789,-172.5001"/>
 </g>
 </g>
 </svg>
