@@ -3,6 +3,7 @@
 @import './../scss/helpers/layout';
 @import './../scss/helpers/color';
 @import './../scss/helpers/reset';
+@import './../scss/helpers/spacing';
 
 
 //
@@ -19,12 +20,16 @@
   // Top level styles should be nested here
   .c-card {
     @include typography;
-    align-items: stretch;
     background-color: color(pure);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     width: 100%;
+
+    &:not(.c-card--interaction),
+    &:not(.c-card--aspect) {
+      align-items: stretch;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 }
 
@@ -53,11 +58,13 @@
 }
 
 .c-card--aspect {
+  $padding: spacing(large) * 2;
   // set up for take-space
   position: relative;
 
   .c-card__inner {
     @include take-space;
+    width: calc(100% - #{$padding});
   }
 }
 
