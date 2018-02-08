@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
-import { creditCardRegex } from './../../../../utilities/regex/credit-card.regex';
+import { creditCardRegex } from '@terminus/ngx-tools/regex';
 
 
 /**

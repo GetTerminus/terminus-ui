@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
-import { emailRegex } from './../../../../utilities/regex/email.regex';
+import { emailRegex } from '@terminus/ngx-tools/regex';
 
 
 /**

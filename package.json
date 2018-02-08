@@ -44,9 +44,6 @@
     "prefresh-yarn-install": "rm -rf node_modules && cd src/demo && rm -rf node_modules",
     "fresh-yarn-install": "yarn install && yarn run demo-yarn-install",
     "postfresh-yarn-install": "cd dist/ && yarn link && cd ../src/demo && yarn link @terminus/ui",
-    "update:angular:ui": "yarn add @angular/animations@latest @angular/cdk@latest @angular/core@latest @angular/forms@latest @angular/material@latest @angular/platform-browser@latest @angular/router@latest --exact && yarn add @angular/cli@latest @angular/common@latest @angular/core@latest @angular/compiler@latest @angular/compiler-cli@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/http@latest @angular/http@latest @angular/flex-layout@latest -D --exact",
-    "update:angular:demo": "cd src/demo && yarn add @angular/animations@latest @angular/common@latest @angular/compiler@latest @angular/core@latest @angular/flex-layout@latest @angular/forms@latest @angular/http@latest @angular/material@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/router@latest @angular/cdk@latest --exact && yarn add @angular/cli@latest @angular/compiler-cli@latest @angular/language-service@latest -D --exact",
-    "update:angular": "yr update:angular:ui && yr update:angular:demo",
     "//=> Section: Integration": "",
     "preintegration": "yarn run build && cd integration && yarn run clean && yarn install",
     "integration": "yarn run integration:aot && yarn run integration:jit",
@@ -118,6 +115,9 @@
       "@semantic-release/github"
     ]
   },
+  "dependencies": {
+    "date-fns": "2.0.0-alpha.7"
+  },
   "peerDependencies": {
     "@angular/animations": "5.1.2",
     "@angular/cdk": "5.0.2",
@@ -125,7 +125,8 @@
     "@angular/forms": "5.1.2",
     "@angular/material": "5.0.2",
     "@angular/platform-browser": "5.1.2",
-    "@angular/router": "5.1.2"
+    "@angular/router": "5.1.2",
+    "@terminus/ngx-tools": "0.0.4"
   },
   "devDependencies": {
     "@angular/animations": "5.1.2",
@@ -145,6 +146,7 @@
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
+    "@terminus/ngx-tools": "1.0.0",
     "@types/jasmine": "2.8.3",
     "@types/jest": "22.0.1",
     "@types/node": "8.5.2",
@@ -255,8 +257,5 @@
     ],
     "mapCoverage": true,
     "setupTestFrameworkScriptFile": "<rootDir>/src/lib/setupJest.ts"
-  },
-  "dependencies": {
-    "date-fns": "2.0.0-alpha.7"
   }
 }
