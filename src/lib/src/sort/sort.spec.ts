@@ -23,11 +23,11 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
-
 import {
   dispatchMouseEvent,
   wrappedErrorMessage,
-} from './../utilities/testing';
+} from '@terminus/ngx-tools/testing';
+
 import { TsTableModule } from './../table/table.module';
 import { TsSortDirective } from './sort.directive';
 import { TsSortModule } from './sort.module';
