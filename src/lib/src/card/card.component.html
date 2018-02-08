@@ -1,5 +1,5 @@
 <div
-  class="c-card c-card qa-card"
+  class="c-card qa-card"
   [ngClass]="{
     'c-card--interaction': supportsInteraction,
     'c-card--centered': centeredContent,
@@ -7,14 +7,11 @@
     'c-card--disabled': disabled
   }"
   [style.paddingTop]="aspectRatioPadding"
-  fxFlexFill
-  fxLayout="row"
 >
   <div
     class="c-card__inner"
     mat-ripple
     [matRippleDisabled]="!supportsInteraction"
-    fxFlexFill
   >
     <ng-content></ng-content>
   </div>

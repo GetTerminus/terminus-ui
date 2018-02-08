@@ -19,6 +19,11 @@
   // Top level styles should be nested here
   .c-card {
     @include typography;
+    align-items: stretch;
+    background-color: color(pure);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
   }
 }
@@ -29,6 +34,7 @@
     @include card;
     // Needed to contain the ripple effect
     position: relative;
+    width: 100%;
   }
 }
 
