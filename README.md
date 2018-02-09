@@ -75,46 +75,45 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ### Components
 
-| Feature         | Notes                                               | Status             | Demo                         |
-|-----------------|-----------------------------------------------------|:------------------:|------------------------------|
-| alert           |                                                     | :x:                |                              |
-| autocomplete    |                                                     | :x:                |                              |
-| badge           |                                                     | :x:                |                              |
-| button          |                                                     | :white_check_mark: | [Demo][demo-button]          |
-| icon-button     |                                                     | :white_check_mark: | [Demo][demo-icon-button]     |
-| breadcrumbs     |                                                     | :x:                |                              |
-| card            |                                                     | :white_check_mark: | [Demo][demo-card]            |
-| chip            |                                                     | :x:                |                              |
-| checkbox        |                                                     | :white_check_mark: | [Demo][demo-checkbox]        |
-| copy            |                                                     | :white_check_mark: | [Demo][demo-copy]            |
-| datavis         |                                                     | :x:                |                              |
-| datepicker      |                                                     | :white_check_mark: | [Demo][demo-datepicker]      |
-| date-range      |                                                     | :white_check_mark: | [Demo][demo-date-range]      |
-| dialog          |                                                     | :x:                |                              |
-| divider         |                                                     | :x:                |                              |
-| expansion       |                                                     | :x:                |                              |
-| file-picker     |                                                     | :x:                |                              |
-| input-masking   |                                                     | :x:                |                              |
-| input-messages  | Used by `input` to display validation messages      | :white_check_mark: | (see input demo)             |
-| icon            | See all valid icon names: https://material.io/icons | :white_check_mark: | [Demo][demo-icon]            |
-| input           |                                                     | :white_check_mark: | [Demo][demo-input]           |
-| link            |                                                     | :white_check_mark: | [Demo][demo-link]            |
-| loading overlay |                                                     | :white_check_mark: | [Demo][demo-loading-overlay] |
-| login form      |                                                     | :white_check_mark: | [Demo][demo-log-in-form]     |
-| menu            |                                                     | :white_check_mark: | [Demo][demo-menu]            |
-| navigation      |                                                     | :white_check_mark: | [Demo][demo-navigation]      |
-| paginator       |                                                     | :white_check_mark: | [Demo][demo-paginator]       |
-| picklist        |                                                     | :x:                |                              |
-| progress        |                                                     | :x:                |                              |
-| progression     |                                                     | :x:                |                              |
-| radio-group     |                                                     | :white_check_mark: | [Demo][demo-radio-group]     |
-| search          |                                                     | :white_check_mark: | [Demo][demo-search]          |
-| select          |                                                     | :white_check_mark: | [Demo][demo-select]          |
-| sort            | Used by `table` to manage column sorting            | :white_check_mark: | (see table demo)             |
-| table           |                                                     | :white_check_mark: | [Demo][demo-table]           |
-| tabs            |                                                     | :x:                |                              |
-| toggle          |                                                     | :white_check_mark: | [Demo][demo-toggle]          |
-| tooltip         |                                                     | :white_check_mark: | [Demo][demo-tooltip]         |
+| Feature         | Notes                                          | Status             | Demo                         | Docs                         | Usage                      |
+|-----------------|------------------------------------------------|:------------------:|------------------------------|------------------------------|----------------------------|
+| alert           |                                                | :x:                |                              |                              |                            |
+| autocomplete    |                                                | :x:                |                              |                              |                            |
+| badge           |                                                | :x:                |                              |                              |                            |
+| button          |                                                | :white_check_mark: | [Demo][demo-button]          | [Docs][button-docs]          |                            |
+| breadcrumbs     |                                                | :x:                |                              |                              |                            |
+| card            |                                                | :white_check_mark: | [Demo][demo-card]            | [Docs][card-docs]            | [Usage][card-usage]        |
+| chip            |                                                | :x:                |                              |                              |                            |
+| checkbox        |                                                | :white_check_mark: | [Demo][demo-checkbox]        | [Docs][checkbox-docs]        | [Usage][checkbox-usage]    |
+| copy            |                                                | :white_check_mark: | [Demo][demo-copy]            | [Docs][copy-docs]            |                            |
+| datavis         |                                                | :x:                |                              |                              |                            |
+| datepicker      |                                                | :white_check_mark: | [Demo][demo-datepicker]      | [Docs][datepicker-docs]      | [Usage][datepicker-usage]  |
+| date-range      |                                                | :white_check_mark: | [Demo][demo-date-range]      | [Docs][date-range-docs]      | [Usage][date-range-usage]  |
+| dialog          |                                                | :x:                |                              |                              |                            |
+| divider         |                                                | :x:                |                              |                              |                            |
+| expansion       |                                                | :x:                |                              |                              |                            |
+| file-picker     |                                                | :x:                |                              |                              |                            |
+| input-masking   |                                                | :x:                |                              |                              |                            |
+| input-messages  | Used by `input` to display validation messages | :white_check_mark: | (see input demo)             |                              |                            |
+| icon            | Valid icon names: https://material.io/icons    | :white_check_mark: | [Demo][demo-icon]            | [Docs][icon-docs]            | [Usage][icon-usage]        |
+| icon-button     |                                                | :white_check_mark: | [Demo][demo-icon-button]     | [Docs][icon-button-docs]     | [Usage][icon-button-usage] |
+| input           |                                                | :white_check_mark: | [Demo][demo-input]           | [Docs][input-docs]           |                            |
+| link            |                                                | :white_check_mark: | [Demo][demo-link]            | [Docs][link-docs]            |                            |
+| loading overlay |                                                | :white_check_mark: | [Demo][demo-loading-overlay] | [Docs][loading-overlay-docs] |                            |
+| login form      |                                                | :white_check_mark: | [Demo][demo-log-in-form]     | [Docs][login-form-docs]      |                            |
+| menu            |                                                | :white_check_mark: | [Demo][demo-menu]            | [Docs][menu-docs]            |                            |
+| navigation      |                                                | :white_check_mark: | [Demo][demo-navigation]      | [Docs][navigation-docs]      |                            |
+| paginator       |                                                | :white_check_mark: | [Demo][demo-paginator]       | [Docs][paginator-docs]       |                            |
+| progress        |                                                | :x:                |                              |                              |                            |
+| progression     |                                                | :x:                |                              |                              |                            |
+| radio-group     |                                                | :white_check_mark: | [Demo][demo-radio-group]     | [Docs][radio-group-docs]     | [Usage][radio-group-usage] |
+| search          |                                                | :white_check_mark: | [Demo][demo-search]          | [Docs][search-docs]          |                            |
+| select          |                                                | :white_check_mark: | [Demo][demo-select]          | [Docs][select-docs]          |                            |
+| sort            | Used by `table` to manage column sorting       | :white_check_mark: | (see table demo)             | [Docs][sort-docs]            | [Usage][sort-usage]        |
+| table           |                                                | :white_check_mark: | [Demo][demo-table]           | [Docs][table-docs]           | [Usage][table-usage]       |
+| tabs            |                                                | :x:                |                              |                              |                            |
+| toggle          |                                                | :white_check_mark: | [Demo][demo-toggle]          | [Docs][toggle-docs]          |                            |
+| tooltip         |                                                | :white_check_mark: | [Demo][demo-tooltip]         | [Docs][tooltip-docs]         |                            |
 
 
 ### Pipes
@@ -288,7 +287,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-icon-button]: https://terminus-ui-demos.stackblitz.io/components/icon-button
 
 
-<!-- Docs -->
+<!-- SCSS Docs -->
 [breakpoints-docs]: ./src/lib/src/scss/docs/breakpoints.md
 [color-docs]: ./src/lib/src/scss/docs/color.md
 [cursors-docs]: ./src/lib/src/scss/docs/cursors.md
@@ -297,3 +296,38 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [spacing-docs]: ./src/lib/src/scss/docs/spacing.md
 [typography-docs]: ./src/lib/src/scss/docs/typography.md
 [z-index-docs]: ./src/lib/src/scss/docs/z-index.md
+
+<!-- TS Primary Docs -->
+[button-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsButtonComponent.html
+[card-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html
+[checkbox-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html
+[copy-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsCopyComponent.html
+[date-range-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html
+[datepicker-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsDatepickerComponent.html
+[icon-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsIconComponent.html
+[icon-button-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsIconButtonComponent.html
+[input-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsInputComponent.html
+[link-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsLinkComponent.html
+[loading-overlay-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsLoadingOverlayComponent.html
+[login-form-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsLoginFormComponent.html
+[menu-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsMenuComponent.html
+[navigation-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsNavigationComponent.html
+[paginator-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsPaginatorComponent.html
+[radio-group-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsRadioGroupComponent.html
+[search-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsSearchComponent.html
+[select-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsSelectComponent.html
+[sort-docs]: https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html
+[table-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html
+[toggle-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsToggleComponent.html
+[tooltip-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsTooltipComponent.html
+
+<!-- TS Usage Docs -->
+[card-usage]: ./src/lib/src/card/card.component.md
+[checkbox-usage]: ./src/lib/src/checkbox/checkbox.component.md
+[date-range-usage]: ./src/lib/src/date-range/date-range.component.md
+[datepicker-usage]: ./src/lib/src/datepicker/datepicker.component.md
+[icon-usage]: ./src/lib/src/icon/icon.component.md
+[icon-button-usage]: ./src/lib/src/icon-button/icon-button.component.md
+[radio-group-usage]: ./src/lib/src/radio-group/radio-group.component.md
+[sort-usage]: ./src/lib/src/sort/sort.directive.md
+[table-usage]: ./src/lib/src/table/table.component.md

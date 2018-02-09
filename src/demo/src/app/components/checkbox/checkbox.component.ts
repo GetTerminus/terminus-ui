@@ -11,8 +11,8 @@ import {
   templateUrl: './checkbox.component.html',
 })
 export class CheckboxComponent {
-  myValue = false;
-  checked = true;
+  myValue = true;
+  checked = false;
   disabled = false;
   required = true;
   indeterminate = false;
