@@ -55,6 +55,7 @@ import { CopyComponent } from './components/copy/copy.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { IconComponent } from './components/icon/icon.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
@@ -74,7 +75,6 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
 import { WindowServiceComponent } from './components/services/window-service.component';
-import { IconButtonComponent } from './components/icon-button/icon-button.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
