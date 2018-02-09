@@ -1,7 +1,7 @@
 <ts-card>
   <div fxLayout="row" fxLayoutAlign="start center" tsVerticalSpacing>
     <div>
-      <ts-icon-button (click)="click('default')">forum</ts-icon-button>
+      <ts-icon-button (clickEvent)="click('default')">forum</ts-icon-button>
     </div>
 
     <div>
@@ -13,21 +13,21 @@
   <div tsVerticalSpacing>
     <ts-icon-button
       theme="primary"
-      (click)="click('primary')"
+      (clickEvent)="click('primary')"
     >add_circle</ts-icon-button>
   </div>
 
   <div tsVerticalSpacing>
     <ts-icon-button
       theme="accent"
-      (click)="click('accent')"
+      (clickEvent)="click('accent')"
     >reply_all</ts-icon-button>
   </div>
 
   <div tsVerticalSpacing>
     <ts-icon-button
       theme="warn"
-      (click)="click('warn')"
+      (clickEvent)="click('warn')"
     >delete_forever</ts-icon-button>
   </div>
 </ts-card>
