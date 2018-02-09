@@ -9,6 +9,8 @@ import { TsCheckboxModule } from './checkbox/checkbox.module';
 import { TsCopyModule } from './copy/copy.module';
 import { TsDateRangeModule } from './date-range/date-range.module';
 import { TsDatepickerModule } from './datepicker/datepicker.module';
+import { TsIconModule } from './icon/icon.module';
+import { TsIconButtonModule } from './icon-button/icon-button.module';
 import { TsInputModule } from './input/input.module';
 import { TsLinkModule } from './link/link.module';
 import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module';
@@ -26,7 +28,6 @@ import { TsTableModule } from './table/table.module';
 import { TsToggleModule } from './toggle/toggle.module';
 import { TsTooltipModule } from './tooltip/tooltip.module';
 import { TsValidationMessagesModule } from './validation-messages/validation-messages.module';
-import { TsIconModule } from './icon/icon.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -43,6 +44,8 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCopyModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsIconModule,
+    TsIconButtonModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,
@@ -60,7 +63,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsToggleModule,
     TsTooltipModule,
     TsValidationMessagesModule,
-    TsIconModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -79,6 +81,8 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCopyModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsIconModule,
+    TsIconButtonModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,
@@ -96,7 +100,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsToggleModule,
     TsTooltipModule,
     TsValidationMessagesModule,
-    TsIconModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

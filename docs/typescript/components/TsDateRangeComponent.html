@@ -93,6 +93,9 @@
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsIconButtonModule.html" >TsIconButtonModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsIconModule.html" >TsIconModule</a>
                                 </li>
                                 <li class="link">
@@ -180,6 +183,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsIconButtonComponent.html" >TsIconButtonComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsIconComponent.html" >TsIconComponent</a>
@@ -528,6 +534,9 @@
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsIconButtonModule.html" >TsIconButtonModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsIconModule.html" >TsIconModule</a>
                                        </li>
                                        <li class="link">
@@ -615,6 +624,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsIconButtonComponent.html" >TsIconButtonComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsIconComponent.html" >TsIconComponent</a>
@@ -2689,7 +2701,7 @@ export class TsDateRangeComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-date-range qa-date-range" fxLayout="row">  <ts-datepicker    class="qa-date-range-start-datepicker"    [formControl]="startDateControl"    [inputPlaceholder]="startPlaceholder"    [maxDate]="_startMaxDate$ | async"    [minDate]="startMinDate"    [startingView]="startingView"    initialDate="{{ startInitialDate }}"    [theme]="theme"    (selected)="startDateSelected($event)"    #start    fxFlex  ></ts-datepicker>  <span    class="c-date-range__seperator"    *ngIf="separator"  >    {{ separator }}  </span>  <ts-datepicker    class="qa-date-range-end-datepicker"    [formControl]="endDateControl"    [inputPlaceholder]="endPlaceholder"    [maxDate]="endMaxDate"    [minDate]="_endMinDate$ | async"    [startingView]="startingView"    initialDate="{{ endInitialDate }}"    [theme]="theme"    (selected)="endDateSelected($event)"    #end    fxFlex  ></ts-datepicker></div></div>'
-    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
+    var COMPONENTS = [{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDateRangeComponent'};
 </script>

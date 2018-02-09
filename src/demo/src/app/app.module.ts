@@ -21,6 +21,8 @@ import {
   TsCopyModule,
   TsDatepickerModule,
   TsDateRangeModule,
+  TsIconModule,
+  TsIconButtonModule,
   TsInputModule,
   TsLinkModule,
   TsLoadingOverlayModule,
@@ -37,7 +39,6 @@ import {
   TsTableModule,
   TsToggleModule,
   TsTooltipModule,
-  TsIconModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -54,6 +55,7 @@ import { CopyComponent } from './components/copy/copy.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { IconComponent } from './components/icon/icon.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
@@ -98,6 +100,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TsCopyModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsIconButtonModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,
@@ -130,6 +133,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     DateRangeComponent,
     DatepickerComponent,
     IconComponent,
+    IconButtonComponent,
     InputComponent,
     LinkComponent,
     LoadingOverlayComponent,

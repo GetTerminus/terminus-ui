@@ -81,6 +81,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | autocomplete    |                                                     | :x:                |                              |
 | badge           |                                                     | :x:                |                              |
 | button          |                                                     | :white_check_mark: | [Demo][demo-button]          |
+| icon-button     |                                                     | :white_check_mark: | [Demo][demo-icon-button]     |
 | breadcrumbs     |                                                     | :x:                |                              |
 | card            |                                                     | :white_check_mark: | [Demo][demo-card]            |
 | chip            |                                                     | :x:                |                              |
@@ -284,6 +285,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
 [demo-pipes]: https://terminus-ui-demos.stackblitz.io/components/pipes
 [demo-icon]: https://terminus-ui-demos.stackblitz.io/components/icon
+[demo-icon-button]: https://terminus-ui-demos.stackblitz.io/components/icon-button
 
 
 <!-- Docs -->

@@ -93,6 +93,9 @@
                                     <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsIconButtonModule.html" >TsIconButtonModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsIconModule.html" >TsIconModule</a>
                                 </li>
                                 <li class="link">
@@ -180,6 +183,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TsIconButtonComponent.html" >TsIconButtonComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsIconComponent.html" >TsIconComponent</a>
@@ -528,6 +534,9 @@
                                            <a href="../modules/TsDatepickerModule.html" >TsDatepickerModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsIconButtonModule.html" >TsIconButtonModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsIconModule.html" >TsIconModule</a>
                                        </li>
                                        <li class="link">
@@ -615,6 +624,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsHeaderRowComponent.html" >TsHeaderRowComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TsIconButtonComponent.html" >TsIconButtonComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsIconComponent.html" >TsIconComponent</a>
@@ -923,9 +935,6 @@
                             <a href="#creditCardMessage">creditCardMessage</a>
                         </li>
                         <li>
-                            <a href="#creditCardRegex">creditCardRegex</a>
-                        </li>
-                        <li>
                             <a href="#CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR">CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR</a>
                         </li>
                         <li>
@@ -947,13 +956,7 @@
                             <a href="#emailMessage">emailMessage</a>
                         </li>
                         <li>
-                            <a href="#emailRegex">emailRegex</a>
-                        </li>
-                        <li>
                             <a href="#passwordMessage">passwordMessage</a>
-                        </li>
-                        <li>
-                            <a href="#passwordRegex">passwordRegex</a>
                         </li>
                         <li>
                             <a href="#SORT_ANIMATION_TRANSITION">SORT_ANIMATION_TRANSITION</a>
@@ -1165,41 +1168,6 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Define the error message for an invalid credit card</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="creditCardRegex"></a>
-                            <span class="name">
-                                <b>
-                                creditCardRegex
-                                </b>
-                                <a href="#creditCardRegex"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>creditCardRegex:     <code></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/</code>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Define a regex to validate a credit card number</p>
-    <p>Visa, MasterCard, American Express, Diners Club, Discover, JCB</p>
     </div>
                         </td>
                     </tr>
@@ -1531,40 +1499,6 @@
     
                 </tbody>
             </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="emailRegex"></a>
-                            <span class="name">
-                                <b>
-                                emailRegex
-                                </b>
-                                <a href="#emailRegex"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>emailRegex:     <code></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>/^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/</code>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Define a regex to validate an email address</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
     </section>
     <h3>src/lib/src/utilities/regex/password.regex.ts</h3>
     <section>
@@ -1596,42 +1530,6 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Define the error message for an invalid password</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="passwordRegex"></a>
-                            <span class="name">
-                                <b>
-                                passwordRegex
-                                </b>
-                                <a href="#passwordRegex"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>passwordRegex:     <code></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>/^(?&#x3D;.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{6,100}$/</code>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Define a regex to validate an email address</p>
-    <p>{6,100}     - Assert password is between 6 and 100 characters
-    (?=.*[0-9]) - Assert a string has at least one number</p>
     </div>
                         </td>
                     </tr>

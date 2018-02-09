@@ -5,6 +5,8 @@ export { TsCheckboxModule } from './src/checkbox/checkbox.module';
 export { TsCopyModule } from './src/copy/copy.module';
 export { TsDateRangeModule } from './src/date-range/date-range.module';
 export { TsDatepickerModule } from './src/datepicker/datepicker.module';
+export { TsIconModule } from './src/icon/icon.module';
+export { TsIconButtonModule } from './src/icon-button/icon-button.module';
 export { TsInputModule } from './src/input/input.module';
 export { TsLinkModule } from './src/link/link.module';
 export { TsLoadingOverlayModule } from './src/loading-overlay/loading-overlay.module';
@@ -22,7 +24,6 @@ export { TsTableModule } from './src/table/table.module';
 export { TsToggleModule } from './src/toggle/toggle.module';
 export { TsTooltipModule } from './src/tooltip/tooltip.module';
 export { TsValidationMessagesModule } from './src/validation-messages/validation-messages.module';
-export { TsIconModule } from './src/icon/icon.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 
