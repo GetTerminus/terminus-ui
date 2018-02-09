@@ -8,6 +8,7 @@ import { CopyComponent } from './copy/copy.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { IconComponent } from './icon/icon.component';
+import { IconButtonComponent } from './icon-button/icon-button.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
@@ -85,6 +86,13 @@ export const componentsList: Routes = [
     component: IconComponent,
     data: {
       name: 'Icon',
+    },
+  },
+  {
+    path: 'icon-button',
+    component: IconButtonComponent,
+    data: {
+      name: 'Icon Button',
     },
   },
   {

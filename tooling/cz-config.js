@@ -23,6 +23,7 @@ module.exports = {
     {name: 'Datepicker'},
     {name: 'DateRange'},
     {name: 'Icon'},
+    {name: 'IconButton'},
     {name: 'Input'},
     {name: 'Link'},
     {name: 'LoadingOverlay'},
