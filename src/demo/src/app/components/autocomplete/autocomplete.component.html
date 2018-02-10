@@ -1,8 +1,8 @@
 <ts-autocomplete
-  [options]="resultsFromApi | async"
+  [options]="users$ | async"
   [formControl]="myForm.get('myInput')"
   [displayWith]="displayFn"
-  label="my autocomplete"
+  label="Select user names"
   (optionSelected)="added($event)"
   (optionRemoved)="removed($event)"
   (selectionChange)="change($event)"

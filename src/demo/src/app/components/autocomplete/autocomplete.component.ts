@@ -2,15 +2,22 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 import {
   AbstractControl,
   FormBuilder,
   Validators,
 } from '@angular/forms';
 import { TsValidatorsService } from '@terminus/ui';
+import { HttpClient } from '@angular/common/http';
+import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { debounce } from 'rxjs/operators/debounce';
+import { startWith } from 'rxjs/operators/startWith';
+import { timer } from 'rxjs/observable/timer';
 
 export interface ResultObject {
   name: string;
@@ -52,6 +59,8 @@ const OPTIONS: ResultObject[] = [
   },
 ];
 
+const GITHUB_API_ENDPOINT = 'https://api.github.com';
+
 
 @Component({
   selector: 'demo-autocomplete',
@@ -59,7 +68,9 @@ const OPTIONS: ResultObject[] = [
 })
 export class AutocompleteComponent implements OnInit {
   // Fake results from API
-  resultsFromApi: Observable<ResultObject[]> = of(OPTIONS);
+  /*
+   *resultsFromApi: Observable<ResultObject[]> = of(OPTIONS);
+   */
 
   myForm = this.formBuilder.group({
     myInput: [
@@ -71,21 +82,50 @@ export class AutocompleteComponent implements OnInit {
   });
 
 
+  users$ = this.myForm
+    .get('myInput')
+    .valueChanges
+    .pipe(
+      startWith(null),
+      debounce(() => timer(200)),
+      switchMap((term) => {
+        if (term) {
+          console.log('searching term: ', term)
+          return this._http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
+            .pipe(
+              map((response: Response) => {
+                console.log('response (with query): ', response)
+                return response['items'];
+              }),
+            )
+        } else {
+          return this._http.get(`${GITHUB_API_ENDPOINT}/users`)
+            .pipe(
+              map((response: Response) => {
+                console.log('response (no query): ', response)
+                return response;
+              }),
+            )
+        }
+      })
+    )
+  ;
+
   ngOnInit() {
-    console.log('this.resultsFromApi: ', this.resultsFromApi)
-    console.log('control: ', this.myForm.get('myInput'))
+
   }
 
 
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
+    private _http: HttpClient,
   ) {}
 
 
 
-  displayFn(fruit?: any): string | undefined {
-    return fruit ? fruit.name : undefined;
+  displayFn(user?: any): string | undefined {
+    return user ? user.login : undefined;
   }
 
 
@@ -100,4 +140,6 @@ export class AutocompleteComponent implements OnInit {
   change(selections: any) {
     console.log('DEMO: chip selections changed', selections)
   }
+
+
 }
