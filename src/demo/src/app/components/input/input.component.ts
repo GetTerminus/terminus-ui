@@ -54,9 +54,4 @@ export class InputComponent {
     console.log('Demo submit!: ', v);
   }
 
-  getControl(name: string): AbstractControl {
-    return this.myForm.get(name);
-  }
-
-
 }

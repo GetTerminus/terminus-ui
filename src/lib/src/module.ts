@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import './utilities/rxjs-lift-hack';
 
 // Components
+import { TsAutocompleteModule } from './autocomplete/autocomplete.module';
 import { TsButtonModule } from './button/button.module';
 import { TsCardModule } from './card/card.module';
 import { TsCheckboxModule } from './checkbox/checkbox.module';
@@ -38,6 +39,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
 
 @NgModule({
   imports: [
+    TsAutocompleteModule,
     TsButtonModule,
     TsCardModule,
     TsCheckboxModule,
@@ -75,6 +77,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsValidatorsService,
   ],
   exports: [
+    TsAutocompleteModule,
     TsButtonModule,
     TsCardModule,
     TsCheckboxModule,

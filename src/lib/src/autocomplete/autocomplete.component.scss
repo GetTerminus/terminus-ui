@@ -1,0 +1,35 @@
+@import './../scss/helpers/typography';
+
+
+//
+// @component
+//  Autocomplete
+// @description
+//  TODO:
+//    1. Add description
+//    2. Verify the 'c-' prefix should be used
+//    3. Add needed styles
+//
+.ts-autocomplete {
+  display: inline-block;
+
+  // Top level styles belong here
+  .c-autocomplete {
+    //
+  }
+}
+
+.c-autocomplete {
+  // Nested classes belong here
+}
+
+
+// Use until I figure out how to merge with ts-input
+.c-input {
+  $icon-top-adjustment: 6px;
+
+  &.mat-form-field {
+    @include typography;
+    width: 100%;
+  }
+}

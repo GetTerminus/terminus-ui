@@ -1,0 +1,57 @@
+<mat-form-field
+  class="c-autocomplete c-input qa-autocomplete"
+  [color]="theme"
+>
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let chip of chips"
+      [selectable]="selectable"
+      [removable]="removable"
+      (remove)="removeChip(chip)"
+    >
+      {{ displayWith(chip) }}
+      <mat-icon matChipRemove *ngIf="removable">
+        cancel
+      </mat-icon>
+    </mat-chip>
+
+    <input
+      matInput
+      placeholder="{{ label }}"
+      [attr.name]="name"
+      [matChipInputFor]="chipList"
+      [matAutocomplete]="auto"
+      [matChipInputAddOnBlur]="addOnBlur"
+      placeholder="{{ label }}"
+      [(ngModel)]="value"
+      (blur)="onBlur()"
+      #chipInput
+    />
+  </mat-chip-list>
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="displayWith"
+    (optionSelected)="addChip($event, chipInput)"
+  >
+    <mat-option
+      *ngFor="let option of options"
+      [value]="option"
+    >
+      {{ displayWith(option) }}
+    </mat-option>
+  </mat-autocomplete>
+
+  <mat-hint
+    class="qa-autocomplete-hint"
+    align="end"
+    *ngIf="hint"
+  >{{ hint }}</mat-hint>
+
+  <ts-validation-messages
+    class="qa-autocomplete-validation-messages"
+    *ngIf="formControl"
+    [control]="formControl"
+    [validateOnChange]="validateOnChange"
+  ></ts-validation-messages>
+</mat-form-field>

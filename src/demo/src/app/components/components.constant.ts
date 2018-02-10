@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
@@ -32,6 +33,13 @@ import { WindowServiceComponent } from './services/window-service.component';
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 export const componentsList: Routes = [
+  {
+    path: 'autocomplete',
+    component: AutocompleteComponent,
+    data: {
+      name: 'Autocomplete',
+    },
+  },
   {
     path: 'breakpoints',
     component: BreakpointsComponent,

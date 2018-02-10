@@ -14,7 +14,7 @@
 
 <form [formGroup]="myForm" novalidate>
   <ts-input
-    [formControl]="getControl('name')"
+    [formControl]="myForm.get('name')"
     [label]="label1"
     [isClearable]="clearable"
     hint="Name input with validation"
@@ -27,7 +27,7 @@
   <br>
 
   <ts-input
-    [formControl]="getControl('email')"
+    [formControl]="myForm.get('email')"
     [label]="label2"
     [isClearable]="clearable"
     hint="Email input with validation"
@@ -41,7 +41,7 @@
   <br>
 
   <ts-input
-    [formControl]="getControl('password')"
+    [formControl]="myForm.get('password')"
     label="Password"
     hint="Password input with validation"
     [spellcheck]="false"

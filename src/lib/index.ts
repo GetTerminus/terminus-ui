@@ -1,4 +1,5 @@
 // Components
+export { TsAutocompleteModule } from './src/autocomplete/autocomplete.module';
 export { TsButtonModule } from './src/button/button.module';
 export { TsCardModule } from './src/card/card.module';
 export { TsCheckboxModule } from './src/checkbox/checkbox.module';
