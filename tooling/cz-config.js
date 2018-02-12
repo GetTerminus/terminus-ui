@@ -67,6 +67,6 @@ module.exports = {
   */
 
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert']
+  allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert', 'chore']
 
 };
