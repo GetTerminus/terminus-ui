@@ -45,5 +45,9 @@ export { TS_SPACING } from './src/spacing/spacing.constant';
 export * from './src/utilities/interfaces/index';
 export * from './src/utilities/types/index';
 
+
+// TODO
+export { TsAutocompleteComponent } from './src/autocomplete/autocomplete.component';
+
 // Export the Module
 export { TerminusUIModule } from './src/module';

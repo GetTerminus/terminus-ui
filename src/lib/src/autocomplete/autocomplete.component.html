@@ -4,12 +4,12 @@
 >
   <mat-chip-list #chipList>
     <mat-chip
-      *ngFor="let chip of chips"
+      *ngFor="let option of selectedOptions"
       [selectable]="selectable"
       [removable]="removable"
-      (remove)="removeChip(chip)"
+      (remove)="deselectOption(option)"
     >
-      {{ displayWith(chip) }}
+      {{ displayOption(option) }}
       <mat-icon matChipRemove *ngIf="removable">
         cancel
       </mat-icon>
@@ -20,25 +20,25 @@
       placeholder="{{ label }}"
       [attr.name]="name"
       [matChipInputFor]="chipList"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autocomplete"
       [matChipInputAddOnBlur]="addOnBlur"
       placeholder="{{ label }}"
-      [(ngModel)]="value"
-      (blur)="onBlur()"
-      #chipInput
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="query.next(searchQuery)"
+      #trigger
     />
   </mat-chip-list>
 
   <mat-autocomplete
-    #auto="matAutocomplete"
+    #autocomplete="matAutocomplete"
     [displayWith]="displayWith"
-    (optionSelected)="addChip($event, chipInput)"
+    (optionSelected)="selectOption($event, trigger)"
   >
     <mat-option
       *ngFor="let option of options"
       [value]="option"
     >
-      {{ displayWith(option) }}
+      {{ displayOption(option) }}
     </mat-option>
   </mat-autocomplete>
 

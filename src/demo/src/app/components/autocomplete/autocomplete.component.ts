@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -10,6 +11,7 @@ import {
 import { TsValidatorsService } from '@terminus/ui';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http';
+import { TsAutocompleteComponent } from '@terminus/ui';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -67,52 +69,62 @@ const GITHUB_API_ENDPOINT = 'https://api.github.com';
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
-  // Fake results from API
-  /*
-   *resultsFromApi: Observable<ResultObject[]> = of(OPTIONS);
-   */
+
+  @ViewChild('auto')
+  public auto: TsAutocompleteComponent;
 
   myForm = this.formBuilder.group({
-    myInput: [
+    selections: [
       null,
       [
         Validators.required,
       ],
     ],
   });
+  initial = OPTIONS.slice(2, 4);
 
+  // store subscription to autocomplete changes
+  changesSubscription$: Observable<any>;
 
-  users$ = this.myForm
-    .get('myInput')
-    .valueChanges
-    .pipe(
-      startWith(null),
-      debounce(() => timer(200)),
-      switchMap((term) => {
-        if (term) {
-          console.log('searching term: ', term)
-          return this._http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
-            .pipe(
-              map((response: Response) => {
-                console.log('response (with query): ', response)
-                return response['items'];
-              }),
-            )
-        } else {
-          return this._http.get(`${GITHUB_API_ENDPOINT}/users`)
-            .pipe(
-              map((response: Response) => {
-                console.log('response (no query): ', response)
-                return response;
-              }),
-            )
-        }
-      })
-    )
-  ;
+  users$: any;
+
 
   ngOnInit() {
+    this.changesSubscription$ = this.auto.selection.subscribe((v: any) => {
+      console.log('DEMO: subscription change ', v);
+    })
 
+    this.users$ = this.auto
+      .query
+      .pipe(
+        startWith(null),
+        debounce(() => timer(200)),
+        switchMap((term) => {
+          if (term) {
+            console.log('searching term: ', term)
+            return this._http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
+              .pipe(
+                map((response: Response) => {
+                  /*
+                   *console.log('response (with query): ', response)
+                   */
+                  return response['items'];
+                }),
+              )
+          } else {
+            return this._http.get(`${GITHUB_API_ENDPOINT}/users`)
+              .pipe(
+                map((response: Response) => {
+                  /*
+                   *console.log('response (no query): ', response)
+                   */
+                  return response;
+                }),
+              )
+          }
+        })
+      )
+    ;
   }
 
 
@@ -130,16 +142,25 @@ export class AutocompleteComponent implements OnInit {
 
 
   added(chip: any) {
-    console.log('DEMO: chip added', chip)
+    /*
+     *console.log('DEMO: chip added', chip);
+     */
   }
 
   removed(chip: any) {
-    console.log('DEMO: chip removed', chip)
+    /*
+     *console.log('DEMO: chip removed', chip);
+     */
   }
 
   change(selections: any) {
-    console.log('DEMO: chip selections changed', selections)
+    /*
+     *console.log('DEMO: chip selections changed', selections);
+     */
   }
 
+  submit(v: any) {
+    console.log('Demo: form submit: ', v);
+  }
 
 }

@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
 
 
 //
@@ -11,7 +12,8 @@
 //    3. Add needed styles
 //
 .ts-autocomplete {
-  display: inline-block;
+  display: block;
+  width: 100%;
 
   // Top level styles belong here
   .c-autocomplete {
@@ -21,6 +23,10 @@
 
 .c-autocomplete {
   // Nested classes belong here
+
+  .mat-chip {
+    margin-bottom: spacing(small);
+  }
 }
 
 

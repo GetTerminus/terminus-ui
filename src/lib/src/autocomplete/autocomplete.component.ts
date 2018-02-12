@@ -5,25 +5,36 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewEncapsulation,
-  OnInit,
+  AfterViewInit,
   OnChanges,
   SimpleChanges,
   forwardRef,
   EventEmitter,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   MatAutocompleteSelectedEvent,
   MatChipInputEvent,
   MatAutocompleteTrigger,
+  MatAutocomplete,
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceArray } from '@terminus/ngx-tools/coercion';
+import { Subscription } from 'rxjs/Subscription';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
+
+// TODO: can I export a type for the displayWith fn?
+
 
 
 /**
@@ -57,25 +68,42 @@ export const CUSTOM_AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'ts-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
+  exportAs: 'tsAutocomplete',
   host: {
     class: 'ts-autocomplete',
   },
-  providers: [CUSTOM_AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR],
+  /*
+   *providers: [CUSTOM_AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR],
+   */
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsAutocompleteComponent extends TsReactiveFormBaseComponent implements OnInit, OnChanges {
+export class TsAutocompleteComponent /*extends TsReactiveFormBaseComponent*/ implements AfterViewInit, OnChanges, OnDestroy {
+  /**
+   * Provide access to the input element
+   */
+  @ViewChild('autocomplete')
+  public autocomplete: MatAutocomplete;
+
+  // TODO: WHY DO NONE OF THESE WORK?? All examples show getting reference with
+  // MatAutocompleteTrigger
+  /**
+   * Provide access to the input element
+   */
+  /*
+   *@ViewChild('trigger')
+   *public trigger: MatAutocompleteTrigger;
+   */
+  @ViewChild('trigger', { read: MatAutocompleteTrigger }) trigger: MatAutocompleteTrigger;
 
   /**
-   * Define the form control
+   * Provide access to the input element
    */
-  /*
-   *@Input()
-   */
-  /*
-   *public formControl: FormControl = new FormControl();
-   */
+  @ViewChild(MatAutocompleteTrigger)
+  autocompleteTrigger: MatAutocompleteTrigger;
 
+  @Input()
+  public resultsControl: FormControl;
 
   // Set up values to use with Chips
   visible: boolean = true;
@@ -83,15 +111,18 @@ export class TsAutocompleteComponent extends TsReactiveFormBaseComponent impleme
   removable: boolean = true;
   addOnBlur: boolean = true;
 
-  // Define filteredOptins Array and Chips Array
-  filteredOptions: Observable<string[]>;
-  chips: string[] = [];
+  searchQuery: string;
+
+  /**
+   * Store the selected options
+   */
+  selectedOptions: string[] = [];
 
   /**
    * A function to output the UI text from the selected item
    */
   @Input()
-  public displayWith: Function;
+  public displayWith: ((value: any) => string) | null = null;
 
   /**
    * Define a hint for the input
@@ -150,49 +181,142 @@ export class TsAutocompleteComponent extends TsReactiveFormBaseComponent impleme
    */
   // TODO: any way to add a type here?
   @Output()
-  selectionChange: EventEmitter<any[]> = new EventEmitter();
+  selection: EventEmitter<any[]> = new EventEmitter();
+
+
+  @Output()
+  query: BehaviorSubject<string> = new BehaviorSubject('');
 
   // TODO: add input to hydrate initial selections
 
-  ngOnInit() {
+  @Input()
+  public set initialSelection(selections: any[]) {
+    this.selectedOptions = coerceArray(selections);
+  };
 
+  /*
+   *subscription: Subscription;
+   */
+
+
+  ngAfterViewInit() {
+    /*
+     *console.log('ngAfterViewInit: ', this.autocompleteTrigger, this.trigger);
+     */
+
+    /*
+     *this._subscribeToClosingActions();
+     */
+    /*
+     *this.autocompleteTrigger.panelClosingActions
+     *  .subscribe((e) => {
+     *    if (!(e && e.source)) {
+     *      this.formControl.setValue(null)
+     *      this.autocompleteTrigger.closePanel()
+     *    }
+     *  })
+     */
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('CHANGES: ', changes)
+    /*
+     *console.log('CHANGES: ', changes)
+     */
   }
 
+  ngOnDestroy() {
+    /*
+     *if (!!this.subscription && !this.subscription.closed) {
+     *  this.subscription.unsubscribe();
+     *}
+     */
+  }
 
-  addChip(event: MatAutocompleteSelectedEvent, input: any): void {
-    console.log('chip added: ', event, input);
-    // Define selection constant
+  /*
+   *private _subscribeToClosingActions() {
+   *  if (!!this.subscription && !this.subscription.closed) {
+   *    this.subscription.unsubscribe();
+   *  }
+   *  this.subscription = this.autocompleteTrigger.panelClosingActions
+   *    .subscribe((e: any) => {
+   *      if (!e || !e.source) {
+   *        this.formControl.setValue(null);
+   *      }
+   *    },
+   *    (err) => this._subscribeToClosingActions(),
+   *    () => this._subscribeToClosingActions());
+   *}
+   */
+
+  /**
+   * Select an option
+   *
+   * @param event - The selection event from the underlying MatAutocomplete
+   * @param input - The input that triggered the event
+   */
+  selectOption(event: MatAutocompleteSelectedEvent, input: any): void {
+    console.log('option selected: ', event, input);
+
+    // The selected option
     const selection = event.option.value;
-    // Add chip for selected option
-    this.chips.push(selection);
-    // Remove selected option from available options and set filteredOptions
-    this.options = this.options.filter((obj) => obj.name !== selection.name);
+
+    // Add to the displayed selection chips
+    this.selectedOptions.push(selection);
+
     // Reset the autocomplete input text value
     if (input) {
       input.value = '';
     }
 
-    this.optionSelected.emit(event.option.value);
-    this.selectionChange.emit(this.chips);
-  }
-
-  removeChip(chip: any): void {
-    console.log('chip removed: ', chip);
-    // Find key of object in array
-    const index = this.chips.indexOf(chip);
-    // If key exists
-    if (index >= 0) {
-      // Remove key from chips array
-      this.chips.splice(index, 1);
-      // Add key to options array
-      this.options.push(chip);
+    // Update the form control
+    if (this.resultsControl && this.resultsControl.setValue) {
+      this.resultsControl.setValue(this.selectedOptions);
     }
 
-    this.optionRemoved.emit(chip);
-    this.selectionChange.emit(this.chips);
+    // Let consumers know about the changes
+    this.optionSelected.emit(event.option.value);
+    this.selection.emit(this.selectedOptions);
+  }
+
+
+  /**
+   * Deselect an option
+   *
+   * @param option - The option to deselect
+   */
+  // TODO: any way to type this?
+  deselectOption(option: any): void {
+    console.log('option removed: ', option);
+
+    // Find the key of the option in the selectedOptions array
+    const index = this.selectedOptions.indexOf(option);
+
+    // If found
+    if (index >= 0) {
+      // Remove the option from the selectedOptions array
+      this.selectedOptions.splice(index, 1);
+    }
+
+    // Update the form control
+    if (this.resultsControl && this.resultsControl.setValue) {
+      this.resultsControl.setValue(this.selectedOptions);
+    }
+
+    // Let consumers know about the changes
+    this.optionRemoved.emit(option);
+    this.selection.emit(this.selectedOptions);
+  }
+
+
+  /**
+   * Use the user defined `displayWith` function to show the correct UI text if it was set.
+   * Otherwise, display the selected value.
+   *
+   * @param option - The option
+   * @return The string value for the UI
+   */
+  // TODO: any way to type this?
+  displayOption(option: any): string | any {
+    return (this.displayWith) ? this.displayWith(option) : option;
   }
 }
