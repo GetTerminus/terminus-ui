@@ -21,44 +21,48 @@ import { debounce } from 'rxjs/operators/debounce';
 import { startWith } from 'rxjs/operators/startWith';
 import { timer } from 'rxjs/observable/timer';
 
-export interface ResultObject {
-  name: string;
-  id: string;
-}
 
-const OPTIONS: ResultObject[] = [
+const INITIAL = [
   {
-    name: 'Lemon',
-    id: '1',
+    login: 'benjamincharity',
+    id: 270193,
+    avatar_url: 'https://avatars3.githubusercontent.com/u/270193?v=4',
+    gravatar_id: '',
+    url: 'https://api.github.com/users/benjamincharity',
+    html_url: 'https://github.com/benjamincharity',
+    followers_url: 'https://api.github.com/users/benjamincharity/followers',
+    following_url: 'https://api.github.com/users/benjamincharity/following{/other_user}',
+    gists_url: 'https://api.github.com/users/benjamincharity/gists{/gist_id}',
+    starred_url: 'https://api.github.com/users/benjamincharity/starred{/owner}{/repo}',
+    subscriptions_url: 'https://api.github.com/users/benjamincharity/subscriptions',
+    organizations_url: 'https://api.github.com/users/benjamincharity/orgs',
+    repos_url: 'https://api.github.com/users/benjamincharity/repos',
+    events_url: 'https://api.github.com/users/benjamincharity/events{/privacy}',
+    received_events_url: 'https://api.github.com/users/benjamincharity/received_events',
+    type: 'User',
+    site_admin: false,
+    score: 82.52784,
   },
   {
-    name: 'Lime',
-    id: '2',
-  },
-  {
-    name: 'Apple',
-    id: '3',
-  },
-  {
-    name: 'Orange',
-    id: '4',
-  },
-  {
-    name: 'Pear',
-    id: '5',
-  },
-  {
-    name: 'Grapefruit',
-    id: '6',
-  },
-  {
-    name: 'Nectarine',
-    id: '7',
-  },
-  {
-    name: 'Pineapple',
-    id: '8',
-  },
+    login: 'jnystrom',
+    id: 1293142,
+    avatar_url: 'https://avatars0.githubusercontent.com/u/1293142?v=4',
+    gravatar_id: '',
+    url: 'https://api.github.com/users/jnystrom',
+    html_url: 'https://github.com/jnystrom',
+    followers_url: 'https://api.github.com/users/jnystrom/followers',
+    following_url: 'https://api.github.com/users/jnystrom/following{/other_user}',
+    gists_url: 'https://api.github.com/users/jnystrom/gists{/gist_id}',
+    starred_url: 'https://api.github.com/users/jnystrom/starred{/owner}{/repo}',
+    subscriptions_url: 'https://api.github.com/users/jnystrom/subscriptions',
+    organizations_url: 'https://api.github.com/users/jnystrom/orgs',
+    repos_url: 'https://api.github.com/users/jnystrom/repos',
+    events_url: 'https://api.github.com/users/jnystrom/events{/privacy}',
+    received_events_url: 'https://api.github.com/users/jnystrom/received_events',
+    type: 'User',
+    site_admin: false,
+    score: 27.880474,
+  }
 ];
 
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
@@ -81,8 +85,9 @@ export class AutocompleteComponent implements OnInit {
       ],
     ],
   });
-  initial = OPTIONS.slice(2, 4);
+  initial = INITIAL.slice();
   debounceDelay = 2000;
+  multiSelect = true;
 
   // store subscription to autocomplete changes
   changesSubscription$: Observable<any>;

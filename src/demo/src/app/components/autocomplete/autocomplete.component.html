@@ -4,6 +4,8 @@
     [options]="users$ | async"
     [resultsControl]="myForm.get('selections')"
     [displayWith]="displayFn"
+    [initialSelection]="null"
+    [multiple]="multiSelect"
     label="Select user names"
     hint="Begin typing to search..."
     (optionSelected)="added($event)"

@@ -18,6 +18,7 @@ import {
   MatAutocomplete,
 } from '@angular/material';
 import { debounceTime } from 'rxjs/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import {
   coerceArray,
   coerceNumberProperty,
@@ -186,6 +187,12 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   public label: string;
 
   /**
+   * Define if multiple selections are allowed
+   */
+  @Input()
+  public multiple: boolean = false;
+
+  /**
    * Define the name attribute value
    */
   @Input()
@@ -234,7 +241,10 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    */
   @Input()
   public set initialSelection(selections: any[]) {
-    this.selectedOptions = coerceArray(selections);
+    // istanbul ignore else
+    if (selections) {
+      this.selectedOptions = coerceArray(selections);
+    }
   };
 
   /**
@@ -271,14 +281,19 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   public ngAfterViewInit(): void {
     // Debounce the querySubject input, then emit the query event
     this.querySubject.pipe(
+      // debounce the query changes
       debounceTime(this.debounceDelay),
+      // only allow a query through if it is different from the previous
+      distinctUntilChanged(),
     ).subscribe((v: any) => {
       console.log('v: ', v);
       this.query.next(v);
     });
 
     // Subscribe to the autocomplete panel closing events
-    this._subscribeToClosingActions();
+    if (this.multiple) {
+      this._subscribeToClosingActions();
+    }
   }
 
 
@@ -319,18 +334,19 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * @param event - The selection event from the underlying MatAutocomplete
    * @param input - The input that triggered the event
    */
-  public selectOption(event: MatAutocompleteSelectedEvent, input?: any): void {
-    console.log('option selected: ', event, input);
-
+  public selectOption(event: MatAutocompleteSelectedEvent, input?: ElementRef): void {
     // The selected option
     const selection = this.getSelectionValue(event.option.value);
 
     // Add to the displayed selection chips
     this.selectedOptions.push(selection);
 
-    // Reset the autocomplete input text value
-    if (input) {
-      input.value = '';
+    // If supporting multiple selections, reset the input text value
+    if (this.multiple) {
+      // istanbul ignore else
+      if (input && input.nativeElement) {
+        input.nativeElement.value = '';
+      }
     }
 
     // Update the form control
@@ -351,7 +367,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    */
   // TODO: any way to type this?
   public deselectOption(option: any): void {
-    console.log('option removed: ', option);
     const selection = this.getSelectionValue(option);
 
     // Find the key of the selection in the selectedOptions array
@@ -387,7 +402,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   }
 
 
-
   /**
    * Determine what to save as the selection.
    *
@@ -398,11 +412,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    */
   // TODO: add types?
   public getSelectionValue(selection: any): string | any {
-    if (this.valueFunction && typeof(this.valueFunction) === 'function') {
-      return this.valueFunction(selection);
-    } else {
-      return selection;
-    }
+    return (this.valueFunction) ? this.valueFunction(selection) : selection;
   }
 
 }

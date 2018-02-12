@@ -2,24 +2,41 @@
   class="c-autocomplete c-input qa-autocomplete"
   [color]="theme"
 >
-  <mat-chip-list #chipList>
-    <mat-chip
-      *ngFor="let option of selectedOptions"
-      [selectable]="selectableChips"
-      [removable]="removableChips"
-      (remove)="deselectOption(option)"
-    >
-      {{ displayOption(option) }}
-      <mat-icon matChipRemove *ngIf="removableChips">
-        cancel
-      </mat-icon>
-    </mat-chip>
 
+  <ng-container *ngIf="multiple">
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let option of selectedOptions"
+        [selectable]="selectableChips"
+        [removable]="removableChips"
+        (remove)="deselectOption(option)"
+      >
+        {{ displayOption(option) }}
+        <mat-icon matChipRemove *ngIf="removableChips">
+          cancel
+        </mat-icon>
+      </mat-chip>
+
+      <input
+        matInput
+        placeholder="{{ label }}"
+        [attr.name]="name"
+        [matChipInputFor]="chipList"
+        [matAutocomplete]="autocomplete"
+        placeholder="{{ label }}"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="querySubject.next(searchQuery)"
+        #autocompleteTrigger="matAutocompleteTrigger"
+        #input
+      />
+    </mat-chip-list>
+  </ng-container>
+
+  <ng-container *ngIf="!multiple">
     <input
       matInput
       placeholder="{{ label }}"
       [attr.name]="name"
-      [matChipInputFor]="chipList"
       [matAutocomplete]="autocomplete"
       placeholder="{{ label }}"
       [(ngModel)]="searchQuery"
@@ -27,7 +44,7 @@
       #autocompleteTrigger="matAutocompleteTrigger"
       #input
     />
-  </mat-chip-list>
+  </ng-container>
 
   <mat-autocomplete
     #autocomplete="matAutocomplete"
@@ -55,4 +72,3 @@
     [control]="resultsControl"
   ></ts-validation-messages>
 </mat-form-field>
-
