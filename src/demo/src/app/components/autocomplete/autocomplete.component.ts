@@ -82,6 +82,7 @@ export class AutocompleteComponent implements OnInit {
     ],
   });
   initial = OPTIONS.slice(2, 4);
+  debounceDelay = 2000;
 
   // store subscription to autocomplete changes
   changesSubscription$: Observable<any>;
@@ -98,11 +99,10 @@ export class AutocompleteComponent implements OnInit {
       .query
       .pipe(
         startWith(null),
-        debounce(() => timer(200)),
         switchMap((term) => {
           if (term) {
-            console.log('searching term: ', term)
-            return this._http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
+            console.warn('searching term: ', term)
+            return this.http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
               .pipe(
                 map((response: Response) => {
                   /*
@@ -112,15 +112,7 @@ export class AutocompleteComponent implements OnInit {
                 }),
               )
           } else {
-            return this._http.get(`${GITHUB_API_ENDPOINT}/users`)
-              .pipe(
-                map((response: Response) => {
-                  /*
-                   *console.log('response (no query): ', response)
-                   */
-                  return response;
-                }),
-              )
+            return of([]);
           }
         })
       )
@@ -131,13 +123,17 @@ export class AutocompleteComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
-    private _http: HttpClient,
+    private http: HttpClient,
   ) {}
 
 
 
   displayFn(user?: any): string | undefined {
     return user ? user.login : undefined;
+  }
+
+  valueFn(user?: any): string | undefined {
+    return user ? user.id : undefined;
   }
 
 

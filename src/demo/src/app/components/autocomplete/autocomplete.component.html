@@ -5,11 +5,12 @@
     [resultsControl]="myForm.get('selections')"
     [displayWith]="displayFn"
     label="Select user names"
+    hint="Begin typing to search..."
     (optionSelected)="added($event)"
     (optionRemoved)="removed($event)"
     (selection)="change($event)"
     #auto="tsAutocomplete"
   ></ts-autocomplete>
 
-  <button (click)="submit(myForm.value)">Submit</button>
+  <button (click)="submit(myForm.value)">Log form value</button>
 </form>

@@ -5,12 +5,12 @@
   <mat-chip-list #chipList>
     <mat-chip
       *ngFor="let option of selectedOptions"
-      [selectable]="selectable"
-      [removable]="removable"
+      [selectable]="selectableChips"
+      [removable]="removableChips"
       (remove)="deselectOption(option)"
     >
       {{ displayOption(option) }}
-      <mat-icon matChipRemove *ngIf="removable">
+      <mat-icon matChipRemove *ngIf="removableChips">
         cancel
       </mat-icon>
     </mat-chip>
@@ -21,10 +21,9 @@
       [attr.name]="name"
       [matChipInputFor]="chipList"
       [matAutocomplete]="autocomplete"
-      [matChipInputAddOnBlur]="addOnBlur"
       placeholder="{{ label }}"
       [(ngModel)]="searchQuery"
-      (ngModelChange)="query.next(searchQuery)"
+      (ngModelChange)="querySubject.next(searchQuery)"
       #trigger
     />
   </mat-chip-list>
@@ -50,8 +49,7 @@
 
   <ts-validation-messages
     class="qa-autocomplete-validation-messages"
-    *ngIf="formControl"
-    [control]="formControl"
-    [validateOnChange]="validateOnChange"
+    *ngIf="resultsControl"
+    [control]="resultsControl"
   ></ts-validation-messages>
 </mat-form-field>
