@@ -3,31 +3,21 @@ import {
   Input,
   Output,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewEncapsulation,
   AfterViewInit,
-  OnChanges,
-  SimpleChanges,
   EventEmitter,
   ViewChild,
   ElementRef,
   OnDestroy,
   isDevMode,
-  ViewChildren,
-  QueryList,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   MatAutocompleteSelectedEvent,
-  MatChipInputEvent,
   MatAutocompleteTrigger,
   MatAutocomplete,
 } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
-import { startWith } from 'rxjs/operators/startWith';
-import { map } from 'rxjs/operators/map';
 import { debounceTime } from 'rxjs/operators/debounceTime';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   coerceArray,
   coerceNumberProperty,
@@ -77,11 +67,16 @@ import { TsAutocompleteFormatterFn } from './../utilities/types/autocomplete.typ
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   /**
    * Store the debounce delay
    */
   private _debounceDelay: number = 200;
+
+  /**
+   * Management of the query string
+   */
+  public querySubject: BehaviorSubject<string> = new BehaviorSubject('');
 
   /**
    * Define if the chips/selections should be removable
@@ -109,6 +104,11 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
   private selectionFormatFn: (value: any) => string;
 
   /**
+   * Manage the autocomplete panel subscription
+   */
+  private subscription$: Subscription;
+
+  /**
    * Store the formatter function for the UI display
    */
   private uiFormatFn: (value: any) => string;
@@ -119,32 +119,24 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
   @ViewChild('autocomplete')
   public autocomplete: MatAutocomplete;
 
-  // TODO: WHY DO NONE OF THESE WORK?? All examples show getting reference with
-  // MatAutocompleteTrigger
   /**
    * Provide access to the input element
    */
-  /*
-   *@ViewChild('trigger')
-   *public trigger: MatAutocompleteTrigger;
-   */
-  @ViewChild('bing', { read: MatAutocompleteTrigger }) bing: MatAutocompleteTrigger;
-
-
-  /*
-   *@ViewChild(MatAutocompleteTrigger)
-   *foobing: MatAutocompleteTrigger;
-   */
-  @ViewChildren('trigger')
-  public trigger: ElementRef;
-
-  @ViewChildren(MatAutocompleteTrigger)
-  public foobar: QueryList<MatAutocompleteTrigger>
+  @ViewChild('autocompleteTrigger')
+  set autocompleteTrigger(value: MatAutocompleteTrigger) {
+    this.trigger = value;
+  }
+  get autocompleteTrigger(): MatAutocompleteTrigger {
+    return this.trigger;
+  }
+  private trigger: MatAutocompleteTrigger;
 
   /**
-   * Provide access to the input element
+   * Provide direct access to the input
    */
-  @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild('input')
+  public input: ElementRef;
+
 
   /**
    * Define a debounce delay for the query
@@ -250,51 +242,34 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
    */
   // TODO: any way to add a type here? Get if from the passed in options?
   @Output()
-  optionSelected: EventEmitter<any> = new EventEmitter();
+  public optionSelected: EventEmitter<any> = new EventEmitter();
 
   /**
    * Emit the removed chip
    */
   // TODO: any way to add a type here?
   @Output()
-  optionRemoved: EventEmitter<any> = new EventEmitter();
+  public optionRemoved: EventEmitter<any> = new EventEmitter();
 
   /**
    * Emit the current selection
    */
   // TODO: any way to add a type here?
   @Output()
-  selection: EventEmitter<any[]> = new EventEmitter();
+  public selection: EventEmitter<any[]> = new EventEmitter();
 
   /**
    * Emit the query string
-   */
-  /*
-   *@Output()
-   *query: Observable<string> = new BehaviorSubject('').asObservable().pipe(
-   *  debounceTime(this.debounceDelay),
-   *);
    */
   @Output()
   public query: EventEmitter<string> = new EventEmitter();
 
 
-  querySubject: BehaviorSubject<string> = new BehaviorSubject('');
-
-
-  /*
-   *subscription: Subscription;
+  /**
+   * Subscribe to the querySubject and pass values to the query emitter
    */
-
-
-  ngAfterViewInit() {
-    console.warn('ngAfterViewChecked: ');
-    console.log('this.foobar: ', this.foobar);
-    console.log('this.bing: ', this.bing);
-    console.log('this.trigger: ', this.trigger);
-    console.log('this.autocomplete: ', this.autocomplete);
-    console.log('this.autocompleteTrigger: ', this.autocompleteTrigger);
-
+  public ngAfterViewInit(): void {
+    // Debounce the querySubject input, then emit the query event
     this.querySubject.pipe(
       debounceTime(this.debounceDelay),
     ).subscribe((v: any) => {
@@ -302,53 +277,40 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
       this.query.next(v);
     });
 
-
-    /*
-     *this._subscribeToClosingActions();
-     */
-    /*
-     *this.autocompleteTrigger.panelClosingActions
-     *  .subscribe((e) => {
-     *    if (!(e && e.source)) {
-     *      this.formControl.setValue(null)
-     *      this.autocompleteTrigger.closePanel()
-     *    }
-     *  })
-     */
+    // Subscribe to the autocomplete panel closing events
+    this._subscribeToClosingActions();
   }
 
 
-  ngOnChanges(changes: SimpleChanges) {
-    /*
-     *console.log('CHANGES: ', changes)
-     */
-  }
-
-
-  ngOnDestroy() {
-    /*
-     *if (!!this.subscription && !this.subscription.closed) {
-     *  this.subscription.unsubscribe();
-     *}
-     */
-  }
-
-
-  /*
-   *private _subscribeToClosingActions() {
-   *  if (!!this.subscription && !this.subscription.closed) {
-   *    this.subscription.unsubscribe();
-   *  }
-   *  this.subscription = this.autocompleteTrigger.panelClosingActions
-   *    .subscribe((e: any) => {
-   *      if (!e || !e.source) {
-   *        this.formControl.setValue(null);
-   *      }
-   *    },
-   *    (err) => this._subscribeToClosingActions(),
-   *    () => this._subscribeToClosingActions());
-   *}
+  /**
+   * Tear down the autocomplete subscription
    */
+  public ngOnDestroy() {
+    if (!!this.subscription$ && !this.subscription$.closed) {
+      this.subscription$.unsubscribe();
+    }
+  }
+
+
+  /**
+   * Clear the autocomplete input value when the autocomplete closes
+   */
+  private _subscribeToClosingActions(): void {
+    if (!!this.subscription$ && !this.subscription$.closed) {
+      this.subscription$.unsubscribe();
+    }
+
+    // Subscribe to the autocomplete panel closing actions
+    this.subscription$ = this.trigger.panelClosingActions
+      .subscribe((e: any) => {
+        if (!e || !e.source) {
+          // Clear the input text
+          this.input.nativeElement.value = '';
+        }
+      },
+      (err) => this._subscribeToClosingActions(),
+      () => this._subscribeToClosingActions());
+  }
 
 
   /**
@@ -357,7 +319,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
    * @param event - The selection event from the underlying MatAutocomplete
    * @param input - The input that triggered the event
    */
-  selectOption(event: MatAutocompleteSelectedEvent, input?: any): void {
+  public selectOption(event: MatAutocompleteSelectedEvent, input?: any): void {
     console.log('option selected: ', event, input);
 
     // The selected option
@@ -388,7 +350,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
    * @param option - The option to deselect
    */
   // TODO: any way to type this?
-  deselectOption(option: any): void {
+  public deselectOption(option: any): void {
     console.log('option removed: ', option);
     const selection = this.getSelectionValue(option);
 
@@ -420,7 +382,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
    * @return The string value for the UI
    */
   // TODO: any way to type this?
-  displayOption(option: any): string | any {
+  public displayOption(option: any): string | any {
     return (this.uiFormatFn) ? this.uiFormatFn(option) : option;
   }
 
@@ -435,11 +397,12 @@ export class TsAutocompleteComponent implements AfterViewInit, OnChanges, OnDest
    * @return The value to save
    */
   // TODO: add types?
-  getSelectionValue(selection: any): string | any {
+  public getSelectionValue(selection: any): string | any {
     if (this.valueFunction && typeof(this.valueFunction) === 'function') {
       return this.valueFunction(selection);
     } else {
       return selection;
     }
   }
+
 }

@@ -24,14 +24,16 @@
       placeholder="{{ label }}"
       [(ngModel)]="searchQuery"
       (ngModelChange)="querySubject.next(searchQuery)"
-      #trigger
+      #autocompleteTrigger="matAutocompleteTrigger"
+      #input
     />
   </mat-chip-list>
 
   <mat-autocomplete
     #autocomplete="matAutocomplete"
+    autoActiveFirstOption="true"
     [displayWith]="displayWith"
-    (optionSelected)="selectOption($event, trigger)"
+    (optionSelected)="selectOption($event, input)"
   >
     <mat-option
       *ngFor="let option of options"
@@ -53,3 +55,4 @@
     [control]="resultsControl"
   ></ts-validation-messages>
 </mat-form-field>
+
