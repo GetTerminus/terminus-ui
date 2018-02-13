@@ -409,11 +409,11 @@ export class TsAutocompleteComponent implements AfterViewInit {
   public handleBlur(event: KeyboardEvent | MouseEvent): void {
     // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
     const eventValue = (event && event['relatedTarget']) ? event['relatedTarget'] : null;
-    console.log('eventValue: ', eventValue, event)
 
     if (eventValue && eventValue.nodeName) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
       // will be `MAT-OPTION`.
+      // istanbul ignore else
       if (eventValue.nodeName !== 'MAT-OPTION') {
         this.resetResults();
       }
@@ -421,6 +421,12 @@ export class TsAutocompleteComponent implements AfterViewInit {
     } else {
       // If no eventValue exists, this was a blur event triggered by the Escape key
       this.resetResults();
+    }
+
+    // Since the user never interacts directly with the 'selectionsControl' formControl, we need to
+    // manually mark it as 'touched' to trigger validation messages.
+    if (this.selectionsControl && this.selectionsControl.markAsTouched) {
+      this.selectionsControl.markAsTouched();
     }
   }
 

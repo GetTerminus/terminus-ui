@@ -91,7 +91,7 @@
 
   <ts-validation-messages
     class="qa-autocomplete-validation-messages"
-    *ngIf="resultsControl"
-    [control]="resultsControl"
+    *ngIf="selectionsControl && selectionsControl.setValue"
+    [control]="selectionsControl"
   ></ts-validation-messages>
 </mat-form-field>
