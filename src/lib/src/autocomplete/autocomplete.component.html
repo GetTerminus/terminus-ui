@@ -7,6 +7,7 @@
     <mat-chip-list #chipList>
       <mat-chip
         *ngFor="let option of selectedOptions"
+        class="qa-autocomplete-chip"
         [selectable]="selectableChips"
         [removable]="removableChips"
         (remove)="deselectOption(option)"
@@ -18,6 +19,7 @@
       </mat-chip>
 
       <input
+        class="c-autocomplete__input qa-autocomplete-input"
         matInput
         placeholder="{{ label }}"
         [attr.name]="name"
@@ -26,14 +28,24 @@
         placeholder="{{ label }}"
         [(ngModel)]="searchQuery"
         (ngModelChange)="querySubject.next(searchQuery)"
+        (blur)="handleBlur($event)"
         #autocompleteTrigger="matAutocompleteTrigger"
         #input
       />
+
+      <mat-progress-spinner
+        *ngIf="showProgress"
+        class="c-autocomplete__spinner qa-c-autocomplete-spinner"
+        [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
+        diameter="21"
+        mode="indeterminate"
+      ></mat-progress-spinner>
     </mat-chip-list>
   </ng-container>
 
   <ng-container *ngIf="!multiple">
     <input
+      class="c-autocomplete__input qa-autocomplete-input"
       matInput
       placeholder="{{ label }}"
       [attr.name]="name"
@@ -41,18 +53,29 @@
       placeholder="{{ label }}"
       [(ngModel)]="searchQuery"
       (ngModelChange)="querySubject.next(searchQuery)"
+      (blur)="handleBlur($event)"
       #autocompleteTrigger="matAutocompleteTrigger"
       #input
     />
+
+    <mat-progress-spinner
+      *ngIf="showProgress"
+      class="c-autocomplete__spinner qa-c-autocomplete-spinner"
+      [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
+      diameter="21"
+      mode="indeterminate"
+    ></mat-progress-spinner>
   </ng-container>
 
   <mat-autocomplete
+    class="c-autocomplete__options c-autocomplete__options--{{theme}} qa-autocomplete-options"
     #autocomplete="matAutocomplete"
     autoActiveFirstOption="true"
     [displayWith]="displayWith"
     (optionSelected)="selectOption($event, input)"
   >
     <mat-option
+      class="qa-autocomplete-option"
       *ngFor="let option of options"
       [value]="option"
     >

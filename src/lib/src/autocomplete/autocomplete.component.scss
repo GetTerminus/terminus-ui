@@ -1,6 +1,10 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/animation';
+@import './../scss/helpers/color';
 
+
+$transition-duration: 200;
 
 //
 // @component
@@ -22,10 +26,63 @@
 }
 
 .c-autocomplete {
-  // Nested classes belong here
+  // Create space for progress spinner
+  .mat-chip-list-wrapper {
+    padding-right: spacing(large, 2);
+  }
 
-  .mat-chip {
-    margin-bottom: spacing(small);
+  // Create space below in preparation for multiple rows of chips
+  .mat-chip:not(.mat-basic-chip) + .mat-chip:not(.mat-basic-chip) {
+    margin-top: spacing(small, 2);
+  }
+
+  // Fix slight alignment issue between chip and input
+  .c-autocomplete__input {
+    position: relative;
+    top: 2px;
+  }
+
+  // Overwrite the Material spinner to fit our layout
+  .c-autocomplete__spinner {
+    display: inline-block;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: spacing(small);
+    transition: opacity $transition-duration $g-easing;
+    will-change: opacity;
+
+    &--active {
+      opacity: 1;
+    }
+
+    circle {
+      stroke: color(accent);
+    }
+  }
+}
+
+// <mat-autocomplete> container for dropdown
+.c-autocomplete__options {
+  &.c-autocomplete__options--primary {
+    .mat-active {
+      $color: color(primary, light);
+      background-color: rgba($color, .2);
+    }
+  }
+
+  &.c-autocomplete__options--accent {
+    .mat-active {
+      $color: color(accent, light);
+      background-color: rgba($color, .2);
+    }
+  }
+
+  &.c-autocomplete__options--warn {
+    .mat-active {
+      $color: color(warn, light);
+      background-color: rgba($color, .2);
+    }
   }
 }
 

@@ -2,12 +2,14 @@
   <ts-autocomplete
     tsVerticalSpacing
     [options]="users$ | async"
-    [resultsControl]="myForm.get('selections')"
+    [selectionsControl]="myForm.get('selections')"
     [displayWith]="displayFn"
-    [initialSelection]="null"
+    [initialSelections]="initial"
     [multiple]="multiSelect"
+    [showProgress]="inProgress"
     label="Select user names"
     hint="Begin typing to search..."
+    theme="primary"
     (optionSelected)="added($event)"
     (optionRemoved)="removed($event)"
     (selection)="change($event)"

@@ -16,6 +16,7 @@ import { TsAutocompleteComponent } from '@terminus/ui';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators/map';
+import { delay } from 'rxjs/operators/delay';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { debounce } from 'rxjs/operators/debounce';
 import { startWith } from 'rxjs/operators/startWith';
@@ -88,6 +89,7 @@ export class AutocompleteComponent implements OnInit {
   initial = INITIAL.slice();
   debounceDelay = 2000;
   multiSelect = true;
+  inProgress = false;
 
   // store subscription to autocomplete changes
   changesSubscription$: Observable<any>;
@@ -106,17 +108,26 @@ export class AutocompleteComponent implements OnInit {
         startWith(null),
         switchMap((term) => {
           if (term) {
+            this.inProgress = true;
             console.warn('searching term: ', term)
             return this.http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
               .pipe(
+                /*
+                 *delay(2000),
+                 */
                 map((response: Response) => {
                   /*
                    *console.log('response (with query): ', response)
                    */
+                  this.inProgress = false;
                   return response['items'];
                 }),
               )
           } else {
+            this.inProgress = false;
+            /*
+             *console.log('returning empty array')
+             */
             return of([]);
           }
         })

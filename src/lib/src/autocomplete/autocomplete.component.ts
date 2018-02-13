@@ -8,7 +8,6 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
-  OnDestroy,
   isDevMode,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -19,12 +18,12 @@ import {
 } from '@angular/material';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { filter } from 'rxjs/operators/filter';
 import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { isFunction } from '@terminus/ngx-tools';
-import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
@@ -44,15 +43,36 @@ import { TsAutocompleteFormatterFn } from './../utilities/types/autocomplete.typ
 
 
 /**
- * TODO: Fill this section out
- * This is the autocomplete UI Component
+ * The autocomplete UI Component
  *
  * #### QA CSS CLASSES
- * - `qa-autocomplete`: Placed on the primary container
+ * - `qa-autocomplete`: The primary container
+ * - `qa-autocomplete-input`: The input element
+ * - `qa-autocomplete-spinner`: The progress indicator
+ * - `qa-autocomplete-chip`: An individual selection 'chip'
+ * - `qa-autocomplete-options`: The container for the list of options
+ * - `qa-autocomplete-option`: An individual option from the list
+ * - `qa-autocomplete-hint`: The input hint
+ * - `qa-autocomplete-validation-messages`: The container for validation messages
  *
  * @example
  * <ts-autocomplete
- *              item="Value"
+ *              debounceDelay="300"
+ *              displayWith="(v) => v.name"
+ *              hint="Begin typing to search.."
+ *              label="Select options:"
+ *              multiple="true"
+ *              name="product selections"
+ *              options="[{}, {}, ...]"
+ *              selectionsControl="myForm.get('myControl')"
+ *              [showProgress]="inProgress"
+ *              theme="primary"
+ *              valueFunction="(v) => v.id"
+ *              initialSelections="[{}]"
+ *              (optionSelected)="mySelected($event)"
+ *              (optionRemoved)="myRemoved($event)"
+ *              (selection)="mySelection($event)"
+ *              (query)="myQuery($event)"
  * ></ts-autocomplete>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -68,7 +88,7 @@ import { TsAutocompleteFormatterFn } from './../utilities/types/autocomplete.typ
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
+export class TsAutocompleteComponent implements AfterViewInit {
   /**
    * Store the debounce delay
    */
@@ -92,7 +112,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   /**
    * Define if the chips/selections should be selectable
    */
-  public selectableChips: boolean = true;
+  public selectableChips: boolean = false;
 
   /**
    * Store the selected options
@@ -103,11 +123,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * Store the formatter function for the saved value
    */
   private selectionFormatFn: (value: any) => string;
-
-  /**
-   * Manage the autocomplete panel subscription
-   */
-  private subscription$: Subscription;
 
   /**
    * Store the formatter function for the UI display
@@ -137,7 +152,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    */
   @ViewChild('input')
   public input: ElementRef;
-
 
   /**
    * Define a debounce delay for the query
@@ -208,7 +222,13 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * Define the form control to save selections to
    */
   @Input()
-  public resultsControl: FormControl;
+  public selectionsControl: FormControl;
+
+  /**
+   * Define if the progress spinner should be active
+   */
+  @Input()
+  public showProgress: boolean = false;
 
   /**
    * Define the component theme
@@ -240,31 +260,35 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * Define items that should be selected when the component loads
    */
   @Input()
-  public set initialSelection(selections: any[]) {
+  public set initialSelections(selections: any[]) {
     // istanbul ignore else
     if (selections) {
+      // Seed the array
       this.selectedOptions = coerceArray(selections);
+
+      // istanbul ignore else
+      if (this.selectionsControl && this.selectionsControl.setValue) {
+        // Seed the formControl
+        this.selectionsControl.setValue(this.selectedOptions);
+      }
     }
   };
 
   /**
    * Emit the selected chip
    */
-  // TODO: any way to add a type here? Get if from the passed in options?
   @Output()
   public optionSelected: EventEmitter<any> = new EventEmitter();
 
   /**
    * Emit the removed chip
    */
-  // TODO: any way to add a type here?
   @Output()
   public optionRemoved: EventEmitter<any> = new EventEmitter();
 
   /**
    * Emit the current selection
    */
-  // TODO: any way to add a type here?
   @Output()
   public selection: EventEmitter<any[]> = new EventEmitter();
 
@@ -274,57 +298,23 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
   @Output()
   public query: EventEmitter<string> = new EventEmitter();
 
-
   /**
    * Subscribe to the querySubject and pass values to the query emitter
    */
   public ngAfterViewInit(): void {
-    // Debounce the querySubject input, then emit the query event
+    // Take a stream of query changes
     this.querySubject.pipe(
+      // FIXME: When an option is selected, the full selected value is piped through this stream
+      // somehow. Have not figured out why. Best guess is it's something due to the
+      // `matAutocomplete` directive. For now, we are filtering out anything that is not a string.
+      filter((v) => (typeof v === 'string')),
       // debounce the query changes
       debounceTime(this.debounceDelay),
       // only allow a query through if it is different from the previous
       distinctUntilChanged(),
-    ).subscribe((v: any) => {
-      console.log('v: ', v);
-      this.query.next(v);
+    ).subscribe((query: string) => {
+      this.query.next(query);
     });
-
-    // Subscribe to the autocomplete panel closing events
-    if (this.multiple) {
-      this._subscribeToClosingActions();
-    }
-  }
-
-
-  /**
-   * Tear down the autocomplete subscription
-   */
-  public ngOnDestroy() {
-    if (!!this.subscription$ && !this.subscription$.closed) {
-      this.subscription$.unsubscribe();
-    }
-  }
-
-
-  /**
-   * Clear the autocomplete input value when the autocomplete closes
-   */
-  private _subscribeToClosingActions(): void {
-    if (!!this.subscription$ && !this.subscription$.closed) {
-      this.subscription$.unsubscribe();
-    }
-
-    // Subscribe to the autocomplete panel closing actions
-    this.subscription$ = this.trigger.panelClosingActions
-      .subscribe((e: any) => {
-        if (!e || !e.source) {
-          // Clear the input text
-          this.input.nativeElement.value = '';
-        }
-      },
-      (err) => this._subscribeToClosingActions(),
-      () => this._subscribeToClosingActions());
   }
 
 
@@ -343,6 +333,7 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
 
     // If supporting multiple selections, reset the input text value
     if (this.multiple) {
+      this.searchQuery = '';
       // istanbul ignore else
       if (input && input.nativeElement) {
         input.nativeElement.value = '';
@@ -350,8 +341,8 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
     }
 
     // Update the form control
-    if (this.resultsControl && this.resultsControl.setValue) {
-      this.resultsControl.setValue(this.selectedOptions);
+    if (this.selectionsControl && this.selectionsControl.setValue) {
+      this.selectionsControl.setValue(this.selectedOptions);
     }
 
     // Let consumers know about the changes
@@ -365,7 +356,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    *
    * @param option - The option to deselect
    */
-  // TODO: any way to type this?
   public deselectOption(option: any): void {
     const selection = this.getSelectionValue(option);
 
@@ -379,8 +369,8 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
     }
 
     // Update the form control
-    if (this.resultsControl && this.resultsControl.setValue) {
-      this.resultsControl.setValue(this.selectedOptions);
+    if (this.selectionsControl && this.selectionsControl.setValue) {
+      this.selectionsControl.setValue(this.selectedOptions);
     }
 
     // Let consumers know about the changes
@@ -396,7 +386,6 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * @param option - The option
    * @return The string value for the UI
    */
-  // TODO: any way to type this?
   public displayOption(option: any): string | any {
     return (this.uiFormatFn) ? this.uiFormatFn(option) : option;
   }
@@ -410,9 +399,42 @@ export class TsAutocompleteComponent implements AfterViewInit, OnDestroy {
    * @param selection - The selection
    * @return The value to save
    */
-  // TODO: add types?
   public getSelectionValue(selection: any): string | any {
     return (this.valueFunction) ? this.valueFunction(selection) : selection;
+  }
+
+  /**
+   * Close the dropdown and reset the query when the user leaves the input
+   */
+  public handleBlur(event: KeyboardEvent | MouseEvent): void {
+    // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
+    const eventValue = (event && event['relatedTarget']) ? event['relatedTarget'] : null;
+    console.log('eventValue: ', eventValue, event)
+
+    if (eventValue && eventValue.nodeName) {
+      // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
+      // will be `MAT-OPTION`.
+      if (eventValue.nodeName !== 'MAT-OPTION') {
+        this.resetResults();
+      }
+
+    } else {
+      // If no eventValue exists, this was a blur event triggered by the Escape key
+      this.resetResults();
+    }
+  }
+
+
+  /**
+   * Reset the autocomplete input and close the panel
+   */
+  private resetResults(): void {
+    // close the autocomplete planel
+    this.trigger.closePanel();
+    // clear the search query stream
+    this.querySubject.next('');
+    // clear the query input
+    this.input.nativeElement.value = '';
   }
 
 }
