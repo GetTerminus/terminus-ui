@@ -143,7 +143,7 @@
     "@angular/platform-browser": "5.1.2",
     "@angular/platform-browser-dynamic": "5.1.2",
     "@angular/router": "5.1.2",
-    "@compodoc/compodoc": "1.0.5",
+    "@compodoc/compodoc": "1.0.6",
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
     "@terminus/ngx-tools": "1.0.0",
