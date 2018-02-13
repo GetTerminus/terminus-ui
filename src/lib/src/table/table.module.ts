@@ -20,6 +20,10 @@ import {
 } from './row';
 import { TsTableComponent } from './table.component';
 
+export * from './table-data-source';
+export * from './cell';
+export * from './row';
+export * from './table.component';
 
 /**
  * Much of this was lifted directly from Angular Material. I highly recommend checking out their
