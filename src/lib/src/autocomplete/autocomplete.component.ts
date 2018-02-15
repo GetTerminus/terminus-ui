@@ -108,11 +108,6 @@ export class TsAutocompleteComponent implements AfterViewInit {
   public querySubject: BehaviorSubject<string> = new BehaviorSubject('');
 
   /**
-   * Define if the chips/selections should be removable
-   */
-  public removableChips: boolean = true;
-
-  /**
    * Store the search query
    */
   public searchQuery: string;

@@ -9,11 +9,11 @@
         *ngFor="let option of selectedOptions"
         class="qa-autocomplete-chip"
         [selectable]="selectableChips"
-        [removable]="removableChips"
+        removable="true"
         (remove)="deselectOption(option)"
       >
         {{ displayOption(option) }}
-        <ts-icon matChipRemove *ngIf="removableChips">
+        <ts-icon matChipRemove>
           cancel
         </ts-icon>
       </mat-chip>
