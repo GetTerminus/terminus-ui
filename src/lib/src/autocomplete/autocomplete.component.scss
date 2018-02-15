@@ -53,8 +53,22 @@ $transition-duration: 200;
       opacity: 1;
     }
 
-    circle {
-      stroke: color(accent);
+    &.c-autocomplete__spinner--primary {
+      circle {
+        stroke: color(primary);
+      }
+    }
+
+    &.c-autocomplete__spinner--accent {
+      circle {
+        stroke: color(accent);
+      }
+    }
+
+    &.c-autocomplete__spinner--warn {
+      circle {
+        stroke: color(warn);
+      }
     }
   }
 }

@@ -101,7 +101,7 @@
 <ng-template #spinnerTemplate>
   <mat-progress-spinner
     *ngIf="showProgress"
-    class="c-autocomplete__spinner qa-c-autocomplete-spinner"
+    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-c-autocomplete-spinner"
     [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
     diameter="21"
     mode="indeterminate"
