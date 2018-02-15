@@ -157,21 +157,15 @@ export class AutocompleteComponent implements OnInit {
 
 
   added(chip: any) {
-    /*
-     *console.log('DEMO: chip added', chip);
-     */
+    console.log('DEMO: chip added', chip);
   }
 
   removed(chip: any) {
-    /*
-     *console.log('DEMO: chip removed', chip);
-     */
+    console.log('DEMO: chip removed', chip);
   }
 
   change(selections: any) {
-    /*
-     *console.log('DEMO: chip selections changed', selections);
-     */
+    console.log('DEMO: chip selections changed', selections);
   }
 
   submit(v: any) {
