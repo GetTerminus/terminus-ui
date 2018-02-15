@@ -37,4 +37,15 @@
     margin-bottom: -1px;
     vertical-align: bottom;
   }
+
+  // Style overrides when nested inside a mat-chip
+  .mat-chip & {
+    &.mat-icon {
+      // Match text size
+      font-size: 18px;
+      height: 1em;
+      vertical-align: bottom;
+      width: 1em;
+    }
+  }
 }

@@ -13,9 +13,9 @@
         (remove)="deselectOption(option)"
       >
         {{ displayOption(option) }}
-        <mat-icon matChipRemove *ngIf="removableChips">
+        <ts-icon matChipRemove *ngIf="removableChips">
           cancel
-        </mat-icon>
+        </ts-icon>
       </mat-chip>
 
       <input
@@ -33,13 +33,7 @@
         #input
       />
 
-      <mat-progress-spinner
-        *ngIf="showProgress"
-        class="c-autocomplete__spinner qa-c-autocomplete-spinner"
-        [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
-        diameter="21"
-        mode="indeterminate"
-      ></mat-progress-spinner>
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
     </mat-chip-list>
   </ng-container>
 
@@ -58,13 +52,7 @@
       #input
     />
 
-    <mat-progress-spinner
-      *ngIf="showProgress"
-      class="c-autocomplete__spinner qa-c-autocomplete-spinner"
-      [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
-      diameter="21"
-      mode="indeterminate"
-    ></mat-progress-spinner>
+    <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
   </ng-container>
 
   <mat-autocomplete
@@ -108,3 +96,14 @@
     [control]="selectionsControl"
   ></ts-validation-messages>
 </mat-form-field>
+
+
+<ng-template #spinnerTemplate>
+  <mat-progress-spinner
+    *ngIf="showProgress"
+    class="c-autocomplete__spinner qa-c-autocomplete-spinner"
+    [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
+    diameter="21"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</ng-template>
