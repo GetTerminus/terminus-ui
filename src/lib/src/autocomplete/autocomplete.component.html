@@ -74,13 +74,25 @@
     [displayWith]="displayWith"
     (optionSelected)="selectOption($event, input)"
   >
-    <mat-option
-      class="qa-autocomplete-option"
-      *ngFor="let option of options"
-      [value]="option"
-    >
-      {{ displayOption(option) }}
-    </mat-option>
+    <ng-container *ngIf="!multiple">
+      <mat-option
+        class="qa-autocomplete-option"
+        *ngFor="let option of options"
+        [value]="option"
+      >
+        {{ displayOption(option) }}
+      </mat-option>
+    </ng-container>
+
+    <ng-container *ngIf="multiple">
+      <mat-option
+        class="qa-autocomplete-option"
+        *ngFor="let option of options; trackBy: _comparatorFn"
+        [value]="option"
+      >
+        {{ displayOption(option) }}
+      </mat-option>
+    </ng-container>
   </mat-autocomplete>
 
   <mat-hint
@@ -92,6 +104,7 @@
   <ts-validation-messages
     class="qa-autocomplete-validation-messages"
     *ngIf="selectionsControl && selectionsControl.setValue"
+    [validateOnChange]="selectedOptions.length > 0"
     [control]="selectionsControl"
   ></ts-validation-messages>
 </mat-form-field>

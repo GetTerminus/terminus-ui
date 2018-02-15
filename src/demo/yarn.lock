@@ -198,9 +198,9 @@
   dependencies:
     typescript "~2.6.2"
 
-"@terminus/ngx-tools@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.1.0.tgz#e98f0b8d503cc468f2c0f190bf1dfadb04183afc"
+"@terminus/ngx-tools@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.2.0.tgz#9dd16087c4adb0309ec245c3b172600a1d8d3283"
 
 "@terminus/ui@5.1.1":
   version "5.1.1"

@@ -10,7 +10,10 @@ import {
   ElementRef,
   isDevMode,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl,
+  ValidationErrors,
+} from '@angular/forms';
 import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
@@ -23,11 +26,17 @@ import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
-import { isFunction } from '@terminus/ngx-tools';
+import {
+  isFunction,
+  arrayContainsObject,
+} from '@terminus/ngx-tools';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
-import { TsAutocompleteFormatterFn } from './../utilities/types/autocomplete.types';
+import {
+  TsAutocompleteFormatterFn,
+  TsAutocompleteComparatorFn,
+} from './../utilities/types/autocomplete.types';
 
 
 /*
@@ -61,13 +70,12 @@ import { TsAutocompleteFormatterFn } from './../utilities/types/autocomplete.typ
  *              displayWith="(v) => v.name"
  *              hint="Begin typing to search.."
  *              label="Select options:"
- *              multiple="true"
+ *              multiple="(v) => v.id"
  *              name="product selections"
  *              options="[{}, {}, ...]"
  *              selectionsControl="myForm.get('myControl')"
  *              [showProgress]="inProgress"
  *              theme="primary"
- *              valueFunction="(v) => v.id"
  *              initialSelections="[{}]"
  *              (optionSelected)="mySelected($event)"
  *              (optionRemoved)="myRemoved($event)"
@@ -120,11 +128,6 @@ export class TsAutocompleteComponent implements AfterViewInit {
   public selectedOptions: string[] = [];
 
   /**
-   * Store the formatter function for the saved value
-   */
-  private selectionFormatFn: (value: any) => string;
-
-  /**
    * Store the formatter function for the UI display
    */
   private uiFormatFn: (value: any) => string;
@@ -174,7 +177,11 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   @Input()
   public set displayWith(value: TsAutocompleteFormatterFn) {
-    if (value && isFunction(value)) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
       this.uiFormatFn = value;
     } else {
       // istanbul ignore else
@@ -201,10 +208,27 @@ export class TsAutocompleteComponent implements AfterViewInit {
   public label: string;
 
   /**
-   * Define if multiple selections are allowed
+   * Define if multiple selections are allowed by passing in a comparator function
    */
   @Input()
-  public multiple: boolean = false;
+  public set multiple(v: TsAutocompleteComparatorFn) {
+    if (!v) {
+      return;
+    }
+
+    if (isFunction(v)) {
+      this.comparatorFn = v;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`)
+      }
+    }
+  }
+  public get multiple(): TsAutocompleteComparatorFn {
+    return this.comparatorFn;
+  }
+  private comparatorFn: TsAutocompleteComparatorFn;
 
   /**
    * Define the name attribute value
@@ -235,26 +259,6 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
-
-  /**
-   * Define a function to select the value to save on selection
-   *
-   * When undefined the full selection object will be saved as the value
-   */
-  @Input()
-  public set valueFunction(value: (value: any) => string) {
-    if (value && isFunction(value)) {
-      this.selectionFormatFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsAutocompleteComponent: 'valueFunction' must be passed a function.`)
-      }
-    }
-  }
-  public get valueFunction(): ((value: any) => string) {
-    return this.selectionFormatFn;
-  }
 
   /**
    * Define items that should be selected when the component loads
@@ -298,19 +302,21 @@ export class TsAutocompleteComponent implements AfterViewInit {
   @Output()
   public query: EventEmitter<string> = new EventEmitter();
 
+
   /**
    * Subscribe to the querySubject and pass values to the query emitter
+   *
+   * FIXME: When an option is selected, the full selected value is piped through this stream
+   * somehow. Have not figured out why. Best guess is it's something due to the `matAutocomplete`
+   * directive. For now, we are filtering out anything that is not a string.
    */
   public ngAfterViewInit(): void {
     // Take a stream of query changes
     this.querySubject.pipe(
-      // FIXME: When an option is selected, the full selected value is piped through this stream
-      // somehow. Have not figured out why. Best guess is it's something due to the
-      // `matAutocomplete` directive. For now, we are filtering out anything that is not a string.
       filter((v) => (typeof v === 'string')),
-      // debounce the query changes
+      // Debounce the query changes
       debounceTime(this.debounceDelay),
-      // only allow a query through if it is different from the previous
+      // Only allow a query through if it is different from the previous query
       distinctUntilChanged(),
     ).subscribe((query: string) => {
       this.query.next(query);
@@ -326,18 +332,23 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   public selectOption(event: MatAutocompleteSelectedEvent, input?: ElementRef): void {
     // The selected option
-    const selection = this.getSelectionValue(event.option.value);
+    const selection = event.option.value;
+
+    // Stop the flow if the selection already exists in the array
+    if (arrayContainsObject(selection, this.selectedOptions, this.comparatorFn)) {
+      // Set an error on the control to let the user know they chose a duplicate option
+      this.setDuplicateError(this.selectionsControl, selection, this.uiFormatFn);
+
+      return;
+    }
+
 
     // Add to the displayed selection chips
     this.selectedOptions.push(selection);
 
     // If supporting multiple selections, reset the input text value
     if (this.multiple) {
-      this.searchQuery = '';
-      // istanbul ignore else
-      if (input && input.nativeElement) {
-        input.nativeElement.value = '';
-      }
+      this.resetSearch();
     }
 
     // Update the form control
@@ -357,10 +368,8 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * @param option - The option to deselect
    */
   public deselectOption(option: any): void {
-    const selection = this.getSelectionValue(option);
-
     // Find the key of the selection in the selectedOptions array
-    const index = this.selectedOptions.indexOf(selection);
+    const index = this.selectedOptions.indexOf(option);
 
     // If found
     if (index >= 0) {
@@ -374,7 +383,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
     }
 
     // Let consumers know about the changes
-    this.optionRemoved.emit(selection);
+    this.optionRemoved.emit(option);
     this.selection.emit(this.selectedOptions);
   }
 
@@ -392,18 +401,6 @@ export class TsAutocompleteComponent implements AfterViewInit {
 
 
   /**
-   * Determine what to save as the selection.
-   *
-   * If `valueFunction` is not defined, save the full selection object.
-   *
-   * @param selection - The selection
-   * @return The value to save
-   */
-  public getSelectionValue(selection: any): string | any {
-    return (this.valueFunction) ? this.valueFunction(selection) : selection;
-  }
-
-  /**
    * Close the dropdown and reset the query when the user leaves the input
    */
   public handleBlur(event: KeyboardEvent | MouseEvent): void {
@@ -415,12 +412,12 @@ export class TsAutocompleteComponent implements AfterViewInit {
       // will be `MAT-OPTION`.
       // istanbul ignore else
       if (eventValue.nodeName !== 'MAT-OPTION') {
-        this.resetResults();
+        this.resetSearch();
       }
 
     } else {
       // If no eventValue exists, this was a blur event triggered by the Escape key
-      this.resetResults();
+      this.resetSearch();
     }
 
     // Since the user never interacts directly with the 'selectionsControl' formControl, we need to
@@ -434,13 +431,36 @@ export class TsAutocompleteComponent implements AfterViewInit {
   /**
    * Reset the autocomplete input and close the panel
    */
-  private resetResults(): void {
-    // close the autocomplete planel
-    this.trigger.closePanel();
-    // clear the search query stream
+  private resetSearch(): void {
+    // Close the autocomplete planel
+    if (this.trigger.panelOpen) {
+      this.trigger.closePanel();
+    }
+    // Clear the query model
+    this.searchQuery = '';
+    // Clear the search query stream
     this.querySubject.next('');
-    // clear the query input
+    // Clear the query input
     this.input.nativeElement.value = '';
+  }
+
+
+  /**
+   * Set an error on the form control for a duplicate selection
+   *
+   * @param control - The form control
+   * @param selection - The selected option
+   * @param formatter - The UI formatter function
+   */
+  private setDuplicateError(control: FormControl, selection: any, formatter?: TsAutocompleteFormatterFn): void {
+    const invalidResponse: ValidationErrors = {
+      notUnique: {
+        valid: false,
+        actual: formatter ? formatter(selection) : selection,
+      },
+    };
+
+    control.setErrors(invalidResponse);
   }
 
 }

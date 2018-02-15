@@ -11,7 +11,10 @@ import {
 import { TsValidatorsService } from '@terminus/ui';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http';
-import { TsAutocompleteComponent } from '@terminus/ui';
+import {
+  TsAutocompleteComponent,
+  TsAutocompleteComparatorFn,
+} from '@terminus/ui';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -88,7 +91,6 @@ export class AutocompleteComponent implements OnInit {
   });
   initial = INITIAL.slice();
   debounceDelay = 2000;
-  multiSelect = true;
   inProgress = false;
 
   // store subscription to autocomplete changes
@@ -113,24 +115,18 @@ export class AutocompleteComponent implements OnInit {
             return this.http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
               .pipe(
                 /*
-                 *delay(2000),
+                 *delay(3000),
                  */
                 map((response: Response) => {
-                  /*
-                   *console.log('response (with query): ', response)
-                   */
                   this.inProgress = false;
                   return response['items'];
                 }),
               )
           } else {
             this.inProgress = false;
-            /*
-             *console.log('returning empty array')
-             */
             return of([]);
           }
-        })
+        }),
       )
     ;
   }
@@ -144,12 +140,10 @@ export class AutocompleteComponent implements OnInit {
 
 
 
+  comparator: TsAutocompleteComparatorFn = (v: any) => v.id;
+
   displayFn(user?: any): string | undefined {
     return user ? user.login : undefined;
-  }
-
-  valueFn(user?: any): string | undefined {
-    return user ? user.id : undefined;
   }
 
 

@@ -4,8 +4,8 @@
     [options]="users$ | async"
     [selectionsControl]="myForm.get('selections')"
     [displayWith]="displayFn"
-    [initialSelections]="initial"
-    [multiple]="multiSelect"
+    [initialSelections]="null"
+    [multiple]="comparator"
     [showProgress]="inProgress"
     label="Select user names"
     hint="Begin typing to search..."
@@ -16,5 +16,5 @@
     #auto="tsAutocomplete"
   ></ts-autocomplete>
 
-  <button (click)="submit(myForm.value)">Log form value</button>
+  <button (click)="submit(myForm)">Log form value</button>
 </form>

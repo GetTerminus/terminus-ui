@@ -126,7 +126,7 @@
     "@angular/material": "5.2.0",
     "@angular/platform-browser": "5.2.4",
     "@angular/router": "5.2.4",
-    "@terminus/ngx-tools": "1.1.0"
+    "@terminus/ngx-tools": "1.2.0"
   },
   "devDependencies": {
     "@angular/animations": "5.2.4",
@@ -146,7 +146,7 @@
     "@compodoc/compodoc": "1.0.5",
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
-    "@terminus/ngx-tools": "1.1.0",
+    "@terminus/ngx-tools": "1.2.0",
     "@types/jasmine": "2.8.6",
     "@types/jest": "22.1.2",
     "@types/node": "9.4.5",
