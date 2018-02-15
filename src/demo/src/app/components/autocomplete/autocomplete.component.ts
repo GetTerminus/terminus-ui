@@ -7,6 +7,7 @@ import {
   AbstractControl,
   FormBuilder,
   Validators,
+  ValidationErrors,
 } from '@angular/forms';
 import { TsValidatorsService } from '@terminus/ui';
 import { HttpClient } from '@angular/common/http';
@@ -77,7 +78,6 @@ const GITHUB_API_ENDPOINT = 'https://api.github.com';
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
-
   @ViewChild('auto')
   public auto: TsAutocompleteComponent;
 
@@ -92,10 +92,8 @@ export class AutocompleteComponent implements OnInit {
   initial = INITIAL.slice();
   debounceDelay = 2000;
   inProgress = false;
-
-  // store subscription to autocomplete changes
+  delayApiResponse = false;
   changesSubscription$: Observable<any>;
-
   users$: any;
 
 
@@ -114,12 +112,23 @@ export class AutocompleteComponent implements OnInit {
             console.warn('searching term: ', term)
             return this.http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
               .pipe(
-                /*
-                 *delay(3000),
-                 */
+                delay(this.delayApiResponse ? 3000 : 0),
                 map((response: Response) => {
                   this.inProgress = false;
-                  return response['items'];
+                  const items = response['items'];
+
+                  // If no results are found, notify the user via a validation message
+                  if (items.length < 1) {
+                    const invalidResponse: ValidationErrors = {
+                      noResults: {
+                        valid: false,
+                      },
+                    };
+
+                    this.myForm.get('selections').setErrors(invalidResponse);
+                    this.myForm.get('selections').markAsTouched();
+                  }
+                  return items;
                 }),
               )
           } else {
