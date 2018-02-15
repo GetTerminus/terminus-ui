@@ -39,18 +39,6 @@ import {
 } from './../utilities/types/autocomplete.types';
 
 
-/*
- * Using this causes:
- * `Error: compile-ngc-es5 compilation failed: index.ts(52,3): error TS2305: Module
- * '"/Users/bc/code/Terminus/terminus-ui/out-tsc/lib/src/autocomplete/autocomplete.component"' has
- * no exported member 'TsAutocompleteFormatterFn'.`
- */
-/*
- *export type TsAutocompleteFormatterFn = (value: any) => string;
- */
-
-
-
 /**
  * The autocomplete UI Component
  *
@@ -156,10 +144,11 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   @Input()
   public set debounceDelay(value: number) {
-    // istanbul ignore else
-    if (value) {
-      this._debounceDelay = coerceNumberProperty(value);
+    if (!value && value !== 0) {
+      return;
     }
+
+    this._debounceDelay = coerceNumberProperty(value);
   }
   public get debounceDelay(): number {
     return this._debounceDelay;
@@ -332,7 +321,10 @@ export class TsAutocompleteComponent implements AfterViewInit {
     // Stop the flow if the selection already exists in the array
     if (arrayContainsObject(selection, this.selectedOptions, this.comparatorFn)) {
       // Set an error on the control to let the user know they chose a duplicate option
-      this.setDuplicateError(this.selectionsControl, selection, this.uiFormatFn);
+      // istanbul ignore else
+      if (this.selectionsControl) {
+        this.setDuplicateError(this.selectionsControl, selection, this.uiFormatFn);
+      }
 
       return;
     }
@@ -347,6 +339,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
     }
 
     // Update the form control
+    // istanbul ignore else
     if (this.selectionsControl && this.selectionsControl.setValue) {
       this.selectionsControl.setValue(this.selectedOptions);
     }
@@ -366,13 +359,16 @@ export class TsAutocompleteComponent implements AfterViewInit {
     // Find the key of the selection in the selectedOptions array
     const index = this.selectedOptions.indexOf(option);
 
-    // If found
-    if (index >= 0) {
-      // Remove the selection from the selectedOptions array
-      this.selectedOptions.splice(index, 1);
+    // If not found
+    if (index < 0) {
+      return;
     }
 
+    // Remove the selection from the selectedOptions array
+    this.selectedOptions.splice(index, 1);
+
     // Update the form control
+    // istanbul ignore else
     if (this.selectionsControl && this.selectionsControl.setValue) {
       this.selectionsControl.setValue(this.selectedOptions);
     }
@@ -397,6 +393,8 @@ export class TsAutocompleteComponent implements AfterViewInit {
 
   /**
    * Close the dropdown and reset the query when the user leaves the input
+   *
+   * @param event - The keyboard or mouse event
    */
   public handleBlur(event: KeyboardEvent | MouseEvent): void {
     // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
@@ -405,11 +403,9 @@ export class TsAutocompleteComponent implements AfterViewInit {
     if (eventValue && eventValue.nodeName) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
       // will be `MAT-OPTION`.
-      // istanbul ignore else
       if (eventValue.nodeName !== 'MAT-OPTION') {
         this.resetSearch();
       }
-
     } else {
       // If no eventValue exists, this was a blur event triggered by the Escape key
       this.resetSearch();
@@ -417,6 +413,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
 
     // Since the user never interacts directly with the 'selectionsControl' formControl, we need to
     // manually mark it as 'touched' to trigger validation messages.
+    // istanbul ignore else
     if (this.selectionsControl && this.selectionsControl.markAsTouched) {
       this.selectionsControl.markAsTouched();
     }
@@ -428,6 +425,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   private resetSearch(): void {
     // Close the autocomplete planel
+    // istanbul ignore else
     if (this.trigger.panelOpen) {
       this.trigger.closePanel();
     }
