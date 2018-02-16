@@ -131,7 +131,7 @@
   "devDependencies": {
     "@angular/animations": "5.2.4",
     "@angular/cdk": "5.2.0",
-    "@angular/cli": "1.6.8",
+    "@angular/cli": "1.7.0",
     "@angular/common": "5.2.4",
     "@angular/compiler": "5.2.4",
     "@angular/compiler-cli": "5.2.4",
@@ -220,9 +220,9 @@
     "stylelint-order": "0.8.0",
     "systemjs": "0.20.19",
     "tslint": "5.8.0",
-    "typescript": "2.6.2",
+    "typescript": "2.7.2",
     "validate-commit-msg": "2.14.0",
-    "zone.js": "0.8.19"
+    "zone.js": "0.8.20"
   },
   "jest": {
     "globals": {
