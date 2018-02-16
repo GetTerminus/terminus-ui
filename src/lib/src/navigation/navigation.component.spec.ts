@@ -1,5 +1,4 @@
 import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
-import { fakeAsync, tick } from '@angular/core/testing';
 
 import { TsNavigationComponent } from './navigation.component';
 import { TsNavigationItem } from './../utilities/interfaces/';
@@ -56,37 +55,20 @@ const visibleLinkElementMock = [
   },
 ];
 
-const visibleItemsListMock = {
-  nativeElement: {
-    offsetWidth: 180,
-  },
-};
-
 
 describe(`TsNavigationComponent`, () => {
 
   beforeEach(() => {
     this.component = new TsNavigationComponent(new ChangeDetectorRefMock());
+    // NOTE: The getter was removed since it was only used by tests.
+    this.component.hiddenItemsLength = (): number => {
+      return this.component.hiddenItems.getValue().length;
+    }
   });
 
 
   it(`should exist`, () => {
     expect(this.component).toBeTruthy();
-  });
-
-
-  describe(`hiddenItemsLength()`, () => {
-
-    beforeEach(() => {
-      this.component.hiddenItems.next(NAV_ITEMS_MOCK);
-    });
-
-
-    it(`should return the length of hiddenItems`, () => {
-      // We are bypassing the items setter so we expect 4 even though one is disabled
-      expect(this.component.hiddenItemsLength).toEqual(4);
-    });
-
   });
 
 
@@ -223,13 +205,13 @@ describe(`TsNavigationComponent`, () => {
 
       it(`should move one item to hiddenItems`, () => {
         expect(this.component.visibleItemsLength).toEqual(2);
-        expect(this.component.hiddenItemsLength).toEqual(1);
+        expect(this.component.hiddenItemsLength()).toEqual(1);
 
         this.component.visibleItemsList.nativeElement.offsetWidth = 140;
         this.component.updateLists();
 
         expect(this.component.visibleItemsLength).toEqual(1);
-        expect(this.component.hiddenItemsLength).toEqual(2);
+        expect(this.component.hiddenItemsLength()).toEqual(2);
       });
 
     });
@@ -239,7 +221,7 @@ describe(`TsNavigationComponent`, () => {
 
       it(`should move an item to visibleItems if there is enough space`, () => {
         expect(this.component.visibleItemsLength).toEqual(2);
-        expect(this.component.hiddenItemsLength).toEqual(1);
+        expect(this.component.hiddenItemsLength()).toEqual(1);
 
         this.component.visibleItemsList = {
           nativeElement: {

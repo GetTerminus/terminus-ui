@@ -168,7 +168,6 @@
         "variable-declaration": "onespace"
       }
     ],
-    "typeof-compare": true,
     "type-literal-delimiter": true,
     "unified-signatures": true,
     "use-host-property-decorator": false,

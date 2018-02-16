@@ -87,15 +87,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public hiddenItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([]);
 
   /**
-   * Getter to return the count of hidden items
-   *
-   * @return The number of hidden navigation items
-   */
-  private get hiddenItemsLength(): number {
-    return this.hiddenItems.getValue().length;
-  }
-
-  /**
    * Getter to return the user's full name if it exists
    *
    * @return The user's full name
