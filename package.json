@@ -216,7 +216,7 @@
     "sass-module-importer": "1.4.0",
     "scssfmt": "1.0.3",
     "semantic-release": "11.0.2",
-    "stylelint": "8.4.0",
+    "stylelint": "9.0.0",
     "stylelint-order": "0.8.0",
     "systemjs": "0.20.19",
     "tslint": "5.8.0",
