@@ -68,6 +68,9 @@ export class TsValidationMessagesComponent {
   @Input()
   public validateOnChange: boolean = false;
 
+  /**
+   * Define if the validation should be immediate
+   */
   @Input()
   public validateImmediately: boolean = false;
 

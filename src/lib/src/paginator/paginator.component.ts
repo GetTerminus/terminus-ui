@@ -151,7 +151,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * Define the tooltip message for the last page tooltip
    */
   @Input()
-  public lastPageTooltip: string= 'View the last results';
+  public lastPageTooltip: string = 'View the last results';
 
   /**
    * Define the current page

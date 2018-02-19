@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';

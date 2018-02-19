@@ -1,0 +1,109 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/animation';
+@import './../scss/helpers/color';
+
+
+$transition-duration: 200;
+
+//
+// @component
+//  Autocomplete
+// @description
+//  Styles for the autocomplete component
+//
+.ts-autocomplete {
+  display: block;
+  width: 100%;
+
+  // Top level styles belong here
+  .c-autocomplete {
+    //
+  }
+}
+
+.c-autocomplete {
+  // Create space for progress spinner
+  .mat-chip-list-wrapper {
+    padding-right: spacing(large, 2);
+  }
+
+  // Create space below in preparation for multiple rows of chips
+  .mat-chip:not(.mat-basic-chip) + .mat-chip:not(.mat-basic-chip) {
+    margin-top: spacing(small, 2);
+  }
+
+  // Fix slight alignment issue between chip and input
+  .c-autocomplete__input {
+    position: relative;
+    top: 2px;
+  }
+
+  // Overwrite the Material spinner to fit our layout
+  .c-autocomplete__spinner {
+    display: inline-block;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: spacing(small);
+    transition: opacity $transition-duration $g-easing;
+    will-change: opacity;
+
+    &--active {
+      opacity: 1;
+    }
+
+    &.c-autocomplete__spinner--primary {
+      circle {
+        stroke: color(primary);
+      }
+    }
+
+    &.c-autocomplete__spinner--accent {
+      circle {
+        stroke: color(accent);
+      }
+    }
+
+    &.c-autocomplete__spinner--warn {
+      circle {
+        stroke: color(warn);
+      }
+    }
+  }
+}
+
+// <mat-autocomplete> container for dropdown
+.c-autocomplete__options {
+  &.c-autocomplete__options--primary {
+    .mat-active {
+      $color: color(primary, light);
+      background-color: rgba($color, .2);
+    }
+  }
+
+  &.c-autocomplete__options--accent {
+    .mat-active {
+      $color: color(accent, light);
+      background-color: rgba($color, .2);
+    }
+  }
+
+  &.c-autocomplete__options--warn {
+    .mat-active {
+      $color: color(warn, light);
+      background-color: rgba($color, .2);
+    }
+  }
+}
+
+
+// Use until I figure out how to merge with ts-input
+.c-input {
+  $icon-top-adjustment: 6px;
+
+  &.mat-form-field {
+    @include typography;
+    width: 100%;
+  }
+}

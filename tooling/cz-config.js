@@ -16,6 +16,7 @@ module.exports = {
   ],
 
   scopes: [
+    {name: 'Autocomplete'},
     {name: 'Button'},
     {name: 'Card'},
     {name: 'Checkbox'},
@@ -66,6 +67,6 @@ module.exports = {
   */
 
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert']
+  allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert', 'chore']
 
 };
