@@ -2,13 +2,18 @@ import { TsDatePipe } from './date.pipe';
 
 
 describe(`TsDatePipe`, () => {
+  let pipeClass: TsDatePipe;
+  let pipe;
+  let date;
+  let originalGetTimezoneOffset;
 
   beforeEach(() => {
-    this.pipe = new TsDatePipe().transform;
-    this.date = '2018-02-08T05:00:00.000Z';
+    pipeClass = new TsDatePipe();
+    pipe = pipeClass.transform;
+    date = '2018-02-08T05:00:00.000Z';
 
     // Save a reference to the original timezone method
-    this.originalGetTimezoneOffset = Date.prototype.getTimezoneOffset;
+    originalGetTimezoneOffset = Date.prototype.getTimezoneOffset;
 
     // Path the method to always return Eastern timezone offset
     Date.prototype.getTimezoneOffset = function() {
@@ -19,20 +24,20 @@ describe(`TsDatePipe`, () => {
 
   afterEach(() => {
     // Reset the timezone offset method
-    Date.prototype.getTimezoneOffset = this.originalGetTimezoneOffset;
+    Date.prototype.getTimezoneOffset = originalGetTimezoneOffset;
   });
 
 
   it(`should return null if no value is passed in`, () => {
-    expect(this.pipe(null)).toEqual(null);
-    expect(this.pipe('')).toEqual(null);
+    expect(pipe(null)).toEqual(null);
+    expect(pipe('')).toEqual(null);
   });
 
 
   describe(`short format`, () => {
 
     it(`should format a date`, () => {
-      const actual = this.pipe(new Date(this.date), 'short');
+      const actual = pipe(new Date(date), 'short');
       const expected = '02/08/2018';
 
       expect(actual).toEqual(expected);
@@ -40,7 +45,7 @@ describe(`TsDatePipe`, () => {
 
 
     it(`should format a date string`, () => {
-      const actual = this.pipe(this.date, 'short');
+      const actual = pipe(date, 'short');
       const expected = '02/08/2018';
 
       expect(actual).toEqual(expected);
@@ -52,7 +57,7 @@ describe(`TsDatePipe`, () => {
   describe(`medium format`, () => {
 
     it(`should format a date`, () => {
-      const actual = this.pipe(this.date, 'medium');
+      const actual = pipe(date, 'medium');
       const expected = 'Feb 8 2018';
 
       expect(actual).toEqual(expected);
@@ -64,7 +69,7 @@ describe(`TsDatePipe`, () => {
   describe(`extended format`, () => {
 
     it(`should format a date`, () => {
-      const actual = this.pipe(this.date, 'extended');
+      const actual = pipe(date, 'extended');
       const expected = 'Feb 8 2018 12:00:00am';
 
       expect(actual).toEqual(expected);
@@ -76,7 +81,7 @@ describe(`TsDatePipe`, () => {
   describe(`timestamp format`, () => {
 
     it(`should format a date`, () => {
-      const actual = this.pipe(this.date, 'timestamp');
+      const actual = pipe(date, 'timestamp');
       const expected = '2018-02-08T05:00:00.000Z';
 
       expect(actual).toEqual(expected);
@@ -90,7 +95,7 @@ describe(`TsDatePipe`, () => {
     describe(`if the value is not a valid date`, () => {
 
       it(`should throw an error`, () => {
-        const errFunc = () => this.pipe('foo');
+        const errFunc = () => pipe('foo');
         expect(errFunc).toThrowError(`'foo' is not a valid date.`);
       });
 
@@ -101,7 +106,7 @@ describe(`TsDatePipe`, () => {
       const message = `'foo' is not a valid format. Please see TsDateTypes for valid formats.`
 
       it(`should throw an error`, () => {
-        const errFunc = () => this.pipe(this.date, 'foo');
+        const errFunc = () => pipe(date, 'foo');
         expect(errFunc).toThrowError(message);
       });
 
