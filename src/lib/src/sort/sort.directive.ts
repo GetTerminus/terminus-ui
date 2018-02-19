@@ -116,11 +116,11 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * collection of TsSortables.
    */
   register(sortable: TsSortableItem): void {
-    if (!sortable.id) {
+    if (!sortable.id && isDevMode()) {
       throw getSortHeaderMissingIdError();
     }
 
-    if (this.sortables.has(sortable.id)) {
+    if (this.sortables.has(sortable.id) && isDevMode()) {
       throw getSortDuplicateSortableIdError(sortable.id);
     }
 

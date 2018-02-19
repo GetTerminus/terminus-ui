@@ -5,6 +5,7 @@ import {
   Host,
   SkipSelf,
   OnChanges,
+  isDevMode,
 } from '@angular/core';
 
 import { TsCardComponent } from './card.component';
@@ -48,7 +49,7 @@ export class TsCardTitleDirective implements OnChanges {
    */
   checkParent() {
     // istanbul ignore else
-    if (!(this._parent instanceof TsCardComponent)) {
+    if (!(this._parent instanceof TsCardComponent) && isDevMode()) {
       throw Error(`The 'tsCardTitle' directive must be inside a <ts-card> component.`)
     }
   }

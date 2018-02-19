@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -183,7 +184,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     }
 
     // If the format is `collapsable`, verify an `iconName` is set
-    if (this.definedFormat === 'collapsable' && !this.iconName) {
+    if (this.definedFormat === 'collapsable' && !this.iconName && isDevMode()) {
       throw new Error('`iconName` must be defined for collapsable buttons.');
     }
   }

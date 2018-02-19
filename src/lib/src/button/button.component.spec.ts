@@ -1,20 +1,10 @@
-import {
-  Component,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
-import {
-  TestBed,
-  ComponentFixture,
-  async,
-} from '@angular/core/testing';
 
 import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
 import { TsWindowServiceMock } from './../services/window/window.service.mock';
 import { TsButtonComponent } from './button.component';
 
 
-describe(`ButtonComponent`, () => {
+describe(`TsButtonComponent`, () => {
 
   beforeEach(() => {
     this.component = new TsButtonComponent(

@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
   OnInit,
   OnDestroy,
+  isDevMode,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -115,7 +116,7 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   ) {
     super();
 
-    if (!_sort) {
+    if (!_sort && isDevMode()) {
       throw getSortHeaderNotContainedWithinSortError();
     }
 
