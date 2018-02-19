@@ -73,13 +73,20 @@ const INITIAL = [
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
 
 
+interface OptionType {
+  id: string;
+  login: string;
+  [key: string]: any;
+}
+
+
 @Component({
   selector: 'demo-autocomplete',
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
   @ViewChild('auto')
-  public auto: TsAutocompleteComponent;
+  public auto: TsAutocompleteComponent<OptionType>;
 
   myForm = this.formBuilder.group({
     selections: [

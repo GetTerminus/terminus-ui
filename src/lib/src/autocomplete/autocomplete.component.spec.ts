@@ -183,6 +183,20 @@ describe(`TsAutocompleteComponent`, () => {
   });
 
 
+  describe(`ngOnDestroy`, () => {
+
+    test(`should unsubscribe from query subscription`, () => {
+      component.querySubscription = {
+        unsubscribe: jest.fn(),
+      };
+      component.ngOnDestroy();
+
+      expect(component.querySubscription.unsubscribe).toHaveBeenCalled();
+    });
+
+  });
+
+
   describe(`selectOption`, () => {
     const event = {
       source: {},

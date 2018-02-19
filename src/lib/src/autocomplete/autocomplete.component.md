@@ -17,6 +17,16 @@ c) Subscribe to the `query` events coming from the autocomplete. This is a strea
 entered by the user. This stream is debounced and de-duped by default.
 
 ```typescript
+interface OptionType {
+  id: string;
+  login: string;
+  [key: string]: any;
+}
+
+// Create a reference to the autocomplete and pass in a typing for the options
+@ViewChild('auto')
+public auto: TsAutocompleteComponent<OptionType>;
+
 this.users$ = this.auto
   .query
   .pipe(

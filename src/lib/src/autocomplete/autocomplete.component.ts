@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   AfterViewInit,
+  OnDestroy,
   EventEmitter,
   ViewChild,
   ElementRef,
@@ -31,6 +32,7 @@ import {
   arrayContainsObject,
 } from '@terminus/ngx-tools';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import {
@@ -84,7 +86,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsAutocompleteComponent implements AfterViewInit {
+export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
   /**
    * Store the debounce delay
    */
@@ -108,12 +110,17 @@ export class TsAutocompleteComponent implements AfterViewInit {
   /**
    * Store the selected options
    */
-  public selectedOptions: string[] = [];
+  public selectedOptions: OptionType[] = [];
 
   /**
    * Store the formatter function for the UI display
    */
-  private uiFormatFn: (value: any) => string;
+  private uiFormatFn: (value: OptionType) => string;
+
+  /**
+   * Store the query subscription for unsubscribing during cleanup
+   */
+  private querySubscription: Subscription;
 
   /**
    * Provide access to the input element
@@ -224,7 +231,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * The list of options to display in the drop down
    */
   @Input()
-  public options: any[];
+  public options: OptionType[];
 
   /**
    * Define the form control to save selections to
@@ -248,7 +255,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * Define items that should be selected when the component loads
    */
   @Input()
-  public set initialSelections(selections: any[]) {
+  public set initialSelections(selections: OptionType[]) {
     // istanbul ignore else
     if (selections) {
       // Seed the array
@@ -266,19 +273,19 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * Emit the selected chip
    */
   @Output()
-  public optionSelected: EventEmitter<any> = new EventEmitter();
+  public optionSelected: EventEmitter<OptionType> = new EventEmitter();
 
   /**
    * Emit the removed chip
    */
   @Output()
-  public optionRemoved: EventEmitter<any> = new EventEmitter();
+  public optionRemoved: EventEmitter<OptionType> = new EventEmitter();
 
   /**
    * Emit the current selection
    */
   @Output()
-  public selection: EventEmitter<any[]> = new EventEmitter();
+  public selection: EventEmitter<OptionType[]> = new EventEmitter();
 
   /**
    * Emit the query string
@@ -296,7 +303,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   public ngAfterViewInit(): void {
     // Take a stream of query changes
-    this.querySubject.pipe(
+    this.querySubscription = this.querySubject.pipe(
       filter((v) => (typeof v === 'string')),
       // Debounce the query changes
       debounceTime(this.debounceDelay),
@@ -309,6 +316,16 @@ export class TsAutocompleteComponent implements AfterViewInit {
 
 
   /**
+   * Unsubscribe
+   */
+  public ngOnDestroy(): void {
+    if (this.querySubscription) {
+      this.querySubscription.unsubscribe();
+    }
+  }
+
+
+  /**
    * Select an option
    *
    * @param event - The selection event from the underlying MatAutocomplete
@@ -316,7 +333,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    */
   public selectOption(event: MatAutocompleteSelectedEvent, input?: ElementRef): void {
     // The selected option
-    const selection = event.option.value;
+    const selection: OptionType = event.option.value;
 
     // Stop the flow if the selection already exists in the array
     if (arrayContainsObject(selection, this.selectedOptions, this.comparatorFn)) {
@@ -355,7 +372,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    *
    * @param option - The option to deselect
    */
-  public deselectOption(option: any): void {
+  public deselectOption(option: OptionType): void {
     // Find the key of the selection in the selectedOptions array
     const index = this.selectedOptions.indexOf(option);
 
@@ -384,9 +401,9 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * Otherwise, display the selected value.
    *
    * @param option - The option
-   * @return The string value for the UI
+   * @return The string value for the UI or the entire option object
    */
-  public displayOption(option: any): string | any {
+  public displayOption(option: OptionType): string | OptionType {
     return (this.uiFormatFn) ? this.uiFormatFn(option) : option;
   }
 
@@ -445,7 +462,7 @@ export class TsAutocompleteComponent implements AfterViewInit {
    * @param selection - The selected option
    * @param formatter - The UI formatter function
    */
-  private setDuplicateError(control: FormControl, selection: any, formatter?: TsAutocompleteFormatterFn): void {
+  private setDuplicateError(control: FormControl, selection: OptionType, formatter?: TsAutocompleteFormatterFn): void {
     const invalidResponse: ValidationErrors = {
       notUnique: {
         valid: false,
