@@ -2,6 +2,7 @@ import {
   Directive,
   ElementRef,
   Input,
+  isDevMode,
 } from '@angular/core';
 
 import { TS_SPACING } from './spacing.constant';
@@ -58,7 +59,7 @@ export class TsVerticalSpacingDirective {
       !!(typeIsInvalid || !TS_SPACING[type][size] || TS_SPACING[type][size].length < 0);
 
     // Only throw an error if type or size is invalid and the value is not 'none'
-    if ((typeIsInvalid || sizeIsInvalid) && !valueIsNone) {
+    if ((typeIsInvalid || sizeIsInvalid) && !valueIsNone && isDevMode()) {
       const errorMessage =
         `${value} is not a valid spacing definition for TsVerticalSpacingDirective.`;
       const errorHelp = `See all valid TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11`;
