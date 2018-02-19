@@ -111,6 +111,10 @@
     ],
     "getLastRelease": "@semantic-release/npm",
     "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "./tooling/ci/inject-version.sh ${nextRelease.version}"
+      },
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
@@ -144,6 +148,7 @@
     "@angular/platform-browser-dynamic": "5.2.5",
     "@angular/router": "5.2.5",
     "@compodoc/compodoc": "1.0.7",
+    "@semantic-release/exec": "2.0.1",
     "@semantic-release/github": "2.2.3",
     "@semantic-release/npm": "2.4.0",
     "@terminus/ngx-tools": "1.2.0",

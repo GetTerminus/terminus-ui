@@ -35,6 +35,7 @@ export * from './src/services/window/window.service';
 export * from './src/spacing/spacing.constant';
 export * from './src/utilities/interfaces/index';
 export * from './src/utilities/types/index';
+export * from './src/utilities/version/version';
 
 // Export the Module
 export { TerminusUIModule } from './src/module';
