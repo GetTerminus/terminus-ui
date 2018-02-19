@@ -217,7 +217,7 @@
     "scssfmt": "1.0.3",
     "semantic-release": "11.0.2",
     "stylelint": "8.4.0",
-    "stylelint-order": "0.8.0",
+    "stylelint-order": "0.8.1",
     "systemjs": "0.20.19",
     "tslint": "5.8.0",
     "typescript": "2.6.2",
