@@ -113,7 +113,7 @@
     "publish": [
       {
         "path": "@semantic-release/exec",
-        "cmd": "./tooling/ci/inject-version.sh ${nextRelease.version}"
+        "cmd": "./../tooling/ci/inject-version.sh ${nextRelease.version}"
       },
       "@semantic-release/npm",
       "@semantic-release/github"
