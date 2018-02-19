@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 import {
   TsSelectComponent,
   CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR,
@@ -48,6 +50,33 @@ describe(`TsSelectComponent`, () => {
 
     it(`should forward a reference to this component`, () => {
       expect(CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsSelectComponent);
+    });
+
+  });
+
+
+  describe(`checkOpenChange`, () => {
+
+    beforeEach(() => {
+      this.component.formControl = new FormControl();
+      this.component.formControl.markAsTouched = jest.fn();
+      this.component.openedChange.emit = jest.fn();
+    });
+
+
+    test(`should mark the form control as touched if it exists`, () => {
+      this.component.checkOpenChange(false);
+
+      expect(this.component.formControl.markAsTouched).toHaveBeenCalled();
+      expect(this.component.openedChange.emit).toHaveBeenCalledWith(false);
+    });
+
+
+    test(`should do nothing if the select is closed`, () => {
+      this.component.checkOpenChange(true);
+
+      expect(this.component.formControl.markAsTouched).not.toHaveBeenCalled();
+      expect(this.component.openedChange.emit).toHaveBeenCalledWith(true);
     });
 
   });

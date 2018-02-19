@@ -6,7 +6,7 @@
     [placeholder]="label"
     [(ngModel)]="value"
     [multiple]="multipleAllowed"
-    (openedChange)="openedChange.emit(true)"
+    (openedChange)="checkOpenChange($event)"
     (selectionChange)="selectionChange.emit(value)"
   >
     <mat-option
@@ -24,4 +24,16 @@
       {{ item.name || item }}
     </mat-option>
   </mat-select>
+
+  <mat-hint
+    class="qa-select-hint"
+    align="end"
+    *ngIf="hint"
+  >{{ hint }}</mat-hint>
+
+  <ts-validation-messages
+    class="qa-select-validation-messages"
+    *ngIf="formControl"
+    [control]="formControl"
+  ></ts-validation-messages>
 </mat-form-field>
