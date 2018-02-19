@@ -1044,7 +1044,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/src/card/card-title.directive.ts:26</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/src/card/card-title.directive.ts:27</a></div>
                                         </td>
                                     </tr>
             
@@ -1113,7 +1113,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/src/card/card-title.directive.ts:26</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/lib/src/card/card-title.directive.ts:27</a></div>
                                         </td>
                                     </tr>
             
@@ -1156,7 +1156,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/src/card/card-title.directive.ts:49</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/card/card-title.directive.ts:50</a></div>
                                         </td>
                                     </tr>
             
@@ -1195,7 +1195,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/card/card-title.directive.ts:41</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/card/card-title.directive.ts:42</a></div>
                                         </td>
                                     </tr>
             
@@ -1247,7 +1247,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/src/card/card-title.directive.ts:20</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/src/card/card-title.directive.ts:21</a></div>
                                         </td>
                                     </tr>
             
@@ -1274,6 +1274,7 @@
   Host,
   SkipSelf,
   OnChanges,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
 
 import { TsCardComponent } from &#x27;./card.component&#x27;;
@@ -1317,7 +1318,7 @@ export class TsCardTitleDirective implements OnChanges {
    */
   checkParent() {
     // istanbul ignore else
-    if (!(this._parent instanceof TsCardComponent)) {
+    if (!(this._parent instanceof TsCardComponent) &amp;&amp; isDevMode()) {
       throw Error(&#x60;The &#x27;tsCardTitle&#x27; directive must be inside a &lt;ts-card&gt; component.&#x60;)
     }
   }

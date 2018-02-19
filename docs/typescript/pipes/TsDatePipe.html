@@ -1092,7 +1092,7 @@ import { TsDateTypes } from &#x27;./../../utilities/types/date.types&#x27;;
 })
 export class TsDatePipe implements PipeTransform {
   transform(value: string|Date, format: TsDateTypes &#x3D; &#x27;short&#x27;): string {
-    const validFormats &#x3D; [
+    const validFormats: TsDateTypes[] &#x3D; [
       &#x27;short&#x27;, // 02/08/2018
       &#x27;medium&#x27;, // February 8th, 2018
       &#x27;extended&#x27;, // Thursday, February 8th, 2018, 12:00:00am
@@ -1127,6 +1127,8 @@ export class TsDatePipe implements PipeTransform {
       ? formatDate(date, &#x27;MMM D YYYY h:mm:ssa&#x27;)
       : (format &#x3D;&#x3D;&#x3D; &#x27;timestamp&#x27;)
       ? new Date(date).toISOString()
+      // NOTE: Final case is untestable since it would be caught by the &#x60;if&#x60; above
+      // istanbul ignore next
       : &#x27;&#x27;;
 
     return dateString;

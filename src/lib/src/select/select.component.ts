@@ -10,6 +10,7 @@ import {
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types';
@@ -77,6 +78,12 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public label: string = '';
 
   /**
+   * Define the 'hint' for the select
+   */
+  @Input()
+  public hint: string;
+
+  /**
    * Define a list of select items
    */
   @Input()
@@ -122,6 +129,28 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    */
   public getValueKey(item: object, valueKey?: string): string {
     return valueKey ? item[valueKey] : item;
+  }
+
+
+  /**
+   * Mark the form control as touched when closed without a selection
+   *
+   * @param open - The value representing if the select is open or closed
+   */
+  public checkOpenChange(open: boolean): void {
+    const isOpen = coerceBooleanProperty(open);
+
+    // If the panel has been closed and only allows a single selection
+    if (!isOpen) {
+      // And we have a form control
+      // istanbul ignore else
+      if (this.formControl && this.formControl.markAsTouched) {
+        this.formControl.markAsTouched();
+      }
+    }
+
+    // Alert consumers
+    this.openedChange.emit(isOpen);
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  Validators,
 } from '@angular/forms';
 import { TsSelectItem } from '@terminus/ui';
 
@@ -32,9 +33,11 @@ export class SelectComponent {
   myForm = this.formBuilder.group({
     myChoices1: [
       null,
+      [Validators.required],
     ],
     myChoices2: [
       null,
+      [Validators.required],
     ],
   });
 

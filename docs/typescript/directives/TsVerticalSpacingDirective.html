@@ -1056,7 +1056,7 @@ My content!
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:72</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:73</a></div>
                                         </td>
                                     </tr>
             
@@ -1112,7 +1112,7 @@ My content!
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:45</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:46</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1145,7 +1145,7 @@ My content!
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:45</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/spacing/vertical-spacing.directive.ts:46</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -1202,6 +1202,7 @@ My content!
   Directive,
   ElementRef,
   Input,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
 
 import { TS_SPACING } from &#x27;./spacing.constant&#x27;;
@@ -1258,7 +1259,7 @@ export class TsVerticalSpacingDirective {
       !!(typeIsInvalid || !TS_SPACING[type][size] || TS_SPACING[type][size].length &lt; 0);
 
     // Only throw an error if type or size is invalid and the value is not &#x27;none&#x27;
-    if ((typeIsInvalid || sizeIsInvalid) &amp;&amp; !valueIsNone) {
+    if ((typeIsInvalid || sizeIsInvalid) &amp;&amp; !valueIsNone &amp;&amp; isDevMode()) {
       const errorMessage &#x3D;
         &#x60;${value} is not a valid spacing definition for TsVerticalSpacingDirective.&#x60;;
       const errorHelp &#x3D; &#x60;See all valid TsVerticalSpacingTypes: http://bnj.bz/3e1E2l0k0C11&#x60;;

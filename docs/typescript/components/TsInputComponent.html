@@ -1001,7 +1001,7 @@ any validation messages</li>
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-input
-  [formControl]=&quot;yourHelperToGetFormControl('email')&quot;
+  [formControl]=&quot;myForm.get('myControl')&quot;
   required
   minlength=&quot;3&quot;
   maxlength=&quot;8&quot;
@@ -1798,7 +1798,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *
  * @example
  * &lt;ts-input
- *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;email&#x27;)&quot;
+ *              [formControl]&#x3D;&quot;myForm.get(&#x27;myControl&#x27;)&quot;
  *              required
  *              minlength&#x3D;&quot;3&quot;
  *              maxlength&#x3D;&quot;8&quot;
