@@ -17,8 +17,8 @@ $g-asset-base-path: '/assets' !default;
  * @param $file
  *  Asset file name, including extension
  * @example
- *  @include asset('images', 'hero.jpg');
- *  @include asset('icons', 'save.svg');
+ *  @include asset(images, 'hero.jpg');
+ *  @include asset(icons, 'save.svg');
  */
 @function asset($type, $file) {
   @if ($type == null) or ($file == null) {
@@ -44,5 +44,5 @@ $g-asset-base-path: '/assets' !default;
     @error 'The `$file` parameter is required.';
   }
 
-  @return asset('image', $file);
+  @return asset(image, $file);
 }
