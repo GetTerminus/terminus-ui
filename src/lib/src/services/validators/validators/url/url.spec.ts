@@ -1,12 +1,12 @@
 import { FormControl } from '@angular/forms';
 
-import { creditCardValidator } from './creditCard';
+import { urlValidator } from './url';
 
 
-describe(`creditCardValidator`, () => {
+describe(`urlValidator`, () => {
 
   beforeEach(() => {
-    this.validatorFn = creditCardValidator();
+    this.validatorFn = urlValidator();
     this.nullControl = new FormControl(null);
   });
 
@@ -29,10 +29,10 @@ describe(`creditCardValidator`, () => {
   });
 
 
-  describe(`if the number is valid`, () => {
+  describe(`if the URL is valid`, () => {
 
     test(`should return null`, () => {
-      const control = new FormControl(`4242424242424242`);
+      const control = new FormControl('http://foo.com/blah_blah');
 
       expect(this.validatorFn(control)).toEqual(null);
     });
@@ -40,18 +40,19 @@ describe(`creditCardValidator`, () => {
   });
 
 
-  describe(`if the number is NOT valid`, () => {
+  describe(`if the URL is NOT valid`, () => {
 
     test(`should return the invalid response`, () => {
-      const control = new FormControl('1234');
+      const control = new FormControl('http:// shouldfail.com');
       const expected = {
         valid: false,
-        actual: '1234',
+        actual: 'http:// shouldfail.com',
       };
 
-      expect(this.validatorFn(control).creditCard).toEqual(expected);
+      expect(this.validatorFn(control).url).toEqual(expected);
     });
 
   });
 
 });
+

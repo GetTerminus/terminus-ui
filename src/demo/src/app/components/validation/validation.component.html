@@ -137,6 +137,39 @@ test@test.com
   </div>
 
 
+  <ts-card tsVerticalSpacing>
+    <h3>Url</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+// Valid URLs:
+http://foo.com
+http://foo.com/blah_blah_(wikipedia)
+https://www.example.com/foo/?bar=baz&inga=42&quux
+http://userid:password@example.com:8080/
+http://⌘.ws
+ftp://foo.bar/baz
+http://foo.bar/?q=Test%20URL-encoded%20stuff
+http://223.255.255.254
+</pre>
+
+<pre fxFlex>
+// Invalid URLs:
+http://
+http://foo.bar?q=Spaces should be encoded
+foo.com
+rdar://1234
+http://1.1.1.1.1
+http://.www.foo.bar./
+http:// shouldfail.com
+</pre>
+    </div>
+
+    <ts-input
+      [formControl]="myForm.get('url')"
+      label="Url"
+    ></ts-input>
+  </ts-card>
 
   <button (click)="submit(myForm.value)">Submit</button>
 </form>

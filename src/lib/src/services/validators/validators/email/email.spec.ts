@@ -44,11 +44,9 @@ describe(`emailValidator`, () => {
   describe(`if the email is valid`, () => {
 
     test(`should return null`, () => {
-      const control0 = new FormControl(this.validEmails[0]);
-      expect(this.validatorFn(control0)).toEqual(null);
+      const control = new FormControl(`foo@bar.co`);
 
-      const control1 = new FormControl(this.validEmails[1]);
-      expect(this.validatorFn(control1)).toEqual(null);
+      expect(this.validatorFn(control)).toEqual(null);
     });
 
   });
@@ -57,32 +55,13 @@ describe(`emailValidator`, () => {
   describe(`if the email is NOT valid`, () => {
 
     test(`should return the invalid response`, () => {
-      const control0 = new FormControl(this.invalidEmails[0]);
-      expect(this.validatorFn(control0).email.valid).toEqual(false);
+      const control = new FormControl(`foo@bar`);
+      const expected = {
+        valid: false,
+        actual: 'foo@bar',
+      };
 
-      const control1 = new FormControl(this.invalidEmails[1]);
-      expect(this.validatorFn(control1).email.valid).toEqual(false);
-
-      const control2 = new FormControl(this.invalidEmails[2]);
-      expect(this.validatorFn(control2).email.valid).toEqual(false);
-
-      const control3 = new FormControl(this.invalidEmails[3]);
-      expect(this.validatorFn(control3).email.valid).toEqual(false);
-
-      const control4 = new FormControl(this.invalidEmails[4]);
-      expect(this.validatorFn(control4).email.valid).toEqual(false);
-    });
-
-  });
-
-
-  describe(`the invalid response object`, () => {
-
-    test(`should return the control value`, () => {
-      const control0 = new FormControl(this.invalidEmails[0]);
-      const result = this.validatorFn(control0);
-
-      expect(result.email.actual).toEqual(this.invalidEmails[0]);
+      expect(this.validatorFn(control).email).toEqual(expected);
     });
 
   });
