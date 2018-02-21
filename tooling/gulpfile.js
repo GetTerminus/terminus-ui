@@ -54,6 +54,8 @@ const GLOBALS = {
   '@angular/cdk/portal': 'ng.cdk.portal',
   '@angular/cdk/keycodes': 'ng.cdk.keycodes',
 
+  '@terminus/ngx-tools': 'terminus.ngxTools',
+
   // Rxjs dependencies
   'rxjs/Subject': 'Rx',
   'rxjs/Observable': 'Rx',
