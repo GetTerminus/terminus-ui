@@ -5,10 +5,6 @@ describe(`TsValidatorsService`, () => {
 
   beforeEach(() => {
     this.service = new TsValidatorsService();
-
-    this.controlMock = {
-      value: null as any,
-    };
   });
 
 
@@ -39,6 +35,15 @@ describe(`TsValidatorsService`, () => {
 
     test(`should exist`, () => {
       expect(this.service.password).toBeTruthy();
+    });
+
+  });
+
+
+  describe(`url()`, () => {
+
+    test(`should exist`, () => {
+      expect(this.service.url).toBeTruthy();
     });
 
   });

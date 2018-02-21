@@ -70,4 +70,13 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  url = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      lessThan: {
+        valid: false,
+        actual: 'http://foo',
+      },
+    });
+  }
+
 }

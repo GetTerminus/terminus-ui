@@ -57,6 +57,12 @@ export class ValidationComponent {
         this.validatorsService.lessThan(10),
       ],
     ],
+    url: [
+      null,
+      [
+        this.validatorsService.url(),
+      ],
+    ],
   });
 
   constructor(
