@@ -109,13 +109,11 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ],
-    "prepare": [
+    "publish": [
       {
         "path": "@semantic-release/exec",
         "cmd": "./tooling/ci/inject-version.sh ${nextRelease.version}"
-      }
-    ],
-    "publish": [
+      },
       {
         "path": "@semantic-release/npm",
         "pkgRoot": "dist"
