@@ -152,7 +152,6 @@
       "!src/lib/src/utilities/rxjs-lift-hack.ts",
       "!src/lib/src/module.ts"
     ],
-    "mapCoverage": true,
     "setupTestFrameworkScriptFile": "<rootDir>/src/lib/setupJest.ts"
   },
   "dependencies": {
