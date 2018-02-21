@@ -9,5 +9,5 @@ NEW_VERSION=$1
 
 echo $NEW_VERSION
 
-grep -rl $PLACEHOLDER 'bundles' | xargs sed -i'' -e 's|'$PLACEHOLDER'|'$NEW_VERSION'|g'
+grep -rl $PLACEHOLDER 'dist' | xargs sed -i'' -e 's|'$PLACEHOLDER'|'$NEW_VERSION'|g'
 
