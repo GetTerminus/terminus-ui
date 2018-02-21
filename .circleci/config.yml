@@ -49,7 +49,7 @@ jobs:
 
       - run:
           name: Release
-          command: cd dist && ../node_modules/.bin/semantic-release
+          command: npx semantic-release
 
       - store_artifacts:
           path: coverage/
