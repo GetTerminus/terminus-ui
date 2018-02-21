@@ -249,7 +249,7 @@
                                     <a href="../components/TsTableComponent.html" >TsTableComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TsToggleComponent.html"  data-type="entity-link" class="active" >TsToggleComponent</a>
+                                    <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
@@ -272,7 +272,7 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/TsAutofocusDirective.html" >TsAutofocusDirective</a>
+                                    <a href="../directives/TsAutofocusDirective.html"  data-type="entity-link" class="active" >TsAutofocusDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
@@ -715,7 +715,7 @@
                                            <a href="../components/TsTableComponent.html" >TsTableComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TsToggleComponent.html"  data-type="entity-link" class="active" >TsToggleComponent</a>
+                                           <a href="../components/TsToggleComponent.html" >TsToggleComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TsTooltipComponent.html" >TsTooltipComponent</a>
@@ -738,7 +738,7 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/TsAutofocusDirective.html" >TsAutofocusDirective</a>
+                                           <a href="../directives/TsAutofocusDirective.html"  data-type="entity-link" class="active" >TsAutofocusDirective</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
@@ -947,15 +947,16 @@
                    
                    </nav>
                </div>
-               <div class="content component">
+               <div class="content directive">
                    <div class="content-data">
 
 
 
 
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>TsToggleComponent</li>
+  <li>Directives</li>
+  <li>TsAutofocusDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -964,527 +965,457 @@
     </li>
 
     <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
+
+    <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
 
-    <li>
-        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
-    </li>
-    <li>
-        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
-    </li>
-    <li>
-        <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
-    </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/lib/src/toggle/toggle.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/src/autofocus/autofocus.directive.ts</code>
+        </p>
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>The is a toggle component</p>
-<h4 id="qa-css-classes">QA CSS CLASSES</h4>
-<ul>
-<li><code>qa-toggle</code>: The toggle element</li>
-</ul>
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Autofocus any focusable element on-load.</p>
+<p>Passing any truthy value OR an empty string will enable the autofocus.</p>
 
-    </p>
+            </p>
 
-    <p class="comment">
-        <h3>Extends</h3>
-    </p>
-    <p class="comment">
-            <code><a href="../components/TsReactiveFormBaseComponent.html" target="_self" >TsReactiveFormBaseComponent</a></code>
-    </p>
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+            </p>
+
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">&lt;input type=&quot;text&quot; tsAutofocus /&gt;
+&lt;button [tsAutofocus]=&quot;true&quot;&gt;Click Me&lt;/button&gt;</code></pre>
+                        </div>
+            </div>
+
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">selector</td>
+                        <td class="col-md-9"><code>[tsAutofocus]</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section>
+                <h3 id="index">Index</h3>
+                <table class="table table-sm table-bordered index-table">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Properties</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#shouldFocus">shouldFocus</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Methods</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Inputs</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                        <a href="#tsAutofocus">tsAutofocus</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Accessors</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                        <a href="#tsAutofocus">tsAutofocus</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:36</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div>
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>elementRef</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                <h3 id="inputs">Inputs</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-2">
+                                    <a name="tsAutofocus"></a>
+                                    <code>tsAutofocus</code>
+                                </td>
+                                <td class="col-md-10">
+                                    <div><p>Define if the element should be focused after initialization</p>
+</div>
+                                      <p>
+                                        <em>Type:</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                      </p>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-2" colspan="2">
+                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:34</a></div>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+            </section>
 
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-                <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;ts-toggle
-  [formControl]=&quot;yourHelperToGetFormControl('thingIsDisabled')&quot;
-  arialLabel=&quot;Disable my thing&quot;
-  isDisabled=&quot;true&quot;
-  isRequired=&quot;true&quot;
-  labelPosition=&quot;before&quot;
-  name=&quot;My toggle&quot;
-  theme=&quot;accent&quot;
-  (change)=&quot;myMethod($event)&quot;
-&gt;My Toggle!&lt;/ts-toggle&gt;
 
-&lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;</code></pre>
-                </div>
+
+            <section>
+                
+                    <h3 id="methods">
+                        Methods
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="ngAfterViewInit"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        ngAfterViewInit
+                                        </b>
+                                        <a href="#ngAfterViewInit"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>ngAfterViewInit()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:46</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Focus the input after the view has initialized</p>
+            </div>
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                
+                    <h3 id="inputs">
+                        Properties
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="shouldFocus"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        shouldFocus
+                                        </b>
+                                        <a href="#shouldFocus"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>shouldFocus:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:28</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store the shouldFocus value</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                <h3 id="accessors">
+                    Accessors
+                </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="tsAutofocus"></a>
+                                    <span class="name"><b>tsAutofocus</b><a href="#tsAutofocus"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+            
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="accessor"><b>set</b><code>tsAutofocus(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
+                                </td>
+                            </tr>
+                                        <tr>
+                                            <td class="col-md-4">
+                                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:34</a></div>
+                                            </td>
+                                        </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                            <div class="io-description"><p>Define if the element should be focused after initialization</p>
+            </div>
+            
+                                            <div class="io-description">
+                                                    <b>Parameters :</b>
+                                                    <table class="params">
+                                                        <thead>
+                                                            <tr>
+                                                                <td>Name</td>
+                                                                    <td>Type</td>
+                                                                <td>Optional</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                    <td>value</td>
+                                                                
+                                                                        <td>
+                                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                                        </td>
+                                                                
+                                                                    <td>
+                                                                            no
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                            <div>
+                                            </div>
+                                            <div class="io-description">
+                                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                            </div>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+            </section>
+
     </div>
 
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
+    <div class="tab-pane fade" id="c-readme">
+        <p><h2 id="basic-usage">Basic usage</h2>
+<p>The <code>tsAutofocus</code> directive can be used on any element that has a <code>.focus()</code> method. This includes
+inputs, select menus, textarea, buttons, links, iframes and any element with a defined <code>tabindex</code>
+above -1.</p>
+<p>Add the directive to a focusable element:</p>
+<pre class="line-numbers"><code class="language-html">&lt;input type=&quot;text&quot; autofocus /&gt;</code></pre><h4 id="binding">Binding</h4>
+<p>Passing in any value <em>except</em> <code>false</code>, <code>&#39;false&#39;</code>, <code>null</code>, or <code>undefined</code> will enable the directive.</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- enabled --&gt;
+&lt;input type=&quot;text&quot; [autofocus]=&quot;myProperty&quot; /&gt;
+&lt;input type=&quot;text&quot; autofocus=&quot;true&quot; /&gt;
+&lt;input type=&quot;text&quot; autofocus=&quot;&quot; /&gt;
 
-            <tr>
-                <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">encapsulation</td>
-                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">host</td>
-                <td class="col-md-9"><code>{<br>}</code></td>
-            </tr>
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">providers</td>
-                <td class="col-md-9">
-                    <code>
-                        CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR
-                    </code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-toggle</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>toggle.component.scss</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./toggle.component.html</code></td>
-            </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
-        <h3 id="index">Index</h3>
-        <table class="table table-sm table-bordered index-table">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Inputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ariaLabel">ariaLabel</a>
-                            </li>
-                            <li>
-                                <a href="#isDisabled">isDisabled</a>
-                            </li>
-                            <li>
-                                <a href="#isRequired">isRequired</a>
-                            </li>
-                            <li>
-                                <a href="#labelPosition">labelPosition</a>
-                            </li>
-                            <li>
-                                <a href="#name">name</a>
-                            </li>
-                            <li>
-                                <a href="#theme">theme</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#change">change</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-
-    <section>
-        <h3 id="inputs">Inputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="ariaLabel"></a>
-                            <code>ariaLabel</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the aria label</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:67</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="isDisabled"></a>
-                            <code>isDisabled</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define if the toggle should be disabled</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>false</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:73</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="isRequired"></a>
-                            <code>isRequired</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define if the toggle is required</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>true</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:79</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="labelPosition"></a>
-                            <code>labelPosition</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the position of the label</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code>&quot;before&quot; | &quot;after&quot;</code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>&#x27;after&#x27;</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:85</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="name"></a>
-                            <code>name</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the input name for the toggle</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>&#x27;toggle&#x27;</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:91</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="theme"></a>
-                            <code>theme</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the theme</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes</a></code>
-
-                              </p>
-                            <p>
-                              <em>Default value: </em><code>&#x27;primary&#x27;</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:97</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="outputs">Outputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="change"></a>
-                            <code>change</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Emit an event each time the toggle value changes</p>
-</div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MatSlideToggleChange&gt;</code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/toggle/toggle.component.ts:103</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-
-
-
-
-</div>
-
+&lt;!-- disabled --&gt;
+&lt;input type=&quot;text&quot; autofocus=&quot;false&quot; /&gt;
+&lt;input type=&quot;text&quot; [autofocus]=&quot;null&quot; /&gt;</code></pre></p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
-  Component,
+  Directive,
+  ElementRef,
   Input,
-  Output,
-  EventEmitter,
-  forwardRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
+  AfterViewInit,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
-import {
-  NG_VALUE_ACCESSOR,
-} from &#x27;@angular/forms&#x27;;
-import { MatSlideToggleChange } from &#x27;@angular/material&#x27;;
 
-import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
-import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
-
-/**
- * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via our base class
- */
-/* tslint:disable:no-use-before-declare */
-export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any &#x3D; {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() &#x3D;&gt; TsToggleComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
+import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
 
 
 /**
- * The is a toggle component
+ * Autofocus any focusable element on-load.
  *
- * #### QA CSS CLASSES
- * - &#x60;qa-toggle&#x60;: The toggle element
+ * Passing any truthy value OR an empty string will enable the autofocus.
  *
  * @example
- * &lt;ts-toggle
- *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;thingIsDisabled&#x27;)&quot;
- *              arialLabel&#x3D;&quot;Disable my thing&quot;
- *              isDisabled&#x3D;&quot;true&quot;
- *              isRequired&#x3D;&quot;true&quot;
- *              labelPosition&#x3D;&quot;before&quot;
- *              name&#x3D;&quot;My toggle&quot;
- *              theme&#x3D;&quot;accent&quot;
- *              (change)&#x3D;&quot;myMethod($event)&quot;
- * &gt;My Toggle!&lt;/ts-toggle&gt;
- *
- * &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;
+ * &lt;input type&#x3D;&quot;text&quot; tsAutofocus /&gt;
+ * &lt;button [tsAutofocus]&#x3D;&quot;true&quot;&gt;Click Me&lt;/button&gt;
  */
-@Component({
-  selector: &#x27;ts-toggle&#x27;,
-  templateUrl: &#x27;./toggle.component.html&#x27;,
-  styleUrls: [&#x27;./toggle.component.scss&#x27;],
-  host: {
-    class: &#x27;ts-toggle&#x27;,
-  },
-  providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+@Directive({
+  selector: &#x27;[tsAutofocus]&#x27;,
 })
-export class TsToggleComponent extends TsReactiveFormBaseComponent {
+export class TsAutofocusDirective implements AfterViewInit {
   /**
-   * Define the aria label
+   * Store the shouldFocus value
    */
-  @Input()
-  public ariaLabel: string;
+  private shouldFocus: boolean;
 
   /**
-   * Define if the toggle should be disabled
+   * Define if the element should be focused after initialization
    */
   @Input()
-  public isDisabled: boolean &#x3D; false;
+  public set tsAutofocus(value: any) {
+    this.shouldFocus &#x3D; coerceBooleanProperty(value);
+  }
+
+  constructor(
+    private elementRef: ElementRef,
+  ) {}
+
 
   /**
-   * Define if the toggle is required
+   * Focus the input after the view has initialized
    */
-  @Input()
-  public isRequired: boolean &#x3D; true;
+  public ngAfterViewInit(): void {
+    if (this.shouldFocus) {
+      const el &#x3D; this.elementRef.nativeElement;
 
-  /**
-   * Define the position of the label
-   */
-  @Input()
-  public labelPosition: &#x27;before&#x27; | &#x27;after&#x27; &#x3D; &#x27;after&#x27;;
-
-  /**
-   * Define the input name for the toggle
-   */
-  @Input()
-  public name: string &#x3D; &#x27;toggle&#x27;;
-
-  /**
-   * Define the theme
-   */
-  @Input()
-  public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
-
-  /**
-   * Emit an event each time the toggle value changes
-   */
-  @Output()
-  public change: EventEmitter&lt;MatSlideToggleChange&gt; &#x3D; new EventEmitter();
+      if (el.focus) {
+        el.focus();
+      } else {
+        // istanbul ignore else
+        if (isDevMode()) {
+          throw Error(&#x60;TsAutofocusDirective must be used on an element that has a .focus() method.&#x60;)
+        }
+      }
+    }
+  }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-slide-toggle
-  class&#x3D;&quot;c-toggle qa-toggle&quot;
-  [(ngModel)]&#x3D;&quot;value&quot;
-  [required]&#x3D;&quot;isRequired&quot;
-  [labelPosition]&#x3D;&quot;labelPosition&quot;
-  [color]&#x3D;&quot;theme&quot;
-  [aria-label]&#x3D;&quot;ariaLabel&quot;
-  [disabled]&#x3D;&quot;isDisabled&quot;
-  [name]&#x3D;&quot;name&quot;
-  (change)&#x3D;&quot;change.emit($event)&quot;
-&gt;
-  &lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;/mat-slide-toggle&gt;
-</code></pre>
-    </div>
-
-    <div class="tab-pane fade" id="c-tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="c-example">
-            <iframe src="https://goo.gl/ieUPaG" style="height: 100vh; width: 100%;">
-                <p>Your browser does not support iframes.</p>
-            </iframe>
-    </div>
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><mat-slide-toggle  class="c-toggle qa-toggle"  [(ngModel)]="value"  [required]="isRequired"  [labelPosition]="labelPosition"  [color]="theme"  [aria-label]="ariaLabel"  [disabled]="isDisabled"  [name]="name"  (change)="change.emit($event)">  <ng-content></ng-content></mat-slide-toggle></div>'
-    var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
-    var ACTUAL_COMPONENT = {'name': 'TsToggleComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
 
 
 

@@ -85,6 +85,9 @@
                                     <a href="./modules/TsAutocompleteModule.html" >TsAutocompleteModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./modules/TsAutofocusModule.html" >TsAutofocusModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="./modules/TsButtonModule.html" >TsButtonModule</a>
                                 </li>
                                 <li class="link">
@@ -268,6 +271,9 @@
                         <ul class="links collapse "
                                 id="xs-directives-links"
                             >
+                                <li class="link">
+                                    <a href="./directives/TsAutofocusDirective.html" >TsAutofocusDirective</a>
+                                </li>
                                 <li class="link">
                                     <a href="./directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
                                 </li>
@@ -545,6 +551,9 @@
                                            <a href="./modules/TsAutocompleteModule.html" >TsAutocompleteModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./modules/TsAutofocusModule.html" >TsAutofocusModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./modules/TsButtonModule.html" >TsButtonModule</a>
                                        </li>
                                        <li class="link">
@@ -728,6 +737,9 @@
                                <ul class="links collapse "
                                        id="directives-links"
                    >
+                                       <li class="link">
+                                           <a href="./directives/TsAutofocusDirective.html" >TsAutofocusDirective</a>
+                                       </li>
                                        <li class="link">
                                            <a href="./directives/TsCardTitleDirective.html" >TsCardTitleDirective</a>
                                        </li>
@@ -942,13 +954,17 @@
 <p>The library of UI components used for Terminus applications.</p>
 <p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield" alt="CircleCI" class="img-responsive"></a>
 <a href="https://codecov.io/gh/GetTerminus/terminus-ui"><img src="https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a>
-<a href="https://getterminus.github.io/terminus-ui/"><img src="https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg" alt="documentation coverage" class="img-responsive"></a>
 <a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a>
+<a href="https://github.com/GetTerminus/terminus-ui/releases/"><img src="https://img.shields.io/github/release/GetTerminus/terminus-ui.svg" alt="Github release" class="img-responsive"></a>
 <a href="https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js"><img src="http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip" alt="Library size" class="img-responsive"></a>
-<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg" alt="Greenkeeper badge" class="img-responsive"></a>
 <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"></a>
 <a href="https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a>
 <a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square" alt="All Contributors" class="img-responsive"></a></p>
+<hr>
+<p><a href="#components"><img src="https://img.shields.io/badge/Components-26-blue.svg" alt="components" class="img-responsive"></a>
+<a href="#pipes"><img src="https://img.shields.io/badge/Pipes-2-blue.svg" alt="pipes" class="img-responsive"></a>
+<a href="#services"><img src="https://img.shields.io/badge/Services-4-blue.svg" alt="services" class="img-responsive"></a>
+<a href="#style-helpers"><img src="https://img.shields.io/badge/StylesHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a></p>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
@@ -1042,6 +1058,14 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/autocomplete">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html#readme">Usage</a></td>
+</tr>
+<tr>
+<td>autofocus</td>
+<td>Focus a focusable element on load</td>
+<td style="text-align:center">:white_check_mark:</td>
+<td><a href="https://terminus-ui-demos.stackblitz.io/components/autofocus">Demo</a></td>
+<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
+<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutofocusDirective.html#readme">Usage</a></td>
 </tr>
 <tr>
 <td>badge</td>
@@ -1284,6 +1308,14 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td></td>
 </tr>
 <tr>
+<td>spacing</td>
+<td>Helpers for consistent spacing</td>
+<td style="text-align:center">:white_check_mark:</td>
+<td><a href="https://terminus-ui-demos.stackblitz.io/components/spacing">Demo</a></td>
+<td><a href="./src/lib/src/scss/docs/spacing.md">Docs</a></td>
+<td></td>
+</tr>
+<tr>
 <td>sort</td>
 <td>Used by <code>table</code> to manage column sorting</td>
 <td style="text-align:center">:white_check_mark:</td>
@@ -1496,6 +1528,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <th style="text-align:center"><a href="https://github.com/atlwendy"><img src="https://avatars0.githubusercontent.com/u/377552?v=4" width="100px;"/><br /><sub><b>Wendy</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Aatlwendy" title="Bug reports">🐛</a></th>
 <th style="text-align:center"><a href="https://github.com/bmalinconico"><img src="https://avatars0.githubusercontent.com/u/19909708?v=4" width="100px;"/><br /><sub><b>Brian Malinconico</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Abmalinconico" title="Bug reports">🐛</a> <a href="#ideas-bmalinconico" title="Ideas, Planning, &amp; Feedback">🤔</a></th>
 <th style="text-align:center"><a href="http://rubykata.wordpress.com/"><img src="https://avatars0.githubusercontent.com/u/2921?v=4" width="100px;"/><br /><sub><b>David Harkness</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=david-harkness" title="Code">💻</a></th>
+<th style="text-align:center"><a href="https://github.com/kal93"><img src="https://avatars0.githubusercontent.com/u/14012571?v=4" width="100px;"/><br /><sub><b>kal93</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Akal93" title="Bug reports">🐛</a></th>
 </tr>
 </thead>
 <tbody>
@@ -1510,7 +1543,6 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <ul>
 <li><a href="https://github.com/semantic-release/semantic-release">Semantic Release</a> - Automatically release versioned release to NPM and generate
   a changelog in the Github tag.</li>
-<li><a href="https://greenkeeper.io/">Greenkeeper</a> - Automatically keep dependencies up to date.</li>
 <li><a href="https://github.com/commitizen">Commitizen</a> - Interactive cli for enforcing commit message format.</li>
 <li><a href="https://github.com/commitizen">Commitizen VSCode Plugin</a> - VSCode plugin for commitizen.</li>
 <li><a href="https://saucelabs.com/platforms">SauceLabs Platforms</a> - Cross-browser unit tests.</li>
