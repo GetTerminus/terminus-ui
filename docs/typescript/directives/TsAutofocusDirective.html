@@ -1095,12 +1095,12 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:36</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:37</a></div>
                                         </td>
                                     </tr>
             
@@ -1122,6 +1122,18 @@
                                                               
                                                                     <td>
                                                                                 <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>changeDetectorRef</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
                                                                     </td>
                                                               
                                                                 <td>
@@ -1158,7 +1170,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:34</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:35</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1197,7 +1209,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:46</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:48</a></div>
                                         </td>
                                     </tr>
             
@@ -1249,7 +1261,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:29</a></div>
                                         </td>
                                     </tr>
             
@@ -1285,7 +1297,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:34</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/src/autofocus/autofocus.directive.ts:35</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -1358,6 +1370,7 @@ above -1.</p>
   Input,
   AfterViewInit,
   isDevMode,
+  ChangeDetectorRef,
 } from &#x27;@angular/core&#x27;;
 
 import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
@@ -1391,6 +1404,7 @@ export class TsAutofocusDirective implements AfterViewInit {
 
   constructor(
     private elementRef: ElementRef,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
 
@@ -1403,6 +1417,7 @@ export class TsAutofocusDirective implements AfterViewInit {
 
       if (el.focus) {
         el.focus();
+        this.changeDetectorRef.detectChanges();
       } else {
         // istanbul ignore else
         if (isDevMode()) {
