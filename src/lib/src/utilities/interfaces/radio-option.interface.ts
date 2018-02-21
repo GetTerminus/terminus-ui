@@ -10,7 +10,7 @@ export interface TsRadioOption {
   /**
    * Define the value to display in the UI
    */
-  displayValue: boolean;
+  displayValue: string;
 
   /**
    * Define if the item is selected by default
