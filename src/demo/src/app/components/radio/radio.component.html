@@ -1,29 +1,31 @@
-<p>
-  ngModel version:
-</p>
+<ts-card tsVerticalSpacing>
+  <p>
+    Component reference version:
+  </p>
 
-<ts-radio-group
-  [options]="items | async"
-  (change)="selected($event)"
-></ts-radio-group>
+  <ts-radio-group
+    [options]="items$ | async"
+    (change)="selected($event)"
+    #group1="tsRadioGroup"
+  ></ts-radio-group>
 
-Selected value: {{ selectedItem }}
-
-<hr>
-
-
-<p>
-  Reactive form version:
-</p>
+  Selected value: {{ group1.value }}
+</ts-card>
 
 
-<form [formGroup]="myForm" novalidate>
-  <div>
-    <ts-radio-group
-      [formControl]="myForm.get('myRadioGroup')"
-      [options]="items2 | async"
-    ></ts-radio-group>
-  </div>
+<ts-card tsVerticalSpacing>
+  <p>
+    Reactive form version:
+  </p>
 
-  <button (click)="submit(myForm)">Submit</button>
-</form>
+  <form [formGroup]="myForm" novalidate>
+    <div>
+      <ts-radio-group
+        [formControl]="myForm.get('myRadioGroup')"
+        [options]="items2$ | async"
+      ></ts-radio-group>
+    </div>
+
+    <button (click)="submit(myForm.value)">Submit</button>
+  </form>
+</ts-card>

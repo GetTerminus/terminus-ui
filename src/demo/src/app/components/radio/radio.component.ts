@@ -7,39 +7,40 @@ import {
 } from '@angular/forms';
 import { of } from 'rxjs/observable/of';
 
+import { TsRadioChange } from '@terminus/ui';
+
 
 const DEMO_ITEMS = [
   {
-    value: 'foo',
-    displayValue: 'Foo',
+    value: 'foo_value',
+    displayValue: 'Foo Display',
   },
   {
-    value: 'bar',
-    displayValue: 'Bar',
+    value: 'bar_value',
+    displayValue: 'Bar Display',
     disabled: true,
   },
   {
-    value: 'baz',
-    displayValue: 'Baz',
+    value: 'baz_value',
+    displayValue: 'Baz Display',
     required: true,
     checked: true,
   },
 ];
 const DEMO_ITEMS2 = [
   {
-    value: 'foo2',
-    displayValue: 'Foo2',
+    value: 'foo2_value',
+    displayValue: 'Foo2 Display',
   },
   {
-    value: 'bar2',
-    displayValue: 'Bar2',
+    value: 'bar2_value',
+    displayValue: 'Bar2 Display',
     disabled: true,
   },
   {
-    value: 'baz2',
-    displayValue: 'Baz2',
+    value: 'baz2_value',
+    displayValue: 'Baz2 Display',
     required: true,
-    checked: true,
   },
 ];
 
@@ -49,12 +50,11 @@ const DEMO_ITEMS2 = [
   templateUrl: './radio.component.html',
 })
 export class RadioComponent {
-  selectedItem: any;
-  items = of(DEMO_ITEMS);
-  items2 = of(DEMO_ITEMS2);
+  items$ = of(DEMO_ITEMS);
+  items2$ = of(DEMO_ITEMS2);
   myForm = this.formBuilder.group({
     myRadioGroup: [
-      null,
+      'bar2_value',
       [
         Validators.required,
       ],
@@ -67,9 +67,8 @@ export class RadioComponent {
   ) {}
 
 
-  selected(e: any) {
+  selected(e: TsRadioChange) {
     console.log('Demo radio changed: ', e);
-    this.selectedItem = e.value;
   }
 
   submit(v: any) {
