@@ -1,56 +1,59 @@
-<ts-input
-  [(ngModel)]="myValue"
-  label="Input with ngModel"
-  isClearable="true"
-  isRequired="true"
-  name="static input"
-  theme="accent"
-></ts-input>
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>ngModel</h3>
 
-<br>
-<strong>ngModel value: {{myValue}}</strong>
-<br>
-<br>
-
-<form [formGroup]="myForm" novalidate>
   <ts-input
-    [formControl]="myForm.get('name')"
-    [label]="label1"
-    [isClearable]="clearable"
-    hint="Name input with validation"
+    [(ngModel)]="myValue"
+    label="Input with ngModel"
+    isClearable="true"
     isRequired="true"
-    [spellcheck]="false"
-    [prefixIcon]="icon"
+    name="static input"
+    theme="accent"
+    isFocused="true"
+    tsVerticalSpacing
   ></ts-input>
 
-  <br>
-  <br>
+  <strong>ngModel value: {{myValue}}</strong>
+</ts-card>
 
-  <ts-input
-    [formControl]="myForm.get('email')"
-    [label]="label2"
-    [isClearable]="clearable"
-    hint="Email input with validation"
-    name="email"
-    [spellcheck]="false"
-    [autocomplete]="'email'"
-    type="email"
-  ></ts-input>
 
-  <br>
-  <br>
+<ts-card>
+  <h3 tsCardTitle tsVerticalSpacing>Form</h3>
 
-  <ts-input
-    [formControl]="myForm.get('password')"
-    label="Password"
-    hint="Password input with validation"
-    [spellcheck]="false"
-    [autocomplete]="'password'"
-    type="password"
-  ></ts-input>
+  <form [formGroup]="myForm" novalidate>
+    <ts-input
+      [formControl]="myForm.get('name')"
+      [label]="label1"
+      [isClearable]="clearable"
+      hint="Name input with validation"
+      isRequired="true"
+      [spellcheck]="false"
+      [prefixIcon]="icon"
+      tsVerticalSpacing
+    ></ts-input>
 
-  <br>
-  <br>
+    <ts-input
+      [formControl]="myForm.get('email')"
+      [label]="label2"
+      [isClearable]="clearable"
+      hint="Email input with validation"
+      name="email"
+      [spellcheck]="false"
+      [autocomplete]="'email'"
+      type="email"
+      tsVerticalSpacing
+    ></ts-input>
 
-  <button (click)="submit(myForm.value)">Submit</button>
-</form>
+    <ts-input
+      [formControl]="myForm.get('password')"
+      label="Password"
+      hint="Password input with validation"
+      [spellcheck]="false"
+      [autocomplete]="'password'"
+      type="password"
+      tsVerticalSpacing
+    ></ts-input>
+
+    <button (click)="submit(myForm.value)">Submit</button>
+  </form>
+</ts-card>
+

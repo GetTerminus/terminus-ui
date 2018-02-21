@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { AutofocusComponent } from './autofocus/autofocus.component';
 import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
@@ -38,6 +39,13 @@ export const componentsList: Routes = [
     component: AutocompleteComponent,
     data: {
       name: 'Autocomplete',
+    },
+  },
+  {
+    path: 'autofocus',
+    component: AutofocusComponent,
+    data: {
+      name: 'Autofocus',
     },
   },
   {

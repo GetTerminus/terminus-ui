@@ -5,9 +5,6 @@ import {
   EventEmitter,
   forwardRef,
   ViewEncapsulation,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -79,13 +76,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterViewInit {
-  /**
-   * Provide access to the input element
-   */
-  @ViewChild('input')
-  public input: ElementRef;
-
+export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
    * Define if the input should autocapitalize
    * (standard HTML5 property)
@@ -185,20 +176,6 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
   @Output()
   cleared: EventEmitter<boolean> = new EventEmitter();
 
-
-  /**
-   * Focus the input on load if the flag is set
-   */
-  public ngAfterViewInit(): void {
-    // istanbul ignore else
-    if (this.isFocused) {
-      // Make sure the focus event doesn't take place until the next event loop. Otherwise we will
-      // see a `Expression changed..` error
-      setTimeout(() => {
-        this.input.nativeElement.focus();
-      });
-    }
-  }
 
   /**
    * Clear the input's value

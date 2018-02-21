@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { TsAutofocusModule } from './../autofocus/autofocus.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../services/validators/validators.service';
@@ -22,6 +23,7 @@ export { TsInputComponent } from './input.component';
     MatInputModule,
     TsValidationMessagesModule,
     TsIconModule,
+    TsAutofocusModule,
   ],
   providers: [
     TsValidatorsService,

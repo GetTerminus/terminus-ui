@@ -1,5 +1,6 @@
 // Components
 export * from './src/autocomplete/autocomplete.module';
+export * from './src/autofocus/autofocus.module';
 export * from './src/button/button.module';
 export * from './src/card/card.module';
 export * from './src/checkbox/checkbox.module';

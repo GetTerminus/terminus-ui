@@ -13,21 +13,15 @@ import { TsVerticalSpacingTypes } from './../utilities/types';
  * This is the vertical spacing UI directive. Accepts {@link TsVerticalSpacingTypes}
  *
  * @example
- * <div
- *              tsVerticalSpacing
- * >
+ * <div tsVerticalSpacing>
  *   My content!
  * </div>
  *
- * <div
- *              tsVerticalSpacing="large--1"
- * >
+ * <div tsVerticalSpacing="large--1">
  *   My content!
  * </div>
  *
- * <div
- *              tsVerticalSpacing="none"
- * >
+ * <div tsVerticalSpacing="none">
  *   My content!
  * </div>
  *

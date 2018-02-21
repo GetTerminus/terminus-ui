@@ -8,6 +8,33 @@
 
   <span fxFlex></span>
 
+  <div class="versions" fxLayout="row" fxLayoutGap="1em">
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div>
+        @terminus/ui:
+        <strong>{{ uiVersion.full }}</strong>
+      </div>
+
+      <div>
+        @terminus/ngx-tools:
+        <strong>{{ ngxVersion.full }}</strong>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div>
+        @angular/*:
+        <strong>{{ ngVersion.full }}</strong>
+      </div>
+      <div>
+        @angular/material:
+        <strong>{{ matVersion.full }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <span fxFlex></span>
+
   <span>
     <mat-menu #appMenu="matMenu">
       <a

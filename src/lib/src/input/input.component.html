@@ -22,6 +22,7 @@
     [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
     [attr.spellcheck]="spellcheck ? 'on' : 'off'"
     tabIndex="{{ tabIndex }}"
+    [tsAutofocus]="isFocused"
     [(ngModel)]="value"
     (blur)="onBlur()"
     #input
