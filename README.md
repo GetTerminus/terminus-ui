@@ -5,20 +5,20 @@ The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
+[![semantic-release][semantic-release-badge]][semantic-release]
+[![MIT License][license-image]][license-url]
+<br>
 [![NPM version][npm-version-image]][npm-url]
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
-[![semantic-release][semantic-release-badge]][semantic-release]
-[![MIT License][license-image]][license-url]
-[![All Contributors][contributor-shield]](#contributors)
-
----
-
+<br>
 [![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-4-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StylesHelpers-8-blue.svg)](#style-helpers)
 
+
+---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -263,7 +263,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [ui-npm]: https://www.npmjs.com/package/@terminus/ui
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
 [validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
-[contributor-shield]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
 [all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
 [gh-release-badge]: https://img.shields.io/github/release/GetTerminus/terminus-ui.svg
 [gh-releases]: https://github.com/GetTerminus/terminus-ui/releases/
