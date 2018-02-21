@@ -5,7 +5,7 @@ import { MatRadioModule } from '@angular/material/radio';
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsRadioGroupComponent } from './radio-group.component';
-export { TsRadioGroupComponent } from './radio-group.component';
+export * from './radio-group.component';
 
 
 @NgModule({
