@@ -25,7 +25,7 @@
     "//=> Section: Development": "",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "yarn run build && yarn run build-demo && yarn run build-scss",
-    "start": "concurrently \"yarn run build:watch\" \"yarn run build-demo:watch\"",
+    "start": "npx concurrently --kill-others-on-fail \"yarn run build:watch\" \"yarn run build-demo:watch\"",
     "//=> Section: Build": "",
     "build": "./node_modules/.bin/gulp generate:build --gulpfile tooling/gulpfile.js",
     "build:watch": "onchange 'src/lib/**/*.ts' 'src/lib/**/!(helpers).scss' 'src/lib/**/*.html' -- yarn run build",
