@@ -5,13 +5,19 @@ The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
-[![documentation coverage][compodoc-badge]][docs-url]
 [![NPM version][npm-version-image]][npm-url]
+[![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
-[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
 [![All Contributors][contributor-shield]](#contributors)
+
+---
+
+[![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
+[![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
+[![services](https://img.shields.io/badge/Services-4-blue.svg)](#services)
+[![style helpers](https://img.shields.io/badge/StylesHelpers-8-blue.svg)](#style-helpers)
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -79,6 +85,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 |-----------------|------------------------------------------------|:------------------:|------------------------------|------------------------------|-----------------------------|
 | alert           |                                                | :x:                |                              |                              |                             |
 | autocomplete    |                                                | :white_check_mark: | [Demo][demo-autocomplete]    | [Docs][autocomplete-docs]    | [Usage][autocomplete-usage] |
+| autofocus       | Focus a focusable element on load              | :white_check_mark: | [Demo][demo-autofocus]       | [Docs][autofocus-docs]       | [Usage][autofocus-usage]    |
 | badge           |                                                | :x:                |                              |                              |                             |
 | button          |                                                | :white_check_mark: | [Demo][demo-button]          | [Docs][button-docs]          |                             |
 | breadcrumbs     |                                                | :x:                |                              |                              |                             |
@@ -109,6 +116,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | radio-group     |                                                | :white_check_mark: | [Demo][demo-radio-group]     | [Docs][radio-group-docs]     | [Usage][radio-group-usage]  |
 | search          |                                                | :white_check_mark: | [Demo][demo-search]          | [Docs][search-docs]          |                             |
 | select          |                                                | :white_check_mark: | [Demo][demo-select]          | [Docs][select-docs]          |                             |
+| spacing         | Helpers for consistent spacing                 | :white_check_mark: | [Demo][demo-spacing]         | [Docs][spacing-docs]         |                             |
 | sort            | Used by `table` to manage column sorting       | :white_check_mark: | (see table demo)             | [Docs][sort-docs]            | [Usage][sort-usage]         |
 | table           |                                                | :white_check_mark: | [Demo][demo-table]           | [Docs][table-docs]           | [Usage][table-usage]        |
 | tabs            |                                                | :x:                |                              |                              |                             |
@@ -206,7 +214,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 - [Semantic Release][semantic-release] - Automatically release versioned release to NPM and generate
     a changelog in the Github tag.
-- [Greenkeeper][greenkeeper] - Automatically keep dependencies up to date.
 - [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
 - [Commitizen VSCode Plugin][commitizen_vsc] - VSCode plugin for commitizen.
 - [SauceLabs Platforms][saucelab_platforms] - Cross-browser unit tests.
@@ -238,8 +245,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [doctoc]: https://github.com/thlorenz/doctoc
 [file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
-[greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
-[greenkeeper]: https://greenkeeper.io/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE
 [markdown]: https://daringfireball.net/projects/markdown/syntax
@@ -260,10 +265,13 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
 [contributor-shield]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
 [all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
+[gh-release-badge]: https://img.shields.io/github/release/GetTerminus/terminus-ui.svg
+[gh-releases]: https://github.com/GetTerminus/terminus-ui/releases/
 
 
 <!-- Demos -->
 [demo-autocomplete]: https://terminus-ui-demos.stackblitz.io/components/autocomplete
+[demo-autofocus]: https://terminus-ui-demos.stackblitz.io/components/autofocus
 [demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
 [demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
 [demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
@@ -283,6 +291,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-radio-group]: https://terminus-ui-demos.stackblitz.io/components/radio
 [demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
 [demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
+[demo-spacing]: https://terminus-ui-demos.stackblitz.io/components/spacing
 [demo-table]: https://terminus-ui-demos.stackblitz.io/components/table
 [demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
@@ -300,6 +309,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 <!-- TS Primary Docs -->
 [autocomplete-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html
+[autofocus-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html
 [button-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsButtonComponent.html
 [card-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html
 [checkbox-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html
@@ -319,12 +329,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [search-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsSearchComponent.html
 [select-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsSelectComponent.html
 [sort-docs]: https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html
+[spacing-docs]: https://getterminus.github.io/terminus-ui/typescript/directives/TsVerticalSpacingDirective.html
 [table-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html
 [toggle-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsToggleComponent.html
 [tooltip-docs]: https://getterminus.github.io/terminus-ui/typescript/components/TsTooltipComponent.html
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html#readme
+[autofocus-usage]: https://getterminus.github.io/terminus-ui/typescript/components/TsAutofocusDirective.html#readme
 [card-usage]: https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html#readme
