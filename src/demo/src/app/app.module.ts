@@ -16,6 +16,7 @@ import {
 
 import {
   TsAutocompleteModule,
+  TsAutofocusModule,
   TsButtonModule,
   TsCardModule,
   TsCheckboxModule,
@@ -49,6 +50,7 @@ import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { AutofocusComponent } from './components/autofocus/autofocus.component';
 import { BreakpointsComponent } from './components/breakpoints/breakpoints.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
@@ -97,6 +99,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     MatToolbarModule,
 
     TsAutocompleteModule,
+    TsAutofocusModule,
     TsButtonModule,
     TsCardModule,
     TsCheckboxModule,
@@ -129,6 +132,7 @@ import { WindowServiceComponent } from './components/services/window-service.com
     ComponentsComponent,
 
     AutocompleteComponent,
+    AutofocusComponent,
     BreakpointsComponent,
     ButtonComponent,
     CardComponent,

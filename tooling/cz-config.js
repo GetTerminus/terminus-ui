@@ -17,6 +17,7 @@ module.exports = {
 
   scopes: [
     {name: 'Autocomplete'},
+    {name: 'Autofocus'},
     {name: 'Button'},
     {name: 'Card'},
     {name: 'Checkbox'},
