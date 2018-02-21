@@ -316,6 +316,9 @@
                                 id="xs-classes-links"
                             >
                                 <li class="link">
+                                    <a href="../classes/TsRadioChange.html" >TsRadioChange</a>
+                                </li>
+                                <li class="link">
                                     <a href="../classes/TsSortBase.html" >TsSortBase</a>
                                 </li>
                                 <li class="link">
@@ -323,6 +326,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/TsTableDataSource.html" >TsTableDataSource</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Version.html" >Version</a>
                                 </li>
                         </ul>
                     </li>
@@ -770,6 +776,9 @@
                                        id="classes-links"
                    >
                                        <li class="link">
+                                           <a href="../classes/TsRadioChange.html" >TsRadioChange</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../classes/TsSortBase.html" >TsSortBase</a>
                                        </li>
                                        <li class="link">
@@ -777,6 +786,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/TsTableDataSource.html" >TsTableDataSource</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Version.html" >Version</a>
                                        </li>
                                </ul>
                            </li>
@@ -986,6 +998,12 @@
             <code><a href="../components/TsReactiveFormBaseComponent.html" target="_self" >TsReactiveFormBaseComponent</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
     <p class="comment">
         <h3>Example</h3>
@@ -1019,6 +1037,10 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">exportAs</td>
+                <td class="col-md-9"><code>tsRadioGroup</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">host</td>
@@ -1067,6 +1089,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defaultSelection">defaultSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
@@ -1100,6 +1141,54 @@
         </table>
     </section>
 
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+    <code>constructor(changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:86</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div>
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                        <td>changeDetectorRef</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="inputs">Inputs</h3>
@@ -1121,7 +1210,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1147,7 +1236,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:80</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1166,13 +1255,13 @@
                         <td class="col-md-10">
                             <div><p>Emit event when a selection occurs</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;MatRadioChange&gt;</code>
+                            <em><code>$event</code> type:</em>    <code><a href="../classes/TsRadioChange.html" target="_self" >EventEmitter&lt;TsRadioChange&gt;</a></code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:86</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1181,6 +1270,134 @@
 
 
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="defaultSelection"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                defaultSelection
+                                </b>
+                                <a href="#defaultSelection"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>defaultSelection(options: <a href="../interfaces/TsRadioOption.html">TsRadioOption[]</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:124</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Return an option that should be checked by default</p>
+    <p>If multiple items are marked as &#39;checked&#39; by default, the first on found will win.</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                        <td>options</td>
+                                                        
+                                                            <td>
+                                                                        <code><a href="../interfaces/TsRadioOption.html" target="_self" >TsRadioOption[]</a></code>
+                                                            </td>
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><ul>
+    <li>The array of options</li>
+    </ul>
+    </code>
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string | null</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="ngOnInit"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                ngOnInit
+                                </b>
+                                <a href="#ngOnInit"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>ngOnInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/src/radio-group/radio-group.component.ts:99</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Seed the initial value with the first checked option found</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
 </div>
@@ -1189,9 +1406,9 @@
         <p><h4 id="event-driven">Event driven</h4>
 <p>Pass in an array of items and listen for change events:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
-  [options]=&quot;items | async&quot;
+  [options]=&quot;items$ | async&quot;
   (change)=&quot;selected($event)&quot;
-&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">items = of([
+&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">items$ = of([
   {
     value: &#39;foo&#39;,
     displayValue: &#39;Foo&#39;,
@@ -1211,12 +1428,14 @@
 <p>Pass in an array of items and pass in the form control:</p>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-radio-group
-    [options]=&quot;items | async&quot;
+    [options]=&quot;items$ | async&quot;
     [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
   &gt;&lt;/ts-radio-group&gt;
 
   &lt;button (click)=&quot;submit(myForm.value)&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">items = of([
+&lt;/form&gt;</code></pre><p>Since we can set the default value in the form control, we do not need to add the <code>checked</code> property
+to any or our items.</p>
+<pre class="line-numbers"><code class="language-typescript">items$ = of([
   {
     value: &#39;foo&#39;,
     displayValue: &#39;Foo&#39;,
@@ -1230,17 +1449,20 @@
     value: &#39;baz&#39;,
     displayValue: &#39;Baz&#39;,
     required: true,
-    checked: true,
   },
 ]);
 myForm = this.formBuilder.group({
   myRadioGroup: [
-    null,
+    &#39;bar&#39;,
     [
       Validators.required,
     ],
   ],
-});</code></pre></p>
+});</code></pre><blockquote>
+<p>NOTE: If you mark an item as <code>checked</code> you do not need to set the value in the form control. The
+<code>TsRadioGroupComponent</code> will find the checked item and update the form control.</p>
+</blockquote>
+</p>
     </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
@@ -1251,7 +1473,9 @@ myForm = this.formBuilder.group({
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   ViewEncapsulation,
+  OnInit,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { MatRadioChange } from &#x27;@angular/material/radio&#x27;
@@ -1259,6 +1483,12 @@ import { MatRadioChange } from &#x27;@angular/material/radio&#x27;
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
 import { TsRadioOption } from &#x27;./../utilities/interfaces/radio-option.interface&#x27;;
+
+
+/**
+ * Expose the MatRadioChange event as TsRadioChange
+ */
+export class TsRadioChange extends MatRadioChange {};
 
 
 /**
@@ -1299,11 +1529,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   host: {
     class: &#x27;ts-radio-group&#x27;,
   },
+  exportAs: &#x27;tsRadioGroup&#x27;,
   providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
@@ -1320,7 +1551,51 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
    * Emit event when a selection occurs
    */
   @Output()
-  public change: EventEmitter&lt;MatRadioChange&gt; &#x3D; new EventEmitter();
+  public change: EventEmitter&lt;TsRadioChange&gt; &#x3D; new EventEmitter();
+
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    super();
+  }
+
+
+  /**
+   * Seed the initial value with the first checked option found
+   */
+  public ngOnInit(): void {
+    const initialSelection &#x3D; this.defaultSelection(this.options);
+
+    if (initialSelection) {
+      this.value &#x3D; initialSelection;
+
+      // istanbul ignore else
+      if (this.formControl) {
+        this.formControl.setValue(initialSelection);
+      }
+
+      // Tell Angular that we have updated the component internally
+      this.changeDetectorRef.markForCheck();
+    }
+  }
+
+
+  /**
+   * Return an option that should be checked by default
+   *
+   * If multiple items are marked as &#x27;checked&#x27; by default, the first on found will win.
+   *
+   * @param options - The array of options
+   * @return The selected value
+   */
+  private defaultSelection(options: TsRadioOption[]): string | null {
+    const found &#x3D; options.filter((v: TsRadioOption) &#x3D;&gt; {
+      return v.checked;
+    });
+
+    return (found &amp;&amp; found[0] &amp;&amp; found[0].value) ? found[0].value : null
+  }
 }
 </code></pre>
     </div>
@@ -1341,8 +1616,10 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
       [name]&#x3D;&quot;option.name&quot;
       [required]&#x3D;&quot;option.required&quot;
       (change)&#x3D;&quot;change.emit($event)&quot;
+      #radio&#x3D;&quot;matRadioButton&quot;
     &gt;
       {{ option.displayValue }}
+      {{ option.checked }}
     &lt;/mat-radio-button&gt;
 
   &lt;/ng-container&gt;
@@ -1385,7 +1662,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-radio-group  class="c-radio qa-radio-group"  [(ngModel)]="value">  <ng-container *ngFor="let option of options">    <mat-radio-button      class="c-radio__control qa-radio-control"      [value]="option.value"      [id]="option.value"      [disabled]="option.disabled"      [checked]="option.checked"      [name]="option.name"      [required]="option.required"      (change)="change.emit($event)"    >      {{ option.displayValue }}    </mat-radio-button>  </ng-container>  <ts-validation-messages    class="qa-radio-validation-messages"    *ngIf="formControl"    [control]="formControl"    validateImmediately="true"  ></ts-validation-messages></mat-radio-group></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-radio-group  class="c-radio qa-radio-group"  [(ngModel)]="value">  <ng-container *ngFor="let option of options">    <mat-radio-button      class="c-radio__control qa-radio-control"      [value]="option.value"      [id]="option.value"      [disabled]="option.disabled"      [checked]="option.checked"      [name]="option.name"      [required]="option.required"      (change)="change.emit($event)"      #radio="matRadioButton"    >      {{ option.displayValue }}      {{ option.checked }}    </mat-radio-button>  </ng-container>  <ts-validation-messages    class="qa-radio-validation-messages"    *ngIf="formControl"    [control]="formControl"    validateImmediately="true"  ></ts-validation-messages></mat-radio-group></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsRadioGroupComponent'};
