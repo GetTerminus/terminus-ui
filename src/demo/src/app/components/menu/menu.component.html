@@ -1,43 +1,67 @@
-<label>
-  Disabled:
-  <input type="checkbox" [(ngModel)]="disabled"/>
-</label>
+<ts-card tsVerticalSpacing>
+  <div tsVerticalSpacing>
+    <label>
+      Disabled:
+      <input type="checkbox" [(ngModel)]="disabled"/>
+    </label>
+  </div>
 
-<hr>
+  <div tsVerticalSpacing>
+    <ts-menu
+      [theme]="myTheme"
+      [isDisabled]="disabled"
+      [menuItemsTemplate]="myTemplate"
+    >
+      Select Item
+    </ts-menu>
+  </div>
 
-<div>
-  <ts-menu
-    [theme]="myTheme"
-    [isDisabled]="disabled"
-    [menuItemsTemplate]="myTemplate"
-  >
-    Select Item
-  </ts-menu>
-</div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ts-menu
+      [theme]="myTheme"
+      triggerType="utility"
+      [isDisabled]="disabled"
+      [menuItemsTemplate]="myTemplate"
+    ></ts-menu>
+  </div>
 
-<div fxLayout="row" fxLayoutAlign="end center">
-  <ts-menu
-    [theme]="myTheme"
-    triggerType="utility"
-    [isDisabled]="disabled"
-    [menuItemsTemplate]="myTemplate"
-  ></ts-menu>
-</div>
+  <ng-template #myTemplate>
+    <ts-button (click)="customItemSelected('yup')">
+      Roger, Roger.
+    </ts-button>
 
-<ng-template #myTemplate>
-  <ts-button (click)="customItemSelected('yup')">
-    Roger, Roger.
-  </ts-button>
+    <ts-button (click)="customItemSelected('nope')">
+      Don't call me Shirley.
+    </ts-button>
 
-  <ts-button (click)="customItemSelected('nope')">
-    Don't call me Shirley.
-  </ts-button>
+    <ts-link [destination]="'foo/'">
+      A tasty link
+    </ts-link>
 
-  <ts-link [destination]="'foo/'">
-    A tasty link
-  </ts-link>
+    <ts-button (click)="customItemSelected('nope')">
+      And a final button
+    </ts-button>
+  </ng-template>
+</ts-card>
 
-  <ts-button (click)="customItemSelected('nope')">
-    And a final button
-  </ts-button>
-</ng-template>
+
+<ts-card>
+
+  <div tsVerticalSpacing>
+    <ts-menu [menuItemsTemplate]="checkboxTemplate">
+      Show/Hide Columns
+    </ts-menu>
+  </div>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+
+  <ng-template #checkboxTemplate>
+    <form [formGroup]="myForm">
+      <ng-container *ngFor="let control of myForm.controls['showColumns'].controls; let i = index">
+        <ts-checkbox [formControl]="control" (click)="$event.stopPropagation()">
+          {{ columns[i] }}
+        </ts-checkbox>
+      </ng-container>
+    </form>
+  </ng-template>
+</ts-card>

@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from '@angular/forms';
 
 
 @Component({
@@ -8,10 +14,27 @@ import { Component } from '@angular/core';
 export class MenuComponent {
   disabled = false;
   myTheme = 'accent';
+  columns = [
+    'Title',
+    'Account',
+    'Budget',
+    'Enabled',
+  ];
+  myForm = this.formBuilder.group({
+    showColumns: this.formBuilder.array([true, true, true, true]),
+  });
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) {}
 
 
   customItemSelected(item: any): void {
     console.log('Item selected: ', item);
+  }
+
+  submit(v: any) {
+    console.log('DEMO: form submission: ', v);
   }
 
 }
