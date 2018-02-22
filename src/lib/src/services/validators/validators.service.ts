@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { creditCardValidator } from './validators/creditCard/creditCard';
 import { emailValidator } from './validators/email/email';
+import { equalToControlValidator } from './validators/equalToControl/equalToControl';
 import { greaterThanValidator } from './validators/greaterThan/greaterThan';
 import { lessThanValidator } from './validators/lessThan/lessThan';
 import { maxDateValidator } from './validators/maxDate/maxDate';
@@ -17,6 +18,7 @@ import { urlValidator } from './validators/url/url';
 export class TsValidatorsService {
   creditCard = creditCardValidator;
   email = emailValidator;
+  equalToControl = equalToControlValidator;
   greaterThan = greaterThanValidator;
   lessThan = lessThanValidator;
   maxDate = maxDateValidator;

@@ -171,6 +171,23 @@ http:// shouldfail.com
     ></ts-input>
   </ts-card>
 
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Compare two form controls</h3>
+
+    <div fxLayout="row" fxLayoutGap="2em">
+      <ts-input
+        [formControl]="myForm.get('compare1')"
+        label="Input 1"
+      ></ts-input>
+      <ts-input
+        [formControl]="myForm.get('compare2')"
+        label="Input 2"
+      ></ts-input>
+    </div>
+  </ts-card>
+
+
   <button (click)="submit(myForm.value)">Submit</button>
 </form>
 
