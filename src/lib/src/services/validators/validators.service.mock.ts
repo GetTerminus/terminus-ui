@@ -14,20 +14,41 @@ export class TsValidatorsServiceMock {
     });
   }
 
-  password = () => {
+  email = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
-      password: {
+      email: {
         valid: false,
         actual: 'foo',
       },
     });
   }
 
-  email = () => {
+  equalToControl = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
-      email: {
+      equalToControl: {
         valid: false,
-        actual: 'foo',
+        compareValue: 'foo',
+        actual: 'bar',
+      },
+    });
+  }
+
+  greaterThan = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      greaterThan: {
+        valid: false,
+        greaterThan: 10,
+        actual: 5,
+      },
+    });
+  }
+
+  lessThan = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      lessThan: {
+        valid: false,
+        lessThan: 10,
+        actual: 15,
       },
     });
   }
@@ -50,22 +71,11 @@ export class TsValidatorsServiceMock {
     });
   }
 
-  greaterThan = () => {
+  password = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
-      greaterThan: {
+      password: {
         valid: false,
-        greaterThan: 10,
-        actual: 5,
-      },
-    });
-  }
-
-  lessThan = () => {
-    return jest.fn().mockReturnValue(this.isValid ? null : {
-      lessThan: {
-        valid: false,
-        lessThan: 10,
-        actual: 15,
+        actual: 'foo',
       },
     });
   }
