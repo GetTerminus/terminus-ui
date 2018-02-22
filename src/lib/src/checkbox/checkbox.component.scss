@@ -1,4 +1,5 @@
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
 
 
 //
@@ -8,11 +9,20 @@
 //  A simple checkbox component
 //
 .ts-checkbox {
+  @include typography;
   display: block;
 
   // Top level styles should be nested here
   .c-checkbox {
-    @include typography;
     display: block;
+  }
+
+  // Target checkboxes inside a menu dropdown panel
+  .mat-menu-panel & {
+    // Match the material button line-height and spacing
+    .c-checkbox {
+      line-height: 35px;
+      padding: 0 spacing();
+    }
   }
 }

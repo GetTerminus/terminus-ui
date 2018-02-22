@@ -962,6 +962,9 @@
     <li class="active">
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -1717,6 +1720,76 @@
     </section>
 </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#checkbox-menu">Checkbox Menu</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic Usage</h2>
+<pre class="line-numbers"><code class="language-html">&lt;!-- Define the menu component. This will be the trigger to open the menu --&gt;
+&lt;ts-menu [menuItemsTemplate]=&quot;myTemplate&quot;&gt;
+  Select Item
+&lt;/ts-menu&gt;
+
+&lt;!-- Define a template for the dropdown panel and pass it to `[menuItemsTemplate]` above --&gt;
+&lt;ng-template #myTemplate&gt;
+  &lt;ts-button (click)=&quot;customItemSelected(&#39;yup&#39;)&quot;&gt;
+    Roger, Roger.
+  &lt;/ts-button&gt;
+
+  &lt;ts-link [destination]=&quot;&#39;foo/&#39;&quot;&gt;
+    A tasty link
+  &lt;/ts-link&gt;
+&lt;/ng-template&gt;</code></pre><p>This allows all selection functionality to be handled by the consuming application rather than being
+proxied through event emitters.</p>
+<blockquote>
+<p>NOTE: <code>&lt;ts-link&gt;</code> and <code>&lt;ts-button&gt;</code> will be styled the same within a menu.</p>
+</blockquote>
+<h2 id="checkbox-menu">Checkbox Menu</h2>
+<blockquote>
+<p>This is very similar to the basic usage example, with a few small, key differences.</p>
+</blockquote>
+<p>Create the form and array of possible options:</p>
+<pre class="line-numbers"><code class="language-typescript">// The list of column names to show in the UI
+columns = [
+  &#39;Title&#39;,
+  &#39;Account&#39;,
+  &#39;Budget&#39;,
+  &#39;Enabled&#39;,
+];
+// We are creating a form array with 4 controls all defaulted to &#39;true&#39;
+myForm = this.formBuilder.group({
+  showColumns: this.formBuilder.array([true, true, true, true]),
+});</code></pre><p>Create the menu trigger and the dropdown contents:</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- Define the menu component. This will be the trigger to open the menu --&gt;
+&lt;ts-menu [menuItemsTemplate]=&quot;myTemplate&quot;&gt;
+  Select Item
+&lt;/ts-menu&gt;
+
+&lt;!-- Define a template for the dropdown panel and pass it to `[menuItemsTemplate]` above --&gt;
+&lt;ng-template #myTemplate&gt;
+  &lt;form [formGroup]=&quot;myForm&quot;&gt;
+    &lt;!-- Loop through the array of form controls --&gt;
+    &lt;ng-container *ngFor=&quot;let control of myForm.controls[&#39;showColumns&#39;].controls; let i = index&quot;&gt;
+      &lt;!-- The menu normally closes after each interaction, so we need to stop propagation here to
+      support multiple selections while open --&gt;
+      &lt;ts-checkbox [formControl]=&quot;control&quot; (click)=&quot;$event.stopPropagation()&quot;&gt;
+        &lt;!-- Use the index from the loop to get the appropriate UI text from our array --&gt;
+        {{ columns[i] }}
+      &lt;/ts-checkbox&gt;
+    &lt;/ng-container&gt;
+  &lt;/form&gt;
+&lt;/ng-template&gt;</code></pre><blockquote>
+<p>NOTE: In this example, the form is stand-alone so the entire form is nested inside the menu
+template. If this were part of a larger form, the form element would be higher in the DOM
+hierarchy.</p>
+</blockquote>
+</p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {

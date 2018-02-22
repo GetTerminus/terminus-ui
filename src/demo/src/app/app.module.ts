@@ -45,6 +45,11 @@ import {
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
 
+import {
+  TsWindowService,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
@@ -125,6 +130,10 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsIconModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
+  ],
+  providers: [
+    TsWindowService,
+    TsDocumentService,
   ],
   declarations: [
     AppComponent,
