@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage](#basic-usage)
+- [Reactive Forms](#reactive-forms)
+- [`ngModel`](#ngmodel)
+- [`isChecked`](#ischecked)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic usage
 
 Wrap your label text inside the component:
@@ -9,7 +20,7 @@ Wrap your label text inside the component:
 ```
 
 
-#### Reactive Forms
+## Reactive Forms
 
 To use the checkbox with a reactive form, pass the `formControl` to the checkbox:
 
@@ -20,7 +31,7 @@ To use the checkbox with a reactive form, pass the `formControl` to the checkbox
 ```
 
 
-#### `ngModel`
+## `ngModel`
 
 To use the checkbox with Angular's `ngModel`, just attach the directive to the checkbox:
 
@@ -31,7 +42,7 @@ To use the checkbox with Angular's `ngModel`, just attach the directive to the c
 ```
 
 
-#### `isChecked`
+## `isChecked`
 
 To seed the initial checked state use the `isChecked` property:
 

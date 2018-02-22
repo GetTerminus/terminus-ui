@@ -1,7 +1,26 @@
-### Basic usage
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage](#basic-usage)
+  - [1. Define the table's columns](#1-define-the-tables-columns)
+  - [2. Define the table's rows](#2-define-the-tables-rows)
+  - [3. Provide data](#3-provide-data)
+  - [4. Full HTML example](#4-full-html-example)
+- [Dynamically update table data](#dynamically-update-table-data)
+- [Dynamic columns](#dynamic-columns)
+- [Sorting by column](#sorting-by-column)
+- [Row selection](#row-selection)
+- [No-wrap for a column](#no-wrap-for-a-column)
+- [Min-width for a column](#min-width-for-a-column)
+- [Full example with pagination, sorting and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Basic usage
 
 
-##### 1. Define the table's columns
+### 1. Define the table's columns
 
 Define the table's columns. Each column definition should be given a unique name and contain the
 content for its header and row cells.
@@ -22,7 +41,7 @@ and the row cell will render the name property of each row's data.
 ```
 
 
-##### 2. Define the table's rows
+### 2. Define the table's rows
 
 After defining your columns, provide the header and data row templates that will be rendered out by
 the table. Each row needs to be given a list of the columns that it should contain. The order of the
@@ -41,7 +60,7 @@ want to have rendered.
 ```
 
 
-##### 3. Provide data
+### 3. Provide data
 
 The column and row definitions now capture how data will render - all that's left is to provide the
 data itself.
@@ -77,7 +96,7 @@ this.myDataSource: TsTableDataSource<MyTableItem> = new TsTableDataSource(INITIA
 ```
 
 
-##### 4. Full HTML example
+### 4. Full HTML example
 
 ```html
 <!-- Pass in the dataSource -->
@@ -117,7 +136,7 @@ this.myDataSource: TsTableDataSource<MyTableItem> = new TsTableDataSource(INITIA
 ```
 
 
-### Dynamically update table data
+## Dynamically update table data
 
 Your data source was created during the bootstraping of your component:
 
@@ -133,7 +152,7 @@ this.myDataSource.data = dataToRender;
 ```
 
 
-### Dynamic columns
+## Dynamic columns
 
 Enable dynamic columns using a `TsSelectComponent`:
 
@@ -182,7 +201,7 @@ Both the `TsSelectComponent` and the `tsRowDef` `columns` input should reference
 ```
 
 
-### Sorting by column
+## Sorting by column
 
 To add sorting behavior to the table, add the `tsSort` directive to the `<ts-table>` and add
 `ts-sort-header` to each column header cell that should trigger sorting. Provide the
@@ -233,12 +252,12 @@ export class TableComponent implements AfterViewInit {
 ```
 
 
-### Row selection
+## Row selection
 
 Possible but not implemented until a valid use-case arises.
 
 
-### No-wrap for a column
+## No-wrap for a column
 
 Sometimes a column's content should not wrap even at small viewport sizes. Adding the directive
 `noWrap="true"` to the column will keep then contents from wrapping regardless of the viewport
@@ -257,7 +276,7 @@ width.
 ```
 
 
-### Min-width for a column
+## Min-width for a column
 
 Defining a minimum width for specific columns can help the layout not compress certain columns past
 a readable point. Add the directive `minWidth` and pass it any valid CSS min-width value (`100px`,
@@ -278,7 +297,7 @@ a readable point. Add the directive `minWidth` and pass it any valid CSS min-wid
 ---
 
 
-### Full example with pagination, sorting and dynamic columns
+## Full example with pagination, sorting and dynamic columns
 
 
 ```typescript

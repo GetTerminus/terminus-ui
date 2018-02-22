@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage](#basic-usage)
+- [Binding](#binding)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic usage
 
 The `tsAutofocus` directive can be used on any element that has a `.focus()` method. This includes
@@ -10,7 +19,7 @@ Add the directive to a focusable element:
 <input type="text" autofocus />
 ```
 
-#### Binding
+## Binding
 
 Passing in any value _except_ `false`, `'false'`, `null`, or `undefined` will enable the directive.
 

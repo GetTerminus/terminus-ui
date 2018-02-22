@@ -1,4 +1,15 @@
-#### Event driven
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Event driven](#event-driven)
+- [Set max/min range](#set-maxmin-range)
+- [Set the initial date without using Reactive Forms](#set-the-initial-date-without-using-reactive-forms)
+- [Use with Reactive Forms](#use-with-reactive-forms)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Event driven
 
 There are three selection events that you can tie into:
 
@@ -14,7 +25,7 @@ There are three selection events that you can tie into:
 1. `endSelected` is fired when an end date is selected
 1. `dateSelected` is fired when either date is selected
 
-#### Set max/min range
+## Set max/min range
 
 To define bounds for date selection, pass in a valid `Date` to each of these `@Inputs`:
 
@@ -40,7 +51,7 @@ endDate2 = new Date(2017, 8, 2;
 ```
 
 
-#### Set the initial date without using Reactive Forms
+## Set the initial date without using Reactive Forms
 
 Pass in a `Date` to `startInitialDate` and `endInitialDate`:
 
@@ -59,7 +70,7 @@ date2 = new Date(2017, 3, 1);
 > When using a Reactive Form, we can seed the initial values in the form itself
 
 
-#### Use with Reactive Forms
+## Use with Reactive Forms
 
 Pass in the form control:
 

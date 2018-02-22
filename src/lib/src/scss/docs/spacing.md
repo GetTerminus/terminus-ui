@@ -1,4 +1,13 @@
-# Spacing
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Spacing](#spacing)
+- [Available spacing options](#available-spacing-options)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Spacing
 
 All spacing should be defined using the `spacing()` helper method. This ensures that each spacing
 is a valid spacing within our design language.

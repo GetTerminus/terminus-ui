@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Adding sort to table headers](#adding-sort-to-table-headers)
+- [Changing the sort order](#changing-the-sort-order)
+- [Disabling sorting](#disabling-sorting)
+- [Using sort with the `ts-table`](#using-sort-with-the-ts-table)
+- [Accessibility](#accessibility)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ### Adding sort to table headers
 

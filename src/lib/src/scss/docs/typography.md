@@ -1,4 +1,15 @@
-# Typography
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Typography](#typography)
+- [Available typography styles](#available-typography-styles)
+  - [Formats and Levels](#formats-and-levels)
+  - [Typefaces](#typefaces)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Typography
 
 All typography should be defined using the `typography()` mixin. This ensures that all font
 sizes/weights/line-heights/etc are using styles explicitly defined in our design language.

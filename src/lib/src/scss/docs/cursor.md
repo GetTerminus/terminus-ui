@@ -1,4 +1,13 @@
-# Cursors
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Cursors](#cursors)
+- [Available cursor values](#available-cursor-values)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Cursors
 
 The `cursor()` function returns the correct cursor value based on the desired type.
 

@@ -64,7 +64,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
       - Automated Table of Contents updates
       - Automated markdown link checking
     - Generated docs for TypeScript (`docs/typescript/`)
-    - Generated docs for SCSS (`docs/styleguide/`)
+    - Manual docs for SCSS (with SCSS helpers)
 1. Automated semantic versioning & publishing to [NPM][npm-url]
 1. Enforced commit style
 1. Tree-shaking via Rollup.js

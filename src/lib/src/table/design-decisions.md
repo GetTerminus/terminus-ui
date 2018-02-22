@@ -1,4 +1,14 @@
-# Table design decisions
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Table design decisions](#table-design-decisions)
+  - [Column Sorting](#column-sorting)
+  - [Row Selection](#row-selection)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Table design decisions
 
 
 ### Column Sorting

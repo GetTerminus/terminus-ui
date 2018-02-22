@@ -1,4 +1,12 @@
-### tabindex
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [tabindex](#tabindex)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## tabindex
 
 Because of an odd focus bug when clicking on an input component, we must define the `tabindex`
 twice. Notice the difference: `tabindex` vs `tabIndex`. The all-lowercase version is the actual HTML

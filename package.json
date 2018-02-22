@@ -20,7 +20,7 @@
     "predocs": "yarn run docs:toc",
     "docs": "yarn run docs:ts",
     "docs:ts": "./node_modules/.bin/compodoc -p src/lib/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all --theme material",
-    "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
+    "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 .",
     "//=> Section: Development": "",
     "serve": "lite-server -c=tooling/bs-config.json --open false",
     "prestart": "yarn run build && yarn run build-demo && yarn run build-scss",

@@ -1,4 +1,13 @@
-# Shadows
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Shadows](#shadows)
+- [Available levels](#available-levels)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Shadows
 
 Shadow values are managed via a global list as they are too complex for static variables or manual
 definition.
@@ -11,7 +20,7 @@ definition.
 ```
 
 
-### Available levels
+## Available levels
 
 - `dialog`
 - `picker`
