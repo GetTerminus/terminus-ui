@@ -988,6 +988,11 @@
 
             </p>
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
 
 
@@ -1013,7 +1018,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/src/services/document/document.service.ts:24</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/src/services/document/document.service.ts:33</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -1033,11 +1038,17 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import {
+  Injectable,
+  isDevMode,
+} from &#x27;@angular/core&#x27;;
 
 
 /**
  * Return the native document object
+ *
+ * @deprecated
+ * @deletion-target 7.0.0
  *
  * @return The native document object
  */
@@ -1047,6 +1058,9 @@ export function _document(): any {
 
 /**
  * Define a service that exposes the DOCUMENT object
+ *
+ * @deprecated
+ * @deletion-target 7.0.0
  */
 @Injectable()
 export class TsDocumentService {
@@ -1057,6 +1071,13 @@ export class TsDocumentService {
    * @return The function that returns the native document object
    */
   get document() {
+    if (isDevMode()) {
+      console.warn(
+        &#x27;TsDocumentService has been deprecated and will be removed in &#x60;@terminus/ui@7.0.0&#x60;.\n&#x27; +
+        &#x27;It can be imported from &#x60;@terminus/ngx-tools@^1.5.0&#x60;.&#x27;,
+      );
+    }
+
     return _document();
   }
 
