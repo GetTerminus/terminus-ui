@@ -3053,7 +3053,20 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h2 id="basic-usage-with-a-formcontrol">Basic usage with a FormControl</h2>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage-with-a-formcontrol">Basic usage with a FormControl</a></li>
+<li><a href="#allow-multiple-selections">Allow multiple selections</a></li>
+<li><a href="#seed-selected-values">Seed selected values</a></li>
+<li><a href="#show-the-progress-indicator">Show the progress indicator</a></li>
+<li><a href="#customize-how-the-selected-value-is-displayed">Customize how the selected value is displayed</a></li>
+<li><a href="#event-driven">Event driven</a></li>
+<li><a href="#show-a-no-results-validation-error">Show a &#39;no results&#39; validation error</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage-with-a-formcontrol">Basic usage with a FormControl</h2>
 <p>a) Pass an array of available options in. These are the options displayed to the user in the
    dropdown.
 b) Create a local reference to the autocomplete component.</p>
@@ -3102,31 +3115,31 @@ this.users$ = this.auto
 ;</code></pre><blockquote>
 <p>Change the debounce delay by setting <code>debounceDelay</code>.</p>
 </blockquote>
-<h4 id="allow-multiple-selections">Allow multiple selections</h4>
+<h2 id="allow-multiple-selections">Allow multiple selections</h2>
 <p>To allow multiple selections, pass in a comparator function. This function should match the type {@link TsAutocompleteComparatorFn} which has the basic signature of <code>(v: any) =&gt; string</code>.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-autocomplete
   [options]=&quot;users$ | async&quot;
   multiple=&quot;(v) = v.id&quot;
 &gt;&lt;/ts-autocomplete&gt;</code></pre><p>This comparator function will be used by the autocomplete to determine if a selection is a
 duplicate. It is also used as the <code>trackBy</code> function when looping through options.</p>
-<h4 id="seed-selected-values">Seed selected values</h4>
+<h2 id="seed-selected-values">Seed selected values</h2>
 <p>To seed initial values, pass the array of selections to <code>initialSelections</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-autocomplete
   [options]=&quot;users$ | async&quot;
   initialSelections=&quot;[{}, {}..]&quot;
   multiple=&quot;(v) = v.id&quot;
-&gt;&lt;/ts-autocomplete&gt;</code></pre><h4 id="show-the-progress-indicator">Show the progress indicator</h4>
+&gt;&lt;/ts-autocomplete&gt;</code></pre><h2 id="show-the-progress-indicator">Show the progress indicator</h2>
 <p>Show a progress indicator by toggling the <code>showProgress</code> value:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-autocomplete
   [showProgress]=&quot;isInProgress&quot;
-&gt;&lt;/ts-autocomplete&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">this.isInProgress = true;</code></pre><h4 id="customize-how-the-selected-value-is-displayed">Customize how the selected value is displayed</h4>
+&gt;&lt;/ts-autocomplete&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">this.isInProgress = true;</code></pre><h2 id="customize-how-the-selected-value-is-displayed">Customize how the selected value is displayed</h2>
 <p>The UI display of selected options can be changed by passing in a custom <code>displayWith</code> function.
 This function should match {@link TsAutocompleteFormatterFn} which has the signature of <code>(v) =&gt;
 string</code>;</p>
 <pre class="line-numbers"><code class="language-html">&lt;!-- Display the user&#39;s login name within the selection chip --&gt;
 &lt;ts-autocomplete
   displayWith=&quot;(v) =&gt; v.login&quot;
-&gt;&lt;/ts-autocomplete&gt;</code></pre><h4 id="event-driven">Event driven</h4>
+&gt;&lt;/ts-autocomplete&gt;</code></pre><h2 id="event-driven">Event driven</h2>
 <p>If a <code>FormControl</code> isn&#39;t needed, you can subscribe to events directly:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-autocomplete
   (optionSelected)=&quot;added($event)&quot;
@@ -3142,7 +3155,7 @@ removed(chip) {
 
 change(selections) {
   console.log(&#39;Selection was changed!&#39;, selections);
-}</code></pre><h4 id="show-a-no-results-validation-error">Show a &#39;no results&#39; validation error</h4>
+}</code></pre><h2 id="show-a-no-results-validation-error">Show a &#39;no results&#39; validation error</h2>
 <p>If no results are found, set a validation error on the <code>FormControl</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-autocomplete
   [options]=&quot;users$ | async&quot;

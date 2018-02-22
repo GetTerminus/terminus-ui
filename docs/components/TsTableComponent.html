@@ -1065,8 +1065,28 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h3 id="basic-usage">Basic usage</h3>
-<h5 id="1-define-the-table-s-columns">1. Define the table&#39;s columns</h5>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a><ul>
+<li><a href="#1-define-the-tables-columns">1. Define the table&#39;s columns</a></li>
+<li><a href="#2-define-the-tables-rows">2. Define the table&#39;s rows</a></li>
+<li><a href="#3-provide-data">3. Provide data</a></li>
+<li><a href="#4-full-html-example">4. Full HTML example</a></li>
+</ul>
+</li>
+<li><a href="#dynamically-update-table-data">Dynamically update table data</a></li>
+<li><a href="#dynamic-columns">Dynamic columns</a></li>
+<li><a href="#sorting-by-column">Sorting by column</a></li>
+<li><a href="#row-selection">Row selection</a></li>
+<li><a href="#no-wrap-for-a-column">No-wrap for a column</a></li>
+<li><a href="#min-width-for-a-column">Min-width for a column</a></li>
+<li><a href="#full-example-with-pagination-sorting-and-dynamic-columns">Full example with pagination, sorting and dynamic columns</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
+<h3 id="1-define-the-table-s-columns">1. Define the table&#39;s columns</h3>
 <p>Define the table&#39;s columns. Each column definition should be given a unique name and contain the
 content for its header and row cells.</p>
 <p>Here&#39;s a simple column definition with the name <code>userName</code>. The header cell contains the text <code>Username</code>
@@ -1079,7 +1099,7 @@ and the row cell will render the name property of each row&#39;s data.</p>
   &lt;ts-cell *tsCellDef=&quot;let item&quot;&gt;
     {{ item.username }}
   &lt;/ts-cell&gt;
-&lt;/ng-container&gt;</code></pre><h5 id="2-define-the-table-s-rows">2. Define the table&#39;s rows</h5>
+&lt;/ng-container&gt;</code></pre><h3 id="2-define-the-table-s-rows">2. Define the table&#39;s rows</h3>
 <p>After defining your columns, provide the header and data row templates that will be rendered out by
 the table. Each row needs to be given a list of the columns that it should contain. The order of the
 names will define the order of the cells rendered.</p>
@@ -1090,7 +1110,7 @@ want to have rendered.</p>
 
 &lt;!-- `let row;` is  exposing the row data to the template as the variable `row` --&gt;
 &lt;ts-row *tsRowDef=&quot;let row; columns: [&#39;userName&#39;, &#39;age&#39;]&quot;&gt;
-&lt;/ts-row&gt;</code></pre><h5 id="3-provide-data">3. Provide data</h5>
+&lt;/ts-row&gt;</code></pre><h3 id="3-provide-data">3. Provide data</h3>
 <p>The column and row definitions now capture how data will render - all that&#39;s left is to provide the
 data itself.</p>
 <p>Create an instance of <code>TsTableDataSource</code> and set the items to be displayed to the <code>data</code> property.</p>
@@ -1104,7 +1124,7 @@ this.myDataSource.data = dataToRender;</code></pre><pre class="line-numbers"><co
   id: number;
 }
 
-this.myDataSource: TsTableDataSource&lt;MyTableItem&gt; = new TsTableDataSource(INITIAL_DATA)</code></pre><h5 id="4-full-html-example">4. Full HTML example</h5>
+this.myDataSource: TsTableDataSource&lt;MyTableItem&gt; = new TsTableDataSource(INITIAL_DATA)</code></pre><h3 id="4-full-html-example">4. Full HTML example</h3>
 <pre class="line-numbers"><code class="language-html">&lt;!-- Pass in the dataSource --&gt;
 &lt;ts-table [dataSource]=&quot;myDataSource&quot;&gt;
 
@@ -1138,11 +1158,11 @@ this.myDataSource: TsTableDataSource&lt;MyTableItem&gt; = new TsTableDataSource(
   &lt;ts-row *tsRowDef=&quot;let row; columns: displayedColumns;&quot; fxLayout=&quot;row&quot;&gt;
   &lt;/ts-row&gt;
 
-&lt;/ts-table&gt;</code></pre><h3 id="dynamically-update-table-data">Dynamically update table data</h3>
+&lt;/ts-table&gt;</code></pre><h2 id="dynamically-update-table-data">Dynamically update table data</h2>
 <p>Your data source was created during the bootstraping of your component:</p>
 <pre class="line-numbers"><code class="language-typescript">this.myDataSource = new TsTableDataSource();</code></pre><p>Simply assign the new data to <code>myDataSource.data</code>. The table will flush the old data and display the
 new data:</p>
-<pre class="line-numbers"><code class="language-typescript">this.myDataSource.data = dataToRender;</code></pre><h3 id="dynamic-columns">Dynamic columns</h3>
+<pre class="line-numbers"><code class="language-typescript">this.myDataSource.data = dataToRender;</code></pre><h2 id="dynamic-columns">Dynamic columns</h2>
 <p>Enable dynamic columns using a <code>TsSelectComponent</code>:</p>
 <pre class="line-numbers"><code class="language-typescript">// Define a data source
 this.myDataSource = new TsTableDataSource();
@@ -1179,7 +1199,7 @@ allColumns = [
   &lt;ts-row *tsRowDef=&quot;let row; columns: displayedColumns;&quot; fxLayout=&quot;row&quot;&gt;
   &lt;/ts-row&gt;
 
-&lt;/ts-table&gt;</code></pre><h3 id="sorting-by-column">Sorting by column</h3>
+&lt;/ts-table&gt;</code></pre><h2 id="sorting-by-column">Sorting by column</h2>
 <p>To add sorting behavior to the table, add the <code>tsSort</code> directive to the <code>&lt;ts-table&gt;</code> and add
 <code>ts-sort-header</code> to each column header cell that should trigger sorting. Provide the
 <code>TsSortDirective</code> directive to the <code>TsTableDataSource</code> and it will automatically listen for sorting
@@ -1217,9 +1237,9 @@ export class TableComponent implements AfterViewInit {
       // Table was sorted - go get new data!
     });
   }
-}</code></pre><h3 id="row-selection">Row selection</h3>
+}</code></pre><h2 id="row-selection">Row selection</h2>
 <p>Possible but not implemented until a valid use-case arises.</p>
-<h3 id="no-wrap-for-a-column">No-wrap for a column</h3>
+<h2 id="no-wrap-for-a-column">No-wrap for a column</h2>
 <p>Sometimes a column&#39;s content should not wrap even at small viewport sizes. Adding the directive
 <code>noWrap=&quot;true&quot;</code> to the column will keep then contents from wrapping regardless of the viewport
 width.</p>
@@ -1231,7 +1251,7 @@ width.</p>
   &lt;ts-cell *tsCellDef=&quot;let item&quot;&gt;
     {{ item.created_at | date:shortDate }}
   &lt;/ts-cell&gt;
-&lt;/ng-container&gt;</code></pre><h3 id="min-width-for-a-column">Min-width for a column</h3>
+&lt;/ng-container&gt;</code></pre><h2 id="min-width-for-a-column">Min-width for a column</h2>
 <p>Defining a minimum width for specific columns can help the layout not compress certain columns past
 a readable point. Add the directive <code>minWidth</code> and pass it any valid CSS min-width value (<code>100px</code>,
 <code>10%</code>, <code>12rem</code>, etc..).</p>
@@ -1244,7 +1264,7 @@ a readable point. Add the directive <code>minWidth</code> and pass it any valid 
     {{ item.created_at | date:shortDate }}
   &lt;/ts-cell&gt;
 &lt;/ng-container&gt;</code></pre><hr>
-<h3 id="full-example-with-pagination-sorting-and-dynamic-columns">Full example with pagination, sorting and dynamic columns</h3>
+<h2 id="full-example-with-pagination-sorting-and-dynamic-columns">Full example with pagination, sorting and dynamic columns</h2>
 <pre class="line-numbers"><code class="language-typescript">import {
   Component,
   ViewChild,

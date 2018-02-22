@@ -1415,7 +1415,15 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h4 id="event-driven">Event driven</h4>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#event-driven">Event driven</a></li>
+<li><a href="#reactive-form-driven">Reactive form driven</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="event-driven">Event driven</h2>
 <p>Pass in an array of items and listen for change events:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
   [options]=&quot;items$ | async&quot;
@@ -1436,7 +1444,7 @@
     required: true,
     checked: true,
   },
-]);</code></pre><h4 id="reactive-form-driven">Reactive form driven</h4>
+]);</code></pre><h2 id="reactive-form-driven">Reactive form driven</h2>
 <p>Pass in an array of items and pass in the form control:</p>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-radio-group

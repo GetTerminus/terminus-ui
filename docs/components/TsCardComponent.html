@@ -1382,23 +1382,36 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h2 id="basic-usage">Basic usage</h2>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#interactivity">Interactivity</a></li>
+<li><a href="#centered-content">Centered content</a></li>
+<li><a href="#aspect-ratio">Aspect ratio</a></li>
+<li><a href="#utility-menu">Utility menu</a></li>
+<li><a href="#card-with-a-title">Card with a Title</a></li>
+<li><a href="#disabled-card">Disabled Card</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
 <p>Wrap the card component around your content:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card&gt;
   Here is my content!
-&lt;/ts-card&gt;</code></pre><h4 id="interactivity">Interactivity</h4>
+&lt;/ts-card&gt;</code></pre><h2 id="interactivity">Interactivity</h2>
 <p>To make the card feel interactive, pass <code>true</code> to the <code>supportsInteraction</code> input.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card supportsInteraction=&quot;true&quot;&gt;
   Now my card responds to hover and click!
-&lt;/ts-card&gt;</code></pre><h4 id="centered-content">Centered content</h4>
+&lt;/ts-card&gt;</code></pre><h2 id="centered-content">Centered content</h2>
 <p>To center the content, pass <code>true</code> to the <code>centeredContent</code> input.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card centeredContent=&quot;true&quot;&gt;
   Now my content is centered!
-&lt;/ts-card&gt;</code></pre><h4 id="aspect-ratio">Aspect ratio</h4>
+&lt;/ts-card&gt;</code></pre><h2 id="aspect-ratio">Aspect ratio</h2>
 <p>Pass your desired aspect ratio in the format <code>3:4</code> to the <code>aspectRatio</code> input.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card aspectRatio=&quot;16:9&quot;&gt;
   Here is a card with a fixed aspect ratio!
-&lt;/ts-card&gt;</code></pre><h4 id="utility-menu">Utility menu</h4>
+&lt;/ts-card&gt;</code></pre><h2 id="utility-menu">Utility menu</h2>
 <p>To include a utility menu, pass a template which includes the menu trigger and the menu contents.</p>
 <pre class="line-numbers"><code class="language-html">&lt;!-- This template name should point to the ng-template --&gt;
 &lt;ts-card [utilityMenuTemplate]=&quot;myTemplate&quot;&gt;
@@ -1421,12 +1434,12 @@
       My link
     &lt;/ts-link&gt;
   &lt;/ng-template&gt;
-&lt;/ng-template&gt;</code></pre><h4 id="card-with-a-title">Card with a Title</h4>
+&lt;/ng-template&gt;</code></pre><h2 id="card-with-a-title">Card with a Title</h2>
 <p>Attach the <code>tsCardTitle</code> directive to your title element. This directive simply adds a class to the
 element which provides the needed styles.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card&gt;
   &lt;h3 tsCardTitle&gt;My Title&lt;/h3&gt;
-&lt;/ts-card&gt;</code></pre><h4 id="disabled-card">Disabled Card</h4>
+&lt;/ts-card&gt;</code></pre><h2 id="disabled-card">Disabled Card</h2>
 <p>This will push the opacity of the card contents back and add a lock icon in the top right corner.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-card disabled=&quot;true&quot;&gt;
   My card

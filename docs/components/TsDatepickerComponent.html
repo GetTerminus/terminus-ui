@@ -2047,11 +2047,24 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h4 id="event-driven">Event driven</h4>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#event-driven">Event driven</a></li>
+<li><a href="#filter-out-invalid-dates">Filter out invalid dates</a></li>
+<li><a href="#set-maxmin-range">Set max/min range</a></li>
+<li><a href="#set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</a></li>
+<li><a href="#define-a-date-that-the-calendar-should-open-to">Define a date that the calendar should open to</a></li>
+<li><a href="#use-with-reactive-forms">Use with Reactive Forms</a></li>
+<li><a href="#example-with-dynamic-validation">Example with dynamic validation</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="event-driven">Event driven</h2>
 <p>Each time a selection is made, the <code>selected</code> event is fired.</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
   (selected)=&quot;myMethod($event)&quot;
-&gt;&lt;/ts-datepicker&gt;</code></pre><h4 id="filter-out-invalid-dates">Filter out invalid dates</h4>
+&gt;&lt;/ts-datepicker&gt;</code></pre><h2 id="filter-out-invalid-dates">Filter out invalid dates</h2>
 <p>If, for instance, you need to prohibit weekend days (sat/sun) from being selected you can pass in a
 custom method to filter dates:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
@@ -2060,24 +2073,24 @@ custom method to filter dates:</p>
   const day = d.getDay();
   // Prevent Saturday and Sunday from being selected.
   return day !== 0 &amp;&amp; day !== 6;
-}</code></pre><h4 id="set-max-min-range">Set max/min range</h4>
+}</code></pre><h2 id="set-max-min-range">Set max/min range</h2>
 <p>To define bounds for date selection, pass in a valid <code>Date</code> to <code>minDate</code> and/or <code>maxDate</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
   [minDate]=&quot;date1&quot;
   [minDate]=&quot;date2&quot;
 &gt;&lt;/ts-datepicker&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">date1 = new Date(2017, 2, 1);
-date2 = new Date(2017, 8, 1);</code></pre><h4 id="set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</h4>
+date2 = new Date(2017, 8, 1);</code></pre><h2 id="set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</h2>
 <p>Pass in a <code>Date</code> to <code>initialDate</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
   [initialDate]=&quot;myDate&quot;
 &gt;&lt;/ts-datepicker&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">myDate = new Date(2017, 1, 1);</code></pre><blockquote>
 <p>When using a Reactive Form, we can seed the initial value in the form itself</p>
 </blockquote>
-<h4 id="define-a-date-that-the-calendar-should-open-to">Define a date that the calendar should open to</h4>
+<h2 id="define-a-date-that-the-calendar-should-open-to">Define a date that the calendar should open to</h2>
 <p>Pass in a <code>Date</code> to <code>openTo</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-datepicker
   [openTo]=&quot;myDate&quot;
-&gt;&lt;/ts-datepicker&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">myDate = new Date(2017, 5, 12);</code></pre><h4 id="use-with-reactive-forms">Use with Reactive Forms</h4>
+&gt;&lt;/ts-datepicker&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">myDate = new Date(2017, 5, 12);</code></pre><h2 id="use-with-reactive-forms">Use with Reactive Forms</h2>
 <p>Pass in the form control:</p>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-datepicker
@@ -2130,7 +2143,7 @@ myForm: FormGroup = this.formBuilder.group({
 });
 
 // Now there is a group for us to &#39;get&#39;
-const range = myForm.get(&#39;dateRange&#39;);</code></pre><h4 id="example-with-dynamic-validation">Example with dynamic validation</h4>
+const range = myForm.get(&#39;dateRange&#39;);</code></pre><h2 id="example-with-dynamic-validation">Example with dynamic validation</h2>
 <p>We can recreate a version of the {@link TsDateRangeComponent} using dynamic validation:</p>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-datepicker

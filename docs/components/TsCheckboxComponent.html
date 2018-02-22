@@ -1747,19 +1747,29 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h2 id="basic-usage">Basic usage</h2>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#reactive-forms">Reactive Forms</a></li>
+<li><a href="#ngmodel"><code>ngModel</code></a></li>
+<li><a href="#ischecked"><code>isChecked</code></a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
 <p>Wrap your label text inside the component:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-checkbox&gt;
   My checkbox label
-&lt;/ts-checkbox&gt;</code></pre><h4 id="reactive-forms">Reactive Forms</h4>
+&lt;/ts-checkbox&gt;</code></pre><h2 id="reactive-forms">Reactive Forms</h2>
 <p>To use the checkbox with a reactive form, pass the <code>formControl</code> to the checkbox:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-checkbox [formControl]=&quot;myForm.get(&#39;myControl&#39;)&quot;&gt;
   I will be checked if `myControl.value` is true.
-&lt;/ts-checkbox&gt;</code></pre><h4 id="ngmodel"><code>ngModel</code></h4>
+&lt;/ts-checkbox&gt;</code></pre><h2 id="ngmodel"><code>ngModel</code></h2>
 <p>To use the checkbox with Angular&#39;s <code>ngModel</code>, just attach the directive to the checkbox:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-checkbox [(ngModel)]=&quot;myValue&quot;&gt;
   I will be checked if `myValue` is true.
-&lt;/ts-checkbox&gt;</code></pre><h4 id="ischecked"><code>isChecked</code></h4>
+&lt;/ts-checkbox&gt;</code></pre><h2 id="ischecked"><code>isChecked</code></h2>
 <p>To seed the initial checked state use the <code>isChecked</code> property:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-checkbox isChecked=&quot;true&quot;&gt;
   I will be checked by default!

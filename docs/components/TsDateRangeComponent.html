@@ -2320,7 +2320,17 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h4 id="event-driven">Event driven</h4>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#event-driven">Event driven</a></li>
+<li><a href="#set-maxmin-range">Set max/min range</a></li>
+<li><a href="#set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</a></li>
+<li><a href="#use-with-reactive-forms">Use with Reactive Forms</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="event-driven">Event driven</h2>
 <p>There are three selection events that you can tie into:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-date-range
   (startSelected)=&quot;myMethod($event)&quot;
@@ -2331,7 +2341,7 @@
 <li><code>endSelected</code> is fired when an end date is selected</li>
 <li><code>dateSelected</code> is fired when either date is selected</li>
 </ol>
-<h4 id="set-max-min-range">Set max/min range</h4>
+<h2 id="set-max-min-range">Set max/min range</h2>
 <p>To define bounds for date selection, pass in a valid <code>Date</code> to each of these <code>@Inputs</code>:</p>
 <ol>
 <li><code>endMaxDate</code></li>
@@ -2347,7 +2357,7 @@
 &gt;&lt;/ts-date-range&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">startDate1 = new Date(2017, 1, 1);
 startDate2 = new Date(2017, 8, 1);
 endDate1 = new Date(2017, 1, 2);
-endDate2 = new Date(2017, 8, 2;</code></pre><h4 id="set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</h4>
+endDate2 = new Date(2017, 8, 2;</code></pre><h2 id="set-the-initial-date-without-using-reactive-forms">Set the initial date without using Reactive Forms</h2>
 <p>Pass in a <code>Date</code> to <code>startInitialDate</code> and <code>endInitialDate</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-date-range
   [startInitialDate]=&quot;date1&quot;
@@ -2356,7 +2366,7 @@ endDate2 = new Date(2017, 8, 2;</code></pre><h4 id="set-the-initial-date-without
 date2 = new Date(2017, 3, 1);</code></pre><blockquote>
 <p>When using a Reactive Form, we can seed the initial values in the form itself</p>
 </blockquote>
-<h4 id="use-with-reactive-forms">Use with Reactive Forms</h4>
+<h2 id="use-with-reactive-forms">Use with Reactive Forms</h2>
 <p>Pass in the form control:</p>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-date-range

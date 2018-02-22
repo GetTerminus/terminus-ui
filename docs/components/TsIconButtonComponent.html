@@ -1356,9 +1356,18 @@
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><h2 id="basic-usage">Basic usage</h2>
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#theme-color">Theme (color)</a></li>
+<li><a href="#accessibility">Accessibility</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
 <p>Pass a valid <a href="https://material.io/icons/">Material icon</a> name as the content of the button:</p>
-<pre class="line-numbers"><code class="language-html">&lt;ts-icon-button (click)=&quot;myMethod()&quot;&gt;delete_forever&lt;/ts-icon-button&gt;</code></pre><h4 id="theme-color-">Theme (color)</h4>
+<pre class="line-numbers"><code class="language-html">&lt;ts-icon-button (click)=&quot;myMethod()&quot;&gt;delete_forever&lt;/ts-icon-button&gt;</code></pre><h2 id="theme-color-">Theme (color)</h2>
 <p>Use the <code>theme</code> parameter to change the color.</p>
 <pre class="line-numbers"><code class="language-html">&lt;!-- Will be colored with the &#39;primary&#39; color --&gt;
 &lt;ts-icon-button theme=&quot;primary&quot;&gt;forum&lt;/ts-icon-button&gt;
@@ -1370,7 +1379,7 @@
 &lt;ts-icon-button theme=&quot;warn&quot;&gt;forum&lt;/ts-icon-button&gt;</code></pre><blockquote>
 <p>By default the icon will use <code>color(pure, dark)</code></p>
 </blockquote>
-<h4 id="accessibility">Accessibility</h4>
+<h2 id="accessibility">Accessibility</h2>
 <p>For accessibility purposes we should set the <code>actionName</code> and <code>buttonType</code>.</p>
 <ol>
 <li><code>actionName</code> can be one of the <code>TsButtonActionTypes</code> and will be used for the <code>aria-label</code>.</li>
