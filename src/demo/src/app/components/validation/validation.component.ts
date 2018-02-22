@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -15,7 +18,7 @@ import {
   styleUrls: ['./validation.component.scss'],
   templateUrl: './validation.component.html',
 })
-export class ValidationComponent {
+export class ValidationComponent implements OnInit {
   flexGap = TS_SPACING.default[0];
   minDate = new Date(2018, 0, 5).toISOString();
   maxDate = new Date(2018, 0, 25).toISOString();
@@ -63,12 +66,28 @@ export class ValidationComponent {
         this.validatorsService.url(),
       ],
     ],
+    compare1: [
+      null,
+    ],
+    compare2: [
+      null,
+    ],
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
   ) {}
+
+
+  ngOnInit() {
+    this.myForm.get('compare1').setValidators([
+      this.validatorsService.equalToControl(this.myForm.get('compare2')),
+    ]);
+    this.myForm.get('compare2').setValidators([
+      this.validatorsService.equalToControl(this.myForm.get('compare1')),
+    ]);
+  }
 
 
   submit(v: any) {

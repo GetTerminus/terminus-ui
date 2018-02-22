@@ -43,6 +43,7 @@ export class TsValidationMessageService {
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,
       url: `'${validatorValue.actual}' is not a valid URL.`,
+      equalToControl: `'${validatorValue.actual}' is not equal to '${validatorValue.compareValue}'`,
     };
 
     if (validatorName === 'maxDate') {
