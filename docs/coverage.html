@@ -46,7 +46,7 @@
                                     </a>
                                 </li>
                                 <li class="link">
-                                  <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                  <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
                                         <a href="./license.html"
@@ -473,7 +473,7 @@
             
             
                     <li class="chapter">
-                        <a data-type="chapter-link" href="./coverage.html" ><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+                        <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
                     </li>
             
             
@@ -512,7 +512,7 @@
                                            </a>
                                        </li>
                                        <li class="link">
-                                         <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                         <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
                                                <a href="./license.html"
@@ -939,7 +939,7 @@
                    
                    
                            <li class="chapter">
-                               <a data-type="chapter-link" href="./coverage.html" ><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+                               <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
                            </li>
                    
                    
@@ -947,630 +947,1646 @@
                    
                    </nav>
                </div>
-               <div class="content getting-started">
+               <div class="content coverage">
                    <div class="content-data">
 
-<h1 id="terminus-ui-library">Terminus UI Library</h1>
-<p>The library of UI components used for Terminus applications.</p>
-<p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield" alt="CircleCI" class="img-responsive"></a>
-<a href="https://codecov.io/gh/GetTerminus/terminus-ui"><img src="https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a>
-<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"></a>
-<a href="https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a>
-<br>
-<a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a>
-<a href="https://github.com/GetTerminus/terminus-ui/releases/"><img src="https://img.shields.io/github/release/GetTerminus/terminus-ui.svg" alt="Github release" class="img-responsive"></a>
-<a href="https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js"><img src="http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip" alt="Library size" class="img-responsive"></a>
-<br>
-<a href="#components"><img src="https://img.shields.io/badge/Components-26-blue.svg" alt="components" class="img-responsive"></a>
-<a href="#pipes"><img src="https://img.shields.io/badge/Pipes-2-blue.svg" alt="pipes" class="img-responsive"></a>
-<a href="#services"><img src="https://img.shields.io/badge/Services-4-blue.svg" alt="services" class="img-responsive"></a>
-<a href="#style-helpers"><img src="https://img.shields.io/badge/StylesHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a></p>
-<hr>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong></p>
-<ul>
-<li><a href="#library-component-documentation">Library Component Documentation</a></li>
-<li><a href="#primary-library-features">Primary Library Features</a></li>
-<li><a href="#available-features">Available Features</a><ul>
-<li><a href="#components">Components</a></li>
-<li><a href="#pipes">Pipes</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#typescript-utilities">TypeScript Utilities</a></li>
-<li><a href="#style-helpers">Style Helpers</a></li>
-</ul>
-</li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#global-styles">Global Styles</a></li>
-<li><a href="#scss-helpers">SCSS Helpers</a></li>
-<li><a href="#development-workflow">Development Workflow</a></li>
-<li><a href="#contributors">Contributors</a></li>
-<li><a href="#project-resources">Project Resources</a></li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="library-component-documentation">Library Component Documentation</h2>
-<p>This document covers documentation for building and maintaining the terminus-ui library. For
-documentation on all components and styles, visit <a href="https://getterminus.github.io/terminus-ui/">GetTerminus.github.io/terminus-ui</a>.</p>
-<h2 id="primary-library-features">Primary Library Features</h2>
-<ol>
-<li>Demo app for developing within a real application</li>
-<li>Testing<ul>
-<li>Unit (cross-browser)</li>
-<li>JiT integration</li>
-<li>AoT integration</li>
-<li><del>Style regression</del> (TODO)</li>
-</ul>
-</li>
-<li>Linting<ul>
-<li>TypeScript</li>
-<li>SCSS</li>
-</ul>
-</li>
-<li>Documentation (<code>docs/</code>)<ul>
-<li>Manual docs for basic project flow (README)<ul>
-<li>Automated Table of Contents updates</li>
-<li>Automated markdown link checking</li>
-</ul>
-</li>
-<li>Generated docs for TypeScript (<code>docs/typescript/</code>)</li>
-<li>Generated docs for SCSS (<code>docs/styleguide/</code>)</li>
-</ul>
-</li>
-<li>Automated semantic versioning &amp; publishing to <a href="https://npmjs.org/package/@terminus/ui">NPM</a></li>
-<li>Enforced commit style</li>
-<li>Tree-shaking via Rollup.js</li>
-<li>SCSS variables &amp; functions exposed to the consuming application</li>
-<li>Code coverage reporting (<code>coverage/</code>)</li>
-<li>Automated dependency updates</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Documentation coverage</li>
 </ol>
-<h2 id="available-features">Available Features</h2>
-<blockquote>
-<ul>
-<li>:x: not started</li>
-<li>:hammer: started</li>
-<li>:white_check_mark: available</li>
-<li>:hankey: deprecated</li>
-</ul>
-</blockquote>
-<h3 id="components">Components</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Demo</th>
-<th>Docs</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>alert</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>autocomplete</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/autocomplete">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>autofocus</td>
-<td>Focus a focusable element on load</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/autofocus">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutofocusDirective.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>badge</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>button</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/button">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsButtonComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>breadcrumbs</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>card</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/card">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>chip</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>checkbox</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/checkbox">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>copy</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/copy">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCopyComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>datavis</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>datepicker</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/datepicker">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDatepickerComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDatepickerComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>date-range</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/date-range">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>dialog</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>divider</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>expansion</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>file-picker</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>input-masking</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>input-messages</td>
-<td>Used by <code>input</code> to display validation messages</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td>(see input demo)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>icon</td>
-<td>Valid icon names: <a href="https://material.io/icons">https://material.io/icons</a></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/icon">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>icon-button</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/icon-button">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconButtonComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconButtonComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>input</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/input">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsInputComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>link</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/link">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLinkComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>loading overlay</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/loading-overlay">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLoadingOverlayComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>login form</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/log-in-form">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLoginFormComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>menu</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/menu">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsMenuComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>navigation</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/navigation">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsNavigationComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>paginator</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/paginator">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsPaginatorComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>progress</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>progression</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>radio-group</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/radio">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsRadioGroupComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsRadioGroupComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>search</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/search">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsSearchComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>select</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/select">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsSelectComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>spacing</td>
-<td>Helpers for consistent spacing</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/spacing">Demo</a></td>
-<td><a href="./src/lib/src/scss/docs/spacing.md">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>sort</td>
-<td>Used by <code>table</code> to manage column sorting</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td>(see table demo)</td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>table</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/table">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>tabs</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>toggle</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/toggle">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsToggleComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>tooltip</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/tooltip">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTooltipComponent.html">Docs</a></td>
-</tr>
-</tbody>
+
+<img src="./images/coverage-badge.svg">
+
+<table class="table table-bordered coverage" id="coverage-table">
+    <thead class="coverage-header">
+        <tr>
+            <th>File</th>
+            <th>Type</th>
+            <th>Identifier</th>
+            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsAutocompleteComponent.html">src/lib/src/autocomplete/autocomplete.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsAutocompleteComponent
+            </td>
+            <td align="right" data-sort="94">
+                <span class="coverage-percent">94 %</span>
+                <span class="coverage-count">(33/35)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsAutofocusDirective.html">src/lib/src/autofocus/autofocus.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsAutofocusDirective
+            </td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(4/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsButtonComponent.html">src/lib/src/button/button.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsButtonComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(20/20)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsCardTitleDirective.html">src/lib/src/card/card-title.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsCardTitleDirective
+            </td>
+            <td align="right" data-sort="83">
+                <span class="coverage-percent">83 %</span>
+                <span class="coverage-count">(5/6)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsCardComponent.html">src/lib/src/card/card.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsCardComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(7/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsCheckboxComponent.html">src/lib/src/checkbox/checkbox.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsCheckboxComponent
+            </td>
+            <td align="right" data-sort="92">
+                <span class="coverage-percent">92 %</span>
+                <span class="coverage-count">(13/14)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR">src/lib/src/checkbox/checkbox.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsCopyComponent.html">src/lib/src/copy/copy.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsCopyComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(14/14)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsDateRangeComponent.html">src/lib/src/date-range/date-range.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsDateRangeComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(25/25)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsDatepickerComponent.html">src/lib/src/datepicker/datepicker.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsDatepickerComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(20/20)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR">src/lib/src/datepicker/datepicker.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsIconButtonComponent.html">src/lib/src/icon-button/icon-button.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsIconButtonComponent
+            </td>
+            <td align="right" data-sort="85">
+                <span class="coverage-percent">85 %</span>
+                <span class="coverage-count">(6/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsIconComponent.html">src/lib/src/icon/icon.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsIconComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsInputComponent.html">src/lib/src/input/input.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsInputComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(18/18)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR">src/lib/src/input/input.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsLinkComponent.html">src/lib/src/link/link.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsLinkComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsLoadingOverlayComponent.html">src/lib/src/loading-overlay/loading-overlay.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsLoadingOverlayComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsLoadingOverlayDirective.html">src/lib/src/loading-overlay/loading-overlay.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsLoadingOverlayDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(9/9)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsLoginFormComponent.html">src/lib/src/login-form/login-form.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsLoginFormComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(17/17)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsMenuComponent.html">src/lib/src/menu/menu.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsMenuComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(15/15)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsNavigationComponent.html">src/lib/src/navigation/navigation.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsNavigationComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(19/19)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsPaginatorComponent.html">src/lib/src/paginator/paginator.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsPaginatorComponent
+            </td>
+            <td align="right" data-sort="95">
+                <span class="coverage-percent">95 %</span>
+                <span class="coverage-count">(43/45)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./pipes/TsDatePipe.html">src/lib/src/pipes/date/date.pipe.ts</a>
+            </td>
+            <td>
+                pipe
+            </td>
+            <td>
+                TsDatePipe
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./pipes/TsTimeAgoPipe.html">src/lib/src/pipes/time-ago/time-ago.pipe.ts</a>
+            </td>
+            <td>
+                pipe
+            </td>
+            <td>
+                TsTimeAgoPipe
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsRadioGroupComponent.html">src/lib/src/radio-group/radio-group.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsRadioGroupComponent
+            </td>
+            <td align="right" data-sort="85">
+                <span class="coverage-percent">85 %</span>
+                <span class="coverage-count">(6/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./classes/TsRadioChange.html">src/lib/src/radio-group/radio-group.component.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                TsRadioChange
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR">src/lib/src/radio-group/radio-group.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsSearchComponent.html">src/lib/src/search/search.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsSearchComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(26/26)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsSelectComponent.html">src/lib/src/select/select.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsSelectComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(12/12)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR">src/lib/src/select/select.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./injectables/TsDocumentService.html">src/lib/src/services/document/document.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                TsDocumentService
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#_document">src/lib/src/services/document/document.service.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                _document
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./injectables/TsValidationMessageService.html">src/lib/src/services/validation-message/validation-message.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                TsValidationMessageService
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./injectables/TsValidatorsService.html">src/lib/src/services/validators/validators.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                TsValidatorsService
+            </td>
+            <td align="right" data-sort="10">
+                <span class="coverage-percent">10 %</span>
+                <span class="coverage-count">(1/10)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#creditCardValidator">src/lib/src/services/validators/validators/creditCard/creditCard.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                creditCardValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#emailValidator">src/lib/src/services/validators/validators/email/email.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                emailValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#equalToControlValidator">src/lib/src/services/validators/validators/equalToControl/equalToControl.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                equalToControlValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#greaterThanValidator">src/lib/src/services/validators/validators/greaterThan/greaterThan.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                greaterThanValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#lessThanValidator">src/lib/src/services/validators/validators/lessThan/lessThan.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                lessThanValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#maxDateValidator">src/lib/src/services/validators/validators/maxDate/maxDate.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                maxDateValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#minDateValidator">src/lib/src/services/validators/validators/minDate/minDate.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                minDateValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#passwordValidator">src/lib/src/services/validators/validators/password/password.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                passwordValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#urlValidator">src/lib/src/services/validators/validators/url/url.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                urlValidator
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./injectables/TsWindowService.html">src/lib/src/services/window/window.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                TsWindowService
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#_window">src/lib/src/services/window/window.service.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                _window
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#SORT_ANIMATION_TRANSITION">src/lib/src/sort/sort-animations.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                SORT_ANIMATION_TRANSITION
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#tsSortAnimations">src/lib/src/sort/sort-animations.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                tsSortAnimations
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#getSortDuplicateSortableIdError">src/lib/src/sort/sort-errors.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                getSortDuplicateSortableIdError
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#getSortHeaderMissingIdError">src/lib/src/sort/sort-errors.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                getSortHeaderMissingIdError
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#getSortHeaderNotContainedWithinSortError">src/lib/src/sort/sort-errors.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                getSortHeaderNotContainedWithinSortError
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#getSortInvalidDirectionError">src/lib/src/sort/sort-errors.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                getSortInvalidDirectionError
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./injectables/TsSortHeaderIntl.html">src/lib/src/sort/sort-header-intl.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                TsSortHeaderIntl
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#TS_SORT_HEADER_INTL_PROVIDER_FACTORY">src/lib/src/sort/sort-header-intl.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                TS_SORT_HEADER_INTL_PROVIDER_FACTORY
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#TS_SORT_HEADER_INTL_PROVIDER">src/lib/src/sort/sort-header-intl.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                TS_SORT_HEADER_INTL_PROVIDER
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsSortHeaderComponent.html">src/lib/src/sort/sort-header.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsSortHeaderComponent
+            </td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(12/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./classes/TsSortHeaderBase.html">src/lib/src/sort/sort-header.component.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                TsSortHeaderBase
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#_TsSortHeaderMixinBase">src/lib/src/sort/sort-header.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                _TsSortHeaderMixinBase
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsSortDirective.html">src/lib/src/sort/sort.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsSortDirective
+            </td>
+            <td align="right" data-sort="87">
+                <span class="coverage-percent">87 %</span>
+                <span class="coverage-count">(14/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./classes/TsSortBase.html">src/lib/src/sort/sort.directive.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                TsSortBase
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href=".//functions.html#getSortDirectionCycle">src/lib/src/sort/sort.directive.ts</a>
+            </td>
+            <td>
+                function
+            </td>
+            <td>
+                getSortDirectionCycle
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#_TsSortMixinBase">src/lib/src/sort/sort.directive.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                _TsSortMixinBase
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#base">src/lib/src/spacing/spacing.constant.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                base
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#TS_SPACING">src/lib/src/spacing/spacing.constant.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                TS_SPACING
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsVerticalSpacingDirective.html">src/lib/src/spacing/vertical-spacing.directive.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsVerticalSpacingDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsCellDefDirective.html">src/lib/src/table/cell.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsCellDefDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsCellDirective.html">src/lib/src/table/cell.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsCellDirective
+            </td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsColumnDefDirective.html">src/lib/src/table/cell.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsColumnDefDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsHeaderCellDefDirective.html">src/lib/src/table/cell.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsHeaderCellDefDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsHeaderCellDirective.html">src/lib/src/table/cell.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsHeaderCellDirective
+            </td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(1/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsHeaderRowComponent.html">src/lib/src/table/row.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsHeaderRowComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsRowComponent.html">src/lib/src/table/row.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsRowComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsHeaderRowDefDirective.html">src/lib/src/table/row.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsHeaderRowDefDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./directives/TsRowDefDirective.html">src/lib/src/table/row.ts</a>
+            </td>
+            <td>
+                directive
+            </td>
+            <td>
+                TsRowDefDirective
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./classes/TsTableDataSource.html">src/lib/src/table/table-data-source.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                TsTableDataSource
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(9/9)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsTableComponent.html">src/lib/src/table/table.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsTableComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsToggleComponent.html">src/lib/src/toggle/toggle.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsToggleComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(8/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR">src/lib/src/toggle/toggle.component.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsTooltipComponent.html">src/lib/src/tooltip/tooltip.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsTooltipComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsDateRange.html">src/lib/src/utilities/interfaces/date-range.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsDateRange
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsLoginFormResponse.html">src/lib/src/utilities/interfaces/login-form-response.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsLoginFormResponse
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/NavigationItemBase.html">src/lib/src/utilities/interfaces/navigation-item.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                NavigationItemBase
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsNavigationActionItem.html">src/lib/src/utilities/interfaces/navigation-item.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsNavigationActionItem
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsNavigationLinkItem.html">src/lib/src/utilities/interfaces/navigation-item.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsNavigationLinkItem
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsNavigationPayload.html">src/lib/src/utilities/interfaces/navigation-payload.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsNavigationPayload
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsPaginatorMenuItem.html">src/lib/src/utilities/interfaces/paginator.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsPaginatorMenuItem
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsRadioOption.html">src/lib/src/utilities/interfaces/radio-option.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsRadioOption
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(6/6)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsSearchResponse.html">src/lib/src/utilities/interfaces/search.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsSearchResponse
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsSelectItem.html">src/lib/src/utilities/interfaces/select.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsSelectItem
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsSortState.html">src/lib/src/utilities/interfaces/sort.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsSortState
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsSortableItem.html">src/lib/src/utilities/interfaces/sort.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsSortableItem
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/TsUser.html">src/lib/src/utilities/interfaces/user.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                TsUser
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/ValidationResponse.html">src/lib/src/utilities/interfaces/validator-response.interface.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                ValidationResponse
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsReactiveFormBaseComponent.html">src/lib/src/utilities/reactive-form-base.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsReactiveFormBaseComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(9/9)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#creditCardMessage">src/lib/src/utilities/regex/credit-card.regex.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                creditCardMessage
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#emailMessage">src/lib/src/utilities/regex/email.regex.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                emailMessage
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#passwordMessage">src/lib/src/utilities/regex/password.regex.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                passwordMessage
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./interfaces/Subject.html">src/lib/src/utilities/rxjs-lift-hack.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                Subject
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./classes/Version.html">src/lib/src/utilities/version/version.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                Version
+            </td>
+            <td align="right" data-sort="16">
+                <span class="coverage-percent">16 %</span>
+                <span class="coverage-count">(1/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./miscellaneous/variables.html#VERSION">src/lib/src/utilities/version/version.ts</a>
+            </td>
+            <td>
+                variable
+            </td>
+            <td>
+                VERSION
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                    <a href="./components/TsValidationMessagesComponent.html">src/lib/src/validation-messages/validation-messages.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                TsValidationMessagesComponent
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+    </tbody>
 </table>
-<h3 id="pipes">Pipes</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Pipe</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Demo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tsDate</code></td>
-<td><code>short</code>, <code>medium</code>, <code>extended</code>, <code>timestamp</code></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-</tr>
-<tr>
-<td><code>tsTimeAgo</code></td>
-<td>a human-readable time span</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="services">Services</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Document</td>
-<td>:warning:DEPRECATED:warning: Provide access to the native document object</td>
-<td style="text-align:center">:hankey:</td>
-</tr>
-<tr>
-<td>Spacing</td>
-<td>Expose custom spacing sizes via a service</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Validators</td>
-<td>Expose custom validation methods for reactive forms</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Window</td>
-<td>:warning:DEPRECATED:warning: Provide access to the native window object</td>
-<td style="text-align:center">:hankey:</td>
-</tr>
-</tbody>
-</table>
-<h3 id="typescript-utilities">TypeScript Utilities</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Interfaces</td>
-<td>Provide TypeScript interfaces for various objects</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Types</td>
-<td>Provide TypeScript types for various parameters</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-</tbody>
-</table>
-<h3 id="style-helpers">Style Helpers</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Docs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>animation</td>
-<td></td>
-<td style="text-align:center">:hammer:</td>
-<td></td>
-</tr>
-<tr>
-<td>assets</td>
-<td></td>
-<td style="text-align:center">:hammer:</td>
-<td></td>
-</tr>
-<tr>
-<td>breakpoints</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/breakpoints.md">Docs</a></td>
-</tr>
-<tr>
-<td>colors</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/color.md">Docs</a></td>
-</tr>
-<tr>
-<td>cursors</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/cursors.md">Docs</a></td>
-</tr>
-<tr>
-<td>layout</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/layout.md">Docs</a></td>
-</tr>
-<tr>
-<td>shadows</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/shadows.md">Docs</a></td>
-</tr>
-<tr>
-<td>spacing</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/spacing.md">Docs</a></td>
-</tr>
-<tr>
-<td>typography</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/typography.md">Docs</a></td>
-</tr>
-<tr>
-<td>z-index</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/z-index.md">Docs</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="installation">Installation</h2>
-<p>Install the library and all required dependencies:</p>
-<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material hammerjs --exact</code></pre><h2 id="global-styles">Global Styles</h2>
-<p>To use the global styles, import the CSS file into your stylesheets:</p>
-<pre class="line-numbers"><code class="language-scss">&#64;import &#39;&#64;terminus/ui/terminus-ui.css&#39;</code></pre><h2 id="scss-helpers">SCSS Helpers</h2>
-<p>To use the provided SCSS helper methods/variables/mixins, import the helpers file from <code>@terminus/ui</code>:</p>
-<pre class="line-numbers"><code class="language-scss">&#64;import &#39;~&#64;terminus/ui/helpers&#39;</code></pre><h2 id="development-workflow">Development Workflow</h2>
-<p>View the <a href="https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow">wiki page</a>.</p>
-<h2 id="contributors">Contributors</h2>
-<p>Thanks goes to these wonderful people (<a href="https://github.com/kentcdodds/all-contributors#emoji-key">emoji key</a>):</p>
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th style="text-align:center"><a href="https://github.com/benjamincharity"><img src="https://avatars1.githubusercontent.com/u/270193?s=460&v=4" width="100px;"/><br /><sub><b>Benjamin Charity</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Documentation">📖</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Tests">⚠️</a> <a href="#design-benjamincharity" title="Design">🎨</a> <a href="#ideas-benjamincharity" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#review-benjamincharity" title="Reviewed Pull Requests">👀</a> <a href="#tool-benjamincharity" title="Tools">🔧</a></th>
-<th style="text-align:center"><a href="https://github.com/coreyterminator"><img src="https://avatars1.githubusercontent.com/u/31667397?v=4" width="100px;"/><br /><sub><b>coreyterminator</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=coreyterminator" title="Code">💻</a></th>
-<th style="text-align:center"><a href="https://github.com/atlwendy"><img src="https://avatars0.githubusercontent.com/u/377552?v=4" width="100px;"/><br /><sub><b>Wendy</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Aatlwendy" title="Bug reports">🐛</a></th>
-<th style="text-align:center"><a href="https://github.com/bmalinconico"><img src="https://avatars0.githubusercontent.com/u/19909708?v=4" width="100px;"/><br /><sub><b>Brian Malinconico</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Abmalinconico" title="Bug reports">🐛</a> <a href="#ideas-bmalinconico" title="Ideas, Planning, &amp; Feedback">🤔</a></th>
-<th style="text-align:center"><a href="http://rubykata.wordpress.com/"><img src="https://avatars0.githubusercontent.com/u/2921?v=4" width="100px;"/><br /><sub><b>David Harkness</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=david-harkness" title="Code">💻</a></th>
-<th style="text-align:center"><a href="https://github.com/kal93"><img src="https://avatars0.githubusercontent.com/u/14012571?v=4" width="100px;"/><br /><sub><b>kal93</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Akal93" title="Bug reports">🐛</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<p>This project follows the <a href="https://github.com/kentcdodds/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
-<h2 id="project-resources">Project Resources</h2>
-<ul>
-<li><a href="https://github.com/semantic-release/semantic-release">Semantic Release</a> - Automatically release versioned release to NPM and generate
-  a changelog in the Github tag.</li>
-<li><a href="https://github.com/commitizen">Commitizen</a> - Interactive cli for enforcing commit message format.</li>
-<li><a href="https://github.com/commitizen">Commitizen VSCode Plugin</a> - VSCode plugin for commitizen.</li>
-<li><a href="https://saucelabs.com/platforms">SauceLabs Platforms</a> - Cross-browser unit tests.</li>
-<li><a href="https://github.com/holidaypirates/nucleus/">Nucleus</a> - Generates SCSS documentation.</li>
-<li><a href="https://github.com/thlorenz/doctoc">Doctoc</a> - Generate documentation table of contents.</li>
-<li><a href="https://codecov.io">CodeCov</a> - Code coverage reporting.</li>
-</ul>
-<!-- LINKS -->
-<!-- Demos -->
-<!-- SCSS Docs -->
-<!-- TS Primary Docs -->
-<!-- TS Usage Docs -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="js/libs/tablesort.min.js"></script>
+<script src="js/libs/tablesort.number.min.js"></script>
+<script>
+    new Tablesort(document.getElementById('coverage-table'));
+</script>
 
                    </div><div class="search-results">
     <div class="has-results">

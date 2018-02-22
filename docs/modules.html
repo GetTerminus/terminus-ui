@@ -46,7 +46,7 @@
                                     </a>
                                 </li>
                                 <li class="link">
-                                  <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                  <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
                                         <a href="./license.html"
@@ -66,7 +66,7 @@
             
             
                     <li class="chapter">
-                        <a data-type="chapter-link" href="./modules.html" >
+                        <a data-type="chapter-link" href="./modules.html"  class="active" >
                             <div class="menu-toggler linked" data-toggle="collapse"
                                     data-target="#xs-modules-links"
                             >
@@ -512,7 +512,7 @@
                                            </a>
                                        </li>
                                        <li class="link">
-                                         <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                         <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
                                                <a href="./license.html"
@@ -532,7 +532,7 @@
                    
                    
                            <li class="chapter">
-                               <a data-type="chapter-link" href="./modules.html" >
+                               <a data-type="chapter-link" href="./modules.html"  class="active" >
                                    <div class="menu-toggler linked" data-toggle="collapse"
                                            data-target="#modules-links"
                                    >
@@ -947,619 +947,494 @@
                    
                    </nav>
                </div>
-               <div class="content getting-started">
+               <div class="content modules">
                    <div class="content-data">
 
-<h1 id="terminus-ui-library">Terminus UI Library</h1>
-<p>The library of UI components used for Terminus applications.</p>
-<p><a href="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master"><img src="https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield" alt="CircleCI" class="img-responsive"></a>
-<a href="https://codecov.io/gh/GetTerminus/terminus-ui"><img src="https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a>
-<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"></a>
-<a href="https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" class="img-responsive"></a>
-<br>
-<a href="https://npmjs.org/package/@terminus/ui"><img src="http://img.shields.io/npm/v/@terminus/ui.svg" alt="NPM version" class="img-responsive"></a>
-<a href="https://github.com/GetTerminus/terminus-ui/releases/"><img src="https://img.shields.io/github/release/GetTerminus/terminus-ui.svg" alt="Github release" class="img-responsive"></a>
-<a href="https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js"><img src="http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip" alt="Library size" class="img-responsive"></a>
-<br>
-<a href="#components"><img src="https://img.shields.io/badge/Components-26-blue.svg" alt="components" class="img-responsive"></a>
-<a href="#pipes"><img src="https://img.shields.io/badge/Pipes-2-blue.svg" alt="pipes" class="img-responsive"></a>
-<a href="#services"><img src="https://img.shields.io/badge/Services-4-blue.svg" alt="services" class="img-responsive"></a>
-<a href="#style-helpers"><img src="https://img.shields.io/badge/StylesHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a></p>
-<hr>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong></p>
-<ul>
-<li><a href="#library-component-documentation">Library Component Documentation</a></li>
-<li><a href="#primary-library-features">Primary Library Features</a></li>
-<li><a href="#available-features">Available Features</a><ul>
-<li><a href="#components">Components</a></li>
-<li><a href="#pipes">Pipes</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#typescript-utilities">TypeScript Utilities</a></li>
-<li><a href="#style-helpers">Style Helpers</a></li>
-</ul>
-</li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#global-styles">Global Styles</a></li>
-<li><a href="#scss-helpers">SCSS Helpers</a></li>
-<li><a href="#development-workflow">Development Workflow</a></li>
-<li><a href="#contributors">Contributors</a></li>
-<li><a href="#project-resources">Project Resources</a></li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="library-component-documentation">Library Component Documentation</h2>
-<p>This document covers documentation for building and maintaining the terminus-ui library. For
-documentation on all components and styles, visit <a href="https://getterminus.github.io/terminus-ui/">GetTerminus.github.io/terminus-ui</a>.</p>
-<h2 id="primary-library-features">Primary Library Features</h2>
-<ol>
-<li>Demo app for developing within a real application</li>
-<li>Testing<ul>
-<li>Unit (cross-browser)</li>
-<li>JiT integration</li>
-<li>AoT integration</li>
-<li><del>Style regression</del> (TODO)</li>
-</ul>
-</li>
-<li>Linting<ul>
-<li>TypeScript</li>
-<li>SCSS</li>
-</ul>
-</li>
-<li>Documentation (<code>docs/</code>)<ul>
-<li>Manual docs for basic project flow (README)<ul>
-<li>Automated Table of Contents updates</li>
-<li>Automated markdown link checking</li>
-</ul>
-</li>
-<li>Generated docs for TypeScript (<code>docs/typescript/</code>)</li>
-<li>Generated docs for SCSS (<code>docs/styleguide/</code>)</li>
-</ul>
-</li>
-<li>Automated semantic versioning &amp; publishing to <a href="https://npmjs.org/package/@terminus/ui">NPM</a></li>
-<li>Enforced commit style</li>
-<li>Tree-shaking via Rollup.js</li>
-<li>SCSS variables &amp; functions exposed to the consuming application</li>
-<li>Code coverage reporting (<code>coverage/</code>)</li>
-<li>Automated dependency updates</li>
+
+
+<ol class="breadcrumb">
+    <li>Modules</li>
 </ol>
-<h2 id="available-features">Available Features</h2>
-<blockquote>
-<ul>
-<li>:x: not started</li>
-<li>:hammer: started</li>
-<li>:white_check_mark: available</li>
-<li>:hankey: deprecated</li>
-</ul>
-</blockquote>
-<h3 id="components">Components</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Demo</th>
-<th>Docs</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>alert</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>autocomplete</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/autocomplete">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>autofocus</td>
-<td>Focus a focusable element on load</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/autofocus">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutocompleteComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsAutofocusDirective.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>badge</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>button</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/button">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsButtonComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>breadcrumbs</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>card</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/card">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCardComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>chip</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>checkbox</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/checkbox">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCheckboxComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>copy</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/copy">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsCopyComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>datavis</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>datepicker</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/datepicker">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDatepickerComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDatepickerComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>date-range</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/date-range">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsDateRangeComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>dialog</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>divider</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>expansion</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>file-picker</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>input-masking</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>input-messages</td>
-<td>Used by <code>input</code> to display validation messages</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td>(see input demo)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>icon</td>
-<td>Valid icon names: <a href="https://material.io/icons">https://material.io/icons</a></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/icon">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>icon-button</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/icon-button">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconButtonComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsIconButtonComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>input</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/input">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsInputComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>link</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/link">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLinkComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>loading overlay</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/loading-overlay">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLoadingOverlayComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>login form</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/log-in-form">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsLoginFormComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>menu</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/menu">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsMenuComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>navigation</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/navigation">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsNavigationComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>paginator</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/paginator">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsPaginatorComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>progress</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>progression</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>radio-group</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/radio">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsRadioGroupComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsRadioGroupComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>search</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/search">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsSearchComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>select</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/select">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsSelectComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>spacing</td>
-<td>Helpers for consistent spacing</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/spacing">Demo</a></td>
-<td><a href="./src/lib/src/scss/docs/spacing.md">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>sort</td>
-<td>Used by <code>table</code> to manage column sorting</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td>(see table demo)</td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/directives/TsSortDirective.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>table</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/table">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html">Docs</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTableComponent.html#readme">Usage</a></td>
-</tr>
-<tr>
-<td>tabs</td>
-<td></td>
-<td style="text-align:center">:x:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>toggle</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/toggle">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsToggleComponent.html">Docs</a></td>
-<td></td>
-</tr>
-<tr>
-<td>tooltip</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/tooltip">Demo</a></td>
-<td><a href="https://getterminus.github.io/terminus-ui/typescript/components/TsTooltipComponent.html">Docs</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="pipes">Pipes</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Pipe</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Demo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tsDate</code></td>
-<td><code>short</code>, <code>medium</code>, <code>extended</code>, <code>timestamp</code></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-</tr>
-<tr>
-<td><code>tsTimeAgo</code></td>
-<td>a human-readable time span</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="services">Services</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Document</td>
-<td>:warning:DEPRECATED:warning: Provide access to the native document object</td>
-<td style="text-align:center">:hankey:</td>
-</tr>
-<tr>
-<td>Spacing</td>
-<td>Expose custom spacing sizes via a service</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Validators</td>
-<td>Expose custom validation methods for reactive forms</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Window</td>
-<td>:warning:DEPRECATED:warning: Provide access to the native window object</td>
-<td style="text-align:center">:hankey:</td>
-</tr>
-</tbody>
-</table>
-<h3 id="typescript-utilities">TypeScript Utilities</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Interfaces</td>
-<td>Provide TypeScript interfaces for various objects</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-<tr>
-<td>Types</td>
-<td>Provide TypeScript types for various parameters</td>
-<td style="text-align:center">:white_check_mark:</td>
-</tr>
-</tbody>
-</table>
-<h3 id="style-helpers">Style Helpers</h3>
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
-<th>Docs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>animation</td>
-<td></td>
-<td style="text-align:center">:hammer:</td>
-<td></td>
-</tr>
-<tr>
-<td>assets</td>
-<td></td>
-<td style="text-align:center">:hammer:</td>
-<td></td>
-</tr>
-<tr>
-<td>breakpoints</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/breakpoints.md">Docs</a></td>
-</tr>
-<tr>
-<td>colors</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/color.md">Docs</a></td>
-</tr>
-<tr>
-<td>cursors</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/cursors.md">Docs</a></td>
-</tr>
-<tr>
-<td>layout</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/layout.md">Docs</a></td>
-</tr>
-<tr>
-<td>shadows</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/shadows.md">Docs</a></td>
-</tr>
-<tr>
-<td>spacing</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/spacing.md">Docs</a></td>
-</tr>
-<tr>
-<td>typography</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/typography.md">Docs</a></td>
-</tr>
-<tr>
-<td>z-index</td>
-<td></td>
-<td style="text-align:center">:white_check_mark:</td>
-<td><a href="./src/lib/src/scss/docs/z-index.md">Docs</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="installation">Installation</h2>
-<p>Install the library and all required dependencies:</p>
-<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material hammerjs --exact</code></pre><h2 id="global-styles">Global Styles</h2>
-<p>To use the global styles, import the CSS file into your stylesheets:</p>
-<pre class="line-numbers"><code class="language-scss">&#64;import &#39;&#64;terminus/ui/terminus-ui.css&#39;</code></pre><h2 id="scss-helpers">SCSS Helpers</h2>
-<p>To use the provided SCSS helper methods/variables/mixins, import the helpers file from <code>@terminus/ui</code>:</p>
-<pre class="line-numbers"><code class="language-scss">&#64;import &#39;~&#64;terminus/ui/helpers&#39;</code></pre><h2 id="development-workflow">Development Workflow</h2>
-<p>View the <a href="https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow">wiki page</a>.</p>
-<h2 id="contributors">Contributors</h2>
-<p>Thanks goes to these wonderful people (<a href="https://github.com/kentcdodds/all-contributors#emoji-key">emoji key</a>):</p>
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table class="table table-bordered compodoc-table">
-<thead>
-<tr>
-<th style="text-align:center"><a href="https://github.com/benjamincharity"><img src="https://avatars1.githubusercontent.com/u/270193?s=460&v=4" width="100px;"/><br /><sub><b>Benjamin Charity</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Documentation">📖</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Tests">⚠️</a> <a href="#design-benjamincharity" title="Design">🎨</a> <a href="#ideas-benjamincharity" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#review-benjamincharity" title="Reviewed Pull Requests">👀</a> <a href="#tool-benjamincharity" title="Tools">🔧</a></th>
-<th style="text-align:center"><a href="https://github.com/coreyterminator"><img src="https://avatars1.githubusercontent.com/u/31667397?v=4" width="100px;"/><br /><sub><b>coreyterminator</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=coreyterminator" title="Code">💻</a></th>
-<th style="text-align:center"><a href="https://github.com/atlwendy"><img src="https://avatars0.githubusercontent.com/u/377552?v=4" width="100px;"/><br /><sub><b>Wendy</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Aatlwendy" title="Bug reports">🐛</a></th>
-<th style="text-align:center"><a href="https://github.com/bmalinconico"><img src="https://avatars0.githubusercontent.com/u/19909708?v=4" width="100px;"/><br /><sub><b>Brian Malinconico</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Abmalinconico" title="Bug reports">🐛</a> <a href="#ideas-bmalinconico" title="Ideas, Planning, &amp; Feedback">🤔</a></th>
-<th style="text-align:center"><a href="http://rubykata.wordpress.com/"><img src="https://avatars0.githubusercontent.com/u/2921?v=4" width="100px;"/><br /><sub><b>David Harkness</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=david-harkness" title="Code">💻</a></th>
-<th style="text-align:center"><a href="https://github.com/kal93"><img src="https://avatars0.githubusercontent.com/u/14012571?v=4" width="100px;"/><br /><sub><b>kal93</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Akal93" title="Bug reports">🐛</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<p>This project follows the <a href="https://github.com/kentcdodds/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
-<h2 id="project-resources">Project Resources</h2>
-<ul>
-<li><a href="https://github.com/semantic-release/semantic-release">Semantic Release</a> - Automatically release versioned release to NPM and generate
-  a changelog in the Github tag.</li>
-<li><a href="https://github.com/commitizen">Commitizen</a> - Interactive cli for enforcing commit message format.</li>
-<li><a href="https://github.com/commitizen">Commitizen VSCode Plugin</a> - VSCode plugin for commitizen.</li>
-<li><a href="https://saucelabs.com/platforms">SauceLabs Platforms</a> - Cross-browser unit tests.</li>
-<li><a href="https://github.com/holidaypirates/nucleus/">Nucleus</a> - Generates SCSS documentation.</li>
-<li><a href="https://github.com/thlorenz/doctoc">Doctoc</a> - Generate documentation table of contents.</li>
-<li><a href="https://codecov.io">CodeCov</a> - Code coverage reporting.</li>
-</ul>
-<!-- LINKS -->
-<!-- Demos -->
-<!-- SCSS Docs -->
-<!-- TS Primary Docs -->
-<!-- TS Usage Docs -->
-
-
-
+<div class="container-fluid modules">
+    <div class="row">
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TerminusUIModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TerminusUIModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TerminusUIModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsAutocompleteModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsAutocompleteModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsAutocompleteModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsAutofocusModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsAutofocusModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsAutofocusModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsButtonModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsButtonModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsButtonModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsCardModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsCardModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsCardModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsCheckboxModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsCheckboxModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsCheckboxModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsCopyModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsCopyModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsCopyModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsDateRangeModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsDateRangeModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsDateRangeModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsDatepickerModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsDatepickerModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsDatepickerModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsIconButtonModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsIconButtonModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsIconButtonModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsIconModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsIconModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsIconModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsInputModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsInputModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsInputModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsLinkModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsLinkModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsLinkModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsLoadingOverlayModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsLoadingOverlayModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsLoadingOverlayModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsLoginFormModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsLoginFormModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsLoginFormModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsMenuModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsMenuModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsMenuModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsNavigationModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsNavigationModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsNavigationModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsPaginatorModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsPaginatorModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsPaginatorModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsPipesModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsPipesModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsPipesModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsRadioGroupModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsRadioGroupModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsRadioGroupModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsSearchModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsSearchModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsSearchModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsSelectModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsSelectModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsSelectModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsSortModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsSortModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsSortModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsSpacingModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsSpacingModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsSpacingModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsTableModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsTableModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsTableModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsToggleModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsToggleModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsToggleModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsTooltipModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsTooltipModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsTooltipModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card card-module">
+                    <div class="card-header">
+                        <h4 class="card-title">TsValidationMessagesModule</h4>
+                    </div>
+                    <div class="card-block">
+                                <p>
+                                    <object id="demo-svg" type="image/svg+xml" data="./modules/TsValidationMessagesModule/dependencies.svg" style="width: 100%; height: 175px;">
+                                            Your browser does not support SVG
+                                    </object>
+                                </p>
+                        <footer class="text-center">
+                            <a href="./modules/TsValidationMessagesModule.html" class="btn btn-default">Browse</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
 
 
 
