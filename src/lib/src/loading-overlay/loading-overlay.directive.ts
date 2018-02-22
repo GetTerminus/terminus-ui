@@ -10,9 +10,9 @@ import {
   Injector,
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsWindowService } from '@terminus/ngx-tools';
 
-import { TsWindowService } from './../services/window/window.service';
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 
 

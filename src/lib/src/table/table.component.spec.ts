@@ -19,9 +19,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowServiceMock } from '@terminus/ngx-tools/testing';
 
-import { TsWindowService } from './../services/window/window.service';
-import { TsWindowServiceMock } from './../services/window/window.service.mock';
 import { TsPaginatorComponent } from './../paginator/paginator.component';
 import { TsPaginatorModule } from './../paginator/paginator.module';
 import { TsSortDirective } from './../sort/sort.directive';
@@ -306,7 +306,7 @@ function expectTableToMatchContent(tableElement: Element, expectedTableContent: 
  */
 
 
-describe(`TableComponent`, () => {
+describe(`TsTableComponent`, () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -10,7 +10,8 @@ import {
   ViewEncapsulation,
   isDevMode,
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsWindowService } from '@terminus/ngx-tools';
 
 import {
   TsButtonActionTypes,
@@ -18,7 +19,6 @@ import {
   TsButtonFormatTypes,
   TsStyleThemeTypes,
 } from './../utilities/types';
-import { TsWindowService } from './../services/window/window.service';
 
 
 /**

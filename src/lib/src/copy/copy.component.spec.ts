@@ -1,11 +1,10 @@
 import {
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+  TsWindowServiceMock,
+  TsDocumentServiceMock,
+  ElementRefMock,
+} from '@terminus/ngx-tools/testing';
+
 import { TsCopyComponent } from './copy.component';
-import { TsWindowServiceMock } from '../services/window/window.service.mock';
-import { TsDocumentServiceMock } from '../services/document/document.service.mock';
-import { ElementRefMock } from '../utilities/testing/mocks/elementRef.mock';
 
 
 describe(`TsCopyComponent`, () => {
@@ -54,16 +53,8 @@ describe(`TsCopyComponent`, () => {
     });
 
 
-    // TODO: The integration test for this will actually test the selection functionality.
-    // NOTE: For some reason, the component does not seem to get the mocked value unless we redefine
-    // it here
     it(`should select the text within the passed in element`, () => {
-      this.component.window.getSelection = jasmine.createSpy('getSelection').and.returnValue({
-        removeAllRanges: jasmine.createSpy('removeAllRanges'),
-        addRange: jasmine.createSpy('addRange'),
-      });
-
-      const result = this.component.selectText(this.component.content.nativeElement, false, false);
+      this.component.selectText(this.component.content.nativeElement, false, false);
 
       expect(this.component.window.getSelection).toHaveBeenCalled();
       expect(this.component.document.createRange).toHaveBeenCalled();
