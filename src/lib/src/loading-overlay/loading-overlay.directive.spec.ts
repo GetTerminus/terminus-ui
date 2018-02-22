@@ -1,6 +1,9 @@
-import { ElementRefMock } from './../utilities/testing/mocks/elementRef.mock';
+import {
+  ElementRefMock,
+  TsWindowServiceMock,
+} from '@terminus/ngx-tools/testing';
+
 import { TsLoadingOverlayDirective } from './loading-overlay.directive';
-import { TsWindowServiceMock } from './../services/window/window.service.mock';
 
 const componentFactoryResolver: any = null;
 const applicationRef: any = null;

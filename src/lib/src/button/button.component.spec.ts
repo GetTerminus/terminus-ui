@@ -1,6 +1,8 @@
+import {
+  TsWindowServiceMock,
+  ChangeDetectorRefMock,
+} from '@terminus/ngx-tools/testing';
 
-import { ChangeDetectorRefMock } from './../utilities/testing/mocks/changeDetectorRef.mock';
-import { TsWindowServiceMock } from './../services/window/window.service.mock';
 import { TsButtonComponent } from './button.component';
 
 
@@ -11,6 +13,7 @@ describe(`TsButtonComponent`, () => {
       new ChangeDetectorRefMock(),
       new TsWindowServiceMock(),
     );
+    this.component.changeDetectorRef.detectChanges = jest.fn();
   });
 
 

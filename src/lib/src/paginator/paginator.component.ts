@@ -11,7 +11,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsPaginatorMenuItem } from './../utilities/interfaces';

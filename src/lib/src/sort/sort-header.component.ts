@@ -11,7 +11,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { Subscription } from 'rxjs/Subscription';
 import { merge } from 'rxjs/observable/merge';

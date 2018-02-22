@@ -5,9 +5,11 @@ import {
   ElementRef,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  TsWindowService,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
 
-import { TsWindowService } from './../services/window/window.service';
-import { TsDocumentService } from '../services/document/document.service';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types'
 
 

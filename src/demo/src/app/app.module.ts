@@ -78,7 +78,6 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
-import { WindowServiceComponent } from './components/services/window-service.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -160,7 +159,6 @@ import { WindowServiceComponent } from './components/services/window-service.com
     TooltipComponent,
     TypographyComponent,
     ValidationComponent,
-    WindowServiceComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

@@ -29,7 +29,6 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
-import { WindowServiceComponent } from './services/window-service.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -235,13 +234,6 @@ export const componentsList: Routes = [
     component: ValidationComponent,
     data: {
       name: 'Validation',
-    },
-  },
-  {
-    path: 'window-service',
-    component: WindowServiceComponent,
-    data: {
-      name: 'Window Service',
     },
   },
   // INJECT: Add route for demo component
