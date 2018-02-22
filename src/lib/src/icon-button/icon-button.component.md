@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage](#basic-usage)
+- [Theme (color)](#theme-color)
+- [Accessibility](#accessibility)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic usage
 
 Pass a valid [Material icon][material-icons] name as the content of the button:
@@ -7,7 +17,7 @@ Pass a valid [Material icon][material-icons] name as the content of the button:
 ```
 
 
-#### Theme (color)
+## Theme (color)
 
 Use the `theme` parameter to change the color.
 
@@ -24,7 +34,7 @@ Use the `theme` parameter to change the color.
 > By default the icon will use `color(pure, dark)`
 
 
-#### Accessibility
+## Accessibility
 
 For accessibility purposes we should set the `actionName` and `buttonType`.
 

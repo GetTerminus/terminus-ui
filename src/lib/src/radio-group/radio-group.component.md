@@ -1,4 +1,13 @@
-#### Event driven
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Event driven](#event-driven)
+- [Reactive form driven](#reactive-form-driven)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Event driven
 
 Pass in an array of items and listen for change events:
 
@@ -30,7 +39,7 @@ items$ = of([
 ```
 
 
-#### Reactive form driven
+## Reactive form driven
 
 Pass in an array of items and pass in the form control:
 

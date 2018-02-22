@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Integration App](#integration-app)
+  - [npm scripts](#npm-scripts)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Integration App
 
 This is a simplified version of https://github.com/angular/quickstart used to test the built lib.

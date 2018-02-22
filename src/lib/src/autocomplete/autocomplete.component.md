@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage with a FormControl](#basic-usage-with-a-formcontrol)
+- [Allow multiple selections](#allow-multiple-selections)
+- [Seed selected values](#seed-selected-values)
+- [Show the progress indicator](#show-the-progress-indicator)
+- [Customize how the selected value is displayed](#customize-how-the-selected-value-is-displayed)
+- [Event driven](#event-driven)
+- [Show a 'no results' validation error](#show-a-no-results-validation-error)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic usage with a FormControl
 
 a) Pass an array of available options in. These are the options displayed to the user in the
@@ -58,7 +72,7 @@ this.users$ = this.auto
 > Change the debounce delay by setting `debounceDelay`.
 
 
-#### Allow multiple selections
+## Allow multiple selections
 
 To allow multiple selections, pass in a comparator function. This function should match the type {@link TsAutocompleteComparatorFn} which has the basic signature of `(v: any) => string`.
 
@@ -73,7 +87,7 @@ This comparator function will be used by the autocomplete to determine if a sele
 duplicate. It is also used as the `trackBy` function when looping through options.
 
 
-#### Seed selected values
+## Seed selected values
 
 To seed initial values, pass the array of selections to `initialSelections`:
 
@@ -86,7 +100,7 @@ To seed initial values, pass the array of selections to `initialSelections`:
 ```
 
 
-#### Show the progress indicator
+## Show the progress indicator
 
 Show a progress indicator by toggling the `showProgress` value:
 
@@ -101,7 +115,7 @@ this.isInProgress = true;
 ```
 
 
-#### Customize how the selected value is displayed
+## Customize how the selected value is displayed
 
 The UI display of selected options can be changed by passing in a custom `displayWith` function.
 This function should match {@link TsAutocompleteFormatterFn} which has the signature of `(v) =>
@@ -115,7 +129,7 @@ string`;
 ```
 
 
-#### Event driven
+## Event driven
 
 If a `FormControl` isn't needed, you can subscribe to events directly:
 
@@ -142,7 +156,7 @@ change(selections) {
 ```
 
 
-#### Show a 'no results' validation error
+## Show a 'no results' validation error
 
 If no results are found, set a validation error on the `FormControl`:
 

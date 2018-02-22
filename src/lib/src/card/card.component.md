@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Basic usage](#basic-usage)
+- [Interactivity](#interactivity)
+- [Centered content](#centered-content)
+- [Aspect ratio](#aspect-ratio)
+- [Utility menu](#utility-menu)
+- [Card with a Title](#card-with-a-title)
+- [Disabled Card](#disabled-card)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic usage
 
 Wrap the card component around your content:
@@ -8,7 +22,7 @@ Wrap the card component around your content:
 </ts-card>
 ```
 
-#### Interactivity
+## Interactivity
 
 To make the card feel interactive, pass `true` to the `supportsInteraction` input.
 
@@ -18,7 +32,7 @@ To make the card feel interactive, pass `true` to the `supportsInteraction` inpu
 </ts-card>
 ```
 
-#### Centered content
+## Centered content
 
 To center the content, pass `true` to the `centeredContent` input.
 
@@ -28,7 +42,7 @@ To center the content, pass `true` to the `centeredContent` input.
 </ts-card>
 ```
 
-#### Aspect ratio
+## Aspect ratio
 
 Pass your desired aspect ratio in the format `3:4` to the `aspectRatio` input.
 
@@ -38,7 +52,7 @@ Pass your desired aspect ratio in the format `3:4` to the `aspectRatio` input.
 </ts-card>
 ```
 
-#### Utility menu
+## Utility menu
 
 To include a utility menu, pass a template which includes the menu trigger and the menu contents.
 
@@ -67,7 +81,7 @@ To include a utility menu, pass a template which includes the menu trigger and t
 </ng-template>
 ```
 
-#### Card with a Title
+## Card with a Title
 
 Attach the `tsCardTitle` directive to your title element. This directive simply adds a class to the
 element which provides the needed styles.
@@ -78,7 +92,7 @@ element which provides the needed styles.
 </ts-card>
 ```
 
-#### Disabled Card
+## Disabled Card
 
 This will push the opacity of the card contents back and add a lock icon in the top right corner.
 

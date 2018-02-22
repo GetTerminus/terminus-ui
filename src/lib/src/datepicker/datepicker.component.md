@@ -1,4 +1,18 @@
-#### Event driven
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Event driven](#event-driven)
+- [Filter out invalid dates](#filter-out-invalid-dates)
+- [Set max/min range](#set-maxmin-range)
+- [Set the initial date without using Reactive Forms](#set-the-initial-date-without-using-reactive-forms)
+- [Define a date that the calendar should open to](#define-a-date-that-the-calendar-should-open-to)
+- [Use with Reactive Forms](#use-with-reactive-forms)
+- [Example with dynamic validation](#example-with-dynamic-validation)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Event driven
 
 Each time a selection is made, the `selected` event is fired.
 
@@ -9,7 +23,7 @@ Each time a selection is made, the `selected` event is fired.
 ```
 
 
-#### Filter out invalid dates
+## Filter out invalid dates
 
 If, for instance, you need to prohibit weekend days (sat/sun) from being selected you can pass in a
 custom method to filter dates:
@@ -29,7 +43,7 @@ myFilter = (d: Date): boolean => {
 ```
 
 
-#### Set max/min range
+## Set max/min range
 
 To define bounds for date selection, pass in a valid `Date` to `minDate` and/or `maxDate`:
 
@@ -46,7 +60,7 @@ date2 = new Date(2017, 8, 1);
 ```
 
 
-#### Set the initial date without using Reactive Forms
+## Set the initial date without using Reactive Forms
 
 Pass in a `Date` to `initialDate`:
 
@@ -63,7 +77,7 @@ myDate = new Date(2017, 1, 1);
 > When using a Reactive Form, we can seed the initial value in the form itself
 
 
-#### Define a date that the calendar should open to
+## Define a date that the calendar should open to
 
 Pass in a `Date` to `openTo`:
 
@@ -78,7 +92,7 @@ myDate = new Date(2017, 5, 12);
 ```
 
 
-#### Use with Reactive Forms
+## Use with Reactive Forms
 
 Pass in the form control:
 
@@ -147,7 +161,7 @@ const range = myForm.get('dateRange');
 ```
 
 
-#### Example with dynamic validation
+## Example with dynamic validation
 
 We can recreate a version of the {@link TsDateRangeComponent} using dynamic validation:
 

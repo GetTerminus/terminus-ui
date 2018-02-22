@@ -1,4 +1,14 @@
-# Color
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Color](#color)
+  - [Available colors](#available-colors)
+  - [All possible color function parameters](#all-possible-color-function-parameters)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Color
 
 All colors should be set using the `color()` function. This will protect us from a constantly
 expanding color palette.
@@ -41,7 +51,7 @@ color(accent, dark)
 Passing an invalid `$palette` or `$tone` will throw a Sass compilation error.
 
 
-#### All possible color function parameters
+### All possible color function parameters
 
 - `primary`
     - `color(primary, xlight)`

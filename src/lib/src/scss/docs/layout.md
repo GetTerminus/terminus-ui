@@ -1,4 +1,14 @@
-# Layout
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Layout](#layout)
+  - [take-space](#take-space)
+  - [center-content](#center-content)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Layout
 
 A collection of mixins to assist with common layout needs.
 
