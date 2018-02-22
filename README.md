@@ -78,6 +78,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 > - :x: not started
 > - :hammer: started
 > - :white_check_mark: available
+> - :hankey: deprecated
 
 ### Components
 
@@ -134,12 +135,12 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 ### Services
 
-| Feature    | Notes                                               | Status             |
-|------------|-----------------------------------------------------|:------------------:|
-| Document   | Provide access to the native document object        | :white_check_mark: |
-| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |
-| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |
-| Window     | Provide access to the native window object          | :white_check_mark: |
+| Feature    | Notes                                                                     | Status             |
+|------------|---------------------------------------------------------------------------|:------------------:|
+| Document   | :warning:DEPRECATED:warning: Provide access to the native document object | :hankey:           |
+| Spacing    | Expose custom spacing sizes via a service                                 | :white_check_mark: |
+| Validators | Expose custom validation methods for reactive forms                       | :white_check_mark: |
+| Window     | :warning:DEPRECATED:warning: Provide access to the native window object   | :hankey:           |
 
 
 ### TypeScript Utilities
@@ -171,7 +172,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material hammerjs --exact
+$ yarn add @terminus/ui @terminus/ui @angular/forms @angular/animations @angular/material hammerjs --exact
 ```
 
 
