@@ -37,6 +37,7 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsCard',
 })
 export class TsCardComponent {
   /**

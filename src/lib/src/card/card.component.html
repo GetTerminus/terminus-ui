@@ -4,14 +4,15 @@
     'c-card--interaction': supportsInteraction,
     'c-card--centered': centeredContent,
     'c-card--aspect': aspectRatioPadding,
-    'c-card--disabled': disabled
+    'c-card--disabled': disabled,
+    'c-card--right-spacing': utilityMenuTemplate || disabled
   }"
   [style.paddingTop]="aspectRatioPadding"
 >
   <div
     class="c-card__inner"
     mat-ripple
-    [matRippleDisabled]="!supportsInteraction"
+    [matRippleDisabled]="!supportsInteraction || disabled"
   >
     <ng-content></ng-content>
   </div>
@@ -22,7 +23,7 @@
   ></ng-container>
 
   <ts-icon
-    *ngIf="disabled"
+    *ngIf="disabled && !utilityMenuTemplate"
     class="c-card__lock"
   >
     lock_outline
