@@ -3,13 +3,11 @@
   <input type="checkbox" [(ngModel)]="supportsInteraction">
 </label>
 
-
 <label>
   Centered content:
   <input type="checkbox" [(ngModel)]="centered">
 </label>
 
-<hr>
 <br>
 
 <ts-card
@@ -33,35 +31,16 @@
   supportsInteraction="true"
   centeredContent="true"
   [utilityMenuTemplate]="myTemplate"
-  aspectRatio="4:3"
+  aspectRatio="16:9"
   tsVerticalSpacing
 >
   Standard card with utility menu and aspect ratio
 </ts-card>
 
-<ng-template #myTemplate>
-  <ts-menu
-    triggerType="utility"
-    menuPositionX="before"
-    [menuItemsTemplate]="utilityButtons"
-  ></ts-menu>
-
-
-  <ng-template #utilityButtons>
-    <ts-button>
-      My menu item
-    </ts-button>
-  </ng-template>
-</ng-template>
 
 
 <ts-card centeredContent="true" tsVerticalSpacing>
   Centered content
-</ts-card>
-
-
-<ts-card aspectRatio="16:9" tsVerticalSpacing>
-  16:9 aspect ratio
 </ts-card>
 
 
@@ -97,9 +76,14 @@
 </ts-card>
 
 
+<ts-card disabled="true" supportsInteraction="true" tsVerticalSpacing>
+  Disabled with interactions
+</ts-card>
+
+
 <ts-card disabled="true" tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
-    Disabled Card
+    Disabled Card with a very long title foo bar baz
   </h3>
 
   Foo
@@ -110,3 +94,40 @@
   <br>
   Bing
 </ts-card>
+
+
+<ts-card
+  disabled="false"
+  tsVerticalSpacing
+  [utilityMenuTemplate]="myTemplate"
+>
+  <p>
+    DISABLED WITH UTILITY Repellat alias explicabo voluptatibus nesciunt. Optio maxime delectus ex aspernatur quidem. Dolorem nihil eos cum.
+  </p>
+
+  <p>
+    Voluptate perferendis facere pariatur. Hic ipsum est tempora dignissimos dolores. Magnam blanditiis quisquam fugit.
+  </p>
+
+  <p>
+    Officia voluptatum consequuntur rem quo. Fugiat mollitia maiores tempora et. Culpa distinctio ipsum blanditiis.
+  </p>
+</ts-card>
+
+
+
+
+<ng-template #myTemplate>
+  <ts-menu
+    triggerType="utility"
+    menuPositionX="before"
+    [menuItemsTemplate]="utilityButtons"
+  ></ts-menu>
+
+
+  <ng-template #utilityButtons>
+    <ts-button>
+      My menu item
+    </ts-button>
+  </ng-template>
+</ng-template>
