@@ -29,6 +29,7 @@
       [spellcheck]="false"
       [prefixIcon]="icon"
       tsVerticalSpacing
+      #foo="tsInput"
     ></ts-input>
 
     <ts-input
@@ -53,6 +54,7 @@
       tsVerticalSpacing
     ></ts-input>
 
+    <button (click)="foo.reset()">Reset name input</button>
     <button (click)="submit(myForm.value)">Submit</button>
   </form>
 </ts-card>

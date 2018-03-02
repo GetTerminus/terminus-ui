@@ -2,6 +2,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+
 import {
   TsInputComponent,
   CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
@@ -11,7 +13,8 @@ import {
 describe(`TsInputComponent`, () => {
 
   beforeEach(() => {
-    this.component = new TsInputComponent();
+    this.component = new TsInputComponent(new ChangeDetectorRefMock());
+    this.component.changeDetectorRef.markForCheck = jest.fn();
   });
 
 
@@ -61,7 +64,8 @@ describe(`TsInputComponent`, () => {
       expect(this.component.value).toEqual(VALUE);
 
       this.component.reset();
-      expect(this.component.value).toEqual('');
+      expect(this.component.value).toEqual(null);
+      expect(this.component.changeDetectorRef.markForCheck).toHaveBeenCalled();
     });
 
   });

@@ -4,7 +4,9 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  ChangeDetectionStrategy,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -77,7 +79,9 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     class: 'ts-input',
   },
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsInput',
 })
 export class TsInputComponent extends TsReactiveFormBaseComponent {
   /**
@@ -190,12 +194,20 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   cleared: EventEmitter<boolean> = new EventEmitter();
 
 
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    super();
+  }
+
+
   /**
    * Clear the input's value
    */
   public reset(): void {
-    this.value = '';
+    this.value = null;
     this.cleared.emit(true);
+    this.changeDetectorRef.markForCheck();
   }
 
 }
