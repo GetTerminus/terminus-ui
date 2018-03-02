@@ -33,6 +33,7 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
  * #### QA CSS CLASSES
  * - `qa-datepicker`: The form-field wrapper which contains the input and button
  * - `qa-datepicker-input`: The input element which contains the chosen date
+ * - `qa-datepicker-hint`: The hint element, if hint content is provided
  * - `qa-datepicker-toggle`: The button which displays the calendar when clicked
  * - `qa-datepicker-calendar`: The calendar control used for picking a date
  * - `qa-datepicker-validation-messages`: The validation messages container
@@ -42,6 +43,7 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
  *              [formControl]="yourHelperToGetFormControl('date')"
  *              [(ngModel)]="myModel"
  *              [dateFilter]="myDateFilter"
+ *              hint="Fill this out!"
  *              inputPlaceholder="Set a date"
  *              isDisabled="false"
  *              maxDate="{{ new Date(1990, 1, 1) }}"
@@ -92,6 +94,13 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public dateFilter: any;
+
+  /**
+   * Define a hint for the datepicker
+   */
+  // FIXME: Fix potential overlap of hint and error messages
+  @Input()
+  public hint: string;
 
   /**
    * Define the placeholder
