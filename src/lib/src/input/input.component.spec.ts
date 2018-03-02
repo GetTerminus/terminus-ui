@@ -1,4 +1,7 @@
-import 'jest';
+import {
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import {
   TsInputComponent,
   CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
@@ -21,6 +24,29 @@ describe(`TsInputComponent`, () => {
 
     it(`should forward a reference to this component`, () => {
       expect(CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsInputComponent);
+    });
+
+  });
+
+
+  describe(`requiredAttribute`, () => {
+
+    test(`should return 'required' when the form control is required`, () => {
+      this.component.formControl = new FormControl(null, Validators.required);
+
+      expect(this.component.requiredAttribute).toEqual('required');
+    });
+
+
+    test(`should return 'required' when 'isRequired' is true`, () => {
+      this.component.isRequired = true;
+
+      expect(this.component.requiredAttribute).toEqual('required');
+    });
+
+
+    test(`should return null when the input is not required`, () => {
+      expect(this.component.requiredAttribute).toEqual(null);
     });
 
   });

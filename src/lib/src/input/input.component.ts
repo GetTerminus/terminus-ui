@@ -6,7 +6,10 @@ import {
   forwardRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+import { controlHasRequiredField } from '@terminus/ngx-tools';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/input.types';
@@ -77,6 +80,16 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
 })
 export class TsInputComponent extends TsReactiveFormBaseComponent {
+  /**
+   * Determine the correct required attribute content
+   *
+   * @return The required attribute value
+   */
+  get requiredAttribute(): string | null {
+    const requiredFormControl = (this.formControl && controlHasRequiredField(this.formControl));
+    return (requiredFormControl || this.isRequired) ? 'required' : null;
+  }
+
   /**
    * Define if the input should autocapitalize
    * (standard HTML5 property)
