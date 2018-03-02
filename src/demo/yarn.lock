@@ -211,13 +211,13 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
-"@terminus/ngx-tools@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.5.0.tgz#affa9242ac3228173205be3e6776f9fc6973f9cd"
+"@terminus/ngx-tools@1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.6.2.tgz#fbfde02d77cbf7015ee2855f60f46e93b6d5763f"
 
-"@terminus/ui@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-6.0.3.tgz#c60d6b26260f5871a1b5e84219c94de933f50674"
+"@terminus/ui@6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-6.3.1.tgz#34beb2e8a9c3b7dafebc0cd769af4323662bed6d"
   dependencies:
     date-fns "2.0.0-alpha.7"
 

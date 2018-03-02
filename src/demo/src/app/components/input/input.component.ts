@@ -25,7 +25,9 @@ export class InputComponent {
     name: [
       null,
       [
-        Validators.required,
+        /*
+         *Validators.required,
+         */
       ],
     ],
     email: [
