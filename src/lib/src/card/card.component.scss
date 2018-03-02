@@ -21,6 +21,8 @@
   .c-card {
     @include typography;
     background-color: color(pure);
+    // Set up for possible utility nav
+    position: relative;
     width: 100%;
 
     &:not(.c-card--interaction),
@@ -59,8 +61,6 @@
 
 .c-card--aspect {
   $padding: spacing(large) * 2;
-  // set up for take-space
-  position: relative;
 
   .c-card__inner {
     @include take-space;
@@ -69,15 +69,14 @@
 }
 
 .c-card--disabled {
-  // Set up for absolutely positioned icon
-  position: relative;
-
   .c-card__inner {
     opacity: .5;
   }
 
-  .c-card__title {
-    padding-right: spacing(large);
+  // Class added to menu container when the card is disabled
+  .c-menu {
+    opacity: .3;
+    pointer-events: none;
   }
 
   // Lock icon
@@ -88,5 +87,16 @@
     // Magic number adjustment to align with title
     top: calc(#{spacing(large)} - 2px);
     transform: scale(.7);
+  }
+}
+
+// Class added when padding needed on the right for icon or utility menu
+// NOTE: Dual class needed for specificity
+.c-card.c-card--right-spacing {
+  .c-card__inner {
+    $padding: spacing(large) + spacing(large, 4);
+
+    padding-right: spacing(large, 4);
+    width: calc(100% - #{$padding});
   }
 }
