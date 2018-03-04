@@ -218,7 +218,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 - [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
 - [Commitizen VSCode Plugin][commitizen_vsc] - VSCode plugin for commitizen.
 - [SauceLabs Platforms][saucelab_platforms] - Cross-browser unit tests.
-- [Nucleus][nucleus] - Generates SCSS documentation.
 - [Doctoc][doctoc] - Generate documentation table of contents.
 - [CodeCov][codecov] - Code coverage reporting.
 
@@ -251,8 +250,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [npm-url]: https://npmjs.org/package/@terminus/ui
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
-[nucleus]: https://github.com/holidaypirates/nucleus/
-[nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
 [pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
 [raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
 [saucelab_platforms]: https://saucelabs.com/platforms
