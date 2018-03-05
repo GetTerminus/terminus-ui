@@ -54,6 +54,7 @@ const GLOBALS = {
   '@angular/cdk/portal': 'ng.cdk.portal',
   '@angular/cdk/keycodes': 'ng.cdk.keycodes',
 
+  // Terminus Libraries
   '@terminus/ngx-tools': 'terminus.ngxTools',
 
   // Rxjs dependencies
@@ -65,6 +66,10 @@ const GLOBALS = {
   'rxjs/add/operator/pluck': 'Rx.Operator',
   'rxjs/add/operator/debounceTime': 'Rx.Operator',
   'rxjs/BehaviorSubject': 'Rx.BehaviorSubject',
+
+  // Various
+  'text-mask-core/dist/textMaskCore': 'textMaskCore',
+  'text-mask-addons/dist/createNumberMask': 'textMaskAddons',
 };
 
 // General configurations for the build process
@@ -146,7 +151,14 @@ const rollupInputOptionsBase = {
     rollupCommonjs({
       include: [
         './../node_modules/rxjs/**',
+        'node_modules/text-mask-core/',
+        'node_modules/text-mask-addons/',
       ],
+      /*
+       *namedExports: {
+       *  'node_modules/text-mask-addons/dist/createNumberMask.js': ['createNumberMask'],
+       *}
+       */
     }),
   ],
   onwarn: function(warning) {

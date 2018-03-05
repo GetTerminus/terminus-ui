@@ -13,6 +13,7 @@ export * from './src/input/input.module';
 export * from './src/link/link.module';
 export * from './src/loading-overlay/loading-overlay.module';
 export * from './src/login-form/login-form.module';
+export * from './src/mask/mask.module';
 export * from './src/menu/menu.module';
 export * from './src/navigation/navigation.module';
 export * from './src/paginator/paginator.module';
