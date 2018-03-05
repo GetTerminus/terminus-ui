@@ -3,6 +3,7 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
 
 
@@ -46,6 +47,24 @@ export class TsLinkComponent {
   public externalIcon: string = `open_in_new`;
 
   /**
+   * Create input to show deprecation notice
+   *
+   * @deprecated
+   * @deletion-target 7.0.0
+   */
+  @Input()
+  public set color(value: string) {
+    // istanbul ignore else
+    if (isDevMode()) {
+      console.warn(
+        'The TsLinkComponent `[color]` parameter has been deprecated and will be removed in ' +
+        '`@terminus/ui@7.0.0`.\n' +
+        'You can use the `[theme]` parameter to set the link\'s color.',
+      );
+    }
+  }
+
+  /**
    * Define the link's destination
    */
   @Input()
@@ -62,4 +81,5 @@ export class TsLinkComponent {
    */
   @Input()
   public tabIndex: number = 0;
+
 }
