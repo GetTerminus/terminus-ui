@@ -35,7 +35,7 @@ The library of UI components used for Terminus applications.
 - [Installation](#installation)
 - [Global Styles](#global-styles)
 - [SCSS Helpers](#scss-helpers)
-- [Development Workflow](#development-workflow)
+- [Contributing](#contributing)
 - [Contributors](#contributors)
 - [Project Resources](#project-resources)
 
@@ -193,9 +193,9 @@ To use the provided SCSS helper methods/variables/mixins, import the helpers fil
 @import '~@terminus/ui/helpers'
 ```
 
-## Development Workflow
+## Contributing
 
-View the [wiki page][dev-wiki].
+View the [contribution doc][contributing] and the [development documentation][dev-workflow].
 
 
 ## Contributors
@@ -240,7 +240,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
-[dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
+[dev-workflow]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.
+[contributing]: https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md
 [docs-url]: https://getterminus.github.io/terminus-ui/
 [doctoc]: https://github.com/thlorenz/doctoc
 [file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
