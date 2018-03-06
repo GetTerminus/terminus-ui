@@ -49,6 +49,12 @@
                                   <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
+                                        <a href="../contributing.html"
+                                    >
+                                        <span class="fa fa-fw fa-file-text-o"></span>CONTRIBUTING
+                                    </a>
+                                </li>
+                                <li class="link">
                                         <a href="../license.html"
                                     >
                                         <span class="fa fa-fw fa-file-text-o"></span>LICENSE
@@ -513,6 +519,12 @@
                                        </li>
                                        <li class="link">
                                          <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                               <a href="../contributing.html"
+                                           >
+                                               <span class="fa fa-fw fa-file-text-o"></span>CONTRIBUTING
+                                           </a>
                                        </li>
                                        <li class="link">
                                                <a href="../license.html"
@@ -1035,6 +1047,10 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">exportAs</td>
+                <td class="col-md-9"><code>tsCard</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">host</td>
@@ -1149,7 +1165,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/src/card/card.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/card/card.component.ts:54</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1175,7 +1191,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/card/card.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/src/card/card.component.ts:74</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1201,7 +1217,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/card/card.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/src/card/card.component.ts:86</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1228,7 +1244,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/src/card/card.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/src/card/card.component.ts:68</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1251,7 +1267,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/card/card.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/src/card/card.component.ts:80</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1295,7 +1311,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/card/card.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/src/card/card.component.ts:46</a></div>
                                 </td>
                             </tr>
     
@@ -1331,7 +1347,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/src/card/card.component.ts:53</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/card/card.component.ts:54</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -1486,6 +1502,7 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: &#x27;tsCard&#x27;,
 })
 export class TsCardComponent {
   /**
@@ -1544,14 +1561,15 @@ export class TsCardComponent {
     &#x27;c-card--interaction&#x27;: supportsInteraction,
     &#x27;c-card--centered&#x27;: centeredContent,
     &#x27;c-card--aspect&#x27;: aspectRatioPadding,
-    &#x27;c-card--disabled&#x27;: disabled
+    &#x27;c-card--disabled&#x27;: disabled,
+    &#x27;c-card--right-spacing&#x27;: utilityMenuTemplate || disabled
   }&quot;
   [style.paddingTop]&#x3D;&quot;aspectRatioPadding&quot;
 &gt;
   &lt;div
     class&#x3D;&quot;c-card__inner&quot;
     mat-ripple
-    [matRippleDisabled]&#x3D;&quot;!supportsInteraction&quot;
+    [matRippleDisabled]&#x3D;&quot;!supportsInteraction || disabled&quot;
   &gt;
     &lt;ng-content&gt;&lt;/ng-content&gt;
   &lt;/div&gt;
@@ -1562,7 +1580,7 @@ export class TsCardComponent {
   &gt;&lt;/ng-container&gt;
 
   &lt;ts-icon
-    *ngIf&#x3D;&quot;disabled&quot;
+    *ngIf&#x3D;&quot;disabled &amp;&amp; !utilityMenuTemplate&quot;
     class&#x3D;&quot;c-card__lock&quot;
   &gt;
     lock_outline
@@ -1599,7 +1617,7 @@ export class TsCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding,    \'c-card--disabled\': disabled  }"  [style.paddingTop]="aspectRatioPadding">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container>  <ts-icon    *ngIf="disabled"    class="c-card__lock"  >    lock_outline  </ts-icon></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class="c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding,    \'c-card--disabled\': disabled,    \'c-card--right-spacing\': utilityMenuTemplate || disabled  }"  [style.paddingTop]="aspectRatioPadding">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction || disabled"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container>  <ts-icon    *ngIf="disabled && !utilityMenuTemplate"    class="c-card__lock"  >    lock_outline  </ts-icon></div></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCardComponent'};
