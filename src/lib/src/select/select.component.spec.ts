@@ -43,6 +43,21 @@ describe(`TsSelectComponent`, () => {
       expect(this.component.getValueKey(items[0], 'thing')).toEqual('aaa');
     });
 
+    it(`should return one item if no valueKey provided`, () => {
+      const items = [
+        {
+          name: 'abc',
+          url: 'http://abc.com',
+        },
+        {
+          name: 'xyz',
+          url: 'http://xyz.com',
+        },
+      ];
+
+      expect(this.component.getValueKey(items[0])).toEqual(items[0]);
+    })
+
   });
 
 

@@ -42,7 +42,8 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              [formControl]="yourHelperToGetFormControl('email')"
  *              blankChoice="Please choose one."
  *              label="Please select one: "
- *              items="[{},{},{}]"
+ *              items="[{[key]: value},{},{}]"
+ *              valueKey="keyInItems"
  *              multipleAllowed="true"
  *              theme="primary"
  *              (open)="myMethod($event)"
@@ -103,6 +104,8 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Define the key that represents the value item from the object
+   *
+   * If not provided, currently it defaults to key "name"
    */
   @Input()
   public valueKey: string;
@@ -125,9 +128,10 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    *
    * @param item - The object representing the item
    * @param valueKey - The string representing the value key
-   * @return The value of the valueKey or the item itself
+   * @return The value of the valueKey or the item itself,
+   * which could be string or an object of key as string and value as string.
    */
-  public getValueKey(item: object, valueKey?: string): string {
+  public getValueKey(item: object, valueKey?: string): string | { [key: string]: string } {
     return valueKey ? item[valueKey] : item;
   }
 
