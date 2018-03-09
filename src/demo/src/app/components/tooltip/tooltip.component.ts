@@ -28,6 +28,16 @@ import { Component } from '@angular/core';
         <option value="right">Right</option>
       </select>
     </label>
+    <br>
+
+    <label>
+      Dotted Underline?
+
+      <select class="example-select-text" [(ngModel)]="myUnderlineOption">
+        <option [ngValue]="true">Yes</option>
+        <option [ngValue]="false">No</option>
+      </select>
+    </label>
 
     <hr>
     <br>
@@ -37,6 +47,7 @@ import { Component } from '@angular/core';
         <ts-tooltip
           [tooltipValue]="myTooltip"
           [tooltipPosition]="myPosition"
+          [hasUnderline]="myUnderlineOption"
         >Hover me.</ts-tooltip>
       </div>
     </section>
@@ -45,4 +56,5 @@ import { Component } from '@angular/core';
 export class TooltipComponent {
   myTooltip = 'Here is my content';
   myPosition = 'below';
+  myUnderlineOption = false;
 }
