@@ -19,6 +19,7 @@ import { TsTooltipPositionTypes } from './../utilities/types';
  * <ts-tooltip
  *              [tooltipValue]="myTooltip"
  *              [tooltipPosition]="myPosition"
+ *              [hasUnderline]="myUnderlineOption"
  * >My Tooltip!</ts-tooltip>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -45,4 +46,10 @@ export class TsTooltipComponent {
    */
   @Input()
   public tooltipValue: string;
+
+  /**
+   * Define whether there is a dotted underline shown on the text
+   */
+  @Input()
+  public hasUnderline: boolean = false;
 }

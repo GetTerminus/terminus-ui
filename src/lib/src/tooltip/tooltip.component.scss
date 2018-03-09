@@ -1,3 +1,5 @@
+@import './../scss/helpers/cursors';
+
 //
 // @component
 //  Tooltip
@@ -7,4 +9,10 @@
 .ts-tooltip {
   display: inline-block;
   // Top level styles should be nested here
+}
+
+.c-tooltip--underline {
+  border-bottom: .1em dotted;
+  border-color: inherit;
+  cursor: cursor(help);
 }
