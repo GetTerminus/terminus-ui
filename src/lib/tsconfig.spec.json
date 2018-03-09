@@ -5,6 +5,7 @@
     "module": "commonjs",
     "declaration": false,
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "types": [
       "jest"
     ]

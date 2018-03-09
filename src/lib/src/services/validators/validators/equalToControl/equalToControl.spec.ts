@@ -7,11 +7,11 @@ describe(`equalToControlValidator`, () => {
 
   beforeEach(() => {
     this.validatorFn = equalToControlValidator(this.minDate);
-    this.invalidValidatorFn = equalToControlValidator('foo');
+    this.invalidValidatorFn = equalToControlValidator('foo' as any);
 
     this.nullControl = new FormControl(null);
-    this.stringControl = new FormControl('foo');
-    this.stringControl2 = new FormControl('foo');
+    this.stringControl = new FormControl('foo' as any);
+    this.stringControl2 = new FormControl('foo' as any);
     this.stringControlUnmatched = new FormControl('bar');
     this.validValidatorFn = equalToControlValidator(this.stringControl);
   });

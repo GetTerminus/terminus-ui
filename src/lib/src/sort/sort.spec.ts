@@ -38,6 +38,8 @@ import {
   getSortHeaderNotContainedWithinSortError,
   getSortInvalidDirectionError,
 } from './sort-errors';
+import { TsSortState } from './../utilities/interfaces/sort.interface';
+import { TsSortHeaderComponent } from './sort-header.component';
 
 
 
@@ -110,7 +112,7 @@ function testSingleColumnSortDirectionSequence(fixture: ComponentFixture<SimpleT
   `,
 })
 class SimpleTsSortApp {
-  latestSortEvent: Sort;
+  latestSortEvent: TsSortState;
 
   active: string;
   start: TsSortDirection = 'asc';
@@ -120,8 +122,8 @@ class SimpleTsSortApp {
   disableAllSort = false;
 
   @ViewChild(TsSortDirective) tsSort: TsSortDirective;
-  @ViewChild('defaultSortHeaderA') tsSortHeaderDefaultA: TsSortHeader;
-  @ViewChild('defaultSortHeaderB') tsSortHeaderDefaultB: TsSortHeader;
+  @ViewChild('defaultSortHeaderA') tsSortHeaderDefaultA: TsSortHeaderComponent;
+  @ViewChild('defaultSortHeaderB') tsSortHeaderDefaultB: TsSortHeaderComponent;
 
   constructor(public elementRef: ElementRef) {}
 
@@ -269,7 +271,7 @@ describe('TsSort', () => {
 
 
   it('should have the sort headers register and deregister themselves', () => {
-    const sortables = component.tsSort.sortables;
+    const sortables = component.tsSort['sortables'];
     expect(sortables.size).toBe(4);
     expect(sortables.get('defaultSortHeaderA')).toBe(component.tsSortHeaderDefaultA);
     expect(sortables.get('defaultSortHeaderB')).toBe(component.tsSortHeaderDefaultB);
@@ -286,7 +288,7 @@ describe('TsSort', () => {
     cdkTableTsSortAppFixture.detectChanges();
     cdkTableTsSortAppFixture.detectChanges();
 
-    const sortables = cdkTableTsSortAppComponent.tsSort.sortables;
+    const sortables = cdkTableTsSortAppComponent.tsSort['sortables'];
     expect(sortables.size).toBe(3);
     expect(sortables.has('column_a')).toBe(true);
     expect(sortables.has('column_b')).toBe(true);
@@ -294,14 +296,14 @@ describe('TsSort', () => {
   });
 
 
-  it('should use the column definition if used within an ts table', () => {
+  test('should use the column definition if used within an ts table', () => {
     const tsTableTsSortAppFixture = TestBed.createComponent(TsTableTsSortApp);
     const tsTableTsSortAppComponent = tsTableTsSortAppFixture.componentInstance;
 
     tsTableTsSortAppFixture.detectChanges();
     tsTableTsSortAppFixture.detectChanges();
 
-    const sortables = tsTableTsSortAppComponent.tsSort.sortables;
+    const sortables = tsTableTsSortAppComponent.tsSort['sortables'];
     expect(sortables.size).toBe(3);
     expect(sortables.has('column_a')).toBe(true);
     expect(sortables.has('column_b')).toBe(true);
