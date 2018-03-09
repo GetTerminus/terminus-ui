@@ -30,7 +30,9 @@ export class TsSortBase {}
 export const _TsSortMixinBase = mixinDisabled(TsSortBase);
 
 
-/** Container for TsSortables to manage the sort state and provide default sort parameters. */
+/**
+ * Container for TsSortables to manage the sort state and provide default sort parameters
+ */
 @Directive({
   selector: '[tsSort]',
   exportAs: 'tsSort',

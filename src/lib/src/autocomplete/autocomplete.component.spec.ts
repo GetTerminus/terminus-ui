@@ -1,15 +1,26 @@
-import { ElementRefMock } from '@terminus/ngx-tools/testing';
+import {
+  ElementRef,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {
+  MatAutocompleteTrigger,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
+import createMockInstance from 'jest-create-mock-instance';
 
 import { TsAutocompleteComponent } from './autocomplete.component';
 
 
 describe(`TsAutocompleteComponent`, () => {
-  let component;
+  let component: TsAutocompleteComponent;
   const opt1 = {id: 1};
+  let trigger: jest.Mocked<MatAutocompleteTrigger>;
 
   beforeEach(() => {
+    trigger = createMockInstance(MatAutocompleteTrigger);
     component = new TsAutocompleteComponent();
+    component['trigger'] = trigger;
+    component.input = new ElementRef({});
   });
 
   afterEach(() => {
@@ -25,8 +36,12 @@ describe(`TsAutocompleteComponent`, () => {
   describe(`autocompleteTrigger`, () => {
 
     test(`should should set/get the trigger component`, () => {
-      component.autocompleteTrigger = ElementRefMock;
-      expect(component.autocompleteTrigger).toEqual(ElementRefMock);
+      component['trigger'] = null;
+      expect(component['trigger']).toBeFalsy();
+
+      component.autocompleteTrigger = trigger;
+      expect(component['trigger']).toBeTruthy();
+      expect(component.autocompleteTrigger).toBeTruthy();
     });
 
   });
@@ -65,14 +80,14 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should set/get the uiFormatFn`, () => {
-      const myFn = (v) => v.id;
+      const myFn = (v: any) => v.id;
       component.displayWith = myFn;
       expect(component.displayWith).toEqual(myFn);
     });
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.displayWith = 3})
+      expect(() => {component.displayWith = 3 as any})
         .toThrowError(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
     });
 
@@ -90,14 +105,14 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should set/get the uiFormatFn`, () => {
-      const myFn = (v) => v.id;
+      const myFn = (v: any) => v.id;
       component.multiple = myFn;
       expect(component.multiple).toEqual(myFn);
     });
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.multiple = 3})
+      expect(() => {component.multiple = 3 as any})
         .toThrowError(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
     });
 
@@ -126,11 +141,11 @@ describe(`TsAutocompleteComponent`, () => {
       jest.useFakeTimers();
       component.query = {
         next: jest.fn(),
-      };
+      } as any;
     });
 
     afterEach(() => {
-      component.query.next.mockClear();
+      (component.query as any).next.mockClear();
     });
 
 
@@ -186,23 +201,21 @@ describe(`TsAutocompleteComponent`, () => {
   describe(`ngOnDestroy`, () => {
 
     test(`should unsubscribe from query subscription`, () => {
-      component.querySubscription = {
+      component['querySubscription'] = {
         unsubscribe: jest.fn(),
-      };
+      } as any;
       component.ngOnDestroy();
 
-      expect(component.querySubscription.unsubscribe).toHaveBeenCalled();
+      expect(component['querySubscription'].unsubscribe).toHaveBeenCalled();
     });
 
   });
 
 
   describe(`selectOption`, () => {
-    const event = {
-      source: {},
-      option: {
-        value: opt1,
-      },
+    const event: any = createMockInstance(MatAutocompleteSelectedEvent);
+    event.option = {
+      value: opt1,
     };
 
     beforeEach(() => {
@@ -213,7 +226,7 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should add the selection and emit events`, () => {
-      component.selectOption(event, ElementRefMock);
+      component.selectOption(event);
 
       // check data
       expect(component.selectedOptions).toEqual([opt1]);
@@ -226,21 +239,21 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should reset the search if multiple selections are allowed`, () => {
-      component.multiple = (v) => v.id;
-      component.resetSearch = jest.fn();
-      component.selectOption(event, ElementRefMock);
+      component.multiple = (v: any) => v.id;
+      component['resetSearch'] = jest.fn();
+      component.selectOption(event);
 
-      expect(component.resetSearch).toHaveBeenCalled();
+      expect(component['resetSearch']).toHaveBeenCalled();
     });
 
 
     test(`should set a validation error if a duplicate is selected`, () => {
-      component.multiple = (v) => v.id;
+      component.multiple = (v: any) => v.id;
       component.selectedOptions = [opt1];
-      component.setDuplicateError = jest.fn();
-      const result = component.selectOption(event, ElementRefMock);
+      component['setDuplicateError'] = jest.fn();
+      const result = component.selectOption(event);
 
-      expect(component.setDuplicateError).toHaveBeenCalled();
+      expect(component['setDuplicateError']).toHaveBeenCalled();
       expect(result).toEqual(undefined);
     });
 
@@ -287,8 +300,8 @@ describe(`TsAutocompleteComponent`, () => {
   describe(`displayOption`, () => {
 
     test(`should return a value determined by uiFormatFn if it exists`, () => {
-      component.uiFormatFn = (v) => v.id;
-      expect(component.displayOption(opt1)).toEqual(1);
+      component['uiFormatFn'] = (v: any) => v.id.toString();
+      expect(component.displayOption(opt1)).toEqual('1');
     });
 
 
@@ -304,51 +317,52 @@ describe(`TsAutocompleteComponent`, () => {
       relatedTarget: {
         nodeName: 'DIV',
       },
-    };
+    } as any;
     const eventOpt = {
       relatedTarget: {
         nodeName: 'MAT-OPTION',
       },
-    };
+    } as any;
     const eventNoNode = {
       relatedTarget: {},
-    };
-    const eventNoRelatedTarget = {};
+    } as MouseEvent;
+    const eventNoRelatedTarget = {} as KeyboardEvent;
 
 
     beforeEach(() => {
       component.selectionsControl = new FormControl();
-      component.resetSearch = jest.fn();
+      component['resetSearch'] = jest.fn();
     });
 
     afterEach(() => {
-      component.resetSearch.mockClear();
+      (component['resetSearch'] as any).mockClear();
     });
+
 
     test(`should call resetSearch if there is no event.relatedTarget`, () => {
       expect(component.selectionsControl.touched).toEqual(false);
 
       component.handleBlur(eventNoRelatedTarget);
-      expect(component.resetSearch).toHaveBeenCalled();
+      expect(component['resetSearch']).toHaveBeenCalled();
       expect(component.selectionsControl.touched).toEqual(true);
     });
 
 
     test(`should call resetSearch if the relatedTarget has no nodeName`, () => {
       component.handleBlur(eventNoNode);
-      expect(component.resetSearch).toHaveBeenCalled();
+      expect(component['resetSearch']).toHaveBeenCalled();
     });
 
 
     test(`should NOT call resetSearch if the nodeName is MAT-OPTION`, () => {
       component.handleBlur(eventOpt);
-      expect(component.resetSearch).not.toHaveBeenCalled();
+      expect(component['resetSearch']).not.toHaveBeenCalled();
     });
 
 
     test(`should call resetSearch if the nodeName isn't MAT-OPTION`, () => {
       component.handleBlur(eventDiv);
-      expect(component.resetSearch).toHaveBeenCalled();
+      expect(component['resetSearch']).toHaveBeenCalled();
     });
 
   });
@@ -364,17 +378,17 @@ describe(`TsAutocompleteComponent`, () => {
           value: 'foo',
         },
       };
-      component.trigger = {
+      component['trigger'] = {
         panelOpen: jest.fn().mockReturnValue(true),
         closePanel: jest.fn(),
-      };
+      } as any;
     });
 
     test(`should clear the search everywhere`, () => {
-      component.trigger.panelOpen = jest.fn().mockReturnValue(false);
+      (component['trigger'].panelOpen as any) = jest.fn().mockReturnValue(false);
 
       expect(component.searchQuery).toEqual('foo');
-      component.resetSearch();
+      component['resetSearch']();
 
       expect(component.searchQuery).toEqual('');
       expect(component.querySubject.next).toHaveBeenCalledWith('');
@@ -383,9 +397,9 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should close the panel if it is open`, () => {
-      component.resetSearch();
+      component['resetSearch']();
 
-      expect(component.trigger.closePanel).toHaveBeenCalled();
+      expect(component['trigger'].closePanel).toHaveBeenCalled();
     });
 
   });
@@ -405,7 +419,7 @@ describe(`TsAutocompleteComponent`, () => {
         actual: 1,
       },
     };
-    const formatter = (v) => v.id;
+    const formatter = (v: any) => v.id;
 
     beforeEach(() => {
       formControl = new FormControl();
@@ -413,13 +427,13 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should set an error on the form control`, () => {
-      component.setDuplicateError(formControl, opt1, formatter);
+      component['setDuplicateError'](formControl, opt1, formatter);
       expect(formControl.errors).toEqual(error);
     });
 
 
     test(`should set actual to the full option if a formatter was not passed in`, () => {
-      component.setDuplicateError(formControl, opt1);
+      component['setDuplicateError'](formControl, opt1);
       error.notUnique.actual = opt1;
       expect(formControl.errors).toEqual(error);
     });

@@ -3,9 +3,9 @@ import { TsDatePipe } from './date.pipe';
 
 describe(`TsDatePipe`, () => {
   let pipeClass: TsDatePipe;
-  let pipe;
-  let date;
-  let originalGetTimezoneOffset;
+  let pipe: Function;
+  let date: string;
+  let originalGetTimezoneOffset: () => number;
 
   beforeEach(() => {
     pipeClass = new TsDatePipe();

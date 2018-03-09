@@ -329,9 +329,8 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Select an option
    *
    * @param event - The selection event from the underlying MatAutocomplete
-   * @param input - The input that triggered the event
    */
-  public selectOption(event: MatAutocompleteSelectedEvent, input?: ElementRef): void {
+  public selectOption(event: MatAutocompleteSelectedEvent): void {
     // The selected option
     const selection: OptionType = event.option.value;
 
@@ -361,7 +360,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       this.selectionsControl.setValue(this.selectedOptions);
     }
 
-    // Let consumers know about the changes
+    // Notify consumers about changes
     this.optionSelected.emit(event.option.value);
     this.selection.emit(this.selectedOptions);
   }
@@ -390,7 +389,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       this.selectionsControl.setValue(this.selectedOptions);
     }
 
-    // Let consumers know about the changes
+    // Notify consumers about changes
     this.optionRemoved.emit(option);
     this.selection.emit(this.selectedOptions);
   }
