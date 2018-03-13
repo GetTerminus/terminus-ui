@@ -393,9 +393,11 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.6.2.tgz#fbfde02d77cbf7015ee2855f60f46e93b6d5763f"
+"@terminus/ngx-tools@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.0.0.tgz#d69348837c4df225ffbe69eb7d28289d1df5777f"
+  dependencies:
+    tslib "^1.7.1"
 
 "@types/jasmine@2.8.6":
   version "2.8.6"
@@ -8277,7 +8279,7 @@ node-sass-import@1.1.1:
     resolve "^1.1.7"
     yargs "^3.15.0"
 
-node-sass@4.7.2, node-sass@^4.2.0, node-sass@^4.7.2:
+node-sass@^4.2.0, node-sass@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.7.2.tgz#9366778ba1469eb01438a9e8592f4262bcb6794e"
   dependencies:

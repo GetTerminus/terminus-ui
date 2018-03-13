@@ -211,9 +211,11 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
-"@terminus/ngx-tools@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-1.6.2.tgz#fbfde02d77cbf7015ee2855f60f46e93b6d5763f"
+"@terminus/ngx-tools@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.0.0.tgz#d69348837c4df225ffbe69eb7d28289d1df5777f"
+  dependencies:
+    tslib "^1.7.1"
 
 "@terminus/ui@6.3.1":
   version "6.3.1"

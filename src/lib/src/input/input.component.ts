@@ -11,7 +11,8 @@ import {
 import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { controlHasRequiredField } from '@terminus/ngx-tools';
+import { hasRequiredControl } from '@terminus/ngx-tools';
+
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/input.types';
@@ -90,7 +91,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    * @return The required attribute value
    */
   get requiredAttribute(): string | null {
-    const requiredFormControl = (this.formControl && controlHasRequiredField(this.formControl));
+    const requiredFormControl = (this.formControl && hasRequiredControl(this.formControl));
     return (requiredFormControl || this.isRequired) ? 'required' : null;
   }
 
