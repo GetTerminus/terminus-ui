@@ -25,4 +25,4 @@ project may take action, removing issues, comments, and PRs or blocking accounts
 appropriate.
 
 If you are subject to or witness unacceptable behavior, or have any other concerns, please email us
-at [benjamin.charity@terminus.com](mailto:benjamin.charity@terminus.com).
+at [dev@terminus.com](mailto:dev@terminus.com).
