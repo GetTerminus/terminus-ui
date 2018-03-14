@@ -15,7 +15,7 @@ The library of UI components used for Terminus applications.
 [![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-4-blue.svg)](#services)
-[![style helpers](https://img.shields.io/badge/StylesHelpers-8-blue.svg)](#style-helpers)
+[![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 
 
 ---
