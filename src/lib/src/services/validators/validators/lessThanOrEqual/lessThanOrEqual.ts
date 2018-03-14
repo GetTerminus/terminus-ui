@@ -9,10 +9,10 @@ import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 /**
  * Return a validator function to verify the number is below a specific number
  *
- * @param max - The maximum value
+ * @param base - The maximum value
  * @return The validator function
  */
-export function lessThanValidator(max: number = 0): ValidatorFn {
+export function lessThanOrEqualValidator(base: number = 0): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control || isNaN(control.value)) {
@@ -20,16 +20,16 @@ export function lessThanValidator(max: number = 0): ValidatorFn {
     }
 
     // Ensure a number
-    max = coerceNumberProperty(max);
+    base = coerceNumberProperty(base);
 
     const invalidResponse: ValidationErrors = {
-      lessThan: {
+      lessThanOrEqual: {
         valid: false,
-        lessThan: max,
+        lessThanOrEqual: base,
         actual: control.value,
       },
     };
-    const valueIsUnderMax = control.value < max;
+    const valueIsUnderMax = control.value <= base;
 
     return valueIsUnderMax ? null : invalidResponse;
   };

@@ -113,7 +113,7 @@ test@test.com
         <h3>Greater Than</h3>
 
         <ts-input
-          [formControl]="myForm.get('greaterThanNumber')"
+          [formControl]="myForm.get('greaterThan')"
           label="Number"
           type="number"
           hint="Must be greater than 10"
@@ -144,7 +144,7 @@ test@test.com
         <h3>Less Than</h3>
 
         <ts-input
-          [formControl]="myForm.get('lessThanNumber')"
+          [formControl]="myForm.get('lessThan')"
           label="Number"
           type="number"
           hint="Must be less than 10"
@@ -153,6 +153,16 @@ test@test.com
     </div>
 
     <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3>Less Than Or Equal</h3>
+
+        <ts-input
+          [formControl]="myForm.get('lessThanOrEqual')"
+          label="Number"
+          type="number"
+          hint="Must be less than or equal to 10"
+        ></ts-input>
+      </ts-card>
     </div>
 
   </div>

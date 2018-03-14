@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { creditCardValidator } from './validators/creditCard/creditCard';
 import { emailValidator } from './validators/email/email';
 import { equalToControlValidator } from './validators/equalToControl/equalToControl';
-import { greaterThanValidator } from './validators/greaterThan/greaterThan';
 import { greaterThanOrEqualValidator } from './validators/greaterThanOrEqual/greaterThanOrEqual';
+import { greaterThanValidator } from './validators/greaterThan/greaterThan';
+import { lessThanOrEqualValidator } from './validators/lessThanOrEqual/lessThanOrEqual';
 import { lessThanValidator } from './validators/lessThan/lessThan';
 import { maxDateValidator } from './validators/maxDate/maxDate';
 import { minDateValidator } from './validators/minDate/minDate';
@@ -23,6 +24,7 @@ export class TsValidatorsService {
   greaterThan = greaterThanValidator;
   greaterThanOrEqual = greaterThanOrEqualValidator;
   lessThan = lessThanValidator;
+  lessThanOrEqual = lessThanOrEqualValidator;
   maxDate = maxDateValidator;
   minDate = minDateValidator;
   password = passwordValidator;

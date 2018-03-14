@@ -41,6 +41,7 @@ export class TsValidationMessageService {
       greaterThan: `${validatorValue.actual} is not greater than ${validatorValue.greaterThan}`,
       greaterThanOrEqual: `${validatorValue.actual} is not greater than or equal to ${validatorValue.greaterThanOrEqual}`,
       lessThan: `${validatorValue.actual} is not less than ${validatorValue.lessThan}`,
+      lessThanOrEqual: `${validatorValue.actual} is not less than or equal to ${validatorValue.lessThanOrEqual}`,
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,
       url: `'${validatorValue.actual}' is not a valid URL.`,
