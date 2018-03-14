@@ -3,6 +3,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -11,12 +12,15 @@ import {
  * @param lessThan - The maximum value
  * @return The validator function
  */
-export function lessThanValidator(max: number): ValidatorFn {
+export function lessThanValidator(max: number = 0): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
-    if (!control || isNaN(control.value) || !max) {
+    if (!control || isNaN(control.value)) {
       return null;
     }
+
+    // Ensure a number
+    max = coerceNumberProperty(max);
 
     const invalidResponse: ValidationErrors = {
       lessThan: {
@@ -25,7 +29,7 @@ export function lessThanValidator(max: number): ValidatorFn {
         actual: control.value,
       },
     };
-    const valueIsUnderMax = control.value <= max;
+    const valueIsUnderMax = control.value < max;
 
     return valueIsUnderMax ? null : invalidResponse;
   };
