@@ -48,13 +48,25 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.maxDate(this.maxDate),
       ],
     ],
-    greaterThanNumber: [
+    greaterThanOrEqual: [
+      null,
+      [
+        this.validatorsService.greaterThanOrEqual(10.5),
+      ],
+    ],
+    greaterThan: [
       null,
       [
         this.validatorsService.greaterThan(10),
       ],
     ],
-    lessThanNumber: [
+    lessThanOrEqual: [
+      null,
+      [
+        this.validatorsService.lessThanOrEqual(10),
+      ],
+    ],
+    lessThan: [
       null,
       [
         this.validatorsService.lessThan(10),

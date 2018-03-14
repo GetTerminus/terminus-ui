@@ -7,24 +7,17 @@ describe(`lessThanValidator`, () => {
 
   beforeEach(() => {
     this.validatorFn = lessThanValidator(10);
-
-    this.nullControl = new FormControl(null);
   });
 
 
-  describe(`if the control doesn't exist`, () => {
+  describe(`if the control is invalid`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
-    });
+      const values = [undefined, {}];
 
-  });
-
-
-  describe(`if the control has no value`, () => {
-
-    test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      for (const val of values) {
+        expect(this.validatorFn(val)).toEqual(null);
+      }
     });
 
   });
@@ -33,17 +26,11 @@ describe(`lessThanValidator`, () => {
   describe(`if the number is valid`, () => {
 
     test(`should return null`, () => {
-      const control0 = new FormControl(9);
-      expect(this.validatorFn(control0)).toEqual(null);
+      const values = [9, 0, -1];
 
-      const control1 = new FormControl(0);
-      expect(this.validatorFn(control1)).toEqual(null);
-
-      const control2 = new FormControl(-1);
-      expect(this.validatorFn(control2)).toEqual(null);
-
-      const control3 = new FormControl(10);
-      expect(this.validatorFn(control3)).toEqual(null);
+      for (const val of values) {
+        expect(this.validatorFn(new FormControl(val))).toEqual(null);
+      }
     });
 
   });
@@ -52,26 +39,16 @@ describe(`lessThanValidator`, () => {
   describe(`if the number is NOT valid`, () => {
 
     test(`should return the invalid response`, () => {
-      const control0 = new FormControl(11);
-      expect(this.validatorFn(control0).lessThan.valid).toEqual(false);
+      const values = [10, 11, 98.6, 9999];
 
-      const control1 = new FormControl(9999);
-      expect(this.validatorFn(control1).lessThan.valid).toEqual(false);
-    });
+      for (const val of values) {
+        const result = this.validatorFn(new FormControl(val));
 
-  });
-
-
-  describe(`the invalid response object`, () => {
-
-    test(`should return the control value`, () => {
-      const control0 = new FormControl(15);
-      const result = this.validatorFn(control0);
-
-      expect(result.lessThan.actual).toEqual(15);
+        expect(result.lessThan.valid).toEqual(false);
+        expect(result.lessThan.actual).toEqual(val);
+      }
     });
 
   });
 
 });
-
