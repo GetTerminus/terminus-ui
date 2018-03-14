@@ -1028,7 +1028,8 @@
   [formControl]=&quot;yourHelperToGetFormControl('email')&quot;
   blankChoice=&quot;Please choose one.&quot;
   label=&quot;Please select one: &quot;
-  items=&quot;[{},{},{}]&quot;
+  items=&quot;[{[key]: value},{},{}]&quot;
+  valueKey=&quot;keyInItems&quot;
   multipleAllowed=&quot;true&quot;
   theme=&quot;primary&quot;
   (open)=&quot;myMethod($event)&quot;
@@ -1196,7 +1197,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/src/select/select.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/src/select/select.component.ts:73</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1219,7 +1220,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/src/select/select.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/select/select.component.ts:85</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1245,7 +1246,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/src/select/select.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/select/select.component.ts:91</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1271,7 +1272,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/src/select/select.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/src/select/select.component.ts:79</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1297,7 +1298,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/select/select.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/select/select.component.ts:97</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1323,7 +1324,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/src/select/select.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/select/select.component.ts:103</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1337,6 +1338,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                         </td>
                         <td class="col-md-10">
                             <div><p>Define the key that represents the value item from the object</p>
+<p>If not provided, currently it defaults to key &quot;name&quot;</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -1346,7 +1348,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/lib/src/select/select.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/src/select/select.component.ts:111</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1371,7 +1373,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/lib/src/select/select.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/lib/src/select/select.component.ts:117</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1392,7 +1394,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/lib/src/select/select.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/lib/src/select/select.component.ts:123</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1430,7 +1432,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/src/select/select.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/lib/src/select/select.component.ts:144</a></div>
                                 </td>
                             </tr>
     
@@ -1510,7 +1512,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/src/select/select.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/src/select/select.component.ts:134</a></div>
                                 </td>
                             </tr>
     
@@ -1575,7 +1577,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    <b>Returns : </b>    <code>string | literal type</code>
     
                                 </div>
                                     <div class="io-description">
@@ -1636,7 +1638,8 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              [formControl]&#x3D;&quot;yourHelperToGetFormControl(&#x27;email&#x27;)&quot;
  *              blankChoice&#x3D;&quot;Please choose one.&quot;
  *              label&#x3D;&quot;Please select one: &quot;
- *              items&#x3D;&quot;[{},{},{}]&quot;
+ *              items&#x3D;&quot;[{[key]: value},{},{}]&quot;
+ *              valueKey&#x3D;&quot;keyInItems&quot;
  *              multipleAllowed&#x3D;&quot;true&quot;
  *              theme&#x3D;&quot;primary&quot;
  *              (open)&#x3D;&quot;myMethod($event)&quot;
@@ -1697,6 +1700,8 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Define the key that represents the value item from the object
+   *
+   * If not provided, currently it defaults to key &quot;name&quot;
    */
   @Input()
   public valueKey: string;
@@ -1719,9 +1724,10 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    *
    * @param item - The object representing the item
    * @param valueKey - The string representing the value key
-   * @return The value of the valueKey or the item itself
+   * @return The value of the valueKey or the item itself,
+   * which could be string or an object of key as string and value as string.
    */
-  public getValueKey(item: object, valueKey?: string): string {
+  public getValueKey(item: object, valueKey?: string): string | { [key: string]: string } {
     return valueKey ? item[valueKey] : item;
   }
 

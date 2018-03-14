@@ -1020,6 +1020,7 @@
                     <pre class="line-numbers"><code class="language-html">&lt;ts-tooltip
   [tooltipValue]=&quot;myTooltip&quot;
   [tooltipPosition]=&quot;myPosition&quot;
+  [hasUnderline]=&quot;myUnderlineOption&quot;
 &gt;My Tooltip!&lt;/ts-tooltip&gt;
 
 &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;</code></pre>
@@ -1089,6 +1090,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#hasUnderline">hasUnderline</a>
+                            </li>
+                            <li>
                                 <a href="#tooltipPosition">tooltipPosition</a>
                             </li>
                             <li>
@@ -1104,6 +1108,32 @@
 
     <section>
         <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="hasUnderline"></a>
+                            <code>hasUnderline</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define whether there is a dotted underline shown on the text</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:54</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1125,7 +1155,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:42</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1148,7 +1178,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/src/tooltip/tooltip.component.ts:48</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1185,6 +1215,7 @@ import { TsTooltipPositionTypes } from &#x27;./../utilities/types&#x27;;
  * &lt;ts-tooltip
  *              [tooltipValue]&#x3D;&quot;myTooltip&quot;
  *              [tooltipPosition]&#x3D;&quot;myPosition&quot;
+ *              [hasUnderline]&#x3D;&quot;myUnderlineOption&quot;
  * &gt;My Tooltip!&lt;/ts-tooltip&gt;
  *
  * &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;
@@ -1211,6 +1242,12 @@ export class TsTooltipComponent {
    */
   @Input()
   public tooltipValue: string;
+
+  /**
+   * Define whether there is a dotted underline shown on the text
+   */
+  @Input()
+  public hasUnderline: boolean &#x3D; false;
 }
 </code></pre>
     </div>
@@ -1220,6 +1257,7 @@ export class TsTooltipComponent {
   class&#x3D;&quot;c-tooltip qa-tooltip&quot;
   [matTooltip]&#x3D;&quot;tooltipValue&quot;
   [matTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
+  [ngClass]&#x3D;&quot;{&#x27;c-tooltip--underline&#x27;: hasUnderline}&quot;
 &gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/span&gt;
@@ -1254,7 +1292,7 @@ export class TsTooltipComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span  class="c-tooltip qa-tooltip"  [matTooltip]="tooltipValue"  [matTooltipPosition]="tooltipPosition">  <ng-content></ng-content></span></div>'
+        var COMPONENT_TEMPLATE = '<div><span  class="c-tooltip qa-tooltip"  [matTooltip]="tooltipValue"  [matTooltipPosition]="tooltipPosition"  [ngClass]="{\'c-tooltip--underline\': hasUnderline}">  <ng-content></ng-content></span></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsTooltipComponent'};

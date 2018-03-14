@@ -1685,7 +1685,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="375" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:375</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="374" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:374</a></div>
                                 </td>
                             </tr>
     
@@ -1765,7 +1765,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:406</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:405</a></div>
                                 </td>
                             </tr>
     
@@ -1846,7 +1846,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="416" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:416</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="415" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:415</a></div>
                                 </td>
                             </tr>
     
@@ -2011,7 +2011,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:443</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:442</a></div>
                                 </td>
                             </tr>
     
@@ -2045,14 +2045,14 @@
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>selectOption(event: MatAutocompleteSelectedEvent, input?: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                            <code>selectOption(event: MatAutocompleteSelectedEvent)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:334</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="333" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:333</a></div>
                                 </td>
                             </tr>
     
@@ -2088,25 +2088,6 @@
                                                             <td>
                                                                     <code><ul>
     <li>The selection event from the underlying MatAutocomplete</li>
-    </ul>
-    </code>
-                                                            </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>input</td>
-                                                        
-                                                            <td>
-                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
-                                                            </td>
-                                                        
-                                                        <td>
-                                                                yes
-                                                        </td>
-                                                        
-    
-                                                            <td>
-                                                                    <code><ul>
-    <li>The input that triggered the event</li>
     </ul>
     </code>
                                                             </td>
@@ -2151,7 +2132,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="465" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:465</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/lib/src/autocomplete/autocomplete.component.ts:464</a></div>
                                 </td>
                             </tr>
     
@@ -3540,9 +3521,8 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
    * Select an option
    *
    * @param event - The selection event from the underlying MatAutocomplete
-   * @param input - The input that triggered the event
    */
-  public selectOption(event: MatAutocompleteSelectedEvent, input?: ElementRef): void {
+  public selectOption(event: MatAutocompleteSelectedEvent): void {
     // The selected option
     const selection: OptionType &#x3D; event.option.value;
 
@@ -3572,7 +3552,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
       this.selectionsControl.setValue(this.selectedOptions);
     }
 
-    // Let consumers know about the changes
+    // Notify consumers about changes
     this.optionSelected.emit(event.option.value);
     this.selection.emit(this.selectedOptions);
   }
@@ -3601,7 +3581,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
       this.selectionsControl.setValue(this.selectedOptions);
     }
 
-    // Let consumers know about the changes
+    // Notify consumers about changes
     this.optionRemoved.emit(option);
     this.selection.emit(this.selectedOptions);
   }
