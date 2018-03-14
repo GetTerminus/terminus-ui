@@ -39,6 +39,7 @@ export class TsValidationMessageService {
       maxDate: '',
       minDate: '',
       greaterThan: `${validatorValue.actual} is not greater than ${validatorValue.greaterThan}`,
+      greaterThanOrEqual: `${validatorValue.actual} is not greater than or equal to ${validatorValue.greaterThanOrEqual}`,
       lessThan: `${validatorValue.actual} is not less than ${validatorValue.lessThan}`,
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,

@@ -4,6 +4,7 @@ import { creditCardValidator } from './validators/creditCard/creditCard';
 import { emailValidator } from './validators/email/email';
 import { equalToControlValidator } from './validators/equalToControl/equalToControl';
 import { greaterThanValidator } from './validators/greaterThan/greaterThan';
+import { greaterThanOrEqualValidator } from './validators/greaterThanOrEqual/greaterThanOrEqual';
 import { lessThanValidator } from './validators/lessThan/lessThan';
 import { maxDateValidator } from './validators/maxDate/maxDate';
 import { minDateValidator } from './validators/minDate/minDate';
@@ -20,6 +21,7 @@ export class TsValidatorsService {
   email = emailValidator;
   equalToControl = equalToControlValidator;
   greaterThan = greaterThanValidator;
+  greaterThanOrEqual = greaterThanOrEqualValidator;
   lessThan = lessThanValidator;
   maxDate = maxDateValidator;
   minDate = minDateValidator;
