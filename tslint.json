@@ -128,9 +128,7 @@
       "avoid-escape"
     ],
     "radix": true,
-    "semicolon": [
-      "always"
-    ],
+    "semicolon": [true, "always"],
     "space-before-function-paren": [
       true,
       "never"
