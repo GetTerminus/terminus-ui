@@ -5,10 +5,10 @@ export interface TsDateRange {
   /**
    * The start date of the range
    */
-  start: Date | null,
+  start: Date | null;
 
   /**
    * The end date of the range
    */
-  end: Date | null,
+  end: Date | null;
 }

@@ -34,7 +34,7 @@ export interface TsNavigationLinkItem extends NavigationItemBase {
    * The destination for items with a 'navigate' action. Single strings are used for external
    * locations while an array of strings are used for routerLinks
    */
-  destination: string | string[],
+  destination: string | string[];
 }
 
 
@@ -47,7 +47,7 @@ export interface TsNavigationActionItem extends NavigationItemBase {
    */
   action: {
     type: string;
-  }
+  };
 }
 
 

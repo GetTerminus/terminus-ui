@@ -130,6 +130,9 @@
                                     <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
@@ -305,6 +308,9 @@
                                     <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                 </li>
                                 <li class="link">
@@ -386,6 +392,12 @@
                         <ul class="links collapse "
                                 id="xs-interfaces-links"
                             >
+                                <li class="link">
+                                    <a href="../interfaces/Mask.html" >Mask</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                </li>
                                 <li class="link">
                                     <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                 </li>
@@ -602,6 +614,9 @@
                                            <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
@@ -777,6 +792,9 @@
                                            <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                        </li>
                                        <li class="link">
@@ -858,6 +876,12 @@
                                <ul class="links collapse "
                                        id="interfaces-links"
                    >
+                                       <li class="link">
+                                           <a href="../interfaces/Mask.html" >Mask</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                        </li>
@@ -2548,7 +2572,7 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-datepicker qa-datepicker"  [color]="theme">  <input    class="qa-datepicker-input"    matInput    [matDatepicker]="picker"    placeholder="{{ inputPlaceholder }}"    [min]="_minDate"    [max]="_maxDate"    [matDatepickerFilter]="dateFilter"    [disabled]="isDisabled"    tabIndex="{{ tabIndex }}"    [(ngModel)]="value"    (blur)="onBlur()"    (dateChange)="selected.emit($event)"  >  <mat-datepicker-toggle    class="qa-datepicker-toggle"    matSuffix    [for]="picker"  ></mat-datepicker-toggle>  <mat-hint    class="qa-datepicker-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-datepicker-validation-messages"    *ngIf="formControl"    [control]="formControl"    [validateOnChange]="validateOnChange"  ></ts-validation-messages></mat-form-field><mat-datepicker  class="c-datepicker__calendar qa-datepicker-calendar"  #picker  [startView]="startingView"  [startAt]="openTo"></mat-datepicker></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsDatepickerComponent'};
 </script>
 <script src="../js/tree.js"></script>

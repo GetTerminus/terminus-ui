@@ -55,7 +55,7 @@ export class TsAutofocusDirective implements AfterViewInit {
       } else {
         // istanbul ignore else
         if (isDevMode()) {
-          throw Error(`TsAutofocusDirective must be used on an element that has a .focus() method.`)
+          throw Error(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
         }
       }
     }

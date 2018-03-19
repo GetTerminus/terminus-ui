@@ -130,6 +130,9 @@
                                     <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
@@ -305,6 +308,9 @@
                                     <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                 </li>
                                 <li class="link">
@@ -386,6 +392,12 @@
                         <ul class="links collapse "
                                 id="xs-interfaces-links"
                             >
+                                <li class="link">
+                                    <a href="../interfaces/Mask.html" >Mask</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                </li>
                                 <li class="link">
                                     <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                 </li>
@@ -602,6 +614,9 @@
                                            <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
@@ -777,6 +792,9 @@
                                            <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                        </li>
                                        <li class="link">
@@ -858,6 +876,12 @@
                                <ul class="links collapse "
                                        id="interfaces-links"
                    >
+                                       <li class="link">
+                                           <a href="../interfaces/Mask.html" >Mask</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                        </li>
@@ -3869,7 +3893,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public templateContext &#x3D; {
     $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
-  }
+  };
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -4179,7 +4203,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     if (!foundPage || !foundPage.name) {
       foundPage &#x3D; {
         name: &#x27;0&#x27;,
-      }
+      };
     }
 
     // &#x27;1 - 10 of 243&#x27;
@@ -4398,7 +4422,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="c-paginator qa-paginator">  <div class="c-paginator__buttons">    <ts-select      class="qa-paginator-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      name="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (selectionChange)="recordsPerPageUpdated($event)"      ngDefaultControl    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : firstPageTooltip">      <ts-button        class="qa-paginator-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(0, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : previousPageTooltip">      <ts-button        class="qa-paginator-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-paginator-current-page-menu"      [theme]="theme"      [menuItemsTemplate]="menuItems"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : nextPageTooltip">      <ts-button        class="qa-paginator-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : lastPageTooltip">      <ts-button        class="qa-paginator-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-paginator__message qa-paginator-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    <ng-container      [ngTemplateOutlet]="paginatorMessageTemplate || defaultPaginatorMessageTemplate"      [ngTemplateOutletContext]="templateContext"    ></ng-container>  </div></div><ng-template #menuItems>  <ts-button    *ngFor="let page of pagesArray; trackBy: trackPagesArray"    (clickEvent)="currentPageChanged(page)"  >    {{ page.name }}  </ts-button></ng-template><ng-template #defaultPaginatorMessageTemplate let-message>  {{ message }}</ng-template></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginatorComponent'};
 </script>
 <script src="../js/tree.js"></script>

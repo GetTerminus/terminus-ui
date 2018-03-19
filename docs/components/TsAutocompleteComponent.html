@@ -130,6 +130,9 @@
                                     <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                 </li>
                                 <li class="link">
@@ -305,6 +308,9 @@
                                     <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                 </li>
                                 <li class="link">
@@ -386,6 +392,12 @@
                         <ul class="links collapse "
                                 id="xs-interfaces-links"
                             >
+                                <li class="link">
+                                    <a href="../interfaces/Mask.html" >Mask</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                </li>
                                 <li class="link">
                                     <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                 </li>
@@ -602,6 +614,9 @@
                                            <a href="../modules/TsLoginFormModule.html" >TsLoginFormModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/TsMaskModule.html" >TsMaskModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TsMenuModule.html" >TsMenuModule</a>
                                        </li>
                                        <li class="link">
@@ -777,6 +792,9 @@
                                            <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                        </li>
                                        <li class="link">
@@ -858,6 +876,12 @@
                                <ul class="links collapse "
                                        id="interfaces-links"
                    >
+                                       <li class="link">
+                                           <a href="../interfaces/Mask.html" >Mask</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/MaskCollection.html" >MaskCollection</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../interfaces/NavigationItemBase.html" >NavigationItemBase</a>
                                        </li>
@@ -3369,7 +3393,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
     } else {
       // istanbul ignore else
       if (isDevMode()) {
-        throw Error(&#x60;TsAutocompleteComponent: &#x27;displayWith&#x27; must be passed a function.&#x60;)
+        throw Error(&#x60;TsAutocompleteComponent: &#x27;displayWith&#x27; must be passed a function.&#x60;);
       }
     }
   }
@@ -3404,7 +3428,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
     } else {
       // istanbul ignore else
       if (isDevMode()) {
-        throw Error(&#x60;TsAutocompleteComponent: &#x27;multiple&#x27; must be passed a &#x27;TsAutocompleteComparatorFn&#x27; function.&#x60;)
+        throw Error(&#x60;TsAutocompleteComponent: &#x27;multiple&#x27; must be passed a &#x27;TsAutocompleteComparatorFn&#x27; function.&#x60;);
       }
     }
   }
@@ -3459,7 +3483,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
         this.selectionsControl.setValue(this.selectedOptions);
       }
     }
-  };
+  }
 
   /**
    * Emit the selected chip
@@ -3731,7 +3755,7 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
     #autocomplete&#x3D;&quot;matAutocomplete&quot;
     autoActiveFirstOption&#x3D;&quot;true&quot;
     [displayWith]&#x3D;&quot;displayWith&quot;
-    (optionSelected)&#x3D;&quot;selectOption($event, input)&quot;
+    (optionSelected)&#x3D;&quot;selectOption($event)&quot;
   &gt;
     &lt;ng-container *ngIf&#x3D;&quot;!multiple&quot;&gt;
       &lt;mat-option
@@ -3809,9 +3833,9 @@ export class TsAutocompleteComponent&lt;OptionType &#x3D; {[name: string]: any}&
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-autocomplete c-input qa-autocomplete"  [color]="theme">  <ng-container *ngIf="multiple">    <mat-chip-list #chipList>      <mat-chip        *ngFor="let option of selectedOptions"        class="qa-autocomplete-chip"        [selectable]="selectableChips"        removable="true"        (remove)="deselectOption(option)"      >        {{ displayOption(option) }}        <ts-icon matChipRemove>          cancel        </ts-icon>      </mat-chip>      <input        class="c-autocomplete__input qa-autocomplete-input"        matInput        placeholder="{{ label }}"        [attr.name]="name"        [matChipInputFor]="chipList"        [matAutocomplete]="autocomplete"        placeholder="{{ label }}"        [(ngModel)]="searchQuery"        (ngModelChange)="querySubject.next(searchQuery)"        (blur)="handleBlur($event)"        #autocompleteTrigger="matAutocompleteTrigger"        #input      />      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>    </mat-chip-list>  </ng-container>  <ng-container *ngIf="!multiple">    <input      class="c-autocomplete__input qa-autocomplete-input"      matInput      placeholder="{{ label }}"      [attr.name]="name"      [matAutocomplete]="autocomplete"      placeholder="{{ label }}"      [(ngModel)]="searchQuery"      (ngModelChange)="querySubject.next(searchQuery)"      (blur)="handleBlur($event)"      #autocompleteTrigger="matAutocompleteTrigger"      #input    />    <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>  </ng-container>  <mat-autocomplete    class="c-autocomplete__options c-autocomplete__options--{{theme}} qa-autocomplete-options"    #autocomplete="matAutocomplete"    autoActiveFirstOption="true"    [displayWith]="displayWith"    (optionSelected)="selectOption($event, input)"  >    <ng-container *ngIf="!multiple">      <mat-option        class="qa-autocomplete-option"        *ngFor="let option of options"        [value]="option"      >        {{ displayOption(option) }}      </mat-option>    </ng-container>    <ng-container *ngIf="multiple">      <mat-option        class="qa-autocomplete-option"        *ngFor="let option of options; trackBy: _comparatorFn"        [value]="option"      >        {{ displayOption(option) }}      </mat-option>    </ng-container>  </mat-autocomplete>  <mat-hint    class="qa-autocomplete-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-autocomplete-validation-messages"    *ngIf="selectionsControl && selectionsControl.setValue"    [validateOnChange]="selectedOptions.length > 0"    [control]="selectionsControl"  ></ts-validation-messages></mat-form-field><ng-template #spinnerTemplate>  <mat-progress-spinner    *ngIf="showProgress"    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-c-autocomplete-spinner"    [ngClass]="{\'c-autocomplete__spinner--active\': showProgress}"    diameter="21"    mode="indeterminate"  ></mat-progress-spinner></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-autocomplete c-input qa-autocomplete"  [color]="theme">  <ng-container *ngIf="multiple">    <mat-chip-list #chipList>      <mat-chip        *ngFor="let option of selectedOptions"        class="qa-autocomplete-chip"        [selectable]="selectableChips"        removable="true"        (remove)="deselectOption(option)"      >        {{ displayOption(option) }}        <ts-icon matChipRemove>          cancel        </ts-icon>      </mat-chip>      <input        class="c-autocomplete__input qa-autocomplete-input"        matInput        placeholder="{{ label }}"        [attr.name]="name"        [matChipInputFor]="chipList"        [matAutocomplete]="autocomplete"        placeholder="{{ label }}"        [(ngModel)]="searchQuery"        (ngModelChange)="querySubject.next(searchQuery)"        (blur)="handleBlur($event)"        #autocompleteTrigger="matAutocompleteTrigger"        #input      />      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>    </mat-chip-list>  </ng-container>  <ng-container *ngIf="!multiple">    <input      class="c-autocomplete__input qa-autocomplete-input"      matInput      placeholder="{{ label }}"      [attr.name]="name"      [matAutocomplete]="autocomplete"      placeholder="{{ label }}"      [(ngModel)]="searchQuery"      (ngModelChange)="querySubject.next(searchQuery)"      (blur)="handleBlur($event)"      #autocompleteTrigger="matAutocompleteTrigger"      #input    />    <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>  </ng-container>  <mat-autocomplete    class="c-autocomplete__options c-autocomplete__options--{{theme}} qa-autocomplete-options"    #autocomplete="matAutocomplete"    autoActiveFirstOption="true"    [displayWith]="displayWith"    (optionSelected)="selectOption($event)"  >    <ng-container *ngIf="!multiple">      <mat-option        class="qa-autocomplete-option"        *ngFor="let option of options"        [value]="option"      >        {{ displayOption(option) }}      </mat-option>    </ng-container>    <ng-container *ngIf="multiple">      <mat-option        class="qa-autocomplete-option"        *ngFor="let option of options; trackBy: _comparatorFn"        [value]="option"      >        {{ displayOption(option) }}      </mat-option>    </ng-container>  </mat-autocomplete>  <mat-hint    class="qa-autocomplete-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-autocomplete-validation-messages"    *ngIf="selectionsControl && selectionsControl.setValue"    [validateOnChange]="selectedOptions.length > 0"    [control]="selectionsControl"  ></ts-validation-messages></mat-form-field><ng-template #spinnerTemplate>  <mat-progress-spinner    *ngIf="showProgress"    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-c-autocomplete-spinner"    [ngClass]="{\'c-autocomplete__spinner--active\': showProgress}"    diameter="21"    mode="indeterminate"  ></mat-progress-spinner></ng-template></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
+    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsAutocompleteComponent'};
 </script>
 <script src="../js/tree.js"></script>

@@ -40,7 +40,7 @@ export class TsVerticalSpacingDirective {
   public set tsVerticalSpacing(value: TsVerticalSpacingTypes) {
     // Set a default value if nothing was passed in
     if (!value) {
-      value = 'default--0'
+      value = 'default--0';
     }
 
     // Split the string to get the type and size

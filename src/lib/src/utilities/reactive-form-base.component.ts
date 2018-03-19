@@ -51,7 +51,7 @@ export class TsReactiveFormBaseComponent {
    */
   public get value(): any {
     return this.innerValue;
-  };
+  }
 
   /**
    * Set the accessor and call the onchange callback

@@ -1,4 +1,4 @@
-import { Operator } from 'rxjs/Operator'
+import { Operator } from 'rxjs/Operator';
 import { Observable } from 'rxjs/Observable';
 
 /**
@@ -16,7 +16,7 @@ declare module 'rxjs/Subject' {
     /**
      * The lift method signature
      */
-    lift<R>(operator: Operator<T, R>): Observable<R>
+    lift<R>(operator: Operator<T, R>): Observable<R>;
   }
 
 }

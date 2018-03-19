@@ -8,7 +8,7 @@ import { passwordRegex } from '@terminus/ngx-tools/regex';
 
 
 /**
- * Return a validator function to verify that an email address is valid
+ * Return a validator function to verify a password is valid
  *
  * @return The validator function
  */

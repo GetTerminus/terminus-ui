@@ -1,0 +1,94 @@
+<form>
+  <ts-card tsVerticalSpacing *ngIf="true">
+    <h3 tsVerticalSpacing tsCardTitle>
+      Simple
+    </h3>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Phone
+      </h5>
+
+      <input type="text" tsMask="phone" [formControl]="phoneControl">
+
+      <div>
+        Value: {{ phoneControl?.value ? phoneControl.value : 'no value' }}
+      </div>
+    </div>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Number
+      </h5>
+
+      <input type="text" tsMask="number" [formControl]="numberControl">
+
+      <div>
+        Value: {{ numberControl?.value ? numberControl.value : 'no value' }}
+      </div>
+    </div>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Number no Decimal
+      </h5>
+
+      <input type="text" tsMask="number" [formControl]="numberControlNoDecimal" [allowDecimal]="false">
+
+      <div>
+        Value: {{ numberControlNoDecimal?.value ? numberControlNoDecimal.value : 'no value' }}
+      </div>
+    </div>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Currency
+      </h5>
+
+      <input type="text" tsMask="currency" [formControl]="currencyControl">
+
+      <div>
+        Value: {{ currencyControl?.value ? currencyControl.value : 'no value' }}
+      </div>
+    </div>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Postal
+      </h5>
+
+      <input type="text" tsMask="postal" [formControl]="postalControl">
+
+      <div>
+        Value: {{ postalControl?.value ? postalControl.value : 'no value' }}
+      </div>
+    </div>
+
+    <div tsVerticalSpacing>
+      <h5>
+        Percentage
+      </h5>
+
+      <input type="text" tsMask="percentage" [formControl]="percentageControl">
+
+      <div>
+        Value: {{ percentageControl?.value ? percentageControl.value : 'no value' }}
+      </div>
+    </div>
+
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>
+      Non-Santitized value
+    </h3>
+
+    <input type="text" tsMask="phone" [sanitizeValue]="false" [formControl]="nonSanitizedControl" #foo="tsMask">
+
+    <div>
+      Value: {{ nonSanitizedControl?.value ? nonSanitizedControl.value : 'no value' }}
+    </div>
+  </ts-card>
+</form>
+
