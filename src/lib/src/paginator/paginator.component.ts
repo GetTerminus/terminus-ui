@@ -127,7 +127,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public templateContext = {
     $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
-  }
+  };
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -437,7 +437,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     if (!foundPage || !foundPage.name) {
       foundPage = {
         name: '0',
-      }
+      };
     }
 
     // '1 - 10 of 243'

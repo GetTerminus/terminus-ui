@@ -50,7 +50,7 @@ export class TsCardTitleDirective implements OnChanges {
   checkParent() {
     // istanbul ignore else
     if (!(this._parent instanceof TsCardComponent) && isDevMode()) {
-      throw Error(`The 'tsCardTitle' directive must be inside a <ts-card> component.`)
+      throw Error(`The 'tsCardTitle' directive must be inside a <ts-card> component.`);
     }
   }
 }

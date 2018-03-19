@@ -227,7 +227,7 @@ export class TsSearchComponent implements OnInit {
    * Fire events as needed after keyup events
    */
   keyup(): void {
-    this.changed.emit(this.currentQuery)
+    this.changed.emit(this.currentQuery);
 
     // NOTE: We need to check for a valid query length here even though we are using a minLength
     // validator. When the length is 0 the minLength validator returns valid.

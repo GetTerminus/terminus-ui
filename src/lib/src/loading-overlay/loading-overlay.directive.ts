@@ -50,7 +50,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
     } else {
       this.bodyPortalHost.detach();
     }
-  };
+  }
 
   /**
    * Alias the position back onto the component as a style attribute
