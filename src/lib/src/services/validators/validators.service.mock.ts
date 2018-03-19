@@ -73,6 +73,16 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  lowercase = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      lowercase: {
+        valid: false,
+        lowercaseMin: 4,
+        actual: 'abcDE',
+      },
+    });
+  }
+
   maxDate = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       maxDate: {
