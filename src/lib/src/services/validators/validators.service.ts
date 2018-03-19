@@ -7,6 +7,7 @@ import { greaterThanOrEqualValidator } from './validators/greaterThanOrEqual/gre
 import { greaterThanValidator } from './validators/greaterThan/greaterThan';
 import { lessThanOrEqualValidator } from './validators/lessThanOrEqual/lessThanOrEqual';
 import { lessThanValidator } from './validators/lessThan/lessThan';
+import { lowercaseValidator } from './validators/lowercase/lowercase';
 import { maxDateValidator } from './validators/maxDate/maxDate';
 import { minDateValidator } from './validators/minDate/minDate';
 import { passwordValidator } from './validators/password/password';
@@ -29,4 +30,5 @@ export class TsValidatorsService {
   minDate = minDateValidator;
   password = passwordValidator;
   url = urlValidator;
+  lowercase = lowercaseValidator;
 }

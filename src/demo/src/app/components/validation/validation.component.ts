@@ -84,6 +84,12 @@ export class ValidationComponent implements OnInit {
     compare2: [
       null,
     ],
+    lowercase: [
+      null,
+      [
+        this.validatorsService.lowercase(4),
+      ],
+    ],
   });
 
   constructor(

@@ -167,6 +167,18 @@ test@test.com
 
   </div>
 
+  <div fxLayout="row" [fxLayoutGap]="flexGap">
+  
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3>Contains lowercase</h3>
+  
+        <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>
+      </ts-card>
+    </div>
+  </div>
+    
+
 
   <ts-card tsVerticalSpacing>
     <h3>Url</h3>

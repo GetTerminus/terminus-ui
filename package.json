@@ -62,7 +62,7 @@
     "pretest:ci:karma": "yarn run build-test",
     "test:ci:karma": "karma start karma.conf.js --single-run --code-coverage --sauceLabs",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
-    "test": "jest --watch --verbose",
+    "test": "jest --watch",
     "test:ci": "jest --runInBand --coverage",
     "test:debug": "jest --debug --runInBand",
     "//=> Section: Release": "",
