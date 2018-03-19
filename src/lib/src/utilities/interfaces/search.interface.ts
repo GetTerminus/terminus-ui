@@ -5,5 +5,5 @@ export interface TsSearchResponse {
   /**
    * The search query
    */
-  query: string,
+  query: string;
 }

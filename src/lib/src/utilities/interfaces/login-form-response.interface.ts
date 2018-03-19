@@ -5,15 +5,15 @@ export interface TsLoginFormResponse {
   /**
    * User's email
    */
-  email: string,
+  email: string;
 
   /**
    * User's password
    */
-  password: string,
+  password: string;
 
   /**
    * Flag determining if a cookie should be set
    */
-  rememberMe: boolean,
+  rememberMe: boolean;
 }

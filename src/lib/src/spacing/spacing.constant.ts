@@ -28,4 +28,4 @@ export const TS_SPACING = {
     Math.floor(base / 2 * 9)  + 'px',
     Math.floor(base / 2 * 12) + 'px',
   ],
-}
+};

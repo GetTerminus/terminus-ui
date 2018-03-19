@@ -177,7 +177,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     } else {
       // istanbul ignore else
       if (isDevMode()) {
-        throw Error(`TsAutocompleteComponent: 'displayWith' must be passed a function.`)
+        throw Error(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
       }
     }
   }
@@ -212,7 +212,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     } else {
       // istanbul ignore else
       if (isDevMode()) {
-        throw Error(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`)
+        throw Error(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
       }
     }
   }
@@ -267,7 +267,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
         this.selectionsControl.setValue(this.selectedOptions);
       }
     }
-  };
+  }
 
   /**
    * Emit the selected chip

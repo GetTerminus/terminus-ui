@@ -10,7 +10,7 @@ import {
   TsDocumentService,
 } from '@terminus/ngx-tools';
 
-import { TsStyleThemeTypes } from './../utilities/types/style-theme.types'
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**

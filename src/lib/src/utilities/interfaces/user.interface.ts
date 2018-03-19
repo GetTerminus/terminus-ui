@@ -5,5 +5,5 @@ export interface TsUser {
   /**
    * The user's full name
    */
-  fullName: string,
+  fullName: string;
 }

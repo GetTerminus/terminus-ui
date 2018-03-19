@@ -207,7 +207,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
       // Add the total space as a breakpoint
       this.breakWidths.push(totalSpace);
-    })
+    });
   }
 
 
@@ -243,7 +243,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       const itemToMove = currentVisible.pop();
 
       // Add it to the beginning of the hidden items array
-      const updateHiddenArray = [itemToMove].concat(this.hiddenItems.getValue())
+      const updateHiddenArray = [itemToMove].concat(this.hiddenItems.getValue());
 
       // Push out the updated value
       this.hiddenItems.next(updateHiddenArray);

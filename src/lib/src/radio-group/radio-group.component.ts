@@ -10,7 +10,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatRadioChange } from '@angular/material/radio'
+import { MatRadioChange } from '@angular/material/radio';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -20,7 +20,7 @@ import { TsRadioOption } from './../utilities/interfaces/radio-option.interface'
 /**
  * Expose the MatRadioChange event as TsRadioChange
  */
-export class TsRadioChange extends MatRadioChange {};
+export class TsRadioChange extends MatRadioChange {}
 
 
 /**
@@ -126,6 +126,6 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
       return v.checked;
     });
 
-    return (found && found[0] && found[0].value) ? found[0].value : null
+    return (found && found[0] && found[0].value) ? found[0].value : null;
   }
 }
