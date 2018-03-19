@@ -33,7 +33,7 @@
         Number no Decimal
       </h5>
 
-      <input type="text" tsMask="number" [formControl]="numberControlNoDecimal" allowDecimal="false">
+      <input type="text" tsMask="number" [formControl]="numberControlNoDecimal" [allowDecimal]="false">
 
       <div>
         Value: {{ numberControlNoDecimal?.value ? numberControlNoDecimal.value : 'no value' }}

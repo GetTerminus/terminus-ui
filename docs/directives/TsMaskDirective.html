@@ -308,13 +308,13 @@
                                     <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                    <a href="../directives/TsMaskDirective.html"  data-type="entity-link" class="active" >TsMaskDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../directives/TsSortDirective.html"  data-type="entity-link" class="active" >TsSortDirective</a>
+                                    <a href="../directives/TsSortDirective.html" >TsSortDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
@@ -792,13 +792,13 @@
                                            <a href="../directives/TsLoadingOverlayDirective.html" >TsLoadingOverlayDirective</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../directives/TsMaskDirective.html" >TsMaskDirective</a>
+                                           <a href="../directives/TsMaskDirective.html"  data-type="entity-link" class="active" >TsMaskDirective</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/TsRowDefDirective.html" >TsRowDefDirective</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../directives/TsSortDirective.html"  data-type="entity-link" class="active" >TsSortDirective</a>
+                                           <a href="../directives/TsSortDirective.html" >TsSortDirective</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/TsVerticalSpacingDirective.html" >TsVerticalSpacingDirective</a>
@@ -992,7 +992,7 @@
 
 <ol class="breadcrumb">
   <li>Directives</li>
-  <li>TsSortDirective</li>
+  <li>TsMaskDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -1016,24 +1016,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/src/sort/sort.directive.ts</code>
+            <code>src/lib/src/mask/mask.directive.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Container for TsSortables to manage the sort state and provide default sort parameters</p>
-
-            </p>
 
             <p class="comment">
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                        <code>CanDisable</code>
+                        <code><a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank" >ControlValueAccessor</a></code>
                         <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
-                        <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
             </p>
 
 
@@ -1041,10 +1033,18 @@
             <h3>Metadata</h3>
             <table class="table table-sm table-hover">
                 <tbody>
+                    <tr>
+                        <td class="col-md-3">providers</td>
+                        <td class="col-md-9">
+                            <code>
+                                MASKED_INPUT_VALUE_ACCESSOR
+                            </code>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td class="col-md-3">selector</td>
-                        <td class="col-md-9"><code>[tsSort]</code></td>
+                        <td class="col-md-9"><code>[tsMask]</code></td>
                     </tr>
 
                 </tbody>
@@ -1065,19 +1065,35 @@
                                 <ul class="index-list">
                                     <li>
                                             <span class="modifier">Private</span>
-                                        <a href="#_direction">_direction</a>
+                                        <a href="#currentMask">currentMask</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Private</span>
-                                        <a href="#_disableClear">_disableClear</a>
+                                        <a href="#inputElement">inputElement</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#lastValue">lastValue</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#maskName">maskName</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Public</span>
-                                        <a href="#_stateChanges">_stateChanges</a>
+                                        <a href="#onChange">onChange</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#onTouched">onTouched</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Private</span>
-                                        <a href="#sortables">sortables</a>
+                                        <a href="#textMaskConfig">textMaskConfig</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#textMaskInputElement">textMaskInputElement</a>
                                     </li>
                                 </ul>
                             </td>
@@ -1091,24 +1107,44 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <a href="#deregister">deregister</a>
+                                            <span class="modifier">Private</span>
+                                        <a href="#cleanValue">cleanValue</a>
                                     </li>
                                     <li>
-                                        <a href="#getNextSortDirection">getNextSortDirection</a>
+                                            <span class="modifier">Private</span>
+                                        <a href="#createMaskCollection">createMaskCollection</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#determinePostalMask">determinePostalMask</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Public</span>
                                         <a href="#ngOnChanges">ngOnChanges</a>
                                     </li>
                                     <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#onInput">onInput</a>
+                                    </li>
+                                    <li>
                                             <span class="modifier">Public</span>
-                                        <a href="#ngOnDestroy">ngOnDestroy</a>
+                                        <a href="#registerOnChange">registerOnChange</a>
                                     </li>
                                     <li>
-                                        <a href="#register">register</a>
+                                            <span class="modifier">Public</span>
+                                        <a href="#registerOnTouched">registerOnTouched</a>
                                     </li>
                                     <li>
-                                        <a href="#sort">sort</a>
+                                            <span class="modifier">Private</span>
+                                        <a href="#setMaskDefinition">setMaskDefinition</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Private</span>
+                                        <a href="#setupMask">setupMask</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#writeValue">writeValue</a>
                                     </li>
                                 </ul>
                             </td>
@@ -1122,30 +1158,13 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <a href="#tsSortActive">tsSortActive</a>
+                                        <a href="#allowDecimal">allowDecimal</a>
                                     </li>
                                     <li>
-                                        <a href="#tsSortDirection">tsSortDirection</a>
+                                        <a href="#sanitizeValue">sanitizeValue</a>
                                     </li>
                                     <li>
-                                        <a href="#tsSortDisableClear">tsSortDisableClear</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tsSortStart">tsSortStart</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <h6><b>Outputs</b></h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <ul class="index-list">
-                                    <li>
-                                        <a href="#tsSortChange">tsSortChange</a>
+                                        <a href="#tsMask">tsMask</a>
                                     </li>
                                 </ul>
                             </td>
@@ -1159,10 +1178,7 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <a href="#direction">direction</a>
-                                    </li>
-                                    <li>
-                                        <a href="#disableClear">disableClear</a>
+                                        <a href="#tsMask">tsMask</a>
                                     </li>
                                 </ul>
                             </td>
@@ -1171,6 +1187,66 @@
                 </table>
             </section>
 
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+            <code>constructor(renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/lib/src/mask/mask.directive.ts:152</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div>
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>renderer</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>elementRef</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
 
             <section>
                 <h3 id="inputs">Inputs</h3>
@@ -1178,117 +1254,75 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-2">
-                                    <a name="tsSortActive"></a>
-                                    <code>tsSortActive</code>
+                                    <a name="allowDecimal"></a>
+                                    <code>allowDecimal</code>
                                 </td>
                                 <td class="col-md-10">
-                                    <div><p>The id of the most recently sorted TsSortable</p>
+                                    <div><p>Define if decimals are allowed in numbers/currency/percentage</p>
 </div>
                                       <p>
-                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                      </p>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/src/sort/sort.directive.ts:56</a></div>
-                                        </td>
-                                    </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-2">
-                                    <a name="tsSortDirection"></a>
-                                    <code>tsSortDirection</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>The sort direction of the currently active TsSortable</p>
-</div>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/sort/sort.directive.ts:70</a></div>
-                                        </td>
-                                    </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-2">
-                                    <a name="tsSortDisableClear"></a>
-                                    <code>tsSortDisableClear</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>Whether to disable the user from clearing the sort by finishing the sort direction cycle.</p>
-<p>May be overriden by the TsSortable&#39;s disable clear input.</p>
-</div>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/src/sort/sort.directive.ts:85</a></div>
-                                        </td>
-                                    </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-2">
-                                    <a name="tsSortStart"></a>
-                                    <code>tsSortStart</code>
-                                </td>
-                                <td class="col-md-10">
-                                    <div><p>The direction to set when an TsSortable is initially sorted.</p>
-<p>May be overriden by the TsSortable&#39;s sort start.</p>
-</div>
-                                      <p>
-                                        <em>Type:</em>    <code>&quot;asc&quot; | &quot;desc&quot;</code>
+                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                       </p>
                                     <p>
-                                      <em>Default value: </em><code>&#x27;asc&#x27;</code>
+                                      <em>Default value: </em><code>true</code>
                                     </p>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/src/sort/sort.directive.ts:64</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/lib/src/mask/mask.directive.ts:125</a></div>
                                         </td>
                                     </tr>
                         </tbody>
                     </table>
-            </section>
-
-            <section>
-                <h3 id="outputs">Outputs</h3>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
                                 <td class="col-md-2">
-                                    <a name="tsSortChange"></a>
-                                    <code>tsSortChange</code>
+                                    <a name="sanitizeValue"></a>
+                                    <code>sanitizeValue</code>
                                 </td>
                                 <td class="col-md-10">
-                                    <div><p>Event emitted when the user changes either the active sort or sort direction</p>
+                                    <div><p>Define if the value should be sanitized before saving to the model</p>
 </div>
-                                    <em><code>$event</code> type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+                                      <p>
+                                        <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
+                                      </p>
+                                    <p>
+                                      <em>Default value: </em><code>true</code>
+                                    </p>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/lib/src/sort/sort.directive.ts:97</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/src/mask/mask.directive.ts:131</a></div>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-2">
+                                    <a name="tsMask"></a>
+                                    <code>tsMask</code>
+                                </td>
+                                <td class="col-md-10">
+                                    <div><p>Define a mask</p>
+</div>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-2" colspan="2">
+                                            <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/mask/mask.directive.ts:137</a></div>
                                         </td>
                                     </tr>
                         </tbody>
                     </table>
             </section>
+
 
 
 
@@ -1301,32 +1335,33 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="deregister"></a>
+                                    <a name="cleanValue"></a>
                                     <span class="name">
                                         <b>
-                                        deregister
+                                            <span class="modifier">Private</span>
+                                        cleanValue
                                         </b>
-                                        <a href="#deregister"><span class="fa fa-link"></span></a>
+                                        <a href="#cleanValue"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>deregister(sortable: <a href="../interfaces/TsSortableItem.html">TsSortableItem</a>)</code>
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>cleanValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, regex?: RegExp)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/sort/sort.directive.ts:137</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/lib/src/mask/mask.directive.ts:291</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Unregister function to be used by the contained TsSortables. Removes the TsSortable from the
-            collection of contained TsSortables.</p>
+                                        <div class="io-description"><p>Remove the mask if needed</p>
             </div>
             
                                         <div class="io-description">
@@ -1337,14 +1372,15 @@
                                                             <td>Name</td>
                                                                 <td>Type</td>
                                                             <td>Optional</td>
+                                                                <td>Description</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                                <td>sortable</td>
+                                                                <td>value</td>
                                                                 
                                                                     <td>
-                                                                                <code><a href="../interfaces/TsSortableItem.html" target="_self" >TsSortableItem</a></code>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                                     </td>
                                                                 
                                                                 <td>
@@ -1352,6 +1388,31 @@
                                                                 </td>
                                                                 
             
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The value to clean</li>
+            </ul>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>regex</td>
+                                                                
+                                                                    <td>
+                                                                                <code>RegExp</code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        yes
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The RegExp to use to clean the value</li>
+            </ul>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1359,7 +1420,7 @@
                                         <div>
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
             
                                         </div>
                                             <div class="io-description">
@@ -1373,31 +1434,33 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="getNextSortDirection"></a>
+                                    <a name="createMaskCollection"></a>
                                     <span class="name">
                                         <b>
-                                        getNextSortDirection
+                                            <span class="modifier">Private</span>
+                                        createMaskCollection
                                         </b>
-                                        <a href="#getNextSortDirection"><span class="fa fa-link"></span></a>
+                                        <a href="#createMaskCollection"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>getNextSortDirection(sortable: <a href="../interfaces/TsSortableItem.html">TsSortableItem</a>)</code>
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>createMaskCollection(allowDecimal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/lib/src/sort/sort.directive.ts:160</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/lib/src/mask/mask.directive.ts:317</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Returns the next sort direction of the active sortable, checking for potential overrides</p>
+                                        <div class="io-description"><p>Create the collection of possible masks</p>
             </div>
             
                                         <div class="io-description">
@@ -1408,14 +1471,15 @@
                                                             <td>Name</td>
                                                                 <td>Type</td>
                                                             <td>Optional</td>
+                                                                <td>Description</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                                <td>sortable</td>
+                                                                <td>allowDecimal</td>
                                                                 
                                                                     <td>
-                                                                                <code><a href="../interfaces/TsSortableItem.html" target="_self" >TsSortableItem</a></code>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
                                                                     </td>
                                                                 
                                                                 <td>
@@ -1423,6 +1487,12 @@
                                                                 </td>
                                                                 
             
+                                                                    <td>
+                                                                            <code><ul>
+            <li>If the number based masks should allow a decimal character</li>
+            </ul>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1430,7 +1500,87 @@
                                         <div>
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="../miscellaneous/typealiases.html#TsSortDirection" target="_self" >TsSortDirection</a></code>
+                                            <b>Returns : </b>    <code><a href="../interfaces/MaskCollection.html" target="_self" >MaskCollection</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="determinePostalMask"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        determinePostalMask
+                                        </b>
+                                        <a href="#determinePostalMask"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>determinePostalMask(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/lib/src/mask/mask.directive.ts:302</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Helper to determine the correct postal code match</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>value</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The current postal code value</li>
+            </ul>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code>[]</code>
             
                                         </div>
                                             <div class="io-description">
@@ -1457,101 +1607,20 @@
                             <tr>
                                 <td class="col-md-4">
                                         <span class="modifier-icon fa fa-reset"></span>
-                                    <code>ngOnChanges()</code>
+                                    <code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/src/sort/sort.directive.ts:103</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/lib/src/mask/mask.directive.ts:164</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Trigger next on all changes</p>
-            </div>
-            
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="ngOnDestroy"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        ngOnDestroy
-                                        </b>
-                                        <a href="#ngOnDestroy"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon fa fa-reset"></span>
-                                    <code>ngOnDestroy()</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/src/sort/sort.directive.ts:111</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Complete the observable on destroy</p>
-            </div>
-            
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="register"></a>
-                                    <span class="name">
-                                        <b>
-                                        register
-                                        </b>
-                                        <a href="#register"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-            <code>register(sortable: <a href="../interfaces/TsSortableItem.html">TsSortableItem</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/lib/src/sort/sort.directive.ts:120</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Register function to be used by the contained TsSortables. Adds the TsSortable to the
-            collection of TsSortables.</p>
+                                        <div class="io-description"><p>Re-init the mask on changes</p>
             </div>
             
                                         <div class="io-description">
@@ -1566,10 +1635,10 @@
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                                <td>sortable</td>
+                                                                <td>changes</td>
                                                                 
                                                                     <td>
-                                                                                <code><a href="../interfaces/TsSortableItem.html" target="_self" >TsSortableItem</a></code>
+                                                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
                                                                     </td>
                                                                 
                                                                 <td>
@@ -1598,31 +1667,113 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="sort"></a>
+                                    <a name="onInput"></a>
                                     <span class="name">
                                         <b>
-                                        sort
+                                            <span class="modifier">Private</span>
+                                        onInput
                                         </b>
-                                        <a href="#sort"><span class="fa fa-link"></span></a>
+                                        <a href="#onInput"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>sort(sortable: <a href="../interfaces/TsSortableItem.html">TsSortableItem</a>)</code>
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>onInput(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/lib/src/sort/sort.directive.ts:145</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/lib/src/mask/mask.directive.ts:193</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Sets the active sort id and determines the new sort direction</p>
+                                        <div class="io-description"><p>Update values on input</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>value</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The typed value</li>
+            </ul>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="registerOnChange"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        registerOnChange
+                                        </b>
+                                        <a href="#registerOnChange"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>registerOnChange(fn: (value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>) => void)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/lib/src/mask/mask.directive.ts:251</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Set up for ValueChangeAccessor</p>
             </div>
             
                                         <div class="io-description">
@@ -1637,10 +1788,10 @@
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                                <td>sortable</td>
+                                                                <td>fn</td>
                                                                 
                                                                     <td>
-                                                                                <code><a href="../interfaces/TsSortableItem.html" target="_self" >TsSortableItem</a></code>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
                                                                     </td>
                                                                 
                                                                 <td>
@@ -1648,6 +1799,319 @@
                                                                 </td>
                                                                 
             
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="registerOnTouched"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        registerOnTouched
+                                        </b>
+                                        <a href="#registerOnTouched"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>registerOnTouched(fn: () => void)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/lib/src/mask/mask.directive.ts:259</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Set up for ValueChangeAccessor</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>fn</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="setMaskDefinition"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        setMaskDefinition
+                                        </b>
+                                        <a href="#setMaskDefinition"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>setMaskDefinition(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/lib/src/mask/mask.directive.ts:360</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Set the current mask definition</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>value</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The name of the desired mask</li>
+            </ul>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="setupMask"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        setupMask
+                                        </b>
+                                        <a href="#setupMask"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>setupMask(create?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/lib/src/mask/mask.directive.ts:269</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Create the mask</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>create</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        yes
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>If the mask should be created</li>
+            </ul>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="writeValue"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        writeValue
+                                        </b>
+                                        <a href="#writeValue"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-reset"></span>
+                                    <code>writeValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/lib/src/mask/mask.directive.ts:222</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Write the value</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>value</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><ul>
+            <li>The value to write to the model</li>
+            </ul>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1676,111 +2140,37 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="_direction"></a>
+                                    <a name="currentMask"></a>
                                     <span class="name">
                                         <b>
                                             <span class="modifier">Private</span>
-                                        _direction
+                                        currentMask
                                         </b>
-                                        <a href="#_direction"><span class="fa fa-link"></span></a>
+                                        <a href="#currentMask"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>_direction:     <code><a href="../miscellaneous/typealiases.html#TsSortDirection" target="_self" >TsSortDirection</a></code>
+                                    <span class="modifier-icon fa fa-reset"></span><code>currentMask:     <code><a href="../interfaces/Mask.html" target="_self" >Mask</a></code>
             </code>
                                 </td>
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsSortDirection" target="_self" >TsSortDirection</a></code>
-            
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/lib/src/sort/sort.directive.ts:77</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="_disableClear"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Private</span>
-                                        _disableClear
-                                        </b>
-                                        <a href="#_disableClear"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>_disableClear:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                        <i>Type : </i>    <code><a href="../interfaces/Mask.html" target="_self" >Mask</a></code>
             
                                     </td>
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/sort/sort.directive.ts:91</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="_stateChanges"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        _stateChanges
-                                        </b>
-                                        <a href="#_stateChanges"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>_stateChanges:     <code></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Default value : </i><code>new Subject&lt;void&gt;()</code>
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/src/sort/sort.directive.ts:50</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/src/mask/mask.directive.ts:91</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Used to notify any child components listening to state changes</p>
+                                    <div class="io-description"><p>Store the current mask</p>
             </div>
                                 </td>
                             </tr>
@@ -1791,36 +2181,301 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="sortables"></a>
+                                    <a name="inputElement"></a>
                                     <span class="name">
                                         <b>
                                             <span class="modifier">Private</span>
-                                        sortables
+                                        inputElement
                                         </b>
-                                        <a href="#sortables"><span class="fa fa-link"></span></a>
+                                        <a href="#inputElement"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>sortables:     <code></code>
+                                    <span class="modifier-icon fa fa-reset"></span><code>inputElement:     <code>HTMLInputElement</code>
             </code>
                                 </td>
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Default value : </i><code>new Map&lt;string, TsSortableItem&gt;()</code>
+                                        <i>Type : </i>    <code>HTMLInputElement</code>
+            
                                     </td>
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/src/sort/sort.directive.ts:45</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/src/mask/mask.directive.ts:96</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Collection of all registered sortables that this directive manages</p>
+                                    <div class="io-description"><p>Store a reference to the input element</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="lastValue"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        lastValue
+                                        </b>
+                                        <a href="#lastValue"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>lastValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/src/mask/mask.directive.ts:101</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store the last value for comparison</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="maskName"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        maskName
+                                        </b>
+                                        <a href="#maskName"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>maskName:     <code><a href="../interfaces/Mask.html" target="_self" >MaskShortcutOptions</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="../interfaces/Mask.html" target="_self" >MaskShortcutOptions</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/src/mask/mask.directive.ts:106</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store the selected mask name</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="onChange"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        onChange
+                                        </b>
+                                        <a href="#onChange"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>onChange:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>(value: any) &#x3D;&gt; {}</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/lib/src/mask/mask.directive.ts:239</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Set up for ValueChangeAccessor</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="onTouched"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        onTouched
+                                        </b>
+                                        <a href="#onTouched"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>onTouched:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>(value: any) &#x3D;&gt; {}</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/lib/src/mask/mask.directive.ts:245</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Set up for ValueChangeAccessor</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="textMaskConfig"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        textMaskConfig
+                                        </b>
+                                        <a href="#textMaskConfig"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>textMaskConfig:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>{
+                mask: null,
+                guide: false,
+              }</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/src/mask/mask.directive.ts:111</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Base settings for the mask</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="textMaskInputElement"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Private</span>
+                                        textMaskInputElement
+                                        </b>
+                                        <a href="#textMaskInputElement"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>textMaskInputElement:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/lib/src/mask/mask.directive.ts:119</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Store the mask instance</p>
             </div>
                                 </td>
                             </tr>
@@ -1837,35 +2492,25 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="direction"></a>
-                                    <span class="name"><b>direction</b><a href="#direction"><span class="fa fa-link"></span></a></span>
+                                    <a name="tsMask"></a>
+                                    <span class="name"><b>tsMask</b><a href="#tsMask"><span class="fa fa-link"></span></a></span>
                                 </td>
                             </tr>
             
+            
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="accessor"><b>get</b><code>direction()</code></span>
+                                    <span class="accessor"><b>set</b><code>tsMask(value: )</code></span>
                                 </td>
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/src/sort/sort.directive.ts:76</a></div>
-                                            </td>
-                                        </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="accessor"><b>set</b><code>direction(direction: )</code></span>
-                                </td>
-                            </tr>
-                                        <tr>
-                                            <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/src/sort/sort.directive.ts:70</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/src/mask/mask.directive.ts:137</a></div>
                                             </td>
                                         </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                            <div class="io-description"><p>The sort direction of the currently active TsSortable</p>
+                                            <div class="io-description"><p>Define a mask</p>
             </div>
             
                                             <div class="io-description">
@@ -1879,67 +2524,8 @@
                                                         </thead>
                                                         <tbody>
                                                                 <tr>
-                                                                    <td>direction</td>
+                                                                    <td>value</td>
                                                                 
-                                                                
-                                                                    <td>
-                                                                            no
-                                                                    </td>
-                                                                    
-                                                                </tr>
-                                                        </tbody>
-                                                    </table>
-                                            </div>
-                                            <div>
-                                            </div>
-                                            <div class="io-description">
-                                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-            
-                                            </div>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="disableClear"></a>
-                                    <span class="name"><b>disableClear</b><a href="#disableClear"><span class="fa fa-link"></span></a></span>
-                                </td>
-                            </tr>
-            
-            
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="accessor"><b>set</b><code>disableClear(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
-                                </td>
-                            </tr>
-                                        <tr>
-                                            <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/src/sort/sort.directive.ts:88</a></div>
-                                            </td>
-                                        </tr>
-                                <tr>
-                                    <td class="col-md-4">
-            
-                                            <div class="io-description">
-                                                    <b>Parameters :</b>
-                                                    <table class="params">
-                                                        <thead>
-                                                            <tr>
-                                                                <td>Name</td>
-                                                                    <td>Type</td>
-                                                                <td>Optional</td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                                <tr>
-                                                                    <td>v</td>
-                                                                
-                                                                        <td>
-                                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                                        </td>
                                                                 
                                                                     <td>
                                                                             no
@@ -1964,239 +2550,458 @@
     </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+        <p><h1>Mask</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
-<li><a href="#adding-sort-to-table-headers">Adding sort to table headers</a></li>
-<li><a href="#changing-the-sort-order">Changing the sort order</a></li>
-<li><a href="#disabling-sorting">Disabling sorting</a></li>
-<li><a href="#using-sort-with-the-ts-table">Using sort with the <code>ts-table</code></a></li>
-<li><a href="#accessibility">Accessibility</a></li>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#supported-input-types">Supported input types</a></li>
+<li><a href="#disable-decimal-support">Disable decimal support</a></li>
+<li><a href="#disable-sanitation">Disable sanitation</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h3 id="adding-sort-to-table-headers">Adding sort to table headers</h3>
-<p>To add sorting behavior and styling to a set of table headers, add <code>ts-sort-header</code> to each header
-and provide an id that will identify it. These headers should be contained within a parent element
-with the <code>tsSort</code> directive, which will emit a <code>sortChange</code> event when the user triggers sorting
-on the header.</p>
-<p>Users can trigger the sort header through a mouse click or keyboard action. When this happens, the
-<code>tsSort</code> will emit an <code>sortChange</code> event that contains the ID of the header triggered and the
-direction to sort (<code>asc</code> or <code>desc</code>).</p>
-<h3 id="changing-the-sort-order">Changing the sort order</h3>
-<p>By default, a sort header starts its sorting at <code>asc</code> and then <code>desc</code>. Triggering the sort header
-after <code>desc</code> will remove sorting.</p>
-<p>To reverse the sort order for all headers, set the <code>tsSortStart</code> to <code>desc</code> on the <code>tsSort</code>
-directive. To reverse the order only for a specific header, set the start input only on the header
-instead.</p>
-<p>To prevent the user from clearing the sort sort state from an already sorted column, set
-<code>tsSortDisableClear</code> to true on the <code>tsSort</code> to affect all headers, or set <code>disableClear</code> to true on
-a specific header.</p>
-<h3 id="disabling-sorting">Disabling sorting</h3>
-<p>If you want to prevent the user from changing the sorting order of any column, you can use the
-<code>tsSortDisabled</code> binding on the <code>ts-sort</code>, or the <code>disabled</code> on an single <code>ts-sort-header</code>.</p>
-<h3 id="using-sort-with-the-ts-table">Using sort with the <code>ts-table</code></h3>
-<p>When used on an <code>ts-table</code> header, it is not required to set an <code>ts-sort-header</code> id on because by
-default it will use the id of the column.</p>
-<h3 id="accessibility">Accessibility</h3>
-<p>The <code>aria-label</code> for the sort button can be set in <code>TsSortHeaderIntl</code>.</p>
-</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p>Attach the directive to an input and pass in a mask type:</p>
+<pre class="line-numbers"><code class="language-html">&lt;input [tsMask]=&quot;currency&quot; /&gt;
+&lt;!--
+  If the user types: `12345.55`
+  The input display will be: `$12,345.55`
+  The model will be `12345.55`
+--&gt;</code></pre><p>Available mask types:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Example format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phone</code></td>
+<td><code>(900) 000-0000</code></td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td><code>$0,000[.00]</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td><code>0,000[.00]</code></td>
+</tr>
+<tr>
+<td><code>percentage</code></td>
+<td><code>0,000[.00]%</code></td>
+</tr>
+<tr>
+<td><code>postal</code></td>
+<td><code>00000</code>&#124;<code>00000-0000</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="supported-input-types">Supported input types</h2>
+<ol>
+<li><code>text</code></li>
+<li><code>tel</code></li>
+<li><code>url</code></li>
+<li><code>password</code></li>
+<li><code>search</code></li>
+</ol>
+<h2 id="disable-decimal-support">Disable decimal support</h2>
+<blockquote>
+<p>This only effects the following masks: <code>currency|number|percentage</code>. By default, these masks
+support decimals.</p>
+</blockquote>
+<p>Set the <code>allowDecimal</code> flag to false:</p>
+<pre class="line-numbers"><code class="language-html">&lt;input [tsMask]=&quot;number&quot; [allowDecimal]=&quot;false&quot; /&gt;</code></pre><blockquote>
+<p>NOTE: You must use brackets <code>[]</code> for the <code>allowDecimal</code> flag.</p>
+</blockquote>
+<h2 id="disable-sanitation">Disable sanitation</h2>
+<p>By default, the mask is removed from the string before it is saved to the model. To save the
+formatted value, set the <code>sanitizeValue</code> flag to false:</p>
+<pre class="line-numbers"><code class="language-html">&lt;input [tsMask]=&quot;number&quot; sanitizeValue=&quot;false&quot; /&gt;</code></pre></p>
     </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import {
   Directive,
-  EventEmitter,
+  ElementRef,
+  forwardRef,
   Input,
-  isDevMode,
-  Output,
   OnChanges,
-  OnDestroy,
+  Renderer2,
+  isDevMode,
+  SimpleChanges,
 } from &#x27;@angular/core&#x27;;
-import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
-import { CanDisable, mixinDisabled } from &#x27;@angular/material/core&#x27;;
-import { Subject } from &#x27;rxjs/Subject&#x27;;
-
-import { TsSortDirection } from &#x27;./../utilities/types/sort.types&#x27;;
 import {
-  TsSortableItem,
-  TsSortState,
-} from &#x27;./../utilities/interfaces/sort.interface&#x27;;
-import {
-  getSortInvalidDirectionError,
-  getSortDuplicateSortableIdError,
-  getSortHeaderMissingIdError,
-} from &#x27;./sort-errors&#x27;;
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+} from &#x27;@angular/forms&#x27;;
+import { createTextMaskInputElement } from &#x27;text-mask-core/dist/textMaskCore&#x27;;
+import createNumberMask from &#x27;text-mask-addons/dist/createNumberMask&#x27;;
 
 
-// Boilerplate for applying mixins to TsSort.
-export class TsSortBase {}
-export const _TsSortMixinBase &#x3D; mixinDisabled(TsSortBase);
-
+const NUMBER_ONLY_REGEX: RegExp &#x3D; /[^0-9]/g;
+const NUMBER_WITH_DECIMAL_REGEX: RegExp &#x3D; /[^0-9.]/g;
 
 /**
- * Container for TsSortables to manage the sort state and provide default sort parameters
+ * A function that returns an array of RegExp (used to determine postal code RegExp)
  */
-@Directive({
-  selector: &#x27;[tsSort]&#x27;,
-  exportAs: &#x27;tsSort&#x27;,
-  inputs: [&#x27;disabled: tsSortDisabled&#x27;],
-})
-export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnChanges, OnDestroy {
-  /**
-   * Collection of all registered sortables that this directive manages
-   */
-  private sortables &#x3D; new Map&lt;string, TsSortableItem&gt;();
+export type MaskFunction &#x3D; (value: string) &#x3D;&gt; (RegExp|string)[];
 
-  /**
-   * Used to notify any child components listening to state changes
-   */
-  public _stateChanges &#x3D; new Subject&lt;void&gt;();
-
-  /**
-   * The id of the most recently sorted TsSortable
-   */
-  @Input(&#x27;tsSortActive&#x27;)
-  public active: string;
-
-  /**
-   * The direction to set when an TsSortable is initially sorted.
-   *
-   * May be overriden by the TsSortable&#x27;s sort start.
-   */
-  @Input(&#x27;tsSortStart&#x27;)
-  public start: &#x27;asc&#x27; | &#x27;desc&#x27; &#x3D; &#x27;asc&#x27;;
-
-  /**
-   * The sort direction of the currently active TsSortable
-   */
-  @Input(&#x27;tsSortDirection&#x27;)
-  public set direction(direction: TsSortDirection) {
-    if (isDevMode() &amp;&amp; direction &amp;&amp; direction !&#x3D;&#x3D; &#x27;asc&#x27; &amp;&amp; direction !&#x3D;&#x3D; &#x27;desc&#x27;) {
-      throw getSortInvalidDirectionError(direction);
-    }
-    this._direction &#x3D; direction;
-  }
-  public get direction(): TsSortDirection { return this._direction; }
-  private _direction: TsSortDirection &#x3D; &#x27;&#x27;;
-
-  /**
-   * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
-   *
-   * May be overriden by the TsSortable&#x27;s disable clear input.
-   */
-  @Input(&#x27;tsSortDisableClear&#x27;)
-  public get disableClear() {
-    return this._disableClear;
-  }
-  public set disableClear(v: boolean) {
-    this._disableClear &#x3D; coerceBooleanProperty(v);
-  }
-  private _disableClear: boolean;
-
-  /**
-   * Event emitted when the user changes either the active sort or sort direction
-   */
-  @Output(&#x27;tsSortChange&#x27;)
-  readonly sortChange &#x3D; new EventEmitter&lt;TsSortState&gt;();
-
-
-  /**
-   * Trigger next on all changes
-   */
-  public ngOnChanges(): void {
-    this._stateChanges.next();
-  }
-
-
-  /**
-   * Complete the observable on destroy
-   */
-  public ngOnDestroy(): void {
-    this._stateChanges.complete();
-  }
-
-
-  /**
-   * Register function to be used by the contained TsSortables. Adds the TsSortable to the
-   * collection of TsSortables.
-   */
-  register(sortable: TsSortableItem): void {
-    if (!sortable.id &amp;&amp; isDevMode()) {
-      throw getSortHeaderMissingIdError();
-    }
-
-    if (this.sortables.has(sortable.id) &amp;&amp; isDevMode()) {
-      throw getSortDuplicateSortableIdError(sortable.id);
-    }
-
-    this.sortables.set(sortable.id, sortable);
-  }
-
-
-  /**
-   * Unregister function to be used by the contained TsSortables. Removes the TsSortable from the
-   * collection of contained TsSortables.
-   */
-  deregister(sortable: TsSortableItem): void {
-    this.sortables.delete(sortable.id);
-  }
-
-
-  /**
-   * Sets the active sort id and determines the new sort direction
-   */
-  sort(sortable: TsSortableItem): void {
-    if (this.active !&#x3D;&#x3D; sortable.id) {
-      this.active &#x3D; sortable.id;
-      this.direction &#x3D; sortable.start ? sortable.start : this.start;
-    } else {
-      this.direction &#x3D; this.getNextSortDirection(sortable);
-    }
-
-    this.sortChange.next({active: this.active, direction: this.direction});
-  }
-
-
-  /**
-   * Returns the next sort direction of the active sortable, checking for potential overrides
-   */
-  getNextSortDirection(sortable: TsSortableItem): TsSortDirection {
-    if (!sortable) {
-      return &#x27;&#x27;;
-    }
-
-    // Get the sort direction cycle with the potential sortable overrides.
-    const disableClear &#x3D; sortable.disableClear !&#x3D; null ? sortable.disableClear : this.disableClear;
-    const sortDirectionCycle &#x3D; getSortDirectionCycle(sortable.start || this.start, disableClear);
-
-    // Get and return the next direction in the cycle
-    let nextDirectionIndex &#x3D; sortDirectionCycle.indexOf(this.direction) + 1;
-    if (nextDirectionIndex &gt;&#x3D; sortDirectionCycle.length) {
-      nextDirectionIndex &#x3D; 0;
-    }
-
-    return sortDirectionCycle[nextDirectionIndex];
-  }
-
+/**
+ * An individual mask definition
+ */
+export interface Mask {
+  mask: (RegExp|string)[] | MaskFunction | false;
+  unmaskRegex?: RegExp;
 }
 
+/**
+ * The collection of masks
+ */
+export interface MaskCollection {
+  [key: string]: Mask;
+}
 
 /**
- * Returns the sort direction cycle to use given the provided parameters of order and clear
+ * Define the allowed mask shortcut option
  */
-function getSortDirectionCycle(start: &#x27;asc&#x27; | &#x27;desc&#x27;, disableClear: boolean): TsSortDirection[] {
-  const sortOrder: TsSortDirection[] &#x3D; [&#x27;asc&#x27;, &#x27;desc&#x27;];
+export type MaskShortcutOptions
+  &#x3D; &#x27;phone&#x27;
+  | &#x27;currency&#x27;
+  | &#x27;number&#x27;
+  | &#x27;percentage&#x27;
+  | &#x27;postal&#x27;
+  | &#x27;default&#x27; // matches all characters
+;
 
-  if (start &#x3D;&#x3D;&#x3D; &#x27;desc&#x27;) {
-    sortOrder.reverse();
+/**
+ * Create an array used to verify the passed in shortcut is valid
+ */
+const allowedMaskShorcuts: MaskShortcutOptions[] &#x3D; [
+  &#x27;phone&#x27;,
+  &#x27;currency&#x27;,
+  &#x27;number&#x27;,
+  &#x27;percentage&#x27;,
+  &#x27;postal&#x27;,
+  &#x27;default&#x27;,
+];
+
+/**
+ * Value accessor implementation to provide to the directive
+ */
+/* tslint:disable:no-use-before-declare */
+export const MASKED_INPUT_VALUE_ACCESSOR: any &#x3D; {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() &#x3D;&gt; TsMaskDirective),
+  multi: true,
+};
+/* tslint-enable: no-use-before-declare */
+
+
+@Directive({
+  host: {
+    &#x27;(input)&#x27;: &#x27;onInput($event.target.value)&#x27;,
+    &#x27;(blur)&#x27;: &#x27;onTouched()&#x27;,
+  },
+  selector: &#x27;[tsMask]&#x27;,
+  exportAs: &#x27;tsMask&#x27;,
+  providers: [MASKED_INPUT_VALUE_ACCESSOR],
+})
+export class TsMaskDirective implements ControlValueAccessor, OnChanges {
+  /**
+   * Store the current mask
+   */
+  private currentMask: Mask;
+
+  /**
+   * Store a reference to the input element
+   */
+  private inputElement: HTMLInputElement;
+
+  /**
+   * Store the last value for comparison
+   */
+  private lastValue: string;
+
+  /**
+   * Store the selected mask name
+   */
+  private maskName: MaskShortcutOptions;
+
+  /**
+   * Base settings for the mask
+   */
+  private textMaskConfig: any &#x3D; {
+    mask: null,
+    guide: false,
+  };
+
+  /**
+   * Store the mask instance
+   */
+  private textMaskInputElement: any;
+
+  /**
+   * Define if decimals are allowed in numbers/currency/percentage
+   */
+  @Input()
+  public allowDecimal: boolean &#x3D; true;
+
+  /**
+   * Define if the value should be sanitized before saving to the model
+   */
+  @Input()
+  public sanitizeValue: boolean &#x3D; true;
+
+  /**
+   * Define a mask
+   */
+  @Input()
+  set tsMask(value: MaskShortcutOptions) {
+    if (!value) {
+      return;
+    }
+
+    // Verify value is allowed
+    if (isDevMode() &amp;&amp; (allowedMaskShorcuts.indexOf(value) &lt; 0)) {
+      console.warn(&#x60;TsMaskDirective: &quot;${value}&quot; is not an allowed type. &#x60; +
+      &#x27;Allowed types are defined by &quot;MaskShortcutOptions&quot;.&#x27;);
+      return;
+    }
+
+    // Save reference to the set mask definition
+    this.setMaskDefinition(value);
+    this.maskName &#x3D; value;
   }
 
-  if (!disableClear) {
-    sortOrder.push(&#x27;&#x27;);
+
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+  ) {}
+
+
+  /**
+   * Re-init the mask on changes
+   */
+  public ngOnChanges(changes: SimpleChanges): void {
+    // If the allowDecimal @Input has changed, we should regenerate our masks
+    // istanbul ignore else
+    if (changes.allowDecimal) {
+      // istanbul ignore else
+      if (changes.allowDecimal.previousValue !&#x3D;&#x3D; changes.allowDecimal.currentValue) {
+        // Recreate the mask definitions to update decimal support
+        this.setMaskDefinition(this.maskName);
+      }
+    }
+
+    // Recreate the mask if any options change
+    this.setupMask(true);
+
+    // istanbul ignore else
+    if (this.textMaskInputElement !&#x3D;&#x3D; undefined) {
+      this.textMaskInputElement.update(this.inputElement.value);
+    }
   }
 
-  return sortOrder;
+
+  /**
+   * Update values on input
+   *
+   * @param value - The typed value
+   */
+  // NOTE(B$): Apparently TSLint doesn&#x27;t realize that the host listener is calling this method.
+  // Using the @HostDecorator shows the same error.
+  // tslint:disable: no-unused-variable
+  private onInput(value: string): void {
+    // istanbul ignore else
+    if (this.textMaskInputElement !&#x3D;&#x3D; undefined) {
+      // Update the mask
+      this.textMaskInputElement.update(value);
+
+      // Get the full updated value
+      value &#x3D; this.inputElement.value;
+
+      // Verify the value has changed
+      // istanbul ignore else
+      if (this.lastValue !&#x3D;&#x3D; value) {
+        this.lastValue &#x3D; value;
+
+        // Trigger the change (and remove mask if needed)
+        this.sanitizeValue
+          ? this.onChange(this.cleanValue(value, this.currentMask.unmaskRegex))
+          : this.onChange(value);
+      }
+    }
+  }
+  // tslint:enable: no-unused-variable
+
+
+  /**
+   * Write the value
+   *
+   * @param value - The value to write to the model
+   */
+  public writeValue(value: string): void {
+    this.setupMask();
+
+    // Set the initial value for cases where the mask is disabled
+    const normalizedValue &#x3D; value ? value : &#x27;&#x27;;
+    this.renderer.setProperty(this.inputElement, &#x27;value&#x27;, normalizedValue);
+
+    // istanbul ignore else
+    if (this.textMaskInputElement !&#x3D;&#x3D; undefined) {
+      this.textMaskInputElement.update(value);
+    }
+  }
+
+
+  /**
+   * Set up for ValueChangeAccessor
+   */
+  public onChange: (value: any) &#x3D;&gt; any &#x3D; (value: any) &#x3D;&gt; {};
+
+
+  /**
+   * Set up for ValueChangeAccessor
+   */
+  public onTouched: (value: any) &#x3D;&gt; any &#x3D; (value: any) &#x3D;&gt; {};
+
+
+  /**
+   * Set up for ValueChangeAccessor
+   */
+  public registerOnChange(fn: (value: any) &#x3D;&gt; any): void {
+    this.onChange &#x3D; fn;
+  }
+
+
+  /**
+   * Set up for ValueChangeAccessor
+   */
+  public registerOnTouched(fn: () &#x3D;&gt; any): void {
+    this.onTouched &#x3D; fn;
+  }
+
+
+  /**
+   * Create the mask
+   *
+   * @param create - If the mask should be created
+   */
+  private setupMask(create?: boolean): void {
+    // istanbul ignore else
+    if (!this.inputElement) {
+      this.inputElement &#x3D; this.elementRef.nativeElement;
+    }
+
+    // istanbul ignore else
+    if (this.inputElement &amp;&amp; create) {
+      const maskOptions &#x3D; Object.assign({inputElement: this.inputElement}, this.textMaskConfig);
+      // Initialize the mask
+      this.textMaskInputElement &#x3D; createTextMaskInputElement(maskOptions);
+    }
+  }
+
+
+  /**
+   * Remove the mask if needed
+   *
+   * @param value - The value to clean
+   * @param regex - The RegExp to use to clean the value
+   * @return The clean value
+   */
+  private cleanValue(value: string, regex?: RegExp): string {
+    return regex ? value.replace(new RegExp(regex), &#x27;&#x27;) : value;
+  }
+
+
+  /**
+   * Helper to determine the correct postal code match
+   *
+   * @param value - The current postal code value
+   * @return The correct mask
+   */
+  private determinePostalMask(value: string): (RegExp|string)[] {
+    if (value.length &lt;&#x3D; 5) {
+      return [/\d/, /\d/, /\d/, /\d/, /\d/];
+    } else {
+      return [/\d/, /\d/, /\d/, /\d/, /\d/, &#x27;-&#x27;, /\d/, /\d/, /\d/, /\d/];
+    }
+  }
+
+
+  /**
+   * Create the collection of possible masks
+   *
+   * @param allowDecimal - If the number based masks should allow a decimal character
+   * @return The collection of masks
+   */
+  private createMaskCollection(allowDecimal: boolean): MaskCollection {
+    return {
+      phone: {
+        mask: [&#x27;(&#x27;, /[1-9]/, /\d/, /\d/, &#x27;)&#x27;, &#x27; &#x27;, /\d/, /\d/, /\d/, &#x27;-&#x27;, /\d/, /\d/, /\d/, /\d/],
+        unmaskRegex: NUMBER_ONLY_REGEX,
+      },
+      currency: {
+        mask: createNumberMask({
+          allowDecimal: allowDecimal,
+        }),
+        unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
+      },
+      number: {
+        mask: createNumberMask({
+          prefix: &#x27;&#x27;,
+          suffix: &#x27;&#x27;,
+          allowDecimal: allowDecimal,
+        }),
+        unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
+      },
+      percentage: {
+        mask: createNumberMask({
+          prefix: &#x27;&#x27;,
+          suffix: &#x27;%&#x27;,
+          allowDecimal: allowDecimal,
+        }),
+        unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
+      },
+      postal: {
+        mask: this.determinePostalMask,
+      },
+      default: {
+        mask: false,
+      },
+    };
+  }
+
+
+  /**
+   * Set the current mask definition
+   *
+   * @param value - The name of the desired mask
+   */
+  private setMaskDefinition(value: string): void {
+    const collection: MaskCollection &#x3D; this.createMaskCollection(this.allowDecimal);
+    let mask: Mask;
+
+    // NOTE: If the mask doesn&#x27;t match a predefined mask, default to a mask that matches all
+    // characters. The underlying mask library will error out without this fallback.
+    if (collection[value]) {
+      mask &#x3D; collection[value];
+    } else {
+      mask &#x3D; collection[&#x27;default&#x27;];
+    }
+
+    // Set the current mask
+    this.currentMask &#x3D; mask;
+    // Update the config with the chosen mask
+    this.textMaskConfig.mask &#x3D; mask.mask;
+  }
+
 }
 </code></pre>
     </div>
