@@ -60,7 +60,7 @@
     #autocomplete="matAutocomplete"
     autoActiveFirstOption="true"
     [displayWith]="displayWith"
-    (optionSelected)="selectOption($event, input)"
+    (optionSelected)="selectOption($event)"
   >
     <ng-container *ngIf="!multiple">
       <mat-option
