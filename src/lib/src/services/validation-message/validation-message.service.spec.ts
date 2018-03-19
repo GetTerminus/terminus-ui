@@ -26,6 +26,16 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
+    test(`should return an error message when supplied lowercase letters less than required`, () => {
+      const validatorValueMock = {
+        lowercase: 4,
+      };
+      const actual = this.service.getValidatorErrorMessage('lowercase', validatorValueMock);
+      const expected = `Must contain at least 4 lowercase letters`;
+
+      expect(actual).toEqual(expected);
+    });
+
     test(`should return a maxLength message`, () => {
       const validatorValueMock = {
         requiredLength: 12,
