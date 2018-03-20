@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "angularCompilerOptions": {
+    "paths": {
+      "@terminus/ui": ["./../terminus-ui/src/public-api.ts"],
+      "@terminus/ui/testing": ["./../terminus-ui/testing/public-api.ts"]
+    }
+  },
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "@angular/*": [
+        "./../node_modules/@angular/*"
+      ],
+      "@terminus/ui": ["./../terminus-ui/src/public-api.ts"],
+      "@terminus/ui/testing": ["./../terminus-ui/testing/public-api.ts"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

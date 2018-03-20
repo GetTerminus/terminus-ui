@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "",
+    "paths": {
+      "@angular/*": [
+        "./../node_modules/@angular/*"
+      ],
+      "@terminus/ui": ["./../dist/terminus-ui"],
+      "@terminus/ui/testing": ["./../dist/terminus-ui/testing"]
+    }
+  },
+  "files": [
+    "test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}
+
