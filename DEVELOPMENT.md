@@ -25,19 +25,11 @@
 ## Developing
 
 ```bash
-# Install, build and link dependencies
-$ yarn run setup
-
-# Start the demo project and watch demo and lib files for changes
-# $ yarn run start
-# NOTE: Currently our start command causes a hung server after quitting (tracked in #690). For now we can run this command directly:
-npx concurrently --kill-others-on-fail "yarn run build:watch" "yarn run build-demo:watch"
-
-# Generate TypeScript, SCSS docs and update README table of contents
-$ yarn run docs
-
 # Build the library
 $ yarn run build
+
+# Generate TypeScript docs and update README table of contents
+$ yarn run docs
 
 # Run TypeScript and SCSS linters
 $ yarn run lint
@@ -47,6 +39,19 @@ $ yarn run test
 
 # Run all TypeScript tests and output coverage
 $ yarn run test:ci
+
+# Start the demo project and watch demo and lib files for changes
+# (don't forget to build the library first!)
+$ yarn run start:app
+
+# Test the demo app
+$ yarn run test:app
+
+# Lint the demo app
+$ yarn run lint:app
+
+# Create a commit with a helpful CLI tool
+$ yarn run cm
 
 # Add yourself as a contributor
 # See contribution types here: http://bnj.bz/3C1S0A0d1c3U
@@ -59,7 +64,7 @@ $ yarn run contributors:generate
 
 ### Demos
 
-1. `yarn install && yarn run start`
+1. `yarn install && yarn run build && yarn run start:app`
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu (top right)
 
@@ -69,7 +74,7 @@ $ yarn run contributors:generate
 
 > NOTE: You can also use the [yeoman generator][generator] to quickly scaffold a new component
 
-1. Create a directory using the component name: `src/lib/src/button/`
+1. Create a directory using the component name: `terminus-ui/src/button/`
     - Necessary files:
       - `button.module.ts`
           - Class name: `TsButtonModule`
@@ -79,8 +84,8 @@ $ yarn run contributors:generate
       - `button.component.html`
 1. Import **and** export `button.component.ts` inside `button.module.ts`
 1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
-1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to imports **and** exports array.
-1. Export `TsButtonModule` from `src/lib/index.ts`.
+1. Import `TsButtonModule` in `terminus-ui/src/module.ts` and add it to imports **and** exports array.
+1. Export `TsButtonModule` from `terminus-ui/index.ts`.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input included.
 1. Run `yarn run docs` to generate all documentation.
