@@ -32,12 +32,8 @@ jobs:
             - ./node_modules
 
       - run:
-          name: Lint Styles
-          command: tooling/ci/lint-scss.sh
-
-      - run:
-          name: Lint TypeScript
-          command: tooling/ci/lint-typescript.sh
+          name: Lint
+          command: yarn run lint:ci
 
       - run:
           name: Run Tests

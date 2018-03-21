@@ -43,6 +43,7 @@
     "lint:ts": "npx tslint --fix --project ./terminus-ui/tsconfig.lint.json",
     "lint:ts-spec": "npx tslint --fix --project ./terminus-ui/tsconfig.spec.json",
     "lint:scss": "npx stylelint 'terminus-ui/**/*.scss' --fix",
+    "lint:scss:ci": "npx stylelint 'terminus-ui/**/*.scss'",
     "lint": "yarn run lint:ts && yarn run lint:scss",
     "lint:ci": "npx tslint --project ./terminus-ui/tsconfig.lint.json && npx stylelint './terminus-ui/**/*.scss'",
     "codecov:upload": "npx codecov -f coverage/*.json",
