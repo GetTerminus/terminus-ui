@@ -1,0 +1,60 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>ngModel</h3>
+
+  <ts-input
+    [(ngModel)]="myValue"
+    label="Input with ngModel & isFocused flag"
+    isClearable="true"
+    isRequired="true"
+    name="static input"
+    theme="accent"
+    isFocused="true"
+    tsVerticalSpacing
+  ></ts-input>
+
+  <strong>ngModel value: {{ myValue }}</strong>
+</ts-card>
+
+
+<ts-card>
+  <h3 tsCardTitle tsVerticalSpacing>Form</h3>
+
+  <form [formGroup]="myForm" novalidate>
+    <ts-input
+      [formControl]="myForm.get('name')"
+      [label]="label1"
+      [isClearable]="clearable"
+      hint="Name input with validation"
+      isRequired="true"
+      [spellcheck]="false"
+      [prefixIcon]="icon"
+      tsVerticalSpacing
+      #foo="tsInput"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('email')"
+      [label]="label2"
+      [isClearable]="clearable"
+      hint="Email input with validation"
+      name="email"
+      [spellcheck]="false"
+      [autocomplete]="'email'"
+      type="email"
+      tsVerticalSpacing
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('password')"
+      label="Password"
+      hint="Password input with validation"
+      [spellcheck]="false"
+      [autocomplete]="'password'"
+      type="password"
+      tsVerticalSpacing
+    ></ts-input>
+
+    <button (click)="foo.reset()">Reset name input</button>
+    <button (click)="submit(myForm.value)">Submit</button>
+  </form>
+</ts-card>

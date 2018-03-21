@@ -1,0 +1,15 @@
+.versions {
+  color: rgba(black, .6);
+  font-size: 12px;
+  line-height: 1.4em;
+
+  strong {
+    color: black;
+  }
+}
+
+// Lock the navigation menu to a max height
+::ng-deep .menu-nav.mat-menu-panel {
+  // This height makes it obvious there is more content by scrolling
+  max-height: 30rem;
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./../tsconfig.json",
+  "exclude": [
+    "scripts",
+    "node_modules",
+    "dist",
+    "e2e",
+    "src/app"
+  ]
+}

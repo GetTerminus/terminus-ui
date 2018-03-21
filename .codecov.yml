@@ -11,18 +11,11 @@ coverage:
       default: off
       unit:
         flags: unit
-      integration:
-        # TODO: What should this target be for integration tests?
-        target: 50%
-        flags: integration
 
 flags:
   unit:
     paths:
-      - src/lib/src/
-  integration:
-    paths:
-      - integration/
+      - terminus-ui/
 
 ignore:
   - "coverage"
@@ -33,9 +26,8 @@ ignore:
   - "integration"
   - "node_modules"
   - "out-tsc"
-  - "src/demo"
-  - "styleguide"
+  - "src/app"
   - "tooling"
-  - "src/lib/src/**/*.spec.ts"
-  - "src/lib/src/**/*.mock.ts"
+  - "terminus-ui/src/**/*.spec.ts"
+  - "terminus-ui/src/**/*.mock.ts"
 

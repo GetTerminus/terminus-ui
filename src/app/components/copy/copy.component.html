@@ -1,0 +1,16 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <label>
+    Enable quick copy:
+    <input type="checkbox" [(ngModel)]="canCopy">
+  </label>
+</ts-card>
+
+<ts-card style="width: 22rem;">
+  <ts-copy
+    [enableQuickCopy]="canCopy"
+  >{{ fakeUrl }}</ts-copy>
+</ts-card>

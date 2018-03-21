@@ -21,7 +21,7 @@
     "component-selector": [
       true,
       "element",
-      "ts",
+      ["ts", "demo"],
       "kebab-case"
     ],
     "curly": true,

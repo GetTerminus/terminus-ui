@@ -1,0 +1,33 @@
+<ts-card>
+  <div fxLayout="row" fxLayoutAlign="start center" tsVerticalSpacing>
+    <div>
+      <ts-icon-button (clickEvent)="click('default')">forum</ts-icon-button>
+    </div>
+
+    <div>
+      <ts-button>Test for alignment with standard button</ts-button>
+    </div>
+  </div>
+
+
+  <div tsVerticalSpacing>
+    <ts-icon-button
+      theme="primary"
+      (clickEvent)="click('primary')"
+    >add_circle</ts-icon-button>
+  </div>
+
+  <div tsVerticalSpacing>
+    <ts-icon-button
+      theme="accent"
+      (clickEvent)="click('accent')"
+    >reply_all</ts-icon-button>
+  </div>
+
+  <div tsVerticalSpacing>
+    <ts-icon-button
+      theme="warn"
+      (clickEvent)="click('warn')"
+    >delete_forever</ts-icon-button>
+  </div>
+</ts-card>

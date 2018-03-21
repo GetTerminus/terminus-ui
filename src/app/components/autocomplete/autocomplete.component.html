@@ -1,0 +1,34 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div tsVerticalSpacing>
+    <ts-checkbox [(ngModel)]="delayApiResponse">
+      Delay API response
+    </ts-checkbox>
+  </div>
+
+  <div>
+    <button (click)="log(myForm.value)">Log form value</button>
+  </div>
+</ts-card>
+
+<ts-card>
+  <form name="myForm" novalidate>
+    <ts-autocomplete
+      tsVerticalSpacing
+      [options]="users$ | async"
+      [selectionsControl]="myForm.get('selections')"
+      [displayWith]="displayFn"
+      [initialSelections]="null"
+      [multiple]="comparator"
+      [showProgress]="inProgress"
+      label="Select user names"
+      hint="Begin typing to search..."
+      theme="primary"
+      (optionSelected)="added($event)"
+      (optionRemoved)="removed($event)"
+      (selection)="selection($event)"
+      #auto="tsAutocomplete"
+    ></ts-autocomplete>
+  </form>
+</ts-card>

@@ -1013,7 +1013,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/src/services/validation-message/validation-message.service.ts</code>
+            <code>terminus-ui/src/services/validation-message/validation-message.service.ts</code>
         </p>
 
             <p class="comment">
@@ -1078,7 +1078,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/src/services/validation-message/validation-message.service.ts:25</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">terminus-ui/src/services/validation-message/validation-message.service.ts:25</a></div>
                                         </td>
                                     </tr>
             
@@ -1160,7 +1160,7 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { format } from &#x27;date-fns&#x27;;
 
 import { emailMessage } from &#x27;./../../utilities/regex/email.regex&#x27;;
@@ -1208,6 +1208,7 @@ export class TsValidationMessageService {
       noResults: &#x60;No results found.&#x60;,
       url: &#x60;&#x27;${validatorValue.actual}&#x27; is not a valid URL.&#x60;,
       equalToControl: &#x60;&#x27;${validatorValue.actual}&#x27; is not equal to &#x27;${validatorValue.compareValue}&#x27;&#x60;,
+      lowercase: &#x60;Must contain at least ${validatorValue.lowercaseMin} lowercase letters&#x60;,
     };
 
     if (validatorName &#x3D;&#x3D;&#x3D; &#x27;maxDate&#x27;) {

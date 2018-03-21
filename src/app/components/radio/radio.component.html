@@ -1,0 +1,32 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Component reference version:
+  </h3>
+
+  <ts-radio-group
+    [options]="items$ | async"
+    (change)="selected($event)"
+    #group1="tsRadioGroup"
+    tsVerticalSpacing
+  ></ts-radio-group>
+
+  Selected value: {{ group1.value }}
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Reactive form version:
+  </h3>
+
+  <form [formGroup]="myForm" novalidate tsVerticalSpacing>
+    <div>
+      <ts-radio-group
+        [formControl]="myForm.get('myRadioGroup')"
+        [options]="items2$ | async"
+      ></ts-radio-group>
+    </div>
+
+    <button (click)="log(myForm.value)">Log form value</button>
+  </form>
+</ts-card>

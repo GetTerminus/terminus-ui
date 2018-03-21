@@ -1,0 +1,80 @@
+{
+  "name": "@terminus/ui",
+  "description": "The Terminus UI Library",
+  "version": "0.0.0-PLACEHOLDER",
+  "license": "MIT",
+  "author": "@terminus",
+  "homepage": "https://github.com/GetTerminus/terminus-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GetTerminus/terminus-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GetTerminus/terminus-ui/issues"
+  },
+  "release": {
+    "verifyConditions": [
+      "condition-circle",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/npm",
+    "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "./tooling/inject-version.sh ${nextRelease.version}"
+      },
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": true,
+        "pkgRoot": "dist/terminus-ui"
+      },
+      {
+        "path": "@semantic-release/github",
+        "npmPublish": false
+      }
+    ]
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0",
+    "yarn": ">= 1.0.0"
+  },
+  "dependencies": {
+    "date-fns": "2.0.0-alpha.7",
+    "text-mask-addons": "^3.7.2",
+    "text-mask-core": "^5.0.1"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^5.2.5",
+    "@angular/cdk": "5.2.0",
+    "@angular/core": "^5.2.5",
+    "@angular/forms": "^5.2.5",
+    "@angular/material": "5.2.0",
+    "@angular/platform-browser": "^5.2.5",
+    "@angular/router": "^5.2.5",
+    "@terminus/ngx-tools": "^2.3.3"
+  },
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "workingDirectory": "../.ng_build",
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "embedded": [
+        "text-mask-core",
+        "text-mask-addons",
+        "date-fns"
+      ],
+      "comments": "none",
+      "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
+        "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
+        "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
+        "text-mask-core/dist/textMaskCore": "textMaskCore",
+        "text-mask-addons/dist/createNumberMask": "textMaskAddons"
+      }
+    },
+    "dest": "../dist/terminus-ui"
+  }
+}

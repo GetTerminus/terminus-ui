@@ -1,0 +1,59 @@
+<mat-toolbar fxLayout="row">
+  <span>
+    Demos
+    <sup>
+      ({{ components.length }})
+    </sup>
+  </span>
+
+  <span fxFlex></span>
+
+  <div class="versions" fxLayout="row" fxLayoutGap="1em">
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div>
+        @terminus/ui:
+        <strong>{{ uiVersion.full }}</strong>
+      </div>
+
+      <div>
+        @terminus/ngx-tools:
+        <strong>{{ ngxVersion.full }}</strong>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div>
+        @angular/*:
+        <strong>{{ ngVersion.full }}</strong>
+      </div>
+      <div>
+        @angular/material:
+        <strong>{{ matVersion.full }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <span fxFlex></span>
+
+  <span>
+    <mat-menu #appMenu="matMenu" class="menu-nav">
+      <a
+        mat-menu-item
+        *ngFor="let component of components"
+        routerLink="{{component.path}}"
+      >
+        {{ component.data.name }}
+      </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="appMenu">
+      {{ activeNavItem?.data?.name || 'Select Demo' }}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
+
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
