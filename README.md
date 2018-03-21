@@ -337,7 +337,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme
-[autofocus-usage]: https://getterminus.github.io/terminus-ui/components/TsAutofocusDirective.html#readme
+[autofocus-usage]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html#readme
 [card-usage]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme
