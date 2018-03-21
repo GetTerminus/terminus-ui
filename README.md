@@ -172,7 +172,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @terminus/ui @angular/forms @angular/animations @angular/material hammerjs --exact
+$ yarn add @terminus/ui @terminus/ui @angular/forms @angular/animations @angular/material hammerjs
 ```
 
 
