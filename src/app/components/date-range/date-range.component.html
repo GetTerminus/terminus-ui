@@ -1,23 +1,19 @@
-<form [formGroup]="myForm" novalidate>
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>Demo Controls</h3>
 
-  <label>
-    Name:
-    <input type="text" formControlName="name">
-  </label>
+  <button (click)="printRange(myForm.value)">Print Range</button>
+</ts-card>
 
-  <br>
-  <br>
 
-  <ts-date-range
-    startMaxDate="{{ myMin }}"
-    [dateFormGroup]="group"
-    theme="accent"
-    (selectedDate)="printRange()"
-  ></ts-date-range>
+<ts-card>
+  <form [formGroup]="myForm" novalidate>
 
-  <br>
-  <br>
+    <ts-date-range
+      startMaxDate="{{ myMin }}"
+      [dateFormGroup]="myForm.get('dateRange')"
+      theme="accent"
+      (selectedDate)="printRange(myForm.value)"
+    ></ts-date-range>
 
-  <button (click)="printRange()">Print Range</button>
-
-</form>
+  </form>
+</ts-card>

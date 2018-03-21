@@ -2,7 +2,10 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 import {
   TsValidatorsService,
   TS_SPACING,
@@ -15,10 +18,10 @@ import {
   templateUrl: './validation.component.html',
 })
 export class ValidationComponent implements OnInit {
-  flexGap = TS_SPACING.default[0];
-  minDate = new Date(2018, 0, 5).toISOString();
-  maxDate = new Date(2018, 0, 25).toISOString();
-  myForm = this.formBuilder.group({
+  flexGap: string = TS_SPACING.default[0];
+  minDate: string = new Date(2018, 0, 5).toISOString();
+  maxDate: string = new Date(2018, 0, 25).toISOString();
+  myForm: FormGroup = this.formBuilder.group({
     email: [
       null,
       [
@@ -104,7 +107,7 @@ export class ValidationComponent implements OnInit {
   }
 
 
-  submit(v: any) {
+  log(v: any) {
     console.log('DEMO: form value: ', v);
   }
 

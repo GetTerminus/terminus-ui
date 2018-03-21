@@ -1,4 +1,6 @@
 <ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
   <label>
     Format:
     <select name="myFormat" [(ngModel)]="myFormat">
@@ -39,34 +41,40 @@
 
   <ts-button
     theme="primary"
+    tsVerticalSpacing
   >Primary</ts-button>
 
   <ts-button
     theme="primary"
     format="hollow"
     icon="home"
+    tsVerticalSpacing
   >Primary Hollow</ts-button>
 
   <br>
 
   <ts-button
     theme="accent"
+    tsVerticalSpacing
   >Accent</ts-button>
 
   <ts-button
     theme="accent"
     format="hollow"
+    tsVerticalSpacing
   >Accent Hollow</ts-button>
 
   <br>
 
   <ts-button
     theme="warn"
+    tsVerticalSpacing
   >Warn</ts-button>
 
   <ts-button
     theme="warn"
     format="hollow"
+    tsVerticalSpacing
   >Warn Hollow</ts-button>
 
   <br>
@@ -74,6 +82,7 @@
   <ts-button
     theme="primary"
     [isDisabled]="true"
+    tsVerticalSpacing
   >I'm disabled :(</ts-button>
 
   <ts-button
@@ -82,6 +91,7 @@
     [isDisabled]="true"
     [showProgress]="progress2"
     (clickEvent)="run('progress2')"
+    tsVerticalSpacing
   >I'm disabled AND empty inside :(</ts-button>
 </ts-card>
 
@@ -96,18 +106,21 @@
       theme="primary"
       iconName="add"
       [format]="formatCollapsable"
+      tsVerticalSpacing
     >New Campaign / New Tactic</ts-button>
 
     <ts-button
       theme="accent"
       iconName="add"
       [format]="formatCollapsable"
+      tsVerticalSpacing
     >New Campaign / New Tactic</ts-button>
 
     <ts-button
       theme="warn"
       iconName="add"
       [format]="formatCollapsable"
+      tsVerticalSpacing
     >New Campaign / New Tactic</ts-button>
 
     <ts-button
@@ -115,6 +128,7 @@
       iconName="add"
       [format]="formatCollapsable"
       [isDisabled]="true"
+      tsVerticalSpacing
     >Rounded - Disabled</ts-button>
   </div>
 </ts-card>

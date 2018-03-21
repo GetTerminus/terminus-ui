@@ -1,9 +1,13 @@
-<label tsVerticalSpacing>
-  Show loading overlay:
-  <input type="checkbox" [(ngModel)]="isLoading">
-</label>
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
 
-<hr tsVerticalSpacing>
+  <label>
+    Show loading overlay:
+    <input type="checkbox" [(ngModel)]="isLoading">
+  </label>
+</ts-card>
 
 
 <div [tsLoadingOverlay]="isLoading" style="border:1px solid lightblue;padding:8px;">

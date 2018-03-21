@@ -85,7 +85,7 @@ export class ExampleHttpDao {
 })
 export class TableComponent implements AfterViewInit {
   allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
-  displayedColumns = [
+  displayedColumns: string[] = [
     'created',
     'number',
     'title',
@@ -93,7 +93,7 @@ export class TableComponent implements AfterViewInit {
     'comments',
   ];
   exampleDatabase: ExampleHttpDao | null;
-  dataSource = new TsTableDataSource();
+  dataSource: TsTableDataSource<GithubIssue>  = new TsTableDataSource();
   resultsLength = 0;
 
   @ViewChild(TsSortDirective)

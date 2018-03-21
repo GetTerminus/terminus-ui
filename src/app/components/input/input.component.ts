@@ -3,9 +3,9 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
+  FormGroup,
   Validators,
 } from '@angular/forms';
-
 import { TsValidatorsService } from '@terminus/ui';
 
 
@@ -20,8 +20,7 @@ export class InputComponent {
   icon = 'home';
   model1 = 'A seeded value';
   myValue;
-
-  myForm = this.formBuilder.group({
+  myForm: FormGroup = this.formBuilder.group({
     name: [
       null,
       [
@@ -49,7 +48,8 @@ export class InputComponent {
     private validatorsService: TsValidatorsService,
   ) {}
 
-  submit(v: any) {
+
+  submit(v: any): void {
     console.log('Demo submit!: ', v);
   }
 

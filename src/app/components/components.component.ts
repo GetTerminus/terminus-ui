@@ -3,7 +3,10 @@ import {
   OnInit,
   VERSION as NG_VERSION,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+} from '@angular/router';
 import { VERSION as MAT_VERSION } from '@angular/material';
 import { VERSION as UI_VERSION } from '@terminus/ui';
 import { VERSION as NGX_VERSION } from '@terminus/ngx-tools';
@@ -22,10 +25,12 @@ export class ComponentsComponent implements OnInit {
   title = `Components (${this.components.length})`;
   height = '100px';
   path = '';
+  activeNavItem: {[key: string]: any};
   uiVersion = UI_VERSION;
   ngxVersion = NGX_VERSION;
   ngVersion = NG_VERSION;
   matVersion = MAT_VERSION;
+
 
   constructor(
     private router: Router,
@@ -34,6 +39,14 @@ export class ComponentsComponent implements OnInit {
 
   ngOnInit() {
     this.setCurrentPage();
+
+    // Update the navigation menu
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.setCurrentPage();
+        }
+      });
   }
 
 
@@ -45,6 +58,14 @@ export class ComponentsComponent implements OnInit {
     if (routeParts.length > 2) {
       this.path = routeParts[routeParts.length - 1];
     }
+
+    this.findActiveComponent();
+  }
+
+  findActiveComponent() {
+    this.activeNavItem = this.components.filter((v: any) => {
+      return v.path === this.path;
+    })[0];
   }
 
 }

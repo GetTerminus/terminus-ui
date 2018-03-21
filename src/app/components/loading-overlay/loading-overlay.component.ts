@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './loading-overlay.component.html',
 })
 export class LoadingOverlayComponent {
-  public isLoading = true;
+  isLoading = true;
 }

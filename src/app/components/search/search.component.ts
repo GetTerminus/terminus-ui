@@ -3,29 +3,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-search',
-  template: `
-    <label>
-      Auto-submit:
-      <input type="checkbox" [(ngModel)]="shouldAutoSubmit">
-    </label>
-
-    <label>
-      Is submitting:
-      <input type="checkbox" [(ngModel)]="inProgress">
-    </label>
-
-    <hr>
-    <br>
-    <ts-search
-      [isSubmitting]="inProgress"
-      isFocused="true"
-      [initialValue]="startingValue"
-      [autoSubmit]="shouldAutoSubmit"
-      (submitted)="onSubmit($event)"
-      (cleared)="onClear()"
-      (changed)="onChange($event)"
-    ></ts-search>
-  `,
+  templateUrl: './search.component.html',
 })
 export class SearchComponent {
   inProgress = false;
@@ -33,8 +11,8 @@ export class SearchComponent {
   shouldAutoSubmit = true;
 
 
-  onSubmit(query: string) {
-    console.warn('DEMO submission!', query);
+  onSubmit(query: string): void {
+    console.warn('DEMO: submission!', query);
     this.inProgress = true;
 
     setTimeout(() => {
@@ -43,12 +21,12 @@ export class SearchComponent {
   }
 
 
-  onClear() {
-    console.log('DEMO search cleared!');
+  onClear(): void {
+    console.log('DEMO: search cleared!');
   }
 
-  onChange(value: string) {
-    console.log('DEMO search input changed: ', value);
+  onChange(value: string): void {
+    console.log('DEMO: search input changed: ', value);
   }
 
 }

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class IconButtonComponent {
 
-  click(v: string) {
+  click(v: string): void {
     console.log(`DEMO: '${v}' icon-button clicked.`);
   }
 

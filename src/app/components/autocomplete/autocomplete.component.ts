@@ -10,19 +10,19 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http';
-import {
-  TsAutocompleteComponent,
-  TsAutocompleteComparatorFn,
-} from '@terminus/ui';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators/map';
 import { delay } from 'rxjs/operators/delay';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { startWith } from 'rxjs/operators/startWith';
+import {
+  TsAutocompleteComponent,
+  TsAutocompleteComparatorFn,
+} from '@terminus/ui';
 
 
+// Values used to seed initial selections
 const INITIAL = [
   {
     login: 'benjamincharity',
@@ -66,9 +66,9 @@ const INITIAL = [
   },
 ];
 
-const GITHUB_API_ENDPOINT = 'https://api.github.com';
-
-
+/**
+ * Define an interface that represents the options we present to the user
+ */
 interface OptionType {
   id: string;
   login: string;
@@ -81,6 +81,7 @@ interface OptionType {
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
+  // Using ViewChild to get a reference, we can pass in an interface for our autocomplete options
   @ViewChild('auto')
   public auto: TsAutocompleteComponent<OptionType>;
 
@@ -113,7 +114,7 @@ export class AutocompleteComponent implements OnInit {
           if (term) {
             this.inProgress = true;
             console.warn('searching term: ', term);
-            return this.http.get(`${GITHUB_API_ENDPOINT}/search/users?q=${term}`)
+            return this.http.get(`https://api.github.com/search/users?q=${term}`)
               .pipe(
                 delay(this.delayApiResponse ? 3000 : 0),
                 map((response: Response) => {
@@ -157,21 +158,20 @@ export class AutocompleteComponent implements OnInit {
     return user ? user.login : undefined;
   }
 
-
-  added(chip: any) {
-    console.log('DEMO: chip added', chip);
+  added(selection: OptionType): void {
+    console.log('DEMO: selection added', selection);
   }
 
-  removed(chip: any) {
-    console.log('DEMO: chip removed', chip);
+  removed(selection: OptionType): void {
+    console.log('DEMO: selection removed', selection);
   }
 
-  change(selections: any) {
-    console.log('DEMO: chip selections changed', selections);
+  selection(selections: OptionType[]): void {
+    console.log('DEMO: selections changed', selections);
   }
 
-  submit(v: any) {
-    console.log('Demo: form submit: ', v);
+  log(formValue: {selections: OptionType[]}): void {
+    console.log('Demo: form submit: ', formValue);
   }
 
 }

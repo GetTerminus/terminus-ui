@@ -4,29 +4,15 @@ import { TsLoginFormResponse } from '@terminus/ui';
 
 @Component({
   selector: 'demo-login-form',
-  template: `
-    <div>
-      <label for="isRedirecting">
-        Signal that the user is being redirected (form must be valid):
-      </label>
-      <input name="isRedirecting" type="checkbox" [(ngModel)]="isRedirecting">
-    </div>
-
-    <ts-login-form
-      [inProgress]="progress"
-      [isRedirecting]="isRedirecting"
-      [triggerFormReset]="reset"
-      (submit)="formSubmission($event)"
-    ></ts-login-form>
-  `,
+  templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
   public progress = false;
   public link = '/reset';
   public reset = false;
-  public isRedirecting = false;
 
-  formSubmission(e: TsLoginFormResponse) {
+
+  formSubmission(e: TsLoginFormResponse): void {
     console.warn('Demo: Form value: ', e);
     this.progress = true;
 

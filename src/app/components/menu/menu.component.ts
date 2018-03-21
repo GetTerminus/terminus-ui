@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
+import { TsStyleThemeTypes } from '@terminus/ui';
 
 
 @Component({
@@ -8,27 +12,28 @@ import { FormBuilder } from '@angular/forms';
 })
 export class MenuComponent {
   disabled = false;
-  myTheme = 'accent';
-  columns = [
+  myTheme: TsStyleThemeTypes = 'accent';
+  columns: string[] = [
     'Title',
     'Account',
     'Budget',
     'Enabled',
   ];
-  myForm = this.formBuilder.group({
+  myForm: FormGroup = this.formBuilder.group({
     showColumns: this.formBuilder.array([true, true, true, true]),
   });
+
 
   constructor(
     private formBuilder: FormBuilder,
   ) {}
 
 
-  customItemSelected(item: any): void {
-    console.log('Item selected: ', item);
+  customItemSelected(item: string): void {
+    console.log('DEMO: Item selected: ', item);
   }
 
-  submit(v: any) {
+  log(v: any): void {
     console.log('DEMO: form submission: ', v);
   }
 

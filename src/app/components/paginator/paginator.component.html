@@ -1,23 +1,23 @@
-<div>
-  <label for="page">
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <label tsVerticalSpacing>
     Set the current page from the parent component:
+    <select [(ngModel)]="currentPageIndex">
+      <option *ngFor="let page of pages">{{ page }}</option>
+    </select>
   </label>
-  <select name="page" [(ngModel)]="currentPageIndex">
-    <option *ngFor="let page of pages">{{ page }}</option>
-  </select>
 
   <br>
-  <br>
 
-  <label for="records">
+  <label>
     Set the total number of records from the parent component:
+    <input type="number" [(ngModel)]="recordCount">
   </label>
-  <input name="records" type="number" [(ngModel)]="recordCount">
-</div>
+</ts-card>
 
-<br>
-<br>
-<br>
 
 <ts-paginator
   [theme]="myTheme"

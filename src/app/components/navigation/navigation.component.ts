@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/pairs';
-import 'rxjs/add/observable/from';
 import { of } from 'rxjs/observable/of';
-
 import {
   TsNavigationItem,
   TsNavigationPayload,
@@ -52,7 +49,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   },
 ];
 
-const NEW_NAV_ITEM = {
+const NEW_NAV_ITEM: TsNavigationItem = {
   name: '0 Foo',
   action: {
     type: 'my:action',
@@ -64,32 +61,7 @@ const NEW_NAV_ITEM = {
 @Component({
   selector: 'demo-navigation',
   styleUrls: ['./navigation.component.scss'],
-  template: `
-    <div class="outer" fxLayout="row" fxLayoutAlign="space-between stretch">
-      <div fxLayout="row" fxLayoutAlign="center center" fxFlex="none">
-        <span>
-          Logo
-        </span>
-      </div>
-
-      <ts-navigation
-        [items]="navigationItems$ | async"
-        [user]="currentUser$ | async"
-        [welcomeMessage]="myMessage"
-        (action)="triggerAction($event)"
-      ></ts-navigation>
-    </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div>
-      <button (click)="updateNav()">Update Nav</button>
-    </div>
-  `,
+  templateUrl: './navigation.component.html',
 })
 export class NavigationComponent {
   public currentUser$: Observable<any> = of({
@@ -109,19 +81,19 @@ export class NavigationComponent {
    * @param {Object} item The navigation item
    */
   triggerAction(payload: TsNavigationPayload): void {
-    console.log('triggerAction: ', payload);
+    console.log('DEMO: triggerAction: ', payload);
 
     if (payload.event.metaKey) {
       // open the link in a new window
-      console.log('meta key was used');
+      console.log('DEMO: meta key was used');
     } else {
       // redirect in app
-      console.log('meta key was NOT used');
+      console.log('DEMO: meta key was NOT used');
     }
 
   }
 
-  updateNav() {
+  updateNav(): void {
     const newNav = NAV_ITEMS_MOCK.slice(0);
     newNav.unshift(NEW_NAV_ITEM);
     this.navigationItems$ = of(newNav);

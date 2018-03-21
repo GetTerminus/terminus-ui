@@ -6,7 +6,7 @@
 <form [formGroup]="myForm" novalidate>
 
   <ts-card tsVerticalSpacing>
-    <h3>Email</h3>
+    <h3 tsCardTitle>Email</h3>
 
     <div fxLayout="row" [fxLayoutGap]="flexGap">
 <pre fxFlex>
@@ -34,7 +34,7 @@ foo@bar.c
 
   <ts-card tsVerticalSpacing>
 
-    <h3>Password</h3>
+    <h3 tsCardTitle>Password</h3>
 
     <div fxLayout="row" [fxLayoutGap]="flexGap">
 <pre fxFlex>
@@ -64,7 +64,7 @@ FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdNFQ49j6BQ2BqerBnFMkeL7hfMw83fVs
 
   <ts-card tsVerticalSpacing>
 
-    <h3>Credit Card</h3>
+    <h3 tsCardTitle>Credit Card</h3>
 
     <div fxLayout="row" [fxLayoutGap]="flexGap">
 <pre fxFlex>
@@ -95,7 +95,7 @@ test@test.com
 
   <ts-card tsVerticalSpacing>
 
-    <h3>Date</h3>
+    <h3 tsCardTitle>Date</h3>
 
     <div>
       <ts-datepicker
@@ -110,7 +110,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3>Greater Than</h3>
+        <h3 tsCardTitle>Greater Than</h3>
 
         <ts-input
           [formControl]="myForm.get('greaterThan')"
@@ -123,7 +123,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3>Greater Than Or Equal</h3>
+        <h3 tsCardTitle>Greater Than Or Equal</h3>
 
         <ts-input
           [formControl]="myForm.get('greaterThanOrEqual')"
@@ -141,7 +141,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3>Less Than</h3>
+        <h3 tsCardTitle>Less Than</h3>
 
         <ts-input
           [formControl]="myForm.get('lessThan')"
@@ -154,7 +154,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3>Less Than Or Equal</h3>
+        <h3 tsCardTitle>Less Than Or Equal</h3>
 
         <ts-input
           [formControl]="myForm.get('lessThanOrEqual')"
@@ -168,20 +168,19 @@ test@test.com
   </div>
 
   <div fxLayout="row" [fxLayoutGap]="flexGap">
-  
+
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3>Contains lowercase</h3>
-  
+        <h3 tsCardTitle>Contains lowercase</h3>
+
         <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>
       </ts-card>
     </div>
   </div>
-    
 
 
   <ts-card tsVerticalSpacing>
-    <h3>Url</h3>
+    <h3 tsCardTitle>Url</h3>
 
     <div fxLayout="row" [fxLayoutGap]="flexGap">
 <pre fxFlex>
@@ -216,7 +215,9 @@ http:// shouldfail.com
 
 
   <ts-card tsVerticalSpacing>
-    <h3 tsVerticalSpacing>Compare two form controls</h3>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Compare two form controls
+    </h3>
 
     <div fxLayout="row" fxLayoutGap="2em">
       <ts-input
@@ -231,6 +232,6 @@ http:// shouldfail.com
   </ts-card>
 
 
-  <button (click)="submit(myForm.value)">Submit</button>
+  <button (click)="log(myForm.value)">Log form value</button>
 </form>
 

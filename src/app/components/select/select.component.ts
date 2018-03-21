@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
+  FormGroup,
   Validators,
 } from '@angular/forms';
 import { TsSelectItem } from '@terminus/ui';
@@ -31,11 +32,7 @@ export class SelectComponent {
   label = 'Select a Thing';
   blank = 'none';
   multipleAllowed = true;
-  initialSelection = {
-    name: 'Bar',
-    slug: 'bar',
-  };
-  myForm = this.formBuilder.group({
+  myForm: FormGroup = this.formBuilder.group({
     myChoices1: [
       2,
       [Validators.required],
@@ -46,25 +43,26 @@ export class SelectComponent {
     ],
   });
 
+
   constructor(
     private formBuilder: FormBuilder,
   ) {}
 
 
-  run() {
-    console.log('Demo: in run');
+  run(): void {
+    console.log('DEMO: in run');
   }
 
-  openStateChange(e) {
-    console.log('Demo: opened/closed: ', e);
+  openStateChange(e: boolean): void {
+    console.log('DEMO: opened/closed: ', e);
   }
 
-  isChanged(e) {
-    console.log('Demo: changed: ', e);
+  isChanged(e: TsSelectItem[]): void {
+    console.log('DEMO: changed: ', e);
   }
 
-  submit(v: any) {
-    console.log('Demo: Submit!: ', v);
+  log(v: any): void {
+    console.log('DEMO: Form value: ', v);
   }
 
 }

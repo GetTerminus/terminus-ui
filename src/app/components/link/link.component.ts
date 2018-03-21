@@ -2,23 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-link',
-  template: `
-    <ts-link
-      [destination]="localDestination"
-    >Foo Bar</ts-link>
-
-    <br>
-    <br>
-
-    <ts-link
-      [destination]="externalDestination"
-      [isExternal]="external"
-      color="warn"
-    >Bing Baz</ts-link>
-  `,
+  templateUrl: './link.component.html',
 })
 export class LinkComponent {
-  localDestination = ['/components/copy'];
-  externalDestination = `http://google.com`;
+  localDestination: string[] = ['/components/copy'];
+  externalDestination: string = `http://google.com`;
   external = true;
 }

@@ -36,7 +36,7 @@
   <span fxFlex></span>
 
   <span>
-    <mat-menu #appMenu="matMenu">
+    <mat-menu #appMenu="matMenu" class="menu-nav">
       <a
         mat-menu-item
         *ngFor="let component of components"
@@ -47,7 +47,7 @@
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="appMenu">
-      Select Demo
+      {{ activeNavItem?.data?.name || 'Select Demo' }}
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
   </span>

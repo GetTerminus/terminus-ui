@@ -1,3 +1,17 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div style="max-width: 20rem;">
+    <ts-select
+      [(ngModel)]="example"
+      [items]="items"
+      label="Change binding example"
+      valueKey="value"
+    ></ts-select>
+  </div>
+</ts-card>
+
+
 <ts-card tsVerticalSpacing="large--2">
 
   <ng-container *ngIf="example === 'default'">
@@ -35,11 +49,3 @@
   </ng-container>
 
 </ts-card>
-
-
-<ts-select
-  [(ngModel)]="example"
-  [items]="items"
-  label="Change binding example"
-  valueKey="value"
-></ts-select>

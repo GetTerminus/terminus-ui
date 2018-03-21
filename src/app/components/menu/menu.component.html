@@ -1,4 +1,8 @@
 <ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Standard Menu
+  </h3>
+
   <div tsVerticalSpacing>
     <label>
       Disabled:
@@ -15,6 +19,13 @@
       Select Item
     </ts-menu>
   </div>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Utility Menu
+  </h3>
 
   <div fxLayout="row" fxLayoutAlign="end center">
     <ts-menu
@@ -46,6 +57,9 @@
 
 
 <ts-card>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Checkbox Menu
+  </h3>
 
   <div tsVerticalSpacing>
     <ts-menu [menuItemsTemplate]="checkboxTemplate">
@@ -53,7 +67,7 @@
     </ts-menu>
   </div>
 
-  <button (click)="submit(myForm.value)">Submit</button>
+  <button (click)="log(myForm.value)">Log selections</button>
 
   <ng-template #checkboxTemplate>
     <form [formGroup]="myForm">

@@ -1,6 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormControl,
+  AbstractControl,
+} from '@angular/forms';
 import { TsMaskDirective } from '@terminus/ui';
 
 
@@ -9,24 +14,14 @@ import { TsMaskDirective } from '@terminus/ui';
   templateUrl: './mask.component.html',
 })
 export class MaskComponent {
-
-  phoneControl = new FormControl();
-  numberControl = new FormControl();
-  numberControlNoDecimal = new FormControl();
-  currencyControl = new FormControl();
-  postalControl = new FormControl();
-  nonSanitizedControl = new FormControl();
-  percentageControl = new FormControl();
+  phoneControl: AbstractControl = new FormControl();
+  numberControl: AbstractControl = new FormControl();
+  numberControlNoDecimal: AbstractControl = new FormControl();
+  currencyControl: AbstractControl = new FormControl();
+  postalControl: AbstractControl = new FormControl();
+  nonSanitizedControl: AbstractControl = new FormControl();
+  percentageControl: AbstractControl = new FormControl();
 
   @ViewChild(TsMaskDirective)
-  foo: TsMaskDirective;
-
-  onAccept(v: any) {
-    console.log('onAccept: ', v);
-  }
-  onComplete(v: any) {
-    console.log('onComplete: ', v);
-  }
-
-
+  myMask: TsMaskDirective;
 }

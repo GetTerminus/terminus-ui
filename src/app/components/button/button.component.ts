@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
+import { TsButtonFormatTypes } from '@terminus/ui';
 
 
 @Component({
   selector: 'demo-button',
-  styles: [`
-    ts-button {
-      margin-bottom: 1rem;
-    }
-  `],
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {
@@ -18,14 +14,14 @@ export class ButtonComponent {
   progress2 = false;
   icon = 'home';
   formatCollapsable = 'collapsable';
-  formats = ['filled', 'hollow', 'collapsable', 'icon'];
+  formats: TsButtonFormatTypes[] = ['filled', 'hollow', 'collapsable'];
   myFormat = 'filled';
   layoutIsRightAligned = false;
   get layout(): string {
     return this.layoutIsRightAligned ? 'right' : 'left';
   }
 
-  run(progress: any) {
+  run(progress: string): void {
     console.log('Demo: In run!');
     this[progress] = true;
 

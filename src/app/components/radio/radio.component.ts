@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
+  FormGroup,
   Validators,
 } from '@angular/forms';
 import { of } from 'rxjs/observable/of';
+import { Observable } from 'rxjs/Observable';
 
-import { TsRadioChange } from '@terminus/ui';
+import {
+  TsRadioChange,
+  TsRadioOption,
+} from '@terminus/ui';
 
 
-const DEMO_ITEMS = [
+const DEMO_ITEMS: TsRadioOption[] = [
   {
     value: 'foo_value',
     displayValue: 'Foo Display',
@@ -25,7 +30,7 @@ const DEMO_ITEMS = [
     checked: true,
   },
 ];
-const DEMO_ITEMS2 = [
+const DEMO_ITEMS2: TsRadioOption[] = [
   {
     value: 'foo2_value',
     displayValue: 'Foo2 Display',
@@ -48,9 +53,10 @@ const DEMO_ITEMS2 = [
   templateUrl: './radio.component.html',
 })
 export class RadioComponent {
-  items$ = of(DEMO_ITEMS);
-  items2$ = of(DEMO_ITEMS2);
-  myForm = this.formBuilder.group({
+
+  items$: Observable<TsRadioOption[]> = of(DEMO_ITEMS);
+  items2$: Observable<TsRadioOption[]> = of(DEMO_ITEMS2);
+  myForm: FormGroup = this.formBuilder.group({
     myRadioGroup: [
       'bar2_value',
       [
@@ -65,11 +71,11 @@ export class RadioComponent {
   ) {}
 
 
-  selected(e: TsRadioChange) {
-    console.log('Demo radio changed: ', e);
+  selected(e: TsRadioChange): void {
+    console.log('DEMO: radio changed: ', e);
   }
 
-  submit(v: any) {
+  log(v: any): void {
     console.log('DEMO: form submission: ', v);
   }
 

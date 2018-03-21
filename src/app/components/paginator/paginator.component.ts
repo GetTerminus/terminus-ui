@@ -3,10 +3,10 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,
+  TsStyleThemeTypes,
 } from '@terminus/ui';
 
 
@@ -15,13 +15,12 @@ import {
   templateUrl: './paginator.component.html',
 })
 export class PaginatorComponent implements AfterViewInit {
-  myTheme = 'primary';
+  myTheme: TsStyleThemeTypes = 'primary';
   recordCount = 114;
   showSelector = true;
   currentPageIndex = 0;
   location = 'below';
   pages: number[] = [0, 1, 2, 3, 4, 5];
-
 
   @ViewChild(TsPaginatorComponent)
   paginator: TsPaginatorComponent;
@@ -35,12 +34,12 @@ export class PaginatorComponent implements AfterViewInit {
 
 
   onPageSelect(e: TsPaginatorMenuItem): void {
-    console.log('DEMO page selected: ', e);
+    console.log('DEMO: page selected: ', e);
   }
 
 
   perPageChange(e: number): void {
-    console.log('DEMO records per page changed: ', e);
+    console.log('DEMO: records per page changed: ', e);
   }
 
 }
