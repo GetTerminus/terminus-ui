@@ -299,14 +299,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
 
 <!-- SCSS Docs -->
-[breakpoints-docs]: ./src/lib/src/scss/docs/breakpoints.md
-[color-docs]: ./src/lib/src/scss/docs/color.md
-[cursors-docs]: ./src/lib/src/scss/docs/cursors.md
-[layout-docs]: ./src/lib/src/scss/docs/layout.md
-[shadows-docs]: ./src/lib/src/scss/docs/shadows.md
-[spacing-docs]: ./src/lib/src/scss/docs/spacing.md
-[typography-docs]: ./src/lib/src/scss/docs/typography.md
-[z-index-docs]: ./src/lib/src/scss/docs/z-index.md
+[breakpoints-docs]: ./terminus-ui/src/scss/docs/breakpoints.md
+[color-docs]: ./terminus-ui/src/scss/docs/color.md
+[cursors-docs]: ./terminus-ui/src/scss/docs/cursors.md
+[layout-docs]: ./terminus-ui/src/scss/docs/layout.md
+[shadows-docs]: ./terminus-ui/src/scss/docs/shadows.md
+[spacing-docs]: ./terminus-ui/src/scss/docs/spacing.md
+[typography-docs]: ./terminus-ui/src/scss/docs/typography.md
+[z-index-docs]: ./terminus-ui/src/scss/docs/z-index.md
 
 <!-- TS Primary Docs -->
 [autocomplete-docs]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html
