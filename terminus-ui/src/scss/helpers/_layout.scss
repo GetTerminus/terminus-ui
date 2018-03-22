@@ -51,14 +51,14 @@
  * @param $y
  *  The y ratio
  * @param $pseudo
- *  Determine if the element should be a pseudo element. Default: false
+ *  Determine if a psuedo element should be used to control the ratio. Default: true
  * @param $image
  *  The image source. Default: null
  * @example
  *  @include responsive-ratio(3, 4);
  *  @include responsive-ratio(20, 9, true, url('/images/landing-hero.jpg'));
  */
-@mixin responsive-ratio($x, $y, $pseudo: false, $image: null) {
+@mixin responsive-ratio($x, $y, $pseudo: true, $image: null) {
   $padding: unquote((( $y / $x ) * 100) + '%');
 
   @if $x == null or $y == null {
@@ -76,7 +76,7 @@
   }
 
   @if image != null {
-    background-image: $image;
+    background-image: url($image);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

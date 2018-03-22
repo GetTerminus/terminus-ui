@@ -73,6 +73,42 @@ $child-padding: 2em;
 }
 ```
 
+
+### responsive-ratio
+
+Resizes an element based on a ratio (e.g. `4:3`).
+
+The first two parameters are the width (x) and height (y) respectively:
+
+```scss
+.foo {
+  @include responsive-ratio(4, 3);
+}
+```
+
+If you do not want to use a pseudo element to control the aspect ratio, passing `false` as the third
+parameter will use `padding-top` instead:
+
+```scss
+.foo {
+  @include responsive-ratio(4, 3, false);
+}
+```
+
+If controlling the aspect ratio of an element with a background image, pass the image URL as the
+fourth parameter:
+
+
+
+```scss
+$url: 'https://domain.com/image.png';
+
+.foo {
+  @include responsive-ratio(4, 3, false, $url);
+}
+```
+
+
 ### center-content
 
 Used to center a child within a parent element using flex-box styles.
