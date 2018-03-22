@@ -4,6 +4,7 @@
 
 - [Layout](#layout)
   - [take-space](#take-space)
+  - [responsive-ratio](#responsive-ratio)
   - [center-content](#center-content)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
