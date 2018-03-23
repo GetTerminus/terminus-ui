@@ -1,14 +1,13 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/lib-es2015/",
     "target": "es2015",
-    "rootDir": "./",
+    "rootDir": ".",
     "baseUrl": "",
     "types": []
   },
   "files": [
-    "./index.ts",
+    "./src/index.ts",
     "./typings.d.ts"
   ],
   "exclude": [
@@ -20,9 +19,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ui.js",
     "flatModuleId": "@terminus/ui",
-    "genDir": "../../out-tsc/lib-gen-dir/",
     "preserveWhitespaces": false
   }
 }

@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "es5",
-    "outDir": "../../out-tsc/lib-es5/",
     "baseUrl": "",
     "types": []
   },
@@ -14,8 +13,6 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ui.js",
-    "flatModuleId": "@terminus/ui",
-    "genDir": "../../out-tsc/lib-gen-dir/"
+    "flatModuleId": "@terminus/ui"
   }
 }
