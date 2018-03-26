@@ -1,4 +1,10 @@
 <ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>Demo Controls</h3>
+
+  <button (click)="shouldDisable = !shouldDisable">Toggle disabled inputs</button>
+</ts-card>
+
+<ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>ngModel</h3>
 
   <ts-input
@@ -8,7 +14,7 @@
     isRequired="true"
     name="static input"
     theme="accent"
-    isFocused="true"
+    [isDisabled]="shouldDisable"
     tsVerticalSpacing
   ></ts-input>
 
@@ -19,12 +25,14 @@
 <ts-card>
   <h3 tsCardTitle tsVerticalSpacing>Form</h3>
 
+
   <form [formGroup]="myForm" novalidate>
     <ts-input
       [formControl]="myForm.get('name')"
       [label]="label1"
       [isClearable]="clearable"
       hint="Name input with validation"
+      [isDisabled]="shouldDisable"
       isRequired="true"
       [spellcheck]="false"
       [prefixIcon]="icon"

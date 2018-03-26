@@ -105,7 +105,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | input-messages  | Used by `input` to display validation messages | :white_check_mark: | (see input demo)             |                              |                             |
 | icon            | Valid icon names: https://material.io/icons    | :white_check_mark: | [Demo][demo-icon]            | [Docs][icon-docs]            | [Usage][icon-usage]         |
 | icon-button     |                                                | :white_check_mark: | [Demo][demo-icon-button]     | [Docs][icon-button-docs]     | [Usage][icon-button-usage]  |
-| input           |                                                | :white_check_mark: | [Demo][demo-input]           | [Docs][input-docs]           |                             |
+| input           |                                                | :white_check_mark: | [Demo][demo-input]           | [Docs][input-docs]           | [Usage][input-usage]        |
 | link            |                                                | :white_check_mark: | [Demo][demo-link]            | [Docs][link-docs]            |                             |
 | loading overlay |                                                | :white_check_mark: | [Demo][demo-loading-overlay] | [Docs][loading-overlay-docs] |                             |
 | login form      |                                                | :white_check_mark: | [Demo][demo-log-in-form]     | [Docs][login-form-docs]      |                             |
@@ -347,3 +347,4 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [radio-group-usage]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html#readme
 [sort-usage]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme
 [table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
+[input-usage]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html#readme
