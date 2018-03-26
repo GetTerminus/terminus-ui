@@ -5,6 +5,9 @@
 
   <ts-radio-group
     [options]="items$ | async"
+    [formatUILabelFn]="uiFormatter"
+    [formatUISubLabelFn]="uiSubFormatter"
+    [formatModelValueFn]="modelFormatter"
     (change)="selected($event)"
     #group1="tsRadioGroup"
     tsVerticalSpacing
@@ -14,19 +17,21 @@
 </ts-card>
 
 
-<ts-card tsVerticalSpacing>
-  <h3 tsCardTitle tsVerticalSpacing>
-    Reactive form version:
-  </h3>
-
-  <form [formGroup]="myForm" novalidate tsVerticalSpacing>
-    <div>
-      <ts-radio-group
-        [formControl]="myForm.get('myRadioGroup')"
-        [options]="items2$ | async"
-      ></ts-radio-group>
-    </div>
-
-    <button (click)="log(myForm.value)">Log form value</button>
-  </form>
-</ts-card>
+<!--
+   -<ts-card tsVerticalSpacing>
+   -  <h3 tsCardTitle tsVerticalSpacing>
+   -    Reactive form version:
+   -  </h3>
+   -
+   -  <form [formGroup]="myForm" novalidate tsVerticalSpacing>
+   -    <div>
+   -      <ts-radio-group
+   -        [formControl]="myForm.get('myRadioGroup')"
+   -        [options]="items2$ | async"
+   -      ></ts-radio-group>
+   -    </div>
+   -
+   -    <button (click)="log(myForm.value)">Log form value</button>
+   -  </form>
+   -</ts-card>
+   -->

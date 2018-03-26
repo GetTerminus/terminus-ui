@@ -15,34 +15,37 @@ import {
 
 const DEMO_ITEMS: TsRadioOption[] = [
   {
-    value: 'foo_value',
-    displayValue: 'Foo Display',
+    foo: 'foo_value',
+    bar: 'Foo Display',
+    bing: 'Some helper text for my item',
   },
   {
-    value: 'bar_value',
-    displayValue: 'Bar Display',
+    foo: 'bar_value',
+    bar: 'Bar Display',
+    bing: 'Some helper text for my item',
     disabled: true,
   },
   {
-    value: 'baz_value',
-    displayValue: 'Baz Display',
+    foo: 'baz_value',
+    bar: 'Baz Display',
+    bing: 'Some helper text for my item',
     required: true,
     checked: true,
   },
 ];
 const DEMO_ITEMS2: TsRadioOption[] = [
   {
-    value: 'foo2_value',
-    displayValue: 'Foo2 Display',
+    foo: 'foo2_value',
+    bar: 'Foo2 Display',
   },
   {
-    value: 'bar2_value',
-    displayValue: 'Bar2 Display',
+    foo: 'bar2_value',
+    bar: 'Bar2 Display',
     disabled: true,
   },
   {
-    value: 'baz2_value',
-    displayValue: 'Baz2 Display',
+    foo: 'baz2_value',
+    bar: 'Baz2 Display',
     required: true,
   },
 ];
@@ -53,7 +56,6 @@ const DEMO_ITEMS2: TsRadioOption[] = [
   templateUrl: './radio.component.html',
 })
 export class RadioComponent {
-
   items$: Observable<TsRadioOption[]> = of(DEMO_ITEMS);
   items2$: Observable<TsRadioOption[]> = of(DEMO_ITEMS2);
   myForm: FormGroup = this.formBuilder.group({
@@ -64,6 +66,9 @@ export class RadioComponent {
       ],
     ],
   });
+  uiFormatter = (v) => v.bar;
+  uiSubFormatter = (v) => v.bing;
+  modelFormatter = (v) => v.foo;
 
 
   constructor(

@@ -1,5 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/color';
 
 //
 // @component
@@ -21,10 +22,25 @@
   }
 }
 
+// <mat-radio-group>
 .c-radio {
-  // Nested classes belong here
+  // <mat-radio-button> Nested classes belong here
   .c-radio__control {
     display: block;
     margin-bottom: spacing(small, 2);
+  }
+
+  // <mat-radio-button> Class added when a sublabel is present
+  .c-radio__control--sublabel {
+    .mat-radio-label {
+      align-items: start;
+    }
+  }
+
+  // <small> radio sub-label
+  .c-radio__control-sublabel {
+    @include typography(caption);
+    color: color(utility);
+    display: block;
   }
 }

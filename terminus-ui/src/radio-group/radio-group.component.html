@@ -6,17 +6,23 @@
 
     <mat-radio-button
       class="c-radio__control qa-radio-control"
-      [value]="option.value"
-      [id]="option.value"
+      [class.c-radio__control--sublabel]="formatUISubLabelFn"
+      [value]="retrieveValue(option, formatModelValueFn)"
       [disabled]="option.disabled"
       [checked]="option.checked"
-      [name]="option.name"
+      [name]="retrieveValue(option, formatModelValueFn)"
       [required]="option.required"
       (change)="change.emit($event)"
       #radio="matRadioButton"
     >
-      {{ option.displayValue }}
-      {{ option.checked }}
+      {{ retrieveValue(option, formatUILabelFn) }}
+
+      <small
+        class="c-radio__control-sublabel"
+        *ngIf="formatUISubLabelFn"
+      >
+        {{ retrieveValue(option, formatUISubLabelFn) }}
+      </small>
     </mat-radio-button>
 
   </ng-container>
