@@ -5,6 +5,7 @@
 - [Basic usage](#basic-usage)
   - [Hint](#hint)
   - [Prefix icon](#prefix-icon)
+  - [Disabled](#disabled)
   - [Required](#required)
     - [Required asterisk `*`](#required-asterisk-)
   - [Clearable](#clearable)
@@ -54,6 +55,18 @@ To include an icon as a prefix to the input, pass a valid icon name to `prefixIc
 
 > See all valid icon possibilities: https://material.io/icons
 
+
+### Disabled
+
+To disable the input, set the `isDisabled` flag. This works with both `ngModel` and `FormControl`
+inputs.
+
+```html
+<ts-input
+  [formControl]="myForm.get('myControl')"
+  isDisabled="true"
+></ts-input>
+```
 
 
 ### Required
@@ -160,5 +173,4 @@ console.log('Component Class: ', this.myVar);
 
 
 <!-- LINKS -->
-
-[autocomplete]: input.component.ts#L48-L57
+[autocomplete]: https://github.com/getterminus/terminus-ui/blob/master/terminus-ui/src/input/input.component.ts#l48-l57
