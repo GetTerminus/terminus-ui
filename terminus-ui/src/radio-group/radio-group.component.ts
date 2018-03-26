@@ -5,14 +5,15 @@ import {
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewEncapsulation,
-  OnInit,
   isDevMode,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
-import { isFunction } from '@terminus/ngx-tools';
+import {
+  isFunction,
+  hasRequiredControl,
+} from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -25,32 +26,20 @@ export interface TsRadioOption {
   [key: string]: any;
 
   /**
-   * Define if the item is selected by default
-   */
-  // TODO: can this be done with formControl value?
-  checked?: boolean;
-
-  /**
    * Define if the item is disabled
    */
   disabled?: boolean;
-
-  /**
-   * Define if the item is required
-   */
-  // TODO: can this be done with formControl has required field?
-  required?: boolean;
 }
-
 
 /**
  * Expose the MatRadioChange event as TsRadioChange
  */
 export class TsRadioChange extends MatRadioChange {}
 
-// TODO
+/**
+ * Expose the formatter function type
+ */
 export type TsRadioFormatFn = (v: any) => string;
-
 
 
 /**
@@ -91,12 +80,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-radio-group',
   },
-  exportAs: 'tsRadioGroup',
   providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsRadioGroup',
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
   /**
    * Define a function to retrieve the UI value for an option
    */
@@ -167,6 +156,12 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   private _formatModelValueFn: TsRadioFormatFn;
 
   /**
+   * Define if the radio group is disabled
+   */
+  @Input()
+  public isDisabled: boolean = false;
+
+  /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
   @Input()
@@ -184,31 +179,11 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   @Output()
   public change: EventEmitter<TsRadioChange> = new EventEmitter();
 
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {
-    super();
-  }
-
-
   /**
-   * Seed the initial value with the first checked option found
+   * Getter to determine if the group is required
    */
-  public ngOnInit(): void {
-    const initialSelection = this.defaultSelection(this.options);
-
-    if (initialSelection) {
-      this.value = initialSelection;
-
-      // istanbul ignore else
-      if (this.formControl) {
-        this.formControl.setValue(initialSelection);
-      }
-
-      // Tell Angular that we have updated the component internally
-      this.changeDetectorRef.markForCheck();
-    }
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
   }
 
 
@@ -219,25 +194,8 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: any, formatter: TsRadioFormatFn): any {
+  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
     return (formatter && formatter(option)) ? formatter(option) : option;
-  }
-
-
-  /**
-   * Return an option that should be checked by default
-   *
-   * If multiple items are marked as 'checked' by default, the first on found will win.
-   *
-   * @param options - The array of options
-   * @return The selected value
-   */
-  private defaultSelection(options: TsRadioOption[]): string | null {
-    const found = options.filter((v: TsRadioOption) => {
-      return v.checked;
-    });
-
-    return (found && found[0] && found[0].value) ? found[0].value : null;
   }
 
 }

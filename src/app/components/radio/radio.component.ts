@@ -29,8 +29,6 @@ const DEMO_ITEMS: TsRadioOption[] = [
     foo: 'baz_value',
     bar: 'Baz Display',
     bing: 'Some helper text for my item',
-    required: true,
-    checked: true,
   },
 ];
 const DEMO_ITEMS2: TsRadioOption[] = [
@@ -46,7 +44,6 @@ const DEMO_ITEMS2: TsRadioOption[] = [
   {
     foo: 'baz2_value',
     bar: 'Baz2 Display',
-    required: true,
   },
 ];
 
@@ -60,6 +57,12 @@ export class RadioComponent {
   items2$: Observable<TsRadioOption[]> = of(DEMO_ITEMS2);
   myForm: FormGroup = this.formBuilder.group({
     myRadioGroup: [
+      null,
+      [
+        Validators.required,
+      ],
+    ],
+    myRadioGroup2: [
       'bar2_value',
       [
         Validators.required,

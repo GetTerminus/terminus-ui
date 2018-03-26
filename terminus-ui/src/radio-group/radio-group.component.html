@@ -1,17 +1,17 @@
 <mat-radio-group
   class="c-radio qa-radio-group"
+  [disabled]="isDisabled"
+  [required]="isRequired"
+  [class.c-radio--sublabel]="formatUISubLabelFn"
   [(ngModel)]="value"
 >
   <ng-container *ngFor="let option of options">
 
     <mat-radio-button
       class="c-radio__control qa-radio-control"
-      [class.c-radio__control--sublabel]="formatUISubLabelFn"
       [value]="retrieveValue(option, formatModelValueFn)"
       [disabled]="option.disabled"
-      [checked]="option.checked"
       [name]="retrieveValue(option, formatModelValueFn)"
-      [required]="option.required"
       (change)="change.emit($event)"
       #radio="matRadioButton"
     >

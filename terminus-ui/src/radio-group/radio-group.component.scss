@@ -15,8 +15,6 @@
   .c-radio {
     @include typography;
     display: block;
-    // Create space for validation messages (this is usually handled by `mat-form-field`
-    padding-bottom: 1.25em;
     // set up for absolutely positioned validation messages
     position: relative;
   }
@@ -30,17 +28,22 @@
     margin-bottom: spacing(small, 2);
   }
 
-  // <mat-radio-button> Class added when a sublabel is present
-  .c-radio__control--sublabel {
-    .mat-radio-label {
-      align-items: start;
-    }
-  }
-
   // <small> radio sub-label
   .c-radio__control-sublabel {
     @include typography(caption);
     color: color(utility);
     display: block;
+  }
+}
+
+// Class added when sublabels are present
+.c-radio--sublabel {
+  // Create space for validation messages (this is usually handled by `mat-form-field`
+  padding-bottom: 1.25em;
+
+  .c-radio__control {
+    .mat-radio-label {
+      align-items: start;
+    }
   }
 }
