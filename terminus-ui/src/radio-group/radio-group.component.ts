@@ -194,7 +194,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
+  public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
     return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
