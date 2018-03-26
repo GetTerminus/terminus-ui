@@ -2592,6 +2592,7 @@ any validation messages</li>
 <li><a href="#basic-usage">Basic usage</a><ul>
 <li><a href="#hint">Hint</a></li>
 <li><a href="#prefix-icon">Prefix icon</a></li>
+<li><a href="#disabled">Disabled</a></li>
 <li><a href="#required">Required</a><ul>
 <li><a href="#required-asterisk-">Required asterisk <code>*</code></a></li>
 </ul>
@@ -2623,7 +2624,13 @@ any validation messages</li>
 &gt;&lt;/ts-input&gt;</code></pre><blockquote>
 <p>See all valid icon possibilities: <a href="https://material.io/icons">https://material.io/icons</a></p>
 </blockquote>
-<h3 id="required">Required</h3>
+<h3 id="disabled">Disabled</h3>
+<p>To disable the input, set the <code>isDisabled</code> flag. This works with both <code>ngModel</code> and <code>FormControl</code>
+inputs.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-input
+  [formControl]=&quot;myForm.get(&#39;myControl&#39;)&quot;
+  isDisabled=&quot;true&quot;
+&gt;&lt;/ts-input&gt;</code></pre><h3 id="required">Required</h3>
 <p>To set the input as required, set the <code>isRequired</code> input to <code>true</code>:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ts-input
   [formControl]=&quot;myForm.get(&#39;myControl&#39;)&quot;
@@ -2660,7 +2667,7 @@ will receive the final focus</strong></em>.</p>
   autocomplete=&quot;email&quot;
   spellcheck=&quot;true&quot;
 &gt;&lt;/ts-input&gt;</code></pre><blockquote>
-<p>For all allowed <code>autocomplete</code> types, see <a href="input.component.ts#L48-L57"><code>TsInputAutocompleteTypes</code></a>.</p>
+<p>For all allowed <code>autocomplete</code> types, see <a href="https://github.com/getterminus/terminus-ui/blob/master/terminus-ui/src/input/input.component.ts#l48-l57"><code>TsInputAutocompleteTypes</code></a>.</p>
 </blockquote>
 <h3 id="validation-timing">Validation timing</h3>
 <p>Validate on change rather than blur:</p>
