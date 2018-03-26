@@ -4,7 +4,7 @@
   </h3>
 
   <label tsVerticalSpacing>
-    Set the current page from the parent component:
+    Current page:
     <select [(ngModel)]="currentPageIndex">
       <option *ngFor="let page of pages">{{ page }}</option>
     </select>
@@ -13,8 +13,15 @@
   <br>
 
   <label>
-    Set the total number of records from the parent component:
+    Total number of records:
     <input type="number" [(ngModel)]="recordCount">
+  </label>
+
+  <br>
+
+  <label>
+    Pagination is zero-based:
+    <input type="checkbox" [(ngModel)]="zeroBased">
   </label>
 </ts-card>
 
@@ -26,6 +33,7 @@
   [currentPageIndex]="currentPageIndex"
   [menuLocation]="location"
   [paginatorMessageTemplate]="myTemplate"
+  [isZeroBased]="zeroBased"
   recordCountTooHighMessage="Please refine your filters."
   (recordsPerPageChange)="perPageChange($event)"
   (pageSelect)="onPageSelect($event)"
