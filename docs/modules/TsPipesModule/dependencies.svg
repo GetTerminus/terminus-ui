@@ -47,8 +47,8 @@
 <!-- TsTimeAgoPipe&#45;&gt;TsPipesModule -->
 <g id="edge1" class="edge">
 <title>TsTimeAgoPipe&#45;&gt;TsPipesModule</title>
-<path fill="none" stroke="#000000" d="M267.8349,-122.1061C267.8349,-122.1061 267.8349,-140.991 267.8349,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="264.3349,-140.9909 267.8349,-150.991 271.3349,-140.991 264.3349,-140.9909"/>
+<path fill="none" stroke="#000000" d="M267.8348,-122.1061C267.8348,-122.1061 267.8348,-140.991 267.8348,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="264.3349,-140.9909 267.8348,-150.991 271.3349,-140.991 264.3349,-140.9909"/>
 </g>
 <!-- TsDatePipe -->
 <g id="node2" class="node">
@@ -71,8 +71,8 @@
 <!-- TsPipesModule&#45;&gt;TsTimeAgoPipe  -->
 <g id="edge3" class="edge">
 <title>TsPipesModule&#45;&gt;TsTimeAgoPipe </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.4599,-187.1061C267.4599,-187.1061 267.4599,-205.991 267.4599,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="263.9599,-205.9909 267.4599,-215.991 270.9599,-205.991 263.9599,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.4598,-187.1061C267.4598,-187.1061 267.4598,-205.991 267.4598,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="263.9599,-205.9909 267.4598,-215.991 270.9599,-205.991 263.9599,-205.9909"/>
 </g>
 <!-- TsDatePipe  -->
 <g id="node5" class="node">

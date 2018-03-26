@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -11,15 +12,26 @@ import {
 
 
 describe(`TsInputComponent`, () => {
+  let component: TsInputComponent;
 
   beforeEach(() => {
-    this.component = new TsInputComponent(new ChangeDetectorRefMock());
-    this.component.changeDetectorRef.markForCheck = jest.fn();
+    component = new TsInputComponent(
+      new ChangeDetectorRefMock(),
+      {
+        get: jest.fn().mockReturnValue({
+          control: {
+            disable: jest.fn(),
+            enable: jest.fn(),
+          },
+        }),
+      } as Injector,
+    );
+    component['changeDetectorRef'].markForCheck = jest.fn();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
@@ -35,21 +47,42 @@ describe(`TsInputComponent`, () => {
   describe(`requiredAttribute`, () => {
 
     test(`should return 'required' when the form control is required`, () => {
-      this.component.formControl = new FormControl(null, Validators.required);
+      component.formControl = new FormControl(null, Validators.required);
 
-      expect(this.component.requiredAttribute).toEqual('required');
+      expect(component.requiredAttribute).toEqual('required');
     });
 
 
     test(`should return 'required' when 'isRequired' is true`, () => {
-      this.component.isRequired = true;
+      component.isRequired = true;
 
-      expect(this.component.requiredAttribute).toEqual('required');
+      expect(component.requiredAttribute).toEqual('required');
     });
 
 
     test(`should return null when the input is not required`, () => {
-      expect(this.component.requiredAttribute).toEqual(null);
+      expect(component.requiredAttribute).toEqual(null);
+    });
+
+  });
+
+
+  describe(`isDisabled`, () => {
+
+    test(`should set the control to disabled`, () => {
+      jest.useFakeTimers();
+      component.matInput = {
+        ngControl: {},
+      } as any;
+      component.ngAfterContentInit();
+      expect(component.matInput.ngControl).toBeTruthy();
+      expect(component._isDisabled).toEqual(false);
+
+      component.isDisabled = true;
+      jest.runAllTimers();
+
+      expect(component.isDisabled).toEqual(true);
+      expect(component.matInput.ngControl.control.disable).toHaveBeenCalled();
     });
 
   });
@@ -59,13 +92,15 @@ describe(`TsInputComponent`, () => {
 
     it(`should clear the value`, () => {
       const VALUE = 'foo';
+      component.cleared.emit = jest.fn();
 
-      this.component.value = VALUE;
-      expect(this.component.value).toEqual(VALUE);
+      component.value = VALUE;
+      expect(component.value).toEqual(VALUE);
 
-      this.component.reset();
-      expect(this.component.value).toEqual(null);
-      expect(this.component.changeDetectorRef.markForCheck).toHaveBeenCalled();
+      component.reset();
+      expect(component.value).toEqual(null);
+      expect(component.cleared.emit).toHaveBeenCalledWith(true);
+      expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
     });
 
   });

@@ -20,6 +20,7 @@ export class InputComponent {
   icon = 'home';
   model1 = 'A seeded value';
   myValue;
+  shouldDisable = true;
   myForm: FormGroup = this.formBuilder.group({
     name: [
       null,

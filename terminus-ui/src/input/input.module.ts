@@ -12,7 +12,7 @@ import { TsValidationMessagesModule } from './../validation-messages/validation-
 import { TsValidatorsService } from './../services/validators/validators.service';
 
 import { TsInputComponent } from './input.component';
-export { TsInputComponent } from './input.component';
+export * from './input.component';
 
 
 @NgModule({

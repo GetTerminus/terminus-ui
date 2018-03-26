@@ -40,4 +40,9 @@
       width: 1em;
     }
   }
+
+  // Push back opacity for icons in disabled form fields
+  .mat-form-field-disabled & {
+    opacity: .4;
+  }
 }

@@ -7,16 +7,51 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ChangeDetectorRef,
+  AfterContentInit,
+  ViewChild,
+  Injector,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
+  NgControl,
 } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
 import { hasRequiredControl } from '@terminus/ngx-tools';
-
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
-import { TsInputTypes, TsInputAutocompleteTypes } from './../utilities/types/input.types';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
+
+/**
+ * Define the allowed {@link TsInputComponent} input types
+ */
+export type TsInputTypes =
+  'text'
+  | 'password'
+  | 'email'
+  | 'hidden'
+  | 'number'
+  | 'search'
+  | 'tel'
+  | 'url'
+;
+
+/**
+ * Define the allowed autocomplete variations for {@link TsInputComponent}
+ *
+ * NOTE: This is not all valid types; only the ones this library supports.
+ */
+export type TsInputAutocompleteTypes =
+  'off'
+  | 'on'
+  | 'name'
+  | 'email'
+  | 'username'
+  | 'new-password'
+  | 'current-password'
+  | 'tel'
+;
 
 
 /**
@@ -48,13 +83,12 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  * @example
  * <ts-input
  *              [formControl]="myForm.get('myControl')"
- *              required
  *              minlength="3"
  *              maxlength="8"
  *              hint="Fill this out!"
  *              label="My Input"
  *              name="'password'"
- *              prefixIcon="'icon_name'"
+ *              prefixIcon="icon_name"
  *              type="text"
  *              isDisabled="false"
  *              isRequired="false"
@@ -84,7 +118,8 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent {
+export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterContentInit {
+
   /**
    * Determine the correct required attribute content
    *
@@ -103,7 +138,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   public autocapitalize: boolean = true;
 
   /**
-   * Define if the input should autocomplete
+   * Define if the input should autocomplete. See {@link TsInputAutocompleteTypes}.
    */
   @Input()
   public autocomplete: TsInputAutocompleteTypes = 'on';
@@ -113,6 +148,26 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public isClearable: boolean = false;
+
+  /**
+   * Define if the input should be disabled
+   */
+  @Input()
+  public set isDisabled(v: boolean) {
+    v = coerceBooleanProperty(v);
+    const action: string = v ? 'disable' : 'enable';
+
+    // FIXME: It seems that we should be able use the changeDetectorRef here but it doesn't
+    // seem to work
+    setTimeout(() => {
+      this._isDisabled = v;
+      this.matInput.ngControl.control[action]();
+    });
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled: boolean = false;
 
   /**
    * Define if the input should be focused
@@ -194,11 +249,27 @@ export class TsInputComponent extends TsReactiveFormBaseComponent {
   @Output()
   cleared: EventEmitter<boolean> = new EventEmitter();
 
+  /**
+   * Access the underlying MatInput instance
+   */
+  @ViewChild(MatInput)
+  matInput: MatInput;
+
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    private injector: Injector,
   ) {
     super();
+  }
+
+
+  /**
+   * Get our instance of ngControl and override MatInput's instance
+   */
+  public ngAfterContentInit(): void {
+    this.matInput.ngControl = this.injector.get(NgControl);
+    this.changeDetectorRef.detectChanges();
   }
 
 
