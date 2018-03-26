@@ -4,15 +4,20 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  OnInit,
+  AfterViewInit,
   TemplateRef,
   ElementRef,
   SimpleChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import {
+  coerceNumberProperty,
+  coerceBooleanProperty,
+} from '@terminus/ngx-tools/coercion';
 
+import { inputHasChanged } from './../utilities/inputHasChanged';
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsPaginatorMenuItem } from './../utilities/interfaces';
 
@@ -35,6 +40,7 @@ import { TsPaginatorMenuItem } from './../utilities/interfaces';
  *              currentPageIndex="1"
  *              maxPreferredRecords="100"
  *              menuLocation="below"
+ *              isZeroBased="true"
  *              totalRecords="1450"
  *              recordCountTooHighMessage="Please refine your filters."
  *              recordsPerPageChoices="[10, 20, 50]"
@@ -65,7 +71,7 @@ import { TsPaginatorMenuItem } from './../utilities/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsPaginatorComponent implements OnChanges, OnInit {
+export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the default count of records per page
    */
@@ -128,6 +134,19 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
   public templateContext = {
     $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
   };
+
+  /**
+   * Define if the paging is 0-based or 1-based
+   */
+  @Input()
+  public set isZeroBased(v: boolean) {
+    v = coerceBooleanProperty(v);
+    this._isZeroBased = v;
+  }
+  public get isZeroBased(): boolean {
+    return this._isZeroBased;
+  }
+  private _isZeroBased: boolean = true;
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -237,11 +256,37 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
   @Output()
   public recordsPerPageChange: EventEmitter<number> = new EventEmitter();
 
+  /**
+   * Getter to return the index of the first page
+   */
+  public get firstPageIndex(): number {
+    return this.isZeroBased ? 0 : 1;
+  }
+
+  /**
+   * Getter to return the index of the next page
+   */
+  public get nextPageIndex(): number {
+    return this.currentPageIndex - this.firstPageIndex;
+  }
+
+  /**
+   * Getter to return the index of the last page
+   */
+  public get lastPageIndex(): number {
+    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length ;
+  }
+
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
 
   /**
    * Initialize on init
    */
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
     this.initialize();
   }
 
@@ -252,13 +297,18 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * @param changes - The object containing all changes since last cycle
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    this.initialize();
-
     // If the record count changed, assign the new value to the template context
     // istanbul ignore else
-    if (changes.recordCountTooHighMessage) {
+    if (inputHasChanged(changes, 'recordCountTooHighMessage')) {
       this.templateContext.$implicit = this.recordCountTooHighMessage;
     }
+
+    // If the zeroBased input changes, update the current page index
+    if (inputHasChanged(changes, 'isZeroBased')) {
+      this.currentPageIndex = changes.isZeroBased.currentValue ? 0 : 1;
+    }
+
+    this.initialize();
   }
 
 
@@ -266,12 +316,16 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * Set up initial resources
    */
    private initialize(): void {
-     this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage);
+     this.pagesArray =
+       this.createPagesArray(this.totalRecords, this.recordsPerPage, this.isZeroBased);
      this.currentPageLabel =
        this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
 
-     // Go to the initially set page
-     this.changePage(this.currentPageIndex, 0, this.pagesArray);
+     // Change to the current page
+     // istanbul ignore else
+     if (this.totalRecords > 0) {
+       this.changePage(this.currentPageIndex, -1, this.pagesArray);
+     }
    }
 
 
@@ -290,6 +344,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
 
     // Emit an event
     this.pageSelect.emit(page);
+    this.changeDetectorRef.detectChanges();
   }
 
 
@@ -305,8 +360,8 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     currentPage: number,
     pages: TsPaginatorMenuItem[],
   ): void {
-    const destinationIsValid = destinationPage >= 0 && destinationPage <= pages.length;
-    const notAlreadyOnPage = destinationPage !== currentPage;
+    const destinationIsValid: boolean = destinationPage >= this.firstPageIndex && destinationPage <= pages.length;
+    const notAlreadyOnPage: boolean = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
       const foundPage: TsPaginatorMenuItem = pages.find((page) => {
@@ -325,7 +380,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * @return A boolean representing if this is the first page
    */
   public isFirstPage(page: number): boolean {
-    return coerceNumberProperty(page) === 0;
+    return coerceNumberProperty(page) === this.firstPageIndex;
   }
 
 
@@ -337,7 +392,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public isLastPage(page: number): boolean {
     if (this.pagesArray) {
-      return page === (this.pagesArray.length - 1);
+      return page === (this.pagesArray.length - (this.isZeroBased ? 1 : 0));
     } else {
       return false;
     }
@@ -368,7 +423,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage = selection;
-    this.currentPageIndex = 0;
+    this.currentPageIndex = this.firstPageIndex;
     this.recordsPerPageChange.emit(selection);
 
     this.initialize();
@@ -450,12 +505,14 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    *
    * @param total - The total records remaining
    * @param perPage - How many records are shown per page
+   * @param zeroBased - If the pages are based on a `0` index rather than `1`
    * @return The array representing all possible pages of records
    */
-  private createPagesArray(total: number, perPage: number): TsPaginatorMenuItem[] {
+  private createPagesArray(total: number, perPage: number, zeroBased: boolean): TsPaginatorMenuItem[] {
     const paginatorArray: TsPaginatorMenuItem[] = [];
     let recordsRemaining = total;
-    let page = 0;
+    let page = this.firstPageIndex;
+    const zeroBasedOffset: number = zeroBased ? 1 : 0;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining < 1) {
@@ -465,16 +522,16 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     while (recordsRemaining >= perPage) {
       // We are creating the text for the range here so we are dealing with records based on 1
       // (while the pages themselves are based on 0)
-      const pageNumber = (page < 1) ? 1 : page;
-      const rangeStart = pageNumber * perPage - (perPage - 1);
-      const rangeEnd = (pageNumber * perPage);
-      const pageValue: number = paginatorArray.length + 1;
+      const pageNumber: number = page;
+      const rangeStart: number = (pageNumber + zeroBasedOffset) * perPage - (perPage - 1);
+      const rangeEnd: number = ((pageNumber + zeroBasedOffset) * perPage);
+      const pageValue: number = paginatorArray.length + (zeroBased ? 0 : 1);
 
       // Create a page object
       paginatorArray.push({
         name: `${rangeStart} - ${rangeEnd}`,
-        // The value is zero based
-        value: `${(pageValue - 1).toString()}`,
+        // The value may be zero based
+        value: `${(pageValue).toString()}`,
       });
 
       // Update the remaining count
@@ -493,10 +550,12 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
       let value;
       const pageNumber = (page < 1) ? 1 : page;
 
+      // This is just the last page (not only page)
       if (paginatorArray.length > 0) {
-        name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
-        value = `${pageNumber}`;
+        name = `${(pageNumber + zeroBasedOffset) * perPage + 1} - ${(pageNumber + zeroBasedOffset) * perPage + recordsRemaining}`;
+        value = pageNumber + 1;
       } else {
+        // If this is the only paginator page
         name = `${pageNumber} - ${recordsRemaining}`;
         value = pageNumber;
       }

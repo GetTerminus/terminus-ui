@@ -998,6 +998,9 @@
     <li class="active">
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -1047,7 +1050,7 @@
     </p>
     <p class="comment">
                 <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
     </p>
 
     <p class="comment">
@@ -1059,6 +1062,7 @@
   currentPageIndex=&quot;1&quot;
   maxPreferredRecords=&quot;100&quot;
   menuLocation=&quot;below&quot;
+  isZeroBased=&quot;true&quot;
   totalRecords=&quot;1450&quot;
   recordCountTooHighMessage=&quot;Please refine your filters.&quot;
   recordsPerPageChoices=&quot;[10, 20, 50]&quot;
@@ -1146,6 +1150,10 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_currentPageIndex">_currentPageIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_isZeroBased">_isZeroBased</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -1248,11 +1256,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#ngOnChanges">ngOnChanges</a>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnChanges">ngOnChanges</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -1282,6 +1290,9 @@
                             </li>
                             <li>
                                 <a href="#firstPageTooltip">firstPageTooltip</a>
+                            </li>
+                            <li>
+                                <a href="#isZeroBased">isZeroBased</a>
                             </li>
                             <li>
                                 <a href="#lastPageTooltip">lastPageTooltip</a>
@@ -1348,10 +1359,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#isZeroBased">isZeroBased</a>
+                            </li>
+                            <li>
                                 <a href="#currentPageIndex">currentPageIndex</a>
                             </li>
                             <li>
                                 <a href="#totalRecords">totalRecords</a>
+                            </li>
+                            <li>
+                                <a href="#firstPageIndex">firstPageIndex</a>
+                            </li>
+                            <li>
+                                <a href="#nextPageIndex">nextPageIndex</a>
+                            </li>
+                            <li>
+                                <a href="#lastPageIndex">lastPageIndex</a>
                             </li>
                         </ul>
                     </td>
@@ -1360,6 +1383,54 @@
         </table>
     </section>
 
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+    <code>constructor(changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:278</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div>
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                        <td>changeDetectorRef</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="inputs">Inputs</h3>
@@ -1381,7 +1452,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:160</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:179</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1407,7 +1478,30 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:136</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:155</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="isZeroBased"></a>
+                            <code>isZeroBased</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the paging is 0-based or 1-based</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:142</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1433,7 +1527,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:154</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:173</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1459,7 +1553,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:172</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:191</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1485,7 +1579,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:178</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:197</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1511,7 +1605,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:148</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:167</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1534,7 +1628,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:184</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:203</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1560,7 +1654,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:142</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:161</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1586,7 +1680,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:208</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:227</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1612,7 +1706,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:214</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:233</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1638,7 +1732,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:220</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:239</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1664,7 +1758,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:226</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:245</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1690,7 +1784,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:190</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:209</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1713,7 +1807,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:196</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:215</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1738,7 +1832,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:232</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:251</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1759,7 +1853,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:238</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:257</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1797,7 +1891,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:303</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:358</a></div>
                                 </td>
                             </tr>
     
@@ -1915,7 +2009,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="411" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:411</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="466" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:466</a></div>
                                 </td>
                             </tr>
     
@@ -2022,14 +2116,14 @@
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>createPagesArray(total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, perPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                            <code>createPagesArray(total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, perPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, zeroBased: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="455" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:455</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:511</a></div>
                                 </td>
                             </tr>
     
@@ -2088,6 +2182,25 @@
     </code>
                                                             </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>zeroBased</td>
+                                                        
+                                                            <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><ul>
+    <li>If the pages are based on a <code>0</code> index rather than <code>1</code></li>
+    </ul>
+    </code>
+                                                            </td>
+                                                    </tr>
                                             </tbody>
                                         </table>
                                 </div>
@@ -2128,7 +2241,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:283</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="337" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:337</a></div>
                                 </td>
                             </tr>
     
@@ -2208,7 +2321,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="397" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:397</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:452</a></div>
                                 </td>
                             </tr>
     
@@ -2304,7 +2417,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:268</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:318</a></div>
                                 </td>
                             </tr>
     
@@ -2345,7 +2458,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:327</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="382" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:382</a></div>
                                 </td>
                             </tr>
     
@@ -2425,7 +2538,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:338</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:393</a></div>
                                 </td>
                             </tr>
     
@@ -2505,7 +2618,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="384" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:384</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="439" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:439</a></div>
                                 </td>
                             </tr>
     
@@ -2565,6 +2678,47 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="ngAfterViewInit"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Public</span>
+                                ngAfterViewInit
+                                </b>
+                                <a href="#ngAfterViewInit"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-reset"></span>
+                            <code>ngAfterViewInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:289</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Initialize on init</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="ngOnChanges"></a>
                             <span class="name">
                                 <b>
@@ -2585,7 +2739,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:254</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:299</a></div>
                                 </td>
                             </tr>
     
@@ -2645,47 +2799,6 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="ngOnInit"></a>
-                            <span class="name">
-                                <b>
-                                    <span class="modifier">Public</span>
-                                ngOnInit
-                                </b>
-                                <a href="#ngOnInit"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <span class="modifier-icon fa fa-reset"></span>
-                            <code>ngOnInit()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:244</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Initialize on init</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="recordsPerPageUpdated"></a>
                             <span class="name">
                                 <b>
@@ -2706,7 +2819,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="369" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:369</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="424" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:424</a></div>
                                 </td>
                             </tr>
     
@@ -2786,7 +2899,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:355</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="410" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:410</a></div>
                                 </td>
                             </tr>
     
@@ -2904,7 +3017,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="521" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:521</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:580</a></div>
                                 </td>
                             </tr>
     
@@ -3019,7 +3132,47 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:166</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:185</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_isZeroBased"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _isZeroBased
+                                </b>
+                                <a href="#_isZeroBased"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_isZeroBased:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>true</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:149</a></div>
                                 </td>
                             </tr>
     
@@ -3059,7 +3212,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:202</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:221</a></div>
                                 </td>
                             </tr>
     
@@ -3094,7 +3247,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:118</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:124</a></div>
                                 </td>
                             </tr>
     
@@ -3141,7 +3294,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:87</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:93</a></div>
                                 </td>
                             </tr>
     
@@ -3187,7 +3340,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:77</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:83</a></div>
                                 </td>
                             </tr>
     
@@ -3233,7 +3386,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:72</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:78</a></div>
                                 </td>
                             </tr>
     
@@ -3279,7 +3432,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:82</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:88</a></div>
                                 </td>
                             </tr>
     
@@ -3325,7 +3478,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:93</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:99</a></div>
                                 </td>
                             </tr>
     
@@ -3371,7 +3524,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:108</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:114</a></div>
                                 </td>
                             </tr>
     
@@ -3417,7 +3570,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:103</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:109</a></div>
                                 </td>
                             </tr>
     
@@ -3458,7 +3611,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:113</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:119</a></div>
                                 </td>
                             </tr>
     
@@ -3504,7 +3657,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:98</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:104</a></div>
                                 </td>
                             </tr>
     
@@ -3550,7 +3703,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:123</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:129</a></div>
                                 </td>
                             </tr>
     
@@ -3598,7 +3751,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:128</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:134</a></div>
                                 </td>
                             </tr>
     
@@ -3621,6 +3774,77 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="isZeroBased"></a>
+                            <span class="name"><b>isZeroBased</b><a href="#isZeroBased"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>isZeroBased()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:146</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>isZeroBased(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:142</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define if the paging is 0-based or 1-based</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                            <td>Type</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>v</td>
+                                                        
+                                                                <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                                </td>
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="currentPageIndex"></a>
                             <span class="name"><b>currentPageIndex</b><a href="#currentPageIndex"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -3633,7 +3857,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:163</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:182</a></div>
                                     </td>
                                 </tr>
     
@@ -3644,7 +3868,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:160</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:179</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -3704,7 +3928,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:199</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:218</a></div>
                                     </td>
                                 </tr>
     
@@ -3715,7 +3939,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:196</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:215</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -3759,9 +3983,208 @@
                         </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="firstPageIndex"></a>
+                            <span class="name"><b>firstPageIndex</b><a href="#firstPageIndex"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>firstPageIndex()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:262</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the index of the first page</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="nextPageIndex"></a>
+                            <span class="name"><b>nextPageIndex</b><a href="#nextPageIndex"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>nextPageIndex()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:269</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the index of the next page</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="lastPageIndex"></a>
+                            <span class="name"><b>lastPageIndex</b><a href="#lastPageIndex"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>lastPageIndex()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">terminus-ui/src/paginator/paginator.component.ts:276</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to return the index of the last page</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
     </section>
 </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#paginator">Paginator</a><ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#current-page">Current page</a></li>
+<li><a href="#zero-or-one-based-pagination">Zero or One based pagination</a></li>
+<li><a href="#record-count-too-high">Record count too high</a><ul>
+<li><a href="#max-records">Max records</a></li>
+<li><a href="#record-count-message">Record count message</a></li>
+</ul>
+</li>
+<li><a href="#records-per-page">Records per page</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1>Paginator</h1>
+
+
+<h2 id="basic-usage">Basic usage</h2>
+<p>For the most minimal implementation, just pass in the total record count:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><h2 id="events">Events</h2>
+<p>The paginator will emit the current page each time the page is changed or the records-per-page count
+is changed:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  (recordsPerPageChange)=&quot;myChangeFunc($event)&quot;
+  (pageSelect)=&quot;mySelectFunc($event)&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">mySelectFunc(v: TsPaginatorMenuItem) {
+  // v:
+  // {
+  //   name: &quot;1 - 10&quot;,
+  //   value: &quot;1&quot;,
+  // }
+}
+
+myChangeFunc(v: number) {
+  // v: 50
+}</code></pre><h2 id="current-page">Current page</h2>
+<p>Set the current page:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  currentPageIndex=&quot;2&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><h2 id="zero-or-one-based-pagination">Zero or One based pagination</h2>
+<p>By default the paginator starts the pages array with a value of &#39;0&#39;. If your API starts it&#39;s
+pagination at 1 (such as Rails) you can set <code>isZeroBased</code> to <code>false</code>:</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- The first page will have the value &#39;1&#39; --&gt;
+&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  isZeroBased=&quot;false&quot;
+&gt;&lt;/ts-paginator&gt;
+
+&lt;!-- The first page will have the value &#39;0&#39; --&gt;
+&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  isZeroBased=&quot;true&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><h2 id="record-count-too-high">Record count too high</h2>
+<p>The paginator will display a message if too many records are found. This is to encourage better
+filtering rather than more time paging through results.</p>
+<h3 id="max-records">Max records</h3>
+<p>By default, anything over <code>100</code> is considered too many. To change this value, pass in a number to <code>maxPreferredRecords</code>:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  maxPreferredRecords=&quot;50&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><h3 id="record-count-message">Record count message</h3>
+<p>A custom message may be defined:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  recordCountTooHighMessage=&quot;What they heck are you looking for?&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><p>A custom message template can also be defined. This allows dynamic links to documentation, help or a
+better set of filters.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  recordCountTooHighMessage=&quot;What they heck are you looking for?&quot;
+  [paginatorMessageTemplate]=&quot;myTemplate&quot;
+&gt;&lt;/ts-paginator&gt;
+
+&lt;!--
+  The message set on `recordCountTooHighMessage` will be exposed via the variable `message` in this
+  example.
+--&gt;
+&lt;ng-template #myTemplate let-message&gt;
+  &lt;a routerLink=&quot;/components/link&quot;&gt;{{ message }}&lt;/a&gt;
+&lt;/ng-template&gt;</code></pre><h2 id="records-per-page">Records per page</h2>
+<p>Define the choices for how many records can be displayed on a single &#39;page&#39;:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  recordsPerPageChoices=&quot;[100, 200, 500]&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre><p>This menu can be disabled completely if desired:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-paginator
+  totalRecords=&quot;100&quot;
+  showRecordsPerPageSelector=&quot;false&quot;
+&gt;&lt;/ts-paginator&gt;</code></pre></p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
@@ -3770,15 +4193,20 @@
   Output,
   EventEmitter,
   OnChanges,
-  OnInit,
+  AfterViewInit,
   TemplateRef,
   ElementRef,
   SimpleChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from &#x27;@angular/core&#x27;;
-import { coerceNumberProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
+import {
+  coerceNumberProperty,
+  coerceBooleanProperty,
+} from &#x27;@terminus/ngx-tools/coercion&#x27;;
 
+import { inputHasChanged } from &#x27;./../utilities/inputHasChanged&#x27;;
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 import { TsPaginatorMenuItem } from &#x27;./../utilities/interfaces&#x27;;
 
@@ -3801,6 +4229,7 @@ import { TsPaginatorMenuItem } from &#x27;./../utilities/interfaces&#x27;;
  *              currentPageIndex&#x3D;&quot;1&quot;
  *              maxPreferredRecords&#x3D;&quot;100&quot;
  *              menuLocation&#x3D;&quot;below&quot;
+ *              isZeroBased&#x3D;&quot;true&quot;
  *              totalRecords&#x3D;&quot;1450&quot;
  *              recordCountTooHighMessage&#x3D;&quot;Please refine your filters.&quot;
  *              recordsPerPageChoices&#x3D;&quot;[10, 20, 50]&quot;
@@ -3831,7 +4260,7 @@ import { TsPaginatorMenuItem } from &#x27;./../utilities/interfaces&#x27;;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsPaginatorComponent implements OnChanges, OnInit {
+export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the default count of records per page
    */
@@ -3894,6 +4323,19 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
   public templateContext &#x3D; {
     $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
   };
+
+  /**
+   * Define if the paging is 0-based or 1-based
+   */
+  @Input()
+  public set isZeroBased(v: boolean) {
+    v &#x3D; coerceBooleanProperty(v);
+    this._isZeroBased &#x3D; v;
+  }
+  public get isZeroBased(): boolean {
+    return this._isZeroBased;
+  }
+  private _isZeroBased: boolean &#x3D; true;
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -4003,11 +4445,37 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
   @Output()
   public recordsPerPageChange: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
 
+  /**
+   * Getter to return the index of the first page
+   */
+  public get firstPageIndex(): number {
+    return this.isZeroBased ? 0 : 1;
+  }
+
+  /**
+   * Getter to return the index of the next page
+   */
+  public get nextPageIndex(): number {
+    return this.currentPageIndex - this.firstPageIndex;
+  }
+
+  /**
+   * Getter to return the index of the last page
+   */
+  public get lastPageIndex(): number {
+    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length ;
+  }
+
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
 
   /**
    * Initialize on init
    */
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
     this.initialize();
   }
 
@@ -4018,13 +4486,18 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * @param changes - The object containing all changes since last cycle
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    this.initialize();
-
     // If the record count changed, assign the new value to the template context
     // istanbul ignore else
-    if (changes.recordCountTooHighMessage) {
+    if (inputHasChanged(changes, &#x27;recordCountTooHighMessage&#x27;)) {
       this.templateContext.$implicit &#x3D; this.recordCountTooHighMessage;
     }
+
+    // If the zeroBased input changes, update the current page index
+    if (inputHasChanged(changes, &#x27;isZeroBased&#x27;)) {
+      this.currentPageIndex &#x3D; changes.isZeroBased.currentValue ? 0 : 1;
+    }
+
+    this.initialize();
   }
 
 
@@ -4032,12 +4505,16 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * Set up initial resources
    */
    private initialize(): void {
-     this.pagesArray &#x3D; this.createPagesArray(this.totalRecords, this.recordsPerPage);
+     this.pagesArray &#x3D;
+       this.createPagesArray(this.totalRecords, this.recordsPerPage, this.isZeroBased);
      this.currentPageLabel &#x3D;
        this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
 
-     // Go to the initially set page
-     this.changePage(this.currentPageIndex, 0, this.pagesArray);
+     // Change to the current page
+     // istanbul ignore else
+     if (this.totalRecords &gt; 0) {
+       this.changePage(this.currentPageIndex, -1, this.pagesArray);
+     }
    }
 
 
@@ -4056,6 +4533,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
 
     // Emit an event
     this.pageSelect.emit(page);
+    this.changeDetectorRef.detectChanges();
   }
 
 
@@ -4071,8 +4549,8 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     currentPage: number,
     pages: TsPaginatorMenuItem[],
   ): void {
-    const destinationIsValid &#x3D; destinationPage &gt;&#x3D; 0 &amp;&amp; destinationPage &lt;&#x3D; pages.length;
-    const notAlreadyOnPage &#x3D; destinationPage !&#x3D;&#x3D; currentPage;
+    const destinationIsValid: boolean &#x3D; destinationPage &gt;&#x3D; this.firstPageIndex &amp;&amp; destinationPage &lt;&#x3D; pages.length;
+    const notAlreadyOnPage: boolean &#x3D; destinationPage !&#x3D;&#x3D; currentPage;
 
     if (destinationIsValid &amp;&amp; notAlreadyOnPage) {
       const foundPage: TsPaginatorMenuItem &#x3D; pages.find((page) &#x3D;&gt; {
@@ -4091,7 +4569,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    * @return A boolean representing if this is the first page
    */
   public isFirstPage(page: number): boolean {
-    return coerceNumberProperty(page) &#x3D;&#x3D;&#x3D; 0;
+    return coerceNumberProperty(page) &#x3D;&#x3D;&#x3D; this.firstPageIndex;
   }
 
 
@@ -4103,7 +4581,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public isLastPage(page: number): boolean {
     if (this.pagesArray) {
-      return page &#x3D;&#x3D;&#x3D; (this.pagesArray.length - 1);
+      return page &#x3D;&#x3D;&#x3D; (this.pagesArray.length - (this.isZeroBased ? 1 : 0));
     } else {
       return false;
     }
@@ -4134,7 +4612,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    */
   public recordsPerPageUpdated(selection: number): void {
     this.recordsPerPage &#x3D; selection;
-    this.currentPageIndex &#x3D; 0;
+    this.currentPageIndex &#x3D; this.firstPageIndex;
     this.recordsPerPageChange.emit(selection);
 
     this.initialize();
@@ -4216,12 +4694,14 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
    *
    * @param total - The total records remaining
    * @param perPage - How many records are shown per page
+   * @param zeroBased - If the pages are based on a &#x60;0&#x60; index rather than &#x60;1&#x60;
    * @return The array representing all possible pages of records
    */
-  private createPagesArray(total: number, perPage: number): TsPaginatorMenuItem[] {
+  private createPagesArray(total: number, perPage: number, zeroBased: boolean): TsPaginatorMenuItem[] {
     const paginatorArray: TsPaginatorMenuItem[] &#x3D; [];
     let recordsRemaining &#x3D; total;
-    let page &#x3D; 0;
+    let page &#x3D; this.firstPageIndex;
+    const zeroBasedOffset: number &#x3D; zeroBased ? 1 : 0;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining &lt; 1) {
@@ -4231,16 +4711,16 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
     while (recordsRemaining &gt;&#x3D; perPage) {
       // We are creating the text for the range here so we are dealing with records based on 1
       // (while the pages themselves are based on 0)
-      const pageNumber &#x3D; (page &lt; 1) ? 1 : page;
-      const rangeStart &#x3D; pageNumber * perPage - (perPage - 1);
-      const rangeEnd &#x3D; (pageNumber * perPage);
-      const pageValue: number &#x3D; paginatorArray.length + 1;
+      const pageNumber: number &#x3D; page;
+      const rangeStart: number &#x3D; (pageNumber + zeroBasedOffset) * perPage - (perPage - 1);
+      const rangeEnd: number &#x3D; ((pageNumber + zeroBasedOffset) * perPage);
+      const pageValue: number &#x3D; paginatorArray.length + (zeroBased ? 0 : 1);
 
       // Create a page object
       paginatorArray.push({
         name: &#x60;${rangeStart} - ${rangeEnd}&#x60;,
-        // The value is zero based
-        value: &#x60;${(pageValue - 1).toString()}&#x60;,
+        // The value may be zero based
+        value: &#x60;${(pageValue).toString()}&#x60;,
       });
 
       // Update the remaining count
@@ -4259,10 +4739,12 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
       let value;
       const pageNumber &#x3D; (page &lt; 1) ? 1 : page;
 
+      // This is just the last page (not only page)
       if (paginatorArray.length &gt; 0) {
-        name &#x3D; &#x60;${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}&#x60;;
-        value &#x3D; &#x60;${pageNumber}&#x60;;
+        name &#x3D; &#x60;${(pageNumber + zeroBasedOffset) * perPage + 1} - ${(pageNumber + zeroBasedOffset) * perPage + recordsRemaining}&#x60;;
+        value &#x3D; pageNumber + 1;
       } else {
+        // If this is the only paginator page
         name &#x3D; &#x60;${pageNumber} - ${recordsRemaining}&#x60;;
         value &#x3D; pageNumber;
       }
@@ -4316,7 +4798,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
         [theme]&#x3D;&quot;theme&quot;
         [iconName]&#x3D;&quot;firstPageIcon&quot;
         [isDisabled]&#x3D;&quot;isFirstPage(currentPageIndex)&quot;
-        (clickEvent)&#x3D;&quot;changePage(0, currentPageIndex, pagesArray)&quot;
+        (clickEvent)&#x3D;&quot;changePage(firstPageIndex, currentPageIndex, pagesArray)&quot;
       &gt;&lt;/ts-button&gt;
     &lt;/ts-tooltip&gt;
 
@@ -4359,7 +4841,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
         [theme]&#x3D;&quot;theme&quot;
         [iconName]&#x3D;&quot;lastPageIcon&quot;
         [isDisabled]&#x3D;&quot;isLastPage(currentPageIndex) || !pagesArray?.length&quot;
-        (clickEvent)&#x3D;&quot;changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)&quot;
+        (clickEvent)&#x3D;&quot;changePage(lastPageIndex, currentPageIndex, pagesArray)&quot;
       &gt;&lt;/ts-button&gt;
     &lt;/ts-tooltip&gt;
   &lt;/div&gt;
@@ -4420,7 +4902,7 @@ export class TsPaginatorComponent implements OnChanges, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="c-paginator qa-paginator">  <div class="c-paginator__buttons">    <ts-select      class="qa-paginator-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      name="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (selectionChange)="recordsPerPageUpdated($event)"      ngDefaultControl    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : firstPageTooltip">      <ts-button        class="qa-paginator-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(0, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : previousPageTooltip">      <ts-button        class="qa-paginator-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-paginator-current-page-menu"      [theme]="theme"      [menuItemsTemplate]="menuItems"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : nextPageTooltip">      <ts-button        class="qa-paginator-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : lastPageTooltip">      <ts-button        class="qa-paginator-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(pagesArray?.length - 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-paginator__message qa-paginator-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    <ng-container      [ngTemplateOutlet]="paginatorMessageTemplate || defaultPaginatorMessageTemplate"      [ngTemplateOutletContext]="templateContext"    ></ng-container>  </div></div><ng-template #menuItems>  <ts-button    *ngFor="let page of pagesArray; trackBy: trackPagesArray"    (clickEvent)="currentPageChanged(page)"  >    {{ page.name }}  </ts-button></ng-template><ng-template #defaultPaginatorMessageTemplate let-message>  {{ message }}</ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="c-paginator qa-paginator">  <div class="c-paginator__buttons">    <ts-select      class="qa-paginator-per-page-select"      *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"      [items]="recordsPerPageChoices"      name="recordsPerPageChoices"      [label]="recordsSelectLabel"      [ngClass]="{\'disabled\': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"      [(ngModel)]="recordsPerPage"      (selectionChange)="recordsPerPageUpdated($event)"      ngDefaultControl    ></ts-select>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : firstPageTooltip">      <ts-button        class="qa-paginator-first-page-button"        [theme]="theme"        [iconName]="firstPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(firstPageIndex, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? \'\' : previousPageTooltip">      <ts-button        class="qa-paginator-previous-page-button"        [theme]="theme"        [iconName]="previousPageIcon"        [isDisabled]="isFirstPage(currentPageIndex)"        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-menu      class="qa-paginator-current-page-menu"      [theme]="theme"      [menuItemsTemplate]="menuItems"      [menuPositionY]="menuLocation"      [isDisabled]="menuIsDisabled(pagesArray?.length)"      [ngClass]="{\'disabled\': menuIsDisabled(pagesArray?.length)}"    >{{ currentPageLabel }}</ts-menu>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : nextPageTooltip">      <ts-button        class="qa-paginator-next-page-button"        [theme]="theme"        [iconName]="nextPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? \'\' : lastPageTooltip">      <ts-button        class="qa-paginator-last-page-button"        [theme]="theme"        [iconName]="lastPageIcon"        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"        (clickEvent)="changePage(lastPageIndex, currentPageIndex, pagesArray)"      ></ts-button>    </ts-tooltip>  </div>  <div    class="c-paginator__message qa-paginator-message"    *ngIf="shouldShowRecordsMessage(recordCountTooHighMessage, maxPreferredRecords, totalRecords)"  >    <ng-container      [ngTemplateOutlet]="paginatorMessageTemplate || defaultPaginatorMessageTemplate"      [ngTemplateOutletContext]="templateContext"    ></ng-container>  </div></div><ng-template #menuItems>  <ts-button    *ngFor="let page of pagesArray; trackBy: trackPagesArray"    (clickEvent)="currentPageChanged(page)"  >    {{ page.name }}  </ts-button></ng-template><ng-template #defaultPaginatorMessageTemplate let-message>  {{ message }}</ng-template></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsPaginatorComponent'};

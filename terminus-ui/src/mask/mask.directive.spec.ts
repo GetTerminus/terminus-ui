@@ -48,4 +48,17 @@ describe(`TsMaskDirective`, () => {
 
   });
 
+
+  describe(`writeValue`, () => {
+
+    test(`should normalize the value`, () => {
+      directive['renderer'].setProperty = jest.fn();
+      directive.writeValue('foo');
+
+      expect(directive['renderer'].setProperty)
+        .toHaveBeenCalledWith(expect.anything(), 'value', 'foo');
+    });
+
+  });
+
 });

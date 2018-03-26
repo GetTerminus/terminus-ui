@@ -21,6 +21,7 @@ export class PaginatorComponent implements AfterViewInit {
   currentPageIndex = 0;
   location = 'below';
   pages: number[] = [0, 1, 2, 3, 4, 5];
+  zeroBased = false;
 
   @ViewChild(TsPaginatorComponent)
   paginator: TsPaginatorComponent;

@@ -161,7 +161,7 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'pagaginator',
+    path: 'paginator',
     component: PaginatorComponent,
     data: {
       name: 'Paginator',
