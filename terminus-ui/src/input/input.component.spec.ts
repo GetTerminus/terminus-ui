@@ -76,7 +76,7 @@ describe(`TsInputComponent`, () => {
       } as any;
       component.ngAfterContentInit();
       expect(component.matInput.ngControl).toBeTruthy();
-      expect(component._isDisabled).toEqual(false);
+      expect(component.isDisabled).toEqual(false);
 
       component.isDisabled = true;
       jest.runAllTimers();
