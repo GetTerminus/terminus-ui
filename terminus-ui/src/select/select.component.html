@@ -6,6 +6,8 @@
     [placeholder]="label"
     [(ngModel)]="value"
     [multiple]="multipleAllowed"
+    [disabled]="isDisabled"
+    [required]="isRequired"
     (openedChange)="checkOpenChange($event)"
     (selectionChange)="selectionChange.emit(value)"
   >
@@ -19,9 +21,9 @@
     <mat-option
       class="qa-select-option"
       *ngFor="let item of items"
-      [value]="getValueKey(item, valueKey)"
+      [value]="retrieveValue(item, formatModelValueFn)"
     >
-      {{ item.name || item }}
+      {{ retrieveValue(item, formatUIFn) }}
     </mat-option>
   </mat-select>
 

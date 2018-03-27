@@ -3,7 +3,6 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  isDevMode,
 } from '@angular/core';
 
 
@@ -18,14 +17,14 @@ import {
  * @example
  * <ts-link
  *              [destination]="['your/', 'path/']"
- *              color="accent"
+ *              theme="accent"
  * >My link</ts-link>
  *
  * <ts-link
  *              destination="http://google.com"
  *              [isExternal]="true"
  *              tabIndex="2"
- *              color="warn"
+ *              theme="warn"
  * >My link</ts-link>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -39,30 +38,13 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsLink',
 })
 export class TsLinkComponent {
   /**
    * Define the icon for external links
    */
   public externalIcon: string = `open_in_new`;
-
-  /**
-   * Create input to show deprecation notice
-   *
-   * @deprecated
-   * @deletion-target 7.0.0
-   */
-  @Input()
-  public set color(value: string) {
-    // istanbul ignore else
-    if (isDevMode()) {
-      console.warn(
-        'The TsLinkComponent `[color]` parameter has been deprecated and will be removed in ' +
-        '`@terminus/ui@7.0.0`.\n' +
-        'You can use the `[theme]` parameter to set the link\'s color.',
-      );
-    }
-  }
 
   /**
    * Define the link's destination

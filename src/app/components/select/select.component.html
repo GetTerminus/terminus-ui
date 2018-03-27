@@ -1,4 +1,9 @@
-<form [formGroup]="myForm" novalidate [fxLayout]="row" fxLayoutGap="1rem">
+<form
+  [formGroup]="myForm"
+  novalidate
+  [fxLayout]="row"
+  fxLayoutGap="1rem"
+>
   <ts-card tsVerticalSpacing fxFlex>
     <h3 tsCardTitle tsVerticalSpacing>
       Single
@@ -9,7 +14,6 @@
       label="Single select"
       [blankChoice]="blank"
       hint="Select a single option"
-      [valueKey]="key"
       [formControl]="myForm.get('myChoices1')"
       (openedChange)="openStateChange($event)"
       (selectionChange)="isChanged($event)"
@@ -23,12 +27,13 @@
     </h3>
 
     <ts-select
-      [items]="items"
+      [items]="items | async"
+      [formatUIFn]="myUIFn"
+      [formatModelValueFn]="myModelFn"
       label="Multiple select"
       [blankChoice]="blank"
       multipleAllowed="true"
       hint="Select one or more options"
-      [valueKey]="key"
       [formControl]="myForm.get('myChoices2')"
       theme="accent"
       (openedChange)="openStateChange($event)"
@@ -36,6 +41,8 @@
       tsVerticalSpacing
     ></ts-select>
 
-    <button (click)="log(myForm.value)">Log form value</button>
+    <button (click)="log(myForm.value)">
+      Log form value
+    </button>
   </ts-card>
 </form>

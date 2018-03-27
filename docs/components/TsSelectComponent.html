@@ -363,9 +363,6 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
-                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                </li>
-                                <li class="link">
                                     <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                 </li>
                                 <li class="link">
@@ -373,9 +370,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                         </ul>
                     </li>
@@ -427,9 +421,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -847,9 +838,6 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
-                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                        </li>
                                        <li class="link">
@@ -857,9 +845,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                </ul>
                            </li>
@@ -911,9 +896,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -998,6 +980,9 @@
     <li class="active">
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -1053,9 +1038,11 @@
   blankChoice=&quot;Please choose one.&quot;
   label=&quot;Please select one: &quot;
   items=&quot;[{[key]: value},{},{}]&quot;
-  valueKey=&quot;keyInItems&quot;
   multipleAllowed=&quot;true&quot;
   theme=&quot;primary&quot;
+  isDisabled=&quot;true&quot;
+  [formatUIFn]=&quot;myUIFormatter&quot;
+  [formatModelValueFn]=&quot;myModelFormatter&quot;
   (open)=&quot;myMethod($event)&quot;
   (close)=&quot;myMethod($event)&quot;
   (change)=&quot;myMethod($event)&quot;
@@ -1136,6 +1123,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_formatModelValueFn">_formatModelValueFn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_formatUIFn">_formatUIFn</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#innerValue">innerValue</a>
                             </li>
@@ -1164,7 +1159,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#getValueKey">getValueKey</a>
+                                <a href="#retrieveValue">retrieveValue</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -1197,7 +1192,16 @@
                                 <a href="#blankChoice">blankChoice</a>
                             </li>
                             <li>
+                                <a href="#formatModelValueFn">formatModelValueFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatUIFn">formatUIFn</a>
+                            </li>
+                            <li>
                                 <a href="#hint">hint</a>
+                            </li>
+                            <li>
+                                <a href="#isDisabled">isDisabled</a>
                             </li>
                             <li>
                                 <a href="#items">items</a>
@@ -1210,9 +1214,6 @@
                             </li>
                             <li>
                                 <a href="#theme">theme</a>
-                            </li>
-                            <li>
-                                <a href="#valueKey">valueKey</a>
                             </li>
                             <li>
                                 <a href="#formControl">formControl</a>
@@ -1233,6 +1234,26 @@
                             </li>
                             <li>
                                 <a href="#selectionChange">selectionChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatUIFn">formatUIFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatModelValueFn">formatModelValueFn</a>
+                            </li>
+                            <li>
+                                <a href="#isRequired">isRequired</a>
                             </li>
                         </ul>
                     </td>
@@ -1263,7 +1284,45 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">terminus-ui/src/select/select.component.ts:73</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">terminus-ui/src/select/select.component.ts:90</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="formatModelValueFn"></a>
+                            <code>formatModelValueFn</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a function to retrieve the UI value for an option <a href="../miscellaneous/typealiases.html#TsSelectFormatFn">TsSelectFormatFn</a></p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">terminus-ui/src/select/select.component.ts:119</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="formatUIFn"></a>
+                            <code>formatUIFn</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a function to retrieve the UI value for an option <a href="../miscellaneous/typealiases.html#TsSelectFormatFn">TsSelectFormatFn</a></p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">terminus-ui/src/select/select.component.ts:96</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1286,7 +1345,33 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">terminus-ui/src/select/select.component.ts:85</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">terminus-ui/src/select/select.component.ts:142</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="isDisabled"></a>
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the select should be disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">terminus-ui/src/select/select.component.ts:154</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1302,7 +1387,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                             <div><p>Define a list of select items</p>
 </div>
                               <p>
-                                <em>Type:</em>    <code><a href="../interfaces/TsSelectItem.html" target="_self" >TsSelectItem[]</a></code>
+                                <em>Type:</em>    <code>any[]</code>
 
                               </p>
                             <p>
@@ -1312,7 +1397,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">terminus-ui/src/select/select.component.ts:91</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">terminus-ui/src/select/select.component.ts:148</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1338,7 +1423,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">terminus-ui/src/select/select.component.ts:79</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">terminus-ui/src/select/select.component.ts:160</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1364,7 +1449,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">terminus-ui/src/select/select.component.ts:97</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">terminus-ui/src/select/select.component.ts:166</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1390,31 +1475,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">terminus-ui/src/select/select.component.ts:103</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="valueKey"></a>
-                            <code>valueKey</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Define the key that represents the value item from the object</p>
-<p>If not provided, currently it defaults to key &quot;name&quot;</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">terminus-ui/src/select/select.component.ts:111</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">terminus-ui/src/select/select.component.ts:172</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1469,7 +1530,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">terminus-ui/src/select/select.component.ts:117</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">terminus-ui/src/select/select.component.ts:178</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1484,13 +1545,13 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                         <td class="col-md-10">
                             <div><p>Emit event when the select value is changed</p>
 </div>
-                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;[]&gt;</code>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any[]&gt;</code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">terminus-ui/src/select/select.component.ts:123</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">terminus-ui/src/select/select.component.ts:184</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1528,7 +1589,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">terminus-ui/src/select/select.component.ts:144</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">terminus-ui/src/select/select.component.ts:192</a></div>
                                 </td>
                             </tr>
     
@@ -1588,33 +1649,33 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="getValueKey"></a>
+                            <a name="retrieveValue"></a>
                             <span class="name">
                                 <b>
                                     <span class="modifier">Public</span>
-                                getValueKey
+                                retrieveValue
                                 </b>
-                                <a href="#getValueKey"><span class="fa fa-link"></span></a>
+                                <a href="#retrieveValue"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>getValueKey(item: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, valueKey?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                            <code>retrieveValue(option: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, formatter?: <a href="../miscellaneous/TsSelectFormatFn.html">TsSelectFormatFn</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">terminus-ui/src/select/select.component.ts:134</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">terminus-ui/src/select/select.component.ts:216</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Return the specified value from the object</p>
+                                <div class="io-description"><p>Retrieve a value determined by the passed in formatter</p>
     </div>
     
                                 <div class="io-description">
@@ -1630,10 +1691,10 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                        <td>item</td>
+                                                        <td>option</td>
                                                         
                                                             <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                             </td>
                                                         
                                                         <td>
@@ -1643,16 +1704,16 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     
                                                             <td>
                                                                     <code><ul>
-    <li>The object representing the item</li>
+    <li>The select option</li>
     </ul>
     </code>
                                                             </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>valueKey</td>
+                                                        <td>formatter</td>
                                                         
                                                             <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#TsSelectFormatFn" target="_self" >TsSelectFormatFn</a></code>
                                                             </td>
                                                         
                                                         <td>
@@ -1662,7 +1723,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
     
                                                             <td>
                                                                     <code><ul>
-    <li>The string representing the value key</li>
+    <li>The formatter function used to retrieve the value</li>
     </ul>
     </code>
                                                             </td>
@@ -1673,7 +1734,7 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>    <code>string | literal type</code>
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
     
                                 </div>
                                     <div class="io-description">
@@ -1982,6 +2043,76 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="_formatModelValueFn"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _formatModelValueFn
+                                </b>
+                                <a href="#_formatModelValueFn"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_formatModelValueFn:     <code><a href="../miscellaneous/typealiases.html#TsSelectFormatFn" target="_self" >TsSelectFormatFn</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsSelectFormatFn" target="_self" >TsSelectFormatFn</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">terminus-ui/src/select/select.component.ts:136</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_formatUIFn"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _formatUIFn
+                                </b>
+                                <a href="#_formatUIFn"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_formatUIFn:     <code><a href="../miscellaneous/typealiases.html#TsSelectFormatFn" target="_self" >TsSelectFormatFn</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsSelectFormatFn" target="_self" >TsSelectFormatFn</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">terminus-ui/src/select/select.component.ts:113</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="innerValue"></a>
                             <span class="name">
                                 <b>
@@ -2139,8 +2270,254 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
             </table>
     </section>
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formatUIFn"></a>
+                            <span class="name"><b>formatUIFn</b><a href="#formatUIFn"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formatUIFn()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">terminus-ui/src/select/select.component.ts:110</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>formatUIFn(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">terminus-ui/src/select/select.component.ts:96</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a function to retrieve the UI value for an option <a href="../miscellaneous/typealiases.html#TsSelectFormatFn">TsSelectFormatFn</a></p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>value</td>
+                                                        
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formatModelValueFn"></a>
+                            <span class="name"><b>formatModelValueFn</b><a href="#formatModelValueFn"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formatModelValueFn()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">terminus-ui/src/select/select.component.ts:133</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>formatModelValueFn(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">terminus-ui/src/select/select.component.ts:119</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a function to retrieve the UI value for an option <a href="../miscellaneous/typealiases.html#TsSelectFormatFn">TsSelectFormatFn</a></p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>value</td>
+                                                        
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="isRequired"></a>
+                            <span class="name"><b>isRequired</b><a href="#isRequired"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>isRequired()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">terminus-ui/src/select/select.component.ts:224</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to determine if the group is required</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+    </section>
 </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><h1>Select</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#event-driven">Event driven</a></li>
+<li><a href="#multiple-selections">Multiple selections</a></li>
+<li><a href="#label">Label</a></li>
+<li><a href="#hint">Hint</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
+<pre class="line-numbers"><code class="language-none">&lt;ts-select
+  &lt;!-- Pass in the select options --&gt;
+  [items]=&quot;items$ | async&quot;
+  &lt;!-- Attach your form control --&gt;
+  [formControl]=&quot;myForm.get(&#39;myControl&#39;)&quot;
+  &lt;!-- Pass in your UI formatter function --&gt;
+  [formatUIFn]=&quot;myUIFn&quot;
+  &lt;!-- Pass in your model formatter function --&gt;
+  [formatModelValueFn]=&quot;myModelFn&quot;
+&gt;&lt;/ts-select&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">// Your select options
+items: TsSelectItem[] = of([
+  {
+    name: &#39;Foo&#39;,
+    slug: &#39;foo&#39;,
+  },
+  {
+    name: &#39;Bar&#39;,
+    slug: &#39;bar&#39;,
+  },
+  {
+    name: &#39;Baz&#39;,
+    slug: &#39;baz&#39;,
+  },
+]);
+// The function to retrieve a value for the UI
+myUIFn = (v: TsSelectItem): string =&gt; v.name;
+// The function to retrieve a value for the model/form control
+myModelFn = (v: TsSelectItem): string =&gt; v.slug;</code></pre><h2 id="event-driven">Event driven</h2>
+<p>You can tie into the <code>selectionChanged</code> event or the <code>openedChange</code> event:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-select
+  ...
+  (selectionChange)=&quot;mySelectionChange($event)&quot;
+  (openedChange)=&quot;myOpenedChange($event)&quot;
+&gt;&lt;/ts-select&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">mySelectionChange(e: TsSelectItem[]) {
+  // This method will be called each time the `TsSelect`&#39;s selection is changed.
+  // The payload is the option selected.
+}
+
+myOpenedChange(e: boolean) {
+  // This method will be called each time the `TsSelect` is opened or closed.
+  // The payload is `true` when opened and `false` when closed
+}</code></pre><h2 id="multiple-selections">Multiple selections</h2>
+<p>Allow multiple selections by setting <code>multipleAllowed</code> to <code>true</code>:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-select
+  ...
+  multipleAllowed=&quot;true&quot;
+&gt;&lt;/ts-select&gt;</code></pre><h2 id="label">Label</h2>
+<p>A label can be set by passing a string to <code>label</code>:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-select
+  ...
+  label=&quot;Country&quot;
+&gt;&lt;/ts-select&gt;</code></pre><h2 id="hint">Hint</h2>
+<p>A hint can be set by passing a string to <code>hint</code>:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-select
+  ...
+  hint=&quot;Select a really cool option!&quot;
+&gt;&lt;/ts-select&gt;</code></pre></p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
@@ -2151,15 +2528,30 @@ NOTE: This is disabled if <code>multipleAllowed</code> is true</p>
   forwardRef,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
-import {
-  NG_VALUE_ACCESSOR,
-} from &#x27;@angular/forms&#x27;;
+import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
+import {
+  isFunction,
+  hasRequiredControl,
+} from &#x27;@terminus/ngx-tools&#x27;;
 
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
-import { TsSelectItem } from &#x27;./../utilities/interfaces/select.interface&#x27;;
+
+
+/*
+  - generate docs
+  - add link to usage doc in readme
+  - update stackblitz demo
+*/
+
+
+/**
+ * Expose the formatter function type
+ */
+export type TsSelectFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
 
 /**
@@ -2188,9 +2580,11 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  *              blankChoice&#x3D;&quot;Please choose one.&quot;
  *              label&#x3D;&quot;Please select one: &quot;
  *              items&#x3D;&quot;[{[key]: value},{},{}]&quot;
- *              valueKey&#x3D;&quot;keyInItems&quot;
  *              multipleAllowed&#x3D;&quot;true&quot;
  *              theme&#x3D;&quot;primary&quot;
+ *              isDisabled&#x3D;&quot;true&quot;
+ *              [formatUIFn]&#x3D;&quot;myUIFormatter&quot;
+ *              [formatModelValueFn]&#x3D;&quot;myModelFormatter&quot;
  *              (open)&#x3D;&quot;myMethod($event)&quot;
  *              (close)&#x3D;&quot;myMethod($event)&quot;
  *              (change)&#x3D;&quot;myMethod($event)&quot;
@@ -2218,10 +2612,50 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public blankChoice: string;
 
   /**
-   * Define the label for the menu
+   * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
    */
   @Input()
-  public label: string &#x3D; &#x27;&#x27;;
+  public set formatUIFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUIFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsSelectComponent: &#x27;formatUIFn&#x27; must be passed a &#x27;TsSelectFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatUIFn(): TsSelectFormatFn {
+    return this._formatUIFn;
+  }
+  private _formatUIFn: TsSelectFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
+   */
+  @Input()
+  public set formatModelValueFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatModelValueFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsSelectComponent: &#x27;formatModelValueFn&#x27; must be passed a &#x27;TsSelectFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatModelValueFn(): TsSelectFormatFn {
+    return this._formatModelValueFn;
+  }
+  private _formatModelValueFn: TsSelectFormatFn;
 
   /**
    * Define the &#x27;hint&#x27; for the select
@@ -2233,7 +2667,19 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define a list of select items
    */
   @Input()
-  public items: TsSelectItem[] &#x3D; [];
+  public items: any[] &#x3D; [];
+
+  /**
+   * Define if the select should be disabled
+   */
+  @Input()
+  public isDisabled: boolean &#x3D; false;
+
+  /**
+   * Define the label for the menu
+   */
+  @Input()
+  public label: string &#x3D; &#x27;&#x27;;
 
   /**
    * Define if multiple selections are allowed
@@ -2248,14 +2694,6 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
-   * Define the key that represents the value item from the object
-   *
-   * If not provided, currently it defaults to key &quot;name&quot;
-   */
-  @Input()
-  public valueKey: string;
-
-  /**
    * Emit event when the select has been opened
    */
   @Output()
@@ -2265,20 +2703,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Emit event when the select value is changed
    */
   @Output()
-  public selectionChange: EventEmitter&lt;TsSelectItem[]&gt; &#x3D; new EventEmitter();
-
-
-  /**
-   * Return the specified value from the object
-   *
-   * @param item - The object representing the item
-   * @param valueKey - The string representing the value key
-   * @return The value of the valueKey or the item itself,
-   * which could be string or an object of key as string and value as string.
-   */
-  public getValueKey(item: object, valueKey?: string): string | { [key: string]: string } {
-    return valueKey ? item[valueKey] : item;
-  }
+  public selectionChange: EventEmitter&lt;any[]&gt; &#x3D; new EventEmitter();
 
 
   /**
@@ -2302,6 +2727,26 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
     this.openedChange.emit(isOpen);
   }
 
+
+  /**
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The select option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
+   */
+  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
+    return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
+  }
+
+
+  /**
+   * Getter to determine if the group is required
+   */
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
+  }
+
 }
 </code></pre>
     </div>
@@ -2315,6 +2760,8 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
     [placeholder]&#x3D;&quot;label&quot;
     [(ngModel)]&#x3D;&quot;value&quot;
     [multiple]&#x3D;&quot;multipleAllowed&quot;
+    [disabled]&#x3D;&quot;isDisabled&quot;
+    [required]&#x3D;&quot;isRequired&quot;
     (openedChange)&#x3D;&quot;checkOpenChange($event)&quot;
     (selectionChange)&#x3D;&quot;selectionChange.emit(value)&quot;
   &gt;
@@ -2328,9 +2775,9 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
     &lt;mat-option
       class&#x3D;&quot;qa-select-option&quot;
       *ngFor&#x3D;&quot;let item of items&quot;
-      [value]&#x3D;&quot;getValueKey(item, valueKey)&quot;
+      [value]&#x3D;&quot;retrieveValue(item, formatModelValueFn)&quot;
     &gt;
-      {{ item.name || item }}
+      {{ retrieveValue(item, formatUIFn) }}
     &lt;/mat-option&gt;
   &lt;/mat-select&gt;
 
@@ -2377,7 +2824,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-select qa-select"  [color]="theme">  <mat-select    [placeholder]="label"    [(ngModel)]="value"    [multiple]="multipleAllowed"    (openedChange)="checkOpenChange($event)"    (selectionChange)="selectionChange.emit(value)"  >    <mat-option      class="qa-select-option"      *ngIf="blankChoice && !multipleAllowed"    >      {{ blankChoice }}    </mat-option>    <mat-option      class="qa-select-option"      *ngFor="let item of items"      [value]="getValueKey(item, valueKey)"    >      {{ item.name || item }}    </mat-option>  </mat-select>  <mat-hint    class="qa-select-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-select-validation-messages"    *ngIf="formControl"    [control]="formControl"  ></ts-validation-messages></mat-form-field></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="c-select qa-select"  [color]="theme">  <mat-select    [placeholder]="label"    [(ngModel)]="value"    [multiple]="multipleAllowed"    [disabled]="isDisabled"    [required]="isRequired"    (openedChange)="checkOpenChange($event)"    (selectionChange)="selectionChange.emit(value)"  >    <mat-option      class="qa-select-option"      *ngIf="blankChoice && !multipleAllowed"    >      {{ blankChoice }}    </mat-option>    <mat-option      class="qa-select-option"      *ngFor="let item of items"      [value]="retrieveValue(item, formatModelValueFn)"    >      {{ retrieveValue(item, formatUIFn) }}    </mat-option>  </mat-select>  <mat-hint    class="qa-select-hint"    align="end"    *ngIf="hint"  >{{ hint }}</mat-hint>  <ts-validation-messages    class="qa-select-validation-messages"    *ngIf="formControl"    [control]="formControl"  ></ts-validation-messages></mat-form-field></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsSelectComponent'};

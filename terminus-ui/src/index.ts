@@ -31,9 +31,7 @@ export * from './validation-messages/validation-messages.module';
 // NB! The above line is required for our yeoman generator and should not be changed.
 
 // Utilities & Services
-export * from './services/document/document.service';
 export * from './services/validators/validators.service';
-export * from './services/window/window.service';
 export * from './spacing/spacing.constant';
 export * from './utilities/interfaces/index';
 export * from './utilities/types/index';

@@ -363,9 +363,6 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
-                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                </li>
-                                <li class="link">
                                     <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                 </li>
                                 <li class="link">
@@ -373,9 +370,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                         </ul>
                     </li>
@@ -427,9 +421,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -847,9 +838,6 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
-                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                        </li>
                                        <li class="link">
@@ -857,9 +845,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                </ul>
                            </li>
@@ -911,9 +896,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -998,6 +980,9 @@
     <li class="active">
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -1045,14 +1030,14 @@
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-link
   [destination]=&quot;['your/', 'path/']&quot;
-  color=&quot;accent&quot;
+  theme=&quot;accent&quot;
 &gt;My link&lt;/ts-link&gt;
 
 &lt;ts-link
   destination=&quot;http://google.com&quot;
   [isExternal]=&quot;true&quot;
   tabIndex=&quot;2&quot;
-  color=&quot;warn&quot;
+  theme=&quot;warn&quot;
 &gt;My link&lt;/ts-link&gt;
 
 &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;</code></pre>
@@ -1075,6 +1060,10 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">exportAs</td>
+                <td class="col-md-9"><code>tsLink</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">host</td>
@@ -1137,9 +1126,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#color">color</a>
-                            </li>
-                            <li>
                                 <a href="#destination">destination</a>
                             </li>
                             <li>
@@ -1151,20 +1137,6 @@
                         </ul>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Accessors</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#color">color</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </section>
@@ -1172,29 +1144,6 @@
 
     <section>
         <h3 id="inputs">Inputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="color"></a>
-                            <code>color</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Create input to show deprecation notice</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">terminus-ui/src/link/link.component.ts:56</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1213,7 +1162,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">terminus-ui/src/link/link.component.ts:71</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">terminus-ui/src/link/link.component.ts:53</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1239,7 +1188,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">terminus-ui/src/link/link.component.ts:77</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">terminus-ui/src/link/link.component.ts:59</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1265,7 +1214,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">terminus-ui/src/link/link.component.ts:83</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">terminus-ui/src/link/link.component.ts:65</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1329,74 +1278,40 @@
             </table>
     </section>
 
-    <section>
-        <h3 id="accessors">
-            Accessors
-        </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="color"></a>
-                            <span class="name"><b>color</b><a href="#color"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-    
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="accessor"><b>set</b><code>color(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
-                        </td>
-                    </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">terminus-ui/src/link/link.component.ts:56</a></div>
-                                    </td>
-                                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-description"><p>Create input to show deprecation notice</p>
-    </div>
-    
-                                    <div class="io-description">
-                                            <b>Parameters :</b>
-                                            <table class="params">
-                                                <thead>
-                                                    <tr>
-                                                        <td>Name</td>
-                                                            <td>Type</td>
-                                                        <td>Optional</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                        <tr>
-                                                            <td>value</td>
-                                                        
-                                                                <td>
-                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                                </td>
-                                                        
-                                                            <td>
-                                                                    no
-                                                            </td>
-                                                            
-                                                        </tr>
-                                                </tbody>
-                                            </table>
-                                    </div>
-                                    <div>
-                                    </div>
-                                    <div class="io-description">
-                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                    </div>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
-    </section>
 </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><h1>Link</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#external-links">External links</a></li>
+<li><a href="#tab-index">Tab index</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
+<p>Wrap your link text and define a destination:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-link
+  [destination]=&quot;[&#39;your/&#39;, &#39;path/&#39;]&quot;
+&gt;My link&lt;/ts-link&gt;</code></pre><h2 id="external-links">External links</h2>
+<p>To signify a link will leave the current app or site, set <code>external</code> to true:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-link
+  [destination]=&quot;http://google.com&quot;
+  external=&quot;true&quot;
+&gt;My link&lt;/ts-link&gt;</code></pre><blockquote>
+<p>NOTE: When external is set to true, the link should be a standard link in string form.</p>
+</blockquote>
+<h2 id="tab-index">Tab index</h2>
+<p>A custom tabindex can also be set:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-link
+  [destination]=&quot;http://google.com&quot;
+  tabIndex=&quot;2&quot;
+&gt;My link&lt;/ts-link&gt;</code></pre></p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
@@ -1404,7 +1319,6 @@
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  isDevMode,
 } from &#x27;@angular/core&#x27;;
 
 
@@ -1419,14 +1333,14 @@
  * @example
  * &lt;ts-link
  *              [destination]&#x3D;&quot;[&#x27;your/&#x27;, &#x27;path/&#x27;]&quot;
- *              color&#x3D;&quot;accent&quot;
+ *              theme&#x3D;&quot;accent&quot;
  * &gt;My link&lt;/ts-link&gt;
  *
  * &lt;ts-link
  *              destination&#x3D;&quot;http://google.com&quot;
  *              [isExternal]&#x3D;&quot;true&quot;
  *              tabIndex&#x3D;&quot;2&quot;
- *              color&#x3D;&quot;warn&quot;
+ *              theme&#x3D;&quot;warn&quot;
  * &gt;My link&lt;/ts-link&gt;
  *
  * &lt;example-url&gt;https://goo.gl/ieUPaG&lt;/example-url&gt;
@@ -1440,30 +1354,13 @@
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: &#x27;tsLink&#x27;,
 })
 export class TsLinkComponent {
   /**
    * Define the icon for external links
    */
   public externalIcon: string &#x3D; &#x60;open_in_new&#x60;;
-
-  /**
-   * Create input to show deprecation notice
-   *
-   * @deprecated
-   * @deletion-target 7.0.0
-   */
-  @Input()
-  public set color(value: string) {
-    // istanbul ignore else
-    if (isDevMode()) {
-      console.warn(
-        &#x27;The TsLinkComponent &#x60;[color]&#x60; parameter has been deprecated and will be removed in &#x27; +
-        &#x27;&#x60;@terminus/ui@7.0.0&#x60;.\n&#x27; +
-        &#x27;You can use the &#x60;[theme]&#x60; parameter to set the link\&#x27;s color.&#x27;,
-      );
-    }
-  }
 
   /**
    * Define the link&#x27;s destination

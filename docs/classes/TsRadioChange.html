@@ -363,9 +363,6 @@
                                 id="xs-injectables-links"
                             >
                                 <li class="link">
-                                    <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                </li>
-                                <li class="link">
                                     <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                 </li>
                                 <li class="link">
@@ -373,9 +370,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                 </li>
                         </ul>
                     </li>
@@ -427,9 +421,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -847,9 +838,6 @@
                                        id="injectables-links"
                    >
                                        <li class="link">
-                                           <a href="../injectables/TsDocumentService.html" >TsDocumentService</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../injectables/TsSortHeaderIntl.html" >TsSortHeaderIntl</a>
                                        </li>
                                        <li class="link">
@@ -857,9 +845,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/TsValidatorsService.html" >TsValidatorsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/TsWindowService.html" >TsWindowService</a>
                                        </li>
                                </ul>
                            </li>
@@ -911,9 +896,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSearchResponse.html" >TsSearchResponse</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/TsSelectItem.html" >TsSelectItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/TsSortState.html" >TsSortState</a>
@@ -1047,74 +1029,126 @@
     </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+        <p><h1>Radio Group</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#sub-labels">Sub-labels</a></li>
 <li><a href="#event-driven">Event driven</a></li>
-<li><a href="#reactive-form-driven">Reactive form driven</a></li>
+<li><a href="#required">Required</a></li>
+<li><a href="#disabled">Disabled</a><ul>
+<li><a href="#disabled-option">Disabled option</a></li>
+</ul>
+</li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="event-driven">Event driven</h2>
-<p>Pass in an array of items and listen for change events:</p>
-<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
-  [options]=&quot;items$ | async&quot;
-  (change)=&quot;selected($event)&quot;
-&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">items$ = of([
-  {
-    value: &#39;foo&#39;,
-    displayValue: &#39;Foo&#39;,
-  },
-  {
-    value: &#39;bar&#39;,
-    displayValue: &#39;Bar&#39;,
-    disabled: true,
-  },
-  {
-    value: &#39;baz&#39;,
-    displayValue: &#39;Baz&#39;,
-    required: true,
-    checked: true,
-  },
-]);</code></pre><h2 id="reactive-form-driven">Reactive form driven</h2>
-<p>Pass in an array of items and pass in the form control:</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p>Pass in:</p>
+<ol>
+<li>an array of items</li>
+<li>a form control</li>
+<li>a formatter function to determine the UI display value</li>
+<li>a formatter function to determine the model value</li>
+</ol>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-radio-group
     [options]=&quot;items$ | async&quot;
     [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+    [formatUILabelFn]=&quot;uiFormatter&quot;
+    [formatModelValueFn]=&quot;modelFormatter&quot;
   &gt;&lt;/ts-radio-group&gt;
 
   &lt;button (click)=&quot;submit(myForm.value)&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;</code></pre><p>Since we can set the default value in the form control, we do not need to add the <code>checked</code> property
-to any or our items.</p>
-<pre class="line-numbers"><code class="language-typescript">items$ = of([
+&lt;/form&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">// Define items to be passed to the radio group
+items$: Observable&lt;TsRadioOption[]&gt; = of([
   {
-    value: &#39;foo&#39;,
-    displayValue: &#39;Foo&#39;,
+    foo: &#39;foo_value&#39;,
+    bar: &#39;Foo Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
   },
   {
-    value: &#39;bar&#39;,
-    displayValue: &#39;Bar&#39;,
+    foo: &#39;bar_value&#39;,
+    bar: &#39;Bar Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
     disabled: true,
   },
   {
-    value: &#39;baz&#39;,
-    displayValue: &#39;Baz&#39;,
-    required: true,
+    foo: &#39;baz_value&#39;,
+    bar: &#39;Baz Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
   },
 ]);
+
+// Create a form
 myForm = this.formBuilder.group({
+  myRadioGroup: [null],
+});
+
+// Use the &#39;bar&#39; value as the UI display
+uiFormatter = (v) =&gt; v.bar;
+// use the &#39;foo&#39; value to save to the model
+modelFormatter = (v) =&gt; v.foo;</code></pre><blockquote>
+<p>NOTE: Since we can set the default value in the form control, we no longer need to add the
+<code>checked</code> property to any or our items.</p>
+</blockquote>
+<h2 id="sub-labels">Sub-labels</h2>
+<p>Passing a formatter function to <code>formatUISubLabelFn</code> will enable sub-label support:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+  [formatUISubLabelFn]=&quot;uiSubFormatter&quot;
+  [formatUILabelFn]=&quot;uiFormatter&quot;
+  [formatModelValueFn]=&quot;modelFormatter&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">// Use the &#39;bing&#39; value as a sub-label
+uiSubFormatter = (v) =&gt; v.bing;
+// Use the &#39;bar&#39; value as the UI display
+uiFormatter = (v) =&gt; v.bar;
+// use the &#39;foo&#39; value to save to the model
+modelFormatter = (v) =&gt; v.foo;</code></pre><h2 id="event-driven">Event driven</h2>
+<p>Listen for change events:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  (change)=&quot;selected($event)&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><h2 id="required">Required</h2>
+<p>To define the radio group as &#39;required&#39;, set the required validator on the form group:</p>
+<pre class="line-numbers"><code class="language-typescript">myForm = this.formBuilder.group({
   myRadioGroup: [
-    &#39;bar&#39;,
+    null,
     [
       Validators.required,
     ],
   ],
-});</code></pre><blockquote>
-<p>NOTE: If you mark an item as <code>checked</code> you do not need to set the value in the form control. The
-<code>TsRadioGroupComponent</code> will find the checked item and update the form control.</p>
-</blockquote>
-</p>
+});</code></pre><h2 id="disabled">Disabled</h2>
+<p>To disable the entire radio group, set <code>isDisabled</code> to true:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+  [formatUISubLabelFn]=&quot;uiSubFormatter&quot;
+  [formatUILabelFn]=&quot;uiFormatter&quot;
+  [formatModelValueFn]=&quot;modelFormatter&quot;
+  isDisabled=&quot;true&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><h3 id="disabled-option">Disabled option</h3>
+<p>To disabled only a single option, define the <code>disabled</code> key on the item object:</p>
+<pre class="line-numbers"><code class="language-typescript">// Define items to be passed to the radio group
+items$: Observable&lt;TsRadioOption[]&gt; = of([
+  {
+    foo: &#39;foo_value&#39;,
+    bar: &#39;Foo Display&#39;,
+  },
+  {
+    foo: &#39;bar_value&#39;,
+    bar: &#39;Bar Display&#39;,
+    disabled: true, // This radio option will be disabled
+  },
+  {
+    foo: &#39;baz_value&#39;,
+    bar: &#39;Baz Display&#39;,
+  },
+]);</code></pre></p>
     </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
@@ -1125,22 +1159,41 @@ myForm = this.formBuilder.group({
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewEncapsulation,
-  OnInit,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { MatRadioChange } from &#x27;@angular/material/radio&#x27;;
+import {
+  isFunction,
+  hasRequiredControl,
+} from &#x27;@terminus/ngx-tools&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
-import { TsRadioOption } from &#x27;./../utilities/interfaces/radio-option.interface&#x27;;
 
+
+/**
+ * Define the allowed keys for an item passed to the {@link TsRadioComponent}
+ */
+export interface TsRadioOption {
+  [key: string]: any;
+
+  /**
+   * Define if the item is disabled
+   */
+  disabled?: boolean;
+}
 
 /**
  * Expose the MatRadioChange event as TsRadioChange
  */
 export class TsRadioChange extends MatRadioChange {}
+
+/**
+ * Expose the formatter function type
+ */
+export type TsRadioFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
 
 /**
@@ -1181,12 +1234,87 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   host: {
     class: &#x27;ts-radio-group&#x27;,
   },
-  exportAs: &#x27;tsRadioGroup&#x27;,
   providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: &#x27;tsRadioGroup&#x27;,
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUILabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUILabelFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatUILabelFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatUILabelFn(): TsRadioFormatFn {
+    return this._formatUILabelFn;
+  }
+  private _formatUILabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUISubLabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUISubLabelFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatUISubLabelFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatUISubLabelFn(): TsRadioFormatFn {
+    return this._formatUISubLabelFn;
+  }
+  private _formatUISubLabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatModelValueFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatModelValueFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatModelValueFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatModelValueFn(): TsRadioFormatFn {
+    return this._formatModelValueFn;
+  }
+  private _formatModelValueFn: TsRadioFormatFn;
+
+  /**
+   * Define if the radio group is disabled
+   */
+  @Input()
+  public isDisabled: boolean &#x3D; false;
+
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
@@ -1200,54 +1328,30 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
-   * Emit event when a selection occurs
+   * Emit event when a selection occurs. {@link TsRadioChange}
    */
   @Output()
   public change: EventEmitter&lt;TsRadioChange&gt; &#x3D; new EventEmitter();
 
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {
-    super();
+  /**
+   * Getter to determine if the group is required
+   */
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
   }
 
 
   /**
-   * Seed the initial value with the first checked option found
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The radio option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
    */
-  public ngOnInit(): void {
-    const initialSelection &#x3D; this.defaultSelection(this.options);
-
-    if (initialSelection) {
-      this.value &#x3D; initialSelection;
-
-      // istanbul ignore else
-      if (this.formControl) {
-        this.formControl.setValue(initialSelection);
-      }
-
-      // Tell Angular that we have updated the component internally
-      this.changeDetectorRef.markForCheck();
-    }
+  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
+    return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
   }
 
-
-  /**
-   * Return an option that should be checked by default
-   *
-   * If multiple items are marked as &#x27;checked&#x27; by default, the first on found will win.
-   *
-   * @param options - The array of options
-   * @return The selected value
-   */
-  private defaultSelection(options: TsRadioOption[]): string | null {
-    const found &#x3D; options.filter((v: TsRadioOption) &#x3D;&gt; {
-      return v.checked;
-    });
-
-    return (found &amp;&amp; found[0] &amp;&amp; found[0].value) ? found[0].value : null;
-  }
 }
 </code></pre>
     </div>

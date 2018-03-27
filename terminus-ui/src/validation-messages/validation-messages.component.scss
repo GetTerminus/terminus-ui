@@ -34,3 +34,10 @@
     margin-left: -16px;
   }
 }
+
+// Styles when within a radio group
+.ts-validation-messages {
+  .c-radio & {
+    display: inline-block;
+  }
+}
