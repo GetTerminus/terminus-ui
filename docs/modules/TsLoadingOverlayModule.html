@@ -1129,7 +1129,6 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
-import { TsWindowService } from &#x27;./../services/window/window.service&#x27;;
 import { TsLoadingOverlayComponent } from &#x27;./loading-overlay.component&#x27;;
 import { TsLoadingOverlayDirective } from &#x27;./loading-overlay.directive&#x27;;
 export { TsLoadingOverlayDirective } from &#x27;./loading-overlay.directive&#x27;;
@@ -1138,9 +1137,6 @@ export { TsLoadingOverlayDirective } from &#x27;./loading-overlay.directive&#x27
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  providers: [
-    TsWindowService,
   ],
   declarations: [
     TsLoadingOverlayDirective,

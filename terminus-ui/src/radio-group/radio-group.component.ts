@@ -32,12 +32,12 @@ export interface TsRadioOption {
 }
 
 /**
- * Expose the MatRadioChange event as TsRadioChange
+ * Expose the MatRadioChange event as TsRadioChange. Used by {@link TsRadioGroupComponent}
  */
 export class TsRadioChange extends MatRadioChange {}
 
 /**
- * Expose the formatter function type
+ * Expose the formatter function type used by {@link TsRadioGroupComponent}
  */
 export type TsRadioFormatFn = (v: any) => string;
 
@@ -66,8 +66,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
  * @example
  * <ts-radio-group
  *              options="myItemsArray | $async"
- *              theme="primary"
  *              [formControl]="myForm.get('myRadioGroup')"
+ *              isDisabled="true"
+ *              theme="primary"
+ *              [formatUILabelFn]="myUIFormatter"
+ *              [formatUISubLabelFn]="myUISubFormatter"
+ *              [formatModelValueFn]="myModelFormatter"
  *              (change)="doSomething($event)"
  * ></ts-radio-group>
  *

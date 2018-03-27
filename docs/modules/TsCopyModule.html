@@ -1133,8 +1133,6 @@ import { FlexLayoutModule } from &#x27;@angular/flex-layout&#x27;;
 import { MatRippleModule } from &#x27;@angular/material&#x27;;
 
 import { TsIconModule } from &#x27;./../icon/icon.module&#x27;;
-import { TsWindowService } from &#x27;./../services/window/window.service&#x27;;
-import { TsDocumentService } from &#x27;./../services/document/document.service&#x27;;
 import { TsCopyComponent } from &#x27;./copy.component&#x27;;
 export { TsCopyComponent } from &#x27;./copy.component&#x27;;
 
@@ -1145,10 +1143,6 @@ export { TsCopyComponent } from &#x27;./copy.component&#x27;;
     FlexLayoutModule,
     TsIconModule,
     MatRippleModule,
-  ],
-  providers: [
-    TsWindowService,
-    TsDocumentService,
   ],
   exports: [
     TsCopyComponent,
