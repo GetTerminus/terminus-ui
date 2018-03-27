@@ -6,7 +6,8 @@
       [(ngModel)]="example"
       [items]="items"
       label="Change binding example"
-      valueKey="value"
+      [formatUIFn]="uiFormatFn"
+      [formatModelValueFn]="uiModelFn"
     ></ts-select>
   </div>
 </ts-card>

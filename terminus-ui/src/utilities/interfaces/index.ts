@@ -4,4 +4,3 @@ export * from './navigation-item.interface';
 export * from './navigation-payload.interface';
 export * from './user.interface';
 export * from './search.interface';
-export * from './select.interface';
