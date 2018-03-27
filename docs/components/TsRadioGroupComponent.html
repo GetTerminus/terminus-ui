@@ -1036,8 +1036,12 @@
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
   options=&quot;myItemsArray | $async&quot;
-  theme=&quot;primary&quot;
   [formControl]=&quot;myForm.get('myRadioGroup')&quot;
+  isDisabled=&quot;true&quot;
+  theme=&quot;primary&quot;
+  [formatUILabelFn]=&quot;myUIFormatter&quot;
+  [formatUISubLabelFn]=&quot;myUISubFormatter&quot;
+  [formatModelValueFn]=&quot;myModelFormatter&quot;
   (change)=&quot;doSomething($event)&quot;
 &gt;&lt;/ts-radio-group&gt;
 
@@ -1267,7 +1271,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:139</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:143</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1286,7 +1290,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:93</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:97</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1305,7 +1309,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:116</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:120</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1331,7 +1335,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:162</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:166</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1354,7 +1358,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:168</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:172</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1380,7 +1384,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:174</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:178</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1435,7 +1439,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:180</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:184</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1466,14 +1470,14 @@
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>retrieveValue(option: <a href="../interfaces/TsRadioOption.html">TsRadioOption</a>, formatter: <a href="../undefineds/TsRadioFormatFn.html">TsRadioFormatFn</a>)</code>
+                            <code>retrieveValue(option: <a href="../interfaces/TsRadioOption.html">TsRadioOption</a>, formatter?: <a href="../undefineds/TsRadioFormatFn.html">TsRadioFormatFn</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:197</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:201</a></div>
                                 </td>
                             </tr>
     
@@ -1521,7 +1525,7 @@
                                                             </td>
                                                         
                                                         <td>
-                                                                no
+                                                                yes
                                                         </td>
                                                         
     
@@ -1871,7 +1875,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:156</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:160</a></div>
                                 </td>
                             </tr>
     
@@ -1906,7 +1910,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:110</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:114</a></div>
                                 </td>
                             </tr>
     
@@ -1941,7 +1945,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:133</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:137</a></div>
                                 </td>
                             </tr>
     
@@ -2129,7 +2133,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:107</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:111</a></div>
                                     </td>
                                 </tr>
     
@@ -2140,7 +2144,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:93</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:97</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2196,7 +2200,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:130</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:134</a></div>
                                     </td>
                                 </tr>
     
@@ -2207,7 +2211,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:116</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:120</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2263,7 +2267,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:153</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:157</a></div>
                                     </td>
                                 </tr>
     
@@ -2274,7 +2278,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:139</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:143</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2330,7 +2334,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:185</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:189</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2508,12 +2512,12 @@ export interface TsRadioOption {
 }
 
 /**
- * Expose the MatRadioChange event as TsRadioChange
+ * Expose the MatRadioChange event as TsRadioChange. Used by {@link TsRadioGroupComponent}
  */
 export class TsRadioChange extends MatRadioChange {}
 
 /**
- * Expose the formatter function type
+ * Expose the formatter function type used by {@link TsRadioGroupComponent}
  */
 export type TsRadioFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
@@ -2542,8 +2546,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  * @example
  * &lt;ts-radio-group
  *              options&#x3D;&quot;myItemsArray | $async&quot;
- *              theme&#x3D;&quot;primary&quot;
  *              [formControl]&#x3D;&quot;myForm.get(&#x27;myRadioGroup&#x27;)&quot;
+ *              isDisabled&#x3D;&quot;true&quot;
+ *              theme&#x3D;&quot;primary&quot;
+ *              [formatUILabelFn]&#x3D;&quot;myUIFormatter&quot;
+ *              [formatUISubLabelFn]&#x3D;&quot;myUISubFormatter&quot;
+ *              [formatModelValueFn]&#x3D;&quot;myModelFormatter&quot;
  *              (change)&#x3D;&quot;doSomething($event)&quot;
  * &gt;&lt;/ts-radio-group&gt;
  *
@@ -2670,7 +2678,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
+  public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
     return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
   }
 

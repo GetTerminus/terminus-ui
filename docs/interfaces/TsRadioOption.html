@@ -1265,12 +1265,12 @@ export interface TsRadioOption {
 }
 
 /**
- * Expose the MatRadioChange event as TsRadioChange
+ * Expose the MatRadioChange event as TsRadioChange. Used by {@link TsRadioGroupComponent}
  */
 export class TsRadioChange extends MatRadioChange {}
 
 /**
- * Expose the formatter function type
+ * Expose the formatter function type used by {@link TsRadioGroupComponent}
  */
 export type TsRadioFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
@@ -1299,8 +1299,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
  * @example
  * &lt;ts-radio-group
  *              options&#x3D;&quot;myItemsArray | $async&quot;
- *              theme&#x3D;&quot;primary&quot;
  *              [formControl]&#x3D;&quot;myForm.get(&#x27;myRadioGroup&#x27;)&quot;
+ *              isDisabled&#x3D;&quot;true&quot;
+ *              theme&#x3D;&quot;primary&quot;
+ *              [formatUILabelFn]&#x3D;&quot;myUIFormatter&quot;
+ *              [formatUISubLabelFn]&#x3D;&quot;myUISubFormatter&quot;
+ *              [formatModelValueFn]&#x3D;&quot;myModelFormatter&quot;
  *              (change)&#x3D;&quot;doSomething($event)&quot;
  * &gt;&lt;/ts-radio-group&gt;
  *
@@ -1427,7 +1431,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
+  public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
     return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
   }
 
