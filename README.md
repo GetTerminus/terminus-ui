@@ -14,7 +14,7 @@ The library of UI components used for Terminus applications.
 <br>
 [![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
-[![services](https://img.shields.io/badge/Services-4-blue.svg)](#services)
+[![services](https://img.shields.io/badge/Services-2-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 
 
@@ -106,7 +106,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 | icon            | Valid icon names: https://material.io/icons    | :white_check_mark: | [Demo][demo-icon]            | [Docs][icon-docs]            | [Usage][icon-usage]         |
 | icon-button     |                                                | :white_check_mark: | [Demo][demo-icon-button]     | [Docs][icon-button-docs]     | [Usage][icon-button-usage]  |
 | input           |                                                | :white_check_mark: | [Demo][demo-input]           | [Docs][input-docs]           | [Usage][input-usage]        |
-| link            |                                                | :white_check_mark: | [Demo][demo-link]            | [Docs][link-docs]            |                             |
+| link            |                                                | :white_check_mark: | [Demo][demo-link]            | [Docs][link-docs]            | [Usage][link-usage]         |
 | loading overlay |                                                | :white_check_mark: | [Demo][demo-loading-overlay] | [Docs][loading-overlay-docs] |                             |
 | login form      |                                                | :white_check_mark: | [Demo][demo-log-in-form]     | [Docs][login-form-docs]      |                             |
 | menu            |                                                | :white_check_mark: | [Demo][demo-menu]            | [Docs][menu-docs]            |                             |
@@ -137,10 +137,8 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 
 | Feature    | Notes                                                                     | Status             |
 |------------|---------------------------------------------------------------------------|:------------------:|
-| Document   | :warning:DEPRECATED:warning: Provide access to the native document object | :hankey:           |
 | Spacing    | Expose custom spacing sizes via a service                                 | :white_check_mark: |
 | Validators | Expose custom validation methods for reactive forms                       | :white_check_mark: |
-| Window     | :warning:DEPRECATED:warning: Provide access to the native window object   | :hankey:           |
 
 
 ### TypeScript Utilities
@@ -348,3 +346,4 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [sort-usage]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme
 [table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
 [input-usage]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html#readme
+[link-usage]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html#readme

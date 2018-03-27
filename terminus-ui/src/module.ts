@@ -34,8 +34,6 @@ import { TsValidationMessagesModule } from './validation-messages/validation-mes
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
-import { TsWindowService } from './services/window/window.service';
-import { TsDocumentService } from './services/document/document.service';
 import { TsValidatorsService } from './services/validators/validators.service';
 import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.component';
 
@@ -76,8 +74,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsReactiveFormBaseComponent,
   ],
   providers: [
-    TsWindowService,
-    TsDocumentService,
     TsValidatorsService,
   ],
   exports: [
