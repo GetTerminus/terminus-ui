@@ -1,5 +1,6 @@
 @import './../scss/helpers/typography';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/color';
 
 //
 // @component
@@ -14,17 +15,35 @@
   .c-radio {
     @include typography;
     display: block;
-    // Create space for validation messages (this is usually handled by `mat-form-field`
-    padding-bottom: 1.25em;
     // set up for absolutely positioned validation messages
     position: relative;
   }
 }
 
+// <mat-radio-group>
 .c-radio {
-  // Nested classes belong here
+  // <mat-radio-button> Nested classes belong here
   .c-radio__control {
     display: block;
     margin-bottom: spacing(small, 2);
+  }
+
+  // <small> radio sub-label
+  .c-radio__control-sublabel {
+    @include typography(caption);
+    color: color(utility);
+    display: block;
+  }
+}
+
+// Class added when sublabels are present
+.c-radio--sublabel {
+  // Create space for validation messages (this is usually handled by `mat-form-field`
+  padding-bottom: 1.25em;
+
+  .c-radio__control {
+    .mat-radio-label {
+      align-items: start;
+    }
   }
 }

@@ -1,10 +1,12 @@
-import { FormControl } from '@angular/forms';
-import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+import {
+  FormControl,
+  Validators,
+} from '@angular/forms';
 
-import { TsRadioOption } from './../utilities/interfaces/radio-option.interface';
 import {
   TsRadioGroupComponent,
   CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR,
+  TsRadioOption,
 } from './radio-group.component';
 
 
@@ -13,21 +15,23 @@ describe('TsRadioGroupComponent', () => {
   let options: TsRadioOption[];
 
   beforeEach(() => {
-    component = new TsRadioGroupComponent(new ChangeDetectorRefMock());
+    component = new TsRadioGroupComponent();
     options = [
       {
-        value: 'foo',
-        displayValue: 'FOO',
+        foo: 'foo_value',
+        bar: 'Foo Display',
+        bing: 'Some helper text for my item',
       },
       {
-        value: 'bar',
-        displayValue: 'BAR',
-        checked: true,
+        foo: 'bar_value',
+        bar: 'Bar Display',
+        bing: 'Some helper text for my item',
+        disabled: true,
       },
       {
-        value: 'baz',
-        displayValue: 'BAZ',
-        checked: true,
+        foo: 'baz_value',
+        bar: 'Baz Display',
+        bing: 'Some helper text for my item',
       },
     ];
   });
@@ -35,7 +39,6 @@ describe('TsRadioGroupComponent', () => {
 
   test(`should exist`, () => {
     expect(component).toBeTruthy();
-    options = undefined;
   });
 
 
@@ -48,56 +51,110 @@ describe('TsRadioGroupComponent', () => {
   });
 
 
-  describe(`ngOnInit`, () => {
+  describe(`formatUILabelFn`, () => {
 
-    beforeEach(() => {
-      component.options = options;
-      component['changeDetectorRef'].markForCheck = jest.fn();
-      component.formControl = new FormControl();
+    test(`should return undefined if no value is passed in`, () => {
+      // tslint:disable: prefer-const
+      let foo;
+      // tslint:enable: prefer-const
+      expect(component.formatUILabelFn = foo).toEqual(undefined);
     });
 
 
-    test(`should seed the initial selection`, () => {
-      component['defaultSelection'] = jest.fn().mockReturnValue('bar');
-      component.ngOnInit();
-      const expected = 'bar';
-
-      expect(component['defaultSelection']).toHaveBeenCalled();
-      expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
-      expect(component.formControl.value).toEqual(expected);
-      expect(component.value).toEqual(expected);
+    test(`should set/get the uiFormatFn`, () => {
+      const myFn = (v: any) => v.id;
+      component.formatUILabelFn = myFn;
+      expect(component.formatUILabelFn).toEqual(myFn);
     });
 
 
-    test(`should do nothing if no selection should be checked`, () => {
-      component['defaultSelection'] = jest.fn().mockReturnValue(null);
-      component.options[1].checked = false;
-      component.options[2].checked = false;
-      component.ngOnInit();
-
-      expect(component['defaultSelection']).toHaveBeenCalled();
-      expect(component['changeDetectorRef'].markForCheck).not.toHaveBeenCalled();
-      expect(component.value).toEqual('');
+    test(`should throw an error in dev mode when passed a value that is not a function`, () => {
+      expect(() => {component.formatUILabelFn = 3 as any; })
+        .toThrowError(`TsRadioGroupComponent: 'formatUILabelFn' must be passed a 'TsRadioFormatFn'.`);
     });
 
   });
 
 
-  describe(`defaultSelection`, () => {
+  describe(`formatUISubLabelFn`, () => {
 
-    test(`should return the value of the first option found with checked=true`, () => {
-      const actual = component['defaultSelection'](options);
-      expect(actual).toEqual('bar');
+    test(`should return undefined if no value is passed in`, () => {
+      // tslint:disable: prefer-const
+      let foo;
+      // tslint:enable: prefer-const
+      expect(component.formatUISubLabelFn = foo).toEqual(undefined);
     });
 
 
-    test(`should return the value of the first option found with checked=true`, () => {
-      const myOpts = options;
-      myOpts[1].checked = false;
-      myOpts[2].checked = false;
-      const actual = component['defaultSelection'](myOpts);
+    test(`should set/get the uiFormatFn`, () => {
+      const myFn = (v: any) => v.id;
+      component.formatUISubLabelFn = myFn;
+      expect(component.formatUISubLabelFn).toEqual(myFn);
+    });
 
-      expect(actual).toEqual(null);
+
+    test(`should throw an error in dev mode when passed a value that is not a function`, () => {
+      expect(() => {component.formatUISubLabelFn = 3 as any; })
+        .toThrowError(`TsRadioGroupComponent: 'formatUISubLabelFn' must be passed a 'TsRadioFormatFn'.`);
+    });
+
+  });
+
+
+  describe(`formatModelValueFn`, () => {
+
+    test(`should return undefined if no value is passed in`, () => {
+      // tslint:disable: prefer-const
+      let foo;
+      // tslint:enable: prefer-const
+      expect(component.formatModelValueFn = foo).toEqual(undefined);
+    });
+
+
+    test(`should set/get the uiFormatFn`, () => {
+      const myFn = (v: any) => v.id;
+      component.formatModelValueFn = myFn;
+      expect(component.formatModelValueFn).toEqual(myFn);
+    });
+
+
+    test(`should throw an error in dev mode when passed a value that is not a function`, () => {
+      expect(() => {component.formatModelValueFn = 3 as any; })
+        .toThrowError(`TsRadioGroupComponent: 'formatModelValueFn' must be passed a 'TsRadioFormatFn'.`);
+    });
+
+  });
+
+
+  describe(`isRequired`, () => {
+
+    test(`should return true if the form group is required`, () => {
+      component.formControl = new FormControl(null, Validators.required);
+      expect(component.isRequired).toEqual(true);
+    });
+
+    test(`should return false if the form group is not required`, () => {
+      component.formControl = new FormControl();
+      expect(component.isRequired).toEqual(false);
+    });
+
+  });
+
+
+  describe(`retrieveValue`, () => {
+
+    test(`should use a formatter to return a value`, () => {
+      const fn1 = (v) => v.foo;
+      const val1 = component.retrieveValue(options[0], fn1);
+      expect(val1).toEqual('foo_value');
+
+      const fn2 = (v) => v.bar;
+      const val2 = component.retrieveValue(options[1], fn2);
+      expect(val2).toEqual('Bar Display');
+    });
+
+    test(`should return the option if no formatter was passed in`, () => {
+      expect(component.retrieveValue(options[0])).toEqual(options[0]);
     });
 
   });
