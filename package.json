@@ -84,11 +84,7 @@
       "git add"
     ]
   },
-  "publishConfig": {
-    "tag": "wip"
-  },
   "release": {
-    "branch": "release-7.0.0",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",
