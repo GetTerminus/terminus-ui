@@ -19,13 +19,6 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 import { TsStyleThemeTypes } from './../utilities/types';
 
 
-/*
-  - generate docs
-  - add link to usage doc in readme
-  - update stackblitz demo
-*/
-
-
 /**
  * Expose the formatter function type
  */
