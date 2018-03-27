@@ -6,15 +6,30 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import {
+  isFunction,
+  hasRequiredControl,
+} from '@terminus/ngx-tools';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types';
-import { TsSelectItem } from './../utilities/interfaces/select.interface';
+
+
+/*
+  - generate docs
+  - add link to usage doc in readme
+  - update stackblitz demo
+*/
+
+
+/**
+ * Expose the formatter function type
+ */
+export type TsSelectFormatFn = (v: any) => string;
 
 
 /**
@@ -43,9 +58,11 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              blankChoice="Please choose one."
  *              label="Please select one: "
  *              items="[{[key]: value},{},{}]"
- *              valueKey="keyInItems"
  *              multipleAllowed="true"
  *              theme="primary"
+ *              isDisabled="true"
+ *              [formatUIFn]="myUIFormatter"
+ *              [formatModelValueFn]="myModelFormatter"
  *              (open)="myMethod($event)"
  *              (close)="myMethod($event)"
  *              (change)="myMethod($event)"
@@ -73,10 +90,50 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public blankChoice: string;
 
   /**
-   * Define the label for the menu
+   * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
    */
   @Input()
-  public label: string = '';
+  public set formatUIFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUIFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsSelectComponent: 'formatUIFn' must be passed a 'TsSelectFormatFn'.`);
+      }
+    }
+  }
+  public get formatUIFn(): TsSelectFormatFn {
+    return this._formatUIFn;
+  }
+  private _formatUIFn: TsSelectFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
+   */
+  @Input()
+  public set formatModelValueFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatModelValueFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsSelectComponent: 'formatModelValueFn' must be passed a 'TsSelectFormatFn'.`);
+      }
+    }
+  }
+  public get formatModelValueFn(): TsSelectFormatFn {
+    return this._formatModelValueFn;
+  }
+  private _formatModelValueFn: TsSelectFormatFn;
 
   /**
    * Define the 'hint' for the select
@@ -88,7 +145,19 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define a list of select items
    */
   @Input()
-  public items: TsSelectItem[] = [];
+  public items: any[] = [];
+
+  /**
+   * Define if the select should be disabled
+   */
+  @Input()
+  public isDisabled: boolean = false;
+
+  /**
+   * Define the label for the menu
+   */
+  @Input()
+  public label: string = '';
 
   /**
    * Define if multiple selections are allowed
@@ -103,14 +172,6 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public theme: TsStyleThemeTypes = 'primary';
 
   /**
-   * Define the key that represents the value item from the object
-   *
-   * If not provided, currently it defaults to key "name"
-   */
-  @Input()
-  public valueKey: string;
-
-  /**
    * Emit event when the select has been opened
    */
   @Output()
@@ -120,20 +181,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Emit event when the select value is changed
    */
   @Output()
-  public selectionChange: EventEmitter<TsSelectItem[]> = new EventEmitter();
-
-
-  /**
-   * Return the specified value from the object
-   *
-   * @param item - The object representing the item
-   * @param valueKey - The string representing the value key
-   * @return The value of the valueKey or the item itself,
-   * which could be string or an object of key as string and value as string.
-   */
-  public getValueKey(item: object, valueKey?: string): string | { [key: string]: string } {
-    return valueKey ? item[valueKey] : item;
-  }
+  public selectionChange: EventEmitter<any[]> = new EventEmitter();
 
 
   /**
@@ -155,6 +203,26 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 
     // Alert consumers
     this.openedChange.emit(isOpen);
+  }
+
+
+  /**
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The select option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
+   */
+  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
+    return (formatter && formatter(option)) ? formatter(option) : option;
+  }
+
+
+  /**
+   * Getter to determine if the group is required
+   */
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
   }
 
 }

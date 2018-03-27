@@ -4,7 +4,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { TsSelectItem } from '@terminus/ui';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 
 @Component({
@@ -14,21 +15,20 @@ import { TsSelectItem } from '@terminus/ui';
 export class SelectComponent {
   simpleItems: number[] = [1, 2, 3, 4];
   initialSimpleItemsSelection = 2;
-  items: TsSelectItem[] = [
+  items: Observable<any[]> = of([
     {
-      name: 'Foo',
+      foo: 'Foo',
       slug: 'foo',
     },
     {
-      name: 'Bar',
+      foo: 'Bar',
       slug: 'bar',
     },
     {
-      name: 'Baz',
+      foo: 'Baz',
       slug: 'baz',
     },
-  ];
-  key = 'slug';
+  ]);
   label = 'Select a Thing';
   blank = 'none';
   multipleAllowed = true;
@@ -38,10 +38,12 @@ export class SelectComponent {
       [Validators.required],
     ],
     myChoices2: [
-      null,
+      {value: null, disabled: true},
       [Validators.required],
     ],
   });
+  myUIFn = (v: any): string => v.foo;
+  myModelFn = (v: any): string => v.slug;
 
 
   constructor(
@@ -57,7 +59,7 @@ export class SelectComponent {
     console.log('DEMO: opened/closed: ', e);
   }
 
-  isChanged(e: TsSelectItem[]): void {
+  isChanged(e: any[]): void {
     console.log('DEMO: changed: ', e);
   }
 

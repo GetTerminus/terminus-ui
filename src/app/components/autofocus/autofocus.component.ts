@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TsSelectItem } from '@terminus/ui';
 
 
 @Component({
@@ -8,7 +7,7 @@ import { TsSelectItem } from '@terminus/ui';
 })
 export class AutofocusComponent {
   example = 'default';
-  items: TsSelectItem[] = [
+  items: any[] = [
     {
       name: 'tsAutofocus',
       value: 'default',
@@ -30,4 +29,6 @@ export class AutofocusComponent {
       value: 'bindingFalse',
     },
   ];
+  uiFormatFn = (v: any): string => v.name;
+  uiModelFn = (v: any): string => v.value;
 }

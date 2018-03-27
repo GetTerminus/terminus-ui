@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material';
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsSelectComponent } from './select.component';
-export { TsSelectComponent } from './select.component';
+export * from './select.component';
 
 
 @NgModule({
