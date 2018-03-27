@@ -5,22 +5,41 @@ import {
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewEncapsulation,
-  OnInit,
+  isDevMode,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
+import {
+  isFunction,
+  hasRequiredControl,
+} from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
-import { TsRadioOption } from './../utilities/interfaces/radio-option.interface';
 
+
+/**
+ * Define the allowed keys for an item passed to the {@link TsRadioComponent}
+ */
+export interface TsRadioOption {
+  [key: string]: any;
+
+  /**
+   * Define if the item is disabled
+   */
+  disabled?: boolean;
+}
 
 /**
  * Expose the MatRadioChange event as TsRadioChange
  */
 export class TsRadioChange extends MatRadioChange {}
+
+/**
+ * Expose the formatter function type
+ */
+export type TsRadioFormatFn = (v: any) => string;
 
 
 /**
@@ -61,12 +80,87 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-radio-group',
   },
-  exportAs: 'tsRadioGroup',
   providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsRadioGroup',
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUILabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUILabelFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsRadioGroupComponent: 'formatUILabelFn' must be passed a 'TsRadioFormatFn'.`);
+      }
+    }
+  }
+  public get formatUILabelFn(): TsRadioFormatFn {
+    return this._formatUILabelFn;
+  }
+  private _formatUILabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUISubLabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUISubLabelFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsRadioGroupComponent: 'formatUISubLabelFn' must be passed a 'TsRadioFormatFn'.`);
+      }
+    }
+  }
+  public get formatUISubLabelFn(): TsRadioFormatFn {
+    return this._formatUISubLabelFn;
+  }
+  private _formatUISubLabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatModelValueFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatModelValueFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsRadioGroupComponent: 'formatModelValueFn' must be passed a 'TsRadioFormatFn'.`);
+      }
+    }
+  }
+  public get formatModelValueFn(): TsRadioFormatFn {
+    return this._formatModelValueFn;
+  }
+  private _formatModelValueFn: TsRadioFormatFn;
+
+  /**
+   * Define if the radio group is disabled
+   */
+  @Input()
+  public isDisabled: boolean = false;
+
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
@@ -80,52 +174,28 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public theme: TsStyleThemeTypes = 'primary';
 
   /**
-   * Emit event when a selection occurs
+   * Emit event when a selection occurs. {@link TsRadioChange}
    */
   @Output()
   public change: EventEmitter<TsRadioChange> = new EventEmitter();
 
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {
-    super();
+  /**
+   * Getter to determine if the group is required
+   */
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
   }
 
 
   /**
-   * Seed the initial value with the first checked option found
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The radio option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
    */
-  public ngOnInit(): void {
-    const initialSelection = this.defaultSelection(this.options);
-
-    if (initialSelection) {
-      this.value = initialSelection;
-
-      // istanbul ignore else
-      if (this.formControl) {
-        this.formControl.setValue(initialSelection);
-      }
-
-      // Tell Angular that we have updated the component internally
-      this.changeDetectorRef.markForCheck();
-    }
+  public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
+    return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
-
-  /**
-   * Return an option that should be checked by default
-   *
-   * If multiple items are marked as 'checked' by default, the first on found will win.
-   *
-   * @param options - The array of options
-   * @return The selected value
-   */
-  private defaultSelection(options: TsRadioOption[]): string | null {
-    const found = options.filter((v: TsRadioOption) => {
-      return v.checked;
-    });
-
-    return (found && found[0] && found[0].value) ? found[0].value : null;
-  }
 }

@@ -1046,12 +1046,6 @@
             <code><a href="../components/TsReactiveFormBaseComponent.html" target="_self" >TsReactiveFormBaseComponent</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
     <p class="comment">
         <h3>Example</h3>
@@ -1144,6 +1138,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_formatModelValueFn">_formatModelValueFn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_formatUILabelFn">_formatUILabelFn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_formatUISubLabelFn">_formatUISubLabelFn</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#innerValue">innerValue</a>
                             </li>
@@ -1167,12 +1173,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#defaultSelection">defaultSelection</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Public</span>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#retrieveValue">retrieveValue</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -1202,6 +1204,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#formatModelValueFn">formatModelValueFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatUILabelFn">formatUILabelFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatUISubLabelFn">formatUISubLabelFn</a>
+                            </li>
+                            <li>
+                                <a href="#isDisabled">isDisabled</a>
+                            </li>
+                            <li>
                                 <a href="#options">options</a>
                             </li>
                             <li>
@@ -1227,61 +1241,119 @@
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatUILabelFn">formatUILabelFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatUISubLabelFn">formatUISubLabelFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatModelValueFn">formatModelValueFn</a>
+                            </li>
+                            <li>
+                                <a href="#isRequired">isRequired</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
 
-    <section>
-        <h3 id="constructor">Constructor</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-    <code>constructor(changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:86</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div>
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                        <td>changeDetectorRef</td>
-                                                      
-                                                            <td>
-                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
-                                                            </td>
-                                                      
-                                                        <td>
-                                                                no
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
 
     <section>
         <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="formatModelValueFn"></a>
+                            <code>formatModelValueFn</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a function to retrieve the UI value for an option</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:139</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="formatUILabelFn"></a>
+                            <code>formatUILabelFn</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a function to retrieve the UI value for an option</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:93</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="formatUISubLabelFn"></a>
+                            <code>formatUISubLabelFn</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define a function to retrieve the UI value for an option</p>
+</div>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:116</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="isDisabled"></a>
+                            <code>isDisabled</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Define if the radio group is disabled</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>false</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                        <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:162</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1300,7 +1372,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:74</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:168</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1326,7 +1398,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:80</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:174</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1373,7 +1445,7 @@
                             <code>change</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Emit event when a selection occurs</p>
+                            <div><p>Emit event when a selection occurs. <a href="../classes/TsRadioChange.html">TsRadioChange</a></p>
 </div>
                             <em><code>$event</code> type:</em>    <code><a href="../classes/TsRadioChange.html" target="_self" >EventEmitter&lt;TsRadioChange&gt;</a></code>
 
@@ -1381,7 +1453,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                        <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:86</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:180</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1399,34 +1471,33 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="defaultSelection"></a>
+                            <a name="retrieveValue"></a>
                             <span class="name">
                                 <b>
-                                    <span class="modifier">Private</span>
-                                defaultSelection
+                                    <span class="modifier">Public</span>
+                                retrieveValue
                                 </b>
-                                <a href="#defaultSelection"><span class="fa fa-link"></span></a>
+                                <a href="#retrieveValue"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
                                 <span class="modifier-icon fa fa-reset"></span>
-                            <code>defaultSelection(options: <a href="../interfaces/TsRadioOption.html">TsRadioOption[]</a>)</code>
+                            <code>retrieveValue(option: <a href="../interfaces/TsRadioOption.html">TsRadioOption</a>, formatter: <a href="../undefineds/TsRadioFormatFn.html">TsRadioFormatFn</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:124</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:197</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Return an option that should be checked by default</p>
-    <p>If multiple items are marked as &#39;checked&#39; by default, the first on found will win.</p>
+                                <div class="io-description"><p>Retrieve a value determined by the passed in formatter</p>
     </div>
     
                                 <div class="io-description">
@@ -1442,10 +1513,10 @@
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                        <td>options</td>
+                                                        <td>option</td>
                                                         
                                                             <td>
-                                                                        <code><a href="../interfaces/TsRadioOption.html" target="_self" >TsRadioOption[]</a></code>
+                                                                        <code><a href="../interfaces/TsRadioOption.html" target="_self" >TsRadioOption</a></code>
                                                             </td>
                                                         
                                                         <td>
@@ -1455,7 +1526,26 @@
     
                                                             <td>
                                                                     <code><ul>
-    <li>The array of options</li>
+    <li>The radio option</li>
+    </ul>
+    </code>
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>formatter</td>
+                                                        
+                                                            <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+                                                            </td>
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><ul>
+    <li>The formatter function used to retrieve the value</li>
     </ul>
     </code>
                                                             </td>
@@ -1466,53 +1556,12 @@
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>    <code>string | null</code>
+                                    <b>Returns : </b>    <code><a href="../interfaces/TsRadioOption.html" target="_self" >TsRadioOption | string</a></code>
     
                                 </div>
                                     <div class="io-description">
                                         
                                     </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="ngOnInit"></a>
-                            <span class="name">
-                                <b>
-                                    <span class="modifier">Public</span>
-                                ngOnInit
-                                </b>
-                                <a href="#ngOnInit"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <span class="modifier-icon fa fa-reset"></span>
-                            <code>ngOnInit()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:99</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Seed the initial value with the first checked option found</p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1816,6 +1865,111 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="_formatModelValueFn"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _formatModelValueFn
+                                </b>
+                                <a href="#_formatModelValueFn"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_formatModelValueFn:     <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:156</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_formatUILabelFn"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _formatUILabelFn
+                                </b>
+                                <a href="#_formatUILabelFn"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_formatUILabelFn:     <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:110</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_formatUISubLabelFn"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                _formatUISubLabelFn
+                                </b>
+                                <a href="#_formatUISubLabelFn"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>_formatUISubLabelFn:     <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsRadioFormatFn" target="_self" >TsRadioFormatFn</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:133</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="innerValue"></a>
                             <span class="name">
                                 <b>
@@ -1973,77 +2127,368 @@
             </table>
     </section>
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formatUILabelFn"></a>
+                            <span class="name"><b>formatUILabelFn</b><a href="#formatUILabelFn"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formatUILabelFn()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:107</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>formatUILabelFn(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:93</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a function to retrieve the UI value for an option</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>value</td>
+                                                        
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formatUISubLabelFn"></a>
+                            <span class="name"><b>formatUISubLabelFn</b><a href="#formatUISubLabelFn"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formatUISubLabelFn()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:130</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>formatUISubLabelFn(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:116</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a function to retrieve the UI value for an option</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>value</td>
+                                                        
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formatModelValueFn"></a>
+                            <span class="name"><b>formatModelValueFn</b><a href="#formatModelValueFn"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formatModelValueFn()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:153</a></div>
+                                    </td>
+                                </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>set</b><code>formatModelValueFn(value: )</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:139</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Define a function to retrieve the UI value for an option</p>
+    </div>
+    
+                                    <div class="io-description">
+                                            <b>Parameters :</b>
+                                            <table class="params">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Optional</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>value</td>
+                                                        
+                                                        
+                                                            <td>
+                                                                    no
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="isRequired"></a>
+                            <span class="name"><b>isRequired</b><a href="#isRequired"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>isRequired()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:185</a></div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-description"><p>Getter to determine if the group is required</p>
+    </div>
+    
+                                    <div class="io-description">
+                                        <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+    
+                                    </div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+    </section>
 </div>
 
     <div class="tab-pane fade" id="c-readme">
-        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+        <p><h1>Radio Group</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#sub-labels">Sub-labels</a></li>
 <li><a href="#event-driven">Event driven</a></li>
-<li><a href="#reactive-form-driven">Reactive form driven</a></li>
+<li><a href="#required">Required</a></li>
+<li><a href="#disabled">Disabled</a><ul>
+<li><a href="#disabled-option">Disabled option</a></li>
+</ul>
+</li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="event-driven">Event driven</h2>
-<p>Pass in an array of items and listen for change events:</p>
-<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
-  [options]=&quot;items$ | async&quot;
-  (change)=&quot;selected($event)&quot;
-&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">items$ = of([
-  {
-    value: &#39;foo&#39;,
-    displayValue: &#39;Foo&#39;,
-  },
-  {
-    value: &#39;bar&#39;,
-    displayValue: &#39;Bar&#39;,
-    disabled: true,
-  },
-  {
-    value: &#39;baz&#39;,
-    displayValue: &#39;Baz&#39;,
-    required: true,
-    checked: true,
-  },
-]);</code></pre><h2 id="reactive-form-driven">Reactive form driven</h2>
-<p>Pass in an array of items and pass in the form control:</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p>Pass in:</p>
+<ol>
+<li>an array of items</li>
+<li>a form control</li>
+<li>a formatter function to determine the UI display value</li>
+<li>a formatter function to determine the model value</li>
+</ol>
 <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]=&quot;myForm&quot; novalidate&gt;
   &lt;ts-radio-group
     [options]=&quot;items$ | async&quot;
     [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+    [formatUILabelFn]=&quot;uiFormatter&quot;
+    [formatModelValueFn]=&quot;modelFormatter&quot;
   &gt;&lt;/ts-radio-group&gt;
 
   &lt;button (click)=&quot;submit(myForm.value)&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;</code></pre><p>Since we can set the default value in the form control, we do not need to add the <code>checked</code> property
-to any or our items.</p>
-<pre class="line-numbers"><code class="language-typescript">items$ = of([
+&lt;/form&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">// Define items to be passed to the radio group
+items$: Observable&lt;TsRadioOption[]&gt; = of([
   {
-    value: &#39;foo&#39;,
-    displayValue: &#39;Foo&#39;,
+    foo: &#39;foo_value&#39;,
+    bar: &#39;Foo Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
   },
   {
-    value: &#39;bar&#39;,
-    displayValue: &#39;Bar&#39;,
+    foo: &#39;bar_value&#39;,
+    bar: &#39;Bar Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
     disabled: true,
   },
   {
-    value: &#39;baz&#39;,
-    displayValue: &#39;Baz&#39;,
-    required: true,
+    foo: &#39;baz_value&#39;,
+    bar: &#39;Baz Display&#39;,
+    bing: &#39;Some helper text for my item&#39;,
   },
 ]);
+
+// Create a form
 myForm = this.formBuilder.group({
+  myRadioGroup: [null],
+});
+
+// Use the &#39;bar&#39; value as the UI display
+uiFormatter = (v) =&gt; v.bar;
+// use the &#39;foo&#39; value to save to the model
+modelFormatter = (v) =&gt; v.foo;</code></pre><blockquote>
+<p>NOTE: Since we can set the default value in the form control, we no longer need to add the
+<code>checked</code> property to any or our items.</p>
+</blockquote>
+<h2 id="sub-labels">Sub-labels</h2>
+<p>Passing a formatter function to <code>formatUISubLabelFn</code> will enable sub-label support:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+  [formatUISubLabelFn]=&quot;uiSubFormatter&quot;
+  [formatUILabelFn]=&quot;uiFormatter&quot;
+  [formatModelValueFn]=&quot;modelFormatter&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><pre class="line-numbers"><code class="language-typescript">// Use the &#39;bing&#39; value as a sub-label
+uiSubFormatter = (v) =&gt; v.bing;
+// Use the &#39;bar&#39; value as the UI display
+uiFormatter = (v) =&gt; v.bar;
+// use the &#39;foo&#39; value to save to the model
+modelFormatter = (v) =&gt; v.foo;</code></pre><h2 id="event-driven">Event driven</h2>
+<p>Listen for change events:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  (change)=&quot;selected($event)&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><h2 id="required">Required</h2>
+<p>To define the radio group as &#39;required&#39;, set the required validator on the form group:</p>
+<pre class="line-numbers"><code class="language-typescript">myForm = this.formBuilder.group({
   myRadioGroup: [
-    &#39;bar&#39;,
+    null,
     [
       Validators.required,
     ],
   ],
-});</code></pre><blockquote>
-<p>NOTE: If you mark an item as <code>checked</code> you do not need to set the value in the form control. The
-<code>TsRadioGroupComponent</code> will find the checked item and update the form control.</p>
-</blockquote>
-</p>
+});</code></pre><h2 id="disabled">Disabled</h2>
+<p>To disable the entire radio group, set <code>isDisabled</code> to true:</p>
+<pre class="line-numbers"><code class="language-html">&lt;ts-radio-group
+  [options]=&quot;items$ | async&quot;
+  [formControl]=&quot;myForm.get(&#39;myRadioGroup&#39;)&quot;
+  [formatUISubLabelFn]=&quot;uiSubFormatter&quot;
+  [formatUILabelFn]=&quot;uiFormatter&quot;
+  [formatModelValueFn]=&quot;modelFormatter&quot;
+  isDisabled=&quot;true&quot;
+&gt;&lt;/ts-radio-group&gt;</code></pre><h3 id="disabled-option">Disabled option</h3>
+<p>To disabled only a single option, define the <code>disabled</code> key on the item object:</p>
+<pre class="line-numbers"><code class="language-typescript">// Define items to be passed to the radio group
+items$: Observable&lt;TsRadioOption[]&gt; = of([
+  {
+    foo: &#39;foo_value&#39;,
+    bar: &#39;Foo Display&#39;,
+  },
+  {
+    foo: &#39;bar_value&#39;,
+    bar: &#39;Bar Display&#39;,
+    disabled: true, // This radio option will be disabled
+  },
+  {
+    foo: &#39;baz_value&#39;,
+    bar: &#39;Baz Display&#39;,
+  },
+]);</code></pre></p>
     </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
@@ -2054,22 +2499,41 @@ myForm = this.formBuilder.group({
   EventEmitter,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewEncapsulation,
-  OnInit,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { MatRadioChange } from &#x27;@angular/material/radio&#x27;;
+import {
+  isFunction,
+  hasRequiredControl,
+} from &#x27;@terminus/ngx-tools&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
-import { TsRadioOption } from &#x27;./../utilities/interfaces/radio-option.interface&#x27;;
 
+
+/**
+ * Define the allowed keys for an item passed to the {@link TsRadioComponent}
+ */
+export interface TsRadioOption {
+  [key: string]: any;
+
+  /**
+   * Define if the item is disabled
+   */
+  disabled?: boolean;
+}
 
 /**
  * Expose the MatRadioChange event as TsRadioChange
  */
 export class TsRadioChange extends MatRadioChange {}
+
+/**
+ * Expose the formatter function type
+ */
+export type TsRadioFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
 
 /**
@@ -2110,12 +2574,87 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   host: {
     class: &#x27;ts-radio-group&#x27;,
   },
-  exportAs: &#x27;tsRadioGroup&#x27;,
   providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: &#x27;tsRadioGroup&#x27;,
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUILabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUILabelFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatUILabelFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatUILabelFn(): TsRadioFormatFn {
+    return this._formatUILabelFn;
+  }
+  private _formatUILabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatUISubLabelFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatUISubLabelFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatUISubLabelFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatUISubLabelFn(): TsRadioFormatFn {
+    return this._formatUISubLabelFn;
+  }
+  private _formatUISubLabelFn: TsRadioFormatFn;
+
+  /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set formatModelValueFn(value: TsRadioFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._formatModelValueFn &#x3D; value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(&#x60;TsRadioGroupComponent: &#x27;formatModelValueFn&#x27; must be passed a &#x27;TsRadioFormatFn&#x27;.&#x60;);
+      }
+    }
+  }
+  public get formatModelValueFn(): TsRadioFormatFn {
+    return this._formatModelValueFn;
+  }
+  private _formatModelValueFn: TsRadioFormatFn;
+
+  /**
+   * Define if the radio group is disabled
+   */
+  @Input()
+  public isDisabled: boolean &#x3D; false;
+
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
@@ -2129,54 +2668,30 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
 
   /**
-   * Emit event when a selection occurs
+   * Emit event when a selection occurs. {@link TsRadioChange}
    */
   @Output()
   public change: EventEmitter&lt;TsRadioChange&gt; &#x3D; new EventEmitter();
 
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {
-    super();
+  /**
+   * Getter to determine if the group is required
+   */
+  get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
   }
 
 
   /**
-   * Seed the initial value with the first checked option found
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The radio option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
    */
-  public ngOnInit(): void {
-    const initialSelection &#x3D; this.defaultSelection(this.options);
-
-    if (initialSelection) {
-      this.value &#x3D; initialSelection;
-
-      // istanbul ignore else
-      if (this.formControl) {
-        this.formControl.setValue(initialSelection);
-      }
-
-      // Tell Angular that we have updated the component internally
-      this.changeDetectorRef.markForCheck();
-    }
+  public retrieveValue(option: TsRadioOption, formatter: TsRadioFormatFn): TsRadioOption | string {
+    return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
   }
 
-
-  /**
-   * Return an option that should be checked by default
-   *
-   * If multiple items are marked as &#x27;checked&#x27; by default, the first on found will win.
-   *
-   * @param options - The array of options
-   * @return The selected value
-   */
-  private defaultSelection(options: TsRadioOption[]): string | null {
-    const found &#x3D; options.filter((v: TsRadioOption) &#x3D;&gt; {
-      return v.checked;
-    });
-
-    return (found &amp;&amp; found[0] &amp;&amp; found[0].value) ? found[0].value : null;
-  }
 }
 </code></pre>
     </div>
@@ -2184,23 +2699,29 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
     <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;mat-radio-group
   class&#x3D;&quot;c-radio qa-radio-group&quot;
+  [disabled]&#x3D;&quot;isDisabled&quot;
+  [required]&#x3D;&quot;isRequired&quot;
+  [class.c-radio--sublabel]&#x3D;&quot;formatUISubLabelFn&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
 &gt;
   &lt;ng-container *ngFor&#x3D;&quot;let option of options&quot;&gt;
 
     &lt;mat-radio-button
       class&#x3D;&quot;c-radio__control qa-radio-control&quot;
-      [value]&#x3D;&quot;option.value&quot;
-      [id]&#x3D;&quot;option.value&quot;
+      [value]&#x3D;&quot;retrieveValue(option, formatModelValueFn)&quot;
       [disabled]&#x3D;&quot;option.disabled&quot;
-      [checked]&#x3D;&quot;option.checked&quot;
-      [name]&#x3D;&quot;option.name&quot;
-      [required]&#x3D;&quot;option.required&quot;
+      [name]&#x3D;&quot;retrieveValue(option, formatModelValueFn)&quot;
       (change)&#x3D;&quot;change.emit($event)&quot;
       #radio&#x3D;&quot;matRadioButton&quot;
     &gt;
-      {{ option.displayValue }}
-      {{ option.checked }}
+      {{ retrieveValue(option, formatUILabelFn) }}
+
+      &lt;small
+        class&#x3D;&quot;c-radio__control-sublabel&quot;
+        *ngIf&#x3D;&quot;formatUISubLabelFn&quot;
+      &gt;
+        {{ retrieveValue(option, formatUISubLabelFn) }}
+      &lt;/small&gt;
     &lt;/mat-radio-button&gt;
 
   &lt;/ng-container&gt;
@@ -2243,7 +2764,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-radio-group  class="c-radio qa-radio-group"  [(ngModel)]="value">  <ng-container *ngFor="let option of options">    <mat-radio-button      class="c-radio__control qa-radio-control"      [value]="option.value"      [id]="option.value"      [disabled]="option.disabled"      [checked]="option.checked"      [name]="option.name"      [required]="option.required"      (change)="change.emit($event)"      #radio="matRadioButton"    >      {{ option.displayValue }}      {{ option.checked }}    </mat-radio-button>  </ng-container>  <ts-validation-messages    class="qa-radio-validation-messages"    *ngIf="formControl"    [control]="formControl"    validateImmediately="true"  ></ts-validation-messages></mat-radio-group></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-radio-group  class="c-radio qa-radio-group"  [disabled]="isDisabled"  [required]="isRequired"  [class.c-radio--sublabel]="formatUISubLabelFn"  [(ngModel)]="value">  <ng-container *ngFor="let option of options">    <mat-radio-button      class="c-radio__control qa-radio-control"      [value]="retrieveValue(option, formatModelValueFn)"      [disabled]="option.disabled"      [name]="retrieveValue(option, formatModelValueFn)"      (change)="change.emit($event)"      #radio="matRadioButton"    >      {{ retrieveValue(option, formatUILabelFn) }}      <small        class="c-radio__control-sublabel"        *ngIf="formatUISubLabelFn"      >        {{ retrieveValue(option, formatUISubLabelFn) }}      </small>    </mat-radio-button>  </ng-container>  <ts-validation-messages    class="qa-radio-validation-messages"    *ngIf="formControl"    [control]="formControl"    validateImmediately="true"  ></ts-validation-messages></mat-radio-group></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsRadioGroupComponent'};
