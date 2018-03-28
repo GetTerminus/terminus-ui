@@ -413,9 +413,9 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.3.3.tgz#8cf0a4e71b9f39267adf94400ef5988b2bdb7fac"
+"@terminus/ngx-tools@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.4.1.tgz#008773aa99c4bbfa7ce8f41f2474fdb924e61695"
   dependencies:
     tslib "^1.7.1"
 
