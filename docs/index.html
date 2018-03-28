@@ -988,8 +988,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
-<li><a href="#library-component-documentation">Library Component Documentation</a></li>
-<li><a href="#primary-library-features">Primary Library Features</a></li>
+<li><a href="#library-purpose">Library Purpose</a></li>
+<li><a href="#documentation">Documentation</a></li>
 <li><a href="#available-features">Available Features</a><ul>
 <li><a href="#components">Components</a></li>
 <li><a href="#pipes">Pipes</a></li>
@@ -1006,45 +1006,24 @@
 <li><a href="#project-resources">Project Resources</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="library-component-documentation">Library Component Documentation</h2>
-<p>This document covers documentation for building and maintaining the terminus-ui library. For
-documentation on all components and styles, visit <a href="https://getterminus.github.io/terminus-ui/">GetTerminus.github.io/terminus-ui</a>.</p>
-<h2 id="primary-library-features">Primary Library Features</h2>
-<ol>
-<li>Demo app for developing within a real application</li>
-<li>Testing<ul>
-<li>Unit (cross-browser)</li>
-<li>JiT integration</li>
-<li>AoT integration</li>
-<li><del>Style regression</del> (TODO)</li>
-</ul>
-</li>
-<li>Linting<ul>
-<li>TypeScript</li>
-<li>SCSS</li>
-</ul>
-</li>
-<li>Documentation (<code>docs/</code>)<ul>
-<li>Manual docs for basic project flow (README)<ul>
-<li>Automated Table of Contents updates</li>
-<li>Automated markdown link checking</li>
-</ul>
-</li>
-<li>Generated docs for TypeScript (<code>docs/typescript/</code>)</li>
-<li>Manual docs for SCSS (with SCSS helpers)</li>
-</ul>
-</li>
-<li>Automated semantic versioning &amp; publishing to <a href="https://npmjs.org/package/@terminus/ui">NPM</a></li>
-<li>Enforced commit style</li>
-<li>Tree-shaking via Rollup.js</li>
-<li>SCSS variables &amp; functions exposed to the consuming application</li>
-<li>Code coverage reporting (<code>coverage/</code>)</li>
-<li>Automated dependency updates</li>
-</ol>
+<h2 id="library-purpose">Library Purpose</h2>
+<p>This library was created to assist Terminus engineers in maintaining a consistent experience across
+applications while following a unified design language.</p>
+<p>The library is open source with the hopes that others may find solutions and ideas here, as we have
+done while browsing so many other repositories. While we want to make decisions that are best for
+everyone, in the end, the needs of the Terminus engineering team must come first.</p>
+<p>If a deviation makes sense for the feature itself, but not for Terminus, we support (and will assist
+in) abstracting the functionality out for generalization.</p>
+<p>This library is heavily based on Material Design currently. This provides us a way to rely on very well thought out
+usability and accessibility decisions for areas we have not yet addressed internally. While we hold
+Material in high regard, we do not believe that all of their decisions are best for the Terminus UI
+specifically.</p>
+<h2 id="documentation">Documentation</h2>
+<p>The <a href="#available-features">available features table</a> contains links for functional and usage documentation
+for each feature.</p>
 <h2 id="available-features">Available Features</h2>
 <blockquote>
 <ul>
-<li>:x: not started</li>
 <li>:hammer: started</li>
 <li>:white_check_mark: available</li>
 <li>:hankey: deprecated</li>
@@ -1066,14 +1045,14 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>alert</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>autocomplete</td>
-<td></td>
+<td>Input with autocomplete</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/autocomplete">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html">Docs</a></td>
@@ -1090,7 +1069,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>badge</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1106,7 +1085,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>breadcrumbs</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1122,7 +1101,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>chip</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1145,15 +1124,15 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>datavis</td>
-<td></td>
-<td style="text-align:center">:x:</td>
+<td>Charts, graphs etc</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>datepicker</td>
-<td></td>
+<td>Input with calendar pop-up</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/datepicker">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html">Docs</a></td>
@@ -1161,7 +1140,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>date-range</td>
-<td></td>
+<td>Dual inputs with calendar pop-ups</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/date-range">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html">Docs</a></td>
@@ -1170,7 +1149,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>dialog</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1178,7 +1157,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>divider</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1186,15 +1165,15 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>expansion</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>file-picker</td>
-<td></td>
-<td style="text-align:center">:x:</td>
+<td>File upload with drag and drop</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1202,16 +1181,8 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>input-masking</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>input-messages</td>
-<td>Used by <code>input</code> to display validation messages</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td>(see input demo)</td>
 <td></td>
 <td></td>
 </tr>
@@ -1249,7 +1220,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>loading overlay</td>
-<td></td>
+<td>Overlay with loading spinner</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/loading-overlay">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsLoadingOverlayComponent.html">Docs</a></td>
@@ -1257,7 +1228,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>login form</td>
-<td></td>
+<td>Email/password with &#39;remember me&#39; checkbox</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/log-in-form">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsLoginFormComponent.html">Docs</a></td>
@@ -1273,7 +1244,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>navigation</td>
-<td></td>
+<td>Global navigation menu</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/navigation">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsNavigationComponent.html">Docs</a></td>
@@ -1281,7 +1252,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>paginator</td>
-<td></td>
+<td>Paging controls for collections</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/paginator">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html">Docs</a></td>
@@ -1290,15 +1261,15 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>progress</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>progression</td>
-<td></td>
-<td style="text-align:center">:x:</td>
+<td>i.e. Stepper, wizard</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1313,7 +1284,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>search</td>
-<td></td>
+<td>input with search capabilities</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/search">Demo</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/components/TsSearchComponent.html">Docs</a></td>
@@ -1337,9 +1308,9 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </tr>
 <tr>
 <td>sort</td>
-<td>Used by <code>table</code> to manage column sorting</td>
+<td>Used by <code>table</code> for column sorting</td>
 <td style="text-align:center">:white_check_mark:</td>
-<td>(see table demo)</td>
+<td><small>(see table demo)</small></td>
 <td><a href="https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html">Docs</a></td>
 <td><a href="https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme">Usage</a></td>
 </tr>
@@ -1354,7 +1325,7 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <tr>
 <td>tabs</td>
 <td></td>
-<td style="text-align:center">:x:</td>
+<td style="text-align:center"></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1384,6 +1355,8 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <th>Notes</th>
 <th style="text-align:center">Status</th>
 <th>Demo</th>
+<th>Docs</th>
+<th>Usage</th>
 </tr>
 </thead>
 <tbody>
@@ -1392,12 +1365,15 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td><code>short</code>, <code>medium</code>, <code>extended</code>, <code>timestamp</code></td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>tsTimeAgo</code></td>
-<td>a human-readable time span</td>
+<td>Human-readable time span</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1408,6 +1384,9 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <th>Feature</th>
 <th>Notes</th>
 <th style="text-align:center">Status</th>
+<th>Demo</th>
+<th>Docs</th>
+<th>Usage</th>
 </tr>
 </thead>
 <tbody>
@@ -1415,11 +1394,16 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 <td>Spacing</td>
 <td>Expose custom spacing sizes via a service</td>
 <td style="text-align:center">:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>Validators</td>
 <td>Expose custom validation methods for reactive forms</td>
 <td style="text-align:center">:white_check_mark:</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1520,12 +1504,12 @@ documentation on all components and styles, visit <a href="https://getterminus.g
 </table>
 <h2 id="installation">Installation</h2>
 <p>Install the library and all required dependencies:</p>
-<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;terminus/ui &#64;angular/forms &#64;angular/animations &#64;angular/material hammerjs</code></pre><h2 id="global-styles">Global Styles</h2>
+<pre class="line-numbers"><code class="language-bash">$ yarn add &#64;terminus/ui &#64;terminus/ngx-tools &#64;angular/forms &#64;angular/animations &#64;angular/material hammerjs</code></pre><h2 id="global-styles">Global Styles</h2>
 <p>To use the global styles, import the CSS file into your stylesheets:</p>
 <pre class="line-numbers"><code class="language-scss">&#64;import &#39;&#64;terminus/ui/terminus-ui.css&#39;</code></pre><h2 id="scss-helpers">SCSS Helpers</h2>
 <p>To use the provided SCSS helper methods/variables/mixins, import the helpers file from <code>@terminus/ui</code>:</p>
 <pre class="line-numbers"><code class="language-scss">&#64;import &#39;~&#64;terminus/ui/helpers&#39;</code></pre><h2 id="contributing">Contributing</h2>
-<p>View the <a href="https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md">contribution doc</a> and the <a href="https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md">development documentation</a>.</p>
+<p>View the <a href="https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md">contribution documentation</a> and the <a href="https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md">development documentation</a>.</p>
 <h2 id="contributors">Contributors</h2>
 <p>Thanks goes to these wonderful people (<a href="https://github.com/kentcdodds/all-contributors#emoji-key">emoji key</a>):</p>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->

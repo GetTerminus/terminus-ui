@@ -1,10 +1,14 @@
+// stylelint-disable max-line-length
+
 /**
  * Box Shadow values from Material Shadow Interpolator
  *
- * - Existing library reference: http://bnj.bz/0F3o3Y1e1D3f
- * - Angular Material design notes here: http://bnj.bz/0b0Q1z3t3m38
- * - Reference CodePen: http://bnj.bz/1y311u0L083m
+ * - Existing library reference: https://github.com/prestopasto/SCSS-Material-Shadows
+ * - Angular Material design notes here: https://docs.google.com/document/d/1W3NGSLqDZzjbBBLW2C6y_6NUxtvdZAVaJvg58LY3Q0E/preview
+ * - Reference CodePen: https://codepen.io/shyndman/pen/ojxmdY?editors=001
  */
+
+// stylelint-enable max-line-length
 
 
 /**
@@ -105,7 +109,7 @@ $max-animation-length: 400ms;
 /**
  * Material Design element elevations
  *
- * Source: http://bnj.bz/150D1u0J3u0r
+ * Source: https://material.io/guidelines/material-design/elevation-shadows.html#elevation-shadows-elevation-android
  *
  * @nuclide Shadow-Elements-Map
  * @section Config > Shadows

@@ -24,8 +24,8 @@ The library of UI components used for Terminus applications.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Library Component Documentation](#library-component-documentation)
-- [Primary Library Features](#primary-library-features)
+- [Library Purpose](#library-purpose)
+- [Documentation](#documentation)
 - [Available Features](#available-features)
   - [Components](#components)
   - [Pipes](#pipes)
@@ -42,103 +42,94 @@ The library of UI components used for Terminus applications.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Library Component Documentation
+## Library Purpose
 
-This document covers documentation for building and maintaining the terminus-ui library. For
-documentation on all components and styles, visit [GetTerminus.github.io/terminus-ui][docs-url].
+This library was created to assist Terminus engineers in maintaining a consistent experience across
+applications while following a unified design language.
+
+The library is open source with the hopes that others may find solutions and ideas here, as we have
+done while browsing so many other repositories. While we want to make decisions that are best for
+everyone, in the end, the needs of the Terminus engineering team must come first.
+
+If a deviation makes sense for the feature itself, but not for Terminus, we support (and will assist
+in) abstracting the functionality out for generalization.
+
+This library is heavily based on Material Design currently. This provides us a way to rely on very well thought out
+usability and accessibility decisions for areas we have not yet addressed internally. While we hold
+Material in high regard, we do not believe that all of their decisions are best for the Terminus UI
+specifically.
 
 
-## Primary Library Features
+## Documentation
 
-1. Demo app for developing within a real application
-1. Testing
-    - Unit (cross-browser)
-    - JiT integration
-    - AoT integration
-    - ~~Style regression~~ (TODO)
-1. Linting
-    - TypeScript
-    - SCSS
-1. Documentation (`docs/`)
-    - Manual docs for basic project flow (README)
-      - Automated Table of Contents updates
-      - Automated markdown link checking
-    - Generated docs for TypeScript (`docs/typescript/`)
-    - Manual docs for SCSS (with SCSS helpers)
-1. Automated semantic versioning & publishing to [NPM][npm-url]
-1. Enforced commit style
-1. Tree-shaking via Rollup.js
-1. SCSS variables & functions exposed to the consuming application
-1. Code coverage reporting (`coverage/`)
-1. Automated dependency updates
+The [available features table](#available-features) contains links for functional and usage documentation
+for each feature.
 
 
 ## Available Features
 
-> - :x: not started
 > - :hammer: started
 > - :white_check_mark: available
 > - :hankey: deprecated
 
 ### Components
 
-| Feature         | Notes                                          | Status             | Demo                         | Docs                         | Usage                       |
-|-----------------|------------------------------------------------|:------------------:|------------------------------|------------------------------|-----------------------------|
-| alert           |                                                | :x:                |                              |                              |                             |
-| autocomplete    |                                                | :white_check_mark: | [Demo][demo-autocomplete]    | [Docs][autocomplete-docs]    | [Usage][autocomplete-usage] |
-| autofocus       | Focus a focusable element on load              | :white_check_mark: | [Demo][demo-autofocus]       | [Docs][autofocus-docs]       | [Usage][autofocus-usage]    |
-| badge           |                                                | :x:                |                              |                              |                             |
-| button          |                                                | :white_check_mark: | [Demo][demo-button]          | [Docs][button-docs]          |                             |
-| breadcrumbs     |                                                | :x:                |                              |                              |                             |
-| card            |                                                | :white_check_mark: | [Demo][demo-card]            | [Docs][card-docs]            | [Usage][card-usage]         |
-| chip            |                                                | :x:                |                              |                              |                             |
-| checkbox        |                                                | :white_check_mark: | [Demo][demo-checkbox]        | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
-| copy            |                                                | :white_check_mark: | [Demo][demo-copy]            | [Docs][copy-docs]            |                             |
-| datavis         |                                                | :x:                |                              |                              |                             |
-| datepicker      |                                                | :white_check_mark: | [Demo][demo-datepicker]      | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
-| date-range      |                                                | :white_check_mark: | [Demo][demo-date-range]      | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
-| dialog          |                                                | :x:                |                              |                              |                             |
-| divider         |                                                | :x:                |                              |                              |                             |
-| expansion       |                                                | :x:                |                              |                              |                             |
-| file-picker     |                                                | :x:                |                              |                              |                             |
-| input-masking   |                                                | :x:                |                              |                              |                             |
-| input-messages  | Used by `input` to display validation messages | :white_check_mark: | (see input demo)             |                              |                             |
-| icon            | Valid icon names: https://material.io/icons    | :white_check_mark: | [Demo][demo-icon]            | [Docs][icon-docs]            | [Usage][icon-usage]         |
-| icon-button     |                                                | :white_check_mark: | [Demo][demo-icon-button]     | [Docs][icon-button-docs]     | [Usage][icon-button-usage]  |
-| input           |                                                | :white_check_mark: | [Demo][demo-input]           | [Docs][input-docs]           | [Usage][input-usage]        |
-| link            |                                                | :white_check_mark: | [Demo][demo-link]            | [Docs][link-docs]            | [Usage][link-usage]         |
-| loading overlay |                                                | :white_check_mark: | [Demo][demo-loading-overlay] | [Docs][loading-overlay-docs] |                             |
-| login form      |                                                | :white_check_mark: | [Demo][demo-log-in-form]     | [Docs][login-form-docs]      |                             |
-| menu            |                                                | :white_check_mark: | [Demo][demo-menu]            | [Docs][menu-docs]            |                             |
-| navigation      |                                                | :white_check_mark: | [Demo][demo-navigation]      | [Docs][navigation-docs]      |                             |
-| paginator       |                                                | :white_check_mark: | [Demo][demo-paginator]       | [Docs][paginator-docs]       |                             |
-| progress        |                                                | :x:                |                              |                              |                             |
-| progression     |                                                | :x:                |                              |                              |                             |
-| radio-group     |                                                | :white_check_mark: | [Demo][demo-radio-group]     | [Docs][radio-group-docs]     | [Usage][radio-group-usage]  |
-| search          |                                                | :white_check_mark: | [Demo][demo-search]          | [Docs][search-docs]          |                             |
-| select          |                                                | :white_check_mark: | [Demo][demo-select]          | [Docs][select-docs]          |                             |
-| spacing         | Helpers for consistent spacing                 | :white_check_mark: | [Demo][demo-spacing]         | [Docs][spacing-docs]         |                             |
-| sort            | Used by `table` to manage column sorting       | :white_check_mark: | (see table demo)             | [Docs][sort-docs]            | [Usage][sort-usage]         |
-| table           |                                                | :white_check_mark: | [Demo][demo-table]           | [Docs][table-docs]           | [Usage][table-usage]        |
-| tabs            |                                                | :x:                |                              |                              |                             |
-| toggle          |                                                | :white_check_mark: | [Demo][demo-toggle]          | [Docs][toggle-docs]          |                             |
-| tooltip         |                                                | :white_check_mark: | [Demo][demo-tooltip]         | [Docs][tooltip-docs]         |                             |
+| Feature         | Notes                                       | Status             | Demo                            | Docs                         | Usage                       |
+|-----------------|---------------------------------------------|:------------------:|---------------------------------|------------------------------|-----------------------------|
+| alert           |                                             |                    |                                 |                              |                             |
+| autocomplete    | Input with autocomplete                     | :white_check_mark: | [Demo][demo-autocomplete]       | [Docs][autocomplete-docs]    | [Usage][autocomplete-usage] |
+| autofocus       | Focus a focusable element on load           | :white_check_mark: | [Demo][demo-autofocus]          | [Docs][autofocus-docs]       | [Usage][autofocus-usage]    |
+| badge           |                                             |                    |                                 |                              |                             |
+| button          |                                             | :white_check_mark: | [Demo][demo-button]             | [Docs][button-docs]          |                             |
+| breadcrumbs     |                                             |                    |                                 |                              |                             |
+| card            |                                             | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]            | [Usage][card-usage]         |
+| chip            |                                             |                    |                                 |                              |                             |
+| checkbox        |                                             | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
+| copy            |                                             | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                             |
+| datavis         | Charts, graphs etc                          |                    |                                 |                              |                             |
+| datepicker      | Input with calendar pop-up                  | :white_check_mark: | [Demo][demo-datepicker]         | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
+| date-range      | Dual inputs with calendar pop-ups           | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
+| dialog          |                                             |                    |                                 |                              |                             |
+| divider         |                                             |                    |                                 |                              |                             |
+| expansion       |                                             |                    |                                 |                              |                             |
+| file-picker     | File upload with drag and drop              |                    |                                 |                              |                             |
+| input-masking   |                                             |                    |                                 |                              |                             |
+| icon            | Valid icon names: https://material.io/icons | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]            | [Usage][icon-usage]         |
+| icon-button     |                                             | :white_check_mark: | [Demo][demo-icon-button]        | [Docs][icon-button-docs]     | [Usage][icon-button-usage]  |
+| input           |                                             | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]           | [Usage][input-usage]        |
+| link            |                                             | :white_check_mark: | [Demo][demo-link]               | [Docs][link-docs]            | [Usage][link-usage]         |
+| loading overlay | Overlay with loading spinner                | :white_check_mark: | [Demo][demo-loading-overlay]    | [Docs][loading-overlay-docs] |                             |
+| login form      | Email/password with 'remember me' checkbox  | :white_check_mark: | [Demo][demo-log-in-form]        | [Docs][login-form-docs]      |                             |
+| menu            |                                             | :white_check_mark: | [Demo][demo-menu]               | [Docs][menu-docs]            |                             |
+| navigation      | Global navigation menu                      | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]      |                             |
+| paginator       | Paging controls for collections             | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]       |                             |
+| progress        |                                             |                    |                                 |                              |                             |
+| progression     | i.e. Stepper, wizard                        |                    |                                 |                              |                             |
+| radio-group     |                                             | :white_check_mark: | [Demo][demo-radio-group]        | [Docs][radio-group-docs]     | [Usage][radio-group-usage]  |
+| search          | input with search capabilities              | :white_check_mark: | [Demo][demo-search]             | [Docs][search-docs]          |                             |
+| select          |                                             | :white_check_mark: | [Demo][demo-select]             | [Docs][select-docs]          |                             |
+| spacing         | Helpers for consistent spacing              | :white_check_mark: | [Demo][demo-spacing]            | [Docs][spacing-docs]         |                             |
+| sort            | Used by `table` for column sorting          | :white_check_mark: | <small>(see table demo)</small> | [Docs][sort-docs]            | [Usage][sort-usage]         |
+| table           |                                             | :white_check_mark: | [Demo][demo-table]              | [Docs][table-docs]           | [Usage][table-usage]        |
+| tabs            |                                             |                    |                                 |                              |                             |
+| toggle          |                                             | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]          |                             |
+| tooltip         |                                             | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]         |                             |
 
 
 ### Pipes
 
-| Pipe        | Notes                                      | Status             | Demo               |
-|-------------|--------------------------------------------|:------------------:|--------------------|
-| `tsDate`    | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: | [Demo][demo-pipes] |
-| `tsTimeAgo` | a human-readable time span                 | :white_check_mark: | [Demo][demo-pipes] |
+| Pipe        | Notes                                      | Status             | Demo               | Docs | Usage |
+|-------------|--------------------------------------------|:------------------:|--------------------|------|-------|
+| `tsDate`    | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: | [Demo][demo-pipes] |      |       |
+| `tsTimeAgo` | Human-readable time span                   | :white_check_mark: | [Demo][demo-pipes] |      |       |
 
 
 ### Services
 
-| Feature    | Notes                                                                     | Status             |
-|------------|---------------------------------------------------------------------------|:------------------:|
-| Spacing    | Expose custom spacing sizes via a service                                 | :white_check_mark: |
-| Validators | Expose custom validation methods for reactive forms                       | :white_check_mark: |
+| Feature    | Notes                                               | Status             | Demo | Docs | Usage |
+|------------|-----------------------------------------------------|:------------------:|------|------|-------|
+| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |      |      |       |
+| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |      |      |       |
 
 
 ### TypeScript Utilities
@@ -170,7 +161,7 @@ documentation on all components and styles, visit [GetTerminus.github.io/terminu
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @terminus/ui @angular/forms @angular/animations @angular/material hammerjs
+$ yarn add @terminus/ui @terminus/ngx-tools @angular/forms @angular/animations @angular/material hammerjs
 ```
 
 
@@ -193,7 +184,7 @@ To use the provided SCSS helper methods/variables/mixins, import the helpers fil
 
 ## Contributing
 
-View the [contribution doc][contributing] and the [development documentation][dev-workflow].
+View the [contribution documentation][contributing] and the [development documentation][dev-workflow].
 
 
 ## Contributors
