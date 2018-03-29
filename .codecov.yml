@@ -26,7 +26,7 @@ ignore:
   - "integration"
   - "node_modules"
   - "out-tsc"
-  - "src/app"
+  - "demo/app"
   - "tooling"
   - "terminus-ui/src/**/*.spec.ts"
   - "terminus-ui/src/**/*.mock.ts"

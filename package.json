@@ -16,11 +16,11 @@
     "//=> Section: Demo App": "______________________________",
     "ng": "ng",
     "start:app": "ng serve",
-    "build:app": "cpr dist/terminus-ui src/@terminus/ui --overwrite && ng build --app packages && rimraf src/@terminus",
+    "build:app": "cpr dist/terminus-ui demo/@terminus/ui --overwrite && ng build --app packages && rimraf demo/@terminus",
     "test:app": "ng test",
     "lint:app": "yarn run lint:app:ts && yarn run lint:app:scss",
     "lint:app:ts": "ng lint",
-    "lint:app:scss": "npx stylelint 'src/**/*.scss' --fix",
+    "lint:app:scss": "npx stylelint 'demo/**/*.scss' --fix",
     "e2e:app": "ng e2e",
     "//=> Section: Library:Build": "",
     "build": "yarn run build:ts && yarn run build:styles && yarn run build:files",
@@ -56,7 +56,7 @@
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "cm": "npx git-cz",
-    "todo": "npx notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x src/demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x terminus-ui/helpers.scss",
+    "todo": "npx notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x terminus-ui/helpers.scss",
     "contributors:add": "npx all-contributors add",
     "contributors:generate": "npx all-contributors generate",
     "contributors:check": "npx all-contributors check"
@@ -118,10 +118,10 @@
     "transform": {
       "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
     },
-    "testRegex": "(^((?!.*(out-tsc/|coverage/|dist/|src/demo/|e2e/)).).*spec\\.ts.*$)",
+    "testRegex": "(^((?!.*(out-tsc/|coverage/|dist/|demo/|e2e/)).).*spec\\.ts.*$)",
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "src/app"
+      "demo/app"
     ],
     "moduleFileExtensions": [
       "ts",
@@ -129,9 +129,9 @@
       "html"
     ],
     "moduleNameMapper": {
-      "app/(.*)": "<rootDir>/src/app/$1",
-      "assets/(.*)": "<rootDir>/src/assets/$1",
-      "environments/(.*)": "<rootDir>/src/environments/$1"
+      "app/(.*)": "<rootDir>/demo/app/$1",
+      "assets/(.*)": "<rootDir>/demo/assets/$1",
+      "environments/(.*)": "<rootDir>/demo/environments/$1"
     },
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx)"
