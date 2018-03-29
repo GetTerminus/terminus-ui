@@ -16,6 +16,7 @@ The library of UI components used for Terminus applications.
 [![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-2-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
+[![validators](https://img.shields.io/badge/Validators-12-blue.svg)](#validators)
 
 
 ---
@@ -30,7 +31,7 @@ The library of UI components used for Terminus applications.
   - [Components](#components)
   - [Pipes](#pipes)
   - [Services](#services)
-  - [TypeScript Utilities](#typescript-utilities)
+    - [Available Validators](#available-validators)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Global Styles](#global-styles)
@@ -126,18 +127,28 @@ for each feature.
 
 ### Services
 
-| Feature    | Notes                                               | Status             | Demo | Docs | Usage |
-|------------|-----------------------------------------------------|:------------------:|------|------|-------|
-| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |      |      |       |
-| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |      |      |       |
+| Feature    | Notes                                               | Status             | Demo | Docs                    | Usage |
+|------------|-----------------------------------------------------|:------------------:|------|-------------------------|-------|
+| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |      |                         |       |
+| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |      | [Docs][validators-docs] |       |
 
 
-### TypeScript Utilities
+#### Available Validators
 
-| Feature    | Notes                                             | Status             |
-|------------|---------------------------------------------------|:------------------:|
-| Interfaces | Provide TypeScript interfaces for various objects | :white_check_mark: |
-| Types      | Provide TypeScript types for various parameters   | :white_check_mark: |
+| Name                 | Purpose                                                       |
+|----------------------|---------------------------------------------------------------|
+| `creditCard`         | A credit card number must be valid                            |
+| `email`              | An email address must be valid                                |
+| `equalToControl`     | A control's value must be equal to another control's value    |
+| `greaterThan`        | A number must be greater than another value                   |
+| `greaterThanOrEqual` | A number must be greater than or equal to another value       |
+| `lessThan`           | A number must be less than another value                      |
+| `lessThanOrEqual`    | A number must be less than or equal to another value          |
+| `lowercase`          | A value must contain a minimum amount of lowercase characters |
+| `minDate`            | A date must be after a minimum date                           |
+| `maxDate`            | A date must be before a maximum date                          |
+| `password`           | A password must meet certain requirements                     |
+| `url`                | A URL must be valid                                           |
 
 
 ### Style Helpers
@@ -323,6 +334,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [table-docs]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html
 [toggle-docs]: https://getterminus.github.io/terminus-ui/components/TsToggleComponent.html
 [tooltip-docs]: https://getterminus.github.io/terminus-ui/components/TsTooltipComponent.html
+[validators-docs]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme

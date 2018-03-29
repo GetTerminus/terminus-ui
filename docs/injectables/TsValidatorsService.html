@@ -983,6 +983,9 @@
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
 
+    <li>
+        <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+    </li>
 
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
@@ -1469,6 +1472,119 @@
 
     </div>
 
+    <div class="tab-pane fade" id="c-readme">
+        <p><h1>Validators</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#available-validators">Available validators</a></li>
+<li><a href="#mocking">Mocking</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="basic-usage">Basic usage</h2>
+<pre class="line-numbers"><code class="language-typescript">import {
+  FormBuilder,
+  FormGroup,
+} from &#39;&#64;angular/forms&#39;;
+import { TsValidatorsService } from &#39;&#64;terminus/ui&#39;;
+
+
+&#64;Component({
+  ...
+})
+export class MyComponent {
+  // Create a form
+  myForm: FormGroup = this.formBuilder.group({
+    email: [
+      null,
+      [
+        // Basic validator
+        this.validatorsService.email(),
+      ],
+    ],
+    greaterThan: [
+      null,
+      [
+        // Validator with a required argument
+        this.validatorsService.greaterThan(10),
+      ],
+    ],
+  });
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private validatorsService: TsValidatorsService,
+  ) {}
+
+}</code></pre><h2 id="available-validators">Available validators</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Validator</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>creditCard</code></td>
+<td>A credit card number must be valid</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>An email address must be valid</td>
+</tr>
+<tr>
+<td><code>equalToControl</code></td>
+<td>A control&#39;s value must be equal to another control&#39;s value</td>
+</tr>
+<tr>
+<td><code>greaterThan</code></td>
+<td>A number must be greater than another value</td>
+</tr>
+<tr>
+<td><code>greaterThanOrEqual</code></td>
+<td>A number must be greater than or equal to another value</td>
+</tr>
+<tr>
+<td><code>lessThan</code></td>
+<td>A number must be less than another value</td>
+</tr>
+<tr>
+<td><code>lessThanOrEqual</code></td>
+<td>A number must be less than or equal to another value</td>
+</tr>
+<tr>
+<td><code>lowercase</code></td>
+<td>A value must contain a minimum amount of lowercase characters</td>
+</tr>
+<tr>
+<td><code>minDate</code></td>
+<td>A date must be after a minimum date</td>
+</tr>
+<tr>
+<td><code>maxDate</code></td>
+<td>A date must be before a maximum date</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>A password must meet certain requirements</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>A URL must be valid</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mocking">Mocking</h2>
+<p>A mocked version of the service is available for testing as <code>TsValidatorsServiceMock</code>.</p>
+<p>The mocks consist of Jest mock functions. Based on the class value <code>isValid</code> the validator mock will
+return an error message or <code>null</code>.</p>
+</p>
+    </div>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;

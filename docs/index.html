@@ -982,7 +982,8 @@
 <a href="#components"><img src="https://img.shields.io/badge/Components-26-blue.svg" alt="components" class="img-responsive"></a>
 <a href="#pipes"><img src="https://img.shields.io/badge/Pipes-2-blue.svg" alt="pipes" class="img-responsive"></a>
 <a href="#services"><img src="https://img.shields.io/badge/Services-2-blue.svg" alt="services" class="img-responsive"></a>
-<a href="#style-helpers"><img src="https://img.shields.io/badge/StyleHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a></p>
+<a href="#style-helpers"><img src="https://img.shields.io/badge/StyleHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a>
+<a href="#validators"><img src="https://img.shields.io/badge/Validators-12-blue.svg" alt="validators" class="img-responsive"></a></p>
 <hr>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -994,7 +995,7 @@
 <li><a href="#components">Components</a></li>
 <li><a href="#pipes">Pipes</a></li>
 <li><a href="#services">Services</a></li>
-<li><a href="#typescript-utilities">TypeScript Utilities</a></li>
+<li><a href="#available-validators">Available Validators</a></li>
 <li><a href="#style-helpers">Style Helpers</a></li>
 </ul>
 </li>
@@ -1403,29 +1404,66 @@ for each feature.</p>
 <td>Expose custom validation methods for reactive forms</td>
 <td style="text-align:center">:white_check_mark:</td>
 <td></td>
-<td></td>
+<td><a href="https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme">Docs</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="typescript-utilities">TypeScript Utilities</h3>
+<h3 id="available-validators">Available Validators</h3>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
-<th>Feature</th>
-<th>Notes</th>
-<th style="text-align:center">Status</th>
+<th>Name</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Interfaces</td>
-<td>Provide TypeScript interfaces for various objects</td>
-<td style="text-align:center">:white_check_mark:</td>
+<td><code>creditCard</code></td>
+<td>A credit card number must be valid</td>
 </tr>
 <tr>
-<td>Types</td>
-<td>Provide TypeScript types for various parameters</td>
-<td style="text-align:center">:white_check_mark:</td>
+<td><code>email</code></td>
+<td>An email address must be valid</td>
+</tr>
+<tr>
+<td><code>equalToControl</code></td>
+<td>A control&#39;s value must be equal to another control&#39;s value</td>
+</tr>
+<tr>
+<td><code>greaterThan</code></td>
+<td>A number must be greater than another value</td>
+</tr>
+<tr>
+<td><code>greaterThanOrEqual</code></td>
+<td>A number must be greater than or equal to another value</td>
+</tr>
+<tr>
+<td><code>lessThan</code></td>
+<td>A number must be less than another value</td>
+</tr>
+<tr>
+<td><code>lessThanOrEqual</code></td>
+<td>A number must be less than or equal to another value</td>
+</tr>
+<tr>
+<td><code>lowercase</code></td>
+<td>A value must contain a minimum amount of lowercase characters</td>
+</tr>
+<tr>
+<td><code>minDate</code></td>
+<td>A date must be after a minimum date</td>
+</tr>
+<tr>
+<td><code>maxDate</code></td>
+<td>A date must be before a maximum date</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>A password must meet certain requirements</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>A URL must be valid</td>
 </tr>
 </tbody>
 </table>
