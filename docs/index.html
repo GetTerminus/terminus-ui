@@ -452,6 +452,9 @@
                                     <a href="./pipes/TsDatePipe.html" >TsDatePipe</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./pipes/TsSentenceCasePipe.html" >TsSentenceCasePipe</a>
+                                </li>
+                                <li class="link">
                                     <a href="./pipes/TsTimeAgoPipe.html" >TsTimeAgoPipe</a>
                                 </li>
                         </ul>
@@ -927,6 +930,9 @@
                                            <a href="./pipes/TsDatePipe.html" >TsDatePipe</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./pipes/TsSentenceCasePipe.html" >TsSentenceCasePipe</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./pipes/TsTimeAgoPipe.html" >TsTimeAgoPipe</a>
                                        </li>
                                </ul>
@@ -980,8 +986,8 @@
 <a href="https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js"><img src="http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js?compression=gzip" alt="Library size" class="img-responsive"></a>
 <br>
 <a href="#components"><img src="https://img.shields.io/badge/Components-26-blue.svg" alt="components" class="img-responsive"></a>
-<a href="#pipes"><img src="https://img.shields.io/badge/Pipes-2-blue.svg" alt="pipes" class="img-responsive"></a>
-<a href="#services"><img src="https://img.shields.io/badge/Services-2-blue.svg" alt="services" class="img-responsive"></a>
+<a href="#pipes"><img src="https://img.shields.io/badge/Pipes-3-blue.svg" alt="pipes" class="img-responsive"></a>
+<a href="#services"><img src="https://img.shields.io/badge/Services-1-blue.svg" alt="services" class="img-responsive"></a>
 <a href="#style-helpers"><img src="https://img.shields.io/badge/StyleHelpers-8-blue.svg" alt="style helpers" class="img-responsive"></a>
 <a href="#validators"><img src="https://img.shields.io/badge/Validators-12-blue.svg" alt="validators" class="img-responsive"></a></p>
 <hr>
@@ -994,8 +1000,11 @@
 <li><a href="#available-features">Available Features</a><ul>
 <li><a href="#components">Components</a></li>
 <li><a href="#pipes">Pipes</a></li>
-<li><a href="#services">Services</a></li>
+<li><a href="#services">Services</a><ul>
 <li><a href="#available-validators">Available Validators</a></li>
+</ul>
+</li>
+<li><a href="#constants">Constants</a></li>
 <li><a href="#style-helpers">Style Helpers</a></li>
 </ul>
 </li>
@@ -1349,15 +1358,14 @@ for each feature.</p>
 </tbody>
 </table>
 <h3 id="pipes">Pipes</h3>
+<p><a href="./terminus-ui/src/pipes/README.md">:books: Pipes Documentation</a>
+<a href="https://terminus-ui-demos.stackblitz.io/components/pipes">:circus_tent: Pipes Demo</a></p>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
 <th>Pipe</th>
 <th>Notes</th>
 <th style="text-align:center">Status</th>
-<th>Demo</th>
-<th>Docs</th>
-<th>Usage</th>
 </tr>
 </thead>
 <tbody>
@@ -1365,16 +1373,16 @@ for each feature.</p>
 <td><code>tsDate</code></td>
 <td><code>short</code>, <code>medium</code>, <code>extended</code>, <code>timestamp</code></td>
 <td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td><code>tsTimeAgo</code></td>
 <td>Human-readable time span</td>
 <td style="text-align:center">:white_check_mark:</td>
-<td><a href="https://terminus-ui-demos.stackblitz.io/components/pipes">Demo</a></td>
-<td></td>
+</tr>
+<tr>
+<td><code>tsSentenceCase</code></td>
+<td>Convert string casing to sentence-case</td>
+<td style="text-align:center">:white_check_mark:</td>
 </tr>
 </tbody>
 </table>
@@ -1392,23 +1400,16 @@ for each feature.</p>
 </thead>
 <tbody>
 <tr>
-<td>Spacing</td>
-<td>Expose custom spacing sizes via a service</td>
-<td style="text-align:center">:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>Validators</td>
 <td>Expose custom validation methods for reactive forms</td>
 <td style="text-align:center">:white_check_mark:</td>
-<td></td>
-<td><a href="https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme">Docs</a></td>
+<td><a href="https://terminus-ui-demos.stackblitz.io/components/validation">Demo</a></td>
+<td><a href="https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html">Docs</a></td>
+<td><a href="https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme">Usage</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="available-validators">Available Validators</h3>
+<h4 id="available-validators">Available Validators</h4>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
@@ -1464,6 +1465,28 @@ for each feature.</p>
 <tr>
 <td><code>url</code></td>
 <td>A URL must be valid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="constants">Constants</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Notes</th>
+<th style="text-align:center">Status</th>
+<th>Demo</th>
+<th>Docs</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TS_SPACING</code></td>
+<td>Expose our spacing sizes in TypeScript</td>
+<td style="text-align:center">:white_check_mark:</td>
+<td><a href="https://terminus-ui-demos.stackblitz.io/components/spacing-constant">Demo</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>

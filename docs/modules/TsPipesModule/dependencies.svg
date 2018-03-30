@@ -22,69 +22,93 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsPipesModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="125,-70 125,-268 371,-268 371,-70 125,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="48,-70 48,-268 448,-268 448,-70 48,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsPipesModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="136,-78 136,-130 360,-130 360,-78 136,-78"/>
+<polygon fill="none" stroke="#000000" points="61,-78 61,-130 435,-130 435,-78 61,-78"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust7" class="cluster">
 <title>cluster_TsPipesModule_exports</title>
-<polygon fill="none" stroke="#000000" points="133,-208 133,-260 363,-260 363,-208 133,-208"/>
+<polygon fill="none" stroke="#000000" points="56,-208 56,-260 440,-260 440,-208 56,-208"/>
 </g>
 <!-- TsTimeAgoPipe -->
 <g id="node1" class="node">
 <title>TsTimeAgoPipe</title>
-<polygon fill="#ffffb3" stroke="#000000" points="352.041,-122 243.959,-122 243.959,-86 352.041,-86 352.041,-122"/>
-<text text-anchor="middle" x="298" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTimeAgoPipe</text>
+<polygon fill="#ffffb3" stroke="#000000" points="427.041,-122 318.959,-122 318.959,-86 427.041,-86 427.041,-122"/>
+<text text-anchor="middle" x="373" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTimeAgoPipe</text>
 </g>
 <!-- TsPipesModule -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>TsPipesModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="291.8795,-187 288.8795,-191 267.8795,-191 264.8795,-187 188.1205,-187 188.1205,-151 291.8795,-151 291.8795,-187"/>
-<text text-anchor="middle" x="240" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPipesModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="311.8795,-187 308.8795,-191 287.8795,-191 284.8795,-187 208.1205,-187 208.1205,-151 311.8795,-151 311.8795,-187"/>
+<text text-anchor="middle" x="260" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPipesModule</text>
 </g>
 <!-- TsTimeAgoPipe&#45;&gt;TsPipesModule -->
 <g id="edge1" class="edge">
 <title>TsTimeAgoPipe&#45;&gt;TsPipesModule</title>
-<path fill="none" stroke="#000000" d="M267.8349,-122.1061C267.8349,-122.1061 267.8349,-140.991 267.8349,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="264.3349,-140.9909 267.8349,-150.991 271.3349,-140.991 264.3349,-140.9909"/>
+<path fill="none" stroke="#000000" d="M318.8439,-104C311.4284,-104 306.2977,-104 306.2977,-104 306.2977,-104 306.2977,-140.8939 306.2977,-140.8939"/>
+<polygon fill="#000000" stroke="#000000" points="302.7978,-140.8938 306.2977,-150.8939 309.7978,-140.8939 302.7978,-140.8938"/>
 </g>
 <!-- TsDatePipe -->
 <g id="node2" class="node">
 <title>TsDatePipe</title>
-<polygon fill="#ffffb3" stroke="#000000" points="225.812,-122 144.188,-122 144.188,-86 225.812,-86 225.812,-122"/>
-<text text-anchor="middle" x="185" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDatePipe</text>
+<polygon fill="#ffffb3" stroke="#000000" points="300.812,-122 219.188,-122 219.188,-86 300.812,-86 300.812,-122"/>
+<text text-anchor="middle" x="260" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDatePipe</text>
 </g>
 <!-- TsDatePipe&#45;&gt;TsPipesModule -->
 <g id="edge2" class="edge">
 <title>TsDatePipe&#45;&gt;TsPipesModule</title>
-<path fill="none" stroke="#000000" d="M206.858,-122.1061C206.858,-122.1061 206.858,-140.991 206.858,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="203.3581,-140.9909 206.858,-150.991 210.3581,-140.991 203.3581,-140.9909"/>
+<path fill="none" stroke="#000000" d="M260,-122.1061C260,-122.1061 260,-140.991 260,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="256.5001,-140.9909 260,-150.991 263.5001,-140.991 256.5001,-140.9909"/>
+</g>
+<!-- TsSentenceCasePipe -->
+<g id="node3" class="node">
+<title>TsSentenceCasePipe</title>
+<polygon fill="#ffffb3" stroke="#000000" points="201.1275,-122 68.8725,-122 68.8725,-86 201.1275,-86 201.1275,-122"/>
+<text text-anchor="middle" x="135" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSentenceCasePipe</text>
+</g>
+<!-- TsSentenceCasePipe&#45;&gt;TsPipesModule -->
+<g id="edge3" class="edge">
+<title>TsSentenceCasePipe&#45;&gt;TsPipesModule</title>
+<path fill="none" stroke="#000000" d="M201.4051,-104C208.7834,-104 213.7023,-104 213.7023,-104 213.7023,-104 213.7023,-140.8939 213.7023,-140.8939"/>
+<polygon fill="#000000" stroke="#000000" points="210.2024,-140.8938 213.7023,-150.8939 217.2024,-140.8939 210.2024,-140.8938"/>
 </g>
 <!-- TsTimeAgoPipe  -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>TsTimeAgoPipe </title>
-<polygon fill="#fb8072" stroke="#000000" points="355.04,-252 242.96,-252 242.96,-216 355.04,-216 355.04,-252"/>
-<text text-anchor="middle" x="299" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTimeAgoPipe </text>
+<polygon fill="#fb8072" stroke="#000000" points="432.04,-252 319.96,-252 319.96,-216 432.04,-216 432.04,-252"/>
+<text text-anchor="middle" x="376" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsTimeAgoPipe </text>
 </g>
 <!-- TsPipesModule&#45;&gt;TsTimeAgoPipe  -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>TsPipesModule&#45;&gt;TsTimeAgoPipe </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.4599,-187.1061C267.4599,-187.1061 267.4599,-205.991 267.4599,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="263.9599,-205.9909 267.4599,-215.991 270.9599,-205.991 263.9599,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M307.1727,-187.1061C307.1727,-206.3391 307.1727,-234 307.1727,-234 307.1727,-234 309.7967,-234 309.7967,-234"/>
+<polygon fill="#000000" stroke="#000000" points="309.7967,-237.5001 319.7967,-234 309.7967,-230.5001 309.7967,-237.5001"/>
 </g>
 <!-- TsDatePipe  -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>TsDatePipe </title>
-<polygon fill="#fb8072" stroke="#000000" points="225.3116,-252 140.6884,-252 140.6884,-216 225.3116,-216 225.3116,-252"/>
-<text text-anchor="middle" x="183" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDatePipe </text>
+<polygon fill="#fb8072" stroke="#000000" points="302.3116,-252 217.6884,-252 217.6884,-216 302.3116,-216 302.3116,-252"/>
+<text text-anchor="middle" x="260" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDatePipe </text>
 </g>
 <!-- TsPipesModule&#45;&gt;TsDatePipe  -->
-<g id="edge4" class="edge">
+<g id="edge5" class="edge">
 <title>TsPipesModule&#45;&gt;TsDatePipe </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M206.733,-187.1061C206.733,-187.1061 206.733,-205.991 206.733,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="203.2331,-205.9909 206.733,-215.991 210.2331,-205.991 203.2331,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M260,-187.1061C260,-187.1061 260,-205.991 260,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="256.5001,-205.9909 260,-215.991 263.5001,-205.991 256.5001,-205.9909"/>
+</g>
+<!-- TsSentenceCasePipe  -->
+<g id="node7" class="node">
+<title>TsSentenceCasePipe </title>
+<polygon fill="#fb8072" stroke="#000000" points="200.1271,-252 63.8729,-252 63.8729,-216 200.1271,-216 200.1271,-252"/>
+<text text-anchor="middle" x="132" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSentenceCasePipe </text>
+</g>
+<!-- TsPipesModule&#45;&gt;TsSentenceCasePipe  -->
+<g id="edge6" class="edge">
+<title>TsPipesModule&#45;&gt;TsSentenceCasePipe </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M212.8273,-187.1061C212.8273,-206.3391 212.8273,-234 212.8273,-234 212.8273,-234 210.198,-234 210.198,-234"/>
+<polygon fill="#000000" stroke="#000000" points="210.1981,-230.5001 200.198,-234 210.198,-237.5001 210.1981,-230.5001"/>
 </g>
 </g>
 </svg>

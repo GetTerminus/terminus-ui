@@ -13,8 +13,8 @@ The library of UI components used for Terminus applications.
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
 [![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
-[![pipes](https://img.shields.io/badge/Pipes-2-blue.svg)](#pipes)
-[![services](https://img.shields.io/badge/Services-2-blue.svg)](#services)
+[![pipes](https://img.shields.io/badge/Pipes-3-blue.svg)](#pipes)
+[![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-12-blue.svg)](#validators)
 
@@ -32,6 +32,7 @@ The library of UI components used for Terminus applications.
   - [Pipes](#pipes)
   - [Services](#services)
     - [Available Validators](#available-validators)
+  - [Constants](#constants)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
 - [Global Styles](#global-styles)
@@ -119,18 +120,21 @@ for each feature.
 
 ### Pipes
 
-| Pipe        | Notes                                      | Status             | Demo               | Docs | Usage |
-|-------------|--------------------------------------------|:------------------:|--------------------|------|-------|
-| `tsDate`    | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: | [Demo][demo-pipes] |      |       |
-| `tsTimeAgo` | Human-readable time span                   | :white_check_mark: | [Demo][demo-pipes] |      |       |
+[:books: Pipes Documentation][pipes-docs]
+[:circus_tent: Pipes Demo][demo-pipes]
+
+| Pipe             | Notes                                      | Status             |
+|------------------|--------------------------------------------|:------------------:|
+| `tsDate`         | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |
+| `tsTimeAgo`      | Human-readable time span                   | :white_check_mark: |
+| `tsSentenceCase` | Convert string casing to sentence-case     | :white_check_mark: |
 
 
 ### Services
 
-| Feature    | Notes                                               | Status             | Demo | Docs                    | Usage |
-|------------|-----------------------------------------------------|:------------------:|------|-------------------------|-------|
-| Spacing    | Expose custom spacing sizes via a service           | :white_check_mark: |      |                         |       |
-| Validators | Expose custom validation methods for reactive forms | :white_check_mark: |      | [Docs][validators-docs] |       |
+| Feature    | Notes                                               | Status             | Demo                    | Docs                    | Usage                     |
+|------------|-----------------------------------------------------|:------------------:|-------------------------|-------------------------|---------------------------|
+| Validators | Expose custom validation methods for reactive forms | :white_check_mark: | [Demo][demo-validators] | [Docs][validators-docs] | [Usage][validators-usage] |
 
 
 #### Available Validators
@@ -149,6 +153,13 @@ for each feature.
 | `maxDate`            | A date must be before a maximum date                          |
 | `password`           | A password must meet certain requirements                     |
 | `url`                | A URL must be valid                                           |
+
+
+### Constants
+
+| Feature      | Notes                                  | Status             | Demo                          | Docs | Usage |
+|--------------|----------------------------------------|:------------------:|-------------------------------|------|-------|
+| `TS_SPACING` | Expose our spacing sizes in TypeScript | :white_check_mark: | [Demo][demo-spacing-constant] |      |       |
 
 
 ### Style Helpers
@@ -294,9 +305,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
 [demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
 [demo-spacing]: https://terminus-ui-demos.stackblitz.io/components/spacing
+[demo-spacing-constant]: https://terminus-ui-demos.stackblitz.io/components/spacing-constant
 [demo-table]: https://terminus-ui-demos.stackblitz.io/components/table
 [demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
 [demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
+[demo-validators]: https://terminus-ui-demos.stackblitz.io/components/validation
 
 <!-- SCSS Docs -->
 [breakpoints-docs]: ./terminus-ui/src/scss/docs/breakpoints.md
@@ -334,7 +347,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [table-docs]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html
 [toggle-docs]: https://getterminus.github.io/terminus-ui/components/TsToggleComponent.html
 [tooltip-docs]: https://getterminus.github.io/terminus-ui/components/TsTooltipComponent.html
-[validators-docs]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme
+[validators-docs]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html
+[pipes-docs]: ./terminus-ui/src/pipes/README.md
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme
@@ -350,3 +364,4 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
 [input-usage]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html#readme
 [link-usage]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html#readme
+[validators-usage]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme
