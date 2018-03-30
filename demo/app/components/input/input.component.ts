@@ -1,7 +1,4 @@
-import {
-  Component,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -21,7 +18,7 @@ export class InputComponent {
   icon = 'home';
   model1 = 'A seeded value';
   myValue;
-  shouldDisable = false;
+  shouldDisable = true;
   myForm: FormGroup = this.formBuilder.group({
     name: [
       null,
@@ -48,15 +45,14 @@ export class InputComponent {
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
 
-    setTimeout(() => {
-      this.myForm.get('name').setValue('foooo');
-      /*
-       *this.changeDetectorRef.markForCheck();
-       */
-    }, 3000);
+    // Test seeded values:
+    /*
+     *setTimeout(() => {
+     *  this.myForm.get('name').setValue('foooo');
+     *}, 3000);
+     */
   }
 
 
