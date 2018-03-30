@@ -8,6 +8,8 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
   AfterContentInit,
+  OnChanges,
+  SimpleChanges,
   ViewChild,
   Injector,
 } from '@angular/core';
@@ -16,7 +18,10 @@ import {
   NgControl,
 } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-import { hasRequiredControl } from '@terminus/ngx-tools';
+import {
+  hasRequiredControl,
+  inputHasChanged,
+} from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -118,7 +123,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterContentInit {
+export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterContentInit, OnChanges {
 
   /**
    * Determine the correct required attribute content
@@ -265,6 +270,29 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
 
 
   /**
+   * Update the inner value when the formControl value is updated
+   *
+   * @param time - The time chosen
+   * @return The difference in time
+   */
+  public updateInnerValue = (value: string) => {
+    this.value = value;
+    this.changeDetectorRef.detectChanges();
+  }
+
+
+  /**
+   * Register our change function any time the formControl is changed
+   */
+  public ngOnChanges(changes: SimpleChanges): void {
+    // istanbul ignore else
+    if (inputHasChanged(changes, 'formControl')) {
+      this.registerOnChangeFn(this.updateInnerValue);
+    }
+  }
+
+
+  /**
    * Get our instance of ngControl and override MatInput's instance
    */
   public ngAfterContentInit(): void {
@@ -280,6 +308,16 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
     this.value = null;
     this.cleared.emit(true);
     this.changeDetectorRef.markForCheck();
+  }
+
+
+  /**
+   * Register our custom onChange function
+   *
+   * @param fn - The onChange function
+   */
+  private registerOnChangeFn(fn: Function): void {
+    this.formControl.registerOnChange(fn);
   }
 
 }

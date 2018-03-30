@@ -1,4 +1,8 @@
-import { Injector } from '@angular/core';
+import {
+  Injector,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -105,4 +109,42 @@ describe(`TsInputComponent`, () => {
 
   });
 
+
+  describe(`updateInnerValue`, () => {
+
+    test(`should set the value and call the change detector`, () => {
+      component['changeDetectorRef'].detectChanges = jest.fn();
+      expect(component.value).toEqual('');
+
+      component.updateInnerValue('foo');
+      expect(component.value).toEqual('foo');
+      expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+    });
+  });
+
+
+  describe(`ngOnChanges`, () => {
+
+    test(`should register an onChange function`, () => {
+      const changesMock = {
+        formControl: new SimpleChange(new FormControl('foo'), undefined, false),
+      } as SimpleChanges;
+      component['registerOnChangeFn'] = jest.fn();
+
+      component.ngOnChanges(changesMock);
+      expect(component['registerOnChangeFn']).toHaveBeenCalledWith(component.updateInnerValue);
+    });
+  });
+
+
+  describe(`registerOnChangeFn`, () => {
+
+    test(`should register an onChange function`, () => {
+      component.formControl = new FormControl();
+      component.formControl.registerOnChange = jest.fn();
+
+      component['registerOnChangeFn'](component.updateInnerValue);
+      expect(component.formControl.registerOnChange).toHaveBeenCalledWith(component.updateInnerValue);
+    });
+  });
 });
