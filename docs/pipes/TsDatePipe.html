@@ -452,6 +452,9 @@
                                     <a href="../pipes/TsDatePipe.html"  data-type="entity-link" class="active" >TsDatePipe</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../pipes/TsSentenceCasePipe.html" >TsSentenceCasePipe</a>
+                                </li>
+                                <li class="link">
                                     <a href="../pipes/TsTimeAgoPipe.html" >TsTimeAgoPipe</a>
                                 </li>
                         </ul>
@@ -927,6 +930,9 @@
                                            <a href="../pipes/TsDatePipe.html"  data-type="entity-link" class="active" >TsDatePipe</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../pipes/TsSentenceCasePipe.html" >TsSentenceCasePipe</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../pipes/TsTimeAgoPipe.html" >TsTimeAgoPipe</a>
                                        </li>
                                </ul>
@@ -1043,7 +1049,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">terminus-ui/src/pipes/date/date.pipe.ts:18</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">terminus-ui/src/pipes/date/date.pipe.ts:31</a></div>
                                         </td>
                                     </tr>
             
@@ -1126,7 +1132,20 @@ import {
   format as formatDate,
 } from &#x27;date-fns&#x27;;
 
-import { TsDateTypes } from &#x27;./../../utilities/types/date.types&#x27;;
+
+/**
+ * Define the allowed date formats for the {@link TsDatePipe}.
+ */
+export type TsDateTypes &#x3D;
+  // 02/08/2018
+  &#x27;short&#x27;
+  // February 8th, 2018
+  | &#x27;medium&#x27;
+  // Thursday, February 8th, 2018, 12:00:00am
+  | &#x27;extended&#x27;
+  // 2018-02-08T05:00:00.000Z
+  | &#x27;timestamp&#x27;
+;
 
 
 @Pipe({
