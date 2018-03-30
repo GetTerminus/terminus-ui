@@ -1,6 +1,4 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -47,7 +45,15 @@ export class InputComponent {
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
-  ) {}
+  ) {
+
+    // Test seeded values:
+    /*
+     *setTimeout(() => {
+     *  this.myForm.get('name').setValue('foooo');
+     *}, 3000);
+     */
+  }
 
 
   submit(v: any): void {
