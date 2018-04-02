@@ -1,29 +1,41 @@
 <ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
 
-  <label>
-    Format:
-    <select name="myFormat" [(ngModel)]="myFormat">
-      <option value="{{ format }}" *ngFor="let format of formats">
-        {{ format | titlecase }}
-      </option>
-    </select>
-  </label>
+  <div tsVerticalSpacing>
+    <label>
+      Theme:
+      <select name="myTheme" [(ngModel)]="myTheme">
+        <option value="{{ theme }}" *ngFor="let theme of themes">
+          {{ theme | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
 
-  <br>
-  <br>
+  <div tsVerticalSpacing>
+    <label>
+      Format:
+      <select name="myFormat" [(ngModel)]="myFormat">
+        <option value="{{ format }}" *ngFor="let format of formats">
+          {{ format | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
 
-  <label>
-    Right-align layout:
-    <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
-  </label>
+  <div tsVerticalSpacing>
+    <label tsVerticalSpacing>
+      Right-align layout:
+      <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
+    </label>
+  </div>
+</ts-card>
 
-  <br>
-  <br>
 
+<ts-card tsVerticalSpacing>
   <div [style.textAlign]="layout">
     <ts-button
-      [theme]="style"
+      [theme]="myTheme"
       (clickEvent)="run('progress2')"
       [isDisabled]="disabled"
       [showProgress]="progress2"

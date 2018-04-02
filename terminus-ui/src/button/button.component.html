@@ -3,19 +3,14 @@
   class="c-button mat-raised-button qa-button"
   [ngClass]="{
     'c-button--collapsed': isCollapsed,
-    'c-button--progress': showProgress && !isDisabled,
-    'c-button--filled': definedFormat === 'filled',
-    'c-button--hollow': definedFormat === 'hollow',
-    'c-button--collapsable': definedFormat === 'collapsable',
-    'c-button--primary': theme === 'primary',
-    'c-button--accent': theme === 'accent',
-    'c-button--warn': theme === 'warn'
+    'c-button--progress': showProgress && !isDisabled
   }"
   [attr.aria-label]="actionName"
   [attr.type]="buttonType"
   [disabled]="isDisabled || showProgress"
   tabindex="{{ tabIndex }}"
   (click)="clickEvent.emit($event)"
+  #button
 >
   <ts-icon
     *ngIf="iconName"

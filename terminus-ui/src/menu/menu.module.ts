@@ -5,9 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsButtonModule } from './../button/button.module';
-
 import { TsMenuComponent } from './menu.component';
-export { TsMenuComponent } from './menu.component';
+
+export * from './menu.component';
 
 
 @NgModule({

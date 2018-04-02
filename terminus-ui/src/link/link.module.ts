@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsLinkComponent } from './link.component';
-export { TsLinkComponent } from './link.component';
+
+export * from './link.component';
 
 
 @NgModule({

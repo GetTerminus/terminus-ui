@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -10,8 +10,8 @@ import { TsAutofocusModule } from './../autofocus/autofocus.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../services/validators/validators.service';
-
 import { TsInputComponent } from './input.component';
+
 export * from './input.component';
 
 

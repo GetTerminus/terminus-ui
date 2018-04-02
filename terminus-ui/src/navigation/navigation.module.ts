@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import {
-  MatButtonModule,
-  MatMenuModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsNavigationComponent } from './navigation.component';
-export { TsNavigationComponent } from './navigation.component';
+
+export * from './navigation.component';
 
 
 @NgModule({

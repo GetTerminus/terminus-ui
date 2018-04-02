@@ -17,8 +17,8 @@ import { debounce } from '@terminus/ngx-tools';
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
-  TsStyleThemeTypes,
-} from './../utilities/types';
+} from './../button/button.module';
+import { TsStyleThemeTypes } from './../utilities/types';
 import { TsSearchResponse } from '../utilities/interfaces';
 
 
