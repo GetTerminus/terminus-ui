@@ -27,6 +27,7 @@
     "build:ts": "rimraf dist && ng-packagr -p terminus-ui/package.json",
     "build:styles": "npx gulp generate:styles --gulpfile tooling/gulpfile.js",
     "build:files": "cp README.md dist/terminus-ui/ && cp LICENSE dist/terminus-ui/",
+    "build:explore": "source-map-explorer dist/terminus-ui/bundles/terminus-ui.umd.min.js dist/terminus-ui/bundles/terminus-ui.umd.min.js.map",
     "//=> Section: Library:Testing": "",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test": "jest --watch",
