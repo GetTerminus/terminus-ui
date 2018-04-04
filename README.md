@@ -183,7 +183,7 @@ for each feature.
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @terminus/ngx-tools @angular/forms @angular/animations @angular/material hammerjs
+$ yarn add @terminus/ui
 ```
 
 
