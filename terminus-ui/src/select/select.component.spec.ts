@@ -46,6 +46,16 @@ describe(`TsSelectComponent`, () => {
   });
 
 
+  describe(`items`, () => {
+
+    test(`should throw an error if items are objects and no formatter fn exists`, () => {
+      expect(() => {component.items = [{}, {}]; })
+        .toThrowError();
+    });
+
+  });
+
+
   describe(`checkOpenChange`, () => {
 
     beforeEach(() => {
@@ -92,7 +102,7 @@ describe(`TsSelectComponent`, () => {
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
       expect(() => {component.formatUIFn = 3 as any; })
-        .toThrowError(`TsSelectComponent: 'formatUIFn' must be passed a 'TsSelectFormatFn'.`);
+        .toThrowError();
     });
 
   });
@@ -117,7 +127,7 @@ describe(`TsSelectComponent`, () => {
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
       expect(() => {component.formatModelValueFn = 3 as any; })
-        .toThrowError(`TsSelectComponent: 'formatModelValueFn' must be passed a 'TsSelectFormatFn'.`);
+        .toThrowError();
     });
 
   });
