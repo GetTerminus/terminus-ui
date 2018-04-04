@@ -1,7 +1,9 @@
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
-import { TsPaginatorComponent } from './paginator.component';
-import { TsPaginatorMenuItem } from '../utilities/interfaces';
+import {
+  TsPaginatorComponent,
+  TsPaginatorMenuItem,
+} from './paginator.component';
 
 
 describe(`TsPaginatorComponent`, () => {

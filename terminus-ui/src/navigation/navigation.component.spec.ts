@@ -1,7 +1,9 @@
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
-import { TsNavigationComponent } from './navigation.component';
-import { TsNavigationItem } from './../utilities/interfaces/';
+import {
+  TsNavigationComponent,
+  TsNavigationItem,
+} from './navigation.component';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [

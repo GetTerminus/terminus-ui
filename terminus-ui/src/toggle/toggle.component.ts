@@ -7,13 +7,12 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import { MatSlideToggleChange } from '@angular/material';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
-import { TsStyleThemeTypes } from './../utilities/types';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
 
 /**
  * Custom control value accessor for our component

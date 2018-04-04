@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { TsSortDirection } from './../utilities/types/sort.types';
+import { TsSortDirection } from './sort.directive';
 
 
 /**

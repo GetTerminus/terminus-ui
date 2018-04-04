@@ -18,8 +18,18 @@ import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
 } from './../button/button.module';
-import { TsStyleThemeTypes } from './../utilities/types';
-import { TsSearchResponse } from '../utilities/interfaces';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
+
+/**
+ * Define the user object interface
+ */
+export interface TsSearchResponse {
+  /**
+   * The search query
+   */
+  query: string;
+}
 
 
 /**

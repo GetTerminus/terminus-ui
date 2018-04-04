@@ -1,6 +1,4 @@
-import {
-  FormBuilder,
-} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDatepickerInput } from '@angular/material/datepicker';
 
 import { TsDateRangeComponent } from './date-range.component';

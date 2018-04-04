@@ -1,13 +1,30 @@
 import { Injectable } from '@angular/core';
 import { format } from 'date-fns';
 
-import { emailMessage } from './../../utilities/regex/email.regex';
-import { creditCardMessage } from './../../utilities/regex/credit-card.regex';
-import { passwordMessage } from './../../utilities/regex/password.regex';
+
+/**
+ * Define the error message for an invalid email
+ */
+const emailMessage = `Invalid email address.`;
 
 
-// TODO: The consuming app will need a way to pass in the error messages config object so that
-// localization is supported. See https://github.com/GetTerminus/terminus-ui/issues/403
+/**
+ * Define the error message for an invalid credit card
+ */
+const creditCardMessage = `Invalid credit card number.`;
+
+
+/**
+ * Define the error message for an invalid password
+ */
+const passwordMessage = `Password must be between 6 and 100 characters, and contain a number.`;
+
+
+/*
+ * TODO: The consuming app will need a way to pass in the error messages config object so that
+ * localization is supported. See https://github.com/GetTerminus/terminus-ui/issues/403
+ */
+
 
 /**
  * Define a service that offers custom validators

@@ -16,7 +16,7 @@ import {
 } from '@terminus/ngx-tools';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
-import { TsStyleThemeTypes } from './../utilities/types';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**

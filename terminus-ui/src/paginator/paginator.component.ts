@@ -18,8 +18,24 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import { inputHasChanged } from '@terminus/ngx-tools';
 
-import { TsStyleThemeTypes } from './../utilities/types';
-import { TsPaginatorMenuItem } from './../utilities/interfaces';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
+
+/**
+ * Define the allowed keys and types for an item passed to the {@link TsMenuComponent} within a
+ * {@link TsPaginatorComponent}
+ */
+export interface TsPaginatorMenuItem {
+  /**
+   * The menu item name
+   */
+  name: string;
+
+  /**
+   * A value for the item
+   */
+  value?: string;
+}
 
 
 /**

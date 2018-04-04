@@ -33,8 +33,7 @@ export * from './validation-messages/validation-messages.module';
 // Utilities & Services
 export * from './services/validators/validators.service';
 export * from './spacing/spacing.constant';
-export * from './utilities/interfaces/index';
-export * from './utilities/types/index';
+export * from './utilities/types/style-theme.types';
 export * from './utilities/version/version';
 
 // Export the Module

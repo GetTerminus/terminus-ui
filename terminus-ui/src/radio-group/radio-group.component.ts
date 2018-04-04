@@ -15,7 +15,7 @@ import {
   hasRequiredControl,
 } from '@terminus/ngx-tools';
 
-import { TsStyleThemeTypes } from './../utilities/types';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
 
