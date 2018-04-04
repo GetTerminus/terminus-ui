@@ -15,6 +15,12 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
 /**
+ * Expose the MatSlideToggleChange event as TsSlideToggleChange. Used by {@link TsToggleComponent}
+ */
+export class TsSlideToggleChange extends MatSlideToggleChange {}
+
+
+/**
  * Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via our base class
  */
@@ -99,5 +105,5 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Emit an event each time the toggle value changes
    */
   @Output()
-  public change: EventEmitter<MatSlideToggleChange> = new EventEmitter();
+  public change: EventEmitter<TsSlideToggleChange> = new EventEmitter();
 }

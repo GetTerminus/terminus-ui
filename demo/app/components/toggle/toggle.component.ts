@@ -3,6 +3,7 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
+import { TsSlideToggleChange } from '@terminus/ui';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ToggleComponent {
   ) {}
 
 
-  isChanged(e) {
+  isChanged(e: TsSlideToggleChange) {
     console.log('in changed: ', e);
   }
 
