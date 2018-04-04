@@ -13,16 +13,58 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { Subject } from 'rxjs/Subject';
 
-import { TsSortDirection } from './../utilities/types/sort.types';
-import {
-  TsSortableItem,
-  TsSortState,
-} from './../utilities/interfaces/sort.interface';
 import {
   getSortInvalidDirectionError,
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
 } from './sort-errors';
+
+
+/**
+ * Define the allowed sort directions for {@link TsSort}
+ */
+export type TsSortDirection
+  = 'asc'
+  | 'desc'
+  | ''
+;
+
+
+/**
+ * Interface for a directive that holds sorting state consumed by `TsSortHeaderComponent`
+ */
+export interface TsSortableItem {
+  /**
+   * The id of the column being sorted
+   */
+  id: string;
+
+  /**
+   * Starting sort direction
+   */
+  start: 'asc' | 'desc';
+
+  /**
+   * Whether to disable clearing the sorting state
+   */
+  disableClear: boolean;
+}
+
+
+/**
+ * The current sort state
+ */
+export interface TsSortState {
+  /**
+   * The id of the column being sorted
+   */
+  active: string;
+
+  /**
+   * The sort direction
+   */
+  direction: TsSortDirection;
+}
 
 
 // Boilerplate for applying mixins to TsSort.

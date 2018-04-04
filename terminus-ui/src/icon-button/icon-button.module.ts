@@ -5,7 +5,8 @@ import { MatRippleModule } from '@angular/material/core';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsIconButtonComponent } from './icon-button.component';
-export { TsIconButtonComponent } from './icon-button.component';
+
+export * from './icon-button.component';
 
 
 @NgModule({

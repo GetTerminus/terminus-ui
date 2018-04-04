@@ -1,6 +1,8 @@
+import { ElementRef } from '@angular/core';
 import {
   TsWindowServiceMock,
   ChangeDetectorRefMock,
+  Renderer2Mock,
 } from '@terminus/ngx-tools/testing';
 
 import { TsButtonComponent } from './button.component';
@@ -12,8 +14,14 @@ describe(`TsButtonComponent`, () => {
     this.component = new TsButtonComponent(
       new ChangeDetectorRefMock(),
       new TsWindowServiceMock(),
+      new Renderer2Mock(),
     );
     this.component.changeDetectorRef.detectChanges = jest.fn();
+    this.component.button = {
+      _elementRef: new ElementRef({}),
+    };
+    this.component.renderer.addClass = jest.fn();
+    this.component.renderer.removeClass = jest.fn();
   });
 
 
@@ -100,6 +108,46 @@ describe(`TsButtonComponent`, () => {
 
       });
 
+
+      test(`should not update classes if no value is passed in`, () => {
+        this.component.updateClasses = jest.fn();
+        this.component.format = null as any;
+
+        expect(this.component.updateClasses).not.toHaveBeenCalled();
+      });
+
+
+      test(`should log a warning if an invalid value was passed in`, () => {
+        window.console.warn = jest.fn();
+        this.component.updateClasses = jest.fn();
+        this.component.format = 'foo' as any;
+
+        expect(window.console.warn).toHaveBeenCalled();
+        expect(this.component.updateClasses).not.toHaveBeenCalled();
+      });
+
+    });
+
+
+    describe(`set theme`, () => {
+
+      test(`should not update classes if no value is passed in`, () => {
+        this.component.updateClasses = jest.fn();
+        this.component.theme = null as any;
+
+        expect(this.component.updateClasses).not.toHaveBeenCalled();
+      });
+
+
+      test(`should log a warning if an invalid value was passed in`, () => {
+        window.console.warn = jest.fn();
+        this.component.updateClasses = jest.fn();
+        this.component.theme = 'foo' as any;
+
+        expect(window.console.warn).toHaveBeenCalled();
+        expect(this.component.updateClasses).not.toHaveBeenCalled();
+      });
+
     });
 
 
@@ -126,7 +174,7 @@ describe(`TsButtonComponent`, () => {
       describe(`when format === collapsable`, () => {
 
         beforeEach(() => {
-          this.component.definedFormat = 'collapsable';
+          this.component.format = 'collapsable';
           this.component.collapseWithDelay = jest.fn();
           this.component.collapseDelay = 500;
         });
@@ -154,8 +202,7 @@ describe(`TsButtonComponent`, () => {
         this.component.iconName = 'home';
         this.component.changeDetectorRef.detectChanges();
         this.component.windowService.nativeWindow.clearTimeout = jest.fn();
-        this.component.windowService.nativeWindow.setTimeout =
-          jest.fn().mockReturnValue(123);
+        this.component.windowService.nativeWindow.setTimeout = jest.fn().mockReturnValue(123);
       });
 
 

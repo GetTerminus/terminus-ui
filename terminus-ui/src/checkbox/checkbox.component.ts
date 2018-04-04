@@ -13,12 +13,10 @@ import {
 import {
   MatCheckbox,
   MatCheckboxChange,
-} from '@angular/material';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+} from '@angular/material/checkbox';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { TsStyleThemeTypes } from './../utilities/types';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
 

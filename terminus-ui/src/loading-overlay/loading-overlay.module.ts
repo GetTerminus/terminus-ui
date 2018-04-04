@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 import { TsLoadingOverlayDirective } from './loading-overlay.directive';
-export { TsLoadingOverlayDirective } from './loading-overlay.directive';
+
+export * from './loading-overlay.directive';
 
 
 @NgModule({

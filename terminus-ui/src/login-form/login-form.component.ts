@@ -19,7 +19,27 @@ import {
 import { TsInputComponent } from './../input/input.component';
 import { TsCheckboxComponent } from './../checkbox/checkbox.component';
 import { TsValidatorsService } from './../services/validators/validators.service';
-import { TsLoginFormResponse } from './../utilities/interfaces/login-form-response.interface';
+
+
+/**
+ * Define the structure of the login form response
+ */
+export interface TsLoginFormResponse {
+  /**
+   * User's email
+   */
+  email: string;
+
+  /**
+   * User's password
+   */
+  password: string;
+
+  /**
+   * Flag determining if a cookie should be set
+   */
+  rememberMe: boolean;
+}
 
 
 /**

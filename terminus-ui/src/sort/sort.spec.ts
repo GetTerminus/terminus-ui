@@ -25,14 +25,16 @@ import {
 import { TsTableModule } from './../table/table.module';
 import { TsSortDirective } from './sort.directive';
 import { TsSortModule } from './sort.module';
-import { TsSortDirection } from './../utilities/types/sort.types';
+import {
+  TsSortDirection,
+  TsSortState,
+} from './sort.directive';
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
   getSortHeaderNotContainedWithinSortError,
   getSortInvalidDirectionError,
 } from './sort-errors';
-import { TsSortState } from './../utilities/interfaces/sort.interface';
 import { TsSortHeaderComponent } from './sort-header.component';
 
 

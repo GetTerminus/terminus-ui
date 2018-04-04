@@ -11,7 +11,7 @@ import {
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
-} from './../utilities/types';
+} from './../button/button.module';
 
 
 /**

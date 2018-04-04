@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { merge } from 'rxjs/observable/merge';
 
 import { TsSortDirective } from './sort.directive';
-import { TsSortableItem } from './../utilities/interfaces/sort.interface';
+import { TsSortableItem } from './sort.directive';
 import { TsSortHeaderIntl } from './sort-header-intl';
 import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
 import { tsSortAnimations } from './sort-animations';

@@ -4,7 +4,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 
 import { TsSortModule } from './../sort/sort.module';
 import { TsPaginatorModule } from './../paginator/paginator.module';
-
 import {
   TsCellDirective,
   TsCellDefDirective,

@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatButtonModule,
-  MatProgressSpinnerModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsButtonComponent } from './button.component';
-export { TsButtonComponent } from './button.component';
+
+export * from './button.component';
 
 
 @NgModule({

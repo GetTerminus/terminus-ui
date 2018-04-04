@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatTooltipModule,
-} from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { TsTooltipComponent } from './tooltip.component';
-export { TsTooltipComponent } from './tooltip.component';
+
+export * from './tooltip.component';
 
 
 @NgModule({

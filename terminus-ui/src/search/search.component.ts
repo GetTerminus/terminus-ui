@@ -17,9 +17,19 @@ import { debounce } from '@terminus/ngx-tools';
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
-  TsStyleThemeTypes,
-} from './../utilities/types';
-import { TsSearchResponse } from '../utilities/interfaces';
+} from './../button/button.module';
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
+
+/**
+ * Define the user object interface
+ */
+export interface TsSearchResponse {
+  /**
+   * The search query
+   */
+  query: string;
+}
 
 
 /**

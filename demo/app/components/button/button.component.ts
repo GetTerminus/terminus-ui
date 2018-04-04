@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsButtonFormatTypes } from '@terminus/ui';
+import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
 
 
 @Component({
@@ -16,6 +16,8 @@ export class ButtonComponent {
   formatCollapsable = 'collapsable';
   formats: TsButtonFormatTypes[] = ['filled', 'hollow', 'collapsable'];
   myFormat = 'filled';
+  myTheme: TsStyleThemeTypes = 'primary';
+  themes: TsStyleThemeTypes[] = ['primary', 'accent', 'warn'];
   layoutIsRightAligned = false;
   get layout(): string {
     return this.layoutIsRightAligned ? 'right' : 'left';

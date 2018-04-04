@@ -9,7 +9,8 @@ import { TsButtonModule } from './../button/button.module';
 import { TsSpacingModule } from './../spacing/spacing.module';
 import { TsLinkModule } from './../link/link.module';
 import { TsLoginFormComponent } from './login-form.component';
-export { TsLoginFormComponent } from './login-form.component';
+
+export * from './login-form.component';
 
 
 @NgModule({

@@ -41,39 +41,25 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "date-fns": "2.0.0-alpha.7",
+    "@angular/cdk": "5.2.0",
+    "@angular/material": "5.2.0",
     "text-mask-addons": "^3.7.2",
     "text-mask-core": "^5.0.1"
   },
   "peerDependencies": {
     "@angular/animations": "^5.2.5",
-    "@angular/cdk": "5.2.0",
     "@angular/core": "^5.2.5",
     "@angular/forms": "^5.2.5",
-    "@angular/material": "5.2.0",
     "@angular/platform-browser": "^5.2.5",
     "@angular/router": "^5.2.5",
-    "@terminus/ngx-tools": "^2.3.3"
+    "@terminus/ngx-tools": "^2.10.0"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "workingDirectory": "../.ng_build",
     "lib": {
       "entryFile": "src/public-api.ts",
-      "embedded": [
-        "text-mask-core",
-        "text-mask-addons",
-        "date-fns"
-      ],
-      "comments": "none",
-      "umdModuleIds": {
-        "@terminus/ngx-tools": "terminus.ngxTools",
-        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
-        "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
-        "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
-        "text-mask-core/dist/textMaskCore": "textMaskCore",
-        "text-mask-addons/dist/createNumberMask": "textMaskAddons"
-      }
+      "comments": "none"
     },
     "dest": "../dist/terminus-ui"
   }

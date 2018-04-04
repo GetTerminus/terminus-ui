@@ -19,7 +19,7 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
   MatAutocomplete,
-} from '@angular/material';
+} from '@angular/material/autocomplete';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
@@ -35,10 +35,18 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
-import {
-  TsAutocompleteFormatterFn,
-  TsAutocompleteComparatorFn,
-} from './../utilities/types/autocomplete.types';
+
+
+/**
+ * Define a type for allowed {@link TsAutocompleteComponent} formatter function
+ */
+export type TsAutocompleteFormatterFn = (value: any) => string;
+
+
+/**
+ * Define a type for allowed {@link TsAutocompleteComponent} comparator function
+ */
+export type TsAutocompleteComparatorFn = (value: any) => string;
 
 
 /**
