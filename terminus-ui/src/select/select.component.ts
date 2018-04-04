@@ -9,9 +9,13 @@ import {
   isDevMode,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import {
+  coerceBooleanProperty,
+  coerceArray,
+} from '@terminus/ngx-tools/coercion';
 import {
   isFunction,
+  isObject,
   hasRequiredControl,
 } from '@terminus/ngx-tools';
 
@@ -47,7 +51,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-select
- *              [formControl]="yourHelperToGetFormControl('email')"
+ *              [formControl]="myForm.get('email')"
  *              blankChoice="Please choose one."
  *              label="Please select one: "
  *              items="[{[key]: value},{},{}]"
@@ -73,6 +77,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsSelect',
 })
 export class TsSelectComponent extends TsReactiveFormBaseComponent {
   /**
@@ -138,7 +143,22 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * Define a list of select items
    */
   @Input()
-  public items: any[] = [];
+  public set items(value: any[]) {
+    value = coerceArray(value);
+
+    this._items = value;
+
+    // If the array contains objects but no formatter function was passed in:
+    // istanbul ignore else
+    if (value[0] && isObject(value[0]) && !isFunction(this.formatModelValueFn) && isDevMode()) {
+      throw Error(`TsSelectComponent: 'formatModelValueFn' must be passed a 'TsSelectFormatFn'
+                   if 'items' is an array of objects.`);
+    }
+  }
+  public get items(): any[] {
+    return this._items;
+  }
+  private _items: any[];
 
   /**
    * Define if the select should be disabled
@@ -213,6 +233,8 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Getter to determine if the group is required
+   *
+   * @return A boolean representing if the form control is required
    */
   get isRequired(): boolean {
     return hasRequiredControl(this.formControl);
