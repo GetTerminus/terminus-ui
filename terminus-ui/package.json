@@ -49,18 +49,33 @@
   "peerDependencies": {
     "@angular/animations": "^5.2.5",
     "@angular/core": "^5.2.5",
+    "@angular/flex-layout": "5.0.0-beta.14",
     "@angular/forms": "^5.2.5",
     "@angular/platform-browser": "^5.2.5",
     "@angular/router": "^5.2.5",
-    "@terminus/ngx-tools": "^2.10.0"
+    "@terminus/ngx-tools": "^2.11.0"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "workingDirectory": "../.ng_build",
     "lib": {
       "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
+        "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
+        "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
+        "text-mask-core/dist/textMaskCore": "textMaskCore",
+        "text-mask-addons/dist/createNumberMask": "textMaskAddons"
+      },
       "comments": "none"
     },
+    "whitelistedNonPeerDependencies": [
+      "@angular/material",
+      "@angular/cdk",
+      "text-mask-addons",
+      "text-mask-core"
+    ],
     "dest": "../dist/terminus-ui"
   }
 }
