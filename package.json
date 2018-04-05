@@ -89,8 +89,12 @@
   "release": {
     "verifyConditions": [
       "condition-circle",
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog"
     ],
     "publish": [
       {
@@ -176,6 +180,7 @@
     "@angular/material": "^5.2.4",
     "@compodoc/compodoc": "^1.1.1",
     "@ngrx/store": "^5.2.0",
+    "@semantic-release/changelog": "^2.0.1",
     "@semantic-release/exec": "^2.2.3",
     "@semantic-release/github": "^4.2.8",
     "@semantic-release/npm": "^3.2.4",
