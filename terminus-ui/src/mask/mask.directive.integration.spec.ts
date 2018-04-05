@@ -4,8 +4,8 @@ import {
 } from '@angular/core';
 import {
   TestBed,
-  async,
   ComponentFixture,
+  TestModuleMetadata,
 } from '@angular/core/testing';
 import {
   FormControl,
@@ -15,6 +15,7 @@ import { By } from '@angular/platform-browser';
 import {
   expectNativeEl,
   typeInElement,
+  configureTestBedWithoutReset,
 } from '@terminus/ngx-tools/testing';
 
 import {
@@ -50,24 +51,23 @@ describe(`TsMaskDirective Integration`, () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testComponent: TestHostComponent;
   let input: HTMLInputElement;
+  const moduleDefinition: TestModuleMetadata = {
+    imports: [
+      ReactiveFormsModule,
+    ],
+    declarations: [
+      TsMaskDirective,
+      TestHostComponent,
+    ],
+  };
 
+  configureTestBedWithoutReset(moduleDefinition);
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-      ],
-      declarations: [
-        TsMaskDirective,
-        TestHostComponent,
-      ],
-    })
-      .compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestHostComponent);
-        testComponent = fixture.componentInstance;
-        input = fixture.debugElement.query(By.css('input')).nativeElement;
-      });
-  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestHostComponent);
+    testComponent = fixture.componentInstance;
+    input = fixture.debugElement.query(By.css('input')).nativeElement;
+  });
 
 
   describe(`tsMask`, () => {

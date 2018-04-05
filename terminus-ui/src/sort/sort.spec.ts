@@ -10,9 +10,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   TestBed,
+  TestModuleMetadata,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
@@ -20,6 +20,7 @@ import { map } from 'rxjs/operators/map';
 import {
   dispatchMouseEvent,
   wrappedErrorMessage,
+  configureTestBedWithoutReset,
 } from '@terminus/ngx-tools/testing';
 
 import { TsTableModule } from './../table/table.module';
@@ -36,8 +37,6 @@ import {
   getSortInvalidDirectionError,
 } from './sort-errors';
 import { TsSortHeaderComponent } from './sort-header.component';
-
-
 
 
 /**
@@ -236,28 +235,27 @@ class TsSortableInvalidDirection { }
 
 describe('TsSort', () => {
   let fixture: ComponentFixture<SimpleTsSortApp>;
-
   let component: SimpleTsSortApp;
+  const moduleDefinition: TestModuleMetadata = {
+    imports: [
+      TsSortModule,
+      TsTableModule,
+      CdkTableModule,
+      NoopAnimationsModule,
+    ],
+    declarations: [
+      SimpleTsSortApp,
+      CdkTableTsSortApp,
+      TsTableTsSortApp,
+      TsSortHeaderMissingTsSortApp,
+      TsSortDuplicateTsSortableIdsApp,
+      TsSortableMissingIdApp,
+      TsSortableInvalidDirection,
+    ],
+  };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        TsSortModule,
-        TsTableModule,
-        CdkTableModule,
-        NoopAnimationsModule,
-      ],
-      declarations: [
-        SimpleTsSortApp,
-        CdkTableTsSortApp,
-        TsTableTsSortApp,
-        TsSortHeaderMissingTsSortApp,
-        TsSortDuplicateTsSortableIdsApp,
-        TsSortableMissingIdApp,
-        TsSortableInvalidDirection,
-      ],
-    }).compileComponents();
-  }));
+  configureTestBedWithoutReset(moduleDefinition);
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleTsSortApp);
