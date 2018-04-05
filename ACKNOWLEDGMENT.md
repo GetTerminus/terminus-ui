@@ -24,4 +24,3 @@ more on the communities needs.
 - https://github.com/angular/material2
 - https://github.com/prestopasto/SCSS-Material-Shadows
 - https://github.com/fknop/angular-pipes
-
