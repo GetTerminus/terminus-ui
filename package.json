@@ -93,10 +93,8 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ],
-    "prepare": [
-      "@semantic-release/changelog"
-    ],
     "publish": [
+      "@semantic-release/changelog",
       {
         "path": "@semantic-release/exec",
         "cmd": "./tooling/ci/inject-version.sh ${nextRelease.version}"
