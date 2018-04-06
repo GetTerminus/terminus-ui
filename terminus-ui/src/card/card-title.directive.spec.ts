@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import {
   TestBed,
-  async,
+  TestModuleMetadata,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
 
 import { TsCardTitleDirective } from './card-title.directive';
-/*
- *import { TsCardComponent } from './card.component';
- */
+
 
 @Component({
   selector: 'ts-card',
@@ -38,33 +37,33 @@ class TestHostErrorComponent {}
 
 
 describe(`TsCardTitleDirective`, () => {
+  const moduleDefinition: TestModuleMetadata = {
+    declarations: [
+      TsCardTitleDirective,
+      TsCardComponent,
+      TestHostComponent,
+      TestHostErrorComponent,
+    ],
+  };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TsCardTitleDirective,
-        TsCardComponent,
-        TestHostComponent,
-        TestHostErrorComponent,
-      ],
-    }).compileComponents();
-
-  }));
+  configureTestBedWithoutReset(moduleDefinition);
 
 
-  it(`should add the title class`, () => {
+  test(`should add the title class`, () => {
     this.fixture = TestBed.createComponent(TestHostComponent);
     this.testHost = this.fixture.componentInstance;
     this.fixture.detectChanges();
     const classElement = this.fixture.debugElement.query(By.directive(TsCardTitleDirective));
+
     expect(classElement.properties.className).toEqual('c-card__title');
   });
 
 
-  it(`should throw an error if not nested within a TsCardComponent`, () => {
+  test(`should throw an error if not nested within a TsCardComponent`, () => {
     this.component = new TsCardComponent();
     this.directive = new TsCardTitleDirective(this.component);
     const errorMessage = `The 'tsCardTitle' directive must be inside a <ts-card> component.`;
+
     expect(() => this.directive.ngOnChanges()).toThrowError(errorMessage);
   });
 

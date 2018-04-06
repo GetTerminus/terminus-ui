@@ -1,8 +1,8 @@
 // tslint:disable: no-non-null-assertion component-class-suffix
 import {
-  async,
   ComponentFixture,
   TestBed,
+  TestModuleMetadata,
 } from '@angular/core/testing';
 import {
   Component,
@@ -14,7 +14,10 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { TsWindowService } from '@terminus/ngx-tools';
-import { TsWindowServiceMock } from '@terminus/ngx-tools/testing';
+import {
+  TsWindowServiceMock,
+  configureTestBedWithoutReset,
+} from '@terminus/ngx-tools/testing';
 
 import { TsPaginatorComponent } from './../paginator/paginator.component';
 import { TsPaginatorModule } from './../paginator/paginator.module';
@@ -301,31 +304,30 @@ function expectTableToMatchContent(tableElement: Element, expectedTableContent: 
 
 
 describe(`TsTableComponent`, () => {
+  const moduleDefinition: TestModuleMetadata = {
+    imports: [
+      NoopAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule,
+      TsTableModule,
+      TsPaginatorModule,
+      TsSortModule,
+    ],
+    providers: [
+      {
+        provide: TsWindowService,
+        useClass: TsWindowServiceMock,
+      },
+    ],
+    declarations: [
+      TableApp,
+      TableWithWhenRowApp,
+      ArrayDataSourceTableApp,
+      ArrayDataSourceTableAppNoSort,
+    ],
+  };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TsTableModule,
-        TsPaginatorModule,
-        TsSortModule,
-      ],
-      providers: [
-        {
-          provide: TsWindowService,
-          useClass: TsWindowServiceMock,
-        },
-      ],
-      declarations: [
-        TableApp,
-        TableWithWhenRowApp,
-        ArrayDataSourceTableApp,
-        ArrayDataSourceTableAppNoSort,
-      ],
-    }).compileComponents();
-  }));
+  configureTestBedWithoutReset(moduleDefinition);
 
 
   describe(`with basic data source`, () => {

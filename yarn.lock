@@ -33,6 +33,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/cdk@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.2.0.tgz#4368f6749e915cdcc75d325ae33fdb3f85a88108"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cdk@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.2.4.tgz#c0a429a8710d8fedb157f546e21cb49d4335f7f7"
@@ -146,6 +152,12 @@
 "@angular/http@^5.2.5":
   version "5.2.9"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-5.2.9.tgz#2ffea536e181bc97e2867593d57425ea7853285b"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/material@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-5.2.0.tgz#8599e3149d48487e3e92e941fa9dc55176e3a0cf"
   dependencies:
     tslib "^1.7.1"
 
@@ -537,10 +549,20 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.11.0.tgz#c90ac6b8ca75b21aaf039a80fbf497313e207164"
+"@terminus/ngx-tools@2.12.2-beta.1":
+  version "2.12.2-beta.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.12.2-beta.1.tgz#5b55710d305cac8864903b8ea345bc37a3dd89ad"
   dependencies:
+    tslib "^1.7.1"
+
+"@terminus/ui@^8.1.5":
+  version "8.1.5"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-8.1.5.tgz#d6fe97f99d174bd01874c6064639021d24870c08"
+  dependencies:
+    "@angular/cdk" "5.2.0"
+    "@angular/material" "5.2.0"
+    text-mask-addons "^3.7.2"
+    text-mask-core "^5.0.1"
     tslib "^1.7.1"
 
 "@types/jest@^22.1.3":
