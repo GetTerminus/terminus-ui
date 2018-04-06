@@ -3,7 +3,8 @@
   <ts-select
     label="Show/hide columns"
     multipleAllowed="true"
-    valueKey="value"
+    [formatUIFn]="myUIFn"
+    [formatModelValueFn]="myModelFn"
     [(ngModel)]="displayedColumns"
     [items]="allColumns"
   ></ts-select>
