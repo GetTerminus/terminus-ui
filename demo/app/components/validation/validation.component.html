@@ -176,6 +176,14 @@ test@test.com
         <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>
       </ts-card>
     </div>
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle>Contains uppercase</h3>
+
+        <ts-input [formControl]="myForm.get('uppercase')" hint="Must contain at least 4 uppercase"></ts-input>
+      </ts-card>
+    </div>
   </div>
 
 

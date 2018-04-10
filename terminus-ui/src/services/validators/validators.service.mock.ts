@@ -110,6 +110,16 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  uppercase = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      uppercase: {
+        valid: false,
+        uppercaseMin: 4,
+        actual: 'ABCde',
+      },
+    });
+  }
+
   url = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       lessThan: {

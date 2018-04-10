@@ -12,6 +12,7 @@ import { maxDateValidator } from './validators/maxDate/maxDate';
 import { minDateValidator } from './validators/minDate/minDate';
 import { passwordValidator } from './validators/password/password';
 import { urlValidator } from './validators/url/url';
+import { uppercaseValidator } from './validators/uppercase/uppercase';
 
 
 /**
@@ -31,4 +32,5 @@ export class TsValidatorsService {
   password = passwordValidator;
   url = urlValidator;
   lowercase = lowercaseValidator;
+  uppercase = uppercaseValidator;
 }
