@@ -64,6 +64,7 @@ export class TsValidationMessageService {
       url: `'${validatorValue.actual}' is not a valid URL.`,
       equalToControl: `'${validatorValue.actual}' is not equal to '${validatorValue.compareValue}'`,
       lowercase: `Must contain at least ${validatorValue.lowercase} lowercase letters`,
+      uppercase: `Must contain at least ${validatorValue.uppercase} uppercase letters`,
     };
 
     if (validatorName === 'maxDate') {
