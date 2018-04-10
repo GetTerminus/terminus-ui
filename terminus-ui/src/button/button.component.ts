@@ -111,6 +111,18 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   public isCollapsed: boolean = false;
 
   /**
+   * A flag to determine if click events should be intercepted.
+   * Set by {@link TsConfirmationDirective}
+   */
+  public interceptClick: boolean = false;
+
+  /**
+   * Store the original event from a click (used when `interceptClick` is true)
+   * Used by {@link TsConfirmationDirective}
+   */
+  public originalClickEvent: MouseEvent;
+
+  /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
   @Input()
@@ -278,6 +290,22 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     // istanbul ignore else
     if (this.collapseTimeoutId) {
       this.windowService.nativeWindow.clearTimeout(this.collapseTimeoutId);
+    }
+  }
+
+
+  /**
+   * Do something when clicked
+   *
+   * @param event - The MouseEvent
+   */
+  public clicked(event: MouseEvent): void {
+    // Allow the click to propagate
+    if (!this.interceptClick) {
+      this.clickEvent.emit(event);
+    } else {
+      // Save the original event but don't emit the clickEvent
+      this.originalClickEvent = event;
     }
   }
 

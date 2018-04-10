@@ -10,12 +10,20 @@ const mock = () => {
 
 Object.defineProperty(window, 'localStorage', {value: mock()});
 Object.defineProperty(window, 'sessionStorage', {value: mock()});
-Object.defineProperty(window, 'getComputedStyle', {
-  value: () => ['-webkit-appearance'],
-});
 Object.defineProperty(window, 'CSS', {value: () => ({})});
 
-
+// Needed for @angular/flex-layout
+window.getComputedStyle = function(el: any, pseudo) {
+  this.el = el;
+  this.getPropertyValue = function(prop) {
+    if (prop === 'display') {
+      return 'inline';
+    } else {
+      return '-webkit-appearance';
+    }
+  };
+  return this;
+};
 
 
 /**
