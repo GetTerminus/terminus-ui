@@ -12,11 +12,11 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-26-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-27-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-3-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
-[![validators](https://img.shields.io/badge/Validators-12-blue.svg)](#validators)
+[![validators](https://img.shields.io/badge/Validators-13-blue.svg)](#validators)
 
 
 ---
@@ -87,6 +87,7 @@ for each feature.
 | card            |                                             | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]            | [Usage][card-usage]         |
 | chip            |                                             |                    |                                 |                              |                             |
 | checkbox        |                                             | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
+| confirmation    | Add a confirmation step to any `ts-button`  | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Docs][confirmation-usage]  |
 | copy            |                                             | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                             |
 | datavis         | Charts, graphs etc                          |                    |                                 |                              |                             |
 | datepicker      | Input with calendar pop-up                  | :white_check_mark: | [Demo][demo-datepicker]         | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
@@ -288,6 +289,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
 [demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
 [demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
+[demo-confirmation]: https://terminus-ui-demos.stackblitz.io/components/confirmation
 [demo-copy]: https://terminus-ui-demos.stackblitz.io/components/copy
 [demo-date-range]: https://terminus-ui-demos.stackblitz.io/components/date-range
 [demo-datepicker]: https://terminus-ui-demos.stackblitz.io/components/datepicker
@@ -328,6 +330,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [card-docs]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html
 [checkbox-docs]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html
 [copy-docs]: https://getterminus.github.io/terminus-ui/components/TsCopyComponent.html
+[confirmation-docs]: https://getterminus.github.io/terminus-ui/components/TsConfirmationDirective.html
 [date-range-docs]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html
 [datepicker-docs]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html
 [icon-docs]: https://getterminus.github.io/terminus-ui/components/TsIconComponent.html
@@ -355,6 +358,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [autofocus-usage]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html#readme
 [card-usage]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
+[confirmation-usage]: https://getterminus.github.io/terminus-ui/components/TsConfirmationDirective.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme
 [datepicker-usage]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html#readme
 [icon-usage]: https://getterminus.github.io/terminus-ui/components/TsIconComponent.html#readme

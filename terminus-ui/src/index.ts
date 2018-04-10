@@ -4,6 +4,7 @@ export * from './autofocus/autofocus.module';
 export * from './button/button.module';
 export * from './card/card.module';
 export * from './checkbox/checkbox.module';
+export * from './confirmation/confirmation.module';
 export * from './copy/copy.module';
 export * from './date-range/date-range.module';
 export * from './datepicker/datepicker.module';

@@ -21,6 +21,7 @@ module.exports = {
     {name: 'Button'},
     {name: 'Card'},
     {name: 'Checkbox'},
+    {name: 'Confirmation'},
     {name: 'Copy'},
     {name: 'Datepicker'},
     {name: 'DateRange'},

@@ -1,0 +1,21 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center space-between"
+  [fxLayoutGap]="gap"
+>
+  <ts-button
+    class="qa-confirmation-cancel"
+    theme="warn"
+    format="hollow"
+    (clickEvent)="confirm.next(false)"
+  >
+    Cancel
+  </ts-button>
+
+  <ts-button
+    class="qa-confirmation-confirm"
+    (clickEvent)="confirm.next(true)"
+  >
+    Confirm
+  </ts-button>
+</div>
