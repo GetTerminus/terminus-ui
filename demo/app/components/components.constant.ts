@@ -30,6 +30,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -242,6 +243,13 @@ export const componentsList: Routes = [
     component: ValidationComponent,
     data: {
       name: 'Validation',
+    },
+  },
+  {
+    path: 'confirmation',
+    component: ConfirmationComponent,
+    data: {
+      name: 'Confirmation',
     },
   },
   // INJECT: Add route for demo component

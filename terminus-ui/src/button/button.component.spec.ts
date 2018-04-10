@@ -3,6 +3,7 @@ import {
   TsWindowServiceMock,
   ChangeDetectorRefMock,
   Renderer2Mock,
+  createMouseEvent,
 } from '@terminus/ngx-tools/testing';
 
 import { TsButtonComponent } from './button.component';
@@ -212,6 +213,33 @@ describe(`TsButtonComponent`, () => {
 
         this.component.ngOnDestroy();
         expect(this.component.windowService.nativeWindow.clearTimeout).toHaveBeenCalledWith(123);
+      });
+
+    });
+
+
+    describe(`clicked()`, () => {
+      let mouseEvent: MouseEvent;
+
+      beforeEach(() => {
+        this.component.clickEvent.emit = jest.fn();
+        mouseEvent = createMouseEvent('click');
+      });
+
+
+      test(`should emit the click when interceptClick is false`, () => {
+        this.component.clicked(mouseEvent);
+
+        expect(this.component.clickEvent.emit).toHaveBeenCalledWith(mouseEvent);
+      });
+
+
+      test(`should not emit the click when interceptClick is true`, () => {
+        this.component.interceptClick = true;
+        this.component.clicked(mouseEvent);
+
+        expect(this.component.clickEvent.emit).not.toHaveBeenCalledWith();
+        expect(this.component.originalClickEvent).toEqual(mouseEvent);
       });
 
     });

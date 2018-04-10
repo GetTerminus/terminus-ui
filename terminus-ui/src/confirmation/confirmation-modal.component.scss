@@ -1,0 +1,32 @@
+@import './../scss/helpers/typography';
+@import './../scss/helpers/color';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/shadows';
+@import './../scss/helpers/triangle';
+
+
+.ts-confirmation {
+  display: block;
+  padding: spacing();
+}
+
+// CDK overlay container
+.ts-confirmation-overlay {
+  $color: color(pure);
+  $opaque: transparentize($color, .5);
+
+  background-color: $opaque;
+}
+
+// Wrapper for modal component
+.ts-confirmation-overlay__panel {
+  @include elevation-element(menu);
+  background-color: color(pure);
+
+  // Create the triangle above the popup box
+  &::before {
+    @include triangle(top, color(pure), spacing(small, 1));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

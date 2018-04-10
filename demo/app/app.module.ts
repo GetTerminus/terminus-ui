@@ -42,6 +42,7 @@ import {
   TsTableModule,
   TsToggleModule,
   TsTooltipModule,
+  TsConfirmationModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -85,6 +86,7 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -131,6 +133,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsToggleModule,
     TsTooltipModule,
     TsIconModule,
+    TsConfirmationModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -172,6 +175,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TooltipComponent,
     TypographyComponent,
     ValidationComponent,
+    ConfirmationComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

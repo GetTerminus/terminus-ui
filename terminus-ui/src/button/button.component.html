@@ -9,7 +9,7 @@
   [attr.type]="buttonType"
   [disabled]="isDisabled || showProgress"
   tabindex="{{ tabIndex }}"
-  (click)="clickEvent.emit($event)"
+  (click)="clicked($event)"
   #button
 >
   <ts-icon

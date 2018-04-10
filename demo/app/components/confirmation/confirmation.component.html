@@ -1,0 +1,12 @@
+<ts-card centeredContent="true" aspectRatio="5:3">
+
+  <ts-button
+    tsConfirmation
+    [showProgress]="progress"
+    (clickEvent)="submit()"
+    (cancelled)="cancel($event)"
+  >
+    Click Me!
+  </ts-button>
+
+</ts-card>
