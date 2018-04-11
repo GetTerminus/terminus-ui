@@ -73,6 +73,16 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  numbers = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      numbers: {
+        valid: false,
+        numbersMin: 4,
+        actual: '123',
+      },
+    });
+  }
+
   lowercase = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       lowercase: {
