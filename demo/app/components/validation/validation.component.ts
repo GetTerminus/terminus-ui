@@ -95,6 +95,12 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.uppercase(4),
       ],
     ],
+    numbers: [
+      null,
+      [
+        this.validatorsService.numbers(4),
+      ],
+    ],
   });
 
   constructor(

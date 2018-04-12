@@ -184,6 +184,15 @@ test@test.com
         <ts-input [formControl]="myForm.get('uppercase')" hint="Must contain at least 4 uppercase"></ts-input>
       </ts-card>
     </div>
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle>Contains numbers</h3>
+
+        <ts-input [formControl]="myForm.get('numbers')" hint="Must contain at least 4 numbers"></ts-input>
+      </ts-card>
+    </div>
+
   </div>
 
 
