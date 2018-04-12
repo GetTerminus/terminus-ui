@@ -5,41 +5,42 @@ import { TS_SPACING } from './spacing.constant';
 
 
 describe(`TsVerticalSpacingDirective`, () => {
+  let directive: TsVerticalSpacingDirective;
 
   beforeEach(() => {
-    this.directive = new TsVerticalSpacingDirective(
+    directive = new TsVerticalSpacingDirective(
       new ElementRefMock(),
     );
   });
 
 
   it(`should exist`, () => {
-    expect(this.directive).toBeTruthy();
+    expect(directive).toBeTruthy();
   });
 
 
   describe(`set tsVerticalSpacing()`, () => {
 
     it(`should set the default margin if no value is passed in`, () => {
-      this.directive.tsVerticalSpacing = '';
+      directive.tsVerticalSpacing = '' as any;
 
-      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual(TS_SPACING.default[0]);
     });
 
 
     it(`should add the expected spacing class`, () => {
-      this.directive.tsVerticalSpacing = 'large--2';
+      directive.tsVerticalSpacing = 'large--2';
 
-      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual(TS_SPACING.large[2]);
     });
 
 
     it(`should add the expected spacing class for 'none'`, () => {
-      this.directive.tsVerticalSpacing = 'none';
+      directive.tsVerticalSpacing = 'none';
 
-      expect(this.directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual(TS_SPACING.none[0]);
     });
 
@@ -47,7 +48,7 @@ describe(`TsVerticalSpacingDirective`, () => {
     it(`should throw an error if an unexpected value is passed in`, () => {
       expect(() => {
         try {
-          this.directive.tsVerticalSpacing = 'small--5';
+          directive.tsVerticalSpacing = 'small--5' as any;
         } catch (e) {
           throw new Error(e);
         }

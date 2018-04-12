@@ -132,12 +132,12 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Store the array of objects that represent pages of collections
    */
-  public pagesArray: TsPaginatorMenuItem[];
+  public pagesArray!: TsPaginatorMenuItem[];
 
   /**
    * Store the label for the current page
    */
-  public currentPageLabel: string;
+  public currentPageLabel!: string;
 
   /**
    * Define the amount of records show per page
@@ -216,7 +216,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Allow a custom template to be used for the paginator message
    */
   @Input()
-  public paginatorMessageTemplate: TemplateRef<ElementRef>;
+  public paginatorMessageTemplate!: TemplateRef<ElementRef>;
 
   /**
    * Define the color theme
@@ -380,11 +380,14 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     const notAlreadyOnPage: boolean = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: TsPaginatorMenuItem = pages.find((page) => {
+      const foundPage: TsPaginatorMenuItem | undefined = pages.find((page) => {
         return page.value === destinationPage.toString();
       });
 
-      this.currentPageChanged(foundPage);
+      // istanbul ignore else
+      if (foundPage) {
+        this.currentPageChanged(foundPage);
+      }
     }
   }
 
@@ -490,7 +493,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       });
     };
 
-    let foundPage: TsPaginatorMenuItem = findPage(pages, currentPage);
+    let foundPage: TsPaginatorMenuItem | undefined = findPage(pages, currentPage);
 
     // If no found page, try the previous page
     if (!foundPage) {

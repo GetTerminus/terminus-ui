@@ -145,7 +145,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Store a pristine copy of the navigation items
    */
-  private pristineItems: TsNavigationItem[];
+  private pristineItems!: TsNavigationItem[];
 
   /**
    * Getter to return the available navigation width
@@ -166,7 +166,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Define the list of hidden items
    */
-  public hiddenItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([]);
+  public hiddenItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([] as TsNavigationItem[]);
 
   /**
    * Getter to return the user's full name if it exists
@@ -183,7 +183,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * The collection of visible navigation items
    */
-  public visibleItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([]);
+  public visibleItems: BehaviorSubject<TsNavigationItem[]> = new BehaviorSubject([] as TsNavigationItem[]);
 
   /**
    * Getter to return the count of visible items
@@ -214,7 +214,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Accept the user data
    */
   @Input()
-  public user: TsUser;
+  public user!: TsUser;
 
   /**
    * Define the welcome message
@@ -226,13 +226,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Element reference for visible list items
    */
   @ViewChild('visibleItemsList')
-  public visibleItemsList: ElementRef;
+  public visibleItemsList!: ElementRef;
 
   /**
    * Query list of all elements from the visible items list
    */
   @ViewChildren('visibleLinkElement')
-  public visibleLinkElement: QueryList<ElementRef>;
+  public visibleLinkElement!: QueryList<ElementRef>;
 
   /**
    * Emit the click event with the {@link TsNavigationPayload}
@@ -321,14 +321,18 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     // If there is not enough space
     if (requiredSpace > this.availableSpace) {
       // Pull the last link out of the visible array
-      const currentVisible = this.visibleItems.getValue();
+      const currentVisible: TsNavigationItem[] = this.visibleItems.getValue();
       const itemToMove = currentVisible.pop();
+      const updatedHiddenArray: TsNavigationItem[] = this.hiddenItems.getValue();
 
-      // Add it to the beginning of the hidden items array
-      const updateHiddenArray = [itemToMove].concat(this.hiddenItems.getValue());
+      // If an item was found, add it to the beginning of the hidden items array
+      // istanbul ignore else
+      if (itemToMove) {
+        updatedHiddenArray.unshift(itemToMove);
+      }
 
       // Push out the updated value
-      this.hiddenItems.next(updateHiddenArray);
+      this.hiddenItems.next(updatedHiddenArray);
 
       // Trigger another layout check
       this.updateLists();
@@ -338,10 +342,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       // Pull the first item from the hidden array
       const currentHidden = this.hiddenItems.getValue();
       const itemToMove = currentHidden.shift();
-      const visibleArray: TsNavigationItem[] = this.visibleItems.getValue();
+      const updatedVisibleArray: TsNavigationItem[] = this.visibleItems.getValue();
 
-      // QUESTION[B$]: Why does `visibleArray.push(itemToMove)` return a number?
-      const updatedVisibleArray: TsNavigationItem[] = visibleArray.concat([itemToMove]);
+      // If an item was found, add it to the beginning of the hidden items array
+      // istanbul ignore else
+      if (itemToMove) {
+        updatedVisibleArray.unshift(itemToMove);
+      }
 
       // Add it to the end of the visible array
       this.visibleItems.next(updatedVisibleArray);

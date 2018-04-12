@@ -49,9 +49,11 @@ import { TsSortHeaderComponent } from './sort-header.component';
  * consistent with expectations. Detects any changes in the fixture to reflect any changes in
  * the inputs and resets the TsSort to remove any side effects from previous tests.
  */
-function testSingleColumnSortDirectionSequence(fixture: ComponentFixture<SimpleTsSortApp>,
-                                               expectedSequence: TsSortDirection[],
-                                               id: string = 'defaultSortHeaderA') {
+function testSingleColumnSortDirectionSequence(
+  fixture: ComponentFixture<SimpleTsSortApp>,
+  expectedSequence: TsSortDirection[],
+  id: string = 'defaultSortHeaderA',
+) {
   // Detect any changes that were made in preparation for this sort sequence
   fixture.detectChanges();
 
@@ -107,18 +109,18 @@ function testSingleColumnSortDirectionSequence(fixture: ComponentFixture<SimpleT
   `,
 })
 class SimpleTsSortApp {
-  latestSortEvent: TsSortState;
+  latestSortEvent!: TsSortState;
 
-  active: string;
+  active!: string;
   start: TsSortDirection = 'asc';
   direction: TsSortDirection = '';
-  disableClear: boolean;
+  disableClear!: boolean;
   disabledColumnSort = false;
   disableAllSort = false;
 
-  @ViewChild(TsSortDirective) tsSort: TsSortDirective;
-  @ViewChild('defaultSortHeaderA') tsSortHeaderDefaultA: TsSortHeaderComponent;
-  @ViewChild('defaultSortHeaderB') tsSortHeaderDefaultB: TsSortHeaderComponent;
+  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
+  @ViewChild('defaultSortHeaderA') tsSortHeaderDefaultA!: TsSortHeaderComponent;
+  @ViewChild('defaultSortHeaderB') tsSortHeaderDefaultB!: TsSortHeaderComponent;
 
   constructor(public elementRef: ElementRef) {}
 
@@ -157,7 +159,7 @@ class FakeDataSource extends DataSource<any> {
   `,
 })
 class CdkTableTsSortApp {
-  @ViewChild(TsSortDirective) tsSort: TsSortDirective;
+  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -184,7 +186,7 @@ class CdkTableTsSortApp {
   `,
 })
 class TsTableTsSortApp {
-  @ViewChild(TsSortDirective) tsSort: TsSortDirective;
+  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -264,7 +266,7 @@ describe('TsSort', () => {
   });
 
 
-  it('should have the sort headers register and deregister themselves', () => {
+  test('should have the sort headers register and deregister themselves', () => {
     const sortables = component.tsSort['sortables'];
     expect(sortables.size).toBe(4);
     expect(sortables.get('defaultSortHeaderA')).toBe(component.tsSortHeaderDefaultA);
@@ -275,7 +277,7 @@ describe('TsSort', () => {
   });
 
 
-  it('should use the column definition if used within a cdk table', () => {
+  test('should use the column definition if used within a cdk table', () => {
     const cdkTableTsSortAppFixture = TestBed.createComponent(CdkTableTsSortApp);
     const cdkTableTsSortAppComponent = cdkTableTsSortAppFixture.componentInstance;
 
@@ -305,8 +307,9 @@ describe('TsSort', () => {
   });
 
 
-  it('should be able to cycle from asc -> desc from either start point', () => {
+  test('should be able to cycle from asc -> desc from either start point', () => {
     component.disableClear = true;
+    fixture.detectChanges();
 
     component.start = 'asc';
     testSingleColumnSortDirectionSequence(fixture, ['asc', 'desc']);
@@ -317,19 +320,19 @@ describe('TsSort', () => {
   });
 
 
-  it('should be able to cycle asc -> desc -> [none]', () => {
+  test('should be able to cycle asc -> desc -> [none]', () => {
     component.start = 'asc';
     testSingleColumnSortDirectionSequence(fixture, ['asc', 'desc', '']);
   });
 
 
-  it('should be able to cycle desc -> asc -> [none]', () => {
+  test('should be able to cycle desc -> asc -> [none]', () => {
     component.start = 'desc';
     testSingleColumnSortDirectionSequence(fixture, ['desc', 'asc', '']);
   });
 
 
-  it('should allow for the cycling the sort direction to be disabled per column', () => {
+  test('should allow for the cycling the sort direction to be disabled per column', () => {
     const button = fixture.nativeElement.querySelector('#defaultSortHeaderA button');
 
     component.sort('defaultSortHeaderA');
@@ -345,7 +348,7 @@ describe('TsSort', () => {
   });
 
 
-  it('should allow for the cycling the sort direction to be disabled for all columns', () => {
+  test('should allow for the cycling the sort direction to be disabled for all columns', () => {
     const button = fixture.nativeElement.querySelector('#defaultSortHeaderA button');
 
     component.sort('defaultSortHeaderA');
@@ -368,7 +371,7 @@ describe('TsSort', () => {
   });
 
 
-  it('should reset sort direction when a different column is sorted', () => {
+  test('should reset sort direction when a different column is sorted', () => {
     component.sort('defaultSortHeaderA');
     expect(component.tsSort.active).toBe('defaultSortHeaderA');
     expect(component.tsSort.direction).toBe('asc');
@@ -383,31 +386,31 @@ describe('TsSort', () => {
   });
 
 
-  it('should throw an error if an TsSortable is not contained within an TsSort directive', () => {
+  test('should throw an error if an TsSortable is not contained within an TsSort directive', () => {
     expect(() => TestBed.createComponent(TsSortHeaderMissingTsSortApp).detectChanges())
         .toThrowError(wrappedErrorMessage(getSortHeaderNotContainedWithinSortError()));
   });
 
 
-  it('should throw an error if two TsSortables have the same id', () => {
+  test('should throw an error if two TsSortables have the same id', () => {
     expect(() => TestBed.createComponent(TsSortDuplicateTsSortableIdsApp).detectChanges())
         .toThrowError(wrappedErrorMessage(getSortDuplicateSortableIdError('duplicateId')));
   });
 
 
-  it('should throw an error if an TsSortable is missing an id', () => {
+  test('should throw an error if an TsSortable is missing an id', () => {
     expect(() => TestBed.createComponent(TsSortableMissingIdApp).detectChanges())
         .toThrowError(wrappedErrorMessage(getSortHeaderMissingIdError()));
   });
 
 
-  it('should throw an error if the provided direction is invalid', () => {
+  test('should throw an error if the provided direction is invalid', () => {
     expect(() => TestBed.createComponent(TsSortableInvalidDirection).detectChanges())
         .toThrowError(wrappedErrorMessage(getSortInvalidDirectionError('ascending')));
   });
 
 
-  it('should allow let TsSortable override the default sort parameters', () => {
+  test('should allow let TsSortable override the default sort parameters', () => {
     testSingleColumnSortDirectionSequence(
         fixture, ['asc', 'desc', '']);
 
@@ -419,7 +422,7 @@ describe('TsSort', () => {
   });
 
 
-  it('should apply the aria-labels to the button', () => {
+  test('should apply the aria-labels to the button', () => {
     const button = fixture.nativeElement.querySelector('#defaultSortHeaderA button');
     expect(button.getAttribute('aria-label')).toBe('Change sorting for defaultSortHeaderA');
   });

@@ -69,7 +69,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Define the aria label
    */
   @Input()
-  public ariaLabel: string;
+  public ariaLabel: string | undefined;
 
   /**
    * Define if the toggle should be disabled

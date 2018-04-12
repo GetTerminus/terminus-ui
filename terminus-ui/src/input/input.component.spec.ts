@@ -1,3 +1,4 @@
+// tslint:disable: no-non-null-assertion
 import {
   Injector,
   SimpleChange,
@@ -86,7 +87,7 @@ describe(`TsInputComponent`, () => {
       jest.runAllTimers();
 
       expect(component.isDisabled).toEqual(true);
-      expect(component.matInput.ngControl.control.disable).toHaveBeenCalled();
+      expect(component.matInput.ngControl.control!.disable).toHaveBeenCalled();
     });
 
   });

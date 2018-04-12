@@ -10,6 +10,7 @@ export class LoginFormComponent {
   public progress = false;
   public link = '/reset';
   public reset = false;
+  public isRedirecting = false;
 
 
   formSubmission(e: TsLoginFormResponse): void {

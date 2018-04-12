@@ -62,13 +62,13 @@ export class TsVerticalSpacingDirective {
     }
 
     // Split the string to get the type and size
-    const [type, size] = value.split('--');
-    const valueIsNone = value === 'none';
+    const type: string = value.split('--')[0];
+    const size: number = parseInt(value.split('--')[1], 10);
+    const valueIsNone: boolean = value === 'none';
 
     // Verify type and size are valid options
-    const typeIsInvalid = !!(!TS_SPACING[type] || TS_SPACING[type].length < 0);
-    const sizeIsInvalid =
-      !!(typeIsInvalid || !TS_SPACING[type][size] || TS_SPACING[type][size].length < 0);
+    const typeIsInvalid: boolean = !!(!TS_SPACING[type] || TS_SPACING[type].length < 0);
+    const sizeIsInvalid: boolean = !!(typeIsInvalid || !TS_SPACING[type][size]);
 
     // Only throw an error if type or size is invalid and the value is not 'none'
     if ((typeIsInvalid || sizeIsInvalid) && !valueIsNone && isDevMode()) {

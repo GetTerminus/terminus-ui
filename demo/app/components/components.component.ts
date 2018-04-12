@@ -25,7 +25,7 @@ export class ComponentsComponent implements OnInit {
   title = `Components (${this.components.length})`;
   height = '100px';
   path = '';
-  activeNavItem: {[key: string]: any};
+  activeNavItem!: {[key: string]: any};
   uiVersion = UI_VERSION;
   ngxVersion = NGX_VERSION;
   ngVersion = NG_VERSION;

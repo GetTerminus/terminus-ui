@@ -2,14 +2,15 @@ import { TsTooltipComponent } from './tooltip.component';
 
 
 describe(`TsTooltipComponent`, () => {
+  let component: TsTooltipComponent;
 
   beforeEach(() => {
-    this.component = new TsTooltipComponent();
+    component = new TsTooltipComponent();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 });

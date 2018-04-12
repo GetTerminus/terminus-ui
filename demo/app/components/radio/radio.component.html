@@ -24,7 +24,7 @@
       tsVerticalSpacing
     ></ts-radio-group>
 
-    Selected value: {{ myForm.get('myRadioGroup').value }}
+    Selected value: {{ myForm.get('myRadioGroup')?.value }}
   </ts-card>
 
 
@@ -40,7 +40,7 @@
       [options]="items2$ | async"
     ></ts-radio-group>
 
-    Selected value: {{ myForm.get('myRadioGroup2').value }}
+    Selected value: {{ myForm.get('myRadioGroup2')?.value }}
   </ts-card>
 
 </form>

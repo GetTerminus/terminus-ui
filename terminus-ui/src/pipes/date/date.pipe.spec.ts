@@ -29,8 +29,8 @@ describe(`TsDatePipe`, () => {
 
 
   it(`should return null if no value is passed in`, () => {
-    expect(pipe(null)).toEqual(null);
-    expect(pipe('')).toEqual(null);
+    expect(pipe(null as any)).toEqual(undefined);
+    expect(pipe('')).toEqual(undefined);
   });
 
 

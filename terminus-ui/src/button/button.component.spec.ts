@@ -10,24 +10,25 @@ import { TsButtonComponent } from './button.component';
 
 
 describe(`TsButtonComponent`, () => {
+  let component: TsButtonComponent;
 
   beforeEach(() => {
-    this.component = new TsButtonComponent(
+    component = new TsButtonComponent(
       new ChangeDetectorRefMock(),
       new TsWindowServiceMock(),
       new Renderer2Mock(),
     );
-    this.component.changeDetectorRef.detectChanges = jest.fn();
-    this.component.button = {
+    component['changeDetectorRef'].detectChanges = jest.fn();
+    component.button = {
       _elementRef: new ElementRef({}),
-    };
-    this.component.renderer.addClass = jest.fn();
-    this.component.renderer.removeClass = jest.fn();
+    } as any;
+    component['renderer'].addClass = jest.fn();
+    component['renderer'].removeClass = jest.fn();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
@@ -36,29 +37,29 @@ describe(`TsButtonComponent`, () => {
     describe(`when format === collapsable`, () => {
 
       it(`should call collapseWithDelay if a delay is set and the value is FALSE`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.collapseDelay = this.component.COLLAPSE_DEFAULT_DELAY;
-        this.component.collapsed = false;
+        component['collapseWithDelay'] = jest.fn();
+        component.collapseDelay = component['COLLAPSE_DEFAULT_DELAY'];
+        component.collapsed = false;
 
-        expect(this.component.collapseWithDelay).toHaveBeenCalled();
-        expect(this.component.isCollapsed).toEqual(false);
+        expect(component['collapseWithDelay']).toHaveBeenCalled();
+        expect(component.isCollapsed).toEqual(false);
       });
 
 
       it(`should not call collapseWithDelay if no delay is set and the value is FALSE`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.collapsed = false;
+        component['collapseWithDelay'] = jest.fn();
+        component.collapsed = false;
 
-        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
+        expect(component['collapseWithDelay']).not.toHaveBeenCalled();
       });
 
 
       it(`should not call collapseWithDelay if delay is set and the value is TRUE`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.collapseDelay = this.component.COLLAPSE_DEFAULT_DELAY;
-        this.component.collapsed = true;
+        component['collapseWithDelay'] = jest.fn();
+        component.collapseDelay = component['COLLAPSE_DEFAULT_DELAY'];
+        component.collapsed = true;
 
-        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
+        expect(component['collapseWithDelay']).not.toHaveBeenCalled();
       });
 
     });
@@ -67,11 +68,11 @@ describe(`TsButtonComponent`, () => {
     describe(`when format !== collapsable`, () => {
 
       it(`should not call collapseWithDelay if the type is not collapsable`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.format = 'filled';
-        this.component.collapsed = false;
+        component['collapseWithDelay'] = jest.fn();
+        component.format = 'filled';
+        component.collapsed = false;
 
-        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
+        expect(component['collapseWithDelay']).not.toHaveBeenCalled();
       });
 
     });
@@ -82,17 +83,17 @@ describe(`TsButtonComponent`, () => {
       describe('when format === collapsable', () => {
 
         it(`should set the collapseDelay to default if unset`, () => {
-          this.component.format = 'collapsable';
+          component.format = 'collapsable';
 
-          expect(this.component.collapseDelay).toEqual(this.component.COLLAPSE_DEFAULT_DELAY);
+          expect(component.collapseDelay).toEqual(component['COLLAPSE_DEFAULT_DELAY']);
         });
 
 
         it(`should not set the collapseDelay to default if a value is passed in`, () => {
-          this.component.collapseDelay = 1000;
-          this.component.format = 'collapsable';
+          component.collapseDelay = 1000;
+          component.format = 'collapsable';
 
-          expect(this.component.collapseDelay).toEqual(1000);
+          expect(component.collapseDelay).toEqual(1000);
         });
 
       });
@@ -101,30 +102,30 @@ describe(`TsButtonComponent`, () => {
       describe('when format === collapsable', () => {
 
         it(`should remove any existing collapseDelay`, () => {
-          this.component.collapseDelay = 500;
-          this.component.format = 'filled';
+          component.collapseDelay = 500;
+          component.format = 'filled';
 
-          expect(this.component.collapseDelay).toBeUndefined();
+          expect(component.collapseDelay).toBeUndefined();
         });
 
       });
 
 
       test(`should not update classes if no value is passed in`, () => {
-        this.component.updateClasses = jest.fn();
-        this.component.format = null as any;
+        component['updateClasses'] = jest.fn();
+        component.format = null as any;
 
-        expect(this.component.updateClasses).not.toHaveBeenCalled();
+        expect(component['updateClasses']).not.toHaveBeenCalled();
       });
 
 
       test(`should log a warning if an invalid value was passed in`, () => {
         window.console.warn = jest.fn();
-        this.component.updateClasses = jest.fn();
-        this.component.format = 'foo' as any;
+        component['updateClasses'] = jest.fn();
+        component.format = 'foo' as any;
 
         expect(window.console.warn).toHaveBeenCalled();
-        expect(this.component.updateClasses).not.toHaveBeenCalled();
+        expect(component['updateClasses']).not.toHaveBeenCalled();
       });
 
     });
@@ -133,20 +134,20 @@ describe(`TsButtonComponent`, () => {
     describe(`set theme`, () => {
 
       test(`should not update classes if no value is passed in`, () => {
-        this.component.updateClasses = jest.fn();
-        this.component.theme = null as any;
+        component['updateClasses'] = jest.fn();
+        component.theme = null as any;
 
-        expect(this.component.updateClasses).not.toHaveBeenCalled();
+        expect(component['updateClasses']).not.toHaveBeenCalled();
       });
 
 
       test(`should log a warning if an invalid value was passed in`, () => {
         window.console.warn = jest.fn();
-        this.component.updateClasses = jest.fn();
-        this.component.theme = 'foo' as any;
+        component['updateClasses'] = jest.fn();
+        component.theme = 'foo' as any;
 
         expect(window.console.warn).toHaveBeenCalled();
-        expect(this.component.updateClasses).not.toHaveBeenCalled();
+        expect(component['updateClasses']).not.toHaveBeenCalled();
       });
 
     });
@@ -155,41 +156,41 @@ describe(`TsButtonComponent`, () => {
     describe(`ngOnInit()`, () => {
 
       it(`should call collapseWithDelay if collapseDelay is set`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.collapseDelay = 500;
-        this.component.ngOnInit();
+        component['collapseWithDelay'] = jest.fn();
+        component.collapseDelay = 500;
+        component.ngOnInit();
 
-        expect(this.component.collapseWithDelay).toHaveBeenCalled();
+        expect(component['collapseWithDelay']).toHaveBeenCalled();
       });
 
 
       it(`should call not collapseWithDelay if collapseDelay is not set`, () => {
-        this.component.collapseWithDelay = jest.fn();
-        this.component.collapseDelay = undefined;
-        this.component.ngOnInit();
+        component['collapseWithDelay'] = jest.fn();
+        component.collapseDelay = undefined;
+        component.ngOnInit();
 
-        expect(this.component.collapseWithDelay).not.toHaveBeenCalled();
+        expect(component['collapseWithDelay']).not.toHaveBeenCalled();
       });
 
 
       describe(`when format === collapsable`, () => {
 
         beforeEach(() => {
-          this.component.format = 'collapsable';
-          this.component.collapseWithDelay = jest.fn();
-          this.component.collapseDelay = 500;
+          component.format = 'collapsable';
+          component['collapseWithDelay'] = jest.fn();
+          component.collapseDelay = 500;
         });
 
 
         it(`should throw an error if the format is collapsable and no icon is set`, () => {
-          expect(() => {this.component.ngOnInit(); }).toThrow();
+          expect(() => {component.ngOnInit(); }).toThrow();
         });
 
 
         it(`should not throw an error if the format is collapsable and there is an icon set`, () => {
-          this.component.iconName = 'home';
+          component.iconName = 'home';
 
-          expect(() => {this.component.ngOnInit(); }).not.toThrow();
+          expect(() => {component.ngOnInit(); }).not.toThrow();
         });
       });
 
@@ -199,20 +200,20 @@ describe(`TsButtonComponent`, () => {
     describe(`ngOnDestroy()`, () => {
 
       beforeEach(() => {
-        this.component.format = 'collapsable';
-        this.component.iconName = 'home';
-        this.component.changeDetectorRef.detectChanges();
-        this.component.windowService.nativeWindow.clearTimeout = jest.fn();
-        this.component.windowService.nativeWindow.setTimeout = jest.fn().mockReturnValue(123);
+        component.format = 'collapsable';
+        component.iconName = 'home';
+        component['changeDetectorRef'].detectChanges();
+        component['windowService'].nativeWindow.clearTimeout = jest.fn();
+        component['windowService'].nativeWindow.setTimeout = jest.fn().mockReturnValue(123);
       });
 
 
       it(`should clear any existing timeouts`, () => {
-        this.component.ngOnInit();
-        expect(this.component.collapseTimeoutId).toEqual(123);
+        component.ngOnInit();
+        expect(component['collapseTimeoutId']).toEqual(123);
 
-        this.component.ngOnDestroy();
-        expect(this.component.windowService.nativeWindow.clearTimeout).toHaveBeenCalledWith(123);
+        component.ngOnDestroy();
+        expect(component['windowService'].nativeWindow.clearTimeout).toHaveBeenCalledWith(123);
       });
 
     });
@@ -222,24 +223,24 @@ describe(`TsButtonComponent`, () => {
       let mouseEvent: MouseEvent;
 
       beforeEach(() => {
-        this.component.clickEvent.emit = jest.fn();
+        component.clickEvent.emit = jest.fn();
         mouseEvent = createMouseEvent('click');
       });
 
 
       test(`should emit the click when interceptClick is false`, () => {
-        this.component.clicked(mouseEvent);
+        component.clicked(mouseEvent);
 
-        expect(this.component.clickEvent.emit).toHaveBeenCalledWith(mouseEvent);
+        expect(component.clickEvent.emit).toHaveBeenCalledWith(mouseEvent);
       });
 
 
       test(`should not emit the click when interceptClick is true`, () => {
-        this.component.interceptClick = true;
-        this.component.clicked(mouseEvent);
+        component.interceptClick = true;
+        component.clicked(mouseEvent);
 
-        expect(this.component.clickEvent.emit).not.toHaveBeenCalledWith();
-        expect(this.component.originalClickEvent).toEqual(mouseEvent);
+        expect(component.clickEvent.emit).not.toHaveBeenCalledWith();
+        expect(component.originalClickEvent).toEqual(mouseEvent);
       });
 
     });
@@ -248,13 +249,13 @@ describe(`TsButtonComponent`, () => {
     describe(`collapseWithDelay()`, () => {
 
       it(`should set isCollapsed and trigger change detection after the delay`, (done) => {
-        this.component.windowService.nativeWindow.setTimeout = window.setTimeout;
+        component['windowService'].nativeWindow.setTimeout = window.setTimeout;
         const DELAY = 100;
-        this.component.collapseWithDelay(DELAY);
+        component['collapseWithDelay'](DELAY);
 
         setTimeout(() => {
-          expect(this.component.changeDetectorRef.detectChanges).toHaveBeenCalled();
-          expect(this.component.isCollapsed).toEqual(true);
+          expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+          expect(component.isCollapsed).toEqual(true);
           done();
         }, DELAY + 1);
       });

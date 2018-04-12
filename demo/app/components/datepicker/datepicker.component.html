@@ -2,7 +2,7 @@
   <form [formGroup]="formOne" novalidate style="max-width: 14rem;">
     <ts-datepicker
       theme="accent"
-      [formControl]="getControl('formOne', 'date')"
+      [formControl]="formOne.get('date')"
       [dateFilter]="myFilter"
       [startingView]="formOneSettings.startView"
       initialDate="{{ formOneSettings.myDate }}"
@@ -32,7 +32,7 @@
       <div>
         <ts-datepicker
           theme="warn"
-          [formControl]="getControl('formTwo', 'startDate')"
+          [formControl]="formTwo.get('startDate')"
           validateOnChange="true"
           name="startDate"
           (selected)="rangeStartChange($event)"
@@ -41,7 +41,7 @@
 
       <div>
         <ts-datepicker
-          [formControl]="getControl('formTwo', 'endDate')"
+          [formControl]="formTwo.get('endDate')"
           validateOnChange="true"
           name="endDate"
           (selected)="rangeEndChange($event)"

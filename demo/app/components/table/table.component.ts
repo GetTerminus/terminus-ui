@@ -17,6 +17,7 @@ import {
   TsSortDirective,
   TsPaginatorComponent,
   TsPaginatorMenuItem,
+  TsSelectFormatFn,
 } from '@terminus/ui';
 
 
@@ -92,18 +93,18 @@ export class TableComponent implements AfterViewInit {
     'state',
     'comments',
   ];
-  exampleDatabase: ExampleHttpDao | null;
-  dataSource: TsTableDataSource<GithubIssue>  = new TsTableDataSource();
+  exampleDatabase!: ExampleHttpDao;
+  dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();
   resultsLength = 0;
 
   @ViewChild(TsSortDirective)
-  sort: TsSortDirective;
+  sort!: TsSortDirective;
 
   @ViewChild(TsPaginatorComponent)
-  paginator: TsPaginatorComponent;
+  paginator!: TsPaginatorComponent;
 
-  myUIFn = (v): string => v.name;
-  myModelFn = (v): string => v.value;
+  myUIFn: TsSelectFormatFn = (v) => v.name;
+  myModelFn: TsSelectFormatFn = (v) => v.value;
 
 
   constructor(

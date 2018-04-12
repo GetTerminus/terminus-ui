@@ -2,25 +2,26 @@ import { TsCardComponent } from './card.component';
 
 
 describe('TsCardComponent', () => {
+  let component: TsCardComponent;
 
   beforeEach(() => {
-    this.component = new TsCardComponent();
+    component = new TsCardComponent();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   describe(`set aspectRatio()`, () => {
 
     it(`should convert the string aspect to a percentage`, () => {
-      this.component.aspectRatio = '16:9';
-      expect(this.component.aspectRatioPadding).toEqual('56.25%');
+      component.aspectRatio = '16:9';
+      expect(component.aspectRatioPadding).toEqual('56.25%');
 
-      this.component.aspectRatio = '3:4';
-      expect(this.component.aspectRatioPadding).toEqual('133.33%');
+      component.aspectRatio = '4:3';
+      expect(component.aspectRatioPadding).toEqual('75.00%');
     });
 
   });

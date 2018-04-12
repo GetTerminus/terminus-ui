@@ -138,7 +138,7 @@ export class TsSearchComponent implements OnInit {
    * Define an initial value for the search input
    */
   @Input()
-  public initialValue: string;
+  public initialValue: string | undefined;
 
   /**
    * Define the hint text below the input

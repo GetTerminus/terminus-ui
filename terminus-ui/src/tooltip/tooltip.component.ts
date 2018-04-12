@@ -56,7 +56,7 @@ export class TsTooltipComponent {
    * Define the content to display within the tooltip
    */
   @Input()
-  public tooltipValue: string;
+  public tooltipValue!: string;
 
   /**
    * Define whether there is a dotted underline shown on the text

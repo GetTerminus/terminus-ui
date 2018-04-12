@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { TsValidationMessageService } from './../services/validation-message/validation-message.service';
+import { TsValidationMessageService } from './validation-message.service';
 
 
 /**
@@ -35,8 +35,8 @@ export class TsValidationMessagesComponent {
    *
    * @return The error message or null if no error
    */
-  public get validationMessage(): string | null {
-    if (this.control) {
+  public get validationMessage(): string | null | undefined {
+    if (this.control && this.control.errors) {
       for (const propertyName in this.control.errors) {
 
         // istanbul ignore else
@@ -60,7 +60,7 @@ export class TsValidationMessagesComponent {
    * Define the associated form control
    */
   @Input()
-  public control: FormControl;
+  public control!: FormControl;
 
   /**
    * Define if validation should occur on blur or immediately

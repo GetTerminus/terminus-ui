@@ -60,37 +60,34 @@ const visibleLinkElementMock = [
 
 
 describe(`TsNavigationComponent`, () => {
+  let component: TsNavigationComponent;
 
   beforeEach(() => {
-    this.component = new TsNavigationComponent(new ChangeDetectorRefMock());
-    // NOTE: The getter was removed since it was only used by tests.
-    this.component.hiddenItemsLength = (): number => {
-      return this.component.hiddenItems.getValue().length;
-    };
+    component = new TsNavigationComponent(new ChangeDetectorRefMock());
   });
 
 
-  it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+  test(`should exist`, () => {
+    expect(component).toBeTruthy();
   });
 
 
   describe(`usersFullName()`, () => {
 
     beforeEach(() => {
-      this.component.user = null;
+      component.user = null as any;
     });
 
 
-    it(`should return the user's full name if it exists`, () => {
-      this.component.user = USER_MOCK;
+    test(`should return the user's full name if it exists`, () => {
+      component.user = USER_MOCK;
 
-      expect(this.component.usersFullName).toEqual(USER_MOCK.fullName);
+      expect(component.usersFullName).toEqual(USER_MOCK.fullName);
     });
 
 
-    it(`should return the NULL if the full name doesn't exist`, () => {
-      expect(this.component.usersFullName).toEqual(null);
+    test(`should return the NULL if the full name doesn't exist`, () => {
+      expect(component.usersFullName).toEqual(null);
     });
 
   });
@@ -99,12 +96,12 @@ describe(`TsNavigationComponent`, () => {
   describe(`visibleItemsLength()`, () => {
 
     beforeEach(() => {
-      this.component.visibleItems.next(NAV_ITEMS_MOCK);
+      component.visibleItems.next(NAV_ITEMS_MOCK);
     });
 
 
-    it(`should return the length of visibleItems`, () => {
-      expect(this.component.visibleItemsLength).toEqual(4);
+    test(`should return the length of visibleItems`, () => {
+      expect(component.visibleItemsLength).toEqual(4);
     });
 
   });
@@ -113,19 +110,19 @@ describe(`TsNavigationComponent`, () => {
   describe(`set items`, () => {
 
     beforeEach(() => {
-      this.component.setUpInitialArrays = jest.fn();
-      this.component.generateBreakWidths = jest.fn();
-      this.component.updateLists = jest.fn();
-      this.component.items = NAV_ITEMS_MOCK;
+      component['setUpInitialArrays'] = jest.fn();
+      component['generateBreakWidths'] = jest.fn();
+      component['updateLists'] = jest.fn();
+      component.items = NAV_ITEMS_MOCK;
     });
 
 
-    it(`should filter out disabled items and save the array to pristineItems`, () => {
+    test(`should filter out disabled items and save the array to pristineItems`, () => {
       // Expect one item to be filtered out
-      expect(this.component.pristineItems.length).toEqual(3);
-      expect(this.component.setUpInitialArrays).toHaveBeenCalled();
-      expect(this.component.generateBreakWidths).toHaveBeenCalled();
-      expect(this.component.updateLists).toHaveBeenCalled();
+      expect(component['pristineItems'].length).toEqual(3);
+      expect(component['setUpInitialArrays']).toHaveBeenCalled();
+      expect(component['generateBreakWidths']).toHaveBeenCalled();
+      expect(component['updateLists']).toHaveBeenCalled();
     });
 
   });
@@ -133,11 +130,11 @@ describe(`TsNavigationComponent`, () => {
 
   describe(`onResize()`, () => {
 
-    it(`should call updateLists()`, () => {
-      this.component.updateLists = jest.fn();
-      this.component.onResize();
+    test(`should call updateLists()`, () => {
+      component['updateLists'] = jest.fn();
+      component.onResize();
 
-      expect(this.component.updateLists).toHaveBeenCalled();
+      expect(component['updateLists']).toHaveBeenCalled();
     });
 
   });
@@ -145,30 +142,30 @@ describe(`TsNavigationComponent`, () => {
 
   describe(`ngOnInit()`, () => {
 
-    it(`should call to set up the initial array`, () => {
-      this.component.setUpInitialArrays = jest.fn();
-      this.component.ngOnInit();
-      expect(this.component.setUpInitialArrays).toHaveBeenCalled();
+    test(`should call to set up the initial array`, () => {
+      component['setUpInitialArrays'] = jest.fn();
+      component.ngOnInit();
+      expect(component['setUpInitialArrays']).toHaveBeenCalled();
     });
 
   });
 
 
-  describe(`ngAfterViewInit()`, () => {
+  describe(`ngAfterViewIntest()`, () => {
 
     beforeEach(() => {
-      this.component.updateLists = jest.fn();
-      this.component.visibleLinkElement = visibleLinkElementMock;
+      component['updateLists'] = jest.fn();
+      component.visibleLinkElement = visibleLinkElementMock as any;
     });
 
 
-    it(`should set the breakWidths array items and trigger a layout update`, (done) => {
-      this.component.ngAfterViewInit();
+    test(`should set the breakWidths array items and trigger a layout update`, (done) => {
+      component.ngAfterViewInit();
 
-      expect(this.component.breakWidths).toEqual([50, 150, 350]);
+      expect(component['breakWidths']).toEqual([50, 150, 350]);
 
       setTimeout(() => {
-        expect(this.component.updateLists).toHaveBeenCalled();
+        expect(component['updateLists']).toHaveBeenCalled();
         done();
       });
     });
@@ -178,11 +175,11 @@ describe(`TsNavigationComponent`, () => {
 
   describe(`setUpInitialArrays()`, () => {
 
-    it(`should push the updated arrays to visibleItems and hiddenItems`, () => {
-      this.component.setUpInitialArrays(NAV_ITEMS_MOCK);
+    test(`should push the updated arrays to visibleItems and hiddenItems`, () => {
+      component['setUpInitialArrays'](NAV_ITEMS_MOCK);
 
-      expect(this.component.visibleItems.getValue().length).toEqual(3);
-      expect(this.component.hiddenItems.getValue().length).toEqual(1);
+      expect(component.visibleItems.getValue().length).toEqual(3);
+      expect(component.hiddenItems.getValue().length).toEqual(1);
     });
 
   });
@@ -193,28 +190,28 @@ describe(`TsNavigationComponent`, () => {
     // NOTE: For some reason we need to re-declare the visibleItemsList element each time. Using the
     // mock created very odd issues even when using Object.assign or {...}
     beforeEach(() => {
-      this.component.visibleItemsList = {
+      component.visibleItemsList = {
         nativeElement: {
           offsetWidth: 180,
         },
       };
-      this.component.visibleLinkElement = visibleLinkElementMock;
-      this.component.breakWidths = [50, 150, 350];
-      this.component.items = NAV_ITEMS_MOCK;
+      component.visibleLinkElement = visibleLinkElementMock as any;
+      component['breakWidths'] = [50, 150, 350];
+      component.items = NAV_ITEMS_MOCK;
     });
 
 
     describe(`when there is not enough space`, () => {
 
-      it(`should move one item to hiddenItems`, () => {
-        expect(this.component.visibleItemsLength).toEqual(2);
-        expect(this.component.hiddenItemsLength()).toEqual(1);
+      test(`should move one item to hiddenItems`, () => {
+        expect(component.visibleItemsLength).toEqual(2);
+        expect(component.hiddenItems.getValue().length).toEqual(1);
 
-        this.component.visibleItemsList.nativeElement.offsetWidth = 140;
-        this.component.updateLists();
+        component.visibleItemsList.nativeElement.offsetWidth = 140;
+        component['updateLists']();
 
-        expect(this.component.visibleItemsLength).toEqual(1);
-        expect(this.component.hiddenItemsLength()).toEqual(2);
+        expect(component.visibleItemsLength).toEqual(1);
+        expect(component.hiddenItems.getValue().length).toEqual(2);
       });
 
     });
@@ -222,19 +219,19 @@ describe(`TsNavigationComponent`, () => {
 
     describe(`when there is enough space`, () => {
 
-      it(`should move an item to visibleItems if there is enough space`, () => {
-        expect(this.component.visibleItemsLength).toEqual(2);
-        expect(this.component.hiddenItemsLength()).toEqual(1);
+      test(`should move an item to visibleItems if there is enough space`, () => {
+        expect(component.visibleItemsLength).toEqual(2);
+        expect(component.hiddenItems.getValue().length).toEqual(1);
 
-        this.component.visibleItemsList = {
+        component.visibleItemsList = {
           nativeElement: {
             offsetWidth: 380,
           },
         };
-        this.component.updateLists();
+        component['updateLists']();
 
-        expect(this.component.visibleItems.getValue().length).toEqual(3);
-        expect(this.component.hiddenItems.getValue().length).toEqual(0);
+        expect(component.visibleItems.getValue().length).toEqual(3);
+        expect(component.hiddenItems.getValue().length).toEqual(0);
       });
 
     });
@@ -244,18 +241,18 @@ describe(`TsNavigationComponent`, () => {
 
   describe(`isExternalLink()`, () => {
 
-    it(`should return true if the destination is a string to an external link`, () => {
-      expect(this.component.isExternalLink('http://google.com')).toEqual(true);
+    test(`should return true if the destination is a string to an external link`, () => {
+      expect(component.isExternalLink('http://google.com')).toEqual(true);
     });
 
 
-    it(`should return false if the destination doesn't begin with http`, () => {
-      expect(this.component.isExternalLink('foo/bar')).toEqual(false);
+    test(`should return false if the destination doesn't begin with http`, () => {
+      expect(component.isExternalLink('foo/bar')).toEqual(false);
     });
 
 
-    it(`should return false if the destination is an array`, () => {
-      expect(this.component.isExternalLink(['foo', '/bar'])).toEqual(false);
+    test(`should return false if the destination is an array`, () => {
+      expect(component.isExternalLink(['foo', '/bar'])).toEqual(false);
     });
 
   });

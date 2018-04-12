@@ -6,6 +6,7 @@ import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
@@ -30,7 +31,6 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -82,6 +82,13 @@ export const componentsList: Routes = [
     component: CopyComponent,
     data: {
       name: 'Copy',
+    },
+  },
+  {
+    path: 'confirmation',
+    component: ConfirmationComponent,
+    data: {
+      name: 'Confirmation',
     },
   },
   {
@@ -243,13 +250,6 @@ export const componentsList: Routes = [
     component: ValidationComponent,
     data: {
       name: 'Validation',
-    },
-  },
-  {
-    path: 'confirmation',
-    component: ConfirmationComponent,
-    data: {
-      name: 'Confirmation',
     },
   },
   // INJECT: Add route for demo component

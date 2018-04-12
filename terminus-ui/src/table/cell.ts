@@ -113,7 +113,7 @@ export class TsColumnDefDirective extends CdkColumnDef {
    * Define a unique name for this column
    */
   @Input('tsColumnDef')
-  name: string;
+  name!: string;
   // tslint:enable: no-input-rename
 
   /**
@@ -126,5 +126,5 @@ export class TsColumnDefDirective extends CdkColumnDef {
    * Define a minimum width for the column
    */
   @Input()
-  public minWidth: string;
+  public minWidth: string | undefined;
 }

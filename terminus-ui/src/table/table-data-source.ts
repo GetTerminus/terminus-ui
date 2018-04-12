@@ -25,7 +25,7 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * Subscription to the changes that should trigger an update to the table's rendered rows, such
    * as filtering, sorting, pagination, or base data changes.
    */
-  _renderChangesSubscription: Subscription;
+  _renderChangesSubscription!: Subscription;
 
   /**
    * The filtered set of data that has been matched by the filter string, or all the data if there
@@ -33,7 +33,7 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * For example, a 'selectAll()' function would likely want to select the set of filtered data
    * shown to the user rather than all the data.
    */
-  filteredData: T[];
+  filteredData!: T[];
 
   /**
    * Array of data that should be rendered by the table, where each object represents one row.

@@ -45,12 +45,12 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   /**
    * Store a reference to the created confirmation modal
    */
-  private modalInstance: TsConfirmationModalComponent;
+  private modalInstance!: TsConfirmationModalComponent;
 
   /**
    * Store a reference to the modal overlay
    */
-  private overlayRef: OverlayRef | null;
+  private overlayRef!: OverlayRef | null;
 
   /**
    * A subject used to unsubscribe during the destroy lifecycle hook
@@ -78,7 +78,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * @param event - The MouseEvent
    */
   @HostListener('click', ['$event'])
-  public onClick(event): void {
+  public onClick(event: Event): void {
     this.createOverlay();
   }
 

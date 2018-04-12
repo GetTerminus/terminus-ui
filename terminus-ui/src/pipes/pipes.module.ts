@@ -19,6 +19,11 @@ export * from './sentence-case/sentence-case.pipe';
     TsDatePipe,
     TsSentenceCasePipe,
   ],
+  providers: [
+    TsTimeAgoPipe,
+    TsDatePipe,
+    TsSentenceCasePipe,
+  ],
   declarations: [
     TsTimeAgoPipe,
     TsDatePipe,
