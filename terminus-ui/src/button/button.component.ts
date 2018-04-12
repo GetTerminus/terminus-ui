@@ -98,12 +98,12 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Store a reference to the timeout needed for collapsable buttons
    */
-  private collapseTimeoutId: number;
+  private collapseTimeoutId!: number;
 
   /**
    * Define the delay before the rounded button automatically collapses
    */
-  public collapseDelay: number;
+  public collapseDelay: number | undefined;
 
   /**
    * The flag that defines if the button is collapsed or expanded
@@ -120,7 +120,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Store the original event from a click (used when `interceptClick` is true)
    * Used by {@link TsConfirmationDirective}
    */
-  public originalClickEvent: MouseEvent;
+  public originalClickEvent!: MouseEvent;
 
   /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
@@ -185,13 +185,13 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   public get format(): TsButtonFormatTypes {
     return this._format;
   }
-  private _format: TsButtonFormatTypes;
+  private _format!: TsButtonFormatTypes;
 
   /**
    * Define a Material icon to include
    */
   @Input()
-  public iconName: string;
+  public iconName: string | undefined;
 
   /**
    * Define if the button is disabled
@@ -233,7 +233,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   public get theme(): TsStyleThemeTypes {
     return this._theme;
   }
-  private _theme: TsStyleThemeTypes;
+  private _theme!: TsStyleThemeTypes;
 
   /**
    * Pass the click event through to the parent
@@ -245,7 +245,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Provide access to the inner button element
    */
   @ViewChild('button')
-  public button: ElementRef;
+  public button!: ElementRef;
 
 
   /**

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class ConfirmationComponent {
   progress = false;
 
-  cancel(v) {
+  cancel(v: boolean) {
     console.log('DEMO: Cancel: ', v);
   }
 

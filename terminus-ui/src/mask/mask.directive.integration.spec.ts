@@ -42,7 +42,7 @@ class TestHostComponent {
   myControl = new FormControl();
 
   @ViewChild('input')
-  input: HTMLInputElement;
+  input!: HTMLInputElement;
 }
 
 

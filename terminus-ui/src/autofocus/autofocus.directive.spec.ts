@@ -33,7 +33,7 @@ describe(`TsAutofocusDirective`, () => {
     directive.tsAutofocus = '';
   };
   const teardown = () => {
-    directive = null;
+    directive = null as any;
   };
 
   beforeEach(() => {

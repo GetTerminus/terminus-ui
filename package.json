@@ -16,7 +16,8 @@
     "//=> Section: Demo App": "==============================",
     "ng": "ng",
     "start:app": "ng serve",
-    "build:app": "cpr dist/terminus-ui demo/@terminus/ui --overwrite && ng build --app packages && rimraf demo/@terminus",
+    "start:app:aot": "ng serve --aot",
+    "build:app": "cpr dist/terminus-ui demo/@terminus/ui --overwrite && ng build --app packages --prod && rimraf demo/@terminus",
     "pretest:app": "yarn run build && cpr dist/terminus-ui/helpers.scss node_modules/@terminus/ui/helpers.scss --overwrite && cpr dist/terminus-ui/terminus-ui.css node_modules/@terminus/ui/terminus-ui.css --overwrite",
     "test:app": "ng test",
     "lint:app": "yarn run lint:app:ts && yarn run lint:app:scss",
@@ -33,6 +34,7 @@
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test": "jest --watch",
     "test:ci": "jest --runInBand --coverage",
+    "test:ci:local": "jest --coverage",
     "test:debug": "jest --debug --runInBand",
     "//=> Section: Documentation": "==============================",
     "predocs": "yarn run docs:toc",
@@ -115,45 +117,6 @@
       }
     ]
   },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "terminus-ui/tsconfig.spec.json",
-        "enableTsDiagnostics": true
-      },
-      "__TRANSFORM_HTML__": true
-    },
-    "clearMocks": true,
-    "transform": {
-      "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
-    },
-    "testRegex": "(^((?!.*(out-tsc/|coverage/|dist/|demo/|e2e/)).).*spec\\.ts.*$)",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "demo/app"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "html"
-    ],
-    "moduleNameMapper": {
-      "app/(.*)": "<rootDir>/demo/app/$1",
-      "assets/(.*)": "<rootDir>/demo/assets/$1",
-      "environments/(.*)": "<rootDir>/demo/environments/$1"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!@ngrx)"
-    ],
-    "collectCoverageFrom": [
-      "terminus-ui/src/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts",
-      "terminus-ui/src/**/*.directive?(.spec).ts",
-      "!terminus-ui/src/utilities/testing/**",
-      "!terminus-ui/src/utilities/rxjs-lift-hack.ts",
-      "!terminus-ui/src/module.ts"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tooling/setupJest.ts"
-  },
   "engines": {
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0",
@@ -169,8 +132,8 @@
     "@angular/platform-browser": "^5.2.5",
     "@angular/platform-browser-dynamic": "^5.2.5",
     "@angular/router": "^5.2.5",
-    "@terminus/ngx-tools": "2.12.2-beta.1",
-    "@terminus/ui": "^8.1.5",
+    "@terminus/ngx-tools": "^2.14.0",
+    "@terminus/ui": "^8.4.0",
     "date-fns": "2.0.0-alpha.7",
     "source-map-explorer": "^1.5.0",
     "text-mask-addons": "^3.7.2",
@@ -182,7 +145,7 @@
     "@angular/compiler": "^5.2.5",
     "@angular/compiler-cli": "^5.2.5",
     "@angular/material": "^5.2.4",
-    "@compodoc/compodoc": "^1.1.1",
+    "@compodoc/compodoc": "1.1.1",
     "@ngrx/store": "^5.2.0",
     "@semantic-release/changelog": "^2.0.1",
     "@semantic-release/exec": "^2.2.3",
@@ -191,13 +154,13 @@
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.2",
     "all-contributors-cli": "^4.11.1",
-    "autoprefixer": "^8.2.0",
+    "autoprefixer": "^8.3.0",
     "camelcase": "^5.0.0",
     "code-notes": "^1.0.4",
     "codelyzer": "^4.2.1",
     "commitizen": "^2.9.6",
     "condition-circle": "^2.0.1",
-    "core-js": "^2.5.4",
+    "core-js": "^2.5.5",
     "cpr": "^3.0.1",
     "cz-customizable": "^5.2.0",
     "del": "^3.0.0",
@@ -236,26 +199,28 @@
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^3.0.12",
-    "lint-staged": "^7.0.3",
-    "markdown-link-check": "^3.2.0",
+    "lint-staged": "^7.0.4",
+    "markdown-link-check": "^3.3.0",
     "merge-files": "^0.1.1",
-    "ng-packagr": "^2.4.1",
+    "ng-packagr": "^2.4.2",
     "node-sass": "^4.8.3",
     "node-sass-import": "^1.1.1",
     "remap-istanbul": "^0.11.0",
     "require-dir": "^1.0.0",
     "rimraf": "^2.6.2",
-    "rxjs": "^5.5.8",
+    "rxjs": "^5.5.10",
     "sass-lint": "^1.12.1",
     "sass-module-importer": "^1.4.0",
     "scssfmt": "^1.0.6",
-    "semantic-release": "^15.1.5",
+    "semantic-release": "^15.1.7",
     "stylelint": "^9.2.0",
     "stylelint-order": "^0.8.1",
-    "systemjs": "^0.21.1",
+    "systemjs": "^0.21.3",
+    "tsickle": ">=0.27.3",
+    "tslib": "^1.9.0",
     "tslint": "^5.9.1",
-    "typescript": "^2.8.1",
+    "typescript": "2.7.2",
     "validate-commit-msg": "^2.14.0",
-    "zone.js": "^0.8.25"
+    "zone.js": "^0.8.26"
   }
 }

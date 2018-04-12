@@ -18,11 +18,11 @@ export class PipesComponent {
   date = new Date(2018, 1, 8);
   dateString = this.date.toISOString();
   oldDate = new Date(2018, 1, 3);
-  myString = this.sentenceCasePipe.transform('ANOTHER STRING');
+  myString = 'ANOTHER STRING';
+  myStringTransformed = this.sentenceCasePipe.transform(this.myString);
 
   constructor(
     private sentenceCasePipe: TsSentenceCasePipe,
   ) {}
-
 
 }

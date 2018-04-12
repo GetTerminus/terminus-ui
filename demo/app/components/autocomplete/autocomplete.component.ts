@@ -22,8 +22,12 @@ import {
 } from '@terminus/ui';
 
 
+interface GitHubUser {
+  [key: string]: any;
+}
+
 // Values used to seed initial selections
-const INITIAL = [
+const INITIAL: GitHubUser[] = [
   {
     login: 'benjamincharity',
     id: 270193,
@@ -83,7 +87,7 @@ interface OptionType {
 export class AutocompleteComponent implements OnInit {
   // Using ViewChild to get a reference, we can pass in an interface for our autocomplete options
   @ViewChild('auto')
-  public auto: TsAutocompleteComponent<OptionType>;
+  public auto!: TsAutocompleteComponent<OptionType>;
 
   myForm = this.formBuilder.group({
     selections: [
@@ -97,7 +101,7 @@ export class AutocompleteComponent implements OnInit {
   debounceDelay = 2000;
   inProgress = false;
   delayApiResponse = false;
-  changesSubscription$: Observable<any>;
+  changesSubscription$!: Observable<any>;
   users$: any;
 
 
@@ -109,7 +113,7 @@ export class AutocompleteComponent implements OnInit {
     this.users$ = this.auto
       .query
       .pipe(
-        startWith(null),
+        startWith(''),
         switchMap((term) => {
           if (term) {
             this.inProgress = true;
@@ -117,9 +121,9 @@ export class AutocompleteComponent implements OnInit {
             return this.http.get(`https://api.github.com/search/users?q=${term}`)
               .pipe(
                 delay(this.delayApiResponse ? 3000 : 0),
-                map((response: Response) => {
+                map((response: any) => {
                   this.inProgress = false;
-                  const items = response['items'];
+                  const items: GitHubUser[] = response['items'];
 
                   // If no results are found, notify the user via a validation message
                   if (items.length < 1) {
@@ -129,8 +133,12 @@ export class AutocompleteComponent implements OnInit {
                       },
                     };
 
-                    this.myForm.get('selections').setErrors(invalidResponse);
-                    this.myForm.get('selections').markAsTouched();
+                    const control = this.myForm.get('selections');
+
+                    if (control) {
+                      control.setErrors(invalidResponse);
+                      control.markAsTouched();
+                    }
                   }
                   return items;
                 }),

@@ -4,6 +4,8 @@
   },
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
     "outDir": "./dist/out-tsc",
     "baseUrl": "demo",
     "sourceMap": true,
@@ -21,8 +23,7 @@
       "dom"
     ],
     "paths": {
-      "@terminus/ui": ["./dist/terminus-ui/public-api.ts"],
-      "@terminus/ui/testing": ["./dist/terminus-ui/testing/public-api.ts"]
+      "@terminus/ui": ["./dist/terminus-ui/public-api.ts"]
     }
   },
   "exclude": [

@@ -95,7 +95,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * The id of the most recently sorted TsSortable
    */
   @Input('tsSortActive')
-  public active: string;
+  public active!: string;
 
   /**
    * The direction to set when an TsSortable is initially sorted.
@@ -115,7 +115,9 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
     }
     this._direction = direction;
   }
-  public get direction(): TsSortDirection { return this._direction; }
+  public get direction(): TsSortDirection {
+    return this._direction;
+  }
   private _direction: TsSortDirection = '';
 
   /**
@@ -124,13 +126,13 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * May be overriden by the TsSortable's disable clear input.
    */
   @Input('tsSortDisableClear')
-  public get disableClear() {
-    return this._disableClear;
-  }
   public set disableClear(v: boolean) {
     this._disableClear = coerceBooleanProperty(v);
   }
-  private _disableClear: boolean;
+  public get disableClear() {
+    return this._disableClear;
+  }
+  private _disableClear: boolean = false;
 
   /**
    * Event emitted when the user changes either the active sort or sort direction

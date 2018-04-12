@@ -9,8 +9,7 @@
       "@angular/*": [
         "./../node_modules/@angular/*"
       ],
-      "@terminus/ui": ["./../dist/terminus-ui"],
-      "@terminus/ui/testing": ["./../dist/terminus-ui/testing"]
+      "@terminus/ui": ["./../dist/terminus-ui"]
     }
   },
   "files": [

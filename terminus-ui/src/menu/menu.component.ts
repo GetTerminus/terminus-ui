@@ -98,13 +98,13 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * The icon to be used in the trigger button
    */
-  public triggerIcon: 'arrow_drop_down' | 'more_vert';
+  public triggerIcon!: 'arrow_drop_down' | 'more_vert';
 
   /**
    * Provide access to the trigger
    */
   @ViewChild(MatMenuTrigger)
-  public trigger: MatMenuTrigger;
+  public trigger!: MatMenuTrigger;
 
   /**
    * Define if the menu should be opened by default
@@ -122,7 +122,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    * Allow a custom template for menu items
    */
   @Input()
-  public menuItemsTemplate: TemplateRef<ElementRef>;
+  public menuItemsTemplate!: TemplateRef<ElementRef>;
 
   /**
    * Define the X menu position

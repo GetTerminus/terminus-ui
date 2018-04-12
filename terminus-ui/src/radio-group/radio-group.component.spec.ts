@@ -7,6 +7,7 @@ import {
   TsRadioGroupComponent,
   CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR,
   TsRadioOption,
+  TsRadioFormatFn,
 } from './radio-group.component';
 
 
@@ -57,7 +58,7 @@ describe('TsRadioGroupComponent', () => {
       // tslint:disable: prefer-const
       let foo;
       // tslint:enable: prefer-const
-      expect(component.formatUILabelFn = foo).toEqual(undefined);
+      expect(component.formatUILabelFn = foo as any).toEqual(undefined);
     });
 
 
@@ -82,7 +83,7 @@ describe('TsRadioGroupComponent', () => {
       // tslint:disable: prefer-const
       let foo;
       // tslint:enable: prefer-const
-      expect(component.formatUISubLabelFn = foo).toEqual(undefined);
+      expect(component.formatUISubLabelFn = foo as any).toEqual(undefined);
     });
 
 
@@ -107,7 +108,7 @@ describe('TsRadioGroupComponent', () => {
       // tslint:disable: prefer-const
       let foo;
       // tslint:enable: prefer-const
-      expect(component.formatModelValueFn = foo).toEqual(undefined);
+      expect(component.formatModelValueFn = foo as any).toEqual(undefined);
     });
 
 
@@ -144,12 +145,12 @@ describe('TsRadioGroupComponent', () => {
   describe(`retrieveValue`, () => {
 
     test(`should use a formatter to return a value`, () => {
-      const fn1 = (v) => v.foo;
-      const val1 = component.retrieveValue(options[0], fn1);
+      const fn1: TsRadioFormatFn = (v) => v.foo;
+      const val1: string | TsRadioOption = component.retrieveValue(options[0], fn1);
       expect(val1).toEqual('foo_value');
 
-      const fn2 = (v) => v.bar;
-      const val2 = component.retrieveValue(options[1], fn2);
+      const fn2: TsRadioFormatFn = (v) => v.bar;
+      const val2: string | TsRadioOption = component.retrieveValue(options[1], fn2);
       expect(val2).toEqual('Bar Display');
     });
 

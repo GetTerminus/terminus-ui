@@ -24,7 +24,7 @@ export class PaginatorComponent implements AfterViewInit {
   zeroBased = false;
 
   @ViewChild(TsPaginatorComponent)
-  paginator: TsPaginatorComponent;
+  paginator!: TsPaginatorComponent;
 
 
   ngAfterViewInit(): void {

@@ -20,6 +20,7 @@ import {
   TsButtonModule,
   TsCardModule,
   TsCheckboxModule,
+  TsConfirmationModule,
   TsCopyModule,
   TsDatepickerModule,
   TsDateRangeModule,
@@ -42,7 +43,6 @@ import {
   TsTableModule,
   TsToggleModule,
   TsTooltipModule,
-  TsConfirmationModule,
   // INJECT: Add new UI component to demo UI imports
   // NB! The above line is required for our yeoman generator and should not be changed.
 } from '@terminus/ui';
@@ -62,6 +62,7 @@ import { BreakpointsComponent } from './components/breakpoints/breakpoints.compo
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { CopyComponent } from './components/copy/copy.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
@@ -86,7 +87,6 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
-import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -111,6 +111,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     TsButtonModule,
     TsCardModule,
     TsCheckboxModule,
+    TsConfirmationModule,
     TsCopyModule,
     TsDateRangeModule,
     TsDatepickerModule,
@@ -133,7 +134,6 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     TsToggleModule,
     TsTooltipModule,
     TsIconModule,
-    TsConfirmationModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -151,6 +151,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
+    ConfirmationComponent,
     CopyComponent,
     DateRangeComponent,
     DatepickerComponent,
@@ -175,7 +176,6 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     TooltipComponent,
     TypographyComponent,
     ValidationComponent,
-    ConfirmationComponent,
     // INJECT: Add demo component to declarations
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

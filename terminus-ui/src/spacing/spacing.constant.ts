@@ -7,7 +7,7 @@ const base = 16;
 /**
  * JS representation of the values in _spacing.scss
  */
-export const TS_SPACING = {
+export const TS_SPACING: {[key: string]: string[]} = {
   none: [
     '0',
   ],

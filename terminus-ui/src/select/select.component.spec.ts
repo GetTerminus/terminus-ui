@@ -5,6 +5,7 @@ import {
 
 import {
   TsSelectComponent,
+  TsSelectFormatFn,
   CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR,
 } from './select.component';
 
@@ -89,12 +90,12 @@ describe(`TsSelectComponent`, () => {
       // tslint:disable: prefer-const
       let foo;
       // tslint:enable: prefer-const
-      expect(component.formatUIFn = foo).toEqual(undefined);
+      expect(component.formatUIFn = foo as any).toEqual(undefined);
     });
 
 
     test(`should set/get the uiFormatFn`, () => {
-      const myFn = (v: any) => v.id;
+      const myFn: TsSelectFormatFn = (v: any) => v.id;
       component.formatUIFn = myFn;
       expect(component.formatUIFn).toEqual(myFn);
     });
@@ -114,12 +115,12 @@ describe(`TsSelectComponent`, () => {
       // tslint:disable: prefer-const
       let foo;
       // tslint:enable: prefer-const
-      expect(component.formatModelValueFn = foo).toEqual(undefined);
+      expect(component.formatModelValueFn = foo as any).toEqual(undefined);
     });
 
 
     test(`should set/get the formatModelValueFn`, () => {
-      const myFn = (v: any) => v.id;
+      const myFn: TsSelectFormatFn = (v: any) => v.id;
       component.formatModelValueFn = myFn;
       expect(component.formatModelValueFn).toEqual(myFn);
     });
@@ -151,12 +152,12 @@ describe(`TsSelectComponent`, () => {
   describe(`retrieveValue`, () => {
 
     test(`should use a formatter to return a value`, () => {
-      const fn1 = (v) => v.foo;
-      const val1 = component.retrieveValue(options[0], fn1);
+      const fn1: TsSelectFormatFn = (v: any) => v.foo;
+      const val1: string = component.retrieveValue(options[0], fn1);
       expect(val1).toEqual('foo_value');
 
-      const fn2 = (v) => v.bar;
-      const val2 = component.retrieveValue(options[1], fn2);
+      const fn2: TsSelectFormatFn = (v: any) => v.bar;
+      const val2: string = component.retrieveValue(options[1], fn2);
       expect(val2).toEqual('Bar Display');
     });
 

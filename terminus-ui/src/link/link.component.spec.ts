@@ -2,14 +2,15 @@ import { TsLinkComponent } from './link.component';
 
 
 describe(`TsLinkComponent`, () => {
+  let component: TsLinkComponent;
 
   beforeEach(() => {
-    this.component = new TsLinkComponent();
+    component = new TsLinkComponent();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 });

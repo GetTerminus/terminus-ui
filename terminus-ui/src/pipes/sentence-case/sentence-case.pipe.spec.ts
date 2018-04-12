@@ -12,8 +12,8 @@ describe(`TsSentenceCasePipe`, () => {
 
 
   test(`should return null if no value is passed in`, () => {
-    expect(pipe(null)).toEqual(null);
-    expect(pipe('')).toEqual(null);
+    expect(pipe(null)).toEqual(undefined);
+    expect(pipe('')).toEqual(undefined);
   });
 
 
