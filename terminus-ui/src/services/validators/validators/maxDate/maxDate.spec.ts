@@ -1,29 +1,39 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { maxDateValidator } from './maxDate';
 
 
 describe(`maxDateValidator`, () => {
+  let maxDate: string;
+  let validDate: string;
+  let invalidDate: string;
+  let validatorFn: ValidatorFn;
+  let invalidValidatorFn: ValidatorFn;
+  let validDateControl: AbstractControl;
+  let invalidDateControl: AbstractControl;
 
   beforeEach(() => {
-    this.maxDate = new Date(2017, 4, 1);
-    this.validDate = new Date(2017, 3, 1);
-    this.invalidDate = new Date(2017, 5, 1);
+    maxDate = new Date(2017, 4, 1).toISOString();
+    validDate = new Date(2017, 3, 1).toISOString();
+    invalidDate = new Date(2017, 5, 1).toISOString();
 
-    this.validatorFn = maxDateValidator(this.maxDate);
-    this.invalidValidatorFn = maxDateValidator('foo');
+    validatorFn = maxDateValidator(maxDate);
+    invalidValidatorFn = maxDateValidator('foo');
 
-    this.nullControl = new FormControl(null);
-    this.stringControl = new FormControl('foo');
-    this.validDateControl = new FormControl(this.validDate);
-    this.invalidDateControl = new FormControl(this.invalidDate);
+    validDateControl = new FormControl(validDate);
+    invalidDateControl = new FormControl(invalidDate);
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     it(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(new FormControl(null))).toEqual(null);
     });
 
   });
@@ -32,7 +42,7 @@ describe(`maxDateValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -41,7 +51,7 @@ describe(`maxDateValidator`, () => {
   describe(`if the maxDate is not a valid date`, () => {
 
     it(`should return null`, () => {
-      expect(this.invalidValidatorFn(this.validDateControl)).toEqual(null);
+      expect(invalidValidatorFn(validDateControl)).toEqual(null);
     });
 
   });
@@ -50,10 +60,10 @@ describe(`maxDateValidator`, () => {
   describe(`if the control value is not a valid date`, () => {
 
     it(`should return the invalid response`, () => {
-      const actual = this.validatorFn(this.stringControl).maxDate;
+      const actual = validatorFn(new FormControl('foo'))!.maxDate;
       const expected = {
         valid: false,
-        maxDate: this.maxDate,
+        maxDate: maxDate,
         actual: 'foo',
       };
 
@@ -66,7 +76,7 @@ describe(`maxDateValidator`, () => {
   describe(`if the control value is before the maxDate`, () => {
 
     it(`should return null`, () => {
-      expect(this.validatorFn(this.validDateControl)).toEqual(null);
+      expect(validatorFn(validDateControl)).toEqual(null);
     });
 
   });
@@ -75,11 +85,11 @@ describe(`maxDateValidator`, () => {
   describe(`if the control value is after the maxDate`, () => {
 
     it(`should return the invalid response`, () => {
-      const actual = this.validatorFn(this.invalidDateControl).maxDate;
+      const actual = validatorFn(invalidDateControl)!.maxDate;
       const expected = {
         valid: false,
-        maxDate: this.maxDate,
-        actual: this.invalidDate,
+        maxDate: maxDate,
+        actual: invalidDate,
       };
 
       expect(actual).toEqual(expected);

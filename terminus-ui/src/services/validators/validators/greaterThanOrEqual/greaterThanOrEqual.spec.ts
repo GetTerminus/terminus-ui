@@ -1,12 +1,17 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 import { greaterThanOrEqualValidator } from './greaterThanOrEqual';
 
 
 describe(`greaterThanOrEqualValidator`, () => {
+  let validatorFn: ValidatorFn;
 
   beforeEach(() => {
-    this.validatorFn = greaterThanOrEqualValidator(10);
+    validatorFn = greaterThanOrEqualValidator(10);
   });
 
 
@@ -16,7 +21,7 @@ describe(`greaterThanOrEqualValidator`, () => {
       const values = [undefined, {}];
 
       for (const val of values) {
-        expect(this.validatorFn(val)).toEqual(null);
+        expect(validatorFn(val as any)).toEqual(null);
       }
     });
 
@@ -29,7 +34,7 @@ describe(`greaterThanOrEqualValidator`, () => {
       const values = [12, 10, 98.6, 9999];
 
       for (const val of values) {
-        expect(this.validatorFn(new FormControl(val))).toEqual(null);
+        expect(validatorFn(new FormControl(val))).toEqual(null);
       }
     });
 
@@ -42,10 +47,10 @@ describe(`greaterThanOrEqualValidator`, () => {
       const values = [9, -10, 0];
 
       for (const val of values) {
-        const result = this.validatorFn(new FormControl(val));
+        const result = validatorFn(new FormControl(val));
 
-        expect(result.greaterThanOrEqual.valid).toEqual(false);
-        expect(result.greaterThanOrEqual.actual).toEqual(val);
+        expect(result!.greaterThanOrEqual.valid).toEqual(false);
+        expect(result!.greaterThanOrEqual.actual).toEqual(val);
       }
     });
 

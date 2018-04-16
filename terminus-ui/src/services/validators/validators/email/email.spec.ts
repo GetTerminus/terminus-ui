@@ -1,32 +1,24 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 import { emailValidator } from './email';
 
 
 describe(`emailValidator`, () => {
+  let validatorFn: ValidatorFn;
 
   beforeEach(() => {
-    this.validatorFn = emailValidator();
-
-    this.nullControl = new FormControl(null);
-    this.validEmails = [
-      `foo@bar.co`,
-      `foo@bar.baz.net`,
-    ];
-    this.invalidEmails = [
-      `foo`,
-      `foo@`,
-      `foo@bar`,
-      `foo@bar.`,
-      `foo@bar.c`,
-    ];
+    validatorFn = emailValidator();
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(new FormControl(null))).toEqual(null);
     });
 
   });
@@ -35,7 +27,7 @@ describe(`emailValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -46,7 +38,7 @@ describe(`emailValidator`, () => {
     test(`should return null`, () => {
       const control = new FormControl(`foo@bar.co`);
 
-      expect(this.validatorFn(control)).toEqual(null);
+      expect(validatorFn(control)).toEqual(null);
     });
 
   });
@@ -61,7 +53,7 @@ describe(`emailValidator`, () => {
         actual: 'foo@bar',
       };
 
-      expect(this.validatorFn(control).email).toEqual(expected);
+      expect(validatorFn(control)!.email).toEqual(expected);
     });
 
   });

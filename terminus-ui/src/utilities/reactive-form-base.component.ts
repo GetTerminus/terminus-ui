@@ -43,7 +43,7 @@ export class TsReactiveFormBaseComponent {
    * (for form control support)
    */
   @Input()
-  public formControl: FormControl;
+  public formControl!: FormControl;
 
   /**
    * Return the value

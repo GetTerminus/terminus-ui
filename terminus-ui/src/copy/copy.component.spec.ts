@@ -9,34 +9,35 @@ import { TsCopyComponent } from './copy.component';
 
 
 describe(`TsCopyComponent`, () => {
+  let component: TsCopyComponent;
 
   beforeEach(() => {
-    this.component = new TsCopyComponent(
+    component = new TsCopyComponent(
       new TsDocumentServiceMock(),
       new TsWindowServiceMock(),
     );
-    this.component.content = new ElementRefMock();
+    component.content = new ElementRefMock();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   describe(`get textContent()`, () => {
 
     it(`should return the content if accessible`, () => {
-      this.component.content.nativeElement.innerText = 'foo';
+      component.content.nativeElement.innerText = 'foo';
 
-      expect(this.component.textContent).toEqual('foo');
+      expect(component.textContent).toEqual('foo');
     });
 
 
     it(`should return an empty string if the content is not accessible`, () => {
-      this.component.content.nativeElement.innerText = null;
+      component.content.nativeElement.innerText = null;
 
-      expect(this.component.textContent).toEqual('');
+      expect(component.textContent).toEqual('');
     });
 
   });
@@ -45,27 +46,27 @@ describe(`TsCopyComponent`, () => {
   describe(`selectText()`, () => {
 
     it(`should return false if disabled`, () => {
-      expect(this.component.selectText(this.component.content, false, true)).toEqual(false);
+      expect(component.selectText(component.content, false, true)).toEqual(false);
     });
 
 
     it(`should return if already selected`, () => {
-      expect(this.component.selectText(this.component.content, true, false)).toEqual(false);
+      expect(component.selectText(component.content, true, false)).toEqual(false);
     });
 
 
     it(`should select the text within the passed in element`, () => {
-      this.component.window.getSelection = jest.fn().mockReturnValue({
+      component['window'].getSelection = jest.fn().mockReturnValue({
         removeAllRanges: noop,
         addRange: noop,
       });
 
-      this.component.document.createRange = jest.fn().mockReturnValue({selectNodeContents: noop});
-      this.component.selectText(this.component.content.nativeElement, false, false);
+      component['document'].createRange = jest.fn().mockReturnValue({selectNodeContents: noop});
+      component.selectText(component.content.nativeElement, false, false);
 
-      expect(this.component.window.getSelection).toHaveBeenCalled();
-      expect(this.component.document.createRange).toHaveBeenCalled();
-      expect(this.component.hasSelected).toEqual(true);
+      expect(component['window'].getSelection).toHaveBeenCalled();
+      expect(component['document'].createRange).toHaveBeenCalled();
+      expect(component.hasSelected).toEqual(true);
     });
 
   });
@@ -74,12 +75,12 @@ describe(`TsCopyComponent`, () => {
   describe(`resetSelection()`, () => {
 
     it(`should set the flag to false`, () => {
-      this.component.hasSelected = true;
+      component.hasSelected = true;
 
-      expect(this.component.hasSelected).toEqual(true);
+      expect(component.hasSelected).toEqual(true);
 
-      this.component.resetSelection();
-      expect(this.component.hasSelected).toEqual(false);
+      component.resetSelection();
+      expect(component.hasSelected).toEqual(false);
     });
 
   });
@@ -99,31 +100,31 @@ describe(`TsCopyComponent`, () => {
         remove: jest.fn(),
         setSelectionRange: jest.fn(),
       };
-      this.component.document.createElement = jest.fn().mockReturnValue(MOCK_TEXTAREA);
+      component['document'].createElement = jest.fn().mockReturnValue(MOCK_TEXTAREA);
     });
 
 
     it(`should set the text to the clipboard`, () => {
-      this.component.document.body.appendChild = jest.fn();
-      this.component.document.execCommand = jest.fn();
-      this.component.copyToClipboard('foo');
+      component['document'].body.appendChild = jest.fn();
+      component['document'].execCommand = jest.fn();
+      component.copyToClipboard('foo');
 
-      expect(this.component.document.createElement).toHaveBeenCalledWith('textarea');
-      expect(this.component.document.body.appendChild).toHaveBeenCalled();
-      expect(this.component.document.execCommand).toHaveBeenCalledWith('copy');
-      expect(this.component.document.execCommand).toHaveBeenCalledWith('copy');
+      expect(component['document'].createElement).toHaveBeenCalledWith('textarea');
+      expect(component['document'].body.appendChild).toHaveBeenCalled();
+      expect(component['document'].execCommand).toHaveBeenCalledWith('copy');
+      expect(component['document'].execCommand).toHaveBeenCalledWith('copy');
     });
 
 
     it(`should fall back to a prompt if execCommand fails`, () => {
-      this.component.document.execCommand = () => {
+      component['document'].execCommand = () => {
         throw new Error('fake error');
       };
-      this.component.window.prompt = jest.fn();
+      component['window'].prompt = jest.fn();
 
-      this.component.copyToClipboard('foo');
+      component.copyToClipboard('foo');
 
-      expect(this.component.window.prompt).toHaveBeenCalled();
+      expect(component['window'].prompt).toHaveBeenCalled();
     });
 
   });

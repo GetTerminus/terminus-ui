@@ -4,13 +4,15 @@ import { TsValidationMessageService } from './validation-message.service';
 
 
 describe(`TsValidationMessageService`, () => {
+  let service: TsValidationMessageService;
 
   beforeEach(() => {
-    this.service = new TsValidationMessageService();
+    service = new TsValidationMessageService();
   });
 
+
   it(`should exist`, () => {
-    expect(this.service).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
 
@@ -20,7 +22,7 @@ describe(`TsValidationMessageService`, () => {
       const validatorValueMock = {
         requiredLength: 9,
       };
-      const actual = this.service.getValidatorErrorMessage('minlength', validatorValueMock);
+      const actual = service.getValidatorErrorMessage('minlength', validatorValueMock);
       const expected = `Minimum length 9`;
 
       expect(actual).toEqual(expected);
@@ -30,7 +32,7 @@ describe(`TsValidationMessageService`, () => {
       const validatorValueMock = {
         lowercase: 4,
       };
-      const actual = this.service.getValidatorErrorMessage('lowercase', validatorValueMock);
+      const actual = service.getValidatorErrorMessage('lowercase', validatorValueMock);
       const expected = `Must contain at least 4 lowercase letters`;
 
       expect(actual).toEqual(expected);
@@ -40,7 +42,7 @@ describe(`TsValidationMessageService`, () => {
       const validatorValueMock = {
         requiredLength: 12,
       };
-      const actual = this.service.getValidatorErrorMessage('maxlength', validatorValueMock);
+      const actual = service.getValidatorErrorMessage('maxlength', validatorValueMock);
       const expected = `Maximum length 12`;
 
       expect(actual).toEqual(expected);
@@ -54,7 +56,7 @@ describe(`TsValidationMessageService`, () => {
         value: date,
         maxDate: maxDate,
       };
-      const actual = this.service.getValidatorErrorMessage('maxDate', validatorValueMock);
+      const actual = service.getValidatorErrorMessage('maxDate', validatorValueMock);
       const expected = `Date must be before ${format(maxDate, 'M/D/YYYY')}`;
 
       expect(actual).toEqual(expected);
@@ -68,7 +70,7 @@ describe(`TsValidationMessageService`, () => {
         value: date,
         minDate: minDate,
       };
-      const actual = this.service.getValidatorErrorMessage('minDate', validatorValueMock);
+      const actual = service.getValidatorErrorMessage('minDate', validatorValueMock);
       const expected = `Date must be after ${format(minDate, 'M/D/YYYY')}`;
 
       expect(actual).toEqual(expected);

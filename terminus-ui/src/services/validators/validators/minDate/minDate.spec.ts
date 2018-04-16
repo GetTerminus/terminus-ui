@@ -1,29 +1,44 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { minDateValidator } from './minDate';
 
 
 describe(`minDateValidator`, () => {
+  let minDate: string;
+  let validDate: string;
+  let invalidDate: string;
+  let validatorFn: ValidatorFn;
+  let invalidValidatorFn: ValidatorFn;
+  let nullControl: AbstractControl;
+  let stringControl: AbstractControl;
+  let validDateControl: AbstractControl;
+  let invalidDateControl: AbstractControl;
+
 
   beforeEach(() => {
-    this.minDate = new Date(2017, 4, 1);
-    this.validDate = new Date(2017, 5, 1);
-    this.invalidDate = new Date(2017, 3, 1);
+    minDate = new Date(2017, 4, 1).toISOString();
+    validDate = new Date(2017, 5, 1).toISOString();
+    invalidDate = new Date(2017, 3, 1).toISOString();
 
-    this.validatorFn = minDateValidator(this.minDate);
-    this.invalidValidatorFn = minDateValidator('foo');
+    validatorFn = minDateValidator(minDate);
+    invalidValidatorFn = minDateValidator('foo');
 
-    this.nullControl = new FormControl(null);
-    this.stringControl = new FormControl('foo');
-    this.validDateControl = new FormControl(this.validDate);
-    this.invalidDateControl = new FormControl(this.invalidDate);
+    nullControl = new FormControl(null);
+    stringControl = new FormControl('foo');
+    validDateControl = new FormControl(validDate);
+    invalidDateControl = new FormControl(invalidDate);
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     it(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(nullControl)).toEqual(null);
     });
 
   });
@@ -32,7 +47,7 @@ describe(`minDateValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -41,7 +56,7 @@ describe(`minDateValidator`, () => {
   describe(`if the minDate is not a valid date`, () => {
 
     it(`should return null`, () => {
-      expect(this.invalidValidatorFn(this.validDateControl)).toEqual(null);
+      expect(invalidValidatorFn(validDateControl)).toEqual(null);
     });
 
   });
@@ -50,10 +65,10 @@ describe(`minDateValidator`, () => {
   describe(`if the control value is not a valid date`, () => {
 
     it(`should return the invalid response`, () => {
-      const actual = this.validatorFn(this.stringControl).minDate;
+      const actual = validatorFn(stringControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: this.minDate,
+        minDate: minDate,
         actual: 'foo',
       };
 
@@ -66,7 +81,7 @@ describe(`minDateValidator`, () => {
   describe(`if the control value is after the minDate`, () => {
 
     it(`should return null`, () => {
-      expect(this.validatorFn(this.validDateControl)).toEqual(null);
+      expect(validatorFn(validDateControl)).toEqual(null);
     });
 
   });
@@ -75,11 +90,11 @@ describe(`minDateValidator`, () => {
   describe(`if the control value is before the minDate`, () => {
 
     it(`should return the invalid response`, () => {
-      const actual = this.validatorFn(this.invalidDateControl).minDate;
+      const actual = validatorFn(invalidDateControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: this.minDate,
-        actual: this.invalidDate,
+        minDate: minDate,
+        actual: invalidDate,
       };
 
       expect(actual).toEqual(expected);

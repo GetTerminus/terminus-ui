@@ -11,9 +11,10 @@ const injector: any = null;
 
 
 describe(`TsLoadingOverlayDirective`, () => {
+  let directive: TsLoadingOverlayDirective;
 
   beforeEach(() => {
-    this.directive = new TsLoadingOverlayDirective(
+    directive = new TsLoadingOverlayDirective(
       new ElementRefMock(),
       new TsWindowServiceMock(),
       componentFactoryResolver,
@@ -26,9 +27,9 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`tsLoadingOverlay`, () => {
 
     it(`should exist`, () => {
-      expect(this.directive).toBeDefined();
-      expect(this.directive.bodyPortalHost).toBeDefined();
-      expect(this.directive.loadingOverlayPortal).toBeDefined();
+      expect(directive).toBeDefined();
+      expect(directive['bodyPortalHost']).toBeDefined();
+      expect(directive['loadingOverlayPortal']).toBeDefined();
     });
 
   });
@@ -37,23 +38,23 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`set tsLoadingOverlay()`, () => {
 
     beforeEach(() => {
-      this.directive.bodyPortalHost.attach = jest.fn();
-      this.directive.bodyPortalHost.detach = jest.fn();
+      directive['bodyPortalHost'].attach = jest.fn();
+      directive['bodyPortalHost'].detach = jest.fn();
     });
 
     it(`should attach to the host when TRUE`, () => {
-      this.directive.tsLoadingOverlay = true;
+      directive.tsLoadingOverlay = true;
 
-      expect(this.directive.bodyPortalHost.attach).toHaveBeenCalled();
-      expect(this.directive.bodyPortalHost.detach).not.toHaveBeenCalled();
+      expect(directive['bodyPortalHost'].attach).toHaveBeenCalled();
+      expect(directive['bodyPortalHost'].detach).not.toHaveBeenCalled();
     });
 
 
     it(`should detach from the host when FALSE`, () => {
-      this.directive.tsLoadingOverlay = false;
+      directive.tsLoadingOverlay = false;
 
-      expect(this.directive.bodyPortalHost.detach).toHaveBeenCalled();
-      expect(this.directive.bodyPortalHost.attach).not.toHaveBeenCalled();
+      expect(directive['bodyPortalHost'].detach).toHaveBeenCalled();
+      expect(directive['bodyPortalHost'].attach).not.toHaveBeenCalled();
     });
 
   });
@@ -62,10 +63,10 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`ngOnInit()`, () => {
 
     it(`should get the current position and pass to determinePosition()`, () => {
-      this.directive.determinePosition = jest.fn();
-      this.directive.ngOnInit();
+      directive['determinePosition'] = jest.fn();
+      directive.ngOnInit();
 
-      expect(this.directive.determinePosition).toHaveBeenCalledWith('static');
+      expect(directive['determinePosition']).toHaveBeenCalledWith('static');
     });
 
   });
@@ -74,22 +75,22 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`ngOnDestroy()`, () => {
 
     beforeEach(() => {
-      this.directive.bodyPortalHost.dispose = jest.fn();
+      directive['bodyPortalHost'].dispose = jest.fn();
     });
 
 
     it(`should dispose the bodyPortalHost if it exists`, () => {
-      this.directive.ngOnDestroy();
+      directive.ngOnDestroy();
 
-      expect(this.directive.bodyPortalHost.dispose).toHaveBeenCalled();
+      expect(directive['bodyPortalHost'].dispose).toHaveBeenCalled();
     });
 
 
     it(`should not throw an error if the bodyPortalHost doesn't exist`, () => {
-      this.directive.bodyPortalHost = undefined;
-      this.directive.ngOnDestroy();
+      directive['bodyPortalHost'] = undefined as any;
+      directive.ngOnDestroy();
 
-      expect(() => {this.directive.ngOnDestroy(); }).not.toThrow();
+      expect(() => {directive.ngOnDestroy(); }).not.toThrow();
     });
 
   });
@@ -98,14 +99,14 @@ describe(`TsLoadingOverlayDirective`, () => {
   describe(`determinePosition()`, () => {
 
     it(`should return the existing position if it is relative|absolute`, () => {
-      expect(this.directive.determinePosition('relative')).toEqual('relative');
-      expect(this.directive.determinePosition('absolute')).toEqual('absolute');
+      expect(directive['determinePosition']('relative')).toEqual('relative');
+      expect(directive['determinePosition']('absolute')).toEqual('absolute');
     });
 
 
     it(`should return relative if the position is anything other than relative|absolute`, () => {
-      expect(this.directive.determinePosition('fixed')).toEqual('relative');
-      expect(this.directive.determinePosition('static')).toEqual('relative');
+      expect(directive['determinePosition']('fixed')).toEqual('relative');
+      expect(directive['determinePosition']('static')).toEqual('relative');
     });
 
   });

@@ -1,26 +1,31 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 import { equalToControlValidator } from './equalToControl';
 
 
 describe(`equalToControlValidator`, () => {
+  /*
+   *let validatorFn: ValidatorFn;
+   */
+  let validValidatorFn: ValidatorFn;
 
   beforeEach(() => {
-    this.validatorFn = equalToControlValidator(this.minDate);
-    this.invalidValidatorFn = equalToControlValidator('foo' as any);
 
-    this.nullControl = new FormControl(null);
-    this.stringControl = new FormControl('foo' as any);
-    this.stringControl2 = new FormControl('foo' as any);
-    this.stringControlUnmatched = new FormControl('bar');
-    this.validValidatorFn = equalToControlValidator(this.stringControl);
+    /*
+     *validatorFn = equalToControlValidator(this.minDate);
+     */
+    validValidatorFn = equalToControlValidator(new FormControl('foo'));
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     it(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validValidatorFn(new FormControl(null))).toEqual(null);
     });
 
   });
@@ -29,7 +34,7 @@ describe(`equalToControlValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validValidatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -38,7 +43,7 @@ describe(`equalToControlValidator`, () => {
   describe(`if the contol values match`, () => {
 
     test(`should return null`, () => {
-      expect(this.validValidatorFn(this.stringControl2)).toEqual(null);
+      expect(validValidatorFn(new FormControl('foo' as any))).toEqual(null);
     });
 
   });
@@ -47,7 +52,7 @@ describe(`equalToControlValidator`, () => {
   describe(`if the control values do not match`, () => {
 
     test(`should return the invalid response`, () => {
-      const actual = this.validValidatorFn(this.stringControlUnmatched).equalToControl;
+      const actual = validValidatorFn(new FormControl('bar'))!.equalToControl;
       const expected = {
         valid: false,
         compareValue: 'foo',

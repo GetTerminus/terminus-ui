@@ -28,7 +28,7 @@ export type TsDateTypes =
   name: 'tsDate',
 })
 export class TsDatePipe implements PipeTransform {
-  transform(value: string|Date, format: TsDateTypes = 'short'): string {
+  transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
     const validFormats: TsDateTypes[] = [
       'short', // 02/08/2018
       'medium', // February 8th, 2018
@@ -37,8 +37,8 @@ export class TsDatePipe implements PipeTransform {
     ];
 
     // Check for null values to avoid issues during data-binding
-    if (value == null || value === '') {
-      return null;
+    if (!value) {
+      return;
     }
 
     // Check for date validity

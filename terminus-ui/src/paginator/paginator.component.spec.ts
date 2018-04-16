@@ -1,3 +1,7 @@
+import {
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
 import {
@@ -7,30 +11,31 @@ import {
 
 
 describe(`TsPaginatorComponent`, () => {
+  let component: TsPaginatorComponent;
+  const TOTAL_RECORDS = 100;
 
   beforeEach(() => {
-    this.component = new TsPaginatorComponent(
+    component = new TsPaginatorComponent(
       new ChangeDetectorRefMock(),
     );
-    this.TOTAL_RECORDS = 100;
   });
 
 
   test(`should exist`, () => {
-    this.component.totalRecords = 125;
-    this.component.ngAfterViewInit();
+    component.totalRecords = 125;
+    component.ngAfterViewInit();
 
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   describe(`ngAfterViewInit()`, () => {
 
     test(`should call the initialization method`, () => {
-      this.component.initialize = jest.fn();
-      this.component.ngAfterViewInit();
+      component['initialize'] = jest.fn();
+      component.ngAfterViewInit();
 
-      expect(this.component.initialize).toHaveBeenCalled();
+      expect(component['initialize']).toHaveBeenCalled();
     });
 
   });
@@ -39,41 +44,37 @@ describe(`TsPaginatorComponent`, () => {
   describe(`ngOnChanges()`, () => {
 
     beforeEach(() => {
-      this.component.initialize = jest.fn();
+      component['initialize'] = jest.fn();
     });
 
 
     test(`should call the initialization method`, () => {
-      this.component.ngOnChanges({});
+      component.ngOnChanges({});
 
-      expect(this.component.initialize).toHaveBeenCalled();
+      expect(component['initialize']).toHaveBeenCalled();
     });
 
 
     test(`should set the recordCountTooHighMessage if passed in`, () => {
-      this.component.recordCountTooHighMessage = 'my new message';
+      component.recordCountTooHighMessage = 'my new message';
+      const changesMock: SimpleChanges = {
+        recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false),
+      };
       // Fake the change event that Angular would normally trigger
-      this.component.ngOnChanges({
-        recordCountTooHighMessage: {
-          previousValue: 'old message',
-          currentValue: 'my new message',
-        },
-      });
+      component.ngOnChanges(changesMock);
 
-      expect(this.component.templateContext.$implicit).toEqual('my new message');
+      expect(component.templateContext.$implicit).toEqual('my new message');
     });
 
 
     test(`should reset currentPageIndex if isZeroBased changed`, () => {
+      const changesMock: SimpleChanges = {
+        isZeroBased: new SimpleChange(true, false, false),
+      };
       // Fake the change event that Angular would normally trigger
-      this.component.ngOnChanges({
-        isZeroBased: {
-          previousValue: true,
-          currentValue: false,
-        },
-      });
+      component.ngOnChanges(changesMock);
 
-      expect(this.component.currentPageIndex).toEqual(1);
+      expect(component.currentPageIndex).toEqual(1);
     });
 
   });
@@ -86,20 +87,20 @@ describe(`TsPaginatorComponent`, () => {
         name: '21 - 30 of 125',
         value: '2',
       };
-      spyOn(this.component.pageSelect, 'emit').and.callThrough();
-      spyOn(this.component, 'createPagesArray').and.callThrough();
-      spyOn(this.component, 'createCurrentPageLabel').and.callThrough();
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
+      spyOn(component.pageSelect, 'emit').and.callThrough();
+      spyOn(component, 'createPagesArray').and.callThrough();
+      spyOn(component, 'createCurrentPageLabel').and.callThrough();
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
 
-      expect(this.component.currentPageIndex).toEqual(0);
+      expect(component.currentPageIndex).toEqual(0);
 
-      this.component.currentPageChanged(eventMock);
+      component.currentPageChanged(eventMock);
 
-      expect(this.component.currentPageIndex).toEqual(2);
-      expect(this.component.createPagesArray).toHaveBeenCalled();
-      expect(this.component.createCurrentPageLabel).toHaveBeenCalled();
-      expect(this.component.pageSelect.emit).toHaveBeenCalled();
+      expect(component.currentPageIndex).toEqual(2);
+      expect(component['createPagesArray']).toHaveBeenCalled();
+      expect(component['createCurrentPageLabel']).toHaveBeenCalled();
+      expect(component.pageSelect.emit).toHaveBeenCalled();
     });
 
   });
@@ -108,36 +109,36 @@ describe(`TsPaginatorComponent`, () => {
   describe(`changePage()`, () => {
 
     test(`should fake a changed page event when valid`, () => {
-      spyOn(this.component, 'currentPageChanged').and.callThrough();
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
-      this.component.changePage(2, 1, this.component.pagesArray);
+      spyOn(component, 'currentPageChanged').and.callThrough();
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
+      component.changePage(2, 1, component.pagesArray);
 
-      expect(this.component.currentPageChanged).toHaveBeenCalled();
+      expect(component.currentPageChanged).toHaveBeenCalled();
     });
 
 
     test(`should do nothing when the destination is not valid`, () => {
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
-      spyOn(this.component, 'currentPageChanged');
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
+      spyOn(component, 'currentPageChanged');
 
-      this.component.changePage(-1, 1, this.component.pagesArray);
-      expect(this.component.currentPageChanged).not.toHaveBeenCalled();
+      component.changePage(-1, 1, component.pagesArray);
+      expect(component.currentPageChanged).not.toHaveBeenCalled();
 
-      const invalidLength = this.component.pagesArray.length + 2;
-      this.component.changePage(invalidLength, 1, this.component.pagesArray);
-      expect(this.component.currentPageChanged).not.toHaveBeenCalled();
+      const invalidLength = component.pagesArray.length + 2;
+      component.changePage(invalidLength, 1, component.pagesArray);
+      expect(component.currentPageChanged).not.toHaveBeenCalled();
     });
 
 
     test(`should do nothing when already on the requested page`, () => {
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
-      spyOn(this.component, 'currentPageChanged');
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
+      spyOn(component, 'currentPageChanged');
 
-      this.component.changePage(2, 2, this.component.pagesArray);
-      expect(this.component.currentPageChanged).not.toHaveBeenCalled();
+      component.changePage(2, 2, component.pagesArray);
+      expect(component.currentPageChanged).not.toHaveBeenCalled();
     });
 
   });
@@ -146,20 +147,20 @@ describe(`TsPaginatorComponent`, () => {
   describe(`isFirstPage()`, () => {
 
     test(`should return TRUE when the passed in page is 0`, () => {
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
 
-      expect(this.component.isFirstPage(0)).toEqual(true);
+      expect(component.isFirstPage(0)).toEqual(true);
     });
 
 
     test(`should return FALSE when the passed in page is not 0`, () => {
-      this.component.totalRecords = 125;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 125;
+      component.ngAfterViewInit();
 
-      expect(this.component.isFirstPage(7)).toEqual(false);
-      expect(this.component.isFirstPage(1)).toEqual(false);
-      expect(this.component.isFirstPage(-2)).toEqual(false);
+      expect(component.isFirstPage(7)).toEqual(false);
+      expect(component.isFirstPage(1)).toEqual(false);
+      expect(component.isFirstPage(-2)).toEqual(false);
     });
 
   });
@@ -168,25 +169,25 @@ describe(`TsPaginatorComponent`, () => {
   describe(`isLastPage()`, () => {
 
     test(`should return TRUE when the page is the last in the array`, () => {
-      this.component.totalRecords = 20;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 20;
+      component.ngAfterViewInit();
 
-      expect(this.component.isLastPage(1)).toEqual(true);
+      expect(component.isLastPage(1)).toEqual(true);
     });
 
 
     test(`should return FALSE when the page is not the last in the array`, () => {
-      this.component.totalRecords = 20;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 20;
+      component.ngAfterViewInit();
 
-      expect(this.component.isLastPage(0)).toEqual(false);
+      expect(component.isLastPage(0)).toEqual(false);
     });
 
 
     test(`should return FALSE if the pagesArray doesn't exist`, () => {
-      this.pagesArray = undefined;
+      component.pagesArray = undefined as any;
 
-      expect(this.component.isLastPage(1)).toEqual(false);
+      expect(component.isLastPage(1)).toEqual(false);
     });
   });
 
@@ -194,30 +195,30 @@ describe(`TsPaginatorComponent`, () => {
   describe(`shouldShowRecordsMessage()`, () => {
 
     test(`should return TRUE if there are more records than the recommended max and the message exists`, () => {
-      this.component.totalRecords = 101;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 101;
+      component.ngAfterViewInit();
 
-      const actual = this.component.shouldShowRecordsMessage('foo', 100, 101);
+      const actual = component.shouldShowRecordsMessage('foo', 100, 101);
       const expected = true;
       expect(actual).toEqual(expected);
     });
 
 
     test(`should return FALSE if there are more records than the recommended max but there is no message`, () => {
-      this.component.totalRecords = 101;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 101;
+      component.ngAfterViewInit();
 
-      const actual = this.component.shouldShowRecordsMessage('', 100, 101);
+      const actual = component.shouldShowRecordsMessage('', 100, 101);
       const expected = false;
       expect(actual).toEqual(expected);
     });
 
 
     test(`should return FALSE if there are less records than the recommended max`, () => {
-      this.component.totalRecords = 99;
-      this.component.ngAfterViewInit();
+      component.totalRecords = 99;
+      component.ngAfterViewInit();
 
-      const actual = this.component.shouldShowRecordsMessage('foo', 100, 99);
+      const actual = component.shouldShowRecordsMessage('foo', 100, 99);
       const expected = false;
       expect(actual).toEqual(expected);
     });
@@ -228,15 +229,15 @@ describe(`TsPaginatorComponent`, () => {
   describe(`recordsPerPageUpdated()`, () => {
 
     test(`should update the records per page, reset current page & re-initialize`, () => {
-      spyOn(this.component, 'initialize');
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
+      spyOn(component, 'initialize');
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
 
-      this.component.recordsPerPageUpdated(25);
+      component.recordsPerPageUpdated(25);
 
-      expect(this.component.recordsPerPage).toEqual(25);
-      expect(this.component.currentPageIndex).toEqual(0);
-      expect(this.component.initialize).toHaveBeenCalled();
+      expect(component.recordsPerPage).toEqual(25);
+      expect(component.currentPageIndex).toEqual(0);
+      expect(component['initialize']).toHaveBeenCalled();
     });
 
   });
@@ -245,18 +246,18 @@ describe(`TsPaginatorComponent`, () => {
   describe(`menuIsDisabled()`, () => {
 
     test(`should return TRUE if there are less than 2 pages`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
 
-      expect(this.component.menuIsDisabled(1)).toEqual(true);
+      expect(component.menuIsDisabled(1)).toEqual(true);
     });
 
 
     test(`should return FALSE if there are 2 or more pages`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
 
-      expect(this.component.menuIsDisabled(3)).toEqual(false);
+      expect(component.menuIsDisabled(3)).toEqual(false);
     });
 
   });
@@ -266,18 +267,18 @@ describe(`TsPaginatorComponent`, () => {
     const options = [5, 10, 20];
 
     test(`should return TRUE if there are fewer records than the amount of the lowest records-per-page option`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
 
-      expect(this.component.disableRecordsPerPage(4, options)).toEqual(true);
+      expect(component.disableRecordsPerPage(4, options)).toEqual(true);
     });
 
 
     test(`should return FALSE if there are more records than the amount of the lowest records-per-page option`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
 
-      expect(this.component.disableRecordsPerPage(6, options)).toEqual(false);
+      expect(component.disableRecordsPerPage(6, options)).toEqual(false);
     });
 
   });
@@ -286,9 +287,9 @@ describe(`TsPaginatorComponent`, () => {
   describe(`createCurrentPageLabel()`, () => {
 
     test(`should return a valid title`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
-      const actual = this.component.createCurrentPageLabel(2, this.component.pagesArray, 100);
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
+      const actual = component['createCurrentPageLabel'](2, component.pagesArray, 100);
       const expected = '21 - 30 of 100';
 
       expect(actual).toEqual(expected);
@@ -296,8 +297,8 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should return a valid title when no records exist`, () => {
-      this.component.ngAfterViewInit();
-      const actual = this.component.createCurrentPageLabel(1, [], 0);
+      component.ngAfterViewInit();
+      const actual = component['createCurrentPageLabel'](1, [], 0);
       const expected = '0 of 0';
 
       expect(actual).toEqual(expected);
@@ -305,9 +306,9 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should return a valid title when the requested page doesn't exist`, () => {
-      this.component.totalRecords = this.TOTAL_RECORDS;
-      this.component.ngAfterViewInit();
-      const actual = this.component.createCurrentPageLabel(10, this.component.pagesArray, this.TOTAL_RECORDS);
+      component.totalRecords = TOTAL_RECORDS;
+      component.ngAfterViewInit();
+      const actual = component['createCurrentPageLabel'](10, component.pagesArray, TOTAL_RECORDS);
       const expected = '91 - 100 of 100';
 
       expect(actual).toEqual(expected);
@@ -319,7 +320,7 @@ describe(`TsPaginatorComponent`, () => {
   describe(`createPagesArray()`, () => {
 
     test(`should return an empty array if there are no records`, () => {
-      const actual = this.component.createPagesArray(0, 10, true);
+      const actual = component['createPagesArray'](0, 10, true);
       const expected: TsPaginatorMenuItem[] = [];
 
       expect(actual).toEqual(expected);
@@ -327,7 +328,7 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should create a valid array`, () => {
-      const actual = this.component.createPagesArray(105, 10, true);
+      const actual = component['createPagesArray'](105, 10, true);
       const expected = 11;
 
       expect(actual.length).toEqual(expected);
@@ -335,7 +336,7 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should create a final page when fewer than the per-page amount are remaining`, () => {
-      const array = this.component.createPagesArray(105, 10, true);
+      const array = component['createPagesArray'](105, 10, true);
       const expected = 11;
 
       expect(array.length).toEqual(expected);
@@ -344,7 +345,7 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should create a valid array when there are fewer total records than the per page amount`, () => {
-      const array = this.component.createPagesArray(8, 10, true);
+      const array = component['createPagesArray'](8, 10, true);
       const expected = 1;
 
       expect(array.length).toEqual(expected);
@@ -353,7 +354,7 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should create a valid array with '1' as the base page value`, () => {
-      const array = this.component.createPagesArray(105, 10, false);
+      const array = component['createPagesArray'](105, 10, false);
       const expected = 11;
 
       expect(array.length).toEqual(expected);
@@ -366,9 +367,9 @@ describe(`TsPaginatorComponent`, () => {
   describe(`trackPagesArray()`, () => {
 
     test(`should return a tracking property or undefined`, () => {
-      expect(this.component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
-      expect(this.component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
-      expect(this.component.trackPagesArray(3, null)).toBeUndefined();
+      expect(component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
+      expect(component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
+      expect(component.trackPagesArray(3, null as any)).toBeUndefined();
     });
 
   });
@@ -377,10 +378,10 @@ describe(`TsPaginatorComponent`, () => {
   describe(`isZeroBased`, () => {
 
     test(`should should set/get the value`, () => {
-      expect(this.component.isZeroBased).toEqual(true);
-      this.component.isZeroBased = 'false';
+      expect(component.isZeroBased).toEqual(true);
+      component.isZeroBased = 'false' as any;
 
-      expect(this.component.isZeroBased).toEqual(false);
+      expect(component.isZeroBased).toEqual(false);
     });
 
   });
@@ -389,10 +390,10 @@ describe(`TsPaginatorComponent`, () => {
   describe(`nextPageIndex`, () => {
 
     test(`should return the index for the next page`, () => {
-      this.component.isZeroBased = false;
-      this.component.currentPageIndex = 10;
+      component.isZeroBased = false;
+      component.currentPageIndex = 10;
 
-      expect(this.component.nextPageIndex).toEqual(9);
+      expect(component.nextPageIndex).toEqual(9);
     });
 
   });
@@ -401,10 +402,10 @@ describe(`TsPaginatorComponent`, () => {
   describe(`lastPageIndex`, () => {
 
     test(`should return the index for the last page`, () => {
-      this.component.isZeroBased = true;
-      this.component.pagesArray = [1, 2, 3, 4, 5];
+      component.isZeroBased = true;
+      component.pagesArray = [1, 2, 3, 4, 5] as any[];
 
-      expect(this.component.lastPageIndex).toEqual(4);
+      expect(component.lastPageIndex).toEqual(4);
     });
 
   });

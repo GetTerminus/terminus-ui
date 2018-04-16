@@ -24,5 +24,4 @@ export class PipesComponent {
     private sentenceCasePipe: TsSentenceCasePipe,
   ) {}
 
-
 }

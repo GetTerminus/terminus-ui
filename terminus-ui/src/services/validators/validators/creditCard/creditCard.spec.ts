@@ -1,20 +1,27 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { creditCardValidator } from './creditCard';
 
 
 describe(`creditCardValidator`, () => {
+  let validatorFn: ValidatorFn;
+  let nullControl: AbstractControl;
 
   beforeEach(() => {
-    this.validatorFn = creditCardValidator();
-    this.nullControl = new FormControl(null);
+    validatorFn = creditCardValidator();
+    nullControl = new FormControl(null);
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(nullControl)).toEqual(null);
     });
 
   });
@@ -23,7 +30,7 @@ describe(`creditCardValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -34,7 +41,7 @@ describe(`creditCardValidator`, () => {
     test(`should return null`, () => {
       const control = new FormControl(`4242424242424242`);
 
-      expect(this.validatorFn(control)).toEqual(null);
+      expect(validatorFn(control)).toEqual(null);
     });
 
   });
@@ -49,7 +56,7 @@ describe(`creditCardValidator`, () => {
         actual: '1234',
       };
 
-      expect(this.validatorFn(control).creditCard).toEqual(expected);
+      expect(validatorFn(control)!.creditCard).toEqual(expected);
     });
 
   });

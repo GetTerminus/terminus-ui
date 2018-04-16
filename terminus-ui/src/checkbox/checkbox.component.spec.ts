@@ -7,22 +7,23 @@ import {
 
 
 describe(`TsCheckboxComponent`, () => {
+  let component: TsCheckboxComponent;
 
   beforeEach(() => {
-    this.component = new TsCheckboxComponent(
+    component = new TsCheckboxComponent(
       new ChangeDetectorRefMock(),
     );
 
     // Stub in MatCheckbox
-    this.component.checkbox = {
+    component.checkbox = {
       checked: false,
       toggle: jest.fn(),
-    };
+    } as any;
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
@@ -38,11 +39,11 @@ describe(`TsCheckboxComponent`, () => {
   describe(`set isChecked`, () => {
 
     test(`should set checkbox.checked value`, () => {
-      expect(this.component.checkbox.checked).toEqual(false);
+      expect(component.checkbox.checked).toEqual(false);
 
-      this.component.isChecked = true;
+      component.isChecked = true;
 
-      expect(this.component.checkbox.checked).toEqual(true);
+      expect(component.checkbox.checked).toEqual(true);
     });
 
   });
@@ -51,9 +52,9 @@ describe(`TsCheckboxComponent`, () => {
   describe(`get isChecked`, () => {
 
     test(`should return the checkbox.checked value`, () => {
-      this.component.checkbox.checked = true;
+      component.checkbox.checked = true;
 
-      expect(this.component.isChecked).toEqual(true);
+      expect(component.isChecked).toEqual(true);
     });
 
   });
@@ -62,11 +63,11 @@ describe(`TsCheckboxComponent`, () => {
   describe(`set ngModel`, () => {
 
     test(`should set the private variable`, () => {
-      expect(this.component._isChecked).toEqual(false);
+      expect(component['_isChecked']).toEqual(false);
 
-      this.component.ngModel = true;
+      component.ngModel = true;
 
-      expect(this.component._isChecked).toEqual(true);
+      expect(component['_isChecked']).toEqual(true);
     });
 
   });
@@ -75,12 +76,12 @@ describe(`TsCheckboxComponent`, () => {
   describe(`ngAfterViewInit`, () => {
 
     test(`should set the checkbox.checked value if true`, () => {
-      this.component._isChecked = true;
-      expect(this.component.checkbox.checked).toEqual(false);
+      component['_isChecked'] = true;
+      expect(component.checkbox.checked).toEqual(false);
 
-      this.component.ngAfterViewInit();
+      component.ngAfterViewInit();
 
-      expect(this.component.checkbox.checked).toEqual(true);
+      expect(component.checkbox.checked).toEqual(true);
     });
 
   });

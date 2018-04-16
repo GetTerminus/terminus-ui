@@ -1,20 +1,27 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { passwordValidator } from './password';
 
 
 describe(`passwordValidator`, () => {
+  let validatorFn: ValidatorFn;
+  let nullControl: AbstractControl;
 
   beforeEach(() => {
-    this.validatorFn = passwordValidator();
-    this.nullControl = new FormControl(null);
+    validatorFn = passwordValidator();
+    nullControl = new FormControl(null);
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(nullControl)).toEqual(null);
     });
 
   });
@@ -23,7 +30,7 @@ describe(`passwordValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as AbstractControl)).toEqual(null);
     });
 
   });
@@ -34,7 +41,7 @@ describe(`passwordValidator`, () => {
     test(`should return null`, () => {
       const control = new FormControl('7GmfvH');
 
-      expect(this.validatorFn(control)).toEqual(null);
+      expect(validatorFn(control)).toEqual(null);
     });
 
   });
@@ -49,7 +56,7 @@ describe(`passwordValidator`, () => {
         actual: 'yGiUf>DfQ2',
       };
 
-      expect(this.validatorFn(control).password).toEqual(expected);
+      expect(validatorFn(control)!.password).toEqual(expected);
     });
 
   });

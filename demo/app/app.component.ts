@@ -1,10 +1,4 @@
-import {
-  Component,
-  /*
-   *ElementRef,
-   *OnInit,
-   */
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -12,18 +6,5 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent /*implements OnInit*/ {
-
-
-/*
- *  constructor(
- *    private elementRef: ElementRef,
- *  ) {}
- *
- *
- *  ngOnInit() {
- *    console.log('this.elementRef.nativeElement: ', this.elementRef.nativeElement);
- *  }
- */
-
+export class AppComponent {
 }

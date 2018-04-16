@@ -56,7 +56,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    * Alias the position back onto the component as a style attribute
    */
   @HostBinding('style.position')
-  public position: string;
+  public position!: string;
 
 
   /**

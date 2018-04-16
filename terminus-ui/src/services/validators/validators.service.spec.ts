@@ -2,21 +2,22 @@ import { TsValidatorsService } from './validators.service';
 
 
 describe(`TsValidatorsService`, () => {
+  let service: TsValidatorsService;
 
   beforeEach(() => {
-    this.service = new TsValidatorsService();
+    service = new TsValidatorsService();
   });
 
 
   it(`should exist`, () => {
-    expect(this.service).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
 
   describe(`creditCard()`, () => {
 
     test(`should exist`, () => {
-      expect(this.service.creditCard).toBeTruthy();
+      expect(service.creditCard).toBeTruthy();
     });
 
   });
@@ -25,7 +26,7 @@ describe(`TsValidatorsService`, () => {
   describe(`email()`, () => {
 
     test(`should exist`, () => {
-      expect(this.service.email).toBeTruthy();
+      expect(service.email).toBeTruthy();
     });
 
   });
@@ -34,7 +35,7 @@ describe(`TsValidatorsService`, () => {
   describe(`password()`, () => {
 
     test(`should exist`, () => {
-      expect(this.service.password).toBeTruthy();
+      expect(service.password).toBeTruthy();
     });
 
   });
@@ -43,7 +44,7 @@ describe(`TsValidatorsService`, () => {
   describe(`url()`, () => {
 
     test(`should exist`, () => {
-      expect(this.service.url).toBeTruthy();
+      expect(service.url).toBeTruthy();
     });
 
   });

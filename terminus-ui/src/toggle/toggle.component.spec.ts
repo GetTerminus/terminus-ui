@@ -5,14 +5,15 @@ import {
 
 
 describe(`ToggleComponent`, () => {
+  let component: TsToggleComponent;
 
   beforeEach(() => {
-    this.component = new TsToggleComponent();
+    component = new TsToggleComponent();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 

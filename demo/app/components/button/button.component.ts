@@ -25,10 +25,21 @@ export class ButtonComponent {
 
   run(progress: string): void {
     console.log('Demo: In run!');
-    this[progress] = true;
+
+    if (progress === 'progress1') {
+      this.progress1 = true;
+    }
+    if (progress === 'progress2') {
+      this.progress2 = true;
+    }
 
     setTimeout(() => {
-      this[progress] = false;
+      if (progress === 'progress1') {
+        this.progress1 = false;
+      }
+      if (progress === 'progress2') {
+        this.progress2 = false;
+      }
     }, 2000);
   }
 

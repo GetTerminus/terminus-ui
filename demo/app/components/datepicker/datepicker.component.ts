@@ -11,6 +11,7 @@ import {
 import {
   TsValidatorsService,
   TS_SPACING,
+  TsDatepickerInputEvent,
 } from '@terminus/ui';
 
 
@@ -60,12 +61,12 @@ export class DatepickerComponent implements OnInit {
   layoutGap = TS_SPACING.default[0];
 
   get endDate(): string {
-    const date = this.getControl('formTwo', 'endDate');
+    const date = this.formTwo.get('endDate');
     return date ? date.value : this.defaultMax;
   }
 
   get startDate(): string {
-    const date = this.getControl('formTwo', 'startDate');
+    const date = this.formTwo.get('startDate');
     return date ? date.value : null;
   }
 
@@ -89,9 +90,6 @@ export class DatepickerComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-  getControl(formName: string, name: string): AbstractControl | null {
-    return this[formName] ? this[formName].get(name) : null;
-  }
 
   submit(formName: string, v: any) {
     console.log('Demo submit!: ', formName, v);
@@ -101,20 +99,18 @@ export class DatepickerComponent implements OnInit {
   /**
    * SIMPLE DEMO
    */
-
-  dateSelected(e: any) {
+  dateSelected(e: TsDatepickerInputEvent) {
     console.log('Date selected!: ', e);
   }
+
 
   /**
    * RANGE DEMO
    */
+  rangeStartChange(e: TsDatepickerInputEvent) {
+    const control = this.formTwo.get('endDate');
 
-  rangeStartChange(e: any) {
-    if (e) {
-      console.log('rangeStartChange: ', e);
-      const control = this.formTwo.get('endDate');
-
+    if (control) {
       control.setValidators([
         Validators.required,
         this.validatorsService.minDate(e.value),
@@ -124,10 +120,10 @@ export class DatepickerComponent implements OnInit {
   }
 
 
-  rangeEndChange(e: any) {
-    if (e) {
-      const control = this.formTwo.get('startDate');
+  rangeEndChange(e: TsDatepickerInputEvent) {
+    const control = this.formTwo.get('startDate');
 
+    if (control) {
       control.setValidators([
         Validators.required,
         this.validatorsService.maxDate(this.endDate),

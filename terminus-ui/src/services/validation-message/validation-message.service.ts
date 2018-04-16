@@ -40,7 +40,7 @@ export class TsValidationMessageService {
    * @return The error message
    */
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
-    const config = {
+    const config: {[key: string]: string} = {
       // Standard responses:
       required: `Required`,
       minlength: `Minimum length ${validatorValue.requiredLength}`,
