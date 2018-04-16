@@ -1,20 +1,27 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { urlValidator } from './url';
 
 
 describe(`urlValidator`, () => {
+  let validatorFn: ValidatorFn;
+  let nullControl: AbstractControl;
 
   beforeEach(() => {
-    this.validatorFn = urlValidator();
-    this.nullControl = new FormControl(null);
+    validatorFn = urlValidator();
+    nullControl = new FormControl(null);
   });
 
 
   describe(`if the control doesn't exist`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn(this.nullControl)).toEqual(null);
+      expect(validatorFn(nullControl)).toEqual(null);
     });
 
   });
@@ -23,7 +30,7 @@ describe(`urlValidator`, () => {
   describe(`if the control has no value`, () => {
 
     test(`should return null`, () => {
-      expect(this.validatorFn({})).toEqual(null);
+      expect(validatorFn({} as any)).toEqual(null);
     });
 
   });
@@ -34,7 +41,7 @@ describe(`urlValidator`, () => {
     test(`should return null`, () => {
       const control = new FormControl('http://foo.com/blah_blah');
 
-      expect(this.validatorFn(control)).toEqual(null);
+      expect(validatorFn(control)).toEqual(null);
     });
 
   });
@@ -49,10 +56,9 @@ describe(`urlValidator`, () => {
         actual: 'http:// shouldfail.com',
       };
 
-      expect(this.validatorFn(control).url).toEqual(expected);
+      expect(validatorFn(control)!.url).toEqual(expected);
     });
 
   });
 
 });
-

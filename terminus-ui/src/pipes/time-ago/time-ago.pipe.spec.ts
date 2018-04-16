@@ -2,22 +2,25 @@ import { TsTimeAgoPipe } from './time-ago.pipe';
 
 
 describe(`TsTimeAgoPipe`, () => {
+  let pipe: Function;
+  let date: Date;
+  let oldDate: Date;
 
   beforeEach(() => {
-    this.pipe = new TsTimeAgoPipe().transform;
-    this.date = new Date(2018, 1, 8);
-    this.oldDate = new Date(2018, 1, 3);
+    pipe = new TsTimeAgoPipe().transform;
+    date = new Date(2018, 1, 8);
+    oldDate = new Date(2018, 1, 3);
   });
 
 
   it(`should return null if no value is passed in`, () => {
-    expect(this.pipe(null, this.oldDate)).toEqual(null);
-    expect(this.pipe('', this.oldDate)).toEqual(null);
+    expect(pipe(null as any, oldDate)).toEqual(undefined);
+    expect(pipe('', oldDate)).toEqual(undefined);
   });
 
 
   it(`should format a date`, () => {
-    const actual = this.pipe(this.date, this.oldDate);
+    const actual = pipe(date, oldDate);
     const expected = '5 days';
 
     expect(actual).toEqual(expected);
@@ -25,7 +28,7 @@ describe(`TsTimeAgoPipe`, () => {
 
 
   it(`should format string dates`, () => {
-    const actual = this.pipe(this.date.toISOString(), this.oldDate.toISOString());
+    const actual = pipe(date.toISOString(), oldDate.toISOString());
     const expected = '5 days';
 
     expect(actual).toEqual(expected);
@@ -37,12 +40,12 @@ describe(`TsTimeAgoPipe`, () => {
     describe(`if either value is not a valid date`, () => {
 
       it(`should throw an error`, () => {
-        const errFunc = () => this.pipe(this.date, 'foo');
+        const errFunc = () => pipe(date, 'foo');
         expect(errFunc).toThrowError(`'foo' is not a valid date.`);
       });
 
       it(`should throw an error`, () => {
-        const errFunc = () => this.pipe('bar', this.date);
+        const errFunc = () => pipe('bar', date);
         expect(errFunc).toThrowError(`'bar' is not a valid date.`);
       });
 

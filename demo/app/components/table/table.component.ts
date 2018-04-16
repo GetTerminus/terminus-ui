@@ -9,6 +9,7 @@ import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { tap } from 'rxjs/operators/tap';
 import { catchError } from 'rxjs/operators/catchError';
 import { Observable } from 'rxjs/Observable';
 
@@ -17,6 +18,7 @@ import {
   TsSortDirective,
   TsPaginatorComponent,
   TsPaginatorMenuItem,
+  TsSelectFormatFn,
 } from '@terminus/ui';
 
 
@@ -92,18 +94,18 @@ export class TableComponent implements AfterViewInit {
     'state',
     'comments',
   ];
-  exampleDatabase: ExampleHttpDao | null;
-  dataSource: TsTableDataSource<GithubIssue>  = new TsTableDataSource();
+  exampleDatabase!: ExampleHttpDao;
+  dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();
   resultsLength = 0;
 
   @ViewChild(TsSortDirective)
-  sort: TsSortDirective;
+  sort!: TsSortDirective;
 
   @ViewChild(TsPaginatorComponent)
-  paginator: TsPaginatorComponent;
+  paginator!: TsPaginatorComponent;
 
-  myUIFn = (v): string => v.name;
-  myModelFn = (v): string => v.value;
+  myUIFn: TsSelectFormatFn = (v) => v.name;
+  myModelFn: TsSelectFormatFn = (v) => v.value;
 
 
   constructor(
@@ -124,6 +126,11 @@ export class TableComponent implements AfterViewInit {
     merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
+        tap((v) => {
+          console.log('v: ', v);
+          console.log('this.sort.active: ', this.sort.active);
+          console.log('this.sort.direction: ', this.sort.direction);
+        }),
         switchMap(() => {
           return this.exampleDatabase.getRepoIssues(
             this.sort.active,

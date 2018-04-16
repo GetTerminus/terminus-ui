@@ -1,12 +1,17 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 import { lessThanValidator } from './lessThan';
 
 
 describe(`lessThanValidator`, () => {
+  let validatorFn: ValidatorFn;
 
   beforeEach(() => {
-    this.validatorFn = lessThanValidator(10);
+    validatorFn = lessThanValidator(10);
   });
 
 
@@ -16,7 +21,7 @@ describe(`lessThanValidator`, () => {
       const values = [undefined, {}];
 
       for (const val of values) {
-        expect(this.validatorFn(val)).toEqual(null);
+        expect(validatorFn(val as any)).toEqual(null);
       }
     });
 
@@ -29,7 +34,7 @@ describe(`lessThanValidator`, () => {
       const values = [9, 0, -1];
 
       for (const val of values) {
-        expect(this.validatorFn(new FormControl(val))).toEqual(null);
+        expect(validatorFn(new FormControl(val))).toEqual(null);
       }
     });
 
@@ -42,10 +47,10 @@ describe(`lessThanValidator`, () => {
       const values = [10, 11, 98.6, 9999];
 
       for (const val of values) {
-        const result = this.validatorFn(new FormControl(val));
+        const result = validatorFn(new FormControl(val));
 
-        expect(result.lessThan.valid).toEqual(false);
-        expect(result.lessThan.actual).toEqual(val);
+        expect(result!.lessThan.valid).toEqual(false);
+        expect(result!.lessThan.actual).toEqual(val);
       }
     });
 

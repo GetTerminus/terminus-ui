@@ -1,3 +1,4 @@
+// tslint:disable: no-non-null-assertion
 import {
   Component,
   ViewChild,
@@ -48,7 +49,7 @@ import { TsConfirmationModalComponent } from './confirmation-modal.component';
 })
 class TsButtonComponentMock {
   public interceptClick: boolean = false;
-  public originalClickEvent: MouseEvent;
+  public originalClickEvent!: MouseEvent;
   @Input()
   public showProgress: boolean = false;
   @Output()
@@ -93,7 +94,7 @@ export class TsButtonModuleMock {}
 })
 class TestHostComponent {
   @ViewChild(TsConfirmationDirective)
-  directive: TsConfirmationDirective;
+  directive!: TsConfirmationDirective;
 }
 
 
@@ -173,7 +174,7 @@ describe(`TsConfirmationDirective`, () => {
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
 
-      expect(directive['overlayRef'].hasAttached()).toEqual(false);
+      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
     });
 
   });
@@ -189,7 +190,7 @@ describe(`TsConfirmationDirective`, () => {
 
       directive['modalInstance'].confirm.next(true);
 
-      expect(directive['overlayRef'].hasAttached()).toEqual(false);
+      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
       expect(directive['host'].clickEvent.emit).toHaveBeenCalled();
     });
 
@@ -202,9 +203,10 @@ describe(`TsConfirmationDirective`, () => {
 
       directive['modalInstance'].confirm.next(false);
 
-      expect(directive['overlayRef'].hasAttached()).toEqual(false);
+      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
       expect(directive.cancelled.emit).toHaveBeenCalledWith(true);
     });
   });
 
 });
+

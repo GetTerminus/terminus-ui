@@ -1,12 +1,18 @@
-import { FormControl } from '@angular/forms';
+// tslint:disable: no-non-null-assertion
+import {
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 
 import { lowercaseValidator } from './lowercase';
 
 
 describe(`lowercaseValidator`, () => {
+  let validatorFn: ValidatorFn;
 
   beforeEach(() => {
-    this.validatorFn = lowercaseValidator(2);
+    validatorFn = lowercaseValidator(2);
   });
 
 
@@ -16,7 +22,7 @@ describe(`lowercaseValidator`, () => {
       const values = [undefined, {}];
 
       for (const val of values) {
-        expect(this.validatorFn(val)).toEqual(null);
+        expect(validatorFn(val as AbstractControl)).toEqual(null);
       }
     });
 
@@ -27,7 +33,7 @@ describe(`lowercaseValidator`, () => {
 
     test(`should return null`, () => {
       const val = 'abCD';
-      expect(this.validatorFn(new FormControl(val))).toEqual(null);
+      expect(validatorFn(new FormControl(val))).toEqual(null);
     });
 
   });
@@ -36,9 +42,9 @@ describe(`lowercaseValidator`, () => {
 
     test(`should return error`, () => {
       const val = 'aCD';
-      const result = this.validatorFn(new FormControl(val));
-      expect(result.lowercase.valid).toEqual(false);
-      expect(result.lowercase.actual).toEqual(val);
+      const result = validatorFn(new FormControl(val));
+      expect(result!.lowercase.valid).toEqual(false);
+      expect(result!.lowercase.actual).toEqual(val);
     });
 
   });
@@ -47,8 +53,8 @@ describe(`lowercaseValidator`, () => {
   describe(`if the number is missing`, () => {
 
     test(`should return response as default number 1`, () => {
-      this.validatorFn2 = lowercaseValidator();
-      expect(this.validatorFn2(new FormControl('a'))).toEqual(null);
+      const validatorFn2 = lowercaseValidator();
+      expect(validatorFn2(new FormControl('a'))).toEqual(null);
     });
   });
 

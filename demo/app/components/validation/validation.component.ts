@@ -5,6 +5,7 @@ import {
 import {
   FormBuilder,
   FormGroup,
+  AbstractControl,
 } from '@angular/forms';
 import {
   TsValidatorsService,
@@ -104,12 +105,20 @@ export class ValidationComponent implements OnInit {
 
 
   ngOnInit() {
-    this.myForm.get('compare1').setValidators([
-      this.validatorsService.equalToControl(this.myForm.get('compare2')),
-    ]);
-    this.myForm.get('compare2').setValidators([
-      this.validatorsService.equalToControl(this.myForm.get('compare1')),
-    ]);
+    const control1: AbstractControl | null = this.myForm.get('compare1');
+    const control2: AbstractControl | null = this.myForm.get('compare2');
+
+    if (control1) {
+      control1.setValidators([
+        this.validatorsService.equalToControl(control1),
+      ]);
+    }
+
+    if (control2) {
+      control2.setValidators([
+        this.validatorsService.equalToControl(control2),
+      ]);
+    }
   }
 
 

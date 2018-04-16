@@ -3,15 +3,16 @@ import { TsValidationMessageServiceMock } from './../services/validation-message
 
 
 describe('InputMessagesComponent', () => {
+  let component: TsValidationMessagesComponent;
 
   beforeEach(() => {
-    this.component = new TsValidationMessagesComponent(new TsValidationMessageServiceMock());
-    this.component.validationMessageService.getValidatorErrorMessage = jest.fn();
+    component = new TsValidationMessagesComponent(new TsValidationMessageServiceMock());
+    component['validationMessageService'].getValidatorErrorMessage = jest.fn();
   });
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
@@ -21,31 +22,31 @@ describe('InputMessagesComponent', () => {
       const ERROR = {
         valid: false,
       };
-      this.component.validateOnChange = false;
-      this.component.control = {
+      component.validateOnChange = false;
+      component.control = {
         touched: true,
         errors: {
           invalidEmail: ERROR,
         },
-      };
+      } as any;
       // tslint:disable: no-unused-variable
-      const message = this.component.validationMessage;
+      const message = component.validationMessage;
       // tslint:enable: no-unused-variable
 
-      expect(this.component.validationMessageService.getValidatorErrorMessage)
+      expect(component['validationMessageService'].getValidatorErrorMessage)
         .toHaveBeenCalledWith('invalidEmail', ERROR);
     });
 
 
     it(`should return messages for validation errors if validateOnChange is true`, () => {
-      this.component.validateOnChange = true;
-      this.component.control = {
+      component.validateOnChange = true;
+      component.control = {
         touched: false,
         errors: {},
-      };
-      const message = this.component.validationMessage;
+      } as any;
+      const message = component.validationMessage;
 
-      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(component['validationMessageService'].getValidatorErrorMessage).not.toHaveBeenCalled();
       expect(message).toEqual(null);
     });
 
@@ -54,22 +55,22 @@ describe('InputMessagesComponent', () => {
       const ERROR = {
         valid: false,
       };
-      this.component.control = {
+      component.control = {
         touched: false,
         errors: {
           invalidEmail: ERROR,
         },
-      };
-      const message = this.component.validationMessage;
+      } as any;
+      const message = component.validationMessage;
 
-      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(component['validationMessageService'].getValidatorErrorMessage).not.toHaveBeenCalled();
       expect(message).toEqual(null);
     });
 
 
     it(`should return null if no control was passed in`, () => {
-      expect(this.component.validationMessage).toEqual(null);
-      expect(this.component.validationMessageService.getValidatorErrorMessage).not.toHaveBeenCalled();
+      expect(component.validationMessage).toEqual(null);
+      expect(component['validationMessageService'].getValidatorErrorMessage).not.toHaveBeenCalled();
     });
 
   });

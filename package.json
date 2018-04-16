@@ -33,6 +33,7 @@
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test": "jest --watch",
     "test:ci": "jest --runInBand --coverage",
+    "test:ci:local": "jest --coverage",
     "test:debug": "jest --debug --runInBand",
     "//=> Section: Documentation": "==============================",
     "predocs": "yarn run docs:toc",
@@ -152,7 +153,7 @@
       "!terminus-ui/src/utilities/rxjs-lift-hack.ts",
       "!terminus-ui/src/module.ts"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tooling/setupJest.ts"
+    "setupTestFrameworkScriptFile": "<rootDir>/tooling/setup-jest.ts"
   },
   "engines": {
     "node": ">= 8.0.0",
@@ -239,7 +240,7 @@
     "lint-staged": "^7.0.3",
     "markdown-link-check": "^3.2.0",
     "merge-files": "^0.1.1",
-    "ng-packagr": "^2.4.1",
+    "ng-packagr": "^2.4.2",
     "node-sass": "^4.8.3",
     "node-sass-import": "^1.1.1",
     "remap-istanbul": "^0.11.0",

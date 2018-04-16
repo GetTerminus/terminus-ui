@@ -70,7 +70,7 @@ export class TsCopyComponent {
    * Define access to the wrapper around the content to be copied
    */
   @ViewChild('content')
-  public content: ElementRef;
+  public content!: ElementRef;
 
   /**
    * Define if the initial click should select the contents

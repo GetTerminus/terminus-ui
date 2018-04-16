@@ -1,3 +1,8 @@
+// tslint:disable: no-non-null-assertion
+import {
+  SimpleChanges,
+  SimpleChange,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { TsLoginFormComponent } from './login-form.component';
@@ -5,9 +10,10 @@ import { TsValidatorsServiceMock } from './../services/validators/validators.ser
 
 
 describe(`TsLoginFormComponent`, () => {
+  let component: TsLoginFormComponent;
 
   beforeEach(() => {
-    this.component = new TsLoginFormComponent(
+    component = new TsLoginFormComponent(
       new FormBuilder(),
       new TsValidatorsServiceMock(),
     );
@@ -15,31 +21,31 @@ describe(`TsLoginFormComponent`, () => {
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   describe(`ngOnChanges()`, () => {
 
     it(`should reset the form if 'triggerFormReset' was the passed in change`, () => {
-      this.component.resetForm = jest.fn();
-      this.component.ngOnChanges({
-        triggerFormReset: {
-          currentValue: {},
-        },
-      });
+      component['resetForm'] = jest.fn();
+      const changesMock: SimpleChanges = {
+        triggerFormReset: new SimpleChange(true, false, false),
+      };
+      component.ngOnChanges(changesMock);
 
-      expect(this.component.resetForm).toHaveBeenCalled();
+      expect(component['resetForm']).toHaveBeenCalled();
     });
 
 
     it(`should not reset the form if 'resetForm' was not passed in with changes`, () => {
-      this.component.resetForm = jest.fn();
-      this.component.ngOnChanges({
-        foo: 'bar',
-      });
+      component['resetForm'] = jest.fn();
+      const changesMock: SimpleChanges = {
+        foo: new SimpleChange(true, false, false),
+      };
+      component.ngOnChanges(changesMock);
 
-      expect(this.component.resetForm).not.toHaveBeenCalled();
+      expect(component['resetForm']).not.toHaveBeenCalled();
     });
 
   });
@@ -49,24 +55,24 @@ describe(`TsLoginFormComponent`, () => {
 
     it(`should reset all inputs to their initial value`, () => {
       jest.useFakeTimers();
-      this.component.loginForm.patchValue({
+      component.loginForm!.patchValue({
         email: 'foo',
         password: 'bar',
       });
 
-      const emailValueBefore = this.component.loginForm.get('email').value;
+      const emailValueBefore = component.loginForm!.get('email')!.value;
       expect(emailValueBefore).toEqual('foo');
 
-      const passwordValueBefore = this.component.loginForm.get('password').value;
+      const passwordValueBefore = component.loginForm!.get('password')!.value;
       expect(passwordValueBefore).toEqual('bar');
 
-      this.component.resetForm();
+      component['resetForm']();
       jest.runAllTimers();
 
-      const emailValueAfter = this.component.loginForm.get('email').value;
+      const emailValueAfter = component.loginForm!.get('email')!.value;
       expect(emailValueAfter).toEqual(null);
 
-      const passwordValueAfter = this.component.loginForm.get('password').value;
+      const passwordValueAfter = component.loginForm!.get('password')!.value;
       expect(passwordValueAfter).toEqual(null);
     });
 

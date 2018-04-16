@@ -13,10 +13,10 @@ import {
   name: 'tsTimeAgo',
 })
 export class TsTimeAgoPipe implements PipeTransform {
-  transform(value: string|Date, comparedDate: string|Date): string {
+  transform(value: string | Date, comparedDate: string | Date): string | undefined {
     // Check for null values to avoid issues during data-binding
     if (value == null || value === '') {
-      return null;
+      return;
     }
 
     // Check for date validity

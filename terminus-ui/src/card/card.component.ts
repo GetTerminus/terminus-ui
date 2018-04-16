@@ -51,7 +51,7 @@ export class TsCardComponent {
   /**
    * Expose the aspect ratio as a percentage
    */
-  public aspectRatioPadding: string;
+  public aspectRatioPadding!: string;
 
   /**
    * Define if the card should conform to a fixed aspect ratio
@@ -85,7 +85,7 @@ export class TsCardComponent {
    * Allow a custom utility menu to be added
    */
   @Input()
-  public utilityMenuTemplate: TemplateRef<ElementRef>;
+  public utilityMenuTemplate: TemplateRef<ElementRef> | undefined;
 
   /**
    * Define if the card is disabled

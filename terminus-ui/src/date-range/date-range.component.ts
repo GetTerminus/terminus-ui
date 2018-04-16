@@ -83,19 +83,19 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Store the selected end date
    */
-  public endDate: Date;
+  public endDate!: Date;
 
   /**
    * Provide quick access to the endDate form control
    */
-  public get endDateControl(): AbstractControl {
+  public get endDateControl(): AbstractControl | null {
     return this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
   }
 
   /**
    * Expose the minimum date for the endDate
    */
-  public _endMinDate$: BehaviorSubject<Date> = new BehaviorSubject(null);
+  public _endMinDate$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
 
   /**
    * Define the end date placeholder
@@ -105,19 +105,19 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Store the selected start date
    */
-  public startDate: Date;
+  public startDate!: Date;
 
   /**
    * Provide quick access to the startDate form control
    */
-  public get startDateControl(): AbstractControl {
+  public get startDateControl(): AbstractControl | null {
     return this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
   }
 
   /**
    * Expose the maximum date for the startDate
    */
-  public _startMaxDate$: BehaviorSubject<Date> = new BehaviorSubject(null);
+  public _startMaxDate$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
 
   /**
    * Define the start date placeholder
@@ -128,19 +128,19 @@ export class TsDateRangeComponent implements OnInit {
    * Define the max date for the end date
    */
   @Input()
-  public endMaxDate: Date;
+  public endMaxDate!: Date;
 
   /**
    * Define the min date for the end date
    */
   @Input()
-  public endMinDate: Date;
+  public endMinDate!: Date;
 
   /**
    * Define the initial date for the end date
    */
   @Input()
-  public endInitialDate: Date;
+  public endInitialDate!: Date;
 
   /**
    * Define the separator between the two date inputs
@@ -158,25 +158,25 @@ export class TsDateRangeComponent implements OnInit {
    * Define the max date for the starting date
    */
   @Input()
-  public startMaxDate: Date;
+  public startMaxDate!: Date;
 
   /**
    * Define the min date for the starting date
    */
   @Input()
-  public startMinDate: Date;
+  public startMinDate!: Date;
 
   /**
    * Define the initial date for the starting date
    */
   @Input()
-  public startInitialDate: Date;
+  public startInitialDate!: Date;
 
   /**
    * Define the form group to attach the date range to
    */
   @Input()
-  public dateFormGroup: FormGroup;
+  public dateFormGroup!: FormGroup | AbstractControl;
 
   /**
    * Output the start date when selected
@@ -239,9 +239,14 @@ export class TsDateRangeComponent implements OnInit {
    *
    * @param formGroup - The date form group
    */
-  private seedWithFormValues(formGroup: FormGroup): void {
-    const startValue = formGroup.get('startDate').value;
-    const endValue = formGroup.get('endDate').value;
+  private seedWithFormValues(formGroup: FormGroup | AbstractControl): void {
+    if (!formGroup || !formGroup.get('startDate') || !formGroup.get('endDate')) {
+      return;
+    }
+    const startControl: AbstractControl | null = formGroup.get('startDate');
+    const endControl: AbstractControl | null = formGroup.get('endDate');
+    const startValue: Date | null = startControl ? startControl.value : null;
+    const endValue: Date | null = endControl ? endControl.value : null;
 
     // istanbul ignore else
     if (startValue) {
@@ -270,7 +275,7 @@ export class TsDateRangeComponent implements OnInit {
 
       // Update the form value if a formGroup was passed in
       // istanbul ignore else
-      if (this.dateFormGroup) {
+      if (this.dateFormGroup && this.startDateControl) {
         this.startDateControl.setValue(datepickerEvent.value);
       }
 
@@ -296,7 +301,7 @@ export class TsDateRangeComponent implements OnInit {
 
       // Update the form value if a formGroup was passed in
       // istanbul ignore else
-      if (this.dateFormGroup) {
+      if (this.dateFormGroup && this.endDateControl) {
         this.endDateControl.setValue(datepickerEvent.value);
       }
 

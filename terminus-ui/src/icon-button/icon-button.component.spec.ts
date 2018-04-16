@@ -6,24 +6,25 @@ import { TsIconButtonComponent } from './icon-button.component';
 
 describe(`TsIconButtonComponent`, () => {
   let elRefMock: ElementRef;
+  let component: TsIconButtonComponent;
 
   beforeEach(() => {
     elRefMock = new ElementRefMock();
-    this.component = new TsIconButtonComponent(
+    component = new TsIconButtonComponent(
       elRefMock,
     );
   });
 
 
   test(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   describe(`get hostElement`, () => {
 
     test(`should return the native element`, () => {
-      expect(this.component.hostElement).toEqual(elRefMock.nativeElement);
+      expect(component.hostElement).toEqual(elRefMock.nativeElement);
     });
 
   });

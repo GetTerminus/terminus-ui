@@ -1,3 +1,3 @@
 import 'jest-preset-angular';
-import './jestGlobalMocks';
+import './jest-global-mocks';
 import 'jest-zone-patch';

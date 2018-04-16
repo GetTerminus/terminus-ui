@@ -166,7 +166,11 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
     // seem to work
     setTimeout(() => {
       this._isDisabled = v;
-      this.matInput.ngControl.control[action]();
+      // istanbul ignore else
+      if (this.matInput && this.matInput.ngControl && this.matInput.ngControl.control) {
+        // FIXME: Remove 'any'
+        (this.matInput.ngControl.control as any)[action]();
+      }
     });
   }
   public get isDisabled(): boolean {
@@ -197,25 +201,25 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
    */
   // FIXME: Fix potential overlap of hint and error messages
   @Input()
-  public hint: string;
+  public hint: string | undefined;
 
   /**
    * Define the label
    */
   @Input()
-  public label: string;
+  public label: string | undefined;
 
   /**
    * Define the name attribute value
    */
   @Input()
-  public name: string;
+  public name: string | undefined;
 
   /**
    * Define a Material icon to include before the input
    */
   @Input()
-  public prefixIcon: string;
+  public prefixIcon: string | undefined;
 
   /**
    * Define if the input should spellcheck
@@ -258,7 +262,7 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
    * Access the underlying MatInput instance
    */
   @ViewChild(MatInput)
-  matInput: MatInput;
+  matInput!: MatInput;
 
 
   constructor(

@@ -1,5 +1,5 @@
 const mock = () => {
-  let storage = {};
+  let storage: {[key: string]: any} = {};
   return {
     getItem: (key: string) => key in storage ? storage[key] : null,
     setItem: (key: string, value: any) => storage[key] = value || '',
@@ -11,19 +11,21 @@ const mock = () => {
 Object.defineProperty(window, 'localStorage', {value: mock()});
 Object.defineProperty(window, 'sessionStorage', {value: mock()});
 Object.defineProperty(window, 'CSS', {value: () => ({})});
-
 // Needed for @angular/flex-layout
-window.getComputedStyle = function(el: any, pseudo) {
-  this.el = el;
-  this.getPropertyValue = function(prop) {
-    if (prop === 'display') {
-      return 'inline';
-    } else {
-      return '-webkit-appearance';
-    }
-  };
-  return this;
-};
+Object.defineProperty(window, 'getComputedStyle', {
+  value: function getComputedStyle(elt: any, pseudoElt: string | undefined): PropertyDescriptor {
+    (this as any).el = elt;
+    (this as any).getPropertyValue = function(prop: string): string {
+      if (prop === 'display') {
+        return 'inline';
+      } else {
+        return '-webkit-appearance';
+      }
+    };
+
+    return this;
+  },
+});
 
 
 /**

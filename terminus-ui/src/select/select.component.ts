@@ -85,7 +85,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    * NOTE: This is disabled if `multipleAllowed` is true
    */
   @Input()
-  public blankChoice: string;
+  public blankChoice: string | undefined;
 
   /**
    * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
@@ -108,7 +108,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public get formatUIFn(): TsSelectFormatFn {
     return this._formatUIFn;
   }
-  private _formatUIFn: TsSelectFormatFn;
+  private _formatUIFn!: TsSelectFormatFn;
 
   /**
    * Define a function to retrieve the UI value for an option {@link TsSelectFormatFn}
@@ -131,13 +131,13 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public get formatModelValueFn(): TsSelectFormatFn {
     return this._formatModelValueFn;
   }
-  private _formatModelValueFn: TsSelectFormatFn;
+  private _formatModelValueFn!: TsSelectFormatFn;
 
   /**
    * Define the 'hint' for the select
    */
   @Input()
-  public hint: string;
+  public hint: string | undefined;
 
   /**
    * Define a list of select items
@@ -158,7 +158,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   public get items(): any[] {
     return this._items;
   }
-  private _items: any[];
+  private _items!: any[];
 
   /**
    * Define if the select should be disabled

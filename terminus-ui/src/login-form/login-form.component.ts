@@ -107,7 +107,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Initialize the login form
    */
-  public loginForm: FormGroup = this.formBuilder.group(this.FORM_GROUP);
+  public loginForm: FormGroup | null = this.formBuilder.group(this.FORM_GROUP);
 
   /**
    * Define a flag to add/remove the form from the DOM
@@ -118,13 +118,13 @@ export class TsLoginFormComponent implements OnChanges {
    * Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
-  inputComponents: QueryList<TsInputComponent>;
+  inputComponents!: QueryList<TsInputComponent>;
 
   /**
    * Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
-  checkbox: TsCheckboxComponent;
+  checkbox!: TsCheckboxComponent;
 
   /**
    * Define the link to the 'forgot password' view
@@ -185,7 +185,7 @@ export class TsLoginFormComponent implements OnChanges {
    * @param changes - The inputs that have changed
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('triggerFormReset') && changes.triggerFormReset.currentValue) {
+    if (changes.hasOwnProperty('triggerFormReset')) {
       this.resetForm();
     }
   }

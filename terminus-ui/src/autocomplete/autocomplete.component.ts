@@ -37,6 +37,14 @@ import { Subscription } from 'rxjs/Subscription';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 
+interface KeyboardEvent {
+  [key: string]: any;
+}
+
+interface MouseEvent {
+  [key: string]: any;
+}
+
 /**
  * Define a type for allowed {@link TsAutocompleteComponent} formatter function
  */
@@ -96,11 +104,6 @@ export type TsAutocompleteComparatorFn = (value: any) => string;
 })
 export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
   /**
-   * Store the debounce delay
-   */
-  private _debounceDelay: number = 200;
-
-  /**
    * Management of the query string
    */
   public querySubject: BehaviorSubject<string> = new BehaviorSubject('');
@@ -108,7 +111,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   /**
    * Store the search query
    */
-  public searchQuery: string;
+  public searchQuery!: string;
 
   /**
    * Define if the chips/selections should be selectable
@@ -123,18 +126,18 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   /**
    * Store the formatter function for the UI display
    */
-  private uiFormatFn: (value: OptionType) => string;
+  private uiFormatFn!: (value: OptionType) => string;
 
   /**
    * Store the query subscription for unsubscribing during cleanup
    */
-  private querySubscription: Subscription;
+  private querySubscription!: Subscription;
 
   /**
    * Provide access to the input element
    */
   @ViewChild('autocomplete')
-  public autocomplete: MatAutocomplete;
+  public autocomplete!: MatAutocomplete;
 
   /**
    * Provide access to the input element
@@ -146,13 +149,13 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   get autocompleteTrigger(): MatAutocompleteTrigger {
     return this.trigger;
   }
-  private trigger: MatAutocompleteTrigger;
+  private trigger!: MatAutocompleteTrigger;
 
   /**
    * Provide direct access to the input
    */
   @ViewChild('input')
-  public input: ElementRef;
+  public input!: ElementRef;
 
   /**
    * Define a debounce delay for the query
@@ -168,6 +171,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public get debounceDelay(): number {
     return this._debounceDelay;
   }
+  private _debounceDelay: number = 200;
 
   /**
    * A function to output the UI text from the selected item
@@ -198,13 +202,13 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   // FIXME: Fix potential overlap of hint and error messages
   @Input()
-  public hint: string;
+  public hint: string | undefined;
 
   /**
    * Define the placeholder/label
    */
   @Input()
-  public label: string;
+  public label: string | undefined;
 
   /**
    * Define if multiple selections are allowed by passing in a comparator function
@@ -227,25 +231,25 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public get multiple(): TsAutocompleteComparatorFn {
     return this.comparatorFn;
   }
-  private comparatorFn: TsAutocompleteComparatorFn;
+  private comparatorFn!: TsAutocompleteComparatorFn;
 
   /**
    * Define the name attribute value
    */
   @Input()
-  public name: string;
+  public name: string | undefined;
 
   /**
    * The list of options to display in the drop down
    */
   @Input()
-  public options: OptionType[];
+  public options!: OptionType[];
 
   /**
    * Define the form control to save selections to
    */
   @Input()
-  public selectionsControl: FormControl;
+  public selectionsControl!: FormControl;
 
   /**
    * Define if the progress spinner should be active
@@ -422,7 +426,8 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   public handleBlur(event: KeyboardEvent | MouseEvent): void {
     // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
-    const eventValue = (event && event['relatedTarget']) ? event['relatedTarget'] : null;
+    const eventValue: KeyboardEvent | MouseEvent | null =
+      (event && event['relatedTarget']) ? event['relatedTarget'] : null;
 
     if (eventValue && eventValue.nodeName) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
