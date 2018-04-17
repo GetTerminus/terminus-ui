@@ -8,7 +8,10 @@ import {
 } from '@angular/material/autocomplete';
 import createMockInstance from 'jest-create-mock-instance';
 
-import { TsAutocompleteComponent } from './autocomplete.component';
+import {
+  TsAutocompleteComponent,
+  TsAutocompleteFormatterFn,
+} from './autocomplete.component';
 
 
 describe(`TsAutocompleteComponent`, () => {
@@ -23,10 +26,6 @@ describe(`TsAutocompleteComponent`, () => {
     component.input = new ElementRef({});
   });
 
-  afterEach(() => {
-    component = null;
-  });
-
 
   test(`should exist`, () => {
     expect(component).toBeTruthy();
@@ -36,7 +35,7 @@ describe(`TsAutocompleteComponent`, () => {
   describe(`autocompleteTrigger`, () => {
 
     test(`should should set/get the trigger component`, () => {
-      component['trigger'] = null;
+      component['trigger'] = null as any;
       expect(component['trigger']).toBeFalsy();
 
       component.autocompleteTrigger = trigger;
@@ -62,7 +61,7 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should not set if the value is null`, () => {
-      component.debounceDelay = null;
+      component.debounceDelay = null as any;
       expect(component.debounceDelay).toEqual(200);
     });
 
@@ -73,14 +72,14 @@ describe(`TsAutocompleteComponent`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
       // tslint:disable: prefer-const
-      let foo;
+      let foo: any;
       // tslint:enable: prefer-const
       expect(component.displayWith = foo).toEqual(undefined);
     });
 
 
     test(`should set/get the uiFormatFn`, () => {
-      const myFn = (v: any) => v.id;
+      const myFn: TsAutocompleteFormatterFn = (v: any) => v.id;
       component.displayWith = myFn;
       expect(component.displayWith).toEqual(myFn);
     });
@@ -98,7 +97,7 @@ describe(`TsAutocompleteComponent`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
       // tslint:disable: prefer-const
-      let foo;
+      let foo: any;
       // tslint:enable: prefer-const
       expect(component.multiple = foo).toEqual(undefined);
     });

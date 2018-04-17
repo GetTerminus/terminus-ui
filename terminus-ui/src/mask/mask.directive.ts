@@ -88,22 +88,22 @@ export class TsMaskDirective implements ControlValueAccessor, OnChanges {
   /**
    * Store the current mask
    */
-  private currentMask: Mask;
+  private currentMask!: Mask;
 
   /**
    * Store a reference to the input element
    */
-  private inputElement: HTMLInputElement;
+  private inputElement!: HTMLInputElement;
 
   /**
    * Store the last value for comparison
    */
-  private lastValue: string;
+  private lastValue!: string;
 
   /**
    * Store the selected mask name
    */
-  private maskName: MaskShortcutOptions;
+  private maskName!: MaskShortcutOptions;
 
   /**
    * Base settings for the mask

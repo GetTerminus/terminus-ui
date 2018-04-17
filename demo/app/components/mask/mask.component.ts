@@ -23,5 +23,5 @@ export class MaskComponent {
   percentageControl: AbstractControl = new FormControl();
 
   @ViewChild(TsMaskDirective)
-  myMask: TsMaskDirective;
+  myMask!: TsMaskDirective;
 }

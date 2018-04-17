@@ -38,7 +38,7 @@ $ yarn run lint
 $ yarn run test
 
 # Run all TypeScript tests and output coverage
-$ yarn run test:ci
+$ yarn run test:ci:local
 
 # Start the demo project and watch demo and lib files for changes
 # (don't forget to build the library first!)

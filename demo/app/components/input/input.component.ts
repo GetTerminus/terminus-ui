@@ -17,7 +17,7 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
-  myValue;
+  myValue!: string;
   shouldDisable = true;
   myForm: FormGroup = this.formBuilder.group({
     name: [

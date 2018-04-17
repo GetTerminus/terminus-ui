@@ -35,7 +35,7 @@ import { TsValidationMessagesModule } from './validation-messages/validation-mes
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
-import { TsValidatorsService } from './services/validators/validators.service';
+import { TsValidatorsService } from './validators/validators.service';
 import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.component';
 
 @NgModule({

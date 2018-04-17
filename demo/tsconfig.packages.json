@@ -2,8 +2,7 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "@terminus/ui": ["./../dist/terminus-ui/public-api.ts"],
-      "@terminus/ui/testing": ["./../dist/terminus-ui/testing/public-api.ts"]
+      "@terminus/ui": ["./../dist/terminus-ui/public-api.ts"]
     }
   },
   "compilerOptions": {
@@ -12,8 +11,7 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "@terminus/ui": ["./../dist/terminus-ui/public-api.ts"],
-      "@terminus/ui/testing": ["./../dist/terminus-ui/testing/public-api.ts"]
+      "@terminus/ui": ["./../dist/terminus-ui/public-api.ts"]
     }
   },
   "exclude": [

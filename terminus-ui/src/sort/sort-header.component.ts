@@ -77,7 +77,7 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   // NOTE(B$): Renaming input so that we can pull a value from the primary directive
   // tslint:disable: no-input-rename
   @Input('ts-sort-header')
-  id: string;
+  id!: string;
   // tslint:enable: no-input-rename
 
   /**
@@ -90,7 +90,7 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    * Overrides the sort start value of the containing TsSort for this TsSortable
    */
   @Input()
-  start: 'asc' | 'desc';
+  start!: 'asc' | 'desc';
 
   /**
    * Overrides the disable clear value of the containing TsSort for this TsSortable
@@ -102,7 +102,7 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   set disableClear(v: boolean) {
     this._disableClear = coerceBooleanProperty(v);
   }
-  private _disableClear: boolean;
+  private _disableClear!: boolean;
 
 
   /**

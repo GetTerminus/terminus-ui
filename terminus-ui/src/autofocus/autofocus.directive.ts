@@ -26,7 +26,7 @@ export class TsAutofocusDirective implements AfterViewInit {
   /**
    * Store the shouldFocus value
    */
-  private shouldFocus: boolean;
+  private shouldFocus!: boolean;
 
   /**
    * Define if the element should be focused after initialization

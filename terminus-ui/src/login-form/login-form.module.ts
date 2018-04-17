@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { TsValidatorsService } from './../validators/validators.service';
 import { TsInputModule } from './../input/input.module';
 import { TsCheckboxModule } from './../checkbox/checkbox.module';
 import { TsButtonModule } from './../button/button.module';
@@ -23,6 +24,9 @@ export * from './login-form.component';
     TsSpacingModule,
     TsButtonModule,
     TsLinkModule,
+  ],
+  providers: [
+    TsValidatorsService,
   ],
   exports: [
     TsLoginFormComponent,

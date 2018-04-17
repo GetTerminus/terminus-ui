@@ -111,7 +111,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
   public get formatUILabelFn(): TsRadioFormatFn {
     return this._formatUILabelFn;
   }
-  private _formatUILabelFn: TsRadioFormatFn;
+  private _formatUILabelFn!: TsRadioFormatFn;
 
   /**
    * Define a function to retrieve the UI value for an option
@@ -134,7 +134,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
   public get formatUISubLabelFn(): TsRadioFormatFn {
     return this._formatUISubLabelFn;
   }
-  private _formatUISubLabelFn: TsRadioFormatFn;
+  private _formatUISubLabelFn!: TsRadioFormatFn;
 
   /**
    * Define a function to retrieve the UI value for an option
@@ -157,7 +157,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
   public get formatModelValueFn(): TsRadioFormatFn {
     return this._formatModelValueFn;
   }
-  private _formatModelValueFn: TsRadioFormatFn;
+  private _formatModelValueFn!: TsRadioFormatFn;
 
   /**
    * Define if the radio group is disabled
@@ -169,7 +169,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent {
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
   @Input()
-  public options: TsRadioOption[];
+  public options!: TsRadioOption[];
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}

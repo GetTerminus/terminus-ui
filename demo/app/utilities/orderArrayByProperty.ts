@@ -8,18 +8,20 @@
  * @return {Array} sortedArray The sorted array
  */
 export function orderArrayByProperty(items: any[], property: string, isDescending: boolean = true): any[] {
-  return items.sort((a: string, b: string) => {
+  return items.sort((a: any, b: any) => {
     const nonAlphaRegex = /\W+/g;
 
     // Check for existence and lowercase
-    const aProp = a[property] ? a[property].toLowerCase().replace(nonAlphaRegex, '') : null;
-    const bProp = b[property] ? b[property].toLowerCase().replace(nonAlphaRegex, '') : null;
+    const aProp: string | null = a[property] ? a[property].toLowerCase().replace(nonAlphaRegex, '') : null;
+    const bProp: string | null = b[property] ? b[property].toLowerCase().replace(nonAlphaRegex, '') : null;
 
     // Sort ascending or descending
     const aIsFirstReturn = isDescending ? -1 : 1;
     const bIsFirstReturn = isDescending ? 1 : -1;
 
-    if (aProp < bProp) {
+    if (!aProp || !bProp) {
+      return 0;
+    } else if (aProp < bProp) {
       // Sort ascending
       return aIsFirstReturn;
     } else if (aProp > bProp) {

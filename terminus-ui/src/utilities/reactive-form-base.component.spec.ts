@@ -4,9 +4,10 @@ import { TsReactiveFormBaseComponent } from './reactive-form-base.component';
 const METHOD_MOCK = () => 'foo';
 
 describe(`TsReactiveFormBaseComponent`, () => {
+  let component: TsReactiveFormBaseComponent;
 
   beforeEach(() => {
-    this.component = new TsReactiveFormBaseComponent();
+    component = new TsReactiveFormBaseComponent();
   });
 
 
@@ -23,7 +24,7 @@ describe(`TsReactiveFormBaseComponent`, () => {
 
 
   it(`should exist`, () => {
-    expect(this.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
@@ -31,8 +32,8 @@ describe(`TsReactiveFormBaseComponent`, () => {
 
     it(`should return the innerValue`, () => {
       const VALUE = 'foo';
-      this.component.innerValue = VALUE;
-      expect(this.component.value).toEqual(VALUE);
+      component['innerValue'] = VALUE;
+      expect(component.value).toEqual(VALUE);
     });
 
   });
@@ -42,19 +43,19 @@ describe(`TsReactiveFormBaseComponent`, () => {
 
     it(`should set the inner value and call the callback`, () => {
       const VALUE = 'bar';
-      this.component.onChangeCallback = jest.fn();
-      this.component.value = VALUE;
-      expect(this.component.innerValue).toEqual(VALUE);
-      expect(this.component.onChangeCallback).toHaveBeenCalled();
+      component['onChangeCallback'] = jest.fn();
+      component.value = VALUE;
+      expect(component['innerValue']).toEqual(VALUE);
+      expect(component['onChangeCallback']).toHaveBeenCalled();
     });
 
 
     it(`should not fire callback if the value is the same as innerValue`, () => {
       const VALUE = 'bar';
-      this.component.onChangeCallback = jest.fn();
-      this.component.innerValue = VALUE;
-      this.component.value = VALUE;
-      expect(this.component.onChangeCallback).not.toHaveBeenCalled();
+      component['onChangeCallback'] = jest.fn();
+      component['innerValue'] = VALUE;
+      component.value = VALUE;
+      expect(component['onChangeCallback']).not.toHaveBeenCalled();
     });
 
   });
@@ -63,9 +64,9 @@ describe(`TsReactiveFormBaseComponent`, () => {
   describe(`onBlur()`, () => {
 
     it(`should call the onTouchedCallback`, () => {
-      this.component.onTouchedCallback = jest.fn();
-      this.component.onBlur();
-      expect(this.component.onTouchedCallback).toHaveBeenCalled();
+      component['onTouchedCallback'] = jest.fn();
+      component.onBlur();
+      expect(component['onTouchedCallback']).toHaveBeenCalled();
     });
 
   });
@@ -74,8 +75,8 @@ describe(`TsReactiveFormBaseComponent`, () => {
   describe(`registerOnChange()`, () => {
 
     it(`should assign the passed in method`, () => {
-      this.component.registerOnChange(METHOD_MOCK);
-      expect(this.component.onChangeCallback).toEqual(METHOD_MOCK);
+      component['registerOnChange'](METHOD_MOCK);
+      expect(component['onChangeCallback']).toEqual(METHOD_MOCK);
     });
 
   });
@@ -84,8 +85,8 @@ describe(`TsReactiveFormBaseComponent`, () => {
   describe(`registerOnTouched()`, () => {
 
     it(`should assign the passed in method`, () => {
-      this.component.registerOnTouched(METHOD_MOCK);
-      expect(this.component.onTouchedCallback).toEqual(METHOD_MOCK);
+      component['registerOnTouched'](METHOD_MOCK);
+      expect(component['onTouchedCallback']).toEqual(METHOD_MOCK);
     });
 
   });
@@ -95,9 +96,9 @@ describe(`TsReactiveFormBaseComponent`, () => {
 
     it(`should save the value to innerValue`, () => {
       const VALUE = 'baz';
-      this.component.writeValue(VALUE);
+      component['writeValue'](VALUE);
 
-      expect(this.component.innerValue).toEqual(VALUE);
+      expect(component['innerValue']).toEqual(VALUE);
     });
 
   });

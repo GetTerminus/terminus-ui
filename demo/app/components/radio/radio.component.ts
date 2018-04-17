@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import {
   TsRadioChange,
   TsRadioOption,
+  TsRadioFormatFn,
 } from '@terminus/ui';
 
 
@@ -69,9 +70,9 @@ export class RadioComponent {
       ],
     ],
   });
-  uiFormatter = (v) => v.bar;
-  uiSubFormatter = (v) => v.bing;
-  modelFormatter = (v) => v.foo;
+  uiFormatter: TsRadioFormatFn = (v) => v.bar;
+  uiSubFormatter: TsRadioFormatFn = (v) => v.bing;
+  modelFormatter: TsRadioFormatFn = (v) => v.foo;
 
 
   constructor(

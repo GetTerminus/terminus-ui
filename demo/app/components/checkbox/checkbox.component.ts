@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
+import { TsCheckboxChange } from '@terminus/ui';
+
 
 @Component({
   selector: 'demo-checkbox',
@@ -25,11 +27,11 @@ export class CheckboxComponent {
   ) {}
 
 
-  changed(e: any) {
+  changed(e: boolean) {
     console.log('Input changed: ', e);
   }
 
-  interChanged(e: any) {
+  interChanged(e: TsCheckboxChange) {
     console.log('Indeterminate input changed: ', e);
   }
 

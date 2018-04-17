@@ -103,7 +103,7 @@ class FakeDataSource extends DataSource<TestData> {
 })
 class TableApp {
   @ViewChild(TsTableComponent)
-  table: TsTableComponent<TestData>;
+  table!: TsTableComponent<TestData>;
 
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -131,7 +131,7 @@ class TableApp {
   `,
 })
 class TableWithWhenRowApp {
-  @ViewChild(TsTableComponent) table: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
   dataSource: FakeDataSource | null = new FakeDataSource();
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
@@ -167,10 +167,10 @@ class ArrayDataSourceTableApp {
   dataSource = new TsTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent)table: TsTableComponent<TestData>;
-  @ViewChild(TsPaginatorComponent) paginator: TsPaginatorComponent;
-  @ViewChild(TsSortDirective) sort: TsSortDirective;
-  @ViewChild(TsSortHeaderComponent) sortHeader: TsSortHeaderComponent;
+  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
+  @ViewChild(TsPaginatorComponent) paginator!: TsPaginatorComponent;
+  @ViewChild(TsSortDirective) sort!: TsSortDirective;
+  @ViewChild(TsSortHeaderComponent) sortHeader!: TsSortHeaderComponent;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -217,10 +217,10 @@ class ArrayDataSourceTableAppNoSort {
   dataSource = new TsTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent)table: TsTableComponent<TestData>;
-  @ViewChild(TsPaginatorComponent) paginator: TsPaginatorComponent;
-  @ViewChild(TsSortDirective) sort: TsSortDirective;
-  @ViewChild(TsSortHeaderComponent) sortHeader: TsSortHeaderComponent;
+  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
+  @ViewChild(TsPaginatorComponent) paginator!: TsPaginatorComponent;
+  @ViewChild(TsSortDirective) sort!: TsSortDirective;
+  @ViewChild(TsSortHeaderComponent) sortHeader!: TsSortHeaderComponent;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -352,7 +352,7 @@ describe(`TsTableComponent`, () => {
       fixture.detectChanges();
 
       const tableElement = document.querySelector('.ts-table');
-      expectTableToMatchContent(tableElement, [
+      expectTableToMatchContent(tableElement!, [
         ['Column A', 'Column B', 'Column C'],
         ['a_1'],
         ['a_2'],

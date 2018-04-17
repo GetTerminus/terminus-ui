@@ -21,6 +21,12 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
 
 
 /**
+ * Expose the MatCheckboxChange event as TsCheckboxChange. Used by {@link TsCheckboxComponent}
+ */
+export class TsCheckboxChange extends MatCheckboxChange {}
+
+
+/**
  * Custom control value accessor for our component
  * This allows our custom components to access the underlying form validation via the base class
  */
@@ -68,6 +74,12 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent implements 
    * Store the `isChecked` value
    */
   private _isChecked: boolean = false;
+
+  /**
+   * Provide access to the MatCheckboxComponent
+   */
+  @ViewChild(MatCheckbox)
+  checkbox!: MatCheckbox;
 
   /**
    * Toggle the underlying checkbox if the isChecked property changes
@@ -128,13 +140,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent implements 
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public indeterminateChange: EventEmitter<MatCheckboxChange> = new EventEmitter;
-
-  /**
-   * Provide access to the MatCheckboxComponent
-   */
-  @ViewChild(MatCheckbox)
-  checkbox: MatCheckbox;
+  public indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter;
 
 
   constructor(

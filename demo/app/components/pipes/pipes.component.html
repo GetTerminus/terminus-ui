@@ -65,16 +65,27 @@ Old date:
   <h2>SentenceCase</h2>
 
 <pre tsVerticalSpacing>
-String: 'HERE IS MY STRING'
+String:
+'HERE IS MY STRING'
 </pre>
 
-  <div tsVerticalSpacing>
+  <div>
     {{ 'HERE IS MY STRING' | tsSentenceCase }}
   </div>
 
+</ts-card>
+
+
+<ts-card>
+
+  <h2>Usage in Class</h2>
+
+<pre tsVerticalSpacing>
+String: {{ myString }}
+</pre>
+
   <div>
-    Example transformed in the class:
-    {{ myString }}
+    {{ myStringTransformed }}
   </div>
 
 </ts-card>
