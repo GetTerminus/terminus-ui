@@ -66,9 +66,11 @@ export class MyComponent {
 | `lessThan`           | A number must be less than another value                      |
 | `lessThanOrEqual`    | A number must be less than or equal to another value          |
 | `lowercase`          | A value must contain a minimum amount of lowercase characters |
-| `minDate`            | A date must be after a minimum date                           |
 | `maxDate`            | A date must be before a maximum date                          |
+| `minDate`            | A date must be after a minimum date                           |
+| `numbers`            | A minimum amount of numbers must be found                     |
 | `password`           | A password must meet certain requirements                     |
+| `uppercase`          | A value must contain a minimum amount of uppercase characters |
 | `url`                | A URL must be valid                                           |
 
 
