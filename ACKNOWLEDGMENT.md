@@ -18,9 +18,10 @@ internally so that we can provide a unified API for the Terminus engineering tea
 For most needs though, we highly recommend using the original libraries since they will be focused
 more on the communities needs.
 
-
 - https://github.com/rsaenen/ng4-validators
 - http://robinherbots.github.io/Inputmask/
 - https://github.com/angular/material2
 - https://github.com/prestopasto/SCSS-Material-Shadows
 - https://github.com/fknop/angular-pipes
+- https://github.com/gevgeny/angular2-highcharts
+- https://github.com/cebor/angular-highcharts

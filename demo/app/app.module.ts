@@ -6,6 +6,33 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
+// Import highstock as highcharts (highstock includes everything highcharts does and then some)
+import * as Highcharts from 'highcharts/highstock';
+
+// This TypeScript declaration is most likely needed for Angular CLI projects:
+declare var require: any;
+
+// Define a function that extends the Highcharts library with all needed functionality:
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  const loadMore = require('highcharts/highcharts-more');
+  const loadStock = require('highcharts/modules/stock');
+  const loadMap = require('highcharts/modules/map');
+  const loadDrilldown = require('highcharts/modules/drilldown');
+  const loadExporting = require('highcharts/modules/exporting');
+
+  loadMore(hc);
+  loadStock(hc);
+  loadMap(hc);
+  loadDrilldown(hc);
+  loadExporting(hc);
+
+  return hc;
+}
+
+
+
+
 // Native Material modules only needed for demo shell
 import {
   MatButtonModule,
@@ -19,6 +46,8 @@ import {
   TsAutofocusModule,
   TsButtonModule,
   TsCardModule,
+  TsChartModule,
+  HIGHCHARTS,
   TsCheckboxModule,
   TsConfirmationModule,
   TsCopyModule,
@@ -64,6 +93,7 @@ import { CardComponent } from './components/card/card.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { CopyComponent } from './components/copy/copy.component';
+import { ChartComponent } from './components/chart/chart.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -110,6 +140,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsAutofocusModule,
     TsButtonModule,
     TsCardModule,
+    TsChartModule,
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
@@ -140,6 +171,11 @@ import { ValidationComponent } from './components/validation/validation.componen
   providers: [
     TsWindowService,
     TsDocumentService,
+    // Use the factory function to overwrite the `HIGHCHARTS` injectable:
+    {
+      provide: HIGHCHARTS,
+      useFactory: highchartsFactory,
+    },
   ],
   declarations: [
     AppComponent,
@@ -150,6 +186,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     BreakpointsComponent,
     ButtonComponent,
     CardComponent,
+    ChartComponent,
     CheckboxComponent,
     ConfirmationComponent,
     CopyComponent,

@@ -30,10 +30,10 @@ export type TsDateTypes =
 export class TsDatePipe implements PipeTransform {
   transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
     const validFormats: TsDateTypes[] = [
-      'short', // 02/08/2018
-      'medium', // February 8th, 2018
-      'extended', // Thursday, February 8th, 2018, 12:00:00am
-      'timestamp', // 2018-02-08T05:00:00.000Z
+      'short',
+      'medium',
+      'extended',
+      'timestamp',
     ];
 
     // Check for null values to avoid issues during data-binding

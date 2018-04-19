@@ -55,6 +55,9 @@
     "@angular/router": "^5.2.5",
     "@terminus/ngx-tools": "^2.11.0"
   },
+  "optionalDependencies": {
+    "highcharts": "^6.1.0"
+  },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "workingDirectory": "../.ng_build",

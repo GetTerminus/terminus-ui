@@ -20,6 +20,7 @@ module.exports = {
     {name: 'Autofocus'},
     {name: 'Button'},
     {name: 'Card'},
+    {name: 'Chart'},
     {name: 'Checkbox'},
     {name: 'Confirmation'},
     {name: 'Copy'},

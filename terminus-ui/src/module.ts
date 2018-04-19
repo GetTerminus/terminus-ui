@@ -7,6 +7,7 @@ import { TsAutofocusModule } from './autofocus/autofocus.module';
 import { TsAutocompleteModule } from './autocomplete/autocomplete.module';
 import { TsButtonModule } from './button/button.module';
 import { TsCardModule } from './card/card.module';
+import { TsChartModule } from './chart/chart.module';
 import { TsCheckboxModule } from './checkbox/checkbox.module';
 import { TsConfirmationModule } from './confirmation/confirmation.module';
 import { TsCopyModule } from './copy/copy.module';
@@ -47,6 +48,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
+    TsChartModule,
     TsDateRangeModule,
     TsDatepickerModule,
     TsIconModule,
@@ -86,6 +88,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
+    TsChartModule,
     TsDateRangeModule,
     TsDatepickerModule,
     TsIconModule,
