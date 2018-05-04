@@ -5,21 +5,21 @@ interface Foo {
   [key: string]: any;
 }
 
+
 // Additional tests for parts missed by the {@link TsTableComponent} integration test
 describe(`TsTableDataSource`, () => {
   let source: TsTableDataSource<Foo>;
+  let seededSource: TsTableDataSource<Foo>;
 
   beforeEach(() => {
     source = new TsTableDataSource();
+    seededSource = new TsTableDataSource([{foo: 'bar'}]);
   });
 
 
-  describe(`if no data is passed in`, () => {
-
-    test(`should initialize an empty array`, () => {
-      expect(source.data).toEqual([]);
-    });
-
+  test(`should initialize an empty array if no data passed in`, () => {
+    expect(source.data).toEqual([]);
+    expect(seededSource.data).toEqual([{foo: 'bar'}]);
   });
 
 
@@ -32,6 +32,11 @@ describe(`TsTableDataSource`, () => {
       expect(spy).toHaveBeenCalled();
     });
 
+  });
+
+
+  test(`should have a disconnected() noop`, () => {
+    expect(source.disconnect()).toEqual(undefined);
   });
 
 });
