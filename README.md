@@ -85,7 +85,7 @@ for each feature.
 | button          |                                             | :white_check_mark: | [Demo][demo-button]             | [Docs][button-docs]          |                             |
 | breadcrumbs     |                                             |                    |                                 |                              |                             |
 | card            |                                             | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]            | [Usage][card-usage]         |
-| chart           | Charts, graphs etc                          | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]           | [Usage][chart-usage]        |
+| chart           | Charts, graphs etc                          | :white_check_mark: | [local]                         | [Docs][chart-docs]           | [Usage][chart-usage]        |
 | chip            |                                             |                    |                                 |                              |                             |
 | checkbox        |                                             | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
 | confirmation    | Add a confirmation step to any `ts-button`  | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Docs][confirmation-usage]  |
