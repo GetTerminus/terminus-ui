@@ -5,6 +5,7 @@ import { AutofocusComponent } from './autofocus/autofocus.component';
 import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
+import { ChartComponent } from './chart/chart.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
@@ -33,6 +34,7 @@ import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
+
 
 export const componentsList: Routes = [
   {
@@ -68,6 +70,13 @@ export const componentsList: Routes = [
     component: CardComponent,
     data: {
       name: 'Card',
+    },
+  },
+  {
+    path: 'chart',
+    component: ChartComponent,
+    data: {
+      name: 'Chart',
     },
   },
   {

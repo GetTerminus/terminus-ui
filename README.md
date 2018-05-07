@@ -12,7 +12,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-27-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-28-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-3-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
@@ -85,11 +85,11 @@ for each feature.
 | button          |                                             | :white_check_mark: | [Demo][demo-button]             | [Docs][button-docs]          |                             |
 | breadcrumbs     |                                             |                    |                                 |                              |                             |
 | card            |                                             | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]            | [Usage][card-usage]         |
+| chart           | Charts, graphs etc                          | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]           | [Usage][chart-usage]        |
 | chip            |                                             |                    |                                 |                              |                             |
 | checkbox        |                                             | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
 | confirmation    | Add a confirmation step to any `ts-button`  | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Docs][confirmation-usage]  |
 | copy            |                                             | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                             |
-| datavis         | Charts, graphs etc                          |                    |                                 |                              |                             |
 | datepicker      | Input with calendar pop-up                  | :white_check_mark: | [Demo][demo-datepicker]         | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
 | date-range      | Dual inputs with calendar pop-ups           | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
 | dialog          |                                             |                    |                                 |                              |                             |
@@ -184,7 +184,7 @@ for each feature.
 Install the library and all required dependencies:
 
 ```bash
-$ yarn add @terminus/ui
+$ yarn add @terminus/ui @terminus/ngx-tools @angular/flex-layout date-fns
 ```
 
 
@@ -288,6 +288,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-autofocus]: https://terminus-ui-demos.stackblitz.io/components/autofocus
 [demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
 [demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
+[demo-chart]: https://terminus-ui-demos.stackblitz.io/components/chart
 [demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
 [demo-confirmation]: https://terminus-ui-demos.stackblitz.io/components/confirmation
 [demo-copy]: https://terminus-ui-demos.stackblitz.io/components/copy
@@ -328,6 +329,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [autofocus-docs]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html
 [button-docs]: https://getterminus.github.io/terminus-ui/components/TsButtonComponent.html
 [card-docs]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html
+[chart-docs]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html
 [checkbox-docs]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html
 [copy-docs]: https://getterminus.github.io/terminus-ui/components/TsCopyComponent.html
 [confirmation-docs]: https://getterminus.github.io/terminus-ui/components/TsConfirmationDirective.html
@@ -357,6 +359,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme
 [autofocus-usage]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html#readme
 [card-usage]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html#readme
+[chart-usage]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
 [confirmation-usage]: https://getterminus.github.io/terminus-ui/components/TsConfirmationDirective.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme

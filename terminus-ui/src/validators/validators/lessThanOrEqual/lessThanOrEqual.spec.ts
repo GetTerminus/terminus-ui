@@ -9,51 +9,49 @@ import { lessThanOrEqualValidator } from './lessThanOrEqual';
 
 describe(`lessThanOrEqualValidator`, () => {
   let validatorFn: ValidatorFn;
+  let validatorFnNoNumber: ValidatorFn;
 
   beforeEach(() => {
     validatorFn = lessThanOrEqualValidator(10);
+    validatorFnNoNumber = lessThanOrEqualValidator();
   });
 
 
-  describe(`if the control is invalid`, () => {
+  test(`should return null if the control is invalid`, () => {
+    const values = [undefined, {}];
 
-    test(`should return null`, () => {
-      const values = [undefined, {}];
-
-      for (const val of values) {
-        expect(validatorFn(val as any)).toEqual(null);
-      }
-    });
-
+    for (const val of values) {
+      expect(validatorFn(val as any)).toEqual(null);
+    }
   });
 
 
-  describe(`if the number is valid`, () => {
+  test(`should return null if the number is valid`, () => {
+    const values = [9, 0, -1, 10];
 
-    test(`should return null`, () => {
-      const values = [9, 0, -1, 10];
-
-      for (const val of values) {
-        expect(validatorFn(new FormControl(val))).toEqual(null);
-      }
-    });
-
+    for (const val of values) {
+      expect(validatorFn(new FormControl(val))).toEqual(null);
+    }
   });
 
 
-  describe(`if the number is NOT valid`, () => {
+  test(`should return the invalid response if the number is NOT valid`, () => {
+    const values = [11, 98.6, 9999];
 
-    test(`should return the invalid response`, () => {
-      const values = [11, 98.6, 9999];
+    for (const val of values) {
+      const result = validatorFn(new FormControl(val));
 
-      for (const val of values) {
-        const result = validatorFn(new FormControl(val));
+      expect(result!.lessThanOrEqual.valid).toEqual(false);
+      expect(result!.lessThanOrEqual.actual).toEqual(val);
+    }
+  });
 
-        expect(result!.lessThanOrEqual.valid).toEqual(false);
-        expect(result!.lessThanOrEqual.actual).toEqual(val);
-      }
-    });
 
+  test(`should default to 0 if no number is passed in`, () => {
+    const result = validatorFnNoNumber(new FormControl(1));
+
+    expect(result!.lessThanOrEqual.valid).toEqual(false);
+    expect(result!.lessThanOrEqual.actual).toEqual(1);
   });
 
 });

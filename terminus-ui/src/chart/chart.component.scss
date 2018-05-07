@@ -1,0 +1,24 @@
+@import './../scss/helpers/_typography';
+
+
+//
+// @component
+//  Chart
+// @description
+//  A charting / data-viz component
+//
+.ts-chart {
+  display: block;
+}
+
+// Override the export menu typography
+.highcharts-menu-item {
+  @include typography(caption);
+}
+
+// Allow point selection even if the path is behind another series (ie. area chart)
+.highcharts-series {
+  path {
+    pointer-events: visibleStroke;
+  }
+}
