@@ -6,31 +6,24 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
-// Import highstock as highcharts (highstock includes everything highcharts does and then some)
-import * as Highcharts from 'highcharts/highstock';
-
-// This TypeScript declaration is most likely needed for Angular CLI projects:
-declare var require: any;
+// Import highcharts and all highcharts extension modules
+import * as Highcharts from 'highcharts';
+import * as loadMore from 'highcharts/highcharts-more.src';
+import * as loadStock from 'highcharts/modules/stock.src';
+import * as loadMap from 'highcharts/modules/map.src';
+import * as loadDrilldown from 'highcharts/modules/drilldown.src';
+import * as loadExporting from 'highcharts/modules/exporting.src';
 
 // Define a function that extends the Highcharts library with all needed functionality:
 export function highchartsFactory() {
-  const hc = require('highcharts');
-  const loadMore = require('highcharts/highcharts-more');
-  const loadStock = require('highcharts/modules/stock');
-  const loadMap = require('highcharts/modules/map');
-  const loadDrilldown = require('highcharts/modules/drilldown');
-  const loadExporting = require('highcharts/modules/exporting');
+  loadMore(Highcharts);
+  loadStock(Highcharts);
+  loadMap(Highcharts);
+  loadDrilldown(Highcharts);
+  loadExporting(Highcharts);
 
-  loadMore(hc);
-  loadStock(hc);
-  loadMap(hc);
-  loadDrilldown(hc);
-  loadExporting(hc);
-
-  return hc;
+  return Highcharts;
 }
-
-
 
 
 // Native Material modules only needed for demo shell
