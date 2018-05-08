@@ -132,7 +132,7 @@
     "@angular/platform-browser": "^5.2.5",
     "@angular/platform-browser-dynamic": "^5.2.5",
     "@angular/router": "^5.2.5",
-    "@terminus/ngx-tools": "^2.15.1",
+    "@terminus/ngx-tools": "^2.15.2",
     "@terminus/ui": "^8.4.0",
     "date-fns": "2.0.0-alpha.7",
     "highcharts": "^6.1.0",

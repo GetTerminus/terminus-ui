@@ -499,9 +499,9 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^2.15.1":
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.15.1.tgz#f875c01178d83e2339946014b21ffdf01f5a13fa"
+"@terminus/ngx-tools@^2.15.2":
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.15.2.tgz#efefa9e80c28a4d5baa36c1a59c20ca344d15dd7"
   dependencies:
     tslib "^1.7.1"
 
