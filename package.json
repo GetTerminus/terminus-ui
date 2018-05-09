@@ -92,6 +92,7 @@
     "tag": "next"
   },
   "release": {
+    "branch": "master",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
