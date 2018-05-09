@@ -88,6 +88,9 @@
       "git add"
     ]
   },
+  "publishConfig": {
+    "tag": "next"
+  },
   "release": {
     "verifyConditions": [
       "condition-circle",
