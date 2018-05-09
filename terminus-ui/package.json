@@ -12,7 +12,11 @@
   "bugs": {
     "url": "https://github.com/GetTerminus/terminus-ui/issues"
   },
+  "publishConfig": {
+    "tag": "next"
+  },
   "release": {
+    "branch": "master",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",
