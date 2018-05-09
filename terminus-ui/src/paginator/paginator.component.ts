@@ -156,8 +156,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    */
   @Input()
   public set isZeroBased(v: boolean) {
-    v = coerceBooleanProperty(v);
-    this._isZeroBased = v;
+    this._isZeroBased = coerceBooleanProperty(v);
   }
   public get isZeroBased(): boolean {
     return this._isZeroBased;
@@ -530,8 +529,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   private createPagesArray(total: number, perPage: number, zeroBased: boolean): TsPaginatorMenuItem[] {
     const paginatorArray: TsPaginatorMenuItem[] = [];
     let recordsRemaining = total;
-    let page = this.firstPageIndex;
-    const zeroBasedOffset: number = zeroBased ? 1 : 0;
+    let page = zeroBased ? 0 : 1;
 
     // If there are no records just return an empty array
     if (!recordsRemaining || recordsRemaining < 1) {
@@ -540,17 +538,17 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
     while (recordsRemaining >= perPage) {
       // We are creating the text for the range here so we are dealing with records based on 1
-      // (while the pages themselves are based on 0)
-      const pageNumber: number = page;
-      const rangeStart: number = (pageNumber + zeroBasedOffset) * perPage - (perPage - 1);
-      const rangeEnd: number = ((pageNumber + zeroBasedOffset) * perPage);
-      const pageValue: number = paginatorArray.length + (zeroBased ? 0 : 1);
+      // (while the pages themselves may be based on 0 or 1)
+      const pageNumber = (page < 1) ? 1 : page;
+      const rangeStart = pageNumber * perPage - (perPage - 1);
+      const rangeEnd = (pageNumber * perPage);
+      const pageValue: number = paginatorArray.length + 1;
 
       // Create a page object
       paginatorArray.push({
         name: `${rangeStart} - ${rangeEnd}`,
-        // The value may be zero based
-        value: `${(pageValue).toString()}`,
+        // The value is zero based
+        value: `${(pageValue - (zeroBased ? 1 : 0)).toString()}`,
       });
 
       // Update the remaining count
@@ -568,15 +566,14 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       let name;
       let value;
       const pageNumber = (page < 1) ? 1 : page;
+      const pageValue: number = paginatorArray.length + 1;
 
-      // This is just the last page (not only page)
       if (paginatorArray.length > 0) {
-        name = `${(pageNumber + zeroBasedOffset) * perPage + 1} - ${(pageNumber + zeroBasedOffset) * perPage + recordsRemaining}`;
-        value = pageNumber + 1;
+        name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
+        value = `${(pageValue - (zeroBased ? 1 : 0)).toString()}`;
       } else {
-        // If this is the only paginator page
         name = `${pageNumber} - ${recordsRemaining}`;
-        value = pageNumber;
+        value = `${(pageValue - (zeroBased ? 1 : 0)).toString()}`;
       }
 
       paginatorArray.push({
@@ -585,7 +582,9 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       });
     }
 
-    return paginatorArray;
+    return paginatorArray.sort((a: TsPaginatorMenuItem, b: TsPaginatorMenuItem): number => {
+      return (parseInt(a.value, 10) < parseInt(b.value, 10)) ? -1 : 1;
+    });
   }
 
 
