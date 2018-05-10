@@ -350,7 +350,6 @@ describe(`TsPaginatorComponent`, () => {
 
     test(`should create a final page when fewer than the per-page amount are remaining`, () => {
       const array = component['createPagesArray'](105, 10, true);
-      console.log('array: ', array);
 
       expect(array.length).toEqual(11);
       expect(array[array.length - 1].name).toEqual('101 - 105');
