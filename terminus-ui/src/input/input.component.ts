@@ -7,16 +7,11 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ChangeDetectorRef,
-  AfterContentInit,
   OnChanges,
   SimpleChanges,
   ViewChild,
-  Injector,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-  NgControl,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import {
   hasRequiredControl,
@@ -123,7 +118,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent implements AfterContentInit, OnChanges {
+export class TsInputComponent extends TsReactiveFormBaseComponent implements OnChanges {
 
   /**
    * Determine the correct required attribute content
@@ -162,12 +157,8 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
     v = coerceBooleanProperty(v);
     const action: string = v ? 'disable' : 'enable';
 
-    // FIXME: It seems that we should be able use the changeDetectorRef here but it doesn't
-    // seem to work
-    setTimeout(() => {
-      this._isDisabled = v;
-      this.matInput.ngControl.control[action]();
-    });
+    this._isDisabled = v;
+    this.matInput.ngControl.control[action]();
   }
   public get isDisabled(): boolean {
     return this._isDisabled;
@@ -263,7 +254,6 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private injector: Injector,
   ) {
     super();
   }
@@ -291,14 +281,6 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements Aft
     }
   }
 
-
-  /**
-   * Get our instance of ngControl and override MatInput's instance
-   */
-  public ngAfterContentInit(): void {
-    this.matInput.ngControl = this.injector.get(NgControl);
-    this.changeDetectorRef.detectChanges();
-  }
 
 
   /**
