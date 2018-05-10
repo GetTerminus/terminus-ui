@@ -62,6 +62,16 @@
       tsVerticalSpacing
     ></ts-input>
 
+      <ts-input
+        [formControl]="myForm.get('seedValue')"
+        [label]="label3"
+        [isClearable]="clearable"
+        hint="This is to test text overlap"
+        name="seedValue"
+        [spellcheck]="false"
+        tsVerticalSpacing
+    ></ts-input>
+
     <button (click)="foo.reset()">Reset name input</button>
     <button (click)="submit(myForm.value)">Submit</button>
   </form>

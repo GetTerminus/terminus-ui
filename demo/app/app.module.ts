@@ -87,6 +87,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { InputContainerComponent } from 'app/components/input/input-container.component';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -157,6 +158,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     IconComponent,
     IconButtonComponent,
     InputComponent,
+    InputContainerComponent,
     LinkComponent,
     LoadingOverlayComponent,
     LoginFormComponent,

@@ -31,6 +31,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { InputContainerComponent } from 'app/components/input/input-container.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -114,7 +115,7 @@ export const componentsList: Routes = [
   },
   {
     path: 'input',
-    component: InputComponent,
+    component: InputContainerComponent,
     data: {
       name: 'Input',
     },
