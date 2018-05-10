@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatRippleModule } from '@angular/material/core';
 
+import { TsTooltipModule } from './../tooltip/tooltip.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsCopyComponent } from './copy.component';
 
@@ -15,6 +16,7 @@ export * from './copy.component';
     FlexLayoutModule,
     TsIconModule,
     MatRippleModule,
+    TsTooltipModule,
   ],
   exports: [
     TsCopyComponent,
