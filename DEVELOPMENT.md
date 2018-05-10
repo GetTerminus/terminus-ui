@@ -1,4 +1,4 @@
-<h1>Developing Terminus/UI</h1>
+<h1>Developing the Terminus UI</h1>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,6 +21,7 @@
 - [Issues](#issues)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Developing
 
@@ -224,20 +225,24 @@ Look at the scripts section in the project's `package.json` for the command to r
 When it is time merge a branch into `master`, create a pull request from the feature into `master`.
 
 1. At the top of the pull request, link to the original issue.
-  - If the [ZenHub][zenhub] extension is installed in your browser, you can attach an issue to the PR via the built in controls
+    - If the [ZenHub][zenhub] extension is installed in your browser, you can attach an issue to the
+      PR via the built in controls
 1. If the pull request includes more than one item, include a high level list of what was done.
 1. If the pull request covers UI changes, include a GIF or image to clearly show the change (bonus
    points for before and after images).
 1. Request a review from someone on the UI team (any code owners will be notified by default).
 1. A pull request may be opened before the work is complete. This makes it easier to get feedback
-   while the work is in progress. Include `WIP: ` at the beginning of the pull request title, add the `DO NOT MERGE` label so that it is not accidentally merged and `cc/ @mention` anyone that should take a look.
+   while the work is in progress. Include `WIP: ` at the beginning of the pull request title, add
+   the `DO NOT MERGE` label so that it is not accidentally merged and `cc/ @mention` anyone that
+   should take a look.
 1. There are two options to check for merge conflicts between your branch and master:
     - Create a pull request against master. (Note: This will cause any associated CI service to
       begin building the feature branch on every push)
     - Use GitHub's compare view:
     `https://github.com/GetTerminus/terminus-ui/compare/your-branch-name...master`
-1. The pull request body, just like the issue body, is the single source of truth. Any discussions,
-   decisions or relevant information should be added to the pull request body immediately.
+1. The pull request body, just like the issue body, is the **single source of truth**. Any
+   discussions, decisions or relevant information should be added to the pull request body
+   immediately.
 
 
 ### Releasing
@@ -245,12 +250,18 @@ When it is time merge a branch into `master`, create a pull request from the fea
 Releases are handled automatically when code is merged to master. Never merge code to master that is
 not production ready!
 
-1. [Semantic Release][semantic-release] looks at all commits since the last tag on master
-1. Based on those commits it will [bump the version number appropriately][semver]
-1. A changelog is generated in the release notes on [Github][ui-github]
-1. The new version is published to [NPM][ui-npm]
+1. [Semantic Release][semantic-release] looks at all commits since the last tag on master.
+1. Based on those commits it will [bump the version number appropriately][semver].
+1. A changelog is generated in the release notes on [Github][ui-github].
+1. The new version is published to [NPM][ui-npm] under the `next` tag.
+1. When the new functionality is verified, it is tagged as `latest`:
+    - `npm dist-tag add @terminus/ui@<version to promote> latest`
 
-> You can view the currently published files using the [unpkg CDN][unpkg-terminus].
+> NOTE: currently `yarn tag` outputs an error even though the tagging seems to work. Because of
+> this, we will continue using NPM for tagging.
+
+You can view the currently published files using the [unpkg CDN][unpkg-terminus].
+
 
 ### Code Comments
 
