@@ -186,6 +186,7 @@ Install the library and all required dependencies:
 
 ```bash
 $ yarn add @terminus/ui @terminus/ngx-tools @angular/flex-layout date-fns
+$ yarn add @types/highcharts -D
 ```
 
 
