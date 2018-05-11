@@ -77,6 +77,17 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dpeet",
+      "name": "Devon Peet",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4729779?v=4",
+      "profile": "https://github.com/dpeet",
+      "contributions": [
+        "design",
+        "ideas"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }
