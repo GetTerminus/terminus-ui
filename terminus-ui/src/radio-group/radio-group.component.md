@@ -11,6 +11,8 @@
 - [Required](#required)
 - [Disabled](#disabled)
   - [Disabled option](#disabled-option)
+- [Visual mode](#visual-mode)
+  - [Custom content](#custom-content)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -140,6 +142,7 @@ To disable the entire radio group, set `isDisabled` to true:
 ></ts-radio-group>
 ```
 
+
 ### Disabled option
 
 To disabled only a single option, define the `disabled` key on the item object:
@@ -163,3 +166,49 @@ items$: Observable<TsRadioOption[]> = of([
 ]);
 ```
 
+## Visual mode
+
+Visual mode displays radio options as large clickable areas containing content.
+
+Enable by setting the `isVisual` flag:
+
+```html
+<ts-radio-group
+  isVisual="true"
+  ...
+></ts-radio-group>
+```
+
+### Custom content
+
+`TsRadioOption` now accepts an optional `template` key with a string template:
+
+```typescript
+items$: Observable<TsRadioOption[]> = of([
+  {
+    foo: 'foo_value',
+    bar: 'Foo Display',
+    template: `<a href="${this.myLink}">My link!</a>`
+  },
+  {
+    foo: 'bar_value',
+    bar: 'Bar Display',
+    // if no template is defined, it will fall back to `formatUILabelFn` for the display value
+  },
+  {
+    foo: 'baz_value',
+    bar: 'Baz Display',
+    template: `<h3>Hi!</h3> <p>Here is a thing!</p>`
+  },
+]);
+```
+
+```html
+<ts-radio-group
+  isVisual="true"
+  [options]="items$ | async"
+  [formControl]="myForm.get('myRadioGroup')"
+  [formatUILabelFn]="uiFormatter"
+  [formatModelValueFn]="modelFormatter"
+></ts-radio-group>
+```
