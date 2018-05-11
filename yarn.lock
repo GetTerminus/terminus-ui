@@ -289,9 +289,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@compodoc/compodoc@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.1.1.tgz#2ed853c35679f40f361cb5ac46ae67bdcde4e974"
+"@compodoc/compodoc@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.1.2.tgz#6d038ff2be0fd01b12d669dcb08caf9709dfa14a"
   dependencies:
     "@compodoc/ngd-transformer" "^2.0.0"
     chalk "^2.3.2"
@@ -303,7 +303,7 @@
     findit2 "^2.2.3"
     fs-extra "^5.0.0"
     glob "^7.1.2"
-    handlebars "^4.0.11"
+    handlebars "4.0.10"
     html-entities "^1.2.1"
     json5 "^1.0.1"
     live-server "1.1.0"
@@ -312,7 +312,7 @@
     marked "^0.3.19"
     os-name "^2.0.1"
     traverse "^0.6.6"
-    ts-simple-ast "10.0.1"
+    ts-simple-ast "10.2.0"
     uuid "^3.2.1"
 
 "@compodoc/ngd-core@~2.0.0":
@@ -2217,9 +2217,9 @@ co@~3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/co/-/co-3.0.6.tgz#1445f226c5eb956138e68c9ac30167ea7d2e6bda"
 
-code-block-writer@^6.7.1:
-  version "6.14.0"
-  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-6.14.0.tgz#0245ee31aebcd21a82316ce2061d5fbe9550de6f"
+code-block-writer@6.13.0:
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-6.13.0.tgz#9473a3a0c26c9a860c388b6b218e4031bbc61fe0"
 
 code-notes@^1.0.4:
   version "1.0.4"
@@ -4992,7 +4992,17 @@ handle-thing@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
-handlebars@^4.0.1, handlebars@^4.0.11, handlebars@^4.0.2, handlebars@^4.0.3:
+handlebars@4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
+  dependencies:
+    async "^1.4.0"
+    optimist "^0.6.1"
+    source-map "^0.4.4"
+  optionalDependencies:
+    uglify-js "^2.6"
+
+handlebars@^4.0.1, handlebars@^4.0.2, handlebars@^4.0.3:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.11.tgz#630a35dfe0294bc281edae6ffc5d329fc7982dcc"
   dependencies:
@@ -11547,12 +11557,12 @@ ts-jest@^22.4.1:
     pkg-dir "^2.0.0"
     yargs "^11.0.0"
 
-ts-simple-ast@10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-10.0.1.tgz#f90ec05fdac7f6d7d56f5ddafd33d61a73f3edb5"
+ts-simple-ast@10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-10.2.0.tgz#f938f3e7f790a43baae47bd044c3270fe9590135"
   dependencies:
     "@dsherret/to-absolute-glob" "^2.0.2"
-    code-block-writer "^6.7.1"
+    code-block-writer "6.13.0"
     glob-parent "^3.1.0"
     globby "^6.1.0"
     is-negated-glob "^1.0.0"
