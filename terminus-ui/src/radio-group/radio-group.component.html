@@ -1,36 +1,100 @@
-<mat-radio-group
-  class="c-radio qa-radio-group"
-  [disabled]="isDisabled"
-  [required]="isRequired"
-  [class.c-radio--sublabel]="formatUISubLabelFn"
-  [(ngModel)]="value"
->
-  <ng-container *ngFor="let option of options">
+<!-- STANDARD MODE -->
+<ng-container *ngIf="!isVisual">
 
-    <mat-radio-button
-      class="c-radio__control qa-radio-control"
-      [value]="retrieveValue(option, formatModelValueFn)"
-      [disabled]="option.disabled"
-      [name]="retrieveValue(option, formatModelValueFn)"
-      (change)="change.emit($event)"
-      #radio="matRadioButton"
-    >
-      {{ retrieveValue(option, formatUILabelFn) }}
+  <mat-radio-group
+    class="c-radio qa-radio-group"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [class.c-radio--sublabel]="formatUISubLabelFn"
+    [(ngModel)]="value"
+  >
+    <ng-container *ngFor="let option of options">
 
-      <small
-        class="c-radio__control-sublabel"
-        *ngIf="formatUISubLabelFn"
+      <mat-radio-button
+        class="c-radio__control qa-radio-control"
+        [value]="retrieveValue(option, formatModelValueFn)"
+        [disabled]="option.disabled"
+        [name]="retrieveValue(option, formatModelValueFn)"
+        (change)="change.emit($event)"
+        #radio="matRadioButton"
       >
-        {{ retrieveValue(option, formatUISubLabelFn) }}
-      </small>
-    </mat-radio-button>
+        {{ retrieveValue(option, formatUILabelFn) }}
 
-  </ng-container>
+        <small
+          class="c-radio__control-sublabel"
+          *ngIf="formatUISubLabelFn"
+        >
+          {{ retrieveValue(option, formatUISubLabelFn) }}
+        </small>
+      </mat-radio-button>
 
-  <ts-validation-messages
-    class="qa-radio-validation-messages"
-    *ngIf="formControl"
-    [control]="formControl"
-    validateImmediately="true"
-  ></ts-validation-messages>
-</mat-radio-group>
+    </ng-container>
+
+    <ts-validation-messages
+      class="qa-radio-validation-messages"
+      *ngIf="formControl"
+      [control]="formControl"
+      validateImmediately="true"
+    ></ts-validation-messages>
+  </mat-radio-group>
+
+</ng-container>
+
+
+<!-- VISUAL MODE -->
+<ng-container *ngIf="isVisual">
+
+  <fieldset class="c-radio c-radio--visual qa-radio-group">
+    <legend>
+      {{ label }}
+    </legend>
+
+    <div class="c-radio__options">
+      <ng-container *ngFor="let option of options">
+        <label
+          class="c-radio__control qa-radio-control"
+          [class.c-radio__control--disabled]="isDisabled || option.disabled"
+        >
+          <input
+            type="radio"
+            class="c-radio__input"
+            value="{{ retrieveValue(option, formatModelValueFn) }}"
+            [attr.name]="name"
+            [attr.disabled]="isDisabled || option.disabled"
+            [attr.aria-label]="ariaLabel"
+            [attr.aria-labelledby]="ariaLabelledby"
+            [attr.aria-describedby]="ariaDescribedby"
+            [attr.checked]="retrieveValue(option, formatModelValueFn) === value"
+            [(ngModel)]="value"
+          >
+
+          <div
+            class="c-radio__content"
+            [class.c-radio__content--disabled]="isDisabled || option.disabled"
+            mat-ripple
+            [matRippleDisabled]="isDisabled || option.disabled"
+            [matRippleColor]="rippleColor"
+          >
+            <ts-icon class="c-radio__content-checkmark" inline="true">
+              done
+            </ts-icon>
+
+            <ng-container *ngIf="!option.template">
+              {{ retrieveValue(option, formatUILabelFn) }}
+            </ng-container>
+
+            <span [innerHTML]="option.template"></span>
+          </div>
+        </label>
+      </ng-container>
+    </div>
+
+    <ts-validation-messages
+      class="qa-radio-validation-messages"
+      *ngIf="formControl"
+      [control]="formControl"
+      validateImmediately="true"
+    ></ts-validation-messages>
+  </fieldset>
+
+</ng-container>

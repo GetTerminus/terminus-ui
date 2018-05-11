@@ -2,6 +2,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
 import {
   TsRadioGroupComponent,
@@ -16,7 +17,9 @@ describe('TsRadioGroupComponent', () => {
   let options: TsRadioOption[];
 
   beforeEach(() => {
-    component = new TsRadioGroupComponent();
+    component = new TsRadioGroupComponent(
+      new ChangeDetectorRefMock(),
+    );
     options = [
       {
         foo: 'foo_value',
@@ -35,6 +38,7 @@ describe('TsRadioGroupComponent', () => {
         bing: 'Some helper text for my item',
       },
     ];
+    component['changeDetectorRef'].markForCheck = jest.fn();
   });
 
 
@@ -137,6 +141,77 @@ describe('TsRadioGroupComponent', () => {
     test(`should return false if the form group is not required`, () => {
       component.formControl = new FormControl();
       expect(component.isRequired).toEqual(false);
+    });
+
+  });
+
+
+  describe(`name`, () => {
+
+    test(`should set and retrieve the name value`, () => {
+      expect(component.name).toEqual(expect.stringContaining('ts-radio-group'));
+      component.name = 'foo';
+      expect(component.name).toEqual('foo');
+    });
+
+
+    test(`should not change the name if no value was passed in`, () => {
+      component.name = '' as any;
+      expect(component.name).toEqual(expect.stringContaining('ts-radio-group'));
+    });
+
+  });
+
+
+  describe(`isVisual`, () => {
+
+    test(`should set and retrieve the visual value`, () => {
+      expect(component.isVisual).toEqual(false);
+      component.isVisual = true;
+      expect(component.isVisual).toEqual(true);
+    });
+
+
+    test(`should set a boolean even if another value was passed in`, () => {
+      expect(component.isVisual).toEqual(false);
+      component.isVisual = 'foo' as any;
+      expect(component.isVisual).toEqual(true);
+    });
+
+  });
+
+
+  describe(`options`, () => {
+
+    test(`should set and retrieve options`, () => {
+      component.options = [
+        {
+          foo: 'bar',
+          bar: 'baz',
+        },
+      ];
+      expect(component.options[0].foo).toEqual('bar');
+    });
+
+
+    test(`should return undefined if no options were passed in`, () => {
+      component.options = '' as any;
+      expect(component.options).toEqual(undefined);
+    });
+
+  });
+
+
+  describe(`ngOnInit`, () => {
+
+    test(`should wire up change detection to fire after form control value changes`, () => {
+      const ctrl = new FormControl('foo');
+      component.formControl = ctrl;
+      component.ngOnInit();
+      ctrl.setValue('bar');
+
+      expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+      expect(component.value).toEqual('bar');
     });
 
   });
