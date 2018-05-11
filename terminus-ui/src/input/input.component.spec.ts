@@ -77,9 +77,13 @@ describe(`TsInputComponent`, () => {
     test(`should set the control to disabled`, () => {
       jest.useFakeTimers();
       component.matInput = {
-        ngControl: {},
+        ngControl: {
+          control: {
+            enable: jest.fn(),
+            disable: jest.fn(),
+         },
+        },
       } as any;
-      component.ngAfterContentInit();
       expect(component.matInput.ngControl).toBeTruthy();
       expect(component.isDisabled).toEqual(false);
 

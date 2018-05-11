@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './copy.component.html',
 })
 export class CopyComponent {
-  fakeUrl = 'https://github.com/angular/material2/blob/master/src/lib/input/input-container.ts';
+  // tslint:disable: max-line-length
+  fakeUrl = 'https://github.com/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom';
+  // tslint:enable: max-line-length
   canCopy = false;
 }
