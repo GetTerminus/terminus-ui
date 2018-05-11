@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -55,7 +59,29 @@ const DEMO_ITEMS2: TsRadioOption[] = [
 })
 export class RadioComponent {
   items$: Observable<TsRadioOption[]> = of(DEMO_ITEMS);
-  items2$: Observable<TsRadioOption[]> = of(DEMO_ITEMS2);
+  // tslint:disable: max-line-length
+  items2$: Observable<TsRadioOption[]> = of([
+    {
+      foo: 'foo2_value',
+      bar: 'Foo2 Display',
+      /*
+       *template: `<strong>HIII</strong>, sup?`,
+       */
+    },
+    {
+      foo: 'bar2_value',
+      bar: 'Bar2 Display',
+      disabled: true,
+    },
+    {
+      foo: 'baz2_value',
+      bar: 'Baz2 Display',
+      /*
+       *template: `<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/20322G0V3H2j3n2M2o3l/nice%20laptop%3Ascreen%20elevation.png"> <a href="http://google.com">Links are cool</a>`,
+       */
+    },
+  ]);
+  // tslint:enable: max-line-length
   myForm: FormGroup = this.formBuilder.group({
     myRadioGroup: [
       null,
@@ -70,14 +96,27 @@ export class RadioComponent {
       ],
     ],
   });
+
+
   uiFormatter: TsRadioFormatFn = (v) => v.bar;
   uiSubFormatter: TsRadioFormatFn = (v) => v.bing;
   modelFormatter: TsRadioFormatFn = (v) => v.foo;
 
 
+
   constructor(
     private formBuilder: FormBuilder,
-  ) {}
+  ) {
+    // Test late seeded values
+    /*
+     *setTimeout(() => {
+     *  const ctrl = this.myForm.get('myRadioGroup2');
+     *  if (ctrl) {
+     *    ctrl.setValue('baz2_value');
+     *  }
+     *}, 3000);
+     */
+  }
 
 
   selected(e: TsRadioChange): void {
