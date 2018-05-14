@@ -19,6 +19,7 @@
         #visibleLinkElement
         fxLayout="row"
         fxLayoutAlign="center center"
+        tabindex="0"
       >
         <span class="c-navigation__item-inner">
           {{ item.name }}
@@ -32,6 +33,7 @@
         #visibleLinkElement
         fxLayout="row"
         fxLayoutAlign="center center"
+        tabindex="0"
       >
         <span class="c-navigation__item-inner">
           {{ item.name }}
@@ -44,6 +46,7 @@
         #visibleLinkElement
         fxLayout="row"
         fxLayoutAlign="center center"
+        tabindex="0"
         (click)="action.emit({event: $event, action: item.action})"
       >
         <span class="c-navigation__item-inner">
@@ -61,6 +64,7 @@
     mat-button
     [matMenuTriggerFor]="secondaryNav"
     fxFlex="none"
+    tabindex="0"
   >
     <span class="c-navigation__trigger-welcome">
       {{ welcomeMessage }}

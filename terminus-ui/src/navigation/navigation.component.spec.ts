@@ -230,8 +230,11 @@ describe(`TsNavigationComponent`, () => {
         };
         component['updateLists']();
 
-        expect(component.visibleItems.getValue().length).toEqual(3);
-        expect(component.hiddenItems.getValue().length).toEqual(0);
+        const actualVisableLength = component.visibleItems.getValue().length;
+        const actualHiddenLength = component.hiddenItems.getValue().length;
+        expect(actualVisableLength).toEqual(3);
+        expect(actualHiddenLength).toEqual(0);
+        expect(component.visibleItems.getValue()[actualVisableLength - 1].name).toEqual('NAV_ITEM_THREE');
       });
 
     });
