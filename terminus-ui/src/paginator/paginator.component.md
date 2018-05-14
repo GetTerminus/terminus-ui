@@ -45,7 +45,7 @@ mySelectFunc(v: TsPaginatorMenuItem) {
   // v:
   // {
   //   name: "1 - 10",
-  //   value: "1",
+  //   value: 1,
   // }
 }
 
@@ -73,13 +73,13 @@ By default the paginator starts the pages array with a value of '0'. If your API
 pagination at 1 (such as Rails) you can set `isZeroBased` to `false`:
 
 ```html
-<!-- The first page will have the value '1' -->
+<!-- The first page will have the value: 1 -->
 <ts-paginator
   totalRecords="100"
   isZeroBased="false"
 ></ts-paginator>
 
-<!-- The first page will have the value '0' -->
+<!-- The first page will have the value: 0 -->
 <ts-paginator
   totalRecords="100"
   isZeroBased="true"
@@ -93,7 +93,8 @@ filtering rather than more time paging through results.
 
 ### Max records
 
-By default, anything over `100` is considered too many. To change this value, pass in a number to `maxPreferredRecords`:
+By default, anything over `100` is considered too many. To change this value, pass in a number to
+`maxPreferredRecords`:
 
 ```html
 <ts-paginator

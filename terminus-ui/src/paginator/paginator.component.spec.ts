@@ -92,7 +92,7 @@ describe(`TsPaginatorComponent`, () => {
     test(`should set the current page, and trigger methods`, () => {
       const eventMock = {
         name: '21 - 30 of 125',
-        value: '2',
+        value: 2,
       };
       component.pageSelect.emit = jest.fn();
       component['createCurrentPageLabel'] = jest.fn();
@@ -368,7 +368,7 @@ describe(`TsPaginatorComponent`, () => {
       const array = component['createPagesArray'](105, 10, false);
 
       expect(array.length).toEqual(11);
-      expect(array[0].value).toEqual('1');
+      expect(array[0].value).toEqual(1);
     });
 
 
@@ -378,11 +378,11 @@ describe(`TsPaginatorComponent`, () => {
       const expected1 = [
         {
           name: '1 - 50',
-          value: '1',
+          value: 1,
         },
         {
           name: '51 - 59',
-          value: '2',
+          value: 2,
         },
       ];
 
@@ -393,11 +393,11 @@ describe(`TsPaginatorComponent`, () => {
       const expected2 = [
         {
           name: '1 - 50',
-          value: '0',
+          value: 0,
         },
         {
           name: '51 - 59',
-          value: '1',
+          value: 1,
         },
       ];
 
