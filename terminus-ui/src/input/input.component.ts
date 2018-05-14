@@ -1,15 +1,16 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  Input,
-  Output,
   EventEmitter,
   forwardRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  ChangeDetectorRef,
+  Input,
+  isDevMode,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -300,7 +301,14 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
    * @param fn - The onChange function
    */
   private registerOnChangeFn(fn: Function): void {
-    this.formControl.registerOnChange(fn);
+    if (this.formControl) {
+      this.formControl.registerOnChange(fn);
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        console.warn(`TsInputComponent: A valid form control must be passed in!`);
+      }
+    }
   }
 
 }

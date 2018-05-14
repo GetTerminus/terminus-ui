@@ -151,5 +151,15 @@ describe(`TsInputComponent`, () => {
       component['registerOnChangeFn'](component.updateInnerValue);
       expect(component.formControl.registerOnChange).toHaveBeenCalledWith(component.updateInnerValue);
     });
+
+
+    test(`should log a warning if in devMode and no formControl exists`, () => {
+      jest.spyOn(global.console, 'warn');
+      component['registerOnChangeFn'](component.updateInnerValue);
+
+      expect(global.console.warn).toHaveBeenCalledWith(expect.stringContaining('TsInputComponent'));
+    });
+
   });
+
 });
