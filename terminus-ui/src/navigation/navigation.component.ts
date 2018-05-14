@@ -347,7 +347,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       // If an item was found, add it to the beginning of the hidden items array
       // istanbul ignore else
       if (itemToMove) {
-        updatedVisibleArray.unshift(itemToMove);
+        updatedVisibleArray.push(itemToMove);
       }
 
       // Add it to the end of the visible array
