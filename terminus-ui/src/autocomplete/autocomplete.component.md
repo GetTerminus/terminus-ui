@@ -1,5 +1,6 @@
 <h1>Autocomplete</h1>
 
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -11,8 +12,10 @@
 - [Customize how the selected value is displayed](#customize-how-the-selected-value-is-displayed)
 - [Event driven](#event-driven)
 - [Show a 'no results' validation error](#show-a-no-results-validation-error)
+- [Minimum required character count](#minimum-required-character-count)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Basic usage with a FormControl
 
@@ -205,3 +208,16 @@ this.users$ = this.auto
   )
 ;
 ```
+
+
+## Minimum required character count
+
+By default, two characters must be entered before a query is emitted. This value can be overridden:
+
+```html
+<ts-autocomplete
+  minimumCharacters="3"
+  ...
+></ts-autocomplete>
+```
+

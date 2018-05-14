@@ -102,6 +102,7 @@ export class AutocompleteComponent implements OnInit {
   delayApiResponse = false;
   changesSubscription$!: Observable<any>;
   users$: any;
+  minCharacters = 4;
 
 
   ngOnInit() {
