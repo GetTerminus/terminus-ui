@@ -364,6 +364,9 @@ export const SPARKLINE_DEFAULTS: {[key: string]: any} = {
           hover: {
             radius: 2,
           },
+          select: {
+            radius: 4,
+          },
         },
       },
       fillOpacity: 0.25,
