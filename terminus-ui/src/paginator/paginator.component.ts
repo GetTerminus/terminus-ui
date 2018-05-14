@@ -34,7 +34,7 @@ export interface TsPaginatorMenuItem {
   /**
    * A value for the item
    */
-  value?: string;
+  value?: number;
 }
 
 
@@ -379,8 +379,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     const notAlreadyOnPage: boolean = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: TsPaginatorMenuItem | undefined = pages.find((page) => {
-        return page.value === destinationPage.toString();
+      const foundPage: TsPaginatorMenuItem | undefined = pages.find((page: TsPaginatorMenuItem): boolean => {
+        return page.value === destinationPage;
       });
 
       // istanbul ignore else
@@ -468,7 +468,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * @return A boolean representing if the records select should be disabled
    */
   public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
-    const lowestPerPage = Math.min.apply(Math, recordsPerPageChoices);
+    const lowestPerPage: number = Math.min.apply(Math, recordsPerPageChoices);
 
     return totalRecords < lowestPerPage;
   }
@@ -487,8 +487,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     totalRecords: number,
   ): string {
     const findPage = (allPages: TsPaginatorMenuItem[], index: number) => {
-      return pages.find((page: TsPaginatorMenuItem) => {
-        return page.value === index.toString();
+      return pages.find((page: TsPaginatorMenuItem): boolean => {
+        return page.value === index;
       });
     };
 
@@ -548,7 +548,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       paginatorArray.push({
         name: `${rangeStart} - ${rangeEnd}`,
         // The value is zero based
-        value: `${(pageValue - (zeroBased ? 1 : 0)).toString()}`,
+        value: (pageValue - (zeroBased ? 1 : 0)),
       });
 
       // Update the remaining count
@@ -570,20 +570,20 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
       if (paginatorArray.length > 0) {
         name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
-        value = `${(pageValue - (zeroBased ? 1 : 0)).toString()}`;
+        value = (pageValue - (zeroBased ? 1 : 0));
       } else {
         name = `${pageNumber} - ${recordsRemaining}`;
-        value = `${(pageValue - (zeroBased ? 1 : 0)).toString()}`;
+        value = (pageValue - (zeroBased ? 1 : 0));
       }
 
       paginatorArray.push({
         name: name,
-        value: value.toString(),
+        value: value,
       });
     }
 
     return paginatorArray.sort((a: TsPaginatorMenuItem, b: TsPaginatorMenuItem): number => {
-      return (parseInt(a.value, 10) < parseInt(b.value, 10)) ? -1 : 1;
+      return (a.value < b.value) ? -1 : 1;
     });
   }
 
