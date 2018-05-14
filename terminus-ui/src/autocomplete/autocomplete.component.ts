@@ -162,10 +162,6 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   @Input()
   public set debounceDelay(value: number) {
-    if (!value && value !== 0) {
-      return;
-    }
-
     this._debounceDelay = coerceNumberProperty(value);
   }
   public get debounceDelay(): number {
@@ -209,6 +205,18 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   @Input()
   public label: string | undefined;
+
+  /**
+   * Define a minimum character count for queries
+   */
+  @Input()
+  public set minimumCharacters(value: number) {
+    this._minimumCharacters = coerceNumberProperty(value);
+  }
+  public get minimumCharacters(): number {
+    return this._minimumCharacters;
+  }
+  private _minimumCharacters: number = 2;
 
   /**
    * Define if multiple selections are allowed by passing in a comparator function
@@ -316,7 +324,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public ngAfterViewInit(): void {
     // Take a stream of query changes
     this.querySubscription = this.querySubject.pipe(
-      filter((v) => (typeof v === 'string')),
+      filter((v) => (typeof v === 'string') && v.length >= this.minimumCharacters),
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // Only allow a query through if it is different from the previous query
@@ -331,6 +339,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Unsubscribe
    */
   public ngOnDestroy(): void {
+    // istanbul ignore else
     if (this.querySubscription) {
       this.querySubscription.unsubscribe();
     }

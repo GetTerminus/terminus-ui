@@ -49,6 +49,7 @@ describe(`TsAutocompleteComponent`, () => {
   describe(`debounceDelay`, () => {
 
     test(`should set the debounceDelay`, () => {
+      expect(component.debounceDelay).toEqual(200);
       component.debounceDelay = 10;
       expect(component.debounceDelay).toEqual(10);
     });
@@ -60,9 +61,9 @@ describe(`TsAutocompleteComponent`, () => {
     });
 
 
-    test(`should not set if the value is null`, () => {
+    test(`should convert any non-number into 0`, () => {
       component.debounceDelay = null as any;
-      expect(component.debounceDelay).toEqual(200);
+      expect(component.debounceDelay).toEqual(0);
     });
 
   });
@@ -88,6 +89,17 @@ describe(`TsAutocompleteComponent`, () => {
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
       expect(() => {component.displayWith = 3 as any; })
         .toThrowError(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
+    });
+
+  });
+
+
+  describe(`minimumCharacters`, () => {
+
+    test(`should set/retrieve the minimum characters needed for a query`, () => {
+      expect(component.minimumCharacters).toEqual(2);
+      component.minimumCharacters = 5;
+      expect(component.minimumCharacters).toEqual(5);
     });
 
   });
@@ -159,11 +171,11 @@ describe(`TsAutocompleteComponent`, () => {
 
     test(`should debounce the stream`, () => {
       component.ngAfterViewInit();
-      component.querySubject.next('f');
-      jest.advanceTimersByTime(1);
       component.querySubject.next('fo');
       jest.advanceTimersByTime(1);
       component.querySubject.next('foo');
+      jest.advanceTimersByTime(1);
+      component.querySubject.next('fooo');
       jest.runAllTimers();
 
       expect(component.query.next).toHaveBeenCalledTimes(1);
@@ -173,11 +185,11 @@ describe(`TsAutocompleteComponent`, () => {
     test(`should allow debounce to be overridden`, () => {
       component.debounceDelay = 0;
       component.ngAfterViewInit();
-      component.querySubject.next('f');
-      jest.advanceTimersByTime(1);
-      component.querySubject.next('fo');
-      jest.advanceTimersByTime(1);
       component.querySubject.next('foo');
+      jest.advanceTimersByTime(1);
+      component.querySubject.next('fooo');
+      jest.advanceTimersByTime(1);
+      component.querySubject.next('foooo');
       jest.runAllTimers();
 
       expect(component.query.next).toHaveBeenCalledTimes(3);
@@ -186,12 +198,26 @@ describe(`TsAutocompleteComponent`, () => {
 
     test(`should only pass through a value if different from the previous value`, () => {
       component.ngAfterViewInit();
-      component.querySubject.next('f');
+      component.querySubject.next('fo');
       jest.advanceTimersByTime(500);
-      component.querySubject.next('f');
+      component.querySubject.next('fo');
       jest.runAllTimers();
 
       expect(component.query.next).toHaveBeenCalledTimes(1);
+    });
+
+
+    test(`should respect the minimum characters required`, () => {
+      component.debounceDelay = 0;
+      component.ngAfterViewInit();
+      component.querySubject.next('f');
+      jest.advanceTimersByTime(1);
+      component.querySubject.next('fo');
+      jest.advanceTimersByTime(1);
+      component.querySubject.next('foo');
+      jest.runAllTimers();
+
+      expect(component.query.next).toHaveBeenCalledTimes(2);
     });
 
   });
