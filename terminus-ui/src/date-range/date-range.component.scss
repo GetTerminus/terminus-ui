@@ -1,3 +1,6 @@
+@import './../scss/helpers/reset';
+
+
 //
 // @component
 //  Date Range
@@ -5,6 +8,7 @@
 //  Two datepicker components to create a date range component
 //
 .ts-date-range {
+  @include reset;
   display: block;
 }
 

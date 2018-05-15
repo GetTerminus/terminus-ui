@@ -1,4 +1,5 @@
 <form
+  *ngIf="searchForm"
   class="c-search qa-search"
   [formGroup]="searchForm"
   [ngClass]="{'c-search--disabled': isSubmitting}"

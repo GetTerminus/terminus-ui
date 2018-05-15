@@ -38,7 +38,7 @@ export class SelectComponent {
       [Validators.required],
     ],
     myChoices2: [
-      {value: null, disabled: true},
+      null,
       [Validators.required],
     ],
   });

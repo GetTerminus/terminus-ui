@@ -1,3 +1,6 @@
+@import './../scss/helpers/reset';
+
+
 //
 // @component
 //  Toggle component
@@ -5,6 +8,6 @@
 //  A toggle/switch component
 //
 .ts-toggle {
+  @include reset;
   display: inline-block;
-  // Top level styles should be nested here
 }

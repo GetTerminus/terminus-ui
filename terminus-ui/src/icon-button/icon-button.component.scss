@@ -1,6 +1,7 @@
 @import './../scss/helpers/buttons';
 @import './../scss/helpers/color';
 @import './../scss/helpers/layout';
+@import './../scss/helpers/reset';
 
 
 $ripple-opacity: .1;
@@ -20,6 +21,7 @@ $ripple-warn: rgba($warn, $ripple-opacity);
 //  An icon button with ripple support and a transparent background.
 //
 .ts-icon-button {
+  @include reset;
   display: inline-block;
   height: 40px;
   // Set up for inner button

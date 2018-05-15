@@ -1,9 +1,10 @@
-@import './../scss/helpers/color';
-@import './../scss/helpers/typography';
-@import './../scss/helpers/spacing';
 @import './../scss/helpers/buttons';
-@import './../scss/helpers/shadows';
+@import './../scss/helpers/color';
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/shadows';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/typography';
 
 
 //
@@ -14,6 +15,7 @@
 //  pulled out into the dropdown menu.
 //
 .ts-navigation {
+  @include reset;
   display: inline-block;
   flex: 1 1 auto;
   max-width: 100%;

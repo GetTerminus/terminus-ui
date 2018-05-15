@@ -1,5 +1,6 @@
-@import './../scss/helpers/typography';
 @import './../scss/helpers/color';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/typography';
 
 
 //
@@ -9,6 +10,7 @@
 //  A select input component
 //
 .ts-select {
+  @include reset;
   display: block;
 
   // disabled state

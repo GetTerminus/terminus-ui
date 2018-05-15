@@ -1,6 +1,7 @@
-@import './../scss/helpers/typography';
 @import './../scss/helpers/color';
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/typography';
 
 
 $margin__vertical: .2em;
@@ -13,6 +14,7 @@ $radius: 3px;
 // @description
 //
 .ts-copy {
+  @include reset;
   display: block;
   max-width: 100%;
 

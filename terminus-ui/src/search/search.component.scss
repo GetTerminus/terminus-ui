@@ -1,5 +1,6 @@
-@import './../scss/helpers/typography';
+@import './../scss/helpers/reset';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/typography';
 
 
 //
@@ -9,8 +10,8 @@
 //  A search form with an input and a button
 //
 .ts-search {
-  display: inline-block;
-  // Top level styles should be nested here
+  @include reset;
+  display: block;
 }
 
 // <form> primary container

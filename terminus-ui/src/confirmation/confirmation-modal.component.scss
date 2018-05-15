@@ -1,11 +1,13 @@
-@import './../scss/helpers/typography';
 @import './../scss/helpers/color';
-@import './../scss/helpers/spacing';
+@import './../scss/helpers/reset';
 @import './../scss/helpers/shadows';
+@import './../scss/helpers/spacing';
 @import './../scss/helpers/triangle';
+@import './../scss/helpers/typography';
 
 
 .ts-confirmation {
+  @include reset;
   display: block;
   padding: spacing();
 }
@@ -15,11 +17,13 @@
   $color: color(pure);
   $opaque: transparentize($color, .5);
 
+  @include reset;
   background-color: $opaque;
 }
 
 // Wrapper for modal component
 .ts-confirmation-overlay__panel {
+  @include reset;
   @include elevation-element(menu);
   background-color: color(pure);
 
