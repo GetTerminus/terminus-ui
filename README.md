@@ -123,21 +123,22 @@ for each feature.
 ### Pipes
 
 [:books: Pipes Documentation][pipes-docs]
+<br>
 [:circus_tent: Pipes Demo][demo-pipes]
 
-| Pipe             | Notes                                      | Status             |
-|------------------|--------------------------------------------|:------------------:|
-| `tsDate`         | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |
-| `tsRoundNumber`  | Round a number to a specific precision     | :white_check_mark: |
-| `tsSentenceCase` | Convert string casing to sentence-case     | :white_check_mark: |
-| `tsTimeAgo`      | Human-readable time span                   | :white_check_mark: |
+| Pipe                                       | Notes                                      | Status             |
+|--------------------------------------------|--------------------------------------------|:------------------:|
+| [`tsDate`][src-pipes-date]                 | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |
+| [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision     | :white_check_mark: |
+| [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case     | :white_check_mark: |
+| [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                   | :white_check_mark: |
 
 
 ### Services
 
-| Feature    | Notes                                               | Status             | Demo                    | Docs                    | Usage                     |
-|------------|-----------------------------------------------------|:------------------:|-------------------------|-------------------------|---------------------------|
-| Validators | Expose custom validation methods for reactive forms | :white_check_mark: | [Demo][demo-validators] | [Docs][validators-docs] | [Usage][validators-usage] |
+| Feature                      | Notes                                               | Status             | Demo                    | Docs                    | Usage                     |
+|------------------------------|-----------------------------------------------------|:------------------:|-------------------------|-------------------------|---------------------------|
+| [Validators][src-validators] | Expose custom validation methods for reactive forms | :white_check_mark: | [Demo][demo-validators] | [Docs][validators-docs] | [Usage][validators-usage] |
 
 
 #### Available Validators
@@ -360,6 +361,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-tooltip]: ./terminus-ui/src/tooltip/
 [src-validators]: ./terminus-ui/src/validators/
 [src-pipes]: ./terminus-ui/src/pipes/
+[src-pipes-date]: ./terminus-ui/src/pipes/date/date.pipe.ts
+[src-pipes-roundNumber]: ./terminus-ui/src/pipes/round-number/round-number.pipe.ts
+[src-pipes-sentenceCase]: ./terminus-ui/src/pipes/sentence-case/sentence-case.pipe.ts
+[src-pipes-timeAgo]: ./terminus-ui/src/pipes/time-ago/time-ago.pipe.ts
+
 
 <!-- TS Primary Docs -->
 [autocomplete-docs]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html
