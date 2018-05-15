@@ -13,7 +13,7 @@ The library of UI components used for Terminus applications.
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
 [![components](https://img.shields.io/badge/Components-28-blue.svg)](#components)
-[![pipes](https://img.shields.io/badge/Pipes-3-blue.svg)](#pipes)
+[![pipes](https://img.shields.io/badge/Pipes-4-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-14-blue.svg)](#validators)
@@ -128,8 +128,9 @@ for each feature.
 | Pipe             | Notes                                      | Status             |
 |------------------|--------------------------------------------|:------------------:|
 | `tsDate`         | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |
-| `tsTimeAgo`      | Human-readable time span                   | :white_check_mark: |
+| `tsRoundNumber`  | Round a number to a specific precision     | :white_check_mark: |
 | `tsSentenceCase` | Convert string casing to sentence-case     | :white_check_mark: |
+| `tsTimeAgo`      | Human-readable time span                   | :white_check_mark: |
 
 
 ### Services

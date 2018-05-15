@@ -76,7 +76,7 @@ String:
 </ts-card>
 
 
-<ts-card>
+<ts-card tsVerticalSpacing>
 
   <h2>Usage in Class</h2>
 
@@ -86,6 +86,26 @@ String: {{ myString }}
 
   <div>
     {{ myStringTransformed }}
+  </div>
+
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+
+  <h2>RoundNumber</h2>
+
+<pre tsVerticalSpacing>
+Value:
+3456.3456
+</pre>
+
+  <div>
+    Round to 2: <b>{{ '3456.3456' | tsRoundNumber:2 }}</b>
+    <br>
+    Round to 0: <b>{{ '3456.3456' | tsRoundNumber }}</b>
+    <br>
+    Round to -2: <b>{{ '3456.3456' | tsRoundNumber:-2 }}</b>
   </div>
 
 </ts-card>
