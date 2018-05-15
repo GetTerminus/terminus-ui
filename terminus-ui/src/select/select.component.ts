@@ -9,10 +9,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  coerceBooleanProperty,
-  coerceArray,
-} from '@terminus/ngx-tools/coercion';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isFunction,
   isObject,
@@ -144,7 +141,9 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public set items(value: any[]) {
-    value = coerceArray(value);
+    if (!value) {
+      return;
+    }
 
     this._items = value;
 
