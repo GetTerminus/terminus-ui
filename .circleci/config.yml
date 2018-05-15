@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Verify AoT Build
-          command: yarn add global @angular/cli@1.7.4 && yarn run build:app:ci
+          command: npm i -g @angular/cli@1.7.4 && yarn run build:app:ci
 
       - run:
           name: Build Project
