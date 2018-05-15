@@ -1,4 +1,5 @@
 @import './../scss/helpers/color';
+@import './../scss/helpers/reset';
 @import './../scss/helpers/z-index';
 
 
@@ -41,8 +42,9 @@ $duration: 1.4s;
 //  Loading Overlay
 // @description
 //  A loading overlay with spinner.
-//
 .ts-loading-overlay {
+  @include reset;
+
   .c-loading-overlay {
     align-content: center;
     align-items: center;

@@ -1,7 +1,8 @@
 @import './../scss/helpers/color';
-@import './../scss/helpers/typography';
-@import './../scss/helpers/spacing';
 @import './../scss/helpers/layout';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/typography';
 
 $ts-header-row-height: 56px;
 $ts-row-height: 48px;
@@ -17,6 +18,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 //  A table component
 //
 .ts-table {
+  @include reset;
   @include typography;
   border-collapse:collapse;
   display: table;
@@ -52,7 +54,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Body row
   .ts-row {
-    @include typography(body, 2);
     min-height: $ts-row-height;
     transition: background-color 200ms ease-out;
     will-change: background-color;

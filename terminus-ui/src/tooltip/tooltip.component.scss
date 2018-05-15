@@ -1,4 +1,6 @@
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/reset';
+
 
 //
 // @component
@@ -7,8 +9,8 @@
 //  A tooltip component
 //
 .ts-tooltip {
+  @include reset;
   display: inline-block;
-  // Top level styles should be nested here
 }
 
 .c-tooltip--underline {

@@ -1,6 +1,11 @@
-@import './../scss/helpers/typography';
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/reset';
 @import './../scss/helpers/spacing';
+@import './../scss/helpers/typography';
+
+
+$icon-width: 24px;
+$icon-margin: 16px;
 
 
 //
@@ -10,9 +15,7 @@
 //  A dropdown menu component
 //
 .ts-menu {
-  $icon-width: 24px;
-  $icon-margin: 16px;
-
+  @include reset;
   display: inline-block;
 
   &.disabled {

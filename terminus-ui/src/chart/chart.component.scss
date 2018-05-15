@@ -1,4 +1,5 @@
-@import './../scss/helpers/_typography';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/typography';
 
 
 //
@@ -8,6 +9,7 @@
 //  A charting / data-viz component
 //
 .ts-chart {
+  @include reset;
   display: block;
 }
 

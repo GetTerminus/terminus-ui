@@ -1,6 +1,7 @@
-@import './../scss/helpers/typography';
-@import './../scss/helpers/spacing';
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/reset';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/typography';
 
 
 //
@@ -10,11 +11,8 @@
 //  A text input component with support for icon prefix, hints and validation messages
 //
 .ts-input {
+  @include reset;
   display: block;
-
-  // Top level styles should be nested here
-  //.c-input {
-  //}
 }
 
 .c-input {

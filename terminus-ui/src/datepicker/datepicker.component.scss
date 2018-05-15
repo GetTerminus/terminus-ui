@@ -1,3 +1,4 @@
+@import './../scss/helpers/reset';
 @import './../scss/helpers/typography';
 
 
@@ -8,6 +9,7 @@
 //  A datepicker component
 //
 .ts-datepicker {
+  @include reset;
   display: block;
 
   // Top level styles should be nested here
