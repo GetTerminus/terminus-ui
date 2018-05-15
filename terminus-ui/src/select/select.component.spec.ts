@@ -54,6 +54,12 @@ describe(`TsSelectComponent`, () => {
         .toThrowError();
     });
 
+
+    test(`should not set items if nothing is passed in`, () => {
+      component.items = '' as any;
+      expect(component.items).toEqual(undefined);
+    });
+
   });
 
 
