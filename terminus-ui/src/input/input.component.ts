@@ -85,25 +85,25 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
  *
  * @example
  * <ts-input
- *              [formControl]="myForm.get('myControl')"
- *              minlength="3"
- *              maxlength="8"
- *              hint="Fill this out!"
- *              label="My Input"
- *              name="'password'"
- *              prefixIcon="icon_name"
- *              type="text"
- *              isDisabled="false"
- *              isRequired="false"
- *              hideRequiredMarker="false"
- *              isClearable="true"
- *              isFocused="false"
+ *              autocapitalize="false"
  *              autocomplete="false"
  *              autocorrect="false"
- *              autocapitalize="false"
+ *              [formControl]="myForm.get('myControl')"
+ *              hideRequiredMarker="false"
+ *              hint="Fill this out!"
+ *              isClearable="true"
+ *              isDisabled="false"
+ *              isFocused="false"
+ *              isRequired="false"
+ *              label="My Input"
+ *              maxlength="8"
+ *              minlength="3"
+ *              name="'password'"
+ *              prefixIcon="icon_name"
  *              spellcheck="false"
- *              validateOnChange="false"
  *              tabIndex="2"
+ *              type="text"
+ *              validateOnChange="false"
  *              (cleared)="doSomething($event)"
  * ></ts-input>
  *
@@ -122,7 +122,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   exportAs: 'tsInput',
 })
 export class TsInputComponent extends TsReactiveFormBaseComponent implements OnChanges {
-
   /**
    * Determine the correct required attribute content
    *
@@ -132,6 +131,12 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
     const requiredFormControl = (this.formControl && hasRequiredControl(this.formControl));
     return (requiredFormControl || this.isRequired) ? 'required' : null;
   }
+
+  /**
+   * Access the underlying MatInput instance
+   */
+  @ViewChild(MatInput)
+  matInput!: MatInput;
 
   /**
    * Define if the input should autocapitalize
@@ -234,7 +239,21 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
    * Define the input type (text, password etc.) See {@link TsInputTypes}
    */
   @Input()
-  public type: TsInputTypes = 'text';
+  public set type(value: TsInputTypes) {
+    if (!value) {
+      return;
+    }
+
+    this._type = value;
+
+    if (value === 'email') {
+      this.autocomplete = 'email';
+    }
+  }
+  public get type(): TsInputTypes {
+    return this._type;
+  }
+  private _type: TsInputTypes = 'text';
 
   /**
    * Define if validation messages should be shown immediately or on blur
@@ -247,12 +266,6 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
    */
   @Output()
   cleared: EventEmitter<boolean> = new EventEmitter();
-
-  /**
-   * Access the underlying MatInput instance
-   */
-  @ViewChild(MatInput)
-  matInput!: MatInput;
 
 
   constructor(

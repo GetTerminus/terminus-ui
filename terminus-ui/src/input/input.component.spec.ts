@@ -1,6 +1,5 @@
 // tslint:disable: no-non-null-assertion
 import {
-  Injector,
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
@@ -22,14 +21,16 @@ describe(`TsInputComponent`, () => {
   beforeEach(() => {
     component = new TsInputComponent(
       new ChangeDetectorRefMock(),
-      {
-        get: jest.fn().mockReturnValue({
-          control: {
-            disable: jest.fn(),
-            enable: jest.fn(),
-          },
-        }),
-      } as Injector,
+      /*
+       *{
+       *  get: jest.fn().mockReturnValue({
+       *    control: {
+       *      disable: jest.fn(),
+       *      enable: jest.fn(),
+       *    },
+       *  }),
+       *} as Injector,
+       */
     );
     component['changeDetectorRef'].markForCheck = jest.fn();
   });
@@ -92,6 +93,36 @@ describe(`TsInputComponent`, () => {
 
       expect(component.isDisabled).toEqual(true);
       expect(component.matInput.ngControl.control!.disable).toHaveBeenCalled();
+
+      // Go back to enabled
+      component.isDisabled = false;
+      jest.runAllTimers();
+
+      expect(component.isDisabled).toEqual(false);
+      expect(component.matInput.ngControl.control!.enable).toHaveBeenCalled();
+    });
+
+  });
+
+
+  describe(`type`, () => {
+
+    test(`should get/set the type`, () => {
+      expect(component.type).toEqual('text');
+      component.type = 'number';
+      expect(component.type).toEqual('number');
+    });
+
+
+    test(`should set the autocomplete value if the type is 'email'`, () => {
+      component.type = 'email';
+      expect(component.type).toEqual('email');
+    });
+
+
+    test(`should not set the type if no value was passed in`, () => {
+      component.type = '' as any;
+      expect(component.type).toEqual('text');
     });
 
   });
