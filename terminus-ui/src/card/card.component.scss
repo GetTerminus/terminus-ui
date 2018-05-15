@@ -64,7 +64,6 @@
 
   .c-card__inner {
     @include take-space;
-    width: calc(100% - #{$padding});
   }
 }
 
@@ -91,12 +90,9 @@
 }
 
 // Class added when padding needed on the right for icon or utility menu
-// NOTE: Dual class needed for specificity
-.c-card.c-card--right-spacing {
+.c-card--right-spacing {
   .c-card__inner {
     $padding: spacing(large) + spacing(large, 4);
-
     padding-right: spacing(large, 4);
-    width: calc(100% - #{$padding});
   }
 }

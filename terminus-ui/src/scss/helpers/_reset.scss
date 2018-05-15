@@ -10,6 +10,11 @@
  *  @include reset;
  */
 @mixin reset() {
+  // Enforce consistent sizing
+  * {
+    box-sizing: border-box;
+  }
+
   // Unset margins
   h1,
   h2,
