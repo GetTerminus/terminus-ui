@@ -18,7 +18,7 @@
     "start:app": "ng serve",
     "start:app:aot": "ng serve --aot",
     "build:app": "cpr dist/terminus-ui demo/@terminus/ui --overwrite && ng build --app packages --prod && rimraf demo/@terminus",
-    "build:app:ci": "ng build --prod --build-optimizer --progress false",
+    "build:app:ci": "npx ng build --prod --build-optimizer --progress false",
     "pretest:app": "yarn run build && cpr dist/terminus-ui/helpers.scss node_modules/@terminus/ui/helpers.scss --overwrite && cpr dist/terminus-ui/terminus-ui.css node_modules/@terminus/ui/terminus-ui.css --overwrite",
     "test:app": "ng test",
     "lint:app": "yarn run lint:app:ts && yarn run lint:app:scss",
