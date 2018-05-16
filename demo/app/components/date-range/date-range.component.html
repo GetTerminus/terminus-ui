@@ -1,6 +1,13 @@
 <ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>Demo Controls</h3>
 
+  <div tsVerticalSpacing>
+    <button (click)="toggleStart()">
+      {{ myForm.get('dateRange.startDate').enabled ? 'Disable' : 'Enable' }}
+      start date control
+    </button>
+  </div>
+
   <button (click)="printRange(myForm.value)">Print Range</button>
 </ts-card>
 

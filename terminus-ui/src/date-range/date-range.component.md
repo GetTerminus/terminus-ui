@@ -1,3 +1,5 @@
+<h1>Date Range</h1>
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -6,8 +8,10 @@
 - [Set max/min range](#set-maxmin-range)
 - [Set the initial date without using Reactive Forms](#set-the-initial-date-without-using-reactive-forms)
 - [Use with Reactive Forms](#use-with-reactive-forms)
+- [Enable or Disable controls](#enable-or-disable-controls)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Event driven
 
@@ -24,6 +28,7 @@ There are three selection events that you can tie into:
 1. `startSelected` is fired when a start date is selected
 1. `endSelected` is fired when an end date is selected
 1. `dateSelected` is fired when either date is selected
+
 
 ## Set max/min range
 
@@ -98,7 +103,7 @@ myForm: FormGroup = this.formBuilder.group({
 });
 ```
 
-**NOTE:** The keys inside the formGroup passed to the `dateFormGroup` input must be named
+**NOTE:** The keys inside the `formGroup` passed to the `dateFormGroup` input must be named
 `startDate` and `endDate`. (see example directly above)
 
 **NOTE:** If using a form with nested form groups, _each group_ must be created with
@@ -144,3 +149,29 @@ myForm: FormGroup = this.formBuilder.group({
 const range = myForm.get('dateRange');
 ```
 
+
+## Enable or Disable controls
+
+Controls can be enabled or disabled via the associated form control:
+
+```typescript
+myForm: FormGroup = this.formBuilder.group({
+  dateRange: this.formBuilder.group({
+    startDate: [
+      {
+        value: new Date(2017, 4, 6),
+        disabled: true,
+      },
+    ],
+    endDate: [
+      new Date(2017, 4, 8),
+    ],
+  }),
+});
+
+// Enable it at any time:
+const ctrl = this.myForm.get('dateRange.startDate')
+if (ctr) {
+  ctrl.enable();
+}
+```
