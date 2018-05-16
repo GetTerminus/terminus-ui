@@ -17,7 +17,7 @@ export class DateRangeComponent implements OnInit {
   myForm: FormGroup = this.formBuilder.group({
     dateRange: this.formBuilder.group({
       startDate: [
-        new Date(2017, 4, 6),
+        {value: new Date(2017, 4, 6), disabled: true},
       ],
       endDate: [
         new Date(2017, 4, 8),
@@ -41,4 +41,17 @@ export class DateRangeComponent implements OnInit {
   printRange(formValue: any): void {
     console.log('DEMO: formValue: ', formValue);
   }
+
+
+  toggleStart() {
+    const ctrl = this.myForm.get('dateRange.startDate');
+    if (ctrl) {
+      if (ctrl.enabled) {
+        ctrl.disable();
+      } else {
+        ctrl.enable();
+      }
+    }
+  }
+
 }
