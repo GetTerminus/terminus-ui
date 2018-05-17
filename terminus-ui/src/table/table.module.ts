@@ -23,6 +23,8 @@ export * from './table-data-source';
 export * from './cell';
 export * from './row';
 export * from './table.component';
+export * from './../sort/sort.module';
+
 
 /**
  * Much of this was lifted directly from Angular Material. I highly recommend checking out their
