@@ -499,15 +499,15 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^2.18.0":
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.18.0.tgz#058b07ff6e257e4a8b2e0bc78dd5a6be17ed702e"
+"@terminus/ngx-tools@^2.18.1":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-2.18.1.tgz#d3061b9021dcb5ffc96adaab2b0ff21cefe760a4"
   dependencies:
     tslib "^1.7.1"
 
-"@terminus/ui@^8.7.4":
-  version "8.7.4"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-8.7.4.tgz#bf347a92128697a591708ab1b3402dfae8a1b1f7"
+"@terminus/ui@^8.9.2":
+  version "8.9.2"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-8.9.2.tgz#ee62a668b2ddad21522422e35275a5daac617d40"
   dependencies:
     "@angular/cdk" "5.2.0"
     "@angular/material" "5.2.0"
