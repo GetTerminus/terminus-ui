@@ -227,9 +227,7 @@ export class TsSearchComponent implements OnInit {
    * NOTE: This wrapper is needed so that we can pass a value to the emitter
    */
   emitSubmit(): void {
-    if (this.searchForm.valid) {
-      this.submitted.emit({query: this.currentQuery});
-    }
+    this.submitted.emit({query: this.currentQuery});
   }
 
 
