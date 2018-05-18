@@ -285,10 +285,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Update the change detector if the control value changes
    */
   public ngOnInit(): void {
-    this.formControl.valueChanges.subscribe((v: any) => {
-      this.writeValue(v);
-      this.changeDetectorRef.markForCheck();
-    });
+    // istanbul ignore else
+    if (this.formControl) {
+      this.formControl.valueChanges.subscribe((v: any) => {
+        this.writeValue(v);
+        this.changeDetectorRef.markForCheck();
+      });
+    }
   }
 
 
