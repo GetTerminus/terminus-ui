@@ -55,30 +55,13 @@ describe('TsSearchComponent', () => {
 
   describe(`emitSubmit()`, () => {
 
-    beforeEach(() => {
-      component.submitted.emit = jest.fn();
-    });
-
-
     it(`should emit an event if the form is valid`, () => {
+      component.submitted.emit = jest.fn();
       component.initialValue = 'foo';
       component.ngOnInit();
       component.emitSubmit();
 
       expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
-    });
-
-
-    it(`should NOT emit an event if the form is NOT valid`, () => {
-      component.initialValue = 'f';
-      component.ngOnInit();
-      component.emitSubmit();
-      expect(component.submitted.emit).not.toHaveBeenCalled();
-
-      component.initialValue = 'fo.o';
-      component.ngOnInit();
-      component.emitSubmit();
-      expect(component.submitted.emit).not.toHaveBeenCalled();
     });
 
   });
