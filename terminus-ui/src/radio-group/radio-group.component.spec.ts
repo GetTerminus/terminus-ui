@@ -203,15 +203,33 @@ describe('TsRadioGroupComponent', () => {
 
 
   describe(`ngOnInit`, () => {
+    let ctrl: FormControl;
+
+    beforeEach(() => {
+      ctrl = new FormControl('foo');
+      component.formControl = ctrl;
+    });
+
 
     test(`should wire up change detection to fire after form control value changes`, () => {
-      const ctrl = new FormControl('foo');
-      component.formControl = ctrl;
       component.ngOnInit();
       ctrl.setValue('bar');
 
       expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
       expect(component.value).toEqual('bar');
+    });
+
+  });
+
+
+  describe(`ngOnDestroy`, () => {
+
+    test(`should actually unsubscribe from formControl`, () => {
+      component.formControl = new FormControl('foo');
+      component.ngOnInit();
+      component.ngOnDestroy();
+
+      expect(component['formControlSubscription'].closed).toEqual(true);
     });
 
   });

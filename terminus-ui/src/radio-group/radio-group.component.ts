@@ -1,14 +1,15 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  Input,
-  Output,
   EventEmitter,
   forwardRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Input,
   isDevMode,
+  OnDestroy,
   OnInit,
-  ChangeDetectorRef,
+  Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
@@ -17,6 +18,7 @@ import {
   hasRequiredControl,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { Subscription } from 'rxjs/Subscription';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -101,7 +103,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsRadioGroup',
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
+  /**
+   * Store reference to the formControl value subscription
+   */
+  private formControlSubscription: Subscription;
+
   /**
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
@@ -287,11 +294,20 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public ngOnInit(): void {
     // istanbul ignore else
     if (this.formControl) {
-      this.formControl.valueChanges.subscribe((v: any) => {
-        this.writeValue(v);
-        this.changeDetectorRef.markForCheck();
-      });
+      this.formControlSubscription = this.formControl.valueChanges
+        .subscribe((v: any) => {
+          this.writeValue(v);
+          this.changeDetectorRef.markForCheck();
+        });
     }
+  }
+
+
+  /**
+   * Unsubscribe from any Observables
+   */
+  public ngOnDestroy(): void {
+    this.formControlSubscription.unsubscribe();
   }
 
 
