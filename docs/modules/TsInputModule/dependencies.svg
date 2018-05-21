@@ -38,7 +38,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsInputModule_exports</title>
-<polygon fill="none" stroke="#000000" points="355,-273 355,-325 499,-325 499,-273 355,-273"/>
+<polygon fill="none" stroke="#000000" points="411,-273 411,-325 555,-325 555,-273 411,-273"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_TsInputModule_providers</title>
@@ -53,26 +53,26 @@
 <!-- TsInputModule -->
 <g id="node2" class="node">
 <title>TsInputModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="478.5982,-252 475.5982,-256 454.5982,-256 451.5982,-252 375.4018,-252 375.4018,-216 478.5982,-216 478.5982,-252"/>
-<text text-anchor="middle" x="427" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="534.5982,-252 531.5982,-256 510.5982,-256 507.5982,-252 431.4018,-252 431.4018,-216 534.5982,-216 534.5982,-252"/>
+<text text-anchor="middle" x="483" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
 </g>
 <!-- TsInputComponent&#45;&gt;TsInputModule -->
 <g id="edge1" class="edge">
 <title>TsInputComponent&#45;&gt;TsInputModule</title>
-<path fill="none" stroke="#000000" d="M768,-187.2843C768,-208.3211 768,-240 768,-240 768,-240 488.7906,-240 488.7906,-240"/>
-<polygon fill="#000000" stroke="#000000" points="488.7906,-236.5001 478.7906,-240 488.7905,-243.5001 488.7906,-236.5001"/>
+<path fill="none" stroke="#000000" d="M768,-187.2843C768,-208.3211 768,-240 768,-240 768,-240 544.6113,-240 544.6113,-240"/>
+<polygon fill="#000000" stroke="#000000" points="544.6114,-236.5001 534.6113,-240 544.6113,-243.5001 544.6114,-236.5001"/>
 </g>
 <!-- TsInputComponent  -->
 <g id="node7" class="node">
 <title>TsInputComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="491.3814,-317 362.6186,-317 362.6186,-281 491.3814,-281 491.3814,-317"/>
-<text text-anchor="middle" x="427" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="547.3814,-317 418.6186,-317 418.6186,-281 547.3814,-281 547.3814,-317"/>
+<text text-anchor="middle" x="483" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputComponent </text>
 </g>
 <!-- TsInputModule&#45;&gt;TsInputComponent  -->
 <g id="edge6" class="edge">
 <title>TsInputModule&#45;&gt;TsInputComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M427,-252.1061C427,-252.1061 427,-270.991 427,-270.991"/>
-<polygon fill="#000000" stroke="#000000" points="423.5001,-270.9909 427,-280.991 430.5001,-270.991 423.5001,-270.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M483,-252.1061C483,-252.1061 483,-270.991 483,-270.991"/>
+<polygon fill="#000000" stroke="#000000" points="479.5001,-270.9909 483,-280.991 486.5001,-270.991 479.5001,-270.9909"/>
 </g>
 <!-- CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR -->
 <g id="node3" class="node">
@@ -86,41 +86,41 @@
 <path fill="none" stroke="#000000" d="M767.8878,-116.5327C767.8878,-116.5327 767.8878,-140.8507 767.8878,-140.8507"/>
 <polygon fill="#000000" stroke="#000000" points="764.3879,-140.8506 767.8878,-150.8507 771.3879,-140.8507 764.3879,-140.8506"/>
 </g>
-<!-- TsValidationMessagesModule -->
+<!-- TsAutofocusModule -->
 <g id="node4" class="node">
-<title>TsValidationMessagesModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="681.5674,-187 678.5674,-191 657.5674,-191 654.5674,-187 494.4326,-187 494.4326,-151 681.5674,-151 681.5674,-187"/>
-<text text-anchor="middle" x="588" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesModule</text>
+<title>TsAutofocusModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="681.8641,-187 678.8641,-191 657.8641,-191 654.8641,-187 550.1359,-187 550.1359,-151 681.8641,-151 681.8641,-187"/>
+<text text-anchor="middle" x="616" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutofocusModule</text>
 </g>
-<!-- TsValidationMessagesModule&#45;&gt;TsInputModule -->
+<!-- TsAutofocusModule&#45;&gt;TsInputModule -->
 <g id="edge3" class="edge">
-<title>TsValidationMessagesModule&#45;&gt;TsInputModule</title>
-<path fill="none" stroke="#000000" d="M588,-187.0225C588,-204.3734 588,-228 588,-228 588,-228 488.8276,-228 488.8276,-228"/>
-<polygon fill="#000000" stroke="#000000" points="488.8277,-224.5001 478.8276,-228 488.8276,-231.5001 488.8277,-224.5001"/>
+<title>TsAutofocusModule&#45;&gt;TsInputModule</title>
+<path fill="none" stroke="#000000" d="M616,-187.0225C616,-204.3734 616,-228 616,-228 616,-228 544.8021,-228 544.8021,-228"/>
+<polygon fill="#000000" stroke="#000000" points="544.8021,-224.5001 534.8021,-228 544.8021,-231.5001 544.8021,-224.5001"/>
 </g>
 <!-- TsIconModule -->
 <g id="node5" class="node">
 <title>TsIconModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="476.4231,-187 473.4231,-191 452.4231,-191 449.4231,-187 377.5769,-187 377.5769,-151 476.4231,-151 476.4231,-187"/>
-<text text-anchor="middle" x="427" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="532.4231,-187 529.4231,-191 508.4231,-191 505.4231,-187 433.5769,-187 433.5769,-151 532.4231,-151 532.4231,-187"/>
+<text text-anchor="middle" x="483" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
 </g>
 <!-- TsIconModule&#45;&gt;TsInputModule -->
 <g id="edge4" class="edge">
 <title>TsIconModule&#45;&gt;TsInputModule</title>
-<path fill="none" stroke="#000000" d="M427,-187.1061C427,-187.1061 427,-205.991 427,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="423.5001,-205.9909 427,-215.991 430.5001,-205.991 423.5001,-205.9909"/>
+<path fill="none" stroke="#000000" d="M483,-187.1061C483,-187.1061 483,-205.991 483,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="479.5001,-205.9909 483,-215.991 486.5001,-205.991 479.5001,-205.9909"/>
 </g>
-<!-- TsAutofocusModule -->
+<!-- TsValidationMessagesModule -->
 <g id="node6" class="node">
-<title>TsAutofocusModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="359.8641,-187 356.8641,-191 335.8641,-191 332.8641,-187 228.1359,-187 228.1359,-151 359.8641,-151 359.8641,-187"/>
-<text text-anchor="middle" x="294" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutofocusModule</text>
+<title>TsValidationMessagesModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="415.5674,-187 412.5674,-191 391.5674,-191 388.5674,-187 228.4326,-187 228.4326,-151 415.5674,-151 415.5674,-187"/>
+<text text-anchor="middle" x="322" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesModule</text>
 </g>
-<!-- TsAutofocusModule&#45;&gt;TsInputModule -->
+<!-- TsValidationMessagesModule&#45;&gt;TsInputModule -->
 <g id="edge5" class="edge">
-<title>TsAutofocusModule&#45;&gt;TsInputModule</title>
-<path fill="none" stroke="#000000" d="M294,-187.0225C294,-204.3734 294,-228 294,-228 294,-228 365.1979,-228 365.1979,-228"/>
-<polygon fill="#000000" stroke="#000000" points="365.1979,-231.5001 375.1979,-228 365.1979,-224.5001 365.1979,-231.5001"/>
+<title>TsValidationMessagesModule&#45;&gt;TsInputModule</title>
+<path fill="none" stroke="#000000" d="M322,-187.0225C322,-204.3734 322,-228 322,-228 322,-228 421.1724,-228 421.1724,-228"/>
+<polygon fill="#000000" stroke="#000000" points="421.1724,-231.5001 431.1724,-228 421.1723,-224.5001 421.1724,-231.5001"/>
 </g>
 <!-- TsValidatorsService -->
 <g id="node8" class="node">
@@ -131,8 +131,8 @@
 <!-- TsValidatorsService&#45;&gt;TsInputModule -->
 <g id="edge7" class="edge">
 <title>TsValidatorsService&#45;&gt;TsInputModule</title>
-<path fill="none" stroke="#000000" d="M114,-187.2843C114,-208.3211 114,-240 114,-240 114,-240 365.3144,-240 365.3144,-240"/>
-<polygon fill="#000000" stroke="#000000" points="365.3145,-243.5001 375.3144,-240 365.3144,-236.5001 365.3145,-243.5001"/>
+<path fill="none" stroke="#000000" d="M114,-187.2843C114,-208.3211 114,-240 114,-240 114,-240 421.3036,-240 421.3036,-240"/>
+<polygon fill="#000000" stroke="#000000" points="421.3036,-243.5001 431.3036,-240 421.3036,-236.5001 421.3036,-243.5001"/>
 </g>
 </g>
 </svg>

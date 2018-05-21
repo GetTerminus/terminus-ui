@@ -93,7 +93,7 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define a debounced method to emit the submission event
    */
-  public debouncedEmit = debounce(this.emitSubmit, this.INPUT_DEBOUNCE_TIME);
+  public debouncedEmit = debounce<TsSearchComponent>(this.emitSubmit, this.INPUT_DEBOUNCE_TIME);
 
   /**
    * Define the icon name
@@ -240,7 +240,7 @@ export class TsSearchComponent implements OnInit {
     // NOTE: We need to check for a valid query length here even though we are using a minLength
     // validator. When the length is 0 the minLength validator returns valid.
     if (this.autoSubmit && this.searchForm.valid && this.currentQuery.length > 0) {
-      this.debouncedEmit();
+      this.debouncedEmit(this);
     }
   }
 
