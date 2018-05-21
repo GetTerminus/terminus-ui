@@ -200,6 +200,7 @@ export class TsSearchComponent implements OnInit {
   @Output()
   public cleared: EventEmitter<boolean> = new EventEmitter();
 
+
   /**
    * Inject services
    */
@@ -222,19 +223,9 @@ export class TsSearchComponent implements OnInit {
 
 
   /**
-   * Emit the submitted event
-   *
-   * NOTE: This wrapper is needed so that we can pass a value to the emitter
-   */
-  emitSubmit(): void {
-    this.submitted.emit({query: this.currentQuery});
-  }
-
-
-  /**
    * Fire events as needed after keyup events
    */
-  keyup(): void {
+  public keyup(): void {
     this.changed.emit(this.currentQuery);
 
     // NOTE: We need to check for a valid query length here even though we are using a minLength
@@ -242,6 +233,16 @@ export class TsSearchComponent implements OnInit {
     if (this.autoSubmit && this.searchForm.valid && this.currentQuery.length > 0) {
       this.debouncedEmit(this);
     }
+  }
+
+
+  /**
+   * Emit the submitted event
+   *
+   * NOTE: This wrapper is needed so that we can pass the query value to the emitter
+   */
+  private emitSubmit(): void {
+    this.submitted.emit({query: this.currentQuery});
   }
 
 }

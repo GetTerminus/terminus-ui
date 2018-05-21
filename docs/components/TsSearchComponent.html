@@ -2350,9 +2350,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#emitSubmit">emitSubmit</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#keyup">keyup</a>
                             </li>
                             <li>
@@ -2794,6 +2796,7 @@
                         <a name="emitSubmit"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Private</span>
                             emitSubmit
                             </b>
                             <a href="#emitSubmit"><span class="fa fa-link"></span></a>
@@ -2802,14 +2805,15 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>emitSubmit()</code>
+                            <span class="modifier-icon fa fa-reset"></span>
+                        <code>emitSubmit()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">terminus-ui/src/search/search.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">terminus-ui/src/search/search.component.ts:244</a></div>
                             </td>
                         </tr>
 
@@ -2817,7 +2821,7 @@
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Emit the submitted event</p>
-<p>NOTE: This wrapper is needed so that we can pass a value to the emitter</p>
+<p>NOTE: This wrapper is needed so that we can pass the query value to the emitter</p>
 </div>
 
                             <div class="io-description">
@@ -2835,6 +2839,7 @@
                         <a name="keyup"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Public</span>
                             keyup
                             </b>
                             <a href="#keyup"><span class="fa fa-link"></span></a>
@@ -2843,14 +2848,15 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>keyup()</code>
+                            <span class="modifier-icon fa fa-reset"></span>
+                        <code>keyup()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">terminus-ui/src/search/search.component.ts:237</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">terminus-ui/src/search/search.component.ts:228</a></div>
                             </td>
                         </tr>
 
@@ -2892,7 +2898,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">terminus-ui/src/search/search.component.ts:214</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">terminus-ui/src/search/search.component.ts:215</a></div>
                             </td>
                         </tr>
 
@@ -3579,6 +3585,7 @@ export class TsSearchComponent implements OnInit {
   @Output()
   public cleared: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
 
+
   /**
    * Inject services
    */
@@ -3601,19 +3608,9 @@ export class TsSearchComponent implements OnInit {
 
 
   /**
-   * Emit the submitted event
-   *
-   * NOTE: This wrapper is needed so that we can pass a value to the emitter
-   */
-  emitSubmit(): void {
-    this.submitted.emit({query: this.currentQuery});
-  }
-
-
-  /**
    * Fire events as needed after keyup events
    */
-  keyup(): void {
+  public keyup(): void {
     this.changed.emit(this.currentQuery);
 
     // NOTE: We need to check for a valid query length here even though we are using a minLength
@@ -3621,6 +3618,16 @@ export class TsSearchComponent implements OnInit {
     if (this.autoSubmit &amp;&amp; this.searchForm.valid &amp;&amp; this.currentQuery.length &gt; 0) {
       this.debouncedEmit(this);
     }
+  }
+
+
+  /**
+   * Emit the submitted event
+   *
+   * NOTE: This wrapper is needed so that we can pass the query value to the emitter
+   */
+  private emitSubmit(): void {
+    this.submitted.emit({query: this.currentQuery});
   }
 
 }
