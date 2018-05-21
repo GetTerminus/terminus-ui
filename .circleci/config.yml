@@ -32,6 +32,10 @@ jobs:
             - ./node_modules
 
       - run:
+          name: Test AoT Build
+          command: yarn run build:app:ci
+
+      - run:
           name: Lint
           command: yarn run lint:ci
 
