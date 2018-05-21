@@ -34,7 +34,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsPaginatorModule_exports</title>
-<polygon fill="none" stroke="#000000" points="250,-208 250,-260 418,-260 418,-208 250,-208"/>
+<polygon fill="none" stroke="#000000" points="251,-208 251,-260 419,-260 419,-208 251,-208"/>
 </g>
 <!-- TsPaginatorComponent -->
 <g id="node1" class="node">
@@ -45,26 +45,26 @@
 <!-- TsPaginatorModule -->
 <g id="node2" class="node">
 <title>TsPaginatorModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="397.7008,-187 394.7008,-191 373.7008,-191 370.7008,-187 270.2992,-187 270.2992,-151 397.7008,-151 397.7008,-187"/>
-<text text-anchor="middle" x="334" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="398.7008,-187 395.7008,-191 374.7008,-191 371.7008,-187 271.2992,-187 271.2992,-151 398.7008,-151 398.7008,-187"/>
+<text text-anchor="middle" x="335" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorModule</text>
 </g>
 <!-- TsPaginatorComponent&#45;&gt;TsPaginatorModule -->
 <g id="edge1" class="edge">
 <title>TsPaginatorComponent&#45;&gt;TsPaginatorModule</title>
-<path fill="none" stroke="#000000" d="M616,-122.1061C616,-141.3391 616,-169 616,-169 616,-169 407.6379,-169 407.6379,-169"/>
-<polygon fill="#000000" stroke="#000000" points="407.638,-165.5001 397.6379,-169 407.6379,-172.5001 407.638,-165.5001"/>
+<path fill="none" stroke="#000000" d="M616,-122.1061C616,-141.3391 616,-169 616,-169 616,-169 408.7632,-169 408.7632,-169"/>
+<polygon fill="#000000" stroke="#000000" points="408.7633,-165.5001 398.7632,-169 408.7632,-172.5001 408.7633,-165.5001"/>
 </g>
 <!-- TsPaginatorComponent  -->
 <g id="node7" class="node">
 <title>TsPaginatorComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="410.484,-252 257.516,-252 257.516,-216 410.484,-216 410.484,-252"/>
-<text text-anchor="middle" x="334" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="411.484,-252 258.516,-252 258.516,-216 411.484,-216 411.484,-252"/>
+<text text-anchor="middle" x="335" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorComponent </text>
 </g>
 <!-- TsPaginatorModule&#45;&gt;TsPaginatorComponent  -->
 <g id="edge6" class="edge">
 <title>TsPaginatorModule&#45;&gt;TsPaginatorComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M334,-187.1061C334,-187.1061 334,-205.991 334,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="330.5001,-205.9909 334,-215.991 337.5001,-205.991 330.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335,-187.1061C335,-187.1061 335,-205.991 335,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="331.5001,-205.9909 335,-215.991 338.5001,-205.991 331.5001,-205.9909"/>
 </g>
 <!-- TsButtonModule -->
 <g id="node3" class="node">
@@ -75,32 +75,32 @@
 <!-- TsButtonModule&#45;&gt;TsPaginatorModule -->
 <g id="edge2" class="edge">
 <title>TsButtonModule&#45;&gt;TsPaginatorModule</title>
-<path fill="none" stroke="#000000" d="M406.0931,-104C398.2175,-104 392.7388,-104 392.7388,-104 392.7388,-104 392.7388,-140.8939 392.7388,-140.8939"/>
-<polygon fill="#000000" stroke="#000000" points="389.2389,-140.8938 392.7388,-150.8939 396.2389,-140.8939 389.2389,-140.8938"/>
-</g>
-<!-- TsSelectModule -->
-<g id="node4" class="node">
-<title>TsSelectModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="387.7549,-122 384.7549,-126 363.7549,-126 360.7549,-122 280.2451,-122 280.2451,-86 387.7549,-86 387.7549,-122"/>
-<text text-anchor="middle" x="334" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSelectModule</text>
-</g>
-<!-- TsSelectModule&#45;&gt;TsPaginatorModule -->
-<g id="edge3" class="edge">
-<title>TsSelectModule&#45;&gt;TsPaginatorModule</title>
-<path fill="none" stroke="#000000" d="M334,-122.1061C334,-122.1061 334,-140.991 334,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="330.5001,-140.9909 334,-150.991 337.5001,-140.991 330.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M406.2639,-104C398.6321,-104 393.3517,-104 393.3517,-104 393.3517,-104 393.3517,-140.8939 393.3517,-140.8939"/>
+<polygon fill="#000000" stroke="#000000" points="389.8518,-140.8938 393.3517,-150.8939 396.8518,-140.8939 389.8518,-140.8938"/>
 </g>
 <!-- TsMenuModule -->
-<g id="node5" class="node">
+<g id="node4" class="node">
 <title>TsMenuModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="262.2064,-122 259.2064,-126 238.2064,-126 235.2064,-122 155.7936,-122 155.7936,-86 262.2064,-86 262.2064,-122"/>
-<text text-anchor="middle" x="209" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="388.2064,-122 385.2064,-126 364.2064,-126 361.2064,-122 281.7936,-122 281.7936,-86 388.2064,-86 388.2064,-122"/>
+<text text-anchor="middle" x="335" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsMenuModule</text>
 </g>
 <!-- TsMenuModule&#45;&gt;TsPaginatorModule -->
-<g id="edge4" class="edge">
+<g id="edge3" class="edge">
 <title>TsMenuModule&#45;&gt;TsPaginatorModule</title>
-<path fill="none" stroke="#000000" d="M262.1701,-104C269.8732,-104 275.2612,-104 275.2612,-104 275.2612,-104 275.2612,-140.8939 275.2612,-140.8939"/>
-<polygon fill="#000000" stroke="#000000" points="271.7613,-140.8938 275.2612,-150.8939 278.7613,-140.8939 271.7613,-140.8938"/>
+<path fill="none" stroke="#000000" d="M335,-122.1061C335,-122.1061 335,-140.991 335,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="331.5001,-140.9909 335,-150.991 338.5001,-140.991 331.5001,-140.9909"/>
+</g>
+<!-- TsSelectModule -->
+<g id="node5" class="node">
+<title>TsSelectModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="263.7549,-122 260.7549,-126 239.7549,-126 236.7549,-122 156.2451,-122 156.2451,-86 263.7549,-86 263.7549,-122"/>
+<text text-anchor="middle" x="210" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSelectModule</text>
+</g>
+<!-- TsSelectModule&#45;&gt;TsPaginatorModule -->
+<g id="edge4" class="edge">
+<title>TsSelectModule&#45;&gt;TsPaginatorModule</title>
+<path fill="none" stroke="#000000" d="M263.7978,-104C271.3763,-104 276.6483,-104 276.6483,-104 276.6483,-104 276.6483,-140.8939 276.6483,-140.8939"/>
+<polygon fill="#000000" stroke="#000000" points="273.1484,-140.8938 276.6483,-150.8939 280.1484,-140.8939 273.1484,-140.8938"/>
 </g>
 <!-- TsTooltipModule -->
 <g id="node6" class="node">
@@ -111,8 +111,8 @@
 <!-- TsTooltipModule&#45;&gt;TsPaginatorModule -->
 <g id="edge5" class="edge">
 <title>TsTooltipModule&#45;&gt;TsPaginatorModule</title>
-<path fill="none" stroke="#000000" d="M81,-122.1061C81,-141.3391 81,-169 81,-169 81,-169 260.1574,-169 260.1574,-169"/>
-<polygon fill="#000000" stroke="#000000" points="260.1575,-172.5001 270.1574,-169 260.1574,-165.5001 260.1575,-172.5001"/>
+<path fill="none" stroke="#000000" d="M81,-122.1061C81,-141.3391 81,-169 81,-169 81,-169 261.2329,-169 261.2329,-169"/>
+<polygon fill="#000000" stroke="#000000" points="261.233,-172.5001 271.2329,-169 261.2329,-165.5001 261.233,-172.5001"/>
 </g>
 </g>
 </svg>

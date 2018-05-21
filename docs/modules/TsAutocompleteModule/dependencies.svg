@@ -34,7 +34,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsAutocompleteModule_exports</title>
-<polygon fill="none" stroke="#000000" points="222,-208 222,-260 416,-260 416,-208 222,-208"/>
+<polygon fill="none" stroke="#000000" points="243,-208 243,-260 437,-260 437,-208 243,-208"/>
 </g>
 <!-- TsAutocompleteComponent -->
 <g id="node1" class="node">
@@ -45,26 +45,26 @@
 <!-- TsAutocompleteModule -->
 <g id="node2" class="node">
 <title>TsAutocompleteModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="395.3599,-187 392.3599,-191 371.3599,-191 368.3599,-187 242.6401,-187 242.6401,-151 395.3599,-151 395.3599,-187"/>
-<text text-anchor="middle" x="319" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="416.3599,-187 413.3599,-191 392.3599,-191 389.3599,-187 263.6401,-187 263.6401,-151 416.3599,-151 416.3599,-187"/>
+<text text-anchor="middle" x="340" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteModule</text>
 </g>
 <!-- TsAutocompleteComponent&#45;&gt;TsAutocompleteModule -->
 <g id="edge1" class="edge">
 <title>TsAutocompleteComponent&#45;&gt;TsAutocompleteModule</title>
-<path fill="none" stroke="#000000" d="M560,-122.1061C560,-141.3391 560,-169 560,-169 560,-169 405.585,-169 405.585,-169"/>
-<polygon fill="#000000" stroke="#000000" points="405.5851,-165.5001 395.585,-169 405.585,-172.5001 405.5851,-165.5001"/>
+<path fill="none" stroke="#000000" d="M560,-122.1061C560,-141.3391 560,-169 560,-169 560,-169 426.6365,-169 426.6365,-169"/>
+<polygon fill="#000000" stroke="#000000" points="426.6365,-165.5001 416.6365,-169 426.6364,-172.5001 426.6365,-165.5001"/>
 </g>
 <!-- TsAutocompleteComponent  -->
 <g id="node6" class="node">
 <title>TsAutocompleteComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="408.1425,-252 229.8575,-252 229.8575,-216 408.1425,-216 408.1425,-252"/>
-<text text-anchor="middle" x="319" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="429.1425,-252 250.8575,-252 250.8575,-216 429.1425,-216 429.1425,-252"/>
+<text text-anchor="middle" x="340" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteComponent </text>
 </g>
 <!-- TsAutocompleteModule&#45;&gt;TsAutocompleteComponent  -->
 <g id="edge5" class="edge">
 <title>TsAutocompleteModule&#45;&gt;TsAutocompleteComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M319,-187.1061C319,-187.1061 319,-205.991 319,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="315.5001,-205.9909 319,-215.991 322.5001,-205.991 315.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M340,-187.1061C340,-187.1061 340,-205.991 340,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="336.5001,-205.9909 340,-215.991 343.5001,-205.991 336.5001,-205.9909"/>
 </g>
 <!-- TsIconModule -->
 <g id="node3" class="node">
@@ -75,32 +75,32 @@
 <!-- TsIconModule&#45;&gt;TsAutocompleteModule -->
 <g id="edge2" class="edge">
 <title>TsIconModule&#45;&gt;TsAutocompleteModule</title>
-<path fill="none" stroke="#000000" d="M373.1094,-122.1061C373.1094,-122.1061 373.1094,-140.991 373.1094,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="369.6095,-140.9909 373.1094,-150.991 376.6095,-140.991 369.6095,-140.9909"/>
-</g>
-<!-- TsValidationMessagesModule -->
-<g id="node4" class="node">
-<title>TsValidationMessagesModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="332.5674,-122 329.5674,-126 308.5674,-126 305.5674,-122 145.4326,-122 145.4326,-86 332.5674,-86 332.5674,-122"/>
-<text text-anchor="middle" x="239" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesModule</text>
-</g>
-<!-- TsValidationMessagesModule&#45;&gt;TsAutocompleteModule -->
-<g id="edge3" class="edge">
-<title>TsValidationMessagesModule&#45;&gt;TsAutocompleteModule</title>
-<path fill="none" stroke="#000000" d="M287.5519,-122.1061C287.5519,-122.1061 287.5519,-140.991 287.5519,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="284.052,-140.9909 287.5519,-150.991 291.052,-140.991 284.052,-140.9909"/>
+<path fill="none" stroke="#000000" d="M383.6094,-122.1061C383.6094,-122.1061 383.6094,-140.991 383.6094,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="380.1095,-140.9909 383.6094,-150.991 387.1095,-140.991 380.1095,-140.9909"/>
 </g>
 <!-- TsInputModule -->
-<g id="node5" class="node">
+<g id="node4" class="node">
 <title>TsInputModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="127.5982,-122 124.5982,-126 103.5982,-126 100.5982,-122 24.4018,-122 24.4018,-86 127.5982,-86 127.5982,-122"/>
-<text text-anchor="middle" x="76" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="332.5982,-122 329.5982,-126 308.5982,-126 305.5982,-122 229.4018,-122 229.4018,-86 332.5982,-86 332.5982,-122"/>
+<text text-anchor="middle" x="281" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
 </g>
 <!-- TsInputModule&#45;&gt;TsAutocompleteModule -->
-<g id="edge4" class="edge">
+<g id="edge3" class="edge">
 <title>TsInputModule&#45;&gt;TsAutocompleteModule</title>
-<path fill="none" stroke="#000000" d="M76,-122.1061C76,-141.3391 76,-169 76,-169 76,-169 232.4468,-169 232.4468,-169"/>
-<polygon fill="#000000" stroke="#000000" points="232.4469,-172.5001 242.4468,-169 232.4468,-165.5001 232.4469,-172.5001"/>
+<path fill="none" stroke="#000000" d="M298.0596,-122.1061C298.0596,-122.1061 298.0596,-140.991 298.0596,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="294.5597,-140.9909 298.0596,-150.991 301.5597,-140.991 294.5597,-140.9909"/>
+</g>
+<!-- TsValidationMessagesModule -->
+<g id="node5" class="node">
+<title>TsValidationMessagesModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="211.5674,-122 208.5674,-126 187.5674,-126 184.5674,-122 24.4326,-122 24.4326,-86 211.5674,-86 211.5674,-122"/>
+<text text-anchor="middle" x="118" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsValidationMessagesModule</text>
+</g>
+<!-- TsValidationMessagesModule&#45;&gt;TsAutocompleteModule -->
+<g id="edge4" class="edge">
+<title>TsValidationMessagesModule&#45;&gt;TsAutocompleteModule</title>
+<path fill="none" stroke="#000000" d="M118,-122.1061C118,-141.3391 118,-169 118,-169 118,-169 253.6002,-169 253.6002,-169"/>
+<polygon fill="#000000" stroke="#000000" points="253.6002,-172.5001 263.6002,-169 253.6002,-165.5001 253.6002,-172.5001"/>
 </g>
 </g>
 </svg>

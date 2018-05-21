@@ -283,8 +283,8 @@
 <!-- TsTableModule&#45;&gt;TsTableComponent  -->
 <g id="edge27" class="edge">
 <title>TsTableModule&#45;&gt;TsTableComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.2458,-238C675.821,-238 199.4553,-238 199.4553,-238 199.4553,-238 199.4553,-270.698 199.4553,-270.698"/>
-<polygon fill="#000000" stroke="#000000" points="195.9552,-270.698 199.4553,-280.698 202.9552,-270.698 195.9552,-270.698"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.2147,-238C673.2824,-238 183.8754,-238 183.8754,-238 183.8754,-238 183.8754,-270.698 183.8754,-270.698"/>
+<polygon fill="#000000" stroke="#000000" points="180.3754,-270.698 183.8754,-280.698 187.3754,-270.698 180.3754,-270.698"/>
 </g>
 <!-- { : , : &#160;} -->
 <g id="node12" class="node">
@@ -322,29 +322,29 @@
 <path fill="none" stroke="#000000" d="M1300.0906,-98C1136.5911,-98 500,-98 500,-98 500,-98 500,-140.7157 500,-140.7157"/>
 <polygon fill="#000000" stroke="#000000" points="496.5001,-140.7157 500,-150.7157 503.5001,-140.7158 496.5001,-140.7157"/>
 </g>
-<!-- TsSortModule -->
-<g id="node13" class="node">
-<title>TsSortModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="266.3809,-187 263.3809,-191 242.3809,-191 239.3809,-187 169.6191,-187 169.6191,-151 266.3809,-151 266.3809,-187"/>
-<text text-anchor="middle" x="218" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSortModule</text>
-</g>
-<!-- TsSortModule&#45;&gt;TsTableModule -->
-<g id="edge16" class="edge">
-<title>TsSortModule&#45;&gt;TsTableModule</title>
-<path fill="none" stroke="#000000" d="M256.969,-187.2667C256.969,-205.5552 256.969,-231 256.9689,-231 256.9689,-231 827.1169,-231 827.1169,-231"/>
-<polygon fill="#000000" stroke="#000000" points="827.117,-234.5001 837.1169,-231 827.1169,-227.5001 827.117,-234.5001"/>
-</g>
 <!-- TsPaginatorModule -->
-<g id="node14" class="node">
+<g id="node13" class="node">
 <title>TsPaginatorModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="151.7008,-187 148.7008,-191 127.7008,-191 124.7008,-187 24.2992,-187 24.2992,-151 151.7008,-151 151.7008,-187"/>
-<text text-anchor="middle" x="88" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="265.7008,-187 262.7008,-191 241.7008,-191 238.7008,-187 138.2992,-187 138.2992,-151 265.7008,-151 265.7008,-187"/>
+<text text-anchor="middle" x="202" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsPaginatorModule</text>
 </g>
 <!-- TsPaginatorModule&#45;&gt;TsTableModule -->
-<g id="edge17" class="edge">
+<g id="edge16" class="edge">
 <title>TsPaginatorModule&#45;&gt;TsTableModule</title>
-<path fill="none" stroke="#000000" d="M125.1247,-187.1061C125.1247,-206.3391 125.1247,-234 125.1246,-234 125.1246,-234 827.1252,-234 827.1252,-234"/>
-<polygon fill="#000000" stroke="#000000" points="827.1253,-237.5001 837.1252,-234 827.1252,-230.5001 827.1253,-237.5001"/>
+<path fill="none" stroke="#000000" d="M256.5489,-187.2667C256.5489,-205.5552 256.5489,-231 256.5489,-231 256.5489,-231 827.0818,-231 827.0818,-231"/>
+<polygon fill="#000000" stroke="#000000" points="827.0819,-234.5001 837.0818,-231 827.0818,-227.5001 827.0819,-234.5001"/>
+</g>
+<!-- TsSortModule -->
+<g id="node14" class="node">
+<title>TsSortModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="120.3809,-187 117.3809,-191 96.3809,-191 93.3809,-187 23.6191,-187 23.6191,-151 120.3809,-151 120.3809,-187"/>
+<text text-anchor="middle" x="72" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSortModule</text>
+</g>
+<!-- TsSortModule&#45;&gt;TsTableModule -->
+<g id="edge17" class="edge">
+<title>TsSortModule&#45;&gt;TsTableModule</title>
+<path fill="none" stroke="#000000" d="M109.5447,-187.1061C109.5447,-206.3391 109.5447,-234 109.5447,-234 109.5447,-234 827.2754,-234 827.2754,-234"/>
+<polygon fill="#000000" stroke="#000000" points="827.2754,-237.5001 837.2754,-234 827.2753,-230.5001 827.2754,-237.5001"/>
 </g>
 </g>
 </svg>

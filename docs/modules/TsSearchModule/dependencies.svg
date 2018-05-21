@@ -34,7 +34,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsSearchModule_exports</title>
-<polygon fill="none" stroke="#000000" points="157.5,-208 157.5,-260 309.5,-260 309.5,-208 157.5,-208"/>
+<polygon fill="none" stroke="#000000" points="153.5,-208 153.5,-260 305.5,-260 305.5,-208 153.5,-208"/>
 </g>
 <!-- TsSearchComponent -->
 <g id="node1" class="node">
@@ -45,50 +45,50 @@
 <!-- TsSearchModule -->
 <g id="node2" class="node">
 <title>TsSearchModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="289.1346,-187 286.1346,-191 265.1346,-191 262.1346,-187 177.8654,-187 177.8654,-151 289.1346,-151 289.1346,-187"/>
-<text text-anchor="middle" x="233.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="285.1346,-187 282.1346,-191 261.1346,-191 258.1346,-187 173.8654,-187 173.8654,-151 285.1346,-151 285.1346,-187"/>
+<text text-anchor="middle" x="229.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchModule</text>
 </g>
 <!-- TsSearchComponent&#45;&gt;TsSearchModule -->
 <g id="edge1" class="edge">
 <title>TsSearchComponent&#45;&gt;TsSearchModule</title>
-<path fill="none" stroke="#000000" d="M376.5,-122.1061C376.5,-141.3391 376.5,-169 376.5,-169 376.5,-169 299.197,-169 299.197,-169"/>
-<polygon fill="#000000" stroke="#000000" points="299.197,-165.5001 289.197,-169 299.197,-172.5001 299.197,-165.5001"/>
+<path fill="none" stroke="#000000" d="M376.5,-122.1061C376.5,-141.3391 376.5,-169 376.5,-169 376.5,-169 295.4937,-169 295.4937,-169"/>
+<polygon fill="#000000" stroke="#000000" points="295.4938,-165.5001 285.4937,-169 295.4937,-172.5001 295.4938,-165.5001"/>
 </g>
 <!-- TsSearchComponent  -->
 <g id="node5" class="node">
 <title>TsSearchComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="301.9166,-252 165.0834,-252 165.0834,-216 301.9166,-216 301.9166,-252"/>
-<text text-anchor="middle" x="233.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="297.9166,-252 161.0834,-252 161.0834,-216 297.9166,-216 297.9166,-252"/>
+<text text-anchor="middle" x="229.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsSearchComponent </text>
 </g>
 <!-- TsSearchModule&#45;&gt;TsSearchComponent  -->
 <g id="edge4" class="edge">
 <title>TsSearchModule&#45;&gt;TsSearchComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M233.5,-187.1061C233.5,-187.1061 233.5,-205.991 233.5,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="230.0001,-205.9909 233.5,-215.991 237.0001,-205.991 230.0001,-205.9909"/>
-</g>
-<!-- TsInputModule -->
-<g id="node3" class="node">
-<title>TsInputModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="285.0982,-122 282.0982,-126 261.0982,-126 258.0982,-122 181.9018,-122 181.9018,-86 285.0982,-86 285.0982,-122"/>
-<text text-anchor="middle" x="233.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
-</g>
-<!-- TsInputModule&#45;&gt;TsSearchModule -->
-<g id="edge2" class="edge">
-<title>TsInputModule&#45;&gt;TsSearchModule</title>
-<path fill="none" stroke="#000000" d="M233.5,-122.1061C233.5,-122.1061 233.5,-140.991 233.5,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="230.0001,-140.9909 233.5,-150.991 237.0001,-140.991 230.0001,-140.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M229.5,-187.1061C229.5,-187.1061 229.5,-205.991 229.5,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="226.0001,-205.9909 229.5,-215.991 233.0001,-205.991 226.0001,-205.9909"/>
 </g>
 <!-- TsButtonModule -->
-<g id="node4" class="node">
+<g id="node3" class="node">
 <title>TsButtonModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="164.1653,-122 161.1653,-126 140.1653,-126 137.1653,-122 52.8347,-122 52.8347,-86 164.1653,-86 164.1653,-122"/>
-<text text-anchor="middle" x="108.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="285.1653,-122 282.1653,-126 261.1653,-126 258.1653,-122 173.8347,-122 173.8347,-86 285.1653,-86 285.1653,-122"/>
+<text text-anchor="middle" x="229.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule</text>
 </g>
 <!-- TsButtonModule&#45;&gt;TsSearchModule -->
-<g id="edge3" class="edge">
+<g id="edge2" class="edge">
 <title>TsButtonModule&#45;&gt;TsSearchModule</title>
-<path fill="none" stroke="#000000" d="M108.5,-122.1061C108.5,-141.3391 108.5,-169 108.5,-169 108.5,-169 167.5809,-169 167.5809,-169"/>
-<polygon fill="#000000" stroke="#000000" points="167.581,-172.5001 177.5809,-169 167.5809,-165.5001 167.581,-172.5001"/>
+<path fill="none" stroke="#000000" d="M229.5,-122.1061C229.5,-122.1061 229.5,-140.991 229.5,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="226.0001,-140.9909 229.5,-150.991 233.0001,-140.991 226.0001,-140.9909"/>
+</g>
+<!-- TsInputModule -->
+<g id="node4" class="node">
+<title>TsInputModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="156.0982,-122 153.0982,-126 132.0982,-126 129.0982,-122 52.9018,-122 52.9018,-86 156.0982,-86 156.0982,-122"/>
+<text text-anchor="middle" x="104.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
+</g>
+<!-- TsInputModule&#45;&gt;TsSearchModule -->
+<g id="edge3" class="edge">
+<title>TsInputModule&#45;&gt;TsSearchModule</title>
+<path fill="none" stroke="#000000" d="M104.5,-122.1061C104.5,-141.3391 104.5,-169 104.5,-169 104.5,-169 163.5809,-169 163.5809,-169"/>
+<polygon fill="#000000" stroke="#000000" points="163.581,-172.5001 173.5809,-169 163.5809,-165.5001 163.581,-172.5001"/>
 </g>
 </g>
 </svg>

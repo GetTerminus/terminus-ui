@@ -34,7 +34,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TerminusUIModule_exports</title>
-<polygon fill="none" stroke="#000000" points="170,-208 170,-260 4358,-260 4358,-208 170,-208"/>
+<polygon fill="none" stroke="#000000" points="170,-208 170,-260 4357,-260 4357,-208 170,-208"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_TerminusUIModule_providers</title>
@@ -55,104 +55,104 @@
 <!-- TsReactiveFormBaseComponent&#45;&gt;TerminusUIModule -->
 <g id="edge1" class="edge">
 <title>TsReactiveFormBaseComponent&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M4336.6275,-122.1061C4336.6275,-141.3391 4336.6275,-169 4336.6275,-169 4336.6275,-169 2345.0852,-169 2345.0852,-169"/>
-<polygon fill="#000000" stroke="#000000" points="2345.0852,-165.5001 2335.0852,-169 2345.0852,-172.5001 2345.0852,-165.5001"/>
+<path fill="none" stroke="#000000" d="M4336.1275,-122.1061C4336.1275,-141.3391 4336.1275,-169 4336.1275,-169 4336.1275,-169 2345.0697,-169 2345.0697,-169"/>
+<polygon fill="#000000" stroke="#000000" points="2345.0697,-165.5001 2335.0697,-169 2345.0697,-172.5001 2345.0697,-165.5001"/>
 </g>
 <!-- TsAutocompleteModule  -->
 <g id="node32" class="node">
 <title>TsAutocompleteModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="4350.3602,-252 4193.6398,-252 4193.6398,-216 4350.3602,-216 4350.3602,-252"/>
-<text text-anchor="middle" x="4272" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="4349.3602,-252 4192.6398,-252 4192.6398,-216 4349.3602,-216 4349.3602,-252"/>
+<text text-anchor="middle" x="4271" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutocompleteModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsAutocompleteModule  -->
 <g id="edge31" class="edge">
 <title>TerminusUIModule&#45;&gt;TsAutocompleteModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0511,-171C2674.3746,-171 4246.625,-171 4246.625,-171 4246.625,-171 4246.625,-205.7778 4246.625,-205.7778"/>
-<polygon fill="#000000" stroke="#000000" points="4243.1251,-205.7778 4246.625,-215.7778 4250.1251,-205.7778 4243.1251,-205.7778"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0349,-171C2674.2726,-171 4246.125,-171 4246.125,-171 4246.125,-171 4246.125,-205.7778 4246.125,-205.7778"/>
+<polygon fill="#000000" stroke="#000000" points="4242.6251,-205.7778 4246.125,-215.7778 4249.6251,-205.7778 4242.6251,-205.7778"/>
 </g>
 <!-- TsAutofocusModule  -->
 <g id="node33" class="node">
 <title>TsAutofocusModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="4175.8645,-252 4040.1355,-252 4040.1355,-216 4175.8645,-216 4175.8645,-252"/>
-<text text-anchor="middle" x="4108" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutofocusModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="4174.8645,-252 4039.1355,-252 4039.1355,-216 4174.8645,-216 4174.8645,-252"/>
+<text text-anchor="middle" x="4107" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsAutofocusModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsAutofocusModule  -->
 <g id="edge32" class="edge">
 <title>TerminusUIModule&#45;&gt;TsAutofocusModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0152,-172C2657.0549,-172 4084.625,-172 4084.625,-172 4084.625,-172 4084.625,-205.7333 4084.625,-205.7333"/>
-<polygon fill="#000000" stroke="#000000" points="4081.1251,-205.7333 4084.625,-215.7333 4088.1251,-205.7333 4081.1251,-205.7333"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2334.9975,-172C2656.9485,-172 4084.125,-172 4084.125,-172 4084.125,-172 4084.125,-205.7333 4084.125,-205.7333"/>
+<polygon fill="#000000" stroke="#000000" points="4080.6251,-205.7333 4084.125,-215.7333 4087.6251,-205.7333 4080.6251,-205.7333"/>
 </g>
 <!-- TsButtonModule  -->
 <g id="node34" class="node">
 <title>TsButtonModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="4022.6649,-252 3907.3351,-252 3907.3351,-216 4022.6649,-216 4022.6649,-252"/>
-<text text-anchor="middle" x="3965" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="4021.6649,-252 3906.3351,-252 3906.3351,-216 4021.6649,-216 4021.6649,-252"/>
+<text text-anchor="middle" x="3964" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsButtonModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsButtonModule  -->
 <g id="edge33" class="edge">
 <title>TerminusUIModule&#45;&gt;TsButtonModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0152,-173C2641.3823,-173 3943.125,-173 3943.125,-173 3943.125,-173 3943.125,-205.698 3943.125,-205.698"/>
-<polygon fill="#000000" stroke="#000000" points="3939.6251,-205.698 3943.125,-215.698 3946.6251,-205.698 3939.6251,-205.698"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2334.996,-173C2641.2716,-173 3942.625,-173 3942.625,-173 3942.625,-173 3942.625,-205.698 3942.625,-205.698"/>
+<polygon fill="#000000" stroke="#000000" points="3939.1251,-205.698 3942.625,-215.698 3946.1251,-205.698 3939.1251,-205.698"/>
 </g>
 <!-- TsCardModule  -->
 <g id="node35" class="node">
 <title>TsCardModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="3889.2591,-252 3784.7409,-252 3784.7409,-216 3889.2591,-216 3889.2591,-252"/>
-<text text-anchor="middle" x="3837" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="3888.2591,-252 3783.7409,-252 3783.7409,-216 3888.2591,-216 3888.2591,-252"/>
+<text text-anchor="middle" x="3836" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCardModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsCardModule  -->
 <g id="edge34" class="edge">
 <title>TerminusUIModule&#45;&gt;TsCardModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2334.9787,-174C2626.7581,-174 3817.125,-174 3817.125,-174 3817.125,-174 3817.125,-205.998 3817.125,-205.998"/>
-<polygon fill="#000000" stroke="#000000" points="3813.6251,-205.998 3817.125,-215.998 3820.6251,-205.9981 3813.6251,-205.998"/>
-</g>
-<!-- TsCheckboxModule  -->
-<g id="node36" class="node">
-<title>TsCheckboxModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="3766.8129,-252 3633.1871,-252 3633.1871,-216 3766.8129,-216 3766.8129,-252"/>
-<text text-anchor="middle" x="3700" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCheckboxModule </text>
-</g>
-<!-- TerminusUIModule&#45;&gt;TsCheckboxModule  -->
-<g id="edge35" class="edge">
-<title>TerminusUIModule&#45;&gt;TsCheckboxModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.2772,-175C2611.2367,-175 3681.625,-175 3681.625,-175 3681.625,-175 3681.625,-205.9775 3681.625,-205.9775"/>
-<polygon fill="#000000" stroke="#000000" points="3678.1251,-205.9774 3681.625,-215.9775 3685.1251,-205.9775 3678.1251,-205.9774"/>
-</g>
-<!-- TsConfirmationModule  -->
-<g id="node37" class="node">
-<title>TsConfirmationModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="3615.4826,-252 3462.5174,-252 3462.5174,-216 3615.4826,-216 3615.4826,-252"/>
-<text text-anchor="middle" x="3539" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsConfirmationModule </text>
-</g>
-<!-- TerminusUIModule&#45;&gt;TsConfirmationModule  -->
-<g id="edge36" class="edge">
-<title>TerminusUIModule&#45;&gt;TsConfirmationModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.1968,-177C2590.7729,-177 3522.125,-177 3522.125,-177 3522.125,-177 3522.125,-205.9648 3522.125,-205.9648"/>
-<polygon fill="#000000" stroke="#000000" points="3518.6251,-205.9648 3522.125,-215.9648 3525.6251,-205.9649 3518.6251,-205.9648"/>
-</g>
-<!-- TsCopyModule  -->
-<g id="node38" class="node">
-<title>TsCopyModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="3444.8843,-252 3337.1157,-252 3337.1157,-216 3444.8843,-216 3444.8843,-252"/>
-<text text-anchor="middle" x="3391" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCopyModule </text>
-</g>
-<!-- TerminusUIModule&#45;&gt;TsCopyModule  -->
-<g id="edge37" class="edge">
-<title>TerminusUIModule&#45;&gt;TsCopyModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.1929,-178C2571.0537,-178 3376.125,-178 3376.125,-178 3376.125,-178 3376.125,-205.973 3376.125,-205.973"/>
-<polygon fill="#000000" stroke="#000000" points="3372.6251,-205.973 3376.125,-215.973 3379.6251,-205.973 3372.6251,-205.973"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.4458,-174C2627.9671,-174 3816.625,-174 3816.625,-174 3816.625,-174 3816.625,-205.998 3816.625,-205.998"/>
+<polygon fill="#000000" stroke="#000000" points="3813.1251,-205.998 3816.625,-215.998 3820.1251,-205.9981 3813.1251,-205.998"/>
 </g>
 <!-- TsChartModule  -->
-<g id="node39" class="node">
+<g id="node36" class="node">
 <title>TsChartModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="3319.1495,-252 3210.8505,-252 3210.8505,-216 3319.1495,-216 3319.1495,-252"/>
-<text text-anchor="middle" x="3265" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsChartModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="3766.1495,-252 3657.8505,-252 3657.8505,-216 3766.1495,-216 3766.1495,-252"/>
+<text text-anchor="middle" x="3712" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsChartModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsChartModule  -->
-<g id="edge38" class="edge">
+<g id="edge35" class="edge">
 <title>TerminusUIModule&#45;&gt;TsChartModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2334.9959,-179C2552.8397,-179 3252.125,-179 3252.125,-179 3252.125,-179 3252.125,-205.9909 3252.125,-205.9909"/>
-<polygon fill="#000000" stroke="#000000" points="3248.6251,-205.9909 3252.125,-215.9909 3255.6251,-205.991 3248.6251,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.3793,-175C2613.0406,-175 3694.125,-175 3694.125,-175 3694.125,-175 3694.125,-205.9775 3694.125,-205.9775"/>
+<polygon fill="#000000" stroke="#000000" points="3690.6251,-205.9774 3694.125,-215.9775 3697.6251,-205.9775 3690.6251,-205.9774"/>
+</g>
+<!-- TsCheckboxModule  -->
+<g id="node37" class="node">
+<title>TsCheckboxModule </title>
+<polygon fill="#fb8072" stroke="#000000" points="3639.8129,-252 3506.1871,-252 3506.1871,-216 3639.8129,-216 3639.8129,-252"/>
+<text text-anchor="middle" x="3573" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCheckboxModule </text>
+</g>
+<!-- TerminusUIModule&#45;&gt;TsCheckboxModule  -->
+<g id="edge36" class="edge">
+<title>TerminusUIModule&#45;&gt;TsCheckboxModule </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.2192,-177C2595.379,-177 3557.125,-177 3557.125,-177 3557.125,-177 3557.125,-205.9648 3557.125,-205.9648"/>
+<polygon fill="#000000" stroke="#000000" points="3553.6251,-205.9648 3557.125,-215.9648 3560.6251,-205.9649 3553.6251,-205.9648"/>
+</g>
+<!-- TsConfirmationModule  -->
+<g id="node38" class="node">
+<title>TsConfirmationModule </title>
+<polygon fill="#fb8072" stroke="#000000" points="3488.4826,-252 3335.5174,-252 3335.5174,-216 3488.4826,-216 3488.4826,-252"/>
+<text text-anchor="middle" x="3412" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsConfirmationModule </text>
+</g>
+<!-- TerminusUIModule&#45;&gt;TsConfirmationModule  -->
+<g id="edge37" class="edge">
+<title>TerminusUIModule&#45;&gt;TsConfirmationModule </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.2089,-178C2574.0716,-178 3397.625,-178 3397.625,-178 3397.625,-178 3397.625,-205.973 3397.625,-205.973"/>
+<polygon fill="#000000" stroke="#000000" points="3394.1251,-205.973 3397.625,-215.973 3401.1251,-205.973 3394.1251,-205.973"/>
+</g>
+<!-- TsCopyModule  -->
+<g id="node39" class="node">
+<title>TsCopyModule </title>
+<polygon fill="#fb8072" stroke="#000000" points="3317.8843,-252 3210.1157,-252 3210.1157,-216 3317.8843,-216 3317.8843,-252"/>
+<text text-anchor="middle" x="3264" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCopyModule </text>
+</g>
+<!-- TerminusUIModule&#45;&gt;TsCopyModule  -->
+<g id="edge38" class="edge">
+<title>TerminusUIModule&#45;&gt;TsCopyModule </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.3415,-179C2553.5043,-179 3251.625,-179 3251.625,-179 3251.625,-179 3251.625,-205.9909 3251.625,-205.9909"/>
+<polygon fill="#000000" stroke="#000000" points="3248.1251,-205.9909 3251.625,-215.9909 3255.1251,-205.991 3248.1251,-205.9909"/>
 </g>
 <!-- TsDateRangeModule  -->
 <g id="node40" class="node">
@@ -178,29 +178,29 @@
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.2406,-181C2505.8071,-181 2957.125,-181 2957.125,-181 2957.125,-181 2957.125,-205.7604 2957.125,-205.7604"/>
 <polygon fill="#000000" stroke="#000000" points="2953.6251,-205.7604 2957.125,-215.7604 2960.6251,-205.7604 2953.6251,-205.7604"/>
 </g>
-<!-- TsIconModule  -->
-<g id="node42" class="node">
-<title>TsIconModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="2878.9222,-252 2777.0778,-252 2777.0778,-216 2878.9222,-216 2878.9222,-252"/>
-<text text-anchor="middle" x="2828" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule </text>
-</g>
-<!-- TerminusUIModule&#45;&gt;TsIconModule  -->
-<g id="edge41" class="edge">
-<title>TerminusUIModule&#45;&gt;TsIconModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.1246,-183C2480.1097,-183 2820.625,-183 2820.625,-183 2820.625,-183 2820.625,-205.8757 2820.625,-205.8757"/>
-<polygon fill="#000000" stroke="#000000" points="2817.1251,-205.8757 2820.625,-215.8757 2824.1251,-205.8757 2817.1251,-205.8757"/>
-</g>
 <!-- TsIconButtonModule  -->
-<g id="node43" class="node">
+<g id="node42" class="node">
 <title>TsIconButtonModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="2759.04,-252 2618.96,-252 2618.96,-216 2759.04,-216 2759.04,-252"/>
-<text text-anchor="middle" x="2689" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconButtonModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="2879.04,-252 2738.96,-252 2738.96,-216 2879.04,-216 2879.04,-252"/>
+<text text-anchor="middle" x="2809" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconButtonModule </text>
 </g>
 <!-- TerminusUIModule&#45;&gt;TsIconButtonModule  -->
-<g id="edge42" class="edge">
+<g id="edge41" class="edge">
 <title>TerminusUIModule&#45;&gt;TsIconButtonModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0199,-184C2450.9186,-184 2683.625,-184 2683.625,-184 2683.625,-184 2683.625,-205.9489 2683.625,-205.9489"/>
-<polygon fill="#000000" stroke="#000000" points="2680.1251,-205.9488 2683.625,-215.9489 2687.1251,-205.9489 2680.1251,-205.9488"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.0058,-183C2476.1358,-183 2801.625,-183 2801.625,-183 2801.625,-183 2801.625,-205.8757 2801.625,-205.8757"/>
+<polygon fill="#000000" stroke="#000000" points="2798.1251,-205.8757 2801.625,-215.8757 2805.1251,-205.8757 2798.1251,-205.8757"/>
+</g>
+<!-- TsIconModule  -->
+<g id="node43" class="node">
+<title>TsIconModule </title>
+<polygon fill="#fb8072" stroke="#000000" points="2720.9222,-252 2619.0778,-252 2619.0778,-216 2720.9222,-216 2720.9222,-252"/>
+<text text-anchor="middle" x="2670" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule </text>
+</g>
+<!-- TerminusUIModule&#45;&gt;TsIconModule  -->
+<g id="edge42" class="edge">
+<title>TerminusUIModule&#45;&gt;TsIconModule </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2335.1187,-184C2446.657,-184 2664.625,-184 2664.625,-184 2664.625,-184 2664.625,-205.9489 2664.625,-205.9489"/>
+<polygon fill="#000000" stroke="#000000" points="2661.1251,-205.9488 2664.625,-215.9489 2668.1251,-205.9489 2661.1251,-205.9488"/>
 </g>
 <!-- TsInputModule  -->
 <g id="node44" class="node">
@@ -415,8 +415,8 @@
 <!-- TsAutocompleteModule&#45;&gt;TerminusUIModule -->
 <g id="edge2" class="edge">
 <title>TsAutocompleteModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M4161.1261,-122.1686C4161.1261,-141.0898 4161.1261,-168 4161.1261,-168 4161.1261,-168 2344.9709,-168 2344.9709,-168"/>
-<polygon fill="#000000" stroke="#000000" points="2344.971,-164.5001 2334.9709,-168 2344.9709,-171.5001 2344.971,-164.5001"/>
+<path fill="none" stroke="#000000" d="M4160.6261,-122.1686C4160.6261,-141.0898 4160.6261,-168 4160.6261,-168 4160.6261,-168 2345.226,-168 2345.226,-168"/>
+<polygon fill="#000000" stroke="#000000" points="2345.2261,-164.5001 2335.226,-168 2345.226,-171.5001 2345.2261,-164.5001"/>
 </g>
 <!-- TsAutofocusModule -->
 <g id="node4" class="node">
@@ -427,8 +427,8 @@
 <!-- TsAutofocusModule&#45;&gt;TerminusUIModule -->
 <g id="edge3" class="edge">
 <title>TsAutofocusModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M4009.8252,-122.2222C4009.8252,-140.8285 4009.8252,-167 4009.8252,-167 4009.8252,-167 2345.2078,-167 2345.2078,-167"/>
-<polygon fill="#000000" stroke="#000000" points="2345.2079,-163.5001 2335.2078,-167 2345.2078,-170.5001 2345.2079,-163.5001"/>
+<path fill="none" stroke="#000000" d="M4009.3252,-122.2222C4009.3252,-140.8285 4009.3252,-167 4009.3252,-167 4009.3252,-167 2345.1894,-167 2345.1894,-167"/>
+<polygon fill="#000000" stroke="#000000" points="2345.1894,-163.5001 2335.1894,-167 2345.1893,-170.5001 2345.1894,-163.5001"/>
 </g>
 <!-- TsButtonModule -->
 <g id="node5" class="node">
@@ -439,8 +439,8 @@
 <!-- TsButtonModule&#45;&gt;TerminusUIModule -->
 <g id="edge4" class="edge">
 <title>TsButtonModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3878.1485,-122.2667C3878.1485,-140.5552 3878.1485,-166 3878.1485,-166 3878.1485,-166 2344.9939,-166 2344.9939,-166"/>
-<polygon fill="#000000" stroke="#000000" points="2344.9939,-162.5001 2334.9939,-166 2344.9939,-169.5001 2344.9939,-162.5001"/>
+<path fill="none" stroke="#000000" d="M3877.6485,-122.2667C3877.6485,-140.5552 3877.6485,-166 3877.6485,-166 3877.6485,-166 2344.974,-166 2344.974,-166"/>
+<polygon fill="#000000" stroke="#000000" points="2344.974,-162.5001 2334.974,-166 2344.9739,-169.5001 2344.974,-162.5001"/>
 </g>
 <!-- TsCardModule -->
 <g id="node6" class="node">
@@ -451,56 +451,56 @@
 <!-- TsCardModule&#45;&gt;TerminusUIModule -->
 <g id="edge5" class="edge">
 <title>TsCardModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3757.7635,-122.302C3757.7635,-140.2699 3757.7635,-165 3757.7635,-165 3757.7635,-165 2345.3616,-165 2345.3616,-165"/>
-<polygon fill="#000000" stroke="#000000" points="2345.3616,-161.5001 2335.3616,-165 2345.3615,-168.5001 2345.3616,-161.5001"/>
-</g>
-<!-- TsCheckboxModule -->
-<g id="node7" class="node">
-<title>TsCheckboxModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="3730.3132,-122 3727.3132,-126 3706.3132,-126 3703.3132,-122 3599.6868,-122 3599.6868,-86 3730.3132,-86 3730.3132,-122"/>
-<text text-anchor="middle" x="3665" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCheckboxModule</text>
-</g>
-<!-- TsCheckboxModule&#45;&gt;TerminusUIModule -->
-<g id="edge6" class="edge">
-<title>TsCheckboxModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3607.5423,-122.0225C3607.5423,-139.3734 3607.5423,-163 3607.5423,-163 3607.5423,-163 2345.0139,-163 2345.0139,-163"/>
-<polygon fill="#000000" stroke="#000000" points="2345.014,-159.5001 2335.0139,-163 2345.0139,-166.5001 2345.014,-159.5001"/>
-</g>
-<!-- TsConfirmationModule -->
-<g id="node8" class="node">
-<title>TsConfirmationModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="3581.4818,-122 3578.4818,-126 3557.4818,-126 3554.4818,-122 3432.5182,-122 3432.5182,-86 3581.4818,-86 3581.4818,-122"/>
-<text text-anchor="middle" x="3507" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsConfirmationModule</text>
-</g>
-<!-- TsConfirmationModule&#45;&gt;TerminusUIModule -->
-<g id="edge7" class="edge">
-<title>TsConfirmationModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3438.6005,-122.0336C3438.6005,-139.0597 3438.6005,-162 3438.6005,-162 3438.6005,-162 2345.0208,-162 2345.0208,-162"/>
-<polygon fill="#000000" stroke="#000000" points="2345.0209,-158.5001 2335.0208,-162 2345.0208,-165.5001 2345.0209,-158.5001"/>
-</g>
-<!-- TsCopyModule -->
-<g id="node9" class="node">
-<title>TsCopyModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="3414.8837,-122 3411.8837,-126 3390.8837,-126 3387.8837,-122 3311.1163,-122 3311.1163,-86 3414.8837,-86 3414.8837,-122"/>
-<text text-anchor="middle" x="3363" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCopyModule</text>
-</g>
-<!-- TsCopyModule&#45;&gt;TerminusUIModule -->
-<g id="edge8" class="edge">
-<title>TsCopyModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3315.0665,-122.0352C3315.0665,-138.7344 3315.0665,-161 3315.0665,-161 3315.0665,-161 2345.1307,-161 2345.1307,-161"/>
-<polygon fill="#000000" stroke="#000000" points="2345.1308,-157.5001 2335.1307,-161 2345.1307,-164.5001 2345.1308,-157.5001"/>
+<path fill="none" stroke="#000000" d="M3757.3477,-122.302C3757.3477,-140.2699 3757.3477,-165 3757.3477,-165 3757.3477,-165 2345.3436,-165 2345.3436,-165"/>
+<polygon fill="#000000" stroke="#000000" points="2345.3436,-161.5001 2335.3436,-165 2345.3435,-168.5001 2345.3436,-161.5001"/>
 </g>
 <!-- TsChartModule -->
-<g id="node10" class="node">
+<g id="node7" class="node">
 <title>TsChartModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="3293.15,-122 3290.15,-126 3269.15,-126 3266.15,-122 3188.85,-122 3188.85,-86 3293.15,-86 3293.15,-122"/>
-<text text-anchor="middle" x="3241" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsChartModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="3730.15,-122 3727.15,-126 3706.15,-126 3703.15,-122 3625.85,-122 3625.85,-86 3730.15,-86 3730.15,-122"/>
+<text text-anchor="middle" x="3678" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsChartModule</text>
 </g>
 <!-- TsChartModule&#45;&gt;TerminusUIModule -->
-<g id="edge9" class="edge">
+<g id="edge6" class="edge">
 <title>TsChartModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M3201.7725,-122.027C3201.7725,-138.3976 3201.7725,-160 3201.7725,-160 3201.7725,-160 2344.9758,-160 2344.9758,-160"/>
-<polygon fill="#000000" stroke="#000000" points="2344.9758,-156.5001 2334.9758,-160 2344.9757,-163.5001 2344.9758,-156.5001"/>
+<path fill="none" stroke="#000000" d="M3632.7909,-122.0225C3632.7909,-139.3734 3632.7909,-163 3632.7909,-163 3632.7909,-163 2345.31,-163 2345.31,-163"/>
+<polygon fill="#000000" stroke="#000000" points="2345.31,-159.5001 2335.31,-163 2345.3099,-166.5001 2345.31,-159.5001"/>
+</g>
+<!-- TsCheckboxModule -->
+<g id="node8" class="node">
+<title>TsCheckboxModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="3608.3132,-122 3605.3132,-126 3584.3132,-126 3581.3132,-122 3477.6868,-122 3477.6868,-86 3608.3132,-86 3608.3132,-122"/>
+<text text-anchor="middle" x="3543" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCheckboxModule</text>
+</g>
+<!-- TsCheckboxModule&#45;&gt;TerminusUIModule -->
+<g id="edge7" class="edge">
+<title>TsCheckboxModule&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M3483.0423,-122.0336C3483.0423,-139.0597 3483.0423,-162 3483.0423,-162 3483.0423,-162 2345.3089,-162 2345.3089,-162"/>
+<polygon fill="#000000" stroke="#000000" points="2345.3089,-158.5001 2335.3089,-162 2345.3089,-165.5001 2345.3089,-158.5001"/>
+</g>
+<!-- TsConfirmationModule -->
+<g id="node9" class="node">
+<title>TsConfirmationModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="3459.4818,-122 3456.4818,-126 3435.4818,-126 3432.4818,-122 3310.5182,-122 3310.5182,-86 3459.4818,-86 3459.4818,-122"/>
+<text text-anchor="middle" x="3385" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsConfirmationModule</text>
+</g>
+<!-- TsConfirmationModule&#45;&gt;TerminusUIModule -->
+<g id="edge8" class="edge">
+<title>TsConfirmationModule&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M3314.1005,-122.0352C3314.1005,-138.7344 3314.1005,-161 3314.1005,-161 3314.1005,-161 2345.0714,-161 2345.0714,-161"/>
+<polygon fill="#000000" stroke="#000000" points="2345.0714,-157.5001 2335.0714,-161 2345.0714,-164.5001 2345.0714,-157.5001"/>
+</g>
+<!-- TsCopyModule -->
+<g id="node10" class="node">
+<title>TsCopyModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="3292.8837,-122 3289.8837,-126 3268.8837,-126 3265.8837,-122 3189.1163,-122 3189.1163,-86 3292.8837,-86 3292.8837,-122"/>
+<text text-anchor="middle" x="3241" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsCopyModule</text>
+</g>
+<!-- TsCopyModule&#45;&gt;TerminusUIModule -->
+<g id="edge9" class="edge">
+<title>TsCopyModule&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M3201.4639,-122.027C3201.4639,-138.3976 3201.4639,-160 3201.4639,-160 3201.4639,-160 2345.3217,-160 2345.3217,-160"/>
+<polygon fill="#000000" stroke="#000000" points="2345.3217,-156.5001 2335.3217,-160 2345.3216,-163.5001 2345.3217,-156.5001"/>
 </g>
 <!-- TsDateRangeModule -->
 <g id="node11" class="node">
@@ -526,29 +526,29 @@
 <path fill="none" stroke="#000000" d="M2889.6481,-122.2396C2889.6481,-137.5706 2889.6481,-157 2889.6481,-157 2889.6481,-157 2345.1655,-157 2345.1655,-157"/>
 <polygon fill="#000000" stroke="#000000" points="2345.1655,-153.5001 2335.1655,-157 2345.1655,-160.5001 2345.1655,-153.5001"/>
 </g>
-<!-- TsIconModule -->
-<g id="node13" class="node">
-<title>TsIconModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="2864.4231,-122 2861.4231,-126 2840.4231,-126 2837.4231,-122 2765.5769,-122 2765.5769,-86 2864.4231,-86 2864.4231,-122"/>
-<text text-anchor="middle" x="2815" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
-</g>
-<!-- TsIconModule&#45;&gt;TerminusUIModule -->
-<g id="edge12" class="edge">
-<title>TsIconModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M2771.4139,-122.1871C2771.4139,-137.1824 2771.4139,-156 2771.4139,-156 2771.4139,-156 2345.1408,-156 2345.1408,-156"/>
-<polygon fill="#000000" stroke="#000000" points="2345.1408,-152.5001 2335.1408,-156 2345.1408,-159.5001 2345.1408,-152.5001"/>
-</g>
 <!-- TsIconButtonModule -->
-<g id="node14" class="node">
+<g id="node13" class="node">
 <title>TsIconButtonModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="2748.0408,-122 2745.0408,-126 2724.0408,-126 2721.0408,-122 2611.9592,-122 2611.9592,-86 2748.0408,-86 2748.0408,-122"/>
-<text text-anchor="middle" x="2680" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconButtonModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="2864.0408,-122 2861.0408,-126 2840.0408,-126 2837.0408,-122 2727.9592,-122 2727.9592,-86 2864.0408,-86 2864.0408,-122"/>
+<text text-anchor="middle" x="2796" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconButtonModule</text>
 </g>
 <!-- TsIconButtonModule&#45;&gt;TerminusUIModule -->
-<g id="edge13" class="edge">
+<g id="edge12" class="edge">
 <title>TsIconButtonModule&#45;&gt;TerminusUIModule</title>
-<path fill="none" stroke="#000000" d="M2615.355,-122.1243C2615.355,-136.7832 2615.355,-155 2615.355,-155 2615.355,-155 2345.3666,-155 2345.3666,-155"/>
-<polygon fill="#000000" stroke="#000000" points="2345.3666,-151.5001 2335.3666,-155 2345.3665,-158.5001 2345.3666,-151.5001"/>
+<path fill="none" stroke="#000000" d="M2733.355,-122.1871C2733.355,-137.1824 2733.355,-156 2733.355,-156 2733.355,-156 2345.2885,-156 2345.2885,-156"/>
+<polygon fill="#000000" stroke="#000000" points="2345.2885,-152.5001 2335.2885,-156 2345.2884,-159.5001 2345.2885,-152.5001"/>
+</g>
+<!-- TsIconModule -->
+<g id="node14" class="node">
+<title>TsIconModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="2710.4231,-122 2707.4231,-126 2686.4231,-126 2683.4231,-122 2611.5769,-122 2611.5769,-86 2710.4231,-86 2710.4231,-122"/>
+<text text-anchor="middle" x="2661" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsIconModule</text>
+</g>
+<!-- TsIconModule&#45;&gt;TerminusUIModule -->
+<g id="edge13" class="edge">
+<title>TsIconModule&#45;&gt;TerminusUIModule</title>
+<path fill="none" stroke="#000000" d="M2615.4139,-122.1243C2615.4139,-136.7832 2615.4139,-155 2615.4139,-155 2615.4139,-155 2344.9744,-155 2344.9744,-155"/>
+<polygon fill="#000000" stroke="#000000" points="2344.9745,-151.5001 2334.9744,-155 2344.9744,-158.5001 2344.9745,-151.5001"/>
 </g>
 <!-- TsInputModule -->
 <g id="node15" class="node">
