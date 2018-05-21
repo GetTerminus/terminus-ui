@@ -2245,7 +2245,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:30</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2496,16 +2496,17 @@ items$: Observable&lt;TsRadioOption[]&gt; = of([
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  Input,
-  Output,
   EventEmitter,
   forwardRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Input,
   isDevMode,
+  OnDestroy,
   OnInit,
-  ChangeDetectorRef,
+  Output,
+  ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { MatRadioChange } from &#x27;@angular/material/radio&#x27;;
@@ -2514,6 +2515,7 @@ import {
   hasRequiredControl,
 } from &#x27;@terminus/ngx-tools&#x27;;
 import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
+import { Subscription } from &#x27;rxjs/Subscription&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types/style-theme.types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
@@ -2598,7 +2600,12 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   encapsulation: ViewEncapsulation.None,
   exportAs: &#x27;tsRadioGroup&#x27;,
 })
-export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
+  /**
+   * Store reference to the formControl value subscription
+   */
+  private formControlSubscription: Subscription;
+
   /**
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
@@ -2784,11 +2791,20 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public ngOnInit(): void {
     // istanbul ignore else
     if (this.formControl) {
-      this.formControl.valueChanges.subscribe((v: any) &#x3D;&gt; {
-        this.writeValue(v);
-        this.changeDetectorRef.markForCheck();
-      });
+      this.formControlSubscription &#x3D; this.formControl.valueChanges
+        .subscribe((v: any) &#x3D;&gt; {
+          this.writeValue(v);
+          this.changeDetectorRef.markForCheck();
+        });
     }
+  }
+
+
+  /**
+   * Unsubscribe from any Observables
+   */
+  public ngOnDestroy(): void {
+    this.formControlSubscription.unsubscribe();
   }
 
 
