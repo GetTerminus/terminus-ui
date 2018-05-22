@@ -5,6 +5,7 @@
     <ts-select
       class="qa-paginator-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
+      formFieldAppearance="legacy"
       [items]="recordsPerPageChoices"
       name="recordsPerPageChoices"
       [label]="recordsSelectLabel"

@@ -1,20 +1,20 @@
 import {
-  Component,
-  Input,
-  Output,
-  ViewChildren,
-  ViewChild,
-  QueryList,
   AfterViewInit,
-  ElementRef,
-  HostListener,
-  OnInit,
-  EventEmitter,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { groupBy } from '@terminus/ngx-tools';
 
 

@@ -8,8 +8,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import {
   TsRadioChange,

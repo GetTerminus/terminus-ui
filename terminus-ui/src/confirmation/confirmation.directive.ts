@@ -1,26 +1,26 @@
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
-  Output,
+  EventEmitter,
   HostListener,
   OnDestroy,
   OnInit,
-  EventEmitter,
-  ChangeDetectorRef,
+  Output,
 } from '@angular/core';
 import {
+  ConnectedPositionStrategy,
   Overlay,
   OverlayConfig,
-  ConnectedPositionStrategy,
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ESCAPE } from '@terminus/ngx-tools/keycodes';
-import { merge } from 'rxjs/operators/merge';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { filter } from 'rxjs/operators/filter';
 import { takeUntil } from 'rxjs/operators/takeUntil';
-import { Subject } from 'rxjs/Subject';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { merge } from 'rxjs/operators/merge';
+import { Subject } from 'rxjs';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
 import { TsButtonComponent } from './../button/button.component';

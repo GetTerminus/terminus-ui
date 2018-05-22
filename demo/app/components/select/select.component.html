@@ -1,3 +1,14 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <button (click)="log(myForm.value)">
+    Log form value
+  </button>
+</ts-card>
+
+
 <form
   [formGroup]="myForm"
   novalidate
@@ -40,9 +51,5 @@
       (selectionChange)="isChanged($event)"
       tsVerticalSpacing
     ></ts-select>
-
-    <button (click)="log(myForm.value)">
-      Log form value
-    </button>
   </ts-card>
 </form>

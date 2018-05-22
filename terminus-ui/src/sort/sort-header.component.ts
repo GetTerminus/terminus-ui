@@ -4,17 +4,19 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  isDevMode,
+  OnDestroy,
+  OnInit,
   Optional,
   ViewEncapsulation,
-  OnInit,
-  OnDestroy,
-  isDevMode,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CdkColumnDef } from '@angular/cdk/table';
-import { Subscription } from 'rxjs/Subscription';
-import { merge } from 'rxjs/observable/merge';
+import {
+  merge,
+  Subscription,
+} from 'rxjs';
 
 import { TsSortDirective } from './sort.directive';
 import { TsSortableItem } from './sort.directive';

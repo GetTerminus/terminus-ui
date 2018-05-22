@@ -43,7 +43,7 @@ describe(`TsChartComponent`, () => {
   describe(`data`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      component.data = null;
+      component.data = null as any;
       expect(component.data).toEqual(undefined);
     });
 
@@ -57,7 +57,7 @@ describe(`TsChartComponent`, () => {
 
 
   test(`should set the map type`, () => {
-    component.map = null;
+    component.map = null as any;
     expect(component.map).toEqual('usa');
 
     component.map = 'world';
@@ -66,7 +66,7 @@ describe(`TsChartComponent`, () => {
 
 
   test(`should set user options`, () => {
-    component.options = null;
+    component.options = null as any;
     expect(component.options).toEqual(undefined);
 
     const options: TsChartOptions = {legend: {enabled: false}};
@@ -76,7 +76,7 @@ describe(`TsChartComponent`, () => {
 
 
   test(`should set the sparkline value`, () => {
-    component.sparkline = null;
+    component.sparkline = null as any;
     expect(component.sparkline).toEqual(false);
 
     component.sparkline = true;
@@ -85,7 +85,7 @@ describe(`TsChartComponent`, () => {
 
 
   test(`should set the addStockControls value`, () => {
-    component.addStockControls = null;
+    component.addStockControls = null as any;
     expect(component.addStockControls).toEqual(false);
 
     component.addStockControls = true;
@@ -94,7 +94,7 @@ describe(`TsChartComponent`, () => {
 
 
   test(`should set the visualization value`, () => {
-    component.visualization = null;
+    component.visualization = null as any;
     expect(component.visualization).toEqual(undefined);
 
     component.visualization = 'bar';
@@ -247,6 +247,14 @@ describe(`TsChartComponent`, () => {
       ];
 
       expect(component.dataSeriesLength).toEqual(2);
+    });
+
+
+    test(`should return 0 if nested data is expected but not found`, () => {
+      component.data = [
+        {},
+      ];
+      expect(component.dataSeriesLength).toEqual(0);
     });
 
   });

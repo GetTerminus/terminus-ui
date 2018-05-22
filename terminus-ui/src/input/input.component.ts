@@ -5,7 +5,6 @@ import {
   EventEmitter,
   forwardRef,
   Input,
-  isDevMode,
   OnChanges,
   Output,
   SimpleChanges,
@@ -166,7 +165,11 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
     const action: string = v ? 'disable' : 'enable';
 
     this._isDisabled = v;
-    this.matInput.ngControl.control[action]();
+
+    // istanbul ignore else
+    if (this.matInput && this.matInput.ngControl && this.matInput.ngControl.control) {
+      this.matInput.ngControl.control[action]();
+    }
   }
   public get isDisabled(): boolean {
     return this._isDisabled;
@@ -314,13 +317,9 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
    * @param fn - The onChange function
    */
   private registerOnChangeFn(fn: Function): void {
+    // istanbul ignore else
     if (this.formControl) {
       this.formControl.registerOnChange(fn);
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        console.warn(`TsInputComponent: A valid form control must be passed in!`);
-      }
     }
   }
 

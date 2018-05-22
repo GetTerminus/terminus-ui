@@ -1,6 +1,7 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/reset';
 @import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
 
 
 //
@@ -28,5 +29,10 @@
     color: color(utility, dark);
     margin: .4em 0;
     text-align: right;
+  }
+
+  .ts-select,
+  .ts-button {
+    margin-right: spacing(small, 2);
   }
 }

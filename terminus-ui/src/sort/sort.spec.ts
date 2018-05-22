@@ -15,7 +15,7 @@ import {
   TestModuleMetadata,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators/map';
 import {
   dispatchMouseEvent,

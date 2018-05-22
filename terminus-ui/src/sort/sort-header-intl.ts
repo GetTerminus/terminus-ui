@@ -1,9 +1,9 @@
 import {
   Injectable,
-  SkipSelf,
   Optional,
+  SkipSelf,
 } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { TsSortDirection } from './sort.directive';
 

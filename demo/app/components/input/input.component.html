@@ -1,11 +1,17 @@
 <ts-card tsVerticalSpacing>
-  <h3 tsCardTitle tsVerticalSpacing>Demo Controls</h3>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
 
-  <button (click)="shouldDisable = !shouldDisable">Toggle disabled inputs</button>
+  <button (click)="shouldDisable = !shouldDisable">
+    Toggle disabled inputs
+  </button>
 </ts-card>
 
 <ts-card tsVerticalSpacing>
-  <h3 tsCardTitle tsVerticalSpacing>ngModel</h3>
+  <h3 tsCardTitle tsVerticalSpacing>
+    ngModel
+  </h3>
 
   <ts-input
     [(ngModel)]="myValue"
@@ -23,7 +29,9 @@
 
 
 <ts-card>
-  <h3 tsCardTitle tsVerticalSpacing>Form</h3>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Form
+  </h3>
 
 
   <form [formGroup]="myForm" novalidate>

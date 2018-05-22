@@ -583,7 +583,10 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     }
 
     return paginatorArray.sort((a: TsPaginatorMenuItem, b: TsPaginatorMenuItem): number => {
-      return (a.value < b.value) ? -1 : 1;
+      const first: number = coerceNumberProperty(a.value);
+      const second: number = coerceNumberProperty(b.value);
+
+      return (first < second) ? -1 : 1;
     });
   }
 

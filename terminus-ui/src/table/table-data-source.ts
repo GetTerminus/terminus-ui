@@ -1,8 +1,10 @@
 // FIXME: Can we refactor non-null-assertion?
 // tslint:disable: no-non-null-assertion
 import { DataSource } from '@angular/cdk/table';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
+import {
+  BehaviorSubject,
+  Subscription,
+} from 'rxjs';
 
 
 

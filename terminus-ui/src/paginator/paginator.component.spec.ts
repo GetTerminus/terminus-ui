@@ -357,10 +357,13 @@ describe(`TsPaginatorComponent`, () => {
 
 
     test(`should create a valid array when there are fewer total records than the per page amount`, () => {
-      const array = component['createPagesArray'](8, 10, true);
+      const array1 = component['createPagesArray'](8, 10, true);
+      expect(array1.length).toEqual(1);
+      expect(array1[array1.length - 1].name).toEqual('1 - 8');
 
-      expect(array.length).toEqual(1);
-      expect(array[array.length - 1].name).toEqual('1 - 8');
+      const array2 = component['createPagesArray'](8, 10, false);
+      expect(array2.length).toEqual(1);
+      expect(array2[array2.length - 1].name).toEqual('1 - 8');
     });
 
 

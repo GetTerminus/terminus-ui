@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import {
   getSortInvalidDirectionError,
