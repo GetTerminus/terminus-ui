@@ -107,7 +107,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Store reference to the formControl value subscription
    */
-  private formControlSubscription!: Subscription;
+  private formControlSubscription: Subscription | undefined;
 
   /**
    * Define the ripple color.
@@ -307,7 +307,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Unsubscribe from any Observables
    */
   public ngOnDestroy(): void {
-    this.formControlSubscription.unsubscribe();
+    if (this.formControlSubscription) {
+      this.formControlSubscription.unsubscribe();
+    }
   }
 
 
