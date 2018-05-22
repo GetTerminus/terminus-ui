@@ -44,6 +44,14 @@
     }
   }
 
+  // Fix poor icon alignment inside a form field prefix|suffix
+  .mat-form-field-prefix &,
+  .mat-form-field-suffix & {
+    margin-right: .2em;
+    position: relative;
+    top: -.06em;
+  }
+
   // Push back opacity for icons in disabled form fields
   .mat-form-field-disabled & {
     opacity: .4;

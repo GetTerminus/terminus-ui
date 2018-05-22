@@ -1,16 +1,17 @@
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   OnInit,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  FormGroup,
   AbstractControl,
+  FormControl,
+  FormGroup,
 } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
@@ -88,8 +89,9 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the endDate form control
    */
-  public get endDateControl(): AbstractControl | null {
-    return this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
+  public get endDateControl(): AbstractControl {
+    const ctrl: AbstractControl | null = this.dateFormGroup.get('endDate');
+    return (this.dateFormGroup && ctrl) ? ctrl : this.fallbackEndDateControl;
   }
 
   /**
@@ -103,6 +105,16 @@ export class TsDateRangeComponent implements OnInit {
   public endPlaceholder: string = 'Select end date';
 
   /**
+   * Define a fallback control in case one is not passed in
+   */
+  private fallbackStartDateControl: FormControl = new FormControl();
+
+  /**
+   * Define a fallback control in case one is not passed in
+   */
+  private fallbackEndDateControl: FormControl = new FormControl();
+
+  /**
    * Store the selected start date
    */
   public startDate!: Date;
@@ -110,8 +122,9 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the startDate form control
    */
-  public get startDateControl(): AbstractControl | null {
-    return this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
+  public get startDateControl(): AbstractControl {
+    const ctrl: AbstractControl | null = this.dateFormGroup.get('startDate');
+    return (this.dateFormGroup && ctrl) ? ctrl : this.fallbackStartDateControl;
   }
 
   /**

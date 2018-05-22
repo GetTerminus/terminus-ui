@@ -1,8 +1,13 @@
 <mat-form-field
   class="c-input qa-input"
+  appearance="outline"
   [hideRequiredMarker]="hideRequiredMarker"
   [color]="theme"
 >
+
+  <mat-label *ngIf="label">
+    {{ label }}
+  </mat-label>
 
   <ts-icon
     class="qa-input-prefix-icon"
@@ -14,7 +19,6 @@
     matInput
     class="c-input__text qa-input-text"
     type="{{ type }}"
-    placeholder="{{ label }}"
     [attr.name]="name"
     [attr.autofocus]="isFocused ? '' : null"
     [required]="requiredAttribute"

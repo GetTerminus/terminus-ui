@@ -40,6 +40,10 @@ jobs:
           command: tooling/ci/test-unit.sh
 
       - run:
+          name: Test AoT Demo App Build
+          command: yarn run build:app:ci
+
+      - run:
           name: Build Project
           command: yarn run build
 

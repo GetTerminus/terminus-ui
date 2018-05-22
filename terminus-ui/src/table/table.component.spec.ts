@@ -11,13 +11,15 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
 import { TsWindowService } from '@terminus/ngx-tools';
 import {
   TsWindowServiceMock,
   configureTestBedWithoutReset,
 } from '@terminus/ngx-tools/testing';
+import {
+  BehaviorSubject,
+  Observable,
+} from 'rxjs';
 
 import { TsPaginatorComponent } from './../paginator/paginator.component';
 import { TsPaginatorModule } from './../paginator/paginator.module';

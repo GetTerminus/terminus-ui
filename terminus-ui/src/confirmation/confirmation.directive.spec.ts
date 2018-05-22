@@ -1,23 +1,21 @@
 // tslint:disable: no-non-null-assertion
 import {
   Component,
-  ViewChild,
-  Output,
-  Input,
   EventEmitter,
+  Input,
   NgModule,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import {
-  TestBed,
   ComponentFixture,
+  TestBed,
 } from '@angular/core/testing';
 import {
-  expectNativeEl,
   dispatchKeyboardEvent,
+  expectNativeEl,
 } from '@terminus/ngx-tools/testing';
-import {
-  OverlayModule,
-} from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';

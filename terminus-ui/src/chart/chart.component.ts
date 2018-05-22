@@ -52,7 +52,7 @@ export class TsChartComponent implements AfterViewInit, OnChanges, OnDestroy {
   /**
    * Store a reference to the created chart instance. {@link TsChartObject}
    */
-  private instance: TsChartObject;
+  private instance!: TsChartObject;
 
   /**
    * Create a reference to the child {@link TsChartSeriesDirective} if one exists
@@ -132,7 +132,7 @@ export class TsChartComponent implements AfterViewInit, OnChanges, OnDestroy {
   public get sparkline(): boolean {
     return this._sparkline;
   }
-  private _sparkline: boolean;
+  private _sparkline: boolean = false;
 
   /**
    * Define if the stock controls (timeline, filters) should be added
@@ -346,21 +346,24 @@ export class TsChartComponent implements AfterViewInit, OnChanges, OnDestroy {
    * @return The length of the data
    */
   public get dataSeriesLength(): number {
-    if (!this.data) {
+    const data: TsChartData = this.data;
+
+    if (!data) {
       return 0;
     }
-    let length: number;
-    const hasSingleDataset: boolean = this.data.length === 1;
-    const hasInnerDataArray: boolean = coerceBooleanProperty(this.data[0] && this.data[0].data);
 
-    if (hasSingleDataset && hasInnerDataArray) {
-      length = this.data[0].data.length;
-    } else {
-      length = this.data.length;
+    if (data.length > 1) {
+      return data.length;
     }
 
-    return length;
+    const innerData = data[0];
+    if (innerData && innerData.data && innerData.data.length) {
+      return innerData.data.length;
+    }
+
+    return 0;
   }
+
 
   /**
    * Expose the current chart options

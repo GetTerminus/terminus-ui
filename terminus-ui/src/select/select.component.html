@@ -1,9 +1,13 @@
 <mat-form-field
   class="c-select qa-select"
+  [appearance]="formFieldAppearance"
   [color]="theme"
 >
+  <mat-label *ngIf="label">
+    {{ label }}
+  </mat-label>
+
   <mat-select
-    [placeholder]="label"
     [(ngModel)]="value"
     [multiple]="multipleAllowed"
     [disabled]="isDisabled"

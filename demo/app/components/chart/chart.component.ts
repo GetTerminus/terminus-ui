@@ -250,7 +250,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
       data: USA_DATA,
       dataLabels: {
         formatter: function() {
-          return this.point.code;
+          return (this as any).point.code;
         },
       },
     },
@@ -275,7 +275,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     },
     tooltip: {
       formatter: function() {
-        return `${this.key}: ${(this.point.z * 1000).toLocaleString()}`;
+        return `${(this as any).key}: ${((this as any).point.z * 1000).toLocaleString()}`;
       },
     },
   };
@@ -313,7 +313,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     },
     tooltip: {
       formatter: function() {
-        return `${this.key}: ${(this.point.z * 1000).toLocaleString()}`;
+        return `${(this as any).key}: ${((this as any).point.z * 1000).toLocaleString()}`;
       },
     },
   };
@@ -383,7 +383,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   scatterOptions: TsChartOptions = {
     tooltip: {
       pointFormatter: function() {
-        return `<b>${this.series.name}</b><br>${this.x} cm, ${this.y} kg`;
+        return `<b>${(this as any).series.name}</b><br>${(this as any).x} cm, ${(this as any).y} kg`;
       },
     },
     xAxis: {

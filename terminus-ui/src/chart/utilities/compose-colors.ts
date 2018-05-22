@@ -19,7 +19,7 @@ export function composeColors(
 ): string[] | undefined {
   let colors: string[] | undefined;
   let steps = 5;
-  let opacity: number;
+  let opacity: number | undefined;
   const colorArray: string[] = [...CHART_COLORS];
 
   // Fewer steps between colors will create more distinct colors
@@ -42,12 +42,12 @@ export function composeColors(
 
   // For scatter charts we need a secondary color that is not close to the first color and is not
   // too visually light (eg yellow)
-  if (visualization === 'scatter') {
+  if (colors && visualization === 'scatter') {
     colors = [colors[0], colors[colors.length - 2]];
   }
 
   // For maps, we need two distinct colors to create a gradient
-  if (visualization === 'map') {
+  if (colors && visualization === 'map') {
     colors = [colors[0], colors[colors.length - 1]];
   }
 

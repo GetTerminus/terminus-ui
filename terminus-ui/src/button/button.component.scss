@@ -25,13 +25,12 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 
 // Styles applied when the button is collapsed
 @mixin collapsed {
-  padding-left: spacing(small, 2);
-  padding-right: spacing(small, 2);
+  padding-left: 6px;
+  padding-right: 6px;
 
   .c-icon {
-    // center the icon
-    left: .1em;
     margin-left: 0;
+    margin-right: 0;
     position: relative;
     transform: rotate(#{$rotation});
     transition-duration: $icon-transition-duration-collapse;
@@ -86,7 +85,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     // Set up for spinner
     position: relative;
     transition: padding 200ms ease-out;
-    will-change: padding;
+    will-change: padding, margin;
   }
 
   // Class added when progress indicator is shown
@@ -98,6 +97,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 
   // Adjust icon vertical layout
   .c-icon {
+    margin-right: .2em;
     // Fix small vertical aligment issue between icon & text
     margin-top: -.15em;
     transition: transform $icon-transition-duration-expand $g-easing;

@@ -1,10 +1,8 @@
-import {
-  ElementRef,
-} from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
-  MatAutocompleteTrigger,
   MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
 import createMockInstance from 'jest-create-mock-instance';
 

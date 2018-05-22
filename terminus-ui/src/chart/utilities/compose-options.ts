@@ -35,8 +35,12 @@ export function composeOptions(
   if (context.visualization === 'map') {
     options = merge(options, MAP_DEFAULTS);
     options.chart.map = MAP_DATA[context.map];
-    options.colorAxis.minColor = colors[0];
-    options.colorAxis.maxColor = colors[1];
+
+    // istanbul ignore else
+    if (colors) {
+      options.colorAxis.minColor = colors[0];
+      options.colorAxis.maxColor = colors[1];
+    }
   }
 
   // Scatter specific options

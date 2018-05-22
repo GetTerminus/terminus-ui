@@ -131,6 +131,15 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
   private _formatModelValueFn!: TsSelectFormatFn;
 
   /**
+   * Define the field appearance.
+   *
+   * NOTE: Only needed for the TsPaginator select. It should _always_ be the same for all other
+   * use-cases.
+   */
+  @Input()
+  public formFieldAppearance: 'legacy' | 'outline' = 'outline';
+
+  /**
    * Define the 'hint' for the select
    */
   @Input()
