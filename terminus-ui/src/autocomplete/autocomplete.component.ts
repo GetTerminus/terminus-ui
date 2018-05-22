@@ -1,38 +1,40 @@
 import {
-  Component,
-  Input,
-  Output,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
   AfterViewInit,
-  OnDestroy,
-  EventEmitter,
-  ViewChild,
+  ChangeDetectionStrategy,
+  Component,
   ElementRef,
+  EventEmitter,
+  Input,
   isDevMode,
+  OnDestroy,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormControl,
   ValidationErrors,
 } from '@angular/forms';
 import {
+  MatAutocomplete,
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
-  MatAutocomplete,
 } from '@angular/material/autocomplete';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { filter } from 'rxjs/operators/filter';
 import {
+  BehaviorSubject,
+  Subscription,
+} from 'rxjs';
+import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import {
-  isFunction,
   arrayContainsObject,
+  isFunction,
 } from '@terminus/ngx-tools';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 

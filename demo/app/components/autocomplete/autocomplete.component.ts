@@ -9,8 +9,10 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 import { map } from 'rxjs/operators/map';
 import { delay } from 'rxjs/operators/delay';
 import { switchMap } from 'rxjs/operators/switchMap';

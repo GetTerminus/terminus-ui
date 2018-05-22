@@ -27,7 +27,7 @@ $transition-duration: 200;
 .c-autocomplete {
   // Create space for progress spinner
   .mat-chip-list-wrapper {
-    padding-right: spacing(large, 2);
+    padding-right: 32px;
   }
 
   // Create space below in preparation for multiple rows of chips
@@ -47,7 +47,7 @@ $transition-duration: 200;
     opacity: 0;
     position: absolute;
     right: 0;
-    top: spacing(small);
+    top: .2em;
     transition: opacity $transition-duration $g-easing;
     will-change: opacity;
 

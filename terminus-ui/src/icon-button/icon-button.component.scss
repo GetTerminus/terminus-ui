@@ -36,6 +36,8 @@ $ripple-warn: rgba($warn, $ripple-opacity);
     @include take-space;
     border-radius: 50%;
     color: color(pure, dark);
+    transition: color 200ms ease;
+    will-change: color;
 
     &:focus,
     &:hover {
@@ -54,7 +56,9 @@ $ripple-warn: rgba($warn, $ripple-opacity);
 
     &:focus,
     &:hover {
-      color: color(primary, light);
+      .c-icon-button {
+        color: color(primary, light);
+      }
     }
 
     .mat-ripple-element {
@@ -69,7 +73,9 @@ $ripple-warn: rgba($warn, $ripple-opacity);
 
     &:focus,
     &:hover {
-      color: color(accent, light);
+      .c-icon-button {
+        color: color(accent, light);
+      }
     }
 
     .mat-ripple-element {
@@ -84,7 +90,9 @@ $ripple-warn: rgba($warn, $ripple-opacity);
 
     &:focus,
     &:hover {
-      color: color(warn, light);
+      .c-icon-button {
+        color: color(warn, light);
+      }
     }
 
     .mat-ripple-element {

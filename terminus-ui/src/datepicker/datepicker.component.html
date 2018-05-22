@@ -1,12 +1,17 @@
 <mat-form-field
   class="c-datepicker qa-datepicker"
+  appearance="outline"
   [color]="theme"
 >
+
+  <mat-label *ngIf="inputPlaceholder">
+    {{ inputPlaceholder }}
+  </mat-label>
+
   <input
     class="qa-datepicker-input"
     matInput
     [matDatepicker]="picker"
-    placeholder="{{ inputPlaceholder }}"
     [min]="_minDate"
     [max]="_maxDate"
     [matDatepickerFilter]="dateFilter"

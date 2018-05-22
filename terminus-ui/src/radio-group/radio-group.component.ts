@@ -18,7 +18,7 @@ import {
   hasRequiredControl,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -107,7 +107,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Store reference to the formControl value subscription
    */
-  private formControlSubscription: Subscription;
+  private formControlSubscription!: Subscription;
 
   /**
    * Define the ripple color.
@@ -121,19 +121,19 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Used to set the 'aria-label' attribute on the underlying input element.
    */
   @Input('aria-label')
-  public ariaLabel: string;
+  public ariaLabel: string | undefined;
 
   /**
    * The 'aria-labelledby' attribute takes precedence as the element's text alternative.
    */
   @Input('aria-labelledby')
-  public ariaLabelledby: string;
+  public ariaLabelledby: string | undefined;
 
   /**
    * The 'aria-describedby' attribute is read after the element's label and field type.
    */
   @Input('aria-describedby')
-  public ariaDescribedby: string;
+  public ariaDescribedby: string | undefined;
   // tslint:enable: no-input-rename
 
   /**
@@ -227,7 +227,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define a label for the radio group
    */
   @Input()
-  public label: string;
+  public label!: string;
 
   /**
    * The HTML name attribute applied to radio buttons in this group.
@@ -259,7 +259,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public get options(): TsRadioOption[] {
     return this._options;
   }
-  private _options: TsRadioOption[];
+  private _options!: TsRadioOption[];
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}

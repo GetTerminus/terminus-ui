@@ -3,7 +3,7 @@
 
   <div tsVerticalSpacing>
     <button (click)="toggleStart()">
-      {{ myForm.get('dateRange.startDate').enabled ? 'Disable' : 'Enable' }}
+      {{ myForm.get('dateRange.startDate')?.enabled ? 'Disable' : 'Enable' }}
       start date control
     </button>
   </div>

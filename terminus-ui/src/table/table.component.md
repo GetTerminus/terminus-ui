@@ -307,13 +307,11 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs/observable/of';
-import { merge } from 'rxjs/observable/merge';
+import { merge, Observable, of } from 'rxjs';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { catchError } from 'rxjs/operators/catchError';
-import { Observable } from 'rxjs/Observable';
 
 import {
   TsTableDataSource,

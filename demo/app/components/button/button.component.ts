@@ -5,6 +5,7 @@ import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
 @Component({
   selector: 'demo-button',
   templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
   style = 'primary';

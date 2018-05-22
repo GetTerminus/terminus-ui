@@ -1,6 +1,5 @@
 // Angular imports
 import { NgModule } from '@angular/core';
-import './utilities/rxjs-lift-hack';
 
 // Components
 import { TsAutofocusModule } from './autofocus/autofocus.module';

@@ -13,8 +13,9 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./dist/out-tsc",
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "sourceMap": true,
+    "strict": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
