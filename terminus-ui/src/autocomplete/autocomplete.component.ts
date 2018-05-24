@@ -20,9 +20,7 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
-import { filter } from 'rxjs/operators/filter';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import {
   BehaviorSubject,
   Subscription,
