@@ -9,11 +9,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { startWith } from 'rxjs/operators/startWith';
-import { map } from 'rxjs/operators/map';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { catchError } from 'rxjs/operators/catchError';
-
+import { startWith, map, switchMap, catchError } from 'rxjs/operators';
 import {
   TsTableDataSource,
   TsSortDirective,

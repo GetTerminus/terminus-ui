@@ -13,10 +13,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { map } from 'rxjs/operators/map';
-import { delay } from 'rxjs/operators/delay';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { startWith } from 'rxjs/operators/startWith';
+import { map, delay, switchMap, startWith } from 'rxjs/operators';
 import {
   TsAutocompleteComponent,
   TsAutocompleteComparatorFn,
