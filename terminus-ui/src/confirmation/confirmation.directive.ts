@@ -17,9 +17,7 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ESCAPE } from '@terminus/ngx-tools/keycodes';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { filter } from 'rxjs/operators/filter';
-import { takeUntil } from 'rxjs/operators/takeUntil';
-import { merge } from 'rxjs/operators/merge';
+import { filter, takeUntil, merge } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';

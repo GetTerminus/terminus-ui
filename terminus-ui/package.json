@@ -57,7 +57,8 @@
     "@angular/forms": "^5.2.x || ^6.0.2",
     "@angular/platform-browser": "^5.2.x || ^6.0.2",
     "@angular/router": "^5.2.x || ^6.0.2",
-    "@terminus/ngx-tools": "^2.18.1"
+    "@terminus/ngx-tools": "^2.18.1",
+    "rxjs": "^6.1.0"
   },
   "optionalDependencies": {
     "highcharts": "^6.1.0"
