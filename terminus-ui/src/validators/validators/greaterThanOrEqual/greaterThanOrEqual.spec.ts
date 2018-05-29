@@ -52,3 +52,53 @@ describe(`greaterThanOrEqualValidator`, () => {
   });
 
 });
+
+describe(`greaterThanOrEqualValidator with control input`, () => {
+  let validatorFn: ValidatorFn;
+  let validatorFn2: ValidatorFn;
+  let validatorFnNoNumber: ValidatorFn;
+
+  beforeEach(() => {
+    validatorFn = greaterThanOrEqualValidator(new FormControl(10));
+    validatorFnNoNumber = greaterThanOrEqualValidator(new FormControl());
+  });
+
+  describe(`if control is null`, () => {
+    beforeEach(() => {
+      validatorFn2 = greaterThanOrEqualValidator(null);
+    });
+
+    test(`should return null`, () => {
+      const result = validatorFn2(new FormControl('a'));
+      expect(result).toEqual(null);
+    });
+  });
+
+  test(`should return null if the number is valid`, () => {
+    const values = [12, 98.6, 9999];
+
+    for (const val of values) {
+      const c = new FormControl(val);
+      expect(validatorFn(c)).toEqual(null);
+    }
+  });
+
+
+  test(`should return the invalid response if the number is NOT valid`, () => {
+    const values = [9, -10, 0];
+
+    for (const val of values) {
+      const c = new FormControl(val);
+      const result = validatorFn(c);
+
+      expect(result!.greaterThanOrEqual.valid).toEqual(false);
+      expect(result!.greaterThanOrEqual.actual).toEqual(val);
+    }
+  });
+
+
+  test(`should default to 0 if no number is passed in`, () => {
+    expect(validatorFnNoNumber(new FormControl(0))).toEqual(null);
+  });
+
+});

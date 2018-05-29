@@ -7,7 +7,7 @@ import {
 import { greaterThanValidator } from './greaterThan';
 
 
-describe(`greaterThanValidator`, () => {
+describe(`greaterThanValidator with value input`, () => {
   let validatorFn: ValidatorFn;
   let validatorFnNoNumber: ValidatorFn;
 
@@ -40,6 +40,59 @@ describe(`greaterThanValidator`, () => {
 
     for (const val of values) {
       const result = validatorFn(new FormControl(val));
+
+      expect(result!.greaterThan.valid).toEqual(false);
+      expect(result!.greaterThan.actual).toEqual(val);
+    }
+  });
+
+
+  test(`should default to 0 if no number is passed in`, () => {
+    const result = validatorFnNoNumber(new FormControl(0));
+
+    expect(result!.greaterThan.valid).toEqual(false);
+    expect(result!.greaterThan.actual).toEqual(0);
+  });
+
+});
+
+describe(`greaterThanValidator with control input`, () => {
+  let validatorFn: ValidatorFn;
+  let validatorFn2: ValidatorFn;
+  let validatorFnNoNumber: ValidatorFn;
+
+  beforeEach(() => {
+    validatorFn = greaterThanValidator(new FormControl(10));
+    validatorFnNoNumber = greaterThanValidator(new FormControl());
+  });
+
+  describe(`if control is null`, () => {
+    beforeEach(() => {
+      validatorFn2 = greaterThanValidator(null);
+    });
+
+    test(`should return null`, () => {
+      const result = validatorFn2(new FormControl('a'));
+      expect(result).toEqual(null);
+    });
+  });
+
+  test(`should return null if the number is valid`, () => {
+    const values = [12, 98.6, 9999];
+
+    for (const val of values) {
+      const c = new FormControl(val);
+      expect(validatorFn(c)).toEqual(null);
+    }
+  });
+
+
+  test(`should return the invalid response if the number is NOT valid`, () => {
+    const values = [9, 10, -10, 0];
+
+    for (const val of values) {
+      const c = new FormControl(val);
+      const result = validatorFn(c);
 
       expect(result!.greaterThan.valid).toEqual(false);
       expect(result!.greaterThan.actual).toEqual(val);

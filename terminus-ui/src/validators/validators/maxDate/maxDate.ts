@@ -4,6 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { isValid } from 'date-fns';
+import { getControlValue } from './../../../utilities/get-control-value';
 
 
 /**
@@ -12,30 +13,38 @@ import { isValid } from 'date-fns';
  * @param maxDate - The maximum date
  * @return The validator function
  */
-export function maxDateValidator(maxDate: string): ValidatorFn {
+export function maxDateValidator(maxDate: string | AbstractControl): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
-    if (!control || !control.value || !isValid(maxDate)) {
+    if (!control || !control.value) {
       return null;
     }
 
-    const invalidResponse: ValidationErrors = {
-      maxDate: {
-        valid: false,
-        maxDate: maxDate,
-        actual: control.value,
-      },
-    };
-
-    // Verify the control value is a valid date
-    if (!isValid(control.value)) {
-      return invalidResponse;
+    if (typeof maxDate === 'string') {
+      return !isValid(maxDate) ? null : validate(maxDate, control);
+    } else {
+      return validate(getControlValue(maxDate), control);
     }
-
-    const controlDateTime = new Date(control.value).getTime();
-    const maxDateTime = new Date(maxDate).getTime();
-    const dateIsBeforeMax = maxDateTime >= controlDateTime;
-
-    return dateIsBeforeMax ? null : invalidResponse;
   };
+}
+
+function validate(maxDate, control) {
+  const invalidResponse: ValidationErrors = {
+    maxDate: {
+      valid: false,
+      maxDate: maxDate,
+      actual: control.value,
+    },
+  };
+
+  // Verify the control value is a valid date
+  if (!isValid(control.value)) {
+    return invalidResponse;
+  }
+
+  const controlDateTime = new Date(control.value).getTime();
+  const maxDateTime = new Date(maxDate).getTime();
+  const dateIsBeforeMax = maxDateTime >= controlDateTime;
+
+  return dateIsBeforeMax ? null : invalidResponse;
 }

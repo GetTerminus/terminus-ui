@@ -4,6 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { isValid } from 'date-fns';
+import { getControlValue } from './../../../utilities/get-control-value';
 
 
 /**
@@ -12,30 +13,38 @@ import { isValid } from 'date-fns';
  * @param minDate - The minimum date
  * @return The validator function
  */
-export function minDateValidator(minDate: string): ValidatorFn {
+export function minDateValidator(minDate: string | AbstractControl): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
-    if (!control || !control.value || !isValid(minDate)) {
+    if (!control || !control.value) {
       return null;
     }
 
-    const invalidResponse: ValidationErrors = {
-      minDate: {
-        valid: false,
-        minDate: minDate,
-        actual: control.value,
-      },
-    };
-
-    // Verify the control value is a valid date
-    if (!isValid(control.value)) {
-      return invalidResponse;
+    if (typeof minDate === 'string') {
+      return !isValid(minDate) ? null : validate(minDate, control);
+    } else {
+      return validate(getControlValue(minDate), control);
     }
-
-    const controlDateTime = new Date(control.value).getTime();
-    const minDateTime = new Date(minDate).getTime();
-    const dateIsAfterMin = minDateTime <= controlDateTime;
-
-    return dateIsAfterMin ? null : invalidResponse;
   };
+}
+
+function validate(minDate, control) {
+  const invalidResponse: ValidationErrors = {
+    minDate: {
+      valid: false,
+      minDate: minDate,
+      actual: control.value,
+    },
+  };
+
+  // Verify the control value is a valid date
+  if (!isValid(control.value)) {
+    return invalidResponse;
+  }
+
+  const controlDateTime = new Date(control.value).getTime();
+  const minDateTime = new Date(minDate).getTime();
+  const dateIsAfterMin = minDateTime <= controlDateTime;
+
+  return dateIsAfterMin ? null : invalidResponse;
 }
