@@ -87,14 +87,14 @@
                         <a href="modules/TerminusUIModule.html" data-type="entity-link">TerminusUIModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#xs-components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="xs-components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                         <li class="link">
                                             <a href="components/TsReactiveFormBaseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsReactiveFormBaseComponent</a>
@@ -103,14 +103,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#xs-injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="xs-injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                         <li class="link">
                                             <a href="injectables/TsValidatorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>TsValidatorsService</a>
@@ -984,9 +984,6 @@
                         <a href="interfaces/NavigationItemBase.html" data-type="entity-link">NavigationItemBase</a>
                     </li>
                     <li class="link">
-                        <a href="interfaces/Subject.html" data-type="entity-link">Subject</a>
-                    </li>
-                    <li class="link">
                         <a href="interfaces/TsChartAxis.html" data-type="entity-link">TsChartAxis</a>
                     </li>
                     <li class="link">
@@ -1158,14 +1155,14 @@
                         <a href="modules/TerminusUIModule.html" data-type="entity-link">TerminusUIModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                         <li class="link">
                                             <a href="components/TsReactiveFormBaseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsReactiveFormBaseComponent</a>
@@ -1174,14 +1171,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                         <li class="link">
                                             <a href="injectables/TsValidatorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>TsValidatorsService</a>
@@ -2055,9 +2052,6 @@
                         <a href="interfaces/NavigationItemBase.html" data-type="entity-link">NavigationItemBase</a>
                     </li>
                     <li class="link">
-                        <a href="interfaces/Subject.html" data-type="entity-link">Subject</a>
-                    </li>
-                    <li class="link">
                         <a href="interfaces/TsChartAxis.html" data-type="entity-link">TsChartAxis</a>
                     </li>
                     <li class="link">
@@ -2441,17 +2435,18 @@ if (ctr) {
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   OnInit,
+  Output,
   ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 import {
-  FormGroup,
   AbstractControl,
+  FormControl,
+  FormGroup,
 } from &#x27;@angular/forms&#x27;;
-import { BehaviorSubject } from &#x27;rxjs/BehaviorSubject&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
 import { MatDatepickerInputEvent } from &#x27;@angular/material/datepicker&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types/style-theme.types&#x27;;
@@ -2529,8 +2524,9 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the endDate form control
    */
-  public get endDateControl(): AbstractControl | null {
-    return this.dateFormGroup ? this.dateFormGroup.get(&#x27;endDate&#x27;) : null;
+  public get endDateControl(): AbstractControl {
+    const ctrl: AbstractControl | null &#x3D; this.dateFormGroup.get(&#x27;endDate&#x27;);
+    return (this.dateFormGroup &amp;&amp; ctrl) ? ctrl : this.fallbackEndDateControl;
   }
 
   /**
@@ -2544,6 +2540,16 @@ export class TsDateRangeComponent implements OnInit {
   public endPlaceholder: string &#x3D; &#x27;Select end date&#x27;;
 
   /**
+   * Define a fallback control in case one is not passed in
+   */
+  private fallbackStartDateControl: FormControl &#x3D; new FormControl();
+
+  /**
+   * Define a fallback control in case one is not passed in
+   */
+  private fallbackEndDateControl: FormControl &#x3D; new FormControl();
+
+  /**
    * Store the selected start date
    */
   public startDate!: Date;
@@ -2551,8 +2557,9 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Provide quick access to the startDate form control
    */
-  public get startDateControl(): AbstractControl | null {
-    return this.dateFormGroup ? this.dateFormGroup.get(&#x27;startDate&#x27;) : null;
+  public get startDateControl(): AbstractControl {
+    const ctrl: AbstractControl | null &#x3D; this.dateFormGroup.get(&#x27;startDate&#x27;);
+    return (this.dateFormGroup &amp;&amp; ctrl) ? ctrl : this.fallbackStartDateControl;
   }
 
   /**
