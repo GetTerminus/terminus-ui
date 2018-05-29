@@ -79,7 +79,7 @@
     <ng-container *ngIf="multiple">
       <mat-option
         class="qa-autocomplete-option"
-        *ngFor="let option of options; trackBy: _comparatorFn"
+        *ngFor="let option of options; trackBy: multiple"
         [value]="option"
       >
         {{ displayOption(option) }}
