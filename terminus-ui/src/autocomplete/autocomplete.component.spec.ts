@@ -221,20 +221,6 @@ describe(`TsAutocompleteComponent`, () => {
   });
 
 
-  describe(`ngOnDestroy`, () => {
-
-    test(`should unsubscribe from query subscription`, () => {
-      component['querySubscription'] = {
-        unsubscribe: jest.fn(),
-      } as any;
-      component.ngOnDestroy();
-
-      expect(component['querySubscription'].unsubscribe).toHaveBeenCalled();
-    });
-
-  });
-
-
   describe(`selectOption`, () => {
     const event: any = createMockInstance(MatAutocompleteSelectedEvent);
     event.option = {

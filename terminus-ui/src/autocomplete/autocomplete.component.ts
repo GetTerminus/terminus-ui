@@ -23,7 +23,6 @@ import {
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import {
   BehaviorSubject,
-  Subscription,
 } from 'rxjs';
 import {
   coerceArray,
@@ -32,6 +31,7 @@ import {
 import {
   arrayContainsObject,
   isFunction,
+  untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
@@ -127,11 +127,6 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Store the formatter function for the UI display
    */
   private uiFormatFn!: (value: OptionType) => string;
-
-  /**
-   * Store the query subscription for unsubscribing during cleanup
-   */
-  private querySubscription!: Subscription;
 
   /**
    * Provide access to the input element
@@ -323,7 +318,8 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   public ngAfterViewInit(): void {
     // Take a stream of query changes
-    this.querySubscription = this.querySubject.pipe(
+    this.querySubject.pipe(
+      untilComponentDestroyed(this),
       filter((v) => (typeof v === 'string') && v.length >= this.minimumCharacters),
       // Debounce the query changes
       debounceTime(this.debounceDelay),
@@ -336,14 +332,9 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
 
   /**
-   * Unsubscribe
+   * Needed for untilComponentDestroyed
    */
-  public ngOnDestroy(): void {
-    // istanbul ignore else
-    if (this.querySubscription) {
-      this.querySubscription.unsubscribe();
-    }
-  }
+  public ngOnDestroy(): void {}
 
 
   /**
