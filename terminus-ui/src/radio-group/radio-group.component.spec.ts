@@ -222,19 +222,6 @@ describe('TsRadioGroupComponent', () => {
   });
 
 
-  describe(`ngOnDestroy`, () => {
-
-    test(`should actually unsubscribe from formControl`, () => {
-      component.formControl = new FormControl('foo');
-      component.ngOnInit();
-      component.ngOnDestroy();
-
-      expect(component['formControlSubscription'].closed).toEqual(true);
-    });
-
-  });
-
-
   describe(`retrieveValue`, () => {
 
     test(`should use a formatter to return a value`, () => {
