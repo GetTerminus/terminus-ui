@@ -12,10 +12,10 @@ import {
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { CdkColumnDef } from '@angular/cdk/table';
 import {
   merge,
-  Subscription,
 } from 'rxjs';
 
 import { TsSortDirective } from './sort.directive';
@@ -66,12 +66,6 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
   ],
 })
 export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsSortableItem, CanDisable, OnInit, OnDestroy  {
-
-  /**
-   * Combination Subscription for all items that need to trigger change detection
-   */
-  private _rerenderSubscription: Subscription;
-
   /**
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
@@ -123,7 +117,10 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
     }
 
     // Mark directive for change detection after any of these changes
-    this._rerenderSubscription = merge(_sort.sortChange, _sort._stateChanges, _intl.changes)
+    merge(_sort.sortChange, _sort._stateChanges, _intl.changes)
+      .pipe(
+        untilComponentDestroyed(this),
+      )
       .subscribe(() => changeDetectorRef.markForCheck());
   }
 
@@ -145,7 +142,6 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    */
   public ngOnDestroy(): void {
     this._sort.deregister(this);
-    this._rerenderSubscription.unsubscribe();
   }
 
 

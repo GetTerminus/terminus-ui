@@ -16,9 +16,9 @@ import { MatRadioChange } from '@angular/material/radio';
 import {
   isFunction,
   hasRequiredControl,
+  untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { Subscription } from 'rxjs';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -104,11 +104,6 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   exportAs: 'tsRadioGroup',
 })
 export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
-  /**
-   * Store reference to the formControl value subscription
-   */
-  private formControlSubscription: Subscription | undefined;
-
   /**
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
@@ -294,7 +289,10 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public ngOnInit(): void {
     // istanbul ignore else
     if (this.formControl) {
-      this.formControlSubscription = this.formControl.valueChanges
+      this.formControl.valueChanges
+        .pipe(
+          untilComponentDestroyed(this),
+        )
         .subscribe((v: any) => {
           this.writeValue(v);
           this.changeDetectorRef.markForCheck();
@@ -304,13 +302,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
 
   /**
-   * Unsubscribe from any Observables
+   * Needed for untilComponentDestroyed
    */
-  public ngOnDestroy(): void {
-    if (this.formControlSubscription) {
-      this.formControlSubscription.unsubscribe();
-    }
-  }
+  public ngOnDestroy(): void {}
 
 
   /**

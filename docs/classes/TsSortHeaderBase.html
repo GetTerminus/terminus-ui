@@ -87,14 +87,14 @@
                         <a href="modules/TerminusUIModule.html" data-type="entity-link">TerminusUIModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#xs-components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="xs-components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                         <li class="link">
                                             <a href="components/TsReactiveFormBaseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsReactiveFormBaseComponent</a>
@@ -103,14 +103,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#xs-injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="xs-injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
                                     >
                                         <li class="link">
                                             <a href="injectables/TsValidatorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>TsValidatorsService</a>
@@ -984,9 +984,6 @@
                         <a href="interfaces/NavigationItemBase.html" data-type="entity-link">NavigationItemBase</a>
                     </li>
                     <li class="link">
-                        <a href="interfaces/Subject.html" data-type="entity-link">Subject</a>
-                    </li>
-                    <li class="link">
                         <a href="interfaces/TsChartAxis.html" data-type="entity-link">TsChartAxis</a>
                     </li>
                     <li class="link">
@@ -1158,14 +1155,14 @@
                         <a href="modules/TerminusUIModule.html" data-type="entity-link">TerminusUIModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="components-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                         <li class="link">
                                             <a href="components/TsReactiveFormBaseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsReactiveFormBaseComponent</a>
@@ -1174,14 +1171,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        data-target="#injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-TerminusUIModule-444a3184ece263bb1355bfa8cee52b55"
+                                        id="injectables-links-module-TerminusUIModule-4d2c38b499aea32ebf0442d5e85c0eb4"
 >
                                         <li class="link">
                                             <a href="injectables/TsValidatorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>TsValidatorsService</a>
@@ -2055,9 +2052,6 @@
                         <a href="interfaces/NavigationItemBase.html" data-type="entity-link">NavigationItemBase</a>
                     </li>
                     <li class="link">
-                        <a href="interfaces/Subject.html" data-type="entity-link">Subject</a>
-                    </li>
-                    <li class="link">
                         <a href="interfaces/TsChartAxis.html" data-type="entity-link">TsChartAxis</a>
                     </li>
                     <li class="link">
@@ -2214,17 +2208,19 @@
   ChangeDetectorRef,
   Component,
   Input,
+  isDevMode,
+  OnDestroy,
+  OnInit,
   Optional,
   ViewEncapsulation,
-  OnInit,
-  OnDestroy,
-  isDevMode,
 } from &#x27;@angular/core&#x27;;
 import { CanDisable, mixinDisabled } from &#x27;@angular/material/core&#x27;;
 import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
+import { untilComponentDestroyed } from &#x27;@terminus/ngx-tools&#x27;;
 import { CdkColumnDef } from &#x27;@angular/cdk/table&#x27;;
-import { Subscription } from &#x27;rxjs/Subscription&#x27;;
-import { merge } from &#x27;rxjs/observable/merge&#x27;;
+import {
+  merge,
+} from &#x27;rxjs&#x27;;
 
 import { TsSortDirective } from &#x27;./sort.directive&#x27;;
 import { TsSortableItem } from &#x27;./sort.directive&#x27;;
@@ -2274,12 +2270,6 @@ export const _TsSortHeaderMixinBase &#x3D; mixinDisabled(TsSortHeaderBase);
   ],
 })
 export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsSortableItem, CanDisable, OnInit, OnDestroy  {
-
-  /**
-   * Combination Subscription for all items that need to trigger change detection
-   */
-  private _rerenderSubscription: Subscription;
-
   /**
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column&#x27;s name.
@@ -2331,7 +2321,10 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
     }
 
     // Mark directive for change detection after any of these changes
-    this._rerenderSubscription &#x3D; merge(_sort.sortChange, _sort._stateChanges, _intl.changes)
+    merge(_sort.sortChange, _sort._stateChanges, _intl.changes)
+      .pipe(
+        untilComponentDestroyed(this),
+      )
       .subscribe(() &#x3D;&gt; changeDetectorRef.markForCheck());
   }
 
@@ -2353,7 +2346,6 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    */
   public ngOnDestroy(): void {
     this._sort.deregister(this);
-    this._rerenderSubscription.unsubscribe();
   }
 
 

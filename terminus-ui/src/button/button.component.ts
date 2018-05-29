@@ -25,8 +25,8 @@ import {
 /**
  * Define the allowed {@link TsButtonComponent} action types
  */
-export type TsButtonActionTypes =
-  'Button'
+export type TsButtonActionTypes
+  = 'Button'
   | 'Submit'
   | 'Menu'
   | 'Reset'
@@ -36,8 +36,8 @@ export type TsButtonActionTypes =
 /**
  * Define the allowed {@link TsButtonComponent} action types
  */
-export type TsButtonFunctionTypes =
-  'button'
+export type TsButtonFunctionTypes
+  = 'button'
   | 'search'
   | 'submit'
 ;
@@ -46,8 +46,8 @@ export type TsButtonFunctionTypes =
 /**
  * Define the allowed {@link TsButtonComponent} format types
  */
-export type TsButtonFormatTypes =
-  'filled'
+export type TsButtonFormatTypes
+  = 'filled'
   | 'hollow'
   | 'collapsable'
 ;

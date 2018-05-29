@@ -17,8 +17,8 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ESCAPE } from '@terminus/ngx-tools/keycodes';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { filter, takeUntil, merge } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { filter, merge } from 'rxjs/operators';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
 import { TsButtonComponent } from './../button/button.component';
@@ -49,11 +49,6 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * Store a reference to the modal overlay
    */
   private overlayRef!: OverlayRef | null;
-
-  /**
-   * A subject used to unsubscribe during the destroy lifecycle hook
-   */
-  private unsubscribe: Subject<void> = new Subject<void>();
 
   /**
    * An event emitted when the confirmation is cancelled
@@ -95,8 +90,6 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   public ngOnDestroy(): void {
     this.dismissOverlay();
     this.host.interceptClick = false;
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
 
@@ -130,7 +123,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     this.overlayRef._keydownEvents.pipe(
       filter((event) => event.keyCode === ESCAPE),
       merge(this.overlayRef.backdropClick()),
-      takeUntil(this.unsubscribe),
+      untilComponentDestroyed(this),
     ).subscribe(() => {
       this.dismissOverlay();
       this.cancelled.emit(true);
