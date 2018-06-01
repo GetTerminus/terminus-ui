@@ -18,8 +18,9 @@
     [disabled]="isDisabled"
     tabIndex="{{ tabIndex }}"
     [(ngModel)]="value"
-    (blur)="onBlur()"
+    (blur)="inputBlur.emit(value)"
     (dateChange)="selected.emit($event)"
+    #matInput="matInput"
   >
   <mat-datepicker-toggle
     class="qa-datepicker-toggle"

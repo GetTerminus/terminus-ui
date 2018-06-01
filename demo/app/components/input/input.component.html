@@ -6,6 +6,10 @@
   <button (click)="shouldDisable = !shouldDisable">
     Toggle disabled inputs
   </button>
+  <br>
+  <button (click)="foo.reset()">Reset name input</button>
+  <br>
+  <button (click)="submit(myForm.value)">Submit</button>
 </ts-card>
 
 <ts-card tsVerticalSpacing>
@@ -41,7 +45,6 @@
       [isClearable]="clearable"
       hint="Name input with validation"
       [isDisabled]="shouldDisable"
-      isRequired="true"
       [spellcheck]="false"
       [prefixIcon]="icon"
       tsVerticalSpacing
@@ -70,7 +73,5 @@
       tsVerticalSpacing
     ></ts-input>
 
-    <button (click)="foo.reset()">Reset name input</button>
-    <button (click)="submit(myForm.value)">Submit</button>
   </form>
 </ts-card>

@@ -2,8 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  Validators,
 } from '@angular/forms';
+import { TsValidatorsService } from '@terminus/ui';
 
+
+const date1 = new Date();
+if (date1.getDate() > 25) {
+  date1.setDate(date1.getDate() + 6);
+}
+const date2 = new Date(date1);
+date2.setDate(date2.getDate() + 5);
 
 @Component({
   selector: 'demo-date-range',
@@ -17,10 +26,15 @@ export class DateRangeComponent implements OnInit {
   myForm: FormGroup = this.formBuilder.group({
     dateRange: this.formBuilder.group({
       startDate: [
-        {value: new Date(2017, 4, 6), disabled: true},
+        {value: date1, disabled: false},
+        [
+          Validators.required,
+          this.validatorsService.maxDate(date1.toISOString()),
+        ],
       ],
       endDate: [
-        new Date(2017, 4, 8),
+        date2,
+        [Validators.required],
       ],
     }),
   });
@@ -28,6 +42,7 @@ export class DateRangeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private validatorsService: TsValidatorsService,
   ) {}
 
 

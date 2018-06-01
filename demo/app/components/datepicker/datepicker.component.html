@@ -1,5 +1,5 @@
 <ts-card tsVerticalSpacing>
-  <form [formGroup]="formOne" novalidate style="max-width: 14rem;">
+  <form [formGroup]="formOne" novalidate style="max-width: 18rem;">
     <ts-datepicker
       theme="accent"
       [formControl]="formOne.get('date')"
@@ -10,6 +10,7 @@
       hint="Select a valid date"
       name="date"
       (selected)="dateSelected($event)"
+      (inputBlur)="inputBlur($event)"
       tsVerticalSpacing
     ></ts-datepicker>
 
