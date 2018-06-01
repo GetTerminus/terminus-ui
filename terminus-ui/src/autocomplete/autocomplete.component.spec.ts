@@ -130,7 +130,7 @@ describe(`TsAutocompleteComponent`, () => {
 
   describe(`initialSelections`, () => {
 
-    test(`should seed the selectedOptions array`, () => {
+    test(`should seed the selectedOptions array and selectionsControl`, () => {
       expect(component.selectedOptions.length).toEqual(0);
 
       component.selectionsControl = new FormControl();
@@ -139,6 +139,22 @@ describe(`TsAutocompleteComponent`, () => {
 
       expect(component.selectedOptions.length).toEqual(2);
       expect(component.selectionsControl.value.length).toEqual(2);
+    });
+
+
+    test(`should not mutate the original array`, () => {
+      const initial = [{id: 1}, {id: 2}];
+      component.initialSelections = initial;
+      component.multiple = (v) => v.id;
+      const event: any = createMockInstance(MatAutocompleteSelectedEvent);
+      const option = {id: 3};
+      event.option = {
+        value: option,
+      };
+      component.selectOption(event);
+
+      expect(component.selectedOptions).toContain(option);
+      expect(initial).not.toContain(option);
     });
 
   });
@@ -449,5 +465,13 @@ describe(`TsAutocompleteComponent`, () => {
 
   });
 
+
+  describe(`dummy test for ngOnDestroy`, () => {
+
+    test(`should return undefined`, () => {
+      expect(component.ngOnDestroy()).toEqual(undefined);
+    });
+
+  });
 
 });
