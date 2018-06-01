@@ -281,10 +281,9 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
   /**
    * Update the inner value when the formControl value is updated
    *
-   * @param time - The time chosen
-   * @return The difference in time
+   * @param value - The value to set
    */
-  public updateInnerValue = (value: string) => {
+  public updateInnerValue = (value: string): void => {
     this.value = value;
     this.changeDetectorRef.detectChanges();
   }
