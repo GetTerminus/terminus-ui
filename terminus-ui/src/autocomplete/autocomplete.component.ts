@@ -57,6 +57,9 @@ export type TsAutocompleteFormatterFn = (value: any) => string;
 export type TsAutocompleteComparatorFn = (value: any) => string;
 
 
+export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
+
+
 /**
  * The autocomplete UI Component
  *
@@ -274,7 +277,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     // istanbul ignore else
     if (selections) {
       // Seed the array
-      this.selectedOptions = coerceArray(selections);
+      this.selectedOptions = coerceArray(selections.slice());
 
       // istanbul ignore else
       if (this.selectionsControl && this.selectionsControl.setValue) {
@@ -342,7 +345,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    *
    * @param event - The selection event from the underlying MatAutocomplete
    */
-  public selectOption(event: MatAutocompleteSelectedEvent): void {
+  public selectOption(event: TsAutocompleteSelectedEvent): void {
     // The selected option
     const selection: OptionType = event.option.value;
 
