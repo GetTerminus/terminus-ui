@@ -19,17 +19,22 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
 /**
  * Define the structure of the date range object used by {@link TsDateRangeComponent}
+ *
+ * TODO: In the process of deprecating the `null` portion of this interface. It should be using
+ * `undefined` instead.
+ *
+ * Deprecation target: 10.0.0
  */
 export interface TsDateRange {
   /**
    * The start date of the range
    */
-  start: Date | null;
+  start: Date | undefined | null;
 
   /**
    * The end date of the range
    */
-  end: Date | null;
+  end: Date | undefined | null;
 }
 
 
@@ -76,38 +81,38 @@ export class TsDateRangeComponent implements OnInit {
    */
   private get dateRange(): TsDateRange {
     return {
-      start: this.startDate || null,
-      end: this.endDate || null,
+      start: this.startDate || undefined,
+      end: this.endDate || undefined,
     };
   }
 
   /**
    * Store the selected end date
+   *
+   * Deprecated: `null` deprecation target 10.0.0
    */
-  public endDate!: Date;
+  public endDate: Date | null | undefined;
 
   /**
    * Provide quick access to the endDate form control
    */
   public get endDateControl(): AbstractControl {
-    const ctrl: AbstractControl | null = this.dateFormGroup.get('endDate');
-    return (this.dateFormGroup && ctrl) ? ctrl : this.fallbackEndDateControl;
+    const ctrl: AbstractControl | null = this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
+
+    return ctrl ? ctrl : this.fallbackEndDateControl;
   }
 
   /**
    * Expose the minimum date for the endDate
+   *
+   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject
    */
-  public _endMinDate$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
+  public endMinDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
    * Define the end date placeholder
    */
-  public endPlaceholder: string = 'Select end date';
-
-  /**
-   * Define a fallback control in case one is not passed in
-   */
-  private fallbackStartDateControl: FormControl = new FormControl();
+  public endPlaceholder: string = 'End date';
 
   /**
    * Define a fallback control in case one is not passed in
@@ -115,51 +120,60 @@ export class TsDateRangeComponent implements OnInit {
   private fallbackEndDateControl: FormControl = new FormControl();
 
   /**
-   * Store the selected start date
+   * Define a fallback control in case one is not passed in
    */
-  public startDate!: Date;
+  private fallbackStartDateControl: FormControl = new FormControl();
+
+  /**
+   * Define the separator between the two date inputs
+   */
+  public separator: string = '-';
+
+  /**
+   * Store the selected start date
+   *
+   * Deprecated: `null` deprecation target 10.0.0
+   */
+  public startDate: Date | undefined | null;
 
   /**
    * Provide quick access to the startDate form control
    */
   public get startDateControl(): AbstractControl {
-    const ctrl: AbstractControl | null = this.dateFormGroup.get('startDate');
-    return (this.dateFormGroup && ctrl) ? ctrl : this.fallbackStartDateControl;
+    const ctrl: AbstractControl | null = this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
+
+    return ctrl ? ctrl : this.fallbackStartDateControl;
   }
 
   /**
    * Expose the maximum date for the startDate
+   *
+   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject
    */
-  public _startMaxDate$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
+  public startMaxDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
    * Define the start date placeholder
    */
-  public startPlaceholder: string = 'Select start date';
+  public startPlaceholder: string = 'Start date';
 
   /**
    * Define the max date for the end date
    */
   @Input()
-  public endMaxDate!: Date;
+  public endMaxDate: Date | undefined;
 
   /**
    * Define the min date for the end date
    */
   @Input()
-  public endMinDate!: Date;
+  public endMinDate: Date | undefined;
 
   /**
    * Define the initial date for the end date
    */
   @Input()
-  public endInitialDate!: Date;
-
-  /**
-   * Define the separator between the two date inputs
-   */
-  @Input()
-  public separator: string = '-';
+  public endInitialDate: Date | undefined;
 
   /**
    * Define the starting view for both datepickers
@@ -171,49 +185,57 @@ export class TsDateRangeComponent implements OnInit {
    * Define the max date for the starting date
    */
   @Input()
-  public startMaxDate!: Date;
+  public startMaxDate: Date | undefined;
 
   /**
    * Define the min date for the starting date
    */
   @Input()
-  public startMinDate!: Date;
+  public startMinDate: Date | undefined;
 
   /**
    * Define the initial date for the starting date
    */
   @Input()
-  public startInitialDate!: Date;
+  public startInitialDate: Date | undefined;
 
   /**
    * Define the form group to attach the date range to
    */
   @Input()
-  public dateFormGroup!: FormGroup | AbstractControl;
-
-  /**
-   * Output the start date when selected
-   */
-  @Output()
-  public startSelected: EventEmitter<Date> = new EventEmitter();
-
-  /**
-   * Output the end date when selected
-   */
-  @Output()
-  public endSelected: EventEmitter<Date> = new EventEmitter();
-
-  /**
-   * Output the selected date range as {@link TsDateRange}
-   */
-  @Output()
-  public selectedDate: EventEmitter<TsDateRange> = new EventEmitter();
+  public dateFormGroup: FormGroup | AbstractControl | undefined;
 
   /**
    * Define the component theme
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
+
+  /**
+   * Output the start date when selected
+   */
+  @Output()
+  public startSelected: EventEmitter<Date | undefined> = new EventEmitter();
+
+  /**
+   * Output the end date when selected
+   */
+  @Output()
+  public endSelected: EventEmitter<Date | undefined> = new EventEmitter();
+
+  /**
+   * Output the selected date range as {@link TsDateRange}
+   *
+   * Deprecated in favor of `change`. Target 10.0.0
+   */
+  @Output()
+  public selectedDate: EventEmitter<TsDateRange> = new EventEmitter();
+
+  /**
+   * Event emitted anytime the range is changed
+   */
+  @Output()
+  public change: EventEmitter<TsDateRange> = new EventEmitter();
 
 
   /**
@@ -236,14 +258,12 @@ export class TsDateRangeComponent implements OnInit {
    * @param start - The initial start date
    * @param end - The initial end date
    */
-  private seedDateRange(start: Date | null, end: Date | null): void {
-    if (start) {
-      this.startDate = start;
-    }
-
-    if (end) {
-      this.endDate = end;
-    }
+  private seedDateRange(
+    start: Date | null | undefined,
+    end: Date | null | undefined,
+  ): void {
+    this.startDate = start;
+    this.endDate = end;
   }
 
 
@@ -258,19 +278,21 @@ export class TsDateRangeComponent implements OnInit {
     }
     const startControl: AbstractControl | null = formGroup.get('startDate');
     const endControl: AbstractControl | null = formGroup.get('endDate');
-    const startValue: Date | null = startControl ? startControl.value : null;
-    const endValue: Date | null = endControl ? endControl.value : null;
+    const startValue: Date | undefined = startControl ? startControl.value : undefined;
+    const endValue: Date | undefined = endControl ? endControl.value : undefined;
 
     // istanbul ignore else
     if (startValue) {
       this.startInitialDate = startValue;
-      this._endMinDate$.next(this.startInitialDate);
+      this.startDate = startValue;
+      this.endMinDate$.next(startValue);
     }
 
     // istanbul ignore else
     if (endValue) {
       this.endInitialDate = endValue;
-      this._startMaxDate$.next(this.endInitialDate);
+      this.endDate = endValue;
+      this.startMaxDate$.next(endValue);
     }
   }
 
@@ -283,7 +305,7 @@ export class TsDateRangeComponent implements OnInit {
    */
   public startDateSelected(datepickerEvent: MatDatepickerInputEvent<Date>): void {
     if (datepickerEvent && datepickerEvent.value) {
-      this._endMinDate$.next(datepickerEvent.value);
+      this.endMinDate$.next(datepickerEvent.value);
       this.startDate = datepickerEvent.value;
 
       // Update the form value if a formGroup was passed in
@@ -294,9 +316,15 @@ export class TsDateRangeComponent implements OnInit {
 
       this.startSelected.emit(datepickerEvent.value);
       this.selectedDate.emit(this.dateRange);
+      this.change.emit(this.dateRange);
     } else {
       // If no startDate was selected, reset to the original endMinDate
-      this._endMinDate$.next(this.endMinDate);
+      if (this.endMinDate) {
+        this.endMinDate$.next(this.endMinDate);
+      } else {
+        // If neither were set, revert to a safe date
+        this.endMinDate$.next(undefined);
+      }
     }
   }
 
@@ -309,7 +337,7 @@ export class TsDateRangeComponent implements OnInit {
    */
   public endDateSelected(datepickerEvent: MatDatepickerInputEvent<Date>): void {
     if (datepickerEvent && datepickerEvent.value) {
-      this._startMaxDate$.next(datepickerEvent.value);
+      this.startMaxDate$.next(datepickerEvent.value);
       this.endDate = datepickerEvent.value;
 
       // Update the form value if a formGroup was passed in
@@ -320,10 +348,38 @@ export class TsDateRangeComponent implements OnInit {
 
       this.endSelected.emit(datepickerEvent.value);
       this.selectedDate.emit(this.dateRange);
+      this.change.emit(this.dateRange);
     } else {
-      // If no endDate was selected, reset to the original startMaxDate
-      this._startMaxDate$.next(this.startMaxDate);
+      if (this.startMaxDate) {
+        // If no endDate was selected, reset to the original startMaxDate
+        this.startMaxDate$.next(this.startMaxDate);
+      } else {
+        // If neither were set, revert to a safe date
+        this.startMaxDate$.next(undefined);
+      }
     }
+  }
+
+
+  /**
+   * Update dates when the start date input receives a blur event
+   *
+   * @param date - The date entered
+   */
+  public startBlur(date: Date | undefined): void {
+    this.startDate = date;
+    this.endMinDate$.next(date);
+  }
+
+
+  /**
+   * Update dates when the end date input receives a blur event
+   *
+   * @param date - The date entered
+   */
+  public endBlur(date: Date | undefined): void {
+    this.endDate = date;
+    this.startMaxDate$.next(date);
   }
 
 }

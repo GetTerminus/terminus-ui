@@ -14,6 +14,16 @@ import {
 } from '@terminus/ui';
 
 
+const date1 = new Date();
+if (date1.getDate() > 25) {
+  date1.setDate(date1.getDate() + 6);
+}
+const date2 = new Date(date1);
+date2.setDate(date2.getDate() + 5);
+const date3 = new Date(date1);
+date3.setDate(date3.getDate() - 3);
+
+
 @Component({
   selector: 'demo-datepicker',
   templateUrl: './datepicker.component.html',
@@ -23,17 +33,17 @@ export class DatepickerComponent implements OnInit {
   formOneSettings = {
     isDisabled: false,
     startView: 'month',
-    minDate: new Date(2018, 0, 2),
-    myDate: new Date(2018, 0, 14),
-    maxDate: new Date(2018, 0, 25),
+    minDate: date3,
+    myDate: date1,
+    maxDate: date2,
   };
 
   formOne = this.formBuilder.group({
     date: [
       this.formOneSettings.myDate,
       [
-        this.validatorsService.minDate(new Date(2018, 0, 2).toISOString()),
-        this.validatorsService.maxDate(new Date(2018, 0, 25).toISOString()),
+        this.validatorsService.minDate(date3.toISOString()),
+        this.validatorsService.maxDate(date2.toISOString()),
         Validators.required,
       ],
     ],
@@ -44,7 +54,6 @@ export class DatepickerComponent implements OnInit {
     startDate: [
       null,
       [
-        this.validatorsService.email(),
         Validators.required,
       ],
     ],
@@ -103,6 +112,10 @@ export class DatepickerComponent implements OnInit {
   }
 
 
+  public inputBlur(v) {
+    console.log('DEMO: inputBlur ', v);
+  }
+
   /**
    * RANGE DEMO
    */
@@ -127,6 +140,16 @@ export class DatepickerComponent implements OnInit {
         Validators.required,
         this.validatorsService.maxDate(this.endDate),
       ]);
+      control.updateValueAndValidity();
+    }
+  }
+
+
+  update() {
+    const control = this.formTwo.get('endDate');
+
+    if (control) {
+      control.setValue(new Date(2018, 4, 1).toISOString());
       control.updateValueAndValidity();
     }
   }

@@ -3,13 +3,14 @@
     class="qa-date-range-start-datepicker"
     [formControl]="startDateControl"
     [inputPlaceholder]="startPlaceholder"
-    [maxDate]="_startMaxDate$ | async"
+    [maxDate]="startMaxDate$ | async"
     [minDate]="startMinDate"
     [startingView]="startingView"
     initialDate="{{ startInitialDate }}"
     [isDisabled]="startDateControl.disabled"
     [theme]="theme"
     (selected)="startDateSelected($event)"
+    (inputBlur)="startBlur($event)"
     #start
     fxFlex
   ></ts-datepicker>
@@ -26,12 +27,13 @@
     [formControl]="endDateControl"
     [inputPlaceholder]="endPlaceholder"
     [maxDate]="endMaxDate"
-    [minDate]="_endMinDate$ | async"
+    [minDate]="endMinDate$ | async"
     [startingView]="startingView"
     initialDate="{{ endInitialDate }}"
     [isDisabled]="endDateControl.disabled"
     [theme]="theme"
     (selected)="endDateSelected($event)"
+    (inputBlur)="endBlur($event)"
     #end
     fxFlex
   ></ts-datepicker>

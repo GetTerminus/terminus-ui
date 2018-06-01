@@ -1,5 +1,6 @@
 // tslint:disable: no-non-null-assertion
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
@@ -84,17 +85,17 @@ describe(`TsDateRangeComponent`, () => {
 
 
     test(`should seed dateRange.start`, () => {
-      component['seedDateRange'](date1, null);
+      component['seedDateRange'](date1, undefined);
       const range = component['dateRange'];
       expect(range.start).toEqual(date1);
-      expect(range.end).toEqual(null);
+      expect(range.end).toEqual(undefined);
     });
 
 
     test(`should seed dateRange.end`, () => {
-      component['seedDateRange'](null, date2);
+      component['seedDateRange'](undefined, date2);
       const range = component['dateRange'];
-      expect(range.start).toEqual(null);
+      expect(range.start).toEqual(undefined);
       expect(range.end).toEqual(date2);
     });
 
@@ -145,7 +146,7 @@ describe(`TsDateRangeComponent`, () => {
       expect(component.startInitialDate).toEqual(testRangeStart);
       expect(component.endInitialDate).toBeFalsy();
 
-      component._endMinDate$.subscribe((v: any) => {
+      component.endMinDate$.subscribe((v: any) => {
         expect(v).toEqual(testRangeStart);
       });
     });
@@ -156,7 +157,7 @@ describe(`TsDateRangeComponent`, () => {
 
       expect(component.endInitialDate).toEqual(testRangeEnd);
 
-      component._startMaxDate$.subscribe((v: Date) => {
+      component.startMaxDate$.subscribe((v: Date) => {
         expect(v).toEqual(testRangeEnd);
       });
     });
@@ -194,11 +195,11 @@ describe(`TsDateRangeComponent`, () => {
       });
 
 
-      test(`should pass the original endMinDate to _endMinDate$`, () => {
+      test(`should pass the original endMinDate to endMinDate$`, () => {
         component.endMinDate = testDate;
         component.startDateSelected(testDatepickerEvent);
 
-        component._endMinDate$.subscribe((v: Date) => {
+        component.endMinDate$.subscribe((v: Date) => {
           expect(v).toEqual(testDate);
         });
       });
@@ -274,7 +275,7 @@ describe(`TsDateRangeComponent`, () => {
         component.startMaxDate = testDate;
         component.endDateSelected(testDatepickerEvent);
 
-        component._startMaxDate$.subscribe((v: any) => {
+        component.startMaxDate$.subscribe((v: any) => {
           expect(v).toEqual(testDate);
         });
       });
@@ -310,7 +311,7 @@ describe(`TsDateRangeComponent`, () => {
         expect(component.endSelected.emit).toHaveBeenCalledWith(testDate);
         expect(component.selectedDate.emit).toHaveBeenCalledWith({
           end: testDate,
-          start: null,
+          start: undefined,
         });
       });
 
@@ -357,7 +358,54 @@ describe(`TsDateRangeComponent`, () => {
       const actual = component['dateRange'];
 
       expect(actual.start).toEqual(component.startDate);
-      expect(actual.end).toEqual(null);
+      expect(actual.end).toEqual(undefined);
+    });
+
+  });
+
+
+  describe(`startDateControl`, () => {
+
+    test(`should use fallback control if one was not passed in`, () => {
+      expect(component.startDateControl instanceof AbstractControl).toBeTruthy();
+    });
+
+  });
+
+
+  describe(`endDateControl`, () => {
+
+    test(`should use fallback control if one was not passed in`, () => {
+      component.theme = 'accent';
+      expect(component.endDateControl instanceof AbstractControl).toBeTruthy();
+      expect(component.theme).toEqual('accent');
+    });
+
+  });
+
+
+  describe(`blur events`, () => {
+    const date = new Date(2018, 1, 1);
+
+    test(`should set the start date`, () => {
+      component.startBlur(undefined);
+      expect(component.startDate).toEqual(undefined);
+      expect(component.endMinDate$.getValue()).toEqual(undefined);
+
+      component.startBlur(date);
+      expect(component.startDate).toEqual(date);
+      expect(component.endMinDate$.getValue()).toEqual(date);
+    });
+
+
+    test(`should set the end date`, () => {
+      component.endBlur(undefined);
+      expect(component.endDate).toEqual(undefined);
+      expect(component.startMaxDate$.getValue()).toEqual(undefined);
+
+      component.endBlur(date);
+      expect(component.endDate).toEqual(date);
+      expect(component.startMaxDate$.getValue()).toEqual(date);
     });
 
   });
