@@ -1,10 +1,10 @@
 import {
   Component,
-  Input,
-  Output,
-  OnInit,
   EventEmitter,
   forwardRef,
+  Input,
+  OnInit,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -76,19 +76,14 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**
-   * Expose the initial date to the template
-   */
-  public _initialDate!: Date;
-
-  /**
    * Expose the max date to the template
    */
-  public _maxDate!: Date;
+  public _maxDate: Date | undefined;
 
   /**
    * Expose the min date to the template
    */
-  public _minDate!: Date;
+  public _minDate: Date | undefined;
 
   /**
    * Store the value of the input
@@ -124,37 +119,34 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    * Define the maximum date requirement and confirm it is a Date object
    */
   @Input()
-  public set maxDate(value: string | Date) {
-    if (!value) {
-      return;
-    }
-
-    this._maxDate = this.verifyIsDateObject(value);
+  public set maxDate(value: string | Date | undefined) {
+    this._maxDate = (value) ? this.verifyIsDateObject(value) : undefined;
   }
 
   /**
    * Define the minimum date requirement and confirm it is a Date object
    */
   @Input()
-  public set minDate(value: string | Date) {
-    if (!value) {
-      return;
-    }
-
-    this._minDate = this.verifyIsDateObject(value);
+  public set minDate(value: string | Date | undefined) {
+    this._minDate = (value) ? this.verifyIsDateObject(value) : undefined;
   }
 
   /**
    * Define a starting date for the datepicker
    */
   @Input()
-  public set initialDate(value: string | Date) {
+  public set initialDate(value: string | Date | undefined) {
     if (!value) {
       return;
     }
 
     this._initialDate = this.verifyIsDateObject(value);
   }
+  // NOTE: This should never return a string but getter types are required to match setter types
+  public get initialDate(): string | Date | undefined {
+    return this._initialDate;
+  }
+  public _initialDate!: Date;
 
   /**
    * Define a date that the datepicker calendar should open to
@@ -194,14 +186,20 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
   @Output()
   public selected: EventEmitter<TsDatepickerInputEvent<Date>> = new EventEmitter();
 
+  /**
+   * Define an event when the input receives a blur event
+   */
+  @Output()
+  public inputBlur: EventEmitter<Date> = new EventEmitter();
+
 
   /**
    * Set the initial date if it exists
    */
   public ngOnInit() {
     // istanbul ignore else
-    if (this._initialDate) {
-      this.value = this._initialDate;
+    if (this.initialDate) {
+      this.value = this.initialDate;
     }
   }
 
