@@ -15,7 +15,7 @@
         class="qa-autocomplete-chip"
         [selectable]="selectableChips"
         removable="true"
-        (remove)="deselectOption(option)"
+        (removed)="deselectOption(option)"
       >
         {{ displayOption(option) }}
         <ts-icon matChipRemove>
