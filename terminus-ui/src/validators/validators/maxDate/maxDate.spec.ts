@@ -9,57 +9,38 @@ import { maxDateValidator } from './maxDate';
 
 
 describe(`maxDateValidator`, () => {
-  let maxDate: string;
-  let validDate: string;
-  let invalidDate: string;
-  let validatorFn: ValidatorFn;
-  let invalidValidatorFn: ValidatorFn;
-  let validDateControl: AbstractControl;
-  let invalidDateControl: AbstractControl;
 
-  beforeEach(() => {
-    maxDate = new Date(2017, 4, 1).toISOString();
-    validDate = new Date(2017, 3, 1).toISOString();
-    invalidDate = new Date(2017, 5, 1).toISOString();
+  describe(`date input`, () => {
+    let maxDate: string;
+    let validDate: string;
+    let invalidDate: string;
+    let validatorFn: ValidatorFn;
+    let validDateControl: AbstractControl;
+    let invalidDateControl: AbstractControl;
 
-    validatorFn = maxDateValidator(maxDate);
-    invalidValidatorFn = maxDateValidator('foo');
+    beforeEach(() => {
+      maxDate = new Date(2017, 4, 1).toISOString();
+      validDate = new Date(2017, 3, 1).toISOString();
+      invalidDate = new Date(2017, 5, 1).toISOString();
 
-    validDateControl = new FormControl(validDate);
-    invalidDateControl = new FormControl(invalidDate);
-  });
+      validatorFn = maxDateValidator(maxDate);
+
+      validDateControl = new FormControl(validDate);
+      invalidDateControl = new FormControl(invalidDate);
+    });
 
 
-  describe(`if the control doesn't exist`, () => {
-
-    it(`should return null`, () => {
+    test(`should return null if the control doesn't exist`, () => {
       expect(validatorFn(new FormControl(null))).toEqual(null);
     });
 
-  });
 
-
-  describe(`if the control has no value`, () => {
-
-    test(`should return null`, () => {
+    test(`should return null if the control has no value`, () => {
       expect(validatorFn({} as any)).toEqual(null);
     });
 
-  });
 
-
-  describe(`if the maxDate is not a valid date`, () => {
-
-    it(`should return null`, () => {
-      expect(invalidValidatorFn(validDateControl)).toEqual(null);
-    });
-
-  });
-
-
-  describe(`if the control value is not a valid date`, () => {
-
-    it(`should return the invalid response`, () => {
+    test(`should return the invalid response if the control value is not a valid date`, () => {
       const actual = validatorFn(new FormControl('foo'))!.maxDate;
       const expected = {
         valid: false,
@@ -70,21 +51,74 @@ describe(`maxDateValidator`, () => {
       expect(actual).toEqual(expected);
     });
 
-  });
 
-
-  describe(`if the control value is before the maxDate`, () => {
-
-    it(`should return null`, () => {
+    test(`should return null if the control value is before the maxDate`, () => {
       expect(validatorFn(validDateControl)).toEqual(null);
+    });
+
+
+    test(`should return the invalid response if the control value is after the maxDate`, () => {
+      const actual = validatorFn(invalidDateControl)!.maxDate;
+      const expected = {
+        valid: false,
+        maxDate: maxDate,
+        actual: invalidDate,
+      };
+
+      expect(actual).toEqual(expected);
     });
 
   });
 
 
-  describe(`if the control value is after the maxDate`, () => {
+  describe(`control input`, () => {
+    let maxDate: string;
+    let validDate: string;
+    let invalidDate: string;
+    let validatorFn: ValidatorFn;
+    let validDateControl: AbstractControl;
+    let invalidDateControl: AbstractControl;
 
-    it(`should return the invalid response`, () => {
+    beforeEach(() => {
+      maxDate = new Date(2017, 4, 1).toISOString();
+      validDate = new Date(2017, 3, 1).toISOString();
+      invalidDate = new Date(2017, 5, 1).toISOString();
+
+      validatorFn = maxDateValidator(new FormControl(maxDate));
+
+      validDateControl = new FormControl(validDate);
+      invalidDateControl = new FormControl(invalidDate);
+    });
+
+
+    test(`should return null if the control doesn't exist`, () => {
+      expect(validatorFn(new FormControl(null))).toEqual(null);
+    });
+
+
+    test(`should return null if the control has no value`, () => {
+      expect(validatorFn({} as any)).toEqual(null);
+    });
+
+
+    test(`should return the invalid response if the control value is not a valid date with control input`, () => {
+      const actual = validatorFn(new FormControl('foo'))!.maxDate;
+      const expected = {
+        valid: false,
+        maxDate: maxDate,
+        actual: 'foo',
+      };
+
+      expect(actual).toEqual(expected);
+    });
+
+
+    test(`should return null if the control value is before the maxDate`, () => {
+      expect(validatorFn(validDateControl)).toEqual(null);
+    });
+
+
+    test(`should return the invalid response if the control value is after the maxDate`, () => {
       const actual = validatorFn(invalidDateControl)!.maxDate;
       const expected = {
         valid: false,

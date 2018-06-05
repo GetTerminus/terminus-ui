@@ -102,6 +102,12 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.numbers(4),
       ],
     ],
+    greaterThanSource: [
+      null,
+    ],
+    greaterThanInUse: [
+      null,
+    ],
   });
 
   constructor(
@@ -113,6 +119,9 @@ export class ValidationComponent implements OnInit {
   ngOnInit() {
     const control1: AbstractControl | null = this.myForm.get('compare1');
     const control2: AbstractControl | null = this.myForm.get('compare2');
+    const greaterThanSource: AbstractControl | null = this.myForm.get('greaterThanSource');
+    const greaterThanInUse: AbstractControl | null = this.myForm.get('greaterThanInUse');
+
 
     if (control1) {
       control1.setValidators([
@@ -125,6 +134,12 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.equalToControl(control2),
       ]);
     }
+
+    if (greaterThanInUse && greaterThanSource) {
+      greaterThanInUse.setValidators([
+        this.validatorsService.greaterThan(greaterThanSource),
+      ]);
+    }
   }
 
 
@@ -132,4 +147,9 @@ export class ValidationComponent implements OnInit {
     console.log('DEMO: form value: ', v);
   }
 
+}
+
+
+function isControl(x: any): x is AbstractControl {
+  return x.pristine !== undefined;
 }
