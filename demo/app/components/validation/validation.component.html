@@ -105,7 +105,6 @@ test@test.com
 
 
   <ts-card tsVerticalSpacing>
-
     <h3 tsCardTitle>Date</h3>
 
     <div>
@@ -113,7 +112,6 @@ test@test.com
         [formControl]="myForm.get('date')"
       ></ts-datepicker>
     </div>
-
   </ts-card>
 
 
@@ -129,19 +127,6 @@ test@test.com
           type="number"
           hint="Must be greater than 10"
         ></ts-input>
-
-        <h3 tsCardTitle>
-          Input 2 Value Greater Than Input 1
-        </h3>
-
-        <ts-input
-          [formControl]="myForm.get('greaterThan1')"
-          label="Input 1"
-        ></ts-input>
-        <ts-input
-          [formControl]="myForm.get('greaterThan2')"
-          label="Input 2"
-        ></ts-input>
       </ts-card>
     </div>
 
@@ -154,19 +139,6 @@ test@test.com
           label="Number"
           type="number"
           hint="Must be greater than or equal to 10"
-        ></ts-input>
-
-        <h3 tsCardTitle>
-          Input 2 Value Greater Than Or Equal To Input 1
-        </h3>
-
-        <ts-input
-          [formControl]="myForm.get('greaterThanOrEqual1')"
-          label="Input 1"
-        ></ts-input>
-        <ts-input
-          [formControl]="myForm.get('greaterThanOrEqual2')"
-          label="Input 2"
         ></ts-input>
       </ts-card>
     </div>
@@ -186,19 +158,6 @@ test@test.com
           type="number"
           hint="Must be less than 10"
         ></ts-input>
-
-        <h3 tsCardTitle>
-          Input 2 Value Less Than Input 1
-        </h3>
-
-        <ts-input
-          [formControl]="myForm.get('lessThan1')"
-          label="Input 1"
-        ></ts-input>
-        <ts-input
-          [formControl]="myForm.get('lessThan2')"
-          label="Input 2"
-        ></ts-input>
       </ts-card>
     </div>
 
@@ -211,19 +170,6 @@ test@test.com
           label="Number"
           type="number"
           hint="Must be less than or equal to 10"
-        ></ts-input>
-
-        <h3 tsCardTitle>
-          Input 2 Value Less Than Or Equal To Input 1
-        </h3>
-
-        <ts-input
-          [formControl]="myForm.get('lessThanOrEqual1')"
-          label="Input 1"
-        ></ts-input>
-        <ts-input
-          [formControl]="myForm.get('lessThanOrEqual2')"
-          label="Input 2"
         ></ts-input>
       </ts-card>
     </div>

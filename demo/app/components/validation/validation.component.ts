@@ -102,28 +102,10 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.numbers(4),
       ],
     ],
-    greaterThan1: [
+    greaterThanSource: [
       null,
     ],
-    greaterThan2: [
-      null,
-    ],
-    greaterThanOrEqual1: [
-      null,
-    ],
-    greaterThanOrEqual2: [
-      null,
-    ],
-    lessThan1: [
-      null,
-    ],
-    lessThan2: [
-      null,
-    ],
-    lessThanOrEqual1: [
-      null,
-    ],
-    lessThanOrEqual2: [
+    greaterThanInUse: [
       null,
     ],
   });
@@ -137,14 +119,8 @@ export class ValidationComponent implements OnInit {
   ngOnInit() {
     const control1: AbstractControl | null = this.myForm.get('compare1');
     const control2: AbstractControl | null = this.myForm.get('compare2');
-    const greaterThanControl1: AbstractControl | null = this.myForm.get('greaterThan1');
-    const greaterThanControl2: AbstractControl | null = this.myForm.get('greaterThan2');
-    const greaterThanOrEqual1: AbstractControl | null = this.myForm.get('greaterThanOrEqual1');
-    const greaterThanOrEqual2: AbstractControl | null = this.myForm.get('greaterThanOrEqual2');
-    const lessThanControl1: AbstractControl | null = this.myForm.get('lessThan1');
-    const lessThanControl2: AbstractControl | null = this.myForm.get('lessThan2');
-    const lessThanOrEqual1: AbstractControl | null = this.myForm.get('lessThanOrEqual1');
-    const lessThanOrEqual2: AbstractControl | null = this.myForm.get('lessThanOrEqual2');
+    const greaterThanSource: AbstractControl | null = this.myForm.get('greaterThanSource');
+    const greaterThanInUse: AbstractControl | null = this.myForm.get('greaterThanInUse');
 
 
     if (control1) {
@@ -159,27 +135,9 @@ export class ValidationComponent implements OnInit {
       ]);
     }
 
-    if (greaterThanControl2) {
-      greaterThanControl2.setValidators([
-        this.validatorsService.greaterThan(greaterThanControl1),
-      ]);
-    }
-
-    if (greaterThanOrEqual2) {
-      greaterThanOrEqual2.setValidators([
-        this.validatorsService.greaterThanOrEqual(greaterThanOrEqual1),
-      ]);
-    }
-
-    if (lessThanControl2) {
-      lessThanControl2.setValidators([
-        this.validatorsService.lessThan(lessThanControl1),
-      ]);
-    }
-
-    if (lessThanOrEqual2) {
-      lessThanOrEqual2.setValidators([
-        this.validatorsService.lessThanOrEqual(lessThanOrEqual1),
+    if (greaterThanInUse && greaterThanSource) {
+      greaterThanInUse.setValidators([
+        this.validatorsService.greaterThan(greaterThanSource),
       ]);
     }
   }
