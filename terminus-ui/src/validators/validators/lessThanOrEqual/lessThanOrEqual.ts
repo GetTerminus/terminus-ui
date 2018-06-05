@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { getControlValue } from './../../../utilities/get-control-value';
+import { isAbstractControl } from './../../../utilities/type-coercion/is-abstract-control';
 
 
 /**
@@ -20,18 +20,24 @@ export function lessThanOrEqualValidator(base: number | AbstractControl = 0): Va
       return null;
     }
 
-    if (typeof base === 'number') {
-      return validate(base, control);
+    if (isAbstractControl(base)) {
+      return getValidationResult(base.value, control);
     } else {
-      return validate(getControlValue(base), control);
+      return getValidationResult(base, control);
     }
   };
 }
 
-function validate(base, control) {
-  // Ensure a number
-  base = coerceNumberProperty(base);
 
+/**
+ * Return the validation result
+ *
+ * @param base - The maximum value
+ * @param control - The control containing the current value
+ * @return The difference in time
+ */
+function getValidationResult(base: number | undefined, control: AbstractControl): ValidationErrors | null {
+  base = coerceNumberProperty(base);
   const invalidResponse: ValidationErrors = {
     lessThanOrEqual: {
       valid: false,
@@ -39,7 +45,6 @@ function validate(base, control) {
       actual: control.value,
     },
   };
-  const valueIsUnderMax = control.value <= base;
 
-  return valueIsUnderMax ? null : invalidResponse;
+  return (control.value <= base) ? null : invalidResponse;
 }

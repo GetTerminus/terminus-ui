@@ -1,9 +1,19 @@
-<p>
-  Note: You must leave the input for the validation to trigger.
-</p>
-
-
 <form [formGroup]="myForm" novalidate>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsVerticalSpacing>
+      Demo controls
+    </h3>
+
+    <p>
+      Note: You must leave the input for the validation to trigger.
+    </p>
+
+    <button (click)="log(myForm.value)">
+      Log form value
+    </button>
+  </ts-card>
+
 
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle>Email</h3>
@@ -28,6 +38,7 @@ foo@bar.c
     <ts-input
       [formControl]="myForm.get('email')"
       label="Email"
+      type="email"
     ></ts-input>
   </ts-card>
 
@@ -290,10 +301,12 @@ http:// shouldfail.com
 
     <div fxLayout="row" fxLayoutGap="2em">
       <ts-input
+        fxFlex
         [formControl]="myForm.get('compare1')"
         label="Input 1"
       ></ts-input>
       <ts-input
+        fxFlex
         [formControl]="myForm.get('compare2')"
         label="Input 2"
       ></ts-input>
@@ -301,6 +314,30 @@ http:// shouldfail.com
   </ts-card>
 
 
-  <button (click)="log(myForm.value)">Log form value</button>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Example using a control as a validation source
+    </h3>
+
+    <div fxLayout="row" fxLayoutGap="2em">
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('greaterThanSource')"
+        hint="Change the number to set the validation minimum"
+        label="Input 1"
+        type="number"
+      ></ts-input>
+
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('greaterThanInUse')"
+        hint="My validation is based on the other control's value"
+        label="Input 2"
+        type="number"
+      ></ts-input>
+    </div>
+  </ts-card>
+
 </form>
 

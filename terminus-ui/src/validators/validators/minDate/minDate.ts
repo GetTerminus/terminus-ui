@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { isValid } from 'date-fns';
-import { getControlValue } from './../../../utilities/get-control-value';
+import { isAbstractControl } from './../../../utilities/type-coercion/is-abstract-control';
 
 
 /**
@@ -20,15 +20,23 @@ export function minDateValidator(minDate: string | AbstractControl): ValidatorFn
       return null;
     }
 
-    if (typeof minDate === 'string') {
-      return !isValid(minDate) ? null : validate(minDate, control);
+    if (isAbstractControl(minDate)) {
+      return getValidationResult(minDate.value, control);
     } else {
-      return validate(getControlValue(minDate), control);
+      return getValidationResult(minDate, control);
     }
   };
 }
 
-function validate(minDate, control) {
+
+/**
+ * Return the validation result
+ *
+ * @param minDate - The minimum allowed date
+ * @param control - The control containing the current value
+ * @return The difference in time
+ */
+function getValidationResult(minDate: string | undefined, control: AbstractControl): ValidationErrors | null {
   const invalidResponse: ValidationErrors = {
     minDate: {
       valid: false,
@@ -37,14 +45,14 @@ function validate(minDate, control) {
     },
   };
 
-  // Verify the control value is a valid date
-  if (!isValid(control.value)) {
+  // Verify the dates are valid
+  if (!isValid(control.value) || !minDate || !isValid(minDate)) {
     return invalidResponse;
+  } else {
+    const controlDateTime = new Date(control.value).getTime();
+    const minDateTime = new Date(minDate).getTime();
+    const dateIsAfterMin = minDateTime <= controlDateTime;
+
+    return dateIsAfterMin ? null : invalidResponse;
   }
-
-  const controlDateTime = new Date(control.value).getTime();
-  const minDateTime = new Date(minDate).getTime();
-  const dateIsAfterMin = minDateTime <= controlDateTime;
-
-  return dateIsAfterMin ? null : invalidResponse;
 }

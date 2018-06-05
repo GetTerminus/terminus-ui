@@ -190,3 +190,8 @@ export class ValidationComponent implements OnInit {
   }
 
 }
+
+
+function isControl(x: any): x is AbstractControl {
+  return x.pristine !== undefined;
+}

@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { getControlValue } from './../../../utilities/get-control-value';
+import { isAbstractControl } from './../../../utilities/type-coercion/is-abstract-control';
 
 
 /**
@@ -20,26 +20,31 @@ export function lessThanValidator(max: number | AbstractControl = 0): ValidatorF
       return null;
     }
 
-    if (typeof max === 'number') {
-      return validate(max, control);
+    if (isAbstractControl(max)) {
+      return getValidationResult(max.value, control);
     } else {
-      return validate(getControlValue(max), control);
+      return getValidationResult(max, control);
     }
   };
 }
 
-function validate(max, control) {
-    // Ensure a number
-    max = coerceNumberProperty(max);
 
-    const invalidResponse: ValidationErrors = {
-      lessThan: {
-        valid: false,
-        lessThan: max,
-        actual: control.value,
-      },
-    };
-    const valueIsUnderMax = control.value < max;
+/**
+ * Return the validation result
+ *
+ * @param max - The minimum value
+ * @param control - The control containing the current value
+ * @return The difference in time
+ */
+function getValidationResult(max: number | undefined, control: AbstractControl): ValidationErrors | null {
+  max = coerceNumberProperty(max);
+  const invalidResponse: ValidationErrors = {
+    lessThan: {
+      valid: false,
+      lessThan: max,
+      actual: control.value,
+    },
+  };
 
-    return valueIsUnderMax ? null : invalidResponse;
+  return (control.value < max) ? null : invalidResponse;
 }

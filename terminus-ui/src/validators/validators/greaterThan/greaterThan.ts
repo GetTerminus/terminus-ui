@@ -4,7 +4,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { getControlValue } from './../../../utilities/get-control-value';
+import { isAbstractControl } from './../../../utilities/type-coercion/is-abstract-control';
 
 
 /**
@@ -18,20 +18,26 @@ export function greaterThanValidator(minimum: number | AbstractControl = 0): Val
     // Allow optional controls by not validating empty values
     if (!control || isNaN(control.value)) {
       return null;
-    }
+   }
 
-    if (typeof minimum === 'number') {
-      return validate(minimum, control);
+    if (isAbstractControl(minimum)) {
+      return getValidationResult(minimum.value, control);
     } else {
-      return validate(getControlValue(minimum), control);
+      return getValidationResult(minimum, control);
     }
   };
 }
 
-function validate(minimum, control) {
-  // Ensure a number
-  minimum = coerceNumberProperty(minimum);
 
+/**
+ * Return the validation result
+ *
+ * @param minimum - The minimum value
+ * @param control - The control containing the current value
+ * @return The difference in time
+ */
+function getValidationResult(minimum: number | undefined, control: AbstractControl): ValidationErrors | null {
+  minimum = coerceNumberProperty(minimum);
   const invalidResponse: ValidationErrors = {
     greaterThan: {
       valid: false,
@@ -39,7 +45,6 @@ function validate(minimum, control) {
       actual: control.value,
     },
   };
-  const valueIsOverMinimum = control.value > minimum;
 
-  return valueIsOverMinimum ? null : invalidResponse;
+  return (control.value > minimum) ? null : invalidResponse;
 }
