@@ -45,8 +45,8 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "@angular/cdk": "^5.2.x || ^6.1.0",
-    "@angular/material": "^5.2.x || ^6.1.0",
+    "@angular/cdk": "^5.2.x || ^6.2.1",
+    "@angular/material": "^5.2.x || ^6.2.1",
     "text-mask-addons": "^3.7.2",
     "text-mask-core": "^5.0.1"
   },
