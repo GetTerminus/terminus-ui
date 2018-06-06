@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+
 
 /**
  * This is the icon UI Component
@@ -13,7 +15,8 @@ import {
  * - `qa-icon`: Placed on the primary container
  *
  * @example
- * <ts-icon>icon_name</ts-icon>
+ * <ts-icon>home</ts-icon>
+ * <ts-icon theme="warn">help</ts-icon>
  *
  * <ts-icon svgIcon="left-arrow"></ts-icon>
  *
@@ -26,11 +29,20 @@ import {
   host: {
     class: 'ts-icon',
     '[class.ts-icon--inline]': 'inline',
+    '[class.ts-icon--primary]': 'theme === "primary"',
+    '[class.ts-icon--accent]': 'theme === "accent"',
+    '[class.ts-icon--warn]': 'theme === "warn"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TsIconComponent {
+  /**
+   * Define if the icon should be aligned inline with text
+   */
+  @Input()
+  public inline: boolean = false;
+
   /**
    * Name of the icon in the SVG icon set
    */
@@ -38,8 +50,8 @@ export class TsIconComponent {
   public svgIcon: string | undefined;
 
   /**
-   * Define if the icon should be aligned inline with text
+   * Define the icon theme
    */
   @Input()
-  public inline: boolean = false;
+  public theme: TsStyleThemeTypes | undefined;
 }

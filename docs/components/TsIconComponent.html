@@ -2223,7 +2223,8 @@
     </p>
     <div class="io-description">
                 <div>
-                    <pre class="line-numbers"><code class="language-html">&lt;ts-icon&gt;icon_name&lt;/ts-icon&gt;
+                    <pre class="line-numbers"><code class="language-html">&lt;ts-icon&gt;home&lt;/ts-icon&gt;
+&lt;ts-icon theme=&quot;warn&quot;&gt;help&lt;/ts-icon&gt;
 
 &lt;ts-icon svgIcon=&quot;left-arrow&quot;&gt;&lt;/ts-icon&gt;
 
@@ -2300,6 +2301,9 @@
                             <li>
                                 <a href="#svgIcon">svgIcon</a>
                             </li>
+                            <li>
+                                <a href="#theme">theme</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -2358,7 +2362,30 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">terminus-ui/src/icon/icon.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">terminus-ui/src/icon/icon.component.ts:50</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="theme"></a>
+                        <code>theme</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Define the icon theme</p>
+</div>
+                            <p>
+                            <em>Type:</em>    <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes | undefined</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">terminus-ui/src/icon/icon.component.ts:56</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2372,11 +2399,16 @@
 </div>
 
     <div class="tab-pane fade " id="c-readme">
-        <p><!-- START doctoc generated TOC please keep comment here to allow auto update -->
+        <p><h1>Icons</h1>
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <p><strong>Table of Contents</strong></p>
 <ul>
 <li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#theming">Theming</a></li>
+<li><a href="#style-with-css">Style with CSS</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <h2 id="basic-usage">Basic usage</h2>
@@ -2385,7 +2417,16 @@
 <div><pre class="line-numbers"><code class="language-html">&lt;ts-icon&gt;open_in_new&lt;/ts-icon&gt;</code></pre></div><blockquote>
 <p>See all valid icon possibilities: <a href="https://material.io/icons">https://material.io/icons</a></p>
 </blockquote>
-</p>
+<h2 id="theming">Theming</h2>
+<p>Icons support the same themes as the rest of the components:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ts-icon theme=&quot;warn&quot;&gt;&lt;/ts-icon&gt;</code></pre></div><p>Search for <code>TsStyleThemeTypes</code> to see all allowed types.</p>
+<h2 id="style-with-css">Style with CSS</h2>
+<p>To style with CSS, simply target the <code>fill</code> inside the <code>ts-icon</code> class:</p>
+<div><pre class="line-numbers"><code class="language-scss">.myClass {
+  .ts-icon {
+    fill: color(accent);
+  }
+}</code></pre></div></p>
     </div>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
@@ -2396,6 +2437,8 @@
   ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 
+import { TsStyleThemeTypes } from &#x27;./../utilities/types/style-theme.types&#x27;;
+
 
 /**
  * This is the icon UI Component
@@ -2404,7 +2447,8 @@
  * - &#x60;qa-icon&#x60;: Placed on the primary container
  *
  * @example
- * &lt;ts-icon&gt;icon_name&lt;/ts-icon&gt;
+ * &lt;ts-icon&gt;home&lt;/ts-icon&gt;
+ * &lt;ts-icon theme&#x3D;&quot;warn&quot;&gt;help&lt;/ts-icon&gt;
  *
  * &lt;ts-icon svgIcon&#x3D;&quot;left-arrow&quot;&gt;&lt;/ts-icon&gt;
  *
@@ -2417,11 +2461,20 @@
   host: {
     class: &#x27;ts-icon&#x27;,
     &#x27;[class.ts-icon--inline]&#x27;: &#x27;inline&#x27;,
+    &#x27;[class.ts-icon--primary]&#x27;: &#x27;theme &#x3D;&#x3D;&#x3D; &quot;primary&quot;&#x27;,
+    &#x27;[class.ts-icon--accent]&#x27;: &#x27;theme &#x3D;&#x3D;&#x3D; &quot;accent&quot;&#x27;,
+    &#x27;[class.ts-icon--warn]&#x27;: &#x27;theme &#x3D;&#x3D;&#x3D; &quot;warn&quot;&#x27;,
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TsIconComponent {
+  /**
+   * Define if the icon should be aligned inline with text
+   */
+  @Input()
+  public inline: boolean &#x3D; false;
+
   /**
    * Name of the icon in the SVG icon set
    */
@@ -2429,10 +2482,10 @@ export class TsIconComponent {
   public svgIcon: string | undefined;
 
   /**
-   * Define if the icon should be aligned inline with text
+   * Define the icon theme
    */
   @Input()
-  public inline: boolean &#x3D; false;
+  public theme: TsStyleThemeTypes | undefined;
 }
 </code></pre>
     </div>
