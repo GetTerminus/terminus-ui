@@ -901,6 +901,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -1969,6 +1972,9 @@
                     id="classes-links"
 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -2213,6 +2219,24 @@
                             <a href="#getSortInvalidDirectionError" title="terminus-ui/src/sort/sort-errors.ts"><b>getSortInvalidDirectionError</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../sort-errors.ts)</a>
                         </li>
                         <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/greaterThan/greaterThan.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThan.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThanOrEqual.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/maxDate/maxDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../maxDate.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/lessThan/lessThan.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThan.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThanOrEqual.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/minDate/minDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../minDate.ts)</a>
+                        </li>
+                        <li>
                             <a href="#greaterThanOrEqualValidator" title="terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts"><b>greaterThanOrEqualValidator</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThanOrEqual.ts)</a>
                         </li>
                         <li>
@@ -2226,6 +2250,9 @@
                         </li>
                         <li>
                             <a href="#interpolateManyColors" title="terminus-ui/src/chart/utilities/interpolate-colors.ts"><b>interpolateManyColors</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../interpolate-colors.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isAbstractControl" title="terminus-ui/src/utilities/type-coercion/is-abstract-control.ts"><b>isAbstractControl</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../is-abstract-control.ts)</a>
                         </li>
                         <li>
                             <a href="#lessThanOrEqualValidator" title="terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts"><b>lessThanOrEqualValidator</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThanOrEqual.ts)</a>
@@ -2904,9 +2931,647 @@
             </tbody>
         </table>
 </section>
+    <h3>terminus-ui/src/validators/validators/greaterThan/greaterThan.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(minimum: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>minimum</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="greaterThanValidator"></a>
+                        <span class="name">
+                            <b>
+                            greaterThanValidator
+                            </b>
+                            <a href="#greaterThanValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>greaterThanValidator(minimum: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the value is above a minimum value</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>minimum</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(base: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>base</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The maximum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lessThanOrEqualValidator"></a>
+                        <span class="name">
+                            <b>
+                            lessThanOrEqualValidator
+                            </b>
+                            <a href="#lessThanOrEqualValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>lessThanOrEqualValidator(base: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the number is below a specific number</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>base</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The maximum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>terminus-ui/src/validators/validators/maxDate/maxDate.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(maxDate: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>maxDate</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The latest valid date</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="maxDateValidator"></a>
+                        <span class="name">
+                            <b>
+                            maxDateValidator
+                            </b>
+                            <a href="#maxDateValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>maxDateValidator(maxDate: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the selected date is before a maximum date</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>maxDate</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The maximum date</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>terminus-ui/src/validators/validators/lessThan/lessThan.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(max: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>max</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lessThanValidator"></a>
+                        <span class="name">
+                            <b>
+                            lessThanValidator
+                            </b>
+                            <a href="#lessThanValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>lessThanValidator(max: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the number is below a specific number</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>max</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The maximum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
     <h3>terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(base: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>base</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -2969,24 +3634,24 @@
             </tbody>
         </table>
 </section>
-    <h3>terminus-ui/src/validators/validators/greaterThan/greaterThan.ts</h3>
+    <h3>terminus-ui/src/validators/validators/minDate/minDate.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="greaterThanValidator"></a>
+                        <a name="getValidationResult"></a>
                         <span class="name">
                             <b>
-                            greaterThanValidator
+                            getValidationResult
                             </b>
-                            <a href="#greaterThanValidator"><span class="fa fa-link"></span></a>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>greaterThanValidator(minimum: undefined)</code>
+<code>getValidationResult(minDate: undefined, control: undefined)</code>
                     </td>
                 </tr>
 
@@ -2995,7 +3660,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the value is above a minimum value</p>
+                            <div class="io-description"><p>Return the validation result</p>
 </div>
 
                             <div class="io-description">
@@ -3005,17 +3670,101 @@
                                             <tr>
                                                 <td>Name</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>minimum</td>
+                                                        <td>minDate</td>
                                                     
                                                     <td>
                                                             no
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum allowed date</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="minDateValidator"></a>
+                        <span class="name">
+                            <b>
+                            minDateValidator
+                            </b>
+                            <a href="#minDateValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>minDateValidator(minDate: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the selected date is after a minimum date</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>minDate</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum date</li>
+</ul>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -3325,24 +4074,24 @@
             </tbody>
         </table>
 </section>
-    <h3>terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts</h3>
+    <h3>terminus-ui/src/utilities/type-coercion/is-abstract-control.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="lessThanOrEqualValidator"></a>
+                        <a name="isAbstractControl"></a>
                         <span class="name">
                             <b>
-                            lessThanOrEqualValidator
+                            isAbstractControl
                             </b>
-                            <a href="#lessThanOrEqualValidator"><span class="fa fa-link"></span></a>
+                            <a href="#isAbstractControl"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>lessThanOrEqualValidator(base: undefined)</code>
+<code>isAbstractControl(x: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -3351,7 +4100,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the number is below a specific number</p>
+                            <div class="io-description"><p>Coerce the type to AbstractControl</p>
 </div>
 
                             <div class="io-description">
@@ -3360,78 +4109,17 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>base</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
+                                                        <td>x</td>
                                                         <td>
-                                                                <code><ul>
-<li>The maximum value</li>
-</ul>
-</code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>terminus-ui/src/validators/validators/lessThan/lessThan.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="lessThanValidator"></a>
-                        <span class="name">
-                            <b>
-                            lessThanValidator
-                            </b>
-                            <a href="#lessThanValidator"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>lessThanValidator(max: undefined)</code>
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the number is below a specific number</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>max</td>
                                                     
                                                     <td>
                                                             no
@@ -3440,7 +4128,7 @@
 
                                                         <td>
                                                                 <code><ul>
-<li>The maximum value</li>
+<li>The item to test</li>
 </ul>
 </code>
                                                         </td>
@@ -3502,71 +4190,6 @@
                                                     </td>
                                                     
 
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>terminus-ui/src/validators/validators/maxDate/maxDate.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="maxDateValidator"></a>
-                        <span class="name">
-                            <b>
-                            maxDateValidator
-                            </b>
-                            <a href="#maxDateValidator"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>maxDateValidator(maxDate: undefined)</code>
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the selected date is before a maximum date</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>maxDate</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><ul>
-<li>The maximum date</li>
-</ul>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -3656,71 +4279,6 @@
                                         <div>
                                             <pre class="line-numbers"><code class="language-html">const merged = merge(objA, objB);</code></pre>
                                         </div>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>terminus-ui/src/validators/validators/minDate/minDate.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="minDateValidator"></a>
-                        <span class="name">
-                            <b>
-                            minDateValidator
-                            </b>
-                            <a href="#minDateValidator"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>minDateValidator(minDate: undefined)</code>
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the selected date is after a minimum date</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>minDate</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><ul>
-<li>The minimum date</li>
-</ul>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
                             </div>
                     </td>
                 </tr>
