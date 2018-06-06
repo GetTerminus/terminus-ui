@@ -1,10 +1,16 @@
+<h1>Icons</h1>
+
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
+- [Theming](#theming)
+- [Style with CSS](#style-with-css)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Basic usage
 
@@ -21,3 +27,27 @@ If the icon name consists of multiple words, use underscores between the words:
 ```
 
 > See all valid icon possibilities: https://material.io/icons
+
+
+## Theming
+
+Icons support the same themes as the rest of the components:
+
+```html
+<ts-icon theme="warn"></ts-icon>
+```
+
+Search for `TsStyleThemeTypes` to see all allowed types.
+
+
+## Style with CSS
+
+To style with CSS, simply target the `fill` inside the `ts-icon` class:
+
+```scss
+.myClass {
+  .ts-icon {
+    fill: color(accent);
+  }
+}
+```
