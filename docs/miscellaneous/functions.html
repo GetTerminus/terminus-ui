@@ -617,14 +617,14 @@
                         <a href="modules/TsPipesModule.html" data-type="entity-link">TsPipesModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-pipes-links-module-TsPipesModule-c4a87b0ef57f24e80d8b546ae57f3901"
+                                        data-target="#xs-pipes-links-module-TsPipesModule-175657b6d64dffbbe6492c67eebd5e0f"
                                     >
                                     <span class="fa fa-fw fa-plus"></span>
                                     <span>Pipes</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-pipes-links-module-TsPipesModule-c4a87b0ef57f24e80d8b546ae57f3901"
+                                        id="xs-pipes-links-module-TsPipesModule-175657b6d64dffbbe6492c67eebd5e0f"
                                     >
                                         <li class="link">
                                             <a href="pipes/TsDatePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsDatePipe</a>
@@ -637,6 +637,9 @@
                                         </li>
                                         <li class="link">
                                             <a href="pipes/TsTimeAgoPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsTimeAgoPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="pipes/TsTitleCasePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsTitleCasePipe</a>
                                         </li>
                                 </ul>
                             </li>
@@ -1688,14 +1691,14 @@
                         <a href="modules/TsPipesModule.html" data-type="entity-link">TsPipesModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#pipes-links-module-TsPipesModule-c4a87b0ef57f24e80d8b546ae57f3901"
+                                        data-target="#pipes-links-module-TsPipesModule-175657b6d64dffbbe6492c67eebd5e0f"
 >
                                     <span class="fa fa-fw fa-plus"></span>
                                     <span>Pipes</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="pipes-links-module-TsPipesModule-c4a87b0ef57f24e80d8b546ae57f3901"
+                                        id="pipes-links-module-TsPipesModule-175657b6d64dffbbe6492c67eebd5e0f"
 >
                                         <li class="link">
                                             <a href="pipes/TsDatePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsDatePipe</a>
@@ -1708,6 +1711,9 @@
                                         </li>
                                         <li class="link">
                                             <a href="pipes/TsTimeAgoPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsTimeAgoPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="pipes/TsTitleCasePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">TsTitleCasePipe</a>
                                         </li>
                                 </ul>
                             </li>
@@ -2222,10 +2228,10 @@
                             <a href="#getValidationResult" title="terminus-ui/src/validators/validators/greaterThan/greaterThan.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThan.ts)</a>
                         </li>
                         <li>
-                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThanOrEqual.ts)</a>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/minDate/minDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../minDate.ts)</a>
                         </li>
                         <li>
-                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/maxDate/maxDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../maxDate.ts)</a>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThanOrEqual.ts)</a>
                         </li>
                         <li>
                             <a href="#getValidationResult" title="terminus-ui/src/validators/validators/lessThan/lessThan.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../lessThan.ts)</a>
@@ -2234,7 +2240,7 @@
                             <a href="#getValidationResult" title="terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThanOrEqual.ts)</a>
                         </li>
                         <li>
-                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/minDate/minDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../minDate.ts)</a>
+                            <a href="#getValidationResult" title="terminus-ui/src/validators/validators/maxDate/maxDate.ts"><b>getValidationResult</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../maxDate.ts)</a>
                         </li>
                         <li>
                             <a href="#greaterThanOrEqualValidator" title="terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts"><b>greaterThanOrEqualValidator</b>&nbsp;&nbsp;&nbsp;(terminus-ui/.../greaterThanOrEqual.ts)</a>
@@ -3066,6 +3072,148 @@
             </tbody>
         </table>
 </section>
+    <h3>terminus-ui/src/validators/validators/minDate/minDate.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValidationResult"></a>
+                        <span class="name">
+                            <b>
+                            getValidationResult
+                            </b>
+                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValidationResult(minDate: undefined, control: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return the validation result</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>minDate</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum allowed date</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>control</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The control containing the current value</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="minDateValidator"></a>
+                        <span class="name">
+                            <b>
+                            minDateValidator
+                            </b>
+                            <a href="#minDateValidator"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>minDateValidator(minDate: undefined)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Return a validator function to verify the selected date is after a minimum date</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>minDate</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The minimum date</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
     <h3>terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -3194,148 +3342,6 @@
                                                         <td>
                                                                 <code><ul>
 <li>The maximum value</li>
-</ul>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>terminus-ui/src/validators/validators/maxDate/maxDate.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getValidationResult"></a>
-                        <span class="name">
-                            <b>
-                            getValidationResult
-                            </b>
-                            <a href="#getValidationResult"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getValidationResult(maxDate: undefined, control: undefined)</code>
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Return the validation result</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>maxDate</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><ul>
-<li>The latest valid date</li>
-</ul>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>control</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><ul>
-<li>The control containing the current value</li>
-</ul>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="maxDateValidator"></a>
-                        <span class="name">
-                            <b>
-                            maxDateValidator
-                            </b>
-                            <a href="#maxDateValidator"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>maxDateValidator(maxDate: undefined)</code>
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the selected date is before a maximum date</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>maxDate</td>
-                                                    
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><ul>
-<li>The maximum date</li>
 </ul>
 </code>
                                                         </td>
@@ -3634,7 +3640,7 @@
             </tbody>
         </table>
 </section>
-    <h3>terminus-ui/src/validators/validators/minDate/minDate.ts</h3>
+    <h3>terminus-ui/src/validators/validators/maxDate/maxDate.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -3651,7 +3657,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getValidationResult(minDate: undefined, control: undefined)</code>
+<code>getValidationResult(maxDate: undefined, control: undefined)</code>
                     </td>
                 </tr>
 
@@ -3675,7 +3681,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>minDate</td>
+                                                        <td>maxDate</td>
                                                     
                                                     <td>
                                                             no
@@ -3684,7 +3690,7 @@
 
                                                         <td>
                                                                 <code><ul>
-<li>The minimum allowed date</li>
+<li>The latest valid date</li>
 </ul>
 </code>
                                                         </td>
@@ -3717,18 +3723,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="minDateValidator"></a>
+                        <a name="maxDateValidator"></a>
                         <span class="name">
                             <b>
-                            minDateValidator
+                            maxDateValidator
                             </b>
-                            <a href="#minDateValidator"><span class="fa fa-link"></span></a>
+                            <a href="#maxDateValidator"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>minDateValidator(minDate: undefined)</code>
+<code>maxDateValidator(maxDate: undefined)</code>
                     </td>
                 </tr>
 
@@ -3737,7 +3743,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Return a validator function to verify the selected date is after a minimum date</p>
+                            <div class="io-description"><p>Return a validator function to verify the selected date is before a maximum date</p>
 </div>
 
                             <div class="io-description">
@@ -3752,7 +3758,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>minDate</td>
+                                                        <td>maxDate</td>
                                                     
                                                     <td>
                                                             no
@@ -3761,7 +3767,7 @@
 
                                                         <td>
                                                                 <code><ul>
-<li>The minimum date</li>
+<li>The maximum date</li>
 </ul>
 </code>
                                                         </td>

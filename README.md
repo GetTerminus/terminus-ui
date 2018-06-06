@@ -13,7 +13,7 @@ The library of UI components used for Terminus applications.
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
 [![components](https://img.shields.io/badge/Components-28-blue.svg)](#components)
-[![pipes](https://img.shields.io/badge/Pipes-4-blue.svg)](#pipes)
+[![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-14-blue.svg)](#validators)
@@ -132,6 +132,7 @@ for each feature.
 | [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision     | :white_check_mark: |
 | [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case     | :white_check_mark: |
 | [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                   | :white_check_mark: |
+| [`tsTitleCase`][src-pipes-titleCase]       | Title Case A String                        | :white_check_mark: |
 
 
 ### Services
@@ -364,7 +365,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-pipes-roundNumber]: ./terminus-ui/src/pipes/round-number/round-number.pipe.ts
 [src-pipes-sentenceCase]: ./terminus-ui/src/pipes/sentence-case/sentence-case.pipe.ts
 [src-pipes-timeAgo]: ./terminus-ui/src/pipes/time-ago/time-ago.pipe.ts
-
+[src-pipes-titleCase]: ./terminus-ui/src/pipes/title-case/title-case.pipe.ts
 
 <!-- TS Primary Docs -->
 [autocomplete-docs]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html

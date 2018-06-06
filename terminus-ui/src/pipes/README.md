@@ -37,14 +37,14 @@ Then use the pipe in HTML:
 
 ## Class usage
 
-Add the desired pipe to your app as a provider:
+Import the pipes module to your app:
 
 ```typescript
 import { TsPipesModule } from '@terminus/ui';
 
 @NgModule({
   ...
-  providers: [
+  imports: [
     TsPipesModule,
   ],
   ...
