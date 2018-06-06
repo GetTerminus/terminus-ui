@@ -901,6 +901,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -1969,6 +1972,9 @@
                     id="classes-links"
 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -3018,7 +3024,7 @@ any validation messages</li>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">terminus-ui/src/input/input.component.ts:296</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">terminus-ui/src/input/input.component.ts:295</a></div>
                             </td>
                         </tr>
 
@@ -3091,7 +3097,7 @@ any validation messages</li>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">terminus-ui/src/input/input.component.ts:319</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">terminus-ui/src/input/input.component.ts:318</a></div>
                             </td>
                         </tr>
 
@@ -3171,7 +3177,7 @@ any validation messages</li>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">terminus-ui/src/input/input.component.ts:307</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">terminus-ui/src/input/input.component.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -3628,7 +3634,7 @@ any validation messages</li>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>(value: string) &#x3D;&gt; {
+                            <i>Default value : </i><code>(value: string): void &#x3D;&gt; {
     this.value &#x3D; value;
     this.changeDetectorRef.detectChanges();
   }</code>
@@ -3636,7 +3642,7 @@ any validation messages</li>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">terminus-ui/src/input/input.component.ts:287</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">terminus-ui/src/input/input.component.ts:286</a></div>
                             </td>
                         </tr>
 
@@ -3660,10 +3666,10 @@ any validation messages</li>
                                       </thead>
                                       <tbody>
                                                 <tr>
-                                                        <td>time</td>
+                                                        <td>value</td>
                                                         <td>
                                                                 <code><ul>
-<li>The time chosen</li>
+<li>The value to set</li>
 </ul>
 </code>
                                                         </td>
@@ -4399,10 +4405,9 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
   /**
    * Update the inner value when the formControl value is updated
    *
-   * @param time - The time chosen
-   * @return The difference in time
+   * @param value - The value to set
    */
-  public updateInnerValue &#x3D; (value: string) &#x3D;&gt; {
+  public updateInnerValue &#x3D; (value: string): void &#x3D;&gt; {
     this.value &#x3D; value;
     this.changeDetectorRef.detectChanges();
   }

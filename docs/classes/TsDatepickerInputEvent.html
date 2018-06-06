@@ -901,6 +901,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -1969,6 +1972,9 @@
                     id="classes-links"
 >
                     <li class="link">
+                        <a href="classes/TsAutocompleteSelectedEvent.html" data-type="entity-link">TsAutocompleteSelectedEvent</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/TsChartEvent.html" data-type="entity-link">TsChartEvent</a>
                     </li>
                     <li class="link">
@@ -2383,11 +2389,11 @@ rangeEndChange(event: MatDatepickerInputEvent) {
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Component,
-  Input,
-  Output,
-  OnInit,
   EventEmitter,
   forwardRef,
+  Input,
+  OnInit,
+  Output,
   ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
@@ -2459,19 +2465,14 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any &#x3D; {
 })
 export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**
-   * Expose the initial date to the template
-   */
-  public _initialDate!: Date;
-
-  /**
    * Expose the max date to the template
    */
-  public _maxDate!: Date;
+  public _maxDate: Date | undefined;
 
   /**
    * Expose the min date to the template
    */
-  public _minDate!: Date;
+  public _minDate: Date | undefined;
 
   /**
    * Store the value of the input
@@ -2507,37 +2508,34 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
    * Define the maximum date requirement and confirm it is a Date object
    */
   @Input()
-  public set maxDate(value: string | Date) {
-    if (!value) {
-      return;
-    }
-
-    this._maxDate &#x3D; this.verifyIsDateObject(value);
+  public set maxDate(value: string | Date | undefined) {
+    this._maxDate &#x3D; (value) ? this.verifyIsDateObject(value) : undefined;
   }
 
   /**
    * Define the minimum date requirement and confirm it is a Date object
    */
   @Input()
-  public set minDate(value: string | Date) {
-    if (!value) {
-      return;
-    }
-
-    this._minDate &#x3D; this.verifyIsDateObject(value);
+  public set minDate(value: string | Date | undefined) {
+    this._minDate &#x3D; (value) ? this.verifyIsDateObject(value) : undefined;
   }
 
   /**
    * Define a starting date for the datepicker
    */
   @Input()
-  public set initialDate(value: string | Date) {
+  public set initialDate(value: string | Date | undefined) {
     if (!value) {
       return;
     }
 
     this._initialDate &#x3D; this.verifyIsDateObject(value);
   }
+  // NOTE: This should never return a string but getter types are required to match setter types
+  public get initialDate(): string | Date | undefined {
+    return this._initialDate;
+  }
+  public _initialDate!: Date;
 
   /**
    * Define a date that the datepicker calendar should open to
@@ -2577,14 +2575,20 @@ export class TsDatepickerComponent extends TsReactiveFormBaseComponent implement
   @Output()
   public selected: EventEmitter&lt;TsDatepickerInputEvent&lt;Date&gt;&gt; &#x3D; new EventEmitter();
 
+  /**
+   * Define an event when the input receives a blur event
+   */
+  @Output()
+  public inputBlur: EventEmitter&lt;Date&gt; &#x3D; new EventEmitter();
+
 
   /**
    * Set the initial date if it exists
    */
   public ngOnInit() {
     // istanbul ignore else
-    if (this._initialDate) {
-      this.value &#x3D; this._initialDate;
+    if (this.initialDate) {
+      this.value &#x3D; this.initialDate;
     }
   }
 
