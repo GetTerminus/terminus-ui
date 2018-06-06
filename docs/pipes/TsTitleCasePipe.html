@@ -2164,15 +2164,19 @@
 </nav>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content pipe">
                    <div class="content-data">
 
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>TsConfirmationModalComponent</li>
+  <li>Pipes</li>
+  <li>TsTitleCasePipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -2182,326 +2186,139 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
-        </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>terminus-ui/src/confirmation/confirmation-modal.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="c-info">
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>The confirmation modal used by <a href="../directives/TsConfirmationDirective.html">TsConfirmationDirective</a></p>
-
-    </p>
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>terminus-ui/src/pipes/title-case/title-case.pipe.ts</code>
+        </p>
 
 
 
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">name</td>
+                        <td class="col-md-9">tsTitleCase</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
-
-            <tr>
-                <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">encapsulation</td>
-                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-3">exportAs</td>
-                <td class="col-md-9"><code>tsConfirmation</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">host</td>
-                <td class="col-md-9"><code>{<br>}</code></td>
-            </tr>
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ts-confirmation-modal</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>confirmation-modal.component.scss</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./confirmation-modal.component.html</code></td>
-            </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#confirm">confirm</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#gap">gap</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
-
-
-    <section>
+            <section>
     
-        <h3 id="inputs">
-            Properties
+        <h3 id="methods">
+            Methods
         </h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="confirm"></a>
+                        <a name="transform"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Public</span>
-                            confirm
+                            transform
                             </b>
-                            <a href="#confirm"><span class="fa fa-link"></span></a>
+                            <a href="#transform"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>confirm:     <code>Subject&lt;boolean&gt;</code>
-</code>
+<code>transform(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
-                        </td>
-                    </tr>
+
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">terminus-ui/src/confirmation/confirmation-modal.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">terminus-ui/src/pipes/title-case/title-case.pipe.ts:12</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Stream confirmation choices</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="gap"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            gap
-                            </b>
-                            <a href="#gap"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>gap:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>TS_SPACING.large[0]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">terminus-ui/src/confirmation/confirmation-modal.component.ts:34</a></div>
-                            </td>
-                        </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Define the space between the buttons</p>
-</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>string | undefined</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
 </section>
 
-</div>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
+  Pipe,
+  PipeTransform,
+  isDevMode,
 } from &#x27;@angular/core&#x27;;
-import { Subject } from &#x27;rxjs&#x27;;
-
-import { TS_SPACING } from &#x27;./../spacing/spacing.constant&#x27;;
 
 
-/**
- * The confirmation modal used by {@link TsConfirmationDirective}
- */
-@Component({
-  selector: &#x27;ts-confirmation-modal&#x27;,
-  styleUrls: [&#x27;./confirmation-modal.component.scss&#x27;],
-  templateUrl: &#x27;./confirmation-modal.component.html&#x27;,
-  host: {
-    class: &#x27;ts-confirmation&#x27;,
-  },
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  exportAs: &#x27;tsConfirmation&#x27;,
+@Pipe({
+  name: &#x27;tsTitleCase&#x27;,
 })
-export class TsConfirmationModalComponent {
-  /**
-   * Stream confirmation choices
-   */
-  public confirm: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+export class TsTitleCasePipe implements PipeTransform {
+  transform(value: string): string | undefined {
+    // Check for null values to avoid issues during data-binding
+    if (value &#x3D;&#x3D; null || value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      return;
+    }
 
-  /**
-   * Define the space between the buttons
-   */
-  public gap: string &#x3D; TS_SPACING.large[0];
+    return value.toLowerCase().split(&#x27; &#x27;).map((word) &#x3D;&gt; {
+      return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(&#x27; &#x27;);
+  }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div
-  fxLayout&#x3D;&quot;row&quot;
-  fxLayoutAlign&#x3D;&quot;center space-between&quot;
-  [fxLayoutGap]&#x3D;&quot;gap&quot;
-&gt;
-  &lt;ts-button
-    class&#x3D;&quot;qa-confirmation-cancel&quot;
-    theme&#x3D;&quot;warn&quot;
-    format&#x3D;&quot;hollow&quot;
-    (clickEvent)&#x3D;&quot;confirm.next(false)&quot;
-  &gt;
-    Cancel
-  &lt;/ts-button&gt;
-
-  &lt;ts-button
-    class&#x3D;&quot;qa-confirmation-confirm&quot;
-    (clickEvent)&#x3D;&quot;confirm.next(true)&quot;
-  &gt;
-    Confirm
-  &lt;/ts-button&gt;
-&lt;/div&gt;
-</code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="c-tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><div  fxLayout="row"  fxLayoutAlign="center space-between"  [fxLayoutGap]="gap">  <ts-button    class="qa-confirmation-cancel"    theme="warn"    format="hollow"    (clickEvent)="confirm.next(false)"  >    Cancel  </ts-button>  <ts-button    class="qa-confirmation-confirm"    (clickEvent)="confirm.next(true)"  >    Confirm  </ts-button></div></div>'
-    var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsChartComponent', 'selector': 'ts-chart'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsConfirmationModalComponent', 'selector': 'ts-confirmation-modal'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
-    var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsChartPointDirective', 'selector': 'ts-point'},{'name': 'TsChartSeriesDirective', 'selector': 'ts-series'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsConfirmationDirective', 'selector': '[tsConfirmation]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
-    var ACTUAL_COMPONENT = {'name': 'TsConfirmationModalComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -2534,8 +2351,8 @@ export class TsConfirmationModalComponent {
 
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'TsConfirmationModalComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'pipe';
+            var COMPODOC_CURRENT_PAGE_URL = 'TsTitleCasePipe.html';
         </script>
 
        <script src="../js/search/search.js"></script>
