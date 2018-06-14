@@ -1,0 +1,32 @@
+<div class="my-container" tsVerticalSpacing="large--2">
+  <ts-file-upload
+    [hideButton]="hideButton"
+    [multiple]="multiple"
+    [dimensionConstraints]="constraints"
+    [accept]="mimeTypes"
+    [progress]="progress"
+    (selected)="selected($event)"
+    (selectedMultiple)="selectedMultiple($event)"
+    (cleared)="file = null"
+  ></ts-file-upload>
+</div>
+
+<!--
+   -<div *ngIf="file">
+   -  DEMO RESULT: {{ file.name }}
+   -</div>
+   -->
+
+
+<div class="my-container" tsVerticalSpacing="large--2">
+  <ng-container *ngFor="let v of files">
+    <ts-file-upload
+      *ngIf="fileExists(v.id)"
+      [seedFile]="v.file"
+      [dimensionConstraints]="constraints"
+      [accept]="mimeTypes"
+      (selected)="selected($event)"
+      (cleared)="clearFile(v.id)"
+    ></ts-file-upload>
+  </ng-container>
+</div>

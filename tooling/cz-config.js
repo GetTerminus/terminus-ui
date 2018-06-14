@@ -26,6 +26,7 @@ module.exports = {
     {name: 'Copy'},
     {name: 'Datepicker'},
     {name: 'DateRange'},
+    {name: 'FileUpload'},
     {name: 'Icon'},
     {name: 'IconButton'},
     {name: 'Input'},
