@@ -1,0 +1,83 @@
+<div
+  class="c-file-upload qa-file-upload"
+  [class.c-file-upload--drag]="dragInProgress"
+  [class.c-file-upload--file]="file"
+  tabindex="1"
+  fxFill
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  [fxLayoutGap]="layoutGap"
+  title="{{ file?.name }}"
+>
+  <div class="c-file-upload__cover"></div>
+
+  <div
+    class="c-file-upload__empty"
+    fxLayout="fow"
+    fxLayoutAlign="start center"
+    fxFlex="grow"
+    *ngIf="!file"
+  >
+    <!--
+      NOTE: If the copy isn't touching the </ts-icon> closing tag too much space will exist between the icon and text
+    -->
+    <ts-icon inline="true">
+      cloud_upload
+    </ts-icon>Drop files here
+  </div>
+
+  <div
+    class="c-file-upload__file"
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="grow"
+    [hidden]="file"
+  >
+
+    <div
+      fxLayout="row"
+      fxFlex="grow"
+      fxLayoutAlign="start center"
+    >
+      <div
+        class="c-file-upload__preview"
+        [hidden]="!file"
+        fxFlex="noshrink"
+      >
+        <img #preview alt="">
+
+        <ts-icon-button
+          class="c-file-upload__remove qa-file-upload-remove"
+          theme="warn"
+          (click)="removeFile($event)"
+        >remove_circle</ts-icon-button>
+      </div>
+
+      <div
+        class="c-file-upload__filename"
+        fxFlex="grow"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+      {{ file?.name }}
+      </div>
+    </div>
+
+    <!--
+       -<mat-progress-bar
+       -  class="c-file-upload__progress"
+       -  [value]="file.progress"
+       -></mat-progress-bar>
+       -->
+  </div>
+
+  <ts-button
+    class="c-file-upload__prompt qa-file-upload-prompt"
+    fxFlex="noshrink"
+    [isDisabled]="dragInProgress"
+    (clickEvent)="promptForFiles()"
+  >
+    {{ dragInProgress ? 'Drop File' : 'Select File' }}
+  </ts-button>
+</div>
+

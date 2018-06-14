@@ -1,0 +1,137 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/cursors';
+@import './../scss/helpers/layout';
+
+
+$drag-bg: lighten(color(primary, xlight), 50%);
+
+
+//
+// @component
+//  File Upload
+// @description
+//  TODO:
+//    1. Add description
+//    2. Verify the 'c-' prefix should be used
+//    3. Add needed styles
+//
+.ts-file-upload {
+  display: block;
+  position: relative;
+
+  // Make the remove button visible when hovered
+  &:focus,
+  &:hover {
+    .c-file-upload__remove {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  // Top level styles belong here
+  .c-file-upload {
+    cursor: cursor(pointer);
+  }
+
+  // Dummy div to capture drag movement
+  // NOTE: Without this div, the 'select file' button seems to interfere with the component's
+  // dragover understanding.
+  .c-file-upload__cover {
+    @include take-space;
+    z-index: 2;
+  }
+}
+
+.c-file-upload {
+  border: 1px dashed color(utility, light);
+  border-radius: 3px;
+  padding: spacing(small);
+  transition: background-color 200ms ease, border-color 200ms ease;
+  will-change: background-color, border-color;
+
+  &:hover,
+  &:focus {
+    border-color: color(primary, xlight);
+  }
+
+  // Class added when dragging over
+  &--drag {
+    background-color: $drag-bg;
+    border-color: color(primary, xlight);
+  }
+
+  // Class add when a file has been selected
+  &--file {
+    border-color: color(primary, xlight);
+  }
+
+  // <div> container for the selected file
+  .c-file-upload__file {
+    @include typography(fixedwidth);
+    color: color(utility, dark);
+    font-size: .7em;
+    // Set up for progress bar
+    position: relative;
+  }
+
+  // <div> content shown when no file has been selected
+  .c-file-upload__empty {
+    color: color(utility, dark);
+
+    .ts-icon {
+      margin-right: spacing(small, 2);
+    }
+  }
+
+  // <div> container for the image preview
+  .c-file-upload__preview {
+    $box-size: 2.375rem;
+
+    border: 1px solid color(utility, light);
+    border-radius: 3px;
+    height: $box-size;
+    margin-right: spacing(small);
+    max-width: $box-size * 2;
+    padding: spacing(small, 2);
+    // Set up for remove button
+    position: relative;
+
+    // The selected image
+    img {
+      display: block;
+      max-height: 100%;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  // <div> wrapper for the filename
+  .c-file-upload__filename {
+    text-overflow: ellipsis;
+  }
+
+  // ts-icon-button remove the file
+  .c-file-upload__remove {
+    font-size: .7em;
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: color 200ms ease, opacity 200ms ease;
+    will-change: color, opacity;
+  }
+
+  // mat-progress-bar
+  .c-file-upload__progress {
+    display: block;
+  }
+
+  // ts-button
+  .c-file-upload__prompt {
+    z-index: 1;
+  }
+}

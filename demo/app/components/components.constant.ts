@@ -11,6 +11,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { IconComponent } from './icon/icon.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { InputComponent } from './input/input.component';
@@ -112,6 +113,13 @@ export const componentsList: Routes = [
     component: DateRangeComponent,
     data: {
       name: 'Date Range',
+    },
+  },
+  {
+    path: 'file-upload',
+    component: FileUploadComponent,
+    data: {
+      name: 'File Upload',
     },
   },
   {

@@ -1,0 +1,11 @@
+<div class="my-container">
+  <ts-file-upload
+    [accept]="mimeTypes"
+    (dropped)="dropped($event)"
+    (droppedMultiple)="droppedMultiple($event)"
+  ></ts-file-upload>
+</div>
+
+<div>
+  {{ file?.name }}
+</div>

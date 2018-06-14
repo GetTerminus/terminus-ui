@@ -100,3 +100,9 @@ $ripple-warn: rgba($warn, $ripple-opacity);
     }
   }
 }
+
+.ts-icon-button {
+  .c-icon-button {
+    margin-left: 1px;
+  }
+}

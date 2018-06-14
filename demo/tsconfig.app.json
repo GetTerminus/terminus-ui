@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
+    "preserveWhitespaces": false,
     "paths": {
       "@terminus/ui": ["./../terminus-ui/src/public-api.ts"]
     }
