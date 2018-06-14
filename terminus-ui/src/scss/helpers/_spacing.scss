@@ -46,10 +46,10 @@ $g-spacings: (
  * @param $type
  *  The spacing map to use. Default: default
  * @param $size
- *  The value desired from the map. Default: 1x
+ *  The value desired from the map. Default: 0
  * @example
  *  padding: spacing();
- *  padding: spacing(large, 4x);
+ *  padding: spacing(large, 4);
  */
 @function spacing($type: default, $size: 0) {
   // Verify the type exists
