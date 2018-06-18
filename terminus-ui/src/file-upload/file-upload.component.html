@@ -3,13 +3,10 @@
   [class.c-file-upload--drag]="dragInProgress"
   [class.c-file-upload--file]="file"
   tabindex="1"
-  fxFill
   fxLayout="row"
   fxLayoutAlign="start center"
   [fxLayoutGap]="layoutGap"
-  title="{{ file?.name }}"
 >
-  <div class="c-file-upload__cover"></div>
 
   <div
     class="c-file-upload__empty"
@@ -29,14 +26,14 @@
   <div
     class="c-file-upload__file"
     [class.c-file-upload__file--hidden]="!file"
+    fxFlex
     fxLayout="column"
     fxLayoutAlign="center start"
-    fxFlex="grow"
   >
 
     <div
+      fxFill
       fxLayout="row"
-      fxFlex="grow"
       fxLayoutAlign="start center"
     >
       <div
@@ -45,12 +42,6 @@
         fxFlex="noshrink"
       >
         <img #preview alt="">
-
-        <ts-icon-button
-          class="c-file-upload__remove qa-file-upload-remove"
-          theme="warn"
-          (click)="removeFile($event)"
-        >remove_circle</ts-icon-button>
       </div>
 
       <div
@@ -58,9 +49,19 @@
         fxFlex="grow"
         fxLayout="row"
         fxLayoutAlign="start center"
+        title="{{ file?.name }}"
       >
-      {{ file?.name }}
+        {{ file?.name }}
       </div>
+
+      <ts-tooltip tooltipValue="Remove file">
+        <ts-icon-button
+          class="c-file-upload__remove qa-file-upload-remove"
+          theme="warn"
+          actionName="Reset"
+          (click)="removeFile($event)"
+        >clear</ts-icon-button>
+      </ts-tooltip>
     </div>
 
     <!--
@@ -73,7 +74,6 @@
 
   <ts-button
     class="c-file-upload__prompt qa-file-upload-prompt"
-    fxFlex="noshrink"
     [isDisabled]="dragInProgress"
     (clickEvent)="promptForFiles()"
   >

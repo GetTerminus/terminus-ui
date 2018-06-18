@@ -21,26 +21,9 @@ $drag-bg: lighten(color(primary, xlight), 50%);
   display: block;
   position: relative;
 
-  // Make the remove button visible when hovered
-  &:focus,
-  &:hover {
-    .c-file-upload__remove {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
   // Top level styles belong here
   .c-file-upload {
     cursor: cursor(pointer);
-  }
-
-  // Dummy div to capture drag movement
-  // NOTE: Without this div, the 'select file' button seems to interfere with the component's
-  // dragover understanding.
-  .c-file-upload__cover {
-    @include take-space;
-    z-index: 2;
   }
 }
 
@@ -60,6 +43,11 @@ $drag-bg: lighten(color(primary, xlight), 50%);
   &--drag {
     background-color: $drag-bg;
     border-color: color(primary, xlight);
+
+    // Hide the remove button during a drag if it's visible
+    .c-file-upload__remove {
+      opacity: 0;
+    }
   }
 
   // Class add when a file has been selected
@@ -72,6 +60,7 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     @include typography(fixedwidth);
     color: color(utility, dark);
     font-size: .7em;
+    overflow: auto;
     // Set up for progress bar
     position: relative;
 
@@ -99,6 +88,8 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     height: $box-size;
     margin-right: spacing(small);
     max-width: $box-size * 2;
+    // Don't let alt tag text spill out
+    overflow: hidden;
     padding: spacing(small, 2);
     // Set up for remove button
     position: relative;
@@ -114,19 +105,14 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   // <div> wrapper for the filename
   .c-file-upload__filename {
+    overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   // ts-icon-button remove the file
   .c-file-upload__remove {
-    font-size: .7em;
-    left: 50%;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: color 200ms ease, opacity 200ms ease;
+    transition: color 200ms ease, opacity 100ms ease;
     will-change: color, opacity;
   }
 
@@ -137,6 +123,8 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   // ts-button
   .c-file-upload__prompt {
-    z-index: 1;
+    // Disable pointer-events to avoid odd bug when hovering the edge of a TsButton while dragging a file.
+    // Since the entire component is clickable the button is really only there for a user-target.
+    pointer-events: none;
   }
 }

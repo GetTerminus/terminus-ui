@@ -42,6 +42,20 @@ import { TsImageDimensions } from './image-dimensions';
 import { TsFileUploadSizeConstraints } from './size-constraints';
 
 
+/**
+ * Polyfills for FileReader Events
+ * Reference: https://stackoverflow.com/a/35790786/722367
+ */
+interface FileReaderEventTarget extends EventTarget {
+  result: string;
+}
+interface FileReaderEvent extends Event {
+  target: FileReaderEventTarget;
+  getMessage(): string;
+}
+
+
+
 const CONSTRAINTS_MOCK: TsFileUploadSizeConstraints = [
   {
     height: {
@@ -248,6 +262,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   @Output()
   public droppedMultiple: EventEmitter<File[]> = new EventEmitter();
 
+  @Output()
+  public cleared: EventEmitter<boolean> = new EventEmitter();
+
 
   @HostListener('dragover', ['$event'])
   public handleDragover(e: DragEvent) {
@@ -386,11 +403,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
       const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
       this.file = newFile;
       this.dropped.emit(newFile);
+      // TODO: I think this timeout is due to the async nature of newing up the image?
       setTimeout(() => {
-        /*
-         *this.preview.nativeElement.src = newFile;
-         */
-        console.log('newFile: ', newFile);
+        this.preview.nativeElement.src = newFile.fileContents;
         this.setValidationMessages(this.file);
       }, 50);
     }
@@ -440,7 +455,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
   public removeFile(e: Event): void {
     this.file = undefined;
+    this.clearValidationMessages();
     this.preventAndStopEventPropagation(e);
+    this.cleared.emit(true);
   }
 
 
@@ -468,19 +485,22 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     };
 
     const validations = Object.keys(file.validations);
-    console.log('SET VALIDATIONS: ', file.validations);
 
     for (let i = 0; i < validations.length; i += 1) {
       const key: string = validations[i];
-      console.log('key/val: ', key, file.validations[key]);
       if (!file.validations[key]) {
         errors[key] = responses[key];
       }
     }
 
-    console.log('errors: ', errors);
     this.control.setErrors(errors);
     this.control.markAsTouched();
+    this.changeDetectorRef.markForCheck();
+  }
+
+
+  clearValidationMessages(): void {
+    this.control.setErrors(null);
     this.changeDetectorRef.markForCheck();
   }
 

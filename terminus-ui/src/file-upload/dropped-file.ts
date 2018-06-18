@@ -40,6 +40,7 @@ const BYTES_PER_KB = 1024;
 
 
 export class TsDroppedFile {
+  public name: string | undefined;
   public mimeType: string;
   public dimensions: TsImageDimensions | undefined;
   public size: number;
@@ -53,9 +54,6 @@ export class TsDroppedFile {
   private imgLoaded$!: Observable<Event>;
   private fileReader: FileReader = new FileReader();
   private img: HTMLImageElement = new Image();
-  private typeIsValid$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private sizeIsValid$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private dimensionsAreValid$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
 
   constructor(
@@ -66,37 +64,24 @@ export class TsDroppedFile {
     console.warn('TsDroppedFile');
     this.mimeType = this.file.type;
     this.size = Math.ceil(this.file.size / BYTES_PER_KB);
+    this.name = this.file.name;
 
     // Begin the validation chain by validating image dimensions
     this.determineImageDimensions(() => {
       // Validate mime-type
       if (isAllowedMimeType) {
-        console.log('TS_ACCEPTED_MIME_TYPES.includes(this.file.type as any): ', TS_ACCEPTED_MIME_TYPES.includes(this.file.type as any));
         if (TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes)) {
-          console.log('setting true');
-          /*
-           *this.typeIsValid$.next(true);
-           */
           this.validations.fileType = true;
         }
       }
 
       // Validate file size
       if (this.size <= this.maxSize) {
-        /*
-         *this.sizeIsValid$.next(true);
-         */
         this.validations.fileSize = true;
       }
 
       // Collect all validations and set final validation status
-      /*
-       *this.isValidFile().pipe(take(1)).subscribe((isValid) => {
-       *  console.warn('Final File Validation: ', isValid);
-       *  this.valid = isValid;
-       *});
-       */
-      const result = this.isValidFile();
+      const result = (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
       console.log('Final File Validation: ', result);
     });
 
@@ -124,41 +109,8 @@ export class TsDroppedFile {
     return this.mimeType.includes('image');
   }
 
-
-  /**
-   * Collect all validation results and determine if the file is valid
-   *
-   * @return Is the file valid
-   */
-  private isValidFile(): boolean {
-    console.table(this.validations);
-    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
-/*
- *    return this.typeIsValid$.pipe(
- *      withLatestFrom(this.dimensionsAreValid$, this.sizeIsValid$),
- *      switchMap((v, index) => {
- *        const validType: boolean = v[0];
- *        const validDimensions: boolean = v[1];
- *        const validSize: boolean = v[2];
- *
- *        // Set validations on class for consumers
- *        this.validations.fileType = validType;
- *        this.validations.imageDimensions = validDimensions;
- *        this.validations.fileSize = validSize;
- *
- *        // For CSV files we only care about the type validation
- *        if (this.isCSV && validType) {
- *          return of(true);
- *        }
- *
- *        if (this.isImage && validType && validDimensions && validSize) {
- *          return of(true);
- *        }
- *
- *        return of(false);
- *      }),
- *    );
- */
+  public get fileContents() {
+    return this.fileReader.result;
   }
 
 
@@ -174,10 +126,7 @@ export class TsDroppedFile {
         callback();
       }
 
-      // Not an image so set dimension validation to true
-      /*
-       *this.dimensionsAreValid$.next(true);
-       */
+      // Since this is not an image, set dimension validation to true to 'bypass'
       this.validations.fileSize = true;
       return;
     }
@@ -198,11 +147,7 @@ export class TsDroppedFile {
         this.dimensions = new TsImageDimensions(this.img.naturalWidth, this.img.naturalHeight);
 
         // Validate dimensions
-        /*
-         *this.dimensionsAreValid$.next(this.validateImageDimensions(this.sizeConstraints));
-         */
         this.validations.imageDimensions = this.validateImageDimensions(this.sizeConstraints);
-;
 
         // Call the callback if one exists
         if (callback) {
@@ -240,7 +185,6 @@ export class TsDroppedFile {
       const widthIsValid: boolean = width >= constraint.width.min && width <= constraint.width.max;
 
       if (heightIsValid && widthIsValid) {
-        console.log('image valid');
         return true;
       }
     }

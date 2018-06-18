@@ -1,11 +1,12 @@
-<div class="my-container">
+<div class="my-container" tsVerticalSpacing="large--2">
   <ts-file-upload
     [accept]="mimeTypes"
     (dropped)="dropped($event)"
     (droppedMultiple)="droppedMultiple($event)"
+    (cleared)="file = null"
   ></ts-file-upload>
 </div>
 
-<div>
-  {{ file?.name }}
+<div *ngIf="file">
+  DEMO RESULT: {{ file.name }}
 </div>
