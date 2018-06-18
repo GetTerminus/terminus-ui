@@ -16,6 +16,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  FormControl,
+  ValidationErrors,
+} from '@angular/forms';
+import {
   inputHasChanged,
   TsDocumentService,
 } from '@terminus/ngx-tools';
@@ -59,16 +63,18 @@ const CONSTRAINTS_MOCK: TsFileUploadSizeConstraints = [
       max: 72,
     },
   },
-  {
-    height: {
-      min: 400,
-      max: 500,
-    },
-    width: {
-      min: 700,
-      max: 800,
-    },
-  },
+  /*
+   *{
+   *  height: {
+   *    min: 400,
+   *    max: 500,
+   *  },
+   *  width: {
+   *    min: 700,
+   *    max: 800,
+   *  },
+   *},
+   */
 ];
 
 
@@ -123,7 +129,7 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   /**
    * Expose a list of names for selected file
    */
-  public file: File | undefined;
+  public file: TsDroppedFile | undefined;
 
   /**
    * Define the flexbox layout gap
@@ -135,7 +141,10 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
    */
   private virtualFileInput: HTMLInputElement;
 
-  private imageSize$ = new BehaviorSubject<TsImageDimensions>({width: 0, height: 0});
+  /**
+   * Create a form control to manage validation messages
+   */
+  public control = new FormControl();
 
   /**
    * Reflect the ID back to the DOM
@@ -151,20 +160,20 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
   /**
    * Define the accepted mime types
-   * TODO: Can we define a mimeTypes type to use rather than string?
    */
   @Input()
-  public set accept(value: string | string[] | undefined) {
+  public set accept(value: TsFileAcceptedMimeTypes | TsFileAcceptedMimeTypes[]) {
     if (!value) {
-      return;
+      this._acceptedTypes = TS_ACCEPTED_MIME_TYPES.slice();
+    } else {
+      this._acceptedTypes = coerceArray(value);
     }
-
-    this._accept = coerceArray(value);
   }
-  public get accept(): string | string[] | undefined {
-    return this._accept;
+  // NOTE: Setter name is different to allow different types passed in vs returned
+  public get acceptedTypes(): TsFileAcceptedMimeTypes[] {
+    return this._acceptedTypes;
   }
-  private _accept: string | string[] | undefined;
+  private _acceptedTypes: TsFileAcceptedMimeTypes[] = TS_ACCEPTED_MIME_TYPES.slice();
 
   /**
    * Define an ID for the component
@@ -262,7 +271,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
   @HostListener('drop', ['$event'])
   public handleDrop(e: DragEvent) {
-    console.log('COMP: handleDrop: ', e);
+    /*
+     *console.log('COMP: handleDrop: ', e);
+     */
 
     this.preventAndStopEventPropagation(e);
     this.dragInProgress = false;
@@ -297,12 +308,6 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   public ngAfterContentInit(): void {
     this.virtualFileInput.addEventListener('change', this.onVirtualInputElementChange.bind(this));
     this.updateVirtualFileInputAttrs(this.virtualFileInput);
-
-    this.imageSize$.subscribe((v) => {
-      /*
-       *console.log('IMAGE SIZE: ', v);
-       */
-    });
   }
 
 
@@ -318,6 +323,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
+  /**
+   * Remove event listener when the component is destroyed
+   */
   public ngOnDestroy(): void {
     if (this.virtualFileInput) {
       this.virtualFileInput.removeEventListener('change', this.onVirtualInputElementChange.bind(this));
@@ -325,6 +333,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
+  /**
+   * Open the file selection window when the user interacts
+   */
   public promptForFiles(): void {
     this.virtualFileInput.click();
   }
@@ -362,28 +373,27 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     // Convert the FileList to an Array
     const filesArray: File[] = Array.from(files);
 
+    // If multiple were dropped, simply emit the event and return. Currently this component only supports single files.
     if (filesArray.length > 1) {
       this.droppedMultiple.emit(filesArray);
       console.log('dropped multiple: ', filesArray);
       return;
     }
 
+    const file = filesArray[0] ? filesArray[0] : undefined;
 
-    this.file = filesArray[0] ? filesArray[0] : undefined;
-
-
-    if (this.file) {
-      const file = new TsDroppedFile(this.file, this.sizeConstraints, this.maximumKilobytesPerFile);
+    if (file) {
+      const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
+      this.file = newFile;
+      this.dropped.emit(newFile);
+      setTimeout(() => {
+        /*
+         *this.preview.nativeElement.src = newFile;
+         */
+        console.log('newFile: ', newFile);
+        this.setValidationMessages(this.file);
+      }, 50);
     }
-
-    /*
-     *this.dropped.emit(filesArray);
-     */
-  }
-
-
-  private validateCSV(file: File): boolean {
-    return true;
   }
 
 
@@ -431,6 +441,47 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   public removeFile(e: Event): void {
     this.file = undefined;
     this.preventAndStopEventPropagation(e);
+  }
+
+
+  private setValidationMessages(file: TsDroppedFile | undefined) {
+    if (!file) {
+      return;
+    }
+
+    const errors: ValidationErrors = {};
+    const responses: {[key: string]: ValidationErrors} = {
+      fileSize: {
+        valid: false,
+        actual: file.size,
+        max: this.maximumKilobytesPerFile,
+      },
+      fileType: {
+        valid: false,
+        actual: file.mimeType,
+        accepted: this.acceptedTypes.join(', '),
+      },
+      imageDimensions: {
+        valid: false,
+        actual: file.dimensions,
+      },
+    };
+
+    const validations = Object.keys(file.validations);
+    console.log('SET VALIDATIONS: ', file.validations);
+
+    for (let i = 0; i < validations.length; i += 1) {
+      const key: string = validations[i];
+      console.log('key/val: ', key, file.validations[key]);
+      if (!file.validations[key]) {
+        errors[key] = responses[key];
+      }
+    }
+
+    console.log('errors: ', errors);
+    this.control.setErrors(errors);
+    this.control.markAsTouched();
+    this.changeDetectorRef.markForCheck();
   }
 
 }

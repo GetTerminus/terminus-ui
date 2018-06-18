@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsIconButtonModule } from './../icon-button/icon-button.module';
 import { TsButtonModule } from './../button/button.module';
@@ -24,6 +25,7 @@ export * from './file-rejection-reasons.enum';
     TsButtonModule,
     TsIconModule,
     TsIconButtonModule,
+    TsValidationMessagesModule,
   ],
   declarations: [
     TsFileUploadComponent,

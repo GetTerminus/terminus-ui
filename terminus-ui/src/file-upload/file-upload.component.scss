@@ -74,6 +74,11 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     font-size: .7em;
     // Set up for progress bar
     position: relative;
+
+    &--hidden {
+      position: absolute;
+      visibility: hidden;
+    }
   }
 
   // <div> content shown when no file has been selected
