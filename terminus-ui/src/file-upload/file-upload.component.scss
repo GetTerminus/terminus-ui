@@ -5,6 +5,7 @@
 @import './../scss/helpers/layout';
 
 
+// TODO: Formalize this color or change
 $drag-bg: lighten(color(primary, xlight), 50%);
 
 
@@ -12,10 +13,7 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 // @component
 //  File Upload
 // @description
-//  TODO:
-//    1. Add description
-//    2. Verify the 'c-' prefix should be used
-//    3. Add needed styles
+//  A file upload component
 //
 .ts-file-upload {
   display: block;
@@ -31,7 +29,7 @@ $drag-bg: lighten(color(primary, xlight), 50%);
   border: 1px dashed color(utility, light);
   border-radius: 3px;
   padding: spacing(small);
-  transition: background-color 200ms ease, border-color 200ms ease;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
   will-change: background-color, border-color;
 
   &:hover,
@@ -50,9 +48,14 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     }
   }
 
-  // Class add when a file has been selected
+  // Class added when a file has been selected
   &--file {
     border-color: color(primary, xlight);
+  }
+
+  // Class added if any validation fails
+  &--error {
+    border-color: color(warn);
   }
 
   // <div> container for the selected file
@@ -105,6 +108,11 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   // <div> wrapper for the filename
   .c-file-upload__filename {
+    overflow: hidden;
+  }
+
+  // <div> Inner wrapper needed since text-overflow must be on a block/inline-block element
+  .c-file-upload__filename-inner {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

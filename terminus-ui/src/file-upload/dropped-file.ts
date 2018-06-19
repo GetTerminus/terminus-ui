@@ -44,7 +44,6 @@ export class TsDroppedFile {
   public mimeType: string;
   public dimensions: TsImageDimensions | undefined;
   public size: number;
-  public valid = false;
   public validations: TsFileValidations = {
     fileType: false,
     fileSize: false,
@@ -79,10 +78,6 @@ export class TsDroppedFile {
       if (this.size <= this.maxSize) {
         this.validations.fileSize = true;
       }
-
-      // Collect all validations and set final validation status
-      const result = (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
-      console.log('Final File Validation: ', result);
     });
 
 
@@ -109,8 +104,12 @@ export class TsDroppedFile {
     return this.mimeType.includes('image');
   }
 
-  public get fileContents() {
+  public get fileContents(): string {
     return this.fileReader.result;
+  }
+
+  public get isValid(): boolean {
+    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
   }
 
 

@@ -2,6 +2,7 @@
   class="c-file-upload qa-file-upload"
   [class.c-file-upload--drag]="dragInProgress"
   [class.c-file-upload--file]="file"
+  [class.c-file-upload--error]="file && !file.isValid"
   tabindex="1"
   fxLayout="row"
   fxLayoutAlign="start center"
@@ -51,7 +52,9 @@
         fxLayoutAlign="start center"
         title="{{ file?.name }}"
       >
-        {{ file?.name }}
+        <div class="c-file-upload__filename-inner">
+          {{ file?.name }}
+        </div>
       </div>
 
       <ts-tooltip tooltipValue="Remove file">
@@ -86,3 +89,5 @@
   *ngIf="control"
   [control]="control"
 ></ts-validation-messages>
+
+{{ file?.isValid }}

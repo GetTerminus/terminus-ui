@@ -8,6 +8,7 @@ import {
   HostListener,
   HostBinding,
   Input,
+  isDevMode,
   OnChanges,
   OnDestroy,
   Output,
@@ -40,20 +41,6 @@ import {
 } from './mime-types';
 import { TsImageDimensions } from './image-dimensions';
 import { TsFileUploadSizeConstraints } from './size-constraints';
-
-
-/**
- * Polyfills for FileReader Events
- * Reference: https://stackoverflow.com/a/35790786/722367
- */
-interface FileReaderEventTarget extends EventTarget {
-  result: string;
-}
-interface FileReaderEvent extends Event {
-  target: FileReaderEventTarget;
-  getMessage(): string;
-}
-
 
 
 const CONSTRAINTS_MOCK: TsFileUploadSizeConstraints = [
@@ -267,44 +254,31 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
 
   @HostListener('dragover', ['$event'])
-  public handleDragover(e: DragEvent) {
-    this.preventAndStopEventPropagation(e);
-    /*
-     *console.log('handleDragover: ', e);
-     */
-
+  public handleDragover(event: DragEvent) {
+    this.preventAndStopEventPropagation(event);
     this.dragInProgress = true;
   }
 
   @HostListener('dragleave', ['$event'])
-  public handleDragleave(e: DragEvent) {
-    this.preventAndStopEventPropagation(e);
-    /*
-     *console.log('handleDragleave: ', e);
-     */
-
+  public handleDragleave(event: DragEvent) {
+    this.preventAndStopEventPropagation(event);
     this.dragInProgress = false;
   }
 
   @HostListener('drop', ['$event'])
-  public handleDrop(e: DragEvent) {
-    /*
-     *console.log('COMP: handleDrop: ', e);
-     */
-
-    this.preventAndStopEventPropagation(e);
+  public handleDrop(event: DragEvent) {
+    this.preventAndStopEventPropagation(event);
     this.dragInProgress = false;
-
-    this.collectFilesFromEvent(e);
+    this.collectFilesFromEvent(event);
   }
 
-  @HostListener('click', ['$event'])
-  public handleClick(e: Event) {
+  @HostListener('click')
+  public handleClick() {
     this.promptForFiles();
   }
 
-  @HostListener('keydown.enter', ['$event'])
-  public handleEnter(e: KeyboardEvent) {
+  @HostListener('keydown.enter')
+  public handleEnter() {
     this.promptForFiles();
     this.elementRef.nativeElement.blur();
   }
@@ -359,6 +333,19 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
 
   /**
+   * Remove a loaded file, clear validation and emit event
+   *
+   * @param event - The event
+   */
+  public removeFile(event: Event): void {
+    this.file = undefined;
+    this.clearValidationMessages();
+    this.preventAndStopEventPropagation(event);
+    this.cleared.emit(true);
+  }
+
+
+  /**
    * Create a virtual file input
    *
    * @return The HTMLInputElement for file collection
@@ -367,11 +354,15 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     const input: HTMLInputElement = this.documentService.document.createElement('input');
     input.setAttribute('type', 'file');
     input.style.display = 'none';
-
     return input;
   }
 
 
+  /**
+   * Get all dropped files from an event
+   *
+   * @param event - The event
+   */
   private collectFilesFromEvent(event: DragEvent | Event): void {
     let files: FileList | undefined;
 
@@ -383,17 +374,16 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
       }
     }
 
-    if (!files) {
-      throw Error('Fired event contains no file');
+    if (!files && isDevMode()) {
+      throw Error('TsFileUpload: Event contained no file.');
     }
 
     // Convert the FileList to an Array
-    const filesArray: File[] = Array.from(files);
+    const filesArray: File[] = files ? Array.from(files) : [];
 
     // If multiple were dropped, simply emit the event and return. Currently this component only supports single files.
     if (filesArray.length > 1) {
       this.droppedMultiple.emit(filesArray);
-      console.log('dropped multiple: ', filesArray);
       return;
     }
 
@@ -403,7 +393,8 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
       const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
       this.file = newFile;
       this.dropped.emit(newFile);
-      // TODO: I think this timeout is due to the async nature of newing up the image?
+
+      // TODO: I think the need for this timeout is due to the async nature of newing up the image?
       setTimeout(() => {
         this.preview.nativeElement.src = newFile.fileContents;
         this.setValidationMessages(this.file);
@@ -412,8 +403,13 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
-  private onVirtualInputElementChange(e: Event): void {
-    this.collectFilesFromEvent(e);
+  /**
+   * Listen for changes to the virtual input
+   *
+   * @param event - The event
+   */
+  private onVirtualInputElementChange(event: Event): void {
+    this.collectFilesFromEvent(event);
     this.virtualFileInput.value = '';
   }
 
@@ -427,41 +423,47 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
+  /**
+   * Update the attributes of the virtual file input based on @Inputs
+   *
+   * @param input - The HTML input element
+   */
   private updateVirtualFileInputAttrs(input: HTMLInputElement): void {
     const hasMultipleSetting: boolean = input.hasAttribute('multiple');
     const hasAcceptSetting: boolean = input.hasAttribute('accept');
 
     // Should set multiple
+    // istanbul ignore else
     if (this.multiple && !hasMultipleSetting) {
       this.virtualFileInput.setAttribute('multiple', 'true');
     }
 
     // Should remove multiple
+    // istanbul ignore else
     if (!this.multiple && hasMultipleSetting) {
       this.virtualFileInput.removeAttribute('multiple');
     }
 
     // Should set accept
+    // istanbul ignore else
     if (this.accept && !hasAcceptSetting) {
       this.virtualFileInput.setAttribute('accept', this.accept.toString());
     }
 
     // Should remove accept
+    // istanbul ignore else
     if (!this.accept && hasAcceptSetting) {
       this.virtualFileInput.removeAttribute('accept');
     }
   }
 
 
-  public removeFile(e: Event): void {
-    this.file = undefined;
-    this.clearValidationMessages();
-    this.preventAndStopEventPropagation(e);
-    this.cleared.emit(true);
-  }
-
-
-  private setValidationMessages(file: TsDroppedFile | undefined) {
+  /**
+   * Set validation messages
+   *
+   * @param file - The file
+   */
+  private setValidationMessages(file: TsDroppedFile | undefined): void {
     if (!file) {
       return;
     }
@@ -499,7 +501,10 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
-  clearValidationMessages(): void {
+  /**
+   * Clear all validation messages
+   */
+  private clearValidationMessages(): void {
     this.control.setErrors(null);
     this.changeDetectorRef.markForCheck();
   }
