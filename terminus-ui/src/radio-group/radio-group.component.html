@@ -44,7 +44,10 @@
 <!-- VISUAL MODE -->
 <ng-container *ngIf="isVisual">
 
-  <fieldset class="c-radio c-radio--visual qa-radio-group">
+  <fieldset
+    class="c-radio c-radio--visual qa-radio-group"
+    [class.c-radio--small]="small"
+  >
     <legend>
       {{ label }}
     </legend>
