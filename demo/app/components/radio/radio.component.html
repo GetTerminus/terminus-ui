@@ -62,4 +62,22 @@
     Selected value: {{ myForm.get('myRadioGroup2')?.value }}
   </ts-card>
 
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Group 2 - visual:small
+    </h3>
+
+    <ts-radio-group
+      isVisual="true"
+      small="true"
+      [formatUILabelFn]="uiFormatter"
+      [formatModelValueFn]="modelFormatter"
+      [formControl]="myForm.get('myRadioGroup2')"
+      [options]="items2$ | async"
+    ></ts-radio-group>
+
+    Selected value: {{ myForm.get('myRadioGroup2')?.value }}
+  </ts-card>
+
 </form>
