@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
@@ -70,6 +71,19 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public ariaLabel: string | undefined;
+
+  /**
+   * Allow the checked state to be set
+   */
+  @Input()
+  public set isChecked(value: boolean) {
+    this._isChecked = coerceBooleanProperty(value);
+    this.value = this._isChecked;
+  }
+  public get isChecked(): boolean {
+    return this._isChecked;
+  }
+  private _isChecked: boolean = false;
 
   /**
    * Define if the toggle should be disabled
