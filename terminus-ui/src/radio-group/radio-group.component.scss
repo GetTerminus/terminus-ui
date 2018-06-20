@@ -63,6 +63,12 @@
  */
 
 .c-radio--visual {
+  &.c-radio--small {
+    .c-radio__control {
+      @include responsive-ratio(3, 1);
+    }
+  }
+
   // <div> wrapper for all options
   .c-radio__options {
     display: grid;
