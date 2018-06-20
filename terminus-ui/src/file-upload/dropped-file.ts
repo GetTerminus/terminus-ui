@@ -65,8 +65,6 @@ export class TsDroppedFile {
     this.determineImageDimensions(() => {
       // Validate mime-type
       if (isAllowedMimeType) {
-        console.log('mimeType: ', this.file.type);
-        console.log('check: ', TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes));
         if (TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes)) {
           this.validations.fileType = true;
         }
