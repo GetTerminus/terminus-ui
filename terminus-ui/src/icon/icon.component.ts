@@ -1,11 +1,14 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
-  ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { CSV_ICON } from './custom-icons/csv';
 
 
 /**
@@ -54,4 +57,13 @@ export class TsIconComponent {
    */
   @Input()
   public theme: TsStyleThemeTypes | undefined;
+
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+  ) {
+     this.matIconRegistry.addSvgIconLiteral('csv', this.domSanitizer.bypassSecurityTrustHtml(CSV_ICON));
+  }
+
 }
