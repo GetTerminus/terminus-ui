@@ -23,6 +23,11 @@ $drag-bg: lighten(color(primary, xlight), 50%);
   .c-file-upload {
     cursor: cursor(pointer);
   }
+
+  // If followed directly by another instance, add vertical spacing
+  + .ts-file-upload {
+    margin-top: spacing(large);
+  }
 }
 
 .c-file-upload {

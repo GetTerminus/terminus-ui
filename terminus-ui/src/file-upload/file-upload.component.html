@@ -42,7 +42,16 @@
         [hidden]="!file"
         fxFlex="noshrink"
       >
-        <img #preview alt="">
+        <img
+          #preview
+          alt=""
+          *ngIf="file?.isImage"
+        >
+
+        <ts-icon
+          [svgIcon]="'csv'"
+          *ngIf="file?.isCSV"
+        ></ts-icon>
       </div>
 
       <div
@@ -89,5 +98,3 @@
   *ngIf="control"
   [control]="control"
 ></ts-validation-messages>
-
-{{ file?.isValid }}

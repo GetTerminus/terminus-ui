@@ -7,6 +7,21 @@
   ></ts-file-upload>
 </div>
 
-<div *ngIf="file">
-  DEMO RESULT: {{ file.name }}
+<!--
+   -<div *ngIf="file">
+   -  DEMO RESULT: {{ file.name }}
+   -</div>
+   -->
+
+
+<div class="my-container" tsVerticalSpacing="large--2">
+  <ng-container *ngFor="let v of files">
+    <ts-file-upload
+      *ngIf="fileExists(v.id)"
+      [seedFile]="v.file"
+      [accept]="mimeTypes"
+      (dropped)="dropped($event)"
+      (cleared)="clearFile(v.id)"
+    ></ts-file-upload>
+  </ng-container>
 </div>

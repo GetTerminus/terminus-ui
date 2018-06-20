@@ -28,8 +28,6 @@ import {
   coerceArray,
   coerceBooleanProperty,
 } from '@terminus/ngx-tools/coercion';
-import { BehaviorSubject, fromEvent, of } from 'rxjs';
-import { delay, switchMap, tap } from 'rxjs/operators';
 
 import { TS_SPACING } from './../spacing/spacing.constant';
 import { isDragEvent } from './../utilities/type-coercion/is-drag-event';
@@ -39,7 +37,6 @@ import {
   TsFileAcceptedMimeTypes,
   TS_ACCEPTED_MIME_TYPES,
 } from './mime-types';
-import { TsImageDimensions } from './image-dimensions';
 import { TsFileUploadSizeConstraints } from './size-constraints';
 
 
@@ -217,6 +214,25 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
   private _multiple: boolean = true;
 
+  @Input()
+  public set seedFile(file: File | undefined) {
+    console.log('in seedFile: ', file);
+    this._seedFile = file;
+
+    if (file) {
+      const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
+      this.dropped.emit(newFile);
+      this.setUpNewFile(newFile);
+    }
+
+    // Trigger change detection to update after creating the TsDroppedFile (some validations won't be registered correctly without this)
+    this.changeDetectorRef.markForCheck();
+  }
+  public get seedFile(): File | undefined {
+    return this._seedFile;
+  }
+  private _seedFile: File | undefined;
+
   /**
    * Define maximum and minimum pixel dimensions for images
    */
@@ -391,15 +407,26 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
 
     if (file) {
       const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
-      this.file = newFile;
       this.dropped.emit(newFile);
-
-      // TODO: I think the need for this timeout is due to the async nature of newing up the image?
-      setTimeout(() => {
-        this.preview.nativeElement.src = newFile.fileContents;
-        this.setValidationMessages(this.file);
-      }, 50);
+      this.setUpNewFile(newFile);
     }
+  }
+
+
+  private setUpNewFile(file: TsDroppedFile): void {
+    if (!file) {
+      return;
+    }
+    this.file = file;
+    this.changeDetectorRef.markForCheck();
+
+    // TODO: I think the need for this timeout is due to the async nature of newing up the image?
+    setTimeout(() => {
+      if (this.file && this.file.isImage) {
+        this.preview.nativeElement.src = file.fileContents;
+      }
+      this.setValidationMessages(file);
+    }, 50);
   }
 
 

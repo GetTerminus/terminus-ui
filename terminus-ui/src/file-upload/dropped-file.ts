@@ -1,15 +1,11 @@
 import {
-  BehaviorSubject,
   fromEvent,
   Observable,
-  of,
 } from 'rxjs';
 import {
   delay,
   take,
   tap,
-  withLatestFrom,
-  switchMap,
 } from 'rxjs/operators';
 
 import { TsFileUploadSizeConstraints } from './size-constraints';
@@ -69,6 +65,8 @@ export class TsDroppedFile {
     this.determineImageDimensions(() => {
       // Validate mime-type
       if (isAllowedMimeType) {
+        console.log('mimeType: ', this.file.type);
+        console.log('check: ', TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes));
         if (TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes)) {
           this.validations.fileType = true;
         }
@@ -79,7 +77,6 @@ export class TsDroppedFile {
         this.validations.fileSize = true;
       }
     });
-
 
     // TODO: FOR DEV
     setTimeout(() => {
@@ -119,6 +116,7 @@ export class TsDroppedFile {
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
   private determineImageDimensions(callback?: Function): void {
+    console.log('determineImageDimensions: ', !this.isImage);
     // If we are not dealing with an image, exit
     if (!this.isImage) {
       if (callback) {
@@ -126,7 +124,7 @@ export class TsDroppedFile {
       }
 
       // Since this is not an image, set dimension validation to true to 'bypass'
-      this.validations.fileSize = true;
+      this.validations.imageDimensions = true;
       return;
     }
 
