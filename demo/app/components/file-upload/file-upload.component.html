@@ -2,6 +2,7 @@
   <ts-file-upload
     [dimensionConstraints]="constraints"
     [accept]="mimeTypes"
+    [progress]="progress"
     (dropped)="dropped($event)"
     (droppedMultiple)="droppedMultiple($event)"
     (cleared)="file = null"

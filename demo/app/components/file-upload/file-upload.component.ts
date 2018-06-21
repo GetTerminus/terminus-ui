@@ -134,7 +134,6 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
       max: 180,
     },
   },
-
 ];
 
 
@@ -143,18 +142,32 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   templateUrl: './file-upload.component.html',
 })
 export class FileUploadComponent {
+  mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
   /*
-   *mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+   *mimeTypes = ['text/csv'];
    */
-  mimeTypes = ['text/csv'];
   file: any;
   files: {id: number; file: File}[] = [];
   constraints = CONSTRAINTS_MOCK.slice();
+  progress = 0;
 
 
   dropped(e) {
     console.log('DEMO: dropped: ', e);
     this.file = e;
+    this.startProgress();
+  }
+
+
+  startProgress() {
+    this.progress = 0;
+    const counting = setInterval(() => {
+      if (this.progress < 100) {
+        this.progress++;
+      } else {
+        clearInterval(counting);
+      }
+    }, 20);
   }
 
 

@@ -10,6 +10,7 @@ import { TsIconButtonModule } from './../icon-button/icon-button.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsTooltipModule } from './../tooltip/tooltip.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
+import { TsDropProtectionService } from './drop-protection.service';
 
 export * from './file-upload.component';
 export * from './file-rejection-reasons.enum';
@@ -30,6 +31,9 @@ export * from './image-dimension-constraints';
   ],
   declarations: [
     TsFileUploadComponent,
+  ],
+  providers: [
+    TsDropProtectionService,
   ],
   exports: [
     TsFileUploadComponent,

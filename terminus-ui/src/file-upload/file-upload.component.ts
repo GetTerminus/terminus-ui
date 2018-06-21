@@ -5,16 +5,17 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   HostBinding,
+  HostListener,
   Input,
-  isDevMode,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
 import {
   FormControl,
@@ -27,6 +28,7 @@ import {
 import {
   coerceArray,
   coerceBooleanProperty,
+  coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 
 import { TS_SPACING } from './../spacing/spacing.constant';
@@ -39,6 +41,7 @@ import {
 } from './mime-types';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
+import { TsDropProtectionService } from './drop-protection.service';
 
 
 /**
@@ -67,6 +70,7 @@ let nextUniqueId = 0;
  * - `qa-file-upload-prompt`: The button to open the native file picker
  * - `qa-file-upload-validation-messages`: The container for validation messages
  * - `qa-file-upload-hints`: The container for input hints
+ * - `qa-file-upload-progress`: The upload progress bar
  *
  * @example
  * <ts-file-upload
@@ -86,7 +90,7 @@ let nextUniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContentInit {
+export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, AfterContentInit {
   /**
    * Define the default component ID
    */
@@ -241,6 +245,18 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   private _multiple: boolean = true;
 
   /**
+   * Define the upload progress
+   */
+  @Input()
+  public set progress(value: number) {
+    this._progress = coerceNumberProperty(value);
+  }
+  public get progress(): number {
+    return this._progress;
+  }
+  private _progress: number = 0;
+
+  /**
    * Seed an existing file (used for multiple upload hack)
    */
   @Input()
@@ -337,11 +353,17 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     private documentService: TsDocumentService,
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef,
+    private dropProtectionService: TsDropProtectionService,
   ) {
     this.virtualFileInput = this.createFileInput();
 
     // Force setter to be called in case the ID was not specified.
     this.id = this.id;
+  }
+
+
+  public ngOnInit(): void {
+    this.dropProtectionService.add();
   }
 
 
@@ -373,6 +395,7 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     if (this.virtualFileInput) {
       this.virtualFileInput.removeEventListener('change', this.onVirtualInputElementChange.bind(this));
     }
+    this.dropProtectionService.remove();
   }
 
 

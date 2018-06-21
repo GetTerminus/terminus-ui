@@ -8,14 +8,6 @@
 // TODO: Formalize this color or change
 $drag-bg: lighten(color(primary, xlight), 50%);
 
-// TODO: More to typography mixin
-@mixin hint-typography {
-  color: color(utility);
-  font-size: 75%;
-  font-weight: 300;
-  letter-spacing: .01em;
-  line-height: 1.5;
-}
 
 //
 // @component
@@ -110,7 +102,7 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     // Set up for remove button
     position: relative;
 
-    // The selected image
+    // The selected image preview
     img {
       display: block;
       max-height: 100%;
@@ -131,18 +123,24 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     white-space: nowrap;
   }
 
-  // ts-icon-button remove the file
+  // <ts-icon-button> remove the file
   .c-file-upload__remove {
     transition: color 200ms ease, opacity 100ms ease;
     will-change: color, opacity;
   }
 
-  // mat-progress-bar
+  // <mat-progress-bar>
   .c-file-upload__progress {
     display: block;
+    margin-top: spacing(small);
+
+    // NOTE: By default there is not enough variation between the progress background and progress content
+    .mat-progress-bar-buffer {
+      background-color: $drag-bg;
+    }
   }
 
-  // ts-button
+  // <ts-button>
   .c-file-upload__prompt {
     // Disable pointer-events to avoid odd bug when hovering the edge of a TsButton while dragging a file.
     // Since the entire component is clickable the button is really only there for a user-target.
@@ -152,10 +150,7 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
 // <div> replication of mat-hint
 .c-file-upload__hints {
-  @include hint-typography;
-  position: absolute;
-  right: 1em;
+  @include typography(hint);
+  padding: .3em .4em .2em;
   text-align: right;
-  // Position below the field
-  top: calc(100% + .5em);
 }
