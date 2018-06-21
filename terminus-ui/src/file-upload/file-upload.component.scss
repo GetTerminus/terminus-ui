@@ -8,6 +8,14 @@
 // TODO: Formalize this color or change
 $drag-bg: lighten(color(primary, xlight), 50%);
 
+// TODO: More to typography mixin
+@mixin hint-typography {
+  color: color(utility);
+  font-size: 75%;
+  font-weight: 300;
+  letter-spacing: .01em;
+  line-height: 1.5;
+}
 
 //
 // @component
@@ -140,4 +148,14 @@ $drag-bg: lighten(color(primary, xlight), 50%);
     // Since the entire component is clickable the button is really only there for a user-target.
     pointer-events: none;
   }
+}
+
+// <div> replication of mat-hint
+.c-file-upload__hints {
+  @include hint-typography;
+  position: absolute;
+  right: 1em;
+  text-align: right;
+  // Position below the field
+  top: calc(100% + .5em);
 }

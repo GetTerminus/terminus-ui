@@ -38,42 +38,9 @@ import {
   TS_ACCEPTED_MIME_TYPES,
 } from './mime-types';
 import { TsFileUploadSizeConstraints } from './size-constraints';
+import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
 
 
-const CONSTRAINTS_MOCK: TsFileUploadSizeConstraints = [
-  {
-    height: {
-      min: 50,
-      max: 100,
-    },
-    width: {
-      min: 50,
-      max: 100,
-    },
-  },
-  {
-    height: {
-      min: 72,
-      max: 72,
-    },
-    width: {
-      min: 72,
-      max: 72,
-    },
-  },
-  /*
-   *{
-   *  height: {
-   *    min: 400,
-   *    max: 500,
-   *  },
-   *  width: {
-   *    min: 700,
-   *    max: 800,
-   *  },
-   *},
-   */
-];
 
 
 /**
@@ -89,11 +56,17 @@ let nextUniqueId = 0;
 
 
 /**
- * TODO: Fill this section out
  * This is the file-upload UI Component
  *
  * #### QA CSS CLASSES
  * - `qa-file-upload`: Placed on the primary container
+ * - `qa-file-upload-empty`: Placed on the container shown when no file exists
+ * - `qa-file-upload-preview`: The file preview container
+ * - `qa-file-upload-name`: The filename container
+ * - `qa-file-upload-remove`: The button to remove a loaded file
+ * - `qa-file-upload-prompt`: The button to open the native file picker
+ * - `qa-file-upload-validation-messages`: The container for validation messages
+ * - `qa-file-upload-hints`: The container for input hints
  *
  * @example
  * <ts-file-upload
@@ -151,10 +124,64 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   public publicID: string = this.id;
 
   /**
-   * Provide access to the file preview
+   * Provide access to the file preview element
    */
   @ViewChild('preview')
   public preview!: ElementRef;
+
+  /**
+   * Compose and expose all hints to the template
+   *
+   * @return An array of hints
+   */
+  public get hints(): string[] {
+    const hints: string[] = [];
+    const types: string = this.acceptedTypes.slice().map((v) => {
+      return v.split('/')[1];
+    }).join(', ');
+
+    if ((this.acceptedTypes.indexOf('text/csv') < 0) && this.supportedImageDimensions) {
+      hints.push(`Must be a valid dimension: ${this.supportedImageDimensions}`);
+    }
+
+    hints.push(`Must be ${types}`);
+    hints.push(`Must be under ${this.maximumKilobytesPerFile}kb`);
+
+    return hints;
+  }
+
+  /**
+   * Compose supported image dimensions as a string
+   */
+  private get supportedImageDimensions(): string {
+    let myString = '';
+
+    if (this.dimensionConstraints) {
+      const constraints = this.dimensionConstraints.slice();
+
+      for (const c of constraints) {
+        // If not the first item, add a comma between the last item and the new
+        if (myString.length > 0) {
+          myString += ', ';
+        }
+
+        // If a fixed size
+        if ((c.height.min === c.height.max) && (c.width.min === c.width.max)) {
+          myString += `${c.height.min}x${c.height.min}`;
+        } else {
+          // Dealing with a size range
+          const height = (c.height.min === c.height.max) ? c.height.min : `${c.height.min}-${c.height.max}`;
+          const width = (c.width.min === c.width.max) ? c.width.min : `${c.width.min}-${c.width.max}`;
+          const range = `${height}x${width}`;
+          myString += range;
+        }
+      }
+
+      return myString;
+    } else {
+      return '';
+    }
+  }
 
   /**
    * Define the accepted mime types
@@ -214,13 +241,15 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
   private _multiple: boolean = true;
 
+  /**
+   * Seed an existing file (used for multiple upload hack)
+   */
   @Input()
   public set seedFile(file: File | undefined) {
-    console.log('in seedFile: ', file);
     this._seedFile = file;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
+      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.maximumKilobytesPerFile);
       this.dropped.emit(newFile);
       this.setUpNewFile(newFile);
     }
@@ -237,13 +266,19 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
    * Define maximum and minimum pixel dimensions for images
    */
   @Input()
-  public set sizeConstraints(value: TsFileUploadSizeConstraints | undefined) {
+  public set dimensionConstraints(value: TsFileUploadSizeConstraints | undefined) {
     this._sizeConstraints = value;
   }
-  public get sizeConstraints(): TsFileUploadSizeConstraints | undefined {
+  public get dimensionConstraints(): TsFileUploadSizeConstraints | undefined {
     return this._sizeConstraints;
   }
-  private _sizeConstraints: TsFileUploadSizeConstraints | undefined = CONSTRAINTS_MOCK;
+  private _sizeConstraints: TsFileUploadSizeConstraints | undefined;
+
+  /**
+   * Define the theme. See {@link TsStyleThemeTypes}.
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
 
 
@@ -406,7 +441,7 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     const file = filesArray[0] ? filesArray[0] : undefined;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.sizeConstraints, this.maximumKilobytesPerFile);
+      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.maximumKilobytesPerFile);
       this.dropped.emit(newFile);
       this.setUpNewFile(newFile);
     }

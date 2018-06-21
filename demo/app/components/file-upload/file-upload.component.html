@@ -1,5 +1,6 @@
 <div class="my-container" tsVerticalSpacing="large--2">
   <ts-file-upload
+    [dimensionConstraints]="constraints"
     [accept]="mimeTypes"
     (dropped)="dropped($event)"
     (droppedMultiple)="droppedMultiple($event)"

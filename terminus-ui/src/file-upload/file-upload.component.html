@@ -10,7 +10,7 @@
 >
 
   <div
-    class="c-file-upload__empty"
+    class="c-file-upload__empty qa-file-upload-empty"
     fxLayout="row"
     fxLayoutAlign="start center"
     fxFlex="grow"
@@ -38,7 +38,7 @@
       fxLayoutAlign="start center"
     >
       <div
-        class="c-file-upload__preview"
+        class="c-file-upload__preview qa-file-upload-preview"
         [hidden]="!file"
         fxFlex="noshrink"
       >
@@ -55,7 +55,7 @@
       </div>
 
       <div
-        class="c-file-upload__filename"
+        class="c-file-upload__filename qa-file-upload-name"
         fxFlex="grow"
         fxLayout="row"
         fxLayoutAlign="start center"
@@ -86,6 +86,7 @@
 
   <ts-button
     class="c-file-upload__prompt qa-file-upload-prompt"
+    [theme]="theme"
     [isDisabled]="dragInProgress"
     (clickEvent)="promptForFiles()"
   >
@@ -98,3 +99,12 @@
   *ngIf="control"
   [control]="control"
 ></ts-validation-messages>
+
+<div class="c-file-upload__hints qa-file-upload-hints">
+  <div
+    class="c-file-upload__hint"
+    *ngFor="let hint of hints"
+  >
+    {{ hint }}
+  </div>
+</div>

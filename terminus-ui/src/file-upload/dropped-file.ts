@@ -23,7 +23,7 @@ import {
  * @return If the MIME type is allowed
  */
 export function isAllowedMimeType(x: any): x is TsFileAcceptedMimeTypes {
-  return TS_ACCEPTED_MIME_TYPES.includes(x);
+  return TS_ACCEPTED_MIME_TYPES.indexOf(x) >= 0;
 }
 
 export interface TsFileValidations {
@@ -65,7 +65,7 @@ export class TsDroppedFile {
     this.determineImageDimensions(() => {
       // Validate mime-type
       if (isAllowedMimeType) {
-        if (TS_ACCEPTED_MIME_TYPES.includes(this.file.type as TsFileAcceptedMimeTypes)) {
+        if (TS_ACCEPTED_MIME_TYPES.indexOf(this.file.type as TsFileAcceptedMimeTypes) >= 0) {
           this.validations.fileType = true;
         }
       }
