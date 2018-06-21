@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { TsFileUploadSizeConstraints } from '@terminus/ui';
+import { TsFileImageDimensionConstraints } from '@terminus/ui';
 
-const CONSTRAINTS_MOCK: TsFileUploadSizeConstraints = [
+const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   {
     height: {
       min: 50,

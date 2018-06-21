@@ -8,24 +8,16 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TsFileUploadSizeConstraints } from './size-constraints';
+import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
 import {
   TsFileAcceptedMimeTypes,
-  TS_ACCEPTED_MIME_TYPES,
 } from './mime-types';
 
 
 /**
- * Verify a type is one of the allowed MIME types
- *
- * @param x - The MIME type to test
- * @return If the MIME type is allowed
+ * The structure of the object to track file validations internally
  */
-export function isAllowedMimeType(x: any): x is TsFileAcceptedMimeTypes {
-  return TS_ACCEPTED_MIME_TYPES.indexOf(x) >= 0;
-}
-
 export interface TsFileValidations {
   fileType: boolean;
   fileSize: boolean;
@@ -35,6 +27,14 @@ export interface TsFileValidations {
 const BYTES_PER_KB = 1024;
 
 
+/**
+ * Manage a single dropped file
+ *
+ * @param file - The dropped file
+ * @param imageDimensionConstraints - An array of image dimension constraints {@link TsFileImageDimensionConstraints}
+ * @param typeConstraint - An array of allowed MIME types
+ * @param maxSize - The maximum size in kilobytes
+ */
 export class TsDroppedFile {
   public name: string | undefined;
   public mimeType: string;
@@ -53,10 +53,10 @@ export class TsDroppedFile {
 
   constructor(
     public file: File,
-    private sizeConstraints: TsFileUploadSizeConstraints | undefined,
+    private imageDimensionConstraints: TsFileImageDimensionConstraints | undefined,
+    private typeConstraint: TsFileAcceptedMimeTypes[] | undefined,
     private maxSize: number,
   ) {
-    console.warn('TsDroppedFile');
     this.mimeType = this.file.type;
     this.size = Math.ceil(this.file.size / BYTES_PER_KB);
     this.name = this.file.name;
@@ -64,10 +64,8 @@ export class TsDroppedFile {
     // Begin the validation chain by validating image dimensions
     this.determineImageDimensions(() => {
       // Validate mime-type
-      if (isAllowedMimeType) {
-        if (TS_ACCEPTED_MIME_TYPES.indexOf(this.file.type as TsFileAcceptedMimeTypes) >= 0) {
-          this.validations.fileType = true;
-        }
+      if (this.typeConstraint && this.typeConstraint.indexOf(this.file.type as TsFileAcceptedMimeTypes) >= 0) {
+        this.validations.fileType = true;
       }
 
       // Validate file size
@@ -75,34 +73,58 @@ export class TsDroppedFile {
         this.validations.fileSize = true;
       }
     });
-
-    // TODO: FOR DEV
-    setTimeout(() => {
-      console.log('this: ', this);
-    }, 100);
   }
 
-
+  /**
+   * Get the image width
+   *
+   * @return The width of the image if it exists
+   */
   public get width(): number {
     return this.dimensions ? this.dimensions.width : 0;
   }
 
+  /**
+   * Get the image height
+   *
+   * @return The height of the image if it exists
+   */
   public get height(): number {
     return this.dimensions ? this.dimensions.height : 0;
   }
 
+  /**
+   * Get a boolean representing if the file is a CSV
+   *
+   * @return Is a CSV
+   */
   public get isCSV(): boolean {
     return this.mimeType.includes('csv');
   }
 
+  /**
+   * Get a boolean representing if the file is an image
+   *
+   * @return Is an image
+   */
   public get isImage(): boolean {
     return this.mimeType.includes('image');
   }
 
+  /**
+   * Get the file contents
+   *
+   * @return The FileReader results
+   */
   public get fileContents(): string {
     return this.fileReader.result;
   }
 
+  /**
+   * Get the validation status
+   *
+   * @return Is valid
+   */
   public get isValid(): boolean {
     return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
   }
@@ -114,7 +136,6 @@ export class TsDroppedFile {
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
   private determineImageDimensions(callback?: Function): void {
-    console.log('determineImageDimensions: ', !this.isImage);
     // If we are not dealing with an image, exit
     if (!this.isImage) {
       if (callback) {
@@ -142,7 +163,7 @@ export class TsDroppedFile {
         this.dimensions = new TsImageDimensions(this.img.naturalWidth, this.img.naturalHeight);
 
         // Validate dimensions
-        this.validations.imageDimensions = this.validateImageDimensions(this.sizeConstraints);
+        this.validations.imageDimensions = this.validateImageDimensions(this.imageDimensionConstraints);
 
         // Call the callback if one exists
         if (callback) {
@@ -167,7 +188,7 @@ export class TsDroppedFile {
    * @param constraints - The constraints that the image dimensions must fit
    * @return The validation result
    */
-  private validateImageDimensions(constraints: TsFileUploadSizeConstraints | undefined): boolean {
+  private validateImageDimensions(constraints: TsFileImageDimensionConstraints | undefined): boolean {
     if (!constraints || constraints.length < 1) {
       return true;
     }

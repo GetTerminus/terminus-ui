@@ -12,9 +12,8 @@ import { TsTooltipModule } from './../tooltip/tooltip.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 
 export * from './file-upload.component';
-export * from './accepted-file';
-export * from './rejected-file';
 export * from './file-rejection-reasons.enum';
+export * from './image-dimension-constraints';
 
 
 @NgModule({

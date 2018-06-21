@@ -2,7 +2,7 @@
 /**
  * An indiviual size constraint
  */
-export interface TsFileUploadSizeConstraint {
+export interface TsFileImageDimensionContraint {
   height: {
     min: number;
     max: number;
@@ -16,4 +16,4 @@ export interface TsFileUploadSizeConstraint {
 /**
  * An array of file size constraints
  */
-export type TsFileUploadSizeConstraints = TsFileUploadSizeConstraint[];
+export type TsFileImageDimensionConstraints = TsFileImageDimensionContraint[];

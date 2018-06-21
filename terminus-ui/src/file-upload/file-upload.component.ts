@@ -37,17 +37,17 @@ import {
   TsFileAcceptedMimeTypes,
   TS_ACCEPTED_MIME_TYPES,
 } from './mime-types';
-import { TsFileUploadSizeConstraints } from './size-constraints';
+import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
-
-
 
 
 /**
  * The maximum file size in bytes
+ *
+ * NOTE: Currently nginx has a hard limit of 10mb
  */
-// TODO: what is default max? Currently 3000kb (3MB)
-const MAXIMUM_KILOBYTES_PER_FILE = 3000;
+const MAXIMUM_KILOBYTES_PER_FILE = 10 * 1024;
+
 
 /**
  * Unique ID for each instance
@@ -215,7 +215,6 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   /**
    * Define the maximum file size in kilobytes
    */
-  // TODO: Switch back to bytes internally for easier math.
   @Input()
   public set maximumKilobytesPerFile(value: number) {
     if (!value) {
@@ -249,7 +248,7 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     this._seedFile = file;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.maximumKilobytesPerFile);
+      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
       this.dropped.emit(newFile);
       this.setUpNewFile(newFile);
     }
@@ -266,13 +265,13 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
    * Define maximum and minimum pixel dimensions for images
    */
   @Input()
-  public set dimensionConstraints(value: TsFileUploadSizeConstraints | undefined) {
+  public set dimensionConstraints(value: TsFileImageDimensionConstraints | undefined) {
     this._sizeConstraints = value;
   }
-  public get dimensionConstraints(): TsFileUploadSizeConstraints | undefined {
+  public get dimensionConstraints(): TsFileImageDimensionConstraints | undefined {
     return this._sizeConstraints;
   }
-  private _sizeConstraints: TsFileUploadSizeConstraints | undefined;
+  private _sizeConstraints: TsFileImageDimensionConstraints | undefined;
 
   /**
    * Define the theme. See {@link TsStyleThemeTypes}.
@@ -280,19 +279,14 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
 
-
+  /**
+   * Event Emitters
+   */
+  @Output()
+  public hoverBegin: EventEmitter<boolean> = new EventEmitter();
 
   @Output()
-  public hoverBegin: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  public hoverEnd: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  public accepted: EventEmitter<File> = new EventEmitter();
-
-  @Output()
-  public rejected: EventEmitter<File> = new EventEmitter();
+  public hoverEnd: EventEmitter<boolean> = new EventEmitter();
 
   @Output()
   public dropped: EventEmitter<TsDroppedFile> = new EventEmitter();
@@ -303,16 +297,20 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   @Output()
   public cleared: EventEmitter<boolean> = new EventEmitter();
 
-
+  /**
+   * HostListeners
+   */
   @HostListener('dragover', ['$event'])
   public handleDragover(event: DragEvent) {
     this.preventAndStopEventPropagation(event);
+    this.hoverBegin.emit(true);
     this.dragInProgress = true;
   }
 
   @HostListener('dragleave', ['$event'])
   public handleDragleave(event: DragEvent) {
     this.preventAndStopEventPropagation(event);
+    this.hoverEnd.emit(true);
     this.dragInProgress = false;
   }
 
@@ -347,6 +345,9 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
   }
 
 
+  /**
+   * Update the virtual file imput when the change event is fired
+   */
   public ngAfterContentInit(): void {
     this.virtualFileInput.addEventListener('change', this.onVirtualInputElementChange.bind(this));
     this.updateVirtualFileInputAttrs(this.virtualFileInput);
@@ -441,13 +442,18 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     const file = filesArray[0] ? filesArray[0] : undefined;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.maximumKilobytesPerFile);
+      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
       this.dropped.emit(newFile);
       this.setUpNewFile(newFile);
     }
   }
 
 
+  /**
+   * Set file and set up preview and validations
+   *
+   * @param file - The file
+   */
   private setUpNewFile(file: TsDroppedFile): void {
     if (!file) {
       return;
@@ -455,6 +461,8 @@ export class TsFileUploadComponent implements OnChanges, OnDestroy, AfterContent
     this.file = file;
     this.changeDetectorRef.markForCheck();
 
+    // TODO
+    // TODO
     // TODO: I think the need for this timeout is due to the async nature of newing up the image?
     setTimeout(() => {
       if (this.file && this.file.isImage) {
