@@ -34,11 +34,8 @@ import {
 import { TS_SPACING } from './../spacing/spacing.constant';
 import { isDragEvent } from './../utilities/type-coercion/is-drag-event';
 import { isHTMLInputElement } from './../utilities/type-coercion/is-html-input-element';
-import { TsDroppedFile } from './dropped-file';
-import {
-  TsFileAcceptedMimeTypes,
-  TS_ACCEPTED_MIME_TYPES,
-} from './mime-types';
+import { TsSelectedFile } from './selected-file';
+import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
 import { TsDropProtectionService } from './drop-protection.service';
@@ -74,7 +71,19 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-file-upload
- *              item="Value"
+ *              accept="['image/png', 'image/jpg']"
+ *              id="my-id"
+ *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
+ *              multiple="false"
+ *              [progress]="myUploadProgress"
+ *              [seedFile]="myFile"
+ *              dimensionConstraints="myConstraints" (see TsFileImageDimensionConstraints)
+ *              theme="primary"
+ *              (enter)="userDragBegin($event)"
+ *              (exit)="userDragEnd($event)"
+ *              (selected)="handleFile($event)"
+ *              (selectedMultiple)="handleMultipleFiles($event)"
+ *              (cleared)="fileWasCleared($event)"
  * ></ts-file-upload>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -102,9 +111,9 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   public dragInProgress: boolean = false;
 
   /**
-   * Expose a list of names for selected file
+   * Store the selected file
    */
-  public file: TsDroppedFile | undefined;
+  public file: TsSelectedFile | undefined;
 
   /**
    * Define the flexbox layout gap
@@ -156,6 +165,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
   /**
    * Compose supported image dimensions as a string
+   *
+   * @return A string containing all allowed image dimensions
    */
   private get supportedImageDimensions(): string {
     let myString = '';
@@ -264,12 +275,12 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     this._seedFile = file;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
-      this.dropped.emit(newFile);
+      const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
+      this.selected.emit(newFile);
       this.setUpNewFile(newFile);
     }
 
-    // Trigger change detection to update after creating the TsDroppedFile (some validations won't be registered correctly without this)
+    // Trigger change detection to update after creating the TsSelectedFile (some validations won't be registered correctly without this)
     this.changeDetectorRef.markForCheck();
   }
   public get seedFile(): File | undefined {
@@ -296,20 +307,32 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   public theme: TsStyleThemeTypes = 'primary';
 
   /**
-   * Event Emitters
+   * Event emitted when the user's cursor enters the field while dragging a file
    */
   @Output()
-  public hoverBegin: EventEmitter<boolean> = new EventEmitter();
+  public enter: EventEmitter<boolean> = new EventEmitter();
 
+  /**
+   * Event emitted when the user's cursor exits the field while dragging a file
+   */
   @Output()
-  public hoverEnd: EventEmitter<boolean> = new EventEmitter();
+  public exit: EventEmitter<boolean> = new EventEmitter();
 
+  /**
+   * Event emitted when the user drops or selects a file
+   */
   @Output()
-  public dropped: EventEmitter<TsDroppedFile> = new EventEmitter();
+  public selected: EventEmitter<TsSelectedFile> = new EventEmitter();
 
+  /**
+   * Event emitted when the user drops or selects multiple files
+   */
   @Output()
-  public droppedMultiple: EventEmitter<File[]> = new EventEmitter();
+  public selectedMultiple: EventEmitter<File[]> = new EventEmitter();
 
+  /**
+   * Event emitted when the user clears a loaded file
+   */
   @Output()
   public cleared: EventEmitter<boolean> = new EventEmitter();
 
@@ -319,14 +342,14 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   @HostListener('dragover', ['$event'])
   public handleDragover(event: DragEvent) {
     this.preventAndStopEventPropagation(event);
-    this.hoverBegin.emit(true);
+    this.enter.emit(true);
     this.dragInProgress = true;
   }
 
   @HostListener('dragleave', ['$event'])
   public handleDragleave(event: DragEvent) {
     this.preventAndStopEventPropagation(event);
-    this.hoverEnd.emit(true);
+    this.exit.emit(true);
     this.dragInProgress = false;
   }
 
@@ -434,7 +457,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
 
   /**
-   * Get all dropped files from an event
+   * Get all selected files from an event
    *
    * @param event - The event
    */
@@ -456,17 +479,17 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     // Convert the FileList to an Array
     const filesArray: File[] = files ? Array.from(files) : [];
 
-    // If multiple were dropped, simply emit the event and return. Currently this component only supports single files.
+    // If multiple were selected, simply emit the event and return. Currently, this component only supports single files.
     if (filesArray.length > 1) {
-      this.droppedMultiple.emit(filesArray);
+      this.selectedMultiple.emit(filesArray);
       return;
     }
 
     const file = filesArray[0] ? filesArray[0] : undefined;
 
     if (file) {
-      const newFile = new TsDroppedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
-      this.dropped.emit(newFile);
+      const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
+      this.selected.emit(newFile);
       this.setUpNewFile(newFile);
     }
   }
@@ -477,7 +500,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    *
    * @param file - The file
    */
-  private setUpNewFile(file: TsDroppedFile): void {
+  private setUpNewFile(file: TsSelectedFile): void {
     if (!file) {
       return;
     }
@@ -556,7 +579,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    *
    * @param file - The file
    */
-  private setValidationMessages(file: TsDroppedFile | undefined): void {
+  private setValidationMessages(file: TsSelectedFile | undefined): void {
     if (!file) {
       return;
     }

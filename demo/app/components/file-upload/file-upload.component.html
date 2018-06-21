@@ -3,8 +3,8 @@
     [dimensionConstraints]="constraints"
     [accept]="mimeTypes"
     [progress]="progress"
-    (dropped)="dropped($event)"
-    (droppedMultiple)="droppedMultiple($event)"
+    (selected)="selected($event)"
+    (selectedMultiple)="selectedMultiple($event)"
     (cleared)="file = null"
   ></ts-file-upload>
 </div>
@@ -22,7 +22,7 @@
       *ngIf="fileExists(v.id)"
       [seedFile]="v.file"
       [accept]="mimeTypes"
-      (dropped)="dropped($event)"
+      (selected)="dropped($event)"
       (cleared)="clearFile(v.id)"
     ></ts-file-upload>
   </ng-container>

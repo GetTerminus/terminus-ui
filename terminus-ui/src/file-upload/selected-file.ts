@@ -28,14 +28,14 @@ const BYTES_PER_KB = 1024;
 
 
 /**
- * Manage a single dropped file
+ * Manage a single selected file
  *
- * @param file - The dropped file
+ * @param file - The selected file
  * @param imageDimensionConstraints - An array of image dimension constraints {@link TsFileImageDimensionConstraints}
  * @param typeConstraint - An array of allowed MIME types
  * @param maxSize - The maximum size in kilobytes
  */
-export class TsDroppedFile {
+export class TsSelectedFile {
   public name: string | undefined;
   public mimeType: string;
   public dimensions: TsImageDimensions | undefined;

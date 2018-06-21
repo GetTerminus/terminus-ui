@@ -152,8 +152,8 @@ export class FileUploadComponent {
   progress = 0;
 
 
-  dropped(e) {
-    console.log('DEMO: dropped: ', e);
+  selected(e) {
+    console.log('DEMO: selected: ', e);
     this.file = e;
     this.startProgress();
   }
@@ -171,19 +171,17 @@ export class FileUploadComponent {
   }
 
 
-  droppedMultiple(e: File[]) {
-    console.log('DEMO: dropped multiple: ', e);
+  selectedMultiple(e: File[]) {
+    console.log('DEMO: selected multiple: ', e);
     let index = -1;
 
-    const fileMap = e.map((f) => {
+    this.files = e.map((f) => {
       index = index + 1;
       return {
         id: index,
         file: f,
       };
     });
-
-    this.files = fileMap;
   }
 
 
@@ -212,11 +210,7 @@ export class FileUploadComponent {
       return v.id === id;
     });
 
-    if (found) {
-      return true;
-    } else {
-      return false;
-    }
+    return found ? true : false;
   }
 
 }
