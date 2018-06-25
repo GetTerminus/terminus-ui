@@ -36,25 +36,24 @@ describe(`TsCheckboxComponent`, () => {
   });
 
 
-  describe(`set isChecked`, () => {
+  describe(`id`, () => {
 
-    test(`should set checkbox.checked value`, () => {
-      expect(component.checkbox.checked).toEqual(false);
-
-      component.isChecked = true;
-
-      expect(component.checkbox.checked).toEqual(true);
+    test(`should have a default ID and allow a custom ID`, () => {
+      expect(component.id.indexOf('ts-checkbox') >= 0).toEqual(true);
+      component.id = 'foo';
+      expect(component.id).toEqual('foo');
     });
-
   });
 
 
-  describe(`get isChecked`, () => {
+  describe(`isChecked`, () => {
 
-    test(`should return the checkbox.checked value`, () => {
-      component.checkbox.checked = true;
+    test(`should set/get checked value`, () => {
+      expect(component.isChecked).toEqual(false);
 
-      expect(component.isChecked).toEqual(true);
+      component.isChecked = true;
+
+      expect(component.value).toEqual(true);
     });
 
   });
@@ -68,20 +67,6 @@ describe(`TsCheckboxComponent`, () => {
       component.ngModel = true;
 
       expect(component['_isChecked']).toEqual(true);
-    });
-
-  });
-
-
-  describe(`ngAfterViewInit`, () => {
-
-    test(`should set the checkbox.checked value if true`, () => {
-      component['_isChecked'] = true;
-      expect(component.checkbox.checked).toEqual(false);
-
-      component.ngAfterViewInit();
-
-      expect(component.checkbox.checked).toEqual(true);
     });
 
   });
