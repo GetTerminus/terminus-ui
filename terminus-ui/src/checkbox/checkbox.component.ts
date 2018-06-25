@@ -1,20 +1,20 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  forwardRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  ViewEncapsulation,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
   ViewChild,
-  AfterViewInit,
+  ViewEncapsulation,
+  forwardRef,
 } from '@angular/core';
 import {
   MatCheckbox,
   MatCheckboxChange,
 } from '@angular/material/checkbox';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -24,6 +24,12 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
  * Expose the MatCheckboxChange event as TsCheckboxChange. Used by {@link TsCheckboxComponent}
  */
 export class TsCheckboxChange extends MatCheckboxChange {}
+
+
+/**
+ * Unique ID for each instance
+ */
+let nextUniqueId = 0;
 
 
 /**
@@ -68,12 +74,13 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsCheckbox',
 })
-export class TsCheckboxComponent extends TsReactiveFormBaseComponent implements AfterViewInit {
+export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**
-   * Store the `isChecked` value
+   * Define the default component ID
    */
-  private _isChecked: boolean = false;
+  protected _uid = `ts-checkbox-${nextUniqueId++}`;
 
   /**
    * Provide access to the MatCheckboxComponent
@@ -82,15 +89,31 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent implements 
   checkbox!: MatCheckbox;
 
   /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id = value || this._uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string = this._uid;
+
+  /**
    * Toggle the underlying checkbox if the isChecked property changes
    */
   @Input()
-  public get isChecked(): boolean {
-    return this.checkbox.checked;
-  }
   public set isChecked(v: boolean) {
-    this.checkbox.checked = v;
+    this._isChecked = coerceBooleanProperty(v);
+    this.value = this._isChecked;
+    this.checkbox.checked = this._isChecked;
+    this.changeDetectorRef.detectChanges();
   }
+  public get isChecked(): boolean {
+    return this._isChecked;
+  }
+  private _isChecked: boolean = false;
 
   /**
    * Define if the checkbox is disabled
@@ -147,18 +170,6 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent implements 
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
-  }
-
-
-  /**
-   * After the child views are initialized, set the checked value if needed
-   */
-  ngAfterViewInit() {
-    // istanbul ignore else
-    if (this._isChecked) {
-      this.checkbox.checked = this._isChecked;
-      this.changeDetectorRef.detectChanges();
-    }
   }
 
 }

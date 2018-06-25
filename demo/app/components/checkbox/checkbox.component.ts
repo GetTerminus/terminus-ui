@@ -10,7 +10,7 @@ import { TsCheckboxChange } from '@terminus/ui';
 })
 export class CheckboxComponent {
   myValue = true;
-  checked = false;
+  checked = true;
   disabled = false;
   required = true;
   indeterminate = false;
