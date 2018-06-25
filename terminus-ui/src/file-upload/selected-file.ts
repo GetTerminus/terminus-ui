@@ -60,6 +60,7 @@ export class TsSelectedFile {
     this.mimeType = this.file.type;
     this.size = Math.ceil(this.file.size / BYTES_PER_KB);
     this.name = this.file.name;
+    console.log('constructor:', this.file.size, this.size);
 
     // Begin the validation chain by validating image dimensions
     this.determineImageDimensions(() => {
@@ -152,6 +153,7 @@ export class TsSelectedFile {
       // NOTE: This delay is needed since the image will have dimensions of 0 at first.
       delay(5),
       tap((v: Event) => {
+        console.log('fileLoaded$');
         this.img.src = this.fileReader.result;
       }),
       take(1),
@@ -160,6 +162,7 @@ export class TsSelectedFile {
     // Set the size once the fake image has loaded
     this.imgLoaded$ = fromEvent(this.img, 'load').pipe(
       tap((v: Event) => {
+        console.log('imgLoaded$');
         this.dimensions = new TsImageDimensions(this.img.naturalWidth, this.img.naturalHeight);
 
         // Validate dimensions

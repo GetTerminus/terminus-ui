@@ -21,8 +21,9 @@
     <ts-file-upload
       *ngIf="fileExists(v.id)"
       [seedFile]="v.file"
+      [dimensionConstraints]="constraints"
       [accept]="mimeTypes"
-      (selected)="dropped($event)"
+      (selected)="selected($event)"
       (cleared)="clearFile(v.id)"
     ></ts-file-upload>
   </ng-container>

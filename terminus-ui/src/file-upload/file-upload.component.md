@@ -21,6 +21,11 @@
 
 Simply adding the element to the DOM will allow file selection. Collect the selected file via the `selected` event:
 
+```html
+<ts-file-upload (selected)="handleFile($event)">
+</ts-file-upload>
+```
+
 ```typescript
 @import { TsSelectedFile } from '@terminus/ui';
 
@@ -29,11 +34,6 @@ Simply adding the element to the DOM will allow file selection. Collect the sele
   handleFile(e: TsSelectedFile) {
     // e.fileContents is the selected file
   }
-```
-
-```html
-<ts-file-upload (selected)="handleFile($event)">
-</ts-file-upload>
 ```
 
 

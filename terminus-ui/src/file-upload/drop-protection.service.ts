@@ -17,12 +17,10 @@ export class TsDropProtectionService {
   add(): void {
     if (!this.hasProtection) {
       this.windowService.nativeWindow.addEventListener('dragover', (e) => {
-        e = e || event;
         e.preventDefault();
       }, false);
 
       this.windowService.nativeWindow.addEventListener('drop', (e) => {
-        e = e || event;
         e.preventDefault();
       }, false);
 
@@ -37,12 +35,10 @@ export class TsDropProtectionService {
   remove(): void {
     if (this.hasProtection) {
       this.windowService.nativeWindow.removeEventListener('dragover', (e) => {
-        e = e || event;
         e.preventDefault();
       }, false);
 
       this.windowService.nativeWindow.removeEventListener('drop', (e) => {
-        e = e || event;
         e.preventDefault();
       }, false);
     }

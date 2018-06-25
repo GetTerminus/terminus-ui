@@ -273,6 +273,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   @Input()
   public set seedFile(file: File | undefined) {
     this._seedFile = file;
+    console.log('COMPONENT: file.size: ', file ? file.size : 'NONE');
 
     if (file) {
       const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
@@ -506,15 +507,18 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     }
     this.file = file;
     this.changeDetectorRef.markForCheck();
+    console.log('COMPONENT: new file: ', file);
+
+    this.setValidationMessages(file);
 
     // TODO
     // TODO
     // TODO: I think the need for this timeout is due to the async nature of newing up the image?
+    // possibly do with async pipe directly in template?
     setTimeout(() => {
       if (this.file && this.file.isImage) {
         this.preview.nativeElement.src = file.fileContents;
       }
-      this.setValidationMessages(file);
     }, 50);
   }
 
@@ -583,6 +587,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     if (!file) {
       return;
     }
+    console.log('setValidationMessages: ', file.validations);
 
     const errors: ValidationErrors = {};
     const responses: {[key: string]: ValidationErrors} = {
