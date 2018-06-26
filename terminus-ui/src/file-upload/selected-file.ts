@@ -26,7 +26,7 @@ const BYTES_PER_KB = 1024;
  *
  * @param file - The selected file
  * @param imageDimensionConstraints - An array of image dimension constraints {@link TsFileImageDimensionConstraints}
- * @param typeConstraint - An array of allowed MIME types
+ * @param typeConstraint - An array of allowed MIME types {@link TsFileAcceptedMimeTypes}
  * @param maxSize - The maximum size in kilobytes
  */
 export class TsSelectedFile {

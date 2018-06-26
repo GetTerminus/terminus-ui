@@ -283,13 +283,11 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => t !== undefined),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
-        this.selected.emit(newFile);
-        this.setUpNewFile(newFile);
+        this.selected.emit(f);
+        this.setUpNewFile(f);
       });
     }
 
-    // Trigger change detection to update after creating the TsSelectedFile (some validations won't be registered correctly without this)
-    this.changeDetectorRef.markForCheck();
   }
   public get seedFile(): File | undefined {
     return this._seedFile;
@@ -501,8 +499,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => !!t),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
-        this.selected.emit(newFile);
-        this.setUpNewFile(newFile);
+        this.selected.emit(f);
+        this.setUpNewFile(f);
       });
     }
   }
@@ -518,8 +516,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
       return;
     }
     this.file = file;
-    this.changeDetectorRef.markForCheck();
     this.setValidationMessages(file);
+    this.changeDetectorRef.markForCheck();
   }
 
 
