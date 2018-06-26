@@ -142,10 +142,10 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   templateUrl: './file-upload.component.html',
 })
 export class FileUploadComponent {
+  mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
   /*
-   *mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+   *mimeTypes = ['text/csv'];
    */
-  mimeTypes = ['text/csv'];
   file: any;
   files: {id: number; file: File}[] = [];
   constraints = CONSTRAINTS_MOCK.slice();

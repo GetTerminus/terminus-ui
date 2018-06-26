@@ -90,7 +90,7 @@
   </div>
 
   <mat-progress-bar
-    *ngIf="file && progress >= 0"
+    *ngIf="file && progress > 0"
     class="c-file-upload__progress qa-file-upload-progress"
     mode="determinate"
     [value]="progress"

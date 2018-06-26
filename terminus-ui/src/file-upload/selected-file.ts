@@ -1,18 +1,10 @@
 import {
-  fromEvent,
-  Observable,
+  BehaviorSubject,
 } from 'rxjs';
-import {
-  delay,
-  take,
-  tap,
-} from 'rxjs/operators';
 
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
-import {
-  TsFileAcceptedMimeTypes,
-} from './mime-types';
+import { TsFileAcceptedMimeTypes } from './mime-types';
 
 
 /**
@@ -24,6 +16,10 @@ export interface TsFileValidations {
   imageDimensions: boolean;
 }
 
+
+/**
+ * The number of bytes per kilobyte (for calculations)
+ */
 const BYTES_PER_KB = 1024;
 
 
@@ -45,10 +41,17 @@ export class TsSelectedFile {
     fileSize: false,
     imageDimensions: false,
   };
-  private fileLoaded$!: Observable<Event>;
-  private imgLoaded$!: Observable<Event>;
   private fileReader: FileReader = new FileReader();
-  private img: HTMLImageElement = new Image();
+
+  /**
+   * Only needed to appease TypeScript when defining `fileLoaded$`
+   */
+  private fileReference?: TsSelectedFile;
+
+  /**
+   * BehaviorSubject to alert consumers when all calculations are complete
+   */
+  public fileLoaded$: BehaviorSubject<TsSelectedFile | undefined> = new BehaviorSubject(this.fileReference);
 
 
   constructor(
@@ -60,19 +63,23 @@ export class TsSelectedFile {
     this.mimeType = this.file.type;
     this.size = Math.ceil(this.file.size / BYTES_PER_KB);
     this.name = this.file.name;
-    console.log('constructor:', this.file.size, this.size);
 
     // Begin the validation chain by validating image dimensions
     this.determineImageDimensions(() => {
       // Validate mime-type
+      // istanbul ignore else
       if (this.typeConstraint && this.typeConstraint.indexOf(this.file.type as TsFileAcceptedMimeTypes) >= 0) {
         this.validations.fileType = true;
       }
 
       // Validate file size
+      // istanbul ignore else
       if (this.size <= this.maxSize) {
         this.validations.fileSize = true;
       }
+
+      // Emit the file once all calculations are complete
+      this.fileLoaded$.next(this);
     });
   }
 
@@ -139,56 +146,44 @@ export class TsSelectedFile {
   private determineImageDimensions(callback?: Function): void {
     // If we are not dealing with an image, exit
     if (!this.isImage) {
+      // istanbul ignore else
       if (callback) {
         callback();
       }
 
-      // Since this is not an image, set dimension validation to true to 'bypass'
+      // Since this is not an image, set dimension validation to `true` to 'bypass'
       this.validations.imageDimensions = true;
       return;
     }
 
-    // Once the file is parsed, set the base64'd image as the source of the fake image
-    this.fileLoaded$ = fromEvent(this.fileReader, 'load').pipe(
-      // NOTE: This delay is needed since the image will have dimensions of 0 at first.
-      delay(5),
-      tap((v: Event) => {
-        console.log('fileLoaded$');
-        this.img.src = this.fileReader.result;
-      }),
-      take(1),
-    );
+    // Create an image so that dimensions can be determined
+    const img: HTMLImageElement = new Image();
 
-    // Set the size once the fake image has loaded
-    this.imgLoaded$ = fromEvent(this.img, 'load').pipe(
-      tap((v: Event) => {
-        console.log('imgLoaded$');
-        this.dimensions = new TsImageDimensions(this.img.naturalWidth, this.img.naturalHeight);
+    this.fileReader.onload = (v: Event) => {
+      img.src = this.fileReader.result;
+    };
+    img.onload = (v: Event) => {
+        this.dimensions = new TsImageDimensions(img.naturalWidth, img.naturalHeight);
 
         // Validate dimensions
         this.validations.imageDimensions = this.validateImageDimensions(this.imageDimensionConstraints);
 
         // Call the callback if one exists
+        // istanbul ignore else
         if (callback) {
           callback();
         }
-      }),
-      take(1),
-    );
+    };
 
     // Read the file (this triggers the FileReader load event)
     this.fileReader.readAsDataURL(this.file);
-
-    // Subscriptions are needed so Observables fire
-    this.imgLoaded$.subscribe((v) => {});
-    this.fileLoaded$.subscribe((v) => {});
   }
 
 
   /**
    * Validate the image dimensions
    *
-   * @param constraints - The constraints that the image dimensions must fit
+   * @param constraints - The constraints this the image dimensions must fit
    * @return The validation result
    */
   private validateImageDimensions(constraints: TsFileImageDimensionConstraints | undefined): boolean {

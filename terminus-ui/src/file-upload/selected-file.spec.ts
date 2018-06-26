@@ -17,21 +17,39 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   },
   {
     height: {
-      min: 72,
-      max: 72,
+      min: 100,
+      max: 100,
     },
     width: {
-      min: 72,
-      max: 72,
+      min: 100,
+      max: 100,
     },
   },
 ];
 
-const blob = new Blob([window.btoa('myFakeImageContent')], { type: 'image/png' });
-blob['lastModifiedDate'] = new Date();
-blob['name'] = 'foo';
-jest.spyOn(blob, 'size', 'get').mockReturnValue(3 * 1024);
-const FILE_MOCK = blob as File;
+// IMAGE MOCK
+const FILE_BLOB = new Blob(
+  // tslint:disable: max-line-length
+  ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII='],
+  // tslint:enable: max-line-length
+  { type: 'image/png' },
+);
+FILE_BLOB['lastModifiedDate'] = new Date();
+FILE_BLOB['name'] = 'foo';
+jest.spyOn(FILE_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
+const FILE_MOCK = FILE_BLOB as File;
+
+// CSV MOCK
+const FILE_CSV_BLOB = new Blob(
+  ['my csv value'],
+  { type: 'text/csv' },
+);
+FILE_CSV_BLOB['lastModifiedDate'] = new Date();
+FILE_CSV_BLOB['name'] = 'myCSV';
+jest.spyOn(FILE_CSV_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
+const FILE_CSV_MOCK = FILE_CSV_BLOB as File;
+
+
 
 
 describe(`TsSelectedFile`, () => {
@@ -51,128 +69,223 @@ describe(`TsSelectedFile`, () => {
   };
 
 
-  describe(`constructor`, () => {
-
-    /*
-     *beforeEach(() => {
-     *});
-     */
-
-    // TODO: test if constraints or size isn't passed in
-
-    test(`should set top-level items`, () => {
-      jest.useFakeTimers();
-      const file = createFile();
-      expect(file.mimeType).toEqual('image/png');
-      expect(file.size).toEqual(3);
-      expect(file.name).toEqual('foo');
-      jest.advanceTimersByTime(1000);
-      console.log('file: ', file);
-      expect(file.validations.fileType).toEqual(true);
-      expect(file.validations.fileSize).toEqual(true);
-
-      /*
-       *setTimeout(() => {
-       *  done();
-       *}, 10);
-       */
-    });
+  // Mock `FileReader` and `Image`:
+  beforeEach(() => {
+    // Mock FileReader
+    class DummyFileReader {
+      addEventListener = jest.fn();
+      readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) { this.onload({} as Event); });
+      // tslint:disable: max-line-length
+      result = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII=';
+      // tslint:enable: max-line-length
+    }
+    // Not sure why any is needed
+    (window as any).FileReader = jest.fn(() => new DummyFileReader);
 
 
-    /*
-     *test(`should set validations`, () => {
-     *});
-     */
+    class DummyImage {
+      _onload = () => {};
+      set onload(fn) { this._onload = fn; }
+      get onload() { return this._onload; }
+      set src(source) {
+        this.onload();
+      }
+      get naturalWidth() { return 100; }
+      get naturalHeight() { return 100; }
+    }
+    (window as any).Image = jest.fn(() => new DummyImage());
 
   });
 
 
-/*
- *  describe(`width`, () => {
- *
- *    test(`should return the width or zero`, () => {
- *    });
- *
- *  });
- */
+  describe(`constructor`, () => {
 
 
-/*
- *  describe(`height`, () => {
- *
- *    test(`should return the height or zero`, () => {
- *    });
- *
- *  });
- */
+    // TODO: test if constraints or size isn't passed in
+    // TODO: test if multiple is set to false
 
 
-/*
- *  describe(`isCSV`, () => {
- *
- *    test(`should return true is the file is a CSV`, () => {
- *    });
- *
- *  });
- */
+    test(`should set top-level items and validations`, () => {
+      const file = createFile();
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.mimeType).toEqual('image/png');
+          expect(f.size).toEqual(3);
+          expect(f.name).toEqual('foo');
+          expect(f.validations.fileType).toEqual(true);
+          expect(f.validations.fileSize).toEqual(true);
+          expect(f.validations.imageDimensions).toEqual(true);
+        }
+      });
+      expect.assertions(6);
+    });
+
+  });
 
 
-/*
- *  describe(`isImage`, () => {
- *
- *    test(`should return true is the file is an image`, () => {
- *    });
- *
- *  });
- */
+  describe(`width`, () => {
+
+    test(`should return the width or zero`, () => {
+      const file = createFile();
+      expect(file.width).toEqual(100);
+
+      file.dimensions = undefined;
+      expect(file.width).toEqual(0);
+    });
+
+  });
 
 
-/*
- *  describe(`fileContents`, () => {
- *
- *    test(`should return the FileReader result`, () => {
- *    });
- *
- *  });
- */
+  describe(`height`, () => {
+
+    test(`should return the height or zero`, () => {
+      const file = createFile();
+      expect(file.height).toEqual(100);
+
+      file.dimensions = undefined;
+      expect(file.height).toEqual(0);
+    });
+
+  });
 
 
-/*
- *  describe(`isValid`, () => {
- *
- *    test(`should return true if all validations are true`, () => {
- *    });
- *
- *  });
- */
+  describe(`isCSV`, () => {
+
+    test(`should return true is the file is a CSV`, () => {
+      const file = createFile(FILE_CSV_MOCK);
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.isCSV).toEqual(true);
+        }
+      });
+      expect.assertions(1);
+    });
+
+  });
 
 
-/*
- *  describe(`determineImageDimensions`, () => {
- *
- *    test(`should set validation to true and exit if the file is not an image`, () => {
- *      // set dimensions
- *      // set imageDimensions validation
- *      // call callback
- *      // cleanup observables?
- *    });
- *
- *
- *    test(`should set dimensions and call callback`, () => {
- *    });
- *
- *  });
- */
+  describe(`isImage`, () => {
+
+    test(`should return true is the file is an image`, () => {
+      const file = createFile();
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(file.isImage).toEqual(true);
+        }
+      });
+    });
+
+  });
 
 
-/*
- *  describe(`validateImageDimensions`, () => {
- *
- *    test(`should return true if dimensions are valid`, () => {
- *    });
- *
- *  });
- */
+  describe(`fileContents`, () => {
 
+    test(`should return the FileReader result`, () => {
+      const file = createFile();
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.fileContents.indexOf('data:image')).toBeGreaterThanOrEqual(0);
+        }
+      });
+
+      expect.assertions(1);
+    });
+
+  });
+
+
+  describe(`isValid`, () => {
+
+    test(`should return true if all validations are true`, () => {
+      const file = createFile();
+      file.validations.fileType = true;
+      file.validations.fileSize = false;
+      file.validations.imageDimensions = true;
+
+      expect(file.isValid).toEqual(false);
+
+      file.validations.fileSize = true;
+      expect(file.isValid).toEqual(true);
+    });
+
+  });
+
+
+  describe(`determineImageDimensions`, () => {
+
+    test(`should set validation to true and exit if the file is not an image`, (done) => {
+      const file = createFile(FILE_CSV_MOCK);
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.dimensions).toBeFalsy();
+          expect(f.height).toEqual(0);
+          expect(f.width).toEqual(0);
+          expect(f.validations.imageDimensions).toEqual(true);
+          done();
+        }
+      });
+      expect.assertions(4);
+    });
+
+
+    test(`should set dimensions and call callback`, () => {
+      createFile().fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.dimensions).toBeTruthy();
+          expect(f.height).toBeGreaterThan(1);
+          expect(f.width).toBeGreaterThan(1);
+          expect(f.validations.imageDimensions).toEqual(true);
+        }
+      });
+      expect.assertions(4);
+    });
+
+  });
+
+
+  describe(`validateImageDimensions`, () => {
+
+    test(`should return true if no constraints exist`, () => {
+      const file = createFile();
+      expect(file['validateImageDimensions'](undefined)).toEqual(true);
+    });
+
+
+    test(`should return true if dimensions are valid`, () => {
+      const file = createFile();
+      const result = file['validateImageDimensions'](CONSTRAINTS_MOCK);
+      expect(result).toEqual(true);
+    });
+
+
+    test(`should return false if dimensions are not valid`, () => {
+      const file = createFile();
+      const constraints = [
+        {
+          height: {
+            min: 150,
+            max: 200,
+          },
+          width: {
+            min: 150,
+            max: 200,
+          },
+        },
+        {
+          height: {
+            min: 100,
+            max: 100,
+          },
+          width: {
+            min: 150,
+            max: 200,
+          },
+        },
+      ];
+      const result = file['validateImageDimensions'](constraints);
+      expect(result).toEqual(false);
+    });
+
+  });
 
 });

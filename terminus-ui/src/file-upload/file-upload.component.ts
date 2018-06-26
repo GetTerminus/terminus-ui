@@ -509,13 +509,13 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     this.changeDetectorRef.markForCheck();
     console.log('COMPONENT: new file: ', file);
 
-    this.setValidationMessages(file);
 
     // TODO
     // TODO
     // TODO: I think the need for this timeout is due to the async nature of newing up the image?
     // possibly do with async pipe directly in template?
     setTimeout(() => {
+      this.setValidationMessages(file);
       if (this.file && this.file.isImage) {
         this.preview.nativeElement.src = file.fileContents;
       }
