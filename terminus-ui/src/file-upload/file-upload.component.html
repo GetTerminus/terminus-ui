@@ -47,6 +47,7 @@
           <img
             #preview
             alt=""
+            [attr.src]="file?.fileContents"
             *ngIf="file?.isImage"
           >
 

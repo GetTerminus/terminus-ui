@@ -1,6 +1,4 @@
-import {
-  BehaviorSubject,
-} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';

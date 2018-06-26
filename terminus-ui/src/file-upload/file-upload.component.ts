@@ -24,12 +24,14 @@ import {
 import {
   inputHasChanged,
   TsDocumentService,
+  untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
   coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
+import { take, filter, tap } from 'rxjs/operators';
 
 import { TS_SPACING } from './../spacing/spacing.constant';
 import { isDragEvent } from './../utilities/type-coercion/is-drag-event';
@@ -273,12 +275,17 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   @Input()
   public set seedFile(file: File | undefined) {
     this._seedFile = file;
-    console.log('COMPONENT: file.size: ', file ? file.size : 'NONE');
 
     if (file) {
       const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
-      this.selected.emit(newFile);
-      this.setUpNewFile(newFile);
+
+      newFile.fileLoaded$.pipe(
+        filter((t: TsSelectedFile | undefined): t is TsSelectedFile => t !== undefined),
+        untilComponentDestroyed(this),
+      ).subscribe((f) => {
+        this.selected.emit(newFile);
+        this.setUpNewFile(newFile);
+      });
     }
 
     // Trigger change detection to update after creating the TsSelectedFile (some validations won't be registered correctly without this)
@@ -490,8 +497,13 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
     if (file) {
       const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
-      this.selected.emit(newFile);
-      this.setUpNewFile(newFile);
+      newFile.fileLoaded$.pipe(
+        filter((t: TsSelectedFile | undefined): t is TsSelectedFile => !!t),
+        untilComponentDestroyed(this),
+      ).subscribe((f) => {
+        this.selected.emit(newFile);
+        this.setUpNewFile(newFile);
+      });
     }
   }
 
@@ -507,19 +519,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     }
     this.file = file;
     this.changeDetectorRef.markForCheck();
-    console.log('COMPONENT: new file: ', file);
-
-
-    // TODO
-    // TODO
-    // TODO: I think the need for this timeout is due to the async nature of newing up the image?
-    // possibly do with async pipe directly in template?
-    setTimeout(() => {
-      this.setValidationMessages(file);
-      if (this.file && this.file.isImage) {
-        this.preview.nativeElement.src = file.fileContents;
-      }
-    }, 50);
+    this.setValidationMessages(file);
   }
 
 
@@ -587,7 +587,6 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     if (!file) {
       return;
     }
-    console.log('setValidationMessages: ', file.validations);
 
     const errors: ValidationErrors = {};
     const responses: {[key: string]: ValidationErrors} = {
