@@ -12,6 +12,7 @@ import { TsConfirmationModule } from './confirmation/confirmation.module';
 import { TsCopyModule } from './copy/copy.module';
 import { TsDateRangeModule } from './date-range/date-range.module';
 import { TsDatepickerModule } from './datepicker/datepicker.module';
+import { TsFileUploadModule } from './file-upload/file-upload.module';
 import { TsIconModule } from './icon/icon.module';
 import { TsIconButtonModule } from './icon-button/icon-button.module';
 import { TsInputModule } from './input/input.module';
@@ -50,6 +51,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsChartModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsFileUploadModule,
     TsIconModule,
     TsIconButtonModule,
     TsInputModule,
@@ -90,6 +92,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsChartModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsFileUploadModule,
     TsIconModule,
     TsIconButtonModule,
     TsInputModule,

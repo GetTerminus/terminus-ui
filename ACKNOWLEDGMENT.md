@@ -3,6 +3,7 @@
 **Table of Contents**
 
 - [Acknowledgment](#acknowledgment)
+  - [Icons](#icons)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -26,3 +27,9 @@ more on the communities needs.
 - https://github.com/fknop/angular-pipes
 - https://github.com/gevgeny/angular2-highcharts
 - https://github.com/cebor/angular-highcharts
+
+
+## Icons
+
+- Most icons come from [Material Icons]().
+- CSV File icon by Nikita Kozin from the Noun Project.

@@ -1,0 +1,156 @@
+@import './../scss/helpers/color';
+@import './../scss/helpers/typography';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/cursors';
+@import './../scss/helpers/layout';
+
+
+// TODO: Formalize this color or change
+$drag-bg: lighten(color(primary, xlight), 50%);
+
+
+//
+// @component
+//  File Upload
+// @description
+//  A file upload component
+//
+.ts-file-upload {
+  display: block;
+  position: relative;
+
+  // Top level styles belong here
+  .c-file-upload {
+    cursor: cursor(pointer);
+  }
+
+  // If followed directly by another instance, add vertical spacing
+  + .ts-file-upload {
+    margin-top: spacing(large);
+  }
+}
+
+.c-file-upload {
+  border: 1px dashed color(utility, light);
+  border-radius: 3px;
+  padding: spacing(small);
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
+  will-change: background-color, border-color;
+
+  &:hover,
+  &:focus {
+    border-color: color(primary, xlight);
+  }
+
+  // Class added when dragging over
+  &--drag {
+    background-color: $drag-bg;
+    border-color: color(primary, xlight);
+
+    // Hide the remove button during a drag if it's visible
+    .c-file-upload__remove {
+      opacity: 0;
+    }
+  }
+
+  // Class added when a file has been selected
+  &--file {
+    border-color: color(primary, xlight);
+  }
+
+  // Class added if any validation fails
+  &--error {
+    border-color: color(warn);
+  }
+
+  // <div> container for the selected file
+  .c-file-upload__file {
+    @include typography(fixedwidth);
+    color: color(utility, dark);
+    font-size: .7em;
+    overflow: auto;
+    // Set up for progress bar
+    position: relative;
+
+    &--hidden {
+      position: absolute;
+      visibility: hidden;
+    }
+  }
+
+  // <div> content shown when no file has been selected
+  .c-file-upload__empty {
+    color: color(utility, dark);
+
+    .ts-icon {
+      margin-right: spacing(small, 2);
+    }
+  }
+
+  // <div> container for the image preview
+  .c-file-upload__preview {
+    $box-size: 2.375rem;
+
+    border: 1px solid color(utility, light);
+    border-radius: 3px;
+    height: $box-size;
+    margin-right: spacing(small);
+    max-width: $box-size * 2;
+    // Don't let alt tag text spill out
+    overflow: hidden;
+    padding: spacing(small, 2);
+    // Set up for remove button
+    position: relative;
+
+    // The selected image preview
+    img {
+      display: block;
+      max-height: 100%;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  // <div> wrapper for the filename
+  .c-file-upload__filename {
+    overflow: hidden;
+  }
+
+  // <div> Inner wrapper needed since text-overflow must be on a block/inline-block element
+  .c-file-upload__filename-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // <ts-icon-button> remove the file
+  .c-file-upload__remove {
+    transition: color 200ms ease, opacity 100ms ease;
+    will-change: color, opacity;
+  }
+
+  // <mat-progress-bar>
+  .c-file-upload__progress {
+    display: block;
+    margin-top: spacing(small);
+
+    // NOTE: By default there is not enough variation between the progress background and progress content
+    .mat-progress-bar-buffer {
+      background-color: $drag-bg;
+    }
+  }
+
+  // <ts-button>
+  .c-file-upload__prompt {
+    // Disable pointer-events to avoid odd bug when hovering the edge of a TsButton while dragging a file.
+    // Since the entire component is clickable the button is really only there for a user-target.
+    pointer-events: none;
+  }
+}
+
+// <div> replication of mat-hint
+.c-file-upload__hints {
+  @include typography(hint);
+  padding: .3em .4em .2em;
+  text-align: right;
+}

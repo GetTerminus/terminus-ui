@@ -13,6 +13,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleId": "@terminus/ui"
+    "flatModuleId": "@terminus/ui",
+    "preserveWhitespaces": false
   }
 }

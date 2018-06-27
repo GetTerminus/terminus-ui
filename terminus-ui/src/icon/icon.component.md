@@ -8,6 +8,7 @@
 - [Basic usage](#basic-usage)
 - [Theming](#theming)
 - [Style with CSS](#style-with-css)
+- [Usage inline with text](#usage-inline-with-text)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -51,3 +52,13 @@ To style with CSS, simply target the `fill` inside the `ts-icon` class:
   }
 }
 ```
+
+
+## Usage inline with text
+
+To size and space the icons correctly for use within a block of text:
+
+```html
+<ts-icon inline="true"></ts-icon>
+```
+

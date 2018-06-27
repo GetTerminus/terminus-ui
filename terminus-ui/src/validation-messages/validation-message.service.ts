@@ -64,6 +64,9 @@ export class TsValidationMessageService {
       equalToControl: `'${validatorValue.actual}' must be equal to '${validatorValue.compareValue}'`,
       lowercase: `Must contain at least ${validatorValue.lowercase} lowercase letters`,
       uppercase: `Must contain at least ${validatorValue.uppercase} uppercase letters`,
+      fileSize: `Must be smaller than ${validatorValue.max}kb`,
+      fileType: `${validatorValue.actual} is not an accepted MIME type.`,
+      imageDimensions: ``,
     };
 
     if (validatorName === 'maxDate') {
@@ -74,6 +77,10 @@ export class TsValidationMessageService {
     if (validatorName === 'minDate') {
       const message = `Date must be after`;
       config.minDate = `${message} ${format(validatorValue.minDate, 'M/D/YYYY')}`;
+    }
+
+    if (validatorName === 'imageDimensions') {
+      config.imageDimensions = `${validatorValue.actual.width}x${validatorValue.actual.height} is not an allowed image dimension.`;
     }
 
     return config[validatorName];
