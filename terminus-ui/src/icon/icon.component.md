@@ -62,3 +62,21 @@ To size and space the icons correctly for use within a block of text:
 <ts-icon inline="true"></ts-icon>
 ```
 
+## Custom Icons
+
+Custom icons are accessed via a `ts-icon` `@Input`:
+
+
+```html
+<!-- Access standard icon -->
+<ts-icon>home</ts-icon>
+
+<!-- Access custom icon -->
+<ts-icon svgIcon="csv"></ts-icon>
+```
+
+### Available
+
+| Name  | Description                |
+|------:|:---------------------------|
+| `csv` | A file with the text 'CSV' |
