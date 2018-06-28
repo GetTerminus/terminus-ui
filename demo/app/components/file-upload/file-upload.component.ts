@@ -45,12 +45,12 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   },
   {
     height: {
-      min: 250,
-      max: 250,
+      min: 2500,
+      max: 2500,
     },
     width: {
-      min: 300,
-      max: 300,
+      min: 30000,
+      max: 30000,
     },
   },
 /*
@@ -145,21 +145,27 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
 })
 export class FileUploadComponent {
   mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-  /*
-   *mimeTypes = ['text/csv'];
-   */
   file: any;
   files: {id: number; file: File}[] = [];
   constraints = CONSTRAINTS_MOCK.slice();
   progress = 0;
   multiple = true;
-  hideButton = true;
+  hideButton = false;
+  maxKb: number | undefined;
+  mimeTypeOptions = ['image/png', 'image/jpg', 'image/jpeg', 'text/csv'];
 
 
   selected(e) {
     console.log('DEMO: selected: ', e);
     this.file = e;
     this.startProgress();
+  }
+
+
+  mimeTypeChange(change) {
+    if (change.length < 1) {
+      this.mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    }
   }
 
 
@@ -200,13 +206,7 @@ export class FileUploadComponent {
   }
 
 
-  public trackBy(i, v) {
-    console.log('trackby: ', i, v);
-    return v.id;
-  }
-
-
-  public fileExists(id: number): boolean {
+  fileExists(id: number): boolean {
     if (!this.files || this.files.length < 1) {
       return false;
     }

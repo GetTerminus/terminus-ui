@@ -177,7 +177,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     }
 
     hints.push(`Must be ${types}`);
-    hints.push(`Must be under ${this.maximumKilobytesPerFile}kb`);
+    hints.push(`Must be under ${this.maximumKilobytesPerFile.toLocaleString()}kb`);
 
     return hints;
   }
@@ -202,11 +202,15 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
         // If a fixed size
         if ((c.height.min === c.height.max) && (c.width.min === c.width.max)) {
-          myString += `${c.height.min}x${c.height.min}`;
+          myString += `${c.height.min.toLocaleString()}x${c.height.min.toLocaleString()}`;
         } else {
           // Dealing with a size range
-          const height = (c.height.min === c.height.max) ? c.height.min : `${c.height.min}-${c.height.max}`;
-          const width = (c.width.min === c.width.max) ? c.width.min : `${c.width.min}-${c.width.max}`;
+          const height = (c.height.min === c.height.max)
+            ? c.height.min.toLocaleString()
+            : `${c.height.min.toLocaleString()}-${c.height.max.toLocaleString()}`;
+          const width = (c.width.min === c.width.max)
+            ? c.width.min.toLocaleString()
+            : `${c.width.min.toLocaleString()}-${c.width.max.toLocaleString()}`;
           const range = `${height}x${width}`;
           myString += range;
         }

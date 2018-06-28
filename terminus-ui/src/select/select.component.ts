@@ -57,9 +57,8 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
  *              isDisabled="true"
  *              [formatUIFn]="myUIFormatter"
  *              [formatModelValueFn]="myModelFormatter"
- *              (open)="myMethod($event)"
- *              (close)="myMethod($event)"
- *              (change)="myMethod($event)"
+ *              (openedChange)="myMethod($event)"
+ *              (selectionChange)="myMethod($event)"
  * ></ts-select>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>

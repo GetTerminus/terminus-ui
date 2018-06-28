@@ -1,6 +1,31 @@
-<div class="my-container" tsVerticalSpacing="large--2">
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>Demo Controls</h3>
+
+  <div fxLayout="row" fxLayoutGap="24px">
+    <div>
+      <ts-toggle [(ngModel)]="multiple">Allow multiple selections</ts-toggle>
+      <br>
+      <ts-toggle [(ngModel)]="hideButton">Hide button</ts-toggle>
+    </div>
+    <div>
+      <ts-input label="Max Size (kb)" type="number" [(ngModel)]="maxKb"></ts-input>
+    </div>
+    <div>
+      <ts-select
+        label="Allowed MIME types"
+        multipleAllowed="true"
+        [(ngModel)]="mimeTypes"
+        [items]="mimeTypeOptions"
+        (selectionChange)="mimeTypeChange($event)"
+      ></ts-select>
+    </div>
+  </div>
+</ts-card>
+
+<ts-card tsVerticalSpacing>
   <ts-file-upload
     [hideButton]="hideButton"
+    [maximumKilobytesPerFile]="maxKb"
     [multiple]="multiple"
     [dimensionConstraints]="constraints"
     [accept]="mimeTypes"
@@ -9,16 +34,7 @@
     (selectedMultiple)="selectedMultiple($event)"
     (cleared)="file = null"
   ></ts-file-upload>
-</div>
 
-<!--
-   -<div *ngIf="file">
-   -  DEMO RESULT: {{ file.name }}
-   -</div>
-   -->
-
-
-<div class="my-container" tsVerticalSpacing="large--2">
   <ng-container *ngFor="let v of files">
     <ts-file-upload
       *ngIf="fileExists(v.id)"
@@ -29,4 +45,4 @@
       (cleared)="clearFile(v.id)"
     ></ts-file-upload>
   </ng-container>
-</div>
+</ts-card>
