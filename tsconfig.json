@@ -1,6 +1,7 @@
 {
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false
   },
   "compileOnSave": false,
   "compilerOptions": {

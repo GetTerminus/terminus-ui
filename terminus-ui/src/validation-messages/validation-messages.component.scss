@@ -38,9 +38,20 @@
   }
 }
 
-// Styles when within a radio group
+// Styles when inside a radio group component
 .ts-validation-messages {
   .c-radio & {
     display: inline-block;
+  }
+}
+
+// Styles when inside a file upload component
+.ts-validation-messages {
+  .ts-file-upload & {
+    .c-validation-message {
+      margin-top: unset;
+      position: initial;
+      top: initial;
+    }
   }
 }

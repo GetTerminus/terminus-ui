@@ -1,11 +1,31 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
-  ChangeDetectionStrategy,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { CSV_ICON } from './custom-icons/csv';
+
+
+/**
+ * Currently supported custom icons
+ */
+export type TS_CUSTOM_ICON
+  = 'csv'
+;
+
+
+/**
+ * An array of supported custom icons.
+ */
+export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
+  'csv',
+];
 
 
 /**
@@ -44,14 +64,36 @@ export class TsIconComponent {
   public inline: boolean = false;
 
   /**
-   * Name of the icon in the SVG icon set
+   * Name of the custom icon
    */
   @Input()
-  public svgIcon: string | undefined;
+  public set svgIcon(value: TS_CUSTOM_ICON | undefined) {
+    // If an unsupported value is passed in
+    if (value && TS_CUSTOM_ICONS.indexOf(value) < 0 && isDevMode()) {
+      console.warn(`TsIconComponent: "${value}" is not a supported custom icon. ` +
+      `See TS_CUSTOM_ICON for available options.`);
+      return;
+    }
+
+    this._svgIcon = value;
+  }
+  public get svgIcon(): TS_CUSTOM_ICON | undefined {
+    return this._svgIcon;
+  }
+  private _svgIcon: TS_CUSTOM_ICON | undefined;
 
   /**
    * Define the icon theme
    */
   @Input()
   public theme: TsStyleThemeTypes | undefined;
+
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+  ) {
+     this.matIconRegistry.addSvgIconLiteral('csv', this.domSanitizer.bypassSecurityTrustHtml(CSV_ICON));
+  }
+
 }

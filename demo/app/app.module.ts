@@ -46,6 +46,7 @@ import {
   TsCopyModule,
   TsDatepickerModule,
   TsDateRangeModule,
+  TsFileUploadModule,
   TsIconModule,
   TsIconButtonModule,
   TsInputModule,
@@ -89,6 +90,7 @@ import { CopyComponent } from './components/copy/copy.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { InputComponent } from './components/input/input.component';
@@ -139,6 +141,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCopyModule,
     TsDateRangeModule,
     TsDatepickerModule,
+    TsFileUploadModule,
     TsIconButtonModule,
     TsInputModule,
     TsLinkModule,
@@ -185,6 +188,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     CopyComponent,
     DateRangeComponent,
     DatepickerComponent,
+    FileUploadComponent,
     IconComponent,
     IconButtonComponent,
     InputComponent,

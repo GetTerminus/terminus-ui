@@ -100,3 +100,25 @@ $ripple-warn: rgba($warn, $ripple-opacity);
     }
   }
 }
+
+.ts-icon-button {
+  .c-icon-button {
+    margin-left: 1px;
+  }
+
+  // When used within the file upload component, the button should be our utility color by default
+  .c-file-upload & {
+    &[theme] {
+      .c-icon-button {
+        color: color(utility);
+      }
+
+      &:focus,
+      &:hover {
+        .c-icon-button {
+          color: color(warn);
+        }
+      }
+    }
+  }
+}

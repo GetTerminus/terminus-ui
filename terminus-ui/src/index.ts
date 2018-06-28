@@ -9,6 +9,7 @@ export * from './confirmation/confirmation.module';
 export * from './copy/copy.module';
 export * from './date-range/date-range.module';
 export * from './datepicker/datepicker.module';
+export * from './file-upload/file-upload.module';
 export * from './icon/icon.module';
 export * from './icon-button/icon-button.module';
 export * from './input/input.module';

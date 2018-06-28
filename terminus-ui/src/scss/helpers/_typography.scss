@@ -58,7 +58,9 @@ $typography-formats: (
   'title',
   'subhead',
   'body',
-  'caption'
+  'caption',
+  'fixedwidth',
+  'hint'
 );
 
 /**
@@ -215,4 +217,21 @@ $typography-body-levels: (
     font-size: 12px;
     letter-spacing: .02em;
   }
+
+
+  // FIXEDWIDTH
+  @if $format == 'fixedwidth' {
+    font-family: $type__family--monospaced;
+  }
+
+
+  // Hints (for inputs)
+  @if $format == 'hint' {
+    color: color(utility);
+    font-size: 75%;
+    font-weight: 300;
+    letter-spacing: .01em;
+    line-height: 1.5;
+  }
+
 }
