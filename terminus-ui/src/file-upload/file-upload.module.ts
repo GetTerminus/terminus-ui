@@ -14,7 +14,6 @@ import { TsValidationMessagesModule } from './../validation-messages/validation-
 import { TsDropProtectionService } from './drop-protection.service';
 
 export * from './file-upload.component';
-export * from './file-rejection-reasons.enum';
 export * from './image-dimension-constraints';
 
 
