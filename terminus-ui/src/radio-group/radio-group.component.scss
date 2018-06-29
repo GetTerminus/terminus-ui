@@ -70,6 +70,11 @@
     }
   }
 
+  // <legend> Overwrite styles added by bootstrap
+  .c-radio__legend {
+    all: unset;
+  }
+
   // <div> wrapper for all options
   .c-radio__options {
     display: grid;
@@ -92,8 +97,9 @@
     border: 1px solid color(utility, light);
     border-radius: 3px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    padding: spacing(small);
     transition: border-color 200ms ease-in;
     will-change: border-color;
 
@@ -109,7 +115,7 @@
       border-right-color: color(primary);
       border-style: solid;
       border-top-color: color(primary);
-      border-width: 1rem;
+      border-width: 1em;
       content: '';
       opacity: 0;
       position: absolute;
@@ -132,8 +138,8 @@
     color: color(pure);
     opacity: 0;
     position: absolute;
-    right: .2em;
-    top: -.1em;
+    right: .1em;
+    top: -.2em;
     transition: opacity 200ms ease;
     will-change: opacity;
     z-index: 2;
