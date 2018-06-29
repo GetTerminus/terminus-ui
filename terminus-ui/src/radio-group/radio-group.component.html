@@ -84,6 +84,13 @@
 
             <ng-container *ngIf="!option.template">
               {{ retrieveValue(option, formatUILabelFn) }}
+
+              <small
+                class="c-radio__control-sublabel"
+                *ngIf="formatUISubLabelFn"
+              >
+                {{ retrieveValue(option, formatUISubLabelFn) }}
+              </small>
             </ng-container>
 
             <span [innerHTML]="option.template"></span>
