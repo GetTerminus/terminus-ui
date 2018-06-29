@@ -53,11 +53,11 @@
   "peerDependencies": {
     "@angular/animations": "^5.2.x || ^6.0.2",
     "@angular/core": "^5.2.x || ^6.0.2",
-    "@angular/flex-layout": "6.0.0-beta.15",
+    "@angular/flex-layout": "6.0.0-beta.15 || 6.0.0-beta.16",
     "@angular/forms": "^5.2.x || ^6.0.2",
     "@angular/platform-browser": "^5.2.x || ^6.0.2",
     "@angular/router": "^5.2.x || ^6.0.2",
-    "@terminus/ngx-tools": "^2.18.1",
+    "@terminus/ngx-tools": "^2.23.0",
     "date-fns": "2.0.0-alpha.7",
     "rxjs": "^6.1.0"
   },
