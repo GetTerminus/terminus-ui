@@ -54,6 +54,7 @@
     <ts-radio-group
       isVisual="true"
       [formatUILabelFn]="uiFormatter"
+      [formatUISubLabelFn]="uiSubFormatter"
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup2')"
       [options]="items2$ | async"
