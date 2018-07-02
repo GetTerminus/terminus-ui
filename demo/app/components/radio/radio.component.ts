@@ -66,21 +66,21 @@ export class RadioComponent {
     {
       foo: 'foo2_value',
       bar: 'Foo2 Display',
+      template: `<strong>Custom</strong> template!`,
       /*
-       *template: `<strong>HIII</strong>, sup?`,
+       *template: `<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/20322G0V3H2j3n2M2o3l/nice%20laptop%3Ascreen%20elevation.png"> <a href="http://google.com">Links are cool</a>`,
        */
     },
     {
       foo: 'bar2_value',
       bar: 'Bar2 Display',
+      bing: 'Some helper text for my item',
       disabled: true,
     },
     {
       foo: 'baz2_value',
       bar: 'Baz2 Display',
-      /*
-       *template: `<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/20322G0V3H2j3n2M2o3l/nice%20laptop%3Ascreen%20elevation.png"> <a href="http://google.com">Links are cool</a>`,
-       */
+      bing: 'Some helper text. Some helper text for my item. Some helper text.',
     },
   ]);
   // tslint:enable: max-line-length
