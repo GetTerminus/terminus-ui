@@ -2,19 +2,20 @@
 import { NgModule } from '@angular/core';
 
 // Components
-import { TsAutofocusModule } from './autofocus/autofocus.module';
 import { TsAutocompleteModule } from './autocomplete/autocomplete.module';
+import { TsAutofocusModule } from './autofocus/autofocus.module';
 import { TsButtonModule } from './button/button.module';
 import { TsCardModule } from './card/card.module';
 import { TsChartModule } from './chart/chart.module';
 import { TsCheckboxModule } from './checkbox/checkbox.module';
 import { TsConfirmationModule } from './confirmation/confirmation.module';
 import { TsCopyModule } from './copy/copy.module';
+import { TsCSVEntryModule } from './csv-entry/csv-entry.module';
 import { TsDateRangeModule } from './date-range/date-range.module';
 import { TsDatepickerModule } from './datepicker/datepicker.module';
 import { TsFileUploadModule } from './file-upload/file-upload.module';
-import { TsIconModule } from './icon/icon.module';
 import { TsIconButtonModule } from './icon-button/icon-button.module';
+import { TsIconModule } from './icon/icon.module';
 import { TsInputModule } from './input/input.module';
 import { TsLinkModule } from './link/link.module';
 import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module';
@@ -45,15 +46,16 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsAutofocusModule,
     TsButtonModule,
     TsCardModule,
+    TsChartModule,
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
-    TsChartModule,
+    TsCSVEntryModule,
     TsDateRangeModule,
     TsDatepickerModule,
     TsFileUploadModule,
-    TsIconModule,
     TsIconButtonModule,
+    TsIconModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,
@@ -86,15 +88,16 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsAutofocusModule,
     TsButtonModule,
     TsCardModule,
+    TsChartModule,
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
-    TsChartModule,
+    TsCSVEntryModule,
     TsDateRangeModule,
     TsDatepickerModule,
     TsFileUploadModule,
-    TsIconModule,
     TsIconButtonModule,
+    TsIconModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,

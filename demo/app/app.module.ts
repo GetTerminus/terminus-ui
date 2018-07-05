@@ -35,20 +35,21 @@ import {
 } from '@angular/material';
 
 import {
+  HIGHCHARTS,
   TsAutocompleteModule,
   TsAutofocusModule,
   TsButtonModule,
   TsCardModule,
   TsChartModule,
-  HIGHCHARTS,
   TsCheckboxModule,
   TsConfirmationModule,
   TsCopyModule,
-  TsDatepickerModule,
+  TsCSVEntryModule,
   TsDateRangeModule,
+  TsDatepickerModule,
   TsFileUploadModule,
-  TsIconModule,
   TsIconButtonModule,
+  TsIconModule,
   TsInputModule,
   TsLinkModule,
   TsLoadingOverlayModule,
@@ -84,15 +85,16 @@ import { AutofocusComponent } from './components/autofocus/autofocus.component';
 import { BreakpointsComponent } from './components/breakpoints/breakpoints.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
+import { ChartComponent } from './components/chart/chart.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { CopyComponent } from './components/copy/copy.component';
-import { ChartComponent } from './components/chart/chart.component';
+import { CSVEntryComponent } from './components/csv-entry/csv-entry.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { IconComponent } from './components/icon/icon.component';
 import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
@@ -139,10 +141,12 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCheckboxModule,
     TsConfirmationModule,
     TsCopyModule,
+    TsCSVEntryModule,
     TsDateRangeModule,
     TsDatepickerModule,
     TsFileUploadModule,
     TsIconButtonModule,
+    TsIconModule,
     TsInputModule,
     TsLinkModule,
     TsLoadingOverlayModule,
@@ -160,13 +164,12 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsTableModule,
     TsToggleModule,
     TsTooltipModule,
-    TsIconModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
   providers: [
-    TsWindowService,
     TsDocumentService,
+    TsWindowService,
     // Use the factory function to overwrite the `HIGHCHARTS` injectable:
     {
       provide: HIGHCHARTS,
@@ -186,11 +189,12 @@ import { ValidationComponent } from './components/validation/validation.componen
     CheckboxComponent,
     ConfirmationComponent,
     CopyComponent,
+    CSVEntryComponent,
     DateRangeComponent,
     DatepickerComponent,
     FileUploadComponent,
-    IconComponent,
     IconButtonComponent,
+    IconComponent,
     InputComponent,
     LinkComponent,
     LoadingOverlayComponent,

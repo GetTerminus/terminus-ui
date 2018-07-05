@@ -12,7 +12,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-29-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-30-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
@@ -88,8 +88,9 @@ for each feature.
 | [chart][src-chart]                     | Charts, graphs etc                         | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]           | [Usage][chart-usage]        |
 | chip                                   |                                            |                    |                                 |                              |                             |
 | [checkbox][src-checkbox]               |                                            | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]     |
-| [confirmation][src-confirmation]       | Add a confirmation step to any `ts-button` | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Docs][confirmation-usage]  |
+| [confirmation][src-confirmation]       | Add a confirmation step to any `ts-button` | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Usage][confirmation-usage] |
 | [copy][src-copy]                       |                                            | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                             |
+| [csv entry][src-csv-entry]             | Manually enter CSV values                  | :white_check_mark: | [Demo][demo-csv-entry]          | [Docs][csv-entry-docs]       | [Usage][csv-entry-usage]    |
 | [datepicker][src-datepicker]           | Input with calendar pop-up                 | :white_check_mark: | [Demo][demo-datepicker]         | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
 | [date-range][src-date-range]           | Dual inputs with calendar pop-ups          | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
 | dialog                                 |                                            |                    |                                 |                              |                             |
@@ -297,6 +298,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
 [demo-confirmation]: https://terminus-ui-demos.stackblitz.io/components/confirmation
 [demo-copy]: https://terminus-ui-demos.stackblitz.io/components/copy
+[demo-csv-entry]: https://terminus-ui-demos.stackblitz.io/components/csv-entry
 [demo-date-range]: https://terminus-ui-demos.stackblitz.io/components/date-range
 [demo-datepicker]: https://terminus-ui-demos.stackblitz.io/components/datepicker
 [demo-file-upload]: https://terminus-ui-demos.stackblitz.io/components/file-upload
@@ -340,6 +342,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-checkbox]: ./terminus-ui/src/checkbox/
 [src-confirmation]: ./terminus-ui/src/confirmation/
 [src-copy]: ./terminus-ui/src/copy/
+[src-csv-entry]: ./terminus-ui/src/csv-entry/
 [src-date-range]: ./terminus-ui/src/date-range/
 [src-datepicker]: ./terminus-ui/src/datepicker/
 [src-file-upload]: ./terminus-ui/src/file-upload/
@@ -378,6 +381,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [checkbox-docs]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html
 [confirmation-docs]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html
 [copy-docs]: https://getterminus.github.io/terminus-ui/components/TsCopyComponent.html
+[csv-entry-docs]: https://getterminus.github.io/terminus-ui/components/TsCsvEntryComponent.html
 [date-range-docs]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html
 [datepicker-docs]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html
 [file-upload-docs]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html
@@ -410,6 +414,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [chart-usage]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
 [confirmation-usage]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html#readme
+[csv-entry-usage]: https://getterminus.github.io/terminus-ui/components/TsCsvEntryComponent.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme
 [datepicker-usage]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html#readme
 [file-upload-usage]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html#readme

@@ -1,0 +1,148 @@
+<div class="c-csv-entry qa-csv-entry">
+
+  <div class="c-csv-entry__info qa-csv-entry-info">
+    {{ rows.length }} row{{ rows.length > 1 ? 's' : '' }}
+    <br>
+    {{ columnCount }} column{{ columnCount > 1 ? 's' : '' }}
+  </div>
+
+  <div class="c-csv-entry__scroll">
+    <!-- NOTE: fxLayout cannot be defined on the scroll container -->
+    <div fxLayout="row">
+
+      <!-- Column for delete buttons -->
+      <div fxLayout="column">
+        <!-- Fake row for header -->
+        <div style="height: 47px" fxFlex="noshrink"></div>
+
+        <div
+          class="c-csv-entry__column-id"
+          [class.c-csv-entry__column-id--invalid]="row.invalid"
+          [attr.id]="'csv-row-id-' + (idIndex + 1)"
+          *ngFor="let row of rows?.controls; let idIndex = index;"
+          fxFlex="noshrink"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <span fxFlex>
+            {{ +row.controls?.recordId?.value + 1 }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <form
+        class="c-csv-entry__form"
+        [formGroup]="recordsForm"
+        fxFlex
+        #form
+        (mousewheel)="onScroll($event)"
+      >
+
+        <!-- Header Cells -->
+        <div
+          class="c-csv-entry__row c-csv-entry__row--header qa-csv-entry-header-row"
+          formArrayName="headers"
+        >
+          <input
+            class="c-csv-entry__input c-csv-entry__input--header qa-csv-entry-header-cell"
+            type="text"
+            title="Header, Column: {{ getHeaderCellName(headerIndex) || headerIndex + 1 }}"
+            *ngFor="let c of headerCells?.controls; let headerIndex = index;"
+            [attr.id]="createId(-1, headerIndex)"
+            [formControlName]="headerIndex"
+            (paste)="onPaste($event, true)"
+            (keydown.enter)="selectCellInNextRow(createId(-1, headerIndex))"
+            (keydown.tab)="selectAdjacentCell($event, createId(-1, headerIndex))"
+            (keydown.shift.tab)="selectAdjacentCell($event, createId(-1, headerIndex), true)"
+          >
+        </div>
+
+
+        <!-- Body Rows -->
+        <div formArrayName="records">
+          <div
+            class="c-csv-entry__row qa-csv-entry-row"
+            *ngFor="let record of rows?.controls; let recordIndex = index;"
+            [formGroupName]="recordIndex"
+          >
+            <div
+              formArrayName="columns"
+            >
+              <input
+                *ngFor="let c of getColumns(record)?.controls; let columnIndex = index;"
+                class="c-csv-entry__input qa-csv-entry-cell"
+                [class.c-csv-entry__input--invalid]="c.invalid"
+                type="text"
+                title="Row: {{ record.controls?.recordId?.value + 1 }}, Column: {{ getHeaderCellName(columnIndex) || columnIndex + 1 }}"
+                [attr.id]="createId(recordIndex, columnIndex)"
+                [formControlName]="columnIndex"
+                (paste)="onPaste($event)"
+                (keydown.enter)="selectCellInNextRow(createId(recordIndex, columnIndex))"
+                (keydown.shift.enter)="selectCellInNextRow(createId(recordIndex, columnIndex), true)"
+                (keyup)="updateErrors()"
+                (keydown.tab)="selectAdjacentCell($event, createId(recordIndex, columnIndex))"
+                (keydown.shift.tab)="selectAdjacentCell($event, createId(recordIndex, columnIndex), true)"
+              >
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <!-- Column for delete buttons -->
+      <div fxLayout="column">
+        <!-- Fake row for header -->
+        <div style="height: 47px" fxFlex="noshrink"></div>
+
+        <ts-icon-button
+          class="c-csv-entry__delete qa-csv-entry-delete"
+          [attr.id]="'csv-delete-' + (deleteIndex + 1)"
+          [attr.title]="'Delete row ' + (deleteIndex + 1)"
+          *ngFor="let row of rows?.controls; let deleteIndex = index;"
+          (click)="deleteRow(deleteIndex)"
+          fxFlex="noshrink"
+        >delete_forever</ts-icon-button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Validation messages -->
+  <div
+    class="c-csv-entry__messages"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    [fxLayoutGap]="layoutGap"
+  >
+    <div fxLayout="column" fxLayoutAlign="center end">
+      <div
+        class="c-csv-entry__message qa-csv-entry-message"
+        *ngFor="let message of validationMessages; let i = index"
+        [innerHTML]="message"
+      ></div>
+      <div
+        class="c-csv-entry__message qa-csv-entry-message"
+        *ngIf="tooManyRowsMessage"
+      >{{ tooManyRowsMessage }}</div>
+    </div>
+
+    <div [fxLayout]="columnCount < 2 ? 'column' : 'row'" fxLayout="end center" [fxLayoutGap]="layoutGap">
+      <ts-button
+        id="ts-csv-reset"
+        class="qa-csv-entry-reset"
+        format="hollow"
+        theme="warn"
+        (click)="resetTable()"
+      >Reset Table</ts-button>
+
+      <ts-button
+        id="ts-csv-add-row"
+        class="qa-csv-entry-add-row"
+        format="hollow"
+        (click)="addRows()"
+      >Add Row</ts-button>
+    </div>
+  </div>
+</div>
