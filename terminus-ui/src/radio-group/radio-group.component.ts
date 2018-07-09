@@ -53,8 +53,12 @@ export class TsRadioChange extends MatRadioChange {}
  */
 export type TsRadioFormatFn = (v: any) => string;
 
-// Increasing integer for generating unique ids for radio components.
+
+/**
+ * Unique ID for each instance
+ */
 let nextUniqueId = 0;
+
 
 /**
  * Custom control value accessor for our component
@@ -104,6 +108,11 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   exportAs: 'tsRadioGroup',
 })
 export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
+  /**
+   * Define the default component ID
+   */
+  protected _uid = `ts-radio-group-${nextUniqueId++}`;
+
   /**
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
@@ -201,6 +210,18 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   private _formatModelValueFn!: TsRadioFormatFn;
 
   /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id = value || this._uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string = this._uid;
+
+  /**
    * Define if the radio group is disabled
    */
   @Input()
@@ -229,16 +250,12 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set name(value: string) {
-    if (!value) {
-      return;
-    }
-
-    this._name = value;
+    this._name = value ? value : this._uid;
   }
   public get name(): string {
     return this._name;
   }
-  private _name: string = `ts-radio-group-${nextUniqueId++}`;
+  private _name: string = this._uid;
 
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
@@ -286,6 +303,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
+
+    // Force setter to be called in case the ID was not specified.
+    this.id = this.id;
   }
 
 
@@ -322,6 +342,18 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
     return (formatter && formatter(option)) ? formatter(option) : option;
+  }
+
+
+  /**
+   * Handle clicks on labels
+   *
+   * @param option - The selected option
+   */
+  public labelClick(option: TsRadioOption): void {
+    const value = this.retrieveValue(option, this.formatModelValueFn);
+    this.value = value;
+    this.changeDetectorRef.markForCheck();
   }
 
 }

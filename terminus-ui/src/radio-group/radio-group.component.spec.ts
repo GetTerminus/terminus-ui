@@ -234,8 +234,31 @@ describe('TsRadioGroupComponent', () => {
       expect(val2).toEqual('Bar Display');
     });
 
+
     test(`should return the option if no formatter was passed in`, () => {
       expect(component.retrieveValue(options[0])).toEqual(options[0]);
+    });
+
+  });
+
+
+  describe(`labelClick()`, () => {
+
+    test(`should set the value`, () => {
+      const myFn = (v: any) => v.foo;
+      component.formatModelValueFn = myFn;
+      component.labelClick(options[2]);
+      expect(component.value).toEqual(options[2].foo);
+    });
+
+  });
+
+
+  describe(`id`, () => {
+
+    test(`should default to the uid`, () => {
+      component.id = null as any;
+      expect(component.id).toEqual(component['_uid']);
     });
 
   });
