@@ -30,7 +30,7 @@ const DEMO_ITEMS: TsRadioOption[] = [
     foo: 'bar_value',
     bar: 'Bar Display',
     bing: 'Some helper text for my item',
-    disabled: true,
+    disabled: false,
   },
   {
     foo: 'baz_value',
@@ -46,7 +46,7 @@ const DEMO_ITEMS2: TsRadioOption[] = [
   {
     foo: 'bar2_value',
     bar: 'Bar2 Display',
-    disabled: true,
+    disabled: false,
   },
   {
     foo: 'baz2_value',
@@ -75,7 +75,7 @@ export class RadioComponent {
       foo: 'bar2_value',
       bar: 'Bar2 Display',
       bing: 'Some helper text for my item',
-      disabled: true,
+      disabled: false,
     },
     {
       foo: 'baz2_value',

@@ -14,7 +14,7 @@
         class="c-radio__control qa-radio-control"
         [value]="retrieveValue(option, formatModelValueFn)"
         [disabled]="option.disabled"
-        [name]="retrieveValue(option, formatModelValueFn)"
+        [name]="id"
         (change)="change.emit($event)"
         #radio="matRadioButton"
       >
@@ -57,12 +57,13 @@
         <label
           class="c-radio__control qa-radio-control"
           [class.c-radio__control--disabled]="isDisabled || option.disabled"
+          (click)="labelClick(option)"
         >
           <input
             type="radio"
             class="c-radio__input"
             value="{{ retrieveValue(option, formatModelValueFn) }}"
-            [attr.name]="name"
+            [attr.name]="id"
             [attr.disabled]="isDisabled || option.disabled"
             [attr.aria-label]="ariaLabel"
             [attr.aria-labelledby]="ariaLabelledby"
@@ -93,7 +94,7 @@
               </small>
             </ng-container>
 
-            <span [innerHTML]="option.template"></span>
+            <span *ngIf="option.template" [innerHTML]="option.template"></span>
           </div>
         </label>
       </ng-container>
