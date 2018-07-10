@@ -64,19 +64,18 @@
             class="c-radio__input"
             value="{{ retrieveValue(option, formatModelValueFn) }}"
             [attr.name]="id"
-            [attr.disabled]="isDisabled || option.disabled"
+            [attr.disabled]="(isDisabled || option.disabled) ? 'disabled' : null"
             [attr.aria-label]="ariaLabel"
             [attr.aria-labelledby]="ariaLabelledby"
             [attr.aria-describedby]="ariaDescribedby"
             [attr.checked]="retrieveValue(option, formatModelValueFn) === value"
             [(ngModel)]="value"
           >
-
           <div
             class="c-radio__content"
-            [class.c-radio__content--disabled]="isDisabled || option.disabled"
+            [class.c-radio__content--disabled]="(isDisabled || option.disabled) ? 'disabled' : null"
             mat-ripple
-            [matRippleDisabled]="isDisabled || option.disabled"
+            [matRippleDisabled]="(isDisabled || option.disabled) ? 'disabled' : null"
             [matRippleColor]="rippleColor"
           >
             <ts-icon class="c-radio__content-checkmark" inline="true">
