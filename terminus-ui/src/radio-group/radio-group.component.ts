@@ -351,6 +351,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * @param option - The selected option
    */
   public labelClick(option: TsRadioOption): void {
+    if (this.isDisabled || (option && option.disabled)) {
+      return;
+    }
     const value = this.retrieveValue(option, this.formatModelValueFn);
     this.value = value;
     this.changeDetectorRef.markForCheck();

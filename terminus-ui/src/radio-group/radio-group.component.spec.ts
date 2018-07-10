@@ -251,6 +251,13 @@ describe('TsRadioGroupComponent', () => {
       expect(component.value).toEqual(options[2].foo);
     });
 
+    test(`should return if disabled`, () => {
+      const myFn = (v: any) => v.foo;
+      component.formatModelValueFn = myFn;
+      component.labelClick(options[1]);
+      expect(component.value).toEqual('');
+    });
+
   });
 
 
