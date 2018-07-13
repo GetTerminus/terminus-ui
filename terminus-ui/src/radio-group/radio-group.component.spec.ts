@@ -180,6 +180,23 @@ describe('TsRadioGroupComponent', () => {
 
   });
 
+  describe(`small`, () => {
+
+    test(`should set and retrieve the small value`, () => {
+      expect(component.small).toEqual(false);
+      component.small = true;
+      expect(component.small).toEqual(true);
+    });
+
+
+    test(`should set a boolean even if another value was passed in`, () => {
+      expect(component.small).toEqual(false);
+      component.small = 'foo' as any;
+      expect(component.small).toEqual(true);
+    });
+
+  });
+
 
   describe(`options`, () => {
 
