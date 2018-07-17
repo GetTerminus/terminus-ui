@@ -7,6 +7,7 @@ export * from './chart/chart.module';
 export * from './checkbox/checkbox.module';
 export * from './confirmation/confirmation.module';
 export * from './copy/copy.module';
+export * from './csv-entry/csv-entry.module';
 export * from './date-range/date-range.module';
 export * from './datepicker/datepicker.module';
 export * from './file-upload/file-upload.module';

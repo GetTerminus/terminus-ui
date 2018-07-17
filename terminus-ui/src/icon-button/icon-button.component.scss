@@ -121,4 +121,18 @@ $ripple-warn: rgba($warn, $ripple-opacity);
       }
     }
   }
+
+  // When used within the csv-entry component
+  .c-csv-entry & {
+    .c-icon-button {
+      color: color(utility);
+    }
+
+    &:focus,
+    &:hover {
+      .c-icon-button {
+        color: color(warn);
+      }
+    }
+  }
 }

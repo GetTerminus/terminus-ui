@@ -9,11 +9,12 @@ import { ChartComponent } from './chart/chart.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
+import { CSVEntryComponent } from './csv-entry/csv-entry.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import { IconComponent } from './icon/icon.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
+import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
@@ -99,6 +100,13 @@ export const componentsList: Routes = [
     component: ConfirmationComponent,
     data: {
       name: 'Confirmation',
+    },
+  },
+  {
+    path: 'csv-entry',
+    component: CSVEntryComponent,
+    data: {
+      name: 'CSV Entry',
     },
   },
   {

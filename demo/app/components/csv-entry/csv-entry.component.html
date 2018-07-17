@@ -1,0 +1,11 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>CSV Entry</h3>
+
+  <div style="max-width: 80%;">
+    <ts-csv-entry
+      [columnValidators]="validators"
+      (blobGenerated)="file($event)"
+    ></ts-csv-entry>
+  </div>
+
+</ts-card>
