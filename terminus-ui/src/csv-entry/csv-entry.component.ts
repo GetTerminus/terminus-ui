@@ -68,8 +68,12 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-csv-entry
- *              item="Value"
- *              TODO: fill out
+ *              id="my-id"
+ *              maxRows="1000"
+ *              columnCount="6"
+ *              rowCount="12"
+ *              [columnValidators]="arrayOfValidators"
+ *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>

@@ -1,9 +1,9 @@
 <div class="c-csv-entry qa-csv-entry">
 
   <div class="c-csv-entry__info qa-csv-entry-info">
-    {{ rows.length }} row{{ rows.length > 1 ? 's' : '' }}
+    {{ rows.length }} row{{ rows.length === 1 ? '' : 's' }}
     <br>
-    {{ columnCount }} column{{ columnCount > 1 ? 's' : '' }}
+    {{ columnCount }} column{{ columnCount === 1 ? '' : 's' }}
   </div>
 
   <div class="c-csv-entry__scroll">
