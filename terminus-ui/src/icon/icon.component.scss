@@ -37,10 +37,6 @@
   &.ts-icon--warn {
     color: color(warn);
   }
-
-  .c-icon {
-    vertical-align: bottom;
-  }
 }
 
 // Nested classes belong here
@@ -73,5 +69,10 @@
   // Push back opacity for icons in disabled form fields
   .mat-form-field-disabled & {
     opacity: .4;
+  }
+
+  // When the icon is used in the file uploader, align to the bottom
+  .c-file-upload & {
+    vertical-align: bottom;
   }
 }
