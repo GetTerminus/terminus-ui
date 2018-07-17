@@ -277,7 +277,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define if the visual style should be large or small
    */
   @Input()
-  public small: boolean = false;
+  public set small(value: boolean) {
+    this._small = coerceBooleanProperty(value);
+  }
+  public get small(): boolean {
+    return this._small;
+  }
+  private _small: boolean = false;
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}
