@@ -93,7 +93,7 @@
               </small>
             </ng-container>
 
-            <span *ngIf="option.template" [innerHTML]="option.template"></span>
+            <span *ngIf="option.template" [innerHTML]="domSanitizer.bypassSecurityTrustHtml(option.template)"></span>
           </div>
         </label>
       </ng-container>
