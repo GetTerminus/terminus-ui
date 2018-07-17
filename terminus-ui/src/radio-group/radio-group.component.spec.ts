@@ -12,6 +12,16 @@ import {
 } from './radio-group.component';
 
 
+const SVG = `
+<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect x="10" y="10" height="100" width="100" style="stroke:#ff0000; fill: #0000ff"/>
+</svg>
+`;
+
+class DomSanitizerMock {
+  bypassSecurityTrustHtml = jest.fn().mockReturnValue(SVG);
+}
+
 describe('TsRadioGroupComponent', () => {
   let component: TsRadioGroupComponent;
   let options: TsRadioOption[];
@@ -19,6 +29,7 @@ describe('TsRadioGroupComponent', () => {
   beforeEach(() => {
     component = new TsRadioGroupComponent(
       new ChangeDetectorRefMock(),
+      DomSanitizerMock as any,
     );
     options = [
       {

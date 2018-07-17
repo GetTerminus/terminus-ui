@@ -19,6 +19,7 @@ import {
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -307,6 +308,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    public domSanitizer: DomSanitizer,
   ) {
     super();
 
