@@ -4,7 +4,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  CDK_TABLE_TEMPLATE,
   CdkTable,
 } from '@angular/cdk/table';
 
@@ -14,12 +13,20 @@ import {
  */
 @Component({
   selector: 'ts-table',
-  exportAs: 'tsTable',
-  template: CDK_TABLE_TEMPLATE,
+  template: `
+    <div class="ts-table__container">
+      <div class="ts-table__table">
+        <ng-container headerRowOutlet></ng-container>
+        <ng-container rowOutlet></ng-container>
+        <ng-container footerRowOutlet></ng-container>
+      </div>
+    </div>
+  `,
   styleUrls: ['./table.component.scss'],
   host: {
     class: 'ts-table',
   },
+  exportAs: 'tsTable',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

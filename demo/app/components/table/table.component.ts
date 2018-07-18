@@ -29,24 +29,44 @@ export interface TableItem {
 
 const COLUMNS_SOURCE_GITHUB = [
   {
-    name: 'Created',
-    value: 'created',
+    name: 'Updated',
+    value: 'updated',
   },
   {
-    name: 'Title',
-    value: 'title',
-  },
-  {
-    name: 'Comments',
-    value: 'comments',
+    name: 'Number',
+    value: 'number',
   },
   {
     name: 'State',
     value: 'state',
   },
   {
-    name: 'Number',
-    value: 'number',
+    name: 'Title',
+    value: 'title',
+  },
+  {
+    name: 'Body',
+    value: 'body',
+  },
+  {
+    name: 'Labels',
+    value: 'labels',
+  },
+  {
+    name: 'Comments',
+    value: 'comments',
+  },
+  {
+    name: 'Assignee',
+    value: 'assignee',
+  },
+  {
+    name: 'ID',
+    value: 'id',
+  },
+  {
+    name: 'Created',
+    value: 'created',
   },
 ];
 
@@ -85,11 +105,16 @@ export class ExampleHttpDao {
 export class TableComponent implements AfterViewInit {
   allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
   displayedColumns: string[] = [
-    'created',
+    'updated',
     'number',
-    'title',
     'state',
+    'title',
+    'body',
+    'labels',
     'comments',
+    'assignee',
+    'id',
+    'created',
   ];
   exampleDatabase!: ExampleHttpDao;
   dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();

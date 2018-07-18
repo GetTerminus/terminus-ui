@@ -20,11 +20,23 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 .ts-table {
   @include reset;
   @include typography;
-  border-collapse:collapse;
-  display: table;
-  // Set up for column hover styles
+  border-collapse: collapse;
+  display: block;
+  height: 100%;
   overflow: hidden;
   width: 100%;
+
+  // <div> inner container for overflow control
+  &__container {
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  // <div> Emulate <table> element and hide overflow caused by hover crosshairs
+  &__table {
+    display: table;
+    overflow: hidden;
+  }
 
   // Target a table inside of a card component
   // When inside a card we adjust the top|right|left margins to cancel the default card padding
@@ -120,30 +132,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   .ts-cell,
   .ts-header-cell {
     display: table-cell;
-    // Set up for column hover styles
-    position: relative;
-
-    // Pseudo element used for column hover
-    &::after {
-      background-color: $ts-row-hover;
-      content: '';
-      display: block;
-      height: 200vh;
-      left: 0;
-      opacity: 0;
-      position: absolute;
-      top: -100vh;
-      transition: opacity 200ms ease-out;
-      width: 100%;
-      will-change: opacity;
-      z-index: -1;
-    }
-
-    &:hover {
-      &::after {
-        opacity: 1;
-      }
-    }
 
     // Class added if a column should not wrap
     &.ts-column-no-wrap {
