@@ -128,6 +128,8 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
+    "@amcharts/amcharts4-geodata": "^4.0.4",
+    "@amcharts/amcharts4": "^4.0.0-beta.32",
     "@angular/animations": "^6.0.7",
     "@angular/common": "^6.0.7",
     "@angular/core": "^6.0.7",
