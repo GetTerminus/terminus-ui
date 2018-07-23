@@ -142,26 +142,23 @@ export class TsSelectedFile {
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
   private determineImageDimensions(callback?: Function): void {
-    // If we are not dealing with an image, exit
-    if (!this.isImage) {
-      // istanbul ignore else
-      if (callback) {
-        callback();
-      }
+    let img: HTMLImageElement | undefined;
 
-      // Since this is not an image, set dimension validation to `true` to 'bypass'
-      this.validations.imageDimensions = true;
-      return;
-    }
+    if (this.isImage) {
+      // Create an image so that dimensions can be determined
+      img = new Image();
 
-    // Create an image so that dimensions can be determined
-    const img: HTMLImageElement = new Image();
-
-    this.fileReader.onload = (v: Event) => {
-      img.src = this.fileReader.result;
-    };
-    img.onload = (v: Event) => {
-        this.dimensions = new TsImageDimensions(img.naturalWidth, img.naturalHeight);
+      this.fileReader.onload = (v: Event) => {
+        // istanbul ignore else
+        if (img) {
+          img.src = this.fileReader.result;
+        }
+      };
+      img.onload = (v: Event) => {
+        // istanbul ignore else
+        if (img) {
+          this.dimensions = new TsImageDimensions(img.naturalWidth, img.naturalHeight);
+        }
 
         // Validate dimensions
         this.validations.imageDimensions = this.validateImageDimensions(this.imageDimensionConstraints);
@@ -171,7 +168,17 @@ export class TsSelectedFile {
         if (callback) {
           callback();
         }
-    };
+      };
+    } else {
+      // We are not dealing with an image:
+      // istanbul ignore else
+      if (callback) {
+        callback();
+      }
+
+      // Since this is not an image, set dimension validation to `true` to 'bypass'
+      this.validations.imageDimensions = true;
+    }
 
     // Read the file (this triggers the FileReader load event)
     this.fileReader.readAsDataURL(this.file);
