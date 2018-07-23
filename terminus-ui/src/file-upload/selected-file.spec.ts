@@ -73,6 +73,7 @@ describe(`TsSelectedFile`, () => {
   beforeEach(() => {
     // Mock FileReader
     class DummyFileReader {
+      onload = jest.fn();
       addEventListener = jest.fn();
       readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) { this.onload({} as Event); });
       // tslint:disable: max-line-length
@@ -225,6 +226,18 @@ describe(`TsSelectedFile`, () => {
         }
       });
       expect.assertions(4);
+    });
+
+
+    test(`should still seed the FileReader for non-image files`, (done) => {
+      const file = createFile(FILE_CSV_MOCK);
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.fileContents).toBeTruthy();
+          done();
+        }
+      });
+      expect.assertions(1);
     });
 
 
