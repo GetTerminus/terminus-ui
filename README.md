@@ -381,7 +381,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [checkbox-docs]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html
 [confirmation-docs]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html
 [copy-docs]: https://getterminus.github.io/terminus-ui/components/TsCopyComponent.html
-[csv-entry-docs]: https://getterminus.github.io/terminus-ui/components/TsCsvEntryComponent.html
+[csv-entry-docs]: https://getterminus.github.io/terminus-ui/components/TsCSVEntryComponent.html
 [date-range-docs]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html
 [datepicker-docs]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html
 [file-upload-docs]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html
@@ -414,7 +414,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [chart-usage]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html#readme
 [checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
 [confirmation-usage]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html#readme
-[csv-entry-usage]: https://getterminus.github.io/terminus-ui/components/TsCsvEntryComponent.html#readme
+[csv-entry-usage]: https://getterminus.github.io/terminus-ui/components/TsCSVEntryComponent.html#readme
 [date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme
 [datepicker-usage]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html#readme
 [file-upload-usage]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html#readme
