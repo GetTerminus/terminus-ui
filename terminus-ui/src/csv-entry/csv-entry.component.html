@@ -48,6 +48,7 @@
             class="c-csv-entry__input c-csv-entry__input--header qa-csv-entry-header-cell"
             type="text"
             title="Header, Column: {{ getHeaderCellName(headerIndex) || headerIndex + 1 }}"
+            [readonly]="(columnHeaders && columnHeaders[headerIndex])"
             *ngFor="let c of headerCells?.controls; let headerIndex = index;"
             [attr.id]="createId(-1, headerIndex)"
             [formControlName]="headerIndex"

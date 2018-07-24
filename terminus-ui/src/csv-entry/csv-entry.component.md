@@ -85,3 +85,16 @@ myValidators = [null, this.validatorsService.url(), null, null];
 ```
 
 This example would add the URL validation to the second column only.
+
+
+## Static Column Headers
+
+If there are certain headers that must be available, these can be set via an input:
+
+```html
+<ts-csv-entry [columnHeaders]="['Header One', 'Header Two']">
+</ts-csv-entry>
+```
+
+Setting static column headers will set the header cells to `readonly`. This will still allow keyboard navigation but will not allow the user
+to change the contents of the set header cells.

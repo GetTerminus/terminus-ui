@@ -4,6 +4,7 @@
   <div style="max-width: 80%;">
     <ts-csv-entry
       [columnValidators]="validators"
+      [columnHeaders]="['foo', 'bar']"
       (blobGenerated)="file($event)"
     ></ts-csv-entry>
   </div>
