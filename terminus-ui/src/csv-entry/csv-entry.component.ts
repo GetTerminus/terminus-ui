@@ -35,7 +35,7 @@ import { TS_SPACING } from './../spacing/spacing.constant';
  */
 export interface TsCSVEntryRecord {
   recordId: number;
-  columns: string[];
+  columns: (string | null)[];
 }
 
 /**
@@ -571,6 +571,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
           const errorItem = (error.actual.length > maxItemLength) ? error.actual.slice(0, maxItemLength) + '...' : error.actual;
           message += `"${errorItem}" is not a valid URL.`;
         }
+        // istanbul ignore else
+        if (name === 'required') {
+          message += `Content is required.`;
+        }
         messages.push(message);
       }
     }
@@ -656,7 +660,14 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
           for (let j = 0; j < errorKeys.length; j += 1) {
             const errorKey: string = errorKeys[j];
-            const error: string = errors[errorKeys[j]];
+            let error: {[key: string]: any} = errors[errorKeys[j]];
+
+            // Angular built in required validator only returns a boolean
+            if (typeof error === 'boolean') {
+              error = {
+                valid: false,
+              };
+            }
 
             // If the rowId exists, add it to the errors object
             // istanbul ignore else

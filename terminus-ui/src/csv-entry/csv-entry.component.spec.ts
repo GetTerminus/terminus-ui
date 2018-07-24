@@ -9,7 +9,7 @@ import {
   TestModuleMetadata,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn, Validators } from '@angular/forms';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
@@ -91,6 +91,7 @@ describe(`TsCSVEntryComponent`, () => {
   let formContentTwoCol: TsCSVFormContents;
   let formContentThreeCol: TsCSVFormContents;
   let formContentManyErrors: TsCSVFormContents;
+  let formContentRequiredErrors: TsCSVFormContents;
   const createPasteEvent = (content: TsCSVFormContents): ClipboardEvent => {
     const event = createFakeEvent('paste') as ClipboardEvent;
     const stringValue = stringifyForm(content);
@@ -148,6 +149,14 @@ describe(`TsCSVEntryComponent`, () => {
         {recordId: 6, columns: ['bing7', 'bang7', 'boom7']},
         {recordId: 7, columns: ['bing8', 'bang8', 'boom8']},
         {recordId: 8, columns: ['bing9', 'bang9', 'boom9']},
+      ],
+    };
+    formContentRequiredErrors = {
+      headers: [ 'bing', 'bang'],
+      records: [
+        {recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1']},
+        {recordId: 1, columns: [null, 'bang2', 'boom2']},
+        {recordId: 2, columns: ['bing3', 'bang3', 'boom3']},
       ],
     };
     /**
@@ -413,6 +422,17 @@ describe(`TsCSVEntryComponent`, () => {
       const validations: DebugElement[] = fixture.debugElement.queryAll(By.css('.c-csv-entry__message'));
 
       expect(validations[3].nativeElement.innerHTML).toEqual(expect.stringContaining('..." is not a valid URL'));
+    });
+
+
+    test(`should output required error`, () => {
+      hostComponent.columnValidators = [Validators.required, hostComponent.validatorsService.url()];
+      fixture.detectChanges();
+      firstHeaderCell.dispatchEvent(createPasteEvent(formContentRequiredErrors));
+      expect(firstHeaderCell.value).toEqual('bing');
+      const validations: DebugElement[] = fixture.debugElement.queryAll(By.css('.c-csv-entry__message'));
+
+      expect(validations[1].nativeElement.innerHTML).toEqual(expect.stringContaining('Content is required'));
     });
 
   });
