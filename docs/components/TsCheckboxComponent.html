@@ -3952,6 +3952,9 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
+
+    // Force setter to be called in case the ID was not specified.
+    this.id &#x3D; this.id;
   }
 
 }
@@ -3963,7 +3966,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   class&#x3D;&quot;c-checkbox qa-checkbox&quot;
   [color]&#x3D;&quot;theme&quot;
   [indeterminate]&#x3D;&quot;isIndeterminate&quot;
-  [disabled]&#x3D;&quot;isDisabled ? &#x27;&#x27; : null&quot;
+  [disabled]&#x3D;&quot;isDisabled ? &#x27;disabled&#x27; : null&quot;
   [required]&#x3D;&quot;isRequired ? &#x27;&#x27; : null&quot;
   [(ngModel)]&#x3D;&quot;value&quot;
   tabIndex&#x3D;&quot;{{ tabIndex }}&quot;
@@ -4005,7 +4008,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-checkbox  class="c-checkbox qa-checkbox"  [color]="theme"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  tabIndex="{{ tabIndex }}"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></mat-checkbox></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-checkbox  class="c-checkbox qa-checkbox"  [color]="theme"  [indeterminate]="isIndeterminate"  [disabled]="isDisabled ? \'disabled\' : null"  [required]="isRequired ? \'\' : null"  [(ngModel)]="value"  tabIndex="{{ tabIndex }}"  (change)="inputChange.emit($event.checked)"  (indeterminateChange)="indeterminateChange.emit($event)">  <ng-content></ng-content></mat-checkbox></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCSVEntryComponent', 'selector': 'ts-csv-entry'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsChartComponent', 'selector': 'ts-chart'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsConfirmationModalComponent', 'selector': 'ts-confirmation-modal'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsFileUploadComponent', 'selector': 'ts-file-upload'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsChartPointDirective', 'selector': 'ts-point'},{'name': 'TsChartSeriesDirective', 'selector': 'ts-series'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsConfirmationDirective', 'selector': '[tsConfirmation]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCheckboxComponent'};

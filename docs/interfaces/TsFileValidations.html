@@ -2626,26 +2626,23 @@ export class TsSelectedFile {
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
   private determineImageDimensions(callback?: Function): void {
-    // If we are not dealing with an image, exit
-    if (!this.isImage) {
-      // istanbul ignore else
-      if (callback) {
-        callback();
-      }
+    let img: HTMLImageElement | undefined;
 
-      // Since this is not an image, set dimension validation to &#x60;true&#x60; to &#x27;bypass&#x27;
-      this.validations.imageDimensions &#x3D; true;
-      return;
-    }
+    if (this.isImage) {
+      // Create an image so that dimensions can be determined
+      img &#x3D; new Image();
 
-    // Create an image so that dimensions can be determined
-    const img: HTMLImageElement &#x3D; new Image();
-
-    this.fileReader.onload &#x3D; (v: Event) &#x3D;&gt; {
-      img.src &#x3D; this.fileReader.result;
-    };
-    img.onload &#x3D; (v: Event) &#x3D;&gt; {
-        this.dimensions &#x3D; new TsImageDimensions(img.naturalWidth, img.naturalHeight);
+      this.fileReader.onload &#x3D; (v: Event) &#x3D;&gt; {
+        // istanbul ignore else
+        if (img) {
+          img.src &#x3D; this.fileReader.result;
+        }
+      };
+      img.onload &#x3D; (v: Event) &#x3D;&gt; {
+        // istanbul ignore else
+        if (img) {
+          this.dimensions &#x3D; new TsImageDimensions(img.naturalWidth, img.naturalHeight);
+        }
 
         // Validate dimensions
         this.validations.imageDimensions &#x3D; this.validateImageDimensions(this.imageDimensionConstraints);
@@ -2655,7 +2652,17 @@ export class TsSelectedFile {
         if (callback) {
           callback();
         }
-    };
+      };
+    } else {
+      // We are not dealing with an image:
+      // istanbul ignore else
+      if (callback) {
+        callback();
+      }
+
+      // Since this is not an image, set dimension validation to &#x60;true&#x60; to &#x27;bypass&#x27;
+      this.validations.imageDimensions &#x3D; true;
+    }
 
     // Read the file (this triggers the FileReader load event)
     this.fileReader.readAsDataURL(this.file);
