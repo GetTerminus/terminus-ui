@@ -10,6 +10,7 @@
   - [Row count](#row-count)
   - [Max rows](#max-rows)
 - [Column validation](#column-validation)
+- [Static Column Headers](#static-column-headers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

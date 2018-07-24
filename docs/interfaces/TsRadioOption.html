@@ -2401,7 +2401,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">terminus-ui/src/radio-group/radio-group.component.ts:31</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2672,6 +2672,7 @@ import {
   untilComponentDestroyed,
 } from &#x27;@terminus/ngx-tools&#x27;;
 import { coerceBooleanProperty } from &#x27;@terminus/ngx-tools/coercion&#x27;;
+import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 
 import { TsStyleThemeTypes } from &#x27;./../utilities/types/style-theme.types&#x27;;
 import { TsReactiveFormBaseComponent } from &#x27;./../utilities/reactive-form-base.component&#x27;;
@@ -2706,8 +2707,12 @@ export class TsRadioChange extends MatRadioChange {}
  */
 export type TsRadioFormatFn &#x3D; (v: any) &#x3D;&gt; string;
 
-// Increasing integer for generating unique ids for radio components.
+
+/**
+ * Unique ID for each instance
+ */
 let nextUniqueId &#x3D; 0;
+
 
 /**
  * Custom control value accessor for our component
@@ -2757,6 +2762,11 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any &#x3D; {
   exportAs: &#x27;tsRadioGroup&#x27;,
 })
 export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
+  /**
+   * Define the default component ID
+   */
+  protected _uid &#x3D; &#x60;ts-radio-group-${nextUniqueId++}&#x60;;
+
   /**
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
@@ -2854,6 +2864,18 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   private _formatModelValueFn!: TsRadioFormatFn;
 
   /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id &#x3D; value || this._uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string &#x3D; this._uid;
+
+  /**
    * Define if the radio group is disabled
    */
   @Input()
@@ -2882,16 +2904,12 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set name(value: string) {
-    if (!value) {
-      return;
-    }
-
-    this._name &#x3D; value;
+    this._name &#x3D; value ? value : this._uid;
   }
   public get name(): string {
     return this._name;
   }
-  private _name: string &#x3D; &#x60;ts-radio-group-${nextUniqueId++}&#x60;;
+  private _name: string &#x3D; this._uid;
 
   /**
    * Accept an array of radio options in the {@link TsRadioOption} format
@@ -2913,7 +2931,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define if the visual style should be large or small
    */
   @Input()
-  public small: boolean &#x3D; false;
+  public set small(value: boolean) {
+    this._small &#x3D; coerceBooleanProperty(value);
+  }
+  public get small(): boolean {
+    return this._small;
+  }
+  private _small: boolean &#x3D; false;
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}
@@ -2937,8 +2961,12 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    public domSanitizer: DomSanitizer,
   ) {
     super();
+
+    // Force setter to be called in case the ID was not specified.
+    this.id &#x3D; this.id;
   }
 
 
@@ -2975,6 +3003,21 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   public retrieveValue(option: TsRadioOption, formatter?: TsRadioFormatFn): TsRadioOption | string {
     return (formatter &amp;&amp; formatter(option)) ? formatter(option) : option;
+  }
+
+
+  /**
+   * Handle clicks on labels
+   *
+   * @param option - The selected option
+   */
+  public labelClick(option: TsRadioOption): void {
+    if (this.isDisabled || (option &amp;&amp; option.disabled)) {
+      return;
+    }
+    const value &#x3D; this.retrieveValue(option, this.formatModelValueFn);
+    this.value &#x3D; value;
+    this.changeDetectorRef.markForCheck();
   }
 
 }

@@ -2400,7 +2400,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>columns:     <code>string[]</code>
+                                        <code>columns:     <code>(string | null)[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -2408,7 +2408,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code>(string | null)[]</code>
 
                                         </td>
                                     </tr>
@@ -2466,6 +2466,7 @@
 </ul>
 </li>
 <li><a href="#column-validation">Column validation</a></li>
+<li><a href="#static-column-headers">Static Column Headers</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <h2 id="basic-usage">Basic usage</h2>
@@ -2499,6 +2500,11 @@ emitted.</p>
 <p>Pass in an array of validators matching the column count.</p>
 <div><pre class="line-numbers"><code class="language-typescript">myValidators = [null, this.validatorsService.url(), null, null];</code></pre></div><div><pre class="line-numbers"><code class="language-html">&lt;ts-csv-entry columnCount=&quot;4&quot; [columnValidators]=&quot;myValidators&quot;&gt;
 &lt;/ts-csv-entry&gt;</code></pre></div><p>This example would add the URL validation to the second column only.</p>
+<h2 id="static-column-headers">Static Column Headers</h2>
+<p>If there are certain headers that must be available, these can be set via an input:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ts-csv-entry [columnHeaders]=&quot;[&#39;Header One&#39;, &#39;Header Two&#39;]&quot;&gt;
+&lt;/ts-csv-entry&gt;</code></pre></div><p>Setting static column headers will set the header cells to <code>readonly</code>. This will still allow keyboard navigation but will not allow the user
+to change the contents of the set header cells.</p>
 </p>
     </div>
 
@@ -2540,7 +2546,7 @@ import { TS_SPACING } from &#x27;./../spacing/spacing.constant&#x27;;
  */
 export interface TsCSVEntryRecord {
   recordId: number;
-  columns: string[];
+  columns: (string | null)[];
 }
 
 /**
@@ -2649,17 +2655,17 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public allErrors: {[key: string]: any}[] | null &#x3D; null;
 
   /**
-   * Get rows as a form array
-   */
-  public get rows(): FormArray {
-    return this.recordsForm.get(&#x27;records&#x27;) as FormArray;
-  }
-
-  /**
    * Get header cells as a form array
    */
   public get headerCells(): FormArray {
     return this.recordsForm.get(&#x27;headers&#x27;) as FormArray;
+  }
+
+  /**
+   * Get rows as a form array
+   */
+  public get rows(): FormArray {
+    return this.recordsForm.get(&#x27;records&#x27;) as FormArray;
   }
 
   /**
@@ -2711,6 +2717,20 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private _rowCount: number &#x3D; this.defaultRowCount;
 
   /**
+   * Allow static headers to be set
+   */
+  @Input()
+  public set columnHeaders(value: string[] | undefined) {
+    this._columnHeaders &#x3D; value;
+    this.clearHeaderCells();
+    this.addHeaders(this.columnCount, this.columnHeaders);
+  }
+  public get columnHeaders(): string[] | undefined {
+    return this._columnHeaders;
+  }
+  private _columnHeaders: string[] | undefined;
+
+  /**
    * Define any column validators
    */
   @Input()
@@ -2748,7 +2768,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public ngOnInit(): void {
     this.addRows(this.rowCount, this.columnCount);
-    this.addHeaders(this.columnCount);
+    this.addHeaders(this.columnCount, this.columnHeaders);
 
     this.recordsForm.valueChanges.pipe(
       // Let the form values &#x27;settle&#x27; before we emit anything
@@ -2832,9 +2852,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public onPaste(event: ClipboardEvent, hasHeader?: boolean): void {
     const eventContent &#x3D; event.clipboardData.getData(&#x27;Text&#x27;);
-    /*
-     *console.log(&#x27;onPaste: &#x27;, eventContent);
-     */
     if (!eventContent) {
       return;
     }
@@ -2849,10 +2866,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const content &#x3D; this.splitContent(eventContent, hasHeader);
     const neededRows: number &#x3D; content.rows.length;
 
+    // If the paste was into a header cell, verify that header cell content doesn&#x27;t already exist
     if (hasHeader) {
       this.clearAllRows();
       this.clearHeaderCells();
-      this.addHeaders(content.headers.length, content.headers);
+      this.addHeaders(content.headers.length, this.columnHeaders || content.headers);
       this.columnCount &#x3D; content.headers.length;
       this.addRows(neededRows, content.headers.length, content.rows);
     } else {
@@ -3064,6 +3082,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
           const errorItem &#x3D; (error.actual.length &gt; maxItemLength) ? error.actual.slice(0, maxItemLength) + &#x27;...&#x27; : error.actual;
           message +&#x3D; &#x60;&quot;${errorItem}&quot; is not a valid URL.&#x60;;
         }
+        // istanbul ignore else
+        if (name &#x3D;&#x3D;&#x3D; &#x27;required&#x27;) {
+          message +&#x3D; &#x60;Content is required.&#x60;;
+        }
         messages.push(message);
       }
     }
@@ -3085,7 +3107,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param index - The index of the row to delete
    */
   public deleteRow(index: number): void {
-    if (!index || index &lt; 0) {
+    if (index &#x3D;&#x3D;&#x3D; undefined || index &#x3D;&#x3D;&#x3D; null || index &lt; 0) {
       return;
     }
 
@@ -3103,7 +3125,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.clearHeaderCells();
     this.columnCount &#x3D; this.defaultColumnCount;
     this.addRows(this.rowCount, this.columnCount);
-    this.addHeaders(this.columnCount);
+    this.addHeaders(this.columnCount, this.columnHeaders);
     this.updateErrors();
   }
 
@@ -3149,7 +3171,14 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
           for (let j &#x3D; 0; j &lt; errorKeys.length; j +&#x3D; 1) {
             const errorKey: string &#x3D; errorKeys[j];
-            const error: string &#x3D; errors[errorKeys[j]];
+            let error: {[key: string]: any} &#x3D; errors[errorKeys[j]];
+
+            // Angular built in required validator only returns a boolean
+            if (typeof error &#x3D;&#x3D;&#x3D; &#x27;boolean&#x27;) {
+              error &#x3D; {
+                valid: false,
+              };
+            }
 
             // If the rowId exists, add it to the errors object
             // istanbul ignore else
@@ -3219,7 +3248,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private addHeaders(headerCount: number, content?: string[]): void {
     for (let i &#x3D; 0; i &lt; headerCount; i +&#x3D; 1) {
       const value: string | null &#x3D; (content &amp;&amp; content[i]) ? content[i] : null;
-      this.headerCells.setControl(i, new FormControl(value));
+      const ctrl &#x3D; value ? new FormControl(value) : new FormControl();
+      this.headerCells.setControl(i, ctrl);
     }
   }
 
