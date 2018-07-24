@@ -144,17 +144,17 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public allErrors: {[key: string]: any}[] | null = null;
 
   /**
-   * Get rows as a form array
-   */
-  public get rows(): FormArray {
-    return this.recordsForm.get('records') as FormArray;
-  }
-
-  /**
    * Get header cells as a form array
    */
   public get headerCells(): FormArray {
     return this.recordsForm.get('headers') as FormArray;
+  }
+
+  /**
+   * Get rows as a form array
+   */
+  public get rows(): FormArray {
+    return this.recordsForm.get('records') as FormArray;
   }
 
   /**
@@ -206,6 +206,20 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private _rowCount: number = this.defaultRowCount;
 
   /**
+   * Allow static headers to be set
+   */
+  @Input()
+  public set columnHeaders(value: string[] | undefined) {
+    this._columnHeaders = value;
+    this.clearHeaderCells();
+    this.addHeaders(this.columnCount, this.columnHeaders);
+  }
+  public get columnHeaders(): string[] | undefined {
+    return this._columnHeaders;
+  }
+  private _columnHeaders: string[] | undefined;
+
+  /**
    * Define any column validators
    */
   @Input()
@@ -243,7 +257,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public ngOnInit(): void {
     this.addRows(this.rowCount, this.columnCount);
-    this.addHeaders(this.columnCount);
+    this.addHeaders(this.columnCount, this.columnHeaders);
 
     this.recordsForm.valueChanges.pipe(
       // Let the form values 'settle' before we emit anything
@@ -327,9 +341,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public onPaste(event: ClipboardEvent, hasHeader?: boolean): void {
     const eventContent = event.clipboardData.getData('Text');
-    /*
-     *console.log('onPaste: ', eventContent);
-     */
     if (!eventContent) {
       return;
     }
@@ -344,10 +355,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const content = this.splitContent(eventContent, hasHeader);
     const neededRows: number = content.rows.length;
 
+    // If the paste was into a header cell, verify that header cell content doesn't already exist
     if (hasHeader) {
       this.clearAllRows();
       this.clearHeaderCells();
-      this.addHeaders(content.headers.length, content.headers);
+      this.addHeaders(content.headers.length, this.columnHeaders || content.headers);
       this.columnCount = content.headers.length;
       this.addRows(neededRows, content.headers.length, content.rows);
     } else {
@@ -580,7 +592,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param index - The index of the row to delete
    */
   public deleteRow(index: number): void {
-    if (!index || index < 0) {
+    if (index === undefined || index === null || index < 0) {
       return;
     }
 
@@ -598,7 +610,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.clearHeaderCells();
     this.columnCount = this.defaultColumnCount;
     this.addRows(this.rowCount, this.columnCount);
-    this.addHeaders(this.columnCount);
+    this.addHeaders(this.columnCount, this.columnHeaders);
     this.updateErrors();
   }
 
@@ -714,7 +726,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private addHeaders(headerCount: number, content?: string[]): void {
     for (let i = 0; i < headerCount; i += 1) {
       const value: string | null = (content && content[i]) ? content[i] : null;
-      this.headerCells.setControl(i, new FormControl(value));
+      const ctrl = value ? new FormControl(value) : new FormControl();
+      this.headerCells.setControl(i, ctrl);
     }
   }
 

@@ -13,9 +13,10 @@ import { ValidatorFn } from '@angular/forms';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
+  dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@terminus/ngx-tools/testing';
-import { ENTER, TAB } from '@terminus/ngx-tools/keycodes';
+import { ENTER, TAB, A } from '@terminus/ngx-tools/keycodes';
 
 import { TsValidatorsService } from './../validators/validators.service';
 import { TsCSVEntryModule } from './csv-entry.module';
@@ -45,6 +46,7 @@ function stringifyForm(content: TsCSVFormContents): string {
        [columnCount]="columnCount"
        [rowCount]="rowCount"
        [columnValidators]="columnValidators"
+       [columnHeaders]="columnHeaders"
        (blobGenerated)="gotFile($event)"
     ></ts-csv-entry>
   `,
@@ -55,6 +57,7 @@ class TestHostComponent {
   columnCount: number | undefined;
   rowCount: number | undefined;
   columnValidators: undefined | (ValidatorFn | null)[];
+  columnHeaders: undefined | string[];
   gotFile = jest.fn();
 
   @ViewChild(TsCSVEntryComponent)
@@ -111,6 +114,7 @@ describe(`TsCSVEntryComponent`, () => {
       hostComponent.columnCount = undefined;
       hostComponent.rowCount = undefined;
       hostComponent.columnValidators = undefined;
+      hostComponent.columnHeaders = undefined;
     }
     /**
      * Form content
@@ -264,6 +268,16 @@ describe(`TsCSVEntryComponent`, () => {
       component.onPaste(event);
 
       expect(component['splitContent']).not.toHaveBeenCalled();
+    });
+
+
+    test(`should consider a header paste to be a body paste if columnHeaders are set`, () => {
+      hostComponent.columnHeaders = ['one', 'two'];
+      component['clearAllRows'] = jest.fn();
+      fixture.detectChanges();
+      firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
+      fixture.detectChanges();
+      expect(component['clearAllRows']).not.toHaveBeenCalled();
     });
 
   });
@@ -480,7 +494,8 @@ describe(`TsCSVEntryComponent`, () => {
     });
 
 
-    test(`should do nothing if no valid index was passed in`, () => {
+    test(`should do nothing if called with no valid index`, () => {
+      component.deleteRow(undefined as any);
       component.deleteRow(null as any);
       expect(mock).not.toHaveBeenCalled();
     });
@@ -592,6 +607,30 @@ describe(`TsCSVEntryComponent`, () => {
 
     test(`should return an empty string if the header isn't found`, () => {
       expect(component.getHeaderCellName(20)).toEqual('');
+    });
+
+  });
+
+
+  describe(`columnHeaders`, () => {
+
+    test(`should set the header content and not allow changes`, () => {
+      jest.useFakeTimers();
+      hostComponent.columnHeaders = ['one', 'two'];
+      fixture.detectChanges();
+      firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
+      jest.advanceTimersByTime(10);
+      fixture.detectChanges();
+
+      // Try typing to verify the input is readonly
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
+      fixture.detectChanges();
+
+      expect(firstHeaderCell.value).toEqual('one');
+      expect(component.columnCount).toEqual(2);
+      jest.runAllTimers();
     });
 
   });
