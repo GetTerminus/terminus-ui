@@ -23,6 +23,7 @@ module.exports = {
     "terminus-ui/src/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts",
     "!terminus-ui/src/utilities/rxjs-lift-hack.ts",
     "!terminus-ui/src/module.ts",
+    "!terminus-ui/src/chart2/*",
   ],
   "moduleFileExtensions": [
     "ts",

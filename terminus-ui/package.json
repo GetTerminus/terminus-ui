@@ -65,6 +65,8 @@
     "@types/highcharts": "^5.0.22"
   },
   "optionalDependencies": {
+    "@amcharts/amcharts4-geodata": "^4.0.4",
+    "@amcharts/amcharts4": "^4.0.0-beta.32",
     "highcharts": "^6.1.0"
   },
   "ngPackage": {

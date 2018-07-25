@@ -6,6 +6,7 @@ import { BreakpointsComponent } from './breakpoints/breakpoints.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { ChartComponent } from './chart/chart.component';
+import { Chart2Component } from './chart2/chart2.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
@@ -79,6 +80,13 @@ export const componentsList: Routes = [
     component: ChartComponent,
     data: {
       name: 'Chart',
+    },
+  },
+  {
+    path: 'chart2',
+    component: Chart2Component,
+    data: {
+      name: 'Chart 2',
     },
   },
   {
