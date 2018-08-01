@@ -68,6 +68,24 @@ export class TsCardComponent {
   }
 
   /**
+   * Define if the card should center child content
+   */
+  @Input()
+  public centeredContent: boolean = false;
+
+  /**
+   * Define if the card is disabled
+   */
+  @Input()
+  public disabled: boolean = false;
+
+  /**
+   * Define if the card should not have a drop shadow
+   */
+  @Input()
+  public flat: boolean = false;
+
+  /**
    * Define if the card should support interaction (via hover)
    *
    * NOTE: This only alters style; not functionality
@@ -76,21 +94,8 @@ export class TsCardComponent {
   public supportsInteraction: boolean = false;
 
   /**
-   * Define if the card should center child content
-   */
-  @Input()
-  public centeredContent: boolean = false;
-
-  /**
    * Allow a custom utility menu to be added
    */
   @Input()
   public utilityMenuTemplate: TemplateRef<ElementRef> | undefined;
-
-  /**
-   * Define if the card is disabled
-   */
-  @Input()
-  public disabled: boolean = false;
-
 }

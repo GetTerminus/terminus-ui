@@ -96,3 +96,10 @@
     padding-right: spacing(large, 4);
   }
 }
+
+.c-card--flat {
+  .c-card__inner {
+    border: 1px solid color(utility, light);
+    box-shadow: none;
+  }
+}
