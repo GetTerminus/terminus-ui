@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { CSV_ICON } from './custom-icons/csv';
@@ -52,11 +53,26 @@ export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
     '[class.ts-icon--primary]': 'theme === "primary"',
     '[class.ts-icon--accent]': 'theme === "accent"',
     '[class.ts-icon--warn]': 'theme === "warn"',
+    '[class.ts-icon--background]': 'background',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TsIconComponent {
+  /**
+   * Define if the icon should have a colored background.
+   *
+   * NOTE: This will affect layout and style.
+   */
+  @Input()
+  public set background(value: boolean) {
+    this._background = coerceBooleanProperty(value);
+  }
+  public get background(): boolean {
+    return this._background;
+  }
+  private _background: boolean = false;
+
   /**
    * Define if the icon should be aligned inline with text
    */

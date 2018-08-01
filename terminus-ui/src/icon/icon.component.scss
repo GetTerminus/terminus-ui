@@ -28,14 +28,46 @@
   // Theme support:
   &.ts-icon--primary {
     color: color(primary);
+
+    &.ts-icon--background {
+      background-color: color(primary);
+      color: color(pure);
+    }
   }
 
   &.ts-icon--accent {
     color: color(accent);
+
+    &.ts-icon--background {
+      background-color: color(accent);
+      color: color(pure);
+    }
   }
 
   &.ts-icon--warn {
     color: color(warn);
+
+    &.ts-icon--background {
+      background-color: color(warn);
+      color: color(pure);
+    }
+  }
+
+  &.ts-icon--background {
+    //align-items: center;
+    border-radius: 50%;
+    //display: flex;
+    height: 48px;
+    //justify-content: center;
+    position: relative;
+    width: 48px;
+
+    .c-icon {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
   }
 }
 
