@@ -1,12 +1,14 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  forwardRef,
   ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
   ViewEncapsulation,
+  forwardRef,
   isDevMode,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
@@ -75,7 +77,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsSelect',
 })
-export class TsSelectComponent extends TsReactiveFormBaseComponent {
+export class TsSelectComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**
    * Define the content for a blank option (no content means no options will show)
    * NOTE: This is disabled if `multipleAllowed` is true
@@ -202,6 +204,26 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent {
    */
   @Output()
   public selectionChange: EventEmitter<any[]> = new EventEmitter();
+
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    super();
+  }
+
+
+  /**
+   * Trigger change detection when the underlying form changes
+   */
+  public ngOnInit(): void {
+    // istanbul ignore else
+    if (this.formControl) {
+      this.formControl.valueChanges.subscribe((v) => {
+        this.changeDetectorRef.detectChanges();
+      });
+    }
+  }
 
 
   /**
