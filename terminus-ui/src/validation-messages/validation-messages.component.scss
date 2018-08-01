@@ -27,7 +27,8 @@
 
     // Adjust the vertical layout when inside a radio button component
     .c-radio & {
-      top: 68%;
+      position: initial;
+      top: initial;
     }
   }
 
