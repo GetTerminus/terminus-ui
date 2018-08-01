@@ -59,6 +59,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
   .c-button {
     @include typography;
     border: 1px solid transparent;
+    border-radius: 3px;
     color: color(pure);
     line-height: $button-line-height;
     // Overwrite material min-width
