@@ -9,12 +9,13 @@ import { TsIconModule } from './icon.module';
 
 @Component({
   template: `
-    <ts-icon id="one" #one>home</ts-icon>
+    <ts-icon id="one" #one [background]="hasBackground">home</ts-icon>
     <ts-icon [svgIcon]="customIcon" id="two" #two></ts-icon>
   `,
 })
 class TestHostComponent {
   customIcon = 'csv';
+  hasBackground = false;
 
   @ViewChild('one')
   one!: TsIconComponent;
@@ -72,15 +73,27 @@ describe(`TsIconComponent`, () => {
       expect(icon2.svgIcon).toBeUndefined();
     });
 
+
+    test(`should inject the custom icon`, () => {
+      hostComponent.customIcon = 'csv';
+      fixture.detectChanges();
+      const svg = fixture.debugElement.queryAll(By.css('mat-icon'));
+
+      expect(svg).toBeTruthy();
+    });
+
   });
 
 
-  test(`should inject the custom icon`, () => {
-    hostComponent.customIcon = 'csv';
-    fixture.detectChanges();
-    const svg = fixture.debugElement.queryAll(By.css('mat-icon'));
+  describe(`background`, () => {
 
-    expect(svg).toBeTruthy();
+    test(`should get/set the background flag`, () => {
+      expect(icon1.background).toEqual(false);
+      hostComponent.hasBackground = true;
+      fixture.detectChanges();
+      expect(icon1.background).toEqual(true);
+    });
+
   });
 
 });
