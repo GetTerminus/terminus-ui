@@ -1,21 +1,23 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewEncapsulation,
   forwardRef,
   isDevMode,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
+  hasRequiredControl,
   isFunction,
   isObject,
-  hasRequiredControl,
+  untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
@@ -77,7 +79,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsSelect',
 })
-export class TsSelectComponent extends TsReactiveFormBaseComponent implements OnInit {
+export class TsSelectComponent extends TsReactiveFormBaseComponent implements OnInit, OnDestroy {
   /**
    * Define the content for a blank option (no content means no options will show)
    * NOTE: This is disabled if `multipleAllowed` is true
@@ -219,11 +221,19 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent implements On
   public ngOnInit(): void {
     // istanbul ignore else
     if (this.formControl) {
-      this.formControl.valueChanges.subscribe((v) => {
+      this.formControl.valueChanges.pipe(
+        untilComponentDestroyed(this),
+      ).subscribe((v) => {
         this.changeDetectorRef.detectChanges();
       });
     }
   }
+
+
+  /**
+   * Needed for `untilComponentDestroyed`
+   */
+  public ngOnDestroy() {}
 
 
   /**
