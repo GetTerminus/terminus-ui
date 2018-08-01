@@ -2,6 +2,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
 import {
   TsSelectComponent,
@@ -15,7 +16,9 @@ describe(`TsSelectComponent`, () => {
   let options: any[];
 
   beforeEach(() => {
-    component = new TsSelectComponent();
+    component = new TsSelectComponent(
+      new ChangeDetectorRefMock(),
+    );
     options = [
       {
         foo: 'foo_value',
@@ -171,6 +174,15 @@ describe(`TsSelectComponent`, () => {
       expect(component.retrieveValue(options[0])).toEqual(options[0]);
     });
 
+  });
+
+
+  test(`should trigger change detection on formControl changes`, () => {
+    component['changeDetectorRef'].detectChanges = jest.fn();
+    component.ngOnInit();
+    component.formControl.setValue('foo');
+
+    expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
   });
 
 });

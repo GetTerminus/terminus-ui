@@ -36,7 +36,7 @@ export class SelectComponent {
   multipleAllowed = true;
   myForm: FormGroup = this.formBuilder.group({
     myChoices1: [
-      2,
+      null,
       [Validators.required],
     ],
     myChoices2: [
@@ -69,4 +69,12 @@ export class SelectComponent {
     console.log('DEMO: Form value: ', v);
   }
 
+  update() {
+    const ctrl1 = this.myForm.get('myChoices1');
+    const ctrl2 = this.myForm.get('myChoices2');
+    if (ctrl1 && ctrl2) {
+      ctrl1.setValue(3);
+      ctrl2.setValue(['baz', 'bar']);
+    }
+  }
 }
