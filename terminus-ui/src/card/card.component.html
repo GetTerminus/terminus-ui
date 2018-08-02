@@ -1,5 +1,5 @@
 <div
-  class="c-card qa-card"
+  class="c-card qa-card {{ borderClass }} c-card--{{ theme }}"
   [ngClass]="{
     'c-card--interaction': supportsInteraction,
     'c-card--centered': centeredContent,
@@ -9,6 +9,7 @@
     'c-card--flat': flat
   }"
   [style.paddingTop]="aspectRatioPadding"
+  [attr.id]="id"
 >
   <div
     class="c-card__inner"
@@ -25,8 +26,6 @@
 
   <ts-icon
     *ngIf="disabled && !utilityMenuTemplate"
-    class="c-card__lock"
-  >
-    lock_outline
-  </ts-icon>
+    class="c-card__lock qa-card-lock"
+  >lock_outline</ts-icon>
 </div>

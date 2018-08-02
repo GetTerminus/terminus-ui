@@ -6,6 +6,27 @@
 @import './../scss/helpers/typography';
 
 
+@mixin card-border($side) {
+  &.c-card--primary {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(primary);
+    }
+  }
+
+  &.c-card--accent {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(accent);
+    }
+  }
+
+  &.c-card--warn {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(warn);
+    }
+  }
+}
+
+
 //
 // @component
 //  Card
@@ -97,9 +118,30 @@
   }
 }
 
+// Class added for flat cards (no drop shadow)
 .c-card--flat {
   .c-card__inner {
     border: 1px solid color(utility, light);
     box-shadow: none;
   }
 }
+
+// Class added for borders on the side
+.c-card--border {
+  &-bottom {
+    @include card-border(bottom);
+  }
+
+  &-left {
+    @include card-border(left);
+  }
+
+  &-right {
+    @include card-border(right);
+  }
+
+  &-top {
+    @include card-border(top);
+  }
+}
+

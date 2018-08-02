@@ -6,13 +6,14 @@ import {
   TemplateRef,
   ElementRef,
 } from '@angular/core';
+import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
 
 
 /**
  * Define the allowed aspect ratios. Used in {@link TsCardComponent}
  */
-export type TsAspectRatioTypes =
-  '16:9'
+export type TsAspectRatioTypes
+  = '16:9'
   | '4:3'
   | '3:2'
   | '5:4'
@@ -21,16 +22,40 @@ export type TsAspectRatioTypes =
 
 
 /**
+ * Define allowed border sides. Used in {@link TsCardComponent}. Border color determined by the theme.
+ */
+export type TsCardBorderOptions
+  = 'none'
+  | 'left'
+  | 'right'
+  | 'top'
+  | 'bottom'
+;
+
+
+/**
+ * Unique ID for each instance
+ */
+let nextUniqueId = 0;
+
+
+/**
  * A presentational component to render a card
  *
  * #### QA CSS CLASSES
  * - `qa-card`: Placed on the primary element
+ * - `qa-card-lock`: Placed on the lock icon for disabled cards
  *
  * @example
  * <ts-card
- *              supportsInteraction="true"
- *              centeredContent="true"
  *              aspectRatio="3:5"
+ *              border="right"
+ *              centeredContent="true"
+ *              disabled="true"
+ *              flat="true"
+ *              id="foo"
+ *              supportsInteraction="true"
+ *              theme="primary"
  *              [utilityMenuTemplate]="myTemplate"
  * >Here is my card!</ts-card>
  *
@@ -48,6 +73,11 @@ export type TsAspectRatioTypes =
   exportAs: 'tsCard',
 })
 export class TsCardComponent {
+  /**
+   * Define the default component ID
+   */
+  protected _uid = `ts-card-${nextUniqueId++}`;
+
   /**
    * Expose the aspect ratio as a percentage
    */
@@ -68,6 +98,22 @@ export class TsCardComponent {
   }
 
   /**
+   * Define if a border should be present on the card. {@link TsCardBorderOptions}
+   */
+  @Input()
+  public set border(value: TsCardBorderOptions) {
+    if (!value) {
+      return;
+    }
+
+    this._border = value;
+  }
+  public get border(): TsCardBorderOptions {
+    return this._border;
+  }
+  private _border: TsCardBorderOptions = 'none';
+
+  /**
    * Define if the card should center child content
    */
   @Input()
@@ -86,6 +132,18 @@ export class TsCardComponent {
   public flat: boolean = false;
 
   /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id = value || this._uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string = this._uid;
+
+  /**
    * Define if the card should support interaction (via hover)
    *
    * NOTE: This only alters style; not functionality
@@ -94,8 +152,38 @@ export class TsCardComponent {
   public supportsInteraction: boolean = false;
 
   /**
+   * Define the card theme
+   */
+  @Input()
+  public set theme(value: TsStyleThemeTypes) {
+    if (!value) {
+      return;
+    }
+
+    this._theme = value;
+  }
+  public get theme(): TsStyleThemeTypes {
+    return this._theme;
+  }
+  private _theme: TsStyleThemeTypes = 'primary';
+
+  /**
    * Allow a custom utility menu to be added
    */
   @Input()
   public utilityMenuTemplate: TemplateRef<ElementRef> | undefined;
+
+  /**
+   * Getter to return a border class if the border is set
+   */
+  public get borderClass(): string {
+    return (!this.border || this.border === 'none') ? '' : `c-card--border-${this.border}` ;
+  }
+
+
+  constructor() {
+    // Force setter to be called in case the ID was not specified.
+    this.id = this.id;
+  }
+
 }

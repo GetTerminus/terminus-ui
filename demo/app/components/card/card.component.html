@@ -8,11 +8,38 @@
   <input type="checkbox" [(ngModel)]="centered">
 </label>
 
+<label>
+  Is flat:
+  <input type="checkbox" [(ngModel)]="flat">
+</label>
+
+<label>
+  Theme:
+  <select [(ngModel)]="theme">
+    <option value="primary">Primary</option>
+    <option value="accent">Accent</option>
+    <option value="warn">Warn</option>
+  </select>
+</label>
+
+<label>
+  Border:
+  <select [(ngModel)]="border">
+    <option value="none">None</option>
+    <option value="bottom">Bottom</option>
+    <option value="left">Left</option>
+    <option value="right">Right</option>
+    <option value="top">Top</option>
+  </select>
+</label>
+
 <br>
 
 <ts-card
   [supportsInteraction]="supportsInteraction"
   [centeredContent]="centered"
+  [border]="border"
+  [theme]="theme"
   tsVerticalSpacing
 >
   Standard card

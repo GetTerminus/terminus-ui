@@ -3,9 +3,11 @@ import { TsCardComponent } from './card.component';
 
 describe('TsCardComponent', () => {
   let component: TsCardComponent;
+  let component2: TsCardComponent;
 
   beforeEach(() => {
     component = new TsCardComponent();
+    component2 = new TsCardComponent();
   });
 
 
@@ -22,6 +24,61 @@ describe('TsCardComponent', () => {
 
       component.aspectRatio = '4:3';
       expect(component.aspectRatioPadding).toEqual('75.00%');
+    });
+
+  });
+
+
+  describe(`id`, () => {
+
+    test(`should set a unique ID and be overwritable and default to UUID if no value is passed in`, () => {
+      expect(component.id).toBeTruthy();
+      expect(component2.id).toBeTruthy();
+      expect(component.id).not.toEqual(component2.id);
+
+      component.id = 'foo';
+      expect(component.id).toEqual('foo');
+
+      component.id = null as any;
+      expect(component.id).toEqual(component['_uid']);
+    });
+
+  });
+
+
+  describe(`theme`, () => {
+
+    test(`should set a default and allow overrides`, () => {
+      expect(component.theme).toEqual('primary');
+      component.theme = 'warn';
+      expect(component.theme).toEqual('warn');
+    });
+
+
+    test(`should do nothing if no value is passed in`, () => {
+      component.theme = '' as any;
+      expect(component.theme).toEqual('primary');
+    });
+
+  });
+
+
+  describe(`border`, () => {
+
+    test(`should do nothing if no value is passed in`, () => {
+      component.border = '' as any;
+      expect(component.border).toEqual('none');
+    });
+
+  });
+
+
+  describe(`get borderClass`, () => {
+
+    test(`should return a string representation of the needed class`, () => {
+      expect(component.borderClass).toEqual('');
+      component.border = 'top';
+      expect(component.borderClass).toEqual('c-card--border-top');
     });
 
   });
