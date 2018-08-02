@@ -2444,6 +2444,7 @@
 <h4 id="qa-css-classes">QA CSS CLASSES</h4>
 <ul>
 <li><code>qa-card</code>: Placed on the primary element</li>
+<li><code>qa-card-lock</code>: Placed on the lock icon for disabled cards</li>
 </ul>
 
     </p>
@@ -2456,9 +2457,14 @@
     <div class="io-description">
                 <div>
                     <pre class="line-numbers"><code class="language-html">&lt;ts-card
-  supportsInteraction=&quot;true&quot;
-  centeredContent=&quot;true&quot;
   aspectRatio=&quot;3:5&quot;
+  border=&quot;right&quot;
+  centeredContent=&quot;true&quot;
+  disabled=&quot;true&quot;
+  flat=&quot;true&quot;
+  id=&quot;foo&quot;
+  supportsInteraction=&quot;true&quot;
+  theme=&quot;primary&quot;
   [utilityMenuTemplate]=&quot;myTemplate&quot;
 &gt;Here is my card!&lt;/ts-card&gt;
 
@@ -2532,6 +2538,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_border">_border</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_id">_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_theme">_theme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_uid">_uid</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#aspectRatioPadding">aspectRatioPadding</a>
                             </li>
@@ -2552,6 +2574,9 @@
                                 <a href="#aspectRatio">aspectRatio</a>
                             </li>
                             <li>
+                                <a href="#border">border</a>
+                            </li>
+                            <li>
                                 <a href="#centeredContent">centeredContent</a>
                             </li>
                             <li>
@@ -2561,7 +2586,13 @@
                                 <a href="#flat">flat</a>
                             </li>
                             <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
                                 <a href="#supportsInteraction">supportsInteraction</a>
+                            </li>
+                            <li>
+                                <a href="#theme">theme</a>
                             </li>
                             <li>
                                 <a href="#utilityMenuTemplate">utilityMenuTemplate</a>
@@ -2577,6 +2608,24 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">terminus-ui/src/card/card.component.ts:181</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -2594,7 +2643,26 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">terminus-ui/src/card/card.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">terminus-ui/src/card/card.component.ts:92</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="border"></a>
+                        <code>border</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Define if a border should be present on the card. <a href="../miscellaneous/typealiases.html#TsCardBorderOptions">TsCardBorderOptions</a></p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">terminus-ui/src/card/card.component.ts:104</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2620,7 +2688,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">terminus-ui/src/card/card.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">terminus-ui/src/card/card.component.ts:120</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2646,7 +2714,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">terminus-ui/src/card/card.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">terminus-ui/src/card/card.component.ts:126</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2672,7 +2740,30 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">terminus-ui/src/card/card.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">terminus-ui/src/card/card.component.ts:132</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="id"></a>
+                        <code>id</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Define an ID for the component</p>
+</div>
+                            <p>
+                            <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">terminus-ui/src/card/card.component.ts:138</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2699,7 +2790,26 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">terminus-ui/src/card/card.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">terminus-ui/src/card/card.component.ts:152</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="theme"></a>
+                        <code>theme</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Define the card theme</p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">terminus-ui/src/card/card.component.ts:158</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2722,7 +2832,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">terminus-ui/src/card/card.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">terminus-ui/src/card/card.component.ts:174</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -2737,6 +2847,166 @@
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_border"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _border
+                            </b>
+                            <a href="#_border"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>_border:     <code><a href="../miscellaneous/typealiases.html#TsCardBorderOptions" target="_self" >TsCardBorderOptions</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsCardBorderOptions" target="_self" >TsCardBorderOptions</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;none&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">terminus-ui/src/card/card.component.ts:114</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_id"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _id
+                            </b>
+                            <a href="#_id"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this._uid</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">terminus-ui/src/card/card.component.ts:144</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_theme"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _theme
+                            </b>
+                            <a href="#_theme"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>_theme:     <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#TsStyleThemeTypes" target="_self" >TsStyleThemeTypes</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;primary&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">terminus-ui/src/card/card.component.ts:168</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_uid"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _uid
+                            </b>
+                            <a href="#_uid"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>_uid:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x60;ts-card-${nextUniqueId++}&#x60;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">terminus-ui/src/card/card.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Define the default component ID</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -2765,7 +3035,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">terminus-ui/src/card/card.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">terminus-ui/src/card/card.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -2801,7 +3071,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">terminus-ui/src/card/card.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">terminus-ui/src/card/card.component.ts:92</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2846,6 +3116,244 @@
                                 </div>
                         </td>
                     </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="border"></a>
+                        <span class="name"><b>border</b><a href="#border"><span class="fa fa-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>border()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">terminus-ui/src/card/card.component.ts:111</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>border(value: )</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">terminus-ui/src/card/card.component.ts:104</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Define if a border should be present on the card. <a href="../miscellaneous/typealiases.html#TsCardBorderOptions">TsCardBorderOptions</a></p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name"><b>id</b><a href="#id"><span class="fa fa-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>id()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">terminus-ui/src/card/card.component.ts:141</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>id(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">terminus-ui/src/card/card.component.ts:138</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Define an ID for the component</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <span class="name"><b>theme</b><a href="#theme"><span class="fa fa-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>theme()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">terminus-ui/src/card/card.component.ts:165</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>theme(value: )</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">terminus-ui/src/card/card.component.ts:158</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Define the card theme</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="borderClass"></a>
+                        <span class="name"><b>borderClass</b><a href="#borderClass"><span class="fa fa-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>borderClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">terminus-ui/src/card/card.component.ts:179</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter to return a border class if the border is set</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
             </tbody>
         </table>
 </section>
@@ -2929,13 +3437,14 @@ element which provides the needed styles.</p>
   TemplateRef,
   ElementRef,
 } from &#x27;@angular/core&#x27;;
+import { TsStyleThemeTypes } from &#x27;../utilities/types/style-theme.types&#x27;;
 
 
 /**
  * Define the allowed aspect ratios. Used in {@link TsCardComponent}
  */
-export type TsAspectRatioTypes &#x3D;
-  &#x27;16:9&#x27;
+export type TsAspectRatioTypes
+  &#x3D; &#x27;16:9&#x27;
   | &#x27;4:3&#x27;
   | &#x27;3:2&#x27;
   | &#x27;5:4&#x27;
@@ -2944,16 +3453,40 @@ export type TsAspectRatioTypes &#x3D;
 
 
 /**
+ * Define allowed border sides. Used in {@link TsCardComponent}. Border color determined by the theme.
+ */
+export type TsCardBorderOptions
+  &#x3D; &#x27;none&#x27;
+  | &#x27;left&#x27;
+  | &#x27;right&#x27;
+  | &#x27;top&#x27;
+  | &#x27;bottom&#x27;
+;
+
+
+/**
+ * Unique ID for each instance
+ */
+let nextUniqueId &#x3D; 0;
+
+
+/**
  * A presentational component to render a card
  *
  * #### QA CSS CLASSES
  * - &#x60;qa-card&#x60;: Placed on the primary element
+ * - &#x60;qa-card-lock&#x60;: Placed on the lock icon for disabled cards
  *
  * @example
  * &lt;ts-card
- *              supportsInteraction&#x3D;&quot;true&quot;
- *              centeredContent&#x3D;&quot;true&quot;
  *              aspectRatio&#x3D;&quot;3:5&quot;
+ *              border&#x3D;&quot;right&quot;
+ *              centeredContent&#x3D;&quot;true&quot;
+ *              disabled&#x3D;&quot;true&quot;
+ *              flat&#x3D;&quot;true&quot;
+ *              id&#x3D;&quot;foo&quot;
+ *              supportsInteraction&#x3D;&quot;true&quot;
+ *              theme&#x3D;&quot;primary&quot;
  *              [utilityMenuTemplate]&#x3D;&quot;myTemplate&quot;
  * &gt;Here is my card!&lt;/ts-card&gt;
  *
@@ -2971,6 +3504,11 @@ export type TsAspectRatioTypes &#x3D;
   exportAs: &#x27;tsCard&#x27;,
 })
 export class TsCardComponent {
+  /**
+   * Define the default component ID
+   */
+  protected _uid &#x3D; &#x60;ts-card-${nextUniqueId++}&#x60;;
+
   /**
    * Expose the aspect ratio as a percentage
    */
@@ -2991,6 +3529,22 @@ export class TsCardComponent {
   }
 
   /**
+   * Define if a border should be present on the card. {@link TsCardBorderOptions}
+   */
+  @Input()
+  public set border(value: TsCardBorderOptions) {
+    if (!value) {
+      return;
+    }
+
+    this._border &#x3D; value;
+  }
+  public get border(): TsCardBorderOptions {
+    return this._border;
+  }
+  private _border: TsCardBorderOptions &#x3D; &#x27;none&#x27;;
+
+  /**
    * Define if the card should center child content
    */
   @Input()
@@ -3009,6 +3563,18 @@ export class TsCardComponent {
   public flat: boolean &#x3D; false;
 
   /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id &#x3D; value || this._uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string &#x3D; this._uid;
+
+  /**
    * Define if the card should support interaction (via hover)
    *
    * NOTE: This only alters style; not functionality
@@ -3017,17 +3583,47 @@ export class TsCardComponent {
   public supportsInteraction: boolean &#x3D; false;
 
   /**
+   * Define the card theme
+   */
+  @Input()
+  public set theme(value: TsStyleThemeTypes) {
+    if (!value) {
+      return;
+    }
+
+    this._theme &#x3D; value;
+  }
+  public get theme(): TsStyleThemeTypes {
+    return this._theme;
+  }
+  private _theme: TsStyleThemeTypes &#x3D; &#x27;primary&#x27;;
+
+  /**
    * Allow a custom utility menu to be added
    */
   @Input()
   public utilityMenuTemplate: TemplateRef&lt;ElementRef&gt; | undefined;
+
+  /**
+   * Getter to return a border class if the border is set
+   */
+  public get borderClass(): string {
+    return (!this.border || this.border &#x3D;&#x3D;&#x3D; &#x27;none&#x27;) ? &#x27;&#x27; : &#x60;c-card--border-${this.border}&#x60; ;
+  }
+
+
+  constructor() {
+    // Force setter to be called in case the ID was not specified.
+    this.id &#x3D; this.id;
+  }
+
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div
-  class&#x3D;&quot;c-card qa-card&quot;
+  class&#x3D;&quot;c-card qa-card {{ borderClass }} c-card--{{ theme }}&quot;
   [ngClass]&#x3D;&quot;{
     &#x27;c-card--interaction&#x27;: supportsInteraction,
     &#x27;c-card--centered&#x27;: centeredContent,
@@ -3037,6 +3633,7 @@ export class TsCardComponent {
     &#x27;c-card--flat&#x27;: flat
   }&quot;
   [style.paddingTop]&#x3D;&quot;aspectRatioPadding&quot;
+  [attr.id]&#x3D;&quot;id&quot;
 &gt;
   &lt;div
     class&#x3D;&quot;c-card__inner&quot;
@@ -3053,10 +3650,8 @@ export class TsCardComponent {
 
   &lt;ts-icon
     *ngIf&#x3D;&quot;disabled &amp;&amp; !utilityMenuTemplate&quot;
-    class&#x3D;&quot;c-card__lock&quot;
-  &gt;
-    lock_outline
-  &lt;/ts-icon&gt;
+    class&#x3D;&quot;c-card__lock qa-card-lock&quot;
+  &gt;lock_outline&lt;/ts-icon&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -3091,7 +3686,7 @@ export class TsCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-card qa-card"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding,    \'c-card--disabled\': disabled,    \'c-card--right-spacing\': utilityMenuTemplate || disabled,    \'c-card--flat\': flat  }"  [style.paddingTop]="aspectRatioPadding">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction || disabled"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container>  <ts-icon    *ngIf="disabled && !utilityMenuTemplate"    class="c-card__lock"  >    lock_outline  </ts-icon></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class="c-card qa-card {{ borderClass }} c-card--{{ theme }}"  [ngClass]="{    \'c-card--interaction\': supportsInteraction,    \'c-card--centered\': centeredContent,    \'c-card--aspect\': aspectRatioPadding,    \'c-card--disabled\': disabled,    \'c-card--right-spacing\': utilityMenuTemplate || disabled,    \'c-card--flat\': flat  }"  [style.paddingTop]="aspectRatioPadding"  [attr.id]="id">  <div    class="c-card__inner"    mat-ripple    [matRippleDisabled]="!supportsInteraction || disabled"  >    <ng-content></ng-content>  </div>  <ng-container    *ngIf="utilityMenuTemplate"    [ngTemplateOutlet]="utilityMenuTemplate"  ></ng-container>  <ts-icon    *ngIf="disabled && !utilityMenuTemplate"    class="c-card__lock qa-card-lock"  >lock_outline</ts-icon></div></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCSVEntryComponent', 'selector': 'ts-csv-entry'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsChart2Component', 'selector': 'ts-chart2'},{'name': 'TsChartComponent', 'selector': 'ts-chart'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsConfirmationModalComponent', 'selector': 'ts-confirmation-modal'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsFileUploadComponent', 'selector': 'ts-file-upload'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsChartPointDirective', 'selector': 'ts-point'},{'name': 'TsChartSeriesDirective', 'selector': 'ts-series'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsConfirmationDirective', 'selector': '[tsConfirmation]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsCardComponent'};

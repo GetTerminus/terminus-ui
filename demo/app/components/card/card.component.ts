@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TsCardBorderOptions } from '@terminus/ui';
 
 
 @Component({
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 export class CardComponent {
   supportsInteraction = false;
   centered = false;
+  flat = false;
+  theme = 'primary';
+  border: TsCardBorderOptions = 'none';
 }
