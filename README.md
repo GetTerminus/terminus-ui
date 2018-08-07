@@ -17,6 +17,7 @@ The library of UI components used for Terminus applications.
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-14-blue.svg)](#validators)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGetTerminus%2Fterminus-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGetTerminus%2Fterminus-ui?ref=badge_shield)
 
 
 ---
@@ -429,3 +430,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [sort-usage]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme
 [table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
 [validators-usage]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGetTerminus%2Fterminus-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGetTerminus%2Fterminus-ui?ref=badge_large)
