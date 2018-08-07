@@ -75,6 +75,7 @@ export interface TsLoginFormResponse {
     class: 'ts-login-form',
   },
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsLoginForm',
 })
 export class TsLoginFormComponent implements OnChanges {
   /**

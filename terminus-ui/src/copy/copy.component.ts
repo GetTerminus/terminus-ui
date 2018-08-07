@@ -38,6 +38,7 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
     class: 'ts-copy',
   },
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsCopy',
 })
 export class TsCopyComponent {
   /**

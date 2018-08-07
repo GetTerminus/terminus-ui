@@ -86,6 +86,7 @@ export interface TsPaginatorMenuItem {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsPaginator',
 })
 export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**

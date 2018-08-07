@@ -73,6 +73,7 @@ export const CUSTOM_DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
     class: 'ts-datepicker',
   },
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsDatepicker',
 })
 export class TsDatepickerComponent extends TsReactiveFormBaseComponent implements OnInit {
   /**

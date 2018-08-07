@@ -40,6 +40,7 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsIconButton',
 })
 export class TsIconButtonComponent {
   /**
