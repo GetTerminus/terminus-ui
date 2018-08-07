@@ -1,0 +1,19 @@
+<div
+  class="c-scrollbars qa-scrollbars"
+  perfectScrollbar
+  [disabled]="isDisabled"
+  #scrollbar="ngxPerfectScrollbar"
+  (psScrollY)="scrollY.emit($event)"
+  (psScrollX)="scrollX.emit($event)"
+  (psScrollUp)="scrollUp.emit($event)"
+  (psScrollDown)="scrollDown.emit($event)"
+  (psScrollLeft)="scrollLeft.emit($event)"
+  (psScrollRight)="scrollRight.emit($event)"
+  (psYReachEnd)="yReachEnd.emit($event)"
+  (psYReachStart)="yReachStart.emit($event)"
+  (psXReachEnd)="xReachEnd.emit($event)"
+  (psXReachStart)="xReachStart.emit($event)"
+  [attr.id]="id"
+>
+  <ng-content></ng-content>
+</div>

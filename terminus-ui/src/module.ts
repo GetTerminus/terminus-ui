@@ -26,6 +26,7 @@ import { TsNavigationModule } from './navigation/navigation.module';
 import { TsPaginatorModule } from './paginator/paginator.module';
 import { TsPipesModule } from './pipes/pipes.module';
 import { TsRadioGroupModule } from './radio-group/radio-group.module';
+import { TsScrollbarsModule } from './scrollbars/scrollbars.module';
 import { TsSearchModule } from './search/search.module';
 import { TsSelectModule } from './select/select.module';
 import { TsSortModule } from './sort/sort.module';
@@ -66,6 +67,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsPaginatorModule,
     TsPipesModule,
     TsRadioGroupModule,
+    TsScrollbarsModule,
     TsSearchModule,
     TsSelectModule,
     TsSortModule,
@@ -108,6 +110,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsPaginatorModule,
     TsPipesModule,
     TsRadioGroupModule,
+    TsScrollbarsModule,
     TsSearchModule,
     TsSelectModule,
     TsSortModule,
