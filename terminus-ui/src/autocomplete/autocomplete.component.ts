@@ -98,12 +98,12 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
   selector: 'ts-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
-  exportAs: 'tsAutocomplete',
   host: {
     class: 'ts-autocomplete',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsAutocomplete',
 })
 export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
   /**

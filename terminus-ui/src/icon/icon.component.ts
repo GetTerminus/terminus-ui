@@ -57,6 +57,7 @@ export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsIcon',
 })
 export class TsIconComponent {
   /**

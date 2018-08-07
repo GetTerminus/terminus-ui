@@ -72,6 +72,7 @@ export interface TsDateRange {
     class: 'ts-date-range',
   },
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsDateRange',
 })
 export class TsDateRangeComponent implements OnInit {
   /**

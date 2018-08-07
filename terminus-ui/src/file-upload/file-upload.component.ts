@@ -99,9 +99,9 @@ let nextUniqueId = 0;
     class: 'ts-file-upload',
     '(keydown)': 'handleKeydown($event)',
   },
-  exportAs: 'tsFileUpload',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsFileUpload',
 })
 export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, AfterContentInit {
   /**

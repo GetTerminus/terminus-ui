@@ -27,6 +27,7 @@ more on the communities needs.
 - https://github.com/fknop/angular-pipes
 - https://github.com/gevgeny/angular2-highcharts
 - https://github.com/cebor/angular-highcharts
+- https://github.com/zefoy/ngx-perfect-scrollbar
 
 
 ## Icons

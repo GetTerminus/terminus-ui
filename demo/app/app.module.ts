@@ -68,6 +68,7 @@ import {
   TsPaginatorModule,
   TsPipesModule,
   TsRadioGroupModule,
+  TsScrollbarsModule,
   TsSearchModule,
   TsSelectModule,
   TsSortModule,
@@ -114,6 +115,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { PipesComponent } from './components/pipes/pipes.component';
 import { RadioComponent } from './components/radio/radio.component';
+import { ScrollbarsComponent } from './components/scrollbars/scrollbars.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
 import { SpacingComponent } from './components/spacing/spacing.component';
@@ -166,6 +168,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsPaginatorModule,
     TsPipesModule,
     TsRadioGroupModule,
+    TsScrollbarsModule,
     TsSearchModule,
     TsSelectModule,
     TsSortModule,
@@ -214,6 +217,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     PaginatorComponent,
     PipesComponent,
     RadioComponent,
+    ScrollbarsComponent,
     SearchComponent,
     SelectComponent,
     SpacingComponent,

@@ -12,7 +12,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-30-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-31-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
@@ -111,6 +111,7 @@ for each feature.
 | progress                               |                                            |                    |                                 |                              |                             |
 | progression                            | i.e. Stepper, wizard                       |                    |                                 |                              |                             |
 | [radio-group][src-radio-group]         |                                            | :white_check_mark: | [Demo][demo-radio-group]        | [Docs][radio-group-docs]     | [Usage][radio-group-usage]  |
+| [scrollbars][src-scrollbars]           | Custom scrollars for both axis'            | :white_check_mark: | [Demo][demo-scrollbars]         | [Docs][scrollbars-docs]      | [Usage][scrollbars-usage]   |
 | [search][src-search]                   | input with search capabilities             | :white_check_mark: | [Demo][demo-search]             | [Docs][search-docs]          |                             |
 | [select][src-select]                   |                                            | :white_check_mark: | [Demo][demo-select]             | [Docs][select-docs]          |                             |
 | [spacing][src-spacing]                 | Helpers for consistent spacing             | :white_check_mark: | [Demo][demo-spacing]            | [Docs][spacing-docs]         |                             |
@@ -314,6 +315,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-paginator]: https://terminus-ui-demos.stackblitz.io/components/paginator
 [demo-pipes]: https://terminus-ui-demos.stackblitz.io/components/pipes
 [demo-radio-group]: https://terminus-ui-demos.stackblitz.io/components/radio
+[demo-scrollbars]: https://terminus-ui-demos.stackblitz.io/components/scrollbars
 [demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
 [demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
 [demo-spacing-constant]: https://terminus-ui-demos.stackblitz.io/components/spacing-constant
@@ -363,6 +365,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-pipes-titleCase]: ./terminus-ui/src/pipes/title-case/title-case.pipe.ts
 [src-pipes]: ./terminus-ui/src/pipes/
 [src-radio-group]: ./terminus-ui/src/radio-group/
+[src-scrollbars]: ./terminus-ui/src/scrollbars/
 [src-search]: ./terminus-ui/src/search/
 [src-select]: ./terminus-ui/src/select/
 [src-sort]: ./terminus-ui/src/sort/
@@ -398,6 +401,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [pipes-docs]: ./terminus-ui/src/pipes/README.md
 [pipes-docs]: https://getterminus.github.io/terminus-ui/modules/TsPipesModule.html
 [radio-group-docs]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html
+[scrollbars-docs]: https://getterminus.github.io/terminus-ui/components/TsScrollbarsComponent.html
 [search-docs]: https://getterminus.github.io/terminus-ui/components/TsSearchComponent.html
 [select-docs]: https://getterminus.github.io/terminus-ui/components/TsSelectComponent.html
 [sort-docs]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html
@@ -426,6 +430,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [menu-usage]: https://getterminus.github.io/terminus-ui/components/TsMenuComponent.html#readme
 [paginator-usage]: https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html#readme
 [radio-group-usage]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html#readme
+[scrollbars-usage]: https://getterminus.github.io/terminus-ui/directives/TsScrollbarsComponent.html#readme
 [sort-usage]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme
 [table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
 [validators-usage]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme

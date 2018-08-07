@@ -23,6 +23,7 @@ export * from './navigation/navigation.module';
 export * from './paginator/paginator.module';
 export * from './pipes/pipes.module';
 export * from './radio-group/radio-group.module';
+export * from './scrollbars/scrollbars.module';
 export * from './search/search.module';
 export * from './select/select.module';
 export * from './sort/sort.module';

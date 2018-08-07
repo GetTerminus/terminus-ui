@@ -41,5 +41,6 @@ import {
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsLoadingOverlay',
 })
 export class TsLoadingOverlayComponent {}

@@ -25,6 +25,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { RadioComponent } from './radio/radio.component';
+import { ScrollbarsComponent } from './scrollbars/scrollbars.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { SpacingComponent } from './spacing/spacing.component';
@@ -212,6 +213,13 @@ export const componentsList: Routes = [
     component: RadioComponent,
     data: {
       name: 'Radio',
+    },
+  },
+  {
+    path: 'scrollbars',
+    component: ScrollbarsComponent,
+    data: {
+      name: 'Scrollbars',
     },
   },
   {

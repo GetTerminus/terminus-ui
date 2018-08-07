@@ -71,6 +71,7 @@ export type TsMenuTriggerTypes
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsMenu',
 })
 export class TsMenuComponent implements AfterViewInit, OnInit {
   /**

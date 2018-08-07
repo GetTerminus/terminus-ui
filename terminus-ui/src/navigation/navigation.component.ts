@@ -140,6 +140,7 @@ export interface TsNavigationPayload {
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs: 'tsNavigation',
 })
 export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**

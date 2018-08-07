@@ -28,17 +28,16 @@ import { TsCheckboxModule } from './checkbox.module';
   >My checkbox!</ts-checkbox>
   `,
 })
-
 class TestHostComponent {
-  checked: boolean;
+  checked!: boolean;
   myTheme: TsStyleThemeTypes | undefined;
-  disabled: boolean;
-  required: boolean;
-  indeterminate: boolean;
+  disabled!: boolean;
+  required!: boolean;
+  indeterminate!: boolean | undefined;
 
 
   @ViewChild(TsCheckboxComponent)
-  component: TsCheckboxComponent;
+  component!: TsCheckboxComponent;
 
   changed = jest.fn();
   interChanged = jest.fn();

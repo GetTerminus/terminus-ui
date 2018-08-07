@@ -85,9 +85,9 @@ let nextUniqueId = 0;
   host: {
     class: 'ts-csv-entry',
   },
-  exportAs: 'tsCSVEntry',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsCSVEntry',
 })
 export class TsCSVEntryComponent implements OnInit, OnDestroy {
   /**
