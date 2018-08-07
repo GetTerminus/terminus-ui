@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
+  forwardRef,
 } from '@angular/core';
 import {
   Geometry,
@@ -120,7 +121,7 @@ export class TsScrollbarsComponent {
   /**
    * Access underlying scrollbar directive
    */
-  @ViewChild('scrollbar')
+  @ViewChild(forwardRef(() => PerfectScrollbarDirective))
   public scrollbar!: PerfectScrollbarDirective;
 
   /**
