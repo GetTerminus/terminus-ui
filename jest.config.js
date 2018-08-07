@@ -2,6 +2,7 @@ module.exports = {
   "globals": {
     "ts-jest": {
       "tsConfigFile": "./terminus-ui/tsconfig.spec.json",
+      "ignoreCoverageForAllDecorators": true,
     },
     "__TRANSFORM_HTML__": true,
   },
