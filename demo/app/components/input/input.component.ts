@@ -18,7 +18,7 @@ export class InputComponent {
   icon = 'home';
   model1 = 'A seeded value';
   myValue!: string;
-  shouldDisable = true;
+  shouldDisable = false;
   myForm: FormGroup = this.formBuilder.group({
     name: [
       null,
@@ -58,6 +58,14 @@ export class InputComponent {
 
   submit(v: any): void {
     console.log('Demo submit!: ', v);
+  }
+
+  update() {
+    const ctrl = this.myForm.get('name');
+
+    if (ctrl) {
+      ctrl.setValue(Math.random().toString(36).substring(7));
+    }
   }
 
 }

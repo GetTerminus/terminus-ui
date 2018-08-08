@@ -21,16 +21,6 @@ describe(`TsInputComponent`, () => {
   beforeEach(() => {
     component = new TsInputComponent(
       new ChangeDetectorRefMock(),
-      /*
-       *{
-       *  get: jest.fn().mockReturnValue({
-       *    control: {
-       *      disable: jest.fn(),
-       *      enable: jest.fn(),
-       *    },
-       *  }),
-       *} as Injector,
-       */
     );
     component['changeDetectorRef'].markForCheck = jest.fn();
   });
@@ -159,17 +149,30 @@ describe(`TsInputComponent`, () => {
   });
 
 
+  describe(`ngOnInit`, () => {
+
+    test(`should trigger change detection on formControl value changes`, () => {
+      component['changeDetectorRef'].detectChanges = jest.fn();
+      component.ngOnInit();
+      component.formControl.setValue('foo');
+      expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+    });
+
+  });
+
+
   describe(`ngOnChanges`, () => {
 
     test(`should register an onChange function`, () => {
       const changesMock = {
-        formControl: new SimpleChange(new FormControl('foo'), undefined, false),
+        formControl: new SimpleChange(new FormControl('foo'), null, false),
       } as SimpleChanges;
       component['registerOnChangeFn'] = jest.fn();
 
       component.ngOnChanges(changesMock);
       expect(component['registerOnChangeFn']).toHaveBeenCalledWith(component.updateInnerValue);
     });
+
   });
 
 

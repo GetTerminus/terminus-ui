@@ -6,18 +6,19 @@ import {
   forwardRef,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import {
   hasRequiredControl,
   inputHasChanged,
+  untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
@@ -120,7 +121,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent extends TsReactiveFormBaseComponent implements OnChanges {
+export class TsInputComponent extends TsReactiveFormBaseComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Determine the correct required attribute content
    *
@@ -290,6 +291,21 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
 
 
   /**
+   * Trigger change detection when the formControl value is manually updated
+   */
+  public ngOnInit(): void {
+    // istanbul ignore else
+    if (this.formControl) {
+      this.formControl.valueChanges.pipe(
+        untilComponentDestroyed(this),
+      ).subscribe(() => {
+        this.changeDetectorRef.detectChanges();
+      });
+    }
+  }
+
+
+  /**
    * Register our change function any time the formControl is changed
    */
   public ngOnChanges(changes: SimpleChanges): void {
@@ -298,6 +314,12 @@ export class TsInputComponent extends TsReactiveFormBaseComponent implements OnC
       this.registerOnChangeFn(this.updateInnerValue);
     }
   }
+
+
+  /**
+   * Needed for `untilComponentDestroyed`
+   */
+  public ngOnDestroy(): void {}
 
 
   /**
