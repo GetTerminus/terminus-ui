@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  isDevMode,
   NgZone,
   OnChanges,
   OnDestroy,
@@ -12,9 +13,8 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
-  isDevMode,
 } from '@angular/core';
-import { inputHasChanged } from '@terminus/ngx-tools';
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 
 import { TsAmChartsService, TsAmChartsToken } from './amcharts.service';
 

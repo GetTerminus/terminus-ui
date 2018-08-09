@@ -16,7 +16,7 @@ import {
   coerceNumberProperty,
   coerceBooleanProperty,
 } from '@terminus/ngx-tools/coercion';
-import { inputHasChanged } from '@terminus/ngx-tools';
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 

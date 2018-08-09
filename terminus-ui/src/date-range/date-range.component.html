@@ -1,40 +1,39 @@
 <div class="c-date-range qa-date-range" fxLayout="row">
-  <ts-datepicker
+  <ts-input
     class="qa-date-range-start-datepicker"
     [formControl]="startDateControl"
-    [inputPlaceholder]="startPlaceholder"
+    [label]="startLabel"
     [maxDate]="startMaxDate$ | async"
     [minDate]="startMinDate"
     [startingView]="startingView"
-    initialDate="{{ startInitialDate }}"
-    [isDisabled]="startDateControl.disabled"
+    [isDisabled]="isDisabled || startDateControl.disabled"
     [theme]="theme"
+    mask="date"
+    datepicker="true"
     (selected)="startDateSelected($event)"
     (inputBlur)="startBlur($event)"
     #start
     fxFlex
-  ></ts-datepicker>
+  ></ts-input>
 
-  <span
-    class="c-date-range__seperator"
-    *ngIf="separator"
-  >
+  <span class="c-date-range__seperator">
     {{ separator }}
   </span>
 
-  <ts-datepicker
+  <ts-input
     class="qa-date-range-end-datepicker"
     [formControl]="endDateControl"
-    [inputPlaceholder]="endPlaceholder"
+    [label]="endLabel"
     [maxDate]="endMaxDate"
     [minDate]="endMinDate$ | async"
     [startingView]="startingView"
-    initialDate="{{ endInitialDate }}"
-    [isDisabled]="endDateControl.disabled"
+    [isDisabled]="isDisabled || endDateControl.disabled"
     [theme]="theme"
+    mask="date"
+    datepicker="true"
     (selected)="endDateSelected($event)"
     (inputBlur)="endBlur($event)"
     #end
     fxFlex
-  ></ts-datepicker>
+  ></ts-input>
 </div>

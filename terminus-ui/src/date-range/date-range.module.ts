@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { TsDatepickerModule } from './../datepicker/datepicker.module';
+import { TsInputModule } from './../input/input.module';
 import { TsDateRangeComponent } from './date-range.component';
 
 export * from './date-range.component';
@@ -11,8 +11,8 @@ export * from './date-range.component';
 @NgModule({
   imports: [
     CommonModule,
-    TsDatepickerModule,
     FlexLayoutModule,
+    TsInputModule,
   ],
   exports: [
     TsDateRangeComponent,
