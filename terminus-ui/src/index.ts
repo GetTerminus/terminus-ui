@@ -17,7 +17,6 @@ export * from './input/input.module';
 export * from './link/link.module';
 export * from './loading-overlay/loading-overlay.module';
 export * from './login-form/login-form.module';
-export * from './mask/mask.module';
 export * from './menu/menu.module';
 export * from './navigation/navigation.module';
 export * from './paginator/paginator.module';

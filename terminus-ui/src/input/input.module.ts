@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
 import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { TsAutofocusModule } from './../autofocus/autofocus.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../validators/validators.service';
@@ -17,13 +17,13 @@ export * from './input.component';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
-    MatInputModule,
     TsValidationMessagesModule,
     TsIconModule,
-    TsAutofocusModule,
   ],
   providers: [
     TsValidatorsService,

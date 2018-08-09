@@ -19,7 +19,6 @@ import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { MaskComponent } from './mask/mask.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginatorComponent } from './paginator/paginator.component';
@@ -171,13 +170,6 @@ export const componentsList: Routes = [
     component: LoginFormComponent,
     data: {
       name: 'Login Form',
-    },
-  },
-  {
-    path: 'mask',
-    component: MaskComponent,
-    data: {
-      name: 'Mask',
     },
   },
   {

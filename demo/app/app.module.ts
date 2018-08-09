@@ -62,7 +62,6 @@ import {
   TsLinkModule,
   TsLoadingOverlayModule,
   TsLoginFormModule,
-  TsMaskModule,
   TsMenuModule,
   TsNavigationModule,
   TsPaginatorModule,
@@ -109,7 +108,6 @@ import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { MaskComponent } from './components/mask/mask.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
@@ -162,7 +160,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsLinkModule,
     TsLoadingOverlayModule,
     TsLoginFormModule,
-    TsMaskModule,
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
@@ -211,7 +208,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     LinkComponent,
     LoadingOverlayComponent,
     LoginFormComponent,
-    MaskComponent,
     MenuComponent,
     NavigationComponent,
     PaginatorComponent,

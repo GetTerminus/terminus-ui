@@ -19,10 +19,28 @@ export class InputComponent {
   model1 = 'A seeded value';
   myValue!: string;
   shouldDisable = false;
+  activeMask = 'none';
+  masks: any[] = [
+    'none',
+    'currency',
+    'date',
+    'number',
+    'percentage',
+    'phone',
+    'postal',
+  ];
+  sanitizeValue = false;
+  allowDecimal = true;
+  hideRequiredMarker = false;
+  isClearable = false;
+  isDisabled = false;
+  isFocused = false;
+  isReadonly = false;
   myForm: FormGroup = this.formBuilder.group({
     name: [
       null,
       [
+        Validators.required,
       ],
     ],
     email: [
@@ -60,11 +78,11 @@ export class InputComponent {
     console.log('Demo submit!: ', v);
   }
 
-  update() {
-    const ctrl = this.myForm.get('name');
-
-    if (ctrl) {
-      ctrl.setValue(Math.random().toString(36).substring(7));
+  updateLabel() {
+    if (this.label1.length < 10) {
+      this.label1 = 'My really long input label that will test the responsive nature..';
+    } else {
+      this.label1 = 'My Input';
     }
   }
 

@@ -11,14 +11,14 @@ describe('InputMessagesComponent', () => {
   });
 
 
-  it(`should exist`, () => {
+  test(`should exist`, () => {
     expect(component).toBeTruthy();
   });
 
 
   describe(`get validationMessage()`, () => {
 
-    it(`should return messages for validation errors if the control has been touched`, () => {
+    test(`should return messages for validation errors if the control has been touched`, () => {
       const ERROR = {
         valid: false,
       };
@@ -38,7 +38,7 @@ describe('InputMessagesComponent', () => {
     });
 
 
-    it(`should return messages for validation errors if validateOnChange is true`, () => {
+    test(`should return messages for validation errors if validateOnChange is true`, () => {
       component.validateOnChange = true;
       component.control = {
         touched: false,
@@ -51,7 +51,7 @@ describe('InputMessagesComponent', () => {
     });
 
 
-    it(`should return null if the control hasn't been touched`, () => {
+    test(`should return null if the control hasn't been touched`, () => {
       const ERROR = {
         valid: false,
       };
@@ -68,9 +68,30 @@ describe('InputMessagesComponent', () => {
     });
 
 
-    it(`should return null if no control was passed in`, () => {
+    test(`should return null if no control was passed in`, () => {
       expect(component.validationMessage).toEqual(null);
       expect(component['validationMessageService'].getValidatorErrorMessage).not.toHaveBeenCalled();
+    });
+
+  });
+
+
+  describe(`validateImmediately`, () => {
+
+    test(`should set/get the immediate flag`, () => {
+      expect(component.validateImmediately).toEqual(false);
+      component.validateImmediately = true;
+      expect(component.validateImmediately).toEqual(true);
+    });
+
+  });
+
+
+  describe(`id`, () => {
+
+    test(`should use UID if no value is passed in`, () => {
+      component.id = undefined as any;
+      expect(component.id).toEqual(expect.stringContaining('ts-validation-messages-'));
     });
 
   });

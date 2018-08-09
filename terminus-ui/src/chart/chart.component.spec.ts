@@ -108,6 +108,7 @@ describe(`TsChartComponent`, () => {
       component['instance'] = instanceMock;
       component['destroyChart'] = jest.fn();
       component['init'] = jest.fn();
+      component['instance'].update = jest.fn();
     });
 
 

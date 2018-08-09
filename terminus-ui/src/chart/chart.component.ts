@@ -17,7 +17,7 @@ import {
   coerceArray,
   coerceBooleanProperty,
 } from '@terminus/ngx-tools/coercion';
-import { inputHasChanged } from '@terminus/ngx-tools';
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 
 import { HighchartsService } from './highcharts.service';
 import {
@@ -262,7 +262,6 @@ export class TsChartComponent implements AfterViewInit, OnChanges, OnDestroy {
         this.destroyChart();
         this.init();
       }
-
       if (inputHasChanged(changes, 'options')) {
         this.instance.update(composeOptions(this, changes.options.currentValue));
       }

@@ -20,7 +20,6 @@ import { TsInputModule } from './input/input.module';
 import { TsLinkModule } from './link/link.module';
 import { TsLoadingOverlayModule } from './loading-overlay/loading-overlay.module';
 import { TsLoginFormModule } from './login-form/login-form.module';
-import { TsMaskModule } from './mask/mask.module';
 import { TsMenuModule } from './menu/menu.module';
 import { TsNavigationModule } from './navigation/navigation.module';
 import { TsPaginatorModule } from './paginator/paginator.module';
@@ -61,7 +60,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLinkModule,
     TsLoadingOverlayModule,
     TsLoginFormModule,
-    TsMaskModule,
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
@@ -104,7 +102,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsLinkModule,
     TsLoadingOverlayModule,
     TsLoginFormModule,
-    TsMaskModule,
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,

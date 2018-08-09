@@ -12,7 +12,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-31-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-30-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
@@ -97,7 +97,6 @@ for each feature.
 | divider                                |                                            |                    |                                 |                              |                             |
 | expansion                              |                                            |                    |                                 |                              |                             |
 | [file-upload][src-file-upload]         | File upload with drag and drop             | :white_check_mark: | [Demo][demo-file-upload]        | [Docs][file-upload-docs]     | [Usage][file-upload-usage]  |
-| [input mask][src-mask]                 | Custom masks for inputs (phone, zip, etc)  | :white_check_mark: | [Demo][demo-mask]               | [Docs][mask-docs]            | [Usage][mask-usage]         |
 | [icon][src-icon]                       | Supported icons: https://material.io/icons | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]            | [Usage][icon-usage]         |
 | [icon-button][src-button]              |                                            | :white_check_mark: | [Demo][demo-icon-button]        | [Docs][icon-button-docs]     | [Usage][icon-button-usage]  |
 | [input][src-input]                     |                                            | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]           | [Usage][input-usage]        |
@@ -309,7 +308,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-link]: https://terminus-ui-demos.stackblitz.io/components/link
 [demo-loading-overlay]: https://terminus-ui-demos.stackblitz.io/components/loading-overlay
 [demo-log-in-form]: https://terminus-ui-demos.stackblitz.io/components/log-in-form
-[demo-mask]: https://terminus-ui-demos.stackblitz.io/components/mask
 [demo-menu]: https://terminus-ui-demos.stackblitz.io/components/menu
 [demo-navigation]: https://terminus-ui-demos.stackblitz.io/components/navigation
 [demo-paginator]: https://terminus-ui-demos.stackblitz.io/components/paginator
@@ -354,7 +352,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-link]: ./terminus-ui/src/link/
 [src-loading-overlay]: ./terminus-ui/src/loading-overlay/
 [src-login-form]: ./terminus-ui/src/login-form/
-[src-mask]: ./terminus-ui/src/mask/
 [src-menu]: ./terminus-ui/src/menu/
 [src-navigation]: ./terminus-ui/src/navigation/
 [src-paginator]: ./terminus-ui/src/paginator/
@@ -394,7 +391,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [link-docs]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html
 [loading-overlay-docs]: https://getterminus.github.io/terminus-ui/components/TsLoadingOverlayComponent.html
 [login-form-docs]: https://getterminus.github.io/terminus-ui/components/TsLoginFormComponent.html
-[mask-docs]: https://getterminus.github.io/terminus-ui/directives/TsMaskDirective.html
 [menu-docs]: https://getterminus.github.io/terminus-ui/components/TsMenuComponent.html
 [navigation-docs]: https://getterminus.github.io/terminus-ui/components/TsNavigationComponent.html
 [paginator-docs]: https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html
@@ -426,7 +422,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [icon-usage]: https://getterminus.github.io/terminus-ui/components/TsIconComponent.html#readme
 [input-usage]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html#readme
 [link-usage]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html#readme
-[mask-usage]: https://getterminus.github.io/terminus-ui/directives/TsMaskDirective.html#readme
 [menu-usage]: https://getterminus.github.io/terminus-ui/components/TsMenuComponent.html#readme
 [paginator-usage]: https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html#readme
 [radio-group-usage]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html#readme
