@@ -1,42 +1,105 @@
 <ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
-    Demo Controls
+    Input: ngModel
   </h3>
 
-  <button (click)="shouldDisable = !shouldDisable">
-    Toggle disabled inputs
-  </button>
-  <button (click)="foo.reset()">Reset name input</button>
-  <button (click)="submit(myForm.value)">Submit</button>
-  <button (click)="update()">Manually update the `name` control</button>
-</ts-card>
+  <div style="max-width: 20rem;" tsVerticalSpacing>
+    <ts-select
+      [(ngModel)]="activeMask"
+      [items]="masks"
+      label="Active mask"
+      hint="Select a mask to apply it to the input below."
+    ></ts-select>
 
-
-<ts-card tsVerticalSpacing>
-  <h3 tsCardTitle tsVerticalSpacing>
-    ngModel
-  </h3>
+    <label>
+      <input type="checkbox" [(ngModel)]="sanitizeValue">
+      Sanitize model value
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isClearable">
+      Allow input to be cleared
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isDisabled">
+      Disabled
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isFocused">
+      Focused
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="hideRequiredMarker">
+      Hide required marker
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isReadonly">
+      Readonly
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="allowDecimal">
+      Allow decimal
+    </label>
+  </div>
 
   <ts-input
     [(ngModel)]="myValue"
-    label="Input with ngModel & isFocused flag"
-    isClearable="true"
-    isRequired="true"
+    label="Input with ngModel"
+    [maskSanitizeValue]="sanitizeValue"
+    [isRequired]="true"
+    [hideRequiredMarker]="hideRequiredMarker"
+    [isClearable]="isClearable"
+    [isDisabled]="isDisabled"
+    [isFocused]="isFocused"
+    [maskAllowDecimal]="allowDecimal"
+    [readOnly]="isReadonly"
+    [mask]="activeMask"
+    [autocomplete]="'on'"
     name="static input"
     theme="accent"
-    [isDisabled]="shouldDisable"
-    tsVerticalSpacing
+    tsVerticalSpacing="small--0"
   ></ts-input>
 
   <strong>ngModel value: {{ myValue }}</strong>
 </ts-card>
 
 
-<ts-card>
+<ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
-    Form
+    Input with Datepicker
   </h3>
 
+  <ts-input
+    [(ngModel)]="myDatepickerValue"
+    label="Input with datepicker"
+    mask="date"
+    name="Datepicker input"
+    tsVerticalSpacing="small--0"
+    datepicker="true"
+  ></ts-input>
+
+  <strong>ngModel value: {{ myDatepickerValue }}</strong>
+</ts-card>
+
+
+<ts-card>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: Reactive Form
+  </h3>
+
+  <div tsVerticalSpacing>
+    <button (click)="updateLabel()">Update Label</button>
+    <button (click)="submit(myForm.value)">Submit Form</button>
+    <button (click)="foo.reset()">Reset name input</button>
+    <button (click)="shouldDisable = !shouldDisable">
+      {{ shouldDisable ? 'Enable' : 'Disable' }} the name input
+    </button>
+  </div>
 
   <form [formGroup]="myForm" novalidate>
     <ts-input
@@ -64,12 +127,19 @@
     ></ts-input>
 
     <ts-input
-      [formControl]="myForm.get('password')"
-      label="Password"
-      hint="Password input with validation"
-      [spellcheck]="false"
-      [autocomplete]="'password'"
-      type="password"
+      [formControl]="myForm.get('phone')"
+      label="Phone"
+      hint="Phone input with masking"
+      mask="phone"
+      tsVerticalSpacing
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('myDate')"
+      label="Date"
+      name="Date"
+      mask="date"
+      datepicker="true"
       tsVerticalSpacing
     ></ts-input>
 
