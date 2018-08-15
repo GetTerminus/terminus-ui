@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import { TsStyleThemeTypes } from '@terminus/ui';
+import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
 
 
 @Component({
@@ -13,6 +13,9 @@ import { TsStyleThemeTypes } from '@terminus/ui';
 export class MenuComponent {
   disabled = false;
   myTheme: TsStyleThemeTypes = 'accent';
+  myFormat: TsButtonFormatTypes = 'filled';
+  themes: TsStyleThemeTypes[] = ['primary', 'accent', 'warn'];
+  formats: TsButtonFormatTypes[] = ['filled', 'hollow', 'collapsable'];
   columns: string[] = [
     'Title',
     'Account',

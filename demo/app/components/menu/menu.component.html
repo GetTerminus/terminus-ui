@@ -1,4 +1,30 @@
 <ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div tsVerticalSpacing>
+    <label>
+      Theme:
+      <select name="myTheme" [(ngModel)]="myTheme">
+        <option value="{{ theme }}" *ngFor="let theme of themes">
+          {{ theme | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div tsVerticalSpacing>
+    <label>
+      Format:
+      <select name="myFormat" [(ngModel)]="myFormat">
+        <option value="{{ format }}" *ngFor="let format of formats">
+          {{ format | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
+</ts-card>
+
+<ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
     Standard Menu
   </h3>
@@ -13,6 +39,7 @@
   <div tsVerticalSpacing>
     <ts-menu
       [theme]="myTheme"
+      [format]="myFormat"
       [isDisabled]="disabled"
       [menuItemsTemplate]="myTemplate"
     >
@@ -30,6 +57,7 @@
   <div fxLayout="row" fxLayoutAlign="end center">
     <ts-menu
       [theme]="myTheme"
+      [format]="myFormat"
       triggerType="utility"
       [isDisabled]="disabled"
       [menuItemsTemplate]="myTemplate"
