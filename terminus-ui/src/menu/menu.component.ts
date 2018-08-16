@@ -12,6 +12,7 @@ import {
 import { MatMenuTrigger } from '@angular/material/menu';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { TsButtonFormatTypes } from '../button/button.component';
 
 
 /**
@@ -142,6 +143,12 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
+
+  /**
+   * Define the button format
+   */
+  @Input()
+  public format: TsButtonFormatTypes = 'filled';
 
   /**
    * Define the type of trigger {@link TsMenuTriggerTypes}
