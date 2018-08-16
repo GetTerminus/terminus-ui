@@ -44,6 +44,7 @@
     background-color: color(pure);
     // Set up for possible utility nav
     position: relative;
+    transition: height 200ms ease;
     width: 100%;
 
     &:not(.c-card--interaction),
