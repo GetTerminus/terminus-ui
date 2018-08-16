@@ -35,6 +35,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   // <div> Emulate <table> element and hide overflow caused by hover crosshairs
   &__table {
     display: table;
+    min-width: 100%;
     overflow: hidden;
   }
 
