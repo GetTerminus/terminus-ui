@@ -67,6 +67,27 @@ const INITIAL: GitHubUser[] = [
     score: 27.880474,
   },
 ];
+const INJECTION_ITEM = {
+   login: 'asgg4321',
+   id: 26461261,
+   node_id: 'MDQ6VXNlcjI2NDYxMjYx',
+   avatar_url: 'https://avatars2.githubusercontent.com/u/26461261?v=4',
+   gravatar_id: '',
+   url: 'https://api.github.com/users/asgg4321',
+   html_url: 'https://github.com/asgg4321',
+   followers_url: 'https://api.github.com/users/asgg4321/followers',
+   following_url: 'https://api.github.com/users/asgg4321/following{/other_user}',
+   gists_url: 'https://api.github.com/users/asgg4321/gists{/gist_id}',
+   starred_url: 'https://api.github.com/users/asgg4321/starred{/owner}{/repo}',
+   subscriptions_url: 'https://api.github.com/users/asgg4321/subscriptions',
+   organizations_url: 'https://api.github.com/users/asgg4321/orgs',
+   repos_url: 'https://api.github.com/users/asgg4321/repos',
+   events_url: 'https://api.github.com/users/asgg4321/events{/privacy}',
+   received_events_url: 'https://api.github.com/users/asgg4321/received_events',
+   type: 'User',
+   site_admin: false,
+   score: 52.41921,
+};
 
 /**
  * Define an interface that represents the options we present to the user
@@ -158,6 +179,12 @@ export class AutocompleteComponent implements OnInit {
   ) {}
 
 
+  updateSelections() {
+    const ctrl = this.myForm.get('selections');
+    if (ctrl) {
+      ctrl.setValue([INJECTION_ITEM]);
+    }
+  }
 
   comparator: TsAutocompleteComparatorFn = (v: any) => v.id;
 

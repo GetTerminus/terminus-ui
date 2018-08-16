@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -21,9 +22,7 @@ import {
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import {
-  BehaviorSubject,
-} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import {
   coerceArray,
   coerceNumberProperty,
@@ -255,7 +254,20 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Define the form control to save selections to
    */
   @Input()
-  public selectionsControl!: FormControl;
+  public set selectionsControl(value: FormControl) {
+    if (!value) {
+      return;
+    }
+
+    this._selectionsControl = value;
+    /*
+     *console.log('set selectionsControl: ', this.selectionsControl);
+     */
+  }
+  public get selectionsControl(): FormControl {
+    return this._selectionsControl;
+  }
+  private _selectionsControl: FormControl = new FormControl();
 
   /**
    * Define if the progress spinner should be active
@@ -312,10 +324,15 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public query: EventEmitter<string> = new EventEmitter();
 
 
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
+
   /**
    * Subscribe to the querySubject and pass values to the query emitter
    *
-   * FIXME: When an option is selected, the full selected value is piped through this stream
+   * NOTE: When an option is selected, the full selected value is piped through this stream
    * somehow. Have not figured out why. Best guess is it's something due to the `matAutocomplete`
    * directive. For now, we are filtering out anything that is not a string.
    */
@@ -331,6 +348,17 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     ).subscribe((query: string) => {
       this.query.next(query);
     });
+
+    // Trigger a change detection cycle if the formControl value was changed dynamically
+    // istanbul ignore else
+    if (this.selectionsControl) {
+      this.selectionsControl.valueChanges.pipe(
+        untilComponentDestroyed(this),
+      ).subscribe((value: OptionType[]) => {
+        this.selectedOptions = value;
+        this.changeDetectorRef.detectChanges();
+      });
+    }
   }
 
 

@@ -29,7 +29,6 @@
         [attr.name]="name"
         [matChipInputFor]="chipList"
         [matAutocomplete]="autocomplete"
-        placeholder="{{ label }}"
         [(ngModel)]="searchQuery"
         (ngModelChange)="querySubject.next(searchQuery)"
         (blur)="handleBlur($event)"

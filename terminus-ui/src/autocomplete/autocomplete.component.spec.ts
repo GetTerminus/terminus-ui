@@ -5,6 +5,7 @@ import {
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
 import createMockInstance from 'jest-create-mock-instance';
+import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
 import {
   TsAutocompleteComponent,
@@ -19,7 +20,9 @@ describe(`TsAutocompleteComponent`, () => {
 
   beforeEach(() => {
     trigger = createMockInstance(MatAutocompleteTrigger);
-    component = new TsAutocompleteComponent();
+    component = new TsAutocompleteComponent(
+      new ChangeDetectorRefMock,
+    );
     component['trigger'] = trigger;
     component.input = new ElementRef({});
   });
@@ -470,6 +473,31 @@ describe(`TsAutocompleteComponent`, () => {
 
     test(`should return undefined`, () => {
       expect(component.ngOnDestroy()).toEqual(undefined);
+    });
+
+  });
+
+
+  describe(`selectionsControl`, () => {
+
+    beforeEach(() => {
+      component.selectionsControl = new FormControl();
+    });
+
+
+    test(`should reflect changes to selectedOptions if dynamically updated`, () => {
+      component.ngAfterViewInit();
+      expect(component.selectedOptions).toEqual([]);
+
+      component.selectionsControl.setValue([{id: 9}]);
+
+      expect(component.selectedOptions).toEqual([{id: 9}]);
+    });
+
+
+    test(`should fall back to a default formControl if no value is passed in`, () => {
+      component.selectionsControl = null as any;
+      expect(component.selectionsControl instanceof FormControl).toBeTruthy();
     });
 
   });
