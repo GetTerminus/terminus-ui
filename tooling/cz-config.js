@@ -25,7 +25,6 @@ module.exports = {
     {name: 'Confirmation'},
     {name: 'Copy'},
     {name: 'CSVEntry'},
-    {name: 'Datepicker'},
     {name: 'DateRange'},
     {name: 'FileUpload'},
     {name: 'Icon'},

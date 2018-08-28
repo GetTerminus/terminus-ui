@@ -12,7 +12,6 @@ import { TsConfirmationModule } from './confirmation/confirmation.module';
 import { TsCopyModule } from './copy/copy.module';
 import { TsCSVEntryModule } from './csv-entry/csv-entry.module';
 import { TsDateRangeModule } from './date-range/date-range.module';
-import { TsDatepickerModule } from './datepicker/datepicker.module';
 import { TsFileUploadModule } from './file-upload/file-upload.module';
 import { TsIconButtonModule } from './icon-button/icon-button.module';
 import { TsIconModule } from './icon/icon.module';
@@ -52,7 +51,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCopyModule,
     TsCSVEntryModule,
     TsDateRangeModule,
-    TsDatepickerModule,
     TsFileUploadModule,
     TsIconButtonModule,
     TsIconModule,
@@ -94,7 +92,6 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCopyModule,
     TsCSVEntryModule,
     TsDateRangeModule,
-    TsDatepickerModule,
     TsFileUploadModule,
     TsIconButtonModule,
     TsIconModule,

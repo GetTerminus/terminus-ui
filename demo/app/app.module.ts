@@ -54,7 +54,6 @@ import {
   TsCopyModule,
   TsCSVEntryModule,
   TsDateRangeModule,
-  TsDatepickerModule,
   TsFileUploadModule,
   TsIconButtonModule,
   TsIconModule,
@@ -100,7 +99,6 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { CopyComponent } from './components/copy/copy.component';
 import { CSVEntryComponent } from './components/csv-entry/csv-entry.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
-import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -152,7 +150,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCopyModule,
     TsCSVEntryModule,
     TsDateRangeModule,
-    TsDatepickerModule,
     TsFileUploadModule,
     TsIconButtonModule,
     TsIconModule,
@@ -200,7 +197,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     CopyComponent,
     CSVEntryComponent,
     DateRangeComponent,
-    DatepickerComponent,
     FileUploadComponent,
     IconButtonComponent,
     IconComponent,

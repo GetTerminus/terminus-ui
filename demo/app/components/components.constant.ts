@@ -11,7 +11,6 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
 import { CSVEntryComponent } from './csv-entry/csv-entry.component';
 import { DateRangeComponent } from './date-range/date-range.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconComponent } from './icon/icon.component';
@@ -107,13 +106,6 @@ export const componentsList: Routes = [
     component: CSVEntryComponent,
     data: {
       name: 'CSV Entry',
-    },
-  },
-  {
-    path: 'datepicker',
-    component: DatepickerComponent,
-    data: {
-      name: 'Datepicker',
     },
   },
   {

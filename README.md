@@ -12,7 +12,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-30-blue.svg)](#components)
+[![components](https://img.shields.io/badge/Components-29-blue.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
@@ -91,7 +91,7 @@ for each feature.
 | [confirmation][src-confirmation]       | Add a confirmation step to any `ts-button` | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Usage][confirmation-usage] |
 | [copy][src-copy]                       |                                            | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                             |
 | [csv entry][src-csv-entry]             | Manually enter CSV values                  | :white_check_mark: | [Demo][demo-csv-entry]          | [Docs][csv-entry-docs]       | [Usage][csv-entry-usage]    |
-| [datepicker][src-datepicker]           | Input with calendar pop-up                 | :white_check_mark: | [Demo][demo-datepicker]         | [Docs][datepicker-docs]      | [Usage][datepicker-usage]   |
+| [datepicker][src-input]                | See `TsInputComponent`                     | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]           | [Usage][input-usage]        |
 | [date-range][src-date-range]           | Dual inputs with calendar pop-ups          | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
 | dialog                                 |                                            |                    |                                 |                              |                             |
 | divider                                |                                            |                    |                                 |                              |                             |
@@ -344,7 +344,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-copy]: ./terminus-ui/src/copy/
 [src-csv-entry]: ./terminus-ui/src/csv-entry/
 [src-date-range]: ./terminus-ui/src/date-range/
-[src-datepicker]: ./terminus-ui/src/datepicker/
 [src-file-upload]: ./terminus-ui/src/file-upload/
 [src-icon-button]: ./terminus-ui/src/icon-button/
 [src-icon]: ./terminus-ui/src/icon/

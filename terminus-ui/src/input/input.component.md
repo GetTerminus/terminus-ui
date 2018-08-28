@@ -1,3 +1,6 @@
+<h1>Input</h1>
+
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -14,11 +17,18 @@
   - [Input Attributes](#input-attributes)
   - [Validation timing](#validation-timing)
   - [Component reference](#component-reference)
+- [Usage with Reactive Forms](#usage-with-reactive-forms)
 - [Event Emitters](#event-emitters)
 - [Masks](#masks)
   - [Available Masks](#available-masks)
   - [Sanitize the model value](#sanitize-the-model-value)
   - [Allow decimals in number-based masks](#allow-decimals-in-number-based-masks)
+- [Datepicker](#datepicker)
+  - [Filter out available dates](#filter-out-available-dates)
+  - [Set a max/min date range](#set-a-maxmin-date-range)
+- [Open calendar to a specific date](#open-calendar-to-a-specific-date)
+- [Open calendar to a specific view](#open-calendar-to-a-specific-view)
+- [Example with dynamic validation](#example-with-dynamic-validation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -221,17 +231,89 @@ console.log('Component Class: ', this.myVar);
 ```
 
 
+## Usage with Reactive Forms
+
+Pass in the form control:
+
+```html
+<form [formGroup]="myForm" novalidate>
+  <ts-input [formControl]="myForm.get('date')"></ts-input>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>
+```
+
+```typescript
+myForm = this.formBuilder.group({
+  date: [
+    null, // If you need a default value, change this `null` to your value
+    [
+      Validators.required,
+    ],
+  ],
+});
+```
+
+**NOTE:** If using a form with nested form groups, _each group_ must be created with
+`formBuilder.group` for the form `get` control to work:
+
+```typescript
+// Notice the nested `dateRange` object without using `.group`
+myForm: FormGroup = this.formBuilder.group({
+  dateRange: {
+    startDate: [
+      new Date(2017, 4, 6),
+    ],
+    endDate: [
+      new Date(2017, 4, 8),
+    ],
+  },
+});
+
+// THIS WILL FAIL!
+const range = myForm.get('dateRange');
+
+//////////////////////////////////////////////////
+
+// Notice the nested `dateRange` object IS using `.group`
+myForm: FormGroup = this.formBuilder.group({
+  dateRange: this.formBuilder.group({
+    startDate: [
+      new Date(2017, 4, 6),
+      [
+        Validators.required,
+      ],
+    ],
+    endDate: [
+      new Date(2017, 4, 8),
+      [
+        Validators.required,
+      ],
+    ],
+  }),
+});
+
+// Now there is a group for us to 'get'
+const range = myForm.get('dateRange');
+```
+
+
 ## Event Emitters
 
 Supported event emitters:
 
 ```html
 <ts-input
-  (blur)="inputLostFocus($event)"
+  (inputBlur)="inputLostFocus($event)"
   (cleared)="inputWasBlurred($event)"
-  (focus)="inputGainedFocus($event)"
+  (inputFocus)="inputGainedFocus($event)"
+  (selected)="newDateSelected($event)"
 ></ts-input>
 ```
+
+Each emitter is called with the current input value.
+
+> NOTE: The `selected` input is only available when `datepicker` is true.
 
 
 ## Masks
@@ -273,6 +355,153 @@ By default, number based masks (`number`, `percentage`) allow decimals. This can
 
 This means when the user types `12.34`, the input UI and model value will both be `1234`.
 
+
+## Datepicker
+
+To add datepicker abilities to an input, set the `datepicker` input:
+
+```html
+<ts-input datepicker="true"></ts-input>
+```
+
+
+### Filter out available dates
+
+If, for instance, you need to prohibit weekend days (sat/sun) from being selected you can pass in a
+custom method to filter dates:
+
+```html
+<ts-input
+  datepicker="true"
+  [dateFilter]="myFilter"
+></ts-datepicker>
+```
+
+```typescript
+myFilter = (d: Date): boolean => {
+  const day = d.getDay();
+  // Prevent Saturday and Sunday from being selected.
+  return day !== 0 && day !== 6;
+}
+```
+
+
+### Set a max/min date range
+
+To define bounds for date selection, pass in a valid `Date` to `minDate` and/or `maxDate`:
+
+```html
+<ts-input
+  datepicker="true"
+  [minDate]="date1"
+  [minDate]="date2"
+></ts-input>
+```
+
+```typescript
+date1 = new Date(2017, 2, 1);
+date2 = new Date(2017, 8, 1);
+```
+
+
+## Open calendar to a specific date
+
+Pass in a `Date` to `openTo`:
+
+```html
+<ts-datepicker [openTo]="myDate"></ts-datepicker>
+```
+
+```typescript
+myDate = new Date(2017, 5, 12);
+```
+
+
+## Open calendar to a specific view
+
+By default, the calendar opens up to show the month view. This can be changed to show the year view initially:
+
+```html
+<ts-datepicker [startingView]="year"></ts-datepicker>
+```
+
+`year` and `month` are the only two valid values.
+
+
+## Example with dynamic validation
+
+We can recreate a version of the {@link TsDateRangeComponent} using dynamic validation:
+
+```html
+<form [formGroup]="myForm" novalidate>
+  <ts-input
+    datepicker="true"
+    [formControl]="myForm.get('startDate')"
+    (selected)="rangeStartChange($event)"
+  ></ts-input>
+
+  <ts-input
+    datepicker="true"
+    [formControl]="myForm.get('endDate')"
+    (selected)="rangeEndChange($event)"
+  ></ts-input>
+
+  <button (click)="submit(myForm.value)">Submit</button>
+</form>
+```
+
+```typescript
+myForm = this.formBuilder.group({
+  startDate: [
+    null,
+    [
+      Validators.required,
+    ],
+  ],
+  endDate: [
+    null,
+    [
+      Validators.required,
+    ],
+  ],
+});
+
+// When the startDate changes, we want to set that date as the minDate for the endDate
+rangeStartChange(event: MatDatepickerInputEvent) {
+  if (event) {
+    // Get the from control
+    const control = this.formTwo.get('endDate');
+
+    // Set all validators.
+    // NOTE: setting validators will clear ALL existing validators, so we must add the required
+    // validator here again
+    control.setValidators([
+      Validators.required,
+      this.validatorsService.minDate(event.value),
+    ]);
+    // Tell the control to update according to the new validators
+    control.updateValueAndValidity();
+  }
+}
+
+// When the endDate changes, we want to set that date as the maxDate for the startDate
+rangeEndChange(event: MatDatepickerInputEvent) {
+  if (event) {
+    // Get the from control
+    const control = this.formTwo.get('startDate');
+
+    // Set all validators.
+    // NOTE: setting validators will clear ALL existing validators, so we must add the required
+    // validator here again
+    control.setValidators([
+      Validators.required,
+      this.validatorsService.maxDate(event.value),
+    ]);
+    // Tell the control to update according to the new validators
+    control.updateValueAndValidity();
+  }
+}
+```
 
 
 

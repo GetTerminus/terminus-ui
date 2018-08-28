@@ -7,7 +7,7 @@
     <ts-select
       [(ngModel)]="activeMask"
       [items]="masks"
-      label="Change active mask"
+      label="Active mask"
       hint="Select a mask to apply it to the input below."
     ></ts-select>
 
@@ -69,18 +69,37 @@
 </ts-card>
 
 
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input with Datepicker
+  </h3>
+
+  <ts-input
+    [(ngModel)]="myDatepickerValue"
+    label="Input with datepicker"
+    mask="date"
+    name="Datepicker input"
+    tsVerticalSpacing="small--0"
+    datepicker="true"
+  ></ts-input>
+
+  <strong>ngModel value: {{ myDatepickerValue }}</strong>
+</ts-card>
+
+
 <ts-card>
   <h3 tsCardTitle tsVerticalSpacing>
     Input: Reactive Form
   </h3>
 
-  <button (click)="updateLabel()" tsVerticalSpacing>Update Label</button>
-  <button (click)="submit(myForm.value)">Submit Form</button>
-  <button (click)="foo.reset()">Reset name input</button>
-  <button (click)="shouldDisable = !shouldDisable">
-    {{ shouldDisable ? 'Enable' : 'Disable' }} the name input
-  </button>
-  <br>
+  <div tsVerticalSpacing>
+    <button (click)="updateLabel()">Update Label</button>
+    <button (click)="submit(myForm.value)">Submit Form</button>
+    <button (click)="foo.reset()">Reset name input</button>
+    <button (click)="shouldDisable = !shouldDisable">
+      {{ shouldDisable ? 'Enable' : 'Disable' }} the name input
+    </button>
+  </div>
 
   <form [formGroup]="myForm" novalidate>
     <ts-input
@@ -108,12 +127,19 @@
     ></ts-input>
 
     <ts-input
-      [formControl]="myForm.get('password')"
-      label="Password"
-      hint="Password input with validation"
-      [spellcheck]="false"
-      [autocomplete]="'password'"
-      type="password"
+      [formControl]="myForm.get('phone')"
+      label="Phone"
+      hint="Phone input with masking"
+      mask="phone"
+      tsVerticalSpacing
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('myDate')"
+      label="Date"
+      name="Date"
+      mask="date"
+      datepicker="true"
       tsVerticalSpacing
     ></ts-input>
 

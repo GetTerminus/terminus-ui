@@ -627,4 +627,13 @@
       color: color(warn);
     }
   }
+
+  // Update the datepicker toggle positioning when inside the input
+  .mat-datepicker-toggle {
+    display: inline-block;
+
+    .mat-datepicker-toggle-default-icon {
+      vertical-align: baseline;
+    }
+  }
 }

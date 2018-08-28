@@ -6,11 +6,17 @@ import {
 } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MAT_DATE_FORMATS,
+  NativeDateModule,
+} from '@angular/material/core';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../validators/validators.service';
 import { TsInputComponent } from './input.component';
+import { TS_DATE_FORMATS } from './date-adapter';
 
 export * from './input.component';
 
@@ -22,11 +28,17 @@ export * from './input.component';
     FormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    NativeDateModule,
+    MatDatepickerModule,
     TsValidationMessagesModule,
     TsIconModule,
   ],
   providers: [
     TsValidatorsService,
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: TS_DATE_FORMATS,
+    },
   ],
   exports: [
     TsInputComponent,

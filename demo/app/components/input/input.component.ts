@@ -17,7 +17,8 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
-  myValue!: string;
+  myValue: string | undefined;
+  myDatepickerValue: string | Date = new Date(2018, 2, 2);
   shouldDisable = false;
   activeMask = 'none';
   masks: any[] = [
@@ -50,11 +51,16 @@ export class InputComponent {
         this.validatorsService.email(),
       ],
     ],
-    password: [
-      null,
+    phone: [
+      '1234567890',
       [
         Validators.required,
-        this.validatorsService.password(),
+      ],
+    ],
+    myDate: [
+      new Date(2018, 5, 1),
+      [
+        Validators.required,
       ],
     ],
   });

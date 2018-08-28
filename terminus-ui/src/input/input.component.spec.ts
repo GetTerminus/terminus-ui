@@ -1,10 +1,10 @@
 // tslint:disable: no-non-null-assertion no-use-before-declare component-class-suffix
 import {
   Component,
-  ViewChild,
-  Type,
+  ElementRef,
   Provider,
-  DebugElement,
+  Type,
+  ViewChild,
 } from '@angular/core';
 import {
   FormControl,
@@ -18,14 +18,15 @@ import {
 } from '@angular/core/testing';
 import {
   createKeyboardEvent,
-  typeInElement,
   TsDocumentServiceMock,
+  typeInElement,
 } from '@terminus/ngx-tools/testing';
 import { TsDocumentService } from '@terminus/ngx-tools';
 import { A } from '@terminus/ngx-tools/keycodes';
 import { By } from '@angular/platform-browser';
 import { Subject, Observable } from 'rxjs';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TsInputModule } from './input.module';
 import {
@@ -86,10 +87,8 @@ describe(`TsInputComponent`, () => {
       const fixture = createComponent(SimpleFormControl);
       fixture.detectChanges();
       fixture.componentInstance.inputComponent['inputElement'] = undefined as any;
-      fixture.detectChanges();
-      const wrapper = fixture.debugElement.query(By.css('.c-input')).nativeElement;
 
-      expect(wrapper.classList).not.toContain('mat-form-field-should-float');
+      expect(fixture.componentInstance.inputComponent.empty).toEqual(false);
     });
 
   });
@@ -433,14 +432,14 @@ describe(`TsInputComponent`, () => {
       test(`should disable the sanitation of the model value`, () => {
         const fixture = createComponent(MaskSanitize);
         fixture.detectChanges();
-        fixture.componentInstance.mask = 'percentage';
+        fixture.componentInstance.mask = 'currency';
         fixture.componentInstance.maskSanitizeValue = false;
         fixture.detectChanges();
         const inputElement = getInputElement(fixture);
-        typeInElement('12.34', inputElement);
+        typeInElement('$12.34', inputElement);
 
-        expect(inputElement.value).toEqual('12.34%');
-        expect(fixture.componentInstance.formControl.value).toEqual('12.34%');
+        expect(inputElement.value).toEqual('$12.34');
+        expect(fixture.componentInstance.formControl.value).toEqual('$12.34');
       });
 
 
@@ -450,7 +449,7 @@ describe(`TsInputComponent`, () => {
         fixture.componentInstance.mask = 'percentage';
         fixture.detectChanges();
         const inputElement = getInputElement(fixture);
-        typeInElement('12.34', inputElement);
+        typeInElement('12.34%', inputElement);
 
         expect(inputElement.value).toEqual('12.34%');
         expect(fixture.componentInstance.formControl.value).toEqual('12.34');
@@ -499,8 +498,11 @@ describe(`TsInputComponent`, () => {
         const inputElement = getInputElement(fixture);
         typeInElement('11111111', inputElement);
 
-        expect(inputElement.value).toEqual('11/11/1111');
-        expect(fixture.componentInstance.formControl.value).toEqual('11/11/1111');
+        expect(inputElement.value).toEqual('11-11-1111');
+        const controlValue = fixture.componentInstance.formControl.value;
+        expect(controlValue).toEqual(expect.any(Date));
+        expect(controlValue.toISOString()).toEqual(expect.stringContaining('1111-11-11'));
+        expect.assertions(3);
       });
 
     });
@@ -723,6 +725,21 @@ describe(`TsInputComponent`, () => {
       expect.assertions(4);
     });
 
+
+    test(`should convert a date object to a string`, () => {
+      const fixture = createComponent(SimpleFormControl);
+      fixture.detectChanges();
+      const component = fixture.componentInstance.inputComponent;
+      component['renderer'].setProperty = jest.fn();
+      const date = new Date(2018, 3, 3);
+      const isoDate = date.toISOString();
+      component.writeValue(date);
+      fixture.detectChanges();
+
+      expect(component.value.toISOString()).toEqual(isoDate);
+      expect(component['renderer'].setProperty).toHaveBeenCalledWith(expect.any(ElementRef), 'value', isoDate);
+    });
+
   });
 
 
@@ -765,7 +782,7 @@ describe(`TsInputComponent`, () => {
       const fixture = createComponent(SimpleFormControl);
       fixture.detectChanges();
       fixture.componentInstance.inputComponent['changeDetectorRef'].detectChanges = jest.fn();
-      fixture.componentInstance.inputComponent['documentService'].shouldContain = false;
+      (fixture.componentInstance.inputComponent['documentService'] as any).shouldContain = false;
 
       expect(fixture.componentInstance.inputComponent['updateOutlineGap']()).toEqual(undefined);
       expect(fixture.componentInstance.inputComponent['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
@@ -788,6 +805,199 @@ describe(`TsInputComponent`, () => {
 
       expect(inputElement.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
       jest.runAllTimers();
+    });
+
+  });
+
+
+  describe(`trimLastCharacter`, () => {
+
+    test(`should return the value if no mask is set`, () => {
+      const fixture = createComponent(SimpleFormControl);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent['trimLastCharacter']('foo')).toEqual('foo');
+    });
+
+
+    test(`should correctly trim a number mask`, () => {
+      const fixture = createComponent(MaskDecimal);
+      fixture.componentInstance.mask = 'number';
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent['trimLastCharacter']('12.345')).toEqual('12.34');
+    });
+
+  });
+
+
+  describe(`cleanValue()`, () => {
+
+    test(`should use a regex returned by function if needed`, () => {
+      const fixture = createComponent(SimpleFormControl);
+      fixture.detectChanges();
+      const regexFunction = () => /[^0-9.]/g;
+
+      expect(fixture.componentInstance.inputComponent['cleanValue']('12.34%', regexFunction)).toEqual('12.34');
+    });
+
+
+    test(`should return the original value if the passed function doesn't return a regex`, () => {
+      const fixture = createComponent(SimpleFormControl);
+      fixture.detectChanges();
+      const regexFunction = () => undefined;
+
+      expect(fixture.componentInstance.inputComponent['cleanValue']('12.34%', regexFunction)).toEqual('12.34%');
+    });
+
+  });
+
+
+  describe(`startingView`, () => {
+
+    test(`should allow the starting calendar view to be changed`, () => {
+      const fixture = createComponent(StartingView);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent.startingView).toEqual('month');
+
+      fixture.componentInstance.startingView = 'year';
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent.startingView).toEqual('year');
+
+      fixture.componentInstance.startingView = undefined;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent.startingView).toEqual('month');
+
+      expect.assertions(3);
+    });
+
+  });
+
+
+  describe(`tabIndex`, () => {
+
+    test(`should set the tabindex on the input`, () => {
+      const fixture = createComponent(TabIndex);
+      fixture.detectChanges();
+      const input = fixture.componentInstance.inputComponent['inputElement'];
+
+      expect(getDomAttribute(input.nativeElement, 'tabindex')).toEqual('4');
+    });
+
+  });
+
+
+  describe(`openTo`, () => {
+
+    test(`should allow a Date or undefined`, () => {
+      const fixture = createComponent(OpenTo);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent.openTo).toEqual(new Date(2018, 1, 1));
+
+      fixture.componentInstance.openTo = undefined;
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.inputComponent.openTo).toBeUndefined();
+      expect.assertions(2);
+    });
+
+  });
+
+
+  describe(`minDate`, () => {
+
+    test(`should set a minimum date with a string date, Date object, or undefined`, () => {
+      const fixture = createComponent(MinMaxDate);
+      fixture.detectChanges();
+      const comp = fixture.componentInstance.inputComponent;
+      const date1 = new Date(2018, 1, 1);
+      const date2 = new Date(2018, 1, 1);
+      const date3 = '01-01-2017';
+      const date4 = '01-01-2017';
+
+      // Default
+      expect(comp.minDate).toEqual(undefined);
+      expect(comp.maxDate).toEqual(undefined);
+
+      // Date object
+      fixture.componentInstance.maxDate = date1;
+      fixture.componentInstance.minDate = date2;
+      fixture.detectChanges();
+
+      expect(comp.maxDate).toEqual(date1);
+      expect(comp.minDate).toEqual(date2);
+
+      // Date string
+      fixture.componentInstance.maxDate = date3;
+      fixture.componentInstance.minDate = date4;
+      fixture.detectChanges();
+
+      expect(comp.minDate).toEqual(new Date(date3));
+      expect(comp.maxDate).toEqual(new Date(date4));
+
+      expect.assertions(6);
+    });
+
+  });
+
+
+  describe(`dateFilter`, () => {
+
+    test(`should set a filter for valid days of the week`, () => {
+      const fixture = createComponent(DateFilter);
+      const comp = fixture.componentInstance.inputComponent;
+      const func = (d: Date) => d.getDay() === 6;
+      fixture.detectChanges();
+
+      expect(comp.dateFilter).toBeUndefined();
+
+      fixture.componentInstance.dateFilter = func;
+      fixture.detectChanges();
+
+      expect(comp.dateFilter).toEqual(expect.any(Function));
+      expect(comp.dateFilter(new Date(2018, 1, 1))).toEqual(false);
+
+      expect.assertions(3);
+    });
+
+  });
+
+
+  describe(`set value`, () => {
+
+    test(`should emit the change if the date value has changed`, () => {
+      const fixture = createComponent(DateFilter);
+      const comp = fixture.componentInstance.inputComponent;
+      comp['innerValue'] = new Date(2018, 1, 1);
+      comp._valueChange.emit = jest.fn();
+      fixture.detectChanges();
+
+      comp.value = new Date(2018, 1, 2);
+      fixture.detectChanges();
+
+      expect(comp._valueChange.emit).toHaveBeenCalledWith(new Date(2018, 1, 2));
+    });
+
+  });
+
+
+  describe(`onInput`, () => {
+
+    test(`should emit the change if the date value has changed`, () => {
+      const fixture = createComponent(DateFilter);
+      const comp = fixture.componentInstance.inputComponent;
+      comp._valueChange.emit = jest.fn();
+      comp.selected.emit = jest.fn();
+      fixture.detectChanges();
+      const inputElement = getInputElement(fixture);
+      typeInElement('01-01-2018', inputElement);
+
+      expect(comp._valueChange.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
+      expect(comp.selected.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
     });
 
   });
@@ -826,6 +1036,7 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
       FormsModule,
       ReactiveFormsModule,
       TsInputModule,
+      NoopAnimationsModule,
       ...imports,
     ],
     declarations: [component],
@@ -843,15 +1054,6 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
   }).compileComponents();
 
   return TestBed.createComponent<T>(component);
-}
-
-export function getChildComponentInstanceFromFixture<FixtureType, ComponentType>(
-  fixture: ComponentFixture<FixtureType>,
-  component: Type<ComponentType>,
-): ComponentType {
-  const debugElForDumbComponent: DebugElement = fixture.debugElement.query(By.directive(component));
-
-  return debugElForDumbComponent.injector.get(component);
 }
 
 
@@ -1175,6 +1377,82 @@ class OnChanges {
 class PostalMask {
   formControl = new FormControl();
   mask: TsMaskShortcutOptions = 'postal';
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}
+
+@Component({
+  template: `
+    <ts-input
+      [tabIndex]="index"
+    ></ts-input>
+  `,
+})
+class TabIndex {
+  index = 4;
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}
+
+@Component({
+  template: `
+    <ts-input
+      datepicker="true"
+      [startingView]="startingView"
+    ></ts-input>
+  `,
+})
+class StartingView {
+  startingView = 'month';
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}
+
+@Component({
+  template: `
+    <ts-input
+      datepicker="true"
+      [openTo]="openTo"
+    ></ts-input>
+  `,
+})
+class OpenTo {
+  openTo = new Date(2018, 1, 1);
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}
+
+@Component({
+  template: `
+    <ts-input
+      datepicker="true"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+    ></ts-input>
+  `,
+})
+class MinMaxDate {
+  minDate = undefined;
+  maxDate = undefined;
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}
+
+@Component({
+  template: `
+    <ts-input
+      datepicker="true"
+      [dateFilter]="dateFilter"
+    ></ts-input>
+  `,
+})
+class DateFilter {
+  dateFilter = undefined;
 
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;

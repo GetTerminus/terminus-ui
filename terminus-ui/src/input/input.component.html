@@ -1,5 +1,5 @@
 <div
-  class="c-input mat-form-field-wrapper mat-form-field-appearance-outline mat-form-field-can-float"
+  class="c-input mat-form-field-wrapper mat-form-field-appearance-outline mat-form-field-can-float qa-input"
   [class.mat-form-field-should-float]="shouldLabelFloat"
   [class.mat-form-field-disabled]="shouldBeDisabled"
   [class.mat-form-field-autofilled]="autofilled"
@@ -8,7 +8,7 @@
   [class.mat-warn]="theme === 'warn'"
 >
   <div
-    class="mat-form-field-flex"
+    class="mat-form-field-flex qa-input-container"
     #containerElement
     (click)="focusInput()"
   >
@@ -31,26 +31,56 @@
     </div>
 
     <div class="mat-form-field-infix">
-      <input
-        class="c-input__text qa-input-text ts-form-field-autofill-control"
-        type="{{ type }}"
-        [attr.aria-required]="requiredAttribute ? true : false"
-        [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
-        [attr.autocomplete]="autocomplete"
-        [attr.autofocus]="isFocused ? '' : null"
-        [attr.disabled]="shouldBeDisabled ? '' : null"
-        [attr.name]="name"
-        [attr.id]="id"
-        [readonly]="readOnly"
-        [required]="requiredAttribute"
-        [spellcheck]="spellcheck ? 'on' : 'off'"
-        tabIndex="{{ tabIndex }}"
-        [(ngModel)]="value"
-        (blur)="focusChanged(false)"
-        (focus)="focusChanged(true)"
-        (input)="onInput($event.target.value)"
-        #inputElement
-      >
+      <ng-container *ngIf="!datepicker">
+        <input
+          class="c-input__text qa-input-text ts-form-field-autofill-control"
+          type="{{ type }}"
+          [attr.aria-required]="requiredAttribute ? true : false"
+          [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+          [attr.autocomplete]="autocomplete"
+          [attr.autofocus]="isFocused ? '' : null"
+          [attr.disabled]="shouldBeDisabled ? '' : null"
+          [attr.name]="name"
+          [attr.id]="id"
+          [readonly]="readOnly"
+          [required]="requiredAttribute"
+          [spellcheck]="spellcheck ? 'on' : 'off'"
+          tabIndex="{{ tabIndex }}"
+          [(ngModel)]="value"
+          (blur)="focusChanged(false)"
+          (focus)="focusChanged(true)"
+          (input)="onInput($event.target.value)"
+          #inputElement
+        >
+      </ng-container>
+
+      <ng-container *ngIf="datepicker">
+        <input
+          class="c-input__text qa-input-text ts-form-field-autofill-control"
+          type="{{ type }}"
+          [attr.aria-required]="requiredAttribute ? true : false"
+          [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+          [attr.autocomplete]="autocomplete"
+          [attr.autofocus]="isFocused ? '' : null"
+          [attr.disabled]="shouldBeDisabled ? '' : null"
+          [attr.name]="name"
+          [attr.id]="id"
+          [readonly]="readOnly"
+          [required]="requiredAttribute"
+          [spellcheck]="spellcheck ? 'on' : 'off'"
+          tabIndex="{{ tabIndex }}"
+          [(ngModel)]="value"
+          (blur)="focusChanged(false)"
+          (focus)="focusChanged(true)"
+          (input)="onInput($event.target.value)"
+          [matDatepickerFilter]="dateFilter"
+          [matDatepicker]="picker"
+          [min]="minDate"
+          [max]="maxDate"
+          (dateChange)="selected.emit($event.value)"
+          #inputElement
+        >
+      </ng-container>
 
       <span class="mat-form-field-label-wrapper">
         <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
@@ -78,12 +108,21 @@
       </span>
     </div>
 
-    <div class="mat-form-field-suffix" *ngIf="isClearable && !shouldBeDisabled">
-      <ts-icon
-        class="c-input__clear qa-input-suffix-icon"
-        [ngClass]="{'c-input__clear--visible': value?.length > 0}"
-        (click)="reset()"
-      >clear</ts-icon>
+    <div class="mat-form-field-suffix" *ngIf="(isClearable && !shouldBeDisabled) || datepicker">
+      <ng-container *ngIf="!datepicker">
+        <ts-icon
+          class="c-input__clear qa-input-suffix-icon"
+          [ngClass]="{'c-input__clear--visible': value?.length > 0}"
+          (click)="reset()"
+        >clear</ts-icon>
+      </ng-container>
+
+      <ng-container *ngIf="datepicker">
+        <mat-datepicker-toggle
+          class="qa-datepicker-toggle qa-input-suffix-icon"
+          [for]="picker"
+        ></mat-datepicker-toggle>
+      </ng-container>
     </div>
   </div>
 
@@ -111,3 +150,11 @@
     </div>
   </div>
 </div>
+
+<mat-datepicker
+  class="c-datepicker__calendar qa-datepicker-calendar"
+  [disabled]="shouldBeDisabled"
+  [startView]="startingView"
+  [startAt]="openTo"
+  #picker
+></mat-datepicker>
