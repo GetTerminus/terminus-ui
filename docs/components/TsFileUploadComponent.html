@@ -2527,7 +2527,7 @@
   id=&quot;my-id&quot;
   maximumKilobytesPerFile=&quot;{{ 10 * 1024 }}&quot;
   multiple=&quot;false&quot;
-  [formControl]=&quot;formControl&quot;
+  [control]=&quot;control&quot;
   [progress]=&quot;myUploadProgress&quot;
   [seedFile]=&quot;myFile&quot;
   dimensionConstraints=&quot;myConstraints&quot; (see TsFileImageDimensionConstraints)
@@ -2614,7 +2614,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_formControl">_formControl</a>
+                                <a href="#_control">_control</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -2756,10 +2756,10 @@
                                 <a href="#accept">accept</a>
                             </li>
                             <li>
-                                <a href="#dimensionConstraints">dimensionConstraints</a>
+                                <a href="#control">control</a>
                             </li>
                             <li>
-                                <a href="#formControl">formControl</a>
+                                <a href="#dimensionConstraints">dimensionConstraints</a>
                             </li>
                             <li>
                                 <a href="#hideButton">hideButton</a>
@@ -2966,6 +2966,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="control"></a>
+                        <code>control</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Create a form control to manage validation messages</p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">terminus-ui/src/file-upload/file-upload.component.ts:240</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="dimensionConstraints"></a>
                         <code>dimensionConstraints</code>
                     </td>
@@ -2977,25 +2996,6 @@
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">terminus-ui/src/file-upload/file-upload.component.ts:344</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-2">
-                        <a name="formControl"></a>
-                        <code>formControl</code>
-                    </td>
-                    <td class="col-md-10">
-                        <div><p>Create a form control to manage validation messages</p>
-</div>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">terminus-ui/src/file-upload/file-upload.component.ts:240</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -4484,19 +4484,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_formControl"></a>
+                        <a name="_control"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            _formControl
+                            _control
                             </b>
-                            <a href="#_formControl"><span class="fa fa-link"></span></a>
+                            <a href="#_control"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>_formControl:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                        <span class="modifier-icon fa fa-reset"></span><code>_control:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 </code>
                     </td>
                 </tr>
@@ -5237,14 +5237,14 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="formControl"></a>
-                        <span class="name"><b>formControl</b><a href="#formControl"><span class="fa fa-link"></span></a></span>
+                        <a name="control"></a>
+                        <span class="name"><b>control</b><a href="#control"><span class="fa fa-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>formControl()</code></span>
+                        <span class="accessor"><b>get</b><code>control()</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -5255,7 +5255,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>formControl(ctrl: )</code></span>
+                        <span class="accessor"><b>set</b><code>control(ctrl: )</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -6021,8 +6021,8 @@ that functionality in a way.</p>
   isDevMode,
 } from &#x27;@angular/core&#x27;;
 import {
-  FormControl,
   ValidationErrors,
+  FormControl,
 } from &#x27;@angular/forms&#x27;;
 import {
   inputHasChanged,
@@ -6081,7 +6081,7 @@ let nextUniqueId &#x3D; 0;
  *              id&#x3D;&quot;my-id&quot;
  *              maximumKilobytesPerFile&#x3D;&quot;{{ 10 * 1024 }}&quot;
  *              multiple&#x3D;&quot;false&quot;
- *              [formControl]&#x3D;&quot;formControl&quot;
+ *              [control]&#x3D;&quot;control&quot;
  *              [progress]&#x3D;&quot;myUploadProgress&quot;
  *              [seedFile]&#x3D;&quot;myFile&quot;
  *              dimensionConstraints&#x3D;&quot;myConstraints&quot; (see TsFileImageDimensionConstraints)
@@ -6240,13 +6240,13 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Create a form control to manage validation messages
    */
   @Input()
-  public set formControl(ctrl: FormControl) {
-    this._formControl &#x3D; ctrl ? ctrl : new FormControl();
+  public set control(ctrl: FormControl) {
+    this._control &#x3D; ctrl ? ctrl : new FormControl();
   }
-  public get formControl(): FormControl {
-    return this._formControl;
+  public get control(): FormControl {
+    return this._control;
   }
-  private _formControl: FormControl &#x3D; new FormControl();
+  private _control: FormControl &#x3D; new FormControl();
 
   /**
    * Define if the &#x27;select files&#x27; button should be visible. DO NOT USE.
@@ -6328,7 +6328,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile &#x3D;&gt; t !&#x3D;&#x3D; undefined),
         untilComponentDestroyed(this),
       ).subscribe((f) &#x3D;&gt; {
-        this.formControl.setValue(f.fileContents);
+        this.control.setValue(f.fileContents);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
@@ -6561,7 +6561,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile &#x3D;&gt; !!t),
         untilComponentDestroyed(this),
       ).subscribe((f) &#x3D;&gt; {
-        this.formControl.setValue(f.fileContents);
+        this.control.setValue(f.fileContents);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
@@ -6669,8 +6669,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
       }
     }
 
-    this.formControl.setErrors(errors);
-    this.formControl.markAsTouched();
+    this.control.setErrors(errors);
+    this.control.markAsTouched();
     this.changeDetectorRef.markForCheck();
   }
 
@@ -6679,7 +6679,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Clear all validation messages
    */
   private clearValidationMessages(): void {
-    this.formControl.setErrors(null);
+    this.control.setErrors(null);
     this.changeDetectorRef.markForCheck();
   }
 
@@ -6798,8 +6798,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   &lt;ts-validation-messages
     fxFlex&#x3D;&quot;noshrink&quot;
     class&#x3D;&quot;qa-file-upload-validation-messages&quot;
-    *ngIf&#x3D;&quot;formControl &amp;&amp; formControl.errors&quot;
-    [control]&#x3D;&quot;formControl&quot;
+    *ngIf&#x3D;&quot;control &amp;&amp; control.errors&quot;
+    [control]&#x3D;&quot;control&quot;
   &gt;&lt;/ts-validation-messages&gt;
 
 
@@ -6845,7 +6845,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  class="c-file-upload qa-file-upload"  [class.c-file-upload--drag]="dragInProgress"  [class.c-file-upload--file]="file"  [class.c-file-upload--error]="file && !file.isValid"  tabindex="1"  fxLayout="column">  <div    fxLayout="row"    fxLayoutAlign="start center"    [fxLayoutGap]="layoutGap"  >    <div      class="c-file-upload__empty qa-file-upload-empty"      fxLayout="row"      fxLayoutAlign="start center"      fxFlex="grow"      *ngIf="!file"    >      <!--        NOTE: If the copy isn\'t touching the </ts-icon> closing tag too much space will exist between the icon and text      -->      <ts-icon inline="true">        cloud_upload      </ts-icon>Drop file{{ multiple ? \'s\' : \'\' }} here      {{ hideButton ? \'or click to select\' : \'\' }}    </div>    <div      class="c-file-upload__file"      [class.c-file-upload__file--hidden]="!file"      fxFlex      fxLayout="column"      fxLayoutAlign="center start"    >      <div        fxFill        fxLayout="row"        fxLayoutAlign="start center"      >        <div          class="c-file-upload__preview qa-file-upload-preview"          [hidden]="!file"          fxFlex="noshrink"        >          <img            #preview            alt=""            [attr.src]="file?.fileContents"            *ngIf="file?.isImage"          >          <ts-icon            [svgIcon]="\'csv\'"            *ngIf="file?.isCSV"          ></ts-icon>        </div>        <div          class="c-file-upload__filename qa-file-upload-name"          fxFlex="grow"          fxLayout="row"          fxLayoutAlign="start center"          title="{{ file?.name }}"        >          <div class="c-file-upload__filename-inner">            {{ file?.name }}          </div>        </div>        <ts-tooltip tooltipValue="Remove file">          <ts-icon-button            class="c-file-upload__remove qa-file-upload-remove"            theme="warn"            actionName="Reset"            (click)="removeFile($event)"          >clear</ts-icon-button>        </ts-tooltip>      </div>    </div>    <ts-button      class="c-file-upload__prompt qa-file-upload-prompt"      [class.c-file-upload__prompt--hidden]="hideButton"      [theme]="theme"      [isDisabled]="dragInProgress"      (clickEvent)="promptForFiles()"    >      {{ buttonMessage }}    </ts-button>  </div>  <mat-progress-bar    *ngIf="file && progress > 0"    class="c-file-upload__progress qa-file-upload-progress"    mode="determinate"    [value]="progress"    [color]="theme"  ></mat-progress-bar></div><div  fxLayout="column"  fxLayout.gt-xs="row">  <ts-validation-messages    fxFlex="noshrink"    class="qa-file-upload-validation-messages"    *ngIf="formControl && formControl.errors"    [control]="formControl"  ></ts-validation-messages>  <div fxFlex="grow" class="c-file-upload__hints qa-file-upload-hints">    <div      class="c-file-upload__hint"      *ngFor="let hint of hints"    >      {{ hint }}    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class="c-file-upload qa-file-upload"  [class.c-file-upload--drag]="dragInProgress"  [class.c-file-upload--file]="file"  [class.c-file-upload--error]="file && !file.isValid"  tabindex="1"  fxLayout="column">  <div    fxLayout="row"    fxLayoutAlign="start center"    [fxLayoutGap]="layoutGap"  >    <div      class="c-file-upload__empty qa-file-upload-empty"      fxLayout="row"      fxLayoutAlign="start center"      fxFlex="grow"      *ngIf="!file"    >      <!--        NOTE: If the copy isn\'t touching the </ts-icon> closing tag too much space will exist between the icon and text      -->      <ts-icon inline="true">        cloud_upload      </ts-icon>Drop file{{ multiple ? \'s\' : \'\' }} here      {{ hideButton ? \'or click to select\' : \'\' }}    </div>    <div      class="c-file-upload__file"      [class.c-file-upload__file--hidden]="!file"      fxFlex      fxLayout="column"      fxLayoutAlign="center start"    >      <div        fxFill        fxLayout="row"        fxLayoutAlign="start center"      >        <div          class="c-file-upload__preview qa-file-upload-preview"          [hidden]="!file"          fxFlex="noshrink"        >          <img            #preview            alt=""            [attr.src]="file?.fileContents"            *ngIf="file?.isImage"          >          <ts-icon            [svgIcon]="\'csv\'"            *ngIf="file?.isCSV"          ></ts-icon>        </div>        <div          class="c-file-upload__filename qa-file-upload-name"          fxFlex="grow"          fxLayout="row"          fxLayoutAlign="start center"          title="{{ file?.name }}"        >          <div class="c-file-upload__filename-inner">            {{ file?.name }}          </div>        </div>        <ts-tooltip tooltipValue="Remove file">          <ts-icon-button            class="c-file-upload__remove qa-file-upload-remove"            theme="warn"            actionName="Reset"            (click)="removeFile($event)"          >clear</ts-icon-button>        </ts-tooltip>      </div>    </div>    <ts-button      class="c-file-upload__prompt qa-file-upload-prompt"      [class.c-file-upload__prompt--hidden]="hideButton"      [theme]="theme"      [isDisabled]="dragInProgress"      (clickEvent)="promptForFiles()"    >      {{ buttonMessage }}    </ts-button>  </div>  <mat-progress-bar    *ngIf="file && progress > 0"    class="c-file-upload__progress qa-file-upload-progress"    mode="determinate"    [value]="progress"    [color]="theme"  ></mat-progress-bar></div><div  fxLayout="column"  fxLayout.gt-xs="row">  <ts-validation-messages    fxFlex="noshrink"    class="qa-file-upload-validation-messages"    *ngIf="control && control.errors"    [control]="control"  ></ts-validation-messages>  <div fxFlex="grow" class="c-file-upload__hints qa-file-upload-hints">    <div      class="c-file-upload__hint"      *ngFor="let hint of hints"    >      {{ hint }}    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'TsAutocompleteComponent', 'selector': 'ts-autocomplete'},{'name': 'TsButtonComponent', 'selector': 'ts-button'},{'name': 'TsCSVEntryComponent', 'selector': 'ts-csv-entry'},{'name': 'TsCardComponent', 'selector': 'ts-card'},{'name': 'TsChart2Component', 'selector': 'ts-chart2'},{'name': 'TsChartComponent', 'selector': 'ts-chart'},{'name': 'TsCheckboxComponent', 'selector': 'ts-checkbox'},{'name': 'TsConfirmationModalComponent', 'selector': 'ts-confirmation-modal'},{'name': 'TsCopyComponent', 'selector': 'ts-copy'},{'name': 'TsDateRangeComponent', 'selector': 'ts-date-range'},{'name': 'TsDatepickerComponent', 'selector': 'ts-datepicker'},{'name': 'TsFileUploadComponent', 'selector': 'ts-file-upload'},{'name': 'TsHeaderRowComponent', 'selector': 'ts-header-row'},{'name': 'TsIconButtonComponent', 'selector': 'ts-icon-button'},{'name': 'TsIconComponent', 'selector': 'ts-icon'},{'name': 'TsInputComponent', 'selector': 'ts-input'},{'name': 'TsLinkComponent', 'selector': 'ts-link'},{'name': 'TsLoadingOverlayComponent', 'selector': 'ts-loading-overlay'},{'name': 'TsLoginFormComponent', 'selector': 'ts-login-form'},{'name': 'TsMenuComponent', 'selector': 'ts-menu'},{'name': 'TsNavigationComponent', 'selector': 'ts-navigation'},{'name': 'TsPaginatorComponent', 'selector': 'ts-paginator'},{'name': 'TsRadioGroupComponent', 'selector': 'ts-radio-group'},{'name': 'TsReactiveFormBaseComponent', 'selector': 'ts-dummy-selector'},{'name': 'TsRowComponent', 'selector': 'ts-row'},{'name': 'TsScrollbarsComponent', 'selector': 'ts-scrollbars'},{'name': 'TsSearchComponent', 'selector': 'ts-search'},{'name': 'TsSelectComponent', 'selector': 'ts-select'},{'name': 'TsSortHeaderComponent', 'selector': '[ts-sort-header]'},{'name': 'TsTableComponent', 'selector': 'ts-table'},{'name': 'TsToggleComponent', 'selector': 'ts-toggle'},{'name': 'TsTooltipComponent', 'selector': 'ts-tooltip'},{'name': 'TsValidationMessagesComponent', 'selector': 'ts-validation-messages'}];
     var DIRECTIVES = [{'name': 'TsAutofocusDirective', 'selector': '[tsAutofocus]'},{'name': 'TsCardTitleDirective', 'selector': '[tsCardTitle]'},{'name': 'TsCellDefDirective', 'selector': '[tsCellDef]'},{'name': 'TsCellDirective', 'selector': 'ts-cell'},{'name': 'TsChartPointDirective', 'selector': 'ts-point'},{'name': 'TsChartSeriesDirective', 'selector': 'ts-series'},{'name': 'TsColumnDefDirective', 'selector': '[tsColumnDef]'},{'name': 'TsConfirmationDirective', 'selector': '[tsConfirmation]'},{'name': 'TsHeaderCellDefDirective', 'selector': '[tsHeaderCellDef]'},{'name': 'TsHeaderCellDirective', 'selector': 'ts-header-cell'},{'name': 'TsHeaderRowDefDirective', 'selector': '[tsHeaderRowDef]'},{'name': 'TsLoadingOverlayDirective', 'selector': '[tsLoadingOverlay]'},{'name': 'TsMaskDirective', 'selector': '[tsMask]'},{'name': 'TsRowDefDirective', 'selector': '[tsRowDef]'},{'name': 'TsSortDirective', 'selector': '[tsSort]'},{'name': 'TsVerticalSpacingDirective', 'selector': '[tsVerticalSpacing]'}];
     var ACTUAL_COMPONENT = {'name': 'TsFileUploadComponent'};

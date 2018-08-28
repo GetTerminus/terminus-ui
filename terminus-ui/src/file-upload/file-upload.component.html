@@ -108,8 +108,8 @@
   <ts-validation-messages
     fxFlex="noshrink"
     class="qa-file-upload-validation-messages"
-    *ngIf="formControl && formControl.errors"
-    [control]="formControl"
+    *ngIf="control && control.errors"
+    [control]="control"
   ></ts-validation-messages>
 
 

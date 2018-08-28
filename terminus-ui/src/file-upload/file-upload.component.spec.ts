@@ -45,7 +45,7 @@ const FILE_MOCK = FILE_BLOB as File;
     <ts-file-upload
        [hideButton]="hideButton"
        [accept]="mimeTypes"
-       [formControl]="formControl"
+       [control]="formControl"
        [maximumKilobytesPerFile]="maxKb"
        [multiple]="multiple"
        [progress]="progress"
@@ -388,9 +388,9 @@ describe(`TsFileUploadComponent`, () => {
   describe(`setValidationMessages`, () => {
 
     test(`should do nothing if no file was passed in`, () => {
-      component.formControl.setErrors = jest.fn();
+      component.control.setErrors = jest.fn();
       component['setValidationMessages'](undefined);
-      expect(component.formControl.setErrors).not.toHaveBeenCalled();
+      expect(component.control.setErrors).not.toHaveBeenCalled();
     });
 
   });
