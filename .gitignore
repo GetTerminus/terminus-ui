@@ -11,3 +11,4 @@ src/**/*.css
 e2e/**/*.js
 e2e/**/*.js.map
 .ng_build
+.vscode

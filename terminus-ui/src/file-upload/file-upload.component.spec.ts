@@ -23,13 +23,15 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
 import { TsFileUploadModule } from './file-upload.module';
 import { TsSelectedFile } from './selected-file';
+import { FormControl } from '@angular/forms';
 
+// tslint:disable: max-line-length
+const fileContentsMock = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII=';
+// tslint:enable: max-line-length
 
 // IMAGE MOCK
 const FILE_BLOB = new Blob(
-  // tslint:disable: max-line-length
-  ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII='],
-  // tslint:enable: max-line-length
+  [fileContentsMock],
   { type: 'image/png' },
 );
 FILE_BLOB['lastModifiedDate'] = new Date();
@@ -43,6 +45,7 @@ const FILE_MOCK = FILE_BLOB as File;
     <ts-file-upload
        [hideButton]="hideButton"
        [accept]="mimeTypes"
+       [formControl]="formControl"
        [maximumKilobytesPerFile]="maxKb"
        [multiple]="multiple"
        [progress]="progress"
@@ -66,6 +69,7 @@ class TestHostComponent {
   constraints: TsFileImageDimensionConstraints | undefined;
   theme: TsStyleThemeTypes | undefined;
   hideButton = false;
+  formControl = new FormControl('test');
 
   @ViewChild(TsFileUploadComponent)
   component!: TsFileUploadComponent;
@@ -105,6 +109,7 @@ describe(`TsFileUploadComponent`, () => {
       hostComponent.fileToSeed = undefined;
       hostComponent.constraints = undefined;
       hostComponent.theme = undefined;
+      hostComponent.formControl = new FormControl();
       fixture.detectChanges();
     }
 
@@ -157,9 +162,11 @@ describe(`TsFileUploadComponent`, () => {
   describe(`seedFile`, () => {
 
     test(`should seed the file and trigger all process'`, () => {
-      component.seedFile = FILE_MOCK;
+      hostComponent.fileToSeed = FILE_MOCK;
+      fixture.detectChanges();
 
       expect(hostComponent.handleFile.mock.calls.length).toEqual(1);
+      expect(hostComponent.formControl.value).toEqual(component.file.fileContents);
       expect(component.seedFile).toEqual(FILE_MOCK);
     });
 
@@ -381,9 +388,9 @@ describe(`TsFileUploadComponent`, () => {
   describe(`setValidationMessages`, () => {
 
     test(`should do nothing if no file was passed in`, () => {
-      component.control.setErrors = jest.fn();
+      component.formControl.setErrors = jest.fn();
       component['setValidationMessages'](undefined);
-      expect(component.control.setErrors).not.toHaveBeenCalled();
+      expect(component.formControl.setErrors).not.toHaveBeenCalled();
     });
 
   });
@@ -546,11 +553,13 @@ describe(`TsFileUploadComponent`, () => {
           value: dataTransfer,
         });
         component['setUpNewFile'] = jest.fn();
+        fixture.detectChanges();
         component['collectFilesFromEvent'](event);
         fixture.detectChanges();
 
         expect(component['setUpNewFile']).toHaveBeenCalledWith(expect.any(TsSelectedFile));
         expect(hostComponent.handleFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
+        expect(hostComponent.formControl.value).toEqual(fileContentsMock);
       });
 
 
