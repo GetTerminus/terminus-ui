@@ -78,6 +78,7 @@ let nextUniqueId = 0;
  *              id="my-id"
  *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
  *              multiple="false"
+ *              [formControl]="formControl"
  *              [progress]="myUploadProgress"
  *              [seedFile]="myFile"
  *              dimensionConstraints="myConstraints" (see TsFileImageDimensionConstraints)
@@ -128,11 +129,6 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Store reference to the generated file input
    */
   private virtualFileInput: HTMLInputElement;
-
-  /**
-   * Create a form control to manage validation messages
-   */
-  public control = new FormControl();
 
   /**
    * Reflect the ID back to the DOM
@@ -238,6 +234,18 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   private _acceptedTypes: TsFileAcceptedMimeTypes[] = TS_ACCEPTED_MIME_TYPES.slice();
 
   /**
+   * Create a form control to manage validation messages
+   */
+  @Input()
+  public set formControl(ctrl: FormControl) {
+    this._formControl = ctrl ? ctrl : new FormControl();
+  }
+  public get formControl(): FormControl {
+    return this._formControl;
+  }
+  private _formControl: FormControl = new FormControl();
+
+  /**
    * Define if the 'select files' button should be visible. DO NOT USE.
    *
    * TODO: This should be removed once UX/Product decide if they want the button.
@@ -317,6 +325,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => t !== undefined),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
+        this.formControl.setValue(f.fileContents);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
@@ -549,6 +558,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => !!t),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
+        this.formControl.setValue(f.fileContents);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
@@ -656,8 +666,8 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
       }
     }
 
-    this.control.setErrors(errors);
-    this.control.markAsTouched();
+    this.formControl.setErrors(errors);
+    this.formControl.markAsTouched();
     this.changeDetectorRef.markForCheck();
   }
 
@@ -666,7 +676,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Clear all validation messages
    */
   private clearValidationMessages(): void {
-    this.control.setErrors(null);
+    this.formControl.setErrors(null);
     this.changeDetectorRef.markForCheck();
   }
 
