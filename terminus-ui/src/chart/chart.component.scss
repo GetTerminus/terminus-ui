@@ -1,26 +1,19 @@
-@import './../scss/helpers/reset';
-@import './../scss/helpers/typography';
-
-
 //
 // @component
-//  Chart
+//  Chart 2
 // @description
-//  A charting / data-viz component
+//  A charting component using AmCharts
 //
 .ts-chart {
-  @include reset;
   display: block;
-}
+  height: 100%;
 
-// Override the export menu typography
-.highcharts-menu-item {
-  @include typography(caption);
-}
-
-// Allow point selection even if the path is behind another series (ie. area chart)
-.highcharts-series {
-  path {
-    pointer-events: visibleStroke;
+  // Top level styles belong here
+  .c-chart {
+    //
   }
+}
+
+.c-chart {
+  // Nested classes belong here
 }

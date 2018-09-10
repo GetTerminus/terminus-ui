@@ -1,169 +1,67 @@
+// tslint:disable: no-use-before-declare component-class-suffix
 import {
-  SimpleChange,
-  SimpleChanges,
+  Component,
+  Provider,
+  Type,
+  ViewChild,
 } from '@angular/core';
 import {
-  ElementRefMock,
-} from '@terminus/ngx-tools/testing';
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
-import { TsChartComponent } from './chart.component';
-import {
-  TsChartData,
-  TsChartOptions,
-} from './options.interface';
+import { TsChartModule } from './chart.module';
+import { TsChartComponent, TsChartVisualizationOptions } from './chart.component';
+import { TsAmChartsService } from './amcharts.service';
 
 
-describe(`TsChartComponent`, () => {
-  let highchartsService: {highcharts: {[key: string]: any}};
-  let component: TsChartComponent;
-  let instanceMock;
+describe(`ChartComponent`, () => {
 
-  beforeEach(() => {
-    instanceMock = {
-      update: jest.fn(),
-      destroy: jest.fn(),
-      options: jest.fn().mockReturnValue({foo: 'bar'}),
-    };
 
-    highchartsService = {
-      highcharts: {
-        mapChart: jest.fn().mockReturnValue(instanceMock),
-        stockChart: jest.fn().mockReturnValue(instanceMock),
-        chart: jest.fn().mockReturnValue(instanceMock),
-      },
-    };
+  test(`should exist`, () => {
+    const fixture = createComponent(SimpleHost);
+    fixture.detectChanges();
 
-    component = new TsChartComponent(
-      new ElementRefMock(),
-      highchartsService,
-    );
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
 
-  describe(`data`, () => {
+  describe(`ngOnInit`, () => {
 
-    test(`should return undefined if no value is passed in`, () => {
-      component.data = null as any;
-      expect(component.data).toEqual(undefined);
+    test(`should log error if the amCharts library wasn't passed in`, () => {
+      window.console.error = jest.fn();
+      const fixture = createComponent(SimpleHost, []);
+      fixture.detectChanges();
+
+      expect(window.console.error).toHaveBeenCalledWith(expect.stringContaining('The amCharts library was not provided'));
     });
 
 
-    test(`should coerce to an array and set data`, () => {
-      component.data = {data: ['b']} as any;
-      expect(component.data).toEqual(expect.any(Array));
+    test(`should call to initialize the chart if amCharts exists`, () => {
+      const fixture = createComponent(SimpleHost);
+      fixture.detectChanges();
+      fixture.componentInstance.component['init'] = jest.fn();
+      fixture.componentInstance.component.ngOnInit();
+
+      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('xy');
     });
 
-  });
-
-
-  test(`should set the map type`, () => {
-    component.map = null as any;
-    expect(component.map).toEqual('usa');
-
-    component.map = 'world';
-    expect(component.map).toEqual('world');
-  });
-
-
-  test(`should set user options`, () => {
-    component.options = null as any;
-    expect(component.options).toEqual(undefined);
-
-    const options: TsChartOptions = {legend: {enabled: false}};
-    component.options = options;
-    expect(component.options).toEqual(expect.any(Object));
-  });
-
-
-  test(`should set the sparkline value`, () => {
-    component.sparkline = null as any;
-    expect(component.sparkline).toEqual(false);
-
-    component.sparkline = true;
-    expect(component.sparkline).toEqual(true);
-  });
-
-
-  test(`should set the addStockControls value`, () => {
-    component.addStockControls = null as any;
-    expect(component.addStockControls).toEqual(false);
-
-    component.addStockControls = true;
-    expect(component.addStockControls).toEqual(true);
-  });
-
-
-  test(`should set the visualization value`, () => {
-    component.visualization = null as any;
-    expect(component.visualization).toEqual(undefined);
-
-    component.visualization = 'bar';
-    expect(component.visualization).toEqual('bar');
   });
 
 
   describe(`ngOnChanges`, () => {
 
-    beforeEach(() => {
-      component['instance'] = instanceMock;
-      component['destroyChart'] = jest.fn();
-      component['init'] = jest.fn();
-    });
+    test(`should should destroy and reinit when the visualization changes`, () => {
+      const fixture = createComponent(VisualizationsHost);
+      fixture.detectChanges();
+      fixture.componentInstance.component['destroyChart'] = jest.fn();
+      fixture.componentInstance.component['init'] = jest.fn();
 
+      fixture.componentInstance.visualization = 'pie';
+      fixture.detectChanges();
 
-    test(`should destroy and reinitialize the chart if the visualization changes`, () => {
-      const changesMock: SimpleChanges = {
-        visualization: new SimpleChange('bar', 'line', false),
-      };
-      component.ngOnChanges(changesMock);
-
-      expect(component['destroyChart']).toHaveBeenCalled();
-      expect(component['init']).toHaveBeenCalled();
-    });
-
-
-    test(`should update the chart if options change`, () => {
-      const newOptions: TsChartOptions = {legend: {enabled: false}};
-      const changesMock: SimpleChanges = {
-        options: new SimpleChange({}, newOptions, false),
-      };
-      component.ngOnChanges(changesMock);
-
-      expect(component['instance'].update).toHaveBeenCalledWith(expect.any(Object));
-    });
-
-
-    test(`should update the chart if data changes`, () => {
-      const newData: TsChartData = [{data: ['foo']}];
-      const changesMock: SimpleChanges = {
-        data: new SimpleChange({}, newData, false),
-      };
-      component.ngOnChanges(changesMock);
-
-      expect(component['instance'].update).toHaveBeenCalledWith(expect.any(Object));
-    });
-
-
-    test(`should destroy and reinitialize the chart if the stock controls value changes`, () => {
-      const changesMock: SimpleChanges = {
-        addStockControls: new SimpleChange(false, true, false),
-      };
-      component.ngOnChanges(changesMock);
-
-      expect(component['destroyChart']).toHaveBeenCalled();
-      expect(component['init']).toHaveBeenCalled();
-    });
-
-  });
-
-
-  describe(`ngAfterViewInit`, () => {
-
-    test(`should initialize the chart if highcharts exists`, () => {
-      component['init'] = jest.fn();
-      component.ngAfterViewInit();
-
-      expect(component['init']).toHaveBeenCalled();
+      expect(fixture.componentInstance.component['destroyChart']).toHaveBeenCalled();
+      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('pie');
     });
 
   });
@@ -171,11 +69,12 @@ describe(`TsChartComponent`, () => {
 
   describe(`ngOnDestroy`, () => {
 
-    test(`should destroy the chart if one exists`, () => {
-      component['destroyChart'] = jest.fn();
-      component.ngOnDestroy();
+    test(`should destroy the chart`, () => {
+      const fixture = createComponent(SimpleHost);
+      fixture.detectChanges();
+      fixture.componentInstance.component.ngOnDestroy();
 
-      expect(component['destroyChart']).toHaveBeenCalled();
+      expect(fixture.componentInstance.component.chart.dispose).toHaveBeenCalled();
     });
 
   });
@@ -183,92 +82,117 @@ describe(`TsChartComponent`, () => {
 
   describe(`init`, () => {
 
-    test(`should initialize a map chart`, () => {
-      component.visualization = 'map';
-      component['init']();
+    test(`should log an error if no chart could be created`, () => {
+      window.console.error = jest.fn();
+      const fixture = createComponent(VisualizationsHost);
+      fixture.detectChanges();
 
-      expect(component['highcharts'].mapChart).toHaveBeenCalled();
+      fixture.componentInstance.visualization = 'foo' as any;
+      fixture.detectChanges();
+
+      expect(window.console.error).toHaveBeenCalledWith(expect.stringContaining('is not a supported chart type'));
     });
 
+    const visualizationTests: TsChartVisualizationOptions[] = ['xy', 'pie', 'map', 'radar', 'treemap', 'sankey', 'chord'];
+    for (const t of visualizationTests) {
+      test(`should initialize for the ${t} visualization`, () => {
+        window.console.error = jest.fn();
+        const fixture = createComponent(VisualizationsHost);
+        fixture.componentInstance.visualization = t;
+        fixture.detectChanges();
 
-    test(`should initialize a stock chart`, () => {
-      component.visualization = 'line';
-      component.addStockControls = true;
-      component['init']();
+        expect(fixture.componentInstance.component['amCharts'].core.create).toHaveBeenCalled();
+        expect(window.console.error).not.toHaveBeenCalled();
+      });
+    }
 
-      expect(component['highcharts'].stockChart).toHaveBeenCalled();
-    });
-
-
-    test(`should initialize a standard chart`, () => {
-      component['instance'] = instanceMock;
-      component.create.emit = jest.fn();
-      component.visualization = 'line';
-      component['init']();
-
-      expect(component['highcharts'].chart).toHaveBeenCalled();
-      expect(component.create.emit).toHaveBeenCalledWith(instanceMock);
-    });
 
   });
 
-
-  describe(`destroyChart`, () => {
-
-    test(`should destroy the chart and delete the instance`, () => {
-      component['instance'] = instanceMock;
-      component['destroyChart']();
-
-      expect(instanceMock.destroy).toHaveBeenCalled();
-      expect(component['instance']).toBeFalsy();
-    });
-
-  });
-
-
-  describe(`get dataSeriesLength`, () => {
-
-    test(`should return 0 if no data exists`, () => {
-      expect(component.dataSeriesLength).toEqual(0);
-    });
-
-
-    test(`should return the length if standard data exists`, () => {
-      component.data = [{data: ['foo', 'bar', 'baz']}];
-
-      expect(component.dataSeriesLength).toEqual(3);
-    });
-
-
-    test(`should return the correct count if it's a nested array`, () => {
-      component.data = [
-        {name: 'foo'},
-        {name: 'bar'},
-      ];
-
-      expect(component.dataSeriesLength).toEqual(2);
-    });
-
-
-    test(`should return 0 if nested data is expected but not found`, () => {
-      component.data = [
-        {},
-      ];
-      expect(component.dataSeriesLength).toEqual(0);
-    });
-
-  });
-
-
-  describe(`get chartOptions`, () => {
-
-    test(`should return the instance options if the instance exists`, () => {
-      expect(component.chartOptions).toEqual(undefined);
-
-      component['instance'] = instanceMock;
-      expect(component.chartOptions).toEqual(instanceMock.options);
-    });
-
-  });
 
 });
+
+
+
+
+/**
+ * Providers
+ */
+
+class AmChartsServiceMock {
+  get amCharts() {
+    return {
+      core: {
+        create: jest.fn(() => {
+          return {
+            responsive: {
+              enabled: false,
+            },
+            dispose: jest.fn(),
+          };
+        }),
+      },
+      charts: {
+        XYChart: {},
+        PieChart: {},
+        RadarChart: {},
+        TreeMap: {},
+        SankeyDiagram: {},
+        ChordDiagram: {},
+      },
+      maps: {
+        MapChart: {},
+      },
+    };
+  }
+}
+
+const AM_CHARTS_PROVIDER: Provider[] = [{
+  provide: TsAmChartsService,
+  useClass: AmChartsServiceMock,
+}];
+
+
+/**
+ * Helpers
+ */
+
+function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHARTS_PROVIDER, imports: any[] = []): ComponentFixture<T> {
+  TestBed.configureTestingModule({
+    imports: [
+      TsChartModule,
+      ...imports,
+    ],
+    declarations: [component],
+    providers: [
+      ...providers,
+    ],
+  }).compileComponents();
+   return TestBed.createComponent<T>(component);
+}
+
+
+/**
+ * TEMPLATES
+ */
+
+ @Component({
+  template: `<ts-chart></ts-chart>`,
+})
+class SimpleHost {
+  @ViewChild(TsChartComponent)
+  component: TsChartComponent;
+}
+
+/**
+ * TEMPLATES
+ */
+ @Component({
+  template: `<ts-chart [visualization]="visualization"></ts-chart>`,
+})
+class VisualizationsHost {
+  visualization: TsChartVisualizationOptions | undefined;
+
+  @ViewChild(TsChartComponent)
+  component: TsChartComponent;
+}
