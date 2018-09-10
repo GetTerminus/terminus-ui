@@ -7,14 +7,14 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/material.css">
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="./" class="navbar-brand">@terminus/ui documentation</a>
+            <a href="../" class="navbar-brand">@terminus/ui documentation</a>
             <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
@@ -2370,7 +2370,7 @@
 </nav>
                </div>
                <!-- START CONTENT -->
-               <div class="content coverage">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -2381,3285 +2381,432 @@
 
 
 
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Documentation coverage</li>
+  <li>Classes</li>
+  <li>TsDateAdapter</li>
 </ol>
 
-<div>
-    <img src="./images/coverage-badge.svg">
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>terminus-ui/src/input/date-adapter.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Custom date adapter for the Material Datepicker</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                    <code>NativeDateAdapter</code>
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#forceTwoDigits">forceTwoDigits</a>
+                            </li>
+                            <li>
+                                <a href="#format">format</a>
+                            </li>
+                            <li>
+                                <a href="#isValid">isValid</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="forceTwoDigits"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            forceTwoDigits
+                            </b>
+                            <a href="#forceTwoDigits"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span>
+                        <code>forceTwoDigits(n: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">terminus-ui/src/input/date-adapter.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Force a two digit string with a preceeding <code>0</code> if needed</p>
 </div>
 
-<table class="table table-bordered coverage" id="coverage-table">
-    <thead class="coverage-header">
-        <tr>
-            <th>File</th>
-            <th>Type</th>
-            <th>Identifier</th>
-            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsAutocompleteComponent.html">terminus-ui/src/autocomplete/autocomplete.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsAutocompleteComponent
-            </td>
-            <td align="right" data-sort="84">
-                <span class="coverage-percent">84 %</span>
-                <span class="coverage-count">(32/38)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsAutocompleteSelectedEvent.html">terminus-ui/src/autocomplete/autocomplete.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsAutocompleteSelectedEvent
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/KeyboardEvent.html">terminus-ui/src/autocomplete/autocomplete.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                KeyboardEvent
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/MouseEvent.html">terminus-ui/src/autocomplete/autocomplete.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                MouseEvent
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsAutofocusDirective.html">terminus-ui/src/autofocus/autofocus.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsAutofocusDirective
-            </td>
-            <td align="right" data-sort="80">
-                <span class="coverage-percent">80 %</span>
-                <span class="coverage-count">(4/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsButtonComponent.html">terminus-ui/src/button/button.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsButtonComponent
-            </td>
-            <td align="right" data-sort="92">
-                <span class="coverage-percent">92 %</span>
-                <span class="coverage-count">(24/26)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#tsButtonFormatTypesArray">terminus-ui/src/button/button.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                tsButtonFormatTypesArray
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsCardTitleDirective.html">terminus-ui/src/card/card-title.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsCardTitleDirective
-            </td>
-            <td align="right" data-sort="83">
-                <span class="coverage-percent">83 %</span>
-                <span class="coverage-count">(5/6)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsCardComponent.html">terminus-ui/src/card/card.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsCardComponent
-            </td>
-            <td align="right" data-sort="75">
-                <span class="coverage-percent">75 %</span>
-                <span class="coverage-count">(12/16)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/card/card.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsChartComponent.html">terminus-ui/src/chart/chart.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsChartComponent
-            </td>
-            <td align="right" data-sort="77">
-                <span class="coverage-percent">77 %</span>
-                <span class="coverage-count">(27/35)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsChartEvent.html">terminus-ui/src/chart/chart.event.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsChartEvent
-            </td>
-            <td align="right" data-sort="25">
-                <span class="coverage-percent">25 %</span>
-                <span class="coverage-count">(1/4)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/HighchartsService.html">terminus-ui/src/chart/highcharts.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                HighchartsService
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#HIGHCHARTS">terminus-ui/src/chart/highcharts.service.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                HIGHCHARTS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#EUROPE_MAP">terminus-ui/src/chart/maps/europe.geo.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                EUROPE_MAP
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#NA_MAP">terminus-ui/src/chart/maps/north-america.geo.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                NA_MAP
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#USA_MAP">terminus-ui/src/chart/maps/usa.geo.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                USA_MAP
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#WORLD_CONTINENTS_MAP">terminus-ui/src/chart/maps/world-continents.geo.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                WORLD_CONTINENTS_MAP
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#WORLD_MAP">terminus-ui/src/chart/maps/world.geo.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                WORLD_MAP
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#tooltipPositionerFunction">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                tooltipPositionerFunction
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#BASE_DEFAULTS">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                BASE_DEFAULTS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CHART_COLORS">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CHART_COLORS
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#MAP_DATA">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                MAP_DATA
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#MAP_DEFAULTS">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                MAP_DEFAULTS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#SCATTER_DEFAULTS">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                SCATTER_DEFAULTS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#SPARKLINE_DEFAULTS">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                SPARKLINE_DEFAULTS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_BLACK">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_BLACK
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_PRIMARY">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_PRIMARY
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_PRIMARY_TRANSPARENT">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_PRIMARY_TRANSPARENT
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_UTILITY">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_UTILITY
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_UTILITY_L">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_UTILITY_L
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_UTILITY_XD">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_UTILITY_XD
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_UTILITY_XL">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_UTILITY_XL
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_WHITE">terminus-ui/src/chart/options-defaults.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_WHITE
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartAxis.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartAxis
-            </td>
-            <td align="right" data-sort="83">
-                <span class="coverage-percent">83 %</span>
-                <span class="coverage-count">(5/6)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartAxisPlotBand.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartAxisPlotBand
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartDataItem.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartDataItem
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(8/8)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartMapTooltip.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartMapTooltip
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartObject.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartObject
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartOptions.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartOptions
-            </td>
-            <td align="right" data-sort="63">
-                <span class="coverage-percent">63 %</span>
-                <span class="coverage-count">(7/11)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartTitle.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartTitle
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartTooltip.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartTooltip
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartZone.html">terminus-ui/src/chart/options.interface.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartZone
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsChartPointDirective.html">terminus-ui/src/chart/point.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsChartPointDirective
-            </td>
-            <td align="right" data-sort="87">
-                <span class="coverage-percent">87 %</span>
-                <span class="coverage-count">(7/8)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsChartSeriesDirective.html">terminus-ui/src/chart/series.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsChartSeriesDirective
-            </td>
-            <td align="right" data-sort="90">
-                <span class="coverage-percent">90 %</span>
-                <span class="coverage-count">(9/10)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#composeColors">terminus-ui/src/chart/utilities/compose-colors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                composeColors
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsChartEventOptions.html">terminus-ui/src/chart/utilities/compose-events.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsChartEventOptions
-            </td>
-            <td align="right" data-sort="20">
-                <span class="coverage-percent">20 %</span>
-                <span class="coverage-count">(1/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#composeEvents">terminus-ui/src/chart/utilities/compose-events.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                composeEvents
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#chartEvents">terminus-ui/src/chart/utilities/compose-events.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                chartEvents
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#pointEvents">terminus-ui/src/chart/utilities/compose-events.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                pointEvents
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#seriesEvents">terminus-ui/src/chart/utilities/compose-events.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                seriesEvents
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#composeOptions">terminus-ui/src/chart/utilities/compose-options.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                composeOptions
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#interpolateColor">terminus-ui/src/chart/utilities/interpolate-colors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                interpolateColor
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#interpolateColors">terminus-ui/src/chart/utilities/interpolate-colors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                interpolateColors
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#interpolateManyColors">terminus-ui/src/chart/utilities/interpolate-colors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                interpolateManyColors
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/TsAmChartsService.html">terminus-ui/src/chart2/amcharts.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                TsAmChartsService
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsAmChartsToken.html">terminus-ui/src/chart2/amcharts.service.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsAmChartsToken
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_AMCHARTS_TOKEN">terminus-ui/src/chart2/amcharts.service.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_AMCHARTS_TOKEN
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsChart2Component.html">terminus-ui/src/chart2/chart2.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsChart2Component
-            </td>
-            <td align="right" data-sort="84">
-                <span class="coverage-percent">84 %</span>
-                <span class="coverage-count">(11/13)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsCheckboxComponent.html">terminus-ui/src/checkbox/checkbox.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsCheckboxComponent
-            </td>
-            <td align="right" data-sort="87">
-                <span class="coverage-percent">87 %</span>
-                <span class="coverage-count">(21/24)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsCheckboxChange.html">terminus-ui/src/checkbox/checkbox.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsCheckboxChange
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR">terminus-ui/src/checkbox/checkbox.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/checkbox/checkbox.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsConfirmationModalComponent.html">terminus-ui/src/confirmation/confirmation-modal.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsConfirmationModalComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsConfirmationDirective.html">terminus-ui/src/confirmation/confirmation.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsConfirmationDirective
-            </td>
-            <td align="right" data-sort="90">
-                <span class="coverage-percent">90 %</span>
-                <span class="coverage-count">(9/10)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsCopyComponent.html">terminus-ui/src/copy/copy.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsCopyComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(14/14)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsCSVEntryComponent.html">terminus-ui/src/csv-entry/csv-entry.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsCSVEntryComponent
-            </td>
-            <td align="right" data-sort="84">
-                <span class="coverage-percent">84 %</span>
-                <span class="coverage-count">(42/50)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsCSVEntryRecord.html">terminus-ui/src/csv-entry/csv-entry.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsCSVEntryRecord
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsCSVFormContents.html">terminus-ui/src/csv-entry/csv-entry.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsCSVFormContents
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/csv-entry/csv-entry.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsDateRangeComponent.html">terminus-ui/src/date-range/date-range.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsDateRangeComponent
-            </td>
-            <td align="right" data-sort="92">
-                <span class="coverage-percent">92 %</span>
-                <span class="coverage-count">(25/27)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsDateRange.html">terminus-ui/src/date-range/date-range.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsDateRange
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/TsDropProtectionService.html">terminus-ui/src/file-upload/drop-protection.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                TsDropProtectionService
-            </td>
-            <td align="right" data-sort="50">
-                <span class="coverage-percent">50 %</span>
-                <span class="coverage-count">(3/6)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsFileUploadComponent.html">terminus-ui/src/file-upload/file-upload.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsFileUploadComponent
-            </td>
-            <td align="right" data-sort="73">
-                <span class="coverage-percent">73 %</span>
-                <span class="coverage-count">(38/52)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#MAXIMUM_KILOBYTES_PER_FILE">terminus-ui/src/file-upload/file-upload.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                MAXIMUM_KILOBYTES_PER_FILE
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/file-upload/file-upload.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsFileImageDimensionContraint.html">terminus-ui/src/file-upload/image-dimension-constraints.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsFileImageDimensionContraint
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsImageDimensions.html">terminus-ui/src/file-upload/image-dimensions.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsImageDimensions
-            </td>
-            <td align="right" data-sort="25">
-                <span class="coverage-percent">25 %</span>
-                <span class="coverage-count">(1/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_ACCEPTED_MIME_TYPES">terminus-ui/src/file-upload/mime-types.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_ACCEPTED_MIME_TYPES
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsSelectedFile.html">terminus-ui/src/file-upload/selected-file.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsSelectedFile
-            </td>
-            <td align="right" data-sort="38">
-                <span class="coverage-percent">38 %</span>
-                <span class="coverage-count">(5/13)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsFileValidations.html">terminus-ui/src/file-upload/selected-file.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsFileValidations
-            </td>
-            <td align="right" data-sort="25">
-                <span class="coverage-percent">25 %</span>
-                <span class="coverage-count">(1/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#BYTES_PER_KB">terminus-ui/src/file-upload/selected-file.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                BYTES_PER_KB
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsIconButtonComponent.html">terminus-ui/src/icon-button/icon-button.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsIconButtonComponent
-            </td>
-            <td align="right" data-sort="85">
-                <span class="coverage-percent">85 %</span>
-                <span class="coverage-count">(6/7)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CSV_ICON">terminus-ui/src/icon/custom-icons/csv.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CSV_ICON
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsIconComponent.html">terminus-ui/src/icon/icon.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsIconComponent
-            </td>
-            <td align="right" data-sort="62">
-                <span class="coverage-percent">62 %</span>
-                <span class="coverage-count">(5/8)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_CUSTOM_ICONS">terminus-ui/src/icon/icon.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_CUSTOM_ICONS
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsDateAdapter.html">terminus-ui/src/input/date-adapter.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsDateAdapter
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_DATE_FORMATS">terminus-ui/src/input/date-adapter.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_DATE_FORMATS
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsInputComponent.html">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsInputComponent
-            </td>
-            <td align="right" data-sort="75">
-                <span class="coverage-percent">75 %</span>
-                <span class="coverage-count">(83/110)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsMask.html">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsMask
-            </td>
-            <td align="right" data-sort="14">
-                <span class="coverage-percent">14 %</span>
-                <span class="coverage-count">(1/7)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsMaskCollection.html">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsMaskCollection
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#allowedMaskShorcuts">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                allowedMaskShorcuts
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#autocompleteDefault">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                autocompleteDefault
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#floatingLabelScale">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                floatingLabelScale
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#NUMBER_ONLY_REGEX">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                NUMBER_ONLY_REGEX
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#NUMBER_WITH_DECIMAL_REGEX">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                NUMBER_WITH_DECIMAL_REGEX
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#outlineGapPadding">terminus-ui/src/input/input.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                outlineGapPadding
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsLinkComponent.html">terminus-ui/src/link/link.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsLinkComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsLoadingOverlayComponent.html">terminus-ui/src/loading-overlay/loading-overlay.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsLoadingOverlayComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsLoadingOverlayDirective.html">terminus-ui/src/loading-overlay/loading-overlay.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsLoadingOverlayDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(9/9)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsLoginFormComponent.html">terminus-ui/src/login-form/login-form.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsLoginFormComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(17/17)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsLoginFormResponse.html">terminus-ui/src/login-form/login-form.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsLoginFormResponse
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsMenuComponent.html">terminus-ui/src/menu/menu.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsMenuComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(16/16)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsNavigationComponent.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsNavigationComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(19/19)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/NavigationItemBase.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                NavigationItemBase
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsNavigationActionItem.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsNavigationActionItem
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsNavigationLinkItem.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsNavigationLinkItem
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsNavigationPayload.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsNavigationPayload
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsUser.html">terminus-ui/src/navigation/navigation.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsUser
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsPaginatorComponent.html">terminus-ui/src/paginator/paginator.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsPaginatorComponent
-            </td>
-            <td align="right" data-sort="91">
-                <span class="coverage-percent">91 %</span>
-                <span class="coverage-count">(44/48)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsPaginatorMenuItem.html">terminus-ui/src/paginator/paginator.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsPaginatorMenuItem
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./pipes/TsDatePipe.html">terminus-ui/src/pipes/date/date.pipe.ts</a>
-            </td>
-            <td>
-                pipe
-            </td>
-            <td>
-                TsDatePipe
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./pipes/TsRoundNumberPipe.html">terminus-ui/src/pipes/round-number/round-number.pipe.ts</a>
-            </td>
-            <td>
-                pipe
-            </td>
-            <td>
-                TsRoundNumberPipe
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./pipes/TsSentenceCasePipe.html">terminus-ui/src/pipes/sentence-case/sentence-case.pipe.ts</a>
-            </td>
-            <td>
-                pipe
-            </td>
-            <td>
-                TsSentenceCasePipe
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./pipes/TsTimeAgoPipe.html">terminus-ui/src/pipes/time-ago/time-ago.pipe.ts</a>
-            </td>
-            <td>
-                pipe
-            </td>
-            <td>
-                TsTimeAgoPipe
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./pipes/TsTitleCasePipe.html">terminus-ui/src/pipes/title-case/title-case.pipe.ts</a>
-            </td>
-            <td>
-                pipe
-            </td>
-            <td>
-                TsTitleCasePipe
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsRadioGroupComponent.html">terminus-ui/src/radio-group/radio-group.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsRadioGroupComponent
-            </td>
-            <td align="right" data-sort="75">
-                <span class="coverage-percent">75 %</span>
-                <span class="coverage-count">(30/40)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsRadioChange.html">terminus-ui/src/radio-group/radio-group.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsRadioChange
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsRadioOption.html">terminus-ui/src/radio-group/radio-group.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsRadioOption
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR">terminus-ui/src/radio-group/radio-group.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/radio-group/radio-group.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsScrollbarsComponent.html">terminus-ui/src/scrollbars/scrollbars.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsScrollbarsComponent
-            </td>
-            <td align="right" data-sort="51">
-                <span class="coverage-percent">51 %</span>
-                <span class="coverage-count">(14/27)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsScrollbarPosition.html">terminus-ui/src/scrollbars/scrollbars.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsScrollbarPosition
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsScrollbarsGeometry.html">terminus-ui/src/scrollbars/scrollbars.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsScrollbarsGeometry
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/scrollbars/scrollbars.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsSearchComponent.html">terminus-ui/src/search/search.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsSearchComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(26/26)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsSearchResponse.html">terminus-ui/src/search/search.component.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsSearchResponse
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsSelectComponent.html">terminus-ui/src/select/select.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsSelectComponent
-            </td>
-            <td align="right" data-sort="86">
-                <span class="coverage-percent">86 %</span>
-                <span class="coverage-count">(25/29)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR">terminus-ui/src/select/select.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#SORT_ANIMATION_TRANSITION">terminus-ui/src/sort/sort-animations.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                SORT_ANIMATION_TRANSITION
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#tsSortAnimations">terminus-ui/src/sort/sort-animations.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                tsSortAnimations
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getSortDuplicateSortableIdError">terminus-ui/src/sort/sort-errors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getSortDuplicateSortableIdError
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getSortHeaderMissingIdError">terminus-ui/src/sort/sort-errors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getSortHeaderMissingIdError
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getSortHeaderNotContainedWithinSortError">terminus-ui/src/sort/sort-errors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getSortHeaderNotContainedWithinSortError
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getSortInvalidDirectionError">terminus-ui/src/sort/sort-errors.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getSortInvalidDirectionError
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/TsSortHeaderIntl.html">terminus-ui/src/sort/sort-header-intl.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                TsSortHeaderIntl
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#TS_SORT_HEADER_INTL_PROVIDER_FACTORY">terminus-ui/src/sort/sort-header-intl.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                TS_SORT_HEADER_INTL_PROVIDER_FACTORY
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_SORT_HEADER_INTL_PROVIDER">terminus-ui/src/sort/sort-header-intl.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_SORT_HEADER_INTL_PROVIDER
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsSortHeaderComponent.html">terminus-ui/src/sort/sort-header.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsSortHeaderComponent
-            </td>
-            <td align="right" data-sort="73">
-                <span class="coverage-percent">73 %</span>
-                <span class="coverage-count">(11/15)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsSortHeaderBase.html">terminus-ui/src/sort/sort-header.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsSortHeaderBase
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#_TsSortHeaderMixinBase">terminus-ui/src/sort/sort-header.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                _TsSortHeaderMixinBase
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsSortDirective.html">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsSortDirective
-            </td>
-            <td align="right" data-sort="87">
-                <span class="coverage-percent">87 %</span>
-                <span class="coverage-count">(14/16)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsSortBase.html">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsSortBase
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsSortState.html">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsSortState
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./interfaces/TsSortableItem.html">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                TsSortableItem
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getSortDirectionCycle">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getSortDirectionCycle
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#_TsSortMixinBase">terminus-ui/src/sort/sort.directive.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                _TsSortMixinBase
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#base">terminus-ui/src/spacing/spacing.constant.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                base
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#TS_SPACING">terminus-ui/src/spacing/spacing.constant.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                TS_SPACING
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsVerticalSpacingDirective.html">terminus-ui/src/spacing/vertical-spacing.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsVerticalSpacingDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsCellDefDirective.html">terminus-ui/src/table/cell.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsCellDefDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsCellDirective.html">terminus-ui/src/table/cell.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsCellDirective
-            </td>
-            <td align="right" data-sort="33">
-                <span class="coverage-percent">33 %</span>
-                <span class="coverage-count">(1/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsColumnDefDirective.html">terminus-ui/src/table/cell.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsColumnDefDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsHeaderCellDefDirective.html">terminus-ui/src/table/cell.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsHeaderCellDefDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="medium">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsHeaderCellDirective.html">terminus-ui/src/table/cell.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsHeaderCellDirective
-            </td>
-            <td align="right" data-sort="50">
-                <span class="coverage-percent">50 %</span>
-                <span class="coverage-count">(1/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsHeaderRowComponent.html">terminus-ui/src/table/row.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsHeaderRowComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsRowComponent.html">terminus-ui/src/table/row.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsRowComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsHeaderRowDefDirective.html">terminus-ui/src/table/row.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsHeaderRowDefDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./directives/TsRowDefDirective.html">terminus-ui/src/table/row.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                TsRowDefDirective
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsTableDataSource.html">terminus-ui/src/table/table-data-source.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsTableDataSource
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(9/9)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsTableComponent.html">terminus-ui/src/table/table.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsTableComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsToggleComponent.html">terminus-ui/src/toggle/toggle.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsToggleComponent
-            </td>
-            <td align="right" data-sort="94">
-                <span class="coverage-percent">94 %</span>
-                <span class="coverage-count">(17/18)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/TsSlideToggleChange.html">terminus-ui/src/toggle/toggle.component.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                TsSlideToggleChange
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR">terminus-ui/src/toggle/toggle.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsTooltipComponent.html">terminus-ui/src/tooltip/tooltip.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsTooltipComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#inputHasChanged">terminus-ui/src/utilities/input-has-changed/input-has-changed.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                inputHasChanged
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#merge">terminus-ui/src/utilities/merge.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                merge
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsReactiveFormBaseComponent.html">terminus-ui/src/utilities/reactive-form-base.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsReactiveFormBaseComponent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(9/9)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#isAbstractControl">terminus-ui/src/utilities/type-coercion/is-abstract-control.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                isAbstractControl
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#isDragEvent">terminus-ui/src/utilities/type-coercion/is-drag-event.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                isDragEvent
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#isHTMLInputElement">terminus-ui/src/utilities/type-coercion/is-html-input-element.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                isHTMLInputElement
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#tsStyleThemeTypesArray">terminus-ui/src/utilities/types/style-theme.types.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                tsStyleThemeTypesArray
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./classes/Version.html">terminus-ui/src/utilities/version/version.ts</a>
-            </td>
-            <td>
-                class
-            </td>
-            <td>
-                Version
-            </td>
-            <td align="right" data-sort="16">
-                <span class="coverage-percent">16 %</span>
-                <span class="coverage-count">(1/6)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#VERSION">terminus-ui/src/utilities/version/version.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                VERSION
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/TsValidationMessageService.html">terminus-ui/src/validation-messages/validation-message.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                TsValidationMessageService
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#creditCardMessage">terminus-ui/src/validation-messages/validation-message.service.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                creditCardMessage
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#emailMessage">terminus-ui/src/validation-messages/validation-message.service.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                emailMessage
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#passwordMessage">terminus-ui/src/validation-messages/validation-message.service.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                passwordMessage
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./components/TsValidationMessagesComponent.html">terminus-ui/src/validation-messages/validation-messages.component.ts</a>
-            </td>
-            <td>
-                component
-            </td>
-            <td>
-                TsValidationMessagesComponent
-            </td>
-            <td align="right" data-sort="60">
-                <span class="coverage-percent">60 %</span>
-                <span class="coverage-count">(6/10)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./miscellaneous/variables.html#nextUniqueId">terminus-ui/src/validation-messages/validation-messages.component.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                nextUniqueId
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                    <a href="./injectables/TsValidatorsService.html">terminus-ui/src/validators/validators.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                TsValidatorsService
-            </td>
-            <td align="right" data-sort="6">
-                <span class="coverage-percent">6 %</span>
-                <span class="coverage-count">(1/15)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#creditCardValidator">terminus-ui/src/validators/validators/creditCard/creditCard.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                creditCardValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#emailValidator">terminus-ui/src/validators/validators/email/email.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                emailValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#equalToControlValidator">terminus-ui/src/validators/validators/equalToControl/equalToControl.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                equalToControlValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/greaterThan/greaterThan.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#greaterThanValidator">terminus-ui/src/validators/validators/greaterThan/greaterThan.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                greaterThanValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#greaterThanOrEqualValidator">terminus-ui/src/validators/validators/greaterThanOrEqual/greaterThanOrEqual.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                greaterThanOrEqualValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/lessThan/lessThan.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#lessThanValidator">terminus-ui/src/validators/validators/lessThan/lessThan.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                lessThanValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#lessThanOrEqualValidator">terminus-ui/src/validators/validators/lessThanOrEqual/lessThanOrEqual.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                lessThanOrEqualValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#lowercaseValidator">terminus-ui/src/validators/validators/lowercase/lowercase.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                lowercaseValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/maxDate/maxDate.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#maxDateValidator">terminus-ui/src/validators/validators/maxDate/maxDate.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                maxDateValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#getValidationResult">terminus-ui/src/validators/validators/minDate/minDate.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                getValidationResult
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#minDateValidator">terminus-ui/src/validators/validators/minDate/minDate.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                minDateValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#numbersValidator">terminus-ui/src/validators/validators/numbers/numbers.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                numbersValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#passwordValidator">terminus-ui/src/validators/validators/password/password.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                passwordValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#uppercaseValidator">terminus-ui/src/validators/validators/uppercase/uppercase.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                uppercaseValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                    <a href=".//functions.html#urlValidator">terminus-ui/src/validators/validators/url/url.ts</a>
-            </td>
-            <td>
-                function
-            </td>
-            <td>
-                urlValidator
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>n</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
 
-<script src="js/libs/tablesort.min.js"></script>
-<script src="js/libs/tablesort.number.min.js"></script>
-<script>
-    new Tablesort(document.getElementById('coverage-table'));
-</script>
+                                                        <td>
+                                                                <code><ul>
+<li>The number</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    <p>The two digit number</p>
+
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="format"></a>
+                        <span class="name">
+                            <b>
+                            format
+                            </b>
+                            <a href="#format"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>format(date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, displayFormat?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">terminus-ui/src/input/date-adapter.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Format the date when setting the UI</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>date</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The date chosen</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>displayFormat</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            yes
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    <p>The date string</p>
+
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isValid"></a>
+                        <span class="name">
+                            <b>
+                            isValid
+                            </b>
+                            <a href="#isValid"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isValid(date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">terminus-ui/src/input/date-adapter.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Check if a date is valid</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>date</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The date in question</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    <p>Whether it is valid</p>
+
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NativeDateAdapter } from &#x27;@angular/material/core&#x27;;
+import { isValid as isValidDate } from &#x27;date-fns&#x27;;
+
+
+export const TS_DATE_FORMATS &#x3D; {
+  parse: {
+    dateInput: {
+      month: &#x27;short&#x27;,
+      year: &#x27;numeric&#x27;,
+      day: &#x27;numeric&#x27;,
+    },
+  },
+  display: {
+    dateInput: &#x27;input&#x27;,
+    monthYearLabel: {
+      year: &#x27;numeric&#x27;,
+      month: &#x27;short&#x27;,
+    },
+    dateA11yLabel: {
+      year: &#x27;numeric&#x27;,
+      month: &#x27;long&#x27;,
+      day: &#x27;numeric&#x27;,
+    },
+    monthYearA11yLabel: {
+      year: &#x27;numeric&#x27;,
+      month: &#x27;long&#x27;,
+    },
+  },
+};
+
+
+/**
+ * Custom date adapter for the Material Datepicker
+ */
+export class TsDateAdapter extends NativeDateAdapter {
+  /**
+   * Format the date when setting the UI
+   *
+   * @param date - The date chosen
+   * @param date - The desired format (not currently using, but must match API)
+   * @return The date string
+   */
+  format(date: Date, displayFormat?: any): string {
+    const day &#x3D; this.forceTwoDigits(date.getDate());
+    const month &#x3D; this.forceTwoDigits(date.getMonth() + 1);
+    const year &#x3D; date.getFullYear();
+
+    return &#x60;${month}-${day}-${year}&#x60;;
+  }
+
+
+  /**
+   * Force a two digit string with a preceeding &#x60;0&#x60; if needed
+   *
+   * @param n - The number
+   * @return The two digit number
+   */
+  private forceTwoDigits(n: number): string {
+    return (&#x27;00&#x27; + n).slice(-2);
+  }
+
+
+  /**
+   * Check if a date is valid
+   *
+   * @param date - The date in question
+   * @return Whether it is valid
+   */
+  isValid(date: Date): boolean {
+    return isValidDate(date) &amp;&amp; !isNaN(date.getTime());
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
 
                    </div><div class="search-results">
     <div class="has-results">
@@ -5675,30 +2822,30 @@
            </div>
        </div>
 
-       <script src="./js/libs/bootstrap-native.js"></script>
+       <script src="../js/libs/bootstrap-native.js"></script>
 
-       <script src="./js/libs/es6-shim.min.js"></script>
-       <script src="./js/libs/EventDispatcher.js"></script>
-       <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
 
-       <script src="./js/compodoc.js"></script>
+       <script src="../js/compodoc.js"></script>
 
         <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'coverage';
-            var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'TsDateAdapter.html';
         </script>
 
-       <script src="./js/search/search.js"></script>
-       <script src="./js/search/lunr.min.js"></script>
-       <script src="./js/search/search-lunr.js"></script>
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
 
-       <script src="./js/tabs.js"></script>
-       <script src="./js/menu.js"></script>
-       <script src="./js/libs/prism.js"></script>
-       <script src="./js/sourceCode.js"></script>
-       <script src="./js/search/search_index.js"></script>
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
 
 
     </body>
