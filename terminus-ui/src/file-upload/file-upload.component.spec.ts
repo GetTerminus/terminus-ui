@@ -45,12 +45,13 @@ const FILE_MOCK = FILE_BLOB as File;
     <ts-file-upload
        [hideButton]="hideButton"
        [accept]="mimeTypes"
-       [control]="formControl"
+       [formControl]="formControl"
        [maximumKilobytesPerFile]="maxKb"
        [multiple]="multiple"
        [progress]="progress"
        [seedFile]="fileToSeed"
        [dimensionConstraints]="constraints"
+       [ratioConstraints]="ratioConstraints"
        [theme]="theme"
        (enter)="userDragBegin($event)"
        (exit)="userDragEnd($event)"
@@ -67,6 +68,7 @@ class TestHostComponent {
   progress: number | undefined;
   fileToSeed: File | undefined;
   constraints: TsFileImageDimensionConstraints | undefined;
+  ratioConstraints: Array<string> | undefined;
   theme: TsStyleThemeTypes | undefined;
   hideButton = false;
   formControl = new FormControl('test');
@@ -166,7 +168,10 @@ describe(`TsFileUploadComponent`, () => {
       fixture.detectChanges();
 
       expect(hostComponent.handleFile.mock.calls.length).toEqual(1);
-      expect(hostComponent.formControl.value).toEqual(component.file.fileContents);
+      const tsFile = component.file;
+      if (tsFile) {
+        expect(hostComponent.formControl.value).toEqual(tsFile.file);
+      }
       expect(component.seedFile).toEqual(FILE_MOCK);
     });
 
@@ -309,7 +314,7 @@ describe(`TsFileUploadComponent`, () => {
       fixture.detectChanges();
       const hints = fixture.debugElement.queryAll(By.css('.c-file-upload__hint'));
 
-      expect(hints[0].nativeElement.textContent).toContain('Must be a valid dimension: 50x50, 100-150x100, 200x200-250');
+      expect(hints[0].nativeElement.textContent).toContain('Must be a valid dimension: 50x50, 100x100-150, 200-250x200');
       expect(hints[1].nativeElement.textContent).toContain('Must be jpg, png');
       expect(hints[2].nativeElement.textContent).toContain('Must be under 100kb');
     });
@@ -337,6 +342,13 @@ describe(`TsFileUploadComponent`, () => {
       expect(hints[1].nativeElement.textContent).toContain('Must be under 100kb');
     });
 
+    test(`should set ratio constraint hints`, () => {
+      hostComponent.ratioConstraints = ['1:2'];
+      fixture.detectChanges();
+      const hints = fixture.debugElement.queryAll(By.css('.c-file-upload__hint'));
+
+      expect(hints[2].nativeElement.textContent).toContain('Must have valid image ratio of 1:2');
+    });
   });
 
 
@@ -388,9 +400,9 @@ describe(`TsFileUploadComponent`, () => {
   describe(`setValidationMessages`, () => {
 
     test(`should do nothing if no file was passed in`, () => {
-      component.control.setErrors = jest.fn();
+      component.formControl.setErrors = jest.fn();
       component['setValidationMessages'](undefined);
-      expect(component.control.setErrors).not.toHaveBeenCalled();
+      expect(component.formControl.setErrors).not.toHaveBeenCalled();
     });
 
   });
@@ -559,7 +571,7 @@ describe(`TsFileUploadComponent`, () => {
 
         expect(component['setUpNewFile']).toHaveBeenCalledWith(expect.any(TsSelectedFile));
         expect(hostComponent.handleFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
-        expect(hostComponent.formControl.value).toEqual(fileContentsMock);
+        expect(hostComponent.formControl.value).toEqual(FILE_MOCK);
       });
 
 
@@ -671,6 +683,19 @@ describe(`TsFileUploadComponent`, () => {
         expect(component.theme).toEqual('warn');
       });
 
+    });
+
+    describe(`ratioConstraint format`, () => {
+      test(`should throw error if ratioContraint is not in right format`, () => {
+        expect(() => {
+          try {
+            hostComponent.ratioConstraints = '5' as any;
+            fixture.detectChanges();
+          } catch (e) {
+            throw new Error(e);
+          }
+        }).toThrowError();
+      });
     });
 
 });

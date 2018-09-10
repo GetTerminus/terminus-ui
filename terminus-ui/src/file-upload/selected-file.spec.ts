@@ -59,12 +59,14 @@ describe(`TsSelectedFile`, () => {
     constraints = CONSTRAINTS_MOCK,
     types: TsFileAcceptedMimeTypes[] = ['image/png', 'image/jpg'],
     size = (10 * 1024),
+    ratio = [{ widthRatio: 1, heightRatio: 1 }],
   ): TsSelectedFile => {
     return newSelectedFile = new TsSelectedFile(
       file,
       constraints,
       types,
       size,
+      ratio,
     );
   };
 
@@ -255,6 +257,29 @@ describe(`TsSelectedFile`, () => {
 
   });
 
+
+  describe(`validateImageRatio`, () => {
+
+    test(`should return true if no constraints exist`, () => {
+      const file = createFile();
+      expect(file['validateImageRatio'](undefined)).toEqual(true);
+    });
+
+
+    test(`should return true if ratio are valid`, () => {
+      const file = createFile();
+      const result = file['validateImageRatio']([{widthRatio: 1, heightRatio: 1}]);
+      expect(result).toEqual(true);
+    });
+
+
+    test(`should return false if ratio are not valid`, () => {
+      const file = createFile();
+      const result = file['validateImageRatio']([{ widthRatio: 2, heightRatio: 1 }]);
+      expect(result).toEqual(false);
+    });
+
+  });
 
   describe(`validateImageDimensions`, () => {
 

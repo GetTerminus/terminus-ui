@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
 import { TsFileAcceptedMimeTypes } from './mime-types';
+import { ImageRatio } from './file-upload.module';
 
 
 /**
@@ -12,6 +13,7 @@ export interface TsFileValidations {
   fileType: boolean;
   fileSize: boolean;
   imageDimensions: boolean;
+  imageRatio: boolean;
 }
 
 
@@ -28,16 +30,19 @@ const BYTES_PER_KB = 1024;
  * @param imageDimensionConstraints - An array of image dimension constraints {@link TsFileImageDimensionConstraints}
  * @param typeConstraint - An array of allowed MIME types {@link TsFileAcceptedMimeTypes}
  * @param maxSize - The maximum size in kilobytes
+ * @param ratioConstraint - An array of allowed image ratios in form of ImageRatio
  */
 export class TsSelectedFile {
   public name: string | undefined;
   public mimeType: string;
   public dimensions: TsImageDimensions | undefined;
+  public ratio: number | undefined;
   public size: number;
   public validations: TsFileValidations = {
     fileType: false,
     fileSize: false,
     imageDimensions: false,
+    imageRatio: false,
   };
   private fileReader: FileReader = new FileReader();
 
@@ -57,6 +62,7 @@ export class TsSelectedFile {
     private imageDimensionConstraints: TsFileImageDimensionConstraints | undefined,
     private typeConstraint: TsFileAcceptedMimeTypes[] | undefined,
     private maxSize: number,
+    private ratioConstraint: Array<ImageRatio> | undefined,
   ) {
     this.mimeType = this.file.type;
     this.size = Math.ceil(this.file.size / BYTES_PER_KB);
@@ -137,7 +143,7 @@ export class TsSelectedFile {
 
 
   /**
-   * Determine the dimensions of an image
+   * Determine the dimensions and ratio of an image
    *
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
@@ -160,9 +166,9 @@ export class TsSelectedFile {
           this.dimensions = new TsImageDimensions(img.naturalWidth, img.naturalHeight);
         }
 
-        // Validate dimensions
+        // Validate dimensions and ratio
         this.validations.imageDimensions = this.validateImageDimensions(this.imageDimensionConstraints);
-
+        this.validations.imageRatio = this.validateImageRatio(this.ratioConstraint);
         // Call the callback if one exists
         // istanbul ignore else
         if (callback) {
@@ -176,8 +182,9 @@ export class TsSelectedFile {
         callback();
       }
 
-      // Since this is not an image, set dimension validation to `true` to 'bypass'
+      // Since this is not an image, set dimension/ratio validation to `true` to 'bypass'
       this.validations.imageDimensions = true;
+      this.validations.imageRatio = true;
     }
 
     // Read the file (this triggers the FileReader load event)
@@ -209,6 +216,44 @@ export class TsSelectedFile {
     }
 
     return false;
+  }
+
+  /**
+   * Validate the image ratios
+   *
+   * @param constraints - The constrains that the image ratio must fit
+   * @return The validation result
+   */
+
+  private validateImageRatio(constraints: Array<ImageRatio> | undefined): boolean {
+    if (!constraints) {
+      return true;
+    }
+
+    const ratios = constraints.map((r) => r.widthRatio / r.heightRatio);
+    for (const r of ratios) {
+      const ratio = this.width / this.height;
+      if (this.isSame(r, ratio)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * A utility function to determine whether two numbers are the same
+   * @param number1 - one number
+   * @param number2 - another number
+   * @return Whether these two numbers are the same
+   */
+
+  private isSame(number1: number, number2: number) {
+    if (Math.abs((number1 - number2) / number1) < 0.001) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

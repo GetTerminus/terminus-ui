@@ -1101,6 +1101,9 @@
                     id="xs-interfaces-links"
                 >
                     <li class="link">
+                        <a href="interfaces/ImageRatio.html" data-type="entity-link">ImageRatio</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/KeyboardEvent.html" data-type="entity-link">KeyboardEvent</a>
                     </li>
                     <li class="link">
@@ -2316,6 +2319,9 @@
                     id="interfaces-links"
 >
                     <li class="link">
+                        <a href="interfaces/ImageRatio.html" data-type="entity-link">ImageRatio</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/KeyboardEvent.html" data-type="entity-link">KeyboardEvent</a>
                     </li>
                     <li class="link">
@@ -2511,6 +2517,9 @@
                                 <li>
                                         <a href="#imageDimensions">imageDimensions</a>
                                 </li>
+                                <li>
+                                        <a href="#imageRatio">imageRatio</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -2609,6 +2618,35 @@
 
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="imageRatio"></a>
+                                        <span class="name"><b>imageRatio</b><a href="#imageRatio"><span class="fa fa-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>imageRatio:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
             </section>
     </div>
 
@@ -2619,6 +2657,7 @@
 import { TsFileImageDimensionConstraints } from &#x27;./image-dimension-constraints&#x27;;
 import { TsImageDimensions } from &#x27;./image-dimensions&#x27;;
 import { TsFileAcceptedMimeTypes } from &#x27;./mime-types&#x27;;
+import { ImageRatio } from &#x27;./file-upload.module&#x27;;
 
 
 /**
@@ -2628,6 +2667,7 @@ export interface TsFileValidations {
   fileType: boolean;
   fileSize: boolean;
   imageDimensions: boolean;
+  imageRatio: boolean;
 }
 
 
@@ -2644,16 +2684,19 @@ const BYTES_PER_KB &#x3D; 1024;
  * @param imageDimensionConstraints - An array of image dimension constraints {@link TsFileImageDimensionConstraints}
  * @param typeConstraint - An array of allowed MIME types {@link TsFileAcceptedMimeTypes}
  * @param maxSize - The maximum size in kilobytes
+ * @param ratioConstraint - An array of allowed image ratios in form of ImageRatio
  */
 export class TsSelectedFile {
   public name: string | undefined;
   public mimeType: string;
   public dimensions: TsImageDimensions | undefined;
+  public ratio: number | undefined;
   public size: number;
   public validations: TsFileValidations &#x3D; {
     fileType: false,
     fileSize: false,
     imageDimensions: false,
+    imageRatio: false,
   };
   private fileReader: FileReader &#x3D; new FileReader();
 
@@ -2673,6 +2716,7 @@ export class TsSelectedFile {
     private imageDimensionConstraints: TsFileImageDimensionConstraints | undefined,
     private typeConstraint: TsFileAcceptedMimeTypes[] | undefined,
     private maxSize: number,
+    private ratioConstraint: Array&lt;ImageRatio&gt; | undefined,
   ) {
     this.mimeType &#x3D; this.file.type;
     this.size &#x3D; Math.ceil(this.file.size / BYTES_PER_KB);
@@ -2753,7 +2797,7 @@ export class TsSelectedFile {
 
 
   /**
-   * Determine the dimensions of an image
+   * Determine the dimensions and ratio of an image
    *
    * @param callback - A function to call after the dimensions have been calculated (asynchronously)
    */
@@ -2776,9 +2820,9 @@ export class TsSelectedFile {
           this.dimensions &#x3D; new TsImageDimensions(img.naturalWidth, img.naturalHeight);
         }
 
-        // Validate dimensions
+        // Validate dimensions and ratio
         this.validations.imageDimensions &#x3D; this.validateImageDimensions(this.imageDimensionConstraints);
-
+        this.validations.imageRatio &#x3D; this.validateImageRatio(this.ratioConstraint);
         // Call the callback if one exists
         // istanbul ignore else
         if (callback) {
@@ -2792,8 +2836,9 @@ export class TsSelectedFile {
         callback();
       }
 
-      // Since this is not an image, set dimension validation to &#x60;true&#x60; to &#x27;bypass&#x27;
+      // Since this is not an image, set dimension/ratio validation to &#x60;true&#x60; to &#x27;bypass&#x27;
       this.validations.imageDimensions &#x3D; true;
+      this.validations.imageRatio &#x3D; true;
     }
 
     // Read the file (this triggers the FileReader load event)
@@ -2825,6 +2870,44 @@ export class TsSelectedFile {
     }
 
     return false;
+  }
+
+  /**
+   * Validate the image ratios
+   * 
+   * @param constraints - The constrains that the image ratio must fit
+   * @return The validation result
+   */
+
+  private validateImageRatio(constraints: Array&lt;ImageRatio&gt; | undefined): boolean {
+    if (!constraints) {
+      return true;
+    }
+
+    const ratios &#x3D; constraints.map((r) &#x3D;&gt; r.widthRatio / r.heightRatio);
+    for (const r of ratios) {
+      const ratio &#x3D; this.width / this.height;
+      if (this.isSame(r, ratio)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * A utility function to determine whether two numbers are the same
+   * @param number1 - one number
+   * @param number2 - another number
+   * @return Whether these two numbers are the same
+   */
+
+  private isSame(number1: number, number2: number) {
+    if (Math.abs((number1 - number2) / number1) &lt; 0.001) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

@@ -1101,6 +1101,9 @@
                     id="xs-interfaces-links"
                 >
                     <li class="link">
+                        <a href="interfaces/ImageRatio.html" data-type="entity-link">ImageRatio</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/KeyboardEvent.html" data-type="entity-link">KeyboardEvent</a>
                     </li>
                     <li class="link">
@@ -2316,6 +2319,9 @@
                     id="interfaces-links"
 >
                     <li class="link">
+                        <a href="interfaces/ImageRatio.html" data-type="entity-link">ImageRatio</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/KeyboardEvent.html" data-type="entity-link">KeyboardEvent</a>
                     </li>
                     <li class="link">
@@ -2696,6 +2702,7 @@ export class TsValidationMessageService {
       fileSize: &#x60;Must be smaller than ${validatorValue.max}kb&#x60;,
       fileType: &#x60;${validatorValue.actual} is not an accepted MIME type.&#x60;,
       imageDimensions: &#x60;&#x60;,
+      imageRatio: &#x60;&#x60;,
     };
 
     if (validatorName &#x3D;&#x3D;&#x3D; &#x27;maxDate&#x27;) {
@@ -2710,6 +2717,10 @@ export class TsValidationMessageService {
 
     if (validatorName &#x3D;&#x3D;&#x3D; &#x27;imageDimensions&#x27;) {
       config.imageDimensions &#x3D; &#x60;${validatorValue.actual.width}x${validatorValue.actual.height} is not an allowed image dimension.&#x60;;
+    }
+
+    if (validatorName &#x3D;&#x3D;&#x3D; &#x27;imageRatio&#x27;) {
+      config.imageRatio &#x3D; &#x60;${validatorValue.actual} is not an allowed image ratio.&#x60;;
     }
 
     return config[validatorName];

@@ -67,6 +67,7 @@ export class TsValidationMessageService {
       fileSize: `Must be smaller than ${validatorValue.max}kb`,
       fileType: `${validatorValue.actual} is not an accepted MIME type.`,
       imageDimensions: ``,
+      imageRatio: ``,
     };
 
     if (validatorName === 'maxDate') {
@@ -81,6 +82,10 @@ export class TsValidationMessageService {
 
     if (validatorName === 'imageDimensions') {
       config.imageDimensions = `${validatorValue.actual.width}x${validatorValue.actual.height} is not an allowed image dimension.`;
+    }
+
+    if (validatorName === 'imageRatio') {
+      config.imageRatio = `${validatorValue.actual} is not an allowed image ratio.`;
     }
 
     return config[validatorName];
