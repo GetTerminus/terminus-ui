@@ -4,8 +4,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsValidationMessageService } from './validation-message.service';
+
+
+// Unique ID for each instance
+let nextUniqueId = 0;
 
 
 /**
@@ -28,8 +33,14 @@ import { TsValidationMessageService } from './validation-message.service';
     class: 'ts-validation-messages',
   },
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsValidationMessages',
 })
 export class TsValidationMessagesComponent {
+  /**
+   * Define the default component ID
+   */
+  protected uid = `ts-validation-messages-${nextUniqueId++}`;
+
   /**
    * Define the error message
    *
@@ -60,26 +71,50 @@ export class TsValidationMessagesComponent {
    * Define the associated form control
    */
   @Input()
-  public control!: FormControl;
+  public control: FormControl | undefined;
+
+  /**
+   * Define an ID for the component
+   */
+  @Input()
+  set id(value: string) {
+    this._id = value || this.uid;
+  }
+  get id(): string {
+    return this._id;
+  }
+  protected _id: string = this.uid;
 
   /**
    * Define if validation should occur on blur or immediately
    */
   @Input()
-  public validateOnChange: boolean = false;
+  public set validateOnChange(value: boolean) {
+    this._validateOnChange = coerceBooleanProperty(value);
+  }
+  public get validateOnChange(): boolean {
+    return this._validateOnChange;
+  }
+  private _validateOnChange: boolean = false;
 
   /**
    * Define if the validation should be immediate
    */
   @Input()
-  public validateImmediately: boolean = false;
+  public set validateImmediately(value: boolean) {
+    this._validateImmediately = coerceBooleanProperty(value);
+  }
+  public get validateImmediately(): boolean {
+    return this._validateImmediately;
+  }
+  private _validateImmediately: boolean = false;
 
 
-  /**
-   * Inject services
-   */
   constructor(
     private validationMessageService: TsValidationMessageService,
-  ) {}
+  ) {
+    // Force setter to be called in case the ID was not specified.
+    this.id = this.id;
+  }
 
 }

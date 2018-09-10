@@ -20,20 +20,22 @@ date2.setDate(date2.getDate() + 5);
 })
 export class DateRangeComponent implements OnInit {
   myMin: Date = new Date(2017, 4, 2);
-  initialStart: Date = new Date(2017, 4, 5);
-  initialEnd: Date = new Date(2017, 4, 9);
+  /*
+   *initialStart: Date = new Date(2017, 4, 5);
+   *initialEnd: Date = new Date(2017, 4, 9);
+   */
   defaultMax = '2017-10-03';
   myForm: FormGroup = this.formBuilder.group({
     dateRange: this.formBuilder.group({
       startDate: [
-        {value: date1, disabled: false},
+        null,
         [
           Validators.required,
           this.validatorsService.maxDate(date1.toISOString()),
         ],
       ],
       endDate: [
-        date2,
+        null,
         [Validators.required],
       ],
     }),

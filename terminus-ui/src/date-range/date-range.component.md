@@ -4,86 +4,23 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Basic usage](#basic-usage)
 - [Event driven](#event-driven)
-- [Set max/min range](#set-maxmin-range)
-- [Set the initial date without using Reactive Forms](#set-the-initial-date-without-using-reactive-forms)
-- [Use with Reactive Forms](#use-with-reactive-forms)
-- [Enable or Disable controls](#enable-or-disable-controls)
+- [Date range boundaries](#date-range-boundaries)
+- [Disabling](#disabling)
+  - [Disable a control](#disable-a-control)
+  - [Disable the component](#disable-the-component)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Event driven
-
-There are three selection events that you can tie into:
-
-```html
-<ts-date-range
-  (startSelected)="myMethod($event)"
-  (endSelected)="myMethod($event)"
-  (dateSelected)="myMethod($event)"
-></ts-date-range>
-```
-
-1. `startSelected` is fired when a start date is selected
-1. `endSelected` is fired when an end date is selected
-1. `dateSelected` is fired when either date is selected
-
-
-## Set max/min range
-
-To define bounds for date selection, pass in a valid `Date` to each of these `@Inputs`:
-
-1. `endMaxDate`
-1. `endMinDate`
-1. `startMaxDate`
-1. `startMinDate`
-
-```html
-<ts-date-range
-  [startMinDate]="startDate1"
-  [startMaxDate]="startDate2"
-  [endMinDate]="endDate1"
-  [endMaxDate]="endDate2"
-></ts-date-range>
-```
-
-```typescript
-startDate1 = new Date(2017, 1, 1);
-startDate2 = new Date(2017, 8, 1);
-endDate1 = new Date(2017, 1, 2);
-endDate2 = new Date(2017, 8, 2;
-```
-
-
-## Set the initial date without using Reactive Forms
-
-Pass in a `Date` to `startInitialDate` and `endInitialDate`:
-
-```html
-<ts-date-range
-  [startInitialDate]="date1"
-  [endInitialDate]="date2"
-></ts-date-range>
-```
-
-```typescript
-date1 = new Date(2017, 1, 1);
-date2 = new Date(2017, 3, 1);
-```
-
-> When using a Reactive Form, we can seed the initial values in the form itself
-
-
-## Use with Reactive Forms
+## Basic usage
 
 Pass in the form control:
 
 ```html
 <form [formGroup]="myForm" novalidate>
-  <ts-date-range
-    [dateFormGroup]="myForm.get('dateRange')"
-  ></ts-date-range>
+  <ts-date-range [dateFormGroup]="myForm.get('dateRange')"></ts-date-range>
 
   <button (click)="submit(myForm.value)">Submit</button>
 </form>
@@ -93,10 +30,10 @@ Pass in the form control:
 myForm: FormGroup = this.formBuilder.group({
   // Showing a nested example since usually a date range would be nested in a group
   dateRange: this.formBuilder.group({
-    startDate: [ // This MUST be the name of the range start control
+    startDate: [ // This control MUST be named `startDate`
       new Date(2017, 4, 6),
     ],
-    endDate: [ // This MUST be the name of the range end control
+    endDate: [ // This MUST be named `endDate`
       new Date(2017, 4, 8),
     ],
   }),
@@ -150,7 +87,52 @@ const range = myForm.get('dateRange');
 ```
 
 
-## Enable or Disable controls
+## Event driven
+
+There are three selection events that you can tie into:
+
+```html
+<ts-date-range
+  (startSelected)="myMethod($event)"
+  (endSelected)="myMethod($event)"
+  (change)="myMethod($event)"
+></ts-date-range>
+```
+
+1. `startSelected` is fired when a start date is selected.
+1. `endSelected` is fired when an end date is selected.
+1. `change` is fired when the date range changes.
+
+
+## Date range boundaries
+
+To define bounds for date selection, pass in a valid `Date` to each of these `@Inputs`:
+
+1. `endMaxDate`
+1. `endMinDate`
+1. `startMaxDate`
+1. `startMinDate`
+
+```html
+<ts-date-range
+  [startMinDate]="startDate1"
+  [startMaxDate]="startDate2"
+  [endMinDate]="endDate1"
+  [endMaxDate]="endDate2"
+></ts-date-range>
+```
+
+```typescript
+startDate1 = new Date(2017, 1, 1);
+startDate2 = new Date(2017, 8, 1);
+endDate1 = new Date(2017, 1, 2);
+endDate2 = new Date(2017, 8, 2;
+```
+
+
+## Disabling
+
+### Disable a control
 
 Controls can be enabled or disabled via the associated form control:
 
@@ -174,4 +156,13 @@ const ctrl = this.myForm.get('dateRange.startDate')
 if (ctr) {
   ctrl.enable();
 }
+```
+
+
+### Disable the component
+
+The entire component can be disabled:
+
+```html
+<ts-date-range [isDisabled]="true"></ts-date-range>
 ```

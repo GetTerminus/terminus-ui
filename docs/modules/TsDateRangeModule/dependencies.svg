@@ -22,15 +22,15 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TsDateRangeModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="74,-70 74,-268 422,-268 422,-70 74,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="89,-70 89,-268 407,-268 407,-70 89,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TsDateRangeModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="240,-78 240,-130 414,-130 414,-78 240,-78"/>
+<polygon fill="none" stroke="#000000" points="225,-78 225,-130 399,-130 399,-78 225,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_TsDateRangeModule_imports</title>
-<polygon fill="none" stroke="#000000" points="82,-78 82,-130 232,-130 232,-78 82,-78"/>
+<polygon fill="none" stroke="#000000" points="97,-78 97,-130 217,-130 217,-78 97,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TsDateRangeModule_exports</title>
@@ -39,8 +39,8 @@
 <!-- TsDateRangeComponent -->
 <g id="node1" class="node">
 <title>TsDateRangeComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="405.5225,-122 248.4775,-122 248.4775,-86 405.5225,-86 405.5225,-122"/>
-<text text-anchor="middle" x="327" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDateRangeComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="390.5225,-122 233.4775,-122 233.4775,-86 390.5225,-86 390.5225,-122"/>
+<text text-anchor="middle" x="312" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDateRangeComponent</text>
 </g>
 <!-- TsDateRangeModule -->
 <g id="node2" class="node">
@@ -51,8 +51,8 @@
 <!-- TsDateRangeComponent&#45;&gt;TsDateRangeModule -->
 <g id="edge1" class="edge">
 <title>TsDateRangeComponent&#45;&gt;TsDateRangeModule</title>
-<path fill="none" stroke="#000000" d="M282.0544,-122.1061C282.0544,-122.1061 282.0544,-140.991 282.0544,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="278.5544,-140.9909 282.0544,-150.991 285.5544,-140.991 278.5544,-140.9909"/>
+<path fill="none" stroke="#000000" d="M274.5544,-122.1061C274.5544,-122.1061 274.5544,-140.991 274.5544,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="271.0544,-140.9909 274.5544,-150.991 278.0544,-140.991 271.0544,-140.9909"/>
 </g>
 <!-- TsDateRangeComponent  -->
 <g id="node4" class="node">
@@ -66,17 +66,17 @@
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
 </g>
-<!-- TsDatepickerModule -->
+<!-- TsInputModule -->
 <g id="node3" class="node">
-<title>TsDatepickerModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="224.4538,-122 221.4538,-126 200.4538,-126 197.4538,-122 89.5462,-122 89.5462,-86 224.4538,-86 224.4538,-122"/>
-<text text-anchor="middle" x="157" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsDatepickerModule</text>
+<title>TsInputModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="208.5982,-122 205.5982,-126 184.5982,-126 181.5982,-122 105.4018,-122 105.4018,-86 208.5982,-86 208.5982,-122"/>
+<text text-anchor="middle" x="157" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TsInputModule</text>
 </g>
-<!-- TsDatepickerModule&#45;&gt;TsDateRangeModule -->
+<!-- TsInputModule&#45;&gt;TsDateRangeModule -->
 <g id="edge2" class="edge">
-<title>TsDatepickerModule&#45;&gt;TsDateRangeModule</title>
-<path fill="none" stroke="#000000" d="M202.3037,-122.1061C202.3037,-122.1061 202.3037,-140.991 202.3037,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="198.8037,-140.9909 202.3037,-150.991 205.8037,-140.991 198.8037,-140.9909"/>
+<title>TsInputModule&#45;&gt;TsDateRangeModule</title>
+<path fill="none" stroke="#000000" d="M194.3397,-122.1061C194.3397,-122.1061 194.3397,-140.991 194.3397,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="190.8398,-140.9909 194.3397,-150.991 197.8398,-140.991 190.8398,-140.9909"/>
 </g>
 </g>
 </svg>
