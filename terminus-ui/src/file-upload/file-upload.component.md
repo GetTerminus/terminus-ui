@@ -10,6 +10,7 @@
 - [File types](#file-types)
 - [File size](#file-size)
 - [Image dimensions](#image-dimensions)
+- [Image ratio constraints](#image-ratio-constraints)
 - [Clearing a file](#clearing-a-file)
 - [Showing upload progress](#showing-upload-progress)
 - [Enable multiple file selection](#enable-multiple-file-selection)
@@ -174,6 +175,16 @@ Example:
 
 If an image is selected that does not meet the dimension constraints, a validation message will appear below the file input.
 
+## Image ratio constraints
+
+Image ratio validation is controlled by an array of constraints passed to the component.
+
+```html
+<ts-file-upload ratioConstraints='["1:2", "3:4"]'>
+</ts-file-upload>
+```
+
+If a file is loaded that do not meet any ratio constraints, a validation message will appear below the file input.
 
 ## Clearing a file
 

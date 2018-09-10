@@ -16,15 +16,18 @@ import {
   ViewChild,
   ViewEncapsulation,
   isDevMode,
+  forwardRef,
 } from '@angular/core';
 import {
   ValidationErrors,
+  NG_VALUE_ACCESSOR,
   FormControl,
 } from '@angular/forms';
 import {
   inputHasChanged,
   TsDocumentService,
   untilComponentDestroyed,
+  isNumber,
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
@@ -42,7 +45,12 @@ import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
 import { TsDropProtectionService } from './drop-protection.service';
+import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
+export interface ImageRatio {
+  widthRatio: number;
+  heightRatio: number;
+}
 
 /**
  * The maximum file size in bytes
@@ -51,12 +59,22 @@ import { TsDropProtectionService } from './drop-protection.service';
  */
 const MAXIMUM_KILOBYTES_PER_FILE = 10 * 1024;
 
-
 /**
  * Unique ID for each instance
  */
 let nextUniqueId = 0;
 
+/**
+ * Custom control value accessor for our component.
+ * This allows our custom components to access the underlying form validation via our base class
+ */
+/* tslint:disable:no-use-before-declare */
+const CUSTOM_FILE_UPLOAD_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => TsFileUploadComponent),
+  multi: true,
+};
+/* tslint-enable: no-use-before-declare */
 
 /**
  * This is the file-upload UI Component
@@ -77,8 +95,9 @@ let nextUniqueId = 0;
  *              accept="['image/png', 'image/jpg']"
  *              id="my-id"
  *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
+ *              ratioConstraints="['2:1', '3:4']"
  *              multiple="false"
- *              [control]="control"
+ *              [formControl]="myForm.get('myControl')"
  *              [progress]="myUploadProgress"
  *              [seedFile]="myFile"
  *              dimensionConstraints="myConstraints" (see TsFileImageDimensionConstraints)
@@ -100,11 +119,12 @@ let nextUniqueId = 0;
     class: 'ts-file-upload',
     '(keydown)': 'handleKeydown($event)',
   },
+  providers: [CUSTOM_FILE_UPLOAD_INPUT_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsFileUpload',
 })
-export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, AfterContentInit {
+export class TsFileUploadComponent extends TsReactiveFormBaseComponent implements OnInit , OnChanges, OnDestroy, AfterContentInit {
   /**
    * Define the default component ID
    */
@@ -174,6 +194,9 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
     hints.push(`Must be ${types}`);
     hints.push(`Must be under ${this.maximumKilobytesPerFile.toLocaleString()}kb`);
+    if (this.ratioConstraints) {
+      hints.push(`Must have valid image ratio of ${this.ratioConstraints.join(' or ')} `);
+    }
 
     return hints;
   }
@@ -198,7 +221,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
         // If a fixed size
         if ((c.height.min === c.height.max) && (c.width.min === c.width.max)) {
-          myString += `${c.height.min.toLocaleString()}x${c.height.min.toLocaleString()}`;
+          myString += `${c.width.min.toLocaleString()}x${c.height.min.toLocaleString()}`;
         } else {
           // Dealing with a size range
           const height = (c.height.min === c.height.max)
@@ -207,7 +230,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
           const width = (c.width.min === c.width.max)
             ? c.width.min.toLocaleString()
             : `${c.width.min.toLocaleString()}-${c.width.max.toLocaleString()}`;
-          const range = `${height}x${width}`;
+          const range = `${width}x${height}`;
           myString += range;
         }
       }
@@ -237,13 +260,13 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Create a form control to manage validation messages
    */
   @Input()
-  public set control(ctrl: FormControl) {
-    this._control = ctrl ? ctrl : new FormControl();
+  public set formControl(ctrl: FormControl) {
+    this._formControl = ctrl ? ctrl : new FormControl();
   }
-  public get control(): FormControl {
-    return this._control;
+  public get formControl(): FormControl {
+    return this._formControl;
   }
-  private _control: FormControl = new FormControl();
+  private _formControl: FormControl = new FormControl();
 
   /**
    * Define if the 'select files' button should be visible. DO NOT USE.
@@ -288,6 +311,28 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
   private _maximumKilobytesPerFile: number = MAXIMUM_KILOBYTES_PER_FILE;
 
   /**
+   * Define supported ratio for images
+   */
+
+  @Input()
+  public set ratioConstraints(values: Array<string> | undefined) {
+    if (values) {
+      for (const value of values) {
+        const v = value.split(':');
+        if ((v.length !== 2) || (!isNumber(v[0]) && !isNumber(v[1]))) {
+          throw new Error('An array of image ratio should be as ["1:2", "3:4"]');
+        }
+      }
+    }
+    this._ratioConstraints = this.parseRatioStringToObject(values);
+  }
+  public get ratioConstraints(): Array<string> | undefined {
+    return this.parseRatioToString(this._ratioConstraints);
+  }
+  private _ratioConstraints: Array<ImageRatio> | undefined;
+
+
+  /**
    * Define if multiple files may be uploaded
    */
   @Input()
@@ -319,13 +364,19 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     this._seedFile = file;
 
     if (file) {
-      const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
+      const newFile = new TsSelectedFile(
+        file,
+        this.dimensionConstraints,
+        this.acceptedTypes,
+        this.maximumKilobytesPerFile,
+        this._ratioConstraints,
+      );
 
       newFile.fileLoaded$.pipe(
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => t !== undefined),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
-        this.control.setValue(f.fileContents);
+        this.formControl.setValue(f.file);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
@@ -421,10 +472,21 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     private changeDetectorRef: ChangeDetectorRef,
     private dropProtectionService: TsDropProtectionService,
   ) {
+    super();
     this.virtualFileInput = this.createFileInput();
 
     // Force setter to be called in case the ID was not specified.
     this.id = this.id;
+  }
+
+  /**
+   * Update the inner value when the formControl value is updated
+   *
+   * @param value - The value to set
+   */
+  public updateInnerValue = (value: string): void => {
+    this.value = value;
+    this.changeDetectorRef.detectChanges();
   }
 
 
@@ -433,6 +495,13 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    */
   public ngOnInit(): void {
     this.dropProtectionService.add();
+    if (this.formControl) {
+      this.formControl.valueChanges.pipe(
+        untilComponentDestroyed(this),
+      ).subscribe(() => {
+        this.changeDetectorRef.detectChanges();
+      });
+    }
   }
 
 
@@ -454,6 +523,7 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
     // istanbul ignore else
     if (inputHasChanged(changes, 'multiple') || inputHasChanged(changes, 'accept')) {
       this.updateVirtualFileInputAttrs(this.virtualFileInput);
+      this.registerOnChangeFn(this.updateInnerValue);
     }
   }
 
@@ -552,16 +622,33 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
 
     // istanbul ignore else
     if (file) {
-      const newFile = new TsSelectedFile(file, this.dimensionConstraints, this.acceptedTypes, this.maximumKilobytesPerFile);
+      const newFile = new TsSelectedFile(
+        file,
+        this.dimensionConstraints,
+        this.acceptedTypes,
+        this.maximumKilobytesPerFile,
+        this._ratioConstraints);
 
       newFile.fileLoaded$.pipe(
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => !!t),
         untilComponentDestroyed(this),
       ).subscribe((f) => {
-        this.control.setValue(f.fileContents);
+        this.formControl.setValue(f.file);
         this.selected.emit(f);
         this.setUpNewFile(f);
       });
+    }
+  }
+
+  /**
+   * Register our custom onChange function
+   *
+   * @param fn - The onChange function
+   */
+  private registerOnChangeFn(fn: Function): void {
+    // istanbul ignore else
+    if (this.formControl) {
+      this.formControl.registerOnChange(fn);
     }
   }
 
@@ -655,6 +742,10 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
         valid: false,
         actual: file.dimensions,
       },
+      imageRatio: {
+        valid: false,
+        actual: file.width / file.height,
+      },
     };
 
     const validations = Object.keys(file.validations);
@@ -666,8 +757,12 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
       }
     }
 
-    this.control.setErrors(errors);
-    this.control.markAsTouched();
+    if (Object.keys(errors).length === 0) {
+      this.formControl.setErrors(null);
+    } else {
+      this.formControl.setErrors(errors);
+    }
+    this.formControl.markAsTouched();
     this.changeDetectorRef.markForCheck();
   }
 
@@ -676,8 +771,40 @@ export class TsFileUploadComponent implements OnInit , OnChanges, OnDestroy, Aft
    * Clear all validation messages
    */
   private clearValidationMessages(): void {
-    this.control.setErrors(null);
+    this.formControl.setErrors(null);
     this.changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Parse ratio from Array of string to Array of ImageRatio
+   * @param ratios - Array of string
+   * @return - Array of ImageRatio
+   */
+  private parseRatioStringToObject(ratios: Array<string> | undefined): Array<ImageRatio> | undefined {
+    if (!ratios) {
+      return;
+    }
+    const parsedImageRatio: Array<ImageRatio> = [];
+    ratios.map((r) => parsedImageRatio.push({
+      widthRatio: Number(r.split(':')[0]),
+      heightRatio: Number(r.split(':')[1]),
+    }));
+    return parsedImageRatio;
+  }
+
+  /**
+   * Parse ratio from Array of ImageRatio to Array of string
+   * @param ratios - Array of ImageRatio
+   * @return - Array of string
+   */
+
+  private parseRatioToString(ratios: Array<ImageRatio> | undefined): Array<string> | undefined {
+    if (!ratios) {
+      return;
+    }
+    const parsedRatio: Array<string> = [];
+    ratios.map((r) => parsedRatio.push(r.widthRatio.toString() + ':' + r.heightRatio.toString()));
+    return parsedRatio;
   }
 
 }

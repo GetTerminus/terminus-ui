@@ -32,7 +32,16 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
       max: 800,
     },
   },
-
+  {
+    height: {
+      min: 300,
+      max: 600,
+    },
+    width: {
+      min: 100,
+      max: 300,
+    },
+  },
   {
     height: {
       min: 600,
@@ -153,6 +162,7 @@ export class FileUploadComponent {
   hideButton = false;
   maxKb: number | undefined;
   mimeTypeOptions = ['image/png', 'image/jpg', 'image/jpeg', 'text/csv'];
+  ratioConstraints = ["1:2", "1.9:1", "5:1"]
 
 
   selected(e) {
