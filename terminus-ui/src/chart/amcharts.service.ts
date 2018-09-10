@@ -27,6 +27,7 @@ export class TsAmChartsService {
   constructor(
     @Inject(TS_AMCHARTS_TOKEN) public amCharts: TsAmChartsToken,
   ) {
+    // istanbul ignore else
     if (amCharts && amCharts.themes && amCharts.themes.length > 0) {
       for (const theme of amCharts.themes) {
         // istanbul ignore else
