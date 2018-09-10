@@ -35,12 +35,14 @@ const config = {
     npmFolder: path.join(rootFolder, 'node_modules/@terminus/ui'),
     scss: {
       helpersInputs: [
+        path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_a11y.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_typography.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_cursors.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_color.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_assets.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_breakpoints.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_layout.scss'),
+        path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_input-placeholder.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_z-index.scss'),
         // Spacing must be after typography
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_spacing.scss'),

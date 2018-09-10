@@ -1,7 +1,589 @@
 @import './../scss/helpers/cursors';
+@import './../scss/helpers/color';
 @import './../scss/helpers/reset';
 @import './../scss/helpers/spacing';
 @import './../scss/helpers/typography';
+@import './../scss/helpers/a11y';
+@import './../scss/helpers/input-placeholder';
+
+// Scope all material styles so that we don't affect any other components using the original mat-form-field classes
+.ts-input {
+  $ease-in-out-curve-function: cubic-bezier(.35, 0, .25, 1) !default;
+
+  $swift-ease-out-duration: 400ms !default;
+  $swift-ease-out-timing-function: cubic-bezier(.25, .8, .25, 1) !default;
+  $swift-ease-out: all $swift-ease-out-duration $swift-ease-out-timing-function !default;
+
+  $swift-ease-in-duration: 300ms !default;
+  $swift-ease-in-timing-function: cubic-bezier(.55, 0, .55, .2) !default;
+  $swift-ease-in: all $swift-ease-in-duration $swift-ease-in-timing-function !default;
+
+  $swift-ease-in-out-duration: 500ms !default;
+  $swift-ease-in-out-timing-function: $ease-in-out-curve-function !default;
+  $swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
+
+  $swift-linear-duration: 80ms !default;
+  $swift-linear-timing-function: linear !default;
+  $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default;
+
+
+  // Used to make instances of the _mat-form-field-label-floating mixin negligibly different,
+  // and prevent Google's CSS Optimizer from collapsing the declarations. This is needed because some
+  // of the selectors contain pseudo-classes not recognized in all browsers. If a browser encounters
+  // an unknown pseudo-class it will discard the entire rule set.
+  $mat-form-field-outline-dedupe: 0;
+
+
+  // Used to make instances of the _mat-form-field-label-floating mixin negligibly different,
+  // and prevent Google's CSS Optimizer from collapsing the declarations. This is needed because some
+  // of the selectors contain pseudo-classes not recognized in all browsers. If a browser encounters
+  // an unknown pseudo-class it will discard the entire rule set.
+  $mat-form-field-dedupe: 0;
+
+
+  /**
+   * Styles that apply to all appearances of the form-field.
+   */
+
+  // Min amount of space between start and end hint.
+  $mat-form-field-hint-min-space: 1em !default;
+  // Infix stretches to fit the container, but naturally wants to be this wide. We set this in order
+  // to have a a consistent natural size for the various types of controls that can go in a form
+  // field.
+  $mat-form-field-default-infix-width: 180px !default;
+
+
+
+
+  // Styles that only apply to the outline appearance of the form-field.
+
+  // The horizontal padding between the edge of the form field fill box and the start of the text.
+  $mat-form-field-outline-side-padding: .75em !default;
+  // The scale of the subscript and floating label text w.r.t the value text.
+  $mat-form-field-outline-subscript-font-scale: .75 !default;
+  // The amount of overlap between the label and the outline.
+  $mat-form-field-outline-label-overlap: .25em;
+  // The border radius of the outline.
+  $mat-form-field-outline-border-radius: 5px;
+  // The width of the outline.
+  $mat-form-field-outline-width: 1px;
+  // The width of the thick outline (used for focus, hover, and error state).
+  $mat-form-field-outline-thick-width: 2px;
+  // The horizontal padding between the edge of the subscript box and the start of the subscript text.
+  $mat-form-field-outline-subscript-padding:
+    $mat-form-field-outline-side-padding / $mat-form-field-outline-subscript-font-scale;
+
+
+  .mat-form-field {
+    display: inline-block;
+    position: relative;
+    // To avoid problems with text-align.
+    text-align: left;
+  }
+
+  // Global wrapper. We need to apply margin to the element for spacing, but
+  // cannot apply it to the host element directly.
+  .mat-form-field-wrapper {
+    position: relative;
+  }
+
+  // We use a flex layout to baseline align the prefix and suffix elements.
+  // The underline is outside of it so it can cover all of the elements under this flex container.
+  .mat-form-field-flex {
+    align-items: baseline;
+    box-sizing: border-box;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  .mat-form-field-prefix,
+  .mat-form-field-suffix {
+    flex: none;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .mat-form-field-infix {
+
+    // In high contrast mode IE/Edge will render all of the borders, even if they're transparent.
+    // Since we can't remove the border altogether or replace it with a margin, because it'll throw
+    // off the baseline, and we can't use a base64-encoded 1x1 transparent image because of CSP,
+    // we work around it by setting a linear gradient that goes from `transparent` to `transparent`.
+    @include cdk-high-contrast {
+      border-image: linear-gradient(transparent, transparent);
+    }
+    display: block;
+    flex: auto;
+    min-width: 0;
+    position: relative;
+    width: $mat-form-field-default-infix-width;
+  }
+
+  // Used to hide the label overflow on IE, since IE doesn't take transform into account when
+  // determining overflow.
+  .mat-form-field-label-wrapper {
+    box-sizing: content-box;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    // We shouldn't catch mouse events (let them through).
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+  }
+
+  // The label itself
+  .mat-form-field-label {
+    // Hide the label initially, and only show it when it's floating or the control is empty.
+    display: none;
+    font: inherit;
+    // The label is after the form field control, but needs to be aligned top-left of the infix <div>.
+    left: 0;
+    overflow: hidden;
+    // We shouldn't catch mouse events (let them through).
+    pointer-events: none;
+    position: absolute;
+    text-overflow: ellipsis;
+    transform-origin: 0 0;
+    // stylelint-disable value-list-comma-space-after
+    transition:
+      transform $swift-ease-out-duration $swift-ease-out-timing-function,
+      color $swift-ease-out-duration $swift-ease-out-timing-function,
+      width $swift-ease-out-duration $swift-ease-out-timing-function;
+    // stylelint-enable value-list-comma-space-after
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .mat-form-field-empty.mat-form-field-label,
+  .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    display: block;
+  }
+
+  // Pseudo-class for Chrome and Safari auto-fill to move the label to the floating position.
+  // This is necessary because these browsers do not actually fire any events when a form auto-fill is
+  // occurring. Once the autofill is committed, a change event happen and the regular mat-form-field
+  // classes take over to fulfill this behaviour.
+  // @breaking-change 7.0.0 will rely on AutofillMonitor instead.
+  .mat-form-field-autofill-control:-webkit-autofill + .mat-form-field-label-wrapper .mat-form-field-label {
+    // The form field will be considered empty if it is autofilled, and therefore the label will
+    // be shown. Therefore we need to override it to hidden...
+    display: none;
+
+    // ...and re-show it only if it's able to float.
+    .mat-form-field-can-float & {
+      display: block;
+      transition: none;
+    }
+  }
+
+  // Server-side rendered matInput with focus or a placeholder attribute but placeholder not shown
+  // (used as a pure CSS stand-in for mat-form-field-should-float).
+  .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label,
+  .mat-input-server[placeholder]:not(:placeholder-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
+    display: none;
+
+    .mat-form-field-can-float & {
+      display: block;
+    }
+  }
+
+  // Disable the label animation when the control is not empty (this prevents label
+  // animating up when the value is set programmatically).
+  .mat-form-field-label:not(.mat-form-field-empty) {
+    transition: none;
+  }
+
+  .mat-form-field-underline {
+    // Need this so that the underline doesn't block the hover effect.
+    pointer-events: none;
+    position: absolute;
+    // We transform the height slightly higher to fix inconsistent underline height for some DPIs.
+    // Without this we observed that at zoom levels between 50% and 100% some form-field underlines
+    // would disappear. The issue appears to be related to fractional pixels since (e.g. underlines
+    // with their top at x.6 would disappear, but ones with there top at x.7 were fine). The exact
+    // fractions that caused problems seemed to depend on the screen resolution and zoom level. We
+    // experimentally discovered that adding a very slight scale factor fixes the issue.
+    transform: scaleY(1.0001);
+    width: 100%;
+  }
+
+  .mat-form-field-ripple {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    transform: scaleX(.5);
+    transform-origin: 50%;
+    transition: background-color $swift-ease-in-duration $swift-ease-in-timing-function;
+    width: 100%;
+  }
+
+  .mat-form-field.mat-focused,
+  .mat-form-field.mat-form-field-invalid {
+    .mat-form-field-ripple {
+      opacity: 1;
+      transform: scaleX(1);
+      // stylelint-disable value-list-comma-space-after
+      transition:
+        transform 300ms $swift-ease-out-timing-function,
+        opacity 100ms $swift-ease-out-timing-function,
+        background-color 300ms $swift-ease-out-timing-function;
+      // stylelint-enable value-list-comma-space-after
+    }
+  }
+
+  // Wrapper for the hints and error messages.
+  .mat-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    // prevents multi-line errors from overlapping the control
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+  }
+
+  // Scale down icons in the label and hint to be the same size as the text.
+  .mat-form-field-subscript-wrapper,
+  .mat-form-field-label-wrapper {
+    .mat-icon {
+      font-size: inherit;
+      height: 1em;
+      vertical-align: baseline;
+      width: 1em;
+    }
+  }
+
+  // Clears the floats on the hints. This is necessary for the hint animation to work.
+  .mat-form-field-hint-wrapper {
+    display: flex;
+  }
+
+  // Spacer used to make sure start and end hints have enough space between them.
+  .mat-form-field-hint-spacer {
+    flex: 1 0 $mat-form-field-hint-min-space;
+  }
+
+  // Single error message displayed beneath the form field underline.
+  .mat-error {
+    display: block;
+  }
+
+  .mat-form-field._mat-animation-noopable {
+    .mat-form-field-label,
+    .mat-form-field-ripple {
+      transition: none;
+    }
+  }
+
+
+
+
+  /**
+   * The Input element proper.
+   *
+   * Requirements:
+   * - The input should match whatever background it is above.
+   * - By default, <input> has a padding, border, outline and a default width.
+   * - If background matches current background then so should the color for proper contrast.
+   * - Font needs to be inherited, because by default <input> has a system font.
+   * - Remove the default <input> padding, border, outline and width.
+   * - Prevent textareas from being resized outside the form field.
+   */
+
+  .c-input__text {
+
+    @include input-placeholder {
+      // Delay the transition until the label has animated about a third of the way through, in
+      // order to prevent the placeholder from overlapping for a split second.
+      transition: color $swift-ease-out-duration $swift-ease-out-duration / 3 $swift-ease-out-timing-function;
+    }
+    background: transparent;
+    border: none;
+    color: currentColor;
+    font: inherit;
+    margin: 0;
+    max-width: 100%;
+    outline: none;
+    padding: 0;
+    // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
+    // easily overwritten by targeting the input element using a simple CSS selector, but since
+    // the text-align will be applied most of the time on the `mat-form-field` to also align the
+    // placeholder, the alignment should be inherited here.
+    text-align: inherit;
+    // Needed to make last line of the textarea line up with the baseline.
+    vertical-align: bottom;
+    width: 100%;
+
+    // Undo the red box-shadow glow added by Firefox on invalid inputs.
+    // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+    &:-moz-ui-invalid {
+      box-shadow: none;
+    }
+
+    // Remove IE's default clear and reveal icons.
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+    }
+
+    // Clear Safari's decorations for search fields.
+    &,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
+
+    // Also clear Safari's autofill icons. Note that this can't be in the
+    // same selector as the IE ones, otherwise Safari will ignore it.
+    &::-webkit-contacts-auto-fill-button,
+    &::-webkit-caps-lock-indicator,
+    &::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+    }
+
+    // Fixes an issue on iOS where the following input types will collapse to 1px,
+    // if they're empty, because we've overridden their background color.
+    // See: https://stackoverflow.com/questions/18381594/input-type-date-appearance-in-safari-on-ios
+    &[type='date'],
+    &[type='datetime'],
+    &[type='datetime-local'],
+    &[type='month'],
+    &[type='week'],
+    &[type='time'] {
+      &::after {
+        content: ' ';
+        white-space: pre;
+        width: 1px;
+      }
+    }
+
+    .mat-form-field-hide-placeholder & {
+      // NOTE: that we can't use something like visibility: hidden or display: none, because IE ends up preventing
+      // the user from focusing the input altogether.
+      @include input-placeholder {
+        // Needs to be !important, because the placeholder will end up inheriting the
+        // input color in IE, if the consumer overrides it with a higher specificity.
+        // stylelint-disable declaration-no-important
+        color: transparent !important;
+        // stylelint-enable  declaration-no-important
+        // Overwrite browser specific CSS properties that can overwrite the `color` property.
+        // Some developers seem to use this approach to easily overwrite the placeholder and
+        // label color. See: https://github.com/angular/material2/issues/12074
+        -webkit-text-fill-color: transparent;
+        // Remove the transition to prevent the placeholder
+        // from overlapping when the label comes back down.
+        transition: none;
+      }
+    }
+  }
+
+  // Prevents IE from always adding a scrollbar by default.
+  .c-input__text {
+    &textarea {
+      // Negative margin to negate the effect of the padding on the layout.
+      margin: -2px 0;
+      // Only allow resizing along the Y axis.
+      overflow: auto;
+      // The 2px padding prevents scrollbars from appearing on Chrome even when they aren't needed.
+      padding: 2px 0;
+      resize: vertical;
+
+      &.cdk-textarea-autosize {
+        resize: none;
+      }
+    }
+  }
+
+  .mat-form-field-appearance-outline {
+    // We need to add margin to the top to reserve space in the layout for the label which sticks out
+    // of the top. In order to ensure that the outline appearance aligns nicely with other form-field
+    // appearances when center-aligned, we also need to add the same amount of margin to the bottom.
+    .mat-form-field-wrapper {
+      margin: $mat-form-field-outline-label-overlap 0;
+    }
+
+    .mat-form-field-flex {
+      margin-top: -$mat-form-field-outline-label-overlap;
+      padding: 0 $mat-form-field-outline-side-padding 0 $mat-form-field-outline-side-padding;
+      position: relative;
+    }
+
+    // Was pushing prefix too low when not a legacy field
+    .mat-form-field-prefix,
+    .mat-form-field-suffix {
+      top: $mat-form-field-outline-label-overlap;
+    }
+
+    .mat-form-field-outline {
+      bottom: 0;
+      display: flex;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: $mat-form-field-outline-label-overlap;
+    }
+
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-end {
+      border: $mat-form-field-outline-width solid currentColor;
+      min-width: $mat-form-field-outline-border-radius;
+    }
+
+    .mat-form-field-outline-start {
+      border-radius: $mat-form-field-outline-border-radius 0 0 $mat-form-field-outline-border-radius;
+      border-right-style: none;
+    }
+
+    .mat-form-field-outline-end {
+      border-left-style: none;
+      border-radius: 0 $mat-form-field-outline-border-radius $mat-form-field-outline-border-radius 0;
+      flex-grow: 1;
+    }
+
+    .mat-form-field-outline-gap {
+      border: $mat-form-field-outline-width solid currentColor;
+      border-left-style: none;
+      // hack for Chrome's treatment of borders with non-integer (scaled) widths
+      // refer to https://github.com/angular/material2/issues/10710
+      border-radius: .000001px;
+      border-right-style: none;
+    }
+
+    &.mat-form-field-can-float.mat-form-field-should-float {
+      .mat-form-field-outline-gap {
+        border-top-color: transparent;
+      }
+    }
+
+    .mat-form-field-outline-thick {
+      opacity: 0;
+
+      .mat-form-field-outline-start,
+      .mat-form-field-outline-end,
+      .mat-form-field-outline-gap {
+        border-width: $mat-form-field-outline-thick-width;
+        transition: border-color 300ms $swift-ease-out-timing-function;
+      }
+    }
+
+    &.mat-focused,
+    &.mat-form-field-invalid {
+      .mat-form-field-outline {
+        opacity: 0;
+        transition: opacity 100ms $swift-ease-out-timing-function;
+      }
+
+      .mat-form-field-outline-thick {
+        opacity: 1;
+      }
+    }
+
+    &:not(.mat-form-field-disabled) .mat-form-field-flex:hover {
+      & .mat-form-field-outline {
+        opacity: 0;
+        transition: opacity 600ms $swift-ease-out-timing-function;
+      }
+
+      & .mat-form-field-outline-thick {
+        opacity: 1;
+      }
+    }
+
+    .mat-form-field-subscript-wrapper {
+      padding: 0 $mat-form-field-outline-subscript-padding;
+    }
+
+    &._mat-animation-noopable {
+      &:not(.mat-form-field-disabled) .mat-form-field-flex:hover ~ .mat-form-field-outline,
+      .mat-form-field-outline,
+      .mat-form-field-outline-start,
+      .mat-form-field-outline-end,
+      .mat-form-field-outline-gap {
+        transition: none;
+      }
+    }
+  }
+
+
+  /**
+   * Applies a floating label above the form field control itself.
+   */
+  @mixin _mat-form-field-outline-label-floating($font-scale, $infix-padding, $infix-margin-top) {
+    $mat-form-field-outline-dedupe: $mat-form-field-outline-dedupe + .00001 !global;
+
+    transform: translateY(-$infix-margin-top - $infix-padding + $mat-form-field-outline-dedupe) scale($font-scale);
+    width: 100% / $font-scale + $mat-form-field-outline-dedupe;
+  }
+
+
+  @mixin mat-form-field-outline-typography($config) {
+    // The unit-less line-height from the font config.
+    $line-height: mat-line-height($config, input);
+    // The amount to scale the font for the floating label and subscript.
+    $subscript-font-scale: .75;
+    // The padding above and below the infix.
+    $infix-padding: 1em;
+    // The margin applied to the form-field-infix to reserve space for the floating label.
+    $infix-margin-top: 1em * $line-height * $subscript-font-scale;
+    // The space between the bottom of the .mat-form-field-flex area and the subscript wrapper.
+    // Mocks show half of the text size, but this margin is applied to an element with the subscript
+    // text font size, so we need to divide by the scale factor to make it half of the original text
+    // size.
+    $subscript-margin-top: .5em / $subscript-font-scale;
+    // The padding applied to the form-field-wrapper to reserve space for the subscript, since it's
+    // absolutely positioned. This is a combination of the subscript's margin and line-height, but we
+    // need to multiply by the subscript font scale factor since the wrapper has a larger font size.
+    $wrapper-padding-bottom: ($subscript-margin-top + $line-height) * $subscript-font-scale;
+    // The amount we offset the label from the input text in the outline appearance.
+    $outline-appearance-label-offset: -.25em;
+
+    .mat-form-field-appearance-outline {
+      .mat-form-field-infix {
+        padding: $infix-padding 0 $infix-padding 0;
+      }
+
+      .mat-form-field-label {
+        margin-top: $outline-appearance-label-offset;
+        top: $infix-margin-top + $infix-padding;
+      }
+
+      &.mat-form-field-can-float {
+        &.mat-form-field-should-float .mat-form-field-label,
+        .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+          @include _mat-form-field-outline-label-floating(
+            $subscript-font-scale, $infix-padding + $outline-appearance-label-offset,
+            $infix-margin-top
+          );
+        }
+
+        // Server-side rendered matInput with a label attribute but label not shown
+        // (used as a pure CSS stand-in for mat-form-field-should-float).
+        // NOTE: StyleLint doesn't like `:label-shown`
+        // stylelint-disable
+        .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper
+        // stylelint-enable
+        .mat-form-field-label {
+          @include _mat-form-field-outline-label-floating(
+            $subscript-font-scale, $infix-padding + $outline-appearance-label-offset,
+            $infix-margin-top
+          );
+        }
+      }
+    }
+  }
+
+  // Applies a floating label above the form field control itself.
+  @mixin _mat-form-field-label-floating($font-scale, $infix-padding, $infix-margin-top) {
+    $mat-form-field-dedupe: $mat-form-field-dedupe + .00001 !global;
+
+    transform: translateY(-1.8em) scale($font-scale);
+    width: 100% / $font-scale + $mat-form-field-dedupe;
+  }
+
+
+}
 
 
 //
@@ -23,21 +605,35 @@
     width: 100%;
   }
 
-  .mat-input-prefix,
-  .mat-input-suffix {
+  // NOTE: Not sure why the alignment is off, but this positioning is so that the text input aligns with the prefix icon.
+  .c-input__text {
     position: relative;
-    top: $icon-top-adjustment;
+    top: -.2em;
   }
 
   // Button to clear the value of the input
   .c-input__clear {
     @include cursor(pointer);
     opacity: 0;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease, color 200ms ease;
     will-change: opacity;
 
     &--visible {
       opacity: 1;
+    }
+
+    &:focus,
+    &:hover {
+      color: color(warn);
+    }
+  }
+
+  // Update the datepicker toggle positioning when inside the input
+  .mat-datepicker-toggle {
+    display: inline-block;
+
+    .mat-datepicker-toggle-default-icon {
+      vertical-align: baseline;
     }
   }
 }

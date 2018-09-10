@@ -57,7 +57,7 @@
     "@angular/forms": "^5.2.x || ^6.0.2",
     "@angular/platform-browser": "^5.2.x || ^6.0.2",
     "@angular/router": "^5.2.x || ^6.0.2",
-    "@terminus/ngx-tools": "^2.23.0",
+    "@terminus/ngx-tools": "^2.25.2",
     "date-fns": "2.0.0-alpha.7",
     "rxjs": "^6.1.0"
   },
@@ -79,7 +79,8 @@
         "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
         "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
         "text-mask-core/dist/textMaskCore": "textMaskCore",
-        "text-mask-addons/dist/createNumberMask": "textMaskAddons"
+        "text-mask-addons/dist/createNumberMask": "createNumberMask",
+        "text-mask-addons/dist/createAutoCorrectedDatePipe": "createAutoCorrectedDatePipe"
       },
       "comments": "none"
     },

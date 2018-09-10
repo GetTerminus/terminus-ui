@@ -4,23 +4,22 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import {
-  MatDatepickerInput,
-  MatDatepickerInputEvent,
-} from '@angular/material/datepicker';
 
 import { TsDateRangeComponent } from './date-range.component';
+
+
+/**
+ * NOTE (B$): The ideal test would be to actually check the DOM to verify that specific dates are disabled etc. I was not having any luck
+ * querying that deeply into the generated DOM. So, for now, we are simply testing the class as fully as possible.
+ */
 
 
 describe(`TsDateRangeComponent`, () => {
   const formBuilder = new FormBuilder();
   let component: TsDateRangeComponent;
-  let date1: Date;
-  let date2: Date;
   let dateRangeStart: Date;
   let dateRangeEnd: Date;
   let formGroup: FormGroup;
-  let testDatepickerEvent: MatDatepickerInputEvent<Date>;
   let testDate: Date;
 
   beforeEach(() => {
@@ -36,12 +35,7 @@ describe(`TsDateRangeComponent`, () => {
   describe(`ngOnInit()`, () => {
 
     beforeEach(() => {
-      component['seedDateRange'] = jest.fn();
-      component['seedWithFormValues'] = jest.fn();
-      date1 = new Date(2017, 1, 1); // feb
-      date2 = new Date(2017, 2, 1); // march
-      component.startInitialDate = date1;
-      component.endInitialDate = date2;
+      component['initializeMinAndMax'] = jest.fn();
       dateRangeStart = new Date(2017, 4, 6);
       dateRangeEnd = new Date(2017, 4, 8);
       formGroup = formBuilder.group({
@@ -57,109 +51,55 @@ describe(`TsDateRangeComponent`, () => {
     });
 
 
-    test(`should seed the initial values`, () => {
+    test(`should do nothing if no form group exists`, () => {
       component.ngOnInit();
 
-      expect(component['seedDateRange']).toHaveBeenCalledWith(date1, date2);
-      expect(component['seedWithFormValues']).not.toHaveBeenCalled();
+      expect(component['initializeMinAndMax']).not.toHaveBeenCalled();
     });
 
 
-    test(`should trigger to  seed the initial dates and min/maxes`, () => {
+    test(`should trigger to seed the initial dates and min/maxes`, () => {
       const group = formGroup.controls.dateRange;
       component.dateFormGroup = group;
       component.ngOnInit();
 
-      expect(component['seedWithFormValues']).toHaveBeenCalledWith(group);
+      expect(component['initializeMinAndMax']).toHaveBeenCalledWith(group);
     });
 
   });
 
 
-  describe(`seedDateRange()`, () => {
+  describe(`initializeMinAndMax`, () => {
 
-    beforeEach(() => {
-      date1 = new Date(2017, 1, 1); // feb
-      date2 = new Date(2017, 2, 1); // march
+    test(`should return undefined if the formGroup isn't passed in`, () => {
+      expect(component['initializeMinAndMax'](null as any)).toEqual(undefined);
     });
 
 
-    test(`should seed dateRange.start`, () => {
-      component['seedDateRange'](date1, undefined);
-      const range = component['dateRange'];
-      expect(range.start).toEqual(date1);
-      expect(range.end).toEqual(undefined);
-    });
-
-
-    test(`should seed dateRange.end`, () => {
-      component['seedDateRange'](undefined, date2);
-      const range = component['dateRange'];
-      expect(range.start).toEqual(undefined);
-      expect(range.end).toEqual(date2);
-    });
-
-  });
-
-
-  describe(`seedWithFormValues()`, () => {
-    let testRangeStart: Date;
-    let testRangeEnd: Date;
-    let formGroup1: FormGroup;
-    let formGroup2: FormGroup;
-
-    beforeEach(() => {
-      testRangeStart = new Date(2017, 4, 6);
-      testRangeEnd = new Date(2017, 4, 8);
-      formGroup1 = formBuilder.group({
+    test(`should set endMinDate$ and startMaxDate$`, () => {
+      const testRangeStart = new Date(2017, 4, 6);
+      const testRangeEnd = new Date(2017, 4, 8);
+      const formGroup1 = formBuilder.group({
         dateRange: formBuilder.group({
           startDate: [
             testRangeStart,
-          ],
-          endDate: [
-            null,
-          ],
-        }),
-      });
-      formGroup2 = formBuilder.group({
-        dateRange: formBuilder.group({
-          startDate: [
-            null,
           ],
           endDate: [
             testRangeEnd,
           ],
         }),
       });
-    });
+      component['initializeMinAndMax'](formGroup1.get('dateRange') as FormGroup);
+      component.endMinDate$.next = jest.fn();
+      component.startMaxDate$.next = jest.fn();
 
-
-    test(`should return undefined if the formGroup isn't passed in`, () => {
-      const actual = component['seedWithFormValues'](null as any);
-      expect(actual).toEqual(undefined);
-    });
-
-
-    test(`should set startInitialDate and the endDate minimum`, () => {
-      component['seedWithFormValues'](formGroup1.get('dateRange') as FormGroup);
-
-      expect(component.startInitialDate).toEqual(testRangeStart);
-      expect(component.endInitialDate).toBeFalsy();
-
-      component.endMinDate$.subscribe((v: any) => {
+      component.endMinDate$.subscribe((v: Date) => {
         expect(v).toEqual(testRangeStart);
       });
-    });
-
-
-    test(`should set endInitialDate and the startDate maximum`, () => {
-      component['seedWithFormValues'](formGroup2.get('dateRange') as FormGroup);
-
-      expect(component.endInitialDate).toEqual(testRangeEnd);
-
       component.startMaxDate$.subscribe((v: Date) => {
         expect(v).toEqual(testRangeEnd);
       });
+      expect.assertions(2);
     });
 
   });
@@ -169,35 +109,29 @@ describe(`TsDateRangeComponent`, () => {
 
     beforeEach(() => {
       testDate = new Date(2017, 4, 1);
-      testDatepickerEvent = {
-        target: {} as MatDatepickerInput<Date>,
-        targetElement: {} as HTMLElement,
-        value: testDate,
-      };
-      component.startSelected.emit = jest.fn().mockName('startSelectedEmit');
-      component.selectedDate.emit = jest.fn().mockName('endSelectedEmit');
+      component.startSelected.emit = jest.fn();
+      component.change.emit = jest.fn();
+      component.endMinDate = new Date(2017, 1, 1);
     });
 
 
-    describe(`when datepickerEvent has NO value`, () => {
+    describe(`when no date is selected`, () => {
 
-      beforeEach(() => {
-        testDatepickerEvent.value = null;
-      });
-
-
-      test(`should not emit events or set values`, () => {
-        component.startDateSelected(testDatepickerEvent);
+      test(`should not emit events or set values and reset endMinDate$`, () => {
+        component.startDateSelected(undefined as any);
 
         expect(component.startSelected.emit).not.toHaveBeenCalled();
-        expect(component.selectedDate.emit).not.toHaveBeenCalled();
-        expect(component.startDate).toBeUndefined();
+        expect(component.change.emit).not.toHaveBeenCalled();
+        component.endMinDate$.subscribe((v: Date) => {
+          expect(v).toEqual(component.endMinDate);
+        });
+        expect.assertions(3);
       });
 
 
       test(`should pass the original endMinDate to endMinDate$`, () => {
         component.endMinDate = testDate;
-        component.startDateSelected(testDatepickerEvent);
+        component.startDateSelected(testDate);
 
         component.endMinDate$.subscribe((v: Date) => {
           expect(v).toEqual(testDate);
@@ -209,19 +143,11 @@ describe(`TsDateRangeComponent`, () => {
 
     describe(`when datepickerEvent has a value`, () => {
 
-      test(`should set the startDate`, () => {
-        expect(component.startDate).toEqual(undefined);
-
-        component.startDateSelected(testDatepickerEvent);
-        expect(component.startDate).toEqual(testDate);
-      });
-
-
       test(`should emit events`, () => {
-        component.startDateSelected(testDatepickerEvent);
+        component.startDateSelected(testDate);
 
         expect(component.startSelected.emit).toHaveBeenCalledWith(testDate);
-        expect(component.selectedDate.emit).toHaveBeenCalled();
+        expect(component.change.emit).toHaveBeenCalled();
       });
 
 
@@ -236,7 +162,7 @@ describe(`TsDateRangeComponent`, () => {
             dateRangeEnd,
           ],
         });
-        component.startDateSelected(testDatepickerEvent);
+        component.startDateSelected(testDate);
 
         const actualStart = component.dateFormGroup.get('startDate')!.value;
         const actualEnd = component.dateFormGroup.get('endDate')!.value;
@@ -254,28 +180,18 @@ describe(`TsDateRangeComponent`, () => {
 
     beforeEach(() => {
       testDate = new Date(2017, 4, 1);
-      testDatepickerEvent = {
-        target: {} as MatDatepickerInput<Date>,
-        targetElement: {} as HTMLElement,
-        value: testDate,
-      };
       component.endSelected.emit = jest.fn();
-      component.selectedDate.emit = jest.fn();
+      component.change.emit = jest.fn();
     });
 
 
-    describe(`when datepickerEvent has NO value`, () => {
-
-      beforeEach(() => {
-        testDatepickerEvent.value = null;
-      });
-
+    describe(`when no date is passed in`, () => {
 
       test(`should pass the original startMaxDate to _startMaxDate$`, () => {
         component.startMaxDate = testDate;
-        component.endDateSelected(testDatepickerEvent);
+        component.endDateSelected(testDate);
 
-        component.startMaxDate$.subscribe((v: any) => {
+        component.startMaxDate$.subscribe((v: Date) => {
           expect(v).toEqual(testDate);
         });
       });
@@ -283,35 +199,28 @@ describe(`TsDateRangeComponent`, () => {
 
       test(`should not emit if no date was passed in`, () => {
         component.endSelected.emit = jest.fn();
-        component.endDateSelected(testDatepickerEvent);
+        component.endDateSelected(undefined as any);
 
         expect(component.endSelected.emit).not.toHaveBeenCalled();
-        expect(component.selectedDate.emit).not.toHaveBeenCalled();
-        expect(component.endDate).toBeUndefined();
+        expect(component.change.emit).not.toHaveBeenCalled();
       });
 
     });
 
 
-    describe(`when datepickerEvent has a value`, () => {
-
-      test(`should set the endDate`, () => {
-        expect(component.endDate).toEqual(undefined);
-
-        component.endDateSelected(testDatepickerEvent);
-
-        expect(component.endDate).toEqual(testDate);
-      });
-
+    describe(`when a date is passed in`, () => {
 
       test(`should emit events`, () => {
-        component.selectedDate.emit = jest.fn();
-        component.endDateSelected(testDatepickerEvent);
+        const date = new Date(2017, 2, 3);
+        component.change.emit = jest.fn();
+        component.startDateControl.setValue(date);
+        component.endDateControl.setValue(new Date(2017, 2, 4));
+        component.endDateSelected(date);
 
-        expect(component.endSelected.emit).toHaveBeenCalledWith(testDate);
-        expect(component.selectedDate.emit).toHaveBeenCalledWith({
-          end: testDate,
-          start: undefined,
+        expect(component.endSelected.emit).toHaveBeenCalledWith(date);
+        expect(component.change.emit).toHaveBeenCalledWith({
+          end: new Date(2017, 2, 4),
+          start: new Date(2017, 2, 3),
         });
       });
 
@@ -327,7 +236,7 @@ describe(`TsDateRangeComponent`, () => {
             dateRangeEnd,
           ],
         });
-        component.endDateSelected(testDatepickerEvent);
+        component.endDateSelected(testDate);
 
         const actualStart = component.dateFormGroup.get('startDate')!.value;
         const actualEnd = component.dateFormGroup.get('endDate')!.value;
@@ -344,21 +253,12 @@ describe(`TsDateRangeComponent`, () => {
   describe(`dateRange()`, () => {
 
     test(`should return the date range object`, () => {
-      component.startDate = new Date(2017, 4, 1);
-      component.endDate = new Date(2017, 4, 2);
+      component.startDateControl.setValue(new Date(2017, 4, 1));
+      component.endDateControl.setValue(new Date(2017, 4, 2));
       const actual = component['dateRange'];
 
       expect(actual).toBeTruthy();
-      expect(actual.start).toEqual(component.startDate);
-    });
-
-
-    test(`should return null if no date is found`, () => {
-      component.startDate = new Date(2017, 4, 1);
-      const actual = component['dateRange'];
-
-      expect(actual.start).toEqual(component.startDate);
-      expect(actual.end).toEqual(undefined);
+      expect(actual.start).toEqual(new Date(2017, 4, 1));
     });
 
   });
@@ -389,25 +289,36 @@ describe(`TsDateRangeComponent`, () => {
 
     test(`should set the start date`, () => {
       component.startBlur(undefined);
-      expect(component.startDate).toEqual(undefined);
       expect(component.endMinDate$.getValue()).toEqual(undefined);
 
       component.startBlur(date);
-      expect(component.startDate).toEqual(date);
       expect(component.endMinDate$.getValue()).toEqual(date);
     });
 
 
     test(`should set the end date`, () => {
       component.endBlur(undefined);
-      expect(component.endDate).toEqual(undefined);
       expect(component.startMaxDate$.getValue()).toEqual(undefined);
 
       component.endBlur(date);
-      expect(component.endDate).toEqual(date);
       expect(component.startMaxDate$.getValue()).toEqual(date);
     });
 
   });
 
-});
+
+  describe(`isDisabled`, () => {
+
+    test(`should set the disabled flag`, () => {
+      expect(component.isDisabled).toEqual(false);
+
+      component.isDisabled = true;
+
+      expect(component.isDisabled).toEqual(true);
+    });
+
+    });
+
+  });
+
+})

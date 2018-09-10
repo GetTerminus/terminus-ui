@@ -16,10 +16,8 @@
   <form [formGroup]="myForm" novalidate>
 
     <ts-date-range
-      startMaxDate="{{ myMin }}"
       [dateFormGroup]="myForm.get('dateRange')"
-      theme="accent"
-      (selectedDate)="printRange(myForm.value)"
+      (change)="printRange(myForm.value)"
     ></ts-date-range>
 
   </form>
