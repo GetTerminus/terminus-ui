@@ -25,8 +25,6 @@ more on the communities needs.
 - https://github.com/angular/material2
 - https://github.com/prestopasto/SCSS-Material-Shadows
 - https://github.com/fknop/angular-pipes
-- https://github.com/gevgeny/angular2-highcharts
-- https://github.com/cebor/angular-highcharts
 - https://github.com/zefoy/ngx-perfect-scrollbar
 
 

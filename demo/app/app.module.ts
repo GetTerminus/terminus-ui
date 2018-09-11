@@ -6,31 +6,26 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
+
 /**
- * Start Highcharts config
+ * Start amCharts config
  */
-// Import highcharts and all highcharts extension modules
-import * as Highcharts from 'highcharts';
-import * as loadMore from 'highcharts/highcharts-more.src';
-import * as loadStock from 'highcharts/modules/stock.src';
-import * as loadMap from 'highcharts/modules/map.src';
-import * as loadDrilldown from 'highcharts/modules/drilldown.src';
-import * as loadExporting from 'highcharts/modules/exporting.src';
-
-// Define a function that extends the Highcharts library with all needed functionality:
-export function highchartsFactory() {
-  loadMore(Highcharts);
-  loadStock(Highcharts);
-  loadMap(Highcharts);
-  loadDrilldown(Highcharts);
-  loadExporting(Highcharts);
-
-  return Highcharts;
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4maps from '@amcharts/amcharts4/maps';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import am4themes_material from '@amcharts/amcharts4/themes/animated';
+export function amChartsFactory(): TsAmChartsToken {
+  return {
+    core: am4core,
+    charts: am4charts,
+    maps: am4maps,
+    themes: [am4themes_animated, am4themes_material],
+  };
 }
 /**
- * End Highcharts config
+ * End amCharts config
  */
-
 
 
 
@@ -43,7 +38,8 @@ import {
 } from '@angular/material';
 
 import {
-  HIGHCHARTS,
+  TS_AMCHARTS_TOKEN,
+  TsAmChartsToken,
   TsAutocompleteModule,
   TsAutofocusModule,
   TsButtonModule,
@@ -53,8 +49,8 @@ import {
   TsConfirmationModule,
   TsCopyModule,
   TsCSVEntryModule,
-  TsDateRangeModule,
   TsDatepickerModule,
+  TsDateRangeModule,
   TsFileUploadModule,
   TsIconButtonModule,
   TsIconModule,
@@ -182,10 +178,10 @@ import { ValidationComponent } from './components/validation/validation.componen
   providers: [
     TsDocumentService,
     TsWindowService,
-    // Use the factory function to overwrite the `HIGHCHARTS` injectable:
+    // Use the factory function to overwrite the `TS_AMCHARTS_TOKEN` injectable:
     {
-      provide: HIGHCHARTS,
-      useFactory: highchartsFactory,
+      provide: TS_AMCHARTS_TOKEN,
+      useFactory: amChartsFactory,
     },
   ],
   declarations: [

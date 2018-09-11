@@ -1,21 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {
-  HighchartsService,
-  HIGHCHARTS,
-} from './highcharts.service';
 import { TsChartComponent } from './chart.component';
-import { TsChartSeriesDirective } from './series.directive';
-import { TsChartPointDirective } from './point.directive';
+import { TsAmChartsService, TS_AMCHARTS_TOKEN } from './amcharts.service';
 
 export * from './chart.component';
-export * from './options.interface';
-export * from './highcharts.service';
-export * from './chart.event';
-export * from './series.directive';
-export * from './point.directive';
-export * from './utilities/compose-events';
+export { TsAmChartsToken } from './amcharts.service';
 
 
 @NgModule({
@@ -23,23 +13,19 @@ export * from './utilities/compose-events';
     CommonModule,
   ],
   providers: [
-    HighchartsService,
+    TsAmChartsService,
     {
       // This injection token will be overriden by the user.
-      // It will provide the user-assembled Highcharts library.
-      provide: HIGHCHARTS,
+      // It will provide the amCharts core library and chart library
+      provide: TS_AMCHARTS_TOKEN,
       useValue: null,
     },
   ],
   declarations: [
     TsChartComponent,
-    TsChartSeriesDirective,
-    TsChartPointDirective,
   ],
   exports: [
     TsChartComponent,
-    TsChartSeriesDirective,
-    TsChartPointDirective,
   ],
 })
 export class TsChartModule {}
