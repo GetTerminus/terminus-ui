@@ -15,27 +15,8 @@
   // Top level styles should be nested here
   .c-validation-message {
     @include typography('caption');
+    color: color(warn);
     z-index: z('tooltip');
-  }
-
-  // Primary message container
-  .mat-error {
-    margin-top: .6em;
-    padding: .3em .4em .2em;
-    position: absolute;
-    top: 90%;
-
-    // Adjust the vertical layout when inside a radio button component
-    .c-radio & {
-      position: initial;
-      top: initial;
-    }
-  }
-
-  // When the input has an icon prefix, we need to cancel out the space added on the left to retain
-  // alignment
-  .mat-input-prefix + .mat-input-infix .mat-error {
-    margin-left: -16px;
   }
 }
 
@@ -50,9 +31,19 @@
 .ts-validation-messages {
   .ts-file-upload & {
     .c-validation-message {
-      margin-top: unset;
-      position: initial;
-      top: initial;
+      padding: .3em .4em .2em;
+    }
+  }
+}
+
+// Adjust the vertical layout when inside a radio button component
+.ts-validation-messages {
+  .c-select & {
+    .c-validation-message {
+      margin-top: .6em;
+      padding: .3em .4em .2em 0;
+      position: absolute;
+      top: 90%;
     }
   }
 }

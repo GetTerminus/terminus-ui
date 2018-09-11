@@ -14,7 +14,11 @@ import {
   ViewEncapsulation,
   isDevMode,
 } from '@angular/core';
-import { inputHasChanged } from '@terminus/ngx-tools';
+import {
+  coerceArray,
+  coerceBooleanProperty,
+} from '@terminus/ngx-tools/coercion';
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 
 import { TsAmChartsService, TsAmChartsToken } from './amcharts.service';
 
@@ -113,17 +117,26 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Initialize the chart if amCharts exists
    */
-  public ngOnInit(): void {
-    // Don't initialize a chart if the Highcharts library wasn't passed in.
-    if (this.amCharts) {
-      this.init(this.visualization);
-      // istanbul ignore else
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        console.error(
-          'TsChartComponent: The amCharts library was not provided via injection token!',
-        );
+  public ngOnChanges(changes: SimpleChanges): void {
+    // istanbul ignore else
+    if (this.instance) {
+      if (inputHasChanged(changes, 'visualization') && !changes.visualization.isFirstChange()) {
+        this.destroyChart();
+        this.init();
+      }
+      if (inputHasChanged(changes, 'options')) {
+        this.instance.update(composeOptions(this, changes.options.currentValue));
+      }
+
+      if (inputHasChanged(changes, 'data')) {
+        this.instance.update(composeOptions(this, changes.data.currentValue));
+      }
+
+      // If there is a change to the stock controls display, we need to regenerate the chart with a
+      // new initializer call
+      if (inputHasChanged(changes, 'addStockControls') && !changes.addStockControls.isFirstChange()) {
+        this.destroyChart();
+        this.init();
       }
     }
   }

@@ -51,11 +51,61 @@ describe(`ChartComponent`, () => {
 
   describe(`ngOnChanges`, () => {
 
-    test(`should should destroy and reinit when the visualization changes`, () => {
-      const fixture = createComponent(VisualizationsHost);
-      fixture.detectChanges();
-      fixture.componentInstance.component['destroyChart'] = jest.fn();
-      fixture.componentInstance.component['init'] = jest.fn();
+    beforeEach(() => {
+      component['instance'] = instanceMock;
+      component['destroyChart'] = jest.fn();
+      component['init'] = jest.fn();
+      component['instance'].update = jest.fn();
+    });
+
+
+    test(`should destroy and reinitialize the chart if the visualization changes`, () => {
+      const changesMock: SimpleChanges = {
+        visualization: new SimpleChange('bar', 'line', false),
+      };
+      component.ngOnChanges(changesMock);
+
+      expect(component['destroyChart']).toHaveBeenCalled();
+      expect(component['init']).toHaveBeenCalled();
+    });
+
+
+    test(`should update the chart if options change`, () => {
+      const newOptions: TsChartOptions = {legend: {enabled: false}};
+      const changesMock: SimpleChanges = {
+        options: new SimpleChange({}, newOptions, false),
+      };
+      component.ngOnChanges(changesMock);
+
+      expect(component['instance'].update).toHaveBeenCalledWith(expect.any(Object));
+    });
+
+
+    test(`should update the chart if data changes`, () => {
+      const newData: TsChartData = [{data: ['foo']}];
+      const changesMock: SimpleChanges = {
+        data: new SimpleChange({}, newData, false),
+      };
+      component.ngOnChanges(changesMock);
+
+      expect(component['instance'].update).toHaveBeenCalledWith(expect.any(Object));
+    });
+
+
+    test(`should destroy and reinitialize the chart if the stock controls value changes`, () => {
+      const changesMock: SimpleChanges = {
+        addStockControls: new SimpleChange(false, true, false),
+      };
+      component.ngOnChanges(changesMock);
+
+      expect(component['destroyChart']).toHaveBeenCalled();
+      expect(component['init']).toHaveBeenCalled();
+    });
+
+  });
+
+
+  describe(`ngAfterViewInit`, () => {
 
       fixture.componentInstance.visualization = 'pie';
       fixture.detectChanges();

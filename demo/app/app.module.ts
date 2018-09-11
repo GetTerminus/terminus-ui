@@ -49,7 +49,6 @@ import {
   TsConfirmationModule,
   TsCopyModule,
   TsCSVEntryModule,
-  TsDatepickerModule,
   TsDateRangeModule,
   TsFileUploadModule,
   TsIconButtonModule,
@@ -58,7 +57,6 @@ import {
   TsLinkModule,
   TsLoadingOverlayModule,
   TsLoginFormModule,
-  TsMaskModule,
   TsMenuModule,
   TsNavigationModule,
   TsPaginatorModule,
@@ -97,7 +95,6 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { CopyComponent } from './components/copy/copy.component';
 import { CSVEntryComponent } from './components/csv-entry/csv-entry.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
-import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -105,7 +102,6 @@ import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { MaskComponent } from './components/mask/mask.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
@@ -150,7 +146,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCopyModule,
     TsCSVEntryModule,
     TsDateRangeModule,
-    TsDatepickerModule,
     TsFileUploadModule,
     TsIconButtonModule,
     TsIconModule,
@@ -158,7 +153,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsLinkModule,
     TsLoadingOverlayModule,
     TsLoginFormModule,
-    TsMaskModule,
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
@@ -199,7 +193,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     CopyComponent,
     CSVEntryComponent,
     DateRangeComponent,
-    DatepickerComponent,
     FileUploadComponent,
     IconButtonComponent,
     IconComponent,
@@ -207,7 +200,6 @@ import { ValidationComponent } from './components/validation/validation.componen
     LinkComponent,
     LoadingOverlayComponent,
     LoginFormComponent,
-    MaskComponent,
     MenuComponent,
     NavigationComponent,
     PaginatorComponent,

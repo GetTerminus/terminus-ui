@@ -139,7 +139,7 @@
     "@angular/platform-browser": "^6.0.7",
     "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/router": "^6.0.7",
-    "@terminus/ngx-tools": "^2.23.0",
+    "@terminus/ngx-tools": "^2.25.2",
     "@terminus/ui": "^8.13.1",
     "date-fns": "2.0.0-alpha.7",
     "ngx-perfect-scrollbar": "^6.2.1",
