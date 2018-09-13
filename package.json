@@ -90,10 +90,10 @@
     ]
   },
   "publishConfig": {
-    "tag": "next"
+    "tag": "legacy"
   },
   "release": {
-    "branch": "master",
+    "branch": "8.x.x",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
@@ -101,7 +101,9 @@
       "@semantic-release/github"
     ],
     "prepare": [
-      "@semantic-release/changelog"
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github"
     ],
     "publish": [
       {
@@ -115,9 +117,6 @@
       },
       {
         "path": "@semantic-release/github",
-        "assets": [
-          "CHANGELOG.md"
-        ],
         "npmPublish": false
       }
     ]
