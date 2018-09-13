@@ -317,8 +317,6 @@ describe(`TsDateRangeComponent`, () => {
       expect(component.isDisabled).toEqual(true);
     });
 
-    });
-
   });
 
-})
+});

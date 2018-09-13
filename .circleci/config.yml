@@ -39,6 +39,9 @@ jobs:
           name: Run Tests
           command: tooling/ci/test-unit.sh
 
+      - store_test_results:
+          path: coverage/junit/
+
       - run:
           name: Test AoT Demo App Build
           command: yarn run build:app:ci

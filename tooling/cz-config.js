@@ -59,18 +59,6 @@ module.exports = {
     {name: 'CI'},
   ],
 
-  // it needs to match the value for field type. Eg.: 'fix'
-  /*
-  scopeOverrides: {
-    fix: [
-      {name: 'merge'},
-      {name: 'style'},
-      {name: 'e2eTest'},
-      {name: 'unitTest'}
-    ]
-  },
-  */
-
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert', 'chore']
 
