@@ -76,6 +76,17 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
+
+    test(`should return a maxLength message`, () => {
+      const validatorValueMock = {
+        actual: '3:12',
+      };
+      const actual = service.getValidatorErrorMessage('imageRatio', validatorValueMock);
+      const expected = `3:12 is not an allowed image ratio.`;
+
+      expect(actual).toEqual(expected);
+    });
+
   });
 
 });

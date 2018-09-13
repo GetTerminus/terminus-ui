@@ -405,7 +405,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
     // Notify consumers about changes
     this.optionSelected.emit(event.option.value);
-    this.selection.emit(this.selectedOptions);
+    this.selection.emit(this.selectedOptions.slice(0));
   }
 
 
@@ -434,7 +434,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
     // Notify consumers about changes
     this.optionRemoved.emit(option);
-    this.selection.emit(this.selectedOptions);
+    this.selection.emit(this.selectedOptions.slice(0));
   }
 
 
