@@ -11,7 +11,6 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
 import { CSVEntryComponent } from './csv-entry/csv-entry.component';
 import { DateRangeComponent } from './date-range/date-range.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconComponent } from './icon/icon.component';
@@ -19,7 +18,6 @@ import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { MaskComponent } from './mask/mask.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginatorComponent } from './paginator/paginator.component';
@@ -111,13 +109,6 @@ export const componentsList: Routes = [
     },
   },
   {
-    path: 'datepicker',
-    component: DatepickerComponent,
-    data: {
-      name: 'Datepicker',
-    },
-  },
-  {
     path: 'date-range',
     component: DateRangeComponent,
     data: {
@@ -171,13 +162,6 @@ export const componentsList: Routes = [
     component: LoginFormComponent,
     data: {
       name: 'Login Form',
-    },
-  },
-  {
-    path: 'mask',
-    component: MaskComponent,
-    data: {
-      name: 'Mask',
     },
   },
   {

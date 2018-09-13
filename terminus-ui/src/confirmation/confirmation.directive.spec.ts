@@ -12,7 +12,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  dispatchKeyboardEvent,
   expectNativeEl,
 } from '@terminus/ngx-tools/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -20,7 +19,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { CommonModule } from '@angular/common';
-import { ESCAPE } from '@terminus/ngx-tools/keycodes';
 
 import { TsButtonComponent } from './../button/button.component';
 import { TsConfirmationDirective } from './confirmation.directive';
@@ -170,7 +168,8 @@ describe(`TsConfirmationDirective`, () => {
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
 
-      dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
+      directive['overlayRef']['_backdropClick'].next(new Event('click'));
+      fixture.detectChanges();
 
       expect(directive['overlayRef']!.hasAttached()).toEqual(false);
     });
@@ -207,4 +206,3 @@ describe(`TsConfirmationDirective`, () => {
   });
 
 });
-

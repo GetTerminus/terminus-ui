@@ -24,7 +24,6 @@ import {
   FormControl,
 } from '@angular/forms';
 import {
-  inputHasChanged,
   TsDocumentService,
   untilComponentDestroyed,
   isNumber,
@@ -37,6 +36,7 @@ import {
 import { ENTER } from '@terminus/ngx-tools/keycodes';
 import { filter } from 'rxjs/operators';
 
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 import { TS_SPACING } from './../spacing/spacing.constant';
 import { isDragEvent } from './../utilities/type-coercion/is-drag-event';
 import { isHTMLInputElement } from './../utilities/type-coercion/is-html-input-element';

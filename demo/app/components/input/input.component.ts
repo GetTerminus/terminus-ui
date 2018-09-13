@@ -17,12 +17,31 @@ export class InputComponent {
   clearable = true;
   icon = 'home';
   model1 = 'A seeded value';
-  myValue!: string;
+  myValue: string | undefined;
+  myDatepickerValue: string | Date = new Date(2018, 2, 2);
   shouldDisable = false;
+  activeMask = 'none';
+  masks: any[] = [
+    'none',
+    'currency',
+    'date',
+    'number',
+    'percentage',
+    'phone',
+    'postal',
+  ];
+  sanitizeValue = false;
+  allowDecimal = true;
+  hideRequiredMarker = false;
+  isClearable = false;
+  isDisabled = false;
+  isFocused = false;
+  isReadonly = false;
   myForm: FormGroup = this.formBuilder.group({
     name: [
       null,
       [
+        Validators.required,
       ],
     ],
     email: [
@@ -32,11 +51,16 @@ export class InputComponent {
         this.validatorsService.email(),
       ],
     ],
-    password: [
-      null,
+    phone: [
+      '1234567890',
       [
         Validators.required,
-        this.validatorsService.password(),
+      ],
+    ],
+    myDate: [
+      new Date(2018, 5, 1),
+      [
+        Validators.required,
       ],
     ],
   });
@@ -60,11 +84,11 @@ export class InputComponent {
     console.log('Demo submit!: ', v);
   }
 
-  update() {
-    const ctrl = this.myForm.get('name');
-
-    if (ctrl) {
-      ctrl.setValue(Math.random().toString(36).substring(7));
+  updateLabel() {
+    if (this.label1.length < 10) {
+      this.label1 = 'My really long input label that will test the responsive nature..';
+    } else {
+      this.label1 = 'My Input';
     }
   }
 

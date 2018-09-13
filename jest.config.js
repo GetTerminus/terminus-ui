@@ -19,6 +19,7 @@ module.exports = {
   "transformIgnorePatterns": [
     "node_modules/(?!@ngrx)",
   ],
+  "reporters": ["default", [ "jest-junit", { output: "./coverage/junit/report.xml" } ]],
   "clearMocks": true,
   "collectCoverageFrom": [
     "terminus-ui/src/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts",

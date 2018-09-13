@@ -25,7 +25,6 @@ module.exports = {
     {name: 'Confirmation'},
     {name: 'Copy'},
     {name: 'CSVEntry'},
-    {name: 'Datepicker'},
     {name: 'DateRange'},
     {name: 'FileUpload'},
     {name: 'Icon'},
@@ -34,7 +33,6 @@ module.exports = {
     {name: 'Link'},
     {name: 'LoadingOverlay'},
     {name: 'LoginForm'},
-    {name: 'Mask'},
     {name: 'Menu'},
     {name: 'Navigation'},
     {name: 'Paginator'},
@@ -60,18 +58,6 @@ module.exports = {
     {name: 'Packages'},
     {name: 'CI'},
   ],
-
-  // it needs to match the value for field type. Eg.: 'fix'
-  /*
-  scopeOverrides: {
-    fix: [
-      {name: 'merge'},
-      {name: 'style'},
-      {name: 'e2eTest'},
-      {name: 'unitTest'}
-    ]
-  },
-  */
 
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert', 'chore']

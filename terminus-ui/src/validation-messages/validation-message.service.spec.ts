@@ -28,6 +28,7 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
+
     test(`should return an error message when supplied lowercase letters less than required`, () => {
       const validatorValueMock = {
         lowercase: 4,
@@ -37,6 +38,7 @@ describe(`TsValidationMessageService`, () => {
 
       expect(actual).toEqual(expected);
     });
+
 
     test(`should return a maxLength message`, () => {
       const validatorValueMock = {
@@ -72,6 +74,17 @@ describe(`TsValidationMessageService`, () => {
       };
       const actual = service.getValidatorErrorMessage('minDate', validatorValueMock);
       const expected = `Date must be after ${format(minDate, 'M/D/YYYY')}`;
+
+      expect(actual).toEqual(expected);
+    });
+
+
+    test(`should return a maxLength message`, () => {
+      const validatorValueMock = {
+        actual: '3:12',
+      };
+      const actual = service.getValidatorErrorMessage('imageRatio', validatorValueMock);
+      const expected = `3:12 is not an allowed image ratio.`;
 
       expect(actual).toEqual(expected);
     });

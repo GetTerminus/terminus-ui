@@ -57,11 +57,11 @@ export class TsDatePipe implements PipeTransform {
     // Set the formatted date or an empty string if no format is matched
     const dateString =
       (format === 'short')
-      ? formatDate(date, 'MM/DD/YYYY')
+      ? formatDate(date, 'MM/dd/YYYY')
       : (format === 'medium')
-      ? formatDate(date, 'MMM D YYYY')
+      ? formatDate(date, 'MMM d YYYY')
       : (format === 'extended')
-      ? formatDate(date, 'MMM D YYYY h:mm:ssa')
+      ? formatDate(date, 'MMM d YYYY h:mm:ssa')
       : (format === 'timestamp')
       ? new Date(date).toISOString()
       // NOTE: Final case is untestable since it would be caught by the `if` above
