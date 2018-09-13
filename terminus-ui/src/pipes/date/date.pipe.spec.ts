@@ -70,7 +70,7 @@ describe(`TsDatePipe`, () => {
 
     it(`should format a date`, () => {
       const actual = pipe(date, 'extended');
-      const expected = 'Feb 8 2018 12:00:00am';
+      const expected = 'Feb 8 2018 12:00:00AM';
 
       expect(actual).toEqual(expected);
     });

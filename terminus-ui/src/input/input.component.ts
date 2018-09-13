@@ -1362,7 +1362,7 @@ export class TsInputComponent
         let stringifiedDate: string | undefined;
 
         if (this.mask === 'date') {
-          stringifiedDate = this.isValidDateString(value) ? formatDate(value, 'MM-DD-YYYY') : value;
+          stringifiedDate = this.isValidDateString(value) ? formatDate(value, 'MM-dd-YYYY') : value;
         }
 
         value = stringifiedDate || value;

@@ -160,7 +160,7 @@
 </ng-template>
 
 
-<ts-card flat="true">
+<ts-card flat="true" tsVerticalSpacing>
   <p>
     FLAT CARD Repellat alias explicabo voluptatibus nesciunt. Optio maxime delectus ex aspernatur quidem. Dolorem nihil eos cum.
   </p>
@@ -173,3 +173,12 @@
     Officia voluptatum consequuntur rem quo. Fugiat mollitia maiores tempora et. Culpa distinctio ipsum blanditiis.
   </p>
 </ts-card>
+
+
+<ts-card flat="true" #transitionCard="tsCard">
+  <h3 tsVerticalSpacing>Example showing transition</h3>
+
+  <button (click)="changeCardHeight()">Change card height</button>
+</ts-card>
+
+<br><br><br><br>

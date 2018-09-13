@@ -497,6 +497,7 @@ describe(`TsInputComponent`, () => {
 
         const inputElement = getInputElement(fixture);
         typeInElement('11111111', inputElement);
+        fixture.detectChanges();
 
         expect(inputElement.value).toEqual('11-11-1111');
         const controlValue = fixture.componentInstance.formControl.value;
