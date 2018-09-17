@@ -57,7 +57,7 @@
     "@angular/forms": "^6.1.7",
     "@angular/platform-browser": "^6.1.7",
     "@angular/router": "^6.1.7",
-    "@terminus/ngx-tools": "^2.26.0",
+    "@terminus/ngx-tools": "^3.0.0",
     "date-fns": "2.0.0-alpha.16",
     "rxjs": "^6.3.2"
   },

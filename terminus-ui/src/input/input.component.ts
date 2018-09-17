@@ -28,7 +28,6 @@ import {
 } from '@angular/forms';
 import {
   hasRequiredControl,
-  isFunction,
   noop,
   TsDocumentService,
 } from '@terminus/ngx-tools';
@@ -142,6 +141,19 @@ const allowedMaskShorcuts: TsMaskShortcutOptions[] = [
   'postal',
   'default',
 ];
+
+
+/**
+ * Coerce a function type
+ *
+ * NOTE: This should be coming from the ngx-tools library, but the typings are not working for some reason when imported.
+ *
+ * @param item - The item to check
+ * @return Whether the item is a function
+ */
+function isFunction(item: any): item is Function {
+  return !!(item && item.constructor && item.call && item.apply);
+}
 
 
 // Unique ID for each instance
@@ -462,6 +474,12 @@ export class TsInputComponent
   @Input()
   public set datepicker(value: boolean) {
     this._datepicker = coerceBooleanProperty(value);
+
+    // When using a datepicker, we need to validate on change so that selecting a date from the calendar
+    // istanbul ignore else
+    if (this.datepicker) {
+      this.validateOnChange = true;
+    }
   }
   public get datepicker(): boolean {
     return this._datepicker;
@@ -1141,7 +1159,7 @@ export class TsInputComponent
       return value;
     } else {
       // If the unmask regex is a function, invoke it to get the plain regex
-      const finalRegex: RegExp = (regex && isFunction(regex)) ? regex() : regex;
+      const finalRegex: RegExp = isFunction(regex) ? regex() : regex;
       return finalRegex ? value.replace(new RegExp(finalRegex), '') : value;
     }
   }

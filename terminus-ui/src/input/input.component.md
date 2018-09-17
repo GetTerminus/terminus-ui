@@ -326,7 +326,7 @@ Masks enable the input to enforce specific formatting for values; such as postal
 | Mask         | Input value  | Masked Value     |
 |--------------|--------------|------------------|
 | `currency`   | `12.34`      | `$12.34`         |
-| `date`       | `12/12/1982` | `12/12/1982`     |
+| `date`       | `12121982`   | `12-12-1982`     |
 | `number`     | `1234.56`    | `1,234.56`       |
 | `percentage` | `12.4`       | `12.4%`          |
 | `phone`      | `1231231234` | `(123) 123-1234` |
