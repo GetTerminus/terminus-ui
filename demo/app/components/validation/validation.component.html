@@ -105,14 +105,15 @@ test@test.com
 
 
   <ts-card tsVerticalSpacing>
-    <h3 tsCardTitle>Date (min/max)</h3>
+    <h3 tsCardTitle tsVerticalSpacing="small--0">Date (min/max)</h3>
 
-    <!--
-       -<ts-datepicker
-       -  [formControl]="myForm.get('date')"
-       -  hint="Date must be between 1/5/2018 and 1/25/2018"
-       -></ts-datepicker>
-       -->
+    <ts-input
+      datepicker="date"
+      mask="date"
+      label="My date"
+      [formControl]="myForm.get('date')"
+      hint="Date must be between 1/5/2018 and 1/25/2018"
+    ></ts-input>
   </ts-card>
 
 
@@ -120,7 +121,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Greater Than</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than</h3>
 
         <ts-input
           [formControl]="myForm.get('greaterThan')"
@@ -133,7 +134,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Greater Than Or Equal</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than Or Equal</h3>
 
         <ts-input
           [formControl]="myForm.get('greaterThanOrEqual')"
@@ -151,7 +152,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Less Than</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Less Than</h3>
 
         <ts-input
           [formControl]="myForm.get('lessThan')"
@@ -164,7 +165,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Less Than Or Equal</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Less Than Or Equal</h3>
 
         <ts-input
           [formControl]="myForm.get('lessThanOrEqual')"
@@ -181,7 +182,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Contains lowercase</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains lowercase</h3>
 
         <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>
       </ts-card>
@@ -189,7 +190,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Contains uppercase</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains uppercase</h3>
 
         <ts-input [formControl]="myForm.get('uppercase')" hint="Must contain at least 4 uppercase"></ts-input>
       </ts-card>
@@ -197,7 +198,7 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle>Contains numbers</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains numbers</h3>
 
         <ts-input [formControl]="myForm.get('numbers')" hint="Must contain at least 4 numbers"></ts-input>
       </ts-card>
@@ -267,7 +268,7 @@ http:// shouldfail.com
       Example using a control as a validation source
     </h3>
 
-    <div fxLayout="row" fxLayoutGap="2em">
+    <div fxLayout="row" fxLayoutGap="2em" tsVerticalSpacing>
       <ts-input
         fxFlex
         [formControl]="myForm.get('greaterThanSource')"
@@ -287,4 +288,3 @@ http:// shouldfail.com
   </ts-card>
 
 </form>
-
