@@ -47,6 +47,7 @@
   "dependencies": {
     "@angular/cdk": "^6.4.7",
     "@angular/material": "^6.4.7",
+    "ngx-perfect-scrollbar": "^6.3.1",
     "text-mask-addons": "^3.8.0",
     "text-mask-core": "^5.1.2"
   },
