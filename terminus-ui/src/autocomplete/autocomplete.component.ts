@@ -294,7 +294,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       // istanbul ignore else
       if (this.selectionsControl && this.selectionsControl.setValue) {
         // Seed the formControl
-        this.selectionsControl.setValue(this.selectedOptions);
+        this.selectionsControl.setValue(this.selectedOptions.slice());
       }
     }
   }
@@ -405,7 +405,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
     // Notify consumers about changes
     this.optionSelected.emit(event.option.value);
-    this.selection.emit(this.selectedOptions.slice(0));
+    this.selection.emit(this.selectedOptions.slice());
   }
 
 
@@ -434,7 +434,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
     // Notify consumers about changes
     this.optionRemoved.emit(option);
-    this.selection.emit(this.selectedOptions.slice(0));
+    this.selection.emit(this.selectedOptions.slice());
   }
 
 
