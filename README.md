@@ -193,7 +193,7 @@ Install the library and required dependencies:
 $ yarn add @terminus/ui @terminus/ngx-tools
 
 # Peer dependencies that will need to be installed (needed by UI and tools libraries):
-$ yarn add @angular/flex-layout@6.0.0-beta.18 date-fns@2.0.0-alpha.16 @ngrx/effects @ngrx/store
+$ yarn add @angular/flex-layout@6.0.0-beta.18 date-fns@2.0.0-alpha.16 @ngrx/effects @ngrx/store hammerjs
 
 # Optional dependencies (needed if using the TsChartComponent):
 $yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
