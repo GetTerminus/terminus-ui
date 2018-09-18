@@ -72,8 +72,8 @@
     "lib": {
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
-        "@angular/material": "angular.material",
-        "@angular/cdk": "angular.cdk",
+        "@angular/material": "ng.material",
+        "@angular/cdk": "ng.cdk",
         "@terminus/ngx-tools": "terminus.ngxTools",
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
         "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
