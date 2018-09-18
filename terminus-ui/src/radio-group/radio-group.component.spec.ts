@@ -6,7 +6,6 @@ import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
 import {
   TsRadioGroupComponent,
-  CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR,
   TsRadioOption,
   TsRadioFormatFn,
 } from './radio-group.component';
@@ -55,15 +54,6 @@ describe('TsRadioGroupComponent', () => {
 
   test(`should exist`, () => {
     expect(component).toBeTruthy();
-  });
-
-
-  describe(`Custom radio control value accessor`, () => {
-
-    test(`should forward a reference to this component`, () => {
-      expect(CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsRadioGroupComponent);
-    });
-
   });
 
 

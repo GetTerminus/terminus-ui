@@ -7,7 +7,6 @@ import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 import {
   TsSelectComponent,
   TsSelectFormatFn,
-  CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR,
 } from './select.component';
 
 
@@ -38,15 +37,6 @@ describe(`TsSelectComponent`, () => {
 
   it(`should exist`, () => {
     expect(component).toBeTruthy();
-  });
-
-
-  describe(`Custom select control value accessor`, () => {
-
-    it(`should forward a reference to this component`, () => {
-      expect(CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsSelectComponent);
-    });
-
   });
 
 

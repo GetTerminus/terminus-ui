@@ -1,7 +1,4 @@
-import {
-  TsToggleComponent,
-  CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR,
-} from './toggle.component';
+import { TsToggleComponent } from './toggle.component';
 
 
 describe(`ToggleComponent`, () => {
@@ -14,15 +11,6 @@ describe(`ToggleComponent`, () => {
 
   test(`should exist`, () => {
     expect(component).toBeTruthy();
-  });
-
-
-  describe(`Custom select control value accessor`, () => {
-
-    test(`should forward a reference to this component`, () => {
-      expect(CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsToggleComponent);
-    });
-
   });
 
 

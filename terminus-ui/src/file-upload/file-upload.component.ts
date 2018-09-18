@@ -8,6 +8,7 @@ import {
   HostBinding,
   HostListener,
   Input,
+  isDevMode,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -15,18 +16,15 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
-  isDevMode,
-  forwardRef,
 } from '@angular/core';
 import {
-  ValidationErrors,
-  NG_VALUE_ACCESSOR,
   FormControl,
+  ValidationErrors,
 } from '@angular/forms';
 import {
+  isNumber,
   TsDocumentService,
   untilComponentDestroyed,
-  isNumber,
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
@@ -36,6 +34,7 @@ import {
 import { ENTER } from '@terminus/ngx-tools/keycodes';
 import { filter } from 'rxjs/operators';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 import { TS_SPACING } from './../spacing/spacing.constant';
 import { isDragEvent } from './../utilities/type-coercion/is-drag-event';
@@ -46,6 +45,7 @@ import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
 import { TsDropProtectionService } from './drop-protection.service';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
+
 
 export interface ImageRatio {
   widthRatio: number;
@@ -64,17 +64,6 @@ const MAXIMUM_KILOBYTES_PER_FILE = 10 * 1024;
  */
 let nextUniqueId = 0;
 
-/**
- * Custom control value accessor for our component.
- * This allows our custom components to access the underlying form validation via our base class
- */
-/* tslint:disable:no-use-before-declare */
-const CUSTOM_FILE_UPLOAD_INPUT_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsFileUploadComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
 
 /**
  * This is the file-upload UI Component
@@ -119,7 +108,7 @@ const CUSTOM_FILE_UPLOAD_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     class: 'ts-file-upload',
     '(keydown)': 'handleKeydown($event)',
   },
-  providers: [CUSTOM_FILE_UPLOAD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [ControlValueAccessorProviderFactory(TsFileUploadComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsFileUpload',

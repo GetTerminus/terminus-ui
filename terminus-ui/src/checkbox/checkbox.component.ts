@@ -7,15 +7,14 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
-  forwardRef,
 } from '@angular/core';
 import {
   MatCheckbox,
   MatCheckboxChange,
 } from '@angular/material/checkbox';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
@@ -30,19 +29,6 @@ export class TsCheckboxChange extends MatCheckboxChange {}
  * Unique ID for each instance
  */
 let nextUniqueId = 0;
-
-
-/**
- * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via the base class
- */
-/* tslint:disable:no-use-before-declare */
-export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsCheckboxComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -71,7 +57,7 @@ export const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-checkbox',
   },
-  providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  providers: [ControlValueAccessorProviderFactory(TsCheckboxComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCheckbox',
