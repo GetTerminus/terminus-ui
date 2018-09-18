@@ -1,16 +1,15 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
-  forwardRef,
-  ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
@@ -19,19 +18,6 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
  * Expose the MatSlideToggleChange event as TsSlideToggleChange. Used by {@link TsToggleComponent}
  */
 export class TsSlideToggleChange extends MatSlideToggleChange {}
-
-
-/**
- * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via our base class
- */
-/* tslint:disable:no-use-before-declare */
-export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsToggleComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -61,7 +47,7 @@ export const CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-toggle',
   },
-  providers: [CUSTOM_TOGGLE_CONTROL_VALUE_ACCESSOR],
+  providers: [ControlValueAccessorProviderFactory(TsToggleComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

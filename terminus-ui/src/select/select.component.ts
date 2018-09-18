@@ -4,14 +4,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
   Output,
   ViewEncapsulation,
-  forwardRef,
-  isDevMode,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   hasRequiredControl,
@@ -20,6 +18,7 @@ import {
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 
@@ -28,19 +27,6 @@ import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
  * Expose the formatter function type
  */
 export type TsSelectFormatFn = (v: any) => string;
-
-
-/**
- * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via our base class
- */
-/* tslint:disable:no-use-before-declare */
-export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsSelectComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
 
 
 /**
@@ -74,7 +60,7 @@ export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-select',
   },
-  providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
+  providers: [ControlValueAccessorProviderFactory(TsSelectComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsSelect',

@@ -7,7 +7,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   isDevMode,
   NgZone,
@@ -24,7 +23,6 @@ import {
 import {
   ControlValueAccessor,
   FormControl,
-  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import {
   hasRequiredControl,
@@ -47,6 +45,7 @@ import {
 } from '@angular/material/core';
 import { format as formatDate, isValid as isValidDate } from 'date-fns';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import {
   TS_DATE_FORMATS,
   TsDateAdapter,
@@ -170,11 +169,13 @@ const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
  * This allows our custom components to access the underlying form validation via our base class
  */
 /* tslint:disable:no-use-before-declare */
-export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsInputComponent),
-  multi: true,
-};
+/*
+ *export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+ *  provide: NG_VALUE_ACCESSOR,
+ *  useExisting: forwardRef(() => TsInputComponent),
+ *  multi: true,
+ *};
+ */
 /* tslint-enable: no-use-before-declare */
 
 
@@ -239,7 +240,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     class: 'ts-input',
   },
   providers: [
-    CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR,
+    ControlValueAccessorProviderFactory(TsInputComponent),
     {
       provide: DateAdapter,
       useClass: TsDateAdapter,

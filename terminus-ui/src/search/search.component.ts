@@ -42,7 +42,7 @@ export interface TsSearchResponse {
  *
  * @example
  * <ts-search
- *              autoSubmit="true
+ *              autoSubmit="true"
  *              initialValue="My starting value"
  *              inputLabel="Search for a tactic"
  *              inputHint="Enter at least 17 characters"

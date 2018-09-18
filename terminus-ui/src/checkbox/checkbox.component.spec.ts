@@ -7,10 +7,7 @@ import {
   configureTestBedWithoutReset,
 } from '@terminus/ngx-tools/testing';
 
-import {
-  TsCheckboxComponent,
-  CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR,
-} from './checkbox.component';
+import { TsCheckboxComponent } from './checkbox.component';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsCheckboxModule } from './checkbox.module';
 
@@ -163,15 +160,6 @@ describe(`TsCheckboxComponent`, () => {
 
   it(`should exist`, () => {
     expect(component).toBeTruthy();
-  });
-
-
-  describe(`Custom checkbox control value accessor`, () => {
-
-    it(`should forward a reference to this component`, () => {
-      expect(CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR.useExisting()).toEqual(TsCheckboxComponent);
-    });
-
   });
 
 

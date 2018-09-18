@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  forwardRef,
   Input,
   isDevMode,
   OnDestroy,
@@ -11,16 +10,16 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import {
-  isFunction,
   hasRequiredControl,
+  isFunction,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.component';
 
@@ -62,19 +61,6 @@ let nextUniqueId = 0;
 
 
 /**
- * Custom control value accessor for our component
- * This allows our custom components to access the underlying form validation via the base class
- */
-/* tslint:disable:no-use-before-declare */
-export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TsRadioGroupComponent),
-  multi: true,
-};
-/* tslint-enable: no-use-before-declare */
-
-
-/**
  * This is the radio UI Component
  *
  * #### QA CSS CLASSES
@@ -103,7 +89,7 @@ export const CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR: any = {
   host: {
     class: 'ts-radio-group',
   },
-  providers: [CUSTOM_RADIO_CONTROL_VALUE_ACCESSOR],
+  providers: [ControlValueAccessorProviderFactory(TsRadioGroupComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsRadioGroup',
