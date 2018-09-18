@@ -59,6 +59,7 @@ let nextUniqueId = 0;
   styleUrls: ['./checkbox.component.scss'],
   host: {
     class: 'ts-checkbox',
+    '[attr.id]': 'id',
   },
   providers: [ControlValueAccessorProviderFactory(TsCheckboxComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -105,8 +106,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Toggle the underlying checkbox if the isChecked property changes
    */
   @Input()
-  public set isChecked(v: boolean) {
-    this._isChecked = coerceBooleanProperty(v);
+  public set isChecked(value: boolean) {
+    this._isChecked = coerceBooleanProperty(value);
     this.value = this._isChecked;
     this.checkbox.checked = this._isChecked;
     this.changeDetectorRef.detectChanges();

@@ -191,11 +191,14 @@ $typography-body-levels: (
     @if $level == 1 {
       font-weight: 300;
 
+      // TODO: overwrite in files rather than this nested chain (too specific) https://github.com/GetTerminus/terminus-ui/issues/1152
       // Don't apply custom line-height to buttons
       &:not(.c-button) {
         &:not(.c-input) {
           &:not(.c-select) {
-            line-height: 20px;
+            &:not(.ts-checkbox) {
+              line-height: 20px;
+            }
           }
         }
       }
@@ -203,11 +206,6 @@ $typography-body-levels: (
 
     @if $level == 2 {
       font-weight: 500;
-
-      // Don't apply custom line-height to buttons
-      &:not(.c-button) {
-        line-height: 24px;
-      }
     }
   }
 

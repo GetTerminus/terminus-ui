@@ -5,15 +5,16 @@
     <ts-select
       class="qa-paginator-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
-      formFieldAppearance="legacy"
-      [items]="recordsPerPageChoices"
-      name="recordsPerPageChoices"
-      [label]="recordsSelectLabel"
-      [ngClass]="{'disabled': disableRecordsPerPage(totalRecords, recordsPerPageChoices)}"
       [(ngModel)]="recordsPerPage"
+      [label]="recordsSelectLabel"
+      [isDisabled]="disableRecordsPerPage(totalRecords, recordsPerPageChoices)"
       (selectionChange)="recordsPerPageUpdated($event)"
-      ngDefaultControl
-    ></ts-select>
+    >
+      <ts-select-option
+        [value]="count"
+        *ngFor="let count of recordsPerPageChoices"
+      >{{ count }}</ts-select-option>
+    </ts-select>
 
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : firstPageTooltip">

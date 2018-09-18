@@ -4,9 +4,8 @@ import {
 } from '@angular/core';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
-import {
-  TsPaginatorComponent,
-} from './paginator.component';
+import { TsSelectComponent, TsSelectChange } from '../select/select.component';
+import { TsPaginatorComponent } from './paginator.component';
 
 
 describe(`TsPaginatorComponent`, () => {
@@ -254,8 +253,9 @@ describe(`TsPaginatorComponent`, () => {
       component['initialize'] = jest.fn();
       component.totalRecords = TOTAL_RECORDS;
       component.ngAfterViewInit();
+      const change = new TsSelectChange({} as TsSelectComponent, 25);
 
-      component.recordsPerPageUpdated(25);
+      component.recordsPerPageUpdated(change);
 
       expect(component.recordsPerPage).toEqual(25);
       expect(component.currentPageIndex).toEqual(0);

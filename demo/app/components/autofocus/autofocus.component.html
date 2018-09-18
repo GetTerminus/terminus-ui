@@ -4,11 +4,13 @@
   <div style="max-width: 20rem;">
     <ts-select
       [(ngModel)]="example"
-      [items]="items"
       label="Change binding example"
-      [formatUIFn]="uiFormatFn"
-      [formatModelValueFn]="uiModelFn"
-    ></ts-select>
+    >
+      <ts-select-option
+        [value]="item.value"
+        *ngFor="let item of items"
+      >{{ item.name }}</ts-select-option>
+    </ts-select>
   </div>
 </ts-card>
 

@@ -2,6 +2,9 @@ import { NativeDateAdapter } from '@angular/material/core';
 import { isValid as isValidDate } from 'date-fns';
 
 
+/**
+ * Define date formats to be used with the custom date adapter
+ */
 export const TS_DATE_FORMATS = {
   parse: {
     dateInput: {
@@ -30,7 +33,7 @@ export const TS_DATE_FORMATS = {
 
 
 /**
- * Custom date adapter for the Material Datepicker
+ * Custom date adapter for the underlying Material Datepicker
  */
 export class TsDateAdapter extends NativeDateAdapter {
   /**
@@ -40,12 +43,23 @@ export class TsDateAdapter extends NativeDateAdapter {
    * @param date - The desired format (not currently using, but must match API)
    * @return The date string
    */
-  format(date: Date, displayFormat?: any): string {
+  public format(date: Date, displayFormat?: any): string {
     const day = this.forceTwoDigits(date.getDate());
     const month = this.forceTwoDigits(date.getMonth() + 1);
     const year = date.getFullYear();
 
     return `${month}-${day}-${year}`;
+  }
+
+
+  /**
+   * Check if a date is valid
+   *
+   * @param date - The date in question
+   * @return Whether it is valid
+   */
+  public isValid(date: Date): boolean {
+    return isValidDate(date) && !isNaN(date.getTime());
   }
 
 
@@ -57,16 +71,5 @@ export class TsDateAdapter extends NativeDateAdapter {
    */
   private forceTwoDigits(n: number): string {
     return ('00' + n).slice(-2);
-  }
-
-
-  /**
-   * Check if a date is valid
-   *
-   * @param date - The date in question
-   * @return Whether it is valid
-   */
-  isValid(date: Date): boolean {
-    return isValidDate(date) && !isNaN(date.getTime());
   }
 }

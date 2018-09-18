@@ -155,20 +155,20 @@ for each feature.
 
 #### Available Validators
 
-| Name                 | Purpose                                                       |
-|----------------------|---------------------------------------------------------------|
-| `creditCard`         | A credit card number must be valid                            |
-| `email`              | An email address must be valid                                |
-| `equalToControl`     | A control's value must be equal to another control's value    |
-| `greaterThan`        | A number must be greater than another value                   |
-| `greaterThanOrEqual` | A number must be greater than or equal to another value       |
-| `lessThan`           | A number must be less than another value                      |
-| `lessThanOrEqual`    | A number must be less than or equal to another value          |
-| `lowercase`          | A value must contain a minimum amount of lowercase characters |
-| `minDate`            | A date must be after a minimum date                           |
-| `maxDate`            | A date must be before a maximum date                          |
-| `password`           | A password must meet certain requirements                     |
-| `url`                | A URL must be valid                                           |
+| Name                 | Purpose                                                       | Status             |
+|----------------------|---------------------------------------------------------------|:------------------:|
+| `creditCard`         | A credit card number must be valid                            | :white_check_mark: |
+| `email`              | An email address must be valid                                | :white_check_mark: |
+| `equalToControl`     | A control's value must be equal to another control's value    | :white_check_mark: |
+| `greaterThan`        | A number must be greater than another value                   | :white_check_mark: |
+| `greaterThanOrEqual` | A number must be greater than or equal to another value       | :hankey:           |
+| `lessThan`           | A number must be less than another value                      | :white_check_mark: |
+| `lessThanOrEqual`    | A number must be less than or equal to another value          | :hankey:           |
+| `lowercase`          | A value must contain a minimum amount of lowercase characters | :white_check_mark: |
+| `minDate`            | A date must be after a minimum date                           | :white_check_mark: |
+| `maxDate`            | A date must be before a maximum date                          | :white_check_mark: |
+| `password`           | A password must meet certain requirements                     | :white_check_mark: |
+| `url`                | A URL must be valid                                           | :white_check_mark: |
 
 
 ### Constants
@@ -206,7 +206,7 @@ $ yarn add @terminus/ui @terminus/ngx-tools
 $ yarn add @angular/flex-layout@6.0.0-beta.18 date-fns@2.0.0-alpha.16 @ngrx/effects @ngrx/store hammerjs
 
 # Optional dependencies (needed if using the TsChartComponent):
-$yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
+$ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 ```
 
 

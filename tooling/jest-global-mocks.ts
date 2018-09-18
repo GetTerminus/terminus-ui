@@ -28,6 +28,7 @@ Object.defineProperty(console, 'warn', {
    }
  },
 });
+
 Object.defineProperty(window, 'matchMedia', {
   value: () => (
     {
@@ -37,6 +38,7 @@ Object.defineProperty(window, 'matchMedia', {
     }
   ),
 });
+
 Object.defineProperty(document.body.style, 'transform', {
   value: () =>
     ({

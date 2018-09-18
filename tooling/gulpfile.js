@@ -44,6 +44,7 @@ const config = {
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_layout.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_input-placeholder.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_z-index.scss'),
+        path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_menu.scss'),
         // Spacing must be after typography
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_spacing.scss'),
         path.join(rootFolder, 'terminus-ui', 'src/scss/helpers/_animation.scss'),

@@ -27,6 +27,7 @@ module.exports = {
     {name: 'CSVEntry'},
     {name: 'DateRange'},
     {name: 'FileUpload'},
+    {name: 'FormField'},
     {name: 'Icon'},
     {name: 'IconButton'},
     {name: 'Input'},

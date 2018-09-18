@@ -1,12 +1,13 @@
 import {
-  AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
+  Inject,
   Input,
   isDevMode,
   NgZone,
@@ -16,13 +17,14 @@ import {
   Optional,
   Output,
   Renderer2,
+  Self,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
   FormControl,
+  NgControl,
 } from '@angular/forms';
 import {
   hasRequiredControl,
@@ -43,9 +45,12 @@ import {
   DateAdapter,
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
-import { format as formatDate, isValid as isValidDate } from 'date-fns';
+import {
+  format as formatDate,
+  isValid as isValidDate,
+} from 'date-fns';
+import { Subject } from 'rxjs';
 
-import { ControlValueAccessorProviderFactory } from './../utilities/cva-provider-factory/cva-provider-factory';
 import {
   TS_DATE_FORMATS,
   TsDateAdapter,
@@ -53,13 +58,14 @@ import {
 import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TS_SPACING } from './../spacing/spacing.constant';
+import { TsFormFieldControl } from './../form-field/form-field.module';
+import { TS_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 
 
 /**
  * Define the function type for date filters. Used by {@link TsInputComponent}
  */
 export type TsDateFilterFunction = (d: Date) => boolean;
-
 
 /**
  * Define the allowed {@link TsInputComponent} input types
@@ -94,13 +100,13 @@ export type TsInputAutocompleteTypes
 /**
  * A function that returns an array of RegExp (used to determine postal code RegExp in {@link TsInputComponent})
  */
-export type TsMaskFunction = (value: string) => (RegExp|string)[];
+export type TsMaskFunction = (value: string) => (RegExp | string)[];
 
 /**
  * An individual mask definition. Used by {@link TsInputComponent}
  */
 export interface TsMask {
-  mask: (RegExp|string)[] | TsMaskFunction | false;
+  mask: (RegExp | string)[] | TsMaskFunction | false;
   unmaskRegex?: RegExp;
   pipe?: Function;
   guide?: boolean;
@@ -145,7 +151,8 @@ const allowedMaskShorcuts: TsMaskShortcutOptions[] = [
 /**
  * Coerce a function type
  *
- * NOTE: This should be coming from the ngx-tools library, but the typings are not working for some reason when imported.
+ * FIXME: This should be coming from the ngx-tools library, but the typings are not working for some reason when imported.
+ * https://github.com/GetTerminus/terminus-ui/issues/1156
  *
  * @param item - The item to check
  * @return Whether the item is a function
@@ -157,41 +164,19 @@ function isFunction(item: any): item is Function {
 
 // Unique ID for each instance
 let nextUniqueId = 0;
-const floatingLabelScale = 0.75;
-const outlineGapPadding = 5;
-const autocompleteDefault: TsInputAutocompleteTypes = 'on';
+const AUTOCOMPLETE_DEFAULT: TsInputAutocompleteTypes = 'on';
 const NUMBER_ONLY_REGEX: RegExp = /[^0-9]/g;
 const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
 
 
 /**
- * Custom control value accessor for our component.
- * This allows our custom components to access the underlying form validation via our base class
- */
-/* tslint:disable:no-use-before-declare */
-/*
- *export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
- *  provide: NG_VALUE_ACCESSOR,
- *  useExisting: forwardRef(() => TsInputComponent),
- *  multi: true,
- *};
- */
-/* tslint-enable: no-use-before-declare */
-
-
-/**
- * A presentational component to render a text input.
+ * A presentational component to render a text input
  *
  * #### QA CSS CLASSES
- * - `qa-input`: The container element
- * - `qa-input-container`: The container around the input
- * - `qa-input-label`: The label element
+ * - `qa-input-label-text`: The label text
  * - `qa-input-text`: The input element
  * - `qa-input-prefix-icon`: The icon element for the prefix icon, if one is set
- * - `qa-input-suffix-icon`: The icon element for the clickable "clear" icon, if this control is
- * clearable
- * - `qa-input-hint`: The hint element, if hint content is provided
- * - `qa-input-validation-messages`: The {@link TsValidationMessagesComponent} which will contain
+ * - `qa-input-suffix-icon`: The icon element for the clickable "clear" icon, if this control is clearable
  * - `qa-datepicker-calendar`: The calendar popup for the datepicker
  *
  * @example
@@ -199,35 +184,37 @@ const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
  *              autocapitalize="false"
  *              autocomplete="email"
  *              [dateFilter]="myFilterFunction"
+ *              datepicker="true"
  *              [formControl]="myForm.get('myControl')"
+ *              hasExternalFormField="true"
  *              hideRequiredMarker="false"
- *              hint="Fill this out!"
+ *              hint="My hint!"
  *              id="my-id"
  *              isClearable="true"
  *              isDisabled="false"
  *              isFocused="false"
  *              isRequired="false"
- *              label="My Input"
+ *              label="My Label Text"
  *              mask="phone"
  *              maskAllowDecimal="true"
  *              maskSanitizeValue="true"
  *              maxDate="{{ new Date(1990, 1, 1) }}"
  *              minDate="{{ new Date(1990, 1, 1) }}"
- *              openTo="{{ new Date(1990, 1, 1) }}"
- *              startingView="year"
  *              name="password"
- *              [(ngModel)]="myModel"
+ *              [(ngModel]="myModel"
+ *              openTo="{{ new Date(1990, 1, 1) }}"
  *              prefixIcon="icon_name"
  *              readOnly="false"
  *              spellcheck="false"
+ *              startingView="year"
  *              tabIndex="2"
  *              theme="primary"
  *              type="text"
  *              validateOnChange="false"
- *              (inputBlur)="userLeftInput($event)"
  *              (cleared)="userClearedInput($event)"
- *              (selected)="userSelectedFromCalendar($event)"
+ *              (inputBlur)="userLeftInput($event)"
  *              (inputFocus)="userFocusedInput($event)"
+ *              (selected)="userSelectedFromCalendar($event)"
  * ></ts-input>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -240,7 +227,10 @@ const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
     class: 'ts-input',
   },
   providers: [
-    ControlValueAccessorProviderFactory(TsInputComponent),
+    {
+      provide: TsFormFieldControl,
+      useExisting: TsInputComponent,
+    },
     {
       provide: DateAdapter,
       useClass: TsDateAdapter,
@@ -254,17 +244,35 @@ const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent
-  implements ControlValueAccessor, OnInit, AfterViewInit, AfterContentInit, AfterContentChecked, OnChanges, OnDestroy {
+export class TsInputComponent implements
+  TsFormFieldControl<any>,
+  OnInit,
+  AfterViewInit,
+  AfterContentInit,
+  DoCheck,
+  OnChanges,
+  OnDestroy {
   /**
    * Emits when the value changes (either due to user input or programmatic change). Need for Material Datepicker.
+   *
+   * NOTE: Underscore naming convention needed since that is what the Material datepicker will subscribe to.
    */
   public _valueChange: EventEmitter<Date | null> = new EventEmitter();
+
+  /**
+   * The aria-describedby attribute on the input for improved a11y
+   */
+  public ariaDescribedby: string | undefined;
 
   /**
    * Define if the input has been autofilled
    */
   public autofilled = false;
+
+  /**
+   * Define an InputValueAccessor for this component
+   */
+  private inputValueAccessor: {value: any};
 
   /**
    * Store the current mask
@@ -288,13 +296,15 @@ export class TsInputComponent
 
   /**
    * Define whether the input has focus
+   *
+   * Implemented as part of {@link TsFormFieldControl}
    */
   public focused = false;
 
   /**
-   * Define the internal data model
+   * Implemented as part of TsFormFieldControl.
    */
-  private innerValue: any = '';
+  readonly labelChanges: Subject<void> = new Subject<void>();
 
   /**
    * Store the last value for comparison
@@ -311,20 +321,18 @@ export class TsInputComponent
    */
   private onTouchedCallback: () => void = noop;
 
-  /**
-   * The defined width of the space before the input border gap begins
-   */
-  public outlineGapStart = 0;
+
+  private previousNativeValue: any;
 
   /**
-   * The defined width of the gap for the input border
+   * Reference to itself. Passed to {@link TsFormFieldComponent}.
    */
-  public outlineGapWidth = 0;
+  public selfReference: TsInputComponent = this;
 
   /**
-   * State of the hint and error animations
+   * Implemented as part of TsFormFieldControl.
    */
-  public subscriptAnimationState: string = '';
+  readonly stateChanges: Subject<void> = new Subject<void>();
 
   /**
    * Base settings for the mask
@@ -345,11 +353,10 @@ export class TsInputComponent
    */
   protected uid = `ts-input-${nextUniqueId++}`;
 
+
   /**
-   * Provide access to the container
+   * VIEW ACCESS
    */
-  @ViewChild('containerElement')
-  private containerElement!: ElementRef;
 
   /**
    * Expose reference to the Material datepicker component
@@ -358,44 +365,36 @@ export class TsInputComponent
   public picker!: MatDatepicker<string>;
 
   /**
-   * Provide access to the label
-   */
-  @ViewChild('labelElement')
-  private labelElement!: ElementRef;
-
-  /**
    * Provide access to the input
    */
   @ViewChild('inputElement')
-  public inputElement!: ElementRef;
+  public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
    * Determine if the input is empty
+   *
+   *   1. Input exists
+   *   2. Input has no value
+   *   3. Native input validation is valid
+   *   4. Input is not filled by browser
+   *
+   * Implemented as part of {@link TsFormFieldControl}.
    */
   public get empty(): boolean {
-    const el: ElementRef = this.inputElement;
-    if (el && el.nativeElement) {
-      const input: HTMLInputElement = this.inputElement.nativeElement;
-      return !input.value && !this.isBadInput() && !this.autofilled;
-    } else {
-      return false;
-    }
-  }
+    // Since we are using ViewChild, we need to verify the existence of the element
+    const input = this.inputElement && this.inputElement.nativeElement;
 
-  /**
-   * Determine the correct required attribute content
-   *
-   * @return The required attribute value
-   */
-  public get requiredAttribute(): string | null {
-    const requiredFormControl = (this.formControl && hasRequiredControl(this.formControl));
-    return (requiredFormControl || this.isRequired) ? 'required' : null;
+    if (!input) {
+      return true;
+    }
+
+    return !!(input && !input.value && !this.isBadInput() && !this.autofilled);
   }
 
   /**
    * Getter returning a boolean based on both the component `isDisabled` flag and the FormControl's disabled status
    */
-  get shouldBeDisabled(): boolean {
+  public get shouldBeDisabled(): boolean {
     return this.formControl.disabled || this.isDisabled;
   }
 
@@ -410,10 +409,13 @@ export class TsInputComponent
    * Set the accessor and call the onchange callback
    */
   public set value(v: any) {
-    const oldDate = this.innerValue;
-    if (v !== this.innerValue) {
-      this.innerValue = v;
+    const oldDate = this.value;
+
+    // istanbul ignore else
+    if (v !== this.value) {
+      this.inputValueAccessor.value = v;
       this.onChangeCallback(v);
+      this.stateChanges.next();
     }
 
     // istanbul ignore else
@@ -425,8 +427,13 @@ export class TsInputComponent
     }
   }
   public get value(): any {
-    return this.innerValue;
+    return this.inputValueAccessor.value;
   }
+
+
+  /**
+   * INPUTS
+   */
 
   /**
    * Define if the input should autocapitalize
@@ -498,9 +505,10 @@ export class TsInputComponent
       // Register the onChange for the new control
       this.registerOnChangeFn(this.updateInnerValue);
 
+      // Seed any existing value from the FormControl into the component
       // HACK: This is to get around ExpressionChangedAfterChecked error.
       Promise.resolve(null).then(() => {
-        this.value = this._formControl.value;
+        this.inputValueAccessor.value = this._formControl.value;
       });
     }
   }
@@ -508,6 +516,18 @@ export class TsInputComponent
     return this._formControl;
   }
   private _formControl: FormControl = new FormControl();
+
+  /**
+   * Define if the use-case provides it's own {@link TsFormFieldComponent} or if this component should provide it's own.
+   */
+  @Input()
+  public set hasExternalFormField(value: boolean) {
+    this._hasExternalFormField = coerceBooleanProperty(value);
+  }
+  public get hasExternalFormField(): boolean {
+    return this._hasExternalFormField;
+  }
+  private _hasExternalFormField = false;
 
   /**
    * Define if a required marker should be included
@@ -559,6 +579,8 @@ export class TsInputComponent
 
   /**
    * Define if the input should be disabled
+   *
+   * Implemented as part of {@link TsFormFieldControl}
    */
   @Input()
   public set isDisabled(v: boolean) {
@@ -577,7 +599,7 @@ export class TsInputComponent
     this._isFocused = coerceBooleanProperty(value);
 
     if (this._isFocused) {
-      this.focusInput();
+      this.focus();
     }
   }
   public get isFocused(): boolean {
@@ -587,13 +609,16 @@ export class TsInputComponent
 
   /**
    * Define if the input is required
+   *
+   * Implemented as part of {@link TsFormFieldControl}
    */
   @Input()
   public set isRequired(value: boolean) {
     this._isRequired = coerceBooleanProperty(value);
   }
   public get isRequired(): boolean {
-    return this._isRequired;
+    const requiredFormControl = (this.formControl && hasRequiredControl(this.formControl));
+    return this._isRequired || requiredFormControl;
   }
   private _isRequired = false;
 
@@ -624,21 +649,6 @@ export class TsInputComponent
 
       // Fallback to the default mask (which will allow all characters)
       value = 'default';
-    }
-
-    // HACK: If changing to the date mask dynamically, text-mask breaks. It seems to be related to checking the length of a null property in
-    // `conformToMask` which is called inside the file `createTextMaskInputElement.js`. To get around this bug, we clear the existing value.
-    // FIXME: Ideally, when switching to the date filter, any existing value would remain and be masked immediately.
-    if (value === 'date' && this.value) {
-      this.value = '';
-      this.formControl.setValue('');
-
-      // istanbul ignore else
-      if (this.textMaskInputElement) {
-        this.textMaskInputElement.update(this.value);
-      }
-
-      this.changeDetectorRef.detectChanges();
     }
 
     this._mask = value;
@@ -755,7 +765,7 @@ export class TsInputComponent
   public get spellcheck(): boolean {
     return this._spellcheck;
   }
-  private _spellcheck = true;
+  private _spellcheck: boolean = true;
 
   /**
    * Define the starting calendar view for the datepicker
@@ -816,7 +826,7 @@ export class TsInputComponent
     } else {
       // istanbul ignore else
       if (this.autocomplete === 'email') {
-        this.autocomplete = autocompleteDefault;
+        this.autocomplete = AUTOCOMPLETE_DEFAULT;
       }
     }
   }
@@ -837,29 +847,34 @@ export class TsInputComponent
   }
   private _validateOnChange = false;
 
+
+  /**
+   * EMITTERS
+   */
+
   /**
    * The event to emit when the input value is cleared
    */
   @Output()
-  public cleared: EventEmitter<boolean> = new EventEmitter();
+  readonly cleared: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Define an event when the input receives a blur event
    */
   @Output()
-  public inputBlur: EventEmitter<Date> = new EventEmitter();
+  readonly inputBlur: EventEmitter<Date> = new EventEmitter();
 
   /**
    * The event to emit when the input element receives a focus event
    */
   @Output()
-  public inputFocus: EventEmitter<boolean> = new EventEmitter();
+  readonly inputFocus: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Define an event emitter to alert consumers that a date was selected
    */
   @Output()
-  public selected: EventEmitter<Date> = new EventEmitter();
+  readonly selected: EventEmitter<Date> = new EventEmitter();
 
 
   constructor(
@@ -870,11 +885,27 @@ export class TsInputComponent
     protected platform: Platform,
     private ngZone: NgZone,
     private documentService: TsDocumentService,
+    @Optional() @Self() @Inject(TS_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
     @Optional() public dateAdapter: DateAdapter<Date>,
+    @Optional() @Self() public ngControl: NgControl,
   ) {
     this.document = this.documentService.document;
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
+
+    // If no inputValueAccessor was passed in, default to a basic object with a value.
+    this.inputValueAccessor = inputValueAccessor || {value: undefined};
+
+    // If no value accessor was passed in, use this component for the ngControl ValueAccessor
+    // istanbul ignore else
+    if (!inputValueAccessor) {
+      // Setting the value accessor directly (instead of using the providers) to avoid running into a circular import.
+      // istanbul ignore else
+      if (this.ngControl != null) {
+        this.ngControl.valueAccessor = this;
+      }
+    }
+
+    // Store any existing value
+    this.previousNativeValue = this.value;
   }
 
 
@@ -884,14 +915,34 @@ export class TsInputComponent
   public ngOnInit(): void {
     this.autofillMonitor.monitor(this.elementRef.nativeElement).subscribe((event) => {
       this.autofilled = event.isAutofilled;
+      this.stateChanges.next();
     });
   }
 
 
   /**
-   * Trigger iOS caret bug fix if on iOS
+   * HACK: Without this hack, seeded values are not initially seen so the label overlaps the content.
+   *
+   * The issue seems to be that the elementRef.nativeElement isn't updated with the new value immediately. When manually inspecting the
+   * nativeElement, the value does exist. But when the `empty` getter defines it's elementRef instance, the value is not yet set.
+   *
+   * Material doesn't seem to have this issue. The only real difference is that they are implmenting the ControlValueAccessor in the input
+   * where we are extending another class.
+   *
+   * So currently, we just check to see if the value has changed, then trigger a fake input event since the CVA for ngModel listens for the
+   * input event.
    */
   public ngAfterContentInit(): void {
+    // HACK: See above.
+    // istanbul ignore else
+    if (this.value !== this.lastValue) {
+      const event = this.document.createEvent('Event');
+      event.initEvent('input', true, true);
+      setTimeout(() => {
+        this.inputElement.nativeElement.dispatchEvent(event);
+      });
+    }
+
     // istanbul ignore else
     if (this.platform.IOS) {
       this.fixIOSCaretBug();
@@ -903,61 +954,76 @@ export class TsInputComponent
    * After the view is initialized, trigger any needed animations
    */
   public ngAfterViewInit(): void {
-     // Avoid animations on load.
-    this.subscriptAnimationState = 'enter';
-
     // istanbul ignore else
     if (this.mask) {
       this.setUpMask();
     }
 
     // Register this component as the associated input for the Material datepicker
+    // istanbul ignore else
     if (this.picker && !this.picker._datepickerInput) {
       this.picker._registerInput(this as any);
     }
   }
 
 
+  public ngDoCheck(): void {
+    // We need to dirty-check the native element's value, because there are some cases where we won't be notified when it changes (e.g. the
+    // consumer isn't using forms or they're updating the value using `emitEvent: false`).
+    this.dirtyCheckNativeValue();
+  }
+
+
   /**
-   * Return the difference in time in words
+   * Trigger needed changes when specific inputs change
    *
-   * @param time - The time chosen
-   * @return The difference in time
+   * @param changes - The changes
    */
   public ngOnChanges(changes: SimpleChanges): void {
     const validMaskChange: boolean = !!(inputHasChanged(changes, 'mask') && this.mask);
     const validSanitizeChange: boolean = !!(inputHasChanged(changes, 'maskSanitizeValue'));
     const validDecimalChange: boolean = !!(inputHasChanged(changes, 'maskAllowDecimal'));
+    const validLabelChange: boolean = !!(inputHasChanged(changes, 'label'));
 
     // istanbul ignore else
     if (validMaskChange || validSanitizeChange || validDecimalChange) {
       this.setUpMask();
       this.updateMaskModelHack();
+    }
+
+    // Only re-set the value if this isn't the first change. This avoids thrashing as the component is initialized.
+    if (validMaskChange && !changes.mask.firstChange) {
       this.setValue(this.value);
     }
 
-    // istanbul ignore else
-    if (inputHasChanged(changes, 'label')) {
-      this.updateOutlineGap();
+    // HACK: If changing to the date mask dynamically, text-mask breaks. It seems to be related to checking the length of a null property in
+    // `conformToMask` which is called inside the file `createTextMaskInputElement.js`. To get around this bug, we clear the existing value.
+    // FIXME: Ideally, when switching to the date filter, any existing value would remain and be masked immediately.
+    if (validMaskChange && !changes.mask.firstChange && this.value) {
+      this.value = '';
+      this.formControl.setValue('');
+
+      // istanbul ignore else
+      if (this.textMaskInputElement) {
+        this.textMaskInputElement.update(this.value);
+      }
+
+      this.changeDetectorRef.detectChanges();
+    }
+
+    // Let the parent FormField know that it should update the ouline gap for the new label
+    if ((validLabelChange && !changes.label.firstChange)) {
+      // Trigger change detection first so that the FormField will be working with the latest version
+      this.changeDetectorRef.detectChanges();
+      this.labelChanges.next();
     }
 
     // istanbul ignore else
     if (this.textMaskInputElement !== undefined) {
       this.textMaskInputElement.update(this.inputElement.nativeElement.value);
     }
-  }
 
-
-  /**
-   * Trigger the outline to be updated after inner content is checked
-   */
-  public ngAfterContentChecked(): void {
-    // It's important that we run this outside the `_ngZone`, because the `Promise.resolve`
-    // can kick us into an infinite change detection loop, if the `_initialGapCalculated`
-    // wasn't flipped on for some reason.
-    this.ngZone.runOutsideAngular(() => {
-      Promise.resolve().then(() => this.updateOutlineGap());
-    });
+    this.stateChanges.next();
   }
 
 
@@ -966,12 +1032,14 @@ export class TsInputComponent
    */
   public ngOnDestroy(): void {
     this.autofillMonitor.stopMonitoring(this.elementRef.nativeElement);
-    this.changeDetectorRef.detach();
 
     // istanbul ignore else
     if (this._valueChange) {
       this._valueChange.complete();
     }
+
+    this.stateChanges.complete();
+    this.labelChanges.complete();
   }
 
 
@@ -1005,7 +1073,7 @@ export class TsInputComponent
   /**
    * Set touched on blur
    */
-  public onBlur() {
+  public onBlur(): void {
     this.onTouchedCallback();
     this.inputBlur.emit(this.value);
   }
@@ -1018,16 +1086,14 @@ export class TsInputComponent
    */
   public updateInnerValue = (value: string): void => {
     this.value = value;
-    if (!this.changeDetectorRef['destroyed']) {
-      this.changeDetectorRef.detectChanges();
-    }
+    this.changeDetectorRef.detectChanges();
   }
 
 
   /**
    * Register onChange callback (from ControlValueAccessor interface)
    */
-  public registerOnChange(fn: any) {
+  public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
@@ -1035,7 +1101,7 @@ export class TsInputComponent
   /**
    * Register onTouched callback (from ControlValueAccessor interface)
    */
-  public registerOnTouched(fn: any) {
+  public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
@@ -1052,14 +1118,6 @@ export class TsInputComponent
 
 
   /**
-   * Focus the actual text input
-   */
-  public focusInput(): void {
-    this.inputElement.nativeElement.focus();
-  }
-
-
-  /**
    * Callback for when the focused state of the input changes
    *
    * @param nowFocused - Boolean determining if the input is gaining or losing focus
@@ -1068,6 +1126,7 @@ export class TsInputComponent
     // istanbul ignore else
     if (nowFocused !== this.focused && !this.readOnly) {
       this.focused = nowFocused;
+      this.stateChanges.next();
     }
 
     // Trigger the onTouchedCallback for blur events
@@ -1117,7 +1176,7 @@ export class TsInputComponent
    * NOTE(B$): Apparently TSLint doesn't realize that the host listener is calling this method.  Using the @HostDecorator shows the same
    * error. So for now, we are disabling the lint rule here.
    *
-   * NOTE: KOWN BUG that allows model and UI to get out of sync when extra characters are added after a fully satisfied mask.
+   * NOTE: KNOWN BUG that allows model and UI to get out of sync when extra characters are added after a fully satisfied mask.
    *
    * @param value - The typed value
    */
@@ -1126,6 +1185,7 @@ export class TsInputComponent
     // We need to trim the last character due to a bug in the text-mask library
     const trimmedValue = this.trimLastCharacter(value);
     this.inputElement.nativeElement.value = trimmedValue;
+    this.stateChanges.next();
     // istanbul ignore else
     if (this.textMaskInputElement !== undefined) {
       // Update the mask.
@@ -1254,8 +1314,9 @@ export class TsInputComponent
     if (value && this.mask === 'date') {
       this.onChangeCallback(new Date(value));
     } else {
-      const finalValue = this.maskSanitizeValue ? this.cleanValue(value, this.currentMask.unmaskRegex) : value;
+      const finalValue = !this.maskSanitizeValue ? value : this.cleanValue(value, this.currentMask.unmaskRegex);
       this.onChangeCallback(finalValue);
+      this.inputValueAccessor.value = finalValue;
     }
   }
 
@@ -1303,34 +1364,6 @@ export class TsInputComponent
       // Initialize the mask
       this.textMaskInputElement = createTextMaskInputElement(maskOptions);
     }
-  }
-
-
-  /**
-   * Updates the width and position of the gap in the outline
-   */
-  private updateOutlineGap(): void {
-    // istanbul ignore else
-    if (this.labelElement && this.labelElement.nativeElement) {
-      if (!this.document.documentElement.contains(this.elementRef.nativeElement)) {
-        return;
-      }
-
-      const containerStart: number = this.containerElement.nativeElement.getBoundingClientRect().left;
-      const labelStart: number = this.labelElement.nativeElement.children[0].getBoundingClientRect().left;
-      let labelWidth = 0;
-      for (const child of this.labelElement.nativeElement.children) {
-        labelWidth += child.offsetWidth;
-      }
-      const outlineGapStart = labelStart - containerStart - outlineGapPadding;
-
-      this.outlineGapStart = outlineGapStart;
-      this.outlineGapWidth = labelWidth * floatingLabelScale + outlineGapPadding * 2;
-    } else {
-      this.outlineGapStart = 0;
-      this.outlineGapWidth = 0;
-    }
-    this.changeDetectorRef.detectChanges();
   }
 
 
@@ -1436,6 +1469,48 @@ export class TsInputComponent
     const hasCorrectLength: boolean = cleanValue.length === numbersInFormattedDate;
     const isValid: boolean = isValidDate(value);
     return hasCorrectLength && isValid;
+  }
+
+
+  /**
+   * Implemented as part of {@link TsFormFieldControl}.
+   */
+  public onContainerClick(): void {
+    // Do not re-focus the input element if the element is already focused. Otherwise it can happen
+    // that someone clicks on a time input and the cursor resets to the "hours" field while the
+    // "minutes" field was actually clicked. See: https://github.com/angular/material2/issues/12849
+    // istanbul ignore else
+    if (!this.focused) {
+      this.focus();
+    }
+  }
+
+
+  /**
+   * Focus the input element
+   */
+  public focus(): void {
+    // istanbul ignore else
+    if (this.inputElement) {
+      this.inputElement.nativeElement.focus();
+    }
+  }
+
+
+  /**
+   * Manually dirty check the native input `value` property
+   */
+  protected dirtyCheckNativeValue(): void {
+    if (!this.inputElement) {
+      return;
+    }
+
+    const newValue = this.inputElement.nativeElement.value;
+
+    if (this.previousNativeValue !== newValue) {
+      this.previousNativeValue = newValue;
+      this.stateChanges.next();
+    }
   }
 
 }

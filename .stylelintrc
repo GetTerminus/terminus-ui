@@ -36,7 +36,7 @@
     "declaration-bang-space-after": "never",
     "declaration-bang-space-before": "always",
     "declaration-block-semicolon-newline-after": "always",
-    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-semicolon-space-before": "never-single-line",
     "declaration-block-trailing-semicolon": "always",
     "declaration-block-no-duplicate-properties": true,
     "declaration-block-no-redundant-longhand-properties": true,
@@ -99,6 +99,9 @@
       "except": [
         "after-single-line-comment",
         "first-nested"
+      ],
+      "ignore": [
+        "after-comment"
       ]
     ],
     "selector-attribute-brackets-space-inside": "never",

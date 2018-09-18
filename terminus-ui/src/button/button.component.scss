@@ -230,3 +230,11 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 }
 
 
+// Target instances nested inside the TsSearchComponent
+.ts-button {
+  .ts-search & {
+    // Offset to account for space under input for error messages
+    position: relative;
+    top: -#{spacing(small)};
+  }
+}

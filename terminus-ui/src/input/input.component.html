@@ -1,155 +1,143 @@
-<div
-  class="c-input mat-form-field-wrapper mat-form-field-appearance-outline mat-form-field-can-float qa-input"
-  [class.mat-form-field-should-float]="shouldLabelFloat"
-  [class.mat-form-field-disabled]="shouldBeDisabled"
-  [class.mat-form-field-autofilled]="autofilled"
-  [class.mat-focused]="focused"
-  [class.mat-accent]="theme === 'accent'"
-  [class.mat-warn]="theme === 'warn'"
+<!--
+   -NOTE: The query lists built within TsFormFieldComponent cannot find directives nested within ng-template. So, for now, we are simply
+   -defining all internal components twice. :(
+   -->
+
+
+<!--
+   -With included TsFormFieldComponent wrapper
+   -->
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  *ngIf="!hasExternalFormField"
 >
-  <div
-    class="mat-form-field-flex qa-input-container"
-    #containerElement
-    (click)="focusInput()"
-  >
+  <ts-label>
+    <span class="c-input__label-text qa-input-label-text">
+      {{ label }}
+    </span>
+  </ts-label>
 
-    <div class="mat-form-field-outline">
-      <div class="mat-form-field-outline-start" [style.width.px]="outlineGapStart"></div>
-      <div class="mat-form-field-outline-gap" [style.width.px]="outlineGapWidth"></div>
-      <div class="mat-form-field-outline-end"></div>
-    </div>
-    <div class="mat-form-field-outline mat-form-field-outline-thick">
-      <div class="mat-form-field-outline-start" [style.width.px]="outlineGapStart"></div>
-      <div class="mat-form-field-outline-gap" [style.width.px]="outlineGapWidth"></div>
-      <div class="mat-form-field-outline-end"></div>
-    </div>
+  <ts-icon
+    tsPrefix
+    *ngIf="prefixIcon"
+    class="qa-input-prefix-icon"
+  >{{ prefixIcon }}</ts-icon>
 
-    <div class="mat-form-field-prefix" *ngIf="prefixIcon">
-      <ts-icon class="qa-input-prefix-icon">
-        {{ prefixIcon }}
-      </ts-icon>
-    </div>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 
-    <div class="mat-form-field-infix">
-      <ng-container *ngIf="!datepicker">
-        <input
-          class="c-input__text qa-input-text ts-form-field-autofill-control"
-          type="{{ type }}"
-          [attr.aria-required]="requiredAttribute ? true : false"
-          [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
-          [attr.autocomplete]="autocomplete"
-          [attr.autofocus]="isFocused ? '' : null"
-          [attr.disabled]="shouldBeDisabled ? '' : null"
-          [attr.name]="name"
-          [attr.id]="id"
-          [readonly]="readOnly"
-          [required]="requiredAttribute"
-          [spellcheck]="spellcheck ? 'on' : 'off'"
-          tabIndex="{{ tabIndex }}"
-          [(ngModel)]="value"
-          (blur)="focusChanged(false)"
-          (focus)="focusChanged(true)"
-          (input)="onInput($event.target.value)"
-          #inputElement
-        >
-      </ng-container>
+  <ts-icon
+    tsSuffix
+    *ngIf="isClearable && !shouldBeDisabled && !datepicker"
+    class="c-input__clear qa-input-suffix-icon"
+    [class.c-input__clear--visible]="value?.length > 0"
+    (click)="reset()"
+  >clear</ts-icon>
 
-      <ng-container *ngIf="datepicker">
-        <input
-          class="c-input__text qa-input-text ts-form-field-autofill-control"
-          type="{{ type }}"
-          [attr.aria-required]="requiredAttribute ? true : false"
-          [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
-          [attr.autocomplete]="autocomplete"
-          [attr.autofocus]="isFocused ? '' : null"
-          [attr.disabled]="shouldBeDisabled ? '' : null"
-          [attr.name]="name"
-          [attr.id]="id"
-          [readonly]="readOnly"
-          [required]="requiredAttribute"
-          [spellcheck]="spellcheck ? 'on' : 'off'"
-          tabIndex="{{ tabIndex }}"
-          [(ngModel)]="value"
-          (blur)="focusChanged(false)"
-          (focus)="focusChanged(true)"
-          (input)="onInput($event.target.value)"
-          [matDatepickerFilter]="dateFilter"
-          [matDatepicker]="picker"
-          [min]="minDate"
-          [max]="maxDate"
-          (dateChange)="selected.emit($event.value)"
-          #inputElement
-        >
-      </ng-container>
+  <mat-datepicker-toggle
+    tsSuffix
+    *ngIf="datepicker"
+    class="qa-datepicker-toggle qa-input-suffix-icon"
+    [for]="picker"
+  ></mat-datepicker-toggle>
+</ts-form-field>
 
-      <span class="mat-form-field-label-wrapper">
-        <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
-             read if it comes before the control in the DOM. -->
-        <label
-          class="c-input__label mat-form-field-label qa-input-label"
-          [attr.for]="id"
-          [attr.aria-owns]="id"
-          [class.mat-empty]="empty"
-          [class.mat-form-field-empty]="empty"
-          [class.mat-accent]="theme == 'accent'"
-          [class.mat-warn]="theme == 'warn'"
-          #labelElement
-        >
-          <span class="c-input__label-text qa-input-label-text">
-            {{ label }}
-          </span>
 
-          <span
-            class="mat-form-field-required-marker"
-            aria-hidden="true"
-            *ngIf="requiredAttribute && !hideRequiredMarker"
-          >*</span>
-        </label>
-      </span>
-    </div>
+<!--
+   -Without included TsFormFieldComponent wrapper
+   -->
+<ng-container *ngIf="hasExternalFormField">
+  <ts-label>
+    <span class="c-input__label-text qa-input-label-text">
+      {{ label }}
+    </span>
+  </ts-label>
 
-    <div class="mat-form-field-suffix" *ngIf="(isClearable && !shouldBeDisabled) || datepicker">
-      <ng-container *ngIf="!datepicker">
-        <ts-icon
-          class="c-input__clear qa-input-suffix-icon"
-          [ngClass]="{'c-input__clear--visible': value?.length > 0}"
-          (click)="reset()"
-        >clear</ts-icon>
-      </ng-container>
+  <ts-icon
+    tsPrefix
+    *ngIf="prefixIcon"
+    class="qa-input-prefix-icon"
+  >{{ prefixIcon }}</ts-icon>
 
-      <ng-container *ngIf="datepicker">
-        <mat-datepicker-toggle
-          class="qa-datepicker-toggle qa-input-suffix-icon"
-          [for]="picker"
-        ></mat-datepicker-toggle>
-      </ng-container>
-    </div>
-  </div>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 
-  <div
-    class="mat-form-field-subscript-wrapper"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-    [fxLayoutGap]="flexGap"
-  >
-    <div *ngIf="formControl">
-      <ts-validation-messages
-        class="qa-input-validation-messages"
-        [control]="formControl"
-        [validateOnChange]="validateOnChange"
-      ></ts-validation-messages>
-    </div>
+  <ts-icon
+    tsSuffix
+    *ngIf="isClearable && !shouldBeDisabled && !datepicker"
+    class="c-input__clear qa-input-suffix-icon"
+    [class.c-input__clear--visible]="value?.length > 0"
+    (click)="reset()"
+  >clear</ts-icon>
 
-    <div
-      class="mat-form-field-hint-wrapper"
-      *ngIf="hint"
+  <mat-datepicker-toggle
+    tsSuffix
+    *ngIf="datepicker"
+    class="qa-datepicker-toggle qa-input-suffix-icon"
+    [for]="picker"
+  ></mat-datepicker-toggle>
+</ng-container>
+
+
+<!--
+   -DEFAULT (input)
+   -->
+<ng-template #contentTemplate>
+  <ng-container *ngIf="!datepicker">
+    <input
+      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      type="{{ type }}"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target.value)"
+      #inputElement
     >
-      <div
-        class="c-input__hint qa-input-hint"
-      >{{ hint }}</div>
-    </div>
-  </div>
-</div>
+  </ng-container>
+
+  <ng-container *ngIf="datepicker">
+    <input
+      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      type="{{ type }}"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target.value)"
+      [matDatepickerFilter]="dateFilter"
+      [matDatepicker]="picker"
+      [min]="minDate"
+      [max]="maxDate"
+      (dateChange)="selected.emit($event.value)"
+      #inputElement
+    >
+  </ng-container>
+</ng-template>
+
 
 <mat-datepicker
   class="c-datepicker__calendar qa-datepicker-calendar"
