@@ -24,7 +24,6 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
  */
 export class TsCheckboxChange extends MatCheckboxChange {}
 
-
 /**
  * Unique ID for each instance
  */
@@ -77,6 +76,18 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    */
   @ViewChild(MatCheckbox)
   checkbox!: MatCheckbox;
+
+  /**
+   * Define if the ripple animation should be disabled
+   */
+  @Input()
+  public set disableRipple(value: boolean) {
+    this._disableRipple = coerceBooleanProperty(value);
+  }
+  public get disableRipple(): boolean {
+    return this._disableRipple;
+  }
+  private _disableRipple = false;
 
   /**
    * Define an ID for the component
