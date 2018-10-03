@@ -7,6 +7,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { TsStyleThemeTypes } from '../utilities/types/style-theme.types';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -123,13 +124,25 @@ export class TsCardComponent {
    * Define if the card is disabled
    */
   @Input()
-  public disabled: boolean = false;
 
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  public _disabled: boolean = false;
   /**
    * Define if the card should not have a drop shadow
    */
   @Input()
-  public flat: boolean = false;
+  set flat(value: boolean) {
+    this._flat = coerceBooleanProperty(value);
+  }
+  get flat(): boolean {
+    return this._flat;
+  }
+  public _flat: boolean = false;
 
   /**
    * Define an ID for the component

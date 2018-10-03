@@ -45,6 +45,24 @@ describe('TsCardComponent', () => {
 
   });
 
+  describe(`flat`, () => {
+
+    test(`should set flat flag correctly`, () => {
+      component.flat = true;
+      expect(component.flat).toEqual(true);
+    });
+
+  });
+
+  describe(`disabled`, () => {
+
+    test(`should set disabled flag correctly`, () => {
+      component.disabled = true;
+      expect(component.disabled).toEqual(true);
+    });
+
+  });
+
 
   describe(`theme`, () => {
 
