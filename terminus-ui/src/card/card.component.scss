@@ -121,7 +121,7 @@
 
 // Class added for flat cards (no drop shadow)
 .c-card--flat {
-  .c-card__inner {
+  > .c-card__inner {
     border: 1px solid color(utility, light);
     box-shadow: none;
   }
