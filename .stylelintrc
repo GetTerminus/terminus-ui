@@ -51,7 +51,7 @@
     "font-weight-notation": "numeric",
     "function-calc-no-unspaced-operator": true,
     "function-name-case": "lower",
-    "function-comma-space-after": "always",
+    "function-comma-space-after": "always-single-line",
     "function-comma-space-before": "never",
     "function-max-empty-lines": 0,
     "function-parentheses-space-inside": "never",
@@ -144,7 +144,8 @@
     "unit-case": "lower",
     "unit-no-unknown": true,
     "value-keyword-case": "lower",
-    "value-list-comma-space-after": "always",
+    "value-list-comma-newline-after": "always-multi-line",
+    "value-list-comma-space-after": "always-single-line",
     "value-list-comma-space-before": "never",
     "value-list-max-empty-lines": 0,
     "value-no-vendor-prefix": true
