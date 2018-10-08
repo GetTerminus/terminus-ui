@@ -78,6 +78,7 @@
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
         "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
         "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
+        "date-fns": "dateFns",
         "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
         "text-mask-core/dist/textMaskCore": "textMaskCore",
         "text-mask-addons/dist/createNumberMask": "createNumberMask",
