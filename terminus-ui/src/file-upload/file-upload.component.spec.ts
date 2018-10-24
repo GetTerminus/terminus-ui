@@ -436,7 +436,7 @@ describe(`TsFileUploadComponent`, () => {
       hostComponent.mimeTypes = undefined;
       fixture.detectChanges();
 
-      expect(component['virtualFileInput'].getAttribute('accept')).toEqual('text/csv,image/jpeg,image/jpg,image/png');
+      expect(component['virtualFileInput'].getAttribute('accept')).toEqual('text/csv,image/jpeg,image/jpg,image/png,image/gif');
     });
 
   });
