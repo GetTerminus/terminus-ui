@@ -367,16 +367,18 @@ describe(`TsAutocompleteComponent`, () => {
     });
 
 
-    test(`should call resetSearch if there is no event.relatedTarget`, () => {
+    test(`should call resetSearch if there is no event.relatedTarget and in multiple selection mode`, () => {
       expect(component.selectionsControl.touched).toEqual(false);
 
+      component.multiple = (v) => v;
       component.handleBlur(eventNoRelatedTarget);
       expect(component['resetSearch']).toHaveBeenCalled();
       expect(component.selectionsControl.touched).toEqual(true);
     });
 
 
-    test(`should call resetSearch if the relatedTarget has no nodeName`, () => {
+    test(`should call resetSearch if the relatedTarget has no nodeName and is in multiple mode`, () => {
+      component.multiple = (v) => v;
       component.handleBlur(eventNoNode);
       expect(component['resetSearch']).toHaveBeenCalled();
     });

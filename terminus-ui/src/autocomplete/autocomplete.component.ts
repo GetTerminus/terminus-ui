@@ -260,9 +260,6 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     }
 
     this._selectionsControl = value;
-    /*
-     *console.log('set selectionsControl: ', this.selectionsControl);
-     */
   }
   public get selectionsControl(): FormControl {
     return this._selectionsControl;
@@ -294,7 +291,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       // istanbul ignore else
       if (this.selectionsControl && this.selectionsControl.setValue) {
         // Seed the formControl
-        this.selectionsControl.setValue(this.selectedOptions);
+        this.selectionsControl.setValue(this.selectedOptions.slice());
       }
     }
   }
@@ -355,7 +352,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       this.selectionsControl.valueChanges.pipe(
         untilComponentDestroyed(this),
       ).subscribe((value: OptionType[]) => {
-        this.selectedOptions = value;
+        this.selectedOptions = value.slice();
         this.changeDetectorRef.detectChanges();
       });
     }
@@ -388,9 +385,10 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       return;
     }
 
-
     // Add to the displayed selection chips
-    this.selectedOptions.push(selection);
+    const selections = this.selectedOptions.slice();
+    selections.push(selection);
+    this.selectedOptions = selections;
 
     // If supporting multiple selections, reset the input text value
     if (this.multiple) {
@@ -400,12 +398,12 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     // Update the form control
     // istanbul ignore else
     if (this.selectionsControl && this.selectionsControl.setValue) {
-      this.selectionsControl.setValue(this.selectedOptions);
+      this.selectionsControl.setValue(this.selectedOptions.slice());
     }
 
     // Notify consumers about changes
     this.optionSelected.emit(event.option.value);
-    this.selection.emit(this.selectedOptions);
+    this.selection.emit(this.selectedOptions.slice());
   }
 
 
@@ -424,7 +422,9 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     }
 
     // Remove the selection from the selectedOptions array
-    this.selectedOptions.splice(index, 1);
+    const selections = this.selectedOptions.slice();
+    selections.splice(index, 1);
+    this.selectedOptions = selections;
 
     // Update the form control
     // istanbul ignore else
@@ -434,7 +434,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
 
     // Notify consumers about changes
     this.optionRemoved.emit(option);
-    this.selection.emit(this.selectedOptions);
+    this.selection.emit(this.selectedOptions.slice());
   }
 
 
@@ -468,7 +468,9 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       }
     } else {
       // If no eventValue exists, this was a blur event triggered by the Escape key
-      this.resetSearch();
+      if (this.multiple) {
+        this.resetSearch();
+      }
     }
 
     // Since the user never interacts directly with the 'selectionsControl' formControl, we need to
