@@ -15,6 +15,7 @@ import { TsDropProtectionService } from './drop-protection.service';
 
 export * from './file-upload.component';
 export * from './image-dimension-constraints';
+export * from './selected-file';
 
 
 @NgModule({
