@@ -5,7 +5,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
   MAT_DATE_FORMATS,
@@ -23,7 +22,6 @@ export * from './input.component';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     FlexLayoutModule,
