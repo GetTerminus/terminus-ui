@@ -1,19 +1,26 @@
-version: 2
+# Define shared defaults
+defaults: &defaults
+working_directory: ~/ci-build
+  docker:
+    - image: lfglore/circleci-node-awscli
+  environment:
+    TEST_REPORTS: /coverage
 
+
+version: 2
 jobs:
   build:
+    <<: *defaults
+    #docker:
+      #- image: circleci/node:latest-browsers
 
-    docker:
-      - image: circleci/node:latest-browsers
+    #working_directory: ~/ci-build
 
-    working_directory: ~/ci-build
-
-    environment:
-      TEST_REPORTS: /coverage
+    #environment:
+      #TEST_REPORTS: /coverage
 
     steps:
       - add_ssh_keys
-
       - checkout
 
       - restore_cache:
@@ -67,13 +74,12 @@ jobs:
           destination: ~/npm_logs/
 
   deploy:
-    docker:
-      - image: circleci/node:latest-browsers
-    working_directory: ~/ci-build
+    <<: *defaults
+    #docker:
+      #- image: circleci/node:latest-browsers
+      #- image: lfglore/circleci-node-awscli
+    #working_directory: ~/ci-build
     steps:
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
       - run:
           name: Generate Documentation
           command: yarn run docs
@@ -90,9 +96,10 @@ workflows:
       - deploy:
           requires:
             - build
-          #filters:
-            #branches:
-              #only: master
+          filters:
+            # Only deploy when merging to master or a specific release branch
+            branches:
+              only: (master|\d*.x.x)
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
