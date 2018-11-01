@@ -30,9 +30,9 @@ jobs:
           paths:
             - ./node_modules
 
-      #- run:
-          #name: Lint
-          #command: yarn run lint:ci
+      - run:
+          name: Lint
+          command: yarn run lint:ci
 
       - run:
           name: Run Tests
@@ -41,13 +41,13 @@ jobs:
       - store_test_results:
           path: coverage/junit/
 
-      #- run:
-          #name: Test AoT Demo App Build
-          #command: yarn run build:app:ci
+      - run:
+          name: Test AoT Demo App Build
+          command: yarn run build:app:ci
 
-      #- run:
-          #name: Build Project
-          #command: yarn run build
+      - run:
+          name: Build Project
+          command: yarn run build
 
       - run:
           name: Generate Documentation
