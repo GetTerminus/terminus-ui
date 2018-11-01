@@ -41,9 +41,9 @@ jobs:
       #- store_test_results:
           #path: coverage/junit/
 
-      - run:
-          name: Test AoT Demo App Build
-          command: yarn run build:app:ci
+      #- run:
+          #name: Test AoT Demo App Build
+          #command: yarn run build:app:ci
 
       - run:
           name: Build Project
@@ -53,17 +53,17 @@ jobs:
           name: Release
           command: npx semantic-release
 
-      - store_artifacts:
-          path: coverage/
-          destination: ~/coverage/
+      #- store_artifacts:
+          #path: coverage/
+          #destination: ~/coverage/
 
-      - store_artifacts:
-          path: dist/
-          destination: ~/dist/
+      #- store_artifacts:
+          #path: dist/
+          #destination: ~/dist/
 
-      - store_artifacts:
-          path: /home/circleci/.npm/_logs/
-          destination: ~/npm_logs/
+      #- store_artifacts:
+          #path: /home/circleci/.npm/_logs/
+          #destination: ~/npm_logs/
 
   deploy:
     docker:
@@ -75,7 +75,7 @@ jobs:
           command: yarn run docs
       - run:
           name: Deploy to S3
-          command: aws s3 sync docs s3://uilibrary-demo.terminus.ninja/${CIRCLE_BRANCH}/ --delete
+          command: aws s3 sync docs s3://uilibrary-docs.terminus.ninja/${CIRCLE_BRANCH}/ --delete --dryrun
 
 
 workflows:
@@ -88,7 +88,7 @@ workflows:
             - build
           filters:
             branches:
-              only: /(master|\d*.x.x)/
+              only: master
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
