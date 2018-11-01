@@ -11,8 +11,6 @@ echo 'Current Branch: ' $CIRCLE_BRANCH
 
 releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x")
 
-# TEMP: remove outdated files
-aws s3 rm s3://uilibrary-demo.terminus.ninja --recursive
 
 # Only release docs and demos to S3 if this is a release branch
 if [[ " ${releaseBranches[@]} " =~ " ${CIRCLE_BRANCH} " ]]; then
