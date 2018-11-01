@@ -30,16 +30,16 @@ jobs:
           paths:
             - ./node_modules
 
-      - run:
-          name: Lint
-          command: yarn run lint:ci
+      #- run:
+          #name: Lint
+          #command: yarn run lint:ci
 
-      - run:
-          name: Run Tests
-          command: tooling/ci/test-unit.sh
+      #- run:
+          #name: Run Tests
+          #command: tooling/ci/test-unit.sh
 
-      - store_test_results:
-          path: coverage/junit/
+      #- store_test_results:
+          #path: coverage/junit/
 
       - run:
           name: Test AoT Demo App Build
@@ -71,9 +71,6 @@ jobs:
     working_directory: ~/ci-build
     steps:
       - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
           name: Generate Documentation
           command: yarn run docs
       - run:
@@ -91,7 +88,7 @@ workflows:
             - build
           filters:
             branches:
-              only: (master|\d*.x.x)
+              only: /(master|\d*.x.x)/
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
