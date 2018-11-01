@@ -34,61 +34,46 @@ jobs:
           #name: Lint
           #command: yarn run lint:ci
 
-      #- run:
-          #name: Run Tests
-          #command: tooling/ci/test-unit.sh
+      - run:
+          name: Run Tests
+          command: tooling/ci/test-unit.sh
 
-      #- store_test_results:
-          #path: coverage/junit/
+      - store_test_results:
+          path: coverage/junit/
 
       #- run:
           #name: Test AoT Demo App Build
           #command: yarn run build:app:ci
 
+      #- run:
+          #name: Build Project
+          #command: yarn run build
+
       - run:
-          name: Build Project
-          command: yarn run build
+          name: Generate Documentation
+          command: yarn run docs
+
+      - run:
+          name: Upload Documentation & Demos
+          command: tooling/ci/s3-deploy.sh
 
       - run:
           name: Release
           command: npx semantic-release
 
-      #- store_artifacts:
-          #path: coverage/
-          #destination: ~/coverage/
+      - store_artifacts:
+          path: coverage/
+          destination: ~/coverage/
 
-      #- store_artifacts:
-          #path: dist/
-          #destination: ~/dist/
+      - store_artifacts:
+          path: dist/
+          destination: ~/dist/
 
-      #- store_artifacts:
-          #path: /home/circleci/.npm/_logs/
-          #destination: ~/npm_logs/
-
-  deploy:
-    docker:
-      - image: lfglore/circleci-node-awscli
-    working_directory: ~/ci-build
-    steps:
-      - run:
-          name: Generate Documentation
-          command: yarn run docs
-      - run:
-          name: Deploy to S3
-          command: aws s3 sync docs s3://uilibrary-docs.terminus.ninja/${CIRCLE_BRANCH}/ --delete --dryrun
+      - store_artifacts:
+          path: /home/circleci/.npm/_logs/
+          destination: ~/npm_logs/
 
 
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
