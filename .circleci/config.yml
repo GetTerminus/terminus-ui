@@ -2,9 +2,8 @@ version: 2
 
 jobs:
   build:
-
     docker:
-      - image: circleci/node:latest-browsers
+      - image: lfglore/circleci-node-awscli
 
     working_directory: ~/ci-build
 
@@ -68,7 +67,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:latest-browsers
+      - image: lfglore/circleci-node-awscli
     working_directory: ~/ci-build
     steps:
       - run:
@@ -90,9 +89,9 @@ workflows:
       - deploy:
           requires:
             - build
-          #filters:
-            #branches:
-              #only: master
+          filters:
+            branches:
+              only: (master|\d*.x.x)
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
