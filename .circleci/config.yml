@@ -2,9 +2,8 @@ version: 2
 
 jobs:
   build:
-
     docker:
-      - image: circleci/node:latest-browsers
+      - image: lfglore/circleci-node-awscli
 
     working_directory: ~/ci-build
 
@@ -39,13 +38,24 @@ jobs:
           name: Run Tests
           command: tooling/ci/test-unit.sh
 
+      - store_test_results:
+          path: coverage/junit/
+
+      - run:
+          name: Build Project
+          command: yarn run build
+
       - run:
           name: Test AoT Demo App Build
           command: yarn run build:app:ci
 
       - run:
-          name: Build Project
-          command: yarn run build
+          name: Generate Documentation
+          command: yarn run docs
+
+      - run:
+          name: Upload Documentation & Demos
+          command: tooling/ci/s3-deploy.sh
 
       - run:
           name: Release
@@ -73,4 +83,3 @@ deployment:
     tag: /.*/
     commands:
       - echo "make tags run in 2.0"
-
