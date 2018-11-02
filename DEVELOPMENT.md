@@ -360,7 +360,7 @@ machines.
 <!-- LINKS -->
 
 [compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
-[docs-url]: https://getterminus.github.io/terminus-ui/
+[docs-url]: http://uilibrary-docs.terminus.ninja/master/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
 [npm-url]: https://npmjs.org/package/@terminus/ui

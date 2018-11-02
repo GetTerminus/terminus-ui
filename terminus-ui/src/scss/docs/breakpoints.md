@@ -51,4 +51,4 @@ Passing an invalid `$breakpoint` will throw a Sass compilation error.
 
 
 <!-- Links -->
-[demo]: https://terminus-ui-demos.stackblitz.io/components/breakpoints
+[demo]: http://uilibrary-demo.terminus.ninja/master/components/breakpoints

@@ -27,6 +27,7 @@ The library of UI components used for Terminus applications.
 
 - [Library Purpose](#library-purpose)
 - [Documentation](#documentation)
+  - [Versioned Documentation and Demos](#versioned-documentation-and-demos)
 - [Available Features](#available-features)
   - [Components](#components)
   - [Pipes](#pipes)
@@ -269,7 +270,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [contributing]: https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md
 [license-url]: https://github.com/GetTerminus/terminus-ui/blob/master/LICENSE
 [pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
-[docs-url]: https://getterminus.github.io/terminus-ui/
+[docs-url]: http://uilibrary-docs.terminus.ninja/master/
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
 [npm-url]: https://npmjs.org/package/@terminus/ui
 [raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js
@@ -306,38 +307,38 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
 
 <!-- Demos -->
-[demo-autocomplete]: https://terminus-ui-demos.stackblitz.io/components/autocomplete
-[demo-autofocus]: https://terminus-ui-demos.stackblitz.io/components/autofocus
-[demo-button]: https://terminus-ui-demos.stackblitz.io/components/button
-[demo-card]: https://terminus-ui-demos.stackblitz.io/components/card
-[demo-chart]: https://terminus-ui-demos.stackblitz.io/components/chart
-[demo-checkbox]: https://terminus-ui-demos.stackblitz.io/components/checkbox
-[demo-confirmation]: https://terminus-ui-demos.stackblitz.io/components/confirmation
-[demo-copy]: https://terminus-ui-demos.stackblitz.io/components/copy
-[demo-csv-entry]: https://terminus-ui-demos.stackblitz.io/components/csv-entry
-[demo-date-range]: https://terminus-ui-demos.stackblitz.io/components/date-range
-[demo-datepicker]: https://terminus-ui-demos.stackblitz.io/components/datepicker
-[demo-file-upload]: https://terminus-ui-demos.stackblitz.io/components/file-upload
-[demo-icon-button]: https://terminus-ui-demos.stackblitz.io/components/icon-button
-[demo-icon]: https://terminus-ui-demos.stackblitz.io/components/icon
-[demo-input]: https://terminus-ui-demos.stackblitz.io/components/input
-[demo-link]: https://terminus-ui-demos.stackblitz.io/components/link
-[demo-loading-overlay]: https://terminus-ui-demos.stackblitz.io/components/loading-overlay
-[demo-log-in-form]: https://terminus-ui-demos.stackblitz.io/components/log-in-form
-[demo-menu]: https://terminus-ui-demos.stackblitz.io/components/menu
-[demo-navigation]: https://terminus-ui-demos.stackblitz.io/components/navigation
-[demo-paginator]: https://terminus-ui-demos.stackblitz.io/components/paginator
-[demo-pipes]: https://terminus-ui-demos.stackblitz.io/components/pipes
-[demo-radio-group]: https://terminus-ui-demos.stackblitz.io/components/radio
-[demo-scrollbars]: https://terminus-ui-demos.stackblitz.io/components/scrollbars
-[demo-search]: https://terminus-ui-demos.stackblitz.io/components/search
-[demo-select]: https://terminus-ui-demos.stackblitz.io/components/select
-[demo-spacing-constant]: https://terminus-ui-demos.stackblitz.io/components/spacing-constant
-[demo-spacing]: https://terminus-ui-demos.stackblitz.io/components/spacing
-[demo-table]: https://terminus-ui-demos.stackblitz.io/components/table
-[demo-toggle]: https://terminus-ui-demos.stackblitz.io/components/toggle
-[demo-tooltip]: https://terminus-ui-demos.stackblitz.io/components/tooltip
-[demo-validators]: https://terminus-ui-demos.stackblitz.io/components/validation
+[demo-autocomplete]: http://uilibrary-demo.terminus.ninja/master/components/autocomplete
+[demo-autofocus]: http://uilibrary-demo.terminus.ninja/master/components/autofocus
+[demo-button]: http://uilibrary-demo.terminus.ninja/master/components/button
+[demo-card]: http://uilibrary-demo.terminus.ninja/master/components/card
+[demo-chart]: http://uilibrary-demo.terminus.ninja/master/components/chart
+[demo-checkbox]: http://uilibrary-demo.terminus.ninja/master/components/checkbox
+[demo-confirmation]: http://uilibrary-demo.terminus.ninja/master/components/confirmation
+[demo-copy]: http://uilibrary-demo.terminus.ninja/master/components/copy
+[demo-csv-entry]: http://uilibrary-demo.terminus.ninja/master/components/csv-entry
+[demo-date-range]: http://uilibrary-demo.terminus.ninja/master/components/date-range
+[demo-datepicker]: http://uilibrary-demo.terminus.ninja/master/components/datepicker
+[demo-file-upload]: http://uilibrary-demo.terminus.ninja/master/components/file-upload
+[demo-icon-button]: http://uilibrary-demo.terminus.ninja/master/components/icon-button
+[demo-icon]: http://uilibrary-demo.terminus.ninja/master/components/icon
+[demo-input]: http://uilibrary-demo.terminus.ninja/master/components/input
+[demo-link]: http://uilibrary-demo.terminus.ninja/master/components/link
+[demo-loading-overlay]: http://uilibrary-demo.terminus.ninja/master/components/loading-overlay
+[demo-log-in-form]: http://uilibrary-demo.terminus.ninja/master/components/log-in-form
+[demo-menu]: http://uilibrary-demo.terminus.ninja/master/components/menu
+[demo-navigation]: http://uilibrary-demo.terminus.ninja/master/components/navigation
+[demo-paginator]: http://uilibrary-demo.terminus.ninja/master/components/paginator
+[demo-pipes]: http://uilibrary-demo.terminus.ninja/master/components/pipes
+[demo-radio-group]: http://uilibrary-demo.terminus.ninja/master/components/radio
+[demo-scrollbars]: http://uilibrary-demo.terminus.ninja/master/components/scrollbars
+[demo-search]: http://uilibrary-demo.terminus.ninja/master/components/search
+[demo-select]: http://uilibrary-demo.terminus.ninja/master/components/select
+[demo-spacing-constant]: http://uilibrary-demo.terminus.ninja/master/components/spacing-constant
+[demo-spacing]: http://uilibrary-demo.terminus.ninja/master/components/spacing
+[demo-table]: http://uilibrary-demo.terminus.ninja/master/components/table
+[demo-toggle]: http://uilibrary-demo.terminus.ninja/master/components/toggle
+[demo-tooltip]: http://uilibrary-demo.terminus.ninja/master/components/tooltip
+[demo-validators]: http://uilibrary-demo.terminus.ninja/master/components/validation
 
 <!-- SCSS Docs -->
 [breakpoints-docs]: ./terminus-ui/src/scss/docs/breakpoints.md
@@ -388,39 +389,39 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-validators]: ./terminus-ui/src/validators/
 
 <!-- TS Primary Docs -->
-[autocomplete-docs]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html
-[autofocus-docs]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html
-[button-docs]: https://getterminus.github.io/terminus-ui/components/TsButtonComponent.html
-[card-docs]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html
-[chart-docs]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html
-[checkbox-docs]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html
-[confirmation-docs]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html
-[copy-docs]: https://getterminus.github.io/terminus-ui/components/TsCopyComponent.html
-[csv-entry-docs]: https://getterminus.github.io/terminus-ui/components/TsCSVEntryComponent.html
-[date-range-docs]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html
-[datepicker-docs]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html
-[file-upload-docs]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html
-[icon-button-docs]: https://getterminus.github.io/terminus-ui/components/TsIconButtonComponent.html
-[icon-docs]: https://getterminus.github.io/terminus-ui/components/TsIconComponent.html
-[input-docs]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html
-[link-docs]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html
-[loading-overlay-docs]: https://getterminus.github.io/terminus-ui/components/TsLoadingOverlayComponent.html
-[login-form-docs]: https://getterminus.github.io/terminus-ui/components/TsLoginFormComponent.html
-[menu-docs]: https://getterminus.github.io/terminus-ui/components/TsMenuComponent.html
-[navigation-docs]: https://getterminus.github.io/terminus-ui/components/TsNavigationComponent.html
-[paginator-docs]: https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html
+[autocomplete-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsAutocompleteComponent.html
+[autofocus-docs]: http://uilibrary-docs.terminus.ninja/master/directives/TsAutofocusDirective.html
+[button-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsButtonComponent.html
+[card-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsCardComponent.html
+[chart-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsChartComponent.html
+[checkbox-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsCheckboxComponent.html
+[confirmation-docs]: http://uilibrary-docs.terminus.ninja/master/directives/TsConfirmationDirective.html
+[copy-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsCopyComponent.html
+[csv-entry-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsCSVEntryComponent.html
+[date-range-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsDateRangeComponent.html
+[datepicker-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsDatepickerComponent.html
+[file-upload-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsFileUploadComponent.html
+[icon-button-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsIconButtonComponent.html
+[icon-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsIconComponent.html
+[input-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsInputComponent.html
+[link-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsLinkComponent.html
+[loading-overlay-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsLoadingOverlayComponent.html
+[login-form-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsLoginFormComponent.html
+[menu-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsMenuComponent.html
+[navigation-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsNavigationComponent.html
+[paginator-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsPaginatorComponent.html
 [pipes-docs]: ./terminus-ui/src/pipes/README.md
-[pipes-docs]: https://getterminus.github.io/terminus-ui/modules/TsPipesModule.html
-[radio-group-docs]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html
-[scrollbars-docs]: https://getterminus.github.io/terminus-ui/components/TsScrollbarsComponent.html
-[search-docs]: https://getterminus.github.io/terminus-ui/components/TsSearchComponent.html
-[select-docs]: https://getterminus.github.io/terminus-ui/components/TsSelectComponent.html
-[sort-docs]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html
-[spacing-docs]: https://getterminus.github.io/terminus-ui/directives/TsVerticalSpacingDirective.html
-[table-docs]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html
-[toggle-docs]: https://getterminus.github.io/terminus-ui/components/TsToggleComponent.html
-[tooltip-docs]: https://getterminus.github.io/terminus-ui/components/TsTooltipComponent.html
-[validators-docs]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html
+[pipes-docs]: http://uilibrary-docs.terminus.ninja/master/modules/TsPipesModule.html
+[radio-group-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsRadioGroupComponent.html
+[scrollbars-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsScrollbarsComponent.html
+[search-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsSearchComponent.html
+[select-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsSelectComponent.html
+[sort-docs]: http://uilibrary-docs.terminus.ninja/master/directives/TsSortDirective.html
+[spacing-docs]: http://uilibrary-docs.terminus.ninja/master/directives/TsVerticalSpacingDirective.html
+[table-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsTableComponent.html
+[toggle-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsToggleComponent.html
+[tooltip-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsTooltipComponent.html
+[validators-docs]: http://uilibrary-docs.terminus.ninja/master/injectables/TsValidatorsService.html
 
 <!-- Versioned Docs & Demos -->
 [docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
@@ -428,26 +429,25 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [docs-latest]: http://uilibrary-docs.terminus.ninja/master/
 [demo-latest]: http://uilibrary-demo.terminus.ninja/master/
 
-
 <!-- TS Usage Docs -->
-[autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme
-[autofocus-usage]: https://getterminus.github.io/terminus-ui/directives/TsAutofocusDirective.html#readme
-[card-usage]: https://getterminus.github.io/terminus-ui/components/TsCardComponent.html#readme
-[chart-usage]: https://getterminus.github.io/terminus-ui/components/TsChartComponent.html#readme
-[checkbox-usage]: https://getterminus.github.io/terminus-ui/components/TsCheckboxComponent.html#readme
-[confirmation-usage]: https://getterminus.github.io/terminus-ui/directives/TsConfirmationDirective.html#readme
-[csv-entry-usage]: https://getterminus.github.io/terminus-ui/components/TsCSVEntryComponent.html#readme
-[date-range-usage]: https://getterminus.github.io/terminus-ui/components/TsDateRangeComponent.html#readme
-[datepicker-usage]: https://getterminus.github.io/terminus-ui/components/TsDatepickerComponent.html#readme
-[file-upload-usage]: https://getterminus.github.io/terminus-ui/components/TsFileUploadComponent.html#readme
-[icon-button-usage]: https://getterminus.github.io/terminus-ui/components/TsIconButtonComponent.html#readme
-[icon-usage]: https://getterminus.github.io/terminus-ui/components/TsIconComponent.html#readme
-[input-usage]: https://getterminus.github.io/terminus-ui/components/TsInputComponent.html#readme
-[link-usage]: https://getterminus.github.io/terminus-ui/components/TsLinkComponent.html#readme
-[menu-usage]: https://getterminus.github.io/terminus-ui/components/TsMenuComponent.html#readme
-[paginator-usage]: https://getterminus.github.io/terminus-ui/components/TsPaginatorComponent.html#readme
-[radio-group-usage]: https://getterminus.github.io/terminus-ui/components/TsRadioGroupComponent.html#readme
-[scrollbars-usage]: https://getterminus.github.io/terminus-ui/directives/TsScrollbarsComponent.html#readme
-[sort-usage]: https://getterminus.github.io/terminus-ui/directives/TsSortDirective.html#readme
-[table-usage]: https://getterminus.github.io/terminus-ui/components/TsTableComponent.html#readme
-[validators-usage]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html#readme
+[autocomplete-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsAutocompleteComponent.html#readme
+[autofocus-usage]: http://uilibrary-docs.terminus.ninja/master/directives/TsAutofocusDirective.html#readme
+[card-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsCardComponent.html#readme
+[chart-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsChartComponent.html#readme
+[checkbox-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsCheckboxComponent.html#readme
+[confirmation-usage]: http://uilibrary-docs.terminus.ninja/master/directives/TsConfirmationDirective.html#readme
+[csv-entry-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsCSVEntryComponent.html#readme
+[date-range-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsDateRangeComponent.html#readme
+[datepicker-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsDatepickerComponent.html#readme
+[file-upload-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsFileUploadComponent.html#readme
+[icon-button-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsIconButtonComponent.html#readme
+[icon-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsIconComponent.html#readme
+[input-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsInputComponent.html#readme
+[link-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsLinkComponent.html#readme
+[menu-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsMenuComponent.html#readme
+[paginator-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsPaginatorComponent.html#readme
+[radio-group-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsRadioGroupComponent.html#readme
+[scrollbars-usage]: http://uilibrary-docs.terminus.ninja/master/directives/TsScrollbarsComponent.html#readme
+[sort-usage]: http://uilibrary-docs.terminus.ninja/master/directives/TsSortDirective.html#readme
+[table-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsTableComponent.html#readme
+[validators-usage]: http://uilibrary-docs.terminus.ninja/master/injectables/TsValidatorsService.html#readme
