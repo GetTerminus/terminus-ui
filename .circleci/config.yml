@@ -34,9 +34,9 @@ jobs:
           name: Lint
           command: yarn run lint:ci
 
-      - run:
-          name: Run Tests
-          command: tooling/ci/test-unit.sh
+      #- run:
+          #name: Run Tests
+          #command: tooling/ci/test-unit.sh
 
       - store_test_results:
           path: coverage/junit/
@@ -46,8 +46,12 @@ jobs:
           command: yarn run build:app:ci
 
       - run:
-          name: Build Project
-          command: yarn run build
+          name: TEST DIR
+          command: cd dist && ls -d */
+
+      #- run:
+          #name: Build Project
+          #command: yarn run build
 
       - run:
           name: Generate Documentation
@@ -57,13 +61,13 @@ jobs:
           name: Upload Documentation & Demos
           command: tooling/ci/s3-deploy.sh
 
-      - run:
-          name: Release
-          command: npx semantic-release
+      #- run:
+          #name: Release
+          #command: npx semantic-release
 
-      - store_artifacts:
-          path: coverage/
-          destination: ~/coverage/
+      #- store_artifacts:
+          #path: coverage/
+          #destination: ~/coverage/
 
       - store_artifacts:
           path: dist/
