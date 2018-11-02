@@ -9,7 +9,9 @@
 
 echo 'Current Branch: ' $CIRCLE_BRANCH
 echo 'DIR:'
+cd dist
 ls -d */
+cd ../
 
 releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x")
 
