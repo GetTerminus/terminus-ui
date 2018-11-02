@@ -12,11 +12,11 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-29-blue.svg)](#components)
-[![pipes](https://img.shields.io/badge/Pipes-5-blue.svg)](#pipes)
-[![services](https://img.shields.io/badge/Services-1-blue.svg)](#services)
-[![style helpers](https://img.shields.io/badge/StyleHelpers-8-blue.svg)](#style-helpers)
-[![validators](https://img.shields.io/badge/Validators-14-blue.svg)](#validators)
+[![components](https://img.shields.io/badge/Components-29-%2316a085.svg)](#components)
+[![pipes](https://img.shields.io/badge/Pipes-5-%2316a085.svg)](#pipes)
+[![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
+[![style helpers](https://img.shields.io/badge/StyleHelpers-8-%2316a085.svg)](#style-helpers)
+[![validators](https://img.shields.io/badge/Validators-14-%2316a085.svg)](#validators)
 
 
 ---
@@ -66,6 +66,15 @@ best for the Terminus UI specifically.
 
 The [available features table](#available-features) contains links for functional and usage documentation
 for each feature.
+
+### Versioned Documentation and Demos
+
+- `latest`
+  - [Latest Documentation][docs-latest]
+  - [Latest Demos][demo-latest]
+- `8.x.x`
+  - [8.x.x Documentation][docs-v8]
+  - [8.x.x Demos][demo-v8]
 
 
 ## Available Features
@@ -412,6 +421,13 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [toggle-docs]: https://getterminus.github.io/terminus-ui/components/TsToggleComponent.html
 [tooltip-docs]: https://getterminus.github.io/terminus-ui/components/TsTooltipComponent.html
 [validators-docs]: https://getterminus.github.io/terminus-ui/injectables/TsValidatorsService.html
+
+<!-- Versioned Docs & Demos -->
+[docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
+[demo-v8]: http://uilibrary-demo.terminus.ninja/8.x.x/
+[docs-latest]: http://uilibrary-docs.terminus.ninja/master/
+[demo-latest]: http://uilibrary-demo.terminus.ninja/master/
+
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: https://getterminus.github.io/terminus-ui/components/TsAutocompleteComponent.html#readme
