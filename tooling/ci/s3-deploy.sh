@@ -9,6 +9,7 @@
 
 echo 'Current Branch: ' $CIRCLE_BRANCH
 
+# Docs and demos will only deploy when merging to one of these branches
 releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x")
 
 

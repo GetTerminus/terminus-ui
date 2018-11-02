@@ -42,12 +42,12 @@ jobs:
           path: coverage/junit/
 
       - run:
-          name: Test AoT Demo App Build
-          command: yarn run build:app:ci
-
-      - run:
           name: Build Project
           command: yarn run build
+
+      - run:
+          name: Test AoT Demo App Build
+          command: yarn run build:app:ci
 
       - run:
           name: Generate Documentation
