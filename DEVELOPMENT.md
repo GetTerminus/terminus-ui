@@ -29,9 +29,6 @@
 # Build the library
 $ yarn run build
 
-# Generate TypeScript docs and update README table of contents
-$ yarn run docs
-
 # Run TypeScript and SCSS linters
 $ yarn run lint
 
@@ -88,8 +85,7 @@ $ yarn run contributors:generate
 1. Import `TsButtonModule` in `terminus-ui/src/module.ts` and add it to imports **and** exports array.
 1. Export `TsButtonModule` from `terminus-ui/index.ts`.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
-1. Add a usage example in the component documentation with every possible input included.
-1. Run `yarn run docs` to generate all documentation.
+1. Add a usage example in the component documentation with every possible input and output included.
 1. Add the new component to available scopes in `tooling/cz-config.js`
 1. Update the status for the component in the [components table](#components)
 
