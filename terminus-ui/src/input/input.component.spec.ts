@@ -27,7 +27,6 @@ import { By } from '@angular/platform-browser';
 import { Subject, Observable } from 'rxjs';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
 import { TsInputModule } from './input.module';
 import {
   TsInputAutocompleteTypes,
@@ -35,7 +34,6 @@ import {
   TsInputTypes,
   TsMaskShortcutOptions,
 } from './input.component';
-
 
 
 
@@ -1003,6 +1001,30 @@ describe(`TsInputComponent`, () => {
 
   });
 
+  describe(`updateInnerValue`, () => {
+    test(`should not call detectChange if component is destroyed when no toggling input`, () => {
+      const fixture = createComponent(SimpleFormControl);
+      const comp = fixture.componentInstance.inputComponent;
+      comp.changeDetectorRef.detectChanges = jest.fn();
+      fixture.detectChanges();
+      fixture.destroy();
+      comp.updateInnerValue();
+      expect(comp.changeDetectorRef.detectChanges).not.toHaveBeenCalled();
+    });
+
+    test(`should not call detectChange if component is destroyed with toggling`, () => {
+      const fixture = createComponent(ToggleInputComponent);
+      const comp = fixture.componentInstance;
+      fixture.detectChanges();
+      comp.inputComponent.changeDetectorRef.detectChanges = jest.fn();
+      fixture.detectChanges();
+      comp.inputComponent.show = false;
+      fixture.detectChanges();
+      fixture.destroy();
+      expect(comp.inputComponent.changeDetectorRef.detectChanges).not.toHaveBeenCalled();
+    });
+  });
+
 });
 
 
@@ -1101,6 +1123,15 @@ class AutofillMonitorMock {
 /**
  * TEMPLATES
  */
+@Component({
+  template: `<div *ngIf="show"><ts-input></ts-input></div>`,
+})
+class ToggleInputComponent {
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+  public show: boolean = true;
+}
 
 
 @Component({

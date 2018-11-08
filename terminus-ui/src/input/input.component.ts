@@ -966,6 +966,7 @@ export class TsInputComponent
    */
   public ngOnDestroy(): void {
     this.autofillMonitor.stopMonitoring(this.elementRef.nativeElement);
+    this.changeDetectorRef.detach();
 
     // istanbul ignore else
     if (this._valueChange) {
@@ -1017,7 +1018,9 @@ export class TsInputComponent
    */
   public updateInnerValue = (value: string): void => {
     this.value = value;
-    this.changeDetectorRef.detectChanges();
+    if (!this.changeDetectorRef['destroyed']) {
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
 
