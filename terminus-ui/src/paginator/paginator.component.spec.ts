@@ -27,6 +27,13 @@ describe(`TsPaginatorComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`showRecordsPerPageSelector`, () => {
+    test(`should set and retrieve`, () => {
+      component.showRecordsPerPageSelector = true;
+      expect(component.showRecordsPerPageSelector).toEqual(true);
+    });
+  });
+
 
   describe(`ngAfterViewInit()`, () => {
 

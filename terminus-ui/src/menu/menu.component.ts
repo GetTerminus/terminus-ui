@@ -13,6 +13,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsButtonFormatTypes } from '../button/button.component';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -95,7 +96,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * Define if the menu should overlap the trigger
    */
-  public shouldOverlapTrigger: boolean = false;
+  public shouldOverlapTrigger = false;
 
   /**
    * The icon to be used in the trigger button
@@ -112,13 +113,25 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    * Define if the menu should be opened by default
    */
   @Input()
-  public defaultOpened: boolean = false;
+  public set defaultOpened(value: boolean) {
+    this._defaultOpened = coerceBooleanProperty(value);
+  }
+  public get defaultOpened(): boolean {
+    return this._defaultOpened;
+  }
+  private _defaultOpened = false;
 
   /**
    * Define if the menu should be disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Allow a custom template for menu items

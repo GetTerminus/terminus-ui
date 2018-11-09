@@ -93,7 +93,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Define the default delay for collapsable buttons
    */
-  private COLLAPSE_DEFAULT_DELAY: number = 4000;
+  private COLLAPSE_DEFAULT_DELAY = 4000;
 
   /**
    * Store a reference to the timeout needed for collapsable buttons
@@ -108,13 +108,13 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * The flag that defines if the button is collapsed or expanded
    */
-  public isCollapsed: boolean = false;
+  public isCollapsed = false;
 
   /**
    * A flag to determine if click events should be intercepted.
    * Set by {@link TsConfirmationDirective}
    */
-  public interceptClick: boolean = false;
+  public interceptClick = false;
 
   /**
    * Store the original event from a click (used when `interceptClick` is true)
@@ -197,13 +197,25 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Define if the button is disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define if the progress indicator should show
    */
   @Input()
-  public showProgress: boolean = false;
+  public set showProgress(value: boolean) {
+    this._showProgress = coerceBooleanProperty(value);
+  }
+  public get showProgress(): boolean {
+    return this._showProgress;
+  }
+  private _showProgress = false;
 
   /**
    * Define the tabindex for the button

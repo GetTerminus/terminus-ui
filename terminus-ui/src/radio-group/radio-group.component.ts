@@ -104,7 +104,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define the ripple color.
    * TODO: abstract out to a service or utility function or set as a global default for ripples
    */
-  public rippleColor: string = 'rgba(0, 83, 138, .1)';
+  public rippleColor = 'rgba(0, 83, 138, .1)';
 
   // NOTE: Since we are matching standard HTML attributes, we will rename for internal use.
   // tslint:disable: no-input-rename
@@ -212,7 +212,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define if the radio group is disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define if the radio group is visual (boxes) or standard (text)
@@ -224,7 +230,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public get isVisual(): boolean {
     return this._isVisual;
   }
-  private _isVisual: boolean = false;
+  private _isVisual = false;
 
   /**
    * Define a label for the radio group
@@ -270,7 +276,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public get small(): boolean {
     return this._small;
   }
-  private _small: boolean = false;
+  private _small = false;
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}
@@ -287,7 +293,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Getter to determine if the group is required
    */
-  get isRequired(): boolean {
+  public get isRequired(): boolean {
     return hasRequiredControl(this.formControl);
   }
 

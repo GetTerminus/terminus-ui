@@ -19,6 +19,7 @@ import {
 import { TsInputComponent } from './../input/input.component';
 import { TsCheckboxComponent } from './../checkbox/checkbox.component';
 import { TsValidatorsService } from './../validators/validators.service';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -113,7 +114,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Define a flag to add/remove the form from the DOM
    */
-  public showForm: boolean = true;
+  public showForm = true;
 
   /**
    * Provide access to the text inputs
@@ -143,13 +144,25 @@ export class TsLoginFormComponent implements OnChanges {
    * Define if the form button is showing progress
    */
   @Input()
-  public inProgress: boolean = false;
+  public set inProgress(value: boolean) {
+    this._inProgress = coerceBooleanProperty(value);
+  }
+  public get inProgress(): boolean {
+    return this._inProgress;
+  }
+  private _inProgress = false;
 
   /**
    * Define if the user has successfully logged in and is being redirected
    */
   @Input()
-  public isRedirecting: boolean = false;
+  public set isRedirecting(value: boolean) {
+    this._isRedirecting = coerceBooleanProperty(value);
+  }
+  public get isRedirecting(): boolean {
+    return this._isRedirecting;
+  }
+  private _isRedirecting = false;
 
   /**
    * Define the login call to action
@@ -161,7 +174,13 @@ export class TsLoginFormComponent implements OnChanges {
    * Allow a consumer to reset the form via an input
    */
   @Input()
-  public triggerFormReset: boolean = false;
+  public set triggerFormReset(value: boolean) {
+    this._triggerFormReset = coerceBooleanProperty(value);
+  }
+  public get triggerFormReset(): boolean {
+    return this._triggerFormReset;
+  }
+  private _triggerFormReset = false;
 
   /**
    * Emit an event on form submission

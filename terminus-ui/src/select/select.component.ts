@@ -161,19 +161,31 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent implements On
    * Define if the select should be disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define the label for the menu
    */
   @Input()
-  public label: string = '';
+  public label = '';
 
   /**
    * Define if multiple selections are allowed
    */
   @Input()
-  public multipleAllowed: boolean = false;
+  public set multipleAllowed(value: boolean) {
+    this._multipleAllowed = coerceBooleanProperty(value);
+  }
+  public get multipleAllowed(): boolean {
+    return this._multipleAllowed;
+  }
+  private _multipleAllowed = false;
 
   /**
    * Define the color theme
@@ -261,7 +273,7 @@ export class TsSelectComponent extends TsReactiveFormBaseComponent implements On
    *
    * @return A boolean representing if the form control is required
    */
-  get isRequired(): boolean {
+  public get isRequired(): boolean {
     return hasRequiredControl(this.formControl);
   }
 

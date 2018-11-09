@@ -53,7 +53,7 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-scrollbars
- *              id="foo"
+ *              id="my-id"
  *              isDisabled="true"
  *              (scrollDown)="myFunc($event)
  *              (scrollLeft)="myFunc($event)
@@ -98,13 +98,13 @@ export class TsScrollbarsComponent {
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this._uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
-  protected _id: string = this._uid;
+  protected _id = this._uid;
 
   /**
    * Define if the scrollbars are disabled
@@ -116,7 +116,7 @@ export class TsScrollbarsComponent {
   public get isDisabled(): boolean {
     return this._isDisabled;
   }
-  private _isDisabled: boolean = false;
+  private _isDisabled = false;
 
   /**
    * Access underlying scrollbar directive

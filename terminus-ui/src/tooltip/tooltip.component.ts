@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -62,5 +63,11 @@ export class TsTooltipComponent {
    * Define whether there is a dotted underline shown on the text
    */
   @Input()
-  public hasUnderline: boolean = false;
+  public set hasUnderline(value: boolean) {
+    this._hasUnderline = coerceBooleanProperty(value);
+  }
+  public get hasUnderline(): boolean {
+    return this._hasUnderline;
+  }
+  private _hasUnderline = false;
 }

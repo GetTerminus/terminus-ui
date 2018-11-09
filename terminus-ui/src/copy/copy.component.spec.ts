@@ -24,6 +24,19 @@ describe(`TsCopyComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`disableInitialSelection`, () => {
+    test(`should set and retrieve`, () => {
+      component.disableInitialSelection = true;
+      expect(component.disableInitialSelection).toEqual(true);
+    });
+  });
+
+  describe(`enableQuickCopy`, () => {
+    test(`should set and retrieve`, () => {
+      component.enableQuickCopy = true;
+      expect(component.enableQuickCopy).toEqual(true);
+    });
+  });
 
   describe(`get textContent()`, () => {
 

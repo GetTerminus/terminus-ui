@@ -72,13 +72,13 @@ export class TsIconComponent {
   public get background(): boolean {
     return this._background;
   }
-  private _background: boolean = false;
+  private _background = false;
 
   /**
    * Define if the icon should be aligned inline with text
    */
   @Input()
-  public inline: boolean = false;
+  public inline = false;
 
   /**
    * Name of the custom icon

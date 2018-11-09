@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -56,7 +57,13 @@ export class TsLinkComponent {
    * Define if the link is to an external page
    */
   @Input()
-  public isExternal: boolean = false;
+  public set isExternal(value: boolean) {
+    this._isExternal = coerceBooleanProperty(value);
+  }
+  public get isExternal(): boolean {
+    return this._isExternal;
+  }
+  private _isExternal = false;
 
   /**
    * Define the tabindex

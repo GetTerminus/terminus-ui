@@ -92,12 +92,13 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    * Overrides the disable clear value of the containing TsSort for this TsSortable
    */
   @Input()
-  get disableClear(): boolean {
-    return this._disableClear;
-  }
-  set disableClear(v: boolean) {
+  public set disableClear(v: boolean) {
     this._disableClear = coerceBooleanProperty(v);
   }
+  public get disableClear(): boolean {
+    return this._disableClear;
+  }
+  // NOTE: Test failed due to empty string, so keep this until it's investigated.
   private _disableClear!: boolean;
 
 

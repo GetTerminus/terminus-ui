@@ -16,6 +16,34 @@ describe('TsSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`isDisabled`, () => {
+    test(`should set and retrieve`, () => {
+      component.isDisabled = true;
+      expect(component.isDisabled).toEqual(true);
+    });
+  });
+
+  describe(`isFocused`, () => {
+    test(`should set and retrieve`, () => {
+      component.isFocused = true;
+      expect(component.isFocused).toEqual(true);
+    });
+  });
+
+  describe(`isSubmitting`, () => {
+    test(`should set and retrieve`, () => {
+      component.isSubmitting = true;
+      expect(component.isSubmitting).toEqual(true);
+    });
+  });
+
+  describe(`userCanClear`, () => {
+    test(`should set and retrieve`, () => {
+      component.userCanClear = true;
+      expect(component.userCanClear).toEqual(true);
+    });
+  });
+
 
   describe(`currentQuery`, () => {
 

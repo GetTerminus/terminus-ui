@@ -26,6 +26,7 @@ import { BehaviorSubject } from 'rxjs';
 import {
   coerceArray,
   coerceNumberProperty,
+  coerceBooleanProperty,
 } from '@terminus/ngx-tools/coercion';
 import {
   arrayContainsObject,
@@ -118,7 +119,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   /**
    * Define if the chips/selections should be selectable
    */
-  public selectableChips: boolean = false;
+  public selectableChips = false;
 
   /**
    * Store the selected options
@@ -270,8 +271,13 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Define if the progress spinner should be active
    */
   @Input()
-  public showProgress: boolean = false;
-
+  public set showProgress(value: boolean) {
+    this._showProgress = coerceBooleanProperty(value);
+  }
+  public get showProgress(): boolean {
+    return this._showProgress;
+  }
+  private _showProgress = false;
   /**
    * Define the component theme
    */

@@ -15,6 +15,20 @@ describe('TsCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`centeredContent`, () => {
+    it(`should set and retrieve`, () => {
+      component.centeredContent = true;
+      expect(component.centeredContent).toEqual(true);
+    });
+  });
+
+  describe(`supportsInteraction`, () => {
+    test(`should set and retrieve`, () => {
+      component.supportsInteraction = true;
+      expect(component.supportsInteraction).toEqual(true);
+    });
+  });
+
 
   describe(`set aspectRatio()`, () => {
 

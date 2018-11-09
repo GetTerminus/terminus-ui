@@ -78,10 +78,10 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this._uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this._uid;
@@ -99,25 +99,43 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   public get isChecked(): boolean {
     return this._isChecked;
   }
-  private _isChecked: boolean = false;
+  private _isChecked = false;
 
   /**
    * Define if the checkbox is disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define if the checkbox should be indeterminate
    */
   @Input()
-  public isIndeterminate: boolean = false;
+  public set isIndeterminate(value: boolean) {
+    this._isIndeterminate = coerceBooleanProperty(value);
+  }
+  public get isIndeterminate(): boolean {
+    return this._isIndeterminate;
+  }
+  private _isIndeterminate = false;
 
   /**
    * Define if the checkbox is required
    */
   @Input()
-  public isRequired: boolean = false;
+  public set isRequired(value: boolean) {
+    this._isRequired = coerceBooleanProperty(value);
+  }
+  public get isRequired(): boolean {
+    return this._isRequired;
+  }
+  private _isRequired = false;
 
   /**
    * Toggle the underlying checkbox if the ngModel changes
@@ -131,7 +149,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Define the tabindex
    */
   @Input()
-  public tabIndex: number = 0;
+  public tabIndex = 0;
 
   /**
    * Define the theme

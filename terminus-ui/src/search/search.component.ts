@@ -19,6 +19,7 @@ import {
   TsButtonFunctionTypes,
 } from './../button/button.module';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -71,7 +72,7 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the time to wait for user interaction to stop before auto-submitting
    */
-  private INPUT_DEBOUNCE_TIME: number = 200;
+  private INPUT_DEBOUNCE_TIME = 200;
 
   /**
    * Define the button action label
@@ -98,17 +99,17 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the icon name
    */
-  public icon: string = 'search';
+  public icon = 'search';
 
   /**
    * Define the regular expression to validate the query
    */
-  public inputPatternRegex: string = '[a-zA-Z0-9_ ]*';
+  public inputPatternRegex = '[a-zA-Z0-9_ ]*';
 
   /**
    * Define the minimum length of a valid query
    */
-  public queryMinLength: number = 2;
+  public queryMinLength = 2;
 
   /**
    * Initialize the form
@@ -126,13 +127,19 @@ export class TsSearchComponent implements OnInit {
   /**
    * Store the search query
    */
-  public query: string = '';
+  public query = '';
 
   /**
    * Define if the input should automatically submit values as typed
    */
   @Input()
-  public autoSubmit: boolean = false;
+  public set autoSubmit(value: boolean) {
+    this._autoSubmit = coerceBooleanProperty(value);
+  }
+  public get autoSubmit(): boolean {
+    return this._autoSubmit;
+  }
+  private _autoSubmit = false;
 
   /**
    * Define an initial value for the search input
@@ -144,31 +151,49 @@ export class TsSearchComponent implements OnInit {
    * Define the hint text below the input
    */
   @Input()
-  public inputHint: string = 'Enter at least two letters.';
+  public inputHint = 'Enter at least two letters.';
 
   /**
    * Define the primary label for the input
    */
   @Input()
-  public inputLabel: string = 'Search';
+  public inputLabel = 'Search';
 
   /**
    * Define if the search should be disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define if the search input should be focused initially
    */
   @Input()
-  public isFocused: boolean = false;
+  public set isFocused(value: boolean) {
+    this._isFocused = coerceBooleanProperty(value);
+  }
+  public get isFocused(): boolean {
+    return this._isFocused;
+  }
+  private _isFocused = false;
 
   /**
    * Define if the search is currently submitting a query
    */
   @Input()
-  public isSubmitting: boolean = false;
+  public set isSubmitting(value: boolean) {
+    this._isSubmitting = coerceBooleanProperty(value);
+  }
+  public get isSubmitting(): boolean {
+    return this._isSubmitting;
+  }
+  private _isSubmitting = false;
 
   /**
    * Define the theme
@@ -180,7 +205,13 @@ export class TsSearchComponent implements OnInit {
    * Define if the user can clear the search input
    */
   @Input()
-  public userCanClear: boolean = true;
+  public set userCanClear(value: boolean) {
+    this._userCanClear = coerceBooleanProperty(value);
+  }
+  public get userCanClear(): boolean {
+    return this._userCanClear;
+  }
+  private _userCanClear = true;
 
   /**
    * The event to emit when the form is submitted

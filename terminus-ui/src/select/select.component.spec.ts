@@ -39,6 +39,20 @@ describe(`TsSelectComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`isDisabled`, () => {
+    it(`should set and retrieve`, () => {
+      component.isDisabled = true;
+      expect(component.isDisabled).toEqual(true);
+    });
+  });
+
+  describe(`multipleAllowed`, () => {
+    it(`should set and retrieve`, () => {
+      component.multipleAllowed = true;
+      expect(component.multipleAllowed).toEqual(true);
+    });
+  });
+
 
   describe(`items`, () => {
 

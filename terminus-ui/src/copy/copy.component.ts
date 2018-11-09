@@ -11,6 +11,7 @@ import {
 } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -49,7 +50,7 @@ export class TsCopyComponent {
   /**
    * Internal flag to track if the contents have been selected
    */
-  public hasSelected: boolean = false;
+  public hasSelected = false;
 
   /**
    * Define the copy icon
@@ -77,13 +78,25 @@ export class TsCopyComponent {
    * Define if the initial click should select the contents
    */
   @Input()
-  public disableInitialSelection: boolean = false;
+  public set disableInitialSelection(value: boolean) {
+    this._disableInitialSelection = coerceBooleanProperty(value);
+  }
+  public get disableInitialSelection(): boolean {
+    return this._disableInitialSelection;
+  }
+  private _disableInitialSelection = false;
 
   /**
    * Define if the copy to clipboard functionality is enabled
    */
   @Input()
-  public enableQuickCopy: boolean = false;
+  public set enableQuickCopy(value: boolean) {
+    this._enableQuickCopy = coerceBooleanProperty(value);
+  }
+  public get enableQuickCopy(): boolean {
+    return this._enableQuickCopy;
+  }
+  private _enableQuickCopy = false;
 
   /**
    * Define the component theme

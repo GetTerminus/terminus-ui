@@ -122,7 +122,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * A flag that represents an in-progress drag movement
    */
-  public dragInProgress: boolean = false;
+  public dragInProgress = false;
 
   /**
    * Store the selected file
@@ -269,16 +269,16 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   public get hideButton(): boolean {
     return this._hideButton;
   }
-  private _hideButton: boolean = false;
+  private _hideButton = false;
 
   /**
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this._uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id!: string;
