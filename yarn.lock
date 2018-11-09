@@ -125,13 +125,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^5.2.x || ^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.2.1.tgz#6ac6e58e8557623e6615ebcb673d74bcc575641c"
-  integrity sha512-uwW4eIGJKqOkR+ew6YcEAh1J4SP98jdyDpsZ4IEMkV9+jXcKfcwcxGFpZvs9wJsAvAr8EgNmZ8h+iuZLwJsvmA==
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/cdk@^6.4.7":
   version "6.4.7"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.4.7.tgz#1549b304dd412e82bd854cc55a7d5c6772ee0411"
@@ -207,13 +200,6 @@
   integrity sha512-N0wXHpEL/CsNM4l44Z+dU51Y994mBEHjt9yb0SeKf02mdrsTJK+cEvfZ0JkVDjGddqdWHvWFn3zSmkR79qLrSQ==
   dependencies:
     tslib "^1.9.0"
-
-"@angular/material@^5.2.x || ^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-6.2.1.tgz#aec3387db755145b80d66d8497d4a834f88b61be"
-  integrity sha512-SBoUXxHknkgwzp5pNDHW0jyrTM0d0Tk4lVyDbtEX8VEPtXqG5nL3BSgyjpJbTvqlmy2kOooUu3qgAmt87VH9lw==
-  dependencies:
-    tslib "^1.7.1"
 
 "@angular/material@^6.4.7":
   version "6.4.7"
@@ -643,15 +629,15 @@
   dependencies:
     tslib "^1.9.0"
 
-"@terminus/ui@^8.24.0":
-  version "8.24.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-8.24.0.tgz#853da35ab30991d969025f4484781be534061017"
-  integrity sha512-hctav+Lu43mE1mpRTxR/I1l6owWt7UW2UMN0IXpYLnpb1Ck5ZikpDEgnZmOm45sUMxxi7sTNF3l0MojftaEp/g==
+"@terminus/ui@^9.0.0":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-9.0.6.tgz#29d7ff0bdf497ff6aa6361811bf065784920f107"
   dependencies:
-    "@angular/cdk" "^5.2.x || ^6.2.1"
-    "@angular/material" "^5.2.x || ^6.2.1"
-    text-mask-addons "^3.7.2"
-    text-mask-core "^5.0.1"
+    "@angular/cdk" "^6.4.7"
+    "@angular/material" "^6.4.7"
+    ngx-perfect-scrollbar "^6.3.1"
+    text-mask-addons "^3.8.0"
+    text-mask-core "^5.1.2"
     tslib "^1.9.0"
   optionalDependencies:
     "@amcharts/amcharts4" "^4.0.0-beta.50"
@@ -14995,20 +14981,10 @@ text-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/text-extensions/-/text-extensions-1.7.0.tgz#faaaba2625ed746d568a23e4d0aacd9bf08a8b39"
   integrity sha512-AKXZeDq230UaSzaO5s3qQUZOaC7iKbzq0jOFL614R7d9R593HLqAOL0cYoqLdkNrjBSOdmoQI06yigq1TSBXAg==
 
-text-mask-addons@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/text-mask-addons/-/text-mask-addons-3.7.2.tgz#56d34780c94f2ee593a77de6e79b55d56f8a8bb8"
-  integrity sha512-uezfAuWcDJ/B/lu5ooz38DEdI8NfIVX2xKwshLs40Er8MBGSppklOqOYw32wEmCUP7XPVX2u3u2TdQcIRuBLXA==
-
 text-mask-addons@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/text-mask-addons/-/text-mask-addons-3.8.0.tgz#17b61ef665a4f36811f2ea1f01a223b4be61ab26"
   integrity sha1-F7Ye9mWk82gR8uofAaIjtL5hqyY=
-
-text-mask-core@^5.0.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/text-mask-core/-/text-mask-core-5.1.1.tgz#a7f65634e11236818fd36a92668e17bf9368f357"
-  integrity sha512-tcHJSs0jlHpIed2flCuZZhUIGN1KfDsN/qCW7lkYxyXkKt4OLd3GXCHPFsY9rOLhmyC43ZRTM+tCxizBzluWpw==
 
 text-mask-core@^5.1.2:
   version "5.1.2"
