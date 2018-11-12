@@ -13,4 +13,11 @@ describe(`TsLinkComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`isExternal`, () => {
+    it(`should set and retrieve`, () => {
+      component.isExternal = true;
+      expect(component.isExternal).toEqual(true);
+    });
+  });
+
 });

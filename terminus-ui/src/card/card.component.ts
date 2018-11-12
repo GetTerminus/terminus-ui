@@ -54,7 +54,7 @@ let nextUniqueId = 0;
  *              centeredContent="true"
  *              disabled="true"
  *              flat="true"
- *              id="foo"
+ *              id="my-id"
  *              supportsInteraction="true"
  *              theme="primary"
  *              [utilityMenuTemplate]="myTemplate"
@@ -118,28 +118,34 @@ export class TsCardComponent {
    * Define if the card should center child content
    */
   @Input()
-  public centeredContent: boolean = false;
+  public set centeredContent(value: boolean) {
+    this._centeredContent = coerceBooleanProperty(value);
+  }
+  public get centeredContent(): boolean {
+    return this._centeredContent;
+  }
+  private _centeredContent = false;
 
   /**
    * Define if the card is disabled
    */
   @Input()
-
-  set disabled(value: boolean) {
+  public set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
   }
-  get disabled(): boolean {
+  public get disabled(): boolean {
     return this._disabled;
   }
-  public _disabled: boolean = false;
+  public _disabled = false;
+
   /**
    * Define if the card should not have a drop shadow
    */
   @Input()
-  set flat(value: boolean) {
+  public set flat(value: boolean) {
     this._flat = coerceBooleanProperty(value);
   }
-  get flat(): boolean {
+  public get flat(): boolean {
     return this._flat;
   }
   public _flat: boolean = false;
@@ -148,10 +154,10 @@ export class TsCardComponent {
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this._uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this._uid;
@@ -162,7 +168,13 @@ export class TsCardComponent {
    * NOTE: This only alters style; not functionality
    */
   @Input()
-  public supportsInteraction: boolean = false;
+  public set supportsInteraction(value: boolean) {
+    this._supportsInteraction = coerceBooleanProperty(value);
+  }
+  public get supportsInteraction(): boolean {
+    return this._supportsInteraction;
+  }
+  private _supportsInteraction = false;
 
   /**
    * Define the card theme

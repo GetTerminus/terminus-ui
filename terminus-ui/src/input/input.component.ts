@@ -202,7 +202,7 @@ const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
  *              [formControl]="myForm.get('myControl')"
  *              hideRequiredMarker="false"
  *              hint="Fill this out!"
- *              id="myId"
+ *              id="my-id"
  *              isClearable="true"
  *              isDisabled="false"
  *              isFocused="false"
@@ -439,7 +439,7 @@ export class TsInputComponent
   public get autocapitalize(): boolean {
     return this._autocapitalize;
   }
-  private _autocapitalize: boolean = false;
+  private _autocapitalize = false;
 
   /**
    * Define if the input should autocomplete. See {@link TsInputAutocompleteTypes}.
@@ -485,7 +485,7 @@ export class TsInputComponent
   public get datepicker(): boolean {
     return this._datepicker;
   }
-  private _datepicker: boolean = false;
+  private _datepicker = false;
 
   /**
    * Define the form control to get access to validators
@@ -537,10 +537,10 @@ export class TsInputComponent
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this.uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this.uid;
@@ -567,7 +567,7 @@ export class TsInputComponent
   public get isDisabled(): boolean {
     return this._isDisabled;
   }
-  private _isDisabled: boolean = false;
+  private _isDisabled = false;
 
   /**
    * Define if the input should be focused
@@ -667,7 +667,7 @@ export class TsInputComponent
   public get maskAllowDecimal(): boolean {
     return this._maskAllowDecimal;
   }
-  private _maskAllowDecimal: boolean = true;
+  private _maskAllowDecimal = true;
 
   /**
    * Define if the value should be sanitized before it is saved to the model
@@ -679,7 +679,7 @@ export class TsInputComponent
   public get maskSanitizeValue(): boolean {
     return this._maskSanitizeValue;
   }
-  private _maskSanitizeValue: boolean = true;
+  private _maskSanitizeValue = true;
 
   /**
    * Define the maximum date for the datepicker
@@ -736,10 +736,10 @@ export class TsInputComponent
    * Define if the input is readOnly
    */
   @Input()
-  set readOnly(value: boolean) {
+  public set readOnly(value: boolean) {
     this._readOnly = coerceBooleanProperty(value);
   }
-  get readOnly(): boolean {
+  public get readOnly(): boolean {
     return this._readOnly;
   }
   private _readOnly = false;
@@ -755,7 +755,7 @@ export class TsInputComponent
   public get spellcheck(): boolean {
     return this._spellcheck;
   }
-  private _spellcheck: boolean = true;
+  private _spellcheck = true;
 
   /**
    * Define the starting calendar view for the datepicker
@@ -783,7 +783,7 @@ export class TsInputComponent
   public get tabIndex(): number {
     return this._tabIndex;
   }
-  private _tabIndex: number = 0;
+  private _tabIndex = 0;
 
   /**
    * Define the component theme

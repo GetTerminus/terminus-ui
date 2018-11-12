@@ -24,6 +24,26 @@ describe(`TsLoginFormComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`inProgress`, () => {
+    it(`should set and retrieve`, () => {
+      component.inProgress = true;
+      expect(component.inProgress).toEqual(true);
+    });
+  });
+
+  describe(`isRedirecting`, () => {
+    it(`should set and retrieve`, () => {
+      component.isRedirecting = true;
+      expect(component.isRedirecting).toEqual(true);
+    });
+  });
+
+  describe(`triggerFormReset`, () => {
+    it(`should set and retrieve`, () => {
+      component.triggerFormReset = true;
+      expect(component.triggerFormReset).toEqual(true);
+    });
+  });
 
   describe(`ngOnChanges()`, () => {
 

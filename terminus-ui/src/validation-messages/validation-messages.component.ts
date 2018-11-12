@@ -77,10 +77,10 @@ export class TsValidationMessagesComponent {
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this.uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this.uid;
@@ -95,7 +95,7 @@ export class TsValidationMessagesComponent {
   public get validateOnChange(): boolean {
     return this._validateOnChange;
   }
-  private _validateOnChange: boolean = false;
+  private _validateOnChange = false;
 
   /**
    * Define if the validation should be immediate
@@ -107,7 +107,7 @@ export class TsValidationMessagesComponent {
   public get validateImmediately(): boolean {
     return this._validateImmediately;
   }
-  private _validateImmediately: boolean = false;
+  private _validateImmediately = false;
 
 
   constructor(

@@ -31,6 +31,12 @@ describe(`TsButtonComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`showProgress`, () => {
+    test(`should set and retrieve`, () => {
+      component.showProgress = true;
+      expect(component.showProgress).toEqual(true);
+    });
+  });
 
   describe(`set collapsed`, () => {
 

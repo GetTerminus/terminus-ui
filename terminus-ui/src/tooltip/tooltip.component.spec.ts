@@ -13,4 +13,11 @@ describe(`TsTooltipComponent`, () => {
     expect(component).toBeTruthy();
   });
 
+  describe(`hasUnderline`, () => {
+    test(`should set and retrieve`, () => {
+      component.hasUnderline = true;
+      expect(component.hasUnderline).toEqual(true);
+    });
+  });
+
 });

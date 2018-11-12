@@ -132,7 +132,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
   public get disableClear() {
     return this._disableClear;
   }
-  private _disableClear: boolean = false;
+  private _disableClear = false;
 
   /**
    * Event emitted when the user changes either the active sort or sort direction

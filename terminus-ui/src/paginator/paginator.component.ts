@@ -92,12 +92,12 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the default count of records per page
    */
-  private DEFAULT_PER_PAGE: number = 10;
+  private DEFAULT_PER_PAGE = 10;
 
   /**
    * Default max records before message is shown
    */
-  private DEFAULT_MAX_PREFERED_RECORDS: number = 100;
+  private DEFAULT_MAX_PREFERED_RECORDS = 100;
 
   /**
    * Define the default options for the records per page select menu
@@ -107,28 +107,28 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the default message to show when too many records are returned
    */
-  private DEFAULT_HIGH_RECORD_MESSAGE: string = 'That\'s a lot of results! ' +
+  private DEFAULT_HIGH_RECORD_MESSAGE = 'That\'s a lot of results! ' +
     'Try refining your filters for better results.';
 
   /**
    * Define the icon for the 'first page' button
    */
-  public firstPageIcon: string = 'first_page';
+  public firstPageIcon = 'first_page';
 
   /**
    * Define the icon for the 'previous page' button
    */
-  public previousPageIcon: string = 'keyboard_arrow_left';
+  public previousPageIcon = 'keyboard_arrow_left';
 
   /**
    * Define the icon for the 'next page' button
    */
-  public nextPageIcon: string = 'keyboard_arrow_right';
+  public nextPageIcon = 'keyboard_arrow_right';
 
   /**
    * Define the icon for the 'last page' button
    */
-  public lastPageIcon: string = 'last_page';
+  public lastPageIcon = 'last_page';
 
   /**
    * Store the array of objects that represent pages of collections
@@ -162,31 +162,31 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public get isZeroBased(): boolean {
     return this._isZeroBased;
   }
-  private _isZeroBased: boolean = true;
+  private _isZeroBased = true;
 
   /**
    * Define the tooltip message for the first page tooltip
    */
   @Input()
-  public firstPageTooltip: string = 'View the first results';
+  public firstPageTooltip = 'View the first results';
 
   /**
    * Define the tooltip message for the previous page tooltip
    */
   @Input()
-  public previousPageTooltip: string = 'View the previous results';
+  public previousPageTooltip = 'View the previous results';
 
   /**
    * Define the tooltip message for the next page tooltip
    */
   @Input()
-  public nextPageTooltip: string = 'View the next results';
+  public nextPageTooltip = 'View the next results';
 
   /**
    * Define the tooltip message for the last page tooltip
    */
   @Input()
-  public lastPageTooltip: string = 'View the last results';
+  public lastPageTooltip = 'View the last results';
 
   /**
    * Define the current page
@@ -252,13 +252,19 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define the label for the records per page select
    */
   @Input()
-  public recordsSelectLabel: string = 'Per page';
+  public recordsSelectLabel = 'Per page';
 
   /**
    * Define if the records per page select menu should be visible
    */
   @Input()
-  public showRecordsPerPageSelector: boolean = true;
+  public set showRecordsPerPageSelector(value: boolean) {
+    this._showRecordsPerPageSelector = coerceBooleanProperty(value);
+  }
+  public get showRecordsPerPageSelector(): boolean {
+    return this._showRecordsPerPageSelector;
+  }
+  private _showRecordsPerPageSelector = true;
 
   /**
    * Emit a page selected event

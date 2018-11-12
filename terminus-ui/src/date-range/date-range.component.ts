@@ -108,7 +108,7 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Define the end date label
    */
-  public endLabel: string = 'End date';
+  public endLabel = 'End date';
 
   /**
    * Define a fallback control in case one is not passed in
@@ -123,7 +123,7 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Define the separator between the two date inputs
    */
-  public separator: string = '-';
+  public separator = '-';
 
   /**
    * Provide quick access to the startDate form control
@@ -144,7 +144,7 @@ export class TsDateRangeComponent implements OnInit {
   /**
    * Define the start date label
    */
-  public startLabel: string = 'Start date';
+  public startLabel = 'Start date';
 
   /**
    * Define the form group to attach the date range to
@@ -180,7 +180,7 @@ export class TsDateRangeComponent implements OnInit {
   public get isDisabled(): boolean {
     return this._isDisabled;
   }
-  private _isDisabled: boolean = false;
+  private _isDisabled = false;
 
   /**
    * Define the starting view for both datepickers

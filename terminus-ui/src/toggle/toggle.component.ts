@@ -69,19 +69,31 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
   public get isChecked(): boolean {
     return this._isChecked;
   }
-  private _isChecked: boolean = false;
+  private _isChecked = false;
 
   /**
    * Define if the toggle should be disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public set isDisabled(value: boolean) {
+    this._isDisabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._isDisabled;
+  }
+  private _isDisabled = false;
 
   /**
    * Define if the toggle is required
    */
   @Input()
-  public isRequired: boolean = true;
+  public set isRequired(value: boolean) {
+    this._isRequired = coerceBooleanProperty(value);
+  }
+  public get isRequired(): boolean {
+    return this._isRequired;
+  }
+  private _isRequired = false;
 
   /**
    * Define the position of the label
@@ -93,7 +105,7 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Define the input name for the toggle
    */
   @Input()
-  public name: string = 'toggle';
+  public name = 'toggle';
 
   /**
    * Define the theme

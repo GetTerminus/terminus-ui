@@ -59,13 +59,13 @@ export class TsIconButtonComponent {
    * Define if the button is disabled
    */
   @Input()
-  public isDisabled: boolean = false;
+  public isDisabled = false;
 
   /**
    * Define the tabindex for the button
    */
   @Input()
-  public tabIndex: number = 0;
+  public tabIndex = 0;
 
   /**
    * Pass the click event through to the parent
