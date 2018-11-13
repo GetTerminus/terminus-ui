@@ -3,12 +3,15 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
  * Define the accepted string values for the {@link TsTooltipComponent} position
+ *
+ * NOTE: left and right are being deprecated in 10.x
  */
 export type TsTooltipPositionTypes =
   'left' |
@@ -19,6 +22,15 @@ export type TsTooltipPositionTypes =
   'after'
 ;
 
+/**
+ * Define the allowed tooltupes Used by {@link TsTooltipComponent} position
+ */
+const allowedTooltipTypes: TsTooltipPositionTypes[] = [
+  'above',
+  'below',
+  'before',
+  'after',
+];
 
 /**
  * This is the tooltip UI Component
@@ -49,9 +61,22 @@ export type TsTooltipPositionTypes =
 export class TsTooltipComponent {
   /**
    * Define the position of the tooltip
+   *
+   * @deprecated target 10.x
    */
   @Input()
-  public tooltipPosition: TsTooltipPositionTypes = 'below';
+  public set tooltipPosition(value: TsTooltipPositionTypes) {
+    if (value && isDevMode() && (allowedTooltipTypes.indexOf(value) < 0)) {
+      console.warn(`TsTooltipComponent: "${value}" is not an allowed position. ` + 'Allowed positions defined by "allowedTooltipTypes".');
+    }
+    this._tooltipPosition = value;
+  }
+  public get tooltipPosition(): TsTooltipPositionTypes {
+    return this._tooltipPosition;
+  }
+  private _tooltipPosition: TsTooltipPositionTypes = 'below';
+
+ // TsTooltipPositionTypes = 'below';
 
   /**
    * Define the content to display within the tooltip
