@@ -7,6 +7,7 @@ import {
   ComponentFixture,
   TestBed,
   TestModuleMetadata,
+  fakeAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ValidatorFn, Validators } from '@angular/forms';
@@ -47,6 +48,7 @@ function stringifyForm(content: TsCSVFormContents): string {
        [rowCount]="rowCount"
        [columnValidators]="columnValidators"
        [columnHeaders]="columnHeaders"
+       [outputFormat]="outputFormat"
        (blobGenerated)="gotFile($event)"
     ></ts-csv-entry>
   `,
@@ -58,6 +60,7 @@ class TestHostComponent {
   rowCount: number | undefined;
   columnValidators: undefined | (ValidatorFn | null)[];
   columnHeaders: undefined | string[];
+  outputFormat = 'csv';
   gotFile = jest.fn();
 
   @ViewChild(TsCSVEntryComponent)
@@ -116,47 +119,48 @@ describe(`TsCSVEntryComponent`, () => {
       hostComponent.rowCount = undefined;
       hostComponent.columnValidators = undefined;
       hostComponent.columnHeaders = undefined;
+      hostComponent.outputFormat = 'csv';
     }
     /**
      * Form content
      */
     formContentTwoCol = {
-      headers: [ 'foo', 'bar'],
+      headers: ['foo', 'bar'],
       records: [
-        {recordId: 0, columns: ['foo1', 'bar1']},
-        {recordId: 1, columns: ['foo2', 'bar2']},
-        {recordId: 2, columns: ['foo3', 'bar3']},
+        { recordId: 0, columns: ['foo1', 'bar1'] },
+        { recordId: 1, columns: ['foo2', 'bar2'] },
+        { recordId: 2, columns: ['foo3', 'bar3'] },
       ],
     };
     formContentThreeCol = {
-      headers: [ 'bing', 'bang', 'boom'],
+      headers: ['bing', 'bang', 'boom'],
       records: [
-        {recordId: 0, columns: ['bing1', 'bang1', 'http://foo.com']},
-        {recordId: 1, columns: ['bing2', 'bang2', 'boom2']},
-        {recordId: 2, columns: ['bing3', 'bang3', 'boom3']},
-        {recordId: 3, columns: ['bing4', 'bang4', 'boom4']},
+        { recordId: 0, columns: ['bing1', 'bang1', 'http://foo.com'] },
+        { recordId: 1, columns: ['bing2', 'bang2', 'boom2'] },
+        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
+        { recordId: 3, columns: ['bing4', 'bang4', 'boom4'] },
       ],
     };
     formContentManyErrors = {
-      headers: [ 'bing', 'bang', 'boom'],
+      headers: ['bing', 'bang', 'boom'],
       records: [
-        {recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1']},
-        {recordId: 1, columns: ['bing2', 'bang2', 'boom2']},
-        {recordId: 2, columns: ['bing3', 'bang3', 'boom3']},
-        {recordId: 3, columns: ['bing4', 'bang4', 'boom4']},
-        {recordId: 4, columns: ['bing5', '1234567890987654321234567890', 'boom5']},
-        {recordId: 5, columns: ['bing6', 'bang6', 'boom6']},
-        {recordId: 6, columns: ['bing7', 'bang7', 'boom7']},
-        {recordId: 7, columns: ['bing8', 'bang8', 'boom8']},
-        {recordId: 8, columns: ['bing9', 'bang9', 'boom9']},
+        { recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1'] },
+        { recordId: 1, columns: ['bing2', 'bang2', 'boom2'] },
+        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
+        { recordId: 3, columns: ['bing4', 'bang4', 'boom4'] },
+        { recordId: 4, columns: ['bing5', '1234567890987654321234567890', 'boom5'] },
+        { recordId: 5, columns: ['bing6', 'bang6', 'boom6'] },
+        { recordId: 6, columns: ['bing7', 'bang7', 'boom7'] },
+        { recordId: 7, columns: ['bing8', 'bang8', 'boom8'] },
+        { recordId: 8, columns: ['bing9', 'bang9', 'boom9'] },
       ],
     };
     formContentRequiredErrors = {
-      headers: [ 'bing', 'bang'],
+      headers: ['bing', 'bang'],
       records: [
-        {recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1']},
-        {recordId: 1, columns: [null, 'bang2', 'boom2']},
-        {recordId: 2, columns: ['bing3', 'bang3', 'boom3']},
+        { recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1'] },
+        { recordId: 1, columns: [null, 'bang2', 'boom2'] },
+        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
       ],
     };
     /**
@@ -545,6 +549,45 @@ describe(`TsCSVEntryComponent`, () => {
       expect(hostComponent.gotFile).toHaveBeenLastCalledWith(expect.any(Blob));
       jest.runAllTimers();
     });
+
+
+    test(`should respect output format of tsv`, fakeAsync((done) => {
+      jest.useFakeTimers();
+      expect(firstHeaderCell.value).toEqual('');
+      firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
+      jest.advanceTimersByTime(10);
+
+      const reader = new FileReader();
+      const calls = hostComponent.gotFile.mock.calls;
+      const content = calls[0][0];
+      reader.onloadend = function() {
+        expect(reader.result).toContain('\t');
+        done();
+        jest.clearAllTimers();
+      };
+      reader.readAsText(content);
+
+    }));
+
+
+    test(`should respect output format of csv`, fakeAsync((done) => {
+      jest.useFakeTimers();
+      expect(firstHeaderCell.value).toEqual('');
+      firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
+      jest.advanceTimersByTime(10);
+      hostComponent.outputFormat = 'csv';
+
+      const reader = new FileReader();
+      const calls = hostComponent.gotFile.mock.calls;
+      const content = calls[0][0];
+      reader.onloadend = function() {
+        expect(reader.result).toContain(',');
+        done();
+        jest.clearAllTimers();
+      };
+      reader.readAsText(content);
+
+    }));
 
   });
 

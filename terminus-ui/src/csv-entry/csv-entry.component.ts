@@ -236,6 +236,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private _columnValidators: ValidatorFn | null[] = [];
 
   /**
+   * Define output to be CSV rather than TSV
+   */
+  @Input()
+  public outputFormat: 'csv' | 'tsv' = 'tsv';
+
+  /**
    * Emit the built file blob
    */
   @Output()
@@ -818,7 +824,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const prefix = 'data:text/csv;charset=utf-8,';
     const headers: string = content.headers.join('\t') + '\r\n';
     const rows: string = content.records.map((v) => v.columns.join('\t')).join('\r\n') + '\r\n';
-    const joined: string = prefix + headers + rows;
+    let joined: string = prefix + headers + rows;
+    // istanbul ignore else
+    if (this.outputFormat === 'csv') {
+      joined = JSON.stringify(joined).replace(/\\t/g, ',');
+    }
     return new Blob([joined], {type: 'text/csv'});
   }
 
