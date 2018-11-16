@@ -23,7 +23,7 @@ export type TsTooltipPositionTypes =
 ;
 
 /**
- * Define the allowed tooltupes Used by {@link TsTooltipComponent} position
+ * Define the allowed tooltips Used by {@link TsTooltipComponent} position
  */
 const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   'above',
@@ -75,8 +75,6 @@ export class TsTooltipComponent {
     return this._tooltipPosition;
   }
   private _tooltipPosition: TsTooltipPositionTypes = 'below';
-
- // TsTooltipPositionTypes = 'below';
 
   /**
    * Define the content to display within the tooltip
