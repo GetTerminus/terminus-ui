@@ -20,4 +20,27 @@ describe(`TsTooltipComponent`, () => {
     });
   });
 
+  describe(`tooltipPosition`, () => {
+
+    test(`should set below if no position is declared`, () => {
+      expect(component.tooltipPosition).toEqual('below');
+
+    });
+
+    test(`should set correct position`, () => {
+      component.tooltipPosition = 'above';
+      expect(component.tooltipPosition).toEqual('above');
+
+    });
+
+    test(`should log a warning if 'left' or 'right' are selected`, () => {
+      window.console.warn = jest.fn();
+      component.tooltipPosition = 'left';
+
+      expect(window.console.warn).toHaveBeenCalled();
+      expect(component.tooltipPosition).toEqual('left');
+    });
+
+  });
+
 });
