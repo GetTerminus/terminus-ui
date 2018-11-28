@@ -89,6 +89,44 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
+
+    describe(`should return appropriate messages for Angular's built-in validators`, () => {
+
+      test(`min should return min message`, () => {
+          const validatorValueMock = {
+            actual: 5,
+            min: 10,
+          };
+          const actual = service.getValidatorErrorMessage('min', validatorValueMock);
+          const expected = `5 is less than 10.`;
+
+          expect(actual).toEqual(expected);
+      });
+
+      test(`max should should return max message`, () => {
+        const validatorValueMock = {
+          actual: 15,
+          max: 10,
+        };
+        const actual = service.getValidatorErrorMessage('max', validatorValueMock);
+        const expected = `15 is greater than 10.`;
+
+        expect(actual).toEqual(expected);
+      });
+
+      test(`requiredTrue should return requiredTrue message`, () => {
+        const validatorValueMock = {
+          actual: false,
+        };
+        const actual = service.getValidatorErrorMessage('requiredTrue', validatorValueMock);
+        const expected = `requiredTrue must be checked.`;
+
+        expect(actual).toEqual(expected);
+      });
+
+
+    });
+
   });
 
 });

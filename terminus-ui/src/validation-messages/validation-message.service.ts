@@ -36,13 +36,20 @@ export class TsValidationMessageService {
    * @param validatorName - The name of the validator
    * @param validatorValue - The value of the validator
    * @return The error message
+   *
    */
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
-    const config: {[key: string]: string} = {
+
+    const config: { [key: string]: string } = {
       // Standard responses:
       required: `Required`,
+      requiredTrue: `${validatorName} must be checked.`,
+      // @deprecated target 11.x :  use minLength instead of minlength
       minlength: `Minimum length ${validatorValue.requiredLength}`,
+      minLength: `Minimum length ${validatorValue.requiredLength}.`,
+      // @deprecated target 11.x : use maxLength insted of maxlength
       maxlength: `Maximum length ${validatorValue.requiredLength}`,
+      maxLength: `Maximum length ${validatorValue.requiredLength}.`,
       // Custom responses:
       creditCard: creditCardMessage,
       email: emailMessage,
@@ -53,11 +60,15 @@ export class TsValidationMessageService {
       pattern: `Must contain only letters, numbers or spaces`,
       maxDate: '',
       minDate: '',
+      min: `${validatorValue.actual} is less than ${validatorValue.min}.`,
       greaterThan: `${validatorValue.actual} is not greater than ${validatorValue.greaterThan}`,
       greaterThanOrEqual: `${validatorValue.actual} is not greater than or equal to ${validatorValue.greaterThanOrEqual}`,
+      // @deprecated target 11.x : use min instead of greaterThanOrEqual
       numbers: `Must contain at least ${validatorValue.numbers} numbers`,
-      lessThan: `${validatorValue.actual} must be less than ${validatorValue.lessThan}`,
-      lessThanOrEqual: `${validatorValue.actual} must be less than or equal to ${validatorValue.lessThanOrEqual}`,
+      max: `${validatorValue.actual} is greater than ${validatorValue.max}.`,
+      lessThan: `${validatorValue.actual} is not less than ${validatorValue.lessThan}.`,
+      // @deprecated target 11.x : use max instead of lessThanOrEqual
+      lessThanOrEqual: `${validatorValue.actual} is not less than or equal to ${validatorValue.lessThanOrEqual}.`,
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,
       url: `'${validatorValue.actual}' must be a valid URL.`,
@@ -68,6 +79,9 @@ export class TsValidationMessageService {
       fileType: `${validatorValue.actual} is not an accepted MIME type.`,
       imageDimensions: ``,
       imageRatio: ``,
+      nullValidator: 'Unknown error.',
+      compose: 'Unknown error.',
+      composeAsync: 'Unknown error.',
     };
 
     if (validatorName === 'maxDate') {
