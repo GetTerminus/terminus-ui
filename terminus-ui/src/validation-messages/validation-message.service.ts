@@ -1,4 +1,4 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { format } from 'date-fns';
 
 
@@ -23,76 +23,6 @@ const passwordMessage = `Password must be between 6 and 100 characters, and cont
  * localization is supported. See https://github.com/GetTerminus/terminus-ui/issues/403
  */
 
-/**
- * NOTE: minlength, maxlength, greaterThanOrEqual and lessThanOrEqual are being deprecated in 11.x
- * replace with: minLength, maxLength, min, and max respectively
- * more reading in https://github.com/GetTerminus/terminus-ui/issues/1049
- */
- export type TsValidatorNames =
-  'compose' |
-  'composeAsync' |
-  'creditCard' |
-  'email' |
-  'equalToControl' |
-  'fileSize' |
-  'fileType' |
-  'greaterThan' |
-  'greaterThanOrEqual' |
-  'imageDimensions' |
-  'imageRatio' |
-  'lessThan' |
-  'lessThanOrEqual' |
-  'lowercase' |
-  'max' |
-  'maxDate' |
-  'maxlength' |
-  'maxLength' |
-  'min' |
-  'minDate' |
-  'minlength' |
-  'minLength' |
-  'noResults' |
-  'notUnique' |
-  'nullValidator' |
-  'numbers' |
-  'password' |
-  'pattern' |
-  'required' |
-  'requiredTrue' |
-  'uppercase' |
-  'url'
-  ;
-
- const allowedValidatorNames: TsValidatorNames[] = [
-  'compose' ,
-  'composeAsync' ,
-  'creditCard' ,
-  'email' ,
-  'equalToControl',
-  'fileSize',
-  'fileType',
-  'greaterThan',
-  'imageDimensions',
-  'imageRatio',
-  'lessThan',
-  'lowercase',
-  'max',
-  'maxDate',
-  'maxLength',
-  'min',
-  'minDate',
-  'minLength',
-  'noResults',
-  'notUnique',
-  'nullValidator',
-  'numbers',
-  'password',
-  'pattern',
-  'required',
-  'requiredTrue',
-  'uppercase',
-  'url',
- ];
 
 /**
  * Define a service that offers custom validators
@@ -110,28 +40,9 @@ export class TsValidationMessageService {
    * @deprecated target 11.x
    *
    */
-  public getValidatorErrorMessage(validatorName: TsValidatorNames, validatorValue?: any): string {
+  public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
 
-    if (validatorName && isDevMode() && (allowedValidatorNames.indexOf(validatorName) < 0)) {
-      let subValidator = '';
-      switch (validatorName) {
-        case 'greaterThanOrEqual':
-          subValidator = 'min';
-          break;
-        case 'lessThanOrEqual':
-          subValidator = 'max';
-          break;
-        case 'maxlength':
-          subValidator = 'maxLength';
-          break;
-        case 'minlength':
-          subValidator = 'minLength';
-          break;
-      }
-      console.warn(`TsValidationMessageService: "${validatorName}" is not an allowed validator. Use ${subValidator} instead.`);
-    }
-
-    const config: {[key: string]: string} = {
+    const config: { [key: string]: string } = {
       // Standard responses:
       required: `Required`,
       requiredTrue: `${validatorName} must be checked.`,

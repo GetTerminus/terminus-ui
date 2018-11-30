@@ -48,7 +48,7 @@ export class TsValidationMessagesComponent {
    */
   public get validationMessage(): string | null | undefined {
     if (this.control && this.control.errors) {
-      for (const propertyName in this.control.errors) {
+       for (const propertyName in this.control.errors) {
 
         // istanbul ignore else
         if (propertyName) {

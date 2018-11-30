@@ -89,29 +89,6 @@ describe(`TsValidationMessageService`, () => {
       expect(actual).toEqual(expected);
     });
 
-    describe(`should log a warning if deprecated validators are selected`, () => {
-      beforeEach(() => { window.console.warn = jest.fn(); });
-
-      test(`greaterThanOrEqual`, () => {
-        service.getValidatorErrorMessage('greaterThanOrEqual', {actual: 5, greaterThanOrEqual: 10});
-        expect(window.console.warn).toHaveBeenCalled();
-      });
-
-      test(`lessThanOrEqual`, () => {
-        service.getValidatorErrorMessage('lessThanOrEqual', {actual: 15, lessThanOrEqual: 10});
-        expect(window.console.warn).toHaveBeenCalled();
-      });
-
-      test(`maxlength`, () => {
-        service.getValidatorErrorMessage('maxlength', {actual: 15, requiredLength: 10});
-        expect(window.console.warn).toHaveBeenCalled();
-      });
-
-      test(`minlength`, () => {
-        service.getValidatorErrorMessage('minlength', {actual: 5, requiredLength: 10});
-        expect(window.console.warn).toHaveBeenCalled();
-      });
-    });
 
     describe(`should return appropriate messages for Angular's built-in validators`, () => {
 
