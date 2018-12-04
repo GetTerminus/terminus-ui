@@ -10,12 +10,8 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 /**
  * Define the accepted string values for the {@link TsTooltipComponent} position
- *
- * NOTE: left and right are being deprecated in 10.x
  */
 export type TsTooltipPositionTypes =
-  'left' |
-  'right' |
   'above' |
   'below' |
   'before' |
@@ -25,7 +21,7 @@ export type TsTooltipPositionTypes =
 /**
  * Define the allowed tooltips Used by {@link TsTooltipComponent} position
  */
-const allowedTooltipTypes: TsTooltipPositionTypes[] = [
+export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   'above',
   'below',
   'before',
@@ -61,8 +57,6 @@ const allowedTooltipTypes: TsTooltipPositionTypes[] = [
 export class TsTooltipComponent {
   /**
    * Define the position of the tooltip
-   *
-   * @deprecated target 10.x
    */
   @Input()
   public set tooltipPosition(value: TsTooltipPositionTypes) {
