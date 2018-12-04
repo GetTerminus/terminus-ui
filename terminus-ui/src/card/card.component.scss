@@ -162,8 +162,8 @@
 .c-card__inner {
   .ts-table ~ .ts-loading-overlay {
     .c-loading-overlay {
-      left: -24px;
-      right: -24px;
+      left: -(spacing(large));
+      right: -(spacing(large));
     }
   }
 }
