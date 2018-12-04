@@ -58,12 +58,24 @@
 }
 
 .c-card {
-  // <div> Needed to hold `mat-ripple` directive (directive targets parent element by default
   .c-card__inner {
     @include card;
     // Needed to contain the ripple effect
     position: relative;
     width: 100%;
+
+    .c-card__title-accent-border {
+      border-left: 2px solid color(primary);
+      padding-left: spacing(small, 1);
+
+      &[theme='accent'] {
+        border-left-color: color(accent);
+      }
+
+      &[theme='warn'] {
+        border-left-color: color(warn);
+      }
+    }
   }
 }
 

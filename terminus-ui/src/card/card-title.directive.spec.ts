@@ -45,6 +45,15 @@ class TestHostComponent {}
 
 @Component({
   template: `
+    <ts-card>
+      <h3 tsCardTitle tsTitleAccentBorder>Hi</h3>
+    </ts-card>
+  `,
+})
+class TestHostAccentBorderComponent {}
+
+@Component({
+  template: `
     <h3 tsCardTitle class="fooooo">Hi</h3>
   `,
 })
@@ -61,6 +70,7 @@ describe(`TsCardTitleDirective`, () => {
       TsCardTitleDirective,
       TsCardComponent,
       TestHostComponent,
+      TestHostAccentBorderComponent,
       TestHostErrorComponent,
     ],
   };
@@ -68,12 +78,26 @@ describe(`TsCardTitleDirective`, () => {
   configureTestBedWithoutReset(moduleDefinition);
 
 
-  test(`should add the title class`, () => {
+  test.only(`should add the title class`, () => {
     fixture = TestBed.createComponent(TestHostComponent);
     fixture.detectChanges();
     const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
 
     expect(classElement.properties.className).toEqual('c-card__title');
+  });
+
+
+  test(`should add the accent border class`, () => {
+/*     fixture = TestBed.overrideTemplate(fixture, `
+    <ts-card>
+      <h3 tsCardTitle tsTitleAccentBorder>Hi</h3>
+    </ts-card>
+  `); */
+    fixture = TestBed.createComponent(TestHostAccentBorderComponent);
+    fixture.detectChanges();
+    const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
+
+    expect(classElement.properties.className).toEqual('c-card__title c-card__title-accent-border');
   });
 
 
