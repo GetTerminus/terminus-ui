@@ -18,6 +18,9 @@ import { TsAutocompleteComponent } from './autocomplete.component';
 export * from './autocomplete.component';
 
 
+/**
+ * @deprecated in favor of the new TsInputComponent. Target 11.x
+ */
 @NgModule({
   imports: [
     CommonModule,
