@@ -1,38 +1,17 @@
 import {
   Component,
-  Input,
-  TemplateRef,
-  ElementRef,
+  Provider,
+  Type,
 } from '@angular/core';
 import {
-  TestBed,
-  TestModuleMetadata,
   ComponentFixture,
+  TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
 
 import { TsCardTitleDirective } from './card-title.directive';
+import { TsCardModule } from './card.module';
 
-@Component({
-  selector: 'ts-card',
-  template: `
-    <div>
-      <ng-content></ng-content>
-    </div>
-  `,
-})
-class TsCardComponent {
-  public aspectRatioPadding!: string;
-  public supportsInteraction: boolean = false;
-  public centeredContent: boolean = false;
-  public utilityMenuTemplate: TemplateRef<ElementRef> | undefined;
-  public disabled: boolean = false;
-  @Input()
-  public set aspectRatio(value: any) {
-    this.aspectRatioPadding = '50%';
-  }
-}
 
 @Component({
   template: `
@@ -61,25 +40,9 @@ class TestHostErrorComponent {}
 
 
 describe(`TsCardTitleDirective`, () => {
-  let fixture: ComponentFixture<TestHostComponent>;
-  let component: TsCardComponent;
-  let directive: TsCardTitleDirective;
 
-  const moduleDefinition: TestModuleMetadata = {
-    declarations: [
-      TsCardTitleDirective,
-      TsCardComponent,
-      TestHostComponent,
-      TestHostAccentBorderComponent,
-      TestHostErrorComponent,
-    ],
-  };
-
-  configureTestBedWithoutReset(moduleDefinition);
-
-
-  test.only(`should add the title class`, () => {
-    fixture = TestBed.createComponent(TestHostComponent);
+  test(`should add the title class`, () => {
+    const fixture = createComponent(TestHostComponent);
     fixture.detectChanges();
     const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
 
@@ -88,12 +51,7 @@ describe(`TsCardTitleDirective`, () => {
 
 
   test(`should add the accent border class`, () => {
-/*     fixture = TestBed.overrideTemplate(fixture, `
-    <ts-card>
-      <h3 tsCardTitle tsTitleAccentBorder>Hi</h3>
-    </ts-card>
-  `); */
-    fixture = TestBed.createComponent(TestHostAccentBorderComponent);
+    const fixture = createComponent(TestHostAccentBorderComponent);
     fixture.detectChanges();
     const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
 
@@ -102,12 +60,30 @@ describe(`TsCardTitleDirective`, () => {
 
 
   test(`should throw an error if not nested within a TsCardComponent`, () => {
-    component = new TsCardComponent();
-    directive = new TsCardTitleDirective(component);
-    const errorMessage = `The 'tsCardTitle' directive must be inside a <ts-card> component.`;
+    const create = () => {
+      const fixture = createComponent(TestHostErrorComponent);
+      fixture.detectChanges();
+    };
 
-    expect(() => directive.ngOnChanges()).toThrowError(errorMessage);
+    expect(create).toThrow();
   });
 
 });
 
+
+
+
+function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
+  TestBed.configureTestingModule({
+    imports: [
+      TsCardModule,
+      ...imports,
+    ],
+    declarations: [component],
+    providers: [
+      ...providers,
+    ],
+  }).compileComponents();
+
+  return TestBed.createComponent<T>(component);
+}
