@@ -178,6 +178,18 @@ test@test.com
 
   </div>
 
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing="small--0">isInRange (min/max)</h3>
+
+    <ts-input
+      label="Is In Range"
+      type="number"
+      [formControl]="myForm.get('isInRange')"
+      hint="Number must be between 10 and 100"
+    ></ts-input>
+  </ts-card>
+
+
   <div fxLayout="row" [fxLayoutGap]="flexGap">
 
     <div fxFlex>

@@ -32,6 +32,15 @@ describe(`TsValidatorsService`, () => {
   });
 
 
+  describe(`isInRange()`, () => {
+
+    test(`should exist`, () => {
+      expect(service.isInRange).toBeTruthy();
+    });
+
+  });
+
+
   describe(`password()`, () => {
 
     test(`should exist`, () => {

@@ -56,13 +56,14 @@ export class MyComponent {
 
 ## Available validators
 
-| Validator            | Purpose                                                       |
+| Custom Validator     | Purpose                                                       |
 |----------------------|---------------------------------------------------------------|
 | `creditCard`         | A credit card number must be valid                            |
 | `email`              | An email address must be valid                                |
 | `equalToControl`     | A control's value must be equal to another control's value    |
 | `greaterThan`        | A number must be greater than another value                   |
 | `greaterThanOrEqual` | A number must be greater than or equal to another value       |
+| `isInRange`          | A control's value must be with a range of two numbers         |
 | `lessThan`           | A number must be less than another value                      |
 | `lessThanOrEqual`    | A number must be less than or equal to another value          |
 | `lowercase`          | A value must contain a minimum amount of lowercase characters |
@@ -72,6 +73,13 @@ export class MyComponent {
 | `password`           | A password must meet certain requirements                     |
 | `uppercase`          | A value must contain a minimum amount of uppercase characters |
 | `url`                | A URL must be valid                                           |
+
+| Angular Validator    | Purpose                                                       |
+|----------------------|---------------------------------------------------------------|
+| `max`                | A number must be less than or equal to another value          |
+| `maxLength`          | A length must be less than a maximum length                   |
+| `min`                | A number must be greater than or equal to another value       |
+| `minLength`          | A length must be greater than a minimum length                |
 
 
 ## Mocking

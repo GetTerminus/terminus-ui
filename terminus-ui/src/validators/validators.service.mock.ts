@@ -53,6 +53,16 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  isInRange = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      isInRange: {
+        valid: false,
+        isInRange: [10, 100],
+        actual: 5,
+      },
+    });
+  }
+
   lessThan = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       lessThan: {
