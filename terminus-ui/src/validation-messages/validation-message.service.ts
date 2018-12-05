@@ -53,6 +53,7 @@ export class TsValidationMessageService {
       // Custom responses:
       creditCard: creditCardMessage,
       email: emailMessage,
+      isInRange: `Must be between ${validatorValue.minimum} and ${validatorValue.maximum}`,
       password: passwordMessage,
       // TODO: Figure out how to abstract pattern messages out so they can be customized per
       // pattern. (showing a regex pattern to an end user isn't helpful) and we need the ability to
