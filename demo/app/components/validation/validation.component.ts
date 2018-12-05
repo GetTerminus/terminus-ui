@@ -71,6 +71,12 @@ export class ValidationComponent implements OnInit {
       null,
       [this.validatorsService.greaterThan(10)],
     ],
+    isInRange: [
+      null,
+      [
+        this.validatorsService.isInRange(10, 100),
+      ],
+    ],
     lessThanOrEqual: [
       null,
       [this.validatorsService.lessThanOrEqual(10)],
@@ -128,6 +134,7 @@ export class ValidationComponent implements OnInit {
     const control2: AbstractControl | null = this.myForm.get('compare2');
     const greaterThanSource: AbstractControl | null = this.myForm.get('greaterThanSource');
     const greaterThanInUse: AbstractControl | null = this.myForm.get('greaterThanInUse');
+    const isInRange: AbstractControl | null = this.myForm.get('isInRange');
 
 
     if (control1) {
