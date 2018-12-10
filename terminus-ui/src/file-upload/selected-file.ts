@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
-import { TsFileAcceptedMimeTypes } from './mime-types';
+import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
 import { ImageRatio } from './file-upload.module';
 
 
@@ -21,6 +21,7 @@ export interface TsFileValidations {
  * The number of bytes per kilobyte (for calculations)
  */
 const BYTES_PER_KB = 1024;
+const typesWithoutDimensionValidation = ['text/csv', 'video/mp4'];
 
 
 /**
@@ -124,6 +125,15 @@ export class TsSelectedFile {
   }
 
   /**
+   * Get a boolean representing if the file is a video
+   *
+   * @return Is a video
+   */
+  public get isVideo(): boolean {
+    return this.mimeType.includes('video');
+  }
+
+  /**
    * Get the file contents
    *
    * @return The FileReader results
@@ -150,7 +160,7 @@ export class TsSelectedFile {
   private determineImageDimensions(callback?: Function): void {
     let img: HTMLImageElement | undefined;
 
-    if (this.isImage) {
+    if (typeNeedsDimensionValidation(this.mimeType as TsFileAcceptedMimeTypes)) {
       // Create an image so that dimensions can be determined
       img = new Image();
 
@@ -256,4 +266,19 @@ export class TsSelectedFile {
     }
   }
 
+}
+
+
+/**
+ * Determine if the passed in type needs dimension validation
+ *
+ * @param type - The file type
+ * @return If it needs dimension validation
+ */
+function typeNeedsDimensionValidation(type: TsFileAcceptedMimeTypes): boolean {
+  const allTypes = TS_ACCEPTED_MIME_TYPES.slice();
+  const itemsNeedingValidation = allTypes.filter((item) => {
+    return typesWithoutDimensionValidation.indexOf(item) < 0;
+  });
+  return itemsNeedingValidation.indexOf(type) >= 0;
 }
