@@ -4,21 +4,34 @@ import {
   Optional,
   Host,
   SkipSelf,
-  OnChanges,
   isDevMode,
+  Input,
 } from '@angular/core';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
+import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { TsCardComponent } from './card.component';
 
 
 @Directive({
   selector: '[tsCardTitle]',
 })
-export class TsCardTitleDirective implements OnChanges {
+export class TsCardTitleDirective {
   /**
-   * Store a reference to the parent component
+   * Option to add a border to the header
    */
-  private _parent: TsCardComponent;
+  @Input()
+  public set tsTitleAccentBorder(value: boolean) {
+    const setTitleAccBorder = coerceBooleanProperty(value);
+    if (setTitleAccBorder) {
+      this.tsCardTitle = this.tsCardTitle + ' c-card__title-accent-border';
+    }
+  }
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 
   /**
    * Set the card title class
@@ -32,25 +45,9 @@ export class TsCardTitleDirective implements OnChanges {
   constructor(
     @Optional() @Host() @SkipSelf() parent: TsCardComponent,
   ) {
-    this._parent = parent;
-  }
-
-
-  /**
-   * Verify correct nesting on all changes
-   */
-  ngOnChanges() {
-    this.checkParent();
-  }
-
-
-  /**
-   * Verify the directive is nested inside of a {@link TsCardComponent}
-   */
-  checkParent() {
-    // istanbul ignore else
-    if (!(this._parent instanceof TsCardComponent) && isDevMode()) {
+    if (!(parent instanceof TsCardComponent) && isDevMode()) {
       throw Error(`The 'tsCardTitle' directive must be inside a <ts-card> component.`);
     }
   }
+
 }
