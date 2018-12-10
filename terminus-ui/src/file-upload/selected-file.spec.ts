@@ -49,6 +49,16 @@ FILE_CSV_BLOB['name'] = 'myCSV';
 jest.spyOn(FILE_CSV_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_CSV_MOCK = FILE_CSV_BLOB as File;
 
+// VIDEO MOCK
+const FILE_VIDEO_BLOB = new Blob(
+  ['my video value'],
+  { type: 'video/mp4' },
+);
+FILE_VIDEO_BLOB['lastModifiedDate'] = new Date();
+FILE_VIDEO_BLOB['name'] = 'myVideo';
+jest.spyOn(FILE_VIDEO_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
+const FILE_VIDEO_MOCK = FILE_VIDEO_BLOB as File;
+
 
 
 
@@ -56,14 +66,14 @@ describe(`TsSelectedFile`, () => {
   let newSelectedFile: TsSelectedFile;
   const createFile = (
     file = FILE_MOCK,
-    constraints = CONSTRAINTS_MOCK,
+    constraints: TsFileImageDimensionConstraints | undefined = CONSTRAINTS_MOCK,
     types: TsFileAcceptedMimeTypes[] = ['image/png', 'image/jpg'],
     size = (10 * 1024),
     ratio = [{ widthRatio: 1, heightRatio: 1 }],
   ): TsSelectedFile => {
     return newSelectedFile = new TsSelectedFile(
       file,
-      constraints,
+      constraints ? constraints : undefined,
       types,
       size,
       ratio,
@@ -103,11 +113,6 @@ describe(`TsSelectedFile`, () => {
 
   describe(`constructor`, () => {
 
-
-    // TODO: test if constraints or size isn't passed in
-    // TODO: test if multiple is set to false
-
-
     test(`should set top-level items and validations`, () => {
       const file = createFile();
       file.fileLoaded$.subscribe((f) => {
@@ -121,6 +126,23 @@ describe(`TsSelectedFile`, () => {
         }
       });
       expect.assertions(6);
+    });
+
+
+    test(`should set top-level items and validations for videos`, (done) => {
+      const file = createFile(FILE_VIDEO_MOCK, undefined, ['video/mp4']);
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.mimeType).toEqual('video/mp4');
+          expect(f.size).toEqual(3);
+          expect(f.name).toEqual('myVideo');
+          expect(f.validations.fileType).toEqual(true);
+          expect(f.validations.fileSize).toEqual(true);
+          expect(f.validations.imageDimensions).toEqual(true);
+        }
+      });
+      expect.assertions(6);
+      done();
     });
 
   });
@@ -176,6 +198,21 @@ describe(`TsSelectedFile`, () => {
           expect(file.isImage).toEqual(true);
         }
       });
+    });
+
+  });
+
+
+  describe(`isVideo`, () => {
+
+    test(`should return true is the file is a video`, () => {
+      const file = createFile(FILE_VIDEO_MOCK);
+      file.fileLoaded$.subscribe((f) => {
+        if (f) {
+          expect(f.isVideo).toEqual(true);
+        }
+      });
+      expect.assertions(1);
     });
 
   });

@@ -7,6 +7,7 @@ export type TsFileAcceptedMimeTypes
   | 'image/jpg'
   | 'image/png'
   | 'image/gif'
+  | 'video/mp4'
 ;
 
 
@@ -19,4 +20,5 @@ export const TS_ACCEPTED_MIME_TYPES: TsFileAcceptedMimeTypes[] = [
   'image/jpg',
   'image/png',
   'image/gif',
+  'video/mp4',
 ];
