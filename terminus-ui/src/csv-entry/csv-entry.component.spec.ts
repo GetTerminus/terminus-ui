@@ -216,6 +216,15 @@ describe(`TsCSVEntryComponent`, () => {
   });
 
 
+  test(`should support a custom ID`, () => {
+    component.id = 'foo';
+    fixture.detectChanges();
+
+    const el = fixture.debugElement.query(By.css('ts-csv-entry'));
+    expect(el.nativeElement.getAttribute('id')).toEqual('foo');
+  });
+
+
   describe(`pasting content`, () => {
 
     test(`should inject cell contents`, () => {
