@@ -26,6 +26,7 @@ import {
 } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
+import { stripControlCharacters } from './../utilities/strip-control-characters/stripControlCharacters';
 import { TS_SPACING } from './../spacing/spacing.constant';
 
 
@@ -84,6 +85,7 @@ let nextUniqueId = 0;
   styleUrls: ['./csv-entry.component.scss'],
   host: {
     class: 'ts-csv-entry',
+    '[attr.id]': 'id',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -167,7 +169,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public get id(): string {
     return this._id;
   }
-  protected _id!: string;
+  protected _id: string = this._uid;
 
   /**
    * Set the maximum number of allowed rows
@@ -246,10 +248,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
-  ) {
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
-  }
+  ) {}
 
 
   /**
@@ -344,6 +343,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     if (!eventContent) {
       return;
     }
+
     // If the user is only pasting the content for a single cell - do nothing
     const isSingleCell = (eventContent.indexOf('\n') < 0) && (eventContent.indexOf('\t') < 0);
     if (isSingleCell) {
@@ -377,7 +377,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
 
     this.updateAllRowIds();
-    this.allErrors = this.collectErrors();
+    this.updateErrors();
     this.changeDetectorRef.detectChanges();
   }
 
@@ -769,7 +769,13 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const columns: FormControl[] = [];
 
     for (let i = 0; i < count; i += 1) {
-      const value: string | null = (content && content[i]) ? content[i] : null;
+      let value: string | null = (content && content[i]) ? content[i] : null;
+
+      // Strip any control characters
+      if (value) {
+        value = stripControlCharacters(value);
+      }
+
       const validator: ValidatorFn | null =
         this.columnValidators ? this.columnValidators[i] /* istanbul ignore next - Unreachable */ : null;
       columns.push(new FormControl(value, validator));
