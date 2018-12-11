@@ -380,8 +380,8 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     // The selected option
     const selection: OptionType = event.option.value;
 
-    // Stop the flow if the selection already exists in the array
-    if (arrayContainsObject(selection, this.selectedOptions, this.comparatorFn)) {
+    // Stop the flow if the selection already exists in the array and we're in multiple mode
+    if (!!this.multiple && arrayContainsObject(selection, this.selectedOptions, this.comparatorFn)) {
       // Set an error on the control to let the user know they chose a duplicate option
       // istanbul ignore else
       if (this.selectionsControl) {
