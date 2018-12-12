@@ -39,11 +39,15 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-checkbox
- *              [formControl]="yourHelperToGetFormControl('rememberMe')"
+ *              [formControl]="myControl"
+ *              [(ngModel]="myModel"
+ *              id="my-id"
  *              isChecked="true"
  *              isDisabled="false"
  *              isIndeterminate="false"
  *              isRequired="false"
+ *              tabIndex="4"
+ *              theme="accent"
  *              (inputChange)="myMethod($event)"
  *              (indeterminateChange)="myMethod($event)"
  * ></ts-checkbox>
@@ -143,6 +147,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   @Input()
   public set ngModel(v: boolean) {
     this._isChecked = v;
+    this.value = v;
+    this.changeDetectorRef.detectChanges();
   }
 
   /**
@@ -161,22 +167,19 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  public inputChange: EventEmitter<boolean> = new EventEmitter;
+  readonly inputChange: EventEmitter<boolean> = new EventEmitter;
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter;
+  readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter;
 
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
-
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
   }
 
 }
