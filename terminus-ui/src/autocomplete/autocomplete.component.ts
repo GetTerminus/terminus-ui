@@ -35,6 +35,7 @@ import {
 } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { TS_SPACING } from './../spacing/spacing.constant';
 
 
 export interface KeyboardEvent {
@@ -106,6 +107,11 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
   exportAs: 'tsAutocomplete',
 })
 export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
+  /**
+   * Define the flex gap spacing
+   */
+  flexGap = TS_SPACING.small[0];
+
   /**
    * Management of the query string
    */
