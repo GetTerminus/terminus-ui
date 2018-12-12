@@ -392,12 +392,15 @@ describe(`TsAutocompleteComponent`, () => {
 
 
     test(`should NOT call resetSearch if the nodeName is MAT-OPTION`, () => {
+      component.multiple = (v) => v;
       component.handleBlur(eventOpt);
       expect(component['resetSearch']).not.toHaveBeenCalled();
     });
 
 
+
     test(`should call resetSearch if the nodeName isn't MAT-OPTION`, () => {
+      component.multiple = (v) => v;
       component.handleBlur(eventDiv);
       expect(component['resetSearch']).toHaveBeenCalled();
     });
