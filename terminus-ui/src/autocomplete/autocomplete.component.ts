@@ -35,6 +35,7 @@ import {
 } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { TS_SPACING } from './../spacing/spacing.constant';
 
 
 export interface KeyboardEvent {
@@ -106,6 +107,11 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
   exportAs: 'tsAutocomplete',
 })
 export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
+  /**
+   * Define the flex gap spacing
+   */
+  flexGap = TS_SPACING.small[0];
+
   /**
    * Management of the query string
    */
@@ -466,7 +472,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     const eventValue: KeyboardEvent | MouseEvent | null =
       (event && event['relatedTarget']) ? event['relatedTarget'] : null;
 
-    if (eventValue && eventValue.nodeName) {
+    if (eventValue && eventValue.nodeName && !!this.multiple) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
       // will be `MAT-OPTION`.
       if (eventValue.nodeName !== 'MAT-OPTION') {
@@ -474,7 +480,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
       }
     } else {
       // If no eventValue exists, this was a blur event triggered by the Escape key
-      if (this.multiple) {
+      if (!!this.multiple) {
         this.resetSearch();
       }
     }

@@ -31,7 +31,25 @@
       [initialSelections]="null"
       [minimumCharacters]="minCharacters"
       [showProgress]="inProgress"
-      label="Select user names"
+      label="Single selection"
+      hint="Begin typing to search..."
+      theme="primary"
+      (optionSelected)="added($event)"
+      (optionRemoved)="removed($event)"
+      (selection)="selection($event)"
+      #auto="tsAutocomplete"
+    ></ts-autocomplete>
+
+    <ts-autocomplete
+      tsVerticalSpacing
+      [options]="users$ | async"
+      [selectionsControl]="myForm.get('selectionsMultiple')"
+      [displayWith]="displayFn"
+      [initialSelections]="null"
+      [minimumCharacters]="minCharacters"
+      [multiple]="comparator"
+      [showProgress]="inProgress"
+      label="Multiple selections"
       hint="Begin typing to search..."
       theme="primary"
       (optionSelected)="added($event)"

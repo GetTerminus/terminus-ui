@@ -73,6 +73,17 @@ $transition-duration: 200;
       }
     }
   }
+
+  .ts-form-field__subscript-wrapper {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
+
+  .hint {
+    @include typography(hint);
+  }
+
 }
 
 // <mat-autocomplete> container for dropdown

@@ -8,6 +8,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsInputModule } from './../input/input.module';
@@ -22,6 +23,7 @@ export * from './autocomplete.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatChipsModule,
     MatInputModule,

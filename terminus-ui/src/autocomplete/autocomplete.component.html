@@ -86,18 +86,36 @@
     </ng-container>
   </mat-autocomplete>
 
-  <mat-hint
-    class="qa-autocomplete-hint"
-    align="end"
-    *ngIf="hint"
-  >{{ hint }}</mat-hint>
 
-  <ts-validation-messages
-    class="qa-autocomplete-validation-messages"
-    *ngIf="selectionsControl && selectionsControl.setValue"
-    [validateOnChange]="selectedOptions.length > 0"
-    [control]="selectionsControl"
-  ></ts-validation-messages>
+  <div
+    class="ts-form-field__subscript-wrapper"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div>
+      <ts-validation-messages
+        class="qa-autocomplete-validation-messages"
+        *ngIf="selectionsControl && selectionsControl.setValue"
+        [validateOnChange]="selectedOptions.length > 0"
+        [control]="selectionsControl"
+      ></ts-validation-messages>
+    </div>
+
+    <div
+      class="ts-form-field__hint-wrapper"
+    >
+      <mat-hint
+        class="hint qa-autocomplete-hint"
+        align="end"
+        *ngIf="hint"
+      >{{ hint }}</mat-hint>
+    </div>
+  </div>
+
+
+
+
+
 </mat-form-field>
 
 

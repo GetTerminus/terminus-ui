@@ -115,6 +115,12 @@ export class AutocompleteComponent implements OnInit {
         Validators.required,
       ],
     ],
+    selectionsMultiple: [
+      null,
+      [
+        Validators.required,
+      ],
+    ],
   });
   initial = INITIAL.slice();
   debounceDelay = 2000;
