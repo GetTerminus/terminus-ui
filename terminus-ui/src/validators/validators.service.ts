@@ -14,6 +14,7 @@ import { minDateValidator } from './validators/minDate/minDate';
 import { passwordValidator } from './validators/password/password';
 import { urlValidator } from './validators/url/url';
 import { uppercaseValidator } from './validators/uppercase/uppercase';
+import { inCollectionValidator } from './validators/inCollection/inCollection';
 
 
 /**
@@ -26,13 +27,14 @@ export class TsValidatorsService {
   equalToControl = equalToControlValidator;
   greaterThan = greaterThanValidator;
   greaterThanOrEqual = greaterThanOrEqualValidator;
+  inCollection = inCollectionValidator;
   lessThan = lessThanValidator;
   lessThanOrEqual = lessThanOrEqualValidator;
+  lowercase = lowercaseValidator;
   maxDate = maxDateValidator;
   minDate = minDateValidator;
-  password = passwordValidator;
-  url = urlValidator;
-  lowercase = lowercaseValidator;
-  uppercase = uppercaseValidator;
   numbers = numbersValidator;
+  password = passwordValidator;
+  uppercase = uppercaseValidator;
+  url = urlValidator;
 }

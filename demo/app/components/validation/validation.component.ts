@@ -22,24 +22,19 @@ export class ValidationComponent implements OnInit {
   flexGap: string = TS_SPACING.default[0];
   minDate: string = new Date(2018, 0, 5).toISOString();
   maxDate: string = new Date(2018, 0, 25).toISOString();
+  myCollection = ['foo', 'bar', 'baz', 'bing', 'bang', 'boom'];
   myForm: FormGroup = this.formBuilder.group({
     email: [
       null,
-      [
-        this.validatorsService.email(),
-      ],
+      [this.validatorsService.email()],
     ],
     password: [
       null,
-      [
-        this.validatorsService.password(),
-      ],
+      [this.validatorsService.password()],
     ],
     creditCard: [
       null,
-      [
-        this.validatorsService.creditCard(),
-      ],
+      [this.validatorsService.creditCard()],
     ],
     date: [
       new Date(2018, 0, 10),
@@ -50,33 +45,23 @@ export class ValidationComponent implements OnInit {
     ],
     greaterThanOrEqual: [
       null,
-      [
-        this.validatorsService.greaterThanOrEqual(10.5),
-      ],
+      [this.validatorsService.greaterThanOrEqual(10.5)],
     ],
     greaterThan: [
       null,
-      [
-        this.validatorsService.greaterThan(10),
-      ],
+      [this.validatorsService.greaterThan(10)],
     ],
     lessThanOrEqual: [
       null,
-      [
-        this.validatorsService.lessThanOrEqual(10),
-      ],
+      [this.validatorsService.lessThanOrEqual(10)],
     ],
     lessThan: [
       null,
-      [
-        this.validatorsService.lessThan(10),
-      ],
+      [this.validatorsService.lessThan(10)],
     ],
     url: [
       null,
-      [
-        this.validatorsService.url(),
-      ],
+      [this.validatorsService.url()],
     ],
     compare1: [
       null,
@@ -86,27 +71,25 @@ export class ValidationComponent implements OnInit {
     ],
     lowercase: [
       null,
-      [
-        this.validatorsService.lowercase(4),
-      ],
+      [this.validatorsService.lowercase(4)],
     ],
     uppercase: [
       null,
-      [
-        this.validatorsService.uppercase(4),
-      ],
+      [this.validatorsService.uppercase(4)],
     ],
     numbers: [
       null,
-      [
-        this.validatorsService.numbers(4),
-      ],
+      [this.validatorsService.numbers(4)],
     ],
     greaterThanSource: [
       null,
     ],
     greaterThanInUse: [
       null,
+    ],
+    inCollection: [
+      null,
+      [this.validatorsService.inCollection(this.myCollection)],
     ],
   });
 

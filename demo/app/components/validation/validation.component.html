@@ -262,7 +262,6 @@ http:// shouldfail.com
   </ts-card>
 
 
-
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle tsVerticalSpacing>
       Example using a control as a validation source
@@ -284,6 +283,23 @@ http:// shouldfail.com
         label="Input 2"
         type="number"
       ></ts-input>
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Verify value is in a collection
+    </h3>
+
+    <ts-input
+      [formControl]="myForm.get('inCollection')"
+      hint="Input a value that exists in the collection"
+      label="Verify in collection"
+    ></ts-input>
+
+    <div>
+      Collection: {{ this.myCollection }}
     </div>
   </ts-card>
 

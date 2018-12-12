@@ -82,6 +82,7 @@ export class TsValidationMessageService {
       nullValidator: 'Unknown error.',
       compose: 'Unknown error.',
       composeAsync: 'Unknown error.',
+      inCollection: `${validatorValue.actual} is not an accepted item.`,
     };
 
     if (validatorName === 'maxDate') {
