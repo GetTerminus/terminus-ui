@@ -284,5 +284,38 @@ http:// shouldfail.com
     </div>
   </ts-card>
 
-</form>
 
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Verify value is in a collection
+    </h3>
+
+    <div fxLayout="row" fxLayoutGap="2em" tsVerticalSpacing>
+
+      <div fxFlex="50">
+        <ts-input
+          [formControl]="myForm.get('inCollection')"
+          hint="Input a value that exists"
+          label="Verify in shallow collection"
+        ></ts-input>
+
+        <div>
+          Collection: {{ this.myCollection }}
+        </div>
+      </div>
+
+      <div fxFlex="50">
+        <ts-input
+          [formControl]="myForm.get('inCollectionDeep')"
+          hint="Input a value that exists"
+          label="Verify in deep collection"
+        ></ts-input>
+
+        <div>
+          Collection: {{ this.myDeepCollection | json }}
+        </div>
+      </div>
+    </div>
+  </ts-card>
+
+</form>

@@ -49,4 +49,12 @@ describe(`TsValidatorsService`, () => {
 
   });
 
+  describe(`inCollection()`, () => {
+
+     test(`should exist`, () => {
+      expect(service.inCollection).toBeTruthy();
+    });
+
+   });
+
 });
