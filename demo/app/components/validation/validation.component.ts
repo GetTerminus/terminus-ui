@@ -19,9 +19,30 @@ import {
   templateUrl: './validation.component.html',
 })
 export class ValidationComponent implements OnInit {
+  // tslint:disable: member-ordering
   flexGap: string = TS_SPACING.default[0];
   minDate: string = new Date(2018, 0, 5).toISOString();
   maxDate: string = new Date(2018, 0, 25).toISOString();
+  myCollectionFn = (a) => a.name;
+  myCollection = ['foo', 'bar', 'baz', 'bing', 'bang', 'boom'];
+  myDeepCollection = [
+    {
+      name: 'foo',
+      id: 1,
+    },
+    {
+      name: 'bar',
+      id: 2,
+    },
+    {
+      name: 'baz',
+      id: 3,
+    },
+    {
+      name: 'bing',
+      id: 4,
+    },
+  ];
   myForm: FormGroup = this.formBuilder.group({
     email: [
       null,
@@ -107,6 +128,14 @@ export class ValidationComponent implements OnInit {
     ],
     greaterThanInUse: [
       null,
+    ],
+    inCollection: [
+      null,
+      [this.validatorsService.inCollection(this.myCollection)],
+    ],
+    inCollectionDeep: [
+      null,
+      [this.validatorsService.inCollection(this.myDeepCollection, this.myCollectionFn)],
     ],
   });
 

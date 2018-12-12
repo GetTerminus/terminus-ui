@@ -68,6 +68,7 @@ export class TsValidationMessageService {
       fileType: `${validatorValue.actual} is not an accepted MIME type.`,
       imageDimensions: ``,
       imageRatio: ``,
+      inCollection: `${validatorValue.actual} is not an accepted item.`,
     };
 
     if (validatorName === 'maxDate') {
