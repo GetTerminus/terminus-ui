@@ -139,4 +139,14 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  inCollection = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      inCollection: {
+        valid: false,
+        actual: 'fo',
+        collection: ['foo', 'bar', 'baz'],
+      },
+    });
+  }
+
 }
