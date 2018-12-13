@@ -67,11 +67,15 @@ describe(`inCollectionValidator`, () => {
 
 
   describe(`deepCollection`, () => {
+    const obj = {
+      name: 'bar',
+      id: 2,
+    };
 
     test(`should return null if the value is valid`, () => {
       const validatorFn = inCollectionValidator(deepCollection, myCollectionFn);
 
-      expect(validatorFn(new FormControl('bar'))).toBeNull();
+      expect(validatorFn(new FormControl(obj))).toBeNull();
     });
 
 
@@ -82,7 +86,6 @@ describe(`inCollectionValidator`, () => {
       expect(result!.inCollection.valid).toEqual(false);
       expect(result!.inCollection.actual).toEqual('234');
     });
-
 
   });
 
