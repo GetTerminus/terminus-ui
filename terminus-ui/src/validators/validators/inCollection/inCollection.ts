@@ -30,8 +30,9 @@ export function inCollectionValidator(collection: any[], valueFn?: (a: any) => s
     const found = collection.some((v) => {
       // Determine the correct value to compare
       const collectionValue = valueFn ? valueFn(v) : v;
+      const controlValue = valueFn ? valueFn(control.value) : control.value;
 
-      return collectionValue === control.value;
+      return collectionValue === controlValue;
     });
 
     return found ? null : invalidResponse;
