@@ -29,6 +29,4 @@ export class AutofocusComponent {
       value: 'bindingFalse',
     },
   ];
-  uiFormatFn = (v: any): string => v.name;
-  uiModelFn = (v: any): string => v.value;
 }

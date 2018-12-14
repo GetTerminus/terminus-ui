@@ -11,6 +11,7 @@ export * from './copy/copy.module';
 export * from './csv-entry/csv-entry.module';
 export * from './date-range/date-range.module';
 export * from './file-upload/file-upload.module';
+export * from './form-field/form-field.module';
 export * from './icon/icon.module';
 export * from './icon-button/icon-button.module';
 export * from './input/input.module';

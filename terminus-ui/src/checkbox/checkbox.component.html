@@ -4,6 +4,7 @@
   [indeterminate]="isIndeterminate"
   [disabled]="isDisabled ? 'disabled' : null"
   [required]="isRequired ? '' : null"
+  [disableRipple]="disableRipple"
   [(ngModel)]="value"
   tabIndex="{{ tabIndex }}"
   (change)="inputChange.emit($event.checked)"

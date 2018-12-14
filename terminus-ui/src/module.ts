@@ -13,6 +13,7 @@ import { TsCopyModule } from './copy/copy.module';
 import { TsCSVEntryModule } from './csv-entry/csv-entry.module';
 import { TsDateRangeModule } from './date-range/date-range.module';
 import { TsFileUploadModule } from './file-upload/file-upload.module';
+import { TsFormFieldModule } from './form-field/form-field.module';
 import { TsIconButtonModule } from './icon-button/icon-button.module';
 import { TsIconModule } from './icon/icon.module';
 import { TsInputModule } from './input/input.module';
@@ -52,6 +53,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCSVEntryModule,
     TsDateRangeModule,
     TsFileUploadModule,
+    TsFormFieldModule,
     TsIconButtonModule,
     TsIconModule,
     TsInputModule,
@@ -93,6 +95,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsCSVEntryModule,
     TsDateRangeModule,
     TsFileUploadModule,
+    TsFormFieldModule,
     TsIconButtonModule,
     TsIconModule,
     TsInputModule,

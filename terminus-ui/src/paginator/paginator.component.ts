@@ -1,24 +1,25 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
   AfterViewInit,
-  TemplateRef,
-  ElementRef,
-  SimpleChanges,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
   ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
-  coerceNumberProperty,
   coerceBooleanProperty,
+  coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
-import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 
+import { inputHasChanged } from './../utilities/input-has-changed/input-has-changed';
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
+import { TsSelectChange } from '../select/select.component';
 
 
 /**
@@ -153,6 +154,35 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   };
 
   /**
+   * GETTERS
+   */
+
+  /**
+   * Getter to return the index of the first page
+   */
+  public get firstPageIndex(): number {
+    return this.isZeroBased ? 0 : 1;
+  }
+
+  /**
+   * Getter to return the index of the next page
+   */
+  public get nextPageIndex(): number {
+    return this.currentPageIndex - this.firstPageIndex;
+  }
+
+  /**
+   * Getter to return the index of the last page
+   */
+  public get lastPageIndex(): number {
+    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length ;
+  }
+
+  /**
+   * INPUTS
+   */
+
+  /**
    * Define if the paging is 0-based or 1-based
    */
   @Input()
@@ -198,7 +228,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public get currentPageIndex(): number {
     return this._currentPageIndex;
   }
-  private _currentPageIndex: number = 0;
+  private _currentPageIndex = 0;
 
   /**
    * Define how many pages exist to show a prompt about better filtering
@@ -234,7 +264,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public get totalRecords(): number {
     return this._totalRecords;
   }
-  private _totalRecords: number = 0;
+  private _totalRecords = 0;
 
   /**
    * Define the message to show when too many pages exist
@@ -270,34 +300,13 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Emit a page selected event
    */
   @Output()
-  public pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
+  readonly pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
 
   /**
    * Emit a change event when the records per page changes
    */
   @Output()
-  public recordsPerPageChange: EventEmitter<number> = new EventEmitter();
-
-  /**
-   * Getter to return the index of the first page
-   */
-  public get firstPageIndex(): number {
-    return this.isZeroBased ? 0 : 1;
-  }
-
-  /**
-   * Getter to return the index of the next page
-   */
-  public get nextPageIndex(): number {
-    return this.currentPageIndex - this.firstPageIndex;
-  }
-
-  /**
-   * Getter to return the index of the last page
-   */
-  public get lastPageIndex(): number {
-    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length ;
-  }
+  readonly recordsPerPageChange: EventEmitter<number> = new EventEmitter();
 
 
   constructor(
@@ -446,10 +455,10 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    *
    * @param selection - The selected records-per-page count
    */
-  public recordsPerPageUpdated(selection: number): void {
-    this.recordsPerPage = selection;
+  public recordsPerPageUpdated(selection: TsSelectChange): void {
+    this.recordsPerPage = selection.value;
     this.currentPageIndex = this.firstPageIndex;
-    this.recordsPerPageChange.emit(selection);
+    this.recordsPerPageChange.emit(selection.value);
 
     this.initialize();
   }

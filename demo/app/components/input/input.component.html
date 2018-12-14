@@ -5,11 +5,15 @@
 
   <div style="max-width: 20rem;" tsVerticalSpacing>
     <ts-select
-      [(ngModel)]="activeMask"
-      [items]="masks"
       label="Active mask"
+      [(ngModel)]="activeMask"
       hint="Select a mask to apply it to the input below."
-    ></ts-select>
+    >
+      <ts-select-option
+        [value]="mask"
+        *ngFor="let mask of masks"
+      >{{ mask }}</ts-select-option>
+    </ts-select>
 
     <label>
       <input type="checkbox" [(ngModel)]="sanitizeValue">
@@ -32,6 +36,11 @@
     </label>
     <br>
     <label>
+      <input type="checkbox" [(ngModel)]="isRequired">
+      Required
+    </label>
+    <br>
+    <label>
       <input type="checkbox" [(ngModel)]="hideRequiredMarker">
       Hide required marker
     </label>
@@ -45,13 +54,15 @@
       <input type="checkbox" [(ngModel)]="allowDecimal">
       Allow decimal
     </label>
+
   </div>
+
 
   <ts-input
     [(ngModel)]="myValue"
     label="Input with ngModel"
     [maskSanitizeValue]="sanitizeValue"
-    [isRequired]="true"
+    [isRequired]="isRequired"
     [hideRequiredMarker]="hideRequiredMarker"
     [isClearable]="isClearable"
     [isDisabled]="isDisabled"
@@ -117,7 +128,9 @@
       [formControl]="myForm.get('email')"
       [label]="label2"
       [isClearable]="clearable"
-      hint="Email input with validation"
+      [prefixIcon]="icon"
+      validateOnChange="true"
+      [hint]="'Email input with validation'"
       name="email"
       [spellcheck]="false"
       [autocomplete]="'email'"

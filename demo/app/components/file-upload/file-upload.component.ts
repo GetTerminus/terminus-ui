@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsFileImageDimensionConstraints } from '@terminus/ui';
+import { TsFileImageDimensionConstraints, TsSelectChange } from '@terminus/ui';
 
 const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   {
@@ -172,8 +172,8 @@ export class FileUploadComponent {
   }
 
 
-  mimeTypeChange(change) {
-    if (change.length < 1) {
+  mimeTypeChange(change: TsSelectChange) {
+    if (change.value.length < 1) {
       this.mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
     }
   }

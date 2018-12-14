@@ -2,12 +2,14 @@
 
   <ts-select
     label="Show/hide columns"
-    multipleAllowed="true"
-    [formatUIFn]="myUIFn"
-    [formatModelValueFn]="myModelFn"
+    allowMultiple="true"
     [(ngModel)]="displayedColumns"
-    [items]="allColumns"
-  ></ts-select>
+  >
+    <ts-select-option
+      [value]="column.value"
+      *ngFor="let column of allColumns"
+    >{{ column.name }}</ts-select-option>
+  </ts-select>
 
 </div>
 

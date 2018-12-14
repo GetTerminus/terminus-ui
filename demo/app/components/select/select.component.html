@@ -3,7 +3,7 @@
     Demo Controls
   </h3>
 
-  <button (click)="log(myForm.value)">
+  <button (click)="log(myForm)">
     Log form value
   </button>
 </ts-card>
@@ -12,48 +12,167 @@
 <form
   [formGroup]="myForm"
   novalidate
-  fxLayout="row"
+  fxLayout="column"
+  fxLayout.gt-sm="row"
   fxLayoutGap="1rem"
 >
   <ts-card tsVerticalSpacing fxFlex>
-    <h3 tsCardTitle tsVerticalSpacing>
-      Single
+    <h3 tsCardTitle tsVerticalSpacing="small--1">
+      Single Select
+    </h3>
+
+    <h5 tsVerticalSpacing>With custom trigger and option template</h5>
+
+    <ts-select
+      label="Single select"
+      hint="Select a single option"
+      [formControl]="myForm.get('myChoices1')"
+      [compareWith]="comparator"
+      (selectionChange)="isChanged($event)"
+      (optionSelected)="isSelected($event)"
+      (optionDeselected)="isDeselected($event)"
+      tsVerticalSpacing
+    >
+      <ts-select-trigger>
+        My custom trigger!
+        <strong>{{ myForm.get('myChoices1')?.value?.text }}</strong>
+      </ts-select-trigger>
+
+      <ts-select-option>
+        <h4 tsSelectOptionDisplay>None</h4>
+      </ts-select-option>
+
+      <ts-select-option
+        [value]="option.bar"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of singleWithCustomTrigger | async"
+      >
+        {{ option.slug }}
+        <!--
+           -<ng-template let-option>
+           -  <div class="myClass">
+           -    <h4 tsSelectOptionDisplay>{{ option?.foo }}</h4>
+           -    <small>{{ option?.slug }}</small>
+           -  </div>
+           -</ng-template>
+           -->
+      </ts-select-option>
+    </ts-select>
+
+    <div>
+      FormControl value: {{ myForm.get('myChoices1')?.value | json }}
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing fxFlex>
+    <h3 tsCardTitle tsVerticalSpacing="small--1">
+      Single Select w/Optgroups
     </h3>
 
     <ts-select
-      [items]="simpleItems"
       label="Single select"
-      [blankChoice]="blank"
+      allowMultiple="false"
       hint="Select a single option"
-      [formControl]="myForm.get('myChoices1')"
-      (openedChange)="openStateChange($event)"
+      [formControl]="myForm.get('myChoices2')"
       (selectionChange)="isChanged($event)"
-    ></ts-select>
+      tsVerticalSpacing
+    >
+      <ts-select-optgroup
+        *ngFor="let option of itemsWithGroups | async"
+        [label]="option.foo"
+        [isDisabled]="option.disabled"
+      >
+        <ts-select-option
+          *ngFor="let child of option.children"
+          [value]="child.slug"
+          [option]="child"
+          [isDisabled]="child?.disabled"
+        >
+          {{ child.foo }}
+        </ts-select-option>
+      </ts-select-optgroup>
+    </ts-select>
+
+    <div>
+      FormControl value: {{ myForm.get('myChoices2')?.value | json }}
+    </div>
   </ts-card>
 
 
   <ts-card tsVerticalSpacing fxFlex>
     <h3 tsCardTitle tsVerticalSpacing>
-      Multiple
+      Multiple w/Optgroups
     </h3>
 
     <ts-select
-      [items]="items | async"
-      [formatUIFn]="myUIFn"
-      [formatModelValueFn]="myModelFn"
       label="Multiple select"
-      [blankChoice]="blank"
-      multipleAllowed="true"
+      allowMultiple="true"
       hint="Select one or more options"
-      [formControl]="myForm.get('myChoices2')"
-      theme="accent"
-      (openedChange)="openStateChange($event)"
+      [formControl]="myForm.get('myChoices3')"
+      (opened)="panelChange(true)"
+      (closed)="panelChange(false)"
       (selectionChange)="isChanged($event)"
       tsVerticalSpacing
-    ></ts-select>
-  </ts-card>
-</form>
+    >
+      <ts-select-optgroup
+        *ngFor="let option of itemsWithGroups | async"
+        [label]="option.foo"
+        [isDisabled]="option.disabled"
+      >
+        <ts-select-option
+          *ngFor="let child of option.children"
+          [value]="child.slug"
+          [option]="child"
+          [isDisabled]="child?.disabled"
+        >
+          {{ child.foo }}
+        </ts-select-option>
+      </ts-select-optgroup>
+    </ts-select>
 
-<div>
-  <button (click)="update()">UPDATE</button>
-</div>
+    <div>
+      FormControl value: {{ myForm.get('myChoices3')?.value | json }}
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing fxFlex>
+    <h3 tsCardTitle tsVerticalSpacing="small--1">
+      Select w/Autocomplete
+    </h3>
+
+    <ts-select
+      label="Autocomplete Example"
+      hint="Begin typing to select.."
+      [formControl]="stateCtrl"
+      autocomplete="true"
+      allowMultiple="true"
+      autocompleteAllowDuplicateSelections="false"
+      autocompleteReopenAfterSelection="true"
+      [showProgress]="fakeAsync"
+      (queryChange)="queryHasChanged($event)"
+      tsVerticalSpacing
+    >
+
+      <ts-select-option
+        [value]="state.name"
+        [option]="state"
+        *ngFor="let state of filteredStates | async"
+      >
+        {{ state.name }}
+        <!--
+           -<span>{{state.name}}</span> |
+           -<small>Population: {{state.population}}</small>
+           -->
+      </ts-select-option>
+
+    </ts-select>
+
+    <div>
+      FormControl value: {{ stateCtrl.value | json }}
+    </div>
+  </ts-card>
+
+</form>

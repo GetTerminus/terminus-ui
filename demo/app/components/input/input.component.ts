@@ -18,7 +18,7 @@ export class InputComponent {
   icon = 'home';
   model1 = 'A seeded value';
   myValue: string | undefined;
-  myDatepickerValue: string | Date = new Date(2018, 2, 2);
+  myDatepickerValue: string | Date = new Date(2018, 1, 2);
   shouldDisable = false;
   activeMask = 'none';
   masks: any[] = [
@@ -33,9 +33,10 @@ export class InputComponent {
   sanitizeValue = false;
   allowDecimal = true;
   hideRequiredMarker = false;
-  isClearable = false;
+  isClearable = true;
   isDisabled = false;
   isFocused = false;
+  isRequired = true;
   isReadonly = false;
   myForm: FormGroup = this.formBuilder.group({
     name: [

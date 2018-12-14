@@ -64,6 +64,8 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
 /**
  * The autocomplete UI Component
  *
+ * @deprecated in favor of the new TsInputComponent. Target 11.x
+ *
  * #### QA CSS CLASSES
  * - `qa-autocomplete`: The primary container
  * - `qa-autocomplete-input`: The input element

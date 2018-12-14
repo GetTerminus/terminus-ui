@@ -1,23 +1,29 @@
 <ts-card tsVerticalSpacing>
   <h3 tsVerticalSpacing>Demo Controls</h3>
 
-  <div fxLayout="row" fxLayoutGap="24px">
+  <div fxLayout="column" fxLayoutGap="24px">
     <div>
       <ts-toggle [(ngModel)]="multiple">Allow multiple selections</ts-toggle>
       <br>
       <ts-toggle [(ngModel)]="hideButton">Hide button</ts-toggle>
     </div>
-    <div>
-      <ts-input label="Max Size (kb)" type="number" [(ngModel)]="maxKb"></ts-input>
-    </div>
-    <div>
-      <ts-select
-        label="Allowed MIME types"
-        multipleAllowed="true"
-        [(ngModel)]="mimeTypes"
-        [items]="mimeTypeOptions"
-        (selectionChange)="mimeTypeChange($event)"
-      ></ts-select>
+    <div fxLayout="row" fxLayoutGap="24px">
+      <div>
+        <ts-input label="Max Size (kb)" type="number" [(ngModel)]="maxKb"></ts-input>
+      </div>
+      <div>
+        <ts-select
+          label="Allowed MIME types"
+          allowMultiple="true"
+          [(ngModel)]="mimeTypes"
+          (selectionChange)="mimeTypeChange($event)"
+        >
+          <ts-select-option
+            [value]="option"
+            *ngFor="let option of mimeTypeOptions"
+          >{{ option }}</ts-select-option>
+        </ts-select>
+      </div>
     </div>
   </div>
 </ts-card>

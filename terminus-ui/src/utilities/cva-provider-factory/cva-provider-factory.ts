@@ -3,9 +3,7 @@ import {
   forwardRef,
   Type,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 export function ControlValueAccessorProviderFactory(type: Type<any>): ExistingProvider {

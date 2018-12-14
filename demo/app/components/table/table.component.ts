@@ -126,9 +126,6 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(TsPaginatorComponent)
   paginator!: TsPaginatorComponent;
 
-  myUIFn: TsSelectFormatFn = (v) => v.name;
-  myModelFn: TsSelectFormatFn = (v) => v.value;
-
 
   constructor(
     private http: HttpClient,

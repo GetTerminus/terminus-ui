@@ -15,7 +15,7 @@ definition.
 ```scss
 .foo {
   // Pass the element in to generate the correct shadows
-  @include elevation(card);
+  @include elevation-element(card);
 }
 ```
 
@@ -44,4 +44,3 @@ definition.
 
 If your specific element is not listed, select an element that should appear at the same elevation
 as your element. If you are unsure, ask!
-

@@ -24,7 +24,6 @@ import { TsReactiveFormBaseComponent } from './../utilities/reactive-form-base.c
  */
 export class TsCheckboxChange extends MatCheckboxChange {}
 
-
 /**
  * Unique ID for each instance
  */
@@ -60,6 +59,7 @@ let nextUniqueId = 0;
   styleUrls: ['./checkbox.component.scss'],
   host: {
     class: 'ts-checkbox',
+    '[attr.id]': 'id',
   },
   providers: [ControlValueAccessorProviderFactory(TsCheckboxComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -79,6 +79,18 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   checkbox!: MatCheckbox;
 
   /**
+   * Define if the ripple animation should be disabled
+   */
+  @Input()
+  public set disableRipple(value: boolean) {
+    this._disableRipple = coerceBooleanProperty(value);
+  }
+  public get disableRipple(): boolean {
+    return this._disableRipple;
+  }
+  private _disableRipple = false;
+
+  /**
    * Define an ID for the component
    */
   @Input()
@@ -94,8 +106,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Toggle the underlying checkbox if the isChecked property changes
    */
   @Input()
-  public set isChecked(v: boolean) {
-    this._isChecked = coerceBooleanProperty(v);
+  public set isChecked(value: boolean) {
+    this._isChecked = coerceBooleanProperty(value);
     this.value = this._isChecked;
     this.checkbox.checked = this._isChecked;
     this.changeDetectorRef.detectChanges();

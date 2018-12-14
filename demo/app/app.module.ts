@@ -51,6 +51,7 @@ import {
   TsCSVEntryModule,
   TsDateRangeModule,
   TsFileUploadModule,
+  TsFormFieldModule,
   TsIconButtonModule,
   TsIconModule,
   TsInputModule,
@@ -127,7 +128,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
     HttpClientModule,
 
     // Native Material modules only needed for demo shell
@@ -147,6 +148,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCSVEntryModule,
     TsDateRangeModule,
     TsFileUploadModule,
+    TsFormFieldModule,
     TsIconButtonModule,
     TsIconModule,
     TsInputModule,

@@ -11,6 +11,7 @@ import {
   NativeDateModule,
 } from '@angular/material/core';
 
+import { TsFormFieldModule } from './../form-field/form-field.module';
 import { TsIconModule } from './../icon/icon.module';
 import { TsValidationMessagesModule } from './../validation-messages/validation-messages.module';
 import { TsValidatorsService } from './../validators/validators.service';
@@ -18,6 +19,7 @@ import { TsInputComponent } from './input.component';
 import { TS_DATE_FORMATS } from './date-adapter';
 
 export * from './input.component';
+export * from './input-value-accessor';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ export * from './input.component';
     MatDatepickerModule,
     TsValidationMessagesModule,
     TsIconModule,
+    TsFormFieldModule,
   ],
   providers: [
     TsValidatorsService,

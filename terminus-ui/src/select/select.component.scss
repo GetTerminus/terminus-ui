@@ -1,53 +1,171 @@
 @import './../scss/helpers/color';
 @import './../scss/helpers/reset';
 @import './../scss/helpers/typography';
+@import './../scss/helpers/layout';
+@import './../scss/helpers/spacing';
+@import './../scss/helpers/cursors';
+
+
+$ts-select-arrow-size: 5px !default;
+$ts-select-arrow-margin: 4px !default;
+$ts-select-panel-max-height: 256px !default;
+$ts-select-item-height: 3em !default;
+$ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arrow-margin);
 
 
 //
 // @component
-//  Select
+//  Select menu
 // @description
-//  A select input component
+//  A select menu component
 //
 .ts-select {
   @include reset;
   display: block;
+  outline: none;
 
-  // disabled state
-  &.disabled {
-    pointer-events: none;
+  // <div> trigger to open select
+  .ts-select-trigger {
+    box-sizing: border-box;
+    cursor: cursor(pointer);
+    display: inline-table;
+    position: relative;
 
-    // Overwrite color to appear disabled
-    .mat-select-value-text {
+    &--hidden {
+      @include visually-hidden;
+    }
+
+    .ts-select-option--disabled & {
+      cursor: cursor(not-allowed);
+      user-select: none;
+    }
+  }
+
+  &.ts-select--disabled {
+    .ts-select-trigger {
+      cursor: cursor(not-allowed);
+      user-select: none;
+    }
+
+    .ts-select-arrow {
       color: color(utility);
     }
   }
 
-  // Custom rules when nested inside the paginator component
-  .c-paginator & {
-    display: inline-block;
-    position: relative;
-    top: .3em;
-    vertical-align: middle;
-    width: 4rem;
+  .ts-select-value {
+    display: table-cell;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
 
-    .mat-form-field {
-      width: auto;
+  .ts-select-value-text {
+    @include truncate-overflow();
+  }
+
+  .ts-select-arrow-wrapper {
+    display: table-cell;
+    transform: translateY(-25%);
+    vertical-align: middle;
+  }
+
+  .ts-select-arrow {
+    border-left: $ts-select-arrow-size solid transparent;
+    border-right: $ts-select-arrow-size solid transparent;
+    border-top: $ts-select-arrow-size solid;
+    height: 0;
+    margin: 0 $ts-select-arrow-margin;
+    width: 0;
+  }
+
+  // <div> wrapper for autocomplete input
+  .ts-select__input-wrap {
+    &--hidden {
+      @include visually-hidden;
     }
   }
 
-  // <mat-select>
-  .c-select {
-    // Top level styles should be nested here
-    @include typography;
-    display: block;
+  .ts-select__autocomplete-input {
+    background: transparent;
+    border: none;
+    color: currentColor;
+    font: inherit;
     max-width: 100%;
+    outline: none;
+    padding: 0;
+    // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
+    // easily overwritten by targeting the input element using a simple CSS selector, but since
+    // the text-align will be applied most of the time on the `ts-form-field` to also align the
+    // placeholder, the alignment should be inherited here.
+    text-align: inherit;
+    // Needed to make last line of the textarea line up with the baseline.
+    vertical-align: bottom;
+    width: 100%;
+
+    // Undo the red box-shadow glow added by Firefox on invalid inputs.
+    // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+    &:-moz-ui-invalid {
+      box-shadow: none;
+    }
   }
 }
 
-// Overwrite the default max-height set by Material since the menu was spilling off outside the page
-.cdk-overlay-container {
-  .mat-menu-panel {
-    max-height: calc(80vh - 48px);
+
+.ts-select-panel {
+  // Allow long lists to scroll
+  overflow: auto;
+
+  // Indent the checkboxes if children of an optgroup
+  .ts-optgroup {
+    .ts-select-option {
+      .ts-checkbox {
+        padding-left: spacing();
+      }
+    }
+  }
+
+  // <div> wrapper for checkbox to toggle all options
+  .ts-select-panel__toggle-all {
+    background-color: color(utility, xlight);
+    border-bottom: 1px solid color(utility);
+    // Set up for positioned child
+    position: relative;
+
+    .ts-checkbox {
+      line-height: $ts-select-item-height;
+    }
+  }
+
+  // <span> wrapper for count of selected options
+  .ts-select-panel__count {
+    @include typography(caption);
+    color: color(utility);
+    position: absolute;
+    right: spacing(small);
+  }
+}
+
+
+// Paginator Overrides
+.ts-paginator {
+  // Update styles so that the new select style 'fits' with the vertical height of the paginator
+  .ts-select {
+    display: inline-block;
+    position: relative;
+    top: .3em;
+    width: 5em;
+
+    .ts-form-field__infix {
+      padding: .4em 0;
+    }
+
+    // Move the arrow down to center with less padding
+    &.ts-select--disabled {
+      .ts-select-arrow-wrapper {
+        transform: translateY(0);
+      }
+    }
   }
 }
