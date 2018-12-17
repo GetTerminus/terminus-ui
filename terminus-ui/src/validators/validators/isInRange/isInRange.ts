@@ -47,8 +47,8 @@ function getValidationResult(minimum: number | undefined, maximum: number | unde
   const invalidResponse: ValidationErrors = {
     isInRange: {
       valid: false,
-      min: minimum,
-      max: maximum,
+      minimum: minimum,
+      maximum: maximum,
       actual: control.value,
     },
   };

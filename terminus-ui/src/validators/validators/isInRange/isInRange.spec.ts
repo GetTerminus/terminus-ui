@@ -29,7 +29,7 @@ describe(`isInRangeValidator`, () => {
 
 
     test(`should return null if the number is valid`, () => {
-      const values = [12, 10, 98.6, 9999];
+      const values = [12, 10, 98.6];
 
       for (const val of values) {
         expect(validatorFn(new FormControl(val))).toEqual(null);
@@ -43,8 +43,8 @@ describe(`isInRangeValidator`, () => {
       for (const val of values) {
         const result = validatorFn(new FormControl(val));
 
-        expect(result!.greaterThanOrEqual.valid).toEqual(false);
-        expect(result!.greaterThanOrEqual.actual).toEqual(val);
+        expect(result!.isInRange.valid).toEqual(false);
+        expect(result!.isInRange.actual).toEqual(val);
       }
     });
 
@@ -62,7 +62,7 @@ describe(`isInRangeValidator`, () => {
     let validatorFnNoNumber: ValidatorFn;
 
     beforeEach(() => {
-      validatorFn = isInRangeValidator(new FormControl(10));
+      validatorFn = isInRangeValidator(new FormControl(10), new FormControl(100));
       validatorFnNoNumber = isInRangeValidator(new FormControl());
     });
 
@@ -76,7 +76,7 @@ describe(`isInRangeValidator`, () => {
 
 
     test(`should return null if the number is valid`, () => {
-      const values = [12, 98.6, 9999];
+      const values = [10, 22, 98.6, 100];
 
       for (const val of values) {
         const c = new FormControl(val);
@@ -92,8 +92,8 @@ describe(`isInRangeValidator`, () => {
         const c = new FormControl(val);
         const result = validatorFn(c);
 
-        expect(result!.greaterThanOrEqual.valid).toEqual(false);
-        expect(result!.greaterThanOrEqual.actual).toEqual(val);
+        expect(result!.isInRange.valid).toEqual(false);
+        expect(result!.isInRange.actual).toEqual(val);
       }
     });
 
