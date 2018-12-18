@@ -31,7 +31,6 @@ export class DateRangeComponent implements OnInit {
         null,
         [
           Validators.required,
-          this.validatorsService.maxDate(date1.toISOString()),
         ],
       ],
       endDate: [
