@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { NativeDateAdapter } from '@angular/material/core';
 import { isValid as isValidDate } from 'date-fns';
 
@@ -32,6 +33,7 @@ export const TS_DATE_FORMATS = {
 /**
  * Custom date adapter for the Material Datepicker
  */
+@Injectable()
 export class TsDateAdapter extends NativeDateAdapter {
   /**
    * Format the date when setting the UI
