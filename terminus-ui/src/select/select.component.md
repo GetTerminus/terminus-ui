@@ -431,7 +431,7 @@ By default, the autocomplete input query will be debounced 200ms. This time may 
 <ts-select
   [formControl]="myCtrl"
   autocomplete="true"
-  debounceDelay="400ms"
+  debounceDelay="400"
 >
   ...
 </ts-select>
