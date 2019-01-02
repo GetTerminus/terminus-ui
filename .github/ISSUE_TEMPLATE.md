@@ -1,9 +1,9 @@
 <!--
 
-If reporting an issue:
+When reporting an issue:
 
-1. Fork the StackBlitz demo project: https://stackblitz.com/edit/terminus-ui-demos
-2. Recreate the issue
-3. Include the link here
+1. Provide a reproduction along with the neccessary steps outlined.
+2. Include screenshots or gifs if helpful when explaining an issue.
+3. DEFINE WHAT VERSION OF THE LIBRARY IS AFFECTED.
 
 -->
