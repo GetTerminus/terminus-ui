@@ -128,7 +128,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
+    FlexLayoutModule,
     HttpClientModule,
 
     // Native Material modules only needed for demo shell
