@@ -48,19 +48,91 @@ If the scrollbars content is dynamically updated, you will need to update the sc
 ```
 
 ```typescript
+...
+
+@ViewChild(TsScrollbarsComponent)
+public scrollbars!: TsScrollbarsComponent;
+
+
+myUpdate() {
+  // Update the content
+  this.updateScrollContent();
+
+  // Update the scrollbars
+  this.scrollbars.update();
+}
+```
+
+## Manual Position Control
+
+Scrolling methods can be called directly once a reference to the component is attained:
+
+```html
+<!-- Get a reference to the component class -->
+<ts-scrollbars #scrollbars="tsScrollbars">
   ...
+</ts-scrollbars>
+```
 
-  @ViewChild(TsScrollbarsComponent)
-  public scrollbars!: TsScrollbarsComponent;
+```typescript
+...
+// A reference to the component instance:
+@ViewChild(TsScrollbarsComponent)
+public scrollbars!: TsScrollbarsComponent;
+...
+```
+
+The following scroll examples will assume that a reference has already been created.
+
+### Scroll to fixed location
+
+```typescript
+@ViewChild(TsScrollbarsComponent)
+public scrollbars!: TsScrollbarsComponent;
+
+scrollToTop() {
+  // Scroll the container to the very top
+  this.scrollbars.scrollToTop();
+}
+```
+
+Available fixed location methods:
+
+| Method             |
+|--------------------|
+| `scrollToBottom()` |
+| `scrollToLeft()`   |
+| `scrollToRight()`  |
+| `scrollToTop()`    |
 
 
-  myUpdate() {
-    // Update the content
-    this.updateScrollContent();
+### Scroll to x/y location
 
-    // Update the scrollbars
-    this.scrollbars.update();
-  }
+Scroll the container to a specific x/y location:
+
+```typescript
+@ViewChild(TsScrollbarsComponent)
+public scrollbars!: TsScrollbarsComponent;
+
+scrollToCoordinates() {
+  //                       x    y    speed
+  this.scrollbars.scrollTo(100, 250, 200);
+}
+```
+
+
+### Scroll to element
+
+The component can scroll a nested element to the top of the scroll container:
+
+```typescript
+@ViewChild(TsScrollbarsComponent)
+public scrollbars!: TsScrollbarsComponent;
+
+scrollToElement() {
+  // This supports any string that can be passed to `querySelector()`
+  this.scrollbars.scrollToElement('.my-class');
+}
 ```
 
 
