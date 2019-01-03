@@ -98,7 +98,7 @@
 </ts-card>
 
 
-<ts-card>
+<ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
     Input: Reactive Form
   </h3>
@@ -153,4 +153,24 @@
     ></ts-input>
 
   </form>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: Textarea
+  </h3>
+
+  <ts-input
+    [(ngModel)]="textareaModel"
+    label="My textarea"
+    name="My textarea"
+    hint="So much space! How will you use it?"
+    isTextarea="true"
+  ></ts-input>
+
+  <strong>ngModel value:</strong>
+<pre style="outline: 1px solid lightgray;">
+{{ textareaModel }}
+</pre>
 </ts-card>

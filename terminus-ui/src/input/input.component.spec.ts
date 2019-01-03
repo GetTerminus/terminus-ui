@@ -870,6 +870,32 @@ describe(`TsInputComponent`, () => {
 
   });
 
+
+  describe(`textarea`, () => {
+
+    test(`should enable a textarea instead of a standard input`, () => {
+      const fixture = createComponent(TestComponents.Textarea);
+      fixture.detectChanges();
+      const element = getInputElement(fixture);
+
+      expect(element.tagName).toEqual('TEXTAREA');
+    });
+
+
+    test(`should allow a dynamic number of rows`, () => {
+      const fixture = createComponent(TestComponents.Textarea);
+      fixture.detectChanges();
+      const element = getInputElement(fixture);
+
+      expect(element.getAttribute('rows')).toEqual('4');
+
+      fixture.componentInstance.rows = 7;
+      fixture.detectChanges();
+      expect(element.getAttribute('rows')).toEqual('7');
+    });
+
+  });
+
 });
 
 

@@ -127,6 +127,7 @@ for each feature.
 | [sort][src-sort]                       | Used by `table` for column sorting                | :white_check_mark: | <small>(see table demo)</small> | [Docs][sort-docs]            | [Usage][sort-usage]         |
 | [table][src-table]                     |                                                   | :white_check_mark: | [Demo][demo-table]              | [Docs][table-docs]           | [Usage][table-usage]        |
 | tabs                                   |                                                   |                    |                                 |                              |                             |
+| textarea                               | See `input`                                       |                    | <small>(see input demo)</small> |                              |                             |
 | [toggle][src-toggle]                   |                                                   | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]          |                             |
 | [tooltip][src-tooltip]                 |                                                   | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]         |                             |
 

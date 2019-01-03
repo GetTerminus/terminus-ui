@@ -28,6 +28,7 @@ import {
 } from '@angular/forms';
 import {
   hasRequiredControl,
+  isNumber,
   noop,
   TsDocumentService,
 } from '@terminus/ngx-tools';
@@ -167,6 +168,7 @@ let nextUniqueId = 0;
 const AUTOCOMPLETE_DEFAULT: TsInputAutocompleteTypes = 'on';
 const NUMBER_ONLY_REGEX: RegExp = /[^0-9]/g;
 const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
+const DEFAULT_TEXTAREA_ROWS = 4;
 
 
 /**
@@ -623,6 +625,20 @@ export class TsInputComponent implements
   private _isRequired = false;
 
   /**
+   * Define if the input should be a textarea
+   *
+   * NOTE: This is not meant to be used with the datepicker or mask enabled.
+   */
+  @Input()
+  public set isTextarea(value: boolean) {
+    this._isTextarea = coerceBooleanProperty(value);
+  }
+  public get isTextarea(): boolean {
+    return this._isTextarea;
+  }
+  private _isTextarea = false;
+
+  /**
    * Define the label
    */
   @Input()
@@ -794,6 +810,20 @@ export class TsInputComponent implements
     return this._tabIndex;
   }
   private _tabIndex = 0;
+
+  /**
+   * Define the number of rows for a textarea
+   *
+   * NOTE: Since the 'rows' attribute of a textarea is stored as a string, we should accept both string and number.
+   */
+  @Input()
+  public set textareaRows(value: number) {
+    this._textareaRows = isNumber(value) ? Number(value) : DEFAULT_TEXTAREA_ROWS;
+  }
+  public get textareaRows(): number {
+    return this._textareaRows;
+  }
+  private _textareaRows = DEFAULT_TEXTAREA_ROWS;
 
   /**
    * Define the component theme
