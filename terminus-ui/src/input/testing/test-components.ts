@@ -421,3 +421,19 @@ export class OnChanges {
   inputComponent: TsInputComponent;
 }
 
+@Component({
+  template: `
+    <ts-input
+      [formControl]="formControl"
+      isTextarea="true"
+      [textareaRows]="rows"
+    ></ts-input>
+  `,
+})
+export class Textarea {
+  formControl = new FormControl();
+  rows: undefined | number;
+
+  @ViewChild(TsInputComponent)
+  inputComponent: TsInputComponent;
+}

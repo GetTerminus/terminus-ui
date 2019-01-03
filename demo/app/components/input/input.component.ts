@@ -19,6 +19,7 @@ export class InputComponent {
   model1 = 'A seeded value';
   myValue: string | undefined;
   myDatepickerValue: string | Date = new Date(2018, 1, 2);
+  textareaModel;
   shouldDisable = false;
   activeMask = 'none';
   masks: any[] = [

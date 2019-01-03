@@ -29,6 +29,8 @@
 - [Open calendar to a specific date](#open-calendar-to-a-specific-date)
 - [Open calendar to a specific view](#open-calendar-to-a-specific-view)
 - [Example with dynamic validation](#example-with-dynamic-validation)
+- [Textarea](#textarea)
+  - [Rows](#rows)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -502,6 +504,31 @@ rangeEndChange(event: MatDatepickerInputEvent) {
   }
 }
 ```
+
+
+## Textarea
+
+Switch from a standard input to a textarea:
+
+```html
+<ts-input
+  [formControl]="myForm.get('myControl')"
+  isTextarea="true"
+></ts-input>
+```
+
+### Rows
+
+The row count can be dynamically adjusted:
+
+```html
+<ts-input
+  [formControl]="myForm.get('myControl')"
+  isTextarea="true"
+  textareaRows="12"
+></ts-input>
+```
+
 
 
 

@@ -81,10 +81,10 @@
 
 
 <!--
-   -DEFAULT (input)
+   -Inner Input
    -->
 <ng-template #contentTemplate>
-  <ng-container *ngIf="!datepicker">
+  <ng-container *ngIf="!isTextarea && !datepicker">
     <input
       class="c-input__text qa-input-text ts-form-field-autofill-control"
       type="{{ type }}"
@@ -108,7 +108,7 @@
     >
   </ng-container>
 
-  <ng-container *ngIf="datepicker">
+  <ng-container *ngIf="!isTextarea && datepicker">
     <input
       class="c-input__text qa-input-text ts-form-field-autofill-control"
       type="{{ type }}"
@@ -135,6 +135,30 @@
       (dateChange)="selected.emit($event.value)"
       #inputElement
     >
+  </ng-container>
+
+  <ng-container *ngIf="isTextarea">
+    <textarea
+      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [attr.rows]="textareaRows"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target.value)"
+      #inputElement
+    ></textarea>
   </ng-container>
 </ng-template>
 
