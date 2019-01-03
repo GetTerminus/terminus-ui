@@ -75,7 +75,9 @@ describe(`CheckboxComponent with DOM`, () => {
     fixture.detectChanges();
   });
 
+
   describe(`isChecked`, () => {
+
     test(`checkbox is checked`, () => {
       hostComponent.checked = true;
       fixture.detectChanges();
@@ -84,6 +86,7 @@ describe(`CheckboxComponent with DOM`, () => {
       expect(checkbox.nativeElement.checked).toEqual(true);
     });
 
+
     test(`checkbox is unchecked`, () => {
       hostComponent.checked = false;
       fixture.detectChanges();
@@ -91,9 +94,12 @@ describe(`CheckboxComponent with DOM`, () => {
       const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-2-input'));
       expect(checkbox.nativeElement.checked).toEqual(false);
     });
+
   });
 
+
   describe(`isIndeterminate`, () => {
+
     test(`checkbox changes to indeterminate:`, () => {
       hostComponent.checked = false;
       hostComponent.indeterminate = true;
@@ -102,9 +108,12 @@ describe(`CheckboxComponent with DOM`, () => {
       const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-3-input'));
       expect(checkbox.nativeElement.indeterminate).toEqual(true);
     });
+
   });
 
+
   describe(`isDisabled`, () => {
+
     test(`checkbox is disabled`, () => {
       hostComponent.disabled = true;
       fixture.detectChanges();
@@ -113,6 +122,7 @@ describe(`CheckboxComponent with DOM`, () => {
       expect(checkbox.nativeElement.disabled).toEqual(true);
     });
 
+
     test(`checkbox is not disabled`, () => {
       hostComponent.disabled = false;
       fixture.detectChanges();
@@ -120,9 +130,12 @@ describe(`CheckboxComponent with DOM`, () => {
       const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-5-input'));
       expect(checkbox.nativeElement.disabled).toEqual(false);
     });
+
   });
 
+
   describe(`isRequired`, () => {
+
     test(`checkbox is required`, () => {
       hostComponent.required = true;
       fixture.detectChanges();
@@ -131,6 +144,7 @@ describe(`CheckboxComponent with DOM`, () => {
       expect(checkbox.nativeElement.required).toEqual(true);
     });
 
+
     test(`checkbox is required`, () => {
       hostComponent.required = false;
       fixture.detectChanges();
@@ -138,9 +152,11 @@ describe(`CheckboxComponent with DOM`, () => {
       const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-7-input'));
       expect(checkbox.nativeElement.required).toEqual(false);
     });
+
   });
 
 });
+
 
 describe(`TsCheckboxComponent`, () => {
   let component: TsCheckboxComponent;
@@ -170,6 +186,15 @@ describe(`TsCheckboxComponent`, () => {
       component.id = 'foo';
       expect(component.id).toEqual('foo');
     });
+
+    test(`should fallback to the default ID`, () => {
+      component.id = 'foo';
+      expect(component.id).toEqual('foo');
+
+      component.id = undefined as any;
+      expect(component.id.indexOf('ts-checkbox') >= 0).toEqual(true);
+    });
+
   });
 
 
