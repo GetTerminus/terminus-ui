@@ -44,6 +44,10 @@ export class ScrollbarsComponent implements AfterContentChecked {
     this.scrollbars.scrollToTop();
   }
 
+  scrollToElement() {
+    this.scrollbars.scrollToElement('.p1');
+  }
+
   myScrollDown(e) { console.log('DEMO: scrollDown: ', e); }
   myScrollLeft(e) { console.log('DEMO: scrollLeft: ', e); }
   myScrollRight(e) { console.log('DEMO: scrollRight: ', e); }

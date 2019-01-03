@@ -17,7 +17,7 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
- * Define possible scroll directions for {@link TsScrollbarsScrollDirections}.
+ * Define possible scroll directions for {@link TsScrollbarsComponent}.
  */
 export type TsScrollbarsScrollDirections
   = 'any'
@@ -28,13 +28,13 @@ export type TsScrollbarsScrollDirections
 
 
 /**
- * A class that represents the current gemotric state of scrolling.
+ * A class that represents the current gemotric state of scrolling for {@link TsScrollbarsComponent}.
  */
 export class TsScrollbarsGeometry extends Geometry {}
 
 
 /**
- * A class that represents the current scrollbar positions
+ * A class that represents the current scrollbar positions for {@link TsScrollbarsComponent}.
  */
 export class TsScrollbarPosition extends Position {}
 
@@ -158,10 +158,6 @@ export class TsScrollbarsComponent {
   public yReachStart: EventEmitter<Event> = new EventEmitter();
 
 
-  constructor() {
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
-  }
 
 
   /**
