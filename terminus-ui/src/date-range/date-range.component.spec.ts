@@ -14,7 +14,7 @@ import { TsDateRangeComponent } from './date-range.component';
  */
 
 
-describe(`TsDateRangeComponent`, () => {
+describe(`TsDateRangeComponent`, function() {
   const formBuilder = new FormBuilder();
   let component: TsDateRangeComponent;
   let dateRangeStart: Date;

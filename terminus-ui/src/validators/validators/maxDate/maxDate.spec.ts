@@ -8,7 +8,7 @@ import {
 import { maxDateValidator } from './maxDate';
 
 
-describe(`maxDateValidator`, () => {
+describe(`maxDateValidator`, function() {
 
   describe(`date input`, () => {
     let maxDate: string;

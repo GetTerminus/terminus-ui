@@ -16,7 +16,7 @@ import { TsSelectModule } from '../select.module';
 // tslint:disable: no-use-before-declare
 
 
-describe(`selectOptionUtilities`, () => {
+describe(`selectOptionUtilities`, function() {
 
   describe(`getOptionScrollPosition`, () => {
 

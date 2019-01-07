@@ -2,7 +2,7 @@ import { TsSortDirective } from './sort.directive';
 
 
 // Adding tests for areas missed by the TsTable integration tests
-describe(`TsSortDirective`, () => {
+describe(`TsSortDirective`, function() {
   let directive: TsSortDirective;
 
   beforeEach(() => {

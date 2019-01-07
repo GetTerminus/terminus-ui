@@ -7,7 +7,7 @@ import {
 import { equalToControlValidator } from './equalToControl';
 
 
-describe(`equalToControlValidator`, () => {
+describe(`equalToControlValidator`, function() {
   /*
    *let validatorFn: ValidatorFn;
    */

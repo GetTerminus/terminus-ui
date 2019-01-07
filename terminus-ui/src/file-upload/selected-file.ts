@@ -139,7 +139,8 @@ export class TsSelectedFile {
    * @return The FileReader results
    */
   public get fileContents(): string {
-    return this.fileReader.result;
+    // TODO: Add real check here to verify a string: https://github.com/GetTerminus/terminus-ui/issues/1226
+    return this.fileReader.result as string;
   }
 
   /**
@@ -167,7 +168,8 @@ export class TsSelectedFile {
       this.fileReader.onload = (v: Event) => {
         // istanbul ignore else
         if (img) {
-          img.src = this.fileReader.result;
+          // TODO: Add real check here to verify a string: https://github.com/GetTerminus/terminus-ui/issues/1226
+          img.src = this.fileReader.result as string;
         }
       };
       img.onload = (v: Event) => {

@@ -1,7 +1,7 @@
 import { TsCardComponent } from './card.component';
 
 
-describe('TsCardComponent', () => {
+describe('TsCardComponent', function() {
   let component: TsCardComponent;
   let component2: TsCardComponent;
 

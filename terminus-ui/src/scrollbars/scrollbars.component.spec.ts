@@ -1,4 +1,3 @@
-
 import { TsScrollbarsComponent } from './scrollbars.component';
 
 
@@ -37,7 +36,7 @@ class PerfectScrollbarDirectiveMock {
 }
 
 
-describe(`TsScrollbarsComponent`, () => {
+describe(`TsScrollbarsComponent`, function() {
   let component: TsScrollbarsComponent;
 
   beforeEach(() => {

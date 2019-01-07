@@ -86,7 +86,7 @@ class TestHostComponent {
 
 
 
-describe(`TsFileUploadComponent`, () => {
+describe(`TsFileUploadComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let hostComponent: TestHostComponent;
   let component: TsFileUploadComponent;

@@ -7,7 +7,7 @@ import {
 import { emailValidator } from './email';
 
 
-describe(`emailValidator`, () => {
+describe(`emailValidator`, function() {
   let validatorFn: ValidatorFn;
 
   beforeEach(() => {

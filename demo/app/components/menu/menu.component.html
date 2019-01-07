@@ -99,7 +99,7 @@
 
   <ng-template #checkboxTemplate>
     <form [formGroup]="myForm">
-      <ng-container *ngFor="let control of myForm.controls['showColumns'].controls; let i = index">
+      <ng-container *ngFor="let control of columnControls.controls; let i = index">
         <ts-checkbox [formControl]="control" (click)="$event.stopPropagation()">
           {{ columns[i] }}
         </ts-checkbox>

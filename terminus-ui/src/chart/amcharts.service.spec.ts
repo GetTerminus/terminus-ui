@@ -12,7 +12,7 @@ const AM_CHARTS_TOKEN_MOCK = {
 } as TsAmChartsToken;
 
 
-describe(`TsAmChartsService`, () => {
+describe(`TsAmChartsService`, function() {
   let service: TsAmChartsService;
 
   beforeEach(() => {

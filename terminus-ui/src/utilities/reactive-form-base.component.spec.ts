@@ -3,7 +3,7 @@ import { TsReactiveFormBaseComponent } from './reactive-form-base.component';
 
 const METHOD_MOCK = () => 'foo';
 
-describe(`TsReactiveFormBaseComponent`, () => {
+describe(`TsReactiveFormBaseComponent`, function() {
   let component: TsReactiveFormBaseComponent;
 
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import { TsSentenceCasePipe } from './sentence-case.pipe';
 
 
-describe(`TsSentenceCasePipe`, () => {
+describe(`TsSentenceCasePipe`, function() {
   let pipeClass: TsSentenceCasePipe;
   let pipe: Function;
 

@@ -15,8 +15,7 @@ import { TsChartComponent, TsChartVisualizationOptions } from './chart.component
 import { TsAmChartsService } from './amcharts.service';
 
 
-describe(`ChartComponent`, () => {
-
+describe(`ChartComponent`, function() {
 
   test(`should exist`, () => {
     const fixture = createComponent(SimpleHost);

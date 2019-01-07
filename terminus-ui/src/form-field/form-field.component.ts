@@ -398,7 +398,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
       return;
     }
 
-    if (!this.document.documentElement.contains(this.elementRef.nativeElement)) {
+    if (this.document.documentElement && !this.document.documentElement.contains(this.elementRef.nativeElement)) {
       this.outlineGapCalculationNeeded = true;
       return;
     }

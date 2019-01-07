@@ -1,7 +1,7 @@
 import { TsLinkComponent } from './link.component';
 
 
-describe(`TsLinkComponent`, () => {
+describe(`TsLinkComponent`, function() {
   let component: TsLinkComponent;
 
   beforeEach(() => {

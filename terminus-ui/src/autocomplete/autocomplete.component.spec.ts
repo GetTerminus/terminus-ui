@@ -13,7 +13,7 @@ import {
 } from './autocomplete.component';
 
 
-describe(`TsAutocompleteComponent`, () => {
+describe(`TsAutocompleteComponent`, function() {
   let component: TsAutocompleteComponent;
   const opt1 = {id: 1};
   let trigger: jest.Mocked<MatAutocompleteTrigger>;

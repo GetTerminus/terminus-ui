@@ -4,7 +4,7 @@ import { createFakeEvent } from '@terminus/ngx-tools/testing';
 import { TsDropProtectionService } from './drop-protection.service';
 
 
-describe(`TsDropProtectionService`, () => {
+describe(`TsDropProtectionService`, function() {
   let service: TsDropProtectionService;
   let myWindow: Window;
   const eventDrop = createFakeEvent('drop');

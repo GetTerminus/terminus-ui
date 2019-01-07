@@ -153,6 +153,7 @@
       autocompleteReopenAfterSelection="true"
       [showProgress]="fakeAsync"
       (queryChange)="queryHasChanged($event)"
+      (duplicateSelection)="duplicate($event)"
       tsVerticalSpacing
     >
 

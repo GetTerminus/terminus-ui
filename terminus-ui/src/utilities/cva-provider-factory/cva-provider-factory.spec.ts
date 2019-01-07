@@ -1,7 +1,7 @@
 import { ControlValueAccessorProviderFactory } from './cva-provider-factory';
 
 
-describe(`ControlValueAccessorProviderFactory`, () => {
+describe(`ControlValueAccessorProviderFactory`, function() {
 
   test(`should forward a reference to this component`, () => {
     class Foo {}

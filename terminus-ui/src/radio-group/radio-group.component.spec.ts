@@ -21,7 +21,7 @@ class DomSanitizerMock {
   bypassSecurityTrustHtml = jest.fn().mockReturnValue(SVG);
 }
 
-describe('TsRadioGroupComponent', () => {
+describe('TsRadioGroupComponent', function() {
   let component: TsRadioGroupComponent;
   let options: TsRadioOption[];
 

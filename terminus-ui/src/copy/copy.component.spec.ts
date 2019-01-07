@@ -8,7 +8,7 @@ import { noop } from '@terminus/ngx-tools';
 import { TsCopyComponent } from './copy.component';
 
 
-describe(`TsCopyComponent`, () => {
+describe(`TsCopyComponent`, function() {
   let component: TsCopyComponent;
 
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import { TsRoundNumberPipe } from './round-number.pipe';
 
 
-describe(`TsRoundNumberPipe`, () => {
+describe(`TsRoundNumberPipe`, function() {
   let pipeClass: TsRoundNumberPipe;
   let pipe: Function;
   const num = 3456.3456;

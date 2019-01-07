@@ -9,7 +9,7 @@ import {
 import { TsButtonComponent } from './button.component';
 
 
-describe(`TsButtonComponent`, () => {
+describe(`TsButtonComponent`, function() {
   let component: TsButtonComponent;
 
   beforeEach(() => {
@@ -254,16 +254,16 @@ describe(`TsButtonComponent`, () => {
 
     describe(`collapseWithDelay()`, () => {
 
-      it(`should set isCollapsed and trigger change detection after the delay`, (done) => {
+      test(`should set isCollapsed and trigger change detection after the delay`, () => {
+        jest.useFakeTimers();
         component['windowService'].nativeWindow.setTimeout = window.setTimeout;
         const DELAY = 100;
         component['collapseWithDelay'](DELAY);
+        jest.advanceTimersByTime(2000);
 
-        setTimeout(() => {
-          expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
-          expect(component.isCollapsed).toEqual(true);
-          done();
-        }, DELAY + 1);
+        expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+        expect(component.isCollapsed).toEqual(true);
+        jest.runAllTimers();
       });
 
     });

@@ -2,7 +2,7 @@
 import { TsMenuComponent } from './menu.component';
 
 
-describe(`TsMenuComponent`, () => {
+describe(`TsMenuComponent`, function() {
   let component: TsMenuComponent;
 
   beforeEach(() => {

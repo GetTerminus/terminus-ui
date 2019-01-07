@@ -1,7 +1,7 @@
 import { TsTimeAgoPipe } from './time-ago.pipe';
 
 
-describe(`TsTimeAgoPipe`, () => {
+describe(`TsTimeAgoPipe`, function() {
   let pipe: Function;
   let date: Date;
   let oldDate: Date;

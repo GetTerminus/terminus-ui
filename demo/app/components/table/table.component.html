@@ -28,7 +28,7 @@
           Created
         </ts-header-cell>
         <ts-cell *tsCellDef="let item">
-          {{ item.created_at | date:shortDate }}
+          {{ item.created_at | date:"shortDate" }}
         </ts-cell>
       </ng-container>
 
@@ -37,7 +37,7 @@
           Updated
         </ts-header-cell>
         <ts-cell *tsCellDef="let item">
-          {{ item.updated_at | date:shortDate }}
+          {{ item.updated_at | date:"shortDate" }}
         </ts-cell>
       </ng-container>
 

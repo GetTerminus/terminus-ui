@@ -4,7 +4,7 @@ import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
 import { TS_SPACING } from './spacing.constant';
 
 
-describe(`TsVerticalSpacingDirective`, () => {
+describe(`TsVerticalSpacingDirective`, function() {
   let directive: TsVerticalSpacingDirective;
 
   beforeEach(() => {
