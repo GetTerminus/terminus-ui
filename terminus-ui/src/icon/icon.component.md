@@ -77,8 +77,15 @@ Custom icons are accessed via a `ts-icon` `@Input`:
 <ts-icon svgIcon="csv"></ts-icon>
 ```
 
+## Special Cases
+Any icon with a -color suffix will not accept themes. Currently they accept a background, but the display might be problematic and background should be used with extreme caution. A non "-color" version should be used instead.
+
 ### Available
 
-| Name  | Description                |
-|------:|:---------------------------|
-| `csv` | A file with the text 'CSV' |
+| Name          | Description                                             | Example Usage                     |
+|--------------:|:-------------------------------------------------------:|:----------------------------------|
+| `csv`         | A file with the text 'CSV'                              | Upload a CSV                      |
+| `engage`      | A right-pointing arrow stacked on a left-pointing arrow | Navigation for Engage product     |
+| `lightbulb`   | A lightbulb                                             | Pro-tip box                       |
+| `logo`        | Terminus logo, default is black, but accepts theme      | Logo, negative logo               |
+| `logo-color`  | Terminus logo in correct colors, does not accept theme  | Logo like it is supposed to look  |
