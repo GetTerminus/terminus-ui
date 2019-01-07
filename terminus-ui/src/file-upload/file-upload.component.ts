@@ -587,7 +587,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     let files: FileList | undefined;
 
     if (isDragEvent(event)) {
-      files = event.dataTransfer.files;
+      files = (event.dataTransfer && event.dataTransfer.files) ? event.dataTransfer.files : undefined;
     }
 
     if (event.target && isHTMLInputElement(event.target)) {

@@ -13,13 +13,13 @@ import {
  * Define the allowed date formats for the {@link TsDatePipe}.
  */
 export type TsDateTypes =
-  // 02/08/2018
+  // Short: 02/08/2018
   'short'
-  // February 8th, 2018
+  // Medium: Feb 8th, 2018
   | 'medium'
-  // Thursday, February 8th, 2018, 12:00:00am
+  // Extended: Thursday, February 8th, 2018, 12:00:00am
   | 'extended'
-  // 2018-02-08T05:00:00.000Z
+  // Timestamp: 2018-02-08T05:00:00.000Z
   | 'timestamp'
 ;
 
@@ -57,11 +57,11 @@ export class TsDatePipe implements PipeTransform {
     // Set the formatted date or an empty string if no format is matched
     const dateString =
       (format === 'short')
-      ? formatDate(date, 'MM/dd/YYYY')
+      ? formatDate(date, 'MM/dd/yyyy')
       : (format === 'medium')
-      ? formatDate(date, 'MMM d YYYY')
+      ? formatDate(date, 'MMM do, yyyy')
       : (format === 'extended')
-      ? formatDate(date, 'MMM d YYYY h:mm:ssa')
+      ? formatDate(date, 'EEEE, MMMM do, yyyy, h:mm:ssa')
       : (format === 'timestamp')
       ? new Date(date).toISOString()
       // NOTE: Final case is untestable since it would be caught by the `if` above

@@ -155,11 +155,6 @@ export type TsSelectOptionCompareWith = (o1: any, o2: any) => boolean;
 export const DEFAULT_COMPARE_WITH: TsSelectOptionCompareWith = (o1: any, o2: any) => o1 === o2;
 
 /**
- * Expose the formatter function type
- */
-export type TsSelectFormatFn = (v: any) => string;
-
-/**
  * The select panel will only "fit" inside the viewport if it is positioned at this value or more away from the viewport boundary
  */
 export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
@@ -1221,8 +1216,8 @@ export class TsSelectComponent implements
 
       manager.onKeydown(event);
 
-      const shouldSelect =
-        this.allowMultiple && isArrowKey && event.shiftKey && manager.activeItem && manager.activeItemIndex !== previouslyFocusedIndex;
+      const notPreviouslyFocused = manager.activeItem && manager.activeItemIndex !== previouslyFocusedIndex;
+      const shouldSelect = this.allowMultiple && isArrowKey && event.shiftKey && notPreviouslyFocused;
 
       if (shouldSelect && manager.activeItem) {
         manager.activeItem.selectViaInteraction();

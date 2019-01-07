@@ -100,7 +100,7 @@ class TestHostComponent {
 }
 
 
-describe(`TsConfirmationDirective`, () => {
+describe(`TsConfirmationDirective`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let testComponent: TestHostComponent;
   let directive: TsConfirmationDirective;

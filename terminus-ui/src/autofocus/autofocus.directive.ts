@@ -6,7 +6,6 @@ import {
   isDevMode,
   ChangeDetectorRef,
 } from '@angular/core';
-
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 

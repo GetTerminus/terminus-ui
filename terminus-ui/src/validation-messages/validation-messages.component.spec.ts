@@ -4,7 +4,7 @@ import { TsValidationMessagesComponent } from './validation-messages.component';
 import { TsValidationMessageServiceMock } from './validation-message.service.mock';
 
 
-describe('InputMessagesComponent', () => {
+describe('InputMessagesComponent', function() {
   let component: TsValidationMessagesComponent;
 
   beforeEach(() => {

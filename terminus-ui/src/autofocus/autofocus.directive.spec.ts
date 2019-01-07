@@ -6,7 +6,7 @@ import {
 import { TsAutofocusDirective } from './autofocus.directive';
 
 
-describe(`TsAutofocusDirective`, () => {
+describe(`TsAutofocusDirective`, function() {
   let directive: TsAutofocusDirective;
   const validValues = [
     true,

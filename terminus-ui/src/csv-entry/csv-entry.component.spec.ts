@@ -75,7 +75,7 @@ class TestHostComponent {
 }
 
 
-describe(`TsCSVEntryComponent`, () => {
+describe(`TsCSVEntryComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let hostComponent: TestHostComponent;
   let component: TsCSVEntryComponent;

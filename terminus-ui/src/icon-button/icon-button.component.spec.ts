@@ -4,7 +4,7 @@ import { ElementRefMock } from '@terminus/ngx-tools/testing';
 import { TsIconButtonComponent } from './icon-button.component';
 
 
-describe(`TsIconButtonComponent`, () => {
+describe(`TsIconButtonComponent`, function() {
   let elRefMock: ElementRef;
   let component: TsIconButtonComponent;
 

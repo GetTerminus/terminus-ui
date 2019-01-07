@@ -7,7 +7,7 @@ import {
 import { lessThanValidator } from './lessThan';
 
 
-describe(`lessThanValidator`, () => {
+describe(`lessThanValidator`, function() {
 
   describe(`value input`, () => {
     let validatorFn: ValidatorFn;

@@ -12,7 +12,6 @@ import {
 import {
   ComponentFixture,
   TestBed,
-  async,
 } from '@angular/core/testing';
 import {
   createKeyboardEvent,
@@ -37,7 +36,7 @@ import {
 } from './testing/test-helpers';
 
 
-describe(`TsInputComponent`, () => {
+describe(`TsInputComponent`, function() {
 
   test(`should exist`, () => {
     const fixture = createComponent(TestComponents.SimpleFormControl);
@@ -338,7 +337,8 @@ describe(`TsInputComponent`, () => {
 
     describe(`maskDateFormat`, () => {
 
-      test(`should format a masked date according to the default date mask`, () => {
+      test(`should format a masked date according to the default date mask`, function() {
+        jest.useFakeTimers();
         const fixture = createComponent(TestComponents.MaskDateFormat);
         fixture.detectChanges();
 
@@ -352,6 +352,7 @@ describe(`TsInputComponent`, () => {
         expect(controlValue).toEqual(expect.any(Date));
         expect(controlValue.toISOString()).toEqual(expect.stringContaining('1111-11-11'));
         expect.assertions(3);
+        jest.runAllTimers();
       });
 
     });
@@ -404,7 +405,7 @@ describe(`TsInputComponent`, () => {
 
         expect(fixture.componentInstance.inputComponent.startingView).toEqual('year');
 
-        fixture.componentInstance.startingView = undefined;
+        fixture.componentInstance.startingView = undefined as any;
         fixture.detectChanges();
 
         expect(fixture.componentInstance.inputComponent.startingView).toEqual('month');
@@ -612,32 +613,32 @@ describe(`TsInputComponent`, () => {
 
   describe(`label`, () => {
 
-    test(`should set the label and update the outline gap`, async(() => {
+    test(`should set the label and update the outline gap`, () => {
+      jest.useFakeTimers();
       const fixture = createComponent(TestComponents.Label);
       fixture.detectChanges();
-
-      fixture.whenStable().then(() => {
-        const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
-        const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
-        const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
-        const bounding1 = { left: 50 };
-        const bounding2 = { left: 100 };
-        const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
-        formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
-        formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
-        Object.defineProperty(formFieldInstance['labelElement'].nativeElement.children[0], 'offsetWidth', {
-          get() { return 40; },
-        });
-
-        formFieldInstance['updateOutlineGap']();
-        fixture.detectChanges();
-
-        expect(outlineStartEl.getAttribute('style')).toEqual('width: 45px;');
-        expect(outlineGapEl.getAttribute('style')).toEqual('width: 40px;');
-
-        expect(labelContent.innerHTML.trim()).toEqual('test label');
+      jest.advanceTimersByTime(200);
+      const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
+      const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
+      const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
+      const bounding1 = { left: 50 };
+      const bounding2 = { left: 100 };
+      const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
+      formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
+      formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
+      Object.defineProperty(formFieldInstance['labelElement'].nativeElement.children[0], 'offsetWidth', {
+        get() { return 40; },
       });
-    }));
+
+      formFieldInstance['updateOutlineGap']();
+      fixture.detectChanges();
+
+      expect(outlineStartEl.getAttribute('style')).toEqual('width: 45px;');
+      expect(outlineGapEl.getAttribute('style')).toEqual('width: 40px;');
+
+      expect(labelContent.innerHTML.trim()).toEqual('test label');
+      jest.runAllTimers();
+    });
 
   });
 

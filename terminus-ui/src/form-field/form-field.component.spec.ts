@@ -31,7 +31,7 @@ import { TsInputModule } from './../input/input.module';
 /**
  * NOTE: TsInputComponent tests cover much of the TsFormFieldComponent functionality
  */
-describe(`TsFormFieldComponent`, () => {
+describe(`TsFormFieldComponent`, function() {
 
   describe(`id`, () => {
 

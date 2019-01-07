@@ -8,7 +8,7 @@ import { TsSelectComponent, TsSelectChange } from '../select/select.component';
 import { TsPaginatorComponent } from './paginator.component';
 
 
-describe(`TsPaginatorComponent`, () => {
+describe(`TsPaginatorComponent`, function() {
   let component: TsPaginatorComponent;
   const TOTAL_RECORDS = 100;
 

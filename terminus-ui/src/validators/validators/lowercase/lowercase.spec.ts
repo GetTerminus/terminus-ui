@@ -8,7 +8,7 @@ import {
 import { lowercaseValidator } from './lowercase';
 
 
-describe(`lowercaseValidator`, () => {
+describe(`lowercaseValidator`, function() {
   let validatorFn: ValidatorFn;
 
   beforeEach(() => {

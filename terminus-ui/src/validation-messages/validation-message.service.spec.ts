@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { TsValidationMessageService } from './validation-message.service';
 
 
-describe(`TsValidationMessageService`, () => {
+describe(`TsValidationMessageService`, function() {
   let service: TsValidationMessageService;
 
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe(`TsValidationMessageService`, () => {
         maxDate: maxDate,
       };
       const actual = service.getValidatorErrorMessage('maxDate', validatorValueMock);
-      const expected = `Date must be before ${format(maxDate, 'M/d/YYYY')}`;
+      const expected = `Date must be before ${format(maxDate, 'MM/dd/yyyy')}`;
 
       expect(actual).toEqual(expected);
     });
@@ -73,7 +73,7 @@ describe(`TsValidationMessageService`, () => {
         minDate: minDate,
       };
       const actual = service.getValidatorErrorMessage('minDate', validatorValueMock);
-      const expected = `Date must be after ${format(minDate, 'M/d/YYYY')}`;
+      const expected = `Date must be after ${format(minDate, 'MM/dd/yyyy')}`;
 
       expect(actual).toEqual(expected);
     });

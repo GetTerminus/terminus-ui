@@ -9,7 +9,7 @@ import { TsLoginFormComponent } from './login-form.component';
 import { TsValidatorsServiceMock } from './../validators/validators.service.mock';
 
 
-describe(`TsLoginFormComponent`, () => {
+describe(`TsLoginFormComponent`, function() {
   let component: TsLoginFormComponent;
 
   beforeEach(() => {

@@ -2,20 +2,18 @@
 import {
   ComponentFixture,
   TestBed,
-  TestModuleMetadata,
 } from '@angular/core/testing';
 import {
   Component,
+  Provider,
+  Type,
   ViewChild,
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DataSource } from '@angular/cdk/collections';
 import { TsWindowService } from '@terminus/ngx-tools';
-import {
-  TsWindowServiceMock,
-  configureTestBedWithoutReset,
-} from '@terminus/ngx-tools/testing';
+import { TsWindowServiceMock } from '@terminus/ngx-tools/testing';
 import {
   BehaviorSubject,
   Observable,
@@ -189,55 +187,6 @@ class ArrayDataSourceTableApp {
 
 }
 
-@Component({
-  template: `
-    <ts-table [dataSource]="dataSource">
-      <ng-container tsColumnDef="column_a">
-        <ts-header-cell *tsHeaderCellDef ts-sort-header>Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
-      </ng-container>
-
-      <ng-container tsColumnDef="column_b">
-        <ts-header-cell *tsHeaderCellDef>Column B</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
-      </ng-container>
-
-      <ng-container tsColumnDef="column_c">
-        <ts-header-cell *tsHeaderCellDef>Column C</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
-      </ng-container>
-
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-    </ts-table>
-
-    <ts-paginator></ts-paginator>
-  `,
-})
-class ArrayDataSourceTableAppNoSort {
-  underlyingDataSource = new FakeDataSource();
-  dataSource = new TsTableDataSource<TestData>();
-  columnsToRender = ['column_a', 'column_b', 'column_c'];
-
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
-  @ViewChild(TsPaginatorComponent) paginator!: TsPaginatorComponent;
-  @ViewChild(TsSortDirective) sort!: TsSortDirective;
-  @ViewChild(TsSortHeaderComponent) sortHeader!: TsSortHeaderComponent;
-
-  constructor() {
-    this.underlyingDataSource.data = [];
-
-    // Add three rows of data
-    this.underlyingDataSource.addData();
-    this.underlyingDataSource.addData();
-    this.underlyingDataSource.addData();
-
-    this.underlyingDataSource.connect().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-  }
-}
-
 
 
 
@@ -305,37 +254,12 @@ function expectTableToMatchContent(tableElement: Element, expectedTableContent: 
  */
 
 
-describe(`TsTableComponent`, () => {
-  const moduleDefinition: TestModuleMetadata = {
-    imports: [
-      NoopAnimationsModule,
-      FormsModule,
-      ReactiveFormsModule,
-      TsTableModule,
-      TsPaginatorModule,
-      TsSortModule,
-    ],
-    providers: [
-      {
-        provide: TsWindowService,
-        useClass: TsWindowServiceMock,
-      },
-    ],
-    declarations: [
-      TableApp,
-      TableWithWhenRowApp,
-      ArrayDataSourceTableApp,
-      ArrayDataSourceTableAppNoSort,
-    ],
-  };
+describe(`TsTableComponent`, function() {
 
-  configureTestBedWithoutReset(moduleDefinition);
+  describe(`with basic data source`, function() {
 
-
-  describe(`with basic data source`, () => {
-
-    test(`should be able to create a table with the right content and without when row`, () => {
-      const fixture = TestBed.createComponent(TableApp);
+    test(`should be able to create a table with the right content and without when row`, function() {
+      const fixture = createComponent(TableApp);
       fixture.detectChanges();
 
       const tableElement = fixture.nativeElement.querySelector('.ts-table')!;
@@ -349,8 +273,9 @@ describe(`TsTableComponent`, () => {
       ]);
     });
 
-    it(`should create a table with special when row`, () => {
-      const fixture = TestBed.createComponent(TableWithWhenRowApp);
+
+    test(`should create a table with special when row`, function() {
+      const fixture = createComponent(TableWithWhenRowApp);
       fixture.detectChanges();
 
       const tableElement = document.querySelector('.ts-table');
@@ -365,14 +290,14 @@ describe(`TsTableComponent`, () => {
   });
 
 
-  describe(`with TsTableDataSource`, () => {
+  describe(`with TsTableDataSource`, function() {
     let tableElement: HTMLElement;
     let fixture: ComponentFixture<ArrayDataSourceTableApp>;
     let dataSource: TsTableDataSource<TestData>;
     let component: ArrayDataSourceTableApp;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(ArrayDataSourceTableApp);
+      fixture = createComponent(ArrayDataSourceTableApp);
       fixture.detectChanges();
 
       tableElement = fixture.nativeElement.querySelector('.ts-table');
@@ -381,7 +306,7 @@ describe(`TsTableComponent`, () => {
     });
 
 
-    it(`should create table and display data source contents`, () => {
+    test(`should create table and display data source contents`, function() {
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
         ['a_1', 'b_1', 'c_1'],
@@ -391,7 +316,7 @@ describe(`TsTableComponent`, () => {
     });
 
 
-    it(`changing data should update the table contents`, () => {
+    test(`changing data should update the table contents`, function() {
       // Add data
       component.underlyingDataSource.addData();
       fixture.detectChanges();
@@ -417,14 +342,14 @@ describe(`TsTableComponent`, () => {
     });
 
 
-    it(`should add the no wrap class`, () => {
+    test(`should add the no wrap class`, function() {
       const noWrapColumn = fixture.nativeElement.querySelector('.ts-column-no-wrap');
 
       expect(noWrapColumn).toBeTruthy();
     });
 
 
-    test(`should add the min-width style`, () => {
+    test(`should add the min-width style`, function() {
       const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
 
       let style;
@@ -438,3 +363,35 @@ describe(`TsTableComponent`, () => {
   });
 
 });
+
+
+
+
+/**
+ * HELPERS
+ */
+
+// TODO: Move to ngx-tools (and all other instances of this utility)
+export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
+  TestBed.configureTestingModule({
+    imports: [
+      NoopAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule,
+      TsTableModule,
+      TsPaginatorModule,
+      TsSortModule,
+      ...imports,
+    ],
+    declarations: [component],
+    providers: [
+      {
+        provide: TsWindowService,
+        useClass: TsWindowServiceMock,
+      },
+      ...providers,
+    ],
+  }).compileComponents();
+
+  return TestBed.createComponent<T>(component);
+}

@@ -7,7 +7,15 @@ import { TsSelectComponent } from './../select.component';
 import { TsSelectOptionComponent } from './../option/option.component';
 
 
-
+export function createKeydownEvent(key: string, keyCode: number): KeyboardEvent {
+  const event = document.createEvent('KeyboardEvent');
+  event.initEvent('keydown', true, false);
+  Object.defineProperties(event, {
+    key: { get: () => 'ArrowDown' },
+    keyCode: { get: () => 40 },
+  });
+  return event;
+}
 
 export function getSelectInstance(fixture: ComponentFixture<any>): TsSelectComponent {
   return fixture.debugElement.query(By.css('ts-select')).componentInstance;

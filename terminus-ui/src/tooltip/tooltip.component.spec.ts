@@ -1,7 +1,7 @@
 import { TsTooltipComponent } from './tooltip.component';
 
 
-describe(`TsTooltipComponent`, () => {
+describe(`TsTooltipComponent`, function() {
   let component: TsTooltipComponent;
 
   beforeEach(() => {

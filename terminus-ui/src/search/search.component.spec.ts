@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { TsSearchComponent } from './search.component';
 
 
-describe('TsSearchComponent', () => {
+describe('TsSearchComponent', function() {
   let component: TsSearchComponent;
 
   beforeEach(() => {
