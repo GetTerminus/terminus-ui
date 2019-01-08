@@ -11,6 +11,10 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
 import { CSV_ICON } from './custom-icons/csv';
+import { ENGAGE_ICON } from './custom-icons/engage';
+import { LIGHTBULB_ICON } from './custom-icons/lightbulb';
+import { LOGO_ICON } from './custom-icons/logo';
+import { LOGO_COLOR_ICON } from './custom-icons/logo_color';
 
 
 /**
@@ -18,6 +22,10 @@ import { CSV_ICON } from './custom-icons/csv';
  */
 export type TS_CUSTOM_ICON
   = 'csv'
+  | `engage`
+  | `lightbulb`
+  | `logo`
+  | `logo_color`
 ;
 
 
@@ -26,6 +34,10 @@ export type TS_CUSTOM_ICON
  */
 export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
   'csv',
+  'engage',
+  'lightbulb',
+  'logo',
+  'logo_color',
 ];
 
 
@@ -110,7 +122,11 @@ export class TsIconComponent {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
   ) {
-     this.matIconRegistry.addSvgIconLiteral('csv', this.domSanitizer.bypassSecurityTrustHtml(CSV_ICON));
+    this.matIconRegistry.addSvgIconLiteral('csv', this.domSanitizer.bypassSecurityTrustHtml(CSV_ICON));
+    this.matIconRegistry.addSvgIconLiteral('engage', this.domSanitizer.bypassSecurityTrustHtml(ENGAGE_ICON));
+    this.matIconRegistry.addSvgIconLiteral('lightbulb', this.domSanitizer.bypassSecurityTrustHtml(LIGHTBULB_ICON));
+    this.matIconRegistry.addSvgIconLiteral('logo', this.domSanitizer.bypassSecurityTrustHtml(LOGO_ICON));
+    this.matIconRegistry.addSvgIconLiteral('logo_color', this.domSanitizer.bypassSecurityTrustHtml(LOGO_COLOR_ICON));
   }
 
 }
