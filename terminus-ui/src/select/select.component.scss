@@ -145,6 +145,15 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     position: absolute;
     right: spacing(small);
   }
+
+  .ts-select-panel__filter-input {
+    border-bottom: 1px solid #cecdd1;
+    padding: 5px;
+
+    .ts-form-field .ts-form-field__wrapper {
+      padding-bottom: 0;
+    }
+  }
 }
 
 

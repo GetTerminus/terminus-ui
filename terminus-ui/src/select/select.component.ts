@@ -733,6 +733,18 @@ export class TsSelectComponent implements
   private _isDisabled = false;
 
   /**
+   * Define if the select is filterable
+   */
+  @Input()
+  public set isFilterable(value: boolean) {
+    this._isFilterable = coerceBooleanProperty(value);
+  }
+  public get isFilterable(): boolean {
+    return this._isFilterable;
+  }
+  private _isFilterable = false;
+
+  /**
    * Define if the control is required
    */
   @Input()
