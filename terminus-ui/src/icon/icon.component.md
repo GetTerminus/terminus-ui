@@ -80,6 +80,7 @@ Custom icons are accessed via a `ts-icon` `@Input`:
 ## Special Cases
 Any icon with a -color suffix will not accept themes. Currently they accept a background, but the display might be problematic and background should be used with extreme caution. A non "-color" version should be used instead.
 
+
 ### Available
 
 | Name          | Description                                             | Example Usage                     |
