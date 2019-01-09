@@ -28,6 +28,7 @@
   - [Multiple Selections](#multiple-selections)
   - [Custom Delimiter](#custom-delimiter)
   - [Custom Sort Comparator](#custom-sort-comparator)
+  - [Filterable](#filterable)
 - [Autocomplete](#autocomplete)
   - [Duplicate selections](#duplicate-selections)
   - [Keep Panel Open After Selection](#keep-panel-open-after-selection)
@@ -375,6 +376,24 @@ type TsSelectSortComparatorFunction = (
   options: TsSelectOptionComponent[],
 ) => number;
 ```
+
+
+### Filterable
+
+A select can include an input at the top of the list to filter options:
+
+```html
+<ts-select
+  [formControl]="myCtrl"
+  isFilterable="true"
+  (queryChange)="mySearchFunction($event)"
+>
+  ...
+</ts-select>
+```
+
+Any unique, debounced query will be emitted through the `queryChange` emitter. The consumer is in control of what options are displayed. A
+blank option can be used to show the user a message when no items are found by the query.
 
 
 ## Autocomplete
