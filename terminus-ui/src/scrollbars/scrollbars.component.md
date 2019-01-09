@@ -8,6 +8,10 @@
 - [Basic usage](#basic-usage)
   - [Disable](#disable)
   - [Update](#update)
+- [Manual Position Control](#manual-position-control)
+  - [Scroll to fixed location](#scroll-to-fixed-location)
+  - [Scroll to x/y location](#scroll-to-xy-location)
+  - [Scroll to element](#scroll-to-element)
 - [Events](#events)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

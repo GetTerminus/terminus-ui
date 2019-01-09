@@ -10,6 +10,7 @@
 - [Style with CSS](#style-with-css)
 - [Usage inline with text](#usage-inline-with-text)
 - [Custom Icons](#custom-icons)
+- [Special Cases](#special-cases)
   - [Available](#available)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
