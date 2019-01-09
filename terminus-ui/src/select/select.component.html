@@ -157,6 +157,9 @@
     </div>
 
     <!-- Outlet for options passed in by consumer -->
+    <div *ngIf="isFilterable" class="ts-select-panel__filter-input">
+      <ts-input label="filter..." [ngModel]="searchQuery" (ngModelChange)="queryChange.emit($event)"></ts-input>
+    </div>
     <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
   </div>
 </ng-template>

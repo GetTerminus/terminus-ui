@@ -15,6 +15,7 @@ import {
   of,
 } from 'rxjs';
 import {
+  filter,
   map,
   startWith,
 } from 'rxjs/operators';
@@ -320,11 +321,13 @@ export class SelectComponent implements OnInit {
   fakeAsync = false;
 
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
+  firstOptions: Observable<any[]> = this.singleWithCustomTrigger;
 
   constructor(
     private formBuilder: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
+    this.firstOptions = this.singleWithCustomTrigger;
     this.filteredStates = this.myQuery$
       .pipe(
         map((state) => {
@@ -377,6 +380,7 @@ export class SelectComponent implements OnInit {
 
   isChanged(e: any[]): void {
     console.log('DEMO: changed: ', e);
+    this.firstOptions = this.singleWithCustomTrigger;
   }
 
   isSelected(v) {
@@ -394,5 +398,16 @@ export class SelectComponent implements OnInit {
   queryHasChanged(v) {
     console.log('DEMO: query string changed: ', v);
     this.myQuery$.next(v);
+  }
+
+  onFilterOptions(v) {
+    console.log('DEMO: filtering options: ', v);
+    if (!v) {
+      this.firstOptions = this.singleWithCustomTrigger;
+    } else {
+      const regex = new RegExp(v, 'i');
+      this.firstOptions = this.singleWithCustomTrigger
+        .pipe(map((a) => a.filter((i) => i.slug.match(regex))));
+    }
   }
 }

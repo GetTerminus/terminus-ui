@@ -175,4 +175,45 @@
     </div>
   </ts-card>
 
+  <ts-card tsVerticalSpacing fxFlex>
+    <h3 tsCardTitle tsVerticalSpacing="small--1">
+      Single Select w/ Filtering
+    </h3>
+
+    <ts-select
+      label="Single select"
+      hint="Select a single option"
+      [isFilterable]="true"
+      [formControl]="myForm.get('myChoices1')"
+      [compareWith]="comparator"
+      (selectionChange)="isChanged($event)"
+      (queryChange)="onFilterOptions($event)"
+      (optionSelected)="isSelected($event)"
+      (optionDeselected)="isDeselected($event)"
+      tsVerticalSpacing
+    >
+      <ts-select-trigger>
+        My custom trigger!
+        <strong>{{ myForm.get('myChoices1')?.value?.text }}</strong>
+      </ts-select-trigger>
+
+      <ts-select-option>
+        <h4 tsSelectOptionDisplay>None</h4>
+      </ts-select-option>
+
+      <ts-select-option
+        [value]="option.bar"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of firstOptions | async"
+      >
+        {{ option.slug }}
+      </ts-select-option>
+    </ts-select>
+
+    <div>
+      FormControl value: {{ myForm.get('myChoices1')?.value | json }}
+    </div>
+  </ts-card>
+
 </form>

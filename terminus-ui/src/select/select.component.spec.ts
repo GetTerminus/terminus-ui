@@ -43,6 +43,7 @@ import {
   getAllOptionInstances,
   getAutocompleteInput,
   getChipElement,
+  getFilterInputElement,
   getOptgroupElement,
   getOptionElement,
   getOptionInstance,
@@ -1508,6 +1509,38 @@ describe(`TsSelectComponent`, () => {
       // closed again
       expect(instance.panelOpen).toEqual(false);
       expect.assertions(4);
+    });
+
+  });
+
+
+  describe('isFilterable', function() {
+
+    test(`should filter options`, () => {
+      const fixture = createComponent(testComponents.Filterable);
+      fixture.detectChanges();
+      const trigger = getSelectTriggerElement(fixture);
+      dispatchMouseEvent(trigger, 'click');
+      fixture.detectChanges();
+      const instance = getSelectInstance(fixture);
+
+      // open
+      expect(instance.panelOpen).toEqual(true);
+
+      const input = getFilterInputElement(fixture);
+      const options = getAllOptionInstances(fixture);
+
+      expect(options.length).toBe(fixture.componentInstance.options.length);
+
+      typeInElement('geo', input);
+      expect(fixture.componentInstance.options.length).toBe(0);
+
+      typeInElement('', input);
+      expect(fixture.componentInstance.options.length).toBe(options.length);
+
+      typeInElement('arizona', input);
+      expect(fixture.componentInstance.options.length).toBe(3);
+      expect.assertions(5);
     });
 
   });

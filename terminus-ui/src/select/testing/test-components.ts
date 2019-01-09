@@ -968,3 +968,40 @@ export class CustomTrigger {
   options = STATES.slice();
   myId = 'foo';
 }
+
+@Component({
+  template: `
+    <ts-select
+      [formControl]="myCtrl"
+      [isFilterable]="true"
+      (queryChange)="onFilter($event)"
+      (selectionChange)="onReset()"
+    >
+      <ts-select-option
+        [value]="option.name"
+        [option]="option"
+        *ngFor="let option of options"
+      >
+        {{ option.name }}
+      </ts-select-option>
+    </ts-select>
+  `,
+})
+export class Filterable {
+  myCtrl = new FormControl();
+  options = STATES.slice();
+
+  onReset(): void {
+    this.options = STATES.slice();
+  }
+
+  onFilter(value: string): void {
+    if (!value) {
+      this.options = STATES.slice();
+    } else {
+      const regex = new RegExp(value, 'i');
+      this.options = STATES.slice().filter((state) => state.name.match(regex));
+    }
+  }
+}
+

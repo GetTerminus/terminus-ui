@@ -78,3 +78,8 @@ export function getChipElement(fixture: ComponentFixture<any>, index = 0): HTMLE
   const chip = getChipInstance(fixture, index);
   return chip ? chip._elementRef.nativeElement : null;
 }
+
+export function getFilterInputElement(fixture: ComponentFixture<any>): HTMLInputElement {
+  return fixture.debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text')).nativeElement as HTMLInputElement;
+}
+
