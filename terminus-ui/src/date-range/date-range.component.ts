@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewEncapsulation,
@@ -13,11 +14,9 @@ import {
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
-/*
- *import { TsDatepickerInputEvent } from './../input/input.component';
- */
 
 
 /**
@@ -76,7 +75,7 @@ export interface TsDateRange {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsDateRange',
 })
-export class TsDateRangeComponent implements OnInit {
+export class TsDateRangeComponent implements OnInit, OnDestroy {
   /**
    * Getter to return the date range as an object
    *
@@ -119,6 +118,16 @@ export class TsDateRangeComponent implements OnInit {
    * Define a fallback control in case one is not passed in
    */
   private fallbackStartDateControl: FormControl = new FormControl();
+
+  /**
+   * The internal FormControl to manage the end date
+   */
+  private internalEndControl = new FormControl(null, { updateOn: 'blur' });
+
+  /**
+   * The internal FormControl to manage the start date
+   */
+  private internalStartControl = new FormControl(null, { updateOn: 'blur' });
 
   /**
    * Define the separator between the two date inputs
@@ -233,6 +242,48 @@ export class TsDateRangeComponent implements OnInit {
     if (this.dateFormGroup) {
       this.initializeMinAndMax(this.dateFormGroup);
     }
+
+    this.setUpFormControlSync();
+  }
+
+
+  /**
+   * Needed for untilComponentDestroyed
+   */
+  public ngOnDestroy(): void {}
+
+
+  /**
+   * Set up subscriptions to sync the internat FormControl to the external FormControl
+   */
+  private setUpFormControlSync(): void {
+    if (!this.dateFormGroup) {
+      return;
+    }
+
+    const startCtrl = this.dateFormGroup.get('startDate');
+    const endCtrl = this.dateFormGroup.get('endDate');
+
+    if (!startCtrl || !endCtrl) {
+      return;
+    }
+
+    // START DATE
+    startCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+      this.internalStartControl.setValue(v);
+    });
+    startCtrl.statusChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+      this.internalStartControl.setErrors(startCtrl.errors);
+    });
+
+    // END DATE
+    endCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+      this.internalEndControl.setValue(v);
+    });
+    endCtrl.statusChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+      this.internalEndControl.setErrors(endCtrl.errors);
+    });
+
   }
 
 
@@ -318,7 +369,18 @@ export class TsDateRangeComponent implements OnInit {
    * @param date - The date entered
    */
   public startBlur(date: Date | undefined): void {
-    this.endMinDate$.next(date);
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
+    const value = date ? date : null;
+
+    // Update the max date for the end date control
+    this.endMinDate$.next(value);
+
+    // Update the 'real' control
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+    }
   }
 
 
@@ -328,7 +390,18 @@ export class TsDateRangeComponent implements OnInit {
    * @param date - The date entered
    */
   public endBlur(date: Date | undefined): void {
-    this.startMaxDate$.next(date);
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
+    const value = date ? date : null;
+
+    // Update the max date for the start date control
+    this.startMaxDate$.next(value);
+
+    // Update the 'real' control
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+    }
   }
 
 }

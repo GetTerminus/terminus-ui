@@ -1,10 +1,13 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
+  OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 
 import { TsValidationMessageService } from './validation-message.service';
 
@@ -35,7 +38,7 @@ let nextUniqueId = 0;
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsValidationMessages',
 })
-export class TsValidationMessagesComponent {
+export class TsValidationMessagesComponent implements OnDestroy {
   /**
    * Define the default component ID
    */
@@ -71,7 +74,20 @@ export class TsValidationMessagesComponent {
    * Define the associated form control
    */
   @Input()
-  public control: FormControl | undefined;
+  public set control(value: FormControl | undefined) {
+    this._control = value;
+
+    // Trigger change detection if the underlying control's status changes
+    if (this.control) {
+      this.control.statusChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+        this.changeDetectorRef.detectChanges();
+      });
+    }
+  }
+  public get control(): FormControl | undefined {
+    return this._control;
+  }
+  private _control: FormControl | undefined;
 
   /**
    * Define an ID for the component
@@ -112,9 +128,13 @@ export class TsValidationMessagesComponent {
 
   constructor(
     private validationMessageService: TsValidationMessageService,
-  ) {
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
-  }
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
+
+  /**
+   * Needed for untilComponentDestroyed
+   */
+  public ngOnDestroy(): void {}
 
 }

@@ -62,10 +62,10 @@
     fxLayoutAlign="space-between center"
     [fxLayoutGap]="flexGap"
   >
-    <div *ngIf="control && control?.ngControl">
+    <div *ngIf="control && (control.ngControl || control.formControl)">
       <ts-validation-messages
         class="qa-form-field-validation-messages"
-        [control]="control.ngControl"
+        [control]="control.ngControl || control.formControl"
         [validateOnChange]="validateOnChange"
       ></ts-validation-messages>
     </div>
