@@ -27,6 +27,10 @@
   @include elevation-element(menu);
   background-color: color(pure);
 
+  .ts-confirmation-overlay__explanation {
+    margin-bottom: spacing(large);
+  }
+
   // Create the triangle above the popup box
   &::before {
     @include triangle(top, color(pure), spacing(small, 1));

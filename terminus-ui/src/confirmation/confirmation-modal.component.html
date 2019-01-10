@@ -1,21 +1,26 @@
-<div
-  fxLayout="row"
-  fxLayoutAlign="center space-between"
-  [fxLayoutGap]="gap"
+<div 
+  fxLayout="column"
 >
-  <ts-button
-    class="qa-confirmation-cancel"
-    theme="warn"
-    format="hollow"
-    (clickEvent)="confirm.next(false)"
+  <p *ngIf="explanationTxt" class="ts-confirmation-overlay__explanation">{{ explanationTxt }}</p>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center space-between"
+    [fxLayoutGap]="gap"
   >
-    Cancel
-  </ts-button>
+    <ts-button
+      class="qa-confirmation-cancel"
+      theme="warn"
+      format="hollow"
+      (clickEvent)="confirm.next(false)"
+    >
+      {{ cancelButtonTxt }}
+    </ts-button>
 
-  <ts-button
-    class="qa-confirmation-confirm"
-    (clickEvent)="confirm.next(true)"
-  >
-    Confirm
-  </ts-button>
+    <ts-button
+      class="qa-confirmation-confirm"
+      (clickEvent)="confirm.next(true)"
+    >
+      {{ confirmationButtonTxt }}
+    </ts-button>
+  </div>
 </div>
