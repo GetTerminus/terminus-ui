@@ -1,3 +1,5 @@
+import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+
 import { TsValidationMessagesComponent } from './validation-messages.component';
 import { TsValidationMessageServiceMock } from './validation-message.service.mock';
 
@@ -6,7 +8,10 @@ describe('InputMessagesComponent', () => {
   let component: TsValidationMessagesComponent;
 
   beforeEach(() => {
-    component = new TsValidationMessagesComponent(new TsValidationMessageServiceMock());
+    component = new TsValidationMessagesComponent(
+      new TsValidationMessageServiceMock(),
+      new ChangeDetectorRefMock(),
+    );
     component['validationMessageService'].getValidatorErrorMessage = jest.fn();
   });
 

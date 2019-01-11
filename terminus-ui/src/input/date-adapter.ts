@@ -61,7 +61,9 @@ export class TsDateAdapter extends NativeDateAdapter {
    * @return Whether it is valid
    */
   public isValid(date: Date): boolean {
-    return isValidDate(date) && !isNaN(date.getTime());
+    // HACK: I cannot reproduce a case where the date is valid but date.getTime is not a function.
+    // However, when dynamically updating a date in real use throws an error.
+    return isValidDate(date) && date.getTime && !isNaN(date.getTime());
   }
 
 

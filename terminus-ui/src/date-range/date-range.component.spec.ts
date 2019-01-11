@@ -1,11 +1,17 @@
 // tslint:disable: no-non-null-assertion
 import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
+  ReactiveFormsModule,
 } from '@angular/forms';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { Type, Provider } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { typeInElement } from '@terminus/ngx-tools/testing';
 
-import { TsDateRangeComponent } from './date-range.component';
+import * as testComponents from './testing/test-components';
+import { TsDateRangeModule } from './date-range.module';
 
 
 /**
@@ -14,161 +20,138 @@ import { TsDateRangeComponent } from './date-range.component';
  */
 
 
-describe(`TsDateRangeComponent`, () => {
-  const formBuilder = new FormBuilder();
-  let component: TsDateRangeComponent;
-  let dateRangeStart: Date;
-  let dateRangeEnd: Date;
-  let formGroup: FormGroup;
-  let testDate: Date;
+describe(`TsDateRangeComponent`, function() {
 
-  beforeEach(() => {
-    component = new TsDateRangeComponent();
-  });
+  describe(`date constraints`, function() {
 
+    test(`should set the END min date according to the start date`, function() {
+      const fixture = createComponent(testComponents.SeededDates);
+      fixture.detectChanges();
+      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
 
-  test(`should exist`, () => {
-    expect(component).toBeTruthy();
-  });
-
-
-  describe(`ngOnInit()`, () => {
-
-    beforeEach(() => {
-      component['initializeMinAndMax'] = jest.fn();
-      dateRangeStart = new Date(2017, 4, 6);
-      dateRangeEnd = new Date(2017, 4, 8);
-      formGroup = formBuilder.group({
-        dateRange: formBuilder.group({
-          startDate: [
-            dateRangeStart,
-          ],
-          endDate: [
-            dateRangeEnd,
-          ],
-        }),
-      });
+      expect(endInputInstance.minDate).toEqual(new Date(2018, 1, 1));
     });
 
 
-    test(`should do nothing if no form group exists`, () => {
-      component.ngOnInit();
+    test(`should set the START max date according to the end date`, function() {
+      const fixture = createComponent(testComponents.SeededDates);
+      fixture.detectChanges();
+      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
 
-      expect(component['initializeMinAndMax']).not.toHaveBeenCalled();
+      expect(startInputInstance.maxDate).toEqual(new Date(2018, 1, 12));
     });
 
 
-    test(`should trigger to seed the initial dates and min/maxes`, () => {
-      const group = formGroup.controls.dateRange;
-      component.dateFormGroup = group;
-      component.ngOnInit();
+    test(`should set the START max date according to the end date on BLUR`, function() {
+      const fixture = createComponent(testComponents.Basic);
+      fixture.detectChanges();
+      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+      typeInElement('3-4-2019', endInputInstance.inputElement.nativeElement);
+      endInputInstance.inputElement.nativeElement.blur();
+      fixture.detectChanges();
 
-      expect(component['initializeMinAndMax']).toHaveBeenCalledWith(group);
+      expect(startInputInstance.maxDate).toEqual(new Date('3-4-2019'));
     });
 
   });
 
 
-  describe(`initializeMinAndMax`, () => {
+  describe(`control syncing`, function() {
 
-    test(`should return undefined if the formGroup isn't passed in`, () => {
-      expect(component['initializeMinAndMax'](null as any)).toEqual(undefined);
+    describe(`internal controls`, function() {
+
+      test(`should update their VALUE when the external control value changes`, function() {
+        const fixture = createComponent(testComponents.Basic);
+        fixture.detectChanges();
+        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+
+        expect(startInputInstance.formControl.value).toEqual(null);
+        expect(endInputInstance.formControl.value).toEqual(null);
+
+        const date = new Date(2018, 3, 3);
+        startInputInstance.formControl.setValue(date);
+        endInputInstance.formControl.setValue(date);
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.dateRangeComponent['internalStartControl'].value).toEqual(date);
+        expect(fixture.componentInstance.dateRangeComponent['internalEndControl'].value).toEqual(date);
+        expect.assertions(4);
+      });
+
+
+      // internal status/error updated by external ctrl
+      test(`should update their STATUS when the external control changes`, function() {
+        jest.useFakeTimers();
+        const fixture = createComponent(testComponents.Basic);
+        fixture.detectChanges();
+        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+
+        expect(startInputInstance.formControl.valid).toEqual(true);
+        expect(endInputInstance.formControl.valid).toEqual(true);
+
+        // Simulate user entering and leaving the input to trigger validation
+        startInputInstance.inputElement.nativeElement.focus();
+        endInputInstance.inputElement.nativeElement.focus();
+        fixture.detectChanges();
+        startInputInstance.inputElement.nativeElement.blur();
+        endInputInstance.inputElement.nativeElement.blur();
+        fixture.detectChanges();
+
+        expect(startInputInstance.formControl.errors).toEqual({required: true});
+        expect(endInputInstance.formControl.errors).toEqual({required: true});
+        jest.runAllTimers();
+        expect.assertions(4);
+      });
+
+
+      test(`should do nothing if no controls exist`, function() {
+        jest.useFakeTimers();
+        const fixture = createComponent(testComponents.NoControls);
+        fixture.detectChanges();
+        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+
+        expect(startInputInstance.formControl.valid).toEqual(true);
+        expect(endInputInstance.formControl.valid).toEqual(true);
+
+        // Simulate user entering and leaving the input to trigger validation
+        startInputInstance.inputElement.nativeElement.focus();
+        endInputInstance.inputElement.nativeElement.focus();
+        fixture.detectChanges();
+        startInputInstance.inputElement.nativeElement.blur();
+        endInputInstance.inputElement.nativeElement.blur();
+        fixture.detectChanges();
+
+        expect(startInputInstance.formControl.errors).toEqual(null);
+        expect(endInputInstance.formControl.errors).toEqual(null);
+        jest.runAllTimers();
+        expect.assertions(4);
+      });
+
     });
 
 
-    test(`should set endMinDate$ and startMaxDate$`, () => {
-      const testRangeStart = new Date(2017, 4, 6);
-      const testRangeEnd = new Date(2017, 4, 8);
-      const formGroup1 = formBuilder.group({
-        dateRange: formBuilder.group({
-          startDate: [
-            testRangeStart,
-          ],
-          endDate: [
-            testRangeEnd,
-          ],
-        }),
-      });
-      component['initializeMinAndMax'](formGroup1.get('dateRange') as FormGroup);
-      component.endMinDate$.next = jest.fn();
-      component.startMaxDate$.next = jest.fn();
+    describe(`external controls`, function() {
 
-      component.endMinDate$.subscribe((v: Date) => {
-        expect(v).toEqual(testRangeStart);
-      });
-      component.startMaxDate$.subscribe((v: Date) => {
-        expect(v).toEqual(testRangeEnd);
-      });
-      expect.assertions(2);
-    });
+      test(`should update their VALUE when the internal control changes`, function() {
+        const fixture = createComponent(testComponents.Basic);
+        fixture.detectChanges();
+        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
 
-  });
+        expect(startInputInstance.formControl.value).toBeNull();
+        expect(endInputInstance.formControl.value).toBeNull();
 
+        typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+        typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
+        fixture.detectChanges();
 
-  describe(`startDateSelected()`, () => {
-
-    beforeEach(() => {
-      testDate = new Date(2017, 4, 1);
-      component.startSelected.emit = jest.fn();
-      component.change.emit = jest.fn();
-      component.endMinDate = new Date(2017, 1, 1);
-    });
-
-
-    describe(`when no date is selected`, () => {
-
-      test(`should not emit events or set values and reset endMinDate$`, () => {
-        component.startDateSelected(undefined as any);
-
-        expect(component.startSelected.emit).not.toHaveBeenCalled();
-        expect(component.change.emit).not.toHaveBeenCalled();
-        component.endMinDate$.subscribe((v: Date) => {
-          expect(v).toEqual(component.endMinDate);
-        });
-        expect.assertions(3);
-      });
-
-
-      test(`should pass the original endMinDate to endMinDate$`, () => {
-        component.endMinDate = testDate;
-        component.startDateSelected(testDate);
-
-        component.endMinDate$.subscribe((v: Date) => {
-          expect(v).toEqual(testDate);
-        });
-      });
-
-    });
-
-
-    describe(`when datepickerEvent has a value`, () => {
-
-      test(`should emit events`, () => {
-        component.startDateSelected(testDate);
-
-        expect(component.startSelected.emit).toHaveBeenCalledWith(testDate);
-        expect(component.change.emit).toHaveBeenCalled();
-      });
-
-
-      test(`should update the form value`, () => {
-        dateRangeStart = new Date(2017, 4, 6);
-        dateRangeEnd = new Date(2017, 4, 8);
-        component.dateFormGroup = formBuilder.group({
-          startDate: [
-            dateRangeStart,
-          ],
-          endDate: [
-            dateRangeEnd,
-          ],
-        });
-        component.startDateSelected(testDate);
-
-        const actualStart = component.dateFormGroup.get('startDate')!.value;
-        const actualEnd = component.dateFormGroup.get('endDate')!.value;
-
-        expect(actualStart).toEqual(testDate);
-        expect(actualEnd).toEqual(dateRangeEnd);
+        expect(fixture.componentInstance.dateRangeComponent['internalStartControl'].value).toEqual(new Date('3-4-2019'));
+        expect(fixture.componentInstance.dateRangeComponent['internalEndControl'].value).toEqual(new Date('3-8-2019'));
+        expect.assertions(4);
       });
 
     });
@@ -176,147 +159,92 @@ describe(`TsDateRangeComponent`, () => {
   });
 
 
-  describe(`endDateSelected()`, () => {
+  describe(`emitters`, function() {
 
-    beforeEach(() => {
-      testDate = new Date(2017, 4, 1);
-      component.endSelected.emit = jest.fn();
-      component.change.emit = jest.fn();
-    });
+    test(`should pass correct values when fired`, function() {
+      const fixture = createComponent(testComponents.Emitters);
+      fixture.detectChanges();
+      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
 
+      typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.startSelected).toHaveBeenCalledWith(new Date('3-4-2019'));
+      expect(fixture.componentInstance.change).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: null});
 
-    describe(`when no date is passed in`, () => {
+      typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.endSelected).toHaveBeenCalledWith(new Date('3-8-2019'));
+      expect(fixture.componentInstance.change).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: new Date('3-8-2019')});
 
-      test(`should pass the original startMaxDate to _startMaxDate$`, () => {
-        component.startMaxDate = testDate;
-        component.endDateSelected(testDate);
-
-        component.startMaxDate$.subscribe((v: Date) => {
-          expect(v).toEqual(testDate);
-        });
-      });
-
-
-      test(`should not emit if no date was passed in`, () => {
-        component.endSelected.emit = jest.fn();
-        component.endDateSelected(undefined as any);
-
-        expect(component.endSelected.emit).not.toHaveBeenCalled();
-        expect(component.change.emit).not.toHaveBeenCalled();
-      });
-
-    });
-
-
-    describe(`when a date is passed in`, () => {
-
-      test(`should emit events`, () => {
-        const date = new Date(2017, 2, 3);
-        component.change.emit = jest.fn();
-        component.startDateControl.setValue(date);
-        component.endDateControl.setValue(new Date(2017, 2, 4));
-        component.endDateSelected(date);
-
-        expect(component.endSelected.emit).toHaveBeenCalledWith(date);
-        expect(component.change.emit).toHaveBeenCalledWith({
-          end: new Date(2017, 2, 4),
-          start: new Date(2017, 2, 3),
-        });
-      });
-
-
-      test(`should update the form value`, () => {
-        dateRangeStart = new Date(2017, 4, 6);
-        dateRangeEnd = new Date(2017, 4, 8);
-        component.dateFormGroup = formBuilder.group({
-          startDate: [
-            dateRangeStart,
-          ],
-          endDate: [
-            dateRangeEnd,
-          ],
-        });
-        component.endDateSelected(testDate);
-
-        const actualStart = component.dateFormGroup.get('startDate')!.value;
-        const actualEnd = component.dateFormGroup.get('endDate')!.value;
-
-        expect(actualStart).toEqual(dateRangeStart);
-        expect(actualEnd).toEqual(testDate);
-      });
-
+      expect.assertions(4);
     });
 
   });
 
 
-  describe(`dateRange()`, () => {
+  describe(`input component`, function() {
 
-    test(`should return the date range object`, () => {
-      component.startDateControl.setValue(new Date(2017, 4, 1));
-      component.endDateControl.setValue(new Date(2017, 4, 2));
-      const actual = component['dateRange'];
+    test(`should receive all needed parameters from the date range component`, function() {
+      const fixture = createComponent(testComponents.Params);
+      const hostInstance = fixture.componentInstance;
+      fixture.detectChanges();
+      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
 
-      expect(actual).toBeTruthy();
-      expect(actual.start).toEqual(new Date(2017, 4, 1));
+      expect(endInputInstance.maxDate).toEqual(hostInstance.endMax);
+      expect(endInputInstance.minDate).toEqual(hostInstance.endMin);
+
+      expect(startInputInstance.isDisabled).toEqual(true);
+      expect(endInputInstance.isDisabled).toEqual(true);
+
+      expect(startInputInstance.startingView).toEqual(hostInstance.startingView);
+      expect(endInputInstance.startingView).toEqual(hostInstance.startingView);
+
+      expect(startInputInstance.maxDate).toEqual(hostInstance.startMax);
+      expect(startInputInstance.minDate).toEqual(hostInstance.startMin);
+
+      expect(startInputInstance.theme).toEqual(hostInstance.theme);
+      expect(endInputInstance.theme).toEqual(hostInstance.theme);
+
+      expect.assertions(10);
     });
 
   });
 
 
-  describe(`startDateControl`, () => {
+  test(`should work without a form group`, function() {
+    const fixture = createComponent(testComponents.NoFormGroup);
+    fixture.detectChanges();
+    const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+    typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+    fixture.detectChanges();
 
-    test(`should use fallback control if one was not passed in`, () => {
-      expect(component.startDateControl instanceof AbstractControl).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`endDateControl`, () => {
-
-    test(`should use fallback control if one was not passed in`, () => {
-      component.theme = 'accent';
-      expect(component.endDateControl instanceof AbstractControl).toBeTruthy();
-      expect(component.theme).toEqual('accent');
-    });
-
-  });
-
-
-  describe(`blur events`, () => {
-    const date = new Date(2018, 1, 1);
-
-    test(`should set the start date`, () => {
-      component.startBlur(undefined);
-      expect(component.endMinDate$.getValue()).toEqual(undefined);
-
-      component.startBlur(date);
-      expect(component.endMinDate$.getValue()).toEqual(date);
-    });
-
-
-    test(`should set the end date`, () => {
-      component.endBlur(undefined);
-      expect(component.startMaxDate$.getValue()).toEqual(undefined);
-
-      component.endBlur(date);
-      expect(component.startMaxDate$.getValue()).toEqual(date);
-    });
-
-  });
-
-
-  describe(`isDisabled`, () => {
-
-    test(`should set the disabled flag`, () => {
-      expect(component.isDisabled).toEqual(false);
-
-      component.isDisabled = true;
-
-      expect(component.isDisabled).toEqual(true);
-    });
-
+    expect(fixture.componentInstance.startSelected).toHaveBeenCalled();
   });
 
 });
+
+
+
+
+/**
+ * HELPERS
+ */
+
+// TODO: Move to ngx-tools (and all other instances of this utility)
+export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
+  TestBed.configureTestingModule({
+    imports: [
+      ReactiveFormsModule,
+      TsDateRangeModule,
+      ...imports,
+    ],
+    declarations: [component],
+    providers: [
+      ...providers,
+    ],
+  }).compileComponents();
+
+  return TestBed.createComponent<T>(component);
+}

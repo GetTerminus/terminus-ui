@@ -78,8 +78,9 @@ export class TsValidationMessagesComponent implements OnDestroy {
     this._control = value;
 
     // Trigger change detection if the underlying control's status changes
-    if (this.control) {
-      this.control.statusChanges.pipe(untilComponentDestroyed(this)).subscribe((v) => {
+    // istanbul ignore else
+    if (this.control && this.control.statusChanges) {
+      this.control.statusChanges.pipe(untilComponentDestroyed(this)).subscribe(() => {
         this.changeDetectorRef.detectChanges();
       });
     }
