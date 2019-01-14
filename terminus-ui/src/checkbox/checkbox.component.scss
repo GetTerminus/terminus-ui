@@ -31,7 +31,7 @@ $ts-select-item-height: 3em !default;
   }
 
 
-  // Target checkboxes inside a menu dropdown panel
+  // Target checkboxes inside a select menu dropdown panel
   .ts-select-panel & {
     // Match the material button line-height and spacing
     .c-checkbox {
@@ -56,6 +56,15 @@ $ts-select-item-height: 3em !default;
     .ts-option-text {
       @include truncate-overflow;
       display: block;
+    }
+  }
+
+  // Target checkboxes inside a material menu dropdown panel
+  .mat-menu-panel & {
+    // Match the material button line-height and spacing
+    .c-checkbox {
+      line-height: 2em;
+      padding: 0 spacing();
     }
   }
 }
