@@ -53,6 +53,26 @@ export class TsValidatorsServiceMock {
     });
   }
 
+  inCollection = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      inCollection: {
+        valid: false,
+        actual: 'fo',
+        collection: ['foo', 'bar', 'baz'],
+      },
+    });
+  }
+
+  isInRange = () => {
+    return jest.fn().mockReturnValue(this.isValid ? null : {
+      isInRange: {
+        valid: false,
+        isInRange: [10, 100],
+        actual: 5,
+      },
+    });
+  }
+
   lessThan = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       lessThan: {
@@ -135,16 +155,6 @@ export class TsValidatorsServiceMock {
       lessThan: {
         valid: false,
         actual: 'http://foo',
-      },
-    });
-  }
-
-  inCollection = () => {
-    return jest.fn().mockReturnValue(this.isValid ? null : {
-      inCollection: {
-        valid: false,
-        actual: 'fo',
-        collection: ['foo', 'bar', 'baz'],
       },
     });
   }

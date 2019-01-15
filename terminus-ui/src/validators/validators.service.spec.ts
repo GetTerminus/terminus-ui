@@ -32,6 +32,24 @@ describe(`TsValidatorsService`, () => {
   });
 
 
+  describe(`inCollection()`, () => {
+
+    test(`should exist`, () => {
+      expect(service.inCollection).toBeTruthy();
+    });
+
+  });
+
+
+  describe(`isInRange()`, () => {
+
+    test(`should exist`, () => {
+      expect(service.isInRange).toBeTruthy();
+    });
+
+  });
+
+
   describe(`password()`, () => {
 
     test(`should exist`, () => {
@@ -45,15 +63,6 @@ describe(`TsValidatorsService`, () => {
 
     test(`should exist`, () => {
       expect(service.url).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`inCollection()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.inCollection).toBeTruthy();
     });
 
   });
