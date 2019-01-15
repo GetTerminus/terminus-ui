@@ -629,9 +629,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@terminus/ui@^9.0.0":
-  version "9.0.6"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-9.0.6.tgz#29d7ff0bdf497ff6aa6361811bf065784920f107"
+"@terminus/ui@*":
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-9.4.0.tgz#868bebe5fc0a1a7749ba3acc0f50b201da3bd9fe"
+  integrity sha512-5NaqzeDebRx4to2HqttVQjYf3alv1SJosRT4HN9OMmSWcJog0u82wq17fZ2Fbg+t39damSpypYRd9l4I1dgsqA==
   dependencies:
     "@angular/cdk" "^6.4.7"
     "@angular/material" "^6.4.7"
