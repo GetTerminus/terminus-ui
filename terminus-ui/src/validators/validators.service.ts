@@ -5,6 +5,8 @@ import { emailValidator } from './validators/email/email';
 import { equalToControlValidator } from './validators/equalToControl/equalToControl';
 import { greaterThanOrEqualValidator } from './validators/greaterThanOrEqual/greaterThanOrEqual';
 import { greaterThanValidator } from './validators/greaterThan/greaterThan';
+import { inCollectionValidator } from './validators/inCollection/inCollection';
+import { isInRangeValidator } from './validators/isInRange/isInRange';
 import { lessThanOrEqualValidator } from './validators/lessThanOrEqual/lessThanOrEqual';
 import { lessThanValidator } from './validators/lessThan/lessThan';
 import { lowercaseValidator } from './validators/lowercase/lowercase';
@@ -14,7 +16,6 @@ import { minDateValidator } from './validators/minDate/minDate';
 import { passwordValidator } from './validators/password/password';
 import { urlValidator } from './validators/url/url';
 import { uppercaseValidator } from './validators/uppercase/uppercase';
-import { inCollectionValidator } from './validators/inCollection/inCollection';
 
 
 /**
@@ -28,6 +29,7 @@ export class TsValidatorsService {
   greaterThan = greaterThanValidator;
   greaterThanOrEqual = greaterThanOrEqualValidator;
   inCollection = inCollectionValidator;
+  isInRange = isInRangeValidator;
   lessThan = lessThanValidator;
   lessThanOrEqual = lessThanOrEqualValidator;
   lowercase = lowercaseValidator;
