@@ -1,4 +1,4 @@
-import { NgControl } from '@angular/forms';
+import { NgControl, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 
@@ -62,6 +62,11 @@ export abstract class TsFormFieldControl<T> {
    * Whether the input is currently in an autofilled state. If property is not present on the control it is assumed to be false.
    */
   readonly autofilled?: boolean;
+
+  /**
+   * An optional form control (used by DateRange)
+   */
+  readonly formControl?: FormControl;
 
   /**
    * Handles a click on the control's container

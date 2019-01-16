@@ -59,6 +59,14 @@ export class DateRangeComponent implements OnInit {
     console.log('DEMO: formValue: ', formValue);
   }
 
+  updateStartDate() {
+    const ctrl = this.myForm.get('dateRange.startDate');
+
+    if (ctrl) {
+      ctrl.setValue(new Date(2019, 0, 2).toISOString());
+    }
+  }
+
 
   toggleStart() {
     const ctrl = this.myForm.get('dateRange.startDate');

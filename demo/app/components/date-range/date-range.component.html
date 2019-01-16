@@ -8,6 +8,8 @@
     </button>
   </div>
 
+  <button (click)="updateStartDate()">Update start date</button>
+  <br>
   <button (click)="printRange(myForm.value)">Print Range</button>
 </ts-card>
 
@@ -22,3 +24,9 @@
 
   </form>
 </ts-card>
+
+
+<pre>
+FORM VALUE:
+{{ myForm.value | json }}
+</pre>

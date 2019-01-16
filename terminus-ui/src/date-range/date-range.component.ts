@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewEncapsulation,
@@ -13,11 +14,9 @@ import {
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 
 import { TsStyleThemeTypes } from './../utilities/types/style-theme.types';
-/*
- *import { TsDatepickerInputEvent } from './../input/input.component';
- */
 
 
 /**
@@ -76,7 +75,7 @@ export interface TsDateRange {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsDateRange',
 })
-export class TsDateRangeComponent implements OnInit {
+export class TsDateRangeComponent implements OnInit, OnDestroy {
   /**
    * Getter to return the date range as an object
    *
@@ -94,14 +93,13 @@ export class TsDateRangeComponent implements OnInit {
    */
   public get endDateControl(): AbstractControl {
     const ctrl: AbstractControl | null = this.dateFormGroup ? this.dateFormGroup.get('endDate') : null;
-
-    return ctrl ? ctrl : this.fallbackEndDateControl;
+    return ctrl ? ctrl : this.internalEndControl;
   }
 
   /**
    * Expose the minimum date for the endDate
    *
-   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject
+   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
   public endMinDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -111,14 +109,14 @@ export class TsDateRangeComponent implements OnInit {
   public endLabel = 'End date';
 
   /**
-   * Define a fallback control in case one is not passed in
+   * The internal FormControl to manage the end date
    */
-  private fallbackEndDateControl: FormControl = new FormControl();
+  public internalEndControl = new FormControl();
 
   /**
-   * Define a fallback control in case one is not passed in
+   * The internal FormControl to manage the start date
    */
-  private fallbackStartDateControl: FormControl = new FormControl();
+  public internalStartControl = new FormControl();
 
   /**
    * Define the separator between the two date inputs
@@ -130,14 +128,13 @@ export class TsDateRangeComponent implements OnInit {
    */
   public get startDateControl(): AbstractControl {
     const ctrl: AbstractControl | null = this.dateFormGroup ? this.dateFormGroup.get('startDate') : null;
-
-    return ctrl ? ctrl : this.fallbackStartDateControl;
+    return ctrl ? ctrl : this.internalStartControl;
   }
 
   /**
    * Expose the maximum date for the startDate
    *
-   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject
+   * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
   public startMaxDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -233,6 +230,60 @@ export class TsDateRangeComponent implements OnInit {
     if (this.dateFormGroup) {
       this.initializeMinAndMax(this.dateFormGroup);
     }
+
+    // istanbul ignore else
+    if (!this.endDateControl.value) {
+      this.startMaxDate$.next(this.startMaxDate);
+    }
+
+    // istanbul ignore else
+    if (!this.startDateControl.value) {
+      this.endMinDate$.next(this.endMinDate);
+    }
+
+    this.setUpFormControlSync();
+  }
+
+
+  /**
+   * Needed for untilComponentDestroyed
+   */
+  public ngOnDestroy(): void {}
+
+
+  /**
+   * Set up subscriptions to sync the internat FormControl to the external FormControl
+   */
+  private setUpFormControlSync(): void {
+    if (!this.dateFormGroup) {
+      return;
+    }
+
+    const startCtrl = this.dateFormGroup.get('startDate');
+    const endCtrl = this.dateFormGroup.get('endDate');
+
+    if (!startCtrl || !endCtrl) {
+      return;
+    }
+
+    // START DATE
+    startCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((value) => {
+      this.internalStartControl.setValue(value);
+      this.endMinDate$.next(value);
+    });
+    startCtrl.statusChanges.pipe(untilComponentDestroyed(this)).subscribe(() => {
+      this.internalStartControl.setErrors(startCtrl.errors);
+    });
+
+    // END DATE
+    endCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((value) => {
+      this.internalEndControl.setValue(value);
+      this.startMaxDate$.next(value);
+    });
+    endCtrl.statusChanges.pipe(untilComponentDestroyed(this)).subscribe(() => {
+      this.internalEndControl.setErrors(endCtrl.errors);
+    });
+
   }
 
 
@@ -242,23 +293,15 @@ export class TsDateRangeComponent implements OnInit {
    * @param formGroup - The date form group
    */
   private initializeMinAndMax(formGroup: FormGroup | AbstractControl): void {
-    if (!formGroup) {
-      return;
-    }
     const startControl: AbstractControl | null = formGroup.get('startDate');
     const endControl: AbstractControl | null = formGroup.get('endDate');
-    const startValue: Date | undefined = startControl ? startControl.value /* istanbul ignore next - Unreachable */ : undefined;
-    const endValue: Date | undefined = endControl ? endControl.value /* istanbul ignore next - Unreachable */ : undefined;
+    const startControlValue: Date | undefined = startControl ? startControl.value /* istanbul ignore next - Unreachable */ : undefined;
+    const endControlValue: Date | undefined = endControl ? endControl.value /* istanbul ignore next - Unreachable */ : undefined;
+    const startValueToUse = startControlValue || this.endMinDate;
+    const endValueToUse = endControlValue || this.endMinDate;
 
-    // istanbul ignore else
-    if (startValue || this.endMinDate) {
-      this.endMinDate$.next(startValue || this.endMinDate);
-    }
-
-    // istanbul ignore else
-    if (endValue || this.startMaxDate) {
-      this.startMaxDate$.next(endValue || this.startMaxDate);
-    }
+    this.endMinDate$.next(startValueToUse);
+    this.startMaxDate$.next(endValueToUse);
   }
 
 
@@ -318,7 +361,19 @@ export class TsDateRangeComponent implements OnInit {
    * @param date - The date entered
    */
   public startBlur(date: Date | undefined): void {
-    this.endMinDate$.next(date);
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('startDate') /* istanbul ignore next - Untestable */ : null;
+    const value = date ? date : null;
+
+    // Update the max date for the end date control
+    this.endMinDate$.next(value);
+
+    // Update the consumer's control
+    // istanbul ignore else
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+    }
   }
 
 
@@ -328,7 +383,19 @@ export class TsDateRangeComponent implements OnInit {
    * @param date - The date entered
    */
   public endBlur(date: Date | undefined): void {
-    this.startMaxDate$.next(date);
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('endDate') /* istanbul ignore next - Untestable */ : null;
+    const value = date ? date : null;
+
+    // Update the max date for the start date control
+    this.startMaxDate$.next(value);
+
+    // Update the consumer's control
+    // istanbul ignore else
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+    }
   }
 
 }

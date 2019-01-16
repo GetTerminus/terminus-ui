@@ -215,6 +215,7 @@ let nextUniqueId = 0;
  *              hint="My hint!"
  *              id="my-id"
  *              isDisabled="true"
+ *              isFilterable="true"
  *              isRequired="true"
  *              label="My label!"
  *              minimumCharacters="3"

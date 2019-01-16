@@ -1,7 +1,7 @@
 <div class="c-date-range qa-date-range" fxLayout="row">
   <ts-input
     class="qa-date-range-start-datepicker"
-    [formControl]="startDateControl"
+    [formControl]="internalStartControl"
     [label]="startLabel"
     [maxDate]="startMaxDate$ | async"
     [minDate]="startMinDate"
@@ -22,7 +22,7 @@
 
   <ts-input
     class="qa-date-range-end-datepicker"
-    [formControl]="endDateControl"
+    [formControl]="internalEndControl"
     [label]="endLabel"
     [maxDate]="endMaxDate"
     [minDate]="endMinDate$ | async"
