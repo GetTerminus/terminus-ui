@@ -63,6 +63,8 @@ export class MyComponent {
 | `equalToControl`     | A control's value must be equal to another control's value    |
 | `greaterThan`        | A number must be greater than another value                   |
 | `greaterThanOrEqual` | A number must be greater than or equal to another value       |
+| `inCollection`       | A control's value must be within a collection of values       |
+| `isInRange`          | A control's value must between two numbers                    |
 | `lessThan`           | A number must be less than another value                      |
 | `lessThanOrEqual`    | A number must be less than or equal to another value          |
 | `lowercase`          | A value must contain a minimum amount of lowercase characters |

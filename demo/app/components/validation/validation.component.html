@@ -182,6 +182,22 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">isInRange (min/max)</h3>
+    
+        <ts-input
+          label="Is In Range"
+          type="number"
+          [formControl]="myForm.get('isInRange')"
+          hint="Number must be between 10 and 100"
+        ></ts-input>
+      </ts-card>
+    </div>
+  </div>
+
+  <div fxLayout="row" [fxLayoutGap]="flexGap">
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
         <h3 tsCardTitle tsVerticalSpacing="small--0">Contains lowercase</h3>
 
         <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>

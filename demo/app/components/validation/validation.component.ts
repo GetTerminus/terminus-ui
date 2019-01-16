@@ -71,6 +71,12 @@ export class ValidationComponent implements OnInit {
       null,
       [this.validatorsService.greaterThan(10)],
     ],
+    isInRange: [
+      null,
+      [
+        this.validatorsService.isInRange(10, 100),
+      ],
+    ],
     lessThanOrEqual: [
       null,
       [this.validatorsService.lessThanOrEqual(10)],
