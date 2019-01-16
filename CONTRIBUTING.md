@@ -33,7 +33,7 @@ Help us keep Terminus open and inclusive. Please read and follow our [Code of Co
 
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 [submitting an issue](#submit-issue) to our [GitHub repository][github]. Including an issue
-reproduction (via our [StackBlitz starter][sb]) is the absolute best way to help the team quickly
+reproduction (via our [demo site][demo]) is the absolute best way to help the team quickly
 diagnose the problem. Screenshots are also helpful.
 
 You can help the team even more and [submit a Pull Request](#submit-pr) with a fix! :pray:
@@ -66,7 +66,7 @@ chances of your issue being dealt with quickly:
 - **Motivation for or Use Case** - explain what are you trying to do and why the current behavior
     is a bug for you
 - **Browsers and Operating System** - is this a problem with all browsers?
-- **Reproduce the Error** - provide a live example using our [StackBlitz starter][sb] or a
+- **Reproduce the Error** - provide a live example using our [Demo site][demo] or a
     unambiguous set of steps
 - **Screenshots** - Due to the visual nature of this library, screenshots can help the team triage
     issues far more quickly than a text description.
@@ -89,7 +89,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 - Follow our coding rules (by verifying all linters pass).
 - Run the full test suite and ensure that all tests pass.
 - Commit your changes using a descriptive commit message that follows our
-  [commit message conventions](#commit). Adherence to these conventions is necessary because release notes are
+  [commit message conventions][commit]. Adherence to these conventions is necessary because release notes are
   automatically generated from these messages. (for this reason it is often advisable to rebase your
   feature branch to ensure clear, concise commits)
 - Push your branch to GitHub:
@@ -126,7 +126,7 @@ main (upstream) repository:
 To ensure consistency throughout the source code, keep these rules in mind as you are working:
 
 - All features or bug fixes **must be tested** by one or more specs (unit-tests).
-- All public API methods **must be documented**. (Details TBD).
+- All public API methods **must be documented**.
 - Most coding styles are enforced via linters
 - Reference our [development documentation][dev-docs] for more details.
 
@@ -134,8 +134,9 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 [coc]: https://github.com/GetTerminus/terminus-ui/blob/master/CODE_OF_CONDUCT.md
 [github]: https://github.com/GetTerminus/terminus-ui/
-[sb]: https://stackblitz.com/edit/terminus-ui-demos
+[demo]: http://uilibrary-demo.terminus.ninja/master
 [issues]: https://github.com/GetTerminus/terminus-ui/issues
 [issues-create]: https://github.com/GetTerminus/terminus-ui/issues/new
 [pulls]: https://github.com/GetTerminus/terminus-ui/pulls
 [dev-docs]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md
+[commit]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md#committing
