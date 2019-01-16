@@ -109,7 +109,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Initialize the login form
    */
-  public loginForm: FormGroup | null = this.formBuilder.group(this.FORM_GROUP);
+  public loginForm: FormGroup = this.formBuilder.group(this.FORM_GROUP);
 
   /**
    * Define a flag to add/remove the form from the DOM
@@ -226,7 +226,8 @@ export class TsLoginFormComponent implements OnChanges {
     this.showForm = false;
 
     // Clear out the form
-    this.loginForm = null;
+    // HACK: This is a hack around Angular to fully reset the form.
+    this.loginForm = undefined as any;
 
     // Re-initialize the form
     this.loginForm = this.formBuilder.group(this.FORM_GROUP);

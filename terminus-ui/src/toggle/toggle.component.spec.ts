@@ -1,7 +1,7 @@
 import { TsToggleComponent } from './toggle.component';
 
 
-describe(`ToggleComponent`, () => {
+describe(`ToggleComponent`, function() {
   let component: TsToggleComponent;
 
   beforeEach(() => {

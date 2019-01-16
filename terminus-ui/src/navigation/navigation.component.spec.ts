@@ -59,7 +59,7 @@ const visibleLinkElementMock = [
 ];
 
 
-describe(`TsNavigationComponent`, () => {
+describe(`TsNavigationComponent`, function() {
   let component: TsNavigationComponent;
 
   beforeEach(() => {

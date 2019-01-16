@@ -7,7 +7,7 @@ import {
 import { greaterThanOrEqualValidator } from './greaterThanOrEqual';
 
 
-describe(`greaterThanOrEqualValidator`, () => {
+describe(`greaterThanOrEqualValidator`, function() {
 
   describe(`value input`, () => {
     let validatorFn: ValidatorFn;

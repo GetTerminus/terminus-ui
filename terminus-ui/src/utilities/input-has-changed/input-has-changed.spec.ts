@@ -6,7 +6,7 @@ import {
 import { inputHasChanged } from './input-has-changed';
 
 
-describe(`inputHasChanged`, () => {
+describe(`inputHasChanged`, function() {
   const changed = {
     item1: new SimpleChange(undefined, true, true),
     item2: new SimpleChange('foo', 'foo', false),

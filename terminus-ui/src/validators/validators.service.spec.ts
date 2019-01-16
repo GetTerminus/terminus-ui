@@ -1,7 +1,7 @@
 import { TsValidatorsService } from './validators.service';
 
 
-describe(`TsValidatorsService`, () => {
+describe(`TsValidatorsService`, function() {
   let service: TsValidatorsService;
 
   beforeEach(() => {

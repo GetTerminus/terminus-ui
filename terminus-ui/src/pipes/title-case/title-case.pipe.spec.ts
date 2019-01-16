@@ -1,7 +1,7 @@
 import { TsTitleCasePipe } from './title-case.pipe';
 
 
-describe(`TsSentenceCasePipe`, () => {
+describe(`TsSentenceCasePipe`, function() {
   let pipeClass: TsTitleCasePipe;
   let pipe: Function;
 

@@ -7,7 +7,7 @@ interface Foo {
 
 
 // Additional tests for parts missed by the {@link TsTableComponent} integration test
-describe(`TsTableDataSource`, () => {
+describe(`TsTableDataSource`, function() {
   let source: TsTableDataSource<Foo>;
   let seededSource: TsTableDataSource<Foo>;
 

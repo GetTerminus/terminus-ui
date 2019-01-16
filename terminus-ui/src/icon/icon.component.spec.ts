@@ -26,7 +26,7 @@ class TestHostComponent {
 
 
 
-describe(`TsIconComponent`, () => {
+describe(`TsIconComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let hostComponent: TestHostComponent;
   let icon1: TsIconComponent;

@@ -15,7 +15,6 @@ import {
   TsSortDirective,
   TsPaginatorComponent,
   TsPaginatorMenuItem,
-  TsSelectFormatFn,
 } from '@terminus/ui';
 
 

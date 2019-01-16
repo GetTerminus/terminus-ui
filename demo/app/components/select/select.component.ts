@@ -410,4 +410,8 @@ export class SelectComponent implements OnInit {
         .pipe(map((a) => a.filter((i) => i.slug.match(regex))));
     }
   }
+
+  duplicate(e) {
+    console.log('DEMO: Duplicate selection: ', e);
+  }
 }

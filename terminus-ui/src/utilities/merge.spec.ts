@@ -1,7 +1,7 @@
 import { merge } from './merge';
 
 
-describe(`merge`, () => {
+describe(`merge`, function() {
   const obj1 = {
     key1: {},
     key2: 'test',

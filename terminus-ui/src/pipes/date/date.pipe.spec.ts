@@ -1,7 +1,7 @@
 import { TsDatePipe } from './date.pipe';
 
 
-describe(`TsDatePipe`, () => {
+describe(`TsDatePipe`, function() {
   let pipeClass: TsDatePipe;
   let pipe: Function;
   let date: string;
@@ -58,7 +58,7 @@ describe(`TsDatePipe`, () => {
 
     it(`should format a date`, () => {
       const actual = pipe(date, 'medium');
-      const expected = 'Feb 8 2018';
+      const expected = 'Feb 8th, 2018';
 
       expect(actual).toEqual(expected);
     });
@@ -70,7 +70,7 @@ describe(`TsDatePipe`, () => {
 
     it(`should format a date`, () => {
       const actual = pipe(date, 'extended');
-      const expected = 'Feb 8 2018 12:00:00AM';
+      const expected = 'Thursday, February 8th, 2018, 12:00:00AM';
 
       expect(actual).toEqual(expected);
     });

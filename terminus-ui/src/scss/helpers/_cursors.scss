@@ -5,19 +5,19 @@
  * @section Cursors
  */
 $g-cursors: (
-  // Let the browser decide
+  /* Let the browser decide*/
   auto,
-  // Indicates text controls
+  /* Indicates text controls*/
   text,
-  // Indicates interaction
+  /* Indicates interaction*/
   pointer,
-  // Indicates no available interaction
+  /* Indicates no available interaction*/
   not-allowed,
-  // Indicates ability to copy
+  /* Indicates ability to copy*/
   copy,
-  // Indicates an alias or copy will be made
+  /* Indicates an alias or copy will be made*/
   alias,
-  // Indicates help is available
+  /* Indicates help is available*/
   help,
 );
 

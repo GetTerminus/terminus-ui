@@ -62,7 +62,7 @@ const FILE_VIDEO_MOCK = FILE_VIDEO_BLOB as File;
 
 
 
-describe(`TsSelectedFile`, () => {
+describe(`TsSelectedFile`, function() {
   let newSelectedFile: TsSelectedFile;
   const createFile = (
     file = FILE_MOCK,

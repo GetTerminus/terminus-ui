@@ -8,7 +8,7 @@ import {
 import { creditCardValidator } from './creditCard';
 
 
-describe(`creditCardValidator`, () => {
+describe(`creditCardValidator`, function() {
   let validatorFn: ValidatorFn;
   let nullControl: AbstractControl;
 

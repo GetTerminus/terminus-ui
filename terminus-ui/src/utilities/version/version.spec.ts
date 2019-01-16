@@ -1,7 +1,7 @@
 import { Version, VERSION } from './version';
 
 
-describe(`Version`, () => {
+describe(`Version`, function() {
 
   test(`should expose a Version object`, () => {
     const version = new Version('9.8.7-beta.1');

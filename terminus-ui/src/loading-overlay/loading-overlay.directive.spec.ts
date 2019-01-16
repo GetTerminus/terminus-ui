@@ -10,7 +10,7 @@ const applicationRef: any = null;
 const injector: any = null;
 
 
-describe(`TsLoadingOverlayDirective`, () => {
+describe(`TsLoadingOverlayDirective`, function() {
   let directive: TsLoadingOverlayDirective;
 
   beforeEach(() => {
