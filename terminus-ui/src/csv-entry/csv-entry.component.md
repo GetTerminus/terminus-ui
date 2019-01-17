@@ -11,6 +11,7 @@
   - [Max rows](#max-rows)
 - [Column validation](#column-validation)
 - [Static Column Headers](#static-column-headers)
+- [Output Format](#output-format)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -99,3 +100,15 @@ If there are certain headers that must be available, these can be set via an inp
 
 Setting static column headers will set the header cells to `readonly`. This will still allow keyboard navigation but will not allow the user
 to change the contents of the set header cells.
+
+
+## Output Format
+
+By default the output is <abbr title="Comma Seperated Values">CSV</abbr>. This can be changed to <abbr title="Tab Seperated
+Values">TSV</abbr>.
+
+
+```html
+<ts-csv-entry outputFormat="tsv">
+</ts-csv-entry>
+```

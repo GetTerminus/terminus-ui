@@ -48,7 +48,6 @@ function stringifyForm(content: TsCSVFormContents): string {
        [rowCount]="rowCount"
        [columnValidators]="columnValidators"
        [columnHeaders]="columnHeaders"
-       [outputFormat]="outputFormat"
        (blobGenerated)="gotFile($event)"
     ></ts-csv-entry>
   `,
@@ -60,7 +59,6 @@ class TestHostComponent {
   rowCount: number | undefined;
   columnValidators: undefined | (ValidatorFn | null)[];
   columnHeaders: undefined | string[];
-  outputFormat = 'csv';
   gotFile = jest.fn();
 
   @ViewChild(TsCSVEntryComponent)
@@ -119,7 +117,6 @@ describe(`TsCSVEntryComponent`, function() {
       hostComponent.rowCount = undefined;
       hostComponent.columnValidators = undefined;
       hostComponent.columnHeaders = undefined;
-      hostComponent.outputFormat = 'csv';
     }
     /**
      * Form content
@@ -560,7 +557,7 @@ describe(`TsCSVEntryComponent`, function() {
     });
 
 
-    test(`should respect output format of tsv`, fakeAsync((done) => {
+    test(`should respect output format of csv by default`, fakeAsync((done) => {
       jest.useFakeTimers();
       expect(firstHeaderCell.value).toEqual('');
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -570,7 +567,7 @@ describe(`TsCSVEntryComponent`, function() {
       const calls = hostComponent.gotFile.mock.calls;
       const content = calls[0][0];
       reader.onloadend = function() {
-        expect(reader.result).toContain('\t');
+        expect(reader.result).toContain(',');
         done();
         jest.clearAllTimers();
       };
@@ -579,18 +576,18 @@ describe(`TsCSVEntryComponent`, function() {
     }));
 
 
-    test(`should respect output format of csv`, fakeAsync((done) => {
+    test(`should respect output format of tsv`, fakeAsync((done) => {
       jest.useFakeTimers();
       expect(firstHeaderCell.value).toEqual('');
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       jest.advanceTimersByTime(10);
-      hostComponent.outputFormat = 'csv';
+      component.outputFormat = 'tsv';
 
       const reader = new FileReader();
       const calls = hostComponent.gotFile.mock.calls;
       const content = calls[0][0];
       reader.onloadend = function() {
-        expect(reader.result).toContain(',');
+        expect(reader.result).toContain('\t');
         done();
         jest.clearAllTimers();
       };

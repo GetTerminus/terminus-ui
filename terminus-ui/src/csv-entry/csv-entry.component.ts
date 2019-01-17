@@ -241,7 +241,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Define output to be CSV rather than TSV
    */
   @Input()
-  public outputFormat: 'csv' | 'tsv' = 'tsv';
+  public outputFormat: 'csv' | 'tsv' = 'csv';
 
   /**
    * Emit the built file blob

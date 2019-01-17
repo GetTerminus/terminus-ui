@@ -105,6 +105,7 @@ for each feature.
 | [date-range][src-date-range]           | Dual inputs with calendar pop-ups                 | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]      | [Usage][date-range-usage]   |
 | dialog                                 |                                                   |                    |                                 |                              |                             |
 | divider                                |                                                   |                    |                                 |                              |                             |
+| drawer                                 | A side panel or drawer                            |                    |                                 |                              |                             |
 | expansion                              |                                                   |                    |                                 |                              |                             |
 | [file-upload][src-file-upload]         | File upload with drag and drop                    | :white_check_mark: | [Demo][demo-file-upload]        | [Docs][file-upload-docs]     | [Usage][file-upload-usage]  |
 | [icon][src-icon]                       | Supported icons: https://material.io/icons        | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]            | [Usage][icon-usage]         |
