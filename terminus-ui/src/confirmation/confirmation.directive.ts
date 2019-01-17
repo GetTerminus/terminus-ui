@@ -7,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  Input,
 } from '@angular/core';
 import {
   ConnectedPositionStrategy,
@@ -15,10 +16,9 @@ import {
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ESCAPE } from '@terminus/ngx-tools/keycodes';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
-import { filter, merge } from 'rxjs/operators';
+import { merge } from 'rxjs/operators';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
 import { TsButtonComponent } from './../button/button.component';
@@ -50,6 +50,53 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    */
   private overlayRef!: OverlayRef | null;
 
+
+  /**
+   * INPUTS
+   */
+
+  /**
+   * Define the Confirmation Button Text
+   */
+  @Input()
+  public set confirmationButtonText(value: string) {
+    if (!value) {
+      return;
+    }
+    this._confirmationButtonText = value;
+  }
+  public get confirmationButtonText(): string {
+    return this._confirmationButtonText;
+  }
+  private _confirmationButtonText = 'Confirm';
+
+  /**
+   * Define the Cancel Button Text
+   */
+  @Input()
+  public set cancelButtonText(value: string) {
+    if (!value) {
+      return;
+    }
+    this._cancelButtonText = value;
+  }
+  public get cancelButtonText(): string {
+    return this._cancelButtonText;
+  }
+  private _cancelButtonText = 'Cancel';
+
+  /**
+   * Define the Explanation Text
+   */
+  @Input()
+  public set explanationText(value: string | undefined) {
+    this._explanationText = value;
+  }
+  public get explanationText(): string | undefined {
+    return this._explanationText;
+  }
+  private _explanationText: string | undefined;
+
   /**
    * An event emitted when the confirmation is cancelled
    */
@@ -73,6 +120,17 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   @HostListener('click', ['$event'])
   public onClick(event: Event): void {
     this.createOverlay();
+  }
+
+
+  /**
+   * Dismiss the confirmation overlay on pressing escape
+   *
+   * @param event - The Keyboard Event
+   */
+  @HostListener('document:keydown.escape')
+  public onKeydownHandler(): void {
+    this.dismissOverlay();
   }
 
 
@@ -109,6 +167,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
       },
     );
 
+
     const overlayConfig: OverlayConfig = new OverlayConfig({
       positionStrategy,
       hasBackdrop: true,
@@ -119,9 +178,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Create the overlay
     this.overlayRef = this.overlay.create(overlayConfig);
 
-    // Wire up listeners for overlay clicks and ESC key
+    // Wire up listeners for overlay clicks
     this.overlayRef._keydownEvents.pipe(
-      filter((event) => event.keyCode === ESCAPE),
       merge(this.overlayRef.backdropClick()),
       untilComponentDestroyed(this),
     ).subscribe(() => {
@@ -132,6 +190,9 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Create and attach the modal
     const userProfilePortal = new ComponentPortal(TsConfirmationModalComponent);
     this.modalInstance = this.overlayRef.attach(userProfilePortal).instance;
+    this.modalInstance.confirmationButtonTxt = this.confirmationButtonText;
+    this.modalInstance.cancelButtonTxt = this.cancelButtonText;
+    this.modalInstance.explanationTxt = this.explanationText;
 
     // Start the progress indicator of the TsButton
     this.host.showProgress = true;
