@@ -10,9 +10,6 @@ import { TsValidatorsService } from '@terminus/ui';
 export class CSVEntryComponent {
   validators = [
     Validators.required,
-    /*
-     *null,
-     */
     this.validatorsService.url(),
   ];
   results: string | undefined;

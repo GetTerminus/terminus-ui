@@ -73,6 +73,7 @@ let nextUniqueId = 0;
  *              maxRows="1000"
  *              columnCount="6"
  *              rowCount="12"
+ *              fullWidth=false
  *              [columnValidators]="arrayOfValidators"
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
@@ -85,6 +86,7 @@ let nextUniqueId = 0;
   styleUrls: ['./csv-entry.component.scss'],
   host: {
     class: 'ts-csv-entry',
+    '[class.c-csv-entry--full-width]': 'fullWidth',
     '[attr.id]': 'id',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -206,6 +208,18 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return this._rowCount;
   }
   private _rowCount: number = this.defaultRowCount;
+
+  /**
+   * Allow full-width mode
+   */
+  @Input()
+  public set fullWidth(value: boolean) {
+    this._fullWidth = coerceBooleanProperty(value);
+  }
+  public get fullWidth(): boolean {
+    return this._fullWidth;
+  }
+  private _fullWidth = false;
 
   /**
    * Allow static headers to be set
