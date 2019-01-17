@@ -43,16 +43,6 @@ export class TsValidatorsServiceMock {
     });
   }
 
-  greaterThanOrEqual = () => {
-    return jest.fn().mockReturnValue(this.isValid ? null : {
-      greaterThanOrEqual: {
-        valid: false,
-        greaterThanOrEqual: 10,
-        actual: 5,
-      },
-    });
-  }
-
   inCollection = () => {
     return jest.fn().mockReturnValue(this.isValid ? null : {
       inCollection: {
@@ -78,16 +68,6 @@ export class TsValidatorsServiceMock {
       lessThan: {
         valid: false,
         lessThan: 10,
-        actual: 15,
-      },
-    });
-  }
-
-  lessThanOrEqual = () => {
-    return jest.fn().mockReturnValue(this.isValid ? null : {
-      lessThanOrEqual: {
-        valid: false,
-        lessThanOrEqual: 10,
         actual: 15,
       },
     });

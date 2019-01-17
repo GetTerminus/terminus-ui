@@ -156,20 +156,22 @@ for each feature.
 
 #### Available Validators
 
-| Name                 | Purpose                                                       | Status             |
-|----------------------|---------------------------------------------------------------|:------------------:|
-| `creditCard`         | A credit card number must be valid                            | :white_check_mark: |
-| `email`              | An email address must be valid                                | :white_check_mark: |
-| `equalToControl`     | A control's value must be equal to another control's value    | :white_check_mark: |
-| `greaterThan`        | A number must be greater than another value                   | :white_check_mark: |
-| `greaterThanOrEqual` | A number must be greater than or equal to another value       | :hankey:           |
-| `lessThan`           | A number must be less than another value                      | :white_check_mark: |
-| `lessThanOrEqual`    | A number must be less than or equal to another value          | :hankey:           |
-| `lowercase`          | A value must contain a minimum amount of lowercase characters | :white_check_mark: |
-| `minDate`            | A date must be after a minimum date                           | :white_check_mark: |
-| `maxDate`            | A date must be before a maximum date                          | :white_check_mark: |
-| `password`           | A password must meet certain requirements                     | :white_check_mark: |
-| `url`                | A URL must be valid                                           | :white_check_mark: |
+| Name             | Purpose                                                       | Status             |
+|------------------|---------------------------------------------------------------|:------------------:|
+| `creditCard`     | A credit card number must be valid                            | :white_check_mark: |
+| `email`          | An email address must be valid                                | :white_check_mark: |
+| `equalToControl` | A control's value must be equal to another control's value    | :white_check_mark: |
+| `greaterThan`    | A number must be greater than another value                   | :white_check_mark: |
+| `inCollection`   | The value must be found in a collection                       | :white_check_mark: |
+| `isInRange`      | A number must be within a certain range                       | :white_check_mark: |
+| `lessThan`       | A number must be less than another value                      | :white_check_mark: |
+| `lowercase`      | A value must contain a minimum amount of lowercase characters | :white_check_mark: |
+| `maxDate`        | A date must be before a maximum date                          | :white_check_mark: |
+| `minDate`        | A date must be after a minimum date                           | :white_check_mark: |
+| `numbers`        | A value must contain a minimum amount of numbers              | :white_check_mark: |
+| `password`       | A password must meet certain requirements                     | :white_check_mark: |
+| `uppercase`      | A value must contain a minimum amount of uppercase characters | :white_check_mark: |
+| `url`            | A URL must be valid                                           | :white_check_mark: |
 
 
 ### Constants

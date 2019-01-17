@@ -3,68 +3,38 @@ import { TsValidatorsService } from './validators.service';
 
 describe(`TsValidatorsService`, function() {
   let service: TsValidatorsService;
+  const validators = [
+    'creditCard',
+    'email',
+    'equalToControl',
+    'greaterThan',
+    'inCollection',
+    'isInRange',
+    'lessThan',
+    'lowercase',
+    'maxDate',
+    'minDate',
+    'numbers',
+    'password',
+    'uppercase',
+    'url',
+  ];
 
   beforeEach(() => {
     service = new TsValidatorsService();
   });
 
 
-  it(`should exist`, () => {
+  test(`should exist`, () => {
     expect(service).toBeTruthy();
   });
 
 
-  describe(`creditCard()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.creditCard).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`email()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.email).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`inCollection()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.inCollection).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`isInRange()`, () => {
-
-    test(`should exist`, () => {
-     expect(service.isInRange).toBeTruthy();
-   });
-
-  });
-
-
-  describe(`password()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.password).toBeTruthy();
-    });
-
-  });
-
-
-  describe(`url()`, () => {
-
-    test(`should exist`, () => {
-      expect(service.url).toBeTruthy();
-    });
-
+  test(`should have all validators exposed`, function() {
+    for (const validator of validators) {
+      expect(service[validator]).toBeTruthy();
+    }
+    expect.assertions(validators.length);
   });
 
 });
