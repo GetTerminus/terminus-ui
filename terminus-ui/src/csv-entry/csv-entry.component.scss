@@ -14,9 +14,16 @@
   font-size: $type__size--base;
   max-width: 100%;
 
-  // Top level styles belong here
-  .c-csv-entry {
-    //
+  &.c-csv-entry--full-width {
+    display: block;
+
+    .c-csv-entry__row {
+      display: block;
+    }
+
+    .c-csv-entry__input {
+      width: 100%;
+    }
   }
 }
 

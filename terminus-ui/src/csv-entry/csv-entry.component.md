@@ -11,6 +11,7 @@
   - [Max rows](#max-rows)
 - [Column validation](#column-validation)
 - [Static Column Headers](#static-column-headers)
+- [Full Width Table](#full-width-table)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -99,3 +100,12 @@ If there are certain headers that must be available, these can be set via an inp
 
 Setting static column headers will set the header cells to `readonly`. This will still allow keyboard navigation but will not allow the user
 to change the contents of the set header cells.
+
+## Full Width Table
+If the table should be one full-width column, set both in the input:
+
+```html
+<ts-csv-entry columnCount="1" fullWidth="true">
+</ts-csv-entry>
+```
+> NOTE: full width should only be with one column

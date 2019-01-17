@@ -48,6 +48,7 @@ function stringifyForm(content: TsCSVFormContents): string {
        [rowCount]="rowCount"
        [columnValidators]="columnValidators"
        [columnHeaders]="columnHeaders"
+       [fullWidth]="fullWidth"
        [outputFormat]="outputFormat"
        (blobGenerated)="gotFile($event)"
     ></ts-csv-entry>
@@ -60,6 +61,7 @@ class TestHostComponent {
   rowCount: number | undefined;
   columnValidators: undefined | (ValidatorFn | null)[];
   columnHeaders: undefined | string[];
+  fullWidth: boolean;
   outputFormat = 'csv';
   gotFile = jest.fn();
 
@@ -302,6 +304,16 @@ describe(`TsCSVEntryComponent`, () => {
       expect(component['clearAllRows']).not.toHaveBeenCalled();
     });
 
+
+    test(`should allow for fullWidth table`, () => {
+      expect(component['fullWidth']).toBeFalsy();
+      expect(document.querySelector('.c-csv-entry--full-width')).toBeNull();
+      component.fullWidth = true;
+      fixture.detectChanges();
+      expect(component['fullWidth']).toBeTruthy();
+      expect(document.querySelector('.c-csv-entry--full-width')).not.toBeNull();
+    });
+
   });
 
 
@@ -389,8 +401,6 @@ describe(`TsCSVEntryComponent`, () => {
     });
 
   });
-
-
 
 
   describe(`columnValidators`, () => {
