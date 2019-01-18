@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { groupBy } from '@terminus/ngx-tools';
+import { TsTooltipPositionTypes } from '../tooltip/tooltip.module';
 
 
 /**
@@ -126,6 +127,10 @@ export interface TsNavigationPayload {
  *              [items]="navigationItems$ | async"
  *              [user]="currentUser$ | async"
  *              welcomeMessage="Hi!"
+ *              welcomeMsgLength="25"
+ *              welcomeMsgTooltipPosition="bottom"
+ *              userNameLength="20"
+ *              userNameTooltipPosition="bottom"
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
@@ -218,10 +223,54 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public user!: TsUser;
 
   /**
+   * Define the user name length
+   */
+  @Input()
+  public userNameLength: number = 20;
+
+  /**
+   * Define the user name tooltip position
+   */
+  @Input()
+  public userNameTooltipPosition: TsTooltipPositionTypes = 'below';
+
+  /**
    * Define the welcome message
    */
   @Input()
-  public welcomeMessage: string = 'Welcome';
+  public welcomeMessage: string = 'Welcome,';
+
+  /**
+   * Define the welcome message length
+   */
+  @Input()
+  public welcomeMsgLength: number = 25;
+
+  /**
+   * Define the welcome message tooltip position
+   */
+  @Input()
+  public welcomeMsgTooltipPosition: TsTooltipPositionTypes = 'below';
+
+  /**
+   * Getter to return truncated user name
+   */
+  public get truncatedUserName(): string | undefined {
+    // istanbul ignore else
+    if (this.usersFullName && this.usersFullName.length > this.userNameLength) {
+      return this.usersFullName.slice(0, this.userNameLength) + '...';
+    }
+  }
+
+  /**
+   * Getter to return truncated welcome message
+   */
+  public get truncatedWelcomeMsg(): string | undefined {
+    // istanbul ignore else
+    if (this.welcomeMessage.length > this.welcomeMsgLength) {
+      return this.welcomeMessage.slice(0, this.welcomeMsgLength) + '...';
+    }
+  }
 
   /**
    * Element reference for visible list items

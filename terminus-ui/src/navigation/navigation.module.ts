@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { TsIconModule } from './../icon/icon.module';
 import { TsNavigationComponent } from './navigation.component';
+import { TsTooltipModule } from './../tooltip/tooltip.module';
 
 export * from './navigation.component';
 
@@ -19,6 +20,7 @@ export * from './navigation.component';
     MatMenuModule,
     RouterModule,
     TsIconModule,
+    TsTooltipModule,
   ],
   declarations: [
     TsNavigationComponent,
