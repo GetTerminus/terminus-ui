@@ -1944,17 +1944,19 @@ export class TsSelectComponent implements
       }
 
       // Add to the collection
-      this.autocompleteSelections.push(selection.option.value);
+      const newSelection = this.autocompleteSelections.slice();
+      newSelection.push(selection.option.value);
+      this.autocompleteSelections = newSelection;
 
       // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections);
+      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
     } else {
       // Update the selected value
       this.autocompleteSelections.length = 0;
       this.autocompleteSelections.push(selection.option.value);
 
       // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections);
+      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
       this.inputElement.nativeElement.value = this.autocompleteFormControl.value[0];
@@ -1982,17 +1984,18 @@ export class TsSelectComponent implements
   public autocompleteDeselectItem(value: string): void {
     // Find the key of the selection in the selectedOptions array
     const index = this.autocompleteSelections.indexOf(value);
-
+    const selections = this.autocompleteSelections.slice();
     // If not found
     if (index < 0) {
       return;
     }
 
     // Remove the selection from the selectedOptions array
-    this.autocompleteSelections.splice(index, 1);
+    selections.splice(index, 1);
+    this.autocompleteSelections = selections;
 
     // Update the form control
-    this.autocompleteFormControl.setValue(this.autocompleteSelections);
+    this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
     // If the only chip was removed, re-focus the input
     // istanbul ignore else
@@ -2011,7 +2014,7 @@ export class TsSelectComponent implements
 
     // Notify consumers about changes
     this.optionDeselected.emit(new TsSelectChange(this, value));
-    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections));
+    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections.slice()));
   }
 
 }
