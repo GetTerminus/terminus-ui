@@ -40,6 +40,14 @@ const USER_MOCK = {
   fullName: 'Max Rockatansky',
 };
 
+const USER_MOCK_23 = {
+  id: 2,
+  email: 'max@roadwarrior.com',
+  firstname: 'Maximillian',
+  lastname: 'Rockatansky',
+  fullName: 'Maximillian Rockatansky',
+};
+
 const visibleLinkElementMock = [
   {
     nativeElement: {
@@ -90,6 +98,42 @@ describe(`TsNavigationComponent`, () => {
       expect(component.usersFullName).toEqual(null);
     });
 
+    test(`should truncate if character count is greater than userNameLength`, () => {
+      component.user = USER_MOCK_23;
+
+      expect(component.usersFullName).toEqual(USER_MOCK_23.fullName);
+      expect(component.truncatedUserName).toEqual('Maximillian Rockatan...');
+    });
+
+
+    test(`should accept character count of userNameLength`, () => {
+      component.user = USER_MOCK;
+      component.userNameLength = 10;
+
+       expect(component.usersFullName).toEqual(USER_MOCK.fullName);
+      expect(component.truncatedUserName).toEqual('Max Rockat...');
+    });
+  });
+
+
+  describe(`welcome message`, () => {
+
+    test(`should exist`, () => {
+      expect(component.welcomeMessage).toEqual('Welcome');
+    });
+
+    test(`should truncate if character count is greater than welcomeMsgLength`, () => {
+      component.welcomeMessage = 'This message has 31 characters.';
+      expect(component.welcomeMessage).toEqual('This message has 31 characters.');
+      expect(component.truncatedWelcomeMsg).toEqual('This message has 31 chara...');
+    });
+
+    test(`should accept character count of welcomeMsgLength`, () => {
+      component.welcomeMessage = 'This message has 31 characters.';
+      component.welcomeMsgLength = 20;
+      expect(component.welcomeMessage).toEqual('This message has 31 characters.');
+      expect(component.truncatedWelcomeMsg).toEqual('This message has 31 ...');
+    });
   });
 
 

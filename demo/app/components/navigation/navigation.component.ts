@@ -74,7 +74,7 @@ export class NavigationComponent {
     fullName: 'Max Rockatansky',
   });
   public navigationItems$: Observable<any> = of(NAV_ITEMS_MOCK);
-  public myMessage = 'Hello dear';
+  public myMessage = 'Hello, this message is 37 characters.';
 
 
   /**
