@@ -73,8 +73,10 @@ let nextUniqueId = 0;
  *              maxRows="1000"
  *              columnCount="6"
  *              rowCount="12"
- *              fullWidth=false
+ *              fullWidth="false"
+ *              [columnHeaders]="arrayOfHeaders"
  *              [columnValidators]="arrayOfValidators"
+ *              outputFormat="csv"
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
  *

@@ -127,6 +127,8 @@ export interface TsNavigationPayload {
  *              [user]="currentUser$ | async"
  *              welcomeMessage="Hi!"
  *              (itemSelected)="myMethod($event)"
+ *              userNameLength="20"
+ *              welcomeMsgLength="25"
  * ></ts-navigation>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -218,10 +220,42 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   public user!: TsUser;
 
   /**
+   * Define the user name length
+   */
+  @Input()
+  public userNameLength: number = 20;
+
+  /**
    * Define the welcome message
    */
   @Input()
   public welcomeMessage: string = 'Welcome';
+
+  /**
+   * Define the welcome message length
+   */
+  @Input()
+  public welcomeMsgLength: number = 25;
+
+  /**
+   * Getter to return truncated user name
+   */
+  public get truncatedUserName(): string | undefined {
+    // istanbul ignore else
+    if (this.usersFullName && this.usersFullName.length > this.userNameLength) {
+      return this.usersFullName.slice(0, this.userNameLength) + '...';
+    }
+  }
+
+  /**
+   * Getter to return truncated welcome message
+   */
+  public get truncatedWelcomeMsg(): string | undefined {
+    // istanbul ignore else
+    if (this.welcomeMessage.length > this.welcomeMsgLength) {
+      return this.welcomeMessage.slice(0, this.welcomeMsgLength) + '...';
+    }
+  }
 
   /**
    * Element reference for visible list items
