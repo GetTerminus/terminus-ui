@@ -66,12 +66,27 @@
     fxFlex="none"
     tabindex="0"
   >
-    <span class="c-navigation__trigger-welcome">
+    <span class="c-navigation__trigger-welcome" *ngIf="welcomeMessage.length>welcomeMsgLength">
+      <ts-tooltip
+        [tooltipValue]="welcomeMessage"
+      >
+        {{ truncatedWelcomeMsg }}
+      </ts-tooltip>
+    </span>
+    <span class="c-navigation__trigger-welcome" *ngIf="welcomeMessage.length<=welcomeMsgLength">
       {{ welcomeMessage }}
-      <span *ngIf="usersFullName">,</span>
     </span>
     <br *ngIf="usersFullName">
-    {{ usersFullName }}
+    <span *ngIf="usersFullName && usersFullName.length>userNameLength">
+      <ts-tooltip
+        [tooltipValue]="usersFullName"
+      >
+        {{ truncatedUserName }}
+      </ts-tooltip>      
+    </span>
+    <span *ngIf="usersFullName && usersFullName.length<=userNameLength">
+        {{ usersFullName }}
+    </span>
 
     <ts-icon class="c-navigation__trigger-icon">
       keyboard_arrow_down

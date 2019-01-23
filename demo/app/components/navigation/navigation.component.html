@@ -18,6 +18,8 @@
     [items]="navigationItems$ | async"
     [user]="currentUser$ | async"
     [welcomeMessage]="myMessage"
+    welcomeMsgLength="30"
+    userNameLength="10"
     (action)="triggerAction($event)"
   ></ts-navigation>
 </div>
