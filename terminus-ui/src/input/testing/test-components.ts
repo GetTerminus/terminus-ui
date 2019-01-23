@@ -437,3 +437,13 @@ export class Textarea {
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
 }
+
+@Component({
+  template: `<div *ngIf="show"><ts-input></ts-input></div>`,
+})
+export class ToggleInputComponent {
+
+  @ViewChild(TsInputComponent)
+  inputComponent!: TsInputComponent;
+  public show: boolean = true;
+}

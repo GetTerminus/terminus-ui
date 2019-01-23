@@ -825,6 +825,31 @@ describe(`TsInputComponent`, () => {
       expect(component.selected.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
     });
 
+    describe(`updateInnerValue`, () => {
+      test(`should not call detectChange if component is destroyed when no toggling input`, () => {
+        const fixture = createComponent(TestComponents.SimpleFormControl);
+        const comp = fixture.componentInstance.inputComponent;
+        comp['changeDetectorRef'].detectChanges = jest.fn();
+        fixture.detectChanges();
+        fixture.destroy();
+        comp.updateInnerValue('abc');
+        expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
+      });
+
+      test(`should not call detectChange if component is destroyed with toggling`, () => {
+        const fixture = createComponent(TestComponents.ToggleInputComponent);
+        fixture.detectChanges();
+        const comp = fixture.componentInstance.inputComponent;
+        fixture.detectChanges();
+        comp['changeDetectorRef'].detectChanges = jest.fn();
+        fixture.detectChanges();
+        fixture.componentInstance.show = false;
+        fixture.detectChanges();
+        fixture.destroy();
+        expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
+      });
+    });
+
   });
 
 
