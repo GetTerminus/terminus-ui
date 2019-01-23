@@ -7,7 +7,7 @@ import {
 import { TsValidatorsService } from '@terminus/ui';
 
 
-const date1 = new Date();
+const date1 = new Date(2018, 10, 12);
 if (date1.getDate() > 25) {
   date1.setDate(date1.getDate() + 6);
 }
