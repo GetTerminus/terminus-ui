@@ -15,10 +15,9 @@ import {
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ESCAPE } from '@terminus/ngx-tools/keycodes';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
-import { filter, merge } from 'rxjs/operators';
+import { merge } from 'rxjs/operators';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
 import { TsButtonComponent } from './../button/button.component';
@@ -75,6 +74,14 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     this.createOverlay();
   }
 
+  /**
+   * Dismiss the confirmation overlay on pressing escape
+   */
+  @HostListener('document:keydown.escape')
+  public onKeydownHandler(): void {
+    this.dismissOverlay();
+  }
+
 
   /**
    * Set a flag in the {@link TsButtonComponent} to intercept the click
@@ -119,9 +126,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Create the overlay
     this.overlayRef = this.overlay.create(overlayConfig);
 
-    // Wire up listeners for overlay clicks and ESC key
+    // Wire up listeners for overlay clicks
     this.overlayRef._keydownEvents.pipe(
-      filter((event) => event.keyCode === ESCAPE),
       merge(this.overlayRef.backdropClick()),
       untilComponentDestroyed(this),
     ).subscribe(() => {
