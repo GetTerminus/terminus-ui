@@ -3,14 +3,12 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
-  AbstractControl,
 } from '@angular/forms';
-import {
-  TsValidatorsService,
-  TS_SPACING,
-} from '@terminus/ui';
+import { TsValidatorsService } from '@terminus/ui/validators';
+import { TS_SPACING } from '@terminus/ui/spacing';
 
 
 @Component({
@@ -63,10 +61,6 @@ export class ValidationComponent implements OnInit {
         this.validatorsService.maxDate(this.maxDate),
       ],
     ],
-    greaterThanOrEqual: [
-      null,
-      [this.validatorsService.greaterThanOrEqual(10.5)],
-    ],
     greaterThan: [
       null,
       [this.validatorsService.greaterThan(10)],
@@ -76,10 +70,6 @@ export class ValidationComponent implements OnInit {
       [
         this.validatorsService.isInRange(10, 100),
       ],
-    ],
-    lessThanOrEqual: [
-      null,
-      [this.validatorsService.lessThanOrEqual(10)],
     ],
     lessThan: [
       null,

@@ -6,7 +6,7 @@ import {
 import {
   TsNavigationItem,
   TsNavigationPayload,
-} from '@terminus/ui';
+} from '@terminus/ui/navigation';
 
 
 const NAV_ITEMS_MOCK: TsNavigationItem[] = [

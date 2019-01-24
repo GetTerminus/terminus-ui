@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
+import { TsButtonFormatTypes } from '@terminus/ui/button';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsSentenceCasePipe } from '@terminus/ui';
+import { TsSentenceCasePipe } from '@terminus/ui/pipes';
 
 
 @Component({

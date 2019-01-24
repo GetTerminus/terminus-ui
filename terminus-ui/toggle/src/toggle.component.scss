@@ -1,0 +1,13 @@
+@import './../../scss/helpers/reset';
+
+
+//
+// @component
+//  Toggle component
+// @description
+//  A toggle/switch component
+//
+.ts-toggle {
+  @include reset;
+  display: inline-block;
+}

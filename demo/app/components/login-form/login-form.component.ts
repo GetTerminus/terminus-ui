@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsLoginFormResponse } from '@terminus/ui';
+import { TsLoginFormResponse } from '@terminus/ui/login-form';
 
 
 @Component({

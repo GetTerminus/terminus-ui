@@ -1,22 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
-    "preserveWhitespaces": false,
-    "paths": {
-      "@terminus/ui": ["./../terminus-ui/src/public-api.ts"]
-    }
+    "preserveWhitespaces": false
   },
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "baseUrl": "",
-    "types": [],
-    "paths": {
-      "@angular/*": [
-        "./../node_modules/@angular/*"
-      ],
-      "@terminus/ui": ["./../terminus-ui/src/public-api.ts"]
-    }
+    "types": []
   },
   "exclude": [
     "test.ts",

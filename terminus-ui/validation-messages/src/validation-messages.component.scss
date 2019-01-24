@@ -1,0 +1,49 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/triangle';
+@import './../../scss/helpers/typography';
+
+//
+// @component
+//  Input Message
+// @description
+//  A component to display validation messages for form inputs.
+//
+.ts-validation-messages {
+  @include reset;
+
+  // Top level styles should be nested here
+  .c-validation-message {
+    @include typography('caption');
+    color: color(warn);
+    z-index: z('tooltip');
+  }
+}
+
+// Styles when inside a radio group component
+.ts-validation-messages {
+  .c-radio & {
+    display: inline-block;
+  }
+}
+
+// Styles when inside a file upload component
+.ts-validation-messages {
+  .ts-file-upload & {
+    .c-validation-message {
+      padding: .3em .4em .2em;
+    }
+  }
+}
+
+// Adjust the vertical layout when inside a radio button component
+.ts-validation-messages {
+  .c-select & {
+    .c-validation-message {
+      margin-top: .6em;
+      padding: .3em .4em .2em 0;
+      position: absolute;
+      top: 90%;
+    }
+  }
+}

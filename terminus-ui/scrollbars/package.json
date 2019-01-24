@@ -1,0 +1,11 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion"
+      }
+    }
+  }
+}

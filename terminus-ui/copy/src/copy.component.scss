@@ -1,0 +1,95 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/typography';
+
+
+$margin__vertical: .2em;
+$margin__horizontal: $margin__vertical * 2;
+$radius: 3px;
+
+//
+// @component
+//  Copy component allows for a string of text to be quickly copied to the clipboard
+// @description
+//
+.ts-copy {
+  @include reset;
+  display: block;
+  max-width: 100%;
+
+  // Top level styles should be nested here
+  .c-copy {
+    @include typography;
+    background-color: color(utility, xlight);
+    border: 1px solid color(utility, light);
+    border-radius: $radius;
+    color: color(utility, dark);
+    padding: $margin__vertical $margin__horizontal;
+    transition: border-color 200ms ease-in-out 50ms;
+    will-change: border-color;
+
+    // Adding tabindex to the element allows focus, but we don't need the visual indicator
+    &:focus {
+      border: 1px solid color(utility);
+      outline: 0;
+      transition-delay: 0;
+    }
+  }
+
+  //
+  // Theme support
+  //
+  &[theme='primary'] {
+    // These are the default styles
+  }
+
+  &[theme='accent'] {
+    .c-copy__icon {
+      background-color: color(accent);
+    }
+  }
+
+  &[theme='warn'] {
+    .c-copy__icon {
+      background-color: color(warn);
+    }
+  }
+}
+
+.c-copy {
+  // <div> Container for text content
+  .c-copy__content {
+    // Match the line height of the copy icon
+    line-height: 24px;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  // <div> The container for the icon
+  .c-copy__icon {
+    @include cursor(pointer);
+    background-color: color(primary);
+    border-radius: 0 $radius $radius 0;
+    color: color(pure);
+    margin:
+      calc(-#{$margin__vertical} - 1px)
+      calc(-#{$margin__horizontal} - 1px)
+      calc(-#{$margin__vertical} - 1px)
+      0;
+    padding: .25em .2em .2em .5em;
+    // Set up for mat-ripple
+    position: relative;
+    transition: background-color 200ms ease-in;
+    // Double the width of the 24px icon
+    width: 38px;
+    will-change: background-color;
+  }
+
+  .mat-icon {
+    // Set up for zindex
+    position: relative;
+    vertical-align: bottom;
+    z-index: 1;
+  }
+}
