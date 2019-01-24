@@ -23,7 +23,7 @@
 
   // Top level styles should be nested here
   .c-navigation {
-    @include typography;
+    @include typography(body, 2);
     background-color: color(primary);
     color: color(pure);
   }
