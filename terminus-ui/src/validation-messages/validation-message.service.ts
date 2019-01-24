@@ -88,12 +88,12 @@ export class TsValidationMessageService {
 
     if (validatorName === 'maxDate') {
       const message = `Date must be before`;
-      config.maxDate = `${message} ${format(validatorValue.maxDate, 'M/D/YYYY')}`;
+      config.maxDate = `${message} ${format(validatorValue.maxDate, 'M/d/YYYY')}`;
     }
 
     if (validatorName === 'minDate') {
       const message = `Date must be after`;
-      config.minDate = `${message} ${format(validatorValue.minDate, 'M/D/YYYY')}`;
+      config.minDate = `${message} ${format(validatorValue.minDate, 'M/d/YYYY')}`;
     }
 
     if (validatorName === 'imageDimensions') {
