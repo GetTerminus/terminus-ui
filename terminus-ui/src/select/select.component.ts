@@ -954,6 +954,9 @@ export class TsSelectComponent implements
         this.autocompleteFormControl.setValue(this.ngControl.value);
         this.autocompleteSelections = this.ngControl.value;
       }
+      if (this.ngControl.valueChanges) {
+        this.ngControl.valueChanges.subscribe((newValue) => this.setSelectionByValue(newValue));
+      }
     } else {
       // HACK: Wait until the next detection cycle to set the value from an ngModel.
       // NOTE: Using CDR.detectChanges causes errors in children that expect TsSelectOptionComponents to exist.
