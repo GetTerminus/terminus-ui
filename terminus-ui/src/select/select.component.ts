@@ -955,7 +955,9 @@ export class TsSelectComponent implements
         this.autocompleteSelections = this.ngControl.value;
       }
       if (this.ngControl.valueChanges) {
-        this.ngControl.valueChanges.subscribe((newValue) => this.setSelectionByValue(newValue));
+        this.ngControl.valueChanges
+          .pipe(untilComponentDestroyed(this))
+          .subscribe((newValue) => this.setSelectionByValue(newValue));
       }
     } else {
       // HACK: Wait until the next detection cycle to set the value from an ngModel.
