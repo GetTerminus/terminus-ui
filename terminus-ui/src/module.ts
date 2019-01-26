@@ -33,6 +33,7 @@ import { TsTableModule } from './table/table.module';
 import { TsToggleModule } from './toggle/toggle.module';
 import { TsTooltipModule } from './tooltip/tooltip.module';
 import { TsValidationMessagesModule } from './validation-messages/validation-messages.module';
+import { TsTabsModule } from './tabs/tabs.module';
 // INJECT: UI component to UI module
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -72,6 +73,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsToggleModule,
     TsTooltipModule,
     TsValidationMessagesModule,
+    TsTabsModule,
     // INJECT: Add UI component module to imports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -113,6 +115,7 @@ import { TsReactiveFormBaseComponent } from './utilities/reactive-form-base.comp
     TsToggleModule,
     TsTooltipModule,
     TsValidationMessagesModule,
+    TsTabsModule,
     // INJECT: Add UI component to module exports
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],

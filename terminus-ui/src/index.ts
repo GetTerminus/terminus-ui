@@ -31,6 +31,7 @@ export * from './table/table.module';
 export * from './toggle/toggle.module';
 export * from './tooltip/tooltip.module';
 export * from './validation-messages/validation-messages.module';
+export * from './tabs/tabs.module';
 // INJECT: Export the UI component from the module index
 // NB! The above line is required for our yeoman generator and should not be changed.
 

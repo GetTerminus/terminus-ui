@@ -117,6 +117,8 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { ValidationComponent } from './components/validation/validation.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TsTabsModule } from '../../terminus-ui/src/tabs/tabs.module';
 // INJECT: Import demo component file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -166,6 +168,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsTableModule,
     TsToggleModule,
     TsTooltipModule,
+    TsTabsModule,
     // INJECT: Add new UI component to demo module imports array
     // NB! The above line is required for our yeoman generator and should not be changed.
   ],
@@ -181,7 +184,7 @@ import { ValidationComponent } from './components/validation/validation.componen
   declarations: [
     AppComponent,
     ComponentsComponent,
-
+    TabsComponent,
     AutocompleteComponent,
     AutofocusComponent,
     BreakpointsComponent,
