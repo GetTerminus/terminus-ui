@@ -46,6 +46,7 @@ module.exports = {
     {name: 'Sort'},
     {name: 'Spacing'},
     {name: 'Table'},
+    {name: 'Tabs'},
     {name: 'Toggle'},
     {name: 'Tooltip'},
     {name: 'Utilities'},

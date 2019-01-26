@@ -33,6 +33,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypographyComponent } from './typography/typography.component';
 import { ValidationComponent } from './validation/validation.component';
+import { TabsComponent } from './tabs/tabs.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -239,6 +240,13 @@ export const componentsList: Routes = [
     component: TableComponent,
     data: {
       name: 'Table',
+    },
+  },
+  {
+    path: 'tabs',
+    component: TabsComponent,
+    data: {
+      name: 'Tabs',
     },
   },
   {

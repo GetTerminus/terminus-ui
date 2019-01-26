@@ -1,0 +1,132 @@
+<ts-tabset>
+  <div class="tabs__header">
+    <a tsTabHeader="1">Tab 1</a> <a tsTabHeader="2">Tab 2</a>
+  </div>
+  <div tsTabContent="1">First tab!</div>
+  <div tsTabContent="2">Second tab!</div>
+</ts-tabset>
+
+<br /><br />
+
+<ts-tabset>
+  <div class="tabs__header">
+    <a tsTabHeader="1" [(isActive)]="first">Tab 1</a>
+    <a tsTabHeader="2" [(isActive)]="second">Tab 2</a>
+    <a tsTabHeader="3" [(isActive)]="third">Tab 2</a>
+  </div>
+  <div tsTabContent="1">
+    <ts-button theme="primary" tsVerticalSpacing (click)="second = true"
+      >Second</ts-button
+    >
+  </div>
+  <div tsTabContent="2">
+    <ts-button theme="primary" tsVerticalSpacing (click)="third = true"
+      >Third</ts-button
+    >
+  </div>
+  <div tsTabContent="3">
+    <ts-button theme="primary" tsVerticalSpacing (click)="first = true"
+      >First</ts-button
+    >
+  </div>
+</ts-tabset>
+
+<br /><br />
+
+<ts-tabset>
+  <div class="tabs__header">
+    <a tsTabHeader="first">First</a>
+    <a *ngFor="let tab of tabs; let i = index" [tsTabHeader]="i"
+      >New {{ i + 1 }}</a
+    >
+  </div>
+  <div tsTabContent="first">First</div>
+  <div *ngFor="let tab of tabs; let i = index" [tsTabContent]="i">
+    {{ i + 1 }} New
+  </div>
+</ts-tabset>
+<div class="tab__btn-grp" style="display: flex">
+  <div class="tab__btn">
+    <ts-button theme="primary" tsVerticalSpacing (click)="tabs.push(1)"
+      >Add</ts-button
+    >
+  </div>
+  <div class="tab__btn">
+    <ts-button theme="primary" tsVerticalSpacing (click)="tabs.pop()"
+      >Remove</ts-button
+    >
+  </div>
+</div>
+
+<div>
+  <h3>API</h3>
+  <hr />
+  <h3>&lt;ts-tabset&gt;</h3>
+  <div class="api-desc__wrapper"><div>No Properties</div></div>
+  <br />
+  <h3>[tsTabHeader]</h3>
+  <div class="api-desc__wrapper">
+    <div>
+      <p><strong>Properties</strong></p>
+      <div>
+        <div class='api-desc__prop'>
+          <code>tsTabHeader</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">string</div> <div class="api-desc__prop-label api-desc__prop-label-red">required</div>
+        </div>
+        <div class="api-desc__desc">
+          <div>Specifies the ID so the content can be linked to a [tsTabContent].
+            This must be unique.</div>
+        </div>
+      </div>
+      <div>
+        <div class='api-desc__prop'><code>isActive</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">boolean</div><div class="api-desc__prop-label api-desc__prop-label-green">false</div></div>
+        <div class="api-desc__desc">
+          <div>Sets whether the tab is active. Supports being set to false at
+            which time the closest available tab is activated.</div>
+        </div>
+      </div>
+      <div>
+        <div class='api-desc__prop'><code>isDisabled</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">boolean</div><div class="api-desc__prop-label api-desc__prop-label-green">false</div></div>
+        <div class="api-desc__desc">
+          <div>Sets whether not the tab is disabled. If the tab is active when it
+            is disabled, the closest available tab is activated.</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <p><strong>Events</strong></p>
+      <div>
+        <div class='api-desc__prop'><code>isActiveChange</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">boolean</div></div>
+        <div class="api-desc__desc">
+          <div>Fires when the tab's active status is changed. Using the
+            [(isActive)] syntax is recommended so that the value is updated when
+            the active tab changes.</div>
+        </div>
+      </div>
+      <div>
+        <div class='api-desc__prop'><code>activate</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">void</div></div>
+        <div class="api-desc__desc"><div>Fires when the tab activates.</div></div>
+      </div>
+      <div>
+        <div class='api-desc__prop'><code>deactivate</code>&nbsp;<div class="api-desc__prop-label api-desc__prop-label-grey">void</div></div>
+        <div class="api-desc__desc"><div>Fires when the tab deactivates.</div></div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h3>[tsTabHeader]</h3>
+  <div class="api-desc__wrapper">
+    <div>
+      <p><strong>Properties</strong></p>
+      <div>
+        <div class='api-desc__prop'>
+          <code>tsTabHeader</code>&nbsp; <div class="api-desc__prop-label api-desc__prop-label-grey">string</div> <div class="api-desc__prop-label api-desc__prop-label-red">required</div>
+        </div>
+        <div class="api-desc__desc">
+          <div>Specifies the ID so the content can be linked to a [tsTabContent].
+            This must be unique.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
