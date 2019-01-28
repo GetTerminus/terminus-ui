@@ -5,7 +5,8 @@ import {
   FormControl,
   FormArray,
 } from '@angular/forms';
-import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
+import { TsButtonFormatTypes } from '@terminus/ui/button';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 @Component({

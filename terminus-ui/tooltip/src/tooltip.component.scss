@@ -1,0 +1,20 @@
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/reset';
+
+
+//
+// @component
+//  Tooltip
+// @description
+//  A tooltip component
+//
+.ts-tooltip {
+  @include reset;
+  display: inline-block;
+}
+
+.c-tooltip--underline {
+  border-bottom: .1em dotted;
+  border-color: inherit;
+  cursor: cursor(help);
+}

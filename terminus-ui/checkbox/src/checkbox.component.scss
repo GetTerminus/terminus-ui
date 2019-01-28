@@ -1,0 +1,70 @@
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+$ts-select-item-height: 3em !default;
+
+
+//
+// @component
+//  Checkbox
+// @description
+//  A simple checkbox component
+//
+.ts-checkbox {
+  @include reset;
+  @include typography;
+  display: block;
+
+  // Overwrite typography when used for an optgroup
+  .ts-optgroup .ts-optgroup-label & {
+    @include typography(body, 2);
+    color: color(utility);
+    line-height: $ts-select-item-height;
+  }
+
+  // Top level styles should be nested here
+  .c-checkbox {
+    display: block;
+  }
+
+
+  // Target checkboxes inside a select menu dropdown panel
+  .ts-select-panel & {
+    // Match the material button line-height and spacing
+    .c-checkbox {
+      line-height: 3em;
+      padding: 0 spacing();
+    }
+
+    // Support text truncation
+    .mat-checkbox-layout {
+      max-width: 100%;
+    }
+
+    // Support text truncation
+    .mat-checkbox-label {
+      @include truncate-overflow;
+      display: block;
+      // 100% - checkbox - checkboxMargin
+      max-width: calc(100% - 28px);
+    }
+
+    // Support text truncation
+    .ts-option-text {
+      @include truncate-overflow;
+      display: block;
+    }
+  }
+
+  // Target checkboxes inside a material menu dropdown panel
+  .mat-menu-panel & {
+    // Match the material button line-height and spacing
+    .c-checkbox {
+      line-height: 2em;
+      padding: 0 spacing();
+    }
+  }
+}

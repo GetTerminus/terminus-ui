@@ -1,0 +1,13 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
+        "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
+        "date-fns": "dateFns"
+      }
+    }
+  }
+}

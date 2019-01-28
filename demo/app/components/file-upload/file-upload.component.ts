@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TsFileImageDimensionConstraints, TsSelectChange } from '@terminus/ui';
+import { TsSelectChange } from '@terminus/ui/select';
+import { TsFileImageDimensionConstraints } from '@terminus/ui/file-upload';
 
 const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
   {

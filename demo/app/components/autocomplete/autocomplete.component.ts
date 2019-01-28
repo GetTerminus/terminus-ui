@@ -17,7 +17,7 @@ import { map, delay, switchMap, startWith } from 'rxjs/operators';
 import {
   TsAutocompleteComponent,
   TsAutocompleteComparatorFn,
-} from '@terminus/ui';
+} from '@terminus/ui/autocomplete';
 
 
 interface GitHubUser {

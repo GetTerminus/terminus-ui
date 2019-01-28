@@ -15,7 +15,7 @@
   "scripts": {
     "//=> Section: Demo App": "==============================",
     "ng": "ng",
-    "start:app": "ng serve",
+    "start:app": "yarn run link && ng serve",
     "start:app:aot": "ng serve --aot",
     "build:app": "cpr dist/terminus-ui demo/@terminus/ui --overwrite && ng build --app packages --prod && rimraf demo/@terminus",
     "build:app:ci": "ng build --prod --aot --build-optimizer --progress false",
@@ -25,6 +25,8 @@
     "lint:app:ts": "ng lint --fix",
     "lint:app:scss": "npx stylelint 'demo/**/*.scss' --fix",
     "e2e:app": "ng e2e",
+    "link": "cd dist/terminus-ui && yarn link && cd ../../ && yarn link @terminus/ui",
+    "unlink": "yarn unlink @terminus/ui && cd dist/terminus-ui && yarn unlink",
     "//=> Section: Library:Build": "==============================",
     "build": "yarn run build:ts && yarn run build:styles && yarn run build:files",
     "build:ts": "rimraf dist && ng-packagr -p terminus-ui/package.json",

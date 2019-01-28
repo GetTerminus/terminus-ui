@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import { TsSlideToggleChange } from '@terminus/ui';
+import { TsSlideToggleChange } from '@terminus/ui/toggle';
 
 
 @Component({

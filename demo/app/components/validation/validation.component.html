@@ -121,37 +121,6 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than</h3>
-
-        <ts-input
-          [formControl]="myForm.get('greaterThan')"
-          label="Number"
-          type="number"
-          hint="Must be greater than 10"
-        ></ts-input>
-      </ts-card>
-    </div>
-
-    <div fxFlex>
-      <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than Or Equal</h3>
-
-        <ts-input
-          [formControl]="myForm.get('greaterThanOrEqual')"
-          label="Number"
-          type="number"
-          hint="Must be greater than or equal to 10"
-        ></ts-input>
-      </ts-card>
-    </div>
-
-  </div>
-
-
-  <div fxLayout="row" [fxLayoutGap]="flexGap">
-
-    <div fxFlex>
-      <ts-card tsVerticalSpacing>
         <h3 tsCardTitle tsVerticalSpacing="small--0">Less Than</h3>
 
         <ts-input
@@ -165,25 +134,26 @@ test@test.com
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
-        <h3 tsCardTitle tsVerticalSpacing="small--0">Less Than Or Equal</h3>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than</h3>
 
         <ts-input
-          [formControl]="myForm.get('lessThanOrEqual')"
+          [formControl]="myForm.get('greaterThan')"
           label="Number"
           type="number"
-          hint="Must be less than or equal to 10"
+          hint="Must be greater than 10"
         ></ts-input>
       </ts-card>
     </div>
 
   </div>
 
+
   <div fxLayout="row" [fxLayoutGap]="flexGap">
 
     <div fxFlex>
       <ts-card tsVerticalSpacing>
         <h3 tsCardTitle tsVerticalSpacing="small--0">isInRange (min/max)</h3>
-    
+
         <ts-input
           label="Is In Range"
           type="number"

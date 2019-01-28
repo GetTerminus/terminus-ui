@@ -1,0 +1,122 @@
+@import './../../scss/helpers/animation';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+//
+// @component
+//  Link
+// @description
+//  Basic link styles.
+//
+//  NOTE: Typography/color/size should be inherited from the context.
+//
+.ts-link {
+  @include reset;
+  display: inline-block;
+
+  // Top level styles should be nested here
+  .c-link {
+    color: inherit;
+    display: inline-block;
+    text-decoration: underline;
+    transition: color 200ms ease;
+    will-change: color;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  // Primary theme
+  &[theme='primary'],
+  // @deprecated 'color'
+  &[color='primary'] {
+    color: color('primary');
+
+    .c-link {
+      &:focus,
+      &:hover {
+        color: color('primary', light);
+      }
+
+      &:visited {
+        color: color('primary', dark);
+      }
+    }
+  }
+
+  // Accent theme
+  &[theme='accent'],
+  // @deprecated 'color'
+  &[color='accent'] {
+    color: color('accent');
+
+    .c-link {
+      &:focus,
+      &:hover {
+        color: color('accent', light);
+      }
+
+      &:visited {
+        color: color('accent', dark);
+      }
+    }
+  }
+
+  // Warn theme
+  &[theme='warn'],
+  // @deprecated 'color'
+  &[color='warn'] {
+    color: color('warn');
+
+    .c-link {
+      &:focus,
+      &:hover {
+        color: color('warn', light);
+      }
+
+      &:visited {
+        color: color('warn', dark);
+      }
+    }
+  }
+}
+
+
+.c-link {
+  // Force the icon to assume the size of it's context
+  .mat-icon {
+    &.material-icons {
+      font-size: 1.2em;
+      height: auto;
+      line-height: 1em;
+      vertical-align: middle;
+      width: auto;
+    }
+  }
+
+  // Target links inside a TsMenuComponent
+  .c-menu & {
+    margin: spacing(small, 1) 0;
+  }
+
+  // Target links inside a TsMenuComponent
+  .mat-menu-content & {
+    color: color(pure, dark);
+    display: block;
+    font-weight: 300;
+    padding: spacing(small, 1) spacing();
+    text-decoration: none;
+    transition: background 400ms $g-material-background-easing;
+    will-change: background-color;
+
+    &:focus,
+    &:hover {
+      background-color: color(utility, xlight);
+      color: color(primary);
+    }
+  }
+}
