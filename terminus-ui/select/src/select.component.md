@@ -36,6 +36,7 @@
   - [Minimum Characters](#minimum-characters)
   - [Progress Indicator](#progress-indicator)
 - [Events](#events)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -520,3 +521,27 @@ class TsSelectChange {
 }
 
 ```
+
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/select/testing`;
+
+| Function                  |
+|---------------------------|
+| `getSelectInstance`       |
+| `getSelectElement`        |
+| `getSelectTriggerElement` |
+| `getToggleAllElement`     |
+| `getPanelElement`         |
+| `getAllOptionInstances`   |
+| `getOptionInstance`       |
+| `getOptionElement`        |
+| `getAllOptgroups`         |
+| `getOptgroup`             |
+| `getOptgroupElement`      |
+| `getAutocompleteInput`    |
+| `getAllChipInstances`     |
+| `getChipInstance`         |
+| `getChipElement`          |
+| `getFilterInputElement`   |
