@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@angular/cdk": "^7.2.0",
-    "@angular/material": "^7.2.0",
     "ngx-perfect-scrollbar": "^7.2.0",
     "text-mask-addons": "^3.8.0",
     "text-mask-core": "^5.1.2"
@@ -56,6 +55,7 @@
     "@angular/core": "^7.2.0",
     "@angular/flex-layout": "7.0.0-beta.22",
     "@angular/forms": "^7.2.0",
+    "@angular/material": "^7.2.0",
     "@angular/platform-browser": "^7.2.0",
     "@angular/router": "^7.2.0",
     "@terminus/ngx-tools": "^5.0.0",
@@ -72,7 +72,6 @@
     "lib": {
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
-        "@angular/material": "ng.material",
         "@angular/cdk": "ng.cdk",
         "@terminus/ngx-tools": "terminus.ngxTools",
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
@@ -87,7 +86,6 @@
       "comments": "none"
     },
     "whitelistedNonPeerDependencies": [
-      "@angular/material",
       "@angular/cdk",
       "ngx-perfect-scrollbar",
       "text-mask-addons",
