@@ -31,6 +31,7 @@
 - [Example with dynamic validation](#example-with-dynamic-validation)
 - [Textarea](#textarea)
   - [Rows](#rows)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -529,6 +530,17 @@ The row count can be dynamically adjusted:
 ></ts-input>
 ```
 
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/input/testing`;
+
+
+| Function            |
+|---------------------|
+| `getInputComponent` |
+| `getInputElement`   |
+| `sendInput`         |
 
 
 

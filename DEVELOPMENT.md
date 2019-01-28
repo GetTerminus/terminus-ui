@@ -29,6 +29,9 @@
 # Build the library
 $ yarn run build
 
+# Build and watch library files for changes
+$ yarn run build:ts:watch
+
 # Run TypeScript and SCSS linters
 $ yarn run lint
 

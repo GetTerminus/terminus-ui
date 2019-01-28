@@ -78,8 +78,7 @@ export class MyComponent {
 
 ## Mocking
 
-A mocked version of the service is available for testing as `TsValidatorsServiceMock`.
+A mocked version of the service is available for testing as `TsValidatorsServiceMock` from `@terminus/ui/validators/testing`.
 
 The mocks consist of Jest mock functions. Based on the class value `isValid` the validator mock will
 return an error message or `null`.
-
