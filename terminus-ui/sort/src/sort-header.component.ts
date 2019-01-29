@@ -12,7 +12,10 @@ import {
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  untilComponentDestroyed,
+} from '@terminus/ngx-tools';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { merge } from 'rxjs';
 
@@ -90,8 +93,13 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    * Overrides the disable clear value of the containing TsSort for this TsSortable
    */
   @Input()
-  public set disableClear(v: boolean) {
-    this._disableClear = coerceBooleanProperty(v);
+  public set disableClear(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSortHeaderComponent: "disableClear" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._disableClear = coerceBooleanProperty(value);
   }
   public get disableClear(): boolean {
     return this._disableClear;

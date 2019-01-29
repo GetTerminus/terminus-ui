@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   Input,
+  isDevMode,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -12,8 +13,8 @@ import {
 import { MatMenuTrigger } from '@angular/material/menu';
 import { TsButtonFormatTypes } from '@terminus/ui/button';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -52,8 +53,8 @@ export type TsMenuTriggerTypes
  *
  * @example
  * <ts-menu
- *              defaultOpened="false"
- *              isDisabled="false"
+ *              [defaultOpened]="false"
+ *              [isDisabled]="false"
  *              [menuItemsTemplate]="myTemplate"
  *              menuPositionX="20px"
  *              menuPositionY="20px"
@@ -114,6 +115,11 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    */
   @Input()
   public set defaultOpened(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsMenuComponent: "defaultOpened" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._defaultOpened = coerceBooleanProperty(value);
   }
   public get defaultOpened(): boolean {
@@ -126,6 +132,11 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsMenuComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {

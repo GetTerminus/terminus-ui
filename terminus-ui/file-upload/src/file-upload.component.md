@@ -82,7 +82,7 @@ The default types can be found by importing `TS_ACCEPTED_MIME_TYPES`;
 Set a maximum size for files in kilobytes:
 
 ```html
-<ts-file-upload maximumKilobytesPerFile="{{ 6 * 1024 }}">
+<ts-file-upload [maximumKilobytesPerFile]="{{ 6 * 1024 }}">
 </ts-file-upload>
 ```
 
@@ -180,7 +180,7 @@ If an image is selected that does not meet the dimension constraints, a validati
 Image ratio validation is controlled by an array of constraints passed to the component.
 
 ```html
-<ts-file-upload ratioConstraints='["1:2", "3:4"]'>
+<ts-file-upload [ratioConstraints]='["1:2", "3:4"]'>
 </ts-file-upload>
 ```
 
@@ -237,7 +237,7 @@ The progress of an upload can be reflected in the UI by passing a number between
 Set `multiple` to `true`:
 
 ```html
-<ts-file-upload multiple="true">
+<ts-file-upload [multiple]="true">
 </ts-file-upload>
 ```
 

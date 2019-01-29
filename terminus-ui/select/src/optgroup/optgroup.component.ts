@@ -6,6 +6,7 @@ import {
   ElementRef,
   Inject,
   Input,
+  isDevMode,
   Optional,
   QueryList,
   ViewChild,
@@ -13,6 +14,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
+import { isBoolean } from '@terminus/ngx-tools';
 
 import {
   TS_OPTGROUP_PARENT_COMPONENT,
@@ -41,7 +43,7 @@ let nextUniqueId = 0;
  * @example
  * <ts-select-optgroup
  *              id="my-id"
- *              isDisabled="true"
+ *              [isDisabled]="true"
  *              label="My optgroup"
  * ></ts-select-optgroup>
  *
@@ -127,6 +129,11 @@ export class TsSelectOptgroupComponent {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectOptgroupComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {

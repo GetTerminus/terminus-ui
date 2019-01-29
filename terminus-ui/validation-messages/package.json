@@ -4,6 +4,7 @@
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
         "date-fns": "dateFns",
+        "@terminus/ngx-tools": "terminus.ngxTools",
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion"
       }
     }

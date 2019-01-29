@@ -84,7 +84,7 @@ To allow multiple selections, pass in a comparator function. This function shoul
 ```html
 <ts-autocomplete
   [options]="users$ | async"
-  multiple="(v) = v.id"
+  [multiple]="(v) = v.id"
 ></ts-autocomplete>
 ```
 
@@ -99,8 +99,8 @@ To seed initial values, pass the array of selections to `initialSelections`:
 ```html
 <ts-autocomplete
   [options]="users$ | async"
-  initialSelections="[{}, {}..]"
-  multiple="(v) = v.id"
+  [initialSelections]="[{}, {}..]"
+  [multiple]="(v) = v.id"
 ></ts-autocomplete>
 ```
 
@@ -129,7 +129,7 @@ string`;
 ```html
 <!-- Display the user's login name within the selection chip -->
 <ts-autocomplete
-  displayWith="(v) => v.login"
+  [displayWith]="(v) => v.login"
 ></ts-autocomplete>
 ```
 
@@ -216,8 +216,7 @@ By default, two characters must be entered before a query is emitted. This value
 
 ```html
 <ts-autocomplete
-  minimumCharacters="3"
+  [minimumCharacters]="3"
   ...
 ></ts-autocomplete>
 ```
-

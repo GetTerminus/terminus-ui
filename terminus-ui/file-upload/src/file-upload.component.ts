@@ -22,6 +22,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import {
+  isBoolean,
   isNumber,
   TsDocumentService,
   untilComponentDestroyed,
@@ -87,7 +88,7 @@ let nextUniqueId = 0;
  *              id="my-id"
  *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
  *              ratioConstraints="['2:1', '3:4']"
- *              multiple="false"
+ *              [multiple]="false"
  *              [formControl]="myForm.get('myControl')"
  *              [progress]="myUploadProgress"
  *              [seedFile]="myFile"
@@ -266,6 +267,11 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set hideButton(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsFileUploadComponent: "hideButton" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._hideButton = coerceBooleanProperty(value);
   }
   public get hideButton(): boolean {
@@ -328,6 +334,11 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set multiple(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsFileUploadComponent: "multiple" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._multiple = coerceBooleanProperty(value);
   }
   public get multiple(): boolean {

@@ -2,10 +2,12 @@ import {
   Component,
   ElementRef,
   Input,
+  isDevMode,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  isBoolean,
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools';
@@ -23,8 +25,8 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
  *
  * @example
  * <ts-copy
- *              disableInitialSelection="true"
- *              enableQuickCopy="true"
+ *              [disableInitialSelection]="true"
+ *              [enableQuickCopy]="true"
  *              theme="accent"
  * >My text to copy!</ts-copy>
  *
@@ -78,6 +80,11 @@ export class TsCopyComponent {
    */
   @Input()
   public set disableInitialSelection(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCopyComponent: "disableInitialSelection" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._disableInitialSelection = coerceBooleanProperty(value);
   }
   public get disableInitialSelection(): boolean {
@@ -90,6 +97,11 @@ export class TsCopyComponent {
    */
   @Input()
   public set enableQuickCopy(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCopyComponent: "enableQuickCopy" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._enableQuickCopy = coerceBooleanProperty(value);
   }
   public get enableQuickCopy(): boolean {

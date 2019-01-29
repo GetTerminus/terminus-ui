@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  isDevMode,
   ViewEncapsulation,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -58,6 +60,11 @@ export class TsLinkComponent {
    */
   @Input()
   public set isExternal(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsLinkComponent: "isExternal" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isExternal = coerceBooleanProperty(value);
   }
   public get isExternal(): boolean {

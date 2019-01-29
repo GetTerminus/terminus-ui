@@ -56,12 +56,16 @@ describe('TsRadioGroupComponent', function() {
     expect(component).toBeTruthy();
   });
 
+
   describe(`isDisabled`, () => {
+
     test(`should set and retrieve`, () => {
       component.isDisabled = true;
       expect(component.isDisabled).toEqual(true);
     });
+
   });
+
 
   describe(`formatUILabelFn`, () => {
 

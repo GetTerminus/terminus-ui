@@ -126,9 +126,9 @@ export interface TsNavigationPayload {
  *              [items]="navigationItems$ | async"
  *              [user]="currentUser$ | async"
  *              welcomeMessage="Hi!"
- *              (itemSelected)="myMethod($event)"
  *              userNameLength="20"
  *              welcomeMsgLength="25"
+ *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>

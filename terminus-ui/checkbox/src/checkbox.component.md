@@ -47,10 +47,9 @@ To use the checkbox with Angular's `ngModel`, just attach the directive to the c
 To seed the initial checked state use the `isChecked` property:
 
 ```html
-<ts-checkbox isChecked="true">
+<ts-checkbox [isChecked]="true">
   I will be checked by default!
 </ts-checkbox>
 ```
 
 > NOTE: This should rarely be used (if ever). We should be relying on a Reactive Form or ngModel.
-

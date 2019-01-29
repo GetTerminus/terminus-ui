@@ -4,6 +4,7 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  isDevMode,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -14,6 +15,7 @@ import {
   Position,
 } from 'ngx-perfect-scrollbar';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -54,7 +56,7 @@ let nextUniqueId = 0;
  * @example
  * <ts-scrollbars
  *              id="my-id"
- *              isDisabled="true"
+ *              [isDisabled]="true"
  *              (scrollDown)="myFunc($event)
  *              (scrollLeft)="myFunc($event)
  *              (scrollRight)="myFunc($event)
@@ -111,6 +113,11 @@ export class TsScrollbarsComponent {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsScrollbarsComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {

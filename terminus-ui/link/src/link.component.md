@@ -30,7 +30,7 @@ To signify a link will leave the current app or site, set `external` to true:
 ```html
 <ts-link
   [destination]="http://google.com"
-  external="true"
+  [external]="true"
 >My link</ts-link>
 ```
 
@@ -44,7 +44,6 @@ A custom tabindex can also be set:
 ```html
 <ts-link
   [destination]="http://google.com"
-  tabIndex="2"
+  [tabIndex]="2"
 >My link</ts-link>
 ```
-

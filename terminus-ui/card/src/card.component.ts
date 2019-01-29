@@ -5,9 +5,11 @@ import {
   Input,
   TemplateRef,
   ViewEncapsulation,
+  isDevMode,
 } from '@angular/core';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -51,11 +53,11 @@ let nextUniqueId = 0;
  * <ts-card
  *              aspectRatio="3:5"
  *              border="right"
- *              centeredContent="true"
- *              disabled="true"
- *              flat="true"
+ *              [centeredContent]="true"
+ *              [disabled]="true"
+ *              [flat]="true"
  *              id="my-id"
- *              supportsInteraction="true"
+ *              [supportsInteraction]="true"
  *              theme="primary"
  *              [utilityMenuTemplate]="myTemplate"
  * >Here is my card!</ts-card>
@@ -119,6 +121,11 @@ export class TsCardComponent {
    */
   @Input()
   public set centeredContent(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardComponent: "centeredContent" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._centeredContent = coerceBooleanProperty(value);
   }
   public get centeredContent(): boolean {
@@ -131,6 +138,15 @@ export class TsCardComponent {
    */
   @Input()
   public set disabled(value: boolean) {
+    /* istanbul ignore next */
+    console.warn(`TsCardComponent: The "disabled" input will be converted to "isDisabled" to better ` +
+    `align with other components in the next release.`);
+
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardComponent: "disabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._disabled = coerceBooleanProperty(value);
   }
   public get disabled(): boolean {
@@ -143,6 +159,11 @@ export class TsCardComponent {
    */
   @Input()
   public set flat(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardComponent: "flat" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._flat = coerceBooleanProperty(value);
   }
   public get flat(): boolean {
@@ -169,6 +190,11 @@ export class TsCardComponent {
    */
   @Input()
   public set supportsInteraction(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardComponent: "supportsInteraction" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._supportsInteraction = coerceBooleanProperty(value);
   }
   public get supportsInteraction(): boolean {

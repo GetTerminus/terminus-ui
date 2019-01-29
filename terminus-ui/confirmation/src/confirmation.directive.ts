@@ -28,7 +28,12 @@ import { TsConfirmationModalComponent } from './confirmation-modal.component';
  * A directive to inject a confirmation step into any button
  *
  * @example
- *         <tsButton tsConfirmation>
+ *         <tsButton
+ *           tsConfirmation
+ *           explanationText="Are you sure you want to delete this?"
+ *           confirmationButtonText="Confirm!"
+ *           cancelButtonText="Abort!"
+ *         >
  *           Click me!
  *         </ts-button>
  */

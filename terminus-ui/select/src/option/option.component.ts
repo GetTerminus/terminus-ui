@@ -26,6 +26,7 @@ import { ENTER, SPACE } from '@terminus/ngx-tools/keycodes';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { isBoolean } from '@terminus/ngx-tools';
 
 import { TsSelectOption } from './../select.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';
@@ -96,7 +97,7 @@ let nextUniqueId = 0;
  * @example
  * <ts-select-option
  *              id="my-id"
- *              isDisabled="true"
+ *              [isDisabled]="true"
  *              value="My value!"
  *              [option]="myOptionObject"
  *              (selectionChange)="selectedStateChanged($event)"
@@ -251,6 +252,11 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectOptionComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {

@@ -3,6 +3,7 @@
     "lib": {
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools",
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion"
       }
     }
