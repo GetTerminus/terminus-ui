@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: lfglore/circleci-node-awscli
+      - image: benjamincharity/terminus-ui-ci
 
     working_directory: ~/ci-build
 
