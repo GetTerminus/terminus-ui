@@ -191,6 +191,49 @@ class ArrayDataSourceTableApp {
 
 }
 
+@Component({
+  template: `
+    <ts-table [dataSource]="dataSource" tsSort>
+      <ng-container tsColumnDef="column_a" alignment="left">
+        <ts-header-cell *tsHeaderCellDef>Column A</ts-header-cell>
+        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="column_b">
+        <ts-header-cell *tsHeaderCellDef>Column B</ts-header-cell>
+        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="column_c" alignment="not-allowed">
+        <ts-header-cell *tsHeaderCellDef>Column C</ts-header-cell>
+        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
+      </ng-container>
+
+      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
+      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
+    </ts-table>
+  `,
+})
+class TableColumnAlignmentTableApp {
+  underlyingDataSource = new FakeDataSource();
+  dataSource = new TsTableDataSource<TestData>();
+  columnsToRender = ['column_a', 'column_b', 'column_c'];
+
+  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
+
+  constructor() {
+    this.underlyingDataSource.data = [];
+
+    // Add a row of data
+    this.underlyingDataSource.addData();
+
+    this.underlyingDataSource.connect().subscribe((data) => {
+      this.dataSource.data = data;
+    });
+  }
+
+}
+
 
 
 
@@ -362,6 +405,49 @@ describe(`TsTableComponent`, function() {
       }
 
       expect(style).toEqual('100px');
+    });
+
+  });
+
+  describe(`table column alignment`, () => {
+    let fixture: ComponentFixture<TableColumnAlignmentTableApp>;
+
+    beforeEach(() => {
+      fixture = createComponent(TableColumnAlignmentTableApp);
+      fixture.detectChanges();
+    });
+
+    test(`should add the text-align style and set value to left`, () => {
+      const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_a');
+
+      let style;
+      if (column.style && column.style._values) {
+        style = column.style._values['text-align'];
+      }
+
+      expect(style).toEqual('left');
+    });
+
+    test(`should NOT add the text-align style if alignment is not provided`, () => {
+      const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
+
+      let style;
+      if (column.style && column.style._values) {
+        style = column.style._values['text-align'];
+      }
+
+      expect(style).toBeUndefined();
+    });
+
+    test(`should NOT add the text-align style if alignment is not a valid alignment`, () => {
+      const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_c');
+
+      let style;
+      if (column.style && column.style._values) {
+        style = column.style._values['text-align'];
+      }
+
+      expect(style).toBeUndefined();
     });
 
   });
