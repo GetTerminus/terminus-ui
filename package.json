@@ -112,10 +112,6 @@
     ],
     "publish": [
       {
-        "path": "@semantic-release/exec",
-        "cmd": "./tooling/ci/inject-version.sh ${nextRelease.version}"
-      },
-      {
         "path": "@semantic-release/npm",
         "npmPublish": true,
         "pkgRoot": "dist/terminus-ui"
