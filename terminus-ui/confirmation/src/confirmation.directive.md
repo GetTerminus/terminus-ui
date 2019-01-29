@@ -17,6 +17,9 @@ Basic flow:
 
 - [Basic usage](#basic-usage)
 - [Cancelled event](#cancelled-event)
+- [Confirmation Button Text](#confirmation-button-text)
+- [Cancel Button Text](#cancel-button-text)
+- [Explanation Text](#explanation-text)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -48,4 +51,52 @@ from the confirmation pop-up.
 >
   Click me!
 </ts-button>
+```
+
+
+## Confirmation Button Text
+
+Customizes the text in the modal of the confirmation button; default is "Confirm".
+
+```html
+<ts-button
+    tsConfirmation
+    (clickEvent)="submit()"
+    (cancelled)="cancel($event)"
+    confirmationButtonText="Custom Confirmation Button Text"
+  >
+    Click Me!
+  </ts-button>
+```
+
+
+## Cancel Button Text
+
+Customizes the text in the modal of the cancel button; default is "Cancel".
+
+```html
+<ts-button
+    tsConfirmation
+    (clickEvent)="submit()"
+    (cancelled)="cancel($event)"
+    cancelButtonText="Custom Cancel Button Text"
+  >
+    Click Me!
+  </ts-button>
+```
+
+
+## Explanation Text
+
+Optional text to appear inside of the modal, generally to use as a warning, for example, "Are you sure you want to delete this tactic, a delete can not be undone". Default is null.
+
+```html
+<ts-button
+    tsConfirmation
+    (clickEvent)="submit()"
+    (cancelled)="cancel($event)"
+    explanationText="Optional text within modal."
+  >
+    Click Me!
+  </ts-button>
 ```
