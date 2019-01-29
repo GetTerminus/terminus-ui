@@ -22,10 +22,8 @@ module.exports = {
   "reporters": ["default", [ "jest-junit", { output: "./coverage/junit/report.xml" } ]],
   "clearMocks": true,
   "collectCoverageFrom": [
-    "terminus-ui/src/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts",
-    "!terminus-ui/src/utilities/rxjs-lift-hack.ts",
-    "!terminus-ui/src/module.ts",
-    "!terminus-ui/src/**/testing/**"
+    "terminus-ui/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts",
+    "!terminus-ui/**/testing/**"
   ],
   "moduleFileExtensions": [
     "ts",
@@ -33,10 +31,14 @@ module.exports = {
     "html",
   ],
   "coverageDirectory": "<rootDir>/coverage/",
-  "setupTestFrameworkScriptFile": "<rootDir>/tooling/jest-setup.ts",
+  "setupFilesAfterEnv": [
+    "<rootDir>/tooling/jest-setup.ts",
+  ],
   "moduleNameMapper": {
     "app/(.*)": "<rootDir>/demo/app/$1",
     "assets/(.*)": "<rootDir>/demo/assets/$1",
     "environments/(.*)": "<rootDir>/demo/environments/$1",
+    "^@terminus/ui(.*)$": "<rootDir>/terminus-ui$1/src/public-api.ts",
+    "^@terminus/ui(.*)/testing$": "<rootDir>/terminus-ui$1/testing/src/public-api.ts",
   },
 }

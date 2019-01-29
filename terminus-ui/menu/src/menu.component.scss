@@ -1,0 +1,81 @@
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+$icon-width: 24px;
+$icon-margin: 16px;
+
+
+//
+// @component
+//  Menu
+// @description
+//  A dropdown menu component
+//
+.ts-menu {
+  @include reset;
+  display: inline-block;
+
+  &.disabled {
+    pointer-events: none;
+  }
+
+  // <ts-button> trigger to show the menu
+  ts-button {
+    &[data-disabled='true'] {
+      @include cursor(not-allowed);
+      pointer-events: none;
+    }
+  }
+
+  // Top level styles should be nested here
+  .c-menu {
+    @include typography;
+    max-height: 12rem;
+  }
+}
+
+
+.c-menu {
+  .c-menu__trigger {
+    .mat-button-wrapper {
+      display: inline-block;
+    }
+
+    // vertically align icon for utility menu trigger
+    .c-icon {
+      vertical-align: middle;
+    }
+
+    // For the dropdown caret, lessen the right side whitespace
+    .c-button {
+      .ts-icon {
+        margin-right: -.4em;
+      }
+    }
+  }
+}
+
+
+.mat-menu-panel {
+  .mat-menu-content {
+    // NOTE: Universal selector needed since we don't know what the first child will be
+    > * {
+      display: block;
+    }
+  }
+}
+
+
+// Target a utility instance within a card
+.c-card {
+  .c-menu {
+    &.c-menu--utility {
+      position: absolute;
+      right: spacing(small, 2);
+      top: spacing(small, 2);
+    }
+  }
+}

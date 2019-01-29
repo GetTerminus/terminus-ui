@@ -1,0 +1,39 @@
+<div class="c-date-range qa-date-range" fxLayout="row">
+  <ts-input
+    class="qa-date-range-start-datepicker"
+    [formControl]="internalStartControl"
+    [label]="startLabel"
+    [maxDate]="startMaxDate$ | async"
+    [minDate]="startMinDate"
+    [startingView]="startingView"
+    [isDisabled]="isDisabled || startDateControl.disabled"
+    [theme]="theme"
+    mask="date"
+    [datepicker]="true"
+    (selected)="startDateSelected($event)"
+    (inputBlur)="startBlur($event)"
+    #start
+    fxFlex
+  ></ts-input>
+
+  <span class="c-date-range__seperator">
+    {{ separator }}
+  </span>
+
+  <ts-input
+    class="qa-date-range-end-datepicker"
+    [formControl]="internalEndControl"
+    [label]="endLabel"
+    [maxDate]="endMaxDate"
+    [minDate]="endMinDate$ | async"
+    [startingView]="startingView"
+    [isDisabled]="isDisabled || endDateControl.disabled"
+    [theme]="theme"
+    mask="date"
+    [datepicker]="true"
+    (selected)="endDateSelected($event)"
+    (inputBlur)="endBlur($event)"
+    #end
+    fxFlex
+  ></ts-input>
+</div>

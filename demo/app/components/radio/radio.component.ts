@@ -17,7 +17,7 @@ import {
   TsRadioChange,
   TsRadioOption,
   TsRadioFormatFn,
-} from '@terminus/ui';
+} from '@terminus/ui/radio-group';
 
 
 const DEMO_ITEMS: TsRadioOption[] = [

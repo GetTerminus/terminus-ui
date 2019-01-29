@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormControl,
+  FormArray,
 } from '@angular/forms';
-import { TsButtonFormatTypes, TsStyleThemeTypes } from '@terminus/ui';
+import { TsButtonFormatTypes } from '@terminus/ui/button';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 @Component({
@@ -26,6 +29,9 @@ export class MenuComponent {
     showColumns: this.formBuilder.array([true, true, true, true]),
   });
 
+  get columnControls(): FormArray {
+    return this.myForm.get('showColumns') as FormArray;
+  }
 
   constructor(
     private formBuilder: FormBuilder,

@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
-  FormControl,
 } from '@angular/forms';
 import {
   BehaviorSubject,
@@ -409,5 +409,9 @@ export class SelectComponent implements OnInit {
       this.firstOptions = this.singleWithCustomTrigger
         .pipe(map((a) => a.filter((i) => i.slug.match(regex))));
     }
+  }
+
+  duplicate(e) {
+    console.log('DEMO: Duplicate selection: ', e);
   }
 }

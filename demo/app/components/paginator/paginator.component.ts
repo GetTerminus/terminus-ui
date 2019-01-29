@@ -6,8 +6,8 @@ import {
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,
-  TsStyleThemeTypes,
-} from '@terminus/ui';
+} from '@terminus/ui/paginator';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 @Component({

@@ -1,0 +1,15 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
+        "date-fns": "dateFns",
+        "text-mask-core/dist/textMaskCore": "textMaskCore",
+        "text-mask-addons/dist/createNumberMask": "createNumberMask",
+        "text-mask-addons/dist/createAutoCorrectedDatePipe": "createAutoCorrectedDatePipe"
+      }
+    }
+  }
+}

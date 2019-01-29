@@ -4,7 +4,7 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { TsScrollbarsComponent } from '@terminus/ui';
+import { TsScrollbarsComponent } from '@terminus/ui/scrollbars';
 
 
 @Component({

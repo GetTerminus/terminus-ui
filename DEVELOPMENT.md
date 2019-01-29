@@ -29,6 +29,9 @@
 # Build the library
 $ yarn run build
 
+# Build and watch library files for changes
+$ yarn run build:ts:watch
+
 # Run TypeScript and SCSS linters
 $ yarn run lint
 
@@ -66,7 +69,7 @@ $ yarn run contributors:generate
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu (top right)
 
-![screen shot 2018-01-30 at 11 10 22 am](https://user-images.githubusercontent.com/270193/35576969-67e0eab6-05ae-11e8-9c38-7d44bcf2c848.png)
+![Demos Screenshot](https://user-images.githubusercontent.com/270193/35576969-67e0eab6-05ae-11e8-9c38-7d44bcf2c848.png)
 
 ## Adding a Component
 

@@ -12,12 +12,13 @@ import { HttpClient } from '@angular/common/http';
 import {
   Observable,
   of,
+  Subscription,
 } from 'rxjs';
 import { map, delay, switchMap, startWith } from 'rxjs/operators';
 import {
   TsAutocompleteComponent,
   TsAutocompleteComparatorFn,
-} from '@terminus/ui';
+} from '@terminus/ui/autocomplete';
 
 
 interface GitHubUser {
@@ -126,7 +127,7 @@ export class AutocompleteComponent implements OnInit {
   debounceDelay = 2000;
   inProgress = false;
   delayApiResponse = false;
-  changesSubscription$!: Observable<any>;
+  changesSubscription$!: Subscription;
   users$: any;
   minCharacters = 4;
 

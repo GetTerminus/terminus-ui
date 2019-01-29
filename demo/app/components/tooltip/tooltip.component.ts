@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TsTooltipPositionTypes } from '@terminus/ui';
+import { TsTooltipPositionTypes } from '@terminus/ui/tooltip';
 
 
 @Component({

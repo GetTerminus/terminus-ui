@@ -45,26 +45,26 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "@angular/cdk": "^6.4.7",
-    "@angular/material": "^6.4.7",
-    "ngx-perfect-scrollbar": "^6.3.1",
+    "@angular/cdk": "^7.3.0",
+    "ngx-perfect-scrollbar": "^7.2.0",
     "text-mask-addons": "^3.8.0",
     "text-mask-core": "^5.1.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^6.1.7",
-    "@angular/core": "^6.1.7",
-    "@angular/flex-layout": "6.0.0-beta.18",
-    "@angular/forms": "^6.1.7",
-    "@angular/platform-browser": "^6.1.7",
-    "@angular/router": "^6.1.7",
-    "@terminus/ngx-tools": "^3.0.0",
-    "date-fns": "2.0.0-alpha.16",
-    "rxjs": "^6.3.2"
+    "@angular/animations": "^7.2.2",
+    "@angular/core": "^7.2.2",
+    "@angular/flex-layout": "7.0.0-beta.22",
+    "@angular/forms": "^7.2.2",
+    "@angular/material": "^7.3.0",
+    "@angular/platform-browser": "^7.2.2",
+    "@angular/router": "^7.2.2",
+    "@terminus/ngx-tools": "^5.0.0",
+    "date-fns": "2.0.0-alpha.26",
+    "rxjs": "^6.3.3"
   },
   "optionalDependencies": {
-    "@amcharts/amcharts4": "^4.0.0-beta.50",
-    "@amcharts/amcharts4-geodata": "^4.0.10"
+    "@amcharts/amcharts4": "^4.0.24",
+    "@amcharts/amcharts4-geodata": "^4.0.29"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
@@ -72,7 +72,6 @@
     "lib": {
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
-        "@angular/material": "ng.material",
         "@angular/cdk": "ng.cdk",
         "@terminus/ngx-tools": "terminus.ngxTools",
         "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
@@ -87,7 +86,6 @@
       "comments": "none"
     },
     "whitelistedNonPeerDependencies": [
-      "@angular/material",
       "@angular/cdk",
       "ngx-perfect-scrollbar",
       "text-mask-addons",

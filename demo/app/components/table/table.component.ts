@@ -10,13 +10,12 @@ import {
   of,
 } from 'rxjs';
 import { startWith, map, switchMap, catchError } from 'rxjs/operators';
+import { TsTableDataSource } from '@terminus/ui/table';
+import { TsSortDirective } from '@terminus/ui/sort';
 import {
-  TsTableDataSource,
-  TsSortDirective,
   TsPaginatorComponent,
   TsPaginatorMenuItem,
-  TsSelectFormatFn,
-} from '@terminus/ui';
+} from '@terminus/ui/paginator';
 
 
 export interface TableItem {
