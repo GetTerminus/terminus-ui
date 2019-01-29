@@ -28,9 +28,8 @@ export class TsTimeAgoPipe implements PipeTransform {
     }
 
     // If dealing with a date objects, convert to strings
-    const date1: string = (typeof value === 'string') ? value : new Date(value).toISOString();
-    const date2: string =
-      (typeof comparedDate === 'string') ? comparedDate : new Date(comparedDate).toISOString();
+    const date1: Date = (typeof value === 'string') ? new Date(value) : value;
+    const date2: Date = (typeof comparedDate === 'string') ? new Date(comparedDate) : comparedDate;
 
     return formatDistance(date1, date2);
   }
