@@ -51,9 +51,10 @@ import {
   getSelectInstance,
   getSelectTriggerElement,
   getToggleAllElement,
+  getChipElementDisplayValue,
 } from './testing/test-helpers';
 import { TsSelectOptionComponent } from './option/option.component';
-import { TsSelectModule } from './select.module';
+import { TsSelectModule, TsSelectFormatFn, TsSelectOption } from './select.module';
 
 
 
@@ -769,6 +770,45 @@ describe(`TsSelectComponent`, () => {
         expect(document.activeElement).toEqual(input);
 
         expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
+      });
+
+      test(`should show UI element based on format function passed in`, () => {
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const chip = getChipElementDisplayValue(fixture);
+
+        expect(chip).toEqual('Florida');
+      });
+
+      test(`should set/get the chipFormatUIFn`, () => {
+        const myFn: TsSelectFormatFn = (v: any) => v.name;
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+
+        component.chipFormatUIFn = myFn;
+        expect(component.chipFormatUIFn).toEqual(myFn);
+      });
+
+      test(`should return undefined if no value is passed in chipFormatUIFn`, () => {
+        // tslint:disable: prefer-const
+        let foo: any;
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+        // tslint:enable: prefer-const
+        expect(component.chipFormatUIFn = foo).toEqual(undefined);
+      });
+
+      test(`should throw an error in dev mode when passed a value to chipFormatUIFn that is not a function`, () => {
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+        expect(() => { component.chipFormatUIFn = 3 as any; })
+          .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
       });
 
 
@@ -1541,6 +1581,43 @@ describe(`TsSelectComponent`, () => {
       typeInElement('arizona', input);
       expect(fixture.componentInstance.options.length).toBe(3);
       expect.assertions(5);
+    });
+
+  });
+
+  describe(`retrieveValue`, () => {
+    let component: any;
+    let options: any;
+    beforeEach(() => {
+      const fixture = createComponent(testComponents.SelectOptionChange);
+      fixture.detectChanges();
+      component = getSelectInstance(fixture);
+      options = [
+        {
+          name: 'California',
+          population: '10M',
+        },
+        {
+          name: 'Georgia',
+          population: '3M',
+        },
+      ];
+    });
+
+    test(`should use a formatter to return a value`, () => {
+
+      const fn1: TsSelectFormatFn = (v) => v.name;
+      const val1: string | TsSelectOption = component.retrieveValue(options[0], fn1);
+      expect(val1).toEqual('California');
+
+      const fn2: TsSelectFormatFn = (v) => v.population;
+      const val2: string | TsSelectOption = component.retrieveValue(options[1], fn2);
+      expect(val2).toEqual('3M');
+    });
+
+
+    test(`should return the option if no formatter was passed in`, () => {
+      expect(component.retrieveValue(options[0])).toEqual(options[0]);
     });
 
   });

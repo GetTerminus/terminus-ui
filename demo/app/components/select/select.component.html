@@ -152,6 +152,7 @@
       autocompleteAllowDuplicateSelections="false"
       autocompleteReopenAfterSelection="true"
       [showProgress]="fakeAsync"
+      [chipFormatUIFn]="myFormatUIFn"
       (queryChange)="queryHasChanged($event)"
       tsVerticalSpacing
     >

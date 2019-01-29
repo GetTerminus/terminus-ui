@@ -28,6 +28,7 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import {
   hasRequiredControl,
+  isFunction,
   isString,
   TsDocumentService,
   untilComponentDestroyed,
@@ -222,6 +223,7 @@ let nextUniqueId = 0;
  *              placeholder="My placeholder!"
  *              showProgress="true"
  *              [sortComparator]="myComparator"
+ *              [chipFormatUIFn]="myUIFormatter"
  *              tabIndex="-1"
  *              theme="primary"
  *              validateOnChange="true"
@@ -686,6 +688,30 @@ export class TsSelectComponent implements
   private _delimiter: string = DEFAULT_DELIMITER;
 
   /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set chipFormatUIFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+    if (isFunction(value)) {
+      this._chipFormatUIFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
+      }
+    }
+  }
+  public get chipFormatUIFn(): TsSelectFormatFn {
+    return this._chipFormatUIFn;
+  }
+  private _chipFormatUIFn!: TsSelectFormatFn;
+
+
+  /**
    * Define if the required marker should be hidden
    */
   @Input()
@@ -953,6 +979,16 @@ export class TsSelectComponent implements
       if (this.autocomplete && this.ngControl.value) {
         this.autocompleteFormControl.setValue(this.ngControl.value);
         this.autocompleteSelections = this.ngControl.value;
+      }
+      if (this.ngControl.valueChanges) {
+        this.ngControl.valueChanges
+          .pipe(untilComponentDestroyed(this))
+          .subscribe((newValue) => {
+            // istanbul ignore else
+            if (this.autocomplete && newValue) {
+              this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
+              this.autocompleteSelections = this.ngControl.value;
+            }});
       }
     } else {
       // HACK: Wait until the next detection cycle to set the value from an ngModel.
@@ -2015,6 +2051,17 @@ export class TsSelectComponent implements
     // Notify consumers about changes
     this.optionDeselected.emit(new TsSelectChange(this, value));
     this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections.slice()));
+  }
+
+  /**
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The select option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
+   */
+  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
+    return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
 }
