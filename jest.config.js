@@ -31,7 +31,9 @@ module.exports = {
     "html",
   ],
   "coverageDirectory": "<rootDir>/coverage/",
-  "setupTestFrameworkScriptFile": "<rootDir>/tooling/jest-setup.ts",
+  "setupFilesAfterEnv": [
+    "<rootDir>/tooling/jest-setup.ts",
+  ],
   "moduleNameMapper": {
     "app/(.*)": "<rootDir>/demo/app/$1",
     "assets/(.*)": "<rootDir>/demo/assets/$1",

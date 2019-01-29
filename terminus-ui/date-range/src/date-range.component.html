@@ -9,7 +9,7 @@
     [isDisabled]="isDisabled || startDateControl.disabled"
     [theme]="theme"
     mask="date"
-    datepicker="true"
+    [datepicker]="true"
     (selected)="startDateSelected($event)"
     (inputBlur)="startBlur($event)"
     #start
@@ -30,7 +30,7 @@
     [isDisabled]="isDisabled || endDateControl.disabled"
     [theme]="theme"
     mask="date"
-    datepicker="true"
+    [datepicker]="true"
     (selected)="endDateSelected($event)"
     (inputBlur)="endBlur($event)"
     #end

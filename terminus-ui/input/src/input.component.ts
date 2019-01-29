@@ -28,6 +28,7 @@ import {
 } from '@angular/forms';
 import {
   hasRequiredControl,
+  isBoolean,
   isNumber,
   noop,
   TsDocumentService,
@@ -185,36 +186,36 @@ const DEFAULT_TEXTAREA_ROWS = 4;
  *
  * @example
  * <ts-input
- *              autocapitalize="false"
+ *              [autocapitalize]="false"
  *              autocomplete="email"
  *              [dateFilter]="myFilterFunction"
- *              datepicker="true"
+ *              [datepicker]="true"
  *              [formControl]="myForm.get('myControl')"
- *              hasExternalFormField="true"
- *              hideRequiredMarker="false"
+ *              [hasExternalFormField]="true"
+ *              [hideRequiredMarker]="false"
  *              hint="My hint!"
  *              id="my-id"
- *              isClearable="true"
- *              isDisabled="false"
- *              isFocused="false"
- *              isRequired="false"
+ *              [isClearable]="true"
+ *              [isDisabled]="false"
+ *              [isFocused]="false"
+ *              [isRequired]="false"
  *              label="My Label Text"
  *              mask="phone"
- *              maskAllowDecimal="true"
- *              maskSanitizeValue="true"
+ *              [maskAllowDecimal]="true"
+ *              [maskSanitizeValue]="true"
  *              maxDate="{{ new Date(1990, 1, 1) }}"
  *              minDate="{{ new Date(1990, 1, 1) }}"
  *              name="password"
  *              [(ngModel]="myModel"
  *              openTo="{{ new Date(1990, 1, 1) }}"
  *              prefixIcon="icon_name"
- *              readOnly="false"
- *              spellcheck="false"
+ *              [readOnly]="false"
+ *              [spellcheck]="false"
  *              startingView="year"
  *              tabIndex="2"
  *              theme="primary"
  *              type="text"
- *              validateOnChange="false"
+ *              [validateOnChange]="false"
  *              (cleared)="userClearedInput($event)"
  *              (inputBlur)="userLeftInput($event)"
  *              (inputFocus)="userFocusedInput($event)"
@@ -445,6 +446,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set autocapitalize(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "autocapitalize" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._autocapitalize = coerceBooleanProperty(value);
   }
   public get autocapitalize(): boolean {
@@ -485,6 +491,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set datepicker(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "datepicker" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._datepicker = coerceBooleanProperty(value);
 
     // When using a datepicker, we need to validate on change so that selecting a date from the calendar
@@ -526,6 +537,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set hasExternalFormField(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "hasExternalFormField" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._hasExternalFormField = coerceBooleanProperty(value);
   }
   public get hasExternalFormField(): boolean {
@@ -538,6 +554,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set hideRequiredMarker(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "hideRequiredMarker" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._hideRequiredMarker = coerceBooleanProperty(value);
   }
   public get hideRequiredMarker(): boolean {
@@ -574,6 +595,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set isClearable(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "isClearable" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isClearable = coerceBooleanProperty(value);
   }
   public get isClearable(): boolean {
@@ -587,8 +613,13 @@ export class TsInputComponent implements
    * Implemented as part of {@link TsFormFieldControl}
    */
   @Input()
-  public set isDisabled(v: boolean) {
-    this._isDisabled = coerceBooleanProperty(v);
+  public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {
     return this._isDisabled;
@@ -600,6 +631,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set isFocused(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "isFocused" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isFocused = coerceBooleanProperty(value);
 
     if (this._isFocused) {
@@ -618,6 +654,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set isRequired(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "isRequired" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isRequired = coerceBooleanProperty(value);
   }
   public get isRequired(): boolean {
@@ -633,6 +674,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set isTextarea(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "isTextarea" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isTextarea = coerceBooleanProperty(value);
   }
   public get isTextarea(): boolean {
@@ -684,6 +730,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set maskAllowDecimal(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "maskAllowDecimal" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     const oldValue = this.maskAllowDecimal;
     this._maskAllowDecimal = coerceBooleanProperty(value);
 
@@ -702,6 +753,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set maskSanitizeValue(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "maskSanitizeValue" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._maskSanitizeValue = coerceBooleanProperty(value);
   }
   public get maskSanitizeValue(): boolean {
@@ -765,6 +821,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set readOnly(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "readOnly" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._readOnly = coerceBooleanProperty(value);
   }
   public get readOnly(): boolean {
@@ -778,6 +839,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set spellcheck(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "spellcheck" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._spellcheck = coerceBooleanProperty(value);
   }
   public get spellcheck(): boolean {
@@ -872,6 +938,11 @@ export class TsInputComponent implements
    */
   @Input()
   public set validateOnChange(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsInputComponent: "validateOnChange" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._validateOnChange = coerceBooleanProperty(value);
   }
   public get validateOnChange(): boolean {

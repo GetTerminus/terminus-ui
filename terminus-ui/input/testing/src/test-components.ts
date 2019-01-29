@@ -39,7 +39,7 @@ export class SimpleFormControl {
 @Component({
   template: `
     <ts-input
-      datepicker="true"
+      [datepicker]="true"
     ></ts-input>
   `,
 })
@@ -227,7 +227,7 @@ export class MissingFormControl {
 @Component({
   template: `
     <ts-input
-      datepicker="true"
+      [datepicker]="true"
       [startingView]="startingView"
     ></ts-input>
   `,
@@ -242,7 +242,7 @@ export class StartingView {
 @Component({
   template: `
     <ts-input
-      datepicker="true"
+      [datepicker]="true"
       [openTo]="openTo"
     ></ts-input>
   `,
@@ -257,7 +257,7 @@ export class OpenTo {
 @Component({
   template: `
     <ts-input
-      datepicker="true"
+      [datepicker]="true"
       [minDate]="minDate"
       [maxDate]="maxDate"
     ></ts-input>
@@ -377,7 +377,7 @@ export class Label {
 @Component({
   template: `
     <ts-input
-      datepicker="true"
+      [datepicker]="true"
       [dateFilter]="dateFilter"
     ></ts-input>
   `,
@@ -429,7 +429,7 @@ export class OnChanges {
   template: `
     <ts-input
       [formControl]="formControl"
-      isTextarea="true"
+      [isTextarea]="true"
       [textareaRows]="rows"
     ></ts-input>
   `,

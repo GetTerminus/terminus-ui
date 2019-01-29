@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  isDevMode,
   OnChanges,
   Output,
   SimpleChanges,
@@ -18,6 +19,7 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import { TsSelectChange } from '@terminus/ui/select';
 import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -55,11 +57,11 @@ export interface TsPaginatorMenuItem {
  *              currentPageIndex="1"
  *              maxPreferredRecords="100"
  *              menuLocation="below"
- *              isZeroBased="true"
+ *              [isZeroBased]="true"
  *              totalRecords="1450"
  *              recordCountTooHighMessage="Please refine your filters."
  *              recordsPerPageChoices="[10, 20, 50]"
- *              showRecordsPerPageSelector="true"
+ *              [showRecordsPerPageSelector]="true"
  *              firstPageTooltip="View first results"
  *              previousPageTooltip="View previous results"
  *              nextPageTooltip="View next results"
@@ -184,8 +186,13 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define if the paging is 0-based or 1-based
    */
   @Input()
-  public set isZeroBased(v: boolean) {
-    this._isZeroBased = coerceBooleanProperty(v);
+  public set isZeroBased(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsPaginatorComponent: "isZeroBased" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._isZeroBased = coerceBooleanProperty(value);
   }
   public get isZeroBased(): boolean {
     return this._isZeroBased;
@@ -287,6 +294,11 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    */
   @Input()
   public set showRecordsPerPageSelector(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsPaginatorComponent: "showRecordsPerPageSelector" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._showRecordsPerPageSelector = coerceBooleanProperty(value);
   }
   public get showRecordsPerPageSelector(): boolean {

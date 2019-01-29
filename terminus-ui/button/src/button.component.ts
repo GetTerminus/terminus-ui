@@ -14,7 +14,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { TsWindowService } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  TsWindowService,
+} from '@terminus/ngx-tools';
 import {
   TsStyleThemeTypes,
   tsStyleThemeTypesArray,
@@ -67,9 +70,9 @@ export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
  *              format="filled"
  *              buttonType="search"
  *              iconName="search"
- *              isDisabled="false"
- *              showProgress="true"
- *              collapsed="false"
+ *              [isDisabled]="false"
+ *              [showProgress]="true"
+ *              [collapsed]="false"
  *              collapseDelay="500"
  *              tabIndex="2"
  *              (clickEvent)="myMethod($event)"
@@ -138,6 +141,12 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set collapsed(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsButtonComponent: "collapsed" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+
     this.isCollapsed = coerceBooleanProperty(value);
 
     // If the value is `false` and a collapse delay is set
@@ -197,6 +206,11 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsButtonComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {
@@ -209,6 +223,11 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set showProgress(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsButtonComponent: "showProgress" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._showProgress = coerceBooleanProperty(value);
   }
   public get showProgress(): boolean {

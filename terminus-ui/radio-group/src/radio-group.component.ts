@@ -13,6 +13,7 @@ import {
 import { MatRadioChange } from '@angular/material/radio';
 import {
   hasRequiredControl,
+  isBoolean,
   isFunction,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
@@ -73,7 +74,7 @@ let nextUniqueId = 0;
  * <ts-radio-group
  *              options="myItemsArray | $async"
  *              [formControl]="myForm.get('myRadioGroup')"
- *              isDisabled="true"
+ *              [isDisabled]="true"
  *              theme="primary"
  *              [formatUILabelFn]="myUIFormatter"
  *              [formatUISubLabelFn]="myUISubFormatter"
@@ -214,6 +215,11 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsRadioGroupComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {
@@ -226,6 +232,11 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set isVisual(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsRadioGroupComponent: "isVisual" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isVisual = coerceBooleanProperty(value);
   }
   public get isVisual(): boolean {
@@ -272,6 +283,11 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set small(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsRadioGroupComponent: "small" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._small = coerceBooleanProperty(value);
   }
   public get small(): boolean {

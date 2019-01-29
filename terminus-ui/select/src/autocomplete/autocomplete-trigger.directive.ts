@@ -40,7 +40,10 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   DOWN_ARROW,
@@ -96,9 +99,9 @@ let nextUniqueId = 0;
  * @example
  * <ts-input
  *              [tsAutocompleteTrigger]="myReferenceToAutocompletePanel"
- *              tsAutocompleteDisabled="false"
+ *              [tsAutocompleteDisabled]="false"
  *              autocomplete="off"
- *              reopenAfterSelection="false"
+ *              [reopenAfterSelection]="false"
  * ></ts-input>
  */
 @Directive({
@@ -269,6 +272,11 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    */
   @Input('tsAutocompleteDisabled')
   public set autocompleteDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsAutocompleteTriggerDirective: "tsAutocompleteDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
   public get autocompleteDisabled(): boolean {
@@ -290,6 +298,11 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    */
   @Input()
   public set reopenAfterSelection(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsAutocompleteTriggerDirective: "reopenAfterSelection" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._reopenAfterSelection = coerceBooleanProperty(value);
   }
   public get reopenAfterSelection(): boolean {

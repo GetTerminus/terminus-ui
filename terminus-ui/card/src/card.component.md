@@ -27,7 +27,7 @@ Wrap the card component around your content:
 To make the card feel interactive, pass `true` to the `supportsInteraction` input.
 
 ```html
-<ts-card supportsInteraction="true">
+<ts-card [supportsInteraction]="true">
   Now my card responds to hover and click!
 </ts-card>
 ```
@@ -37,7 +37,7 @@ To make the card feel interactive, pass `true` to the `supportsInteraction` inpu
 To center the content, pass `true` to the `centeredContent` input.
 
 ```html
-<ts-card centeredContent="true">
+<ts-card [centeredContent]="true">
   Now my content is centered!
 </ts-card>
 ```
@@ -47,7 +47,7 @@ To center the content, pass `true` to the `centeredContent` input.
 Pass your desired aspect ratio in the format `3:4` to the `aspectRatio` input.
 
 ```html
-<ts-card aspectRatio="16:9">
+<ts-card [aspectRatio]="16:9">
   Here is a card with a fixed aspect ratio!
 </ts-card>
 ```
@@ -101,8 +101,7 @@ element which provides the needed styles.
 This will push the opacity of the card contents back and add a lock icon in the top right corner.
 
 ```html
-<ts-card disabled="true">
+<ts-card [disabled]="true">
   My card
 </ts-card>
 ```
-

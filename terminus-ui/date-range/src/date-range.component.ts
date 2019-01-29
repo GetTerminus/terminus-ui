@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
   Output,
@@ -14,7 +15,10 @@ import {
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  untilComponentDestroyed,
+} from '@terminus/ngx-tools';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
@@ -52,7 +56,7 @@ export interface TsDateRange {
  *              [dateFormGroup]="myForm.get('dateRange')"
  *              endMaxDate="{{ new Date(2017, 4, 30) }}"
  *              endMinDate="{{ new Date(2017, 4, 1) }}"
- *              isDisabled="true"
+ *              [isDisabled]="true"
  *              startingView="year"
  *              startMaxDate="{{ new Date(2017, 4, 30) }}"
  *              startMinDate="{{ new Date(2017, 4, 1) }}"
@@ -171,6 +175,11 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsDateRangeComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {

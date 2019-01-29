@@ -211,7 +211,7 @@ The entire select can be marked required in one of two ways:
 
 
 ```html
-<ts-select isRequired="true">
+<ts-select [isRequired]="true">
   ...
 </ts-select>
 ```
@@ -332,7 +332,7 @@ Part of the option view can be defined as the 'view value' which is used to defi
 Allow multiple selections via an `@Input`:
 
 ```html
-<ts-select allowMultiple="true">
+<ts-select [allowMultiple]="true">
   ...
 </ts-select>
 ```
@@ -347,7 +347,7 @@ be set:
 
 ```html
 <ts-select
-  allowMultiple="true"
+  [allowMultiple]="true"
   delimiter="/"
 >
   ...
@@ -386,7 +386,7 @@ A select can include an input at the top of the list to filter options:
 ```html
 <ts-select
   [formControl]="myCtrl"
-  isFilterable="true"
+  [isFilterable]="true"
   (queryChange)="mySearchFunction($event)"
 >
   ...
@@ -402,7 +402,7 @@ blank option can be used to show the user a message when no items are found by t
 Enable autocomplete functionality by setting the `autocomplete` flag to `true`:
 
 ```html
-<ts-select autocomplete="true">
+<ts-select [autocomplete]="true">
   ...
 </ts-select>
 ```
@@ -415,9 +415,9 @@ By default, duplicate selections are ignored. They can be allowed via a flag:
 ```html
 <ts-select
   [formControl]="myCtrl"
-  autocomplete="true"
-  allowMultiple="true"
-  autocompleteAllowDuplicateSelections="true"
+  [autocomplete]="true"
+  [allowMultiple]="true"
+  [autocompleteAllowDuplicateSelections]="true"
 >
   ...
 </ts-select>
@@ -434,9 +434,9 @@ By default, the panel will close after each selection. It can be forced to stay 
 ```html
 <ts-select
   [formControl]="myCtrl"
-  autocomplete="true"
-  allowMultiple="true"
-  autocompleteReopenAfterSelection="true"
+  [autocomplete]="true"
+  [allowMultiple]="true"
+  [autocompleteReopenAfterSelection]="true"
 >
   ...
 </ts-select>
@@ -450,8 +450,8 @@ By default, the autocomplete input query will be debounced 200ms. This time may 
 ```html
 <ts-select
   [formControl]="myCtrl"
-  autocomplete="true"
-  debounceDelay="400"
+  [autocomplete]="true"
+  [debounceDelay]="400"
 >
   ...
 </ts-select>
@@ -465,8 +465,8 @@ By default, at least two characters must be typed before the query is fired. Thi
 ```html
 <ts-select
   [formControl]="myCtrl"
-  autocomplete="true"
-  minimumCharacters="4"
+  [autocomplete]="true"
+  [minimumCharacters]="4"
 >
   ...
 </ts-select>
@@ -480,8 +480,8 @@ A progress spinner can be shown while queries are happening in the background:
 ```html
 <ts-select
   [formControl]="myCtrl"
-  autocomplete="true"
-  showProgress="true"
+  [autocomplete]="true"
+  [showProgress]="true"
 >
   ...
 </ts-select>

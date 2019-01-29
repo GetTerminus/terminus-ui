@@ -138,7 +138,7 @@ To disable the entire radio group, set `isDisabled` to true:
   [formatUISubLabelFn]="uiSubFormatter"
   [formatUILabelFn]="uiFormatter"
   [formatModelValueFn]="modelFormatter"
-  isDisabled="true"
+  [isDisabled]="true"
 ></ts-radio-group>
 ```
 
@@ -174,7 +174,7 @@ Enable by setting the `isVisual` flag:
 
 ```html
 <ts-radio-group
-  isVisual="true"
+  [isVisual]="true"
   ...
 ></ts-radio-group>
 ```
@@ -205,7 +205,7 @@ items$: Observable<TsRadioOption[]> = of([
 
 ```html
 <ts-radio-group
-  isVisual="true"
+  [isVisual]="true"
   [options]="items$ | async"
   [formControl]="myForm.get('myRadioGroup')"
   [formatUILabelFn]="uiFormatter"

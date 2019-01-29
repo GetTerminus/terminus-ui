@@ -62,7 +62,7 @@ To style with CSS, simply target the `fill` inside the `ts-icon` class:
 To size and space the icons correctly for use within a block of text:
 
 ```html
-<ts-icon inline="true"></ts-icon>
+<ts-icon [inline]="true"></ts-icon>
 ```
 
 ## Custom Icons

@@ -38,7 +38,7 @@ myFunc(blob: Blob) {
 Control the default column count via an Input:
 
 ```html
-<ts-csv-entry columnCount="7">
+<ts-csv-entry [columnCount]="7">
   <!-- Will generate a table with 7 columns -->
 </ts-csv-entry>
 ```
@@ -51,7 +51,7 @@ Control the default column count via an Input:
 Control the default number of rows via an Input:
 
 ```html
-<ts-csv-entry rowCount="5">
+<ts-csv-entry [rowCount]="5">
   <!-- Will generate a table with 5 rows -->
 </ts-csv-entry>
 ```
@@ -64,7 +64,7 @@ Control the default number of rows via an Input:
 Control the maximum number of rows a table will allow
 
 ```html
-<ts-csv-entry maxRows="100">
+<ts-csv-entry [maxRows]="100">
 </ts-csv-entry>
 ```
 
@@ -82,7 +82,7 @@ myValidators = [null, this.validatorsService.url(), null, null];
 ```
 
 ```html
-<ts-csv-entry columnCount="4" [columnValidators]="myValidators">
+<ts-csv-entry [columnCount]="4" [columnValidators]="myValidators">
 </ts-csv-entry>
 ```
 
@@ -105,7 +105,7 @@ to change the contents of the set header cells.
 If the table should be one full-width column, set both in the input:
 
 ```html
-<ts-csv-entry columnCount="1" fullWidth="true">
+<ts-csv-entry [columnCount]="1" [fullWidth]="true">
 </ts-csv-entry>
 ```
 > NOTE: full width should only be with one column

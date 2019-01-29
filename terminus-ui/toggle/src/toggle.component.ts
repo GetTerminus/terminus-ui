@@ -3,11 +3,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  isDevMode,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 import {
   ControlValueAccessorProviderFactory,
   TsReactiveFormBaseComponent,
@@ -31,8 +33,8 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
  * <ts-toggle
  *              [formControl]="yourHelperToGetFormControl('thingIsDisabled')"
  *              arialLabel="Disable my thing"
- *              isDisabled="true"
- *              isRequired="true"
+ *              [isDisabled]="true"
+ *              [isRequired]="true"
  *              labelPosition="before"
  *              name="My toggle"
  *              theme="accent"
@@ -64,6 +66,11 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public set isChecked(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsToggleComponent: "isChecked" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isChecked = coerceBooleanProperty(value);
     this.value = this._isChecked;
   }
@@ -77,6 +84,11 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsToggleComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {
@@ -89,6 +101,11 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public set isRequired(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsToggleComponent: "isRequired" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isRequired = coerceBooleanProperty(value);
   }
   public get isRequired(): boolean {

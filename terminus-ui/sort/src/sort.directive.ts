@@ -12,6 +12,7 @@ import {
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
 import { Subject } from 'rxjs';
+import { isBoolean } from '@terminus/ngx-tools';
 
 import {
   getSortInvalidDirectionError,
@@ -126,8 +127,12 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * May be overriden by the TsSortable's disable clear input.
    */
   @Input('tsSortDisableClear')
-  public set disableClear(v: boolean) {
-    this._disableClear = coerceBooleanProperty(v);
+  public set disableClear(value: boolean) {
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSortDirective: "disableClear" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._disableClear = coerceBooleanProperty(value);
   }
   public get disableClear() {
     return this._disableClear;

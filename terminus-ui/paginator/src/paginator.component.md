@@ -34,7 +34,7 @@ is changed:
 
 ```html
 <ts-paginator
-  totalRecords="100"
+  [totalRecords]="100"
   (recordsPerPageChange)="myChangeFunc($event)"
   (pageSelect)="mySelectFunc($event)"
 ></ts-paginator>
@@ -61,8 +61,8 @@ Set the current page:
 
 ```html
 <ts-paginator
-  totalRecords="100"
-  currentPageIndex="2"
+  [totalRecords]="100"
+  [currentPageIndex]="2"
 ></ts-paginator>
 ```
 
@@ -75,14 +75,14 @@ pagination at 1 (such as Rails) you can set `isZeroBased` to `false`:
 ```html
 <!-- The first page will have the value: 1 -->
 <ts-paginator
-  totalRecords="100"
-  isZeroBased="false"
+  [totalRecords]="100"
+  [isZeroBased]="false"
 ></ts-paginator>
 
 <!-- The first page will have the value: 0 -->
 <ts-paginator
-  totalRecords="100"
-  isZeroBased="true"
+  [totalRecords]="100"
+  [isZeroBased]="true"
 ></ts-paginator>
 ```
 
@@ -98,8 +98,8 @@ By default, anything over `100` is considered too many. To change this value, pa
 
 ```html
 <ts-paginator
-  totalRecords="100"
-  maxPreferredRecords="50"
+  [totalRecords]="100"
+  [maxPreferredRecords]="50"
 ></ts-paginator>
 ```
 
@@ -109,7 +109,7 @@ A custom message may be defined:
 
 ```html
 <ts-paginator
-  totalRecords="100"
+  [totalRecords]="100"
   recordCountTooHighMessage="What they heck are you looking for?"
 ></ts-paginator>
 ```
@@ -119,7 +119,7 @@ better set of filters.
 
 ```html
 <ts-paginator
-  totalRecords="100"
+  [totalRecords]="100"
   recordCountTooHighMessage="What they heck are you looking for?"
   [paginatorMessageTemplate]="myTemplate"
 ></ts-paginator>
@@ -139,8 +139,8 @@ Define the choices for how many records can be displayed on a single 'page':
 
 ```html
 <ts-paginator
-  totalRecords="100"
-  recordsPerPageChoices="[100, 200, 500]"
+  [totalRecords]="100"
+  [recordsPerPageChoices]="[100, 200, 500]"
 ></ts-paginator>
 ```
 
@@ -148,7 +148,7 @@ This menu can be disabled completely if desired:
 
 ```html
 <ts-paginator
-  totalRecords="100"
-  showRecordsPerPageSelector="false"
+  [totalRecords]="100"
+  [showRecordsPerPageSelector]="false"
 ></ts-paginator>
 ```

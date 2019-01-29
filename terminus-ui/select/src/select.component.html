@@ -59,7 +59,7 @@
         <mat-chip
           *ngFor="let option of autocompleteFormControl.value"
           class="qa-autocomplete-chip"
-          removable="true"
+          [removable]="true"
           (removed)="autocompleteDeselectItem(option)"
         >
           {{ option }}

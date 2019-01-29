@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  isDevMode,
   OnChanges,
   Output,
   QueryList,
@@ -18,8 +19,8 @@ import {
 import { TsInputComponent } from '@terminus/ui/input';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
 import { TsValidatorsService } from '@terminus/ui/validators';
-
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
@@ -145,6 +146,11 @@ export class TsLoginFormComponent implements OnChanges {
    */
   @Input()
   public set inProgress(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsLoginFormComponent: "inProgress" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._inProgress = coerceBooleanProperty(value);
   }
   public get inProgress(): boolean {
@@ -157,6 +163,11 @@ export class TsLoginFormComponent implements OnChanges {
    */
   @Input()
   public set isRedirecting(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsLoginFormComponent: "isRedirecting" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isRedirecting = coerceBooleanProperty(value);
   }
   public get isRedirecting(): boolean {
@@ -175,6 +186,11 @@ export class TsLoginFormComponent implements OnChanges {
    */
   @Input()
   public set triggerFormReset(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsLoginFormComponent: "triggerFormReset" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._triggerFormReset = coerceBooleanProperty(value);
   }
   public get triggerFormReset(): boolean {

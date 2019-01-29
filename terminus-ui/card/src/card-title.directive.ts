@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { isBoolean } from '@terminus/ngx-tools';
 
 import { TsCardComponent } from './card.component';
 
@@ -22,6 +23,11 @@ export class TsCardTitleDirective {
    */
   @Input()
   public set tsTitleAccentBorder(value: boolean) {
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardTitleDirective: "tsTitleAccentBorder" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+
     const setTitleAccBorder = coerceBooleanProperty(value);
     if (setTitleAccBorder) {
       this.tsCardTitle = this.tsCardTitle + ' c-card__title-accent-border';

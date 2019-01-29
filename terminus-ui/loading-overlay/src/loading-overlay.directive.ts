@@ -6,12 +6,16 @@ import {
   HostBinding,
   Injector,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { TsWindowService } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  TsWindowService,
+} from '@terminus/ngx-tools';
 
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 
@@ -44,6 +48,11 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    */
   @Input()
   public set tsLoadingOverlay(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsLoadingOverlayDirective: "tsLoadingOverlay" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     const shouldSet = coerceBooleanProperty(value);
     if (shouldSet) {
       this.bodyPortalHost.attach(this.loadingOverlayPortal);

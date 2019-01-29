@@ -28,6 +28,7 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import {
   hasRequiredControl,
+  isBoolean,
   isString,
   TsDocumentService,
   untilComponentDestroyed,
@@ -198,27 +199,27 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-select
- *              allowMultiple="true"
- *              autocomplete="true"
- *              autocompleteAllowDuplicateSelections="true"
- *              autocompleteReopenAfterSelection="true"
+ *              [allowMultiple]="true"
+ *              [autocomplete]="true"
+ *              [autocompleteAllowDuplicateSelections]="true"
+ *              [autocompleteReopenAfterSelection]="true"
  *              [compareWith]="myCompareFn"
  *              debounceDelay="400"
  *              delimiter=","
- *              hideRequiredMarker="true"
+ *              [hideRequiredMarker]="true"
  *              hint="My hint!"
  *              id="my-id"
- *              isDisabled="true"
- *              isFilterable="true"
- *              isRequired="true"
+ *              [isDisabled]="true"
+ *              [isFilterable]="true"
+ *              [isRequired]="true"
  *              label="My label!"
  *              minimumCharacters="3"
  *              placeholder="My placeholder!"
- *              showProgress="true"
+ *              [showProgress]="true"
  *              [sortComparator]="myComparator"
  *              tabIndex="-1"
  *              theme="primary"
- *              validateOnChange="true"
+ *              [validateOnChange]="true"
  *              value="My value!"
  *              (closed)="panelWasClosed($event)"
  *              (duplicateSelection)="duplicateWasSelected($event)"
@@ -583,6 +584,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set allowMultiple(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "allowMultiple" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._allowMultiple = coerceBooleanProperty(value);
   }
   public get allowMultiple(): boolean {
@@ -595,6 +601,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set autocomplete(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "autocomplete" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._autocomplete = coerceBooleanProperty(value);
   }
   public get autocomplete(): boolean {
@@ -607,6 +618,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set autocompleteAllowDuplicateSelections(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "autocompleteAllowDuplicateSelections" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._autocompleteAllowDuplicateSelections = coerceBooleanProperty(value);
   }
   public get autocompleteAllowDuplicateSelections(): boolean {
@@ -621,6 +637,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set autocompleteReopenAfterSelection(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "autocompleteReopenAfterSelection" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._autocompleteReopenAfterSelection = coerceBooleanProperty(value);
   }
   public get autocompleteReopenAfterSelection(): boolean {
@@ -639,7 +660,7 @@ export class TsSelectComponent implements
   @Input()
   public set compareWith(fn: TsSelectOptionCompareWith) {
     if (typeof fn !== 'function' && isDevMode()) {
-      console.warn(`TsSelectComponent: 'compareWith' must be a function. Falling back to the default.`);
+      console.warn(`TsSelectComponent: "compareWith" must be a function. Falling back to the default.`);
       this._compareWith = DEFAULT_COMPARE_WITH;
     }
 
@@ -684,6 +705,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set hideRequiredMarker(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "hideRequiredMarker" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._hideRequiredMarker = coerceBooleanProperty(value);
   }
   public get hideRequiredMarker(): boolean {
@@ -719,8 +745,13 @@ export class TsSelectComponent implements
    * Define if the control should be disabled
    */
   @Input()
-  public set isDisabled(v: boolean) {
-    this._isDisabled = coerceBooleanProperty(v);
+  public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "isDisabled" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._isDisabled = coerceBooleanProperty(value);
   }
   public get isDisabled(): boolean {
     return this._isDisabled;
@@ -732,6 +763,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set isFilterable(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "isFilterable" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isFilterable = coerceBooleanProperty(value);
   }
   public get isFilterable(): boolean {
@@ -744,6 +780,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set isRequired(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "isRequired" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._isRequired = coerceBooleanProperty(value);
   }
   public get isRequired(): boolean {
@@ -795,6 +836,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set showProgress(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsSelectComponent: "showProgress" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._showProgress = coerceBooleanProperty(value);
   }
   public get showProgress(): boolean {
@@ -835,6 +881,11 @@ export class TsSelectComponent implements
    */
   @Input()
   public set validateOnChange(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && isDevMode()) {
+      console.warn(`TsSelectComponent: "validateOnChange" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._validateOnChange = coerceBooleanProperty(value);
   }
   public get validateOnChange(): boolean {

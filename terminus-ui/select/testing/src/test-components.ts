@@ -327,7 +327,7 @@ export class Optgroups {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      allowMultiple="true"
+      [allowMultiple]="true"
     >
       <ts-select-optgroup
         *ngFor="let group of groups"
@@ -355,7 +355,7 @@ export class OptgroupsMultiple {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      allowMultiple="true"
+      [allowMultiple]="true"
     >
       <ts-select-option
         *ngFor="let option of items"
@@ -377,7 +377,7 @@ export class NoGroupsMultiple {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      autocomplete="true"
+      [autocomplete]="true"
       [allowMultiple]="allowMultiple"
       [autocompleteReopenAfterSelection]="keepOpen"
       [showProgress]="showProgress"
@@ -411,7 +411,7 @@ export class Autocomplete {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      autocomplete="true"
+      [autocomplete]="true"
       [allowMultiple]="allowMultiple"
       [autocompleteAllowDuplicateSelections]="allowDuplicates"
       [autocompleteReopenAfterSelection]="keepOpen"
@@ -445,7 +445,7 @@ export class SeededAutocomplete {
   template: `
     <ts-select
       [(ngModel)]="myModel"
-      autocomplete="true"
+      [autocomplete]="true"
     >
       <ts-select-option
         *ngFor="let option of states"
@@ -469,9 +469,9 @@ export class SeededNgModelAutocomplete {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      autocomplete="true"
+      [autocomplete]="true"
       [allowMultiple]="allowMultiple"
-      autocompleteReopenAfterSelection="false"
+      [autocompleteReopenAfterSelection]="false"
     >
       <ts-select-option
         *ngFor="let option of states"
@@ -496,7 +496,7 @@ export class AutocompleteAllowMultipleNoReopen {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      isDisabled="true"
+      [isDisabled]="true"
       (opened)="wasOpened($event)"
     >
       <ts-select-option
@@ -519,9 +519,9 @@ export class Disabled {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      isDisabled="true"
+      [isDisabled]="true"
       [delimiter]="delimiter"
-      allowMultiple="true"
+      [allowMultiple]="true"
     >
       <ts-select-option
         [value]="option.name"
@@ -542,7 +542,7 @@ export class CustomDelimiter {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      allowMultiple="true"
+      [allowMultiple]="true"
       [sortComparator]="myComparator"
     >
       <ts-select-option
@@ -643,7 +643,7 @@ export class DeferOptionSelectionStream {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      autocomplete="true"
+      [autocomplete]="true"
       (queryChange)="change($event)"
     >
       <ts-select-option
@@ -666,7 +666,7 @@ export class Debounce {
     <ts-select
       [formControl]="myCtrl"
       debounceDelay="0"
-      autocomplete="true"
+      [autocomplete]="true"
       (queryChange)="change($event)"
     >
       <ts-select-option
@@ -690,7 +690,7 @@ export class CustomDebounce {
       [formControl]="myCtrl"
       [minimumCharacters]="customCount"
       debounceDelay="0"
-      autocomplete="true"
+      [autocomplete]="true"
       (queryChange)="change($event)"
     >
       <ts-select-option
@@ -714,7 +714,7 @@ export class CustomCharacterCount {
     <ts-select
       [formControl]="myCtrl"
       [hideRequiredMarker]="hideRequired"
-      isRequired="true"
+      [isRequired]="true"
     >
       <ts-select-option
         [value]="option.name"

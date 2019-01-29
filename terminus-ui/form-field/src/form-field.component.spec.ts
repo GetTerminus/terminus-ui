@@ -199,7 +199,7 @@ describe(`TsFormFieldComponent`, function() {
   template: `
     <ts-form-field [control]="inputComponent" [id]="myId">
       <ts-input
-        hasExternalFormField="true"
+        [hasExternalFormField]="true"
         [formControl]="formControl"
       ></ts-input>
     </ts-form-field>
@@ -223,7 +223,7 @@ export class Id {
       [hideRequiredMarker]="hideRequiredMarker"
     >
       <ts-input
-        hasExternalFormField="true"
+        [hasExternalFormField]="true"
         [formControl]="formControl"
       ></ts-input>
     </ts-form-field>
@@ -244,7 +244,7 @@ export class RequiredMarker {
       [floatLabel]="float"
     >
       <ts-input
-        hasExternalFormField="true"
+        [hasExternalFormField]="true"
         [formControl]="formControl"
       ></ts-input>
     </ts-form-field>
@@ -273,10 +273,10 @@ export class NoControl {
   template: `
     <ts-form-field
       [control]="inputComponent"
-      validateOnChange="true"
+      [validateOnChange]="true"
     >
       <ts-input
-        hasExternalFormField="true"
+        [hasExternalFormField]="true"
         [formControl]="formControl"
       ></ts-input>
     </ts-form-field>
@@ -302,7 +302,7 @@ export class ErrorState implements OnInit {
       [control]="inputComponent"
     >
       <ts-input
-        hasExternalFormField="true"
+        [hasExternalFormField]="true"
         [formControl]="formControl"
       ></ts-input>
     </ts-form-field>

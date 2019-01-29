@@ -85,7 +85,7 @@ Inputs can be disabled by setting the component flag OR by setting the associate
 The `isDisabled` flag works with both `ngModel` and `FormControl` inputs:
 
 ```html
-<ts-input isDisabled="true"></ts-input>
+<ts-input [isDisabled]="true"></ts-input>
 ```
 
 When using Reactive Forms, controls should be disabled via the control:
@@ -102,7 +102,7 @@ For input's not using a `FormControl`, set the `isRequired` input to `true`:
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isRequired="true"
+  [isRequired]="true"
 ></ts-input>
 ```
 
@@ -121,8 +121,8 @@ If the input should be required, but the required asterisk `*` is not needed, di
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isRequired="true"
-  hideRequiredMarker="true"
+  [isRequired]="true"
+  [hideRequiredMarker]="true"
 ></ts-input>
 ```
 
@@ -137,7 +137,7 @@ button: (button will appear as small `x` icon at the far right of the input)
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isClearable="true"
+  [isClearable]="true"
 ></ts-input>
 ```
 
@@ -151,7 +151,7 @@ Auto-focus the input when the view loads:
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isFocused="true"
+  [isFocused]="true"
 ></ts-input>
 ```
 
@@ -193,10 +193,10 @@ The input type can be defined with the type input:
 
 ```html
 <ts-input
-  autocapitalize="true"
+  [autocapitalize]="true"
   autocomplete="email"
-  spellcheck="true"
-  readOnly="false"
+  [spellcheck]="true"
+  [readOnly]="false"
 ></ts-input>
 ```
 
@@ -210,7 +210,7 @@ Validate on change rather than blur:
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  validateOnChange="true"
+  [validateOnChange]="true"
 ></ts-input>
 ```
 
@@ -342,7 +342,7 @@ Most often you will not want the mask characters to be saved as part of the actu
 before saving it to the model. This can be disabled if needed:
 
 ```html
-<ts-input mask="phone" maskSanitizeValue="false"></ts-input>
+<ts-input mask="phone" [maskSanitizeValue]="false"></ts-input>
 ```
 
 This setup will format the value displayed in the UI: `(123) 456-7890`)while saving the pure value to the model: `1234567890`.
@@ -353,7 +353,7 @@ This setup will format the value displayed in the UI: `(123) 456-7890`)while sav
 By default, number based masks (`number`, `percentage`) allow decimals. This can be disabled:
 
 ```html
-<ts-input mask="number" maskAllowDecimal="false"></ts-input>
+<ts-input mask="number" [maskAllowDecimal]="false"></ts-input>
 ```
 
 This means when the user types `12.34`, the input UI and model value will both be `1234`.
@@ -364,7 +364,7 @@ This means when the user types `12.34`, the input UI and model value will both b
 To add datepicker abilities to an input, set the `datepicker` input:
 
 ```html
-<ts-input datepicker="true"></ts-input>
+<ts-input [datepicker]="true"></ts-input>
 ```
 
 
@@ -375,7 +375,7 @@ custom method to filter dates:
 
 ```html
 <ts-input
-  datepicker="true"
+  [datepicker]="true"
   [dateFilter]="myFilter"
 ></ts-datepicker>
 ```
@@ -395,7 +395,7 @@ To define bounds for date selection, pass in a valid `Date` to `minDate` and/or 
 
 ```html
 <ts-input
-  datepicker="true"
+  [datepicker]="true"
   [minDate]="date1"
   [minDate]="date2"
 ></ts-input>
@@ -438,13 +438,13 @@ We can recreate a version of the {@link TsDateRangeComponent} using dynamic vali
 ```html
 <form [formGroup]="myForm" novalidate>
   <ts-input
-    datepicker="true"
+    [datepicker]="true"
     [formControl]="myForm.get('startDate')"
     (selected)="rangeStartChange($event)"
   ></ts-input>
 
   <ts-input
-    datepicker="true"
+    [datepicker]="true"
     [formControl]="myForm.get('endDate')"
     (selected)="rangeEndChange($event)"
   ></ts-input>
@@ -514,7 +514,7 @@ Switch from a standard input to a textarea:
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isTextarea="true"
+  [isTextarea]="true"
 ></ts-input>
 ```
 
@@ -525,7 +525,7 @@ The row count can be dynamically adjusted:
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
-  isTextarea="true"
+  [isTextarea]="true"
   textareaRows="12"
 ></ts-input>
 ```

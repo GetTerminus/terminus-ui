@@ -8,6 +8,7 @@ import {
   ContentChildren,
   ElementRef,
   Input,
+  isDevMode,
   NgZone,
   QueryList,
   ViewChild,
@@ -23,7 +24,10 @@ import {
   take,
 } from 'rxjs/operators';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import {
+  isBoolean,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
@@ -60,11 +64,11 @@ const OUTLINE_GAP_PADDING = 5;
  * <ts-form-field
  *              [control]="myControlInstance"
  *              floatLabel="always"
- *              hideRequiredMarker="true"
+ *              [hideRequiredMarker]="true"
  *              hint="My hint"
  *              id="my-id"
  *              theme="primary"
- *              validateOnChange="true"
+ *              [validateOnChange]="true"
  * ></ts-form-field>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
@@ -209,6 +213,11 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    */
   @Input()
   public set hideRequiredMarker(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsFormFieldComponent: "hideRequiredMarker" value is not a boolean. ` +
+      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
     this._hideRequiredMarker = coerceBooleanProperty(value);
   }
   public get hideRequiredMarker(): boolean {
