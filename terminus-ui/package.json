@@ -13,7 +13,7 @@
     "url": "https://github.com/GetTerminus/terminus-ui/issues"
   },
   "publishConfig": {
-    "tag": "next"
+    "tag": "v10-next"
   },
   "release": {
     "branch": "master",

@@ -90,10 +90,10 @@
     ]
   },
   "publishConfig": {
-    "tag": "next"
+    "tag": "v10"
   },
   "release": {
-    "branch": "master",
+    "branch": "10.x.x",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
