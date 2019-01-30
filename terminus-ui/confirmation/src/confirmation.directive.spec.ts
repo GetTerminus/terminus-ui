@@ -222,11 +222,10 @@ describe(`TsConfirmationDirective`, function() {
       button.click();
 
       jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
       expect(directive['explanationText']).toBeUndefined();
-      // TODO: Blocked until v11 https://github.com/GetTerminus/terminus-ui/issues/1234
-      /*
-       *expect(document.querySelector('.ts-confirmation-overlay__explanation')).toBeNull();
-       */
+      expect(document.querySelector('.ts-confirmation-overlay__explanation')).toBeNull();
+
       jest.runAllTimers();
     });
 
@@ -238,11 +237,13 @@ describe(`TsConfirmationDirective`, function() {
       button.click();
 
       jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
       expect(directive['explanationText']).toEqual('Explanation');
-      // TODO: Blocked until v11 https://github.com/GetTerminus/terminus-ui/issues/1234
-      /*
-       *expect(document.querySelector('.ts-confirmation-overlay__explanation')).not.toBeNull();
-       */
+      expect(directive['explanationText']).toBeTruthy();
+
+      expect(document.querySelector('.ts-confirmation-overlay__explanation')).not.toBeNull();
+
       jest.runAllTimers();
     });
 
