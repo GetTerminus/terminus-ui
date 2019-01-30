@@ -1,8 +1,8 @@
 /**
  * Strip any control characters from a string
  *
- * @param time - The time chosen
- * @return The difference in time
+ * @param str - The string to strip
+ * @return The string without control characters
  */
 export function stripControlCharacters(str: string): string {
   return str.split('').filter((x) => {
