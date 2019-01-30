@@ -294,6 +294,24 @@ a readable point. Add the directive `minWidth` and pass it any valid CSS min-wid
 </ng-container>
 ```
 
+
+## Alignment for a cell
+
+Defining an alignment style for a cell can set the horizontal alignment of text inside the cell. Add the
+directive `alignment` and pass it any valid TsTableColumnAlignment value (`left`, `center` or `right`).
+
+```html
+<!-- set alignment on the column -->
+<ng-container tsColumnDef="created" alignment="right">
+  <ts-header-cell *tsHeaderCellDef ts-sort-header>
+    Created
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.created_at | date:shortDate }}
+  </ts-cell>
+</ng-container>
+```
+
 ---
 
 
@@ -351,7 +369,7 @@ import {
         </ts-cell>
       </ng-container>
 
-      <ng-container tsColumnDef="number" noWrap="true">
+      <ng-container tsColumnDef="number" noWrap="true" alignment="right">
         <ts-header-cell *tsHeaderCellDef>
           Number
         </ts-header-cell>

@@ -6,6 +6,7 @@ import {
   ElementRef,
   Input,
   Renderer,
+  isDevMode,
 } from '@angular/core';
 import {
   CdkCell,
@@ -14,6 +15,17 @@ import {
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
+
+export type TsTableColumnAlignment
+  = 'left'
+  | 'center'
+  | 'right'
+;
+
+/**
+ * An array of the allowed {@link TsTableColumnAlignment} for checking values
+ */
+export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = ['left', 'center', 'right'];
 
 
 /**
@@ -93,6 +105,19 @@ export class TsCellDirective extends CdkCell {
     if (column.minWidth) {
       renderer.setElementStyle(elementRef.nativeElement, 'minWidth', column.minWidth);
     }
+
+    // Skip the following in or to maintain backward compatibility with cells that do not use alignment
+    if (column.alignment) {
+      // Verify the alignment value is allowed
+      if (tsTableColumnAlignmentTypesArray.indexOf(column.alignment) < 0 && isDevMode()) {
+        console.warn(`TsCellDirective: "${column.alignment}" is not an allowed alignment. ` +
+        `See TsTableColumnAlignment for available options.`);
+        return;
+      }
+
+      // Set inline style for text-align
+      renderer.setElementStyle(elementRef.nativeElement, 'textAlign', column.alignment);
+    }
   }
 }
 
@@ -127,4 +152,10 @@ export class TsColumnDefDirective extends CdkColumnDef {
    */
   @Input()
   public minWidth: string | undefined;
+
+  /**
+   * Define an alignment type for the cell.
+   */
+  @Input()
+  public alignment: TsTableColumnAlignment | undefined;
 }
