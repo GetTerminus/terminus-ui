@@ -18,6 +18,7 @@
   - [Pull Requests](#pull-requests)
   - [Releasing](#releasing)
   - [Code Comments](#code-comments)
+  - [Usage Docs](#usage-docs)
 - [Issues](#issues)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -295,6 +296,25 @@ machines.
 
 1. All engineers should do their best to never need most of these note types. However, if needed,
   _always_ include the reason the note is needed. Remember, more information is better!
+
+
+### Usage Docs
+
+Usage docs should be added to all components and directives. These docs are created by adding a markdown file named to match the component
+or directive:
+
+```
+// component:
+foo.component.ts
+// usage docs:
+foo.component.md
+```
+
+When the documentation published, this usage doc will be automatically consumed by the API docs generation.
+
+When editing or creating usage documentation, add headlines and appropriate content, then run `yarn run docs:toc` to update (or generate)
+the table of contents.
+
 
 
 ## Issues
