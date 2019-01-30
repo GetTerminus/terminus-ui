@@ -56,24 +56,22 @@ export class MyComponent {
 
 ## Available validators
 
-| Validator            | Purpose                                                       |
-|----------------------|---------------------------------------------------------------|
-| `creditCard`         | A credit card number must be valid                            |
-| `email`              | An email address must be valid                                |
-| `equalToControl`     | A control's value must be equal to another control's value    |
-| `greaterThan`        | A number must be greater than another value                   |
-| `greaterThanOrEqual` | A number must be greater than or equal to another value       |
-| `inCollection`       | A control's value must be within a collection of values       |
-| `isInRange`          | A control's value must between two numbers                    |
-| `lessThan`           | A number must be less than another value                      |
-| `lessThanOrEqual`    | A number must be less than or equal to another value          |
-| `lowercase`          | A value must contain a minimum amount of lowercase characters |
-| `maxDate`            | A date must be before a maximum date                          |
-| `minDate`            | A date must be after a minimum date                           |
-| `numbers`            | A minimum amount of numbers must be found                     |
-| `password`           | A password must meet certain requirements                     |
-| `uppercase`          | A value must contain a minimum amount of uppercase characters |
-| `url`                | A URL must be valid                                           |
+| Validator        | Purpose                                                       |
+|------------------|---------------------------------------------------------------|
+| `creditCard`     | A credit card number must be valid                            |
+| `email`          | An email address must be valid                                |
+| `equalToControl` | A control's value must be equal to another control's value    |
+| `greaterThan`    | A number must be greater than another value                   |
+| `inCollection`   | A value must be found in a collection                         |
+| `isInRange`      | A number must be between two numbers                          |
+| `lessThan`       | A number must be less than another value                      |
+| `lowercase`      | A value must contain a minimum amount of lowercase characters |
+| `maxDate`        | A date must be before a maximum date                          |
+| `minDate`        | A date must be after a minimum date                           |
+| `numbers`        | A value must contain a minimum amount of numbers              |
+| `password`       | A password must meet certain requirements                     |
+| `uppercase`      | A value must contain a minimum amount of uppercase characters |
+| `url`            | A URL must be valid                                           |
 
 
 ## Mocking
