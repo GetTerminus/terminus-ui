@@ -434,6 +434,40 @@ export class SeededAutocomplete {
 @Component({
   template: `
     <ts-select
+      [formControl]="myCtrl"
+      autocomplete="true"
+      [allowMultiple]="allowMultiple"
+      [autocompleteAllowDuplicateSelections]="allowDuplicates"
+      [autocompleteReopenAfterSelection]="keepOpen"
+      [chipFormatUIFn]="myFormatFn"
+      (duplicateSelection)="duplicate($event)"
+    >
+      <ts-select-option
+        *ngFor="let option of states"
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsSelectOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-select-option>
+    </ts-select>
+  `,
+})
+export class SeededAutocompleteWithFormatFn {
+  myCtrl = new FormControl([{ name: 'Florida', population: '20.27M'}]);
+  states: State[] = STATES.slice();
+  allowMultiple = true;
+  allowDuplicates = false;
+  keepOpen = false;
+  duplicate = jest.fn();
+  myFormatFn = (v: any) => v.name;
+}
+
+@Component({
+  template: `
+    <ts-select
       [(ngModel)]="myModel"
       autocomplete="true"
     >
