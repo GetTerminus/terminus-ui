@@ -46,6 +46,10 @@ jobs:
           command: yarn run build
 
       - run:
+          name: Rename Primary Typings File
+          command: tooling/ci/rename-typings-index.sh
+
+      - run:
           name: Test AoT Demo App Build
           command: tooling/ci/copy-dist-to-node-modules.sh && yarn run build:app:ci
 
