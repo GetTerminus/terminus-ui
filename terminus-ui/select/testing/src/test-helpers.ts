@@ -88,6 +88,10 @@ export function getChipElement(fixture: ComponentFixture<any>, index = 0): HTMLE
   return chip ? chip._elementRef.nativeElement : null;
 }
 
+export function getChipElementDisplayValue(fixture: ComponentFixture<any>, index = 0): string | null {
+  const chip = fixture.debugElement.query(By.css('.ts-autocomplete-chip-value')).nativeElement;
+  return chip.textContent.trim();
+}
 export function getFilterInputElement(fixture: ComponentFixture<any>): HTMLInputElement {
   return fixture.debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text')).nativeElement as HTMLInputElement;
 }

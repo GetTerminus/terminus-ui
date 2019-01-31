@@ -152,21 +152,18 @@
       autocompleteAllowDuplicateSelections="false"
       autocompleteReopenAfterSelection="true"
       [showProgress]="fakeAsync"
+      [chipFormatUIFn]="myFormatUIFn"
       (queryChange)="queryHasChanged($event)"
       (duplicateSelection)="duplicate($event)"
       tsVerticalSpacing
     >
 
       <ts-select-option
-        [value]="state.name"
+        [value]="state"
         [option]="state"
         *ngFor="let state of filteredStates | async"
       >
         {{ state.name }}
-        <!--
-           -<span>{{state.name}}</span> |
-           -<small>Population: {{state.population}}</small>
-           -->
       </ts-select-option>
 
     </ts-select>

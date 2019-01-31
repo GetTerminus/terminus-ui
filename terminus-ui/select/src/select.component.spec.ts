@@ -43,6 +43,7 @@ import {
   getAllOptionInstances,
   getAutocompleteInput,
   getChipElement,
+  getChipElementDisplayValue,
   getFilterInputElement,
   getOptgroupElement,
   getOptionElement,
@@ -54,7 +55,7 @@ import {
 } from '@terminus/ui/select/testing';
 
 import { TsSelectOptionComponent } from './option/option.component';
-import { TsSelectModule } from './select.module';
+import { TsSelectModule, TsSelectFormatFn, TsSelectOption } from './select.module';
 
 
 
@@ -822,6 +823,49 @@ describe(`TsSelectComponent`, function() {
         expect(chips.length).toEqual(0);
       });
 
+
+      test(`should show UI element based on format function passed in`, () => {
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const chip = getChipElementDisplayValue(fixture);
+
+        expect(chip).toEqual('Florida');
+      });
+
+
+      test(`should set/get the chipFormatUIFn`, () => {
+        const myFn: TsSelectFormatFn = (v: any) => v.name;
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+
+        component.chipFormatUIFn = myFn;
+        expect(component.chipFormatUIFn).toEqual(myFn);
+      });
+
+
+      test(`should return undefined if no value is passed in chipFormatUIFn`, () => {
+        // tslint:disable: prefer-const
+        let foo: any;
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+        // tslint:enable: prefer-const
+        expect(component.chipFormatUIFn = foo).toEqual(undefined);
+      });
+
+
+      test(`should throw an error in dev mode when passed a value to chipFormatUIFn that is not a function`, () => {
+        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+        fixture.detectChanges();
+        const component = getSelectInstance(fixture);
+        fixture.detectChanges();
+        expect(() => { component.chipFormatUIFn = 3 as any; })
+        .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
+      });
+
     });
 
 
@@ -998,6 +1042,26 @@ describe(`TsSelectComponent`, function() {
           const fixture = createComponent(testComponents.SeededAutocomplete);
           fixture.componentInstance.allowMultiple = false;
           fixture.componentInstance.keepOpen = false;
+          fixture.detectChanges();
+          const instance = getSelectInstance(fixture);
+          const input = getAutocompleteInput(fixture)!;
+
+          typeInElement('fl', input);
+          fixture.detectChanges();
+
+          const opt = getOptionElement(fixture, 0)!;
+          opt.click();
+          fixture.detectChanges();
+
+          expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
+        });
+
+
+        test(`should set single value 2`, () => {
+          const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+          fixture.componentInstance.allowMultiple = false;
+          fixture.componentInstance.keepOpen = false;
+          fixture.componentInstance.myCtrl.setValue([{ name: 'Florida', population: '20.27M'}]);
           fixture.detectChanges();
           const instance = getSelectInstance(fixture);
           const input = getAutocompleteInput(fixture)!;

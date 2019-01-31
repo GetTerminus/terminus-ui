@@ -29,6 +29,7 @@ import {
 import {
   hasRequiredControl,
   isBoolean,
+  isFunction,
   isString,
   TsDocumentService,
   untilComponentDestroyed,
@@ -134,6 +135,11 @@ const DEFAULT_DEBOUNCE_DELAY = 200;
 const DEFAULT_DELIMITER = ',';
 
 /**
+ * Expose the formatter function type
+ */
+export type TsSelectFormatFn = (v: any) => string;
+
+/**
  * Used to sort selected options.
  *
  * Function used to sort the values ina aselect in multiple mode. Follows the same logic as `Array.prototype.sort`.
@@ -217,6 +223,7 @@ let nextUniqueId = 0;
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
  *              [sortComparator]="myComparator"
+ *              [chipFormatUIFn]="myUIFormatter"
  *              tabIndex="-1"
  *              theme="primary"
  *              [validateOnChange]="true"
@@ -650,6 +657,29 @@ export class TsSelectComponent implements
   private _autocompleteReopenAfterSelection = false;
 
   /**
+   * Define a function to retrieve the UI value for an option
+   */
+  @Input()
+  public set chipFormatUIFn(value: TsSelectFormatFn) {
+    if (!value) {
+      return;
+    }
+
+     if (isFunction(value)) {
+      this._chipFormatUIFn = value;
+    } else {
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
+      }
+    }
+  }
+  public get chipFormatUIFn(): TsSelectFormatFn {
+    return this._chipFormatUIFn;
+  }
+  private _chipFormatUIFn!: TsSelectFormatFn;
+
+  /**
    * Function to compare the option values with the selected values. The first argument
    * is a value from an option. The second is a value from the selection. A boolean
    * should be returned.
@@ -1000,11 +1030,23 @@ export class TsSelectComponent implements
         this.autocompleteSelections = this.ngControl.value;
       }
 
+      // Support dynamic form control updates
       // istanbul ignore else
       if (this.ngControl.valueChanges) {
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
-          .subscribe((newValue) => this.setSelectionByValue(newValue));
+          .subscribe((newValue) => {
+
+            // istanbul ignore else
+            if (newValue) {
+              if (this.autocomplete) {
+                this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
+                this.autocompleteSelections = this.ngControl.value;
+              } else {
+                this.setSelectionByValue(newValue);
+              }
+            }
+          });
       }
     } else {
       // HACK: Wait until the next detection cycle to set the value from an ngModel.
@@ -2004,14 +2046,15 @@ export class TsSelectComponent implements
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
     } else {
       // Update the selected value
-      this.autocompleteSelections.length = 0;
-      this.autocompleteSelections.push(selection.option.value);
+      this.autocompleteSelections = [selection.option.value];
 
       // Update the form control
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      this.inputElement.nativeElement.value = this.autocompleteFormControl.value[0];
+      const newValue = this.chipFormatUIFn ?
+        this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
+      this.inputElement.nativeElement.value = newValue;
     }
 
     // Update the panel position in case the addition of a chip causes the select height to change
@@ -2025,7 +2068,6 @@ export class TsSelectComponent implements
     this.optionSelected.emit(new TsSelectChange(this, selection.option.value));
     this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections));
   }
-
 
 
   /**
@@ -2067,6 +2109,18 @@ export class TsSelectComponent implements
     // Notify consumers about changes
     this.optionDeselected.emit(new TsSelectChange(this, value));
     this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections.slice()));
+  }
+
+
+  /**
+   * Retrieve a value determined by the passed in formatter
+   *
+   * @param option - The select option
+   * @param formatter - The formatter function used to retrieve the value
+   * @return The retrieved value
+   */
+  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
+    return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
 }
