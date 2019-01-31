@@ -62,7 +62,10 @@
           [removable]="true"
           (removed)="autocompleteDeselectItem(option)"
         >
-          {{ option }}
+          <span class="ts-autocomplete-chip-value">
+            {{ chipFormatUIFn ? retrieveValue(option, chipFormatUIFn) : option }}
+          </span>
+
           <ts-icon matChipRemove>
             cancel
           </ts-icon>

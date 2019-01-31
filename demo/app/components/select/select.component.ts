@@ -327,6 +327,19 @@ export class SelectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
+    setTimeout(() => {
+        this.stateCtrl.setValue([
+          {
+            name: 'Arkansas',
+            population: '2.978M',
+          },
+          {
+            name: 'Alabama',
+            population: '3.29M',
+          },
+        ]);
+    }, 2000);
+
     this.firstOptions = this.singleWithCustomTrigger;
     this.filteredStates = this.myQuery$
       .pipe(
@@ -364,6 +377,8 @@ export class SelectComponent implements OnInit {
      */
     return r;
   }
+
+  myFormatUIFn = (v: any): string => v.name;
 
   compareByValue(f1: any, f2: any) {
     console.log('in compareByValue: ', f1, f2);
