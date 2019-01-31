@@ -1988,14 +1988,20 @@ export class TsSelectComponent implements
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
     } else {
       // Update the selected value
-      this.autocompleteSelections.length = 0;
-      this.autocompleteSelections.push(selection.option.value);
+      const newSelection = this.autocompleteSelections.slice();
+      newSelection.length = 0;
+      newSelection.push(selection.option.value);
+      this.autocompleteSelections = newSelection;
 
       // Update the form control
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      this.inputElement.nativeElement.value = this.autocompleteFormControl.value[0];
+      const newValue =
+        this.chipFormatUIFn ?
+          this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn)
+        : this.autocompleteFormControl.value[0];
+      this.inputElement.nativeElement.value = newValue;
     }
 
     // Update the panel position in case the addition of a chip causes the select height to change

@@ -1026,6 +1026,27 @@ describe(`TsSelectComponent`, () => {
           expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
         });
 
+        test(`should set single value`, () => {
+          const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+          fixture.componentInstance.allowMultiple = false;
+          fixture.componentInstance.keepOpen = false;
+          fixture.componentInstance.myCtrl.setValue([{ name: 'Florida', population: '20.27M'}]);
+          fixture.detectChanges();
+          const instance = getSelectInstance(fixture);
+          const input = getAutocompleteInput(fixture)!;
+
+          typeInElement('fl', input);
+          fixture.detectChanges();
+
+          dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
+          dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
+          dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
+          dispatchKeyboardEvent(input, 'keydown', ENTER);
+          fixture.detectChanges();
+
+          expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
+        });
+
       });
 
     });
