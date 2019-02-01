@@ -67,4 +67,15 @@ $ts-select-item-height: 3em !default;
       padding: 0 spacing();
     }
   }
+
+  // Target checkboxes inside a TsSelectOptionComponent
+  .ts-select-option {
+    .mat-checkbox-layout {
+      width: 100%;
+
+      .mat-checkbox-inner-container {
+        margin: auto 10px auto 0;
+      }
+    }
+  }
 }
