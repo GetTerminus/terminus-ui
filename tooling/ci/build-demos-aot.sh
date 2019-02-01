@@ -16,4 +16,4 @@ rm -rf node_modules/@terminus/ui/*
 cp -r dist/terminus-ui/* node_modules/@terminus/ui/
 
 # Build the app with the correct base href
-yarn run build:app:ci --base-href https://getterminus.github.io/$CIRCLE_BRANCH/
+yarn run build:app:ci --base-href https://getterminus.github.io/ui-demos-$CIRCLE_BRANCH/
