@@ -10,7 +10,7 @@
 echo 'Current Branch: ' $CIRCLE_BRANCH
 
 # Docs and demos will only deploy when merging to one of these branches
-releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x")
+releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x" "11.x.x")
 
 
 # Only release docs and demos to S3 if this is a release branch
