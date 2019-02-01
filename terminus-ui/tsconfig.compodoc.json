@@ -10,11 +10,11 @@
     ]
   },
   "include": [
-    "src/**"
+    "**/*"
   ],
   "exclude": [
-    "src/**/*.spec.ts",
-    "src/**/*.mock.ts",
-    "src/**/utilities/testing/**/*.ts"
+    "**/*.spec.ts",
+    "**/*.mock.ts",
+    "**/testing/*"
   ]
 }
