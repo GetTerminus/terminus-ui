@@ -27,7 +27,7 @@ import { TsLoadingOverlayComponent } from './loading-overlay.component';
  * @example
  * <div [tsLoadingOverlay]="true"></div>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/loading-overlay</example-url>
  */
 @Directive({
   selector: '[tsLoadingOverlay]',

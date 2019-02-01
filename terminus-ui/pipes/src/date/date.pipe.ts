@@ -24,6 +24,15 @@ export type TsDateTypes =
 ;
 
 
+/**
+ * The date pipe
+ *
+ * @example
+ * {{ date | tsDate }}
+ * {{ date | tsDate:'timestamp' }}
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ */
 @Pipe({
   name: 'tsDate',
 })

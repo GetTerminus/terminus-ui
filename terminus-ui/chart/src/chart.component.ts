@@ -37,6 +37,7 @@ export type TsChartVisualizationOptions
  * This is the chart UI Component
  *
  * FIXME: Once amCharts v4 is TypeScript scrict complient, we should set the `tsconfig.skipLibCheck` to true.
+ * https://github.com/GetTerminus/terminus-ui/issues/1327
  *
  * #### QA CSS CLASSES
  * - `qa-chart`: Placed on the primary container
@@ -47,7 +48,7 @@ export type TsChartVisualizationOptions
  *              (chartInitialized)="myFunc($event)"
  * ></ts-chart>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/chart</example-url>
  */
 @Component({
   selector: 'ts-chart',

@@ -73,6 +73,12 @@ for each feature.
 - `latest`
   - [Latest Documentation][docs-latest]
   - [Latest Demos][demo-latest]
+- `10.x.x`
+  - [10.x.x Documentation][docs-v10]
+  - [10.x.x Demos][demo-v10]
+- `9.x.x`
+  - [9.x.x Documentation][docs-v9]
+  - [9.x.x Demos][demo-v9]
 - `8.x.x`
   - [8.x.x Documentation][docs-v8]
   - [8.x.x Demos][demo-v8]
@@ -114,7 +120,7 @@ for each feature.
 | [loading overlay][src-loading-overlay] | Overlay with loading spinner                      | :white_check_mark: | [Demo][demo-loading-overlay]    | [Docs][loading-overlay-docs] |                             |
 | [login form][src-login-form]           | Email/password with 'remember me' checkbox        | :white_check_mark: | [Demo][demo-log-in-form]        | [Docs][login-form-docs]      |                             |
 | [menu][src-menu]                       |                                                   | :white_check_mark: | [Demo][demo-menu]               | [Docs][menu-docs]            | [Usage][menu-usage]         |
-| [navigation][src-navigation]           | Global navigation menu                            | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]      |                             |
+| [navigation][src-navigation]           | Global navigation menu                            | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]      | [Usage][navigation-usage]   |
 | [paginator][src-paginator]             | Paging controls for collections                   | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]       | [Usage][paginator-usage]    |
 | [pipes][src-pipes]                     | A collection of pipes for Angular                 | :white_check_mark: | [Demo][demo-pipes]              | [Docs][pipes-docs]           |                             |
 | progress                               |                                                   |                    |                                 |                              |                             |
@@ -426,10 +432,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [validators-docs]:      http://uilibrary-docs.terminus.ninja/master/injectables/TsValidatorsService.html
 
 <!-- Versioned Docs & Demos -->
-[docs-v8]:     http://uilibrary-docs.terminus.ninja/8.x.x/
-[demo-v8]:     http://uilibrary-demo.terminus.ninja/8.x.x/
+[docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
+[docs-v9]: http://uilibrary-docs.terminus.ninja/9.x.x/
+[docs-v10]: http://uilibrary-docs.terminus.ninja/10.x.x/
 [docs-latest]: http://uilibrary-docs.terminus.ninja/master/
-[demo-latest]: https://getterminus.github.io/ui-demos-master
+[demo-v8]: https://getterminus.github.io/ui-demos-8.x.x/
+[demo-v9]: https://getterminus.github.io/ui-demos-9.x.x/
+[demo-v10]: https://getterminus.github.io/ui-demos-10.x.x/
+[demo-latest]: https://getterminus.github.io/ui-demos-master/
 
 <!-- TS Usage Docs -->
 [autocomplete-usage]: http://uilibrary-docs.terminus.ninja/master/components/TsAutocompleteComponent.html#readme
@@ -448,6 +458,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [link-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsLinkComponent.html#readme
 [menu-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsMenuComponent.html#readme
 [paginator-usage]:    http://uilibrary-docs.terminus.ninja/master/components/TsPaginatorComponent.html#readme
+[navigation-usage]:   http://uilibrary-docs.terminus.ninja/master/components/TsNavigationComponent.html#readme
 [radio-group-usage]:  http://uilibrary-docs.terminus.ninja/master/components/TsRadioGroupComponent.html#readme
 [scrollbars-usage]:   http://uilibrary-docs.terminus.ninja/master/directives/TsScrollbarsComponent.html#readme
 [sort-usage]:         http://uilibrary-docs.terminus.ninja/master/directives/TsSortDirective.html#readme

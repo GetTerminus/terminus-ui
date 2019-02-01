@@ -4,6 +4,14 @@ import {
 } from '@angular/core';
 
 
+/**
+ * A pipe that converts a string to title case
+ *
+ * @example
+ * {{ 'MY TEXT' | tsTitleCase }}
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ */
 @Pipe({
   name: 'tsTitleCase',
 })

@@ -63,7 +63,7 @@ export type TsMenuTriggerTypes
  *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/menu</example-url>
  */
 @Component({
   selector: 'ts-menu',

@@ -131,7 +131,7 @@ export interface TsNavigationPayload {
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/navigation</example-url>
  */
 @Component({
   selector: 'ts-navigation',

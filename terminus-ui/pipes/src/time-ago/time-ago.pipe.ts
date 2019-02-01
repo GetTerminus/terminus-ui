@@ -9,6 +9,14 @@ import {
 } from 'date-fns';
 
 
+/**
+ * A pipe that displays the time since a date
+ *
+ * @example
+ * {{ date | tsTimeAgo:oldDate }}
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ */
 @Pipe({
   name: 'tsTimeAgo',
 })

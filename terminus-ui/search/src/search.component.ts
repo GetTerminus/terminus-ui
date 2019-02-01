@@ -59,7 +59,7 @@ export interface TsSearchResponse {
  *              (cleared)="doSomething()"
  * ></ts-search>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/search</example-url>
  */
 @Component({
   selector: 'ts-search',

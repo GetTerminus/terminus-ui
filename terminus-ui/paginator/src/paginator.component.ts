@@ -76,7 +76,7 @@ export interface TsPaginatorMenuItem {
  *   <a href="/faq">Learn more</a>
  * </ng-template>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/paginator</example-url>
  */
 @Component({
   selector: 'ts-paginator',
