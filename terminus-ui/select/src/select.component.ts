@@ -238,7 +238,7 @@ let nextUniqueId = 0;
  *              (valueChange)="theValueWasChanged($event)"
  * ></ts-select>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/select</example-url>
  */
 @Component({
   selector: 'ts-select',

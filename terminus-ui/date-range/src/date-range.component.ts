@@ -66,7 +66,7 @@ export interface TsDateRange {
  *              (startSelected)="myMethod($event)"
  * ></ts-date-range>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/date-range</example-url>
  */
 @Component({
   selector: 'ts-date-range',

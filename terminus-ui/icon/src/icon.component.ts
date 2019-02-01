@@ -50,10 +50,9 @@ export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
  * @example
  * <ts-icon>home</ts-icon>
  * <ts-icon theme="warn">help</ts-icon>
- *
  * <ts-icon svgIcon="left-arrow"></ts-icon>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/icon</example-url>
  */
 @Component({
   selector: 'ts-icon',

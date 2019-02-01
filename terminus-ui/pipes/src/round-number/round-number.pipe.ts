@@ -5,6 +5,15 @@ import {
 import { roundNumber } from '@terminus/ngx-tools';
 
 
+/**
+ * The round number pipe
+ *
+ * @example
+ * {{ 3456.3456 | tsRoundNumber }}
+ * {{ 3456.3456 | tsRoundNumber:2 }}
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ */
 @Pipe({
   name: 'tsRoundNumber',
 })

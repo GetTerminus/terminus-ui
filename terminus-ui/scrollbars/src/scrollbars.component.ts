@@ -69,7 +69,7 @@ let nextUniqueId = 0;
  *              (yReachStart)="myFunc($event)
  * ></ts-scrollbars>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/scrollbars</example-url>
  */
 @Component({
   selector: 'ts-scrollbars',

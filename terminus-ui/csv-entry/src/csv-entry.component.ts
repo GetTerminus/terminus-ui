@@ -81,7 +81,7 @@ let nextUniqueId = 0;
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/csv-entry</example-url>
  */
 @Component({
   selector: 'ts-csv-entry',

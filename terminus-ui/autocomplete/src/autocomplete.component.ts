@@ -95,7 +95,7 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
  *              (query)="myQuery($event)"
  * ></ts-autocomplete>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/autocomplete</example-url>
  */
 @Component({
   selector: 'ts-autocomplete',

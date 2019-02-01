@@ -78,7 +78,7 @@ export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
  *              (clickEvent)="myMethod($event)"
  * >Click Me!</ts-button>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/button</example-url>
  */
 @Component({
   selector: 'ts-button',

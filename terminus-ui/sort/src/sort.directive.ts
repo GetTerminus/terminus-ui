@@ -75,6 +75,14 @@ export const _TsSortMixinBase = mixinDisabled(TsSortBase);
 
 /**
  * Container for TsSortables to manage the sort state and provide default sort parameters
+ *
+ * @example
+ *
+ * <ts-table [dataSource]="dataSource" tsSort>
+ *   ...
+ * </ts-table>
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/table</example-url>
  */
 @Directive({
   selector: '[tsSort]',

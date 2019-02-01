@@ -30,7 +30,7 @@ import { isBoolean } from '@terminus/ngx-tools';
  *              theme="warn"
  * >My link</ts-link>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/link</example-url>
  */
 @Component({
   selector: 'ts-link',

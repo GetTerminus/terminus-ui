@@ -36,6 +36,8 @@ import { TsConfirmationModalComponent } from './confirmation-modal.component';
  *         >
  *           Click me!
  *         </ts-button>
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/confirmation</example-url>
  */
 @Directive({
   selector: '[tsConfirmation]',

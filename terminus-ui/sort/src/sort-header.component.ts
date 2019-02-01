@@ -39,6 +39,13 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
  *
  * If used on header cells in a CdkTable, it will automatically default its id from its containing
  * column definition.
+ *
+ * @example
+ * <ts-header-cell *tsHeaderCellDef ts-sort-header>
+ *              Created
+ * </ts-header-cell>
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/table</example-url>
  */
 @Component({
   // NOTE(B$): This component needs to be added to another component so we need a non-element

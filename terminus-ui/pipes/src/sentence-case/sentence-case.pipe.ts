@@ -4,6 +4,14 @@ import {
 } from '@angular/core';
 
 
+/**
+ * The sentence case pipe
+ *
+ * @example
+ * {{ 'HERE IS MY STRING' | tsSentenceCase }}
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ */
 @Pipe({
   name: 'tsSentenceCase',
 })
