@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: lfglore/circleci-node-awscli
+      - image: benjamincharity/terminus-ui-ci
 
     working_directory: ~/ci-build
 
@@ -42,19 +42,27 @@ jobs:
           path: coverage/junit/
 
       - run:
+          name: Rebuild Node Sass
+          command: npm rebuild node-sass
+
+      - run:
           name: Build Project
           command: yarn run build
 
       - run:
           name: Test AoT Demo App Build
-          command: yarn run build:app:ci
+          command: tooling/ci/build-demos-aot.sh
+
+      - run:
+          name: Publish Demos
+          command: tooling/ci/demos-deploy.sh
 
       - run:
           name: Generate Documentation
           command: yarn run docs
 
       - run:
-          name: Upload Documentation & Demos
+          name: Upload Documentation
           command: tooling/ci/s3-deploy.sh
 
       - run:
@@ -64,10 +72,6 @@ jobs:
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
-
-      - store_artifacts:
-          path: dist/
-          destination: ~/dist/
 
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
