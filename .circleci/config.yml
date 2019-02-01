@@ -47,14 +47,18 @@ jobs:
 
       - run:
           name: Test AoT Demo App Build
-          command: yarn run build:app:ci
+          command: tooling/ci/build-demos-aot.sh
+
+      - run:
+          name: Publish Demos
+          command: tooling/ci/demos-deploy.sh
 
       - run:
           name: Generate Documentation
           command: yarn run docs
 
       - run:
-          name: Upload Documentation & Demos
+          name: Upload Documentation
           command: tooling/ci/s3-deploy.sh
 
       - run:
