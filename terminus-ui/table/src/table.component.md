@@ -13,6 +13,7 @@
 - [Row selection](#row-selection)
 - [No-wrap for a column](#no-wrap-for-a-column)
 - [Min-width for a column](#min-width-for-a-column)
+- [Alignment for a cell](#alignment-for-a-cell)
 - [Full example with pagination, sorting and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
