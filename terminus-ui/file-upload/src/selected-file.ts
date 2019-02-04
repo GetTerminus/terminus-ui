@@ -1,9 +1,11 @@
+import { isDevMode } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
 import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
 import { ImageRatio } from './file-upload.module';
+import { isString } from '@terminus/ngx-tools';
 
 
 /**
@@ -139,8 +141,14 @@ export class TsSelectedFile {
    * @return The FileReader results
    */
   public get fileContents(): string {
-    // TODO: Add real check here to verify a string: https://github.com/GetTerminus/terminus-ui/issues/1226
-    return this.fileReader.result as string;
+    if (isString(this.fileReader.result)) {
+     return this.fileReader.result;
+    } else {
+      // istanbul ignore else
+      if (isDevMode) {
+        console.warn(`${this.fileReader.result} is not returning a string.`);
+      }
+    }
   }
 
   /**
@@ -168,8 +176,14 @@ export class TsSelectedFile {
       this.fileReader.onload = (v: Event) => {
         // istanbul ignore else
         if (img) {
-          // TODO: Add real check here to verify a string: https://github.com/GetTerminus/terminus-ui/issues/1226
-          img.src = this.fileReader.result as string;
+          if (isString(this.fileReader.result)) {
+            img.src = this.fileReader.result;
+          } else {
+            // istanbul ignore else
+            if (isDevMode) {
+              console.warn(`${img} is not returning a string.`);
+            }
+          }
         }
       };
       img.onload = (v: Event) => {
@@ -202,7 +216,6 @@ export class TsSelectedFile {
     // Read the file (this triggers the FileReader load event)
     this.fileReader.readAsDataURL(this.file);
   }
-
 
   /**
    * Validate the image dimensions

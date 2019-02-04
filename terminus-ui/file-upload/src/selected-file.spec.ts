@@ -95,7 +95,6 @@ describe(`TsSelectedFile`, function() {
     // Not sure why any is needed
     (window as any).FileReader = jest.fn(() => new DummyFileReader);
 
-
     class DummyImage {
       _onload = () => {};
       set onload(fn) { this._onload = fn; }
@@ -230,6 +229,59 @@ describe(`TsSelectedFile`, function() {
 
       expect.assertions(1);
     });
+
+    describe(`fileReader result`, () => {
+
+      // convert string to ArrayBuffer
+      function str2ab(str) {
+        const buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
+        const bufView = new Uint16Array(buf);
+        for (let i = 0, strLen = str.length; i < strLen; i++) {
+          bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
+      }
+
+      test(`should warn if image result is not a string`, () => {
+        window.console.warn = jest.fn();
+        // Mock FileReader for ArrayBuffer
+        class DummyArrayBufferFileReader {
+          onload = jest.fn();
+          addEventListener = jest.fn();
+          readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) { this.onload({} as Event); });
+          result = str2ab(FILE_BLOB);
+        }
+        (window as any).FileReader = jest.fn(() => new DummyArrayBufferFileReader);
+
+        const file = createFile();
+        file.fileLoaded$.subscribe((f) => {});
+        expect(window.console.warn).toHaveBeenCalled();
+
+        expect.assertions(1);
+      });
+
+      test(`should warn if csv result is not a string`, () => {
+        window.console.warn = jest.fn();
+        // Mock FileReader for ArrayBuffer
+        class DummyArrayBufferFileReader {
+          onload = jest.fn();
+          addEventListener = jest.fn();
+          readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) { this.onload({} as Event); });
+          result = str2ab(FILE_CSV_BLOB);
+        }
+        (window as any).FileReader = jest.fn(() => new DummyArrayBufferFileReader);
+
+        const file = createFile(FILE_CSV_MOCK);
+        file.fileLoaded$.subscribe((f) => {
+          file.fileContents.valueOf();
+        });
+        expect(window.console.warn).toHaveBeenCalled();
+
+        expect.assertions(1);
+      });
+
+    });
+
 
   });
 
