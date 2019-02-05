@@ -525,6 +525,10 @@ export class TsInputComponent implements
       Promise.resolve(null).then(() => {
         this.inputValueAccessor.value = this._formControl.value;
       });
+      // HACK: This is to get disabled field set properly on both datepicker and input level
+      if (!this.changeDetectorRef['destroyed']) {
+        this.changeDetectorRef.detectChanges();
+      }
     }
   }
   public get formControl(): FormControl {

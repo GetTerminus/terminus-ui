@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -229,6 +230,9 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
   @Output()
   public startSelected: EventEmitter<Date | undefined> = new EventEmitter();
 
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) { }
 
   /**
    * Seed initial date range values
@@ -274,6 +278,13 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.changeDetectorRef.detectChanges();
+
+    // HACK: This is to fix on an initial load, date range value isn't populating correctly.
+
+    this.internalStartControl.setValue(startCtrl.value);
+    this.internalEndControl.setValue(endCtrl.value);
+
     // START DATE
     startCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((value) => {
       this.internalStartControl.setValue(value);
@@ -292,6 +303,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       this.internalEndControl.setErrors(endCtrl.errors);
     });
 
+    this.changeDetectorRef.detectChanges();
   }
 
 
