@@ -97,19 +97,28 @@ myControl: FormControl = new FormControl({value: null, disabled: true});
 
 ### Required
 
-For input's not using a `FormControl`, set the `isRequired` input to `true`:
+When using a `FormControl`, set the required validator on the control:
+
+```typescript
+myControl = new FormControl(null, Validators.required);
+```
+
+When using `ngModel`, validations are placed on the input as data-attributes (just like native HTML inputs):
+
+```html
+<ts-input
+  [formControl]="myForm.get('myControl')"
+  required
+></ts-input>
+```
+
+If only the required asterisk is needed rather than valiation errors, the `isRequired` flag can be used:
 
 ```html
 <ts-input
   [formControl]="myForm.get('myControl')"
   [isRequired]="true"
 ></ts-input>
-```
-
-When using a `FormControl`, set the required validator on the control:
-
-```typescript
-myControl = new FormControl(null, Validators.required);
 ```
 
 
