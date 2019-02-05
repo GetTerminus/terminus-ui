@@ -54,6 +54,14 @@ jobs:
           command: tooling/ci/build-demos-aot.sh
 
       - run:
+          name: Release
+          command: npx semantic-release
+
+      - run:
+          name: Update Package Versions for Demo Build
+          command: tooling/ci/inject-library-version-number.sh
+
+      - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy.sh
 
@@ -65,10 +73,6 @@ jobs:
           name: Upload Documentation
           command: tooling/ci/s3-deploy.sh
 
-      - run:
-          name: Release
-          command: npx semantic-release
-
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
@@ -76,6 +80,10 @@ jobs:
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
           destination: ~/npm_logs/
+
+      - store_artifacts:
+          path: /home/circleci/ci-build/dist/app/
+          destination: ~/demo/
 
 
 
