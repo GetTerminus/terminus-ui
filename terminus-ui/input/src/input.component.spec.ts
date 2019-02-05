@@ -836,7 +836,7 @@ describe(`TsInputComponent`, function() {
         fixture.detectChanges();
         fixture.destroy();
         comp.updateInnerValue('abc');
-        expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
+        setTimeout(() => expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled());
       });
 
       test(`should not call detectChange if component is destroyed with toggling`, () => {
