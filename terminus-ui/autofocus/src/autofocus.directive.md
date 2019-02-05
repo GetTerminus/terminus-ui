@@ -26,10 +26,10 @@ Passing in any value _except_ `false`, `'false'`, `null`, or `undefined` will en
 ```html
 <!-- enabled -->
 <input type="text" [autofocus]="myProperty" />
-<input type="text" autofocus="true" />
+<input type="text" [autofocus]="true" />
 <input type="text" autofocus="" />
 
 <!-- disabled -->
-<input type="text" autofocus="false" />
+<input type="text" [autofocus]="false" />
 <input type="text" [autofocus]="null" />
 ```

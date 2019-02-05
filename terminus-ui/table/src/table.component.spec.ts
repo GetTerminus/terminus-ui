@@ -204,7 +204,7 @@ class ArrayDataSourceTableApp {
         <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
       </ng-container>
 
-      <ng-container tsColumnDef="column_c" alignment="not-allowed">
+      <ng-container tsColumnDef="column_c">
         <ts-header-cell *tsHeaderCellDef>Column C</ts-header-cell>
         <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
       </ng-container>

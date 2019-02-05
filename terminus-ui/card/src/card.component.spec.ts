@@ -68,11 +68,11 @@ describe('TsCardComponent', function() {
 
   });
 
-  describe(`disabled`, () => {
+  describe(`isDisabled`, () => {
 
-    test(`should set disabled flag correctly`, () => {
-      component.disabled = true;
-      expect(component.disabled).toEqual(true);
+    test(`should set isDisabled flag correctly`, () => {
+      component.isDisabled = true;
+      expect(component.isDisabled).toEqual(true);
     });
 
   });

@@ -430,9 +430,9 @@ describe(`TsPaginatorComponent`, function() {
 
   describe(`isZeroBased`, () => {
 
-    test(`should should set/get the value`, () => {
+    test(`should set/get the value`, () => {
       expect(component.isZeroBased).toEqual(true);
-      component.isZeroBased = 'false' as any;
+      component.isZeroBased = false;
 
       expect(component.isZeroBased).toEqual(false);
     });

@@ -54,7 +54,7 @@ let nextUniqueId = 0;
  *              aspectRatio="3:5"
  *              border="right"
  *              [centeredContent]="true"
- *              [disabled]="true"
+ *              [isDisabled]="true"
  *              [flat]="true"
  *              id="my-id"
  *              [supportsInteraction]="true"
@@ -153,6 +153,22 @@ export class TsCardComponent {
     return this._disabled;
   }
   public _disabled = false;
+
+  /**
+   * Define if the card is disabled
+   */
+  @Input()
+  public set isDisabled(value: boolean) {
+    /* istanbul ignore if */
+    if (!isBoolean(value) && value && isDevMode()) {
+      console.warn(`TsCardComponent: "disabled" value is not a boolean. ` +
+        `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+    }
+    this._disabled = coerceBooleanProperty(value);
+  }
+  public get isDisabled(): boolean {
+    return this._disabled;
+  }
 
   /**
    * Define if the card should not have a drop shadow

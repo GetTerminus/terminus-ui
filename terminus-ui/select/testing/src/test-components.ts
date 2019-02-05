@@ -1020,7 +1020,7 @@ export class Filterable {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      autocomplete="true"
+      [autocomplete]="true"
       [allowMultiple]="allowMultiple"
       [autocompleteAllowDuplicateSelections]="allowDuplicates"
       [autocompleteReopenAfterSelection]="keepOpen"

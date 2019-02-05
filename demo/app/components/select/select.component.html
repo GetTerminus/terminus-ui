@@ -73,7 +73,7 @@
 
     <ts-select
       label="Single select"
-      allowMultiple="false"
+      [allowMultiple]="false"
       hint="Select a single option"
       [formControl]="myForm.get('myChoices2')"
       (selectionChange)="isChanged($event)"
@@ -108,7 +108,7 @@
 
     <ts-select
       label="Multiple select"
-      allowMultiple="true"
+      [allowMultiple]="true"
       hint="Select one or more options"
       [formControl]="myForm.get('myChoices3')"
       (opened)="panelChange(true)"
@@ -147,10 +147,10 @@
       label="Autocomplete Example"
       hint="Begin typing to select.."
       [formControl]="stateCtrl"
-      autocomplete="true"
-      allowMultiple="true"
-      autocompleteAllowDuplicateSelections="false"
-      autocompleteReopenAfterSelection="true"
+      [autocomplete]="true"
+      [allowMultiple]="true"
+      [autocompleteAllowDuplicateSelections]="false"
+      [autocompleteReopenAfterSelection]="true"
       [showProgress]="fakeAsync"
       [chipFormatUIFn]="myFormatUIFn"
       (queryChange)="queryHasChanged($event)"

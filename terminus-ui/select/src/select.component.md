@@ -149,7 +149,7 @@ The entire select can be disabled in one of two ways:
 #### By Input
 
 ```html
-<ts-select isDisabled="true">
+<ts-select [isDisabled]="true">
   ...
 </ts-select>
 ```
