@@ -22,9 +22,9 @@
   <h3 tsVerticalSpacing>Seed via @Input</h3>
 
     <ts-toggle
-      isDisabled="true"
+      [isDisabled]="true"
       name="two"
-      isChecked="true"
+      [isChecked]="true"
       (change)="isChanged($event)"
       tsVerticalSpacing
     >Toggle Me!</ts-toggle>

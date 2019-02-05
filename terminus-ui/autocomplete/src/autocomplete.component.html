@@ -14,7 +14,7 @@
         *ngFor="let option of selectedOptions"
         class="qa-autocomplete-chip"
         [selectable]="selectableChips"
-        removable="true"
+        [removable]="true"
         (removed)="deselectOption(option)"
       >
         {{ displayOption(option) }}
@@ -61,7 +61,7 @@
   <mat-autocomplete
     class="c-autocomplete__options c-autocomplete__options--{{theme}} qa-autocomplete-options"
     #autocomplete="matAutocomplete"
-    autoActiveFirstOption="true"
+    [autoActiveFirstOption]="true"
     [displayWith]="displayWith"
     (optionSelected)="selectOption($event)"
   >

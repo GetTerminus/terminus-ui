@@ -91,7 +91,7 @@
     mask="date"
     name="Datepicker input"
     tsVerticalSpacing="small--0"
-    datepicker="true"
+    [datepicker]="true"
   ></ts-input>
 
   <strong>ngModel value: {{ myDatepickerValue }}</strong>
@@ -129,7 +129,7 @@
       [label]="label2"
       [isClearable]="clearable"
       [prefixIcon]="icon"
-      validateOnChange="true"
+      [validateOnChange]="true"
       [hint]="'Email input with validation'"
       name="email"
       [spellcheck]="false"
@@ -149,7 +149,7 @@
       label="Date"
       name="Date"
       mask="date"
-      datepicker="true"
+      [datepicker]="true"
     ></ts-input>
 
   </form>
@@ -166,7 +166,7 @@
     label="My textarea"
     name="My textarea"
     hint="So much space! How will you use it?"
-    isTextarea="true"
+    [isTextarea]="true"
   ></ts-input>
 
   <strong>ngModel value:</strong>

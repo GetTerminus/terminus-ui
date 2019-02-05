@@ -56,8 +56,8 @@
 
 
 <ts-card
-  supportsInteraction="true"
-  centeredContent="true"
+  [supportsInteraction]="true"
+  [centeredContent]="true"
   [utilityMenuTemplate]="myTemplate"
   aspectRatio="16:9"
   tsVerticalSpacing
@@ -67,7 +67,7 @@
 
 
 
-<ts-card centeredContent="true" tsVerticalSpacing>
+<ts-card [centeredContent]="true" tsVerticalSpacing>
   Centered content
 </ts-card>
 
@@ -108,12 +108,12 @@
   <h3 tsCardTitle tsTitleAccentBorder>Card with Title & accent border</h3>
 </ts-card>
 
-<ts-card disabled="true" supportsInteraction="true" tsVerticalSpacing>
+<ts-card [disabled]="true" [supportsInteraction]="true" tsVerticalSpacing>
   Disabled with interactions
 </ts-card>
 
 
-<ts-card disabled="true" tsVerticalSpacing>
+<ts-card [disabled]="true" tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
     Disabled Card with a very long title foo bar baz
   </h3>
@@ -129,7 +129,7 @@
 
 
 <ts-card
-  disabled="false"
+  [disabled]="false"
   tsVerticalSpacing
   [utilityMenuTemplate]="myTemplate"
 >
@@ -165,7 +165,7 @@
 </ng-template>
 
 
-<ts-card flat="true" tsVerticalSpacing>
+<ts-card [flat]="true" tsVerticalSpacing>
   <p>
     FLAT CARD Repellat alias explicabo voluptatibus nesciunt. Optio maxime delectus ex aspernatur quidem. Dolorem nihil eos cum.
   </p>
@@ -179,16 +179,16 @@
   </p>
 </ts-card>
 
-<ts-card flat="true" tsVerticalSpacing disabled="false">
+<ts-card [flat]="true" tsVerticalSpacing [disabled]="false">
   <h3 tsVerticalSpacing>Nested card</h3>
   <p>This card is flat and not disabled</p>
-  <ts-card flat="false" disabled="true">
+  <ts-card [flat]="false" [disabled]="true">
     This card is not flat and disabled
   </ts-card>
 </ts-card>
 
 
-<ts-card flat="true" #transitionCard="tsCard">
+<ts-card [flat]="true" #transitionCard="tsCard">
   <h3 tsVerticalSpacing>Example showing transition</h3>
 
   <button (click)="changeCardHeight()">Change card height</button>

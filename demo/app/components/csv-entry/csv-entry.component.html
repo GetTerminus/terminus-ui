@@ -20,7 +20,7 @@
       [columnValidators]="validators"
       [columnHeaders]="['Full Width']"
       (blobGenerated)="file($event)"
-      fullWidth="true"
+      [fullWidth]="true"
       columnCount=1
     ></ts-csv-entry>
   </div>

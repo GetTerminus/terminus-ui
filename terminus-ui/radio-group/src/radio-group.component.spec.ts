@@ -182,13 +182,6 @@ describe('TsRadioGroupComponent', function() {
       expect(component.isVisual).toEqual(true);
     });
 
-
-    test(`should set a boolean even if another value was passed in`, () => {
-      expect(component.isVisual).toEqual(false);
-      component.isVisual = 'foo' as any;
-      expect(component.isVisual).toEqual(true);
-    });
-
   });
 
   describe(`small`, () => {
@@ -196,13 +189,6 @@ describe('TsRadioGroupComponent', function() {
     test(`should set and retrieve the small value`, () => {
       expect(component.small).toEqual(false);
       component.small = true;
-      expect(component.small).toEqual(true);
-    });
-
-
-    test(`should set a boolean even if another value was passed in`, () => {
-      expect(component.small).toEqual(false);
-      component.small = 'foo' as any;
       expect(component.small).toEqual(true);
     });
 

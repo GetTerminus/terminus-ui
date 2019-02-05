@@ -179,7 +179,7 @@ Both the `TsSelectComponent` and the `tsRowDef` `columns` input should reference
 
 ```html
 <ts-select
-  multipleAllowed="true"
+  [multipleAllowed]="true"
   valueKey="myValue"
   [(ngModel)]="displayedColumns"
   [items]="allColumns"
@@ -347,7 +347,7 @@ import {
     <div fxLayout="row" fxLayoutAlign="end center">
       <ts-select
         label="Show/hide columns"
-        multipleAllowed="true"
+        [multipleAllowed]="true"
         valueKey="value"
         [(ngModel)]="displayedColumns"
         [items]="allColumns"

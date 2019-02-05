@@ -52,7 +52,7 @@
     </h3>
 
     <ts-radio-group
-      isVisual="true"
+      [isVisual]="true"
       [formatUILabelFn]="uiFormatter"
       [formatUISubLabelFn]="uiSubFormatter"
       [formatModelValueFn]="modelFormatter"
@@ -70,8 +70,8 @@
     </h3>
 
     <ts-radio-group
-      isVisual="true"
-      small="true"
+      [isVisual]="true"
+      [small]="true"
       [formatUILabelFn]="uiFormatter"
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup2')"

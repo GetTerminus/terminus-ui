@@ -14,7 +14,7 @@
       <div>
         <ts-select
           label="Allowed MIME types"
-          allowMultiple="true"
+          [allowMultiple]="true"
           [(ngModel)]="mimeTypes"
           (selectionChange)="mimeTypeChange($event)"
         >

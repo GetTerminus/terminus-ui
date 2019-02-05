@@ -34,7 +34,7 @@
       class="qa-radio-validation-messages"
       *ngIf="formControl"
       [control]="formControl"
-      validateImmediately="true"
+      [validateImmediately]="true"
     ></ts-validation-messages>
   </mat-radio-group>
 
@@ -78,7 +78,7 @@
             [matRippleDisabled]="(isDisabled || option.disabled) ? 'disabled' : null"
             [matRippleColor]="rippleColor"
           >
-            <ts-icon class="c-radio__content-checkmark" inline="true">
+            <ts-icon class="c-radio__content-checkmark" [inline]="true">
               done
             </ts-icon>
 
@@ -103,7 +103,7 @@
       class="qa-radio-validation-messages"
       *ngIf="formControl"
       [control]="formControl"
-      validateImmediately="true"
+      [validateImmediately]="true"
     ></ts-validation-messages>
   </fieldset>
 

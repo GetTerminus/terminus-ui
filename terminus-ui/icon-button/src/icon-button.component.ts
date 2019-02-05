@@ -23,7 +23,7 @@ import {
  * <ts-icon-button
  *              actionName="Menu"
  *              buttonType="button"
- *              isDisabled="false"
+ *              [isDisabled]="false"
  *              tabIndex="2"
  *              (clickEvent)="myMethod($event)"
  * >delete_forever</ts-icon-button>
