@@ -103,6 +103,9 @@ import {
  * trigger element.
  */
 
+// The height of the filter area
+export const SELECT_PANEL_FILTER_HEIGHT = 65;
+
 // The max height of the select's overlay panel
 export const SELECT_PANEL_MAX_HEIGHT = 256;
 
@@ -1624,11 +1627,14 @@ export class TsSelectComponent implements
   private scrollActiveOptionIntoView(): void {
     const activeOptionIndex = this.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
+    const height = this.isFilterable
+      ? SELECT_PANEL_MAX_HEIGHT - SELECT_PANEL_FILTER_HEIGHT
+      : SELECT_PANEL_MAX_HEIGHT;
     const total = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this.itemHeight,
       this.getPanelScrollTop(),
-      SELECT_PANEL_MAX_HEIGHT,
+      height,
     );
 
     this.setPanelScrollTop(total);
