@@ -424,6 +424,11 @@ export class TsSelectComponent implements
    */
   public querySubject: BehaviorSubject<string> = new BehaviorSubject('');
 
+  /**
+   * Margin between select panel edge and viewport edge
+   */
+  public viewportMarginSpacing = 100;
+
 
   /**
    * VIEW ACCESS
