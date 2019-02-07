@@ -1750,7 +1750,7 @@ export class TsSelectComponent implements
 
       // The first item is partially out of the viewport. Therefore we need to calculate what
       // portion of it is shown in the viewport and account for it in our offset.
-      const partialItemHeight = itemHeight - ((this.itemCount + 1) * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
+      const partialItemHeight = itemHeight - (this.itemCount * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
 
       // Because the panel height is longer than the height of the options alone,
       // there is always extra padding at the top or bottom of the panel. When
