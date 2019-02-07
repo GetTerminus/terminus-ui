@@ -1638,6 +1638,27 @@ describe(`TsSelectComponent`, function() {
       expect.assertions(5);
     });
 
+    test('should allow space as part of filter and not select an option', () => {
+      const fixture = createComponent(testComponents.Filterable);
+      fixture.detectChanges();
+      const trigger = getSelectTriggerElement(fixture);
+      dispatchMouseEvent(trigger, 'click');
+      fixture.detectChanges();
+      const instance = getSelectInstance(fixture);
+
+      expect(instance.panelOpen).toEqual(true);
+
+      const input = getFilterInputElement(fixture);
+      const options = getAllOptionInstances(fixture);
+
+      expect(options.length).toBe(fixture.componentInstance.options.length);
+
+      typeInElement('something', input);
+      dispatchKeyboardEvent(input, 'keydown', SPACE, input);
+      expect(fixture.componentInstance.options.length).toBe(0);
+      expect.assertions(3);
+    });
+
   });
 
 });
