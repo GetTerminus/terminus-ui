@@ -1286,6 +1286,8 @@ export class TsSelectComponent implements
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
     const manager = this.keyManager;
+    const target: HTMLElement = event.target as HTMLElement;
+    const isFilter = this.isFilterable && target.tagName.toLowerCase() === 'input';
 
     if (keyCode === HOME || keyCode === END) {
       // Focus the first/last item with HOME/END respectively
@@ -1295,7 +1297,7 @@ export class TsSelectComponent implements
       // Close the select on ALT+ARROW to match the native <select>
       event.preventDefault();
       this.close();
-    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+    } else if ((keyCode === ENTER || (keyCode === SPACE && !isFilter)) && manager.activeItem) {
       // Select the active item with SPACE or ENTER
       event.preventDefault();
       manager.activeItem.selectViaInteraction();
@@ -1743,7 +1745,7 @@ export class TsSelectComponent implements
 
       // The first item is partially out of the viewport. Therefore we need to calculate what
       // portion of it is shown in the viewport and account for it in our offset.
-      const partialItemHeight = itemHeight - (this.itemCount * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
+      const partialItemHeight = itemHeight - ((this.itemCount + 1) * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
 
       // Because the panel height is longer than the height of the options alone,
       // there is always extra padding at the top or bottom of the panel. When
