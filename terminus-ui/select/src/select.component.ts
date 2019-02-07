@@ -1291,6 +1291,8 @@ export class TsSelectComponent implements
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
     const manager = this.keyManager;
+    const target: HTMLElement = event.target as HTMLElement;
+    const isFilter = this.isFilterable && target.tagName.toLowerCase() === 'input';
 
     if (keyCode === HOME || keyCode === END) {
       // Focus the first/last item with HOME/END respectively
@@ -1300,7 +1302,7 @@ export class TsSelectComponent implements
       // Close the select on ALT+ARROW to match the native <select>
       event.preventDefault();
       this.close();
-    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+    } else if ((keyCode === ENTER || (keyCode === SPACE && !isFilter)) && manager.activeItem) {
       // Select the active item with SPACE or ENTER
       event.preventDefault();
       manager.activeItem.selectViaInteraction();
