@@ -74,73 +74,71 @@ export class SelectComponent implements OnInit {
        *},
        */
     },
-    /*
-     *{
-     *  foo: 'Eligendi magni quod quas',
-     *  slug: 'eli',
-     *},
-     *{
-     *  foo: 'Necessitatibus corporis officiis atque sed.',
-     *  slug: 'nec',
-     *  disabled: true,
-     *},
-     *{
-     *  foo: 'Baz Neque numquam reiciendis',
-     *  slug: 'baz',
-     *  disabled: true,
-     *},
-     *{
-     *  foo: 'Vel eos nam porro. Vel eos nam porro.',
-     *  slug: 'vel',
-     *},
-     *{
-     *  foo: 'Dolores ducimus magnamomnis.',
-     *  slug: 'dol',
-     *},
-     *{
-     *  foo: 'Dolorem neque quae ducimus',
-     *  slug: 'neq',
-     *},
-     *{
-     *  foo: 'Foo bar baz foo bar baz foo bar baz',
-     *  slug: 'foo2',
-     *},
-     *{
-     *  foo: 'Bar Hic saepe ad sunt temporibus.',
-     *  slug: 'bar2',
-     *},
-     *{
-     *  foo: 'Consequuntur eum eveniet accusamus ea saepe.',
-     *  slug: 'con2',
-     *  disabled: true,
-     *},
-     *{
-     *  foo: 'Eligendi magni quod quas',
-     *  slug: 'eli2',
-     *},
-     *{
-     *  foo: 'Necessitatibus corporis officiis atque sed.',
-     *  slug: 'nec2',
-     *  disabled: true,
-     *},
-     *{
-     *  foo: 'Baz Neque numquam reiciendis',
-     *  slug: 'baz2',
-     *  disabled: true,
-     *},
-     *{
-     *  foo: 'Vel eos nam porro. Vel eos nam porro.',
-     *  slug: 'vel2',
-     *},
-     *{
-     *  foo: 'Dolores ducimus magnamomnis.',
-     *  slug: 'dol2',
-     *},
-     *{
-     *  foo: 'Dolorem neque quae ducimus',
-     *  slug: 'neq2',
-     *},
-     */
+    {
+      foo: 'Eligendi magni quod quas',
+      slug: 'eli',
+    },
+    {
+      foo: 'Necessitatibus corporis officiis atque sed.',
+      slug: 'nec',
+      disabled: true,
+    },
+    {
+      foo: 'Baz Neque numquam reiciendis',
+      slug: 'baz',
+      disabled: true,
+    },
+    {
+      foo: 'Vel eos nam porro. Vel eos nam porro.',
+      slug: 'vel',
+    },
+    {
+      foo: 'Dolores ducimus magnamomnis.',
+      slug: 'dol',
+    },
+    {
+      foo: 'Dolorem neque quae ducimus',
+      slug: 'neq',
+    },
+    {
+      foo: 'Foo bar baz foo bar baz foo bar baz',
+      slug: 'foo2',
+    },
+    {
+      foo: 'Bar Hic saepe ad sunt temporibus.',
+      slug: 'bar2',
+    },
+    {
+      foo: 'Consequuntur eum eveniet accusamus ea saepe.',
+      slug: 'con2',
+      disabled: true,
+    },
+    {
+      foo: 'Eligendi magni quod quas',
+      slug: 'eli2',
+    },
+    {
+      foo: 'Necessitatibus corporis officiis atque sed.',
+      slug: 'nec2',
+      disabled: true,
+    },
+    {
+      foo: 'Baz Neque numquam reiciendis',
+      slug: 'baz2',
+      disabled: true,
+    },
+    {
+      foo: 'Vel eos nam porro. Vel eos nam porro.',
+      slug: 'vel2',
+    },
+    {
+      foo: 'Dolores ducimus magnamomnis.',
+      slug: 'dol2',
+    },
+    {
+      foo: 'Dolorem neque quae ducimus',
+      slug: 'neq2',
+    },
   ]);
   itemsWithGroups: Observable<any[]> = of([
     {
@@ -197,7 +195,10 @@ export class SelectComponent implements OnInit {
   multipleAllowed = true;
   myForm: FormGroup = this.formBuilder.group({
     myChoices1: [
-      this.obj,
+      /*
+       *this.obj,
+       */
+      'bar2',
 
       /*
        *['eli'],
@@ -381,11 +382,15 @@ export class SelectComponent implements OnInit {
   myFormatUIFn = (v: any): string => v.name;
 
   compareByValue(f1: any, f2: any) {
-    console.log('in compareByValue: ', f1, f2);
+    /*
+     *console.log('in compareByValue: ', f1, f2);
+     */
     return f1 && f2 && f1.text === f2.text;
   }
   compareByReference(f1: any, f2: any) {
-    console.log('in compareByReference: ', f1, f2, f1 === f2);
+    /*
+     *console.log('in compareByReference: ', f1, f2, f1 === f2);
+     */
     return f1 === f2;
   }
 

@@ -8,6 +8,35 @@
   </button>
 </ts-card>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 <form
   [formGroup]="myForm"
@@ -27,7 +56,6 @@
       label="Single select"
       hint="Select a single option"
       [formControl]="myForm.get('myChoices1')"
-      [compareWith]="comparator"
       (selectionChange)="isChanged($event)"
       (optionSelected)="isSelected($event)"
       (optionDeselected)="isDeselected($event)"
@@ -35,7 +63,7 @@
     >
       <ts-select-trigger>
         My custom trigger!
-        <strong>{{ myForm.get('myChoices1')?.value?.text }}</strong>
+        <strong>{{ myForm.get('myChoices1')?.value }}</strong>
       </ts-select-trigger>
 
       <ts-select-option>
@@ -43,7 +71,7 @@
       </ts-select-option>
 
       <ts-select-option
-        [value]="option.bar"
+        [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of singleWithCustomTrigger | async"
@@ -65,6 +93,46 @@
     </div>
   </ts-card>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
   <ts-card tsVerticalSpacing fxFlex>
     <h3 tsCardTitle tsVerticalSpacing="small--1">
@@ -213,5 +281,21 @@
       FormControl value: {{ myForm.get('myChoices1')?.value | json }}
     </div>
   </ts-card>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
 
 </form>
