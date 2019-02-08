@@ -114,6 +114,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
 
 
 .ts-select-panel {
+  max-height: $ts-select-panel-max-height;
   // Allow long lists to scroll
   overflow: auto;
 

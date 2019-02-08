@@ -354,8 +354,7 @@ export class TsSelectComponent implements
   /**
    * This position config ensures that the top "start" corner of the overlay
    * is aligned with with the top "start" of the origin by default (overlapping
-   * the trigger completely). If the panel cannot fit below the trigger, it
-   * will fall back to a position above the trigger.
+   * the trigger completely).
    */
   public positions = [
     {
@@ -363,12 +362,6 @@ export class TsSelectComponent implements
       originY: 'top',
       overlayX: 'start',
       overlayY: 'top',
-    },
-    {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'bottom',
     },
   ];
 
@@ -1664,6 +1657,7 @@ export class TsSelectComponent implements
     let selectedOptionOffset = this.empty ? 0 : this.getOptionIndex(this.selectionModel.selected[0])!;
     // tslint:enable: no-non-null-assertion
 
+    // Make sure we take into account optgroups also
     selectedOptionOffset += countGroupLabelsBeforeOption(selectedOptionOffset, this.options, this.optionGroups);
 
     // We must maintain a scroll buffer so the selected option will be scrolled to the
@@ -1737,9 +1731,13 @@ export class TsSelectComponent implements
    * @return The overlay's Y offset
    */
   private calculateOverlayOffsetY(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
+    // NOTE: scrollBuffer is half of the panel height - which is really half of SELECT_PANEL_MAX_HEIGHT (when many options exist)
+    // NOTE: maxScroll is the height of all options minus the height of the panel
     const itemHeight = this.itemHeight;
     const optionHeightAdjustment = (itemHeight - (this.triggerRect ? this.triggerRect.height : 0)) / 2;
     const maxOptionsDisplayed = Math.floor(SELECT_PANEL_MAX_HEIGHT / itemHeight);
+
+    // scrollbuffer - options
     let optionOffsetFromPanelTop: number;
 
     if (this.scrollTop === 0) {
@@ -1782,19 +1780,27 @@ export class TsSelectComponent implements
   private checkOverlayWithinViewport(maxScroll: number): void {
     const itemHeight = this.itemHeight;
     const viewportSize = this.viewportRuler.getViewportSize();
+    // Space between top of trigger and top of viewport
     const topSpaceAvailable = this.triggerRect ? (this.triggerRect.top - SELECT_PANEL_VIEWPORT_PADDING) : 0;
+    // Viewport height - trigger bottom - viewport padding
     const bottomSpaceAvailable = viewportSize.height - (this.triggerRect ? this.triggerRect.bottom : 0) - SELECT_PANEL_VIEWPORT_PADDING;
     const panelHeightTop = Math.abs(this.offsetY);
+    // 256 when maxed out
     const totalPanelHeight = Math.min(this.itemCount * itemHeight, SELECT_PANEL_MAX_HEIGHT);
+    // total panel - offsetY - trigger height
     const panelHeightBottom = totalPanelHeight - panelHeightTop - (this.triggerRect ? this.triggerRect.height : 0);
 
-    if (panelHeightBottom > bottomSpaceAvailable) {
-      this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
-    } else if (panelHeightTop > topSpaceAvailable) {
-     this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
-    } else {
-      this.transformOrigin = this.getOriginBasedOnOption();
-    }
+    // TODO: Disabling panel adjust in order to get a hotfix out. This will be revisisted ASAP so I am leaving the commented code.
+    /*
+     *if (panelHeightBottom > bottomSpaceAvailable) {
+     *  this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
+     *} else if (panelHeightTop > topSpaceAvailable) {
+     * this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
+     *} else {
+     *  this.transformOrigin = this.getOriginBasedOnOption();
+     *}
+     */
+    this.transformOrigin = this.getOriginBasedOnOption();
   }
 
 
