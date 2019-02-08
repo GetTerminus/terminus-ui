@@ -2,26 +2,10 @@
 # yarn lockfile v1
 
 
-"@amcharts/amcharts4-geodata@^4.0.10":
-  version "4.0.27"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.0.27.tgz#ad32f295ae90cc81b9ac4a4bc437a2609f285bea"
-  integrity sha512-R7zg8CFdtFxB/0wxIxa70VBmIt9wBUb/hpTLs8nvfF0+vUiLsq+oH42SsnMBeXjMQ1WQgahq50eywchD8P0/rQ==
-
 "@amcharts/amcharts4-geodata@^4.0.29":
   version "4.0.29"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.0.29.tgz#4169388c7a682c618623f5641a14372961c7d6e2"
   integrity sha512-kgR+MjsLMQm4Ekp6Qrzh+/Ul/Pd1hreTXAQh8vojTVWLCNKCl+EWoxjr6ti5ms6oqhKS4gsMbEnwjzfIzeVzzA==
-
-"@amcharts/amcharts4@^4.0.0-beta.50":
-  version "4.0.16"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.0.16.tgz#5ab4bba397ee4fbc9a5e9ff1e94cae6a56705e82"
-  integrity sha512-pkEqe8zmi3/4pqzLNQH/AZtaICaGEnjcG3xWhJiFeBhYSGIKQiAc+htWw8sGcptcAzSrOpWXiSRCciju/49ypA==
-  dependencies:
-    canvg "^1.5.3"
-    css-element-queries "^1.0.5"
-    pdfmake "^0.1.36"
-    tslib "^1.9.3"
-    xlsx "^0.12.8"
 
 "@amcharts/amcharts4@^4.0.24":
   version "4.0.24"
@@ -141,13 +125,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^6.4.7":
-  version "6.4.7"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.4.7.tgz#1549b304dd412e82bd854cc55a7d5c6772ee0411"
-  integrity sha512-18x0U66fLD5kGQWZ9n3nb75xQouXlWs7kUDaTd8HTrHpT1s2QIAqlLd1KxfrYiVhsEC2jPQaoiae7VnBlcvkBg==
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/cdk@^7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.3.0.tgz#957668181bd7f113c78e53ec82d50a15e6ba6ee3"
@@ -230,15 +207,6 @@
   integrity sha512-+9dZgiVQStGUO3iJGxEWBkjDCARuVLIPk7QPl4Qntbz8Sd/kR7IBqXMM+74W7T5rlG6bunDxq6LuisvsjWCppw==
   dependencies:
     tslib "^1.9.0"
-
-"@angular/material@^6.4.7":
-  version "6.4.7"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-6.4.7.tgz#3c8f2d6a6a7904d97be29e06a84ffb62a8da6c16"
-  integrity sha512-SdNx7Xovi24Kw9eU6lkLhY/7f2M7L9F+/uh6XuPr4jbGgCUVVpeeVI5ztZhsZRbj1sN+/r1p5w8u62apWWl5Ww==
-  dependencies:
-    tslib "^1.7.1"
-  optionalDependencies:
-    parse5 "^5.0.0"
 
 "@angular/material@^7.3.0":
   version "7.3.0"
@@ -796,27 +764,26 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^5.0.3":
+"@terminus/ngx-tools@latest":
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-5.0.3.tgz#fcc45129e7670106cbc4dcf417270950c2b220d9"
   integrity sha512-2Tq5kyl95tYxMIx7db3b6DW4dROAxaWrOyLXqVojt+UOU0tuv2apvu3F4b9CohduiSRM2e/GA+ei2kRhKc4eDw==
   dependencies:
     tslib "^1.9.0"
 
-"@terminus/ui@*":
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-9.4.0.tgz#868bebe5fc0a1a7749ba3acc0f50b201da3bd9fe"
-  integrity sha512-5NaqzeDebRx4to2HqttVQjYf3alv1SJosRT4HN9OMmSWcJog0u82wq17fZ2Fbg+t39damSpypYRd9l4I1dgsqA==
+"@terminus/ui@latest":
+  version "11.1.10"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-11.1.10.tgz#8d3df1470f136292df5b347011f406e324701663"
+  integrity sha512-OoCLGj1ok1bU4Q8t8xJtk4fXZUmL13M7z+hEl5wXfuWAOt9f0chYiftvdguOjp/aFe6yCoedEeLpLzYzleGYsA==
   dependencies:
-    "@angular/cdk" "^6.4.7"
-    "@angular/material" "^6.4.7"
-    ngx-perfect-scrollbar "^6.3.1"
+    "@angular/cdk" "^7.3.0"
+    ngx-perfect-scrollbar "^7.2.0"
     text-mask-addons "^3.8.0"
     text-mask-core "^5.1.2"
     tslib "^1.9.0"
   optionalDependencies:
-    "@amcharts/amcharts4" "^4.0.0-beta.50"
-    "@amcharts/amcharts4-geodata" "^4.0.10"
+    "@amcharts/amcharts4" "^4.0.24"
+    "@amcharts/amcharts4-geodata" "^4.0.29"
 
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.1"
@@ -10395,14 +10362,6 @@ ng-packagr@^4.7.0:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
-ngx-perfect-scrollbar@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-6.3.1.tgz#38e5e3259a61e911d82ba24f06fc01ab92eaf919"
-  integrity sha512-kgHT0A1pDnZO5CxB4TOwflHb1Q152wZ3Nec0Zf7d29bgA1kAFl6oK8wFmYtGWeaFNhSCExus6TOq3sWN3xRQig==
-  dependencies:
-    perfect-scrollbar "^1.4.0"
-    resize-observer-polyfill "^1.4.0"
-
 ngx-perfect-scrollbar@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-7.2.0.tgz#396ed8c1dc5c7828994649f802cab9289ad66302"
@@ -13116,7 +13075,7 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
-resize-observer-polyfill@^1.4.0, resize-observer-polyfill@^1.5.0:
+resize-observer-polyfill@^1.5.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
