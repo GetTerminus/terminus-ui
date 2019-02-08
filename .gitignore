@@ -12,5 +12,5 @@ e2e/**/*.js
 e2e/**/*.js.map
 .ng_build
 .vscode
-docs/
+docs/*
 coverage/
