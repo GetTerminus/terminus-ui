@@ -251,6 +251,7 @@ let nextUniqueId = 0;
     '[class.ts-select--autocomplete]': '!!autocomplete',
     '[attr.aria-owns]': 'panelOpen ? optionIds : null',
     '[attr.aria-required]': 'isRequired.toString()',
+    '[attr.aria-multiselectable]': 'allowMultiple',
     '[attr.tabindex]': 'tabIndex',
     '(keydown)': 'handleKeydown($event)',
   },
@@ -1234,7 +1235,6 @@ export class TsSelectComponent implements
   public onAttached(): void {
     this.overlayDir.positionChange.pipe(take(1)).subscribe(() => {
       this.changeDetectorRef.detectChanges();
-      this.calculateOverlayOffsetX();
       this.setPanelScrollTop(this.scrollTop);
     });
   }
@@ -1681,58 +1681,7 @@ export class TsSelectComponent implements
 
 
   /**
-   * Set the x-offset of the overlay panel in relation to the trigger's top start corner.
-   *
-   * This must be adjusted to align the selected option text over the trigger text when the panel opens. Note that the offset can't be
-   * calculated until the panel has been attached, because we need to know the content width in order to constrain the panel within the
-   * viewport.
-   */
-  private calculateOverlayOffsetX(): void {
-    const overlayRect = this.overlayDir.overlayRef.overlayElement.getBoundingClientRect();
-    const viewportSize = this.viewportRuler.getViewportSize();
-    // NOTE: Currently we only support ltr
-    const isRtl = false;
-    const paddingWidth = this.allowMultiple ? SELECT_MULTIPLE_PANEL_PADDING_X + SELECT_PANEL_PADDING_X : SELECT_PANEL_PADDING_X * 2;
-    let offsetX: number;
-
-    // Adjust the offset, depending on the option padding.
-    if (this.allowMultiple) {
-      offsetX = SELECT_MULTIPLE_PANEL_PADDING_X;
-    } else {
-      const selected = this.selectionModel.selected[0] || this.options.first;
-      offsetX = selected && selected.group ? SELECT_PANEL_INDENT_PADDING_X : SELECT_PANEL_PADDING_X;
-    }
-
-    // Invert the offset in LTR.
-    // istanbul ignore else
-    if (!isRtl) {
-      offsetX *= -1;
-    }
-
-    // Determine how much the select overflows on each side.
-    const leftOverflow =
-      0 - (overlayRect.left + offsetX - (!isRtl ? 0 /* istanbul ignore next - Unreachable */ : paddingWidth));
-    const rightOverflow
-      = overlayRect.right + offsetX - viewportSize.width + (!isRtl ? paddingWidth /* istanbul ignore next - Unreachable */ : 0);
-
-    // If the element overflows on either side, reduce the offset to allow it to fit.
-    if (leftOverflow > 0) {
-      offsetX += leftOverflow + SELECT_PANEL_VIEWPORT_PADDING;
-    } else if (rightOverflow > 0) {
-      offsetX -= rightOverflow + SELECT_PANEL_VIEWPORT_PADDING;
-    }
-
-    // Set the offset directly in order to avoid having to go through change detection and
-    // potentially triggering "changed after it was checked" errors. Round the value to avoid
-    // blurry content in some browsers.
-    this.overlayDir.offsetX = Math.round(offsetX);
-    this.overlayDir.overlayRef.updatePosition();
-  }
-
-
-  /**
-   * Calculate the y-offset of the select's overlay panel in relation to the top start corner of the trigger.
-   *
+   * Calculates the y-offset of the select's overlay panel in relation to the top start corner of the trigger.
    * It has to be adjusted in order for the selected option to be aligned over the trigger when the panel opens.
    *
    * @param selectedIndex - The index of the selected item

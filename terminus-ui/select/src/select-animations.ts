@@ -31,12 +31,12 @@ export const tsSelectAnimations: {
     })),
     state('showing', style({
       opacity: 1,
-      minWidth: 'calc(100% + 32px)', // 32px = 2 * 16px padding
+      minWidth: 'calc(100% + 32px)',
       transform: 'scaleY(1)',
     })),
     state('showing-multiple', style({
       opacity: 1,
-      minWidth: 'calc(100% + 64px)', // 64px = 48px padding on the left + 16px padding on the right
+      minWidth: 'calc(100% + 24px)',
       transform: 'scaleY(1)',
     })),
     transition('void => *', animate('120ms cubic-bezier(0, 0, 0.2, 1)')),
