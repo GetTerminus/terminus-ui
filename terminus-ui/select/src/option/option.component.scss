@@ -4,6 +4,7 @@
 @import './../../../scss/helpers/shadows';
 @import './../../../scss/helpers/cursors';
 @import './../../../scss/helpers/spacing';
+@import './../../../scss/helpers/z-index';
 
 
 // FIXME: Remove custom color once our palette supports a color for this use-case.
@@ -52,6 +53,7 @@ $ts-select-item-height: 3em !default;
 .ts-select-panel {
   @include elevation-element(menu);
   background: color(pure);
+  z-index: z(menu);
 
   .ts-optgroup-label,
   .ts-select-option:not(.ts-select-option--template) {

@@ -4,6 +4,9 @@
   [hideRequiredMarker]="hideRequiredMarker"
   [hint]="hint"
   [id]="id"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
+  #field
 >
   <ts-label *ngIf="label">
     {{ label }}
@@ -17,10 +20,8 @@
       [class.ts-select-trigger--hidden]="autocomplete"
       [attr.id]="autocomplete ? '' : id"
       [attr.tabindex]="tabIndex"
-      cdk-overlay-origin
       aria-hidden="true"
       (click)="toggle()"
-      #origin="cdkOverlayOrigin"
       #trigger
     >
       <div class="ts-select-value" [ngSwitch]="empty">
@@ -116,13 +117,13 @@
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayOffsetX="0"
   [cdkConnectedOverlayViewportMargin]="viewportMarginSpacing"
   [cdkConnectedOverlayOrigin]="origin"
   [cdkConnectedOverlayOpen]="panelOpen"
   [cdkConnectedOverlayPositions]="positions"
   [cdkConnectedOverlayMinWidth]="triggerRect?.width"
   [cdkConnectedOverlayWidth]="triggerRect?.width"
+  [cdkConnectedOverlayOffsetX]="0"
   [cdkConnectedOverlayOffsetY]="offsetY"
   (backdropClick)="close()"
   (attach)="onAttached()"

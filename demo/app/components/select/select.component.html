@@ -50,7 +50,7 @@
       Single Select
     </h3>
 
-    <h5 tsVerticalSpacing>With custom trigger and option template</h5>
+    <h5 tsVerticalSpacing>With custom trigger</h5>
 
     <ts-select
       label="Single select"
@@ -77,14 +77,6 @@
         *ngFor="let option of singleWithCustomTrigger | async"
       >
         {{ option.slug }}
-        <!--
-           -<ng-template let-option>
-           -  <div class="myClass">
-           -    <h4 tsSelectOptionDisplay>{{ option?.foo }}</h4>
-           -    <small>{{ option?.slug }}</small>
-           -  </div>
-           -</ng-template>
-           -->
       </ts-select-option>
     </ts-select>
 
@@ -165,6 +157,37 @@
 
     <div>
       FormControl value: {{ myForm.get('myChoices2')?.value | json }}
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing fxFlex>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Multiple
+    </h3>
+
+    <ts-select
+      label="Multiple select"
+      [allowMultiple]="true"
+      hint="Select one or more options"
+      [formControl]="myForm.get('myChoices3')"
+      (opened)="panelChange(true)"
+      (closed)="panelChange(false)"
+      (selectionChange)="isChanged($event)"
+      tsVerticalSpacing
+    >
+      <ts-select-option
+        [value]="option.slug"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of singleWithCustomTrigger | async"
+      >
+        {{ option.slug }}
+      </ts-select-option>
+    </ts-select>
+
+    <div>
+      FormControl value: {{ myForm.get('myChoices3')?.value | json }}
     </div>
   </ts-card>
 

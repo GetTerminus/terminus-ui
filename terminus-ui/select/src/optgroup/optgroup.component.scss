@@ -10,6 +10,8 @@
 //  An optgroup for a select menu
 //
 .ts-optgroup {
+  display: block;
+
   &.ts-optgroup--disabled {
     color: color(utility, dark);
   }
