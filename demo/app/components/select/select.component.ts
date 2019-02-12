@@ -36,6 +36,7 @@ export interface State {
 export class SelectComponent implements OnInit {
   simpleItems: number[] = [1, 2, 3, 4];
   initialSimpleItemsSelection = 2;
+  useSpacing = false;
   obj = {
     id: 3,
     text: 'baz',
