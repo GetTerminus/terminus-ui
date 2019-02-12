@@ -127,10 +127,19 @@
   (attach)="onAttached()"
   (detach)="close()"
 >
+  <div class="ts-select-panel__filter-input" *ngIf="isFilterable">
+    <ts-input
+      label="Filter options..."
+      [ngModel]="searchQuery"
+      (ngModelChange)="queryChange.emit($event)"
+    ></ts-input>
+  </div>
+
   <div
     #panel
     class="ts-select-panel ts-{{ theme }} qa-select-panel"
     [class.ts-select-panel--multiple]="allowMultiple"
+    [class.ts-select-panel--filter]="isFilterable"
     [@transformPanel]="allowMultiple ? 'showing-multiple' : 'showing'"
     (@transformPanel.done)="panelDoneAnimatingStream.next($event.toState)"
     [style.transformOrigin]="transformOrigin"
@@ -159,9 +168,6 @@
     </div>
 
     <!-- Outlet for options passed in by consumer -->
-    <div *ngIf="isFilterable" class="ts-select-panel__filter-input">
-      <ts-input label="filter..." [ngModel]="searchQuery" (ngModelChange)="queryChange.emit($event)"></ts-input>
-    </div>
     <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
   </div>
 </ng-template>
