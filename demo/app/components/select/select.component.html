@@ -6,35 +6,46 @@
   <button (click)="log(myForm)">
     Log form value
   </button>
+
+  <br>
+  <br>
+
+  <ts-toggle [(ngModel)]="useSpacing">
+    Create space around select
+    <br>
+    <small>(useful for testing panel position logic)</small>
+  </ts-toggle>
 </ts-card>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<ng-container *ngIf="useSpacing">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</ng-container>
 
 
 
@@ -76,7 +87,17 @@
         [isDisabled]="option?.disabled"
         *ngFor="let option of singleWithCustomTrigger | async"
       >
-        {{ option.slug }}
+        <!--
+           -{{ option.slug }}
+           -->
+        <ng-template let-option>
+          <div class="myClass" style="padding: 8px 0;">
+            <h4 tsSelectOptionDisplay>{{ option?.foo }}</h4>
+            <small>An example of a larger template.</small>
+            <br>
+            <small>Slug: {{ option?.slug }}</small>
+          </div>
+        </ng-template>
       </ts-select-option>
     </ts-select>
 
@@ -85,46 +106,48 @@
     </div>
   </ts-card>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <ng-container *ngIf="useSpacing">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </ng-container>
 
   <ts-card tsVerticalSpacing fxFlex>
     <h3 tsCardTitle tsVerticalSpacing="small--1">

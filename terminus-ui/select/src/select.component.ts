@@ -364,6 +364,12 @@ export class TsSelectComponent implements
       overlayX: 'start',
       overlayY: 'top',
     },
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'bottom',
+    },
   ];
 
   /**
@@ -537,10 +543,17 @@ export class TsSelectComponent implements
   }
 
   /**
-   * Calculates the height of the select's options using the font size
+   * Calculates the height of the option's offsetHeight. Fall back to the trigger font size if no options exist.
    */
   private get itemHeight(): number {
-    return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
+    if (this.options.length) {
+      // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
+      const options = this.options.toArray();
+      const option = options[1] || options[0];
+      return option.elementRef.nativeElement.offsetHeight;
+    } else {
+      return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
+    }
   }
 
   /**
@@ -1749,17 +1762,13 @@ export class TsSelectComponent implements
     // total panel - offsetY - trigger height
     const panelHeightBottom = totalPanelHeight - panelHeightTop - (this.triggerRect ? this.triggerRect.height : 0);
 
-    // TODO: Disabling panel adjust in order to get a hotfix out. This will be revisisted ASAP so I am leaving the commented code.
-    /*
-     *if (panelHeightBottom > bottomSpaceAvailable) {
-     *  this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
-     *} else if (panelHeightTop > topSpaceAvailable) {
-     * this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
-     *} else {
-     *  this.transformOrigin = this.getOriginBasedOnOption();
-     *}
-     */
-    this.transformOrigin = this.getOriginBasedOnOption();
+    if (panelHeightBottom > bottomSpaceAvailable) {
+      this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
+    } else if (panelHeightTop > topSpaceAvailable) {
+     this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
+    } else {
+      this.transformOrigin = this.getOriginBasedOnOption();
+    }
   }
 
 
