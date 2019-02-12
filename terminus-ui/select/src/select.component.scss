@@ -113,10 +113,34 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
 }
 
 
+// Position the filter input inside the panel
+.cdk-overlay-pane {
+  .ts-select-panel__filter-input {
+    background-color: color(pure);
+    border-bottom: 1px solid color(utility, light);
+    left: 0;
+    padding: 8px;
+    position: absolute;
+    right: -32px;
+    top: 0;
+    z-index: 9;
+
+    .ts-form-field .ts-form-field__wrapper {
+      padding-bottom: 0;
+    }
+  }
+}
+
+
 .ts-select-panel {
   max-height: $ts-select-panel-max-height;
   // Allow long lists to scroll
   overflow: auto;
+
+  &.ts-select-panel--filter {
+    // Create space for the absolutely positioned filter input
+    padding-top: 85px;
+  }
 
   // Indent the checkboxes if children of an optgroup
   .ts-optgroup {
@@ -145,15 +169,6 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     color: color(utility);
     position: absolute;
     right: spacing(small);
-  }
-
-  .ts-select-panel__filter-input {
-    border-bottom: 1px solid #cecdd1;
-    padding: 5px;
-
-    .ts-form-field .ts-form-field__wrapper {
-      padding-bottom: 0;
-    }
   }
 }
 
