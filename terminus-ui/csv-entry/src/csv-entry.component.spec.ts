@@ -521,7 +521,7 @@ describe(`TsCSVEntryComponent`, function() {
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
       message = fixture.debugElement.query(By.css('.c-csv-entry__message'));
       expect(row2Cell1.value).toEqual('');
-      expect(component.columnCount).toEqual(component['defaultColumnCount']);
+      expect(component.columnCount).toEqual(component['columnCount']);
       expect(component.rows.length).toEqual(component.rowCount);
       expect(message).toBeFalsy();
     });

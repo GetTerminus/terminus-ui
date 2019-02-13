@@ -640,10 +640,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public resetTable(): void {
     this.clearAllRows();
     this.clearHeaderCells();
-    this.columnCount = this.defaultColumnCount;
+    this.columnCount = this.columnCount || this.defaultColumnCount;
     this.addRows(this.rowCount, this.columnCount);
     this.addHeaders(this.columnCount, this.columnHeaders);
-    this.updateErrors();
+    this.allErrors = null;
   }
 
 
