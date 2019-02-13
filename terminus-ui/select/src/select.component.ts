@@ -543,17 +543,15 @@ export class TsSelectComponent implements
   }
 
   /**
-   * Calculates the height of the option's offsetHeight. Fall back to the trigger font size if no options exist.
+   * Calculates the height of the options
+   *
+   * Only called if at least one option exists
    */
   private get itemHeight(): number {
-    if (this.options.length) {
-      // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
-      const options = this.options.toArray();
-      const option = options[1] || options[0];
-      return option.elementRef.nativeElement.offsetHeight;
-    } else {
-      return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
-    }
+    // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
+    const options = this.options.toArray();
+    const option = options[1] || options[0];
+    return option.elementRef.nativeElement.offsetHeight;
   }
 
   /**
@@ -1666,7 +1664,7 @@ export class TsSelectComponent implements
     if (this.autocomplete) {
       return;
     }
-    const itemHeight = this.optionRect ? this.optionRect.height /* istanbul ignore next - Unreachable */ : this.itemHeight;
+    const itemHeight = this.itemHeight;
     const items = this.itemCount;
     const panelHeight = Math.min(items * itemHeight, SELECT_PANEL_MAX_HEIGHT);
     const scrollContainerHeight = items * itemHeight;
@@ -1690,6 +1688,29 @@ export class TsSelectComponent implements
     this.offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
 
     this.checkOverlayWithinViewport(maxScroll);
+  }
+
+
+  /**
+   * Calculate the scroll position of the select's overlay panel
+   *
+   * This attempts to center the selected option in the panel. If the option is too high or too low in the panel to be scrolled to the
+   * center, it clamps the scroll position to the min or max scroll positions respectively.
+   *
+   * @param selectedIndex - The index of the item to scroll to
+   * @param scrollBuffer - The amount to buffer the scroll
+   * @param maxScroll - The maximum amount the panel can scroll
+   */
+  private calculateOverlayScroll(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
+    const itemHeight = this.itemHeight;
+    const optionOffsetFromScrollTop = itemHeight * selectedIndex;
+    const halfOptionHeight = itemHeight / 2;
+
+    // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the scroll container, then subtracts the scroll
+    // buffer to scroll the option down to the center of the overlay panel. Half the option height must be re-added to the scrollTop so the
+    // option is centered based on its middle, not its top edge.
+    const optimalScrollPosition = optionOffsetFromScrollTop - scrollBuffer + halfOptionHeight;
+    return Math.min(Math.max(0, optimalScrollPosition), maxScroll);
   }
 
 
@@ -1785,7 +1806,8 @@ export class TsSelectComponent implements
     // Scrolls the panel up by the distance it was extending past the boundary, then
     // adjusts the offset by that amount to move the panel up into the viewport.
     this.scrollTop -= distanceBelowViewport;
-    this.offsetY -= distanceBelowViewport;
+    // Don't allow the offset to be set below 0
+    this.offsetY = (this.offsetY - distanceBelowViewport) < 0 ? 0 : this.offsetY - distanceBelowViewport;
     this.transformOrigin = this.getOriginBasedOnOption();
 
     // If the panel is scrolled to the very top, it won't be able to fit the panel
@@ -1813,7 +1835,8 @@ export class TsSelectComponent implements
     // Scrolls the panel down by the distance it was extending past the boundary, then
     // adjusts the offset by that amount to move the panel down into the viewport.
     this.scrollTop += distanceAboveViewport;
-    this.offsetY += distanceAboveViewport;
+    // Don't allow the offset to be set below 0
+    this.offsetY = (this.offsetY + distanceAboveViewport) < 0 ? 0 : this.offsetY + distanceAboveViewport;
     this.transformOrigin = this.getOriginBasedOnOption();
 
     // If the panel is scrolled to the very bottom, it won't be able to fit the
@@ -1853,29 +1876,6 @@ export class TsSelectComponent implements
     return this.options.reduce((result: number | undefined, current: TsSelectOptionComponent, index: number) => {
       return result === undefined ? (option === current ? index : undefined) : result;
     }, undefined);
-  }
-
-
-  /**
-   * Calculate the scroll position of the select's overlay panel
-   *
-   * This attempts to center the selected option in the panel. If the option is too high or too low in the panel to be scrolled to the
-   * center, it clamps the scroll position to the min or max scroll positions respectively.
-   *
-   * @param selectedIndex - The index of the item to scroll to
-   * @param scrollBuffer - The amount to buffer the scroll
-   * @param maxScroll - The maximum amount the panel can scroll
-   */
-  private calculateOverlayScroll(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
-    const itemHeight = this.optionRect ? this.optionRect.height : this.itemHeight;
-    const optionOffsetFromScrollTop = itemHeight * selectedIndex;
-    const halfOptionHeight = itemHeight / 2;
-
-    // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the scroll container, then subtracts the scroll
-    // buffer to scroll the option down to the center of the overlay panel. Half the option height must be re-added to the scrollTop so the
-    // option is centered based on its middle, not its top edge.
-    const optimalScrollPosition = optionOffsetFromScrollTop - scrollBuffer + halfOptionHeight;
-    return Math.min(Math.max(0, optimalScrollPosition), maxScroll);
   }
 
 
