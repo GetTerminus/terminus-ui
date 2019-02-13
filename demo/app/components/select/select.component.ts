@@ -102,11 +102,11 @@ export class SelectComponent implements OnInit {
       slug: 'neq',
     },
     {
-      foo: 'Foo bar baz foo bar baz foo bar baz',
+      foo: 'Foo2 bar baz foo bar baz foo bar baz',
       slug: 'foo2',
     },
     {
-      foo: 'Bar Hic saepe ad sunt temporibus.',
+      foo: 'Bar2 Hic saepe ad sunt temporibus.',
       slug: 'bar2',
     },
     {
@@ -115,29 +115,29 @@ export class SelectComponent implements OnInit {
       disabled: true,
     },
     {
-      foo: 'Eligendi magni quod quas',
+      foo: 'Eligendi2 magni quod quas',
       slug: 'eli2',
     },
     {
-      foo: 'Necessitatibus corporis officiis atque sed.',
+      foo: 'Necessitatibus2 corporis officiis atque sed.',
       slug: 'nec2',
       disabled: true,
     },
     {
-      foo: 'Baz Neque numquam reiciendis',
+      foo: 'Baz2 Neque numquam reiciendis',
       slug: 'baz2',
       disabled: true,
     },
     {
-      foo: 'Vel eos nam porro. Vel eos nam porro.',
+      foo: 'Vel2 eos nam porro. Vel eos nam porro.',
       slug: 'vel2',
     },
     {
-      foo: 'Dolores ducimus magnamomnis.',
+      foo: 'Dolores2 ducimus magnamomnis.',
       slug: 'dol2',
     },
     {
-      foo: 'Dolorem neque quae ducimus',
+      foo: 'Dolorem2 neque quae ducimus',
       slug: 'neq2',
     },
   ]);
