@@ -6,6 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
   Validators,
+  Validator,
 } from '@angular/forms';
 import {
   TsSelectModule,
@@ -405,6 +406,28 @@ export class Autocomplete {
   changeOptionsLength() {
     this.states = STATES.slice(0, 5);
   }
+}
+
+@Component({
+  template: `
+    <ts-select
+      [formControl]="myCtrl"
+      [autocomplete]="true"
+      [allowMultiple]="true"
+    >
+      <ts-select-option
+        *ngFor="let option of states"
+        [value]="option.slug"
+        [option]="option"
+      >
+        {{ option.foo }}
+      </ts-select-option>
+    </ts-select>
+  `,
+})
+export class AutocompleteRequired {
+  myCtrl = new FormControl(null, [Validators.required]);
+  states: State[] = STATES.slice();
 }
 
 @Component({
@@ -1065,6 +1088,7 @@ export class SeededAutocompleteWithFormatFn {
   declarations: [
     Autocomplete,
     AutocompleteAllowMultipleNoReopen,
+    AutocompleteRequired,
     Basic,
     CustomBlankOption,
     CustomCharacterCount,

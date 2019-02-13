@@ -1221,7 +1221,7 @@ export class TsSelectComponent implements
       this.keyManager.withHorizontalOrientation('ltr');
       this.changeDetectorRef.markForCheck();
       this.onTouched();
-
+      this.updateValueAndValidity();
       // Alert the consumer
       this.closed.emit();
     }
@@ -1502,6 +1502,16 @@ export class TsSelectComponent implements
     this.onChange(valueToEmit);
     this.selectionChange.emit(new TsSelectChange(this, valueToEmit));
     this.changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Call FormControl updateValueAndValidity function to ensure value and valid status get updated.
+   */
+
+  private updateValueAndValidity() {
+    if (this.ngControl && this.ngControl.control) {
+      this.ngControl.control.updateValueAndValidity();
+    }
   }
 
 
@@ -2008,6 +2018,7 @@ export class TsSelectComponent implements
 
     // Mark this control as 'touched' to trigger any validations needed on blur
     this.onTouched();
+    this.updateValueAndValidity();
   }
 
 

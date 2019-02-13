@@ -96,3 +96,7 @@ export function getFilterInputElement(fixture: ComponentFixture<any>): HTMLInput
   return fixture.debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text')).nativeElement as HTMLInputElement;
 }
 
+export function getValidationMessageElement(fixture: ComponentFixture<any>): HTMLInputElement {
+  return fixture.debugElement.query(By.css('.ts-validation-messages')).nativeElement;
+}
+

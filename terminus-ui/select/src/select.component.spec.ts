@@ -52,6 +52,7 @@ import {
   getSelectInstance,
   getSelectTriggerElement,
   getToggleAllElement,
+  getValidationMessageElement,
 } from '@terminus/ui/select/testing';
 
 import { TsSelectOptionComponent } from './option/option.component';
@@ -1174,6 +1175,33 @@ describe(`TsSelectComponent`, function() {
       jest.runAllTimers();
     });
 
+    describe(`required`, () => {
+
+      test(`should set required if the form control is required`, () => {
+        const fixture = createComponent(testComponents.ValidateOnChange);
+        fixture.detectChanges();
+        const component = getSelectElement(fixture);
+        const selectTrigger = getSelectTriggerElement(fixture);
+        dispatchMouseEvent(selectTrigger, 'click');
+        dispatchMouseEvent(component, 'click');
+        const validationMessage = getValidationMessageElement(fixture);
+
+        expect(validationMessage).toBeTruthy();
+      });
+
+      test(`should set required if the form control is required for autocomplete mode`, () => {
+        const fixture = createComponent(testComponents.AutocompleteRequired);
+        fixture.detectChanges();
+        const component = getAutocompleteInput(fixture);
+
+        const selectTrigger = getSelectTriggerElement(fixture);
+        dispatchMouseEvent(selectTrigger, 'click');
+        dispatchMouseEvent(component, 'click');
+        const validationMessage = getValidationMessageElement(fixture);
+
+        expect(validationMessage).toBeTruthy();
+      });
+    });
 
     describe(`panel`, function() {
 
