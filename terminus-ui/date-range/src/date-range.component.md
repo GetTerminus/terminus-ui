@@ -10,6 +10,7 @@
 - [Disabling](#disabling)
   - [Disable a control](#disable-a-control)
   - [Disable the component](#disable-the-component)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -166,3 +167,15 @@ The entire component can be disabled:
 ```html
 <ts-date-range [isDisabled]="true"></ts-date-range>
 ```
+
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/date-range/testing`;
+
+| Function                 |
+|--------------------------|
+| `createDateRangeGroup`   |
+| `getDebugRangeInputs`    |
+| `getRangeInputInstances` |
+| `getRangeInputElements`  |

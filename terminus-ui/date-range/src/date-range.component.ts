@@ -393,6 +393,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
+      this.change.emit(this.dateRange);
     }
   }
 
@@ -415,6 +416,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
+      this.change.emit(this.dateRange);
     }
   }
 

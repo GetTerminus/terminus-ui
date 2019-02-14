@@ -8,6 +8,11 @@ import { Type, Provider } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { typeInElement } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/date-range/testing';
+import {
+  getDebugRangeInputs,
+  getRangeInputElements,
+  getRangeInputInstances,
+} from '@terminus/ui/date-range/testing';
 
 import { TsDateRangeModule } from './date-range.module';
 
@@ -25,7 +30,7 @@ describe(`TsDateRangeComponent`, function() {
     test(`should set the END min date according to the start date`, function() {
       const fixture = createComponent(testComponents.SeededDates);
       fixture.detectChanges();
-      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+      const endInputInstance = getRangeInputInstances(fixture)[1];
 
       expect(endInputInstance.minDate).toEqual(new Date(2018, 1, 1));
     });
@@ -34,7 +39,7 @@ describe(`TsDateRangeComponent`, function() {
     test(`should set the START max date according to the end date`, function() {
       const fixture = createComponent(testComponents.SeededDates);
       fixture.detectChanges();
-      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+      const startInputInstance = getRangeInputInstances(fixture)[0];
 
       expect(startInputInstance.maxDate).toEqual(new Date(2018, 1, 12));
     });
@@ -43,10 +48,10 @@ describe(`TsDateRangeComponent`, function() {
     test(`should set the START max date according to the end date on BLUR`, function() {
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
-      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
-      typeInElement('3-4-2019', endInputInstance.inputElement.nativeElement);
-      endInputInstance.inputElement.nativeElement.blur();
+      const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
+      const endInputElement = endInputInstance.inputElement.nativeElement;
+      typeInElement('3-4-2019', endInputElement);
+      endInputElement.blur();
       fixture.detectChanges();
 
       expect(startInputInstance.maxDate).toEqual(new Date('3-4-2019'));
@@ -62,8 +67,7 @@ describe(`TsDateRangeComponent`, function() {
       test(`should update their VALUE when the external control value changes`, function() {
         const fixture = createComponent(testComponents.Basic);
         fixture.detectChanges();
-        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+        const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
         expect(startInputInstance.formControl.value).toEqual(null);
         expect(endInputInstance.formControl.value).toEqual(null);
@@ -84,8 +88,7 @@ describe(`TsDateRangeComponent`, function() {
         jest.useFakeTimers();
         const fixture = createComponent(testComponents.Basic);
         fixture.detectChanges();
-        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+        const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
         expect(startInputInstance.formControl.valid).toEqual(true);
         expect(endInputInstance.formControl.valid).toEqual(true);
@@ -109,8 +112,7 @@ describe(`TsDateRangeComponent`, function() {
         jest.useFakeTimers();
         const fixture = createComponent(testComponents.NoControls);
         fixture.detectChanges();
-        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+        const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
         expect(startInputInstance.formControl.valid).toEqual(true);
         expect(endInputInstance.formControl.valid).toEqual(true);
@@ -137,8 +139,7 @@ describe(`TsDateRangeComponent`, function() {
       test(`should update their VALUE when the internal control changes`, function() {
         const fixture = createComponent(testComponents.Basic);
         fixture.detectChanges();
-        const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-        const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+        const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
         expect(startInputInstance.formControl.value).toBeNull();
         expect(endInputInstance.formControl.value).toBeNull();
@@ -162,8 +163,7 @@ describe(`TsDateRangeComponent`, function() {
     test(`should pass correct values when fired`, function() {
       const fixture = createComponent(testComponents.Emitters);
       fixture.detectChanges();
-      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+      const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
       typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
@@ -175,7 +175,16 @@ describe(`TsDateRangeComponent`, function() {
       expect(fixture.componentInstance.endSelected).toHaveBeenCalledWith(new Date('3-8-2019'));
       expect(fixture.componentInstance.change).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: new Date('3-8-2019')});
 
-      expect.assertions(4);
+      typeInElement('', startInputInstance.inputElement.nativeElement);
+      fixture.detectChanges();
+      startInputInstance.inputElement.nativeElement.blur();
+      fixture.detectChanges();
+      const changeMock = fixture.componentInstance.change.mock;
+      // FIXME: Once https://github.com/GetTerminus/terminus-ui/issues/1361 is complete we should adjust this
+      // test to verify that the changeMock was called exactly 3 times.
+      expect(changeMock.calls[changeMock.calls.length - 1][0]).toEqual({start: null, end: new Date('3-8-2019')});
+
+      expect.assertions(5);
     });
 
   });
@@ -187,8 +196,7 @@ describe(`TsDateRangeComponent`, function() {
       const fixture = createComponent(testComponents.Params);
       const hostInstance = fixture.componentInstance;
       fixture.detectChanges();
-      const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
-      const endInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[1].componentInstance;
+      const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
       expect(endInputInstance.maxDate).toEqual(hostInstance.endMax);
       expect(endInputInstance.minDate).toEqual(hostInstance.endMin);
@@ -214,7 +222,7 @@ describe(`TsDateRangeComponent`, function() {
   test(`should work without a form group`, function() {
     const fixture = createComponent(testComponents.NoFormGroup);
     fixture.detectChanges();
-    const startInputInstance = fixture.debugElement.queryAll(By.css('ts-input'))[0].componentInstance;
+    const startInputInstance = getRangeInputInstances(fixture)[0];
     typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
     fixture.detectChanges();
 
