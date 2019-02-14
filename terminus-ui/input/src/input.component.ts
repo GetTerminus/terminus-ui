@@ -230,6 +230,7 @@ const DEFAULT_TEXTAREA_ROWS = 4;
   styleUrls: ['./input.component.scss'],
   host: {
     class: 'ts-input',
+    '[class.ts-input--datepicker]': 'datepicker',
   },
   providers: [
     {
