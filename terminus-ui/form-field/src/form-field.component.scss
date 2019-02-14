@@ -356,3 +356,15 @@ $outline-appearance-label-offset: -.25em;
     text-align: left;
   }
 }
+
+
+// Target an input datepicker within a form field
+.ts-input--datepicker {
+  .ts-form-field {
+    // Center the datepicker icon vertically
+    .ts-form-field__suffix {
+      padding: .5em 0;
+      top: .2em;
+    }
+  }
+}

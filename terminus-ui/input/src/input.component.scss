@@ -144,5 +144,12 @@
     .mat-datepicker-toggle-default-icon {
       vertical-align: baseline;
     }
+
+    // This is the button used to trigger the datepicker
+    .mat-button-wrapper {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
   }
 }

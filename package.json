@@ -74,7 +74,7 @@
     }
   },
   "config": {
-    "loglevel": "verbose",
+    "loglevel": "warn",
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     },
