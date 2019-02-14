@@ -7,7 +7,7 @@ import {
 import { TsValidatorsService } from '@terminus/ui/validators';
 
 
-const date1 = new Date(2018, 10, 12);
+const date1 = new Date();
 if (date1.getDate() > 25) {
   date1.setDate(date1.getDate() + 6);
 }
@@ -63,7 +63,7 @@ export class DateRangeComponent implements OnInit {
     const ctrl = this.myForm.get('dateRange.startDate');
 
     if (ctrl) {
-      ctrl.setValue(new Date(2019, 0, 2).toISOString());
+      ctrl.setValue(new Date(2019, 0, 2));
     }
   }
 
