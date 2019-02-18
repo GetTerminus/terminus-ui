@@ -765,9 +765,9 @@
     lodash "^4.17.4"
 
 "@terminus/ngx-tools@>=5.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.0.0.tgz#9fd5c33b5b1a1e430cd014335d812d26b2369ad7"
-  integrity sha512-HOEJxjl6ozZUpJm+Tfe9DHXnLD9br3zxbE4rew78No6e8SbhS7wrF0pCw+vERmlp2CjBhsHk1WDIKg/mikxY9w==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.1.0.tgz#34f4935879904c7630118bb2df131eecd12e79da"
+  integrity sha512-bW8ch5/n7PpSkj//00SBmbW+iJi78uTEYM67oFd4J6+enqK8CKZWe43w5f+GKhl7k0hzVyllfJ53x+7SS77rHw==
   dependencies:
     tslib "^1.9.0"
 

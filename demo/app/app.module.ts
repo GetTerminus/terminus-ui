@@ -55,6 +55,7 @@ import { TsInputModule } from '@terminus/ui/input';
 import { TsLinkModule } from '@terminus/ui/link';
 import { TsLoadingOverlayModule } from '@terminus/ui/loading-overlay';
 import { TsLoginFormModule } from '@terminus/ui/login-form';
+import { TsLogoModule } from '@terminus/ui/logo';
 import { TsMenuModule } from '@terminus/ui/menu';
 import { TsNavigationModule } from '@terminus/ui/navigation';
 import { TsPaginatorModule } from '@terminus/ui/paginator';
@@ -99,6 +100,7 @@ import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { LogoComponent } from './components/logo/logo.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
@@ -150,6 +152,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsLinkModule,
     TsLoadingOverlayModule,
     TsLoginFormModule,
+    TsLogoModule,
     TsMenuModule,
     TsNavigationModule,
     TsPaginatorModule,
@@ -197,6 +200,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     LinkComponent,
     LoadingOverlayComponent,
     LoginFormComponent,
+    LogoComponent,
     MenuComponent,
     NavigationComponent,
     PaginatorComponent,

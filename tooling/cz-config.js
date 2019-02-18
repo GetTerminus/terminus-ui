@@ -34,6 +34,7 @@ module.exports = {
     {name: 'Link'},
     {name: 'LoadingOverlay'},
     {name: 'LoginForm'},
+    {name: 'Logo'},
     {name: 'Menu'},
     {name: 'Navigation'},
     {name: 'Paginator'},
