@@ -17,6 +17,7 @@ import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { LinkComponent } from './link/link.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { LogoComponent } from './logo/logo.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -162,6 +163,13 @@ export const componentsList: Routes = [
     component: LoginFormComponent,
     data: {
       name: 'Login Form',
+    },
+  },
+  {
+    path: 'logo',
+    component: LogoComponent,
+    data: {
+      name: 'Logo',
     },
   },
   {

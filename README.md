@@ -119,6 +119,7 @@ for each feature.
 | [link][src-link]                       |                                                   | :white_check_mark: | [Demo][demo-link]               | [Docs][link-docs]            | [Usage][link-usage]         |
 | [loading overlay][src-loading-overlay] | Overlay with loading spinner                      | :white_check_mark: | [Demo][demo-loading-overlay]    | [Docs][loading-overlay-docs] |                             |
 | [login form][src-login-form]           | Email/password with 'remember me' checkbox        | :white_check_mark: | [Demo][demo-log-in-form]        | [Docs][login-form-docs]      |                             |
+| [logo][src-logo]             | Variations of the official logo, certain colors available   | :white_check_mark: | [Demo][demo-logo]               | [Docs][logo]                 |                             |
 | [menu][src-menu]                       |                                                   | :white_check_mark: | [Demo][demo-menu]               | [Docs][menu-docs]            | [Usage][menu-usage]         |
 | [navigation][src-navigation]           | Global navigation menu                            | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]      | [Usage][navigation-usage]   |
 | [paginator][src-paginator]             | Paging controls for collections                   | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]       | [Usage][paginator-usage]    |
@@ -335,6 +336,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-link]:             https://getterminus.github.io/ui-demos-master/components/link
 [demo-loading-overlay]:  https://getterminus.github.io/ui-demos-master/components/loading-overlay
 [demo-log-in-form]:      https://getterminus.github.io/ui-demos-master/components/log-in-form
+[demo-logo]:             https://getterminus.github.io/ui-demos-master/components/logo
 [demo-menu]:             https://getterminus.github.io/ui-demos-master/components/menu
 [demo-navigation]:       https://getterminus.github.io/ui-demos-master/components/navigation
 [demo-paginator]:        https://getterminus.github.io/ui-demos-master/components/paginator
@@ -378,6 +380,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-link]:               ./terminus-ui/link/src/
 [src-loading-overlay]:    ./terminus-ui/loading-overlay/src/
 [src-login-form]:         ./terminus-ui/login-form/src/
+[src-logo]:               ./terminus-ui/logo/src/
 [src-menu]:               ./terminus-ui/menu/src/
 [src-navigation]:         ./terminus-ui/navigation/src/
 [src-paginator]:          ./terminus-ui/paginator/src/
@@ -417,6 +420,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [link-docs]:            http://uilibrary-docs.terminus.ninja/master/components/TsLinkComponent.html
 [loading-overlay-docs]: http://uilibrary-docs.terminus.ninja/master/components/TsLoadingOverlayComponent.html
 [login-form-docs]:      http://uilibrary-docs.terminus.ninja/master/components/TsLoginFormComponent.html
+[logo-docs]:            http://uilibrary-docs.terminus.ninja/master/components/TsLogoComponent.html
 [menu-docs]:            http://uilibrary-docs.terminus.ninja/master/components/TsMenuComponent.html
 [navigation-docs]:      http://uilibrary-docs.terminus.ninja/master/components/TsNavigationComponent.html
 [paginator-docs]:       http://uilibrary-docs.terminus.ninja/master/components/TsPaginatorComponent.html
@@ -457,6 +461,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [icon-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsIconComponent.html#readme
 [input-usage]:        http://uilibrary-docs.terminus.ninja/master/components/TsInputComponent.html#readme
 [link-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsLinkComponent.html#readme
+[logo-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsLogoComponent.html#readme
 [menu-usage]:         http://uilibrary-docs.terminus.ninja/master/components/TsMenuComponent.html#readme
 [paginator-usage]:    http://uilibrary-docs.terminus.ninja/master/components/TsPaginatorComponent.html#readme
 [navigation-usage]:   http://uilibrary-docs.terminus.ninja/master/components/TsNavigationComponent.html#readme
