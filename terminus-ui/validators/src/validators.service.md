@@ -60,6 +60,7 @@ export class MyComponent {
 |------------------|---------------------------------------------------------------|
 | `creditCard`     | A credit card number must be valid                            |
 | `email`          | An email address must be valid                                |
+| `domain`         | A domain must be valid                                        |
 | `equalToControl` | A control's value must be equal to another control's value    |
 | `greaterThan`    | A number must be greater than another value                   |
 | `inCollection`   | A value must be found in a collection                         |

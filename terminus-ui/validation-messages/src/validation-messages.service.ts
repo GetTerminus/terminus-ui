@@ -73,6 +73,7 @@ export class TsValidationMessagesService {
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,
       url: `'${validatorValue.actual}' must be a valid URL.`,
+      domain: `'${validatorValue.actual}' must be a valid domain`,
       equalToControl: `'${validatorValue.actual}' must be equal to '${validatorValue.compareValue}'`,
       lowercase: `Must contain at least ${validatorValue.lowercase} lowercase letters`,
       uppercase: `Must contain at least ${validatorValue.uppercase} uppercase letters`,
