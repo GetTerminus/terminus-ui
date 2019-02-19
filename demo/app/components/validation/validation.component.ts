@@ -79,6 +79,10 @@ export class ValidationComponent implements OnInit {
       null,
       [this.validatorsService.url()],
     ],
+    domain: [
+      null,
+      [this.validatorsService.domain()],
+    ],
     compare1: [
       null,
     ],

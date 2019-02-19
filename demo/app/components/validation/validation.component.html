@@ -227,6 +227,35 @@ http:// shouldfail.com
     ></ts-input>
   </ts-card>
 
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>Domain</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+  // Valid domains:
+  foo.com
+  foo.com/blah_blah_(wikipedia)
+  www.example.com/foo/?bar=baz&inga=42&quux
+  userid:password@example.com:8080/
+  ⌘.ws
+  oo.bar/baz
+  foo.bar/?q=Test%20URL-encoded%20stuff
+  223.255.255.254
+  </pre>
+
+<pre fxFlex>
+  // Invalid domains:
+  http://
+  http://foo.bar?q=Spaces should be encoded
+  rdar://1234
+  1.1.1.1.1
+  .www.foo.bar./
+    shouldfail.com
+  </pre>
+    </div>
+
+    <ts-input [formControl]="myForm.get('domain')" label="Domain"></ts-input>
+  </ts-card>
 
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle tsVerticalSpacing>

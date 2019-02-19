@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { creditCardValidator } from './validators/creditCard/creditCard';
+import { domainValidator } from './validators/domain/domain';
 import { emailValidator } from './validators/email/email';
 import { equalToControlValidator } from './validators/equalToControl/equalToControl';
 import { greaterThanValidator } from './validators/greaterThan/greaterThan';
@@ -22,6 +23,7 @@ import { urlValidator } from './validators/url/url';
 @Injectable()
 export class TsValidatorsService {
   creditCard = creditCardValidator;
+  domain = domainValidator;
   email = emailValidator;
   equalToControl = equalToControlValidator;
   greaterThan = greaterThanValidator;

@@ -165,6 +165,7 @@ for each feature.
 | Name             | Purpose                                                       | Status             |
 |------------------|---------------------------------------------------------------|:------------------:|
 | `creditCard`     | A credit card number must be valid                            | :white_check_mark: |
+| `domain`         | A domain must be valid                                        | :white_check_mark: |
 | `email`          | An email address must be valid                                | :white_check_mark: |
 | `equalToControl` | A control's value must be equal to another control's value    | :white_check_mark: |
 | `greaterThan`    | A number must be greater than another value                   | :white_check_mark: |
