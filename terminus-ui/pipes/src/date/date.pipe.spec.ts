@@ -38,7 +38,7 @@ describe(`TsDatePipe`, function() {
 
     it(`should format a date`, () => {
       const actual = pipe(new Date(date), 'short');
-      const expected = '02/08/2018';
+      const expected = '02-08-2018';
 
       expect(actual).toEqual(expected);
     });
@@ -46,7 +46,7 @@ describe(`TsDatePipe`, function() {
 
     it(`should format a date string`, () => {
       const actual = pipe(date, 'short');
-      const expected = '02/08/2018';
+      const expected = '02-08-2018';
 
       expect(actual).toEqual(expected);
     });

@@ -1,13 +1,13 @@
-import { format } from 'date-fns';
-
+import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsValidationMessagesService } from './validation-messages.service';
 
 
 describe(`TsValidationMessagesService`, function() {
   let service: TsValidationMessagesService;
+  const datePipe = new TsDatePipe();
 
   beforeEach(() => {
-    service = new TsValidationMessagesService();
+    service = new TsValidationMessagesService(datePipe);
   });
 
 
@@ -59,7 +59,7 @@ describe(`TsValidationMessagesService`, function() {
         maxDate: maxDate,
       };
       const actual = service.getValidatorErrorMessage('maxDate', validatorValueMock);
-      const expected = `Date must be before ${format(maxDate, 'MM/dd/yyyy')}`;
+      const expected = `Date must be before ${datePipe.transform(maxDate, 'short')}`;
 
       expect(actual).toEqual(expected);
     });
@@ -73,7 +73,7 @@ describe(`TsValidationMessagesService`, function() {
         minDate: minDate,
       };
       const actual = service.getValidatorErrorMessage('minDate', validatorValueMock);
-      const expected = `Date must be after ${format(minDate, 'MM/dd/yyyy')}`;
+      const expected = `Date must be after ${datePipe.transform(minDate, 'short')}`;
 
       expect(actual).toEqual(expected);
     });

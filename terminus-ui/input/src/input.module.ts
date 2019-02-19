@@ -14,6 +14,7 @@ import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 import { TsValidatorsService } from '@terminus/ui/validators';
+import { TsDatePipe } from '@terminus/ui/pipes';
 
 import { TsInputComponent } from './input.component';
 import { TS_DATE_FORMATS } from './date-adapter';
@@ -37,6 +38,7 @@ export * from './input.component';
   ],
   providers: [
     TsValidatorsService,
+    TsDatePipe,
     {
       provide: MAT_DATE_FORMATS,
       useValue: TS_DATE_FORMATS,

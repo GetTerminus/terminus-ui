@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsDocumentService } from '@terminus/ngx-tools';
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsIconButtonModule } from '@terminus/ui/icon-button';
@@ -37,6 +38,7 @@ export * from './selected-file';
     TsFileUploadComponent,
   ],
   providers: [
+    TsDatePipe,
     TsDocumentService,
     TsDropProtectionService,
   ],

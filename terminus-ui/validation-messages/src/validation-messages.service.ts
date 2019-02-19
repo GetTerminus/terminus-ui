@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { format as formatDate } from 'date-fns';
+import { TsDatePipe } from '@terminus/ui/pipes';
 
 
 /**
@@ -87,14 +87,12 @@ export class TsValidationMessagesService {
       inCollection: `${validatorValue.actual} is not an accepted item.`,
     };
 
-    // TODO: Convert to use our date pipe. Blocked by https://github.com/GetTerminus/terminus-ui/issues/753
     if (validatorName === 'maxDate') {
-      config.maxDate = `Date must be before ${formatDate(validatorValue.maxDate, 'MM/dd/yyyy')}`;
+      config.maxDate = `Date must be before ${this.datePipe.transform(validatorValue.maxDate, 'short')}`;
     }
 
-    // TODO: Convert to use our date pipe. Blocked by https://github.com/GetTerminus/terminus-ui/issues/753
     if (validatorName === 'minDate') {
-      config.minDate = `Date must be after ${formatDate(validatorValue.minDate, 'MM/dd/yyyy')}`;
+      config.minDate = `Date must be after ${this.datePipe.transform(validatorValue.minDate, 'short')}`;
     }
 
     if (validatorName === 'imageDimensions') {
@@ -107,5 +105,7 @@ export class TsValidationMessagesService {
 
     return config[validatorName];
   }
+
+  constructor(private datePipe: TsDatePipe) { }
 
 }
