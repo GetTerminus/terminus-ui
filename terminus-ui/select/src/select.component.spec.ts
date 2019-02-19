@@ -52,8 +52,8 @@ import {
   getSelectInstance,
   getSelectTriggerElement,
   getToggleAllElement,
-  getValidationMessageElement,
 } from '@terminus/ui/select/testing';
+import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
 import { TsSelectOptionComponent } from './option/option.component';
 import { TsSelectModule, TsSelectFormatFn, TsSelectOption } from './select.module';
