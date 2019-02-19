@@ -488,7 +488,12 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   public updateInnerValue = (value: string): void => {
     this.value = value;
-    this.changeDetectorRef.detectChanges();
+
+    // NOTE: This `if` is to avoid: `Error: ViewDestroyedError: Attempt to use a destroyed view: detectChanges`
+    // istanbul ignore else
+    if (!this.changeDetectorRef['destroyed']) {
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
 
@@ -501,7 +506,11 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
       this.formControl.valueChanges.pipe(
         untilComponentDestroyed(this),
       ).subscribe(() => {
-        this.changeDetectorRef.detectChanges();
+        // NOTE: This `if` is to avoid: `Error: ViewDestroyedError: Attempt to use a destroyed view: detectChanges`
+        // istanbul ignore else
+        if (!this.changeDetectorRef['destroyed']) {
+          this.changeDetectorRef.detectChanges();
+        }
       });
     }
   }
