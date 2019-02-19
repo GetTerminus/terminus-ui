@@ -294,10 +294,18 @@ describe(`TsInputComponent`, function() {
         fixture.componentInstance.mask = 'percentage';
         fixture.detectChanges();
         const inputElement = getInputElement(fixture);
-        typeInElement('12.34%', inputElement);
 
-        expect(inputElement.value).toEqual('12.34%');
-        expect(fixture.componentInstance.formControl.value).toEqual('12.34');
+        typeInElement('1%', inputElement);
+        expect(inputElement.value).toEqual('1%');
+        expect(fixture.componentInstance.formControl.value).toEqual('1');
+
+        typeInElement('12%', inputElement);
+        expect(inputElement.value).toEqual('12%');
+        expect(fixture.componentInstance.formControl.value).toEqual('12');
+
+        typeInElement('12.3%', inputElement);
+        expect(inputElement.value).toEqual('12.3%');
+        expect(fixture.componentInstance.formControl.value).toEqual('12.3');
       });
 
     });

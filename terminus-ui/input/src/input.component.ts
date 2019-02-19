@@ -1427,7 +1427,6 @@ export class TsInputComponent implements
     } else {
       const finalValue = !this.maskSanitizeValue ? value : this.cleanValue(value, this.currentMask.unmaskRegex);
       this.onChangeCallback(finalValue);
-      this.inputValueAccessor.value = finalValue;
     }
   }
 
