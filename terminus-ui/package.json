@@ -58,7 +58,7 @@
     "@angular/material": "^7.3.0",
     "@angular/platform-browser": "^7.2.2",
     "@angular/router": "^7.2.2",
-    "@terminus/ngx-tools": "^5.0.0",
+    "@terminus/ngx-tools": ">=5.0.0",
     "date-fns": "2.0.0-alpha.26",
     "rxjs": "^6.3.3"
   },
