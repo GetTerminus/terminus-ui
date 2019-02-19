@@ -13,7 +13,7 @@ import {
  * Define the allowed date formats for the {@link TsDatePipe}.
  */
 export type TsDateTypes =
-  // Short: 02/08/2018
+  // Short: 02-08-2018
   'short'
   // Medium: Feb 8th, 2018
   | 'medium'
@@ -66,7 +66,7 @@ export class TsDatePipe implements PipeTransform {
     // Set the formatted date or an empty string if no format is matched
     const dateString =
       (format === 'short')
-      ? formatDate(date, 'MM/dd/yyyy')
+      ? formatDate(date, 'MM-dd-yyyy')
       : (format === 'medium')
       ? formatDate(date, 'MMM do, yyyy')
       : (format === 'extended')

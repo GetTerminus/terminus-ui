@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { TsDatePipe, TsPipesModule } from '@terminus/ui/pipes';
 import { TsValidationMessagesService } from './validation-messages.service';
 import { TsValidationMessagesComponent } from './validation-messages.component';
 
@@ -13,6 +14,7 @@ export * from './validation-messages.component';
   imports: [
     CommonModule,
     FormsModule,
+    TsPipesModule,
   ],
   providers: [
     TsValidationMessagesService,

@@ -48,11 +48,11 @@ import {
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
 import {
-  format as formatDate,
   isValid as isValidDate,
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import { TS_SPACING } from '@terminus/ui/spacing';
+import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
   inputHasChanged,
@@ -288,7 +288,7 @@ export class TsInputComponent implements
   /**
    * Define the default format for the date mask
    */
-  private defaultDateFormat = 'mm/dd/yyyy';
+  private defaultDateFormat = 'mm-dd-yyyy';
 
   /**
    * Store a reference to the document object
@@ -993,6 +993,7 @@ export class TsInputComponent implements
     protected platform: Platform,
     private ngZone: NgZone,
     private documentService: TsDocumentService,
+    private datePipe: TsDatePipe,
     @Optional() @Self() @Inject(TS_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
     @Optional() public dateAdapter: DateAdapter<Date>,
     @Optional() @Self() public ngControl: NgControl,
@@ -1528,7 +1529,7 @@ export class TsInputComponent implements
         let stringifiedDate: string | undefined;
 
         if (this.mask === 'date') {
-          stringifiedDate = this.isValidDateString(value) ? formatDate(value, 'MM-dd-yyyy') : value;
+          stringifiedDate = this.isValidDateString(value) ? this.datePipe.transform(value, 'short') : value;
         }
 
         value = stringifiedDate || value;
