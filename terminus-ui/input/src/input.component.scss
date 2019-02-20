@@ -3,6 +3,7 @@
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/input-placeholder';
 @import './../../scss/helpers/animation';
+@import './../../scss/helpers/z-index';
 
 
 
@@ -152,4 +153,8 @@
       justify-content: center;
     }
   }
+}
+
+.cdk-overlay-container {
+  z-index: z(panel-overlay);
 }
