@@ -31,7 +31,7 @@ import * as TestComponents from '@terminus/ui/input/testing';
 import {
   getInputElement,
   sendInput,
-  getInputComponent,
+  getInputInstance,
 } from '@terminus/ui/input/testing';
 
 
@@ -49,7 +49,7 @@ describe(`TsInputComponent`, function() {
 
     test(`should emit valueChange if the value was updated for a datepicker`, () => {
       const fixture = createComponent(TestComponents.Autocomplete);
-      const component = getInputComponent(fixture);
+      const component = getInputInstance(fixture);
       fixture.detectChanges();
       component._valueChange.emit = jest.fn();
       fixture.componentInstance.updateDate();
@@ -68,7 +68,7 @@ describe(`TsInputComponent`, function() {
       test(`should not be required by default`, () => {
         const fixture = createComponent(TestComponents.AttrNotRequired);
         fixture.detectChanges();
-        const component = getInputComponent(fixture);
+        const component = getInputInstance(fixture);
         const el = component.inputElement.nativeElement;
 
         expect(el.getAttribute('required')).toEqual(null);
@@ -78,7 +78,7 @@ describe(`TsInputComponent`, function() {
       test(`should set required if the form control is required`, () => {
         const fixture = createComponent(TestComponents.FormControlAttrRequired);
         fixture.detectChanges();
-        const component = getInputComponent(fixture);
+        const component = getInputInstance(fixture);
         const el = component.inputElement.nativeElement;
 
         expect(el.getAttribute('required')).toEqual('');
@@ -89,7 +89,7 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent(TestComponents.AttrInputRequired);
         fixture.componentInstance.required = true;
         fixture.detectChanges();
-        const component = getInputComponent(fixture);
+        const component = getInputInstance(fixture);
         const el = component.inputElement.nativeElement;
 
         expect(el.getAttribute('required')).toEqual('');
@@ -103,7 +103,7 @@ describe(`TsInputComponent`, function() {
       test(`should add the correct attribute`, () => {
         const fixture = createComponent(TestComponents.AttrReadonly);
         fixture.detectChanges();
-        const component = getInputComponent(fixture);
+        const component = getInputInstance(fixture);
         const el = component.inputElement.nativeElement;
 
         expect(component.readOnly).toEqual(false);
@@ -126,7 +126,7 @@ describe(`TsInputComponent`, function() {
       test(`should add the correct attribute`, () => {
         const fixture = createComponent(TestComponents.AttrSpellcheck);
         fixture.detectChanges();
-        const component = getInputComponent(fixture);
+        const component = getInputInstance(fixture);
         const el = getInputElement(fixture);
 
         expect(component.spellcheck).toEqual(false);
@@ -572,7 +572,7 @@ describe(`TsInputComponent`, function() {
       expect(container).toBeTruthy();
 
       const inputElement = getInputElement(fixture);
-      sendInput('foo', inputElement, fixture);
+      sendInput(fixture, 'foo');
       fixture.detectChanges();
       const clearButton = fixture.debugElement.query(By.css('.c-input__clear')).nativeElement;
       expect(clearButton).toBeTruthy();
@@ -788,7 +788,7 @@ describe(`TsInputComponent`, function() {
       const resetButton = fixture.debugElement.query(By.css('.c-input__clear')).nativeElement as HTMLButtonElement;
       const component = fixture.componentInstance.inputComponent;
       const inputElement = getInputElement(fixture);
-      sendInput('11111111', inputElement, fixture);
+      sendInput(fixture, '11111111');
 
       resetButton.click();
 

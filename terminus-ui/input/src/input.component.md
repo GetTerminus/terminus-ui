@@ -544,15 +544,18 @@ The row count can be dynamically adjusted:
 
 Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/input/testing`;
 
+[[source]][test-helpers-src]
 
-| Function            |
-|---------------------|
-| `getInputComponent` |
-| `getInputElement`   |
-| `sendInput`         |
+| Function               |
+|------------------------|
+| `getAllInputInstances` |
+| `getInputInstance`     |
+| `getInputElement`      |
+| `sendInput`            |
 
 
 
 <!-- LINKS -->
 [autocomplete]: https://github.com/getterminus/terminus-ui/blob/master/terminus-ui/src/input/input.component.ts#l64-73
 [input-types]: https://github.com/getterminus/terminus-ui/blob/master/terminus-ui/src/input/input.component.ts#l48-57
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/master/terminus-ui/input/testing/src/test-helpers.ts

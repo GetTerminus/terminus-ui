@@ -6,8 +6,16 @@ import {
   TsSelectOptgroupComponent,
   TsSelectOptionComponent,
 } from '@terminus/ui/select';
+import { DebugElement } from '@angular/core';
 
 
+/**
+ * Create a mock keydown event
+ *
+ * @param key - The key that should be pressed
+ * @param keyCode - The corresponding keyCode
+ * @return The KeyboardEvent
+ */
 export function createKeydownEvent(key: string, keyCode: number): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
@@ -18,80 +26,318 @@ export function createKeydownEvent(key: string, keyCode: number): KeyboardEvent 
   return event;
 }
 
-export function getSelectInstance(fixture: ComponentFixture<any>): TsSelectComponent {
-  return fixture.debugElement.query(By.css('ts-select')).componentInstance;
+/**
+ * Get an array of all DebugElements for TsSelectComponents
+ *
+ * @param fixture - The component fixture
+ * @return An array of DebugElements
+ */
+export function getAllSelectDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
+  const debugElements = fixture.debugElement.queryAll(By.css('ts-select'));
+  if (!debugElements) {
+    throw new Error(`'getAllSelectInstances' did not find any debug elements`);
+  }
+  return debugElements;
 }
 
-export function getSelectElement(fixture: ComponentFixture<any>): HTMLElement {
-  const instance = getSelectInstance(fixture);
+/**
+ * Get an array of all component instances for TsSelectComponents
+ *
+ * @param fixture - The component fixture
+ * @return An array of TsSelectComponents
+ */
+export function getAllSelectInstances(fixture: ComponentFixture<any>): TsSelectComponent[] {
+  return getAllSelectDebugElements(fixture).map((v) => v.componentInstance);
+}
+
+/**
+ * Get the DebugElement for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The DebugElement
+ */
+export function getSelectDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
+  const debugElements = getAllSelectDebugElements(fixture);
+  if (!debugElements[index]) {
+    throw new Error(`'getSelectDebugElement' did not find a debug element at index '${index}'`);
+  }
+  return debugElements[index];
+}
+
+/**
+ * Get the component instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The instance
+ */
+export function getSelectInstance(fixture: ComponentFixture<any>, index = 0): TsSelectComponent {
+  const instances = getAllSelectInstances(fixture);
+  if (!instances[index]) {
+    throw new Error(`'getSelectInstance' did not find an instance at index '${index}'`);
+  }
+  return instances[index];
+}
+
+/**
+ * Get the element for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The element
+ */
+export function getSelectElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
+  const instance = getSelectInstance(fixture, index);
   return instance['elementRef'].nativeElement as HTMLElement;
 }
 
-export function getSelectTriggerElement(fixture: ComponentFixture<any>): HTMLElement {
-  return fixture.debugElement.query(By.css('.ts-select-trigger')).nativeElement as HTMLElement;
+/**
+ * Get the trigger element for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The element
+ */
+export function getSelectTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
+  const debugElement = getSelectDebugElement(fixture, index);
+  return debugElement.query(By.css('.ts-select-trigger')).nativeElement as HTMLElement;
 }
 
-export function getToggleAllElement(fixture: ComponentFixture<any>): HTMLElement {
-  return fixture.debugElement.query(By.css('.ts-select-panel__toggle-all')).nativeElement as HTMLElement;
+/**
+ * Get the trigger element for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The trigger element
+ */
+export function getToggleAllElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
+  const debugElement = getSelectDebugElement(fixture, index);
+  return debugElement.query(By.css('.ts-select-panel__toggle-all')).nativeElement as HTMLElement;
 }
 
-export function getPanelElement(fixture: ComponentFixture<any>): HTMLElement {
-  return fixture.debugElement.query(By.css('.ts-select-panel')).nativeElement as HTMLElement;
+/**
+ * Get the panel element for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The panel element
+ */
+export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
+  const debugElement = getSelectDebugElement(fixture, index);
+  return debugElement.query(By.css('.ts-select-panel')).nativeElement as HTMLElement;
 }
 
-export function getAllOptionInstances(fixture: ComponentFixture<any>): TsSelectOptionComponent[] {
-  const instance = getSelectInstance(fixture);
-  return instance.options.toArray();
+/**
+ * Get all TsSelectOptionComponent instances for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return An array of TsSelectOptionComponents
+ */
+export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsSelectOptionComponent[] {
+  const instance = getSelectInstance(fixture, index);
+  const options = instance.options.toArray();
+  if (options.length < 1) {
+    throw new Error(`'getAllOptionInstances' found no options.`);
+  }
+  return options;
 }
 
-export function getOptionInstance(fixture: ComponentFixture<any>, index = 0): TsSelectOptionComponent | null {
-  const options = getAllOptionInstances(fixture);
-  return options[index] ? options[index] : null;
+/**
+ * Get a specific TsSelectOptionComponent instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param optionIndex - The index of the desired TsSelectOptionComponent
+ * @return A TsSelectOptionComponent
+ */
+export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsSelectOptionComponent {
+  const options = getAllOptionInstances(fixture, selectIndex);
+  if (!options[optionIndex]) {
+    throw new Error(`'getOptionInstance' did not find an option at index '${optionIndex}' from the select at index '${selectIndex}'`);
+  }
+  return options[optionIndex];
 }
 
-export function getOptionElement(fixture: ComponentFixture<any>, index = 0): HTMLElement | null {
-  const option = getOptionInstance(fixture, index);
-  return option ? option.elementRef.nativeElement as HTMLElement : null;
+/**
+ * Get the element of a TsSelectOptionComponent instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param optionIndex - The index of the desired TsSelectOptionComponent
+ * @return The TsSelectOptionComponent element
+ */
+export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): HTMLElement {
+  const option = getOptionInstance(fixture, selectIndex, optionIndex);
+  return option.elementRef.nativeElement;
 }
 
-export function getAllOptgroups(fixture: ComponentFixture<any>): TsSelectOptgroupComponent[] {
-  return fixture.debugElement.queryAll(By.css('ts-select-optgroup')).map((i) => i.componentInstance);
+/**
+ * Get an array of all TsSelectOptgroupComponents
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return An array of TsSelectOptionComponents
+ */
+export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsSelectOptgroupComponent[] {
+  const debugElement = getSelectDebugElement(fixture, index);
+  const optgroups = debugElement.queryAll(By.css('ts-select-optgroup'));
+  if (!optgroups) {
+    throw new Error(`'getAllOptgroups' did not find any optgroups`);
+  }
+  return optgroups.map((i) => i.componentInstance);
 }
 
-export function getOptgroup(fixture: ComponentFixture<any>, index = 0): TsSelectOptgroupComponent | null {
-  const groups = getAllOptgroups(fixture);
-  return groups && groups[index] ? groups[index] : null;
+/**
+ * Get a specific TsSelectOptgroupComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param groupIndex - The index of the desired TsSelectOptgroupComponent
+ * @return A TsSelectOptgroupComponent
+ */
+export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsSelectOptgroupComponent {
+  const groups = getAllOptgroups(fixture, selectIndex);
+  if (!groups[groupIndex]) {
+    throw new Error(`'getOptgroup' did not find an optgroup at index '${groupIndex}'`);
+  }
+  return groups[groupIndex];
 }
 
-export function getOptgroupElement(fixture: ComponentFixture<any>, index = 0): HTMLElement | null {
-  const group = getOptgroup(fixture, index);
-  return group ? group['elementRef'].nativeElement as HTMLElement : null;
+/**
+ * Get the element for a TsSelectOptgroupComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param groupIndex - The index of the desired TsSelectOptgroupComponent
+ * @return The optgroup element
+ */
+export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
+  const group = getOptgroup(fixture, selectIndex, groupIndex);
+  return group['elementRef'].nativeElement;
 }
 
-export function getAutocompleteInput(fixture: ComponentFixture<any>): HTMLInputElement {
-  return fixture.debugElement.query(By.css('.ts-select__autocomplete-input')).nativeElement as HTMLInputElement;
+/**
+ * Get the autocomplete input element for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The input element
+ */
+export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
+  const debugElement = getSelectDebugElement(fixture, index);
+  const inputDebugElement = debugElement.query(By.css('.ts-select__autocomplete-input'));
+  if (!inputDebugElement) {
+    throw new Error(`'getAutocompleteInput' did not find an input at index '${index}'`);
+  }
+  return inputDebugElement.nativeElement as HTMLInputElement;
 }
 
-export function getAllChipInstances(fixture: ComponentFixture<any>): MatChip[] | null {
-  const instance = getSelectInstance(fixture);
-  const chipList = instance.chipList;
-  return chipList ? chipList.chips.toArray() : null;
+/**
+ * Get an array of all chip instances for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return An array of chip instances
+ */
+export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): MatChip[] {
+  const instance = getSelectInstance(fixture, index);
+  if (!instance.chipList) {
+    throw new Error(`'getAllChipInstances' did not find a chips collection from the select at index '${index}'`);
+  }
+  return instance.chipList.chips.toArray();
 }
 
-export function getChipInstance(fixture: ComponentFixture<any>, index = 0): MatChip | null {
-  const chips = getAllChipInstances(fixture);
-  return chips && chips[index] ? chips[index] : null;
+/**
+ * Get a specific chip instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param chipIndex - The index of the desired chip
+ * @return A chip instances
+ */
+export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): MatChip {
+  const chips = getAllChipInstances(fixture, selectIndex);
+  if (!chips[chipIndex]) {
+    throw new Error(`'getChipInstance' did not find a chip at index '${chipIndex}'`);
+  }
+  return chips[chipIndex];
 }
 
-export function getChipElement(fixture: ComponentFixture<any>, index = 0): HTMLElement | null {
-  const chip = getChipInstance(fixture, index);
-  return chip ? chip._elementRef.nativeElement : null;
+/**
+ * Get the element for a specific chip instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @param chipIndex - The index of the desired chip
+ * @return The chip element
+ */
+export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): HTMLElement {
+  const chip = getChipInstance(fixture, selectIndex, chipIndex);
+  return chip._elementRef.nativeElement;
 }
 
-export function getChipElementDisplayValue(fixture: ComponentFixture<any>, index = 0): string | null {
-  const chip = fixture.debugElement.query(By.css('.ts-autocomplete-chip-value')).nativeElement;
-  return chip.textContent.trim();
+/**
+ * Get the display value for a specific chip instance for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @return The chip element
+ */
+export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): string | null {
+  const chipElement = getChipElement(fixture, selectIndex, chipIndex);
+  // We need to remove the text that represents the chip's delete icon
+  return chipElement.textContent.replace(/cancel/g, '').trim();
 }
-export function getFilterInputElement(fixture: ComponentFixture<any>): HTMLInputElement {
-  return fixture.debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text')).nativeElement as HTMLInputElement;
+
+/**
+ * Get the element for the filter input for a TsSelectComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The filter input element
+ */
+export function getFilterInputElement(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
+  const debugElement = getSelectDebugElement(fixture, index);
+  const inputDebugElement = debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text'));
+  if (!inputDebugElement) {
+    throw new Error(`'getFilterInputElement' did not find the filter input`);
+  }
+  return inputDebugElement.nativeElement as HTMLInputElement;
+}
+
+/**
+ * Open a select element
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectComponent
+ * @return The whenStable promise
+ */
+export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {
+  const trigger = getSelectTriggerElement(fixture, index);
+  trigger.click();
+  fixture.detectChanges();
+  return fixture.whenStable();
+}
+
+/**
+ * Select an option
+ *
+ * @param fixture - The component fixture
+ * @param optionText - The text to find the option by
+ * @param selectIndex - The index of the desired TsSelectComponent
+ * @return The whenStable promise
+ */
+export function selectOption(fixture: ComponentFixture<any>, optionText: string, selectIndex = 0): Promise<any> {
+  const allOptions = getAllOptionInstances(fixture, selectIndex);
+  const foundOptions = allOptions.filter((option) => option.viewValue === optionText);
+
+  if (foundOptions.length < 1) {
+    throw new Error(`'selectOption' did not find an option with the view value of '${optionText}'`);
+  }
+
+  foundOptions[0].select();
+  fixture.detectChanges();
+  return fixture.whenStable();
 }

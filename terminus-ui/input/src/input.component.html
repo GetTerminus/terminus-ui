@@ -110,7 +110,7 @@
 
   <ng-container *ngIf="!isTextarea && datepicker">
     <input
-      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      class="c-input__text c-input__text--datepicker qa-input-text ts-form-field-autofill-control"
       type="{{ type }}"
       [attr.aria-required]="isRequired"
       [attr.aria-describedby]="ariaDescribedby || null"
@@ -139,7 +139,7 @@
 
   <ng-container *ngIf="isTextarea">
     <textarea
-      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      class="c-input__text c-input__text--textarea qa-input-text ts-form-field-autofill-control"
       [attr.aria-required]="isRequired"
       [attr.aria-describedby]="ariaDescribedby || null"
       [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
