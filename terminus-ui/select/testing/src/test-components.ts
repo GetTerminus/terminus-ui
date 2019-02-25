@@ -337,11 +337,11 @@ export class Optgroups {
       >
         <ts-select-option
           *ngFor="let option of group.children"
-          [value]="option.slug"
+          [value]="option.name"
           [option]="option"
           [isDisabled]="option?.disabled"
         >
-          {{ option.foo }}
+          {{ option.name }}
         </ts-select-option>
       </ts-select-optgroup>
     </ts-select>
@@ -618,9 +618,6 @@ export class SelectOptionChange {
   `,
 })
 export class CustomCompareFn {
-  /*
-   *myCtrl = new FormControl({ value: 'pizza-1', viewValue: 'Pizza' });
-   */
   foods: ({value: string; viewValue: string})[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },

@@ -320,9 +320,6 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
     public domSanitizer: DomSanitizer,
   ) {
     super();
-
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
   }
 
 
