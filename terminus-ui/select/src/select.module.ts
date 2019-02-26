@@ -26,6 +26,7 @@ import { TsSelectOptionDisplayDirective } from './option/option-display.directiv
 
 export * from './select.component';
 export * from './select-trigger.component';
+export * from './select-animations';
 export * from './option/option.component';
 export * from './option/option-display.directive';
 export * from './optgroup/optgroup.component';
