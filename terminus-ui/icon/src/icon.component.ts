@@ -21,7 +21,7 @@ import { LOGO_COLOR_ICON } from './custom-icons/logo_color';
  * Currently supported custom icons
  */
 export type TS_CUSTOM_ICON
-  = 'csv'
+  = `csv`
   | `engage`
   | `lightbulb`
   | `logo`
