@@ -48,6 +48,7 @@ import { TsConfirmationModule } from '@terminus/ui/confirmation';
 import { TsCopyModule } from '@terminus/ui/copy';
 import { TsCSVEntryModule } from '@terminus/ui/csv-entry';
 import { TsDateRangeModule } from '@terminus/ui/date-range';
+import { TsExpansionPanelModule } from '@terminus/ui/expansion-panel';
 import { TsFileUploadModule } from '@terminus/ui/file-upload';
 import { TsIconButtonModule } from '@terminus/ui/icon-button';
 import { TsIconModule } from '@terminus/ui/icon';
@@ -93,6 +94,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { CopyComponent } from './components/copy/copy.component';
 import { CSVEntryComponent } from './components/csv-entry/csv-entry.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -145,6 +147,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     TsCopyModule,
     TsCSVEntryModule,
     TsDateRangeModule,
+    TsExpansionPanelModule,
     TsFileUploadModule,
     TsIconButtonModule,
     TsIconModule,
@@ -193,6 +196,7 @@ import { ValidationComponent } from './components/validation/validation.componen
     CopyComponent,
     CSVEntryComponent,
     DateRangeComponent,
+    ExpansionPanelComponent,
     FileUploadComponent,
     IconButtonComponent,
     IconComponent,

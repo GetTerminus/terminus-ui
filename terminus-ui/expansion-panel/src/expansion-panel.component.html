@@ -1,0 +1,19 @@
+<ng-content select="ts-expansion-panel-trigger"></ng-content>
+
+<div
+  class="ts-expansion-panel__content"
+  role="region"
+  [@bodyExpansion]="currentExpandedState"
+  (@bodyExpansion.done)="bodyAnimationDone.next($event)"
+  [attr.aria-labelledby]="triggerId"
+  [attr.aria-hidden]="!expanded"
+  [id]="id"
+  #panelBody
+>
+  <div class="ts-expansion-panel__body">
+    <ng-content></ng-content>
+    <ng-template [cdkPortalOutlet]="portal"></ng-template>
+  </div>
+
+  <ng-content select="ts-expansion-panel-action-row"></ng-content>
+</div>
