@@ -6,12 +6,14 @@ import { TsRoundNumberPipe } from './round-number/round-number.pipe';
 import { TsSentenceCasePipe } from './sentence-case/sentence-case.pipe';
 import { TsTimeAgoPipe } from './time-ago/time-ago.pipe';
 import { TsTitleCasePipe } from './title-case/title-case.pipe';
+import { TsTruncateAtPipe } from './truncate/truncate.pipe';
 
 export * from './date/date.pipe';
 export * from './round-number/round-number.pipe';
 export * from './sentence-case/sentence-case.pipe';
 export * from './time-ago/time-ago.pipe';
 export * from './title-case/title-case.pipe';
+export * from './truncate/truncate.pipe';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ export * from './title-case/title-case.pipe';
     TsSentenceCasePipe,
     TsTimeAgoPipe,
     TsTitleCasePipe,
+    TsTruncateAtPipe,
   ],
   providers: [
     TsDatePipe,
@@ -31,6 +34,7 @@ export * from './title-case/title-case.pipe';
     TsSentenceCasePipe,
     TsTimeAgoPipe,
     TsTitleCasePipe,
+    TsTruncateAtPipe,
   ],
   declarations: [
     TsDatePipe,
@@ -38,6 +42,7 @@ export * from './title-case/title-case.pipe';
     TsSentenceCasePipe,
     TsTimeAgoPipe,
     TsTitleCasePipe,
+    TsTruncateAtPipe,
   ],
 })
 export class TsPipesModule {}

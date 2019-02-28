@@ -43,18 +43,19 @@ Date String:
 
 <ts-card tsVerticalSpacing>
 
-  <h2>TimeAgo</h2>
+  <h2>RoundNumber</h2>
 
 <pre tsVerticalSpacing>
-Date:
-{{ date }}
-
-Old date:
-{{ oldDate }}
+Value:
+3456.3456
 </pre>
 
-  <div tsVerticalSpacing>
-    {{ date | tsTimeAgo:oldDate }} since I did any work
+  <div>
+    Round to 2: <b>{{ 3456.3456 | tsRoundNumber:2 }}</b>
+    <br>
+    Round to 0: <b>{{ 3456.3456 | tsRoundNumber }}</b>
+    <br>
+    Round to -2: <b>{{ 3456.3456 | tsRoundNumber:-2 }}</b>
   </div>
 
 </ts-card>
@@ -78,36 +79,18 @@ String:
 
 <ts-card tsVerticalSpacing>
 
-  <h2>Usage in Class</h2>
-
-  (See the associated .ts file)
+  <h2>TimeAgo</h2>
 
 <pre tsVerticalSpacing>
-String: {{ myString }}
+Date:
+{{ date }}
+
+Old date:
+{{ oldDate }}
 </pre>
 
-  <div>
-    {{ myStringTransformed }}
-  </div>
-
-</ts-card>
-
-
-<ts-card tsVerticalSpacing>
-
-  <h2>RoundNumber</h2>
-
-<pre tsVerticalSpacing>
-Value:
-3456.3456
-</pre>
-
-  <div>
-    Round to 2: <b>{{ 3456.3456 | tsRoundNumber:2 }}</b>
-    <br>
-    Round to 0: <b>{{ 3456.3456 | tsRoundNumber }}</b>
-    <br>
-    Round to -2: <b>{{ 3456.3456 | tsRoundNumber:-2 }}</b>
+  <div tsVerticalSpacing>
+    {{ date | tsTimeAgo:oldDate }} since I did any work
   </div>
 
 </ts-card>
@@ -126,6 +109,44 @@ String 2: THAT RUG REALLY TIED THE ROOM TOGETHER.
     {{ 'Careful man, there’s a beverage here!' | tsTitleCase }}
     <br>
     {{ 'THAT RUG REALLY TIED THE ROOM TOGETHER.' | tsTitleCase }}
+  </div>
+
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+
+  <h2>TruncateAt</h2>
+
+<pre tsVerticalSpacing>
+  'Here is my string' | tsTruncateAt:7 
+  'Here is my string' | tsTruncateAt:8:'middle' 
+  'Here is my string' | tsTruncateAt:6:'start'
+</pre>
+
+  <div>
+    {{ 'Here is my string' | tsTruncateAt:7 }}
+    <br>
+    {{ 'Here is my string' | tsTruncateAt:8:'middle' }}
+    <br>
+    {{ 'Here is my string' | tsTruncateAt:6:'start' }}
+  </div>
+
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+
+  <h2>Usage in Class</h2>
+
+  (See the associated .ts file)
+
+<pre tsVerticalSpacing>
+String: {{ myString }}
+</pre>
+
+  <div>
+    {{ myStringTransformed }}
   </div>
 
 </ts-card>
