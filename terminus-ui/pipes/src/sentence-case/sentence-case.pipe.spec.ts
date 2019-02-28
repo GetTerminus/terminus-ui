@@ -17,7 +17,7 @@ describe(`TsSentenceCasePipe`, function() {
   });
 
 
-  test(`should format a date`, () => {
+  test(`should format a string`, () => {
     const strings: string[] = [
       'HELLO THERE',
       'hi there friend',
