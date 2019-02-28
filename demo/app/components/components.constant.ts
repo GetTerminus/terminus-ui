@@ -11,6 +11,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CopyComponent } from './copy/copy.component';
 import { CSVEntryComponent } from './csv-entry/csv-entry.component';
 import { DateRangeComponent } from './date-range/date-range.component';
+import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconComponent } from './icon/icon.component';
@@ -114,6 +115,13 @@ export const componentsList: Routes = [
     component: DateRangeComponent,
     data: {
       name: 'Date Range',
+    },
+  },
+  {
+    path: 'expansion-panel',
+    component: ExpansionPanelComponent,
+    data: {
+      name: 'Expansion Panel',
     },
   },
   {

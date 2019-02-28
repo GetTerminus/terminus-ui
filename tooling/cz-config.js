@@ -26,6 +26,7 @@ module.exports = {
     {name: 'Copy'},
     {name: 'CSVEntry'},
     {name: 'DateRange'},
+    {name: 'ExpansionPanel'},
     {name: 'FileUpload'},
     {name: 'FormField'},
     {name: 'Icon'},

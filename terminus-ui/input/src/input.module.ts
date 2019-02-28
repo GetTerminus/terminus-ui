@@ -15,6 +15,7 @@ import { TsIconModule } from '@terminus/ui/icon';
 import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 import { TsValidatorsService } from '@terminus/ui/validators';
 import { TsDatePipe } from '@terminus/ui/pipes';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TsInputComponent } from './input.component';
 import { TS_DATE_FORMATS } from './date-adapter';
@@ -27,6 +28,7 @@ export * from './input.component';
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
     MatDatepickerModule,

@@ -8,6 +8,7 @@ export * from '@terminus/ui/confirmation';
 export * from '@terminus/ui/copy';
 export * from '@terminus/ui/csv-entry';
 export * from '@terminus/ui/date-range';
+export * from '@terminus/ui/expansion-panel';
 export * from '@terminus/ui/file-upload';
 export * from '@terminus/ui/form-field';
 export * from '@terminus/ui/icon-button';
