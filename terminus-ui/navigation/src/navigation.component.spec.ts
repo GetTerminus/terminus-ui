@@ -98,20 +98,17 @@ describe(`TsNavigationComponent`, function() {
       expect(component.usersFullName).toEqual(null);
     });
 
-    test(`should truncate if character count is greater than userNameLength`, () => {
-      component.user = USER_MOCK_23;
-
-      expect(component.usersFullName).toEqual(USER_MOCK_23.fullName);
-      expect(component.truncatedUserName).toEqual('Maximillian Rockatan...');
-    });
-
 
     test(`should accept character count of userNameLength`, () => {
       component.user = USER_MOCK;
       component.userNameLength = 10;
 
-       expect(component.usersFullName).toEqual(USER_MOCK.fullName);
-      expect(component.truncatedUserName).toEqual('Max Rockat...');
+      expect(component.usersFullName).toEqual(USER_MOCK.fullName);
+      // NOTE: the following lines can be tested once this test has been converted and can detectChanges() can be called.
+      // there is no class for the user name, so might taking the second child of .mat-button-wrapper
+      // expect(document.querySelector('.mat-button-wrapper span:nth-child(2)')).not.toBeNull();
+      // tslint:disable-next-line:max-line-length
+      // expect(document.querySelector('.mat-button-wrapper span:nth-child(2) > .ts-tooltip > .c-tooltip')).textContent.trim().length.toEqual(10);
     });
   });
 
@@ -122,17 +119,14 @@ describe(`TsNavigationComponent`, function() {
       expect(component.welcomeMessage).toEqual('Welcome');
     });
 
-    test(`should truncate if character count is greater than welcomeMsgLength`, () => {
-      component.welcomeMessage = 'This message has 31 characters.';
-      expect(component.welcomeMessage).toEqual('This message has 31 characters.');
-      expect(component.truncatedWelcomeMsg).toEqual('This message has 31 chara...');
-    });
-
     test(`should accept character count of welcomeMsgLength`, () => {
       component.welcomeMessage = 'This message has 31 characters.';
       component.welcomeMsgLength = 20;
+
       expect(component.welcomeMessage).toEqual('This message has 31 characters.');
-      expect(component.truncatedWelcomeMsg).toEqual('This message has 31 ...');
+      // NOTE: the following lines can be tested once this test has been converted and can detectChanges() can be called.
+      // expect(document.querySelector('.c-navigation__trigger-welcome')).not.toBeNull();
+      // expect(document.querySelector('.c-navigation__trigger-welcome > .ts-tooltip > .c-tooltip')).textContent.trim().length.toEqual(20);
     });
   });
 
