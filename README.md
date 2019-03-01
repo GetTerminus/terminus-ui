@@ -145,13 +145,14 @@ for each feature.
 <br>
 [:circus_tent: Pipes Demo][demo-pipes]
 
-| Pipe                                       | Notes                                      | Status             |
-|--------------------------------------------|--------------------------------------------|:------------------:|
-| [`tsDate`][src-pipes-date]                 | `short`, `medium`, `extended`, `timestamp` | :white_check_mark: |
-| [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision     | :white_check_mark: |
-| [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case     | :white_check_mark: |
-| [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                   | :white_check_mark: |
-| [`tsTitleCase`][src-pipes-titleCase]       | Title Case A String                        | :white_check_mark: |
+| Pipe                                       | Notes                                       | Status             |
+|--------------------------------------------|---------------------------------------------|:------------------:|
+| [`tsDate`][src-pipes-date]                 | `short`, `medium`, `extended`, `timestamp`  | :white_check_mark: |
+| [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision      | :white_check_mark: |
+| [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case      | :white_check_mark: |
+| [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                    | :white_check_mark: |
+| [`tsTitleCase`][src-pipes-titleCase]       | Title Case A String                         | :white_check_mark: |
+| [`tsTruncateAt`][src-pipes-truncate]       | Truncate a string, `start`, `middle`, `end` | :white_check_mark: |
 
 
 ### Services
@@ -389,6 +390,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-pipes-sentenceCase]: ./terminus-ui/pipes/src/sentence-case/sentence-case.pipe.ts
 [src-pipes-timeAgo]:      ./terminus-ui/pipes/src/time-ago/time-ago.pipe.ts
 [src-pipes-titleCase]:    ./terminus-ui/pipes/src/title-case/title-case.pipe.ts
+[src-pipes-truncate]:     ./terminus-ui/pipes/src/truncate/truncate.pipe.ts
 [src-pipes]:              ./terminus-ui/pipes/src/
 [src-radio-group]:        ./terminus-ui/radio-group/src/
 [src-scrollbars]:         ./terminus-ui/scrollbars/src/

@@ -70,7 +70,7 @@
       <ts-tooltip
         [tooltipValue]="welcomeMessage"
       >
-        {{ truncatedWelcomeMsg }}
+        {{ welcomeMessage | tsTruncateAt:welcomeMsgLength }}
       </ts-tooltip>
     </span>
     <span class="c-navigation__trigger-welcome" *ngIf="welcomeMessage.length<=welcomeMsgLength">
@@ -81,7 +81,7 @@
       <ts-tooltip
         [tooltipValue]="usersFullName"
       >
-        {{ truncatedUserName }}
+        {{ usersFullName | tsTruncateAt:userNameLength }}
       </ts-tooltip>      
     </span>
     <span *ngIf="usersFullName && usersFullName.length<=userNameLength">

@@ -237,25 +237,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   @Input()
   public welcomeMsgLength: number = 25;
 
-  /**
-   * Getter to return truncated user name
-   */
-  public get truncatedUserName(): string | undefined {
-    // istanbul ignore else
-    if (this.usersFullName && this.usersFullName.length > this.userNameLength) {
-      return this.usersFullName.slice(0, this.userNameLength) + '...';
-    }
-  }
-
-  /**
-   * Getter to return truncated welcome message
-   */
-  public get truncatedWelcomeMsg(): string | undefined {
-    // istanbul ignore else
-    if (this.welcomeMessage.length > this.welcomeMsgLength) {
-      return this.welcomeMessage.slice(0, this.welcomeMsgLength) + '...';
-    }
-  }
 
   /**
    * Element reference for visible list items

@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { TsPipesModule } from '@terminus/ui/pipes';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsTooltipModule } from '@terminus/ui/tooltip';
 
@@ -20,6 +21,7 @@ export * from './navigation.component';
     MatMenuModule,
     RouterModule,
     TsIconModule,
+    TsPipesModule,
     TsTooltipModule,
   ],
   declarations: [
