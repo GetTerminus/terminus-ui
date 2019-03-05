@@ -7,7 +7,7 @@
   }"
   [attr.aria-label]="actionName"
   [attr.type]="buttonType"
-  [disabled]="isDisabled || showProgress"
+  [attr.disabled]="shouldBeDisabled ? '' : null"
   tabindex="{{ tabIndex }}"
   (click)="clicked($event)"
   #button
