@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TsButtonModule } from '@terminus/ui/button';
 
-import { TsConfirmationModalComponent } from './confirmation-modal.component';
+import { TsConfirmationOverlayComponent } from './confirmation-overlay.component';
 import { TsConfirmationDirective } from './confirmation.directive';
 
-export * from './confirmation-modal.component';
+export * from './confirmation-overlay.component';
 export * from './confirmation.directive';
 
 
@@ -20,13 +20,13 @@ export * from './confirmation.directive';
   ],
   declarations: [
     TsConfirmationDirective,
-    TsConfirmationModalComponent,
+    TsConfirmationOverlayComponent,
   ],
   exports: [
     TsConfirmationDirective,
   ],
   entryComponents: [
-    TsConfirmationModalComponent,
+    TsConfirmationOverlayComponent,
   ],
 })
 export class TsConfirmationModule {}

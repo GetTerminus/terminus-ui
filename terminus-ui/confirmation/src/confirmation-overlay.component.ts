@@ -8,12 +8,12 @@ import { Subject } from 'rxjs';
 
 
 /**
- * The confirmation modal used by {@link TsConfirmationDirective}
+ * The confirmation overlay used by {@link TsConfirmationDirective}
  */
 @Component({
-  selector: 'ts-confirmation-modal',
-  styleUrls: ['./confirmation-modal.component.scss'],
-  templateUrl: './confirmation-modal.component.html',
+  selector: 'ts-confirmation-overlay',
+  styleUrls: ['./confirmation-overlay.component.scss'],
+  templateUrl: './confirmation-overlay.component.html',
   host: {
     class: 'ts-confirmation',
   },
@@ -21,7 +21,7 @@ import { Subject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsConfirmation',
 })
-export class TsConfirmationModalComponent {
+export class TsConfirmationOverlayComponent {
   /**
    * Stream confirmation choices
    */

@@ -1,8 +1,10 @@
 import {
   ConnectedPositionStrategy,
+  HorizontalConnectionPos,
   Overlay,
   OverlayConfig,
   OverlayRef,
+  VerticalConnectionPos,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
@@ -12,6 +14,7 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
   Output,
@@ -21,8 +24,28 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsButtonComponent } from '@terminus/ui/button';
 import { merge } from 'rxjs/operators';
 
-import { TsConfirmationModalComponent } from './confirmation-modal.component';
+import { TsConfirmationOverlayComponent } from './confirmation-overlay.component';
 
+
+/**
+ * Define the accepted string values for the {@link TsConfirmationOverlayComponent} position
+ */
+export type TsConfirmationOverlayPositionTypes
+  = 'above'
+  | 'below'
+  | 'before'
+  | 'after'
+;
+
+/**
+ * Define the allowed tooltips Used by {@link TsConfirmationOverlayComponent} position
+ */
+export const allowedOverlayPositionTypes: TsConfirmationOverlayPositionTypes[] = [
+  'above',
+  'below',
+  'before',
+  'after',
+];
 
 /**
  * A directive to inject a confirmation step into any button
@@ -33,6 +56,7 @@ import { TsConfirmationModalComponent } from './confirmation-modal.component';
  *           explanationText="Are you sure you want to delete this?"
  *           confirmationButtonText="Confirm!"
  *           cancelButtonText="Abort!"
+ *           overlayPosition="before"
  *         >
  *           Click me!
  *         </ts-button>
@@ -48,12 +72,12 @@ import { TsConfirmationModalComponent } from './confirmation-modal.component';
 })
 export class TsConfirmationDirective implements OnDestroy, OnInit {
   /**
-   * Store a reference to the created confirmation modal
+   * Store a reference to the created confirmation overlay
    */
-  private modalInstance!: TsConfirmationModalComponent;
+  private overlayInstance!: TsConfirmationOverlayComponent;
 
   /**
-   * Store a reference to the modal overlay
+   * Store a reference to the overlay overlay
    */
   private overlayRef!: OverlayRef | null;
 
@@ -103,6 +127,23 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     return this._explanationText;
   }
   private _explanationText: string | undefined;
+
+  /**
+   * Define position of the overlay
+   */
+  @Input()
+  public set overlayPosition(value: TsConfirmationOverlayPositionTypes) {
+    if (value && isDevMode() && (allowedOverlayPositionTypes.indexOf(value) < 0)) {
+      console.warn(`TsConfirmationOverlay: "${value}" is not an allowed position.` +
+       `Allowed positions are defined by "allowedOverlayPositionTypes".`);
+    }
+    this._overlayPosition = value;
+  }
+  public get overlayPosition(): TsConfirmationOverlayPositionTypes {
+    return this._overlayPosition;
+  }
+  private _overlayPosition: TsConfirmationOverlayPositionTypes = 'below';
+
 
   /**
    * An event emitted when the confirmation is cancelled
@@ -162,25 +203,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * Create and attach the confirmation overlay
    */
   private createOverlay(): void {
-    const positionStrategy: ConnectedPositionStrategy = this.overlay.position().connectedTo(
-      this.elementRef,
-      {
-        originX: 'center',
-        originY: 'bottom',
-      },
-      {
-        overlayX: 'center',
-        overlayY: 'top',
-      },
-    );
-
-
-    const overlayConfig: OverlayConfig = new OverlayConfig({
-      positionStrategy,
-      hasBackdrop: true,
-      backdropClass: 'ts-confirmation-overlay',
-      panelClass: ['qa-confirmation', 'ts-confirmation-overlay__panel'],
-    });
+    const overlayConfig = this.generateOverlayConfig(this.overlayPosition);
 
     // Create the overlay
     this.overlayRef = this.overlay.create(overlayConfig);
@@ -194,18 +217,18 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
       this.cancelled.emit(true);
     });
 
-    // Create and attach the modal
-    const userProfilePortal = new ComponentPortal(TsConfirmationModalComponent);
-    this.modalInstance = this.overlayRef.attach(userProfilePortal).instance;
-    this.modalInstance.confirmationButtonTxt = this.confirmationButtonText;
-    this.modalInstance.cancelButtonTxt = this.cancelButtonText;
-    this.modalInstance.explanationTxt = this.explanationText;
+    // Create and attach the overlay
+    const userProfilePortal = new ComponentPortal(TsConfirmationOverlayComponent);
+    this.overlayInstance = this.overlayRef.attach(userProfilePortal).instance;
+    this.overlayInstance.confirmationButtonTxt = this.confirmationButtonText;
+    this.overlayInstance.cancelButtonTxt = this.cancelButtonText;
+    this.overlayInstance.explanationTxt = this.explanationText;
 
     // Start the progress indicator of the TsButton
     this.host.showProgress = true;
 
     // Subscribe to the continue event
-    this.modalInstance.confirm.subscribe((shouldProceed: boolean) => {
+    this.overlayInstance.confirm.subscribe((shouldProceed: boolean) => {
       if (coerceBooleanProperty(shouldProceed)) {
         this.host.clickEvent.emit(this.host.originalClickEvent);
         this.dismissOverlay();
@@ -214,6 +237,70 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
         this.cancelled.emit(true);
       }
     });
+  }
+
+  /**
+   * Configure the overlay
+   */
+  private generateOverlayConfig(value: TsConfirmationOverlayPositionTypes) {
+    let overlayPosOriginX: HorizontalConnectionPos = 'center';
+    let overlayPosOriginY: VerticalConnectionPos = 'bottom';
+    let overlayPosOverlayX: HorizontalConnectionPos = 'center';
+    let overlayPosOverlayY: VerticalConnectionPos = 'top';
+    let positionClass = 'ts-confirmation-overlay__panel-below';
+
+    switch (value) {
+      case ('above'):
+        overlayPosOriginY = 'top';
+        overlayPosOverlayY = 'bottom';
+        positionClass = 'ts-confirmation-overlay__panel-above';
+        break;
+      case ('below'):
+        overlayPosOriginY = 'bottom';
+        overlayPosOverlayY = 'top';
+        positionClass = 'ts-confirmation-overlay__panel-below';
+        break;
+      case ('before'):
+        overlayPosOriginX = 'start';
+        overlayPosOriginY = 'center';
+        overlayPosOverlayX = 'end';
+        overlayPosOverlayY = 'center';
+        positionClass = 'ts-confirmation-overlay__panel-before';
+        break;
+      case ('after'):
+        overlayPosOriginX = 'end';
+        overlayPosOriginY = 'center';
+        overlayPosOverlayX = 'start';
+        overlayPosOverlayY = 'center';
+        positionClass = 'ts-confirmation-overlay__panel-after';
+        break;
+      default:
+        overlayPosOriginY = 'bottom';
+        overlayPosOverlayY = 'top';
+        positionClass = 'ts-confirmation-overlay__panel-below';
+        break;
+    }
+
+    const positionStrategy: ConnectedPositionStrategy = this.overlay.position().connectedTo(
+      this.elementRef,
+      {
+        originX: overlayPosOriginX,
+        originY: overlayPosOriginY,
+      },
+      {
+        overlayX: overlayPosOverlayX,
+        overlayY: overlayPosOverlayY,
+      },
+    );
+
+    const overlayConfig: OverlayConfig = new OverlayConfig({
+      positionStrategy,
+      hasBackdrop: true,
+      backdropClass: 'ts-confirmation-overlay',
+      panelClass: ['qa-confirmation', 'ts-confirmation-overlay__panel', `${positionClass}`],
+    });
+
+    return overlayConfig;
   }
 
 

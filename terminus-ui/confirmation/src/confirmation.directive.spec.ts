@@ -140,7 +140,7 @@ describe(`TsConfirmationDirective`, function() {
 
   describe(`ESCAPE key`, () => {
 
-    test(`should dismiss the modal`, () => {
+    test(`should dismiss the overlay`, () => {
       expect(directive['overlayRef']).toBeFalsy();
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
@@ -154,28 +154,28 @@ describe(`TsConfirmationDirective`, function() {
   });
 
 
-  describe(`modal content`, () => {
+  describe(`overlay content`, () => {
 
-    test(`should dismiss the modal and emit event on confirm`, () => {
+    test(`should dismiss the overlay and emit event on confirm`, () => {
       directive['host'].clickEvent.emit = jest.fn();
       expect(directive['overlayRef']).toBeFalsy();
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
 
-      directive['modalInstance'].confirm.next(true);
+      directive['overlayInstance'].confirm.next(true);
 
       expect(directive['overlayRef']!.hasAttached()).toEqual(false);
       expect(directive['host'].clickEvent.emit).toHaveBeenCalled();
     });
 
 
-    test(`should dismiss the modal and emit event on cancel`, () => {
+    test(`should dismiss the overlay and emit event on cancel`, () => {
       directive.cancelled.emit = jest.fn();
       expect(directive['overlayRef']).toBeFalsy();
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
 
-      directive['modalInstance'].confirm.next(false);
+      directive['overlayInstance'].confirm.next(false);
 
       expect(directive['overlayRef']!.hasAttached()).toEqual(false);
       expect(directive.cancelled.emit).toHaveBeenCalledWith(true);
@@ -247,6 +247,69 @@ describe(`TsConfirmationDirective`, function() {
       jest.runAllTimers();
     });
 
+  });
+
+  describe(`Positioning` , () => {
+    test(`should default to 'below'`, () => {
+      jest.useFakeTimers();
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(directive['overlayPosition']).toEqual('below');
+      expect(document.querySelector('.ts-confirmation-overlay__panel-below')).not.toBeNull();
+    });
+
+    test(`should accept 'above' position type and set class`, () => {
+      jest.useFakeTimers();
+      directive.overlayPosition = 'above';
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(document.querySelector('.ts-confirmation-overlay__panel-above')).not.toBeNull();
+    });
+
+    test(`should accept 'below' position type and set class`, () => {
+      jest.useFakeTimers();
+      directive.overlayPosition = 'below';
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(document.querySelector('.ts-confirmation-overlay__panel-below')).not.toBeNull();
+    });
+
+    test(`should accept 'before' position type and set class`, () => {
+      jest.useFakeTimers();
+      directive.overlayPosition = 'before';
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(document.querySelector('.ts-confirmation-overlay__panel-before')).not.toBeNull();
+    });
+
+    test(`should accept 'after' position type and set class`, () => {
+      jest.useFakeTimers();
+      directive.overlayPosition = 'after';
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(document.querySelector('.ts-confirmation-overlay__panel-after')).not.toBeNull();
+    });
+
+    test(`should throw error if invalid position is set`, () => {
+      jest.useFakeTimers();
+      window.console.warn = jest.fn();
+      directive.overlayPosition = 'left' as any;
+      button.click();
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(window.console.warn).toHaveBeenCalled();
+    });
   });
 
 });

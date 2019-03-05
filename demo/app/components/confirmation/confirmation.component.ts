@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TsConfirmationOverlayPositionTypes } from '@terminus/ui/confirmation';
 
 
 @Component({
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class ConfirmationComponent {
   progress = false;
+  myOverlayPosition: TsConfirmationOverlayPositionTypes = 'before';
+  overlayPositions: TsConfirmationOverlayPositionTypes[] = ['above', 'below', 'before', 'after'];
 
   explanation = `Are you sure you want to do the thing you clicked to do?`;
 
