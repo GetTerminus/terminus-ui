@@ -236,6 +236,7 @@
     "typescript": "3.1.6",
     "validate-commit-msg": "^2.14.0",
     "weak": "^1.0.1",
+    "yarn": "^1.13.0",
     "zone.js": "^0.8.29"
   }
 }
