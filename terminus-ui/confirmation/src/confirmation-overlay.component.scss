@@ -21,7 +21,7 @@
   background-color: $opaque;
 }
 
-// Wrapper for modal component
+// Wrapper for overlay component
 .ts-confirmation-overlay__panel {
   @include reset;
   @include elevation-element(menu);
@@ -32,9 +32,28 @@
   }
 
   // Create the triangle above the popup box
-  &::before {
+  &.ts-confirmation-overlay__panel-above::before {
+    @include triangle(bottom, color(pure), spacing(small, 1));
+    left: 50%;
+  }
+
+  &.ts-confirmation-overlay__panel-below::before {
     @include triangle(top, color(pure), spacing(small, 1));
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  &.ts-confirmation-overlay__panel-before::before {
+    @include triangle(right, color(pure), spacing(small, 1));
+    right: -#{spacing(small)};
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.ts-confirmation-overlay__panel-after::before {
+    @include triangle(left, color(pure), spacing(small, 1));
+    left: -#{spacing(small)};
+    top: 50%;
+    transform: translateY(-50%);
   }
 }

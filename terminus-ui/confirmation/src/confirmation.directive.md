@@ -20,6 +20,7 @@ Basic flow:
 - [Confirmation Button Text](#confirmation-button-text)
 - [Cancel Button Text](#cancel-button-text)
 - [Explanation Text](#explanation-text)
+- [Position](#position)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -56,7 +57,7 @@ from the confirmation pop-up.
 
 ## Confirmation Button Text
 
-Customizes the text in the modal of the confirmation button; default is "Confirm".
+Customizes the text in the overlay of the confirmation button; default is "Confirm".
 
 ```html
 <ts-button
@@ -72,7 +73,7 @@ Customizes the text in the modal of the confirmation button; default is "Confirm
 
 ## Cancel Button Text
 
-Customizes the text in the modal of the cancel button; default is "Cancel".
+Customizes the text in the overlay of the cancel button; default is "Cancel".
 
 ```html
 <ts-button
@@ -88,14 +89,29 @@ Customizes the text in the modal of the cancel button; default is "Cancel".
 
 ## Explanation Text
 
-Optional text to appear inside of the modal, generally to use as a warning, for example, "Are you sure you want to delete this tactic, a delete can not be undone". Default is null.
+Optional text to appear inside of the overlay, generally to use as a warning, for example, "Are you sure you want to delete this tactic, a delete can not be undone". Default is null.
 
 ```html
 <ts-button
     tsConfirmation
     (clickEvent)="submit()"
     (cancelled)="cancel($event)"
-    explanationText="Optional text within modal."
+    explanationText="Optional text within overlay."
+  >
+    Click Me!
+  </ts-button>
+```
+
+## Position
+
+Optional overlayPosition for defining where the overlay will appear relative to the button. Options are defined in `TsConfirmationOverlayPositionTypes`. Default is 'below'.
+
+```html
+<ts-button
+    tsConfirmation
+    (clickEvent)="submit()"
+    (cancelled)="cancel($event)"
+    overlayPosition="before"
   >
     Click Me!
   </ts-button>
