@@ -356,6 +356,13 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     }, delay);
   }
 
+  /**
+   * Getter returning a boolean based on both the component `isDisabled` flag and the FormControl's disabled status
+   */
+  public get shouldBeDisabled(): boolean {
+    return this.isDisabled || this.showProgress;
+  }
+
 
   /**
    * Update button classes (theme|format)
