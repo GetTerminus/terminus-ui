@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   Provider,
   Type,
@@ -52,13 +51,25 @@ import {
   getSelectInstance,
   getSelectTriggerElement,
   getToggleAllElement,
+  openSelect,
 } from '@terminus/ui/select/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 
 import { TsSelectOptionComponent } from './option/option.component';
 import { TsSelectModule, TsSelectFormatFn, TsSelectOption } from './select.module';
 
 
+function createComponent<T>(component: Type<T>): ComponentFixture<T> {
+  const moduleImports = [
+    FormsModule,
+    ReactiveFormsModule,
+    TsSelectModule,
+    NoopAnimationsModule,
+  ];
+
+  return createComponentInner(component, undefined, moduleImports);
+}
 
 
 describe(`TsSelectComponent`, function() {
@@ -139,7 +150,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should emit events for selections and changes`, () => {
-      const fixture = createComponent(testComponents.SelectionChangeEventEmitters);
+      const fixture = createComponent<testComponents.SelectionChangeEventEmitters>(testComponents.SelectionChangeEventEmitters);
       fixture.detectChanges();
       fixture.componentInstance.selected = jest.fn();
       fixture.componentInstance.change = jest.fn();
@@ -160,7 +171,7 @@ describe(`TsSelectComponent`, function() {
       dispatchMouseEvent(trigger, 'click');
       fixture.detectChanges();
 
-      const option = getOptionElement(fixture, 1)!;
+      const option = getOptionElement(fixture, 0, 1);
 
       expect(option.innerHTML).toEqual(expect.stringContaining('bar'));
     });
@@ -201,8 +212,8 @@ describe(`TsSelectComponent`, function() {
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        const disabledOption = getOptionElement(fixture, 1)!;
-        const activeOption = getOptionElement(fixture, 4)!;
+        const disabledOption = getOptionElement(fixture, 0, 1);
+        const activeOption = getOptionElement(fixture, 0, 4);
         expect(disabledOption.classList.contains('ts-select-option--disabled')).toEqual(true);
         expect(activeOption.classList.contains('ts-selected')).toEqual(true);
       });
@@ -215,9 +226,9 @@ describe(`TsSelectComponent`, function() {
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
       fixture.detectChanges();
-      const group = getOptgroupElement(fixture)!;
-      const groupDisabled = getOptgroupElement(fixture, 1)!;
-      const label = group.querySelector('label')!;
+      const group = getOptgroupElement(fixture);
+      const groupDisabled = getOptgroupElement(fixture, 0, 1);
+      const label = group.querySelector('label');
 
       // Existence
       expect(group).toBeTruthy();
@@ -238,7 +249,7 @@ describe(`TsSelectComponent`, function() {
 
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
-          const valueSpan = trigger.querySelector('.ts-select-value-text')!;
+          const valueSpan = trigger.querySelector('.ts-select-value-text');
 
           expect(valueSpan.textContent).toEqual('Florida- Texas');
         });
@@ -246,13 +257,13 @@ describe(`TsSelectComponent`, function() {
 
 
       test(`should fall back to the default delimiter if a non-string value is passed in`, () => {
-        const fixture = createComponent(testComponents.CustomDelimiter);
+        const fixture = createComponent<testComponents.CustomDelimiter>(testComponents.CustomDelimiter);
         fixture.componentInstance.delimiter = 1 as any;
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
-          const valueSpan = trigger.querySelector('.ts-select-value-text')!;
+          const valueSpan = trigger.querySelector('.ts-select-value-text');
 
           expect(valueSpan.textContent).toEqual('Florida, Texas');
         });
@@ -262,7 +273,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should not open when disabled`, () => {
-      const fixture = createComponent(testComponents.Disabled);
+      const fixture = createComponent<testComponents.Disabled>(testComponents.Disabled);
       fixture.detectChanges();
       fixture.componentInstance.wasOpened = jest.fn();
       const trigger = getSelectTriggerElement(fixture);
@@ -276,7 +287,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should update when options change`, async(() => {
-      const fixture = createComponent(testComponents.SelectOptionChange);
+      const fixture = createComponent<testComponents.SelectOptionChange>(testComponents.SelectOptionChange);
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
@@ -336,7 +347,7 @@ describe(`TsSelectComponent`, function() {
 
 
       test(`should do nothing if no options exist`, () => {
-        const fixture = createComponent(testComponents.Basic);
+        const fixture = createComponent<testComponents.Basic>(testComponents.Basic);
         fixture.componentInstance.options.length = 0;
         const instance = getSelectInstance(fixture);
         fixture.detectChanges();
@@ -521,13 +532,14 @@ describe(`TsSelectComponent`, function() {
 
 
       test('should update when making a new selection', async(() => {
-        const fixture = createComponent(testComponents.CustomCompareFn);
+        const fixture = createComponent<testComponents.CustomCompareFn>(testComponents.CustomCompareFn);
         fixture.detectChanges();
         const options = getAllOptionInstances(fixture);
 
-        getOptionInstance(fixture, options.length - 1)!.selectViaInteraction();
+        getOptionInstance(fixture, 0, options.length - 1).selectViaInteraction();
         fixture.detectChanges();
-        const selectedOption = getSelectInstance(fixture).selected as TsSelectOptionComponent;
+        const getterValue = getSelectInstance(fixture).selected;
+        const selectedOption = getterValue[0] ? getterValue[0] : getterValue;
 
         expect(fixture.componentInstance.selectedFood.value).toEqual('tacos-2');
         expect(selectedOption.value.value).toEqual('tacos-2');
@@ -539,7 +551,7 @@ describe(`TsSelectComponent`, function() {
     describe('comparing by reference', function() {
 
       test('should initialize with no selection despite having a value', async(() => {
-        const fixture = createComponent(testComponents.CustomCompareFn);
+        const fixture = createComponent<testComponents.CustomCompareFn>(testComponents.CustomCompareFn);
         fixture.detectChanges();
         fixture.componentInstance.useCompareByReference();
         fixture.detectChanges();
@@ -550,7 +562,7 @@ describe(`TsSelectComponent`, function() {
 
 
       test('should log a warning when using a non-function comparator', async(() => {
-        const fixture = createComponent(testComponents.CustomCompareFn);
+        const fixture = createComponent<testComponents.CustomCompareFn>(testComponents.CustomCompareFn);
         fixture.detectChanges();
         window.console.warn = jest.fn();
         fixture.componentInstance.useNullComparator();
@@ -563,7 +575,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should defer optionSelection stream if no options exist`, async(() => {
-      const fixture = createComponent(testComponents.DeferOptionSelectionStream);
+      const fixture = createComponent<testComponents.DeferOptionSelectionStream>(testComponents.DeferOptionSelectionStream);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
 
@@ -588,7 +600,7 @@ describe(`TsSelectComponent`, function() {
         getSelectInstance(fixture).placeholder = 'foo';
         fixture.detectChanges();
 
-        expect(trigger.textContent!.trim()).toEqual('foo');
+        expect(trigger.textContent.trim()).toEqual('foo');
       });
 
     });
@@ -639,30 +651,27 @@ describe(`TsSelectComponent`, function() {
 
     describe(`handleOpenKeydown`, function() {
 
-/*
- *      test(`should select OR deselect all items with CTRL + A`, () => {
- *        const fixture = createComponent(testComponents.OptgroupsMultiple);
- *        fixture.detectChanges();
- *        const instance = getSelectInstance(fixture);
- *        const element = getSelectElement(fixture);
- *        instance.open();
- *        fixture.detectChanges();
- *
- *        const event = createKeyboardEvent('keydown', A, element);
- *        Object.defineProperty(event, 'ctrlKey', {get: () => true});
- *        dispatchEvent(element, event);
- *        fixture.detectChanges();
- *
- *        // Only two items are not disabled or within a disabled group
- *        expect(instance.selectionModel.selected.length).toEqual(2);
- *        expect(event.defaultPrevented).toEqual(true);
- *
- *        dispatchEvent(element, event);
- *        fixture.detectChanges();
- *
- *        expect(instance.selectionModel.selected.length).toEqual(0);
- *      });
- */
+      test(`should select OR deselect all items with CTRL + A`, () => {
+        const fixture = createComponent(testComponents.OptgroupsMultiple);
+        fixture.detectChanges();
+        const instance = getSelectInstance(fixture);
+        const element = getSelectElement(fixture);
+        openSelect(fixture);
+
+        const event = createKeyboardEvent('keydown', A, element);
+        Object.defineProperty(event, 'ctrlKey', {get: () => true});
+        dispatchEvent(element, event);
+        fixture.detectChanges();
+
+        // Only two items are not disabled or within a disabled group
+        expect(instance.selectionModel.selected.length).toEqual(2);
+        expect(event.defaultPrevented).toEqual(true);
+
+        dispatchEvent(element, event);
+        fixture.detectChanges();
+
+        expect(instance.selectionModel.selected.length).toEqual(0);
+      });
 
 
       // TODO: Shift/Arrow functionality does not seem to be working
@@ -700,24 +709,26 @@ describe(`TsSelectComponent`, function() {
 
     describe(`optgroup`, function() {
 
-/*
- *      test(`should toggle all child options if not disabled`, () => {
- *        const fixture = createComponent(testComponents.OptgroupsMultiple);
- *        fixture.detectChanges();
- *        const trigger = getSelectTriggerElement(fixture);
- *        dispatchMouseEvent(trigger, 'click');
- *        fixture.detectChanges();
- *        const group = getOptgroupElement(fixture)!;
- *        const select = getSelectInstance(fixture);
- *        const label = group.querySelector('label')!;
- *
- *        expect(select.selectionModel.selected.length).toBeFalsy();
- *
- *        dispatchMouseEvent(label, 'click');
- *
- *        expect(select.selectionModel.selected.length).toEqual(2);
- *      });
- */
+      test(`should toggle all child options if not disabled`, () => {
+        const fixture = createComponent(testComponents.OptgroupsMultiple);
+        fixture.detectChanges();
+        const trigger = getSelectTriggerElement(fixture);
+        dispatchMouseEvent(trigger, 'click');
+        fixture.detectChanges();
+        const group = getOptgroupElement(fixture);
+        const select = getSelectInstance(fixture);
+        const label = group.querySelector('label');
+
+        expect(select.selectionModel.selected.length).toEqual(0);
+
+        dispatchMouseEvent(label, 'click');
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+          expect(select.selectionModel.selected.length).toEqual(2);
+        });
+
+      });
 
     });
 
@@ -731,7 +742,7 @@ describe(`TsSelectComponent`, function() {
 
     test(`should show a progress indicator`, () => {
       jest.useFakeTimers();
-      const fixture = createComponent(testComponents.Autocomplete);
+      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
       fixture.detectChanges();
 
       let spinner = fixture.debugElement.query(By.css('.c-autocomplete__spinner'));
@@ -748,7 +759,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should not open when disabled`, () => {
-      const fixture = createComponent(testComponents.Autocomplete);
+      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
@@ -768,7 +779,7 @@ describe(`TsSelectComponent`, function() {
         const fixture = createComponent(testComponents.SeededAutocomplete);
         fixture.detectChanges();
 
-        const chip = getChipElement(fixture, 0);
+        const chip = getChipElement(fixture);
 
         expect(chip).toBeTruthy();
       });
@@ -779,28 +790,28 @@ describe(`TsSelectComponent`, function() {
         const fixture = createComponent(testComponents.SeededAutocomplete);
         fixture.detectChanges();
 
-        let chips = getAllChipInstances(fixture)!;
+        let chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(1);
 
-        const chip = getChipElement(fixture)!;
-        const chipRemovalButton = chip.querySelector('.mat-chip-remove')!;
+        const chip = getChipElement(fixture);
+        const chipRemovalButton = chip.querySelector('.mat-chip-remove');
         const instance = getSelectInstance(fixture);
 
         // Open the panel so that overlayRef is created
         instance.autocompleteTrigger.handleFocus();
-        instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
+        instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
 
         dispatchMouseEvent(chipRemovalButton, 'click');
         fixture.detectChanges();
 
-        chips = getAllChipInstances(fixture)!;
+        chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(0);
 
         const input = getAutocompleteInput(fixture);
         expect(document.activeElement).toEqual(input);
         jest.advanceTimersByTime(200);
 
-        expect(instance.autocompleteTrigger.overlayRef!.updatePosition).toHaveBeenCalled();
+        expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
         jest.runAllTimers();
       });
 
@@ -810,17 +821,17 @@ describe(`TsSelectComponent`, function() {
         const fixture = createComponent(testComponents.SeededAutocomplete);
         fixture.detectChanges();
 
-        let chips = getAllChipInstances(fixture)!;
+        let chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(1);
 
-        const chip = getChipElement(fixture)!;
+        const chip = getChipElement(fixture);
         // The first backspace selects the previous chip
         dispatchKeyboardEvent(chip, 'keydown', BACKSPACE);
         jest.advanceTimersByTime(250);
         dispatchKeyboardEvent(chip, 'keydown', BACKSPACE);
         fixture.detectChanges();
 
-        chips = getAllChipInstances(fixture)!;
+        chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(0);
       });
 
@@ -828,9 +839,9 @@ describe(`TsSelectComponent`, function() {
       test(`should show UI element based on format function passed in`, () => {
         const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
         fixture.detectChanges();
-        const chip = getChipElementDisplayValue(fixture);
+        const displayValue = getChipElementDisplayValue(fixture);
 
-        expect(chip).toEqual('Florida');
+        expect(displayValue).toEqual('Florida');
       });
 
 
@@ -874,7 +885,7 @@ describe(`TsSelectComponent`, function() {
 
       test(`should debounce the stream`, () => {
         jest.useFakeTimers();
-        const fixture = createComponent(testComponents.Debounce);
+        const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
         fixture.componentInstance.change = jest.fn();
         fixture.detectChanges();
         const instance = getSelectInstance(fixture);
@@ -892,7 +903,7 @@ describe(`TsSelectComponent`, function() {
 
       test(`should allow a custom debounce delay`, () => {
         jest.useFakeTimers();
-        const fixture = createComponent(testComponents.CustomDebounce);
+        const fixture = createComponent<testComponents.CustomDebounce>(testComponents.CustomDebounce);
         fixture.componentInstance.change = jest.fn();
         fixture.detectChanges();
         const instance = getSelectInstance(fixture);
@@ -914,7 +925,7 @@ describe(`TsSelectComponent`, function() {
 
       test(`should only emit query once past the minimum character count`, () => {
         jest.useFakeTimers();
-        const fixture = createComponent(testComponents.CustomCharacterCount);
+        const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
         fixture.componentInstance.change = jest.fn();
         fixture.detectChanges();
         const instance = getSelectInstance(fixture);
@@ -934,7 +945,7 @@ describe(`TsSelectComponent`, function() {
 
       test(`should allow a custom minimum character count`, () => {
         jest.useFakeTimers();
-        const fixture = createComponent(testComponents.CustomCharacterCount);
+        const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
         fixture.componentInstance.customCount = 1;
         fixture.componentInstance.change = jest.fn();
         fixture.detectChanges();
@@ -957,7 +968,7 @@ describe(`TsSelectComponent`, function() {
 
     test(`should only allow unique queries`, function() {
       jest.useFakeTimers();
-      const fixture = createComponent(testComponents.Debounce);
+      const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
       fixture.componentInstance.change = jest.fn();
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
@@ -978,24 +989,24 @@ describe(`TsSelectComponent`, function() {
       // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
       test(`should not be allowed by default but should emit an event`, function() {
         jest.useFakeTimers();
-        const fixture = createComponent(testComponents.SeededAutocomplete);
+        const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
         fixture.detectChanges();
         fixture.componentInstance.duplicate = jest.fn();
 
-        let chips = getAllChipInstances(fixture)!;
+        let chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(1);
 
-        const input = getAutocompleteInput(fixture)!;
-        typeInElement('fl', input!);
+        const input = getAutocompleteInput(fixture);
+        typeInElement('fl', input);
         fixture.detectChanges();
 
         // Select Florida (it's selected by default in this test component)
-        const opt = getOptionElement(fixture, 4)!;
+        const opt = getOptionElement(fixture, 0, 4);
         opt.click();
         fixture.detectChanges();
 
         // Verify the selection did NOT work
-        chips = getAllChipInstances(fixture)!;
+        chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(1);
         expect(fixture.componentInstance.duplicate).toHaveBeenCalledWith('Florida');
         jest.runAllTimers();
@@ -1006,24 +1017,24 @@ describe(`TsSelectComponent`, function() {
       describe(`when allowed`, function() {
 
         test(`should allow a duplicate selection`, () => {
-          const fixture = createComponent(testComponents.SeededAutocomplete);
+          const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
           fixture.componentInstance.allowDuplicates = true;
           fixture.detectChanges();
 
-          let chips = getAllChipInstances(fixture)!;
+          let chips = getAllChipInstances(fixture);
           expect(chips.length).toEqual(1);
 
-          const input = getAutocompleteInput(fixture)!;
-          typeInElement('fl', input!);
+          const input = getAutocompleteInput(fixture);
+          typeInElement('fl', input);
           fixture.detectChanges();
 
           // Select Florida (it's selected by default in this test component)
-          const opt = getOptionElement(fixture, 4)!;
+          const opt = getOptionElement(fixture, 0, 4);
           opt.click();
           fixture.detectChanges();
 
           // Verify the selection DID work
-          chips = getAllChipInstances(fixture)!;
+          chips = getAllChipInstances(fixture);
           expect(chips.length).toEqual(2);
           expect(getSelectInstance(fixture).autocompleteSelections).toEqual(['Florida', 'Florida']);
 
@@ -1040,17 +1051,17 @@ describe(`TsSelectComponent`, function() {
       describe(`in single selection mode`, function() {
 
         test(`should set single value`, () => {
-          const fixture = createComponent(testComponents.SeededAutocomplete);
+          const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
           fixture.componentInstance.allowMultiple = false;
           fixture.componentInstance.keepOpen = false;
           fixture.detectChanges();
           const instance = getSelectInstance(fixture);
-          const input = getAutocompleteInput(fixture)!;
+          const input = getAutocompleteInput(fixture);
 
           typeInElement('fl', input);
           fixture.detectChanges();
 
-          const opt = getOptionElement(fixture, 0)!;
+          const opt = getOptionElement(fixture);
           opt.click();
           fixture.detectChanges();
 
@@ -1059,18 +1070,18 @@ describe(`TsSelectComponent`, function() {
 
 
         test(`should set single value 2`, () => {
-          const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
+          const fixture = createComponent<testComponents.SeededAutocompleteWithFormatFn>(testComponents.SeededAutocompleteWithFormatFn);
           fixture.componentInstance.allowMultiple = false;
           fixture.componentInstance.keepOpen = false;
           fixture.componentInstance.myCtrl.setValue([{ name: 'Florida', population: '20.27M'}]);
           fixture.detectChanges();
           const instance = getSelectInstance(fixture);
-          const input = getAutocompleteInput(fixture)!;
+          const input = getAutocompleteInput(fixture);
 
           typeInElement('fl', input);
           fixture.detectChanges();
 
-          const opt = getOptionElement(fixture, 0)!;
+          const opt = getOptionElement(fixture);
           opt.click();
           fixture.detectChanges();
 
@@ -1086,7 +1097,7 @@ describe(`TsSelectComponent`, function() {
       const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
       fixture.detectChanges();
 
-      const input = getAutocompleteInput(fixture)!;
+      const input = getAutocompleteInput(fixture);
       typeInElement('fl', input);
       fixture.detectChanges();
 
@@ -1106,7 +1117,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should support a custom tabindex`, function() {
-      const fixture = createComponent(testComponents.Tabindex);
+      const fixture = createComponent<testComponents.Tabindex>(testComponents.Tabindex);
       fixture.componentInstance.autocomplete = true;
       fixture.detectChanges();
       const input = getAutocompleteInput(fixture);
@@ -1129,7 +1140,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should close the panel if open when getting a blur event that isn't from a selection`, function() {
-      const fixture = createComponent(testComponents.Autocomplete);
+      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
       const input = getAutocompleteInput(fixture);
@@ -1160,20 +1171,21 @@ describe(`TsSelectComponent`, function() {
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
       const triggerInstance = instance.autocompleteTrigger;
-      const chip = getChipElement(fixture)!;
-      const chipRemovalButton = chip.querySelector('.mat-chip-remove')!;
+      const chip = getChipElement(fixture);
+      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
 
       triggerInstance.openPanel();
       fixture.detectChanges();
-      instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
+      instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
 
       dispatchMouseEvent(chipRemovalButton, 'click');
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
 
-      expect(instance.autocompleteTrigger.overlayRef!.updatePosition).toHaveBeenCalled();
+      expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
       jest.runAllTimers();
     });
+
 
     describe(`required`, () => {
 
@@ -1203,10 +1215,11 @@ describe(`TsSelectComponent`, function() {
       });
     });
 
+
     describe(`panel`, function() {
 
       test(`should support a custom ID`, () => {
-        const fixture = createComponent(testComponents.Autocomplete);
+        const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
         fixture.componentInstance.disabled = true;
         fixture.detectChanges();
         const instance = getSelectInstance(fixture);
@@ -1224,7 +1237,7 @@ describe(`TsSelectComponent`, function() {
 
 
   test(`should be able to hide the required marker`, function() {
-    const fixture = createComponent(testComponents.HideRequired);
+    const fixture = createComponent<testComponents.HideRequired>(testComponents.HideRequired);
     fixture.detectChanges();
     let marker = fixture.debugElement.query(By.css('.ts-form-field-required-marker'));
     expect(marker).toBeTruthy();
@@ -1260,7 +1273,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should fall back to the UID if no ID is passed in`, () => {
-      const fixture = createComponent(testComponents.Id);
+      const fixture = createComponent<testComponents.Id>(testComponents.Id);
       fixture.componentInstance.myId = undefined as any;
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
@@ -1283,7 +1296,7 @@ describe(`TsSelectComponent`, function() {
 
 
     test(`should trigger change detection and alert consumers when the label is changed`, () => {
-      const fixture = createComponent(testComponents.Label);
+      const fixture = createComponent<testComponents.Label>(testComponents.Label);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
       instance['changeDetectorRef'].detectChanges = jest.fn();
@@ -1335,14 +1348,14 @@ describe(`TsSelectComponent`, function() {
   describe(`onSelect`, function() {
 
     test(`should reset selection values when a null value is selected`, () => {
-      const fixture = createComponent(testComponents.NullSelection);
+      const fixture = createComponent<testComponents.NullSelection>(testComponents.NullSelection);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
       const trigger = getSelectTriggerElement(fixture);
 
       expect(fixture.componentInstance.myCtrl.value).toEqual('bar');
 
-      const option = getOptionElement(fixture, 1)!;
+      const option = getOptionElement(fixture, 0, 1);
       option.click();
       fixture.detectChanges();
 
@@ -1382,7 +1395,7 @@ describe(`TsSelectComponent`, function() {
   describe(`propogateChanges`, function() {
 
     test(`should use fallback value if the option has no value`, () => {
-      const fixture = createComponent(testComponents.Basic);
+      const fixture = createComponent<testComponents.Basic>(testComponents.Basic);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
       fixture.componentInstance.change = jest.fn();
@@ -1427,7 +1440,7 @@ describe(`TsSelectComponent`, function() {
       test(`should support custom IDs`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
 
         expect(option.id).toEqual('Alabama');
       });
@@ -1436,7 +1449,7 @@ describe(`TsSelectComponent`, function() {
       test(`should fall back to UID`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
 
         option.id = undefined as any;
         fixture.detectChanges();
@@ -1452,7 +1465,7 @@ describe(`TsSelectComponent`, function() {
       test(`should return the viewValue`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
 
         expect(option.getLabel()).toEqual('Alabama');
       });
@@ -1465,7 +1478,7 @@ describe(`TsSelectComponent`, function() {
       test(`should select via interaction when SPACE is used`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
         const event = createKeyboardEvent('keydown', SPACE);
         option.selectViaInteraction = jest.fn();
 
@@ -1479,7 +1492,7 @@ describe(`TsSelectComponent`, function() {
       test(`should select via interaction when ENTER is used`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
         const event = createKeyboardEvent('keydown', ENTER);
         option.selectViaInteraction = jest.fn();
 
@@ -1497,7 +1510,7 @@ describe(`TsSelectComponent`, function() {
       test(`should retrieve the option object`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
-        const option = getOptionInstance(fixture, 1)!;
+        const option = getOptionInstance(fixture, 0, 1);
 
         expect(option.option).toEqual(expect.objectContaining({name: 'Alabama'}));
       });
@@ -1507,21 +1520,21 @@ describe(`TsSelectComponent`, function() {
 
     describe(`deselect`, function() {
 
-/*
- *      test(`should emit event not from user interaction`, () => {
- *        const fixture = createComponent(testComponents.OptionId);
- *        fixture.detectChanges();
- *        fixture.componentInstance.change = jest.fn();
- *        const option = getOptionInstance(fixture, 2)!;
- *        option.select();
- *        fixture.detectChanges();
- *
- *        option.deselect();
- *        fixture.detectChanges();
- *
- *        expect(fixture.componentInstance.change).toHaveBeenCalledTimes(2);
- *      });
- */
+      test(`should emit event not from user interaction`, () => {
+        const fixture = createComponent<testComponents.OptionId>(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 2);
+        option.select();
+        fixture.detectChanges();
+        option.emitSelectionChangeEvent = jest.fn();
+
+        option.deselect();
+        fixture.detectChanges();
+
+        expect(option.emitSelectionChangeEvent.mock.calls.length).toEqual(1);
+        // Verify it was not called with the boolean
+        expect(option.emitSelectionChangeEvent.mock.calls[0]).toEqual([]);
+      });
 
     });
 
@@ -1536,7 +1549,7 @@ describe(`TsSelectComponent`, function() {
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
       fixture.detectChanges();
-      const group = getOptgroupElement(fixture)!;
+      const group = getOptgroupElement(fixture);
 
       expect(group.getAttribute('id')).toEqual('Group A');
     });
@@ -1548,7 +1561,7 @@ describe(`TsSelectComponent`, function() {
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
       fixture.detectChanges();
-      const group = getOptgroupElement(fixture)!;
+      const group = getOptgroupElement(fixture);
 
       expect(group.getAttribute('id')).toEqual(expect.stringContaining('ts-select-optgroup-'));
     });
@@ -1563,18 +1576,18 @@ describe(`TsSelectComponent`, function() {
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
 
-      expect(instance.customTrigger!.id).toEqual('foo');
+      expect(instance.customTrigger.id).toEqual('foo');
     });
 
 
     test(`should fall back to the UID if no valid ID is passed in`, () => {
-      const fixture = createComponent(testComponents.CustomTrigger);
+      const fixture = createComponent<testComponents.CustomTrigger>(testComponents.CustomTrigger);
       fixture.detectChanges();
       fixture.componentInstance.myId = undefined as any;
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
 
-      expect(instance.customTrigger!.id).toEqual(expect.stringContaining('ts-select-trigger-'));
+      expect(instance.customTrigger.id).toEqual(expect.stringContaining('ts-select-trigger-'));
     });
 
   });
@@ -1640,7 +1653,7 @@ describe(`TsSelectComponent`, function() {
   describe('isFilterable', function() {
 
     test(`should filter options`, () => {
-      const fixture = createComponent(testComponents.Filterable);
+      const fixture = createComponent<testComponents.Filterable>(testComponents.Filterable);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
@@ -1666,8 +1679,9 @@ describe(`TsSelectComponent`, function() {
       expect.assertions(5);
     });
 
+
     test('should allow space as part of filter and not select an option', () => {
-      const fixture = createComponent(testComponents.Filterable);
+      const fixture = createComponent<testComponents.Filterable>(testComponents.Filterable);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
@@ -1690,29 +1704,3 @@ describe(`TsSelectComponent`, function() {
   });
 
 });
-
-
-
-
-/**
- * HELPERS
- */
-
-// TODO: Move to ngx-tools (and all other instances of this utility)
-export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      FormsModule,
-      ReactiveFormsModule,
-      TsSelectModule,
-      NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
-}

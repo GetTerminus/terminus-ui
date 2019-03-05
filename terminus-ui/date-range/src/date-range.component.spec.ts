@@ -9,7 +9,6 @@ import { By } from '@angular/platform-browser';
 import { typeInElement } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/date-range/testing';
 import {
-  getDebugRangeInputs,
   getRangeInputElements,
   getRangeInputInstances,
 } from '@terminus/ui/date-range/testing';

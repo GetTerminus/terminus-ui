@@ -1,0 +1,26 @@
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/color';
+
+
+//
+// @component
+//  Logo
+// @description
+//  Styles for the logo component
+//
+
+$logo-gray: #44525e;
+
+.ts-logo {
+  @include reset;
+
+  // black:
+  &.ts-logo--black svg path {
+    fill: color(pure, dark);
+  }
+
+  // gray :
+  &.ts-logo--gray svg path {
+    fill: $logo-gray;
+  }
+}

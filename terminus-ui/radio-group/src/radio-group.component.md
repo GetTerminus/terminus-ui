@@ -13,6 +13,7 @@
   - [Disabled option](#disabled-option)
 - [Visual mode](#visual-mode)
   - [Custom content](#custom-content)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -212,3 +213,21 @@ items$: Observable<TsRadioOption[]> = of([
   [formatModelValueFn]="modelFormatter"
 ></ts-radio-group>
 ```
+
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/radio-group/testing`;
+
+[[source]][test-helpers-src]
+
+| Function                     |
+|------------------------------|
+| `getAllRadioGroupInstances`  |
+| `getRadioGroupInstance`      |
+| `getRadioGroupParentElement` |
+| `selectStandardRadio`        |
+| `selectVisualRadio`          |
+
+
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/master/terminus-ui/radio-group/testing/src/test-helpers.ts

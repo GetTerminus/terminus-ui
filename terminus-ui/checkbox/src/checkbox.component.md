@@ -6,6 +6,7 @@
 - [Reactive Forms](#reactive-forms)
 - [`ngModel`](#ngmodel)
 - [`isChecked`](#ischecked)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -53,3 +54,20 @@ To seed the initial checked state use the `isChecked` property:
 ```
 
 > NOTE: This should rarely be used (if ever). We should be relying on a Reactive Form or ngModel.
+
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/checkbox/testing`;
+
+[[source]][test-helpers-src]
+
+| Function                  |
+|---------------------------|
+| `getAllCheckboxInstances` |
+| `getCheckboxInstance`     |
+| `getCheckboxElement`      |
+| `toggleCheckbox`          |
+
+
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/master/terminus-ui/checkbox/testing/src/test-helpers.ts
