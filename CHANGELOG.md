@@ -1,3 +1,9 @@
+## 11.7.0 (2019-03-06)
+
+* chore(Navigation): now using truncation pipe ([58f4f2a](https://github.com/GetTerminus/terminus-ui/commit/58f4f2a)), closes [#1367](https://github.com/GetTerminus/terminus-ui/issues/1367)
+* feat(Pipes): truncate pipe is available ([0b68fdd](https://github.com/GetTerminus/terminus-ui/commit/0b68fdd)), closes [#1249](https://github.com/GetTerminus/terminus-ui/issues/1249)
+* docs(Changelog): add recent releases to changelog ([6594bd7](https://github.com/GetTerminus/terminus-ui/commit/6594bd7))
+
 ## <small>11.6.1 (2019-03-06)</small>
 
 * Merge pull request #1400 from GetTerminus/1073-persistent-changelog ([e8002d3](https://github.com/GetTerminus/terminus-ui/commit/e8002d3)), closes [#1400](https://github.com/GetTerminus/terminus-ui/issues/1400)
