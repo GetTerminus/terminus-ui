@@ -57,7 +57,7 @@
     "codecov:upload": "npx codecov -f coverage/*.json",
     "//=> Section: Release": "==============================",
     "semantic-release": "semantic-release",
-    "check:next-release": "npx semantic-release --dry-run",
+    "check:next-release": "npx semantic-release --no-ci --dry-run",
     "//=> Section: Tooling": "==============================",
     "lint-staged": "lint-staged",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
@@ -101,14 +101,42 @@
   },
   "release": {
     "branch": "master",
+    "plugins": [
+      ["@semantic-release/release-notes-generator",
+        {
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          },
+          "writerOpts": {
+            "commitsSort": [
+              "subject",
+              "scope"
+            ]
+          }
+        }
+      ],
+      "@semantic-release/git"
+    ],
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
       "@semantic-release/npm",
+      "@semantic-release/git",
       "@semantic-release/github"
     ],
     "prepare": [
-      "@semantic-release/changelog"
+      {
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      },
+      {
+        "path": "@semantic-release/git",
+        "message": "📚 Add ${nextRelease.version} release notes [skip ci]"
+      }
     ],
     "publish": [
       {
@@ -161,8 +189,10 @@
     "@ngrx/store": "^7.1.0",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/exec": "^3.3.2",
+    "@semantic-release/git": "^7.0.8",
     "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.19",
     "all-contributors-cli": "^5.11.0",
