@@ -1,3 +1,9 @@
+## 11.8.0 (2019-03-07)
+
+* feat(ExpansionPanel): Create expansion panel / accordion component ([92e082d](https://github.com/GetTerminus/terminus-ui/commit/92e082d))
+* fix(Color): Lighten dark utility color for better distance from utility color ([4f4f4b6](https://github.com/GetTerminus/terminus-ui/commit/4f4f4b6))
+* refactor(Select): export the select animations ([0f48e02](https://github.com/GetTerminus/terminus-ui/commit/0f48e02))
+
 ## 11.7.0 (2019-03-06)
 
 * chore(Navigation): now using truncation pipe ([58f4f2a](https://github.com/GetTerminus/terminus-ui/commit/58f4f2a)), closes [#1367](https://github.com/GetTerminus/terminus-ui/issues/1367)
