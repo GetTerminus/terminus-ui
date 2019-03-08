@@ -3,8 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { Subject } from 'rxjs';
 import { TS_SPACING } from '@terminus/ui/spacing';
+import { Subject } from 'rxjs';
 
 
 /**

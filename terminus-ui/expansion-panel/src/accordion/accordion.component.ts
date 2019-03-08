@@ -1,3 +1,5 @@
+import { FocusKeyManager } from '@angular/cdk/a11y';
+import { CdkAccordion } from '@angular/cdk/accordion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -10,19 +12,17 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { CdkAccordion } from '@angular/cdk/accordion';
-import { FocusKeyManager } from '@angular/cdk/a11y';
 import {
   END,
   HOME,
 } from '@terminus/ngx-tools/keycodes';
 
+import { TsExpansionPanelComponent } from '../expansion-panel.component';
+import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
 import {
   TS_ACCORDION,
   TsAccordionBase,
 } from './accordion-base';
-import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
-import { TsExpansionPanelComponent } from '../expansion-panel.component';
 
 
 /**

@@ -14,13 +14,13 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isBoolean,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { BehaviorSubject } from 'rxjs';
 
 
 /**

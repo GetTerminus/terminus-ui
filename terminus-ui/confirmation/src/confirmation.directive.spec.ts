@@ -1,4 +1,7 @@
 // tslint:disable: no-non-null-assertion
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -13,11 +16,8 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { expectNativeEl } from '@terminus/ngx-tools/testing';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CommonModule } from '@angular/common';
+import { expectNativeEl } from '@terminus/ngx-tools/testing';
 import { TsButtonComponent } from '@terminus/ui/button';
 
 import { TsConfirmationDirective } from './confirmation.directive';

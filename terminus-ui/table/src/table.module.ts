@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
-import { TsSortModule } from '@terminus/ui/sort';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { TsPaginatorModule } from '@terminus/ui/paginator';
+import { TsSortModule } from '@terminus/ui/sort';
 
 import {
   TsCellDefDirective,

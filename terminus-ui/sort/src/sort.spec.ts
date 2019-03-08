@@ -15,21 +15,15 @@ import {
   TestModuleMetadata,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {
+  configureTestBedWithoutReset,
   dispatchMouseEvent,
   wrappedErrorMessage,
-  configureTestBedWithoutReset,
 } from '@terminus/ngx-tools/testing';
 import { TsTableModule } from '@terminus/ui/table';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { TsSortDirective } from './sort.directive';
-import { TsSortModule } from './sort.module';
-import {
-  TsSortDirection,
-  TsSortState,
-} from './sort.directive';
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
@@ -37,6 +31,12 @@ import {
   getSortInvalidDirectionError,
 } from './sort-errors';
 import { TsSortHeaderComponent } from './sort-header.component';
+import { TsSortDirective } from './sort.directive';
+import {
+  TsSortDirection,
+  TsSortState,
+} from './sort.directive';
+import { TsSortModule } from './sort.module';
 
 
 /**

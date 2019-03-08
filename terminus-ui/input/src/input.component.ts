@@ -1,3 +1,5 @@
+import { Platform } from '@angular/cdk/platform';
+import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -27,6 +29,11 @@ import {
   NgControl,
 } from '@angular/forms';
 import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+} from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import {
   hasRequiredControl,
   isBoolean,
   isNumber,
@@ -37,27 +44,20 @@ import {
   coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
-import { Platform } from '@angular/cdk/platform';
-import { AutofillMonitor } from '@angular/cdk/text-field';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { createTextMaskInputElement } from 'text-mask-core/dist/textMaskCore';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-} from '@angular/material/core';
-import {
-  isValid as isValidDate,
-} from 'date-fns';
-import { Subject } from 'rxjs';
-import { TS_SPACING } from '@terminus/ui/spacing';
-import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
+import { TsDatePipe } from '@terminus/ui/pipes';
+import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   inputHasChanged,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
+import {
+  isValid as isValidDate,
+} from 'date-fns';
+import { Subject } from 'rxjs';
+import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { createTextMaskInputElement } from 'text-mask-core/dist/textMaskCore';
 
 import {
   TS_DATE_FORMATS,

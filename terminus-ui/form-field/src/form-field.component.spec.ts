@@ -1,27 +1,27 @@
 import {
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
-import {
   Component,
   OnInit,
   Provider,
   Type,
   ViewChild,
 } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { TsDocumentServiceMock, createFakeEvent } from '@terminus/ngx-tools/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
+import { createFakeEvent, TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
 import { TsInputComponent, TsInputModule } from '@terminus/ui/input';
 
-import { TsFormFieldModule, TsFormFieldComponent } from './form-field.module';
+import { TsFormFieldComponent, TsFormFieldModule } from './form-field.module';
 
 
 // tslint:disable: no-use-before-declare

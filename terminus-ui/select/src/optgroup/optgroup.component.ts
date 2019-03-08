@@ -12,21 +12,21 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { isBoolean } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
-import { isBoolean } from '@terminus/ngx-tools';
 
+import {
+  allOptionsAreSelected,
+  someOptionsAreSelected,
+  toggleAllOptions,
+} from './../option/option-utilities';
 import {
   TS_OPTGROUP_PARENT_COMPONENT,
   TS_OPTION_PARENT_COMPONENT,
   TsOptionParentComponent,
   TsSelectOptionComponent,
 } from './../option/option.component';
-import {
-  allOptionsAreSelected,
-  someOptionsAreSelected,
-  toggleAllOptions,
-} from './../option/option-utilities';
 
 
 // Unique ID for each instance

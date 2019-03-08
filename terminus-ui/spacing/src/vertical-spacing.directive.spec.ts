@@ -1,7 +1,7 @@
 import { ElementRefMock } from '@terminus/ngx-tools/testing';
 
-import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
 import { TS_SPACING } from './spacing.constant';
+import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
 
 
 describe(`TsVerticalSpacingDirective`, function() {

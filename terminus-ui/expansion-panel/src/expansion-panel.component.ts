@@ -1,3 +1,7 @@
+import { AnimationEvent } from '@angular/animations';
+import { CdkAccordionItem } from '@angular/cdk/accordion';
+import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
+import { TemplatePortal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -19,26 +23,22 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { AnimationEvent } from '@angular/animations';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { CdkAccordionItem } from '@angular/cdk/accordion';
-import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
-import { TemplatePortal } from '@angular/cdk/portal';
 import {
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
+import { Subject } from 'rxjs';
 import {
   distinctUntilChanged,
   filter,
   startWith,
   take,
 } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
+import { TS_ACCORDION, TsAccordionBase } from './accordion/accordion-base';
 import { tsExpansionPanelAnimations } from './expansion-animations';
 import { TsExpansionPanelContentDirective } from './expansion-panel-content.directive';
-import { TS_ACCORDION, TsAccordionBase } from './accordion/accordion-base';
 
 
 /**

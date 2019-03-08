@@ -33,7 +33,6 @@ import {
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { ENTER } from '@terminus/ngx-tools/keycodes';
-import { filter } from 'rxjs/operators';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   ControlValueAccessorProviderFactory,
@@ -43,11 +42,12 @@ import {
   TsReactiveFormBaseComponent,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
+import { filter } from 'rxjs/operators';
 
-import { TsSelectedFile } from './selected-file';
-import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
-import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsDropProtectionService } from './drop-protection.service';
+import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
+import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
+import { TsSelectedFile } from './selected-file';
 
 
 export interface ImageRatio {

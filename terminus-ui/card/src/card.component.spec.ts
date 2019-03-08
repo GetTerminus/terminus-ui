@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 
 import { createComponent } from '@terminus/ngx-tools/testing';
 
-import { TsCardComponent, TsCardBorderOptions } from './card.component';
-import { TsCardModule } from './card.module';
 import { TsStyleThemeTypes } from '../../utilities/src/public-api';
+import { TsCardBorderOptions, TsCardComponent } from './card.component';
+import { TsCardModule } from './card.module';
 
 @Component({
   template: `

@@ -11,10 +11,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsButtonFormatTypes } from '@terminus/ui/button';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**

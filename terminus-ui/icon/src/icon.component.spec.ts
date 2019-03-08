@@ -4,8 +4,8 @@ import {
   TestBed,
   TestModuleMetadata,
 } from '@angular/core/testing';
-import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
 
 import { TsIconComponent } from './icon.component';
 import { TsIconModule } from './icon.module';

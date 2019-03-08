@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TsButtonModule } from '@terminus/ui/button';
 
-import { TsConfirmationDirective } from './confirmation.directive';
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
+import { TsConfirmationDirective } from './confirmation.directive';
 
 export * from './confirmation-modal.component';
 export * from './confirmation.directive';

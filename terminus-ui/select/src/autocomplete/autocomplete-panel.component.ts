@@ -1,3 +1,4 @@
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -12,14 +13,13 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
+import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
 import {
   TS_OPTION_PARENT_COMPONENT,
   TsSelectOptionComponent,
 } from './../option/option.component';
-import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
 
 
 /**

@@ -3,8 +3,8 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { isValid } from 'date-fns';
 import { isAbstractControl } from '@terminus/ui/utilities';
+import { isValid } from 'date-fns';
 
 
 /**

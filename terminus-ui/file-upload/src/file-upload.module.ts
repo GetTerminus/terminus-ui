@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsDocumentService } from '@terminus/ngx-tools';
 import { TsButtonModule } from '@terminus/ui/button';
-import { TsIconButtonModule } from '@terminus/ui/icon-button';
 import { TsIconModule } from '@terminus/ui/icon';
+import { TsIconButtonModule } from '@terminus/ui/icon-button';
+import { TsDatePipe } from '@terminus/ui/pipes';
 import { TsTooltipModule } from '@terminus/ui/tooltip';
 import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 
-import { TsFileUploadComponent } from './file-upload.component';
 import { TsDropProtectionService } from './drop-protection.service';
+import { TsFileUploadComponent } from './file-upload.component';
 
 export * from './drop-protection.service';
 export * from './file-upload.component';

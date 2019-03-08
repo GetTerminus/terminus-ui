@@ -1,9 +1,9 @@
 // tslint:disable: component-class-suffix
-import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, NgModule } from '@angular/core';
 
-import { TsExpansionPanelModule, TS_EXPANSION_PANEL_DEFAULT_OPTIONS } from '@terminus/ui/expansion-panel';
 import { noop } from '@terminus/ngx-tools';
+import { TS_EXPANSION_PANEL_DEFAULT_OPTIONS, TsExpansionPanelModule } from '@terminus/ui/expansion-panel';
 
 
 @Component({

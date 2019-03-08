@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { TsPipesModule } from '@terminus/ui/pipes';
+import { RouterModule } from '@angular/router';
 import { TsIconModule } from '@terminus/ui/icon';
+import { TsPipesModule } from '@terminus/ui/pipes';
 import { TsTooltipModule } from '@terminus/ui/tooltip';
 
 import { TsNavigationComponent } from './navigation.component';

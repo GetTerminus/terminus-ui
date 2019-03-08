@@ -121,6 +121,7 @@
       true,
       "ignore-for-loop"
     ],
+    "ordered-imports": true,
     "pipe-impure": true,
     "prefer-const": true,
     "quotemark": [

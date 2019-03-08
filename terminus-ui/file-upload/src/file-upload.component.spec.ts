@@ -8,6 +8,7 @@ import {
   TestModuleMetadata,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { A, ENTER } from '@terminus/ngx-tools/keycodes';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
@@ -15,15 +16,14 @@ import {
   dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@terminus/ngx-tools/testing';
-import { ENTER, A } from '@terminus/ngx-tools/keycodes';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
-import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
-import { TsFileUploadComponent } from './file-upload.component';
-import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
-import { TsFileUploadModule } from './file-upload.module';
-import { TsSelectedFile } from './selected-file';
 import { FormControl } from '@angular/forms';
+import { TsFileUploadComponent } from './file-upload.component';
+import { TsFileUploadModule } from './file-upload.module';
+import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
+import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
+import { TsSelectedFile } from './selected-file';
 
 
 // tslint:disable: max-line-length

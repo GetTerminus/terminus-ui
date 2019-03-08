@@ -13,9 +13,9 @@ import {
 } from '@angular/forms';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
 import {
-  TsInputModule,
   TsInputAutocompleteTypes,
   TsInputComponent,
+  TsInputModule,
   TsInputTypes,
   TsMaskShortcutOptions,
 } from '@terminus/ui/input';

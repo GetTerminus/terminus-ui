@@ -7,9 +7,9 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
+import { isBoolean } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { isBoolean } from '@terminus/ngx-tools';
 
 import { TsCardComponent } from './card.component';
 

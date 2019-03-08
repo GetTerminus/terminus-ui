@@ -11,8 +11,8 @@ import {
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 /**

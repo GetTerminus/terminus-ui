@@ -12,15 +12,15 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  FormGroup,
   FormBuilder,
+  FormGroup,
   Validators,
 } from '@angular/forms';
-import { TsInputComponent } from '@terminus/ui/input';
-import { TsCheckboxComponent } from '@terminus/ui/checkbox';
-import { TsValidatorsService } from '@terminus/ui/validators';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsCheckboxComponent } from '@terminus/ui/checkbox';
+import { TsInputComponent } from '@terminus/ui/input';
+import { TsValidatorsService } from '@terminus/ui/validators';
 
 
 /**

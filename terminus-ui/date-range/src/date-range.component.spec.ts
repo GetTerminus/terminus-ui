@@ -1,10 +1,10 @@
 // tslint:disable: no-non-null-assertion
-import { ReactiveFormsModule } from '@angular/forms';
+import { Provider, Type } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { Type, Provider } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { typeInElement } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/date-range/testing';

@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { TsExpansionPanelComponent } from './expansion-panel.component';
-import { TsExpansionPanelContentDirective } from './expansion-panel-content.directive';
-import { TsExpansionPanelTriggerComponent } from './trigger/expansion-panel-trigger.component';
-import { TsExpansionPanelTriggerTitleComponent } from './trigger/expansion-panel-trigger-title.component';
-import { TsExpansionPanelTriggerDescriptionComponent } from './trigger/expansion-panel-trigger-description.component';
-import { TsExpansionPanelActionRowComponent } from './expansion-panel-action-row';
 import { TsAccordionComponent } from './accordion/accordion.component';
+import { TsExpansionPanelActionRowComponent } from './expansion-panel-action-row';
+import { TsExpansionPanelContentDirective } from './expansion-panel-content.directive';
+import { TsExpansionPanelComponent } from './expansion-panel.component';
+import { TsExpansionPanelTriggerDescriptionComponent } from './trigger/expansion-panel-trigger-description.component';
+import { TsExpansionPanelTriggerTitleComponent } from './trigger/expansion-panel-trigger-title.component';
+import { TsExpansionPanelTriggerComponent } from './trigger/expansion-panel-trigger.component';
 
 
 export * from './expansion-panel.component';

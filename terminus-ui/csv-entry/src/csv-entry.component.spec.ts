@@ -9,22 +9,22 @@ import {
   TestBed,
   TestModuleMetadata,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { ValidatorFn, Validators } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { A, ENTER, TAB } from '@terminus/ngx-tools/keycodes';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@terminus/ngx-tools/testing';
-import { ENTER, TAB, A } from '@terminus/ngx-tools/keycodes';
 import { TsValidatorsService } from '@terminus/ui/validators';
 
-import { TsCSVEntryModule } from './csv-entry.module';
 import {
   TsCSVEntryComponent,
   TsCSVFormContents,
 } from './csv-entry.component';
+import { TsCSVEntryModule } from './csv-entry.module';
 
 
 

@@ -14,8 +14,8 @@ import {
   ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { groupBy } from '@terminus/ngx-tools';
+import { BehaviorSubject } from 'rxjs';
 
 
 /**

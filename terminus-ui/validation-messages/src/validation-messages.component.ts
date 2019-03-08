@@ -7,11 +7,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isBoolean,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsValidationMessagesService } from './validation-messages.service';
 

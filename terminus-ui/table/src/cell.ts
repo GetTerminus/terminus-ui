@@ -2,19 +2,19 @@
 // directive. So we are disabling the `directive-selector` rule
 // tslint:disable: directive-selector
 import {
-  Directive,
-  ElementRef,
-  Input,
-  Renderer,
-  isDevMode,
-} from '@angular/core';
-import {
   CdkCell,
   CdkCellDef,
   CdkColumnDef,
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  isDevMode,
+  Renderer,
+} from '@angular/core';
 
 export type TsTableColumnAlignment
   = 'left'

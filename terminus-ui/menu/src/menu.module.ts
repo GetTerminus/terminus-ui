@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { TsIconModule } from '@terminus/ui/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { TsButtonModule } from '@terminus/ui/button';
+import { TsIconModule } from '@terminus/ui/icon';
 
 import { TsMenuComponent } from './menu.component';
 

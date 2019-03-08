@@ -21,21 +21,21 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import {
-  coerceArray,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-} from '@terminus/ngx-tools/coercion';
 import {
   arrayContainsObject,
   isBoolean,
   isFunction,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
+import {
+  coerceArray,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+} from '@terminus/ngx-tools/coercion';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 
 
 export interface KeyboardEvent {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { TsScrollbarsComponent } from './scrollbars.component';

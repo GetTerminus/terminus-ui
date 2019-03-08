@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
-  createMouseEvent,
   createComponent,
+  createMouseEvent,
 } from '@terminus/ngx-tools/testing';
 
+import { ComponentFixture, tick } from '@angular/core/testing';
 import { TsButtonComponent } from './button.component';
 import { TsButtonModule } from './button.module';
-import { ComponentFixture, tick } from '@angular/core/testing';
 
 @Component({
   template: `

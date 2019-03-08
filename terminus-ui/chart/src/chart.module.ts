@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { TS_AMCHARTS_TOKEN, TsAmChartsService } from './amcharts.service';
 import { TsChartComponent } from './chart.component';
-import { TsAmChartsService, TS_AMCHARTS_TOKEN } from './amcharts.service';
 
 export * from './chart.component';
 export * from './amcharts.service';

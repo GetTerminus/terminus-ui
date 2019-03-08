@@ -1,24 +1,24 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import * as testComponents from '@terminus/ui/expansion-panel/testing';
 import {
-  createComponent as createComponentInner,
-  createKeyboardEvent,
-} from '@terminus/ngx-tools/testing';
-import {
+  A,
   END,
   ENTER,
   HOME,
   SPACE,
-  A,
 } from '@terminus/ngx-tools/keycodes';
 import {
-  getPanelInstance,
-  togglePanel,
-  getAccordionInstance,
-  getTriggerElement,
+  createComponent as createComponentInner,
+  createKeyboardEvent,
+} from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/expansion-panel/testing';
+import {
   getAccordionElement,
+  getAccordionInstance,
+  getPanelInstance,
+  getTriggerElement,
+  togglePanel,
 } from '@terminus/ui/expansion-panel/testing';
 
 import { TsExpansionPanelModule } from './../expansion-panel.module';

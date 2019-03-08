@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 import { TsLoadingOverlayDirective } from './loading-overlay.directive';

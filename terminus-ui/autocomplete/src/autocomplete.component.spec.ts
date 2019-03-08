@@ -4,8 +4,8 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
-import createMockInstance from 'jest-create-mock-instance';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+import createMockInstance from 'jest-create-mock-instance';
 
 import {
   TsAutocompleteComponent,

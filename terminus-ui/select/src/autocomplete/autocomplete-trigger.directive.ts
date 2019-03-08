@@ -1,4 +1,14 @@
 import {
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+  PositionStrategy,
+  ScrollStrategy,
+  ViewportRuler,
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
@@ -14,15 +24,19 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import {
-  FlexibleConnectedPositionStrategy,
-  Overlay,
-  OverlayConfig,
-  OverlayRef,
-  PositionStrategy,
-  ScrollStrategy,
-  ViewportRuler,
-} from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+  isBoolean,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import {
+  DOWN_ARROW,
+  ENTER,
+  ESCAPE,
+  TAB,
+  UP_ARROW,
+} from '@terminus/ngx-tools/keycodes';
+import { TsFormFieldComponent } from '@terminus/ui/form-field';
+import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
 import {
   defer,
   fromEvent,
@@ -40,24 +54,10 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-import {
-  isBoolean,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import {
-  DOWN_ARROW,
-  ENTER,
-  ESCAPE,
-  TAB,
-  UP_ARROW,
-} from '@terminus/ngx-tools/keycodes';
-import { TsFormFieldComponent } from '@terminus/ui/form-field';
-import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
 
+import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '../option/option-utilities';
 import { TsOptionSelectionChange, TsSelectOptionComponent } from '../option/option.component';
 import { TsAutocompletePanelComponent } from './autocomplete-panel.component';
-import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '../option/option-utilities';
 
 
 /**

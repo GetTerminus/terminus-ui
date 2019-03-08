@@ -9,13 +9,13 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   Geometry,
   PerfectScrollbarDirective,
   Position,
 } from 'ngx-perfect-scrollbar';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**
