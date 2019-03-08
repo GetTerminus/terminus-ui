@@ -18,14 +18,14 @@ describe(`TsValidationMessagesService`, function() {
 
   describe(`getValidatorErrorMessage()`, () => {
 
-    test(`should return a supplied message`, () => {
+    test(`should return a supplied minLength message`, () => {
       const validatorValueMock = {
         requiredLength: 9,
       };
-      const actual = service.getValidatorErrorMessage('minlength', validatorValueMock);
-      const expected = `Minimum length 9`;
+      const actual = service.getValidatorErrorMessage('minLength', validatorValueMock);
+      const expected = `be at least 9`;
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.stringContaining(expected));
     });
 
 
@@ -34,9 +34,9 @@ describe(`TsValidationMessagesService`, function() {
         lowercase: 4,
       };
       const actual = service.getValidatorErrorMessage('lowercase', validatorValueMock);
-      const expected = `Must contain at least 4 lowercase letters`;
+      const expected = `4 lowercase letters`;
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.stringContaining(expected));
     });
 
 
@@ -44,10 +44,10 @@ describe(`TsValidationMessagesService`, function() {
       const validatorValueMock = {
         requiredLength: 12,
       };
-      const actual = service.getValidatorErrorMessage('maxlength', validatorValueMock);
-      const expected = `Maximum length 12`;
+      const actual = service.getValidatorErrorMessage('maxLength', validatorValueMock);
+      const expected = `less than 12`;
 
-      expect(actual).toEqual(expected);
+      expect(actual).toEqual(expect.stringContaining(expected));
     });
 
 
@@ -98,9 +98,9 @@ describe(`TsValidationMessagesService`, function() {
             min: 10,
           };
           const actual = service.getValidatorErrorMessage('min', validatorValueMock);
-          const expected = `5 is less than 10.`;
+          const expected = `must be greater than 10.`;
 
-          expect(actual).toEqual(expected);
+          expect(actual).toEqual(expect.stringContaining(expected));
       });
 
       test(`max should should return max message`, () => {
@@ -109,9 +109,9 @@ describe(`TsValidationMessagesService`, function() {
           max: 10,
         };
         const actual = service.getValidatorErrorMessage('max', validatorValueMock);
-        const expected = `15 is greater than 10.`;
+        const expected = `must be less than 10.`;
 
-        expect(actual).toEqual(expected);
+        expect(actual).toEqual(expect.stringContaining(expected));
       });
 
       test(`requiredTrue should return requiredTrue message`, () => {
@@ -119,9 +119,9 @@ describe(`TsValidationMessagesService`, function() {
           actual: false,
         };
         const actual = service.getValidatorErrorMessage('requiredTrue', validatorValueMock);
-        const expected = `requiredTrue must be checked.`;
+        const expected = `be checked.`;
 
-        expect(actual).toEqual(expected);
+        expect(actual).toEqual(expect.stringContaining(expected));
       });
 
 
