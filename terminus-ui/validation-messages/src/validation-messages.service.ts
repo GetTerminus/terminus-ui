@@ -44,12 +44,8 @@ export class TsValidationMessagesService {
       // Standard responses:
       required: `Required`,
       requiredTrue: `${validatorName} must be checked.`,
-      // @deprecated target 11.x :  use minLength instead of minlength
-      minlength: `Minimum length ${validatorValue.requiredLength}`,
-      minLength: `Minimum length ${validatorValue.requiredLength}.`,
-      // @deprecated target 11.x : use maxLength insted of maxlength
-      maxlength: `Maximum length ${validatorValue.requiredLength}`,
-      maxLength: `Maximum length ${validatorValue.requiredLength}.`,
+      minLength: `Must be at least ${validatorValue.requiredLength} characters.`,
+      maxLength: `Must be less than ${validatorValue.requiredLength} characters.`,
       // Custom responses:
       creditCard: creditCardMessage,
       email: emailMessage,
@@ -61,15 +57,11 @@ export class TsValidationMessagesService {
       pattern: `Must contain only letters, numbers or spaces`,
       maxDate: '',
       minDate: '',
-      min: `${validatorValue.actual} is less than ${validatorValue.min}.`,
-      greaterThan: `${validatorValue.actual} is not greater than ${validatorValue.greaterThan}`,
-      greaterThanOrEqual: `${validatorValue.actual} is not greater than or equal to ${validatorValue.greaterThanOrEqual}`,
-      // @deprecated target 11.x : use min instead of greaterThanOrEqual
+      min: `${validatorValue.actual} must be greater than ${validatorValue.min}.`,
+      greaterThan: `${validatorValue.actual} must be less than ${validatorValue.greaterThan}`,
       numbers: `Must contain at least ${validatorValue.numbers} numbers`,
-      max: `${validatorValue.actual} is greater than ${validatorValue.max}.`,
-      lessThan: `${validatorValue.actual} is not less than ${validatorValue.lessThan}.`,
-      // @deprecated target 11.x : use max instead of lessThanOrEqual
-      lessThanOrEqual: `${validatorValue.actual} is not less than or equal to ${validatorValue.lessThanOrEqual}.`,
+      max: `${validatorValue.actual} must be less than ${validatorValue.max}.`,
+      lessThan: `${validatorValue.actual} must be less than ${validatorValue.lessThan}.`,
       notUnique: `${validatorValue.actual} has already been selected.`,
       noResults: `No results found.`,
       url: `'${validatorValue.actual}' must be a valid URL.`,
