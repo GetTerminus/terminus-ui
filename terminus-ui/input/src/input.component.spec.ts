@@ -1,38 +1,38 @@
 // tslint:disable: no-non-null-assertion no-use-before-declare component-class-suffix
+import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
   ElementRef,
   Provider,
   Type,
 } from '@angular/core';
 import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TsDocumentService } from '@terminus/ngx-tools';
+import { A } from '@terminus/ngx-tools/keycodes';
 import {
   createKeyboardEvent,
   TsDocumentServiceMock,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { TsDocumentService } from '@terminus/ngx-tools';
-import { A } from '@terminus/ngx-tools/keycodes';
-import { By } from '@angular/platform-browser';
-import { Subject, Observable } from 'rxjs';
-import { AutofillMonitor } from '@angular/cdk/text-field';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsFormFieldComponent, TsFormFieldModule } from '@terminus/ui/form-field';
+import { Observable, Subject } from 'rxjs';
 
-import { TsInputModule } from './input.module';
 import * as TestComponents from '@terminus/ui/input/testing';
 import {
   getInputElement,
-  sendInput,
   getInputInstance,
+  sendInput,
 } from '@terminus/ui/input/testing';
+import { TsInputModule } from './input.module';
 
 
 describe(`TsInputComponent`, function() {

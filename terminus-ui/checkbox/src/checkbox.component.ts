@@ -13,13 +13,13 @@ import {
   MatCheckbox,
   MatCheckboxChange,
 } from '@angular/material/checkbox';
+import { isBoolean } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   ControlValueAccessorProviderFactory,
   TsReactiveFormBaseComponent,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
-import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**

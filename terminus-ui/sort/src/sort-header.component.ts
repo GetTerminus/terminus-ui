@@ -1,4 +1,5 @@
 // tslint:disable: use-input-property-decorator triple-equals
+import { CdkColumnDef } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -11,19 +12,18 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isBoolean,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
-import { CdkColumnDef } from '@angular/cdk/table';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { merge } from 'rxjs';
 
+import { tsSortAnimations } from './sort-animations';
+import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
+import { TsSortHeaderIntl } from './sort-header-intl';
 import { TsSortDirective } from './sort.directive';
 import { TsSortableItem } from './sort.directive';
-import { TsSortHeaderIntl } from './sort-header-intl';
-import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
-import { tsSortAnimations } from './sort-animations';
 
 
 // Boilerplate for applying mixins to the sort header.

@@ -3,13 +3,13 @@ import {
   Component,
   ElementRef,
   Input,
+  isDevMode,
   TemplateRef,
   ViewEncapsulation,
-  isDevMode,
 } from '@angular/core';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 /**

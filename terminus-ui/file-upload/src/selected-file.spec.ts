@@ -1,6 +1,6 @@
 
-import { TsFileAcceptedMimeTypes } from './mime-types';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
+import { TsFileAcceptedMimeTypes } from './mime-types';
 import { TsSelectedFile } from './selected-file';
 
 

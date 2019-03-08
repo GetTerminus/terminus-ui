@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -8,10 +9,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
-import { TsInputModule } from '@terminus/ui/input';
 import { TsIconModule } from '@terminus/ui/icon';
+import { TsInputModule } from '@terminus/ui/input';
+import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 
 import { TsAutocompleteComponent } from './autocomplete.component';
 

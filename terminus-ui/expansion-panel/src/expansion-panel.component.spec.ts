@@ -1,7 +1,7 @@
-import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/expansion-panel/testing';
 import {
   getPanelActionRow,

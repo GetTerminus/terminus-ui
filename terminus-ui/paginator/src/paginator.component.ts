@@ -13,13 +13,13 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { isBoolean } from '@terminus/ngx-tools';
 import {
   coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { TsSelectChange } from '@terminus/ui/select';
 import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { isBoolean } from '@terminus/ngx-tools';
 
 
 /**

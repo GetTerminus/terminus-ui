@@ -5,10 +5,6 @@ import {
 } from '@angular/cdk/a11y';
 import { hasModifierKey } from '@angular/cdk/keycodes';
 import {
-  ENTER,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
-import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -20,12 +16,16 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import {
+  ENTER,
+  SPACE,
+} from '@terminus/ngx-tools/keycodes';
 import {
   EMPTY,
   merge,
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
 
 import { tsExpansionPanelAnimations } from './../expansion-animations';
 import {

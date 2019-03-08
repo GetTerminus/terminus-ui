@@ -3,10 +3,6 @@ import {
   Type,
 } from '@angular/core';
 import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {
   async,
   ComponentFixture,
   fakeAsync,
@@ -14,15 +10,11 @@ import {
   tick,
 } from '@angular/core/testing';
 import {
-  createFakeEvent,
-  createKeyboardEvent,
-  dispatchEvent,
-  dispatchKeyboardEvent,
-  dispatchMouseEvent,
-  typeInElement,
-} from '@terminus/ngx-tools/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   A,
   BACKSPACE,
@@ -35,6 +27,15 @@ import {
   TAB,
   UP_ARROW,
 } from '@terminus/ngx-tools/keycodes';
+import {
+  createFakeEvent,
+  createKeyboardEvent,
+  dispatchEvent,
+  dispatchKeyboardEvent,
+  dispatchMouseEvent,
+  typeInElement,
+} from '@terminus/ngx-tools/testing';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/select/testing';
 import {
   createKeydownEvent,
@@ -54,10 +55,9 @@ import {
   openSelect,
 } from '@terminus/ui/select/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
-import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 
 import { TsSelectOptionComponent } from './option/option.component';
-import { TsSelectModule, TsSelectFormatFn, TsSelectOption } from './select.module';
+import { TsSelectFormatFn, TsSelectModule, TsSelectOption } from './select.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {

@@ -3,8 +3,8 @@ import {
   Component,
   Input,
   isDevMode,
-  ViewEncapsulation,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 

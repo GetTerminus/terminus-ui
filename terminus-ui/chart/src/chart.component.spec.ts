@@ -10,9 +10,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { TsChartModule } from './chart.module';
-import { TsChartComponent, TsChartVisualizationOptions } from './chart.component';
 import { TsAmChartsService } from './amcharts.service';
+import { TsChartComponent, TsChartVisualizationOptions } from './chart.component';
+import { TsChartModule } from './chart.module';
 
 
 describe(`ChartComponent`, function() {

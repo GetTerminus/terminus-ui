@@ -5,8 +5,8 @@ import {
   isDevMode,
   ViewEncapsulation,
 } from '@angular/core';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**

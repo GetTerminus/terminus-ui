@@ -1,3 +1,4 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
   AfterViewChecked,
@@ -20,13 +21,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { Highlightable } from '@angular/cdk/a11y';
+import { isBoolean } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { ENTER, SPACE } from '@terminus/ngx-tools/keycodes';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { isBoolean } from '@terminus/ngx-tools';
 
 import { TsSelectOption } from './../select.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';

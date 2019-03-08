@@ -1,12 +1,12 @@
 // tslint:disable: component-class-suffix
-import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, NgModule } from '@angular/core';
 import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
   Validator,
+  Validators,
 } from '@angular/forms';
 import {
   TsSelectModule,

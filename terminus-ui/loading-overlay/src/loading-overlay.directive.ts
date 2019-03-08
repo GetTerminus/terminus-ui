@@ -1,3 +1,4 @@
+import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -10,12 +11,11 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isBoolean,
   TsWindowService,
 } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 

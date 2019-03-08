@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 
-import { TsSelectOptionComponent } from './option.component';
 import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
+import { TsSelectOptionComponent } from './option.component';
 
 
 /**

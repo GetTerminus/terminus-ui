@@ -1,27 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { MatRippleModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
-import { TsIconModule } from '@terminus/ui/icon';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
-import { TsInputModule } from '@terminus/ui/input';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
+import { TsIconModule } from '@terminus/ui/icon';
+import { TsInputModule } from '@terminus/ui/input';
+import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 
-import { TsSelectComponent } from './select.component';
-import { TsSelectOptionComponent } from './option/option.component';
-import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
-import { TsSelectTriggerComponent } from './select-trigger.component';
 import { TsAutocompletePanelComponent } from './autocomplete/autocomplete-panel.component';
 import {
   TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
   TsAutocompleteTriggerDirective,
 } from './autocomplete/autocomplete-trigger.directive';
+import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
 import { TsSelectOptionDisplayDirective } from './option/option-display.directive';
+import { TsSelectOptionComponent } from './option/option.component';
+import { TsSelectTriggerComponent } from './select-trigger.component';
+import { TsSelectComponent } from './select.component';
 
 
 export * from './select.component';

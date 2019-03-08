@@ -9,15 +9,15 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
-import { Subject } from 'rxjs';
 import { isBoolean } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { Subject } from 'rxjs';
 
 import {
-  getSortInvalidDirectionError,
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
+  getSortInvalidDirectionError,
 } from './sort-errors';
 
 

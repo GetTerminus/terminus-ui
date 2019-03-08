@@ -4,23 +4,23 @@ import {
   Type,
 } from '@angular/core';
 import {
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import {
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { getSelectInstance } from '@terminus/ui/select/testing';
 
+import { TsSelectModule } from '../select.module';
 import {
   allOptionsAreSelected,
   getOptionScrollPosition,
   someOptionsAreSelected,
   toggleAllOptions,
 } from './option-utilities';
-import { TsSelectModule } from '../select.module';
 
 
 // tslint:disable: no-use-before-declare

@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import {
   ComponentFixture,
   TestBed,
   TestModuleMetadata,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import {
   ChangeDetectorRefMock,
   configureTestBedWithoutReset,

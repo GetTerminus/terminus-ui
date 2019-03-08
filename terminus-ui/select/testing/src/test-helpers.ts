@@ -1,12 +1,12 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { MatChip } from '@angular/material/chips';
+import { By } from '@angular/platform-browser';
 import {
   TsSelectComponent,
   TsSelectOptgroupComponent,
   TsSelectOptionComponent,
 } from '@terminus/ui/select';
-import { DebugElement } from '@angular/core';
 
 
 /**

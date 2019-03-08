@@ -1,5 +1,5 @@
-import { InjectionToken } from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
+import { InjectionToken } from '@angular/core';
 
 
 /**

@@ -3,7 +3,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-import { TsSelectComponent, TsSelectChange } from '@terminus/ui/select';
+import { TsSelectChange, TsSelectComponent } from '@terminus/ui/select';
 
 import { TsPaginatorComponent } from './paginator.component';
 

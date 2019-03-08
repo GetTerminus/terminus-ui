@@ -13,11 +13,11 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   isBoolean,
   TsWindowService,
 } from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   TsStyleThemeTypes,
   tsStyleThemeTypesArray,

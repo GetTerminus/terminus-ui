@@ -11,6 +11,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
+import { DomSanitizer } from '@angular/platform-browser';
 import {
   hasRequiredControl,
   isBoolean,
@@ -18,7 +19,6 @@ import {
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { DomSanitizer } from '@angular/platform-browser';
 import {
   ControlValueAccessorProviderFactory,
   TsReactiveFormBaseComponent,

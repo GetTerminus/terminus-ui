@@ -15,6 +15,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  isBoolean,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TS_SPACING } from '@terminus/ui/spacing';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import {
   EMPTY,
   fromEvent,
   merge,
@@ -23,13 +30,6 @@ import {
   startWith,
   take,
 } from 'rxjs/operators';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import {
-  isBoolean,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
-import { TS_SPACING } from '@terminus/ui/spacing';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 import { TsFormFieldControl } from './form-field-control';
 import { TsPrefixDirective } from './prefix.directive';

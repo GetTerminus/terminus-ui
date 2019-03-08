@@ -1,4 +1,11 @@
 import {
+  ConnectedPositionStrategy,
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
@@ -9,17 +16,10 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  ConnectedPositionStrategy,
-  Overlay,
-  OverlayConfig,
-  OverlayRef,
-} from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
-import { merge } from 'rxjs/operators';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsButtonComponent } from '@terminus/ui/button';
+import { merge } from 'rxjs/operators';
 
 import { TsConfirmationModalComponent } from './confirmation-modal.component';
 

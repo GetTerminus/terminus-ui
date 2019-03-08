@@ -1,11 +1,11 @@
 import { isDevMode } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+import { isString } from '@terminus/ngx-tools';
+import { ImageRatio } from './file-upload.module';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
-import { TsFileAcceptedMimeTypes, TS_ACCEPTED_MIME_TYPES } from './mime-types';
-import { ImageRatio } from './file-upload.module';
-import { isString } from '@terminus/ngx-tools';
+import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
 
 
 /**

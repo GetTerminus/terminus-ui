@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TsValidatorsService } from '@terminus/ui/validators';
-import { TsInputModule } from '@terminus/ui/input';
-import { TsCheckboxModule } from '@terminus/ui/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TsButtonModule } from '@terminus/ui/button';
-import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsCheckboxModule } from '@terminus/ui/checkbox';
+import { TsInputModule } from '@terminus/ui/input';
 import { TsLinkModule } from '@terminus/ui/link';
+import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsValidatorsService } from '@terminus/ui/validators';
 
 import { TsLoginFormComponent } from './login-form.component';
 

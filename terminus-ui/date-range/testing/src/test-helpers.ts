@@ -1,13 +1,13 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import {
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { DebugElement } from '@angular/core';
-import { TsInputComponent } from '@terminus/ui/input';
+import { By } from '@angular/platform-browser';
 import { TsDateRangeComponent } from '@terminus/ui/date-range';
+import { TsInputComponent } from '@terminus/ui/input';
 
 
 /**

@@ -1,7 +1,7 @@
 import {
-  ValidatorFn,
   AbstractControl,
   ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 
 import { urlRegex } from '@terminus/ngx-tools/regex';

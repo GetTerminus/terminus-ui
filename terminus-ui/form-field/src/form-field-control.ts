@@ -1,4 +1,4 @@
-import { NgControl, FormControl } from '@angular/forms';
+import { FormControl, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 

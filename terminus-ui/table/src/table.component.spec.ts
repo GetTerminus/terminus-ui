@@ -1,23 +1,19 @@
 // tslint:disable: no-non-null-assertion component-class-suffix
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { DataSource } from '@angular/cdk/collections';
 import {
   Component,
   Provider,
   Type,
   ViewChild,
 } from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DataSource } from '@angular/cdk/collections';
 import { TsWindowService } from '@terminus/ngx-tools';
 import { TsWindowServiceMock } from '@terminus/ngx-tools/testing';
-import {
-  BehaviorSubject,
-  Observable,
-} from 'rxjs';
 import {
   TsPaginatorComponent,
   TsPaginatorModule,
@@ -27,10 +23,14 @@ import {
   TsSortHeaderComponent,
   TsSortModule,
 } from '@terminus/ui/sort';
+import {
+  BehaviorSubject,
+  Observable,
+} from 'rxjs';
 
 import { TsTableDataSource } from './table-data-source';
-import { TsTableModule } from './table.module';
 import { TsTableComponent } from './table.component';
+import { TsTableModule } from './table.module';
 
 
 

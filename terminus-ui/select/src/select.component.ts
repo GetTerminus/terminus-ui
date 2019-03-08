@@ -1,3 +1,6 @@
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { SelectionModel } from '@angular/cdk/collections';
+import { CdkConnectedOverlay, ViewportRuler } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -22,10 +25,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  coerceArray,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-} from '@terminus/ngx-tools/coercion';
+  FormControl,
+  NgControl,
+} from '@angular/forms';
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { MatChipList } from '@angular/material/chips';
 import {
   hasRequiredControl,
   isBoolean,
@@ -34,6 +38,25 @@ import {
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
+import {
+  coerceArray,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+} from '@terminus/ngx-tools/coercion';
+import {
+  A,
+  DOWN_ARROW,
+  END,
+  ENTER,
+  HOME,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  SPACE,
+  UP_ARROW,
+} from '@terminus/ngx-tools/keycodes';
+import { TsFormFieldControl } from '@terminus/ui/form-field';
+import { TS_SPACING } from '@terminus/ui/spacing';
+import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
   BehaviorSubject,
   defer,
@@ -51,36 +74,13 @@ import {
   take,
   takeUntil,
 } from 'rxjs/operators';
-import { SelectionModel } from '@angular/cdk/collections';
-import { CdkConnectedOverlay, ViewportRuler } from '@angular/cdk/overlay';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import {
-  FormControl,
-  NgControl,
-} from '@angular/forms';
-import {
-  A,
-  DOWN_ARROW,
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  SPACE,
-  UP_ARROW,
-} from '@terminus/ngx-tools/keycodes';
-import { MatChipList } from '@angular/material/chips';
-import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
-import { TS_SPACING } from '@terminus/ui/spacing';
-import { TsFormFieldControl } from '@terminus/ui/form-field';
-import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 import {
-  TS_OPTION_PARENT_COMPONENT,
-  TsOptionSelectionChange,
-  TsSelectOptionComponent,
-} from './option/option.component';
+  TsAutocompletePanelComponent,
+  TsAutocompletePanelSelectedEvent,
+} from './autocomplete/autocomplete-panel.component';
+import { TsAutocompleteTriggerDirective } from './autocomplete/autocomplete-trigger.directive';
 import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
 import {
   allOptionsAreSelected,
@@ -89,13 +89,13 @@ import {
   someOptionsAreSelected,
   toggleAllOptions,
 } from './option/option-utilities';
+import {
+  TS_OPTION_PARENT_COMPONENT,
+  TsOptionSelectionChange,
+  TsSelectOptionComponent,
+} from './option/option.component';
 import { tsSelectAnimations } from './select-animations';
 import { TsSelectTriggerComponent } from './select-trigger.component';
-import { TsAutocompleteTriggerDirective } from './autocomplete/autocomplete-trigger.directive';
-import {
-  TsAutocompletePanelComponent,
-  TsAutocompletePanelSelectedEvent,
-} from './autocomplete/autocomplete-panel.component';
 
 
 /**
