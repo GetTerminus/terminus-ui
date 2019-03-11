@@ -12,6 +12,15 @@
   "bugs": {
     "url": "https://github.com/GetTerminus/terminus-ui/issues"
   },
+  "module": "./fesm5/terminus-ui.js",
+  "es2015": "./fesm2015/terminus-ui.js",
+  "esm5": "./esm5/terminus-ui.js",
+  "esm2015": "./esm2015/terminus-ui.js",
+  "fesm5": "./fesm5/terminus-ui.js",
+  "fesm2015": "./fesm2015/terminus-ui.js",
+  "main": "bundles/terminus-ui.umd.js",
+  "typings": "terminus-ui.d.ts",
+  "sideEffects": false,
   "publishConfig": {
     "tag": "next"
   },
