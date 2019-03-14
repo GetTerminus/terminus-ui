@@ -1322,13 +1322,17 @@ export class TsSelectComponent implements
         }
       });
     } else {
-      const previouslyFocusedIndex = manager.activeItemIndex;
+      const shouldSelect = this.allowMultiple && isArrowKey && event.shiftKey;
 
-      manager.onKeydown(event);
-
-      const notPreviouslyFocused = manager.activeItem && manager.activeItemIndex !== previouslyFocusedIndex;
-      const shouldSelect = this.allowMultiple && isArrowKey && event.shiftKey && notPreviouslyFocused;
-
+      if (isArrowKey && event.shiftKey) {
+        if (keyCode === DOWN_ARROW) {
+          manager.setNextItemActive();
+        } else {
+          manager.setPreviousItemActive();
+        }
+      } else {
+        manager.onKeydown(event);
+      }
       if (shouldSelect && manager.activeItem) {
         manager.activeItem.selectViaInteraction();
       }

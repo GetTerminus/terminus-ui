@@ -1,12 +1,10 @@
 import {
-  Provider,
   Type,
 } from '@angular/core';
 import {
   async,
   ComponentFixture,
   fakeAsync,
-  TestBed,
   tick,
 } from '@angular/core/testing';
 import {
@@ -51,13 +49,11 @@ import {
   getSelectElement,
   getSelectInstance,
   getSelectTriggerElement,
-  getToggleAllElement,
   openSelect,
 } from '@terminus/ui/select/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
-import { TsSelectOptionComponent } from './option/option.component';
-import { TsSelectFormatFn, TsSelectModule, TsSelectOption } from './select.module';
+import { TsSelectFormatFn, TsSelectModule } from './select.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -674,36 +670,38 @@ describe(`TsSelectComponent`, function() {
       });
 
 
-      // TODO: Shift/Arrow functionality does not seem to be working
-      // https://github.com/GetTerminus/terminus-ui/issues/1227
-/*
- *      test(`should select the next item with SHIFT+ARROW`, function() {
- *        const fixture = createComponent(testComponents.NoGroupsMultiple);
- *        fixture.detectChanges();
- *        const instance = getSelectInstance(fixture);
- *        const element = getSelectElement(fixture);
- *        instance.open();
- *        fixture.detectChanges();
- *        const eventDown = createKeydownEvent('ArrowDown', DOWN_ARROW);
- *
- *        // Move focus past disabled item for testing ease
- *        element.dispatchEvent(eventDown);
- *        element.dispatchEvent(eventDown);
- *        element.dispatchEvent(eventDown);
- *        fixture.detectChanges();
- *        console.log('TEST: instance.manager.activeItem: ', instance['keyManager'].activeItem!.viewValue);
- *
- *        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
- *        Object.defineProperty(event, 'shiftKey', {get: () => true});
- *
- *        element.dispatchEvent(event);
- *        fixture.detectChanges();
- *        fixture.detectChanges();
- *
- *        expect(instance.value).toEqual(['Florida']);
- *      });
- */
+      test(`should select the next item with SHIFT+ARROW`, function() {
+        const fixture = createComponent(testComponents.NoGroupsMultiple);
+        fixture.detectChanges();
+        const instance = getSelectInstance(fixture);
+        const element = getSelectElement(fixture);
+        instance.open();
+        fixture.detectChanges();
+        const eventDown = createKeydownEvent('ArrowDown', DOWN_ARROW);
 
+        // Move focus past disabled item for testing ease
+        element.dispatchEvent(eventDown);
+        element.dispatchEvent(eventDown);
+        element.dispatchEvent(eventDown);
+        fixture.detectChanges();
+
+        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        Object.defineProperty(event, 'shiftKey', {get: () => true});
+
+        element.dispatchEvent(event);
+        fixture.detectChanges();
+
+        expect(instance.value).toEqual(['Florida']);
+
+        const event2 = createKeyboardEvent('keydown', UP_ARROW);
+        Object.defineProperty(event2, 'shiftKey', {get: () => true});
+        element.dispatchEvent(event2);
+
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(instance.value).toEqual(['Florida', 'California']);
+        });
+      });
     });
 
 
