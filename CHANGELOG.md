@@ -1,3 +1,8 @@
+## 11.9.0 (2019-03-15)
+
+* feat(Confirmation): supports positioning ([c11bde0](https://github.com/GetTerminus/terminus-ui/commit/c11bde0)), closes [#830](https://github.com/GetTerminus/terminus-ui/issues/830)
+* refactor(AllModules): ordered all imports via tslint ([ea7273c](https://github.com/GetTerminus/terminus-ui/commit/ea7273c)), closes [#1404](https://github.com/GetTerminus/terminus-ui/issues/1404)
+
 ## 11.8.0 (2019-03-07)
 
 * feat(ExpansionPanel): Create expansion panel / accordion component ([92e082d](https://github.com/GetTerminus/terminus-ui/commit/92e082d))
