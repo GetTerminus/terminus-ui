@@ -1,3 +1,8 @@
+## <small>11.9.1 (2019-03-15)</small>
+
+* chore(Select): updated hard-coded scss ([756907c](https://github.com/GetTerminus/terminus-ui/commit/756907c)), closes [#1378](https://github.com/GetTerminus/terminus-ui/issues/1378)
+* fix(Select): shift+arrow will select multiple ([89651e7](https://github.com/GetTerminus/terminus-ui/commit/89651e7)), closes [#1227](https://github.com/GetTerminus/terminus-ui/issues/1227)
+
 ## 11.9.0 (2019-03-15)
 
 * feat(Confirmation): supports positioning ([c11bde0](https://github.com/GetTerminus/terminus-ui/commit/c11bde0)), closes [#830](https://github.com/GetTerminus/terminus-ui/issues/830)
