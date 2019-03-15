@@ -295,6 +295,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
     const overlayConfig: OverlayConfig = new OverlayConfig({
       positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
       hasBackdrop: true,
       backdropClass: 'ts-confirmation-overlay',
       panelClass: ['qa-confirmation', 'ts-confirmation-overlay__panel', `${positionClass}`],
