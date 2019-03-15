@@ -235,40 +235,6 @@ class TableColumnAlignmentTableApp {
 }
 
 
-@Component({
-  template: `
-    <ts-table [dataSource]="dataSource" tsSort>
-      <ng-container tsColumnDef="column_a" alignment="top">
-        <ts-header-cell *tsHeaderCellDef>Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
-      </ng-container>
-
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-    </ts-table>
-  `,
-})
-class TableColumnInvalidAlignmentTableApp {
-  underlyingDataSource = new FakeDataSource();
-  dataSource = new TsTableDataSource<TestData>();
-  columnsToRender = ['column_a'];
-
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
-
-  constructor() {
-    this.underlyingDataSource.data = [];
-
-    // Add a row of data
-    this.underlyingDataSource.addData();
-
-    this.underlyingDataSource.connect().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-  }
-
-}
-
-
 
 
 // Utilities copied from CDKTable's spec
@@ -483,18 +449,7 @@ describe(`TsTableComponent`, function() {
 
       expect(style).toBeUndefined();
     });
-  });
 
-  describe(`invalid alignment argument`, () => {
-    test(`should throw warning`, () => {
-      window.console.warn = jest.fn();
-      let fixture: ComponentFixture<TableColumnInvalidAlignmentTableApp>;
-
-      fixture = createComponent(TableColumnInvalidAlignmentTableApp);
-      fixture.detectChanges();
-
-      expect(window.console.warn).toHaveBeenCalled();
-    });
   });
 
 });
