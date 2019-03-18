@@ -8,8 +8,6 @@
 
 .ts-confirmation {
   @include reset;
-  display: block;
-  padding: spacing();
 }
 
 // CDK overlay container
@@ -26,6 +24,8 @@
   @include reset;
   @include elevation-element(menu);
   background-color: color(pure);
+  display: block;
+  padding: spacing();
 
   .ts-confirmation-overlay__explanation {
     margin-bottom: spacing(large);
