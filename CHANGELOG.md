@@ -1,3 +1,7 @@
+## <small>11.9.3 (2019-03-18)</small>
+
+* fix(Confirmation): button does not move when overlay opens ([6a35edc](https://github.com/GetTerminus/terminus-ui/commit/6a35edc)), closes [#1406](https://github.com/GetTerminus/terminus-ui/issues/1406)
+
 ## <small>11.9.2 (2019-03-18)</small>
 
 * fix(Confirmation): background will not scroll away from overlay ([fc0f7ce](https://github.com/GetTerminus/terminus-ui/commit/fc0f7ce)), closes [#1391](https://github.com/GetTerminus/terminus-ui/issues/1391)
