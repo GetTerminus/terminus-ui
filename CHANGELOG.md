@@ -1,3 +1,11 @@
+## <small>11.9.2 (2019-03-18)</small>
+
+* fix(Confirmation): background will not scroll away from overlay ([fc0f7ce](https://github.com/GetTerminus/terminus-ui/commit/fc0f7ce)), closes [#1391](https://github.com/GetTerminus/terminus-ui/issues/1391)
+* test(Table): added missing test for incorrect param ([6328a42](https://github.com/GetTerminus/terminus-ui/commit/6328a42)), closes [#1392](https://github.com/GetTerminus/terminus-ui/issues/1392)
+* chore(Table): has test for warning ([41673d6](https://github.com/GetTerminus/terminus-ui/commit/41673d6)), closes [#1392](https://github.com/GetTerminus/terminus-ui/issues/1392)
+* chore(ValidationMessages): phrasing is aligned ([225eb46](https://github.com/GetTerminus/terminus-ui/commit/225eb46)), closes [#1190](https://github.com/GetTerminus/terminus-ui/issues/1190)
+* Revert "chore(Table): has test for warning" ([2478f0f](https://github.com/GetTerminus/terminus-ui/commit/2478f0f))
+
 ## <small>11.9.1 (2019-03-15)</small>
 
 * chore(Select): updated hard-coded scss ([756907c](https://github.com/GetTerminus/terminus-ui/commit/756907c)), closes [#1378](https://github.com/GetTerminus/terminus-ui/issues/1378)
