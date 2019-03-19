@@ -223,6 +223,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'tabs',
+    loadChildren: `./components/tabs/tabs.module#TabsModule`,
+    data: {
+      name: 'Tabs',
+    },
+  },
+  {
     path: 'toggle',
     loadChildren: `./components/toggle/toggle.module#ToggleModule`,
     data: {

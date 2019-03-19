@@ -7,7 +7,6 @@
       true,
       "check-interpolation"
     ],
-    "arrow-parens": true,
     "arrow-return-shorthand": true,
     "banana-in-box": true,
     "binary-expression-operand-order": true,
