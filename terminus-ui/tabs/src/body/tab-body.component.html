@@ -1,0 +1,11 @@
+<div
+  class="ts-tab-body__content"
+  #content
+  [@translateTab]="{
+    value: positionState
+  }"
+  (@translateTab.start)="onTranslateTabStarted($event)"
+  (@translateTab.done)="translateTabComplete.next($event)"
+>
+  <ng-template tsTabBodyHost></ng-template>
+</div>

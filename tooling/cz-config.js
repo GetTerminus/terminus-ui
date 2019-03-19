@@ -47,6 +47,7 @@ module.exports = {
     {name: 'SCSS'},
     {name: 'Sort'},
     {name: 'Spacing'},
+    {name: 'Tabs'},
     {name: 'Table'},
     {name: 'Toggle'},
     {name: 'Tooltip'},

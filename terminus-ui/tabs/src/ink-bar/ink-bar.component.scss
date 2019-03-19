@@ -1,0 +1,42 @@
+@import './../../../scss/helpers/a11y';
+@import './../../../scss/helpers/animation';
+@import './../../../scss/helpers/color';
+
+
+
+
+// The ink bar that displays under the active tab label
+.ts-ink-bar {
+  $height: 2px;
+  @include cdk-high-contrast {
+    height: 0;
+    outline: solid $height;
+  }
+  bottom: 0;
+  height: $height;
+  position: absolute;
+  transition: $g-tab-animation-duration $g-tab-ease-in-out-curve-function;
+
+  .ts-tab-collection--inverted-header & {
+    bottom: auto;
+    top: 0;
+  }
+}
+
+
+// Color the ink bar according to the theme
+.ts-tab-collection {
+  $theme-colors: (
+    primary: #{color(primary)},
+    accent: #{color(accent)},
+    warn: #{color(warn)},
+  );
+
+  @each $name, $color in $theme-colors {
+    &.ts-tab-collection--#{$name} {
+      .ts-ink-bar {
+        background-color: $color;
+      }
+    }
+  }
+}

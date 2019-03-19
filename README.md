@@ -12,11 +12,11 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-29-%2316a085.svg)](#components)
-[![pipes](https://img.shields.io/badge/Pipes-5-%2316a085.svg)](#pipes)
+[![components](https://img.shields.io/badge/Components-33-%2316a085.svg)](#components)
+[![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-8-%2316a085.svg)](#style-helpers)
-[![validators](https://img.shields.io/badge/Validators-14-%2316a085.svg)](#validators)
+[![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
 
 
 ---
@@ -134,7 +134,7 @@ for each feature.
 | [spacing][src-spacing]                 | Helpers for consistent spacing                            | :white_check_mark: | [Demo][demo-spacing]            | [Docs][spacing-docs]         |                                |
 | [sort][src-sort]                       | Used by `table` for column sorting                        | :white_check_mark: | <small>(see table demo)</small> | [Docs][sort-docs]            | [Usage][sort-usage]            |
 | [table][src-table]                     |                                                           | :white_check_mark: | [Demo][demo-table]              | [Docs][table-docs]           | [Usage][table-usage]           |
-| tabs                                   |                                                           | :hammer:           |                                 |                              |                                |
+| [tabs][src-tabs]                       | Horizontal tab interface                                  | :white_check_mark: | [Demo][demo-tabs]               | [Docs][tabs-docs]            | [Usage][tabs-usage]            |
 | textarea                               | See `input`                                               |                    | <small>(see input demo)</small> |                              |                                |
 | [toggle][src-toggle]                   |                                                           | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]          |                                |
 | [tooltip][src-tooltip]                 |                                                           | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]         |                                |
@@ -412,6 +412,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-sort]:               ./terminus-ui/sort/src/
 [src-spacing]:            ./terminus-ui/spacing/src/
 [src-table]:              ./terminus-ui/table/src/
+[src-tabs]:               ./terminus-ui/tabs/src/
 [src-toggle]:             ./terminus-ui/toggle/src/
 [src-tooltip]:            ./terminus-ui/tooltip/src/
 [src-validators]:         ./terminus-ui/validators/src/
@@ -448,6 +449,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [sort-docs]:            http://uilibrary-docs.terminus.ninja/master/directives/TsSortDirective.html
 [spacing-docs]:         http://uilibrary-docs.terminus.ninja/master/directives/TsVerticalSpacingDirective.html
 [table-docs]:           http://uilibrary-docs.terminus.ninja/master/components/TsTableComponent.html
+[tabs-docs]:            http://uilibrary-docs.terminus.ninja/master/components/TsTabComponent.html
 [toggle-docs]:          http://uilibrary-docs.terminus.ninja/master/components/TsToggleComponent.html
 [tooltip-docs]:         http://uilibrary-docs.terminus.ninja/master/components/TsTooltipComponent.html
 [validators-docs]:      http://uilibrary-docs.terminus.ninja/master/injectables/TsValidatorsService.html
@@ -486,4 +488,5 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [scrollbars-usage]:      http://uilibrary-docs.terminus.ninja/master/directives/TsScrollbarsComponent.html#readme
 [sort-usage]:            http://uilibrary-docs.terminus.ninja/master/directives/TsSortDirective.html#readme
 [table-usage]:           http://uilibrary-docs.terminus.ninja/master/components/TsTableComponent.html#readme
+[tabs-usage]:            http://uilibrary-docs.terminus.ninja/master/components/TsTabComponent.html#readme
 [validators-usage]:      http://uilibrary-docs.terminus.ninja/master/injectables/TsValidatorsService.html#readme
