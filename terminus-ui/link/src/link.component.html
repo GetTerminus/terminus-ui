@@ -1,6 +1,7 @@
 <a
   class="c-link qa-link qa-link-internal"
   [routerLink]="destination"
+  tabindex="{{ tabIndex }}"
   *ngIf="!isExternal"
 >
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
