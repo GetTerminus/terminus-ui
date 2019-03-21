@@ -15,7 +15,6 @@
     "**/*.mock.ts"
   ],
   "angularCompilerOptions": {
-    "experimentalDecorators": true,
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
