@@ -81,6 +81,7 @@
           [(ngModel)]="searchQuery"
           (ngModelChange)="querySubject.next(searchQuery)"
           (blur)="handleInputBlur($event)"
+          (keydown)="$event.stopPropagation()"
           #input
         />
 
