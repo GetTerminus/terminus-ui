@@ -1095,6 +1095,7 @@ describe(`TsSelectComponent`, function() {
       const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
       fixture.detectChanges();
 
+      const element = getSelectElement(fixture);
       const input = getAutocompleteInput(fixture);
       typeInElement('fl', input);
       fixture.detectChanges();
@@ -1102,12 +1103,12 @@ describe(`TsSelectComponent`, function() {
       expect(input.value).toEqual('fl');
 
       // move down to Florida and try to select it
-      dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
-      dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
-      dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
-      dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
-      dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
-      dispatchKeyboardEvent(input, 'keydown', ENTER);
+      dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(element, 'keydown', ENTER);
       fixture.detectChanges();
 
       expect(input.value).toEqual('');
