@@ -1,3 +1,7 @@
+## <small>11.9.4 (2019-03-25)</small>
+
+* fix(Select): updated filter label text ([23dafa7](https://github.com/GetTerminus/terminus-ui/commit/23dafa7)), closes [#1352](https://github.com/GetTerminus/terminus-ui/issues/1352)
+
 ## <small>11.9.3 (2019-03-18)</small>
 
 * fix(Confirmation): button does not move when overlay opens ([6a35edc](https://github.com/GetTerminus/terminus-ui/commit/6a35edc)), closes [#1406](https://github.com/GetTerminus/terminus-ui/issues/1406)
