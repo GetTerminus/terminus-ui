@@ -1,3 +1,8 @@
+## <small>11.9.5 (2019-03-25)</small>
+
+* fix: Fake fix to release last revert ([1a62ade](https://github.com/GetTerminus/terminus-ui/commit/1a62ade))
+* revert(Input): remove BrowserAnimationsModule that was added in error ([a0cb699](https://github.com/GetTerminus/terminus-ui/commit/a0cb699)), closes [#1423](https://github.com/GetTerminus/terminus-ui/issues/1423)
+
 ## <small>11.9.4 (2019-03-25)</small>
 
 * fix(Select): updated filter label text ([23dafa7](https://github.com/GetTerminus/terminus-ui/commit/23dafa7)), closes [#1352](https://github.com/GetTerminus/terminus-ui/issues/1352)
