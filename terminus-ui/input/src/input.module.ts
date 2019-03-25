@@ -10,7 +10,9 @@ import {
   NativeDateModule,
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+/*
+ *import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ */
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsDatePipe } from '@terminus/ui/pipes';
@@ -28,7 +30,9 @@ export * from './input.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    /*
+     *BrowserAnimationsModule,
+     */
     FlexLayoutModule,
     FormsModule,
     MatDatepickerModule,
