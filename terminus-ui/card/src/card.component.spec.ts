@@ -12,6 +12,7 @@ import { TsCardModule } from './card.module';
   template: `
   <ts-card
     [isDisabled]="disabled"
+    [disabled]="disabled"
     [flat]="flat"
     [supportsInteraction]="supportsInteraction"
     [theme]="theme"
