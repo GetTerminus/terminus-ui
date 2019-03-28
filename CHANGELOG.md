@@ -1,3 +1,7 @@
+## <small>11.9.8 (2019-03-28)</small>
+
+* fix(Button): switch disabled to Material input rather than attr ([8eab4de](https://github.com/GetTerminus/terminus-ui/commit/8eab4de))
+
 ## <small>11.9.7 (2019-03-28)</small>
 
 * fix(CSVEntry): now encapsulating cell content and escaping quotes ([04cd647](https://github.com/GetTerminus/terminus-ui/commit/04cd647)), closes [#1427](https://github.com/GetTerminus/terminus-ui/issues/1427)
