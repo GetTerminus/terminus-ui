@@ -851,12 +851,16 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   private generateBlob(content: TsCSVFormContents): Blob {
     const prefix = 'data:text/csv;charset=utf-8,';
     const headers: string = content.headers.join('\t') + '\r\n';
-    const rows: string = content.records.map((v) => v.columns.join('\t')).join('\r\n') + '\r\n';
+    const rows: string = content.records.map((v) => {
+      // Encapsulate content with quotes and escape any existing quotes
+      return v.columns.map((column) => column ? `"${column.replace(/"/g, '""')}"` : '').join('\t');
+    }).join('\r\n') + '\r\n';
     let joined: string = prefix + headers + rows;
     // istanbul ignore else
     if (this.outputFormat === 'csv') {
       joined = JSON.stringify(joined).replace(/\\t/g, ',');
     }
+
     return new Blob([joined], {type: 'text/csv'});
   }
 

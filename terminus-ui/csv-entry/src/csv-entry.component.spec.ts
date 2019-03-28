@@ -97,6 +97,7 @@ describe(`TsCSVEntryComponent`, function() {
   let formContentThreeCol: TsCSVFormContents;
   let formContentManyErrors: TsCSVFormContents;
   let formContentRequiredErrors: TsCSVFormContents;
+  let formContentWithQuotesAndCommas: TsCSVFormContents;
   const createPasteEvent = (content: TsCSVFormContents): ClipboardEvent => {
     const event = createFakeEvent('paste') as ClipboardEvent;
     const stringValue = stringifyForm(content);
@@ -163,6 +164,13 @@ describe(`TsCSVEntryComponent`, function() {
         { recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1'] },
         { recordId: 1, columns: [null, 'bang2', 'boom2'] },
         { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
+      ],
+    };
+    formContentWithQuotesAndCommas = {
+      headers: ['bing', 'bang'],
+      records: [
+        { recordId: 0, columns: ['a, b', '"foo"'] },
+        { recordId: 1, columns: ['"foo, bar"', '"foo", "bar"'] },
       ],
     };
     /**
@@ -605,7 +613,6 @@ describe(`TsCSVEntryComponent`, function() {
         jest.clearAllTimers();
       };
       reader.readAsText(content);
-
     }));
 
   });
@@ -716,5 +723,24 @@ describe(`TsCSVEntryComponent`, function() {
     });
 
   });
+
+  test(`should correctly handle commas and quotes`, fakeAsync((done) => {
+    jest.useFakeTimers();
+    hostComponent.outputFormat = 'csv';
+    firstHeaderCell.dispatchEvent(createPasteEvent(formContentWithQuotesAndCommas));
+    jest.advanceTimersByTime(10);
+    const reader = new FileReader();
+    const calls = hostComponent.gotFile.mock.calls;
+    const content = calls[0][0];
+    reader.onloadend = function() {
+      expect(reader.result).toContain('\"a, b\"');
+      expect(reader.result).toContain('\"foo, bar\"');
+      expect(reader.result).toContain('\"foo\", \"bar\"');
+
+      done();
+      jest.clearAllTimers();
+    };
+    reader.readAsText(content);
+  }));
 
 });
