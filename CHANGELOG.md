@@ -1,3 +1,7 @@
+## <small>11.9.7 (2019-03-28)</small>
+
+* fix(CSVEntry): now encapsulating cell content and escaping quotes ([04cd647](https://github.com/GetTerminus/terminus-ui/commit/04cd647)), closes [#1427](https://github.com/GetTerminus/terminus-ui/issues/1427)
+
 ## <small>11.9.6 (2019-03-28)</small>
 
 * fix(Select): space character works in autocomplete ([2fcd6c4](https://github.com/GetTerminus/terminus-ui/commit/2fcd6c4)), closes [#1416](https://github.com/GetTerminus/terminus-ui/issues/1416)
