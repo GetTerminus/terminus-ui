@@ -1,3 +1,9 @@
+## <small>11.9.6 (2019-03-28)</small>
+
+* fix(Select): space character works in autocomplete ([2fcd6c4](https://github.com/GetTerminus/terminus-ui/commit/2fcd6c4)), closes [#1416](https://github.com/GetTerminus/terminus-ui/issues/1416)
+* chore(IconButton): now with integration tests ([1ab6e85](https://github.com/GetTerminus/terminus-ui/commit/1ab6e85)), closes [#1284](https://github.com/GetTerminus/terminus-ui/issues/1284)
+* chore(Link): tests converted to integration ([23298fc](https://github.com/GetTerminus/terminus-ui/commit/23298fc)), closes [#1285](https://github.com/GetTerminus/terminus-ui/issues/1285)
+
 ## <small>11.9.5 (2019-03-25)</small>
 
 * fix: Fake fix to release last revert ([1a62ade](https://github.com/GetTerminus/terminus-ui/commit/1a62ade))
