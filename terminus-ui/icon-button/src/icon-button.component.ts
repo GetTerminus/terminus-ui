@@ -74,7 +74,7 @@ export class TsIconButtonComponent {
 
 
   /**
-   * Getter to return the native elemetn
+   * Getter to return the native element
    */
   public get hostElement(): ElementRef {
     return this.elementRef.nativeElement;
