@@ -64,7 +64,8 @@ describe(`TsButtonComponent`, function() {
         fixture.detectChanges();
         expect(buttonComponent.isDisabled).toEqual(false);
         expect(button.disabled).toEqual(false);
-        expect(button.getAttribute('disabled')).toEqual(null);
+        button.click();
+        expect(component.clickEvent).toHaveBeenCalled();
       });
 
       test(`should have button disabled`, () => {
@@ -72,7 +73,7 @@ describe(`TsButtonComponent`, function() {
         fixture.detectChanges();
         expect(buttonComponent.isDisabled).toEqual(true);
         expect(button.disabled).toEqual(true);
-        expect(button.getAttribute('disabled')).toEqual('');
+        expect(component.clickEvent).not.toHaveBeenCalled();
       });
     });
 
