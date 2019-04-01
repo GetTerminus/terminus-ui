@@ -33,8 +33,7 @@ Help us keep Terminus open and inclusive. Please read and follow our [Code of Co
 
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 [submitting an issue](#submit-issue) to our [GitHub repository][github]. Including an issue
-reproduction (via our [demo site][demo]) is the absolute best way to help the team quickly
-diagnose the problem. Screenshots are also helpful.
+-reproduction (via our [starter app][starter-app]) is the absolute best way to help the team quickly diagnose the problem. Screenshots are also helpful.
 
 You can help the team even more and [submit a Pull Request](#submit-pr) with a fix! :pray:
 
@@ -66,8 +65,7 @@ chances of your issue being dealt with quickly:
 - **Motivation for or Use Case** - explain what are you trying to do and why the current behavior
     is a bug for you
 - **Browsers and Operating System** - is this a problem with all browsers?
-- **Reproduce the Error** - provide a live example using our [Demo site][demo] or a
-    unambiguous set of steps
+- **Reproduce the Error** - Please fork our [starter app][starter-app] to replicate your issue and then share that link.
 - **Screenshots** - Due to the visual nature of this library, screenshots can help the team triage
     issues far more quickly than a text description.
 - **Related Issues** - has a similar issue been reported before?
@@ -140,3 +138,4 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 [pulls]: https://github.com/GetTerminus/terminus-ui/pulls
 [dev-docs]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md
 [commit]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md#committing
+[starter-app]: https://github.com/GetTerminus/ui-stackblitz-starter
