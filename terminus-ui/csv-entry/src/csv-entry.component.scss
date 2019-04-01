@@ -124,7 +124,7 @@
 
     &--invalid {
       color: color(warn);
-      font-weight: 400;
+      font-weight: $type__weight--base;
     }
   }
 

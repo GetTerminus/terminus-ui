@@ -44,7 +44,7 @@ $type__size--base: 16px !default;
  * @nuclide
  * @section Typography
  */
-$type__weight--base: 300 !default;
+$type__weight--base: 400 !default;
 
 /**
  * The available typography formats
@@ -146,7 +146,7 @@ $typography-body-levels: (
 
     @if $level == 4 {
       font-size: 112px;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -.01em;
       line-height: 112px;
     }
@@ -189,7 +189,7 @@ $typography-body-levels: (
     }
 
     @if $level == 1 {
-      font-weight: 300;
+      font-weight: 400;
 
       // TODO: overwrite in files rather than this nested chain (too specific) https://github.com/GetTerminus/terminus-ui/issues/1152
       // Don't apply custom line-height to buttons
@@ -227,7 +227,7 @@ $typography-body-levels: (
   @if $format == 'hint' {
     color: color(utility);
     font-size: 75%;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: .01em;
     line-height: 1.5;
   }
