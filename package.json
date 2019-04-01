@@ -102,7 +102,8 @@
   "release": {
     "branch": "master",
     "plugins": [
-      ["@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/release-notes-generator",
         {
           "parserOpts": {
             "noteKeywords": [
@@ -172,7 +173,7 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
-    "@terminus/ngx-tools": ">=5.0.0",
+    "@terminus/ngx-tools": "^6.3.0",
     "@terminus/ui": "latest",
     "date-fns": "2.0.0-alpha.26",
     "ngx-perfect-scrollbar": "^7.2.0",
