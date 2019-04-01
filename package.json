@@ -97,10 +97,10 @@
     ]
   },
   "publishConfig": {
-    "tag": "next"
+    "tag": "v11"
   },
   "release": {
-    "branch": "master",
+    "branch": "11.x.x",
     "plugins": [
       ["@semantic-release/release-notes-generator",
         {

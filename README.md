@@ -73,6 +73,9 @@ for each feature.
 - `latest`
   - [Latest Documentation][docs-latest]
   - [Latest Demos][demo-latest]
+- `11.x.x`
+  - [11.x.x Documentation][docs-v11]
+  - [11.x.x Demos][demo-v11]
 - `10.x.x`
   - [10.x.x Documentation][docs-v10]
   - [10.x.x Demos][demo-v10]
@@ -445,10 +448,12 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
 [docs-v9]: http://uilibrary-docs.terminus.ninja/9.x.x/
 [docs-v10]: http://uilibrary-docs.terminus.ninja/10.x.x/
+[docs-v11]: http://uilibrary-docs.terminus.ninja/11.x.x/
 [docs-latest]: http://uilibrary-docs.terminus.ninja/master/
 [demo-v8]: https://getterminus.github.io/ui-demos-8.x.x/
 [demo-v9]: https://getterminus.github.io/ui-demos-9.x.x/
 [demo-v10]: https://getterminus.github.io/ui-demos-10.x.x/
+[demo-v11]: https://getterminus.github.io/ui-demos-11.x.x/
 [demo-latest]: https://getterminus.github.io/ui-demos-master/
 
 <!-- TS Usage Docs -->
