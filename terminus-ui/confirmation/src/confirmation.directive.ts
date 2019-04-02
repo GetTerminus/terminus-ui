@@ -230,7 +230,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Subscribe to the continue event
     this.overlayInstance.confirm.subscribe((shouldProceed: boolean) => {
       if (coerceBooleanProperty(shouldProceed)) {
-        this.host.clickEvent.emit(this.host.originalClickEvent);
+        this.host.clicked.emit(this.host.originalClickEvent);
         this.dismissOverlay();
       } else {
         this.dismissOverlay();

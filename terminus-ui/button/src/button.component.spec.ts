@@ -18,7 +18,7 @@ import { TsButtonModule } from './button.module';
     [iconName]="iconName"
     [format]="format"
     [theme]="theme"
-    (clickEvent)="clickEvent($event)"
+    (clicked)="clicked($event)"
     collapseDelay="collapseDelay"
   >Click Me!</ts-button>
   `,
@@ -36,7 +36,7 @@ class TestHostComponent implements OnInit, OnDestroy {
   buttonComponent!: TsButtonComponent;
 
   changed = jest.fn();
-  clickEvent = jest.fn();
+  clicked = jest.fn();
   private COLLAPSE_DEFAULT_DELAY = undefined;
   public ngOnInit() { }
   public ngOnDestroy() { }
@@ -65,7 +65,7 @@ describe(`TsButtonComponent`, function() {
         expect(buttonComponent.isDisabled).toEqual(false);
         expect(button.disabled).toEqual(false);
         button.click();
-        expect(component.clickEvent).toHaveBeenCalled();
+        expect(component.clicked).toHaveBeenCalled();
       });
 
       test(`should have button disabled`, () => {
@@ -73,14 +73,14 @@ describe(`TsButtonComponent`, function() {
         fixture.detectChanges();
         expect(buttonComponent.isDisabled).toEqual(true);
         expect(button.disabled).toEqual(true);
-        expect(component.clickEvent).not.toHaveBeenCalled();
+        expect(component.clicked).not.toHaveBeenCalled();
       });
     });
 
     test(`click`, () => {
-      component.buttonComponent.clickEvent.emit = jest.fn();
+      component.buttonComponent.clicked.emit = jest.fn();
       button.click();
-      expect(buttonComponent.clickEvent.emit).toHaveBeenCalled();
+      expect(buttonComponent.clicked.emit).toHaveBeenCalled();
     });
 
     describe(`showProgress`, () => {
@@ -326,27 +326,27 @@ describe(`TsButtonComponent`, function() {
     });
 
 
-    describe(`clicked()`, () => {
+    describe(`clickedButton()`, () => {
       let mouseEvent: MouseEvent;
 
       beforeEach(() => {
-        buttonComponent.clickEvent.emit = jest.fn();
+        buttonComponent.clicked.emit = jest.fn();
         mouseEvent = createMouseEvent('click');
       });
 
 
       test(`should emit the click when interceptClick is false`, () => {
-        buttonComponent.clicked(mouseEvent);
+        buttonComponent.clickedButton(mouseEvent);
 
-        expect(buttonComponent.clickEvent.emit).toHaveBeenCalledWith(mouseEvent);
+        expect(buttonComponent.clicked.emit).toHaveBeenCalledWith(mouseEvent);
       });
 
 
       test(`should not emit the click when interceptClick is true`, () => {
         buttonComponent.interceptClick = true;
-        buttonComponent.clicked(mouseEvent);
+        buttonComponent.clickedButton(mouseEvent);
 
-        expect(buttonComponent.clickEvent.emit).not.toHaveBeenCalledWith();
+        expect(buttonComponent.clicked.emit).not.toHaveBeenCalledWith();
         expect(buttonComponent.originalClickEvent).toEqual(mouseEvent);
       });
 

@@ -234,7 +234,7 @@ the `ts-expansion-panel-action-row`.
     And here is my standard panel content.
 
     <ts-expansion-panel-action-row>
-      <ts-button (click)="nextStep()">
+      <ts-button (clicked)="nextStep()">
         Next
       </ts-button>
     </ts-expansion-panel-action-row>
@@ -249,10 +249,10 @@ the `ts-expansion-panel-action-row`.
     And here is my standard panel content.
 
     <ts-expansion-panel-action-row>
-      <ts-button format="hollow" (click)="previousStep()">
+      <ts-button format="hollow" (clicked)="previousStep()">
         Previous
       </ts-button>
-      <ts-button (click)="nextStep()">
+      <ts-button (clicked)="nextStep()">
         Next
       </ts-button>
     </ts-expansion-panel-action-row>
@@ -267,10 +267,10 @@ the `ts-expansion-panel-action-row`.
     And here is my standard panel content.
 
     <ts-expansion-panel-action-row>
-      <ts-button format="hollow" (click)="previousStep()">
+      <ts-button format="hollow" (clicked)="previousStep()">
         Previous
       </ts-button>
-      <ts-button (click)="nextStep()">
+      <ts-button (clicked)="nextStep()">
         End
       </ts-button>
     </ts-expansion-panel-action-row>

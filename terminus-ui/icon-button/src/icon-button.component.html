@@ -4,7 +4,7 @@
   [attr.type]="buttonType"
   [disabled]="isDisabled"
   tabindex="{{ tabIndex }}"
-  (click)="clickEvent.emit($event)"
+  (click)="clicked.emit($event)"
 >
   <ts-icon aria-hidden="true">
     <ng-content></ng-content>

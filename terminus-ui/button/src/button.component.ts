@@ -75,7 +75,7 @@ export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
  *              [collapsed]="false"
  *              collapseDelay="500"
  *              tabIndex="2"
- *              (clickEvent)="myMethod($event)"
+ *              (clicked)="myMethod($event)"
  * >Click Me!</ts-button>
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/button</example-url>
@@ -269,7 +269,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Pass the click event through to the parent
    */
   @Output()
-  public clickEvent: EventEmitter<MouseEvent> = new EventEmitter;
+  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
   /**
    * Provide access to the inner button element
@@ -325,16 +325,16 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Do something when clicked
+   * Handle button clicks
    *
    * @param event - The MouseEvent
    */
-  public clicked(event: MouseEvent): void {
+  public clickedButton(event: MouseEvent): void {
     // Allow the click to propagate
     if (!this.interceptClick) {
-      this.clickEvent.emit(event);
+      this.clicked.emit(event);
     } else {
-      // Save the original event but don't emit the clickEvent
+      // Save the original event but don't emit the originalClickEvent
       this.originalClickEvent = event;
     }
   }

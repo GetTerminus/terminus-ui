@@ -23,7 +23,7 @@
         [theme]="theme"
         [iconName]="firstPageIcon"
         [isDisabled]="isFirstPage(currentPageIndex)"
-        (clickEvent)="changePage(firstPageIndex, currentPageIndex, pagesArray)"
+        (clicked)="changePage(firstPageIndex, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
@@ -34,7 +34,7 @@
         [theme]="theme"
         [iconName]="previousPageIcon"
         [isDisabled]="isFirstPage(currentPageIndex)"
-        (clickEvent)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"
+        (clicked)="changePage(currentPageIndex - 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
@@ -55,7 +55,7 @@
         [theme]="theme"
         [iconName]="nextPageIcon"
         [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
-        (clickEvent)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
+        (clicked)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
@@ -66,7 +66,7 @@
         [theme]="theme"
         [iconName]="lastPageIcon"
         [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
-        (clickEvent)="changePage(lastPageIndex, currentPageIndex, pagesArray)"
+        (clicked)="changePage(lastPageIndex, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
   </div>
@@ -87,7 +87,7 @@
 <ng-template #menuItems>
   <ts-button
     *ngFor="let page of pagesArray; trackBy: trackPagesArray"
-    (clickEvent)="currentPageChanged(page)"
+    (clicked)="currentPageChanged(page)"
   >
     {{ page.name }}
   </ts-button>

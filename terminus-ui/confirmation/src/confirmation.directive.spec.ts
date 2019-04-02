@@ -48,14 +48,14 @@ class TsButtonComponentMock {
   @Input()
   public showProgress = false;
   @Output()
-  public clickEvent: EventEmitter<MouseEvent> = new EventEmitter;
+  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
-  public clicked(event: MouseEvent): void {
+  public clickedButton(event: MouseEvent): void {
     // Allow the click to propagate
     if (!this.interceptClick) {
-      this.clickEvent.emit(event);
+      this.clicked.emit(event);
     } else {
-      // Save the original event but don't emit the clickEvent
+      // Save the original event but don't emit the originalClickEvent
       this.originalClickEvent = event;
     }
   }
@@ -157,7 +157,7 @@ describe(`TsConfirmationDirective`, function() {
   describe(`overlay content`, () => {
 
     test(`should dismiss the overlay and emit event on confirm`, () => {
-      directive['host'].clickEvent.emit = jest.fn();
+      directive['host'].clicked.emit = jest.fn();
       expect(directive['overlayRef']).toBeFalsy();
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
@@ -165,7 +165,7 @@ describe(`TsConfirmationDirective`, function() {
       directive['overlayInstance'].confirm.next(true);
 
       expect(directive['overlayRef']!.hasAttached()).toEqual(false);
-      expect(directive['host'].clickEvent.emit).toHaveBeenCalled();
+      expect(directive['host'].clicked.emit).toHaveBeenCalled();
     });
 
 
