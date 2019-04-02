@@ -190,13 +190,13 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  readonly inputChange: EventEmitter<boolean> = new EventEmitter;
+  readonly inputChange: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter;
+  readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter();
 
 
   constructor(

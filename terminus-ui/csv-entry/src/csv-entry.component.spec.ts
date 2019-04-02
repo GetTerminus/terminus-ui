@@ -495,8 +495,8 @@ describe(`TsCSVEntryComponent`, function() {
       fixture.detectChanges();
 
       const addRowButton = fixture.debugElement.query(By.css('#ts-csv-add-row')).nativeElement;
-      dispatchMouseEvent(addRowButton, 'click');
-      dispatchMouseEvent(addRowButton, 'click');
+      dispatchMouseEvent(addRowButton, 'clicked');
+      dispatchMouseEvent(addRowButton, 'clicked');
       fixture.detectChanges();
       const message = fixture.debugElement.query(By.css('.c-csv-entry__message')).nativeElement;
 
@@ -516,14 +516,14 @@ describe(`TsCSVEntryComponent`, function() {
       expect(row2Cell1.value).toEqual(expect.any(String));
 
       const addRowButton = fixture.debugElement.query(By.css('#ts-csv-add-row')).nativeElement;
-      dispatchMouseEvent(addRowButton, 'click');
-      dispatchMouseEvent(addRowButton, 'click');
+      dispatchMouseEvent(addRowButton, 'clicked');
+      dispatchMouseEvent(addRowButton, 'clicked');
       fixture.detectChanges();
       let message = fixture.debugElement.query(By.css('.c-csv-entry__message')).nativeElement;
       expect(message).toBeTruthy();
 
       const resetButton: HTMLInputElement = fixture.debugElement.query(By.css('#ts-csv-reset')).nativeElement;
-      dispatchMouseEvent(resetButton, 'click');
+      dispatchMouseEvent(resetButton, 'clicked');
       fixture.detectChanges();
 
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
