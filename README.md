@@ -36,7 +36,8 @@ The library of UI components used for Terminus applications.
   - [Constants](#constants)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
-- [Global Styles](#global-styles)
+  - [Fonts and Typefaces](#fonts-and-typefaces)
+  - [Global Styles](#global-styles)
 - [SCSS Helpers](#scss-helpers)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
@@ -222,7 +223,17 @@ $ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 ```
 
 
-## Global Styles
+### Fonts and Typefaces
+
+Add the following links to install the body fonts and icon fonts used by the library:
+
+```html
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
+
+
+### Global Styles
 
 To use the global styles, import the CSS file into your stylesheets:
 
