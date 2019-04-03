@@ -108,12 +108,12 @@
   <h3 tsCardTitle tsTitleAccentBorder>Card with Title & accent border</h3>
 </ts-card>
 
-<ts-card [disabled]="true" [supportsInteraction]="true" tsVerticalSpacing>
+<ts-card [isDisabled]="true" [supportsInteraction]="true" tsVerticalSpacing>
   Disabled with interactions
 </ts-card>
 
 
-<ts-card [disabled]="true" tsVerticalSpacing>
+<ts-card [isDisabled]="true" tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing>
     Disabled Card with a very long title foo bar baz
   </h3>
@@ -129,7 +129,7 @@
 
 
 <ts-card
-  [disabled]="false"
+  [isDisabled]="false"
   tsVerticalSpacing
   [utilityMenuTemplate]="myTemplate"
 >
@@ -179,10 +179,10 @@
   </p>
 </ts-card>
 
-<ts-card [flat]="true" tsVerticalSpacing [disabled]="false">
+<ts-card [flat]="true" tsVerticalSpacing [isDisabled]="false">
   <h3 tsVerticalSpacing>Nested card</h3>
   <p>This card is flat and not disabled</p>
-  <ts-card [flat]="false" [disabled]="true">
+  <ts-card [flat]="false" [isDisabled]="true">
     This card is not flat and disabled
   </ts-card>
 </ts-card>
