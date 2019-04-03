@@ -167,18 +167,18 @@ describe(`TsDateRangeComponent`, function() {
       typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       expect(fixture.componentInstance.startSelected).toHaveBeenCalledWith(new Date('3-4-2019'));
-      expect(fixture.componentInstance.change).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: null});
+      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: null});
 
       typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       expect(fixture.componentInstance.endSelected).toHaveBeenCalledWith(new Date('3-8-2019'));
-      expect(fixture.componentInstance.change).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: new Date('3-8-2019')});
+      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: new Date('3-8-2019')});
 
       typeInElement('', startInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       startInputInstance.inputElement.nativeElement.blur();
       fixture.detectChanges();
-      const changeMock = fixture.componentInstance.change.mock;
+      const changeMock = fixture.componentInstance.dateRangeChange.mock;
       // FIXME: Once https://github.com/GetTerminus/terminus-ui/issues/1361 is complete we should adjust this
       // test to verify that the changeMock was called exactly 3 times.
       expect(changeMock.calls[changeMock.calls.length - 1][0]).toEqual({start: null, end: new Date('3-8-2019')});

@@ -62,7 +62,7 @@ export interface TsDateRange {
  *              startMaxDate="{{ new Date(2017, 4, 30) }}"
  *              startMinDate="{{ new Date(2017, 4, 1) }}"
  *              theme="primary"
- *              (change)="myMethod($event)"
+ *              (dateRangeChange)="myMethod($event)"
  *              (endSelected)="myMethod($event)"
  *              (startSelected)="myMethod($event)"
  * ></ts-date-range>
@@ -216,7 +216,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    * Event emitted anytime the range is changed
    */
   @Output()
-  public change: EventEmitter<TsDateRange> = new EventEmitter();
+  public dateRangeChange: EventEmitter<TsDateRange> = new EventEmitter();
 
   /**
    * Output the end date when selected
@@ -342,7 +342,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       }
 
       this.startSelected.emit(date);
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     } else {
       // If no startDate was selected, reset to the original endMinDate
       this.endMinDate$.next(this.endMinDate);
@@ -367,7 +367,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       }
 
       this.endSelected.emit(date);
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     } else {
       // If no endDate was selected, reset to the original startMaxDate
       this.startMaxDate$.next(this.startMaxDate);
@@ -393,7 +393,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     }
   }
 
@@ -416,7 +416,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     }
   }
 
