@@ -96,13 +96,13 @@ There are three selection events that you can tie into:
 <ts-date-range
   (startSelected)="myMethod($event)"
   (endSelected)="myMethod($event)"
-  (change)="myMethod($event)"
+  (dateRangeChange)="myMethod($event)"
 ></ts-date-range>
 ```
 
 1. `startSelected` is fired when a start date is selected.
 1. `endSelected` is fired when an end date is selected.
-1. `change` is fired when the date range changes.
+1. `dateRangeChange` is fired when the date range changes.
 
 
 ## Date range boundaries
