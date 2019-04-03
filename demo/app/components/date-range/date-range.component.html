@@ -19,7 +19,7 @@
 
     <ts-date-range
       [dateFormGroup]="myForm.get('dateRange')"
-      (change)="printRange(myForm.value)"
+      (dateRangeChange)="printRange(myForm.value)"
     ></ts-date-range>
 
   </form>

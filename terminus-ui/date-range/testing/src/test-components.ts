@@ -56,7 +56,7 @@ export class SeededDates {
   <form [formGroup]="dateGroup" novalidate>
     <ts-date-range
       [dateFormGroup]="dateGroup"
-      (change)="change($event)"
+      (dateRangeChange)="dateRangeChange($event)"
       (endSelected)="endSelected($event)"
       (startSelected)="startSelected($event)"
     ></ts-date-range>
@@ -65,7 +65,7 @@ export class SeededDates {
 })
 export class Emitters {
   dateGroup = createDateRangeGroup();
-  change = jest.fn();
+  dateRangeChange = jest.fn();
   endSelected = jest.fn();
   startSelected = jest.fn();
 
