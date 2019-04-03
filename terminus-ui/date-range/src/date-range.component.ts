@@ -25,22 +25,17 @@ import { BehaviorSubject } from 'rxjs';
 
 /**
  * Define the structure of the date range object used by {@link TsDateRangeComponent}
- *
- * TODO: In the process of deprecating the `null` portion of this interface. It should be using
- * `undefined` instead.
- *
- * Deprecation target: 10.0.0
  */
 export interface TsDateRange {
   /**
    * The start date of the range
    */
-  start: Date | undefined | null;
+  start: Date | undefined;
 
   /**
    * The end date of the range
    */
-  end: Date | undefined | null;
+  end: Date | undefined;
 }
 
 
