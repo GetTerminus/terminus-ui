@@ -202,7 +202,7 @@ export class TsLoginFormComponent implements OnChanges {
    * Emit an event on form submission
    */
   @Output()
-  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter;
+  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
 
 
   /**

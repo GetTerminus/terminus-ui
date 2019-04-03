@@ -14,7 +14,7 @@ import { TsIconButtonModule } from './icon-button.module';
     actionName="Menu"
     buttonType="button"
     isDisabled="false"
-    (clickEvent)="clickEvent($event)"
+    (clicked)="clicked($event)"
   >delete_forever</ts-icon-button>
   `,
 })

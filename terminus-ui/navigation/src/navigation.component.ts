@@ -254,7 +254,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public action: EventEmitter<TsNavigationPayload> = new EventEmitter;
+  public action: EventEmitter<TsNavigationPayload> = new EventEmitter();
 
   /**
    * Trigger a layout update when the window resizes

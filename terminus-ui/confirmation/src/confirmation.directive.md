@@ -32,7 +32,7 @@ Add the directive to any `ts-button`:
 ```html
 <ts-button
   ts-confirmation
-  (clickEvent)="myContinueFn($event)"
+  (clicked)="myContinueFn($event)"
 >
   Click me!
 </ts-button>
@@ -47,7 +47,7 @@ from the confirmation pop-up.
 ```html
 <ts-button
   ts-confirmation
-  (clickEvent)="myContinueFn($event)"
+  (clicked)="myContinueFn($event)"
   (cancelled)="myCancelEvent($event)"
 >
   Click me!
@@ -62,7 +62,7 @@ Customizes the text in the overlay of the confirmation button; default is "Confi
 ```html
 <ts-button
     tsConfirmation
-    (clickEvent)="submit()"
+    (clicked)="submit()"
     (cancelled)="cancel($event)"
     confirmationButtonText="Custom Confirmation Button Text"
   >
@@ -78,7 +78,7 @@ Customizes the text in the overlay of the cancel button; default is "Cancel".
 ```html
 <ts-button
     tsConfirmation
-    (clickEvent)="submit()"
+    (clicked)="submit()"
     (cancelled)="cancel($event)"
     cancelButtonText="Custom Cancel Button Text"
   >
@@ -94,7 +94,7 @@ Optional text to appear inside of the overlay, generally to use as a warning, fo
 ```html
 <ts-button
     tsConfirmation
-    (clickEvent)="submit()"
+    (clicked)="submit()"
     (cancelled)="cancel($event)"
     explanationText="Optional text within overlay."
   >
@@ -109,7 +109,7 @@ Optional overlayPosition for defining where the overlay will appear relative to 
 ```html
 <ts-button
     tsConfirmation
-    (clickEvent)="submit()"
+    (clicked)="submit()"
     (cancelled)="cancel($event)"
     overlayPosition="before"
   >
