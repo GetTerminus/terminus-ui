@@ -13,7 +13,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
 import {
@@ -109,13 +108,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Whether the autocomplete panel is open
    */
-  public set isOpen(value: boolean) {
-    this._isOpen = coerceBooleanProperty(value);
-  }
-  public get isOpen(): boolean {
-    return this._isOpen && this.showPanel;
-  }
-  private _isOpen = false;
+  public isOpen = false;
 
   /**
    * Function that maps an option's control value to its display value in the trigger

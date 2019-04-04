@@ -2,16 +2,13 @@ import {
   Component,
   ElementRef,
   Input,
-  isDevMode,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  isBoolean,
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
@@ -79,35 +76,13 @@ export class TsCopyComponent {
    * Define if the initial click should select the contents
    */
   @Input()
-  public set disableInitialSelection(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsCopyComponent: "disableInitialSelection" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._disableInitialSelection = coerceBooleanProperty(value);
-  }
-  public get disableInitialSelection(): boolean {
-    return this._disableInitialSelection;
-  }
-  private _disableInitialSelection = false;
+  public disableInitialSelection = false;
 
   /**
    * Define if the copy to clipboard functionality is enabled
    */
   @Input()
-  public set enableQuickCopy(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsCopyComponent: "enableQuickCopy" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._enableQuickCopy = coerceBooleanProperty(value);
-  }
-  public get enableQuickCopy(): boolean {
-    return this._enableQuickCopy;
-  }
-  private _enableQuickCopy = false;
+  public enableQuickCopy = false;
 
   /**
    * Define the component theme

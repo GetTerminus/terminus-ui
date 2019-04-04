@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  isDevMode,
   OnInit,
   Output,
   ViewEncapsulation,
@@ -13,11 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import {
-  debounce,
-  isBoolean,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { debounce } from '@terminus/ngx-tools';
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,
@@ -136,18 +131,7 @@ export class TsSearchComponent implements OnInit {
    * Define if the input should automatically submit values as typed
    */
   @Input()
-  public set autoSubmit(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSearchComponent: "autoSubmit" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._autoSubmit = coerceBooleanProperty(value);
-  }
-  public get autoSubmit(): boolean {
-    return this._autoSubmit;
-  }
-  private _autoSubmit = false;
+  public autoSubmit = false;
 
   /**
    * Define an initial value for the search input
@@ -171,52 +155,19 @@ export class TsSearchComponent implements OnInit {
    * Define if the search should be disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSearchComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define if the search input should be focused initially
    */
   @Input()
-  public set isFocused(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSearchComponent: "isFocused" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isFocused = coerceBooleanProperty(value);
-  }
-  public get isFocused(): boolean {
-    return this._isFocused;
-  }
-  private _isFocused = false;
+  public isFocused = false;
 
   /**
    * Define if the search is currently submitting a query
    */
   @Input()
-  public set isSubmitting(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSearchComponent: "isSubmitting" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isSubmitting = coerceBooleanProperty(value);
-  }
-  public get isSubmitting(): boolean {
-    return this._isSubmitting;
-  }
-  private _isSubmitting = false;
+  public isSubmitting = false;
 
   /**
    * Define the theme
@@ -228,18 +179,7 @@ export class TsSearchComponent implements OnInit {
    * Define if the user can clear the search input
    */
   @Input()
-  public set userCanClear(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSearchComponent: "userCanClear" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._userCanClear = coerceBooleanProperty(value);
-  }
-  public get userCanClear(): boolean {
-    return this._userCanClear;
-  }
-  private _userCanClear = true;
+  public userCanClear = true;
 
   /**
    * The event to emit when the form is submitted

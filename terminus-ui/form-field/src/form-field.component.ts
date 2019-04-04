@@ -8,17 +8,12 @@ import {
   ContentChildren,
   ElementRef,
   Input,
-  isDevMode,
   NgZone,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  isBoolean,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsDocumentService } from '@terminus/ngx-tools';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
@@ -212,18 +207,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    * Define if a required marker should be hidden
    */
   @Input()
-  public set hideRequiredMarker(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsFormFieldComponent: "hideRequiredMarker" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._hideRequiredMarker = coerceBooleanProperty(value);
-  }
-  public get hideRequiredMarker(): boolean {
-    return this._hideRequiredMarker;
-  }
-  private _hideRequiredMarker = false;
+  public hideRequiredMarker = false;
 
   /**
    * Define a hint for the input
@@ -259,13 +243,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    * Define if validation messages should be shown immediately or on blur
    */
   @Input()
-  public set validateOnChange(value: boolean) {
-    this._validateOnChange = coerceBooleanProperty(value);
-  }
-  public get validateOnChange(): boolean {
-    return this._validateOnChange;
-  }
-  private _validateOnChange = false;
+  public validateOnChange = false;
 
 
   constructor(

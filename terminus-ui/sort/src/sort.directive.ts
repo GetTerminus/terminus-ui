@@ -10,8 +10,6 @@ import {
   Output,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@angular/material/core';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { Subject } from 'rxjs';
 
 import {
@@ -135,17 +133,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * May be overriden by the TsSortable's disable clear input.
    */
   @Input('tsSortDisableClear')
-  public set disableClear(value: boolean) {
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSortDirective: "disableClear" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._disableClear = coerceBooleanProperty(value);
-  }
-  public get disableClear() {
-    return this._disableClear;
-  }
-  private _disableClear = false;
+  public disableClear = false;
 
   /**
    * Event emitted when the user changes either the active sort or sort direction

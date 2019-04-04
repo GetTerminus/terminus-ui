@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  isDevMode,
   OnDestroy,
   OnInit,
   Output,
@@ -18,7 +17,6 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import {
-  isBoolean,
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
@@ -216,18 +214,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Allow full-width mode
    */
   @Input()
-  public set fullWidth(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsCSVEntryComponent: "fullWidth" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._fullWidth = coerceBooleanProperty(value);
-  }
-  public get fullWidth(): boolean {
-    return this._fullWidth;
-  }
-  private _fullWidth = false;
+  public fullWidth = false;
 
   /**
    * Allow static headers to be set

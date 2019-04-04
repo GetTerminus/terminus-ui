@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  isDevMode,
   OnDestroy,
   OnInit,
   Output,
@@ -14,11 +13,7 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
-import {
-  isBoolean,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { BehaviorSubject } from 'rxjs';
 
@@ -170,18 +165,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    * Define if the range should be disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsDateRangeComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define the starting view for both datepickers
