@@ -69,13 +69,6 @@ describe(`TsLinkComponent`, function() {
       expect(link.children[0].textContent).toContain('open_in_new');
     });
 
-    test(`should throw error if invalid value is passed`, () => {
-      window.console.warn = jest.fn();
-      component.isExternal = 'foo' as any;
-      fixture.detectChanges();
-
-      expect(window.console.warn).toHaveBeenCalled();
-    });
   });
 
   describe(`tabIndex`, () => {

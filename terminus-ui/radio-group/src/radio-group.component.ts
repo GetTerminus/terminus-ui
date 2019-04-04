@@ -14,11 +14,9 @@ import { MatRadioChange } from '@angular/material/radio';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   hasRequiredControl,
-  isBoolean,
   isFunction,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   ControlValueAccessorProviderFactory,
   TsReactiveFormBaseComponent,
@@ -214,35 +212,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define if the radio group is disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsRadioGroupComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define if the radio group is visual (boxes) or standard (text)
    */
   @Input()
-  public set isVisual(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsRadioGroupComponent: "isVisual" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isVisual = coerceBooleanProperty(value);
-  }
-  public get isVisual(): boolean {
-    return this._isVisual;
-  }
-  private _isVisual = false;
+  public isVisual = false;
 
   /**
    * Define a label for the radio group
@@ -282,18 +258,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define if the visual style should be large or small
    */
   @Input()
-  public set small(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsRadioGroupComponent: "small" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._small = coerceBooleanProperty(value);
-  }
-  public get small(): boolean {
-    return this._small;
-  }
-  private _small = false;
+  public small = false;
 
   /**
    * Define the theme. {@link TsStyleThemeTypes}

@@ -23,13 +23,11 @@ import {
 } from '@angular/material/autocomplete';
 import {
   arrayContainsObject,
-  isBoolean,
   isFunction,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
-  coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { TS_SPACING } from '@terminus/ui/spacing';
@@ -279,19 +277,8 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Define if the progress spinner should be active
    */
   @Input()
-  public set showProgress(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsAutocompleteComponent: "showProgress" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
+  public showProgress = false;
 
-    this._showProgress = coerceBooleanProperty(value);
-  }
-  public get showProgress(): boolean {
-    return this._showProgress;
-  }
-  private _showProgress = false;
   /**
    * Define the component theme
    */

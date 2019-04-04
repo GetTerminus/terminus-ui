@@ -2,11 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  isDevMode,
   ViewEncapsulation,
 } from '@angular/core';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -59,18 +56,7 @@ export class TsLinkComponent {
    * Define if the link is to an external page
    */
   @Input()
-  public set isExternal(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsLinkComponent: "isExternal" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isExternal = coerceBooleanProperty(value);
-  }
-  public get isExternal(): boolean {
-    return this._isExternal;
-  }
-  private _isExternal = false;
+  public isExternal = false;
 
   /**
    * Define the tabindex

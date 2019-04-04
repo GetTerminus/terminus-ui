@@ -64,7 +64,7 @@ export class Autocomplete implements AfterContentInit {
   template: `<ts-input [readOnly]="readOnly"></ts-input>`,
 })
 export class AttrReadonly {
-  readOnly: boolean | undefined = undefined;
+  readOnly = false;
 
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
@@ -74,7 +74,7 @@ export class AttrReadonly {
   template: `<ts-input [spellcheck]="spellcheck"></ts-input>`,
 })
 export class AttrSpellcheck {
-  spellcheck: boolean | undefined = undefined;
+  spellcheck = false;
 
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;

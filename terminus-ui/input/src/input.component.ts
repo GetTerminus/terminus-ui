@@ -35,13 +35,11 @@ import {
 import { MatDatepicker } from '@angular/material/datepicker';
 import {
   hasRequiredControl,
-  isBoolean,
   isNumber,
   noop,
   TsDocumentService,
 } from '@terminus/ngx-tools';
 import {
-  coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
@@ -446,18 +444,7 @@ export class TsInputComponent implements
    * (standard HTML5 property)
    */
   @Input()
-  public set autocapitalize(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "autocapitalize" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._autocapitalize = coerceBooleanProperty(value);
-  }
-  public get autocapitalize(): boolean {
-    return this._autocapitalize;
-  }
-  private _autocapitalize = false;
+  public autocapitalize = false;
 
   /**
    * Define if the input should autocomplete. See {@link TsInputAutocompleteTypes}.
@@ -492,12 +479,7 @@ export class TsInputComponent implements
    */
   @Input()
   public set datepicker(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "datepicker" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._datepicker = coerceBooleanProperty(value);
+    this._datepicker = value;
 
     // When using a datepicker, we need to validate on change so that selecting a date from the calendar
     // istanbul ignore else
@@ -541,35 +523,13 @@ export class TsInputComponent implements
    * Define if the use-case provides it's own {@link TsFormFieldComponent} or if this component should provide it's own.
    */
   @Input()
-  public set hasExternalFormField(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "hasExternalFormField" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._hasExternalFormField = coerceBooleanProperty(value);
-  }
-  public get hasExternalFormField(): boolean {
-    return this._hasExternalFormField;
-  }
-  private _hasExternalFormField = false;
+  public hasExternalFormField = false;
 
   /**
    * Define if a required marker should be included
    */
   @Input()
-  public set hideRequiredMarker(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "hideRequiredMarker" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._hideRequiredMarker = coerceBooleanProperty(value);
-  }
-  public get hideRequiredMarker(): boolean {
-    return this._hideRequiredMarker;
-  }
-  private _hideRequiredMarker = false;
+  public hideRequiredMarker = false;
 
   /**
    * Define a hint for the input
@@ -599,18 +559,7 @@ export class TsInputComponent implements
    * Define if the input should surface the ability to clear it's value
    */
   @Input()
-  public set isClearable(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "isClearable" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isClearable = coerceBooleanProperty(value);
-  }
-  public get isClearable(): boolean {
-    return this._isClearable;
-  }
-  private _isClearable = false;
+  public isClearable = false;
 
   /**
    * Define if the input should be disabled
@@ -618,30 +567,14 @@ export class TsInputComponent implements
    * Implemented as part of {@link TsFormFieldControl}
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define if the input should be focused
    */
   @Input()
   public set isFocused(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "isFocused" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isFocused = coerceBooleanProperty(value);
+    this._isFocused = value;
 
     if (this._isFocused) {
       this.focus();
@@ -659,12 +592,7 @@ export class TsInputComponent implements
    */
   @Input()
   public set isRequired(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "isRequired" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isRequired = coerceBooleanProperty(value);
+    this._isRequired = value;
   }
   public get isRequired(): boolean {
     const requiredFormControl = (this.formControl && hasRequiredControl(this.formControl));
@@ -678,18 +606,7 @@ export class TsInputComponent implements
    * NOTE: This is not meant to be used with the datepicker or mask enabled.
    */
   @Input()
-  public set isTextarea(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "isTextarea" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isTextarea = coerceBooleanProperty(value);
-  }
-  public get isTextarea(): boolean {
-    return this._isTextarea;
-  }
-  private _isTextarea = false;
+  public isTextarea = false;
 
   /**
    * Define the label
@@ -735,13 +652,8 @@ export class TsInputComponent implements
    */
   @Input()
   public set maskAllowDecimal(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "maskAllowDecimal" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
     const oldValue = this.maskAllowDecimal;
-    this._maskAllowDecimal = coerceBooleanProperty(value);
+    this._maskAllowDecimal = value;
 
     // Re-set the definition if the value was changed
     if (this.mask && this.maskAllowDecimal !== oldValue) {
@@ -757,18 +669,7 @@ export class TsInputComponent implements
    * Define if the value should be sanitized before it is saved to the model
    */
   @Input()
-  public set maskSanitizeValue(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "maskSanitizeValue" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._maskSanitizeValue = coerceBooleanProperty(value);
-  }
-  public get maskSanitizeValue(): boolean {
-    return this._maskSanitizeValue;
-  }
-  private _maskSanitizeValue = true;
+  public maskSanitizeValue = true;
 
   /**
    * Define the maximum date for the datepicker
@@ -825,36 +726,14 @@ export class TsInputComponent implements
    * Define if the input is readOnly
    */
   @Input()
-  public set readOnly(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "readOnly" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._readOnly = coerceBooleanProperty(value);
-  }
-  public get readOnly(): boolean {
-    return this._readOnly;
-  }
-  private _readOnly = false;
+  public readOnly = false;
 
   /**
    * Define if the input should spellcheck
    * (standard HTML5 property)
    */
   @Input()
-  public set spellcheck(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "spellcheck" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._spellcheck = coerceBooleanProperty(value);
-  }
-  public get spellcheck(): boolean {
-    return this._spellcheck;
-  }
-  private _spellcheck: boolean = true;
+  public spellcheck = true;
 
   /**
    * Define the starting calendar view for the datepicker
@@ -942,18 +821,7 @@ export class TsInputComponent implements
    * Define if validation messages should be shown immediately or on blur
    */
   @Input()
-  public set validateOnChange(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsInputComponent: "validateOnChange" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._validateOnChange = coerceBooleanProperty(value);
-  }
-  public get validateOnChange(): boolean {
-    return this._validateOnChange;
-  }
-  private _validateOnChange = false;
+  public validateOnChange = false;
 
 
   /**

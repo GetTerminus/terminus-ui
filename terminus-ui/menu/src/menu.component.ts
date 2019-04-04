@@ -4,15 +4,12 @@ import {
   Component,
   ElementRef,
   Input,
-  isDevMode,
   OnInit,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsButtonFormatTypes } from '@terminus/ui/button';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
@@ -114,35 +111,13 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    * Define if the menu should be opened by default
    */
   @Input()
-  public set defaultOpened(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsMenuComponent: "defaultOpened" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._defaultOpened = coerceBooleanProperty(value);
-  }
-  public get defaultOpened(): boolean {
-    return this._defaultOpened;
-  }
-  private _defaultOpened = false;
+  public defaultOpened = false;
 
   /**
    * Define if the menu should be disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsMenuComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Allow a custom template for menu items
