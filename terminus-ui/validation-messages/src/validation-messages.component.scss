@@ -16,7 +16,7 @@
   .c-validation-message {
     @include typography('caption');
     color: color(warn);
-    z-index: z('tooltip');
+    z-index: z(tooltip);
   }
 }
 

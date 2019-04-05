@@ -53,7 +53,7 @@ $ts-select-item-height: 3em !default;
 .ts-select-panel {
   @include elevation-element(menu);
   background: color(pure);
-  z-index: z(menu);
+  z-index: z(attached-panel-overlay);
 
   .ts-optgroup-label,
   .ts-select-option:not(.ts-select-option--template) {
