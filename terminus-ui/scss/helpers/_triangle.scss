@@ -22,7 +22,7 @@
   height: 0;
   position: absolute;
   width: 0;
-  z-index: z('tooltip');
+  z-index: z(tooltip);
 
   @if not index(top right bottom left, $direction) {
     @error 'Direction must be either `top`, `right`, `bottom` or `left`.';

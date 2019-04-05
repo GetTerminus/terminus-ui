@@ -18,9 +18,9 @@ of `z-index` values while at the same time guaranteeing that no two `z-index` va
   z-index: z(tooltip);
 }
 
-// Use the 'overlay' z-index value
+// Use the 'global-overlay' z-index value
 .bar {
-  z-index: z(overlay);
+  z-index: z(global-overlay);
 }
 ```
 
@@ -28,10 +28,11 @@ of `z-index` values while at the same time guaranteeing that no two `z-index` va
 
 (values are computed in ascending order - highest values at the top)
 
-- `overlay`,
+- `global-overlay`,
+- `global-header`,
 - `tooltip`,
-- `header`,
-- `menu`,
+- `attached-panel-overlay`,
+- `panel-header`,
 - `menu-trigger`,
 
 More `z-index` values will be added as needed.
