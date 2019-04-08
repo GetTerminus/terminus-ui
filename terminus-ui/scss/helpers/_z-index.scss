@@ -7,12 +7,11 @@
  * @section Config
  */
 $z-layers: (
-  'overlay',
+  'global-overlay',
+  'global-header',
   'tooltip',
-  'header',
-  'panel-overlay',
+  'attached-panel-overlay',
   'panel-header',
-  'menu',
   'menu-trigger',
 );
 
@@ -25,7 +24,7 @@ $z-layers: (
  *  The name of the item that should have an associated z-index
  * @example
  *  z(tooltip);
- *  z(menu);
+ *  z(attached-panel-overlay);
  */
 @function z($name) {
   @if index($z-layers, $name) {
