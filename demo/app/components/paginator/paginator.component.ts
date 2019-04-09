@@ -1,7 +1,7 @@
 import {
+  AfterViewInit,
   Component,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
 import {
   TsPaginatorComponent,

@@ -7,8 +7,8 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import { TsValidatorsService } from '@terminus/ui/validators';
 import { TS_SPACING } from '@terminus/ui/spacing';
+import { TsValidatorsService } from '@terminus/ui/validators';
 
 
 @Component({

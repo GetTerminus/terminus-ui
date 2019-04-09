@@ -1,16 +1,15 @@
+import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4maps from '@amcharts/amcharts4/maps';
 import {
   AfterViewInit,
   Component,
-  Input,
 } from '@angular/core';
 import {
   TsChartComponent,
   TsChartVisualizationOptions,
 } from '@terminus/ui/chart';
-import * as am4charts from '@amcharts/amcharts4/charts';
-import * as am4maps from '@amcharts/amcharts4/maps';
-import * as am4core from '@amcharts/amcharts4/core';
-import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 
 const XY_DATA: {[key: string]: any}[] = [];
 let visits = 10;

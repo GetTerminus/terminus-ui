@@ -1,40 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { AutofocusComponent } from './autofocus/autofocus.component';
-import { BreakpointsComponent } from './breakpoints/breakpoints.component';
-import { ButtonComponent } from './button/button.component';
-import { CardComponent } from './card/card.component';
-import { ChartComponent } from './chart/chart.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
-import { CopyComponent } from './copy/copy.component';
-import { CSVEntryComponent } from './csv-entry/csv-entry.component';
-import { DateRangeComponent } from './date-range/date-range.component';
-import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-import { IconButtonComponent } from './icon-button/icon-button.component';
-import { IconComponent } from './icon/icon.component';
-import { InputComponent } from './input/input.component';
-import { LinkComponent } from './link/link.component';
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
-import { LogoComponent } from './logo/logo.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { MenuComponent } from './menu/menu.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { PaginatorComponent } from './paginator/paginator.component';
-import { PipesComponent } from './pipes/pipes.component';
-import { RadioComponent } from './radio/radio.component';
-import { ScrollbarsComponent } from './scrollbars/scrollbars.component';
-import { SearchComponent } from './search/search.component';
-import { SelectComponent } from './select/select.component';
-import { SpacingComponent } from './spacing/spacing.component';
-import { SpacingStylesComponent } from './spacing/spacing-styles.component';
-import { TableComponent } from './table/table.component';
-import { ToggleComponent } from './toggle/toggle.component';
-import { TooltipComponent } from './tooltip/tooltip.component';
-import { TypographyComponent } from './typography/typography.component';
-import { ValidationComponent } from './validation/validation.component';
 // INJECT: Import demo component to constants file
 // NB! The above line is required for our yeoman generator and should not be changed.
 
@@ -42,245 +7,245 @@ import { ValidationComponent } from './validation/validation.component';
 export const componentsList: Routes = [
   {
     path: 'autocomplete',
-    component: AutocompleteComponent,
+    loadChildren: `./components/autocomplete/autocomplete.module#AutocompleteModule`,
     data: {
       name: 'Autocomplete',
     },
   },
   {
     path: 'autofocus',
-    component: AutofocusComponent,
+    loadChildren: `./components/autofocus/autofocus.module#AutofocusModule`,
     data: {
       name: 'Autofocus',
     },
   },
   {
     path: 'breakpoints',
-    component: BreakpointsComponent,
+    loadChildren: `./components/breakpoints/breakpoints.module#BreakpointsModule`,
     data: {
       name: 'Breakpoints',
     },
   },
   {
     path: 'button',
-    component: ButtonComponent,
+    loadChildren: `./components/button/button.module#ButtonModule`,
     data: {
       name: 'Button',
     },
   },
   {
     path: 'card',
-    component: CardComponent,
+    loadChildren: `./components/card/card.module#CardModule`,
     data: {
       name: 'Card',
     },
   },
   {
     path: 'chart',
-    component: ChartComponent,
+    loadChildren: `./components/chart/chart.module#ChartModule`,
     data: {
       name: 'Chart',
     },
   },
   {
     path: 'checkbox',
-    component: CheckboxComponent,
+    loadChildren: `./components/checkbox/checkbox.module#CheckboxModule`,
     data: {
       name: 'Checkbox',
     },
   },
   {
-    path: 'copy',
-    component: CopyComponent,
-    data: {
-      name: 'Copy',
-    },
-  },
-  {
     path: 'confirmation',
-    component: ConfirmationComponent,
+    loadChildren: `./components/confirmation/confirmation.module#ConfirmationModule`,
     data: {
       name: 'Confirmation',
     },
   },
   {
+    path: 'copy',
+    loadChildren: `./components/copy/copy.module#CopyModule`,
+    data: {
+      name: 'Copy',
+    },
+  },
+  {
     path: 'csv-entry',
-    component: CSVEntryComponent,
+    loadChildren: `./components/csv-entry/csv-entry.module#CSVEntryModule`,
     data: {
       name: 'CSV Entry',
     },
   },
   {
     path: 'date-range',
-    component: DateRangeComponent,
+    loadChildren: `./components/date-range/date-range.module#DateRangeModule`,
     data: {
       name: 'Date Range',
     },
   },
   {
     path: 'expansion-panel',
-    component: ExpansionPanelComponent,
+    loadChildren: `./components/expansion-panel/expansion-panel.module#ExpansionPanelModule`,
     data: {
       name: 'Expansion Panel',
     },
   },
   {
     path: 'file-upload',
-    component: FileUploadComponent,
+    loadChildren: `./components/file-upload/file-upload.module#FileUploadModule`,
     data: {
       name: 'File Upload',
     },
   },
   {
     path: 'icon',
-    component: IconComponent,
+    loadChildren: `./components/icon/icon.module#IconModule`,
     data: {
       name: 'Icon',
     },
   },
   {
     path: 'icon-button',
-    component: IconButtonComponent,
+    loadChildren: `./components/icon-button/icon-button.module#IconButtonModule`,
     data: {
       name: 'Icon Button',
     },
   },
   {
     path: 'input',
-    component: InputComponent,
+    loadChildren: `./components/input/input.module#InputModule`,
     data: {
       name: 'Input',
     },
   },
   {
     path: 'link',
-    component: LinkComponent,
+    loadChildren: `./components/link/link.module#LinkModule`,
     data: {
       name: 'Link',
     },
   },
   {
     path: 'loading-overlay',
-    component: LoadingOverlayComponent,
+    loadChildren: `./components/loading-overlay/loading-overlay.module#LoadingOverlayModule`,
     data: {
       name: 'Loading Overlay',
     },
   },
   {
     path: 'login-form',
-    component: LoginFormComponent,
+    loadChildren: `./components/login-form/login-form.module#LoginFormModule`,
     data: {
       name: 'Login Form',
     },
   },
   {
     path: 'logo',
-    component: LogoComponent,
+    loadChildren: `./components/logo/logo.module#LogoModule`,
     data: {
       name: 'Logo',
     },
   },
   {
     path: 'menu',
-    component: MenuComponent,
+    loadChildren: `./components/menu/menu.module#MenuModule`,
     data: {
       name: 'Menu',
     },
   },
   {
     path: 'navigation',
-    component: NavigationComponent,
+    loadChildren: `./components/navigation/navigation.module#NavigationModule`,
     data: {
       name: 'Navigation',
     },
   },
   {
     path: 'paginator',
-    component: PaginatorComponent,
+    loadChildren: `./components/paginator/paginator.module#PaginatorModule`,
     data: {
       name: 'Paginator',
     },
   },
   {
     path: 'pipes',
-    component: PipesComponent,
+    loadChildren: `./components/pipes/pipes.module#PipesModule`,
     data: {
       name: 'Pipes',
     },
   },
   {
     path: 'radio',
-    component: RadioComponent,
+    loadChildren: `./components/radio/radio.module#RadioModule`,
     data: {
       name: 'Radio',
     },
   },
   {
     path: 'scrollbars',
-    component: ScrollbarsComponent,
+    loadChildren: `./components/scrollbars/scrollbars.module#ScrollbarsModule`,
     data: {
       name: 'Scrollbars',
     },
   },
   {
     path: 'search',
-    component: SearchComponent,
+    loadChildren: `./components/search/search.module#SearchModule`,
     data: {
       name: 'Search',
     },
   },
   {
     path: 'select',
-    component: SelectComponent,
+    loadChildren: `./components/select/select.module#SelectModule`,
     data: {
       name: 'Select',
     },
   },
   {
     path: 'spacing',
-    component: SpacingComponent,
+    loadChildren: `./components/spacing/spacing.module#SpacingModule`,
     data: {
       name: 'Spacing',
     },
   },
   {
     path: 'spacing-styles',
-    component: SpacingStylesComponent,
+    loadChildren: `./components/spacing/spacing-styles.module#SpacingStylesModule`,
     data: {
       name: 'Spacing SCSS',
     },
   },
   {
     path: 'table',
-    component: TableComponent,
+    loadChildren: `./components/table/table.module#TableModule`,
     data: {
       name: 'Table',
     },
   },
   {
     path: 'toggle',
-    component: ToggleComponent,
+    loadChildren: `./components/toggle/toggle.module#ToggleModule`,
     data: {
       name: 'Toggle',
     },
   },
   {
     path: 'tooltip',
-    component: TooltipComponent,
+    loadChildren: `./components/tooltip/tooltip.module#TooltipModule`,
     data: {
       name: 'Tooltip',
     },
   },
   {
     path: 'typography',
-    component: TypographyComponent,
+    loadChildren: `./components/typography/typography.module#TypographyModule`,
     data: {
       name: 'Typography',
     },
   },
   {
     path: 'validation',
-    component: ValidationComponent,
+    loadChildren: `./components/validation/validation.module#ValidationModule`,
     data: {
       name: 'Validation',
     },

@@ -1,5 +1,5 @@
 // tslint:disable: no-non-null-assertion
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { TsCardBorderOptions, TsCardComponent } from '@terminus/ui/card';
 
 

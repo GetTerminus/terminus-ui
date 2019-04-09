@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
@@ -5,21 +6,20 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
-  Validators,
   ValidationErrors,
+  Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import {
   Observable,
   of,
   Subscription,
 } from 'rxjs';
-import { map, delay, switchMap, startWith } from 'rxjs/operators';
-import {
-  TsAutocompleteComponent,
-  TsAutocompleteComparatorFn,
-} from '@terminus/ui/autocomplete';
+import { delay, map, startWith, switchMap } from 'rxjs/operators';
 
+import {
+  TsAutocompleteComparatorFn,
+  TsAutocompleteComponent,
+} from '@terminus/ui/autocomplete';
 
 interface GitHubUser {
   [key: string]: any;
