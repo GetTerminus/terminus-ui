@@ -1,21 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
   ViewChild,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {
+  TsPaginatorComponent,
+  TsPaginatorMenuItem,
+} from '@terminus/ui/paginator';
+import { TsSortDirective } from '@terminus/ui/sort';
+import { TsTableDataSource } from '@terminus/ui/table';
 import {
   merge,
   Observable,
   of,
 } from 'rxjs';
-import { startWith, map, switchMap, catchError } from 'rxjs/operators';
-import { TsTableDataSource } from '@terminus/ui/table';
-import { TsSortDirective } from '@terminus/ui/sort';
-import {
-  TsPaginatorComponent,
-  TsPaginatorMenuItem,
-} from '@terminus/ui/paginator';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 
 export interface TableItem {

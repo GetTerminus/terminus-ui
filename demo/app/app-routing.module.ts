@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { componentsList } from './components/components.constant';
 import { ComponentsComponent } from './components/components.component';
+import { componentsList } from './components/components.constant';
 
 
 const routes: Routes = [

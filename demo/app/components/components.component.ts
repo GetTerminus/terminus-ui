@@ -3,13 +3,13 @@ import {
   OnInit,
   VERSION as NG_VERSION,
 } from '@angular/core';
-import {
-  Router,
-  NavigationEnd,
-} from '@angular/router';
 import { VERSION as MAT_VERSION } from '@angular/material';
-import { VERSION as UI_VERSION } from '@terminus/ui';
+import {
+  NavigationEnd,
+  Router,
+} from '@angular/router';
 import { VERSION as NGX_VERSION } from '@terminus/ngx-tools';
+import { VERSION as UI_VERSION } from '@terminus/ui';
 import { componentsList } from './components.constant';
 
 import { orderArrayByProperty } from './../utilities/orderArrayByProperty';

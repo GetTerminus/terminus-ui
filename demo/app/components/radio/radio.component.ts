@@ -15,8 +15,8 @@ import {
 
 import {
   TsRadioChange,
-  TsRadioOption,
   TsRadioFormatFn,
+  TsRadioOption,
 } from '@terminus/ui/radio-group';
 
 

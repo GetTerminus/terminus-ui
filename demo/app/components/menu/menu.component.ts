@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
   FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
 } from '@angular/forms';
 import { TsButtonFormatTypes } from '@terminus/ui/button';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';

@@ -1,0 +1,18 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { ScrollbarsComponent } from './scrollbars.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ScrollbarsComponent,
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ScrollbarsRoutingModule { }
