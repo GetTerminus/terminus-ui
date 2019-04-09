@@ -1,3 +1,28 @@
+## 12.0.0 (2019-04-09)
+
+* Merge pull request #1447 from GetTerminus/v12 ([5695a3c](https://github.com/GetTerminus/terminus-ui/commit/5695a3c)), closes [#1447](https://github.com/GetTerminus/terminus-ui/issues/1447)
+* chore(coerceBoolean): * BREAKING CHANGE * deprecate improper uses of coerceBoolean ([1b38004](https://github.com/GetTerminus/terminus-ui/commit/1b38004)), closes [#1233](https://github.com/GetTerminus/terminus-ui/issues/1233)
+* chore(Button): *BREAKING CHANGE* clicked is now emitter name ([86ee1e9](https://github.com/GetTerminus/terminus-ui/commit/86ee1e9)), closes [#398](https://github.com/GetTerminus/terminus-ui/issues/398)
+* chore(Card): *BREAKING CHANGE* removed \`disabled\` input ([5b3f9e4](https://github.com/GetTerminus/terminus-ui/commit/5b3f9e4)), closes [#1267](https://github.com/GetTerminus/terminus-ui/issues/1267)
+* chore(SCSS): *BREAKING CHANGE* z-index name and order updated for clarity ([0b45bca](https://github.com/GetTerminus/terminus-ui/commit/0b45bca)), closes [#1377](https://github.com/GetTerminus/terminus-ui/issues/1377)
+* chore(Card): 100% test coverage ([f32aa4b](https://github.com/GetTerminus/terminus-ui/commit/f32aa4b)), closes [#1383](https://github.com/GetTerminus/terminus-ui/issues/1383)
+* chore(Accessibility): BREAKING CHANGE - base font weight increased to 400 ([7055c85](https://github.com/GetTerminus/terminus-ui/commit/7055c85))
+* chore(community): bug.md and feature.md are now available ([d17feca](https://github.com/GetTerminus/terminus-ui/commit/d17feca)), closes [#1403](https://github.com/GetTerminus/terminus-ui/issues/1403)
+* chore(DateRange): null portion of interface is deprecated ([8df86b3](https://github.com/GetTerminus/terminus-ui/commit/8df86b3)), closes [#1434](https://github.com/GetTerminus/terminus-ui/issues/1434)
+* chore: Update GitHub's built-in issue templates ([39f6689](https://github.com/GetTerminus/terminus-ui/commit/39f6689))
+* chore(template): update ISSUE_TEMPLATE.md and CONTRIBUTING.md ([bf37393](https://github.com/GetTerminus/terminus-ui/commit/bf37393))
+* fix(DateRange): *BREAKING CHANGE* change emitter is now called dateRangeChange ([b82befc](https://github.com/GetTerminus/terminus-ui/commit/b82befc)), closes [#1361](https://github.com/GetTerminus/terminus-ui/issues/1361)
+
+
+### BREAKING CHANGE
+
+* boolean values will have to be entered correctly accoring to angular in the
+html([booleanvar]="true")
+* Card will have to use isDisabled instead of disabled
+* change header, menu, panel-overlay, and overlay
+* ts-date-range instances will have to update \`change\` to \`dateRangeChange\`
+* update emitter name to \`clicked\`
+
 ## <small>11.9.8 (2019-03-28)</small>
 
 * fix(Button): switch disabled to Material input rather than attr ([8eab4de](https://github.com/GetTerminus/terminus-ui/commit/8eab4de))
