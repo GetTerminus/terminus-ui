@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  isDevMode,
   OnDestroy,
   OnInit,
   Output,
@@ -14,33 +13,24 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
-import {
-  isBoolean,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { BehaviorSubject } from 'rxjs';
 
 
 /**
  * Define the structure of the date range object used by {@link TsDateRangeComponent}
- *
- * TODO: In the process of deprecating the `null` portion of this interface. It should be using
- * `undefined` instead.
- *
- * Deprecation target: 10.0.0
  */
 export interface TsDateRange {
   /**
    * The start date of the range
    */
-  start: Date | undefined | null;
+  start: Date | undefined;
 
   /**
    * The end date of the range
    */
-  end: Date | undefined | null;
+  end: Date | undefined;
 }
 
 
@@ -62,7 +52,7 @@ export interface TsDateRange {
  *              startMaxDate="{{ new Date(2017, 4, 30) }}"
  *              startMinDate="{{ new Date(2017, 4, 1) }}"
  *              theme="primary"
- *              (change)="myMethod($event)"
+ *              (dateRangeChange)="myMethod($event)"
  *              (endSelected)="myMethod($event)"
  *              (startSelected)="myMethod($event)"
  * ></ts-date-range>
@@ -175,18 +165,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    * Define if the range should be disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsDateRangeComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define the starting view for both datepickers
@@ -216,7 +195,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    * Event emitted anytime the range is changed
    */
   @Output()
-  public change: EventEmitter<TsDateRange> = new EventEmitter();
+  public dateRangeChange: EventEmitter<TsDateRange> = new EventEmitter();
 
   /**
    * Output the end date when selected
@@ -342,7 +321,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       }
 
       this.startSelected.emit(date);
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     } else {
       // If no startDate was selected, reset to the original endMinDate
       this.endMinDate$.next(this.endMinDate);
@@ -367,7 +346,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       }
 
       this.endSelected.emit(date);
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     } else {
       // If no endDate was selected, reset to the original startMaxDate
       this.startMaxDate$.next(this.startMaxDate);
@@ -393,7 +372,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     }
   }
 
@@ -416,7 +395,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       ctrl.setValue(value);
       ctrl.markAsTouched();
       ctrl.updateValueAndValidity();
-      this.change.emit(this.dateRange);
+      this.dateRangeChange.emit(this.dateRange);
     }
   }
 

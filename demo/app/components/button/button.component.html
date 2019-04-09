@@ -36,7 +36,7 @@
   <div [style.textAlign]="layout">
     <ts-button
       [theme]="myTheme"
-      (clickEvent)="run('progress2')"
+      (clicked)="run('progress2')"
       [isDisabled]="disabled"
       [showProgress]="progress2"
       [iconName]="icon"
@@ -102,7 +102,7 @@
     format="hollow"
     [isDisabled]="true"
     [showProgress]="progress2"
-    (clickEvent)="run('progress2')"
+    (clicked)="run('progress2')"
     tsVerticalSpacing
   >I'm disabled AND empty inside :(</ts-button>
 </ts-card>

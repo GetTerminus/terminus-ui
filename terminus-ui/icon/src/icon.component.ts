@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 import { CSV_ICON } from './custom-icons/csv';
@@ -77,13 +76,7 @@ export class TsIconComponent {
    * NOTE: This will affect layout and style.
    */
   @Input()
-  public set background(value: boolean) {
-    this._background = coerceBooleanProperty(value);
-  }
-  public get background(): boolean {
-    return this._background;
-  }
-  private _background = false;
+  public background = false;
 
   /**
    * Define if the icon should be aligned inline with text

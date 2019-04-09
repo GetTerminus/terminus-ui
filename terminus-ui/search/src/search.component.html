@@ -33,7 +33,7 @@
     [showProgress]="isSubmitting"
     [buttonType]="buttonType"
     [actionName]="buttonAction"
-    (clickEvent)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"
+    (clicked)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"
   >Search</ts-button>
 
 </form>

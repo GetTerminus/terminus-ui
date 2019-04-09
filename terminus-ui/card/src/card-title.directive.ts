@@ -33,6 +33,7 @@ export class TsCardTitleDirective {
       this.tsCardTitle = this.tsCardTitle + ' c-card__title-accent-border';
     }
   }
+
   /**
    * Define the component theme
    */

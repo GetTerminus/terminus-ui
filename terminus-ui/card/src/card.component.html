@@ -4,8 +4,8 @@
     'c-card--interaction': supportsInteraction,
     'c-card--centered': centeredContent,
     'c-card--aspect': aspectRatioPadding,
-    'c-card--disabled': disabled,
-    'c-card--right-spacing': utilityMenuTemplate || disabled,
+    'c-card--disabled': isDisabled,
+    'c-card--right-spacing': utilityMenuTemplate || isDisabled,
     'c-card--flat': flat
   }"
   [style.paddingTop]="aspectRatioPadding"
@@ -14,7 +14,7 @@
   <div
     class="c-card__inner"
     mat-ripple
-    [matRippleDisabled]="!supportsInteraction || disabled"
+    [matRippleDisabled]="!supportsInteraction || isDisabled"
   >
     <ng-content></ng-content>
   </div>
@@ -25,7 +25,7 @@
   ></ng-container>
 
   <ts-icon
-    *ngIf="disabled && !utilityMenuTemplate"
+    *ngIf="isDisabled && !utilityMenuTemplate"
     class="c-card__lock qa-card-lock"
   >lock_outline</ts-icon>
 </div>

@@ -22,14 +22,12 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import {
-  isBoolean,
   isNumber,
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
-  coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { ENTER } from '@terminus/ngx-tools/keycodes';
@@ -266,18 +264,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * TODO: This should be removed once UX/Product decide if they want the button.
    */
   @Input()
-  public set hideButton(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsFileUploadComponent: "hideButton" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._hideButton = coerceBooleanProperty(value);
-  }
-  public get hideButton(): boolean {
-    return this._hideButton;
-  }
-  private _hideButton = false;
+  public hideButton = false;
 
   /**
    * Define an ID for the component
@@ -333,18 +320,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * Define if multiple files may be uploaded
    */
   @Input()
-  public set multiple(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsFileUploadComponent: "multiple" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._multiple = coerceBooleanProperty(value);
-  }
-  public get multiple(): boolean {
-    return this._multiple;
-  }
-  private _multiple: boolean = false;
+  public multiple = false;
 
   /**
    * Define the upload progress

@@ -21,8 +21,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { ENTER, SPACE } from '@terminus/ngx-tools/keycodes';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
@@ -119,7 +117,7 @@ let nextUniqueId = 0;
     '[class.ts-select-option--template]': 'optionTemplate',
     '[attr.tabindex]': 'tabIndex',
     '[attr.aria-selected]': 'selected.toString()',
-    '[attr.aria-disabled]': 'isDisabled.toString()',
+    '[attr.aria-disabled]': '!!isDisabled',
     '[attr.title]': 'title',
     '[id]': 'id',
     '(click)': 'selectViaInteraction()',
@@ -157,13 +155,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   /**
    * Define the active state
    */
-  public set active(value: boolean) {
-    this._active = coerceBooleanProperty(value);
-  }
-  public get active(): boolean {
-    return this._active;
-  }
-  private _active = false;
+  public active = false;
 
   /**
    * Whether the wrapping component is in multiple selection mode
@@ -182,13 +174,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   /**
    * Whether or not the option is currently selected
    */
-  public set selected(value: boolean) {
-    this._selected = coerceBooleanProperty(value);
-  }
-  public get selected(): boolean {
-    return this._selected;
-  }
-  private _selected = false;
+  public selected = false;
 
   /**
    * Returns the correct tabindex for the option depending on the disabled state
@@ -252,12 +238,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    */
   @Input()
   public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectOptionComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
+    this._isDisabled = value;
   }
   public get isDisabled(): boolean {
     return (this.group && this.group.isDisabled) || this._isDisabled;

@@ -13,8 +13,8 @@ import { TsIconButtonModule } from './icon-button.module';
   <ts-icon-button
     actionName="Menu"
     buttonType="button"
-    isDisabled="false"
-    (clickEvent)="clickEvent($event)"
+    [isDisabled]="false"
+    (clicked)="clicked($event)"
   >delete_forever</ts-icon-button>
   `,
 })

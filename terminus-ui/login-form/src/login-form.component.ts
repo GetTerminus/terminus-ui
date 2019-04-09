@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  isDevMode,
   OnChanges,
   Output,
   QueryList,
@@ -16,8 +15,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
 import { TsInputComponent } from '@terminus/ui/input';
 import { TsValidatorsService } from '@terminus/ui/validators';
@@ -145,35 +142,13 @@ export class TsLoginFormComponent implements OnChanges {
    * Define if the form button is showing progress
    */
   @Input()
-  public set inProgress(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsLoginFormComponent: "inProgress" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._inProgress = coerceBooleanProperty(value);
-  }
-  public get inProgress(): boolean {
-    return this._inProgress;
-  }
-  private _inProgress = false;
+  public inProgress = false;
 
   /**
    * Define if the user has successfully logged in and is being redirected
    */
   @Input()
-  public set isRedirecting(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsLoginFormComponent: "isRedirecting" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isRedirecting = coerceBooleanProperty(value);
-  }
-  public get isRedirecting(): boolean {
-    return this._isRedirecting;
-  }
-  private _isRedirecting = false;
+  public isRedirecting = false;
 
   /**
    * Define the login call to action
@@ -185,24 +160,13 @@ export class TsLoginFormComponent implements OnChanges {
    * Allow a consumer to reset the form via an input
    */
   @Input()
-  public set triggerFormReset(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsLoginFormComponent: "triggerFormReset" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._triggerFormReset = coerceBooleanProperty(value);
-  }
-  public get triggerFormReset(): boolean {
-    return this._triggerFormReset;
-  }
-  private _triggerFormReset = false;
+  public triggerFormReset = false;
 
   /**
    * Emit an event on form submission
    */
   @Output()
-  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter;
+  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
 
 
   /**

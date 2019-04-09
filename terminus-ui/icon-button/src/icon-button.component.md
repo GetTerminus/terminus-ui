@@ -13,7 +13,7 @@
 Pass a valid [Material icon][material-icons] name as the content of the button:
 
 ```html
-<ts-icon-button (click)="myMethod()">delete_forever</ts-icon-button>
+<ts-icon-button (clicked)="myMethod()">delete_forever</ts-icon-button>
 ```
 
 
@@ -45,7 +45,7 @@ For accessibility purposes we should set the `actionName` and `buttonType`.
 <ts-icon-button
   actionName="Menu"
   buttonType="button"
-  (click)="myMethod()"
+  (clicked)="myMethod()"
 >bookmark</ts-icon-button>
 ```
 

@@ -25,7 +25,7 @@ import {
  *              buttonType="button"
  *              [isDisabled]="false"
  *              tabIndex="2"
- *              (clickEvent)="myMethod($event)"
+ *              (clicked)="myMethod($event)"
  * >delete_forever</ts-icon-button>
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/icon-button</example-url>
@@ -70,7 +70,7 @@ export class TsIconButtonComponent {
    * Pass the click event through to the parent
    */
   @Output()
-  public clickEvent: EventEmitter<MouseEvent> = new EventEmitter;
+  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
 
   /**

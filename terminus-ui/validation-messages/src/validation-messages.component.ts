@@ -2,16 +2,11 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  isDevMode,
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  isBoolean,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 
 import { TsValidationMessagesService } from './validation-messages.service';
 
@@ -112,35 +107,13 @@ export class TsValidationMessagesComponent implements OnDestroy {
    * Define if validation should occur on blur or immediately
    */
   @Input()
-  public set validateOnChange(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsValidationMessagesComponent: "validateOnChange" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._validateOnChange = coerceBooleanProperty(value);
-  }
-  public get validateOnChange(): boolean {
-    return this._validateOnChange;
-  }
-  private _validateOnChange = false;
+  public validateOnChange = false;
 
   /**
    * Define if the validation should be immediate
    */
   @Input()
-  public set validateImmediately(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsValidationMessagesComponent: "validateImmediately" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._validateImmediately = coerceBooleanProperty(value);
-  }
-  public get validateImmediately(): boolean {
-    return this._validateImmediately;
-  }
-  private _validateImmediately = false;
+  public validateImmediately = false;
 
 
   constructor(

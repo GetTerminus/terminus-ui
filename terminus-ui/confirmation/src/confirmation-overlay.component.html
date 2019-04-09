@@ -11,14 +11,14 @@
       class="qa-confirmation-cancel"
       theme="warn"
       format="hollow"
-      (clickEvent)="confirm.next(false)"
+      (clicked)="confirm.next(false)"
     >
       {{ cancelButtonTxt }}
     </ts-button>
 
     <ts-button
       class="qa-confirmation-confirm"
-      (clickEvent)="confirm.next(true)"
+      (clicked)="confirm.next(true)"
     >
       {{ confirmationButtonTxt }}
     </ts-button>

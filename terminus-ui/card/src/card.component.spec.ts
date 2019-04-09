@@ -11,8 +11,7 @@ import { TsCardModule } from './card.module';
 @Component({
   template: `
   <ts-card
-    [isDisabled]="disabled"
-    [disabled]="disabled"
+    [isDisabled]="isDisabled"
     [flat]="flat"
     [supportsInteraction]="supportsInteraction"
     [theme]="theme"
@@ -24,7 +23,7 @@ import { TsCardModule } from './card.module';
 })
 class TestHostComponent {
   border: TsCardBorderOptions | undefined;
-  disabled!: boolean;
+  isDisabled!: boolean;
   flat!: boolean;
   supportsInteraction!: boolean;
   theme: TsStyleThemeTypes | undefined;
@@ -51,19 +50,16 @@ describe(`TsCardComponent`, function() {
 
   describe(`isDisabled`, function() {
     test(`should not disable a card`, () => {
-      expect(cardComponent.disabled).toEqual(false);
-      component.disabled = false;
+      component.isDisabled = false;
       fixture.detectChanges();
       expect(cardComponent.isDisabled).toEqual(false);
-      expect(cardComponent.disabled).toEqual(false);
       expect(card.classList).not.toContain('c-card--disabled');
     });
 
     test(`should disable a card`, () => {
-      component.disabled = true;
+      component.isDisabled = true;
       fixture.detectChanges();
       expect(cardComponent.isDisabled).toEqual(true);
-      expect(cardComponent.disabled).toEqual(true);
       expect(card.classList).toContain('c-card--disabled');
     });
   });

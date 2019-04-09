@@ -17,7 +17,7 @@
 
 <!-- Define a template for the dropdown panel and pass it to `[menuItemsTemplate]` above -->
 <ng-template #myTemplate>
-  <ts-button (click)="customItemSelected('yup')">
+  <ts-button (clicked)="customItemSelected('yup')">
     Roger, Roger.
   </ts-button>
 

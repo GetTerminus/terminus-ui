@@ -32,7 +32,6 @@ import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 import { MatChipList } from '@angular/material/chips';
 import {
   hasRequiredControl,
-  isBoolean,
   isFunction,
   isString,
   TsDocumentService,
@@ -40,7 +39,6 @@ import {
 } from '@terminus/ngx-tools';
 import {
   coerceArray,
-  coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import {
@@ -600,52 +598,19 @@ export class TsSelectComponent implements
    * Define if multiple selections are allowed
    */
   @Input()
-  public set allowMultiple(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "allowMultiple" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._allowMultiple = coerceBooleanProperty(value);
-  }
-  public get allowMultiple(): boolean {
-    return this._allowMultiple;
-  }
-  private _allowMultiple = false;
+  public allowMultiple = false;
 
   /**
    * Define if the select should be in autocomplete mode
    */
   @Input()
-  public set autocomplete(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "autocomplete" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._autocomplete = coerceBooleanProperty(value);
-  }
-  public get autocomplete(): boolean {
-    return this._autocomplete;
-  }
-  private _autocomplete = false;
+  public autocomplete = false;
 
   /**
    * Define if the autocomplete should allow duplicate selections
    */
   @Input()
-  public set autocompleteAllowDuplicateSelections(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "autocompleteAllowDuplicateSelections" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._autocompleteAllowDuplicateSelections = coerceBooleanProperty(value);
-  }
-  public get autocompleteAllowDuplicateSelections(): boolean {
-    return this._autocompleteAllowDuplicateSelections;
-  }
-  private _autocompleteAllowDuplicateSelections = false;
+  public autocompleteAllowDuplicateSelections = false;
 
   /**
    * Define if the autocomplete panel should reopen after a selection is made
@@ -653,18 +618,7 @@ export class TsSelectComponent implements
    * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.
    */
   @Input()
-  public set autocompleteReopenAfterSelection(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "autocompleteReopenAfterSelection" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._autocompleteReopenAfterSelection = coerceBooleanProperty(value);
-  }
-  public get autocompleteReopenAfterSelection(): boolean {
-    return this._autocompleteReopenAfterSelection;
-  }
-  private _autocompleteReopenAfterSelection = false;
+  public autocompleteReopenAfterSelection = false;
 
   /**
    * Define a function to retrieve the UI value for an option
@@ -744,18 +698,7 @@ export class TsSelectComponent implements
    * Define if the required marker should be hidden
    */
   @Input()
-  public set hideRequiredMarker(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "hideRequiredMarker" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._hideRequiredMarker = coerceBooleanProperty(value);
-  }
-  public get hideRequiredMarker(): boolean {
-    return this._hideRequiredMarker;
-  }
-  private _hideRequiredMarker = false;
+  public hideRequiredMarker = false;
 
   /**
    * Define a hint for the input
@@ -785,47 +728,20 @@ export class TsSelectComponent implements
    * Define if the control should be disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define if the select is filterable
    */
   @Input()
-  public set isFilterable(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "isFilterable" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isFilterable = coerceBooleanProperty(value);
-  }
-  public get isFilterable(): boolean {
-    return this._isFilterable;
-  }
-  private _isFilterable = false;
+  public isFilterable = false;
 
   /**
    * Define if the control is required
    */
   @Input()
   public set isRequired(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "isRequired" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isRequired = coerceBooleanProperty(value);
+    this._isRequired = value;
   }
   public get isRequired(): boolean {
     const ctrl = this.ngControl && this.ngControl.control;
@@ -875,18 +791,7 @@ export class TsSelectComponent implements
    * Define if the input should currently be showing a progress spinner
    */
   @Input()
-  public set showProgress(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSelectComponent: "showProgress" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._showProgress = coerceBooleanProperty(value);
-  }
-  public get showProgress(): boolean {
-    return this._showProgress;
-  }
-  private _showProgress = false;
+  public showProgress = false;
 
   /**
    * Function used to sort the values in a select in multiple mode
@@ -920,18 +825,7 @@ export class TsSelectComponent implements
    * Define if validation messages should be shown immediately or on blur
    */
   @Input()
-  public set validateOnChange(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && isDevMode()) {
-      console.warn(`TsSelectComponent: "validateOnChange" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._validateOnChange = coerceBooleanProperty(value);
-  }
-  public get validateOnChange(): boolean {
-    return this._validateOnChange;
-  }
-  private _validateOnChange = false;
+  public validateOnChange = false;
 
   /**
    * Value of the select control

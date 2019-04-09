@@ -7,6 +7,7 @@
 
 - [Basic usage](#basic-usage)
 - [Theming](#theming)
+- [Background](#background)
 - [Style with CSS](#style-with-css)
 - [Usage inline with text](#usage-inline-with-text)
 - [Custom Icons](#custom-icons)
@@ -42,6 +43,15 @@ Icons support the same themes as the rest of the components:
 ```
 
 Search for `TsStyleThemeTypes` to see all allowed types.
+
+
+## Background
+
+Icons can be shown white with a colored background (color is determined by theme) by setting `background` to true.
+
+```html
+<ts-icon [background]="true"></ts-icon>
+```
 
 
 ## Style with CSS
@@ -90,4 +100,4 @@ Any icon with a -color suffix will not accept themes. Currently they accept a ba
 | `engage`      | A right-pointing arrow stacked on a left-pointing arrow | Navigation for Engage product     |
 | `lightbulb`   | A lightbulb                                             | Pro-tip box                       |
 | `logo`        | Terminus logo, default is black, but accepts theme      | Logo, negative logo               |
-| `logo-color`  | Terminus logo in correct colors, does not accept theme  | Logo like it is supposed to look  |
+| `logo_color`  | Terminus logo in correct colors, does not accept theme  | Logo like it is supposed to look  |

@@ -4,13 +4,10 @@ import {
   EventEmitter,
   forwardRef,
   Input,
-  isDevMode,
   Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { isBoolean } from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import {
   Geometry,
   PerfectScrollbarDirective,
@@ -112,18 +109,7 @@ export class TsScrollbarsComponent {
    * Define if the scrollbars are disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsScrollbarsComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Access underlying scrollbar directive

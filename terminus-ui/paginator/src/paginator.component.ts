@@ -6,18 +6,13 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  isDevMode,
   OnChanges,
   Output,
   SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { isBoolean } from '@terminus/ngx-tools';
-import {
-  coerceBooleanProperty,
-  coerceNumberProperty,
-} from '@terminus/ngx-tools/coercion';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsSelectChange } from '@terminus/ui/select';
 import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
 
@@ -186,18 +181,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define if the paging is 0-based or 1-based
    */
   @Input()
-  public set isZeroBased(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsPaginatorComponent: "isZeroBased" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isZeroBased = coerceBooleanProperty(value);
-  }
-  public get isZeroBased(): boolean {
-    return this._isZeroBased;
-  }
-  private _isZeroBased = true;
+  public isZeroBased = true;
 
   /**
    * Define the tooltip message for the first page tooltip
@@ -293,18 +277,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define if the records per page select menu should be visible
    */
   @Input()
-  public set showRecordsPerPageSelector(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsPaginatorComponent: "showRecordsPerPageSelector" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._showRecordsPerPageSelector = coerceBooleanProperty(value);
-  }
-  public get showRecordsPerPageSelector(): boolean {
-    return this._showRecordsPerPageSelector;
-  }
-  private _showRecordsPerPageSelector = true;
+  public showRecordsPerPageSelector = true;
 
   /**
    * Emit a page selected event

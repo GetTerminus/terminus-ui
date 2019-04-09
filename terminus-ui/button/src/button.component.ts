@@ -13,11 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  isBoolean,
-  TsWindowService,
-} from '@terminus/ngx-tools';
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsWindowService } from '@terminus/ngx-tools';
 import {
   TsStyleThemeTypes,
   tsStyleThemeTypesArray,
@@ -75,7 +71,7 @@ export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
  *              [collapsed]="false"
  *              collapseDelay="500"
  *              tabIndex="2"
- *              (clickEvent)="myMethod($event)"
+ *              (clicked)="myMethod($event)"
  * >Click Me!</ts-button>
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/button</example-url>
@@ -141,13 +137,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set collapsed(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsButtonComponent: "collapsed" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-
-    this.isCollapsed = coerceBooleanProperty(value);
+    this.isCollapsed = value;
 
     // If the value is `false` and a collapse delay is set
     if (!value && this.collapseDelay) {
@@ -205,35 +195,13 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Define if the button is disabled
    */
   @Input()
-  public set isDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsButtonComponent: "isDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._isDisabled = coerceBooleanProperty(value);
-  }
-  public get isDisabled(): boolean {
-    return this._isDisabled;
-  }
-  private _isDisabled = false;
+  public isDisabled = false;
 
   /**
    * Define if the progress indicator should show
    */
   @Input()
-  public set showProgress(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsButtonComponent: "showProgress" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._showProgress = coerceBooleanProperty(value);
-  }
-  public get showProgress(): boolean {
-    return this._showProgress;
-  }
-  private _showProgress = false;
+  public showProgress = false;
 
   /**
    * Define the tabindex for the button
@@ -269,7 +237,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Pass the click event through to the parent
    */
   @Output()
-  public clickEvent: EventEmitter<MouseEvent> = new EventEmitter;
+  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
   /**
    * Provide access to the inner button element
@@ -325,16 +293,16 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Do something when clicked
+   * Handle button clicks
    *
    * @param event - The MouseEvent
    */
-  public clicked(event: MouseEvent): void {
+  public clickedButton(event: MouseEvent): void {
     // Allow the click to propagate
     if (!this.interceptClick) {
-      this.clickEvent.emit(event);
+      this.clicked.emit(event);
     } else {
-      // Save the original event but don't emit the clickEvent
+      // Save the original event but don't emit the originalClickEvent
       this.originalClickEvent = event;
     }
   }
