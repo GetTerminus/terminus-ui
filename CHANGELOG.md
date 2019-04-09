@@ -1,6 +1,5 @@
 ## 12.0.0 (2019-04-09)
 
-* Merge pull request #1447 from GetTerminus/v12 ([5695a3c](https://github.com/GetTerminus/terminus-ui/commit/5695a3c)), closes [#1447](https://github.com/GetTerminus/terminus-ui/issues/1447)
 * chore(coerceBoolean): * BREAKING CHANGE * deprecate improper uses of coerceBoolean ([1b38004](https://github.com/GetTerminus/terminus-ui/commit/1b38004)), closes [#1233](https://github.com/GetTerminus/terminus-ui/issues/1233)
 * chore(Button): *BREAKING CHANGE* clicked is now emitter name ([86ee1e9](https://github.com/GetTerminus/terminus-ui/commit/86ee1e9)), closes [#398](https://github.com/GetTerminus/terminus-ui/issues/398)
 * chore(Card): *BREAKING CHANGE* removed \`disabled\` input ([5b3f9e4](https://github.com/GetTerminus/terminus-ui/commit/5b3f9e4)), closes [#1267](https://github.com/GetTerminus/terminus-ui/issues/1267)
@@ -14,14 +13,114 @@
 * fix(DateRange): *BREAKING CHANGE* change emitter is now called dateRangeChange ([b82befc](https://github.com/GetTerminus/terminus-ui/commit/b82befc)), closes [#1361](https://github.com/GetTerminus/terminus-ui/issues/1361)
 
 
-### BREAKING CHANGE
+### BREAKING CHANGES
 
-* boolean values will have to be entered correctly accoring to angular in the
-html([booleanvar]="true")
-* Card will have to use isDisabled instead of disabled
-* change header, menu, panel-overlay, and overlay
-* ts-date-range instances will have to update \`change\` to \`dateRangeChange\`
-* update emitter name to \`clicked\`
+1. All: No components coercing boolean `@Input`s
+1. Card: `disabled` `@Input` no longer exists
+1. DateRange: `change` emitter renamed to `dateRangeChange`
+1. DateRange: `TsDateRange` interface no longer supports `null`
+1. Typography: Base font weight changed to `400`
+1. Button: `clickEvent` event emitter is now named `clicked`
+1. Z-index: Naming and order updates
+
+
+### Migration Notes
+
+#### Boolean coercion
+
+Boolean values can no longer be passed in as strings:
+
+```html
+<!-- before -->
+<my-component my-input="true"></my-component>
+
+<!-- after -->
+<my-component [my-input]="true"></my-component>
+```
+
+> ⚠️ NOTE: This effects _all_ components
+
+#### Card
+
+Updated input name to align with existing library conventions:
+
+```html
+<!-- before -->
+<ts-card [disabled]="true"></ts-card>
+
+<!-- after -->
+<ts-card [isDisabled]="true"></ts-card>
+```
+
+#### DateRange
+
+The `change` event emitter is duplicated by Angular so it has been renamed:
+
+```html
+<!-- before -->
+<ts-date-range (change)="myDateRange($event)"></ts-date-range>
+
+<!-- after -->
+<ts-date-range (dateRangeChange)="myDateRange($event)"></ts-date-range>
+```
+
+The `TsDateRange` interface no longer supports `null`:
+
+```typescript
+// before
+export interface TsDateRange {
+  start: Date | undefined | null;
+  end: Date | undefined | null;
+}
+
+// after
+export interface TsDateRange {
+  start: Date | undefined;
+  end: Date | undefined;
+}
+```
+
+#### Base font weight
+
+To solve a few readability issues, our base font weight has been increased to match the Material spec:
+
+```html
+<!-- before -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet">
+
+<!-- after -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+```
+
+#### Button & Icon Button
+
+Updated event emitter name to align with existing library conventions:
+
+```html
+<!-- before -->
+<ts-button (clickEvent)="myFunction($event)"></ts-button>
+<ts-icon-button (clickEvent)="myFunction($event)"></ts-icon-button>
+
+<!-- after -->
+<ts-button (clicked)="myFunction($event)"></ts-button>
+<ts-icon-button (clicked)="myFunction($event)"></ts-icon-button>
+```
+
+#### Z-Index
+
+Naming needed clarification and the order needed to be updated:
+
+Update the following z-index values:
+
+| before             | after                      |
+| -------------- | ----------------------- |
+| header            | global-header                 |
+| overlay            | global-overlay                |
+| panel-overlay | attached-panel-overlay |
+| menu               | attached-panel-overlay |
+
+> NOTE: `tooltip` will now be at a lower z-index than `global-header`
+
 
 ## <small>11.9.8 (2019-03-28)</small>
 
