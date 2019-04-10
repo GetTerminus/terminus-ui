@@ -118,13 +118,15 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
 // Position the filter input inside the panel
 .cdk-overlay-pane {
   .ts-select-panel__filter-input {
+    $padding: spacing(small, 1);
     background-color: color(pure);
     border-bottom: 1px solid color(utility, light);
     left: 0;
-    padding: spacing(small, 1);
+    padding: $padding;
     position: absolute;
-    right: -#{spacing(large, 1)};
+    right: -#{$padding * 3};
     top: 0;
+    width: calc(100% - #{$padding * 2});
     z-index: z(panel-header);
 
     .ts-form-field .ts-form-field__wrapper {

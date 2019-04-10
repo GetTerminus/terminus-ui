@@ -127,13 +127,6 @@
   (attach)="onAttached()"
   (detach)="close()"
 >
-  <div class="ts-select-panel__filter-input" *ngIf="isFilterable">
-    <ts-input
-      label="Begin typing to filter..."
-      [ngModel]="searchQuery"
-      (ngModelChange)="queryChange.emit($event)"
-    ></ts-input>
-  </div>
 
   <div
     #panel
@@ -146,6 +139,14 @@
     [style.font-size.px]="triggerFontSize"
     (keydown)="handleKeydown($event)"
   >
+    <div class="ts-select-panel__filter-input" *ngIf="isFilterable">
+      <ts-input
+        label="Begin typing to filter..."
+        [ngModel]="searchQuery"
+        (ngModelChange)="queryChange.emit($event)"
+      ></ts-input>
+    </div>
+
     <div
       class="ts-select-panel__toggle-all qa-select-toggle-all"
       (click)="toggleAllOptions()"
