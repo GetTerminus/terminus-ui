@@ -1,7 +1,5 @@
 ## <small>12.0.1 (2019-04-10)</small>
 
-* Merge pull request #1452 from GetTerminus/1451-select-filter-bug ([51ae8d2](https://github.com/GetTerminus/terminus-ui/commit/51ae8d2)), closes [#1452](https://github.com/GetTerminus/terminus-ui/issues/1452)
-* Merge pull request #1449 from GetTerminus/update-v12-release-notes ([167e5d8](https://github.com/GetTerminus/terminus-ui/commit/167e5d8)), closes [#1449](https://github.com/GetTerminus/terminus-ui/issues/1449)
 * fix(Select): fix for missing filter input ([e0ef9e5](https://github.com/GetTerminus/terminus-ui/commit/e0ef9e5)), closes [#1451](https://github.com/GetTerminus/terminus-ui/issues/1451)
 * docs: update changelog with v12 migration notes ([aba0835](https://github.com/GetTerminus/terminus-ui/commit/aba0835))
 
