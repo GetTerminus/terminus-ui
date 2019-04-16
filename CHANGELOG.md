@@ -1,3 +1,8 @@
+## <small>12.1.1 (2019-04-16)</small>
+
+* fix(LoadingOverlay): fix for portal already loaded error ([003d795](https://github.com/GetTerminus/terminus-ui/commit/003d795)), closes [#1455](https://github.com/GetTerminus/terminus-ui/issues/1455)
+* chore(Docs): Fix missing tabs demo link ([b69b1e2](https://github.com/GetTerminus/terminus-ui/commit/b69b1e2))
+
 ## 12.1.0 (2019-04-16)
 
 * feat(Tabs): New tabs component ([637da4b](https://github.com/GetTerminus/terminus-ui/commit/637da4b))
