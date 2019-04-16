@@ -43,7 +43,8 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    */
   @Input()
   public set tsLoadingOverlay(value: boolean) {
-    const shouldSet = value;
+    const shouldSet = value && (this.bodyPortalHost && !this.bodyPortalHost.hasAttached());
+
     if (shouldSet) {
       this.bodyPortalHost.attach(this.loadingOverlayPortal);
     } else {
