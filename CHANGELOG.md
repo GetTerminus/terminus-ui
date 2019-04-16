@@ -1,3 +1,12 @@
+## 12.1.0 (2019-04-16)
+
+* feat(Tabs): New tabs component ([637da4b](https://github.com/GetTerminus/terminus-ui/commit/637da4b))
+* refactor(tsconfig): remove incorrect parameter ([6c8a3cf](https://github.com/GetTerminus/terminus-ui/commit/6c8a3cf))
+* refactor(tsconfig): remove unused legacy tsconfig ([b1cef1f](https://github.com/GetTerminus/terminus-ui/commit/b1cef1f))
+* chore(Demo): demo pages are all lazy loading ([02f73e5](https://github.com/GetTerminus/terminus-ui/commit/02f73e5))
+* Merge pull request #1453 from GetTerminus/benjamincharity-patch-1 ([b477b71](https://github.com/GetTerminus/terminus-ui/commit/b477b71)), closes [#1453](https://github.com/GetTerminus/terminus-ui/issues/1453)
+* Remove unneeded items ([b1c571f](https://github.com/GetTerminus/terminus-ui/commit/b1c571f))
+
 ## <small>12.0.1 (2019-04-10)</small>
 
 * fix(Select): fix for missing filter input ([e0ef9e5](https://github.com/GetTerminus/terminus-ui/commit/e0ef9e5)), closes [#1451](https://github.com/GetTerminus/terminus-ui/issues/1451)
