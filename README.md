@@ -361,6 +361,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-spacing-constant]: https://getterminus.github.io/ui-demos-master/components/spacing-constant
 [demo-spacing]:          https://getterminus.github.io/ui-demos-master/components/spacing
 [demo-table]:            https://getterminus.github.io/ui-demos-master/components/table
+[demo-tabs]:             https://getterminus.github.io/ui-demos-master/components/tabs
 [demo-toggle]:           https://getterminus.github.io/ui-demos-master/components/toggle
 [demo-tooltip]:          https://getterminus.github.io/ui-demos-master/components/tooltip
 [demo-validators]:       https://getterminus.github.io/ui-demos-master/components/validation
