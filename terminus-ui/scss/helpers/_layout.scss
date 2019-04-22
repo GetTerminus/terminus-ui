@@ -62,7 +62,7 @@
   $padding: unquote((( $y / $x ) * 100) + '%');
 
   @if $x == null or $y == null {
-    @warn 'Both the x and y ratios must be passed in.';
+    @error 'Both the x and y ratios must be passed in.';
   }
 
   @if $pseudo {
