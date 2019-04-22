@@ -27,7 +27,7 @@
     @if map-has-key($direction-map, $direction) {
       $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
     } @else {
-      @warn 'No opposite direction can be found for `#{$direction}`. Direction omitted.';
+      @error 'No opposite direction can be found for `#{$direction}`. Direction omitted.';
     }
   }
 
