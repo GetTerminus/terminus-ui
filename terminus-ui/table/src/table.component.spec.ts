@@ -8,12 +8,13 @@ import {
 } from '@angular/core';
 import {
   ComponentFixture,
-  TestBed,
 } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsWindowService } from '@terminus/ngx-tools';
-import { TsWindowServiceMock } from '@terminus/ngx-tools/testing';
+import {
+  createComponent as createComponentInner,
+  TsWindowServiceMock } from '@terminus/ngx-tools/testing';
 import {
   TsPaginatorComponent,
   TsPaginatorModule,
@@ -505,10 +506,16 @@ describe(`TsTableComponent`, function() {
  * HELPERS
  */
 
-// TODO: Move to ngx-tools (and all other instances of this utility)
 export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(component,
+    [
+      {
+        provide: TsWindowService,
+        useClass: TsWindowServiceMock,
+        ...providers,
+      },
+    ],
+    [
       NoopAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
@@ -517,15 +524,5 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
       TsSortModule,
       ...imports,
     ],
-    declarations: [component],
-    providers: [
-      {
-        provide: TsWindowService,
-        useClass: TsWindowServiceMock,
-      },
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+  );
 }

@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import {
   ComponentFixture,
-  TestBed,
 } from '@angular/core/testing';
 import {
   FormControl,
@@ -18,7 +17,11 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
-import { createFakeEvent, TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
+import {
+  createComponent as createComponentInner,
+  createFakeEvent,
+  TsDocumentServiceMock,
+} from '@terminus/ngx-tools/testing';
 import { TsInputComponent, TsInputModule } from '@terminus/ui/input';
 
 import { TsFormFieldComponent, TsFormFieldModule } from './form-field.module';
@@ -321,22 +324,15 @@ export class UpdateOutline {
 
 
 function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(component,
+    providers,
+    [
       FormsModule,
       ReactiveFormsModule,
       TsFormFieldModule,
       TsInputModule,
       NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+    ]);
 }
 
 class MyDocumentService extends TsDocumentServiceMock {

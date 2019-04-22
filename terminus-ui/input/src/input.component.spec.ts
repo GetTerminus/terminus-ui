@@ -19,6 +19,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
 import { A } from '@terminus/ngx-tools/keycodes';
 import {
+  createComponent as createComponentInner,
   createKeyboardEvent,
   TsDocumentServiceMock,
   typeInElement,
@@ -942,18 +943,11 @@ describe(`TsInputComponent`, function() {
  */
 
 
-function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      FormsModule,
-      ReactiveFormsModule,
-      TsFormFieldModule,
-      TsInputModule,
-      NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
+function createComponent<T>(component: Type<T>): ComponentFixture<T> {
+
+  return createComponentInner<T>(
+    component,
+    [
       {
         provide: TsDocumentService,
         useClass: MyDocumentService,
@@ -961,12 +955,14 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
       {
         provide: AutofillMonitor,
         useClass: AutofillMonitorMock,
-      },
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+      }],
+    [
+      FormsModule,
+      ReactiveFormsModule,
+      TsFormFieldModule,
+      TsInputModule,
+      NoopAnimationsModule,
+    ]);
 }
 
 

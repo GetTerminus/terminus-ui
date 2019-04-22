@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import {
   ComponentFixture,
-  TestBed,
 } from '@angular/core/testing';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 
 import { TsAmChartsService } from './amcharts.service';
 import { TsChartComponent, TsChartVisualizationOptions } from './chart.component';
@@ -157,17 +157,14 @@ const AM_CHARTS_PROVIDER: Provider[] = [{
  */
 
 function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHARTS_PROVIDER, imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(
+    component,
+    providers,
+    [
       TsChartModule,
       ...imports,
     ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-   return TestBed.createComponent<T>(component);
+  );
 }
 
 
