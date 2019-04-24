@@ -187,7 +187,11 @@ let nextUniqueId = 0;
  * - `qa-select-trigger`: The trigger that opens the select
  * - `qa-select-value-text`: The container for the select trigger text content
  * - `qa-select-arrow-wrapper`: The container for the select arrow
+<<<<<<< HEAD
  * - `qa-select-panel`: The panel for select options
+=======
+ * - `qa-select-panel`: The panel for select options when not in autocomplete mode
+>>>>>>> feat(select): remove autocomplete from select component
  * - `qa-select-toggle-all`: The checkbox to toggle all selections
  * - `qa-select-selected-count`: The current count of selected items
  *
