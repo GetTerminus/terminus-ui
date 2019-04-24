@@ -155,7 +155,7 @@ $material-elements: (
   $upper: nth($reference-shadows, length($reference-shadows));
 
   @if $elevation < 0 {
-    @warn 'Elevation is less than zero';
+    @error 'Elevation is less than zero';
   }
 
   @for $i from 1 to length($reference-shadows) {

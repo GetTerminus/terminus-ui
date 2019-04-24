@@ -7,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LEFT_ARROW } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent,
   dispatchFakeEvent,
@@ -255,8 +255,9 @@ describe(`TsTabCollectionComponent`, function() {
       const KEY_EVENT = document.createEvent('KeyboardEvent');
       KEY_EVENT.initEvent('keydown', true, false);
       Object.defineProperties(KEY_EVENT, {
-        keyCode: { get: () => LEFT_ARROW },
-        key: { get: () => 'ArrowLeft' },
+        code: { get: () => KEYS.LEFT_ARROW.code },
+        key: { get: () => KEYS.LEFT_ARROW.code },
+        keyCode: { get: () => KEYS.LEFT_ARROW.keyCode },
       });
       tabLabelContainer.dispatchEvent(KEY_EVENT);
       fixture.detectChanges();

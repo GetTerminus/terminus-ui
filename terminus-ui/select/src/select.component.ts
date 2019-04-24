@@ -41,17 +41,7 @@ import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
-import {
-  A,
-  DOWN_ARROW,
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  SPACE,
-  UP_ARROW,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
@@ -1165,10 +1155,10 @@ export class TsSelectComponent implements
    * @param event - The KeyboardEvent
    */
   private handleClosedKeydown(event: KeyboardEvent): void {
-    const keyCode = event.keyCode;
-    const arrowKeys = [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW];
-    const isArrowKey = arrowKeys.some((v) => v === keyCode);
-    const isOpenKey = keyCode === ENTER || keyCode === SPACE;
+    const keyCode = event.code;
+    const arrowKeys = [KEYS.DOWN_ARROW.code, KEYS.UP_ARROW.code, KEYS.LEFT_ARROW.code, KEYS.RIGHT_ARROW.code];
+    const isArrowKey = arrowKeys.indexOf(keyCode) >= 0;
+    const isOpenKey = keyCode === KEYS.ENTER.code || keyCode === KEYS.SPACE.code;
 
     // Open the select on ALT + arrow key to match the native <select>
     if (isOpenKey || ((this.allowMultiple || event.altKey) && isArrowKey)) {
@@ -1186,25 +1176,25 @@ export class TsSelectComponent implements
    * @param event - The KeyboardEvent
    */
   private handleOpenKeydown(event: KeyboardEvent): void {
-    const keyCode = event.keyCode;
-    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
+    const keyCode = event.code;
+    const isArrowKey = keyCode === KEYS.DOWN_ARROW.code || keyCode === KEYS.UP_ARROW.code;
     const manager = this.keyManager;
     const target: HTMLElement = event.target as HTMLElement;
     const isFilter = this.isFilterable && target.tagName.toLowerCase() === 'input';
 
-    if (keyCode === HOME || keyCode === END) {
+    if (keyCode === KEYS.HOME.code || keyCode === KEYS.END.code) {
       // Focus the first/last item with HOME/END respectively
       event.preventDefault();
-      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
+      keyCode === KEYS.HOME.code ? manager.setFirstItemActive() : manager.setLastItemActive();
     } else if (isArrowKey && event.altKey) {
       // Close the select on ALT+ARROW to match the native <select>
       event.preventDefault();
       this.close();
-    } else if ((keyCode === ENTER || (keyCode === SPACE && !isFilter)) && manager.activeItem) {
+    } else if ((keyCode === KEYS.ENTER.code || (keyCode === KEYS.SPACE.code && !isFilter)) && manager.activeItem) {
       // Select the active item with SPACE or ENTER
       event.preventDefault();
       manager.activeItem.selectViaInteraction();
-    } else if (this.allowMultiple && keyCode === A && event.ctrlKey) {
+    } else if (this.allowMultiple && keyCode === KEYS.A.code && event.ctrlKey) {
       // Select all with CTRL+A
       event.preventDefault();
       const hasDeselectedOptions = this.options.some((opt) => !opt.isDisabled && !opt.selected);
@@ -1219,7 +1209,7 @@ export class TsSelectComponent implements
       const shouldSelect = this.allowMultiple && isArrowKey && event.shiftKey;
 
       if (isArrowKey && event.shiftKey) {
-        if (keyCode === DOWN_ARROW) {
+        if (keyCode === KEYS.DOWN_ARROW.code) {
           manager.setNextItemActive();
         } else {
           manager.setPreviousItemActive();

@@ -28,13 +28,7 @@ import {
   TsDocumentService,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import {
-  DOWN_ARROW,
-  ENTER,
-  ESCAPE,
-  TAB,
-  UP_ARROW,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
 import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
 import {
@@ -434,24 +428,24 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    * @param event - The keyboard event
    */
   public handleKeydown(event: KeyboardEvent): void {
-    const keyCode = event.keyCode;
+    const keyCode = event.code;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE in line with other browsers. By default,
     // pressing escape on IE will cause it to revert the input value to the one that it had on focus, however it won't dispatch any events
     // which means that the model value will be out of sync with the view.
-    if (keyCode === ESCAPE) {
+    if (keyCode === KEYS.ESCAPE.code) {
       event.preventDefault();
     }
 
-    if (this.activeOption && keyCode === ENTER && this.panelOpen) {
+    if (this.activeOption && keyCode === KEYS.ENTER.code && this.panelOpen) {
       this.activeOption.selectViaInteraction();
       this.resetActiveItem();
       event.preventDefault();
     } else if (this.autocompletePanel) {
       const prevActiveItem = this.autocompletePanel.keyManager.activeItem;
-      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
+      const isArrowKey = keyCode === KEYS.UP_ARROW.code || keyCode === KEYS.DOWN_ARROW.code;
 
-      if (this.panelOpen || keyCode === TAB) {
+      if (this.panelOpen || keyCode === KEYS.TAB.code) {
         this.autocompletePanel.keyManager.onKeydown(event);
       } else if (isArrowKey && this.canOpen()) {
         this.openPanel();
@@ -549,7 +543,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
       this.overlayRef.keydownEvents().subscribe((event) => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
+        if (event.code === KEYS.ESCAPE.code || (event.code === KEYS.UP_ARROW.code && event.altKey)) {
           this.resetActiveItem();
           this.closeKeyEventStream.next();
         }

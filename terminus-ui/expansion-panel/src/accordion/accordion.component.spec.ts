@@ -1,13 +1,7 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  A,
-  END,
-  ENTER,
-  HOME,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createKeyboardEvent,
@@ -21,7 +15,7 @@ import {
   togglePanel,
 } from '@terminus/ui/expansion-panel/testing';
 
-import { TsExpansionPanelModule } from './../expansion-panel.module';
+import { TsExpansionPanelModule } from '../expansion-panel.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -123,18 +117,18 @@ describe(`TsAccordionComponent`, function() {
       expect(document.activeElement === trigger2).toEqual(false);
 
       // Non-special key to complete coverage
-      const keyEvent = createKeyboardEvent('keydown', A, trigger1);
+      const keyEvent = createKeyboardEvent('keydown', KEYS.A, trigger1);
       trigger1.dispatchEvent(keyEvent);
       fixture.detectChanges();
 
-      const homeEvent = createKeyboardEvent('keydown', HOME, trigger1);
+      const homeEvent = createKeyboardEvent('keydown', KEYS.HOME, trigger1);
       trigger1.dispatchEvent(homeEvent);
       fixture.detectChanges();
 
       expect(document.activeElement === trigger1).toEqual(true);
       expect(document.activeElement === trigger2).toEqual(false);
 
-      const endEvent = createKeyboardEvent('keydown', END, trigger1);
+      const endEvent = createKeyboardEvent('keydown', KEYS.END, trigger1);
       trigger1.dispatchEvent(endEvent);
       fixture.detectChanges();
 
@@ -159,14 +153,14 @@ describe(`TsAccordionComponent`, function() {
       const spaceEvent = document.createEvent('KeyboardEvent');
       spaceEvent.initEvent('keydown', true, false);
       Object.defineProperties(spaceEvent, {
-        keyCode: { get: () => SPACE },
-        key: { get: () => 'Space' },
+        code: { get: () => KEYS.SPACE.code },
+        key: { get: () => KEYS.SPACE.code },
       });
       const enterEvent = document.createEvent('KeyboardEvent');
       enterEvent.initEvent('keydown', true, false);
       Object.defineProperties(enterEvent, {
-        keyCode: { get: () => ENTER },
-        key: { get: () => 'Enter' },
+        code: { get: () => KEYS.ENTER.code },
+        key: { get: () => KEYS.ENTER.code },
       });
 
       trigger1.dispatchEvent(spaceEvent);
