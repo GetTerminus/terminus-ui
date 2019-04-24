@@ -251,42 +251,6 @@
     </div>
   </ts-card>
 
-
-  <ts-card tsVerticalSpacing fxFlex>
-    <h3 tsCardTitle tsVerticalSpacing="small--1">
-      Select w/Autocomplete
-    </h3>
-
-    <ts-select
-      label="Autocomplete Example"
-      hint="Begin typing to select.."
-      [formControl]="stateCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="true"
-      [autocompleteAllowDuplicateSelections]="false"
-      [autocompleteReopenAfterSelection]="true"
-      [showProgress]="fakeAsync"
-      [chipFormatUIFn]="myFormatUIFn"
-      (queryChange)="queryHasChanged($event)"
-      (duplicateSelection)="duplicate($event)"
-      tsVerticalSpacing
-    >
-
-      <ts-select-option
-        [value]="state"
-        [option]="state"
-        *ngFor="let state of filteredStates | async"
-      >
-        {{ state.name }}
-      </ts-select-option>
-
-    </ts-select>
-
-    <div>
-      FormControl value: {{ stateCtrl.value | json }}
-    </div>
-  </ts-card>
-
   <ts-card tsVerticalSpacing fxFlex>
     <h3 tsCardTitle tsVerticalSpacing="small--1">
       Single Select w/ Filtering
@@ -306,7 +270,7 @@
     >
       <ts-select-trigger>
         My custom trigger!
-        <strong>{{ myForm.get('myChoices1')?.value?.text }}</strong>
+        <strong>{{ myForm.get('myChoices1')?.value }}</strong>
       </ts-select-trigger>
 
       <ts-select-option>

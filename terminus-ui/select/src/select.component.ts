@@ -29,7 +29,6 @@ import {
   NgControl,
 } from '@angular/forms';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
-import { MatChipList } from '@angular/material/chips';
 import {
   hasRequiredControl,
   isFunction,
@@ -73,12 +72,6 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
-
-import {
-  TsAutocompletePanelComponent,
-  TsAutocompletePanelSelectedEvent,
-} from './autocomplete/autocomplete-panel.component';
-import { TsAutocompleteTriggerDirective } from './autocomplete/autocomplete-trigger.directive';
 import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
 import {
   allOptionsAreSelected,
@@ -194,19 +187,13 @@ let nextUniqueId = 0;
  * - `qa-select-trigger`: The trigger that opens the select
  * - `qa-select-value-text`: The container for the select trigger text content
  * - `qa-select-arrow-wrapper`: The container for the select arrow
- * - `qa-autocomplete-chip`: An individual chip in autocomplete mode
- * - `qa-select-autocomplete-input`: The autocomplete input
- * - `qa-select-panel`: The panel for select options when not in autocomplete mode
+ * - `qa-select-panel`: The panel for select options
  * - `qa-select-toggle-all`: The checkbox to toggle all selections
  * - `qa-select-selected-count`: The current count of selected items
- * - `qa-select-autocomplete-spinner`: The progress spinner used in the autocomplete input
  *
  * @example
  * <ts-select
  *              [allowMultiple]="true"
- *              [autocomplete]="true"
- *              [autocompleteAllowDuplicateSelections]="true"
- *              [autocompleteReopenAfterSelection]="true"
  *              [compareWith]="myCompareFn"
  *              debounceDelay="400"
  *              delimiter=","
@@ -221,7 +208,6 @@ let nextUniqueId = 0;
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
  *              [sortComparator]="myComparator"
- *              [chipFormatUIFn]="myUIFormatter"
  *              tabIndex="-1"
  *              theme="primary"
  *              [validateOnChange]="true"
@@ -246,7 +232,6 @@ let nextUniqueId = 0;
     class: 'ts-select',
     '[class.ts-select--required]': 'isRequired',
     '[class.ts-select--disabled]': 'isDisabled',
-    '[class.ts-select--autocomplete]': '!!autocomplete',
     '[attr.aria-owns]': 'panelOpen ? optionIds : null',
     '[attr.aria-required]': 'isRequired.toString()',
     '[attr.aria-multiselectable]': 'allowMultiple',
@@ -281,18 +266,6 @@ export class TsSelectComponent implements
   OnChanges,
   OnDestroy,
   TsFormFieldControl<any> {
-  /**
-   * The FormControl to store selections in autocomplete mode
-   *
-   * NOTE: Currently we need two different selection collections due to how the SelectionModel works. This can likely be aligned at a later
-   * date.
-   */
-  public autocompleteFormControl = new FormControl([]);
-
-  /**
-   * An array of selected values in autocomplete mode
-   */
-  public autocompleteSelections: string[] = [];
 
   /**
    * Store a reference to the document object
@@ -381,10 +354,8 @@ export class TsSelectComponent implements
   public searchQuery = '';
 
   /**
-   * Manage selections when not in autocomplete mode.
+   * Manage selections
    *
-   * NOTE: Currently we need two different selection collections due to how the SelectionModel works. This can likely be aligned with
-   * autocomplete mode at a later date.
    */
   public selectionModel!: SelectionModel<TsSelectOptionComponent>;
 
@@ -431,24 +402,6 @@ export class TsSelectComponent implements
   /**
    * VIEW ACCESS
    */
-
-  /**
-   * Access the trigger that opens the autocomplete
-   */
-  @ViewChild('auto')
-  public autocompletePanel!: TsAutocompletePanelComponent;
-
-  /**
-   * Access the trigger that opens the autocomplete
-   */
-  @ViewChild(TsAutocompleteTriggerDirective)
-  public autocompleteTrigger!: TsAutocompleteTriggerDirective;
-
-  /**
-   * Access to the chip list in autocomplete mode
-   */
-  @ViewChild('chipList')
-  public chipList: MatChipList | undefined;
 
   /**
    * Access the container element
@@ -520,9 +473,7 @@ export class TsSelectComponent implements
    * Whether the select has a value
    */
   public get empty(): boolean {
-    const emptySelect = !this.autocomplete && this.selectionModel && this.selectionModel.isEmpty();
-    const emptyAutocomplete = this.autocomplete && !this.autocompleteFormControl.value.length;
-    return emptySelect || emptyAutocomplete;
+    return this.selectionModel && this.selectionModel.isEmpty();
   }
 
   /**
@@ -574,12 +525,7 @@ export class TsSelectComponent implements
       const selectedOptions = this.selectionModel.selected.map((option) => option.viewValue);
       return selectedOptions.join(`${this.delimiter} `);
     }
-
-    if (this.autocomplete) {
-      return this.autocompleteFormControl.value;
-    } else {
-      return this.selectionModel.selected[0].viewValue;
-    }
+    return this.selectionModel.selected[0].viewValue;
   }
 
   /**
@@ -599,49 +545,6 @@ export class TsSelectComponent implements
    */
   @Input()
   public allowMultiple = false;
-
-  /**
-   * Define if the select should be in autocomplete mode
-   */
-  @Input()
-  public autocomplete = false;
-
-  /**
-   * Define if the autocomplete should allow duplicate selections
-   */
-  @Input()
-  public autocompleteAllowDuplicateSelections = false;
-
-  /**
-   * Define if the autocomplete panel should reopen after a selection is made
-   *
-   * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.
-   */
-  @Input()
-  public autocompleteReopenAfterSelection = false;
-
-  /**
-   * Define a function to retrieve the UI value for an option
-   */
-  @Input()
-  public set chipFormatUIFn(value: TsSelectFormatFn) {
-    if (!value) {
-      return;
-    }
-
-     if (isFunction(value)) {
-      this._chipFormatUIFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
-      }
-    }
-  }
-  public get chipFormatUIFn(): TsSelectFormatFn {
-    return this._chipFormatUIFn;
-  }
-  private _chipFormatUIFn!: TsSelectFormatFn;
 
   /**
    * Function to compare the option values with the selected values. The first argument
@@ -877,7 +780,7 @@ export class TsSelectComponent implements
   readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
-   * Event for when the autocomplete query has changed
+   * Event for when the query has changed
    */
   @Output()
   readonly queryChange: EventEmitter<string> = new EventEmitter();
@@ -924,72 +827,24 @@ export class TsSelectComponent implements
     // TODO: re-initialize the selection model if this.allowMultiple changes (rather than throw error like material)
     this.selectionModel = new SelectionModel<TsSelectOptionComponent>(this.allowMultiple);
 
-    // Seed the control value in autocomplete mode
+    // Seed the control value
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
     // We need to push it to the next event loop. When using a FormControl the value is there on the first run.
+    // istanbul ignore else
     if (this.ngControl && this.ngControl['form']) {
-      // istanbul ignore else
-      if (this.autocomplete && this.ngControl.value) {
-        this.autocompleteFormControl.setValue(this.ngControl.value);
-        this.autocompleteSelections = this.ngControl.value;
-      }
-
       // Support dynamic form control updates
       // istanbul ignore else
       if (this.ngControl.valueChanges) {
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
           .subscribe((newValue) => {
-
             // istanbul ignore else
             if (newValue) {
-              if (this.autocomplete) {
-                this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
-                this.autocompleteSelections = this.ngControl.value;
-              } else {
-                this.setSelectionByValue(newValue);
-              }
+              this.setSelectionByValue(newValue);
             }
           });
       }
-    } else {
-      // HACK: Wait until the next detection cycle to set the value from an ngModel.
-      // NOTE: Using CDR.detectChanges causes errors in children that expect TsSelectOptionComponents to exist.
-      setTimeout(() => {
-        // istanbul ignore else
-        if (this.autocomplete && this.ngControl && this.ngControl.value) {
-          this.autocompleteFormControl.setValue(this.ngControl.value);
-          this.autocompleteSelections = this.ngControl.value;
-        }
-      });
     }
-
-    // Take a stream of query changes
-    this.querySubject.pipe(
-      untilComponentDestroyed(this),
-      // Debounce the query changes
-      debounceTime(this.debounceDelay),
-      // If the query is shorter than allowed, convert to an empty string
-      switchMap((query) => {
-        return of((query && (query.length >= this.minimumCharacters)) ? query : '');
-      }),
-      // Only allow a query through if it is different from the previous query
-      distinctUntilChanged(),
-    ).subscribe((query: string) => {
-      // NOTE: When an option is selected, the full string value comes through this stream. We are checking the stream value against the
-      // input element value to verify we are sending a query rather than a selected option.
-      const inputValue = this.inputElement.nativeElement.value;
-      const queryIsValid = (query === inputValue) || (query === '');
-
-      this.queryChange.emit(queryIsValid ? query : inputValue);
-    });
-
-    // Propagate changes from the autocomplete form control
-    this.autocompleteFormControl.valueChanges.pipe(
-      untilComponentDestroyed(this),
-    ).subscribe((v) => {
-      this.propagateChanges(v);
-    });
   }
 
 
@@ -1020,8 +875,6 @@ export class TsSelectComponent implements
     // If the array changes, reset options
     this.options.changes.pipe(
       startWith(null),
-      // Stop this initialization when in autocomplete mode
-      filter(() => !this.autocomplete),
       untilComponentDestroyed(this),
     ).subscribe(() => {
       this.resetOptions();
@@ -1101,12 +954,9 @@ export class TsSelectComponent implements
 
     // Set the font size on the panel element once it exists.
     this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
-      // istanbul ignore else
-      if (!this.autocomplete) {
         // istanbul ignore else
-        if (this.triggerFontSize && this.overlayDir.overlayRef && this.overlayDir.overlayRef.overlayElement) {
-          this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
-        }
+      if (this.triggerFontSize && this.overlayDir.overlayRef && this.overlayDir.overlayRef.overlayElement) {
+        this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
       }
 
       this.optionRect = this.options.first.elementRef.nativeElement.getBoundingClientRect();
@@ -1243,9 +1093,7 @@ export class TsSelectComponent implements
       untilComponentDestroyed(this),
     ).subscribe((event) => {
       // istanbul ignore else
-      if (!this.autocomplete) {
-        this.onSelect(event.source, event.isUserInput);
-      }
+      this.onSelect(event.source, event.isUserInput);
 
       // istanbul ignore else
       if (event.isUserInput && !this.allowMultiple && this.panelOpen) {
@@ -1323,19 +1171,12 @@ export class TsSelectComponent implements
    * Set up a key manager to listen to keyboard events on the overlay panel
    */
   private initKeyManager(): void {
-    // If this is an autocomplete instance we need to initialize with wrapping turned on
-    if (this.autocomplete) {
-      this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
-        .withTypeAhead()
-        .withVerticalOrientation()
-        .withHorizontalOrientation('ltr')
-        .withWrap();
-    } else {
-      this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
-        .withTypeAhead()
-        .withVerticalOrientation()
-        .withHorizontalOrientation('ltr');
-    }
+
+    this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
+      .withTypeAhead()
+      .withVerticalOrientation()
+      .withHorizontalOrientation('ltr');
+
 
     this.keyManager.tabOut.pipe(
       untilComponentDestroyed(this),
@@ -1359,15 +1200,10 @@ export class TsSelectComponent implements
   /**
    * Focus the correct element
    *
-   * When in autocomplete mode we should focus the text input.
    * When in standard select mode we should focus the select itself.
    */
   public focus(): void {
-    if (this.autocomplete) {
-      this.inputElement.nativeElement.focus();
-    } else {
-      this.elementRef.nativeElement.focus();
-    }
+    this.elementRef.nativeElement.focus();
   }
 
 
@@ -1396,14 +1232,10 @@ export class TsSelectComponent implements
   private propagateChanges(fallbackValue?: any): void {
     let valueToEmit: any = null;
 
-    if (this.autocomplete) {
-      valueToEmit = this.autocompleteFormControl.value;
+    if (this.allowMultiple) {
+      valueToEmit = (this.selected as TsSelectOptionComponent[]).map((option) => option.value);
     } else {
-      if (this.allowMultiple) {
-        valueToEmit = (this.selected as TsSelectOptionComponent[]).map((option) => option.value);
-      } else {
-        valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
-      }
+      valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
     }
 
     this.value = valueToEmit;
@@ -1558,10 +1390,6 @@ export class TsSelectComponent implements
    * Calculate the scroll position and x- and y- offsets of the overlay panel
    */
   private calculateOverlayPosition(): void {
-    // Not needed when in autocomplete mode
-    if (this.autocomplete) {
-      return;
-    }
     const itemHeight = this.itemHeight;
     const items = this.itemCount;
     const panelHeight = Math.min(items * itemHeight, SELECT_PANEL_MAX_HEIGHT);
@@ -1812,9 +1640,8 @@ export class TsSelectComponent implements
   public onContainerClick(): void {
     this.focus();
 
-    // Don't open on click when in autocomplete mode
     // istanbul ignore else
-    if (!this.autocomplete && !this.isDisabled) {
+    if (!this.isDisabled) {
       this.open();
     }
   }
@@ -1835,7 +1662,6 @@ export class TsSelectComponent implements
    *
    * This allows us to manually scroll to display options above or below the fold, as they are not actually being focused when active.
    *
-   * Implemented as part of autocomplete.
    *
    * @param scrollTop - The number to set scrollTop to
    */
@@ -1844,163 +1670,6 @@ export class TsSelectComponent implements
     if (this.panel) {
       this.panel.nativeElement.scrollTop = scrollTop;
     }
-  }
-
-
-  /**
-   * Close the dropdown and reset the query when the user leaves the input
-   *
-   * @param event - The keyboard or mouse event
-   */
-  public handleInputBlur(event: KeyboardEvent | MouseEvent): void {
-    // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
-    const hasRelatedTarget = !!(event && event['relatedTarget']);
-    const hasNodeName = !!(hasRelatedTarget && event['relatedTarget'].nodeName);
-
-    if (hasRelatedTarget && hasNodeName) {
-      // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
-      // will be `TS_SELECT_OPTION`.
-      // istanbul ignore else
-      if (event['relatedTarget'].nodeName !== 'TS-SELECT-OPTION') {
-        this.resetAutocompleteQuery();
-      }
-    } else {
-      // Close the autocomplete planel
-      // istanbul ignore else
-      if (this.autocompleteTrigger.panelOpen) {
-        this.autocompleteTrigger.closePanel(true);
-      }
-    }
-
-    // Mark this control as 'touched' to trigger any validations needed on blur
-    this.onTouched();
-    this.updateValueAndValidity();
-  }
-
-
-  /**
-   * Reset the autocomplete input
-   */
-  private resetAutocompleteQuery(): void {
-    // Deselect the option from the key manager
-    this.keyManager.updateActiveItem(-1);
-
-    // Clear the autocomplete input
-    // NOTE: I am not sure why simply setting `searchQuery` to an empty string doesn't work. It seems the model is not updated (even with
-    // manual change detection).
-    this.inputElement.nativeElement.value = '';
-  }
-
-
-  /**
-   * Select an autocomplete item
-   *
-   * @param selection - The item to select
-   */
-  public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
-    const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
-
-    // istanbul ignore else
-    if (isDuplicate) {
-      this.duplicateSelection.emit(selection.option.value);
-    }
-
-    // Stop the flow if the selection already exists in the array and duplicates aren't allowed
-    if (!this.autocompleteAllowDuplicateSelections && isDuplicate) {
-      return;
-    }
-
-    if (this.allowMultiple) {
-      // If supporting multiple selections, reset the input text value as long as the panel should NOT reopen
-      // istanbul ignore else
-      if (!this.autocompleteReopenAfterSelection) {
-        this.resetAutocompleteQuery();
-      }
-
-      // Add to the collection
-      const newSelection = this.autocompleteSelections.slice();
-      newSelection.push(selection.option.value);
-      this.autocompleteSelections = newSelection;
-
-      // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-    } else {
-      // Update the selected value
-      this.autocompleteSelections = [selection.option.value];
-
-      // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-
-      // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.chipFormatUIFn ?
-        this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
-      this.inputElement.nativeElement.value = newValue;
-    }
-
-    // Update the panel position in case the addition of a chip causes the select height to change
-    // istanbul ignore else
-    if (this.autocompleteTrigger.overlayRef) {
-      this.autocompleteTrigger.overlayRef.updatePosition();
-      this.changeDetectorRef.detectChanges();
-    }
-
-    // Notify consumers about changes
-    this.optionSelected.emit(new TsSelectChange(this, selection.option.value));
-    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections));
-  }
-
-
-  /**
-   * Deselect an autocomplete item
-   *
-   * @param value - The value of the item to remove
-   */
-  public autocompleteDeselectItem(value: string): void {
-    // Find the key of the selection in the selectedOptions array
-    const index = this.autocompleteSelections.indexOf(value);
-    const selections = this.autocompleteSelections.slice();
-    // If not found
-    if (index < 0) {
-      return;
-    }
-
-    // Remove the selection from the selectedOptions array
-    selections.splice(index, 1);
-    this.autocompleteSelections = selections;
-
-    // Update the form control
-    this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-
-    // If the only chip was removed, re-focus the input
-    // istanbul ignore else
-    if (this.autocompleteSelections.length < 1) {
-      this.focus();
-    }
-
-    // HACK: For some reason, triggering change detection works in the selection method above, but not here. Same issue seems preset in
-    // TsSelectOptionComponent where `setActiveStyles` works by calling the CDR but `setInactiveStyles` required a timeout.
-    setTimeout(() => {
-      // Update the panel position in case the removal of a chip causes the select height to change
-      if (this.autocompleteTrigger.overlayRef) {
-        this.autocompleteTrigger.overlayRef.updatePosition();
-      }
-    });
-
-    // Notify consumers about changes
-    this.optionDeselected.emit(new TsSelectChange(this, value));
-    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections.slice()));
-  }
-
-
-  /**
-   * Retrieve a value determined by the passed in formatter
-   *
-   * @param option - The select option
-   * @param formatter - The formatter function used to retrieve the value
-   * @return The retrieved value
-   */
-  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
-    return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
 }

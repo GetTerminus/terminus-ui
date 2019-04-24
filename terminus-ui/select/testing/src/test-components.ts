@@ -374,146 +374,6 @@ export class NoGroupsMultiple {
   items = STATES.slice();
 }
 
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="allowMultiple"
-      [autocompleteReopenAfterSelection]="keepOpen"
-      [showProgress]="showProgress"
-      [isDisabled]="disabled"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.slug"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        {{ option.foo }}
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class Autocomplete {
-  myCtrl = new FormControl();
-  states: State[] = STATES.slice();
-  showProgress = false;
-  allowMultiple = true;
-  keepOpen = true;
-  disabled: boolean | undefined;
-
-  changeOptionsLength() {
-    this.states = STATES.slice(0, 5);
-  }
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="true"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.slug"
-        [option]="option"
-      >
-        {{ option.foo }}
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class AutocompleteRequired {
-  myCtrl = new FormControl(null, [Validators.required]);
-  states: State[] = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="allowMultiple"
-      [autocompleteAllowDuplicateSelections]="allowDuplicates"
-      [autocompleteReopenAfterSelection]="keepOpen"
-      (duplicateSelection)="duplicate($event)"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsSelectOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class SeededAutocomplete {
-  myCtrl = new FormControl(['Florida']);
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-  allowDuplicates = false;
-  keepOpen = false;
-
-  // Must be overwritten with a spy in the test
-  duplicate = (v) => {};
-}
-
-@Component({
-  template: `
-    <ts-select
-      [(ngModel)]="myModel"
-      [autocomplete]="true"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsSelectOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class SeededNgModelAutocomplete {
-  myModel = ['Florida'];
-  states: State[] = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="allowMultiple"
-      [autocompleteReopenAfterSelection]="false"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsSelectOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class AutocompleteAllowMultipleNoReopen {
-  myCtrl = new FormControl();
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-}
 
 @Component({
   template: `
@@ -663,76 +523,6 @@ export class DeferOptionSelectionStream {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      [autocomplete]="true"
-      (queryChange)="change($event)"
-    >
-      <ts-select-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
-    </ts-select>
-  `,
-})
-export class Debounce {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  change = (v) => {};
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      debounceDelay="0"
-      [autocomplete]="true"
-      (queryChange)="change($event)"
-    >
-      <ts-select-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
-    </ts-select>
-  `,
-})
-export class CustomDebounce {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  change = (v) => {};
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [minimumCharacters]="customCount"
-      debounceDelay="0"
-      [autocomplete]="true"
-      (queryChange)="change($event)"
-    >
-      <ts-select-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
-    </ts-select>
-  `,
-})
-export class CustomCharacterCount {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  customCount: number | undefined;
-  change = (v) => {};
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
       [hideRequiredMarker]="hideRequired"
       [isRequired]="true"
     >
@@ -818,7 +608,6 @@ export class Label {
   template: `
     <ts-select
       [formControl]="myCtrl"
-      [autocomplete]="autocomplete"
       [tabIndex]="index"
     >
       <ts-select-option
@@ -833,7 +622,6 @@ export class Label {
 export class Tabindex {
   myCtrl = new FormControl();
   index = 4;
-  autocomplete = false;
   options = STATES.slice();
 }
 
@@ -1036,41 +824,6 @@ export class Filterable {
   }
 }
 
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="allowMultiple"
-      [autocompleteAllowDuplicateSelections]="allowDuplicates"
-      [autocompleteReopenAfterSelection]="keepOpen"
-      [chipFormatUIFn]="myFormatFn"
-      (duplicateSelection)="duplicate($event)"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsSelectOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-select-option>
-    </ts-select>
-  `,
-})
-export class SeededAutocompleteWithFormatFn {
-  myCtrl = new FormControl([{name: 'Florida', population: '20.27M'}]);
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-  allowDuplicates = false;
-  keepOpen = false;
-  duplicate = jest.fn();
-  myFormatFn = (v: any) => v.name;
-}
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -1083,18 +836,12 @@ export class SeededAutocompleteWithFormatFn {
     TsSelectModule,
   ],
   declarations: [
-    Autocomplete,
-    AutocompleteAllowMultipleNoReopen,
-    AutocompleteRequired,
     Basic,
     CustomBlankOption,
-    CustomCharacterCount,
     CustomCompareFn,
-    CustomDebounce,
     CustomDelimiter,
     CustomOptionTemplate,
     CustomTrigger,
-    Debounce,
     DeferOptionSelectionStream,
     Disabled,
     Filterable,
@@ -1110,12 +857,9 @@ export class SeededAutocompleteWithFormatFn {
     OptgroupsMultiple,
     OptionError,
     OptionId,
-    SeededAutocomplete,
-    SeededAutocompleteWithFormatFn,
     SeededFallbackValue,
     SeededFormControl,
     SeededNgModel,
-    SeededNgModelAutocomplete,
     SelectionChangeEventEmitters,
     SelectOptionChange,
     Tabindex,

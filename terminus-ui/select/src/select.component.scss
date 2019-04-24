@@ -81,37 +81,6 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     margin: 0 $ts-select-arrow-margin;
     width: 0;
   }
-
-  // <div> wrapper for autocomplete input
-  .ts-select__input-wrap {
-    &--hidden {
-      @include visually-hidden;
-    }
-  }
-
-  .ts-select__autocomplete-input {
-    background: transparent;
-    border: none;
-    color: currentColor;
-    font: inherit;
-    max-width: 100%;
-    outline: none;
-    padding: 0;
-    // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
-    // easily overwritten by targeting the input element using a simple CSS selector, but since
-    // the text-align will be applied most of the time on the `ts-form-field` to also align the
-    // placeholder, the alignment should be inherited here.
-    text-align: inherit;
-    // Needed to make last line of the textarea line up with the baseline.
-    vertical-align: bottom;
-    width: 100%;
-
-    // Undo the red box-shadow glow added by Firefox on invalid inputs.
-    // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
-    &:-moz-ui-invalid {
-      box-shadow: none;
-    }
-  }
 }
 
 

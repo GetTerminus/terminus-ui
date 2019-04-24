@@ -50,7 +50,6 @@ export class TsOptionSelectionChange {
  */
 export interface TsOptionParentComponent {
   allowMultiple: boolean;
-  autocomplete: boolean;
   theme: TsStyleThemeTypes;
   ngControl?: NgModel;
 }
@@ -162,13 +161,6 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    */
   public get allowMultiple(): boolean {
     return !!(this.parent && this.parent.allowMultiple);
-  }
-
-  /**
-   * Whether the wrapping component is in autocomplete mode
-   */
-  public get autocomplete(): boolean {
-    return !!(this.parent && this.parent.autocomplete);
   }
 
   /**
@@ -425,7 +417,6 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   public setInactiveStyles(): void {
     if (this.active) {
       // HACK: For some reason, triggering change detection works in `setActiveStyles` above, but not here.
-      // Same issue seems preset in TsSelectComponent `autocompleteDeselectItem`.
       setTimeout(() => {
         this.active = false;
         this.changeDetectorRef.markForCheck();

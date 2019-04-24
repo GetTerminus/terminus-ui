@@ -12,11 +12,6 @@ import { TsIconModule } from '@terminus/ui/icon';
 import { TsInputModule } from '@terminus/ui/input';
 import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 
-import { TsAutocompletePanelComponent } from './autocomplete/autocomplete-panel.component';
-import {
-  TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
-  TsAutocompleteTriggerDirective,
-} from './autocomplete/autocomplete-trigger.directive';
 import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
 import { TsSelectOptionDisplayDirective } from './option/option-display.directive';
 import { TsSelectOptionComponent } from './option/option.component';
@@ -30,8 +25,6 @@ export * from './select-animations';
 export * from './option/option.component';
 export * from './option/option-display.directive';
 export * from './optgroup/optgroup.component';
-export * from './autocomplete/autocomplete-trigger.directive';
-export * from './autocomplete/autocomplete-panel.component';
 
 
 @NgModule({
@@ -51,11 +44,8 @@ export * from './autocomplete/autocomplete-panel.component';
     TsValidationMessagesModule,
   ],
   providers: [
-    TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
   ],
   exports: [
-    TsAutocompletePanelComponent,
-    TsAutocompleteTriggerDirective,
     TsSelectComponent,
     TsSelectOptgroupComponent,
     TsSelectOptionComponent,
@@ -63,8 +53,6 @@ export * from './autocomplete/autocomplete-panel.component';
     TsSelectTriggerComponent,
   ],
   declarations: [
-    TsAutocompletePanelComponent,
-    TsAutocompleteTriggerDirective,
     TsSelectComponent,
     TsSelectOptgroupComponent,
     TsSelectOptionComponent,

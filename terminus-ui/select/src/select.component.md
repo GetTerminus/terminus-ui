@@ -29,12 +29,6 @@
   - [Custom Delimiter](#custom-delimiter)
   - [Custom Sort Comparator](#custom-sort-comparator)
   - [Filterable](#filterable)
-- [Autocomplete](#autocomplete)
-  - [Duplicate selections](#duplicate-selections)
-  - [Keep Panel Open After Selection](#keep-panel-open-after-selection)
-  - [Debouncing](#debouncing)
-  - [Minimum Characters](#minimum-characters)
-  - [Progress Indicator](#progress-indicator)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -397,97 +391,6 @@ Any unique, debounced query will be emitted through the `queryChange` emitter. T
 blank option can be used to show the user a message when no items are found by the query.
 
 
-## Autocomplete
-
-Enable autocomplete functionality by setting the `autocomplete` flag to `true`:
-
-```html
-<ts-select [autocomplete]="true">
-  ...
-</ts-select>
-```
-
-
-### Duplicate selections
-
-By default, duplicate selections are ignored. They can be allowed via a flag:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [allowMultiple]="true"
-  [autocompleteAllowDuplicateSelections]="true"
->
-  ...
-</ts-select>
-```
-
-
-### Keep Panel Open After Selection
-
-By default, the panel will close after each selection. It can be forced to stay open via a flag.
-
-> NOTE: While the panel seems to stay open, it is actually closing and reopening immediately. That is why the `@Input` is named
-`autocompleteReopenAfterSelection`
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [allowMultiple]="true"
-  [autocompleteReopenAfterSelection]="true"
->
-  ...
-</ts-select>
-```
-
-
-### Debouncing
-
-By default, the autocomplete input query will be debounced 200ms. This time may be adjusted as needed:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [debounceDelay]="400"
->
-  ...
-</ts-select>
-```
-
-
-### Minimum Characters
-
-By default, at least two characters must be typed before the query is fired. This limit may be adjusted:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [minimumCharacters]="4"
->
-  ...
-</ts-select>
-```
-
-
-### Progress Indicator
-
-A progress spinner can be shown while queries are happening in the background:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [showProgress]="true"
->
-  ...
-</ts-select>
-```
-
-
 ## Events
 
 Multiple events are fired during interaction with the select:
@@ -499,7 +402,7 @@ Multiple events are fired during interaction with the select:
 | `opened`             | Fired when the panel is open             | `undefined`      |
 | `optionDeselected`   | Fired when an option is deselected       | `TsSelectChange` |
 | `optionSelected`     | Fired when an option is selected         | `TsSelectChange` |
-| `queryChange`        | Fired when autocomplete query changes    | `string`         |
+| `queryChange`        | Fired when query changes                 | `string`         |
 | `selectionChange`    | Fired when the selection changes         | `TsSelectChange` |
 
 ```html
@@ -542,7 +445,6 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `getAllOptgroups`         |
 | `getOptgroup`             |
 | `getOptgroupElement`      |
-| `getAutocompleteInput`    |
 | `getAllChipInstances`     |
 | `getChipInstance`         |
 | `getChipElement`          |
