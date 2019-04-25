@@ -2,6 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
+import { KeyCode } from '@terminus/ngx-tools/keycodes';
 import {
   TsSelectComponent,
   TsSelectOptgroupComponent,
@@ -16,12 +17,13 @@ import {
  * @param keyCode - The corresponding keyCode
  * @return The KeyboardEvent
  */
-export function createKeydownEvent(key: string, keyCode: number): KeyboardEvent {
+export function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    key: { get: () => 'ArrowDown' },
-    keyCode: { get: () => 40 },
+    key: { get: () => key.code },
+    code: { get: () => key.code },
+    keyCode: { get: () => key.keyCode },
   });
   return event;
 }

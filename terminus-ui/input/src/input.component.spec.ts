@@ -17,7 +17,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
-import { A } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createKeyboardEvent,
   TsDocumentServiceMock,
@@ -679,7 +679,7 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent(TestComponents.OnChanges);
         fixture.detectChanges();
         const inputElement = getInputElement(fixture);
-        const keyboardEvent: KeyboardEvent = createKeyboardEvent('keyup', A, inputElement);
+        const keyboardEvent: KeyboardEvent = createKeyboardEvent('keyup', KEYS.A, inputElement);
         inputElement.setSelectionRange = jest.fn();
         fixture.componentInstance.inputComponent['platform'].IOS = true;
         fixture.componentInstance.inputComponent.ngAfterContentInit();

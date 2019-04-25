@@ -28,22 +28,16 @@ import {
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import {
-  END,
-  ENTER,
-  HOME,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   fromEvent,
-  merge,
   Subject,
   timer,
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { TsTabInkBarComponent } from './../ink-bar/ink-bar.component';
-import { TsTabLabelWrapperDirective } from './../label/tab-label-wrapper.directive';
+import { TsTabInkBarComponent } from '../ink-bar/ink-bar.component';
+import { TsTabLabelWrapperDirective } from '../label/tab-label-wrapper.directive';
 
 
 /**
@@ -369,17 +363,17 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
       return;
     }
 
-    switch (event.keyCode) {
-      case HOME:
+    switch (event.code) {
+      case KEYS.HOME.code:
         this.keyManager.setFirstItemActive();
         event.preventDefault();
         break;
-      case END:
+      case KEYS.END.code:
         this.keyManager.setLastItemActive();
         event.preventDefault();
         break;
-      case ENTER:
-      case SPACE:
+      case KEYS.ENTER.code:
+      case KEYS.SPACE.code:
         this.selectFocusedIndex.emit(this.focusIndex);
         event.preventDefault();
         break;

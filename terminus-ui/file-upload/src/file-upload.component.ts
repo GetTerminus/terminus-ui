@@ -30,7 +30,6 @@ import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
-import { ENTER } from '@terminus/ngx-tools/keycodes';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   ControlValueAccessorProviderFactory,
@@ -42,6 +41,7 @@ import {
 } from '@terminus/ui/utilities';
 import { filter } from 'rxjs/operators';
 
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsDropProtectionService } from './drop-protection.service';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
@@ -533,7 +533,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * @param event - The keyboard event
    */
   public handleKeydown(event: KeyboardEvent): void {
-    if (event.keyCode === ENTER) {
+    if (event.code === KEYS.ENTER.code) {
       this.promptForFiles();
       this.elementRef.nativeElement.blur();
     }
