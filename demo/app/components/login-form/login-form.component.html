@@ -1,8 +1,13 @@
 <ts-card>
+  <div tsVerticalSpacing>
+    <button (click)="resetForm()">Reset Form</button>
+  </div>
+
   <ts-login-form
     [inProgress]="progress"
     [isRedirecting]="isRedirecting"
     [triggerFormReset]="reset"
     (submit)="formSubmission($event)"
+    tsVerticalSpacing
   ></ts-login-form>
 </ts-card>

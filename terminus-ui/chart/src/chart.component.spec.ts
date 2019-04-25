@@ -5,13 +5,24 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
-import {
-  ComponentFixture,
-} from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 
 import { TsAmChartsService } from './amcharts.service';
-import { TsChartComponent, TsChartVisualizationOptions } from './chart.component';
+import {
+  tsChartChordTypeCheck,
+  tsChartMapTypeCheck,
+  tsChartPieTypeCheck,
+  tsChartRadarTypeCheck,
+  tsChartSankeyTypeCheck,
+  tsChartTreeTypeCheck,
+  tsChartXYTypeCheck,
+} from './chart-type-check';
+import {
+  TsChart,
+  TsChartComponent,
+  TsChartVisualizationOptions,
+} from './chart.component';
 import { TsChartModule } from './chart.module';
 
 
@@ -27,12 +38,12 @@ describe(`ChartComponent`, function() {
 
   describe(`ngOnInit`, () => {
 
-    test(`should log error if the amCharts library wasn't passed in`, () => {
-      window.console.error = jest.fn();
+    test(`should log a warning if the amCharts library wasn't passed in`, () => {
+      window.console.warn = jest.fn();
       const fixture = createComponent(SimpleHost, []);
       fixture.detectChanges();
 
-      expect(window.console.error).toHaveBeenCalledWith(expect.stringContaining('The amCharts library was not provided'));
+      expect(window.console.warn).toHaveBeenCalledWith(expect.stringContaining('The amCharts library was not provided'));
     });
 
 
@@ -81,33 +92,93 @@ describe(`ChartComponent`, function() {
 
   describe(`init`, () => {
 
-    test(`should log an error if no chart could be created`, () => {
-      window.console.error = jest.fn();
+    test(`should log an warning if no chart could be created`, () => {
+      window.console.warn = jest.fn();
       const fixture = createComponent(VisualizationsHost);
       fixture.detectChanges();
 
       fixture.componentInstance.visualization = 'foo' as any;
       fixture.detectChanges();
 
-      expect(window.console.error).toHaveBeenCalledWith(expect.stringContaining('is not a supported chart type'));
+      expect(window.console.warn).toHaveBeenCalledWith(expect.stringContaining('is not a supported chart type'));
     });
 
-    const visualizationTests: TsChartVisualizationOptions[] = ['xy', 'pie', 'map', 'radar', 'treemap', 'sankey', 'chord'];
+    const visualizationTests: TsChartVisualizationOptions[] = ['xy', 'pie', 'map', 'radar', 'tree', 'sankey', 'chord'];
     for (const t of visualizationTests) {
       test(`should initialize for the ${t} visualization`, () => {
-        window.console.error = jest.fn();
+        window.console.warn = jest.fn();
         const fixture = createComponent(VisualizationsHost);
         fixture.componentInstance.visualization = t;
         fixture.detectChanges();
 
         expect(fixture.componentInstance.component['amCharts'].core.create).toHaveBeenCalled();
-        expect(window.console.error).not.toHaveBeenCalled();
+        expect(window.console.warn).not.toHaveBeenCalled();
       });
     }
 
 
   });
 
+
+  // TODO: Test types once we implement a tool to do so
+  describe(`chart type coercion`, function() {
+
+    test(`should validate xy chart`, function() {
+      const chart = {
+        className: 'XYChart',
+      } as TsChart;
+      expect(tsChartXYTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate pie chart`, function() {
+      const chart = {
+        className: 'PieChart',
+      } as TsChart;
+      expect(tsChartPieTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate map chart`, function() {
+      const chart = {
+        className: 'MapChart',
+      } as TsChart;
+      expect(tsChartMapTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate radar chart`, function() {
+      const chart = {
+        className: 'RadarChart',
+      } as TsChart;
+      expect(tsChartRadarTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate tree chart`, function() {
+      const chart = {
+        className: 'TreeMap',
+      } as TsChart;
+      expect(tsChartTreeTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate sankey chart`, function() {
+      const chart = {
+        className: 'SankeyDiagram',
+      } as TsChart;
+      expect(tsChartSankeyTypeCheck(chart)).toEqual(true);
+    });
+
+
+    test(`should validate chord chart`, function() {
+      const chart = {
+        className: 'ChordDiagram',
+      } as TsChart;
+      expect(tsChartChordTypeCheck(chart)).toEqual(true);
+    });
+
+  });
 
 });
 
@@ -119,17 +190,15 @@ describe(`ChartComponent`, function() {
  */
 
 class AmChartsServiceMock {
-  get amCharts() {
+  public get amCharts() {
     return {
       core: {
-        create: jest.fn(() => {
-          return {
-            responsive: {
-              enabled: false,
-            },
-            dispose: jest.fn(),
-          };
-        }),
+        create: jest.fn(() => ({
+          responsive: {
+            enabled: false,
+          },
+          dispose: jest.fn(),
+        })),
       },
       charts: {
         XYChart: {},
@@ -173,22 +242,42 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHART
  */
 
  @Component({
-  template: `<ts-chart></ts-chart>`,
-})
+   template: `<ts-chart></ts-chart>`,
+ })
 class SimpleHost {
   @ViewChild(TsChartComponent)
-  component: TsChartComponent;
-}
+  public component: TsChartComponent;
+ }
 
-/**
- * TEMPLATES
- */
  @Component({
-  template: `<ts-chart [visualization]="visualization"></ts-chart>`,
-})
+   template: `<ts-chart [visualization]="visualization"></ts-chart>`,
+ })
 class VisualizationsHost {
-  visualization: TsChartVisualizationOptions | undefined;
+  public visualization: TsChartVisualizationOptions | undefined;
 
   @ViewChild(TsChartComponent)
-  component: TsChartComponent;
-}
+  public component: TsChartComponent;
+ }
+
+ @Component({
+   template: `
+     <ts-chart
+       visualization="xy"
+       (chartInitialized)="chartCreated($event)"
+     ></ts-chart>
+   `,
+ })
+class TypeChecking {
+  /*
+   *public visualization!: TsChartVisualizationOptions;
+   */
+  public chart!: TsChart;
+
+  @ViewChild(TsChartComponent)
+  public component!: TsChartComponent;
+
+  public chartCreated(chart: TsChart): void {
+    console.log('chartCreated: ', chart.className);
+    this.chart = chart;
+  }
+ }

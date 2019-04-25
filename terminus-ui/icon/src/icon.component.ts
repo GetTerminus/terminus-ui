@@ -58,7 +58,7 @@ export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
   host: {
-    class: 'ts-icon',
+    'class': 'ts-icon',
     '[class.ts-icon--inline]': 'inline',
     '[class.ts-icon--primary]': 'theme === "primary"',
     '[class.ts-icon--accent]': 'theme === "accent"',
@@ -91,8 +91,8 @@ export class TsIconComponent {
   public set svgIcon(value: TS_CUSTOM_ICON | undefined) {
     // If an unsupported value is passed in
     if (value && TS_CUSTOM_ICONS.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsIconComponent: "${value}" is not a supported custom icon. ` +
-      `See TS_CUSTOM_ICON for available options.`);
+      console.warn(`TsIconComponent: "${value}" is not a supported custom icon. `
+      + `See TS_CUSTOM_ICON for available options.`);
       return;
     }
 

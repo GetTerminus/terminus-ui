@@ -1,17 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { createComponent } from '@terminus/ngx-tools/testing';
 
- import { TsLogoComponent } from './logo.component';
+import { TsLogoComponent } from './logo.component';
 import { TsLogoModule } from './logo.module';
 
 
  @Component({
-  template: `
+   template: `
     <ts-logo id="one" #one></ts-logo>
     <ts-logo id="two" #two [type]="type" [logoColor]="logoColor"></ts-logo>
   `,
-})
+ })
 class TestHostComponent {
   type = '';
   logoColor = '';
@@ -21,11 +24,11 @@ class TestHostComponent {
 
   @ViewChild('two')
   two!: TsLogoComponent;
-}
+ }
 
 
 
- describe(`TsLogoComponent`, function() {
+describe(`TsLogoComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let hostComponent: TestHostComponent;
   let logo1: TsLogoComponent;

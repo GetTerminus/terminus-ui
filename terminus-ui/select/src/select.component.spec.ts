@@ -1,6 +1,4 @@
-import {
-  Type,
-} from '@angular/core';
+import { Type } from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -15,6 +13,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
+  createComponent as createComponentInner,
   createFakeEvent,
   createKeyboardEvent,
   dispatchEvent,
@@ -22,8 +21,8 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/select/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   createKeydownEvent,
   getAllChipInstances,
@@ -42,7 +41,10 @@ import {
 } from '@terminus/ui/select/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
-import { TsSelectFormatFn, TsSelectModule } from './select.module';
+import {
+  TsSelectFormatFn,
+  TsSelectModule,
+} from './select.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -94,7 +96,7 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should allow a value seeded by a FormControl`, (done) => {
+    test(`should allow a value seeded by a FormControl`, done => {
       const fixture = createComponent(testComponents.SeededFormControl);
       fixture.detectChanges();
 
@@ -162,7 +164,7 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should support a custom trigger`, (done) => {
+    test(`should support a custom trigger`, done => {
       const fixture = createComponent(testComponents.CustomOptionTemplate);
       fixture.detectChanges();
 
@@ -277,15 +279,11 @@ describe(`TsSelectComponent`, function() {
 
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        let selected = getSelectInstance(fixture).selectionModel.selected.map((v) => {
-          return v.viewValue;
-        });
+        let selected = getSelectInstance(fixture).selectionModel.selected.map(v => v.viewValue);
         expect(selected).toEqual(['Florida', 'Texas']);
 
         fixture.componentInstance.updateOptions();
-        selected = getSelectInstance(fixture).selectionModel.selected.map((v) => {
-          return v.viewValue;
-        });
+        selected = getSelectInstance(fixture).selectionModel.selected.map(v => v.viewValue);
         expect(selected).toEqual(['Florida', 'Texas']);
         expect.assertions(2);
       });
@@ -440,7 +438,9 @@ describe(`TsSelectComponent`, function() {
         expect(instance.panelOpen).toEqual(true);
 
         const event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
-        Object.defineProperty(event, 'altKey', {get: () => true});
+        Object.defineProperty(event, 'altKey', {
+          get: () => true,
+        });
         dispatchEvent(element, event);
         fixture.detectChanges();
 
@@ -598,7 +598,7 @@ describe(`TsSelectComponent`, function() {
    */
   describe(`multi-select`, function() {
 
-/*
+    /*
  *    test(`should toggle all enabled items when toggle all is clicked and show a selected count`, () => {
  *      jest.useFakeTimers();
  *      const fixture = createComponent(testComponents.OptgroupsMultiple);
@@ -644,7 +644,9 @@ describe(`TsSelectComponent`, function() {
         openSelect(fixture);
 
         const event = createKeyboardEvent('keydown', KEYS.A, element);
-        Object.defineProperty(event, 'ctrlKey', {get: () => true});
+        Object.defineProperty(event, 'ctrlKey', {
+          get: () => true,
+        });
         dispatchEvent(element, event);
         fixture.detectChanges();
 
@@ -675,7 +677,9 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
 
         const event = createKeydownEvent(KEYS.DOWN_ARROW);
-        Object.defineProperty(event, 'shiftKey', {get: () => true});
+        Object.defineProperty(event, 'shiftKey', {
+          get: () => true,
+        });
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -683,7 +687,9 @@ describe(`TsSelectComponent`, function() {
         expect(instance.value).toEqual(['Florida']);
 
         const event2 = createKeyboardEvent('keydown', KEYS.UP_ARROW);
-        Object.defineProperty(event2, 'shiftKey', {get: () => true});
+        Object.defineProperty(event2, 'shiftKey', {
+          get: () => true,
+        });
         element.dispatchEvent(event2);
 
         fixture.detectChanges();
@@ -861,8 +867,10 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
         const component = getSelectInstance(fixture);
         fixture.detectChanges();
-        expect(() => { component.chipFormatUIFn = 3 as any; })
-        .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
+        expect(() => {
+          component.chipFormatUIFn = 3 as any;
+        })
+          .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
       });
 
     });
@@ -1060,7 +1068,10 @@ describe(`TsSelectComponent`, function() {
           const fixture = createComponent<testComponents.SeededAutocompleteWithFormatFn>(testComponents.SeededAutocompleteWithFormatFn);
           fixture.componentInstance.allowMultiple = false;
           fixture.componentInstance.keepOpen = false;
-          fixture.componentInstance.myCtrl.setValue([{ name: 'Florida', population: '20.27M'}]);
+          fixture.componentInstance.myCtrl.setValue([{
+            name: 'Florida',
+            population: '20.27M',
+          }]);
           fixture.detectChanges();
           const instance = getSelectInstance(fixture);
           const input = getAutocompleteInput(fixture);
@@ -1391,7 +1402,9 @@ describe(`TsSelectComponent`, function() {
       instance['propagateChanges']('foo');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.change).toHaveBeenCalledWith(expect.objectContaining({value: 'foo'}));
+      expect(fixture.componentInstance.change).toHaveBeenCalledWith(expect.objectContaining({
+        value: 'foo',
+      }));
     });
 
   });
@@ -1500,7 +1513,9 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
         const option = getOptionInstance(fixture, 0, 1);
 
-        expect(option.option).toEqual(expect.objectContaining({name: 'Alabama'}));
+        expect(option.option).toEqual(expect.objectContaining({
+          name: 'Alabama',
+        }));
       });
 
     });
@@ -1612,7 +1627,9 @@ describe(`TsSelectComponent`, function() {
       expect(instance.panelOpen).toEqual(true);
 
       let event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
-      Object.defineProperty(event, 'altKey', {get: () => true});
+      Object.defineProperty(event, 'altKey', {
+        get: () => true,
+      });
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();
 
@@ -1626,7 +1643,9 @@ describe(`TsSelectComponent`, function() {
       expect(instance.panelOpen).toEqual(true);
 
       event = createKeyboardEvent('keydown', KEYS.UP_ARROW);
-      Object.defineProperty(event, 'altKey', {get: () => true});
+      Object.defineProperty(event, 'altKey', {
+        get: () => true,
+      });
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();
 

@@ -47,9 +47,10 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
   host: {
     class: 'ts-toggle',
   },
-  providers: [ControlValueAccessorProviderFactory(TsToggleComponent)],
+  providers: [ControlValueAccessorProviderFactory<TsToggleComponent>(TsToggleComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsToggle',
 })
 export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**
@@ -104,6 +105,8 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**
    * Emit an event each time the toggle value changes
    */
+  // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1472
+  // tslint:disable-next-line: no-output-native
   @Output()
-  public change: EventEmitter<TsSlideToggleChange> = new EventEmitter();
+  public readonly change: EventEmitter<TsSlideToggleChange> = new EventEmitter();
 }

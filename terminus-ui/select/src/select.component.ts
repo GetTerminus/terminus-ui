@@ -1,6 +1,10 @@
+// NOTE: Our templates need to call a method to use the `chipFormatUIFn` if one exists
+// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CdkConnectedOverlay, ViewportRuler } from '@angular/cdk/overlay';
+import {
+  CdkConnectedOverlay, ViewportRuler,
+} from '@angular/cdk/overlay';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -34,6 +38,7 @@ import {
   hasRequiredControl,
   isFunction,
   isString,
+  isUndefined,
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
@@ -44,7 +49,11 @@ import {
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import { TS_SPACING } from '@terminus/ui/spacing';
-import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
+import {
+  inputHasChanged,
+  isMouseEvent,
+  TsStyleThemeTypes,
+} from '@terminus/ui/utilities';
 import {
   BehaviorSubject,
   defer,
@@ -62,7 +71,6 @@ import {
   take,
   takeUntil,
 } from 'rxjs/operators';
-
 
 import {
   TsAutocompletePanelComponent,
@@ -98,6 +106,7 @@ export const SELECT_PANEL_MAX_HEIGHT = 256;
 export const SELECT_PANEL_PADDING_X = 16;
 
 // The panel's x axis padding if it is indented (e.g. there is an option group)
+// eslint-disable-next-line no-magic-numbers
 export const SELECT_PANEL_INDENT_PADDING_X = SELECT_PANEL_PADDING_X * 2;
 
 // The height of the select items in `em` units
@@ -125,7 +134,7 @@ const DEFAULT_DELIMITER = ',';
 /**
  * Expose the formatter function type
  */
-export type TsSelectFormatFn = (v: any) => string;
+export type TsSelectFormatFn = (v: unknown) => string;
 
 /**
  * Used to sort selected options.
@@ -141,12 +150,12 @@ export type TsSelectSortComparatorFunction = (
 /**
  * Comparison function to specify which option is displayed
  */
-export type TsSelectOptionCompareWith = (o1: any, o2: any) => boolean;
+export type TsSelectOptionCompareWith = (o1: unknown, o2: unknown) => boolean;
 
 /**
  * The default compare with function used when the consumer does not define one
  */
-export const DEFAULT_COMPARE_WITH: TsSelectOptionCompareWith = (o1: any, o2: any) => o1 === o2;
+export const DEFAULT_COMPARE_WITH: TsSelectOptionCompareWith = (o1: unknown, o2: unknown) => o1 === o2;
 
 /**
  * The select panel will only "fit" inside the viewport if it is positioned at this value or more away from the viewport boundary
@@ -156,12 +165,12 @@ export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
 /**
  * The event object that is emitted when the select value has changed
  */
-export class TsSelectChange {
-  constructor(
+export class TsSelectChange<T = unknown> {
+  public constructor(
     // Reference to the select that emitted the change event
     public source: TsSelectComponent,
     // The current value
-    public value: any,
+    public value: T,
   ) {}
 }
 
@@ -175,6 +184,7 @@ export interface TsSelectOption {
 
 // Unique ID for each instance
 let nextUniqueId = 0;
+const DEFAULT_VIEWPORT_MARGIN = 100;
 
 
 /**
@@ -233,7 +243,7 @@ let nextUniqueId = 0;
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   host: {
-    class: 'ts-select',
+    'class': 'ts-select',
     '[class.ts-select--required]': 'isRequired',
     '[class.ts-select--disabled]': 'isDisabled',
     '[class.ts-select--autocomplete]': '!!autocomplete',
@@ -270,7 +280,7 @@ export class TsSelectComponent implements
   AfterContentInit,
   OnChanges,
   OnDestroy,
-  TsFormFieldControl<any> {
+  TsFormFieldControl<unknown> {
   /**
    * The FormControl to store selections in autocomplete mode
    *
@@ -299,7 +309,7 @@ export class TsSelectComponent implements
    *
    * Implemented as part of TsFormFieldControl.
    */
-  readonly labelChanges: Subject<void> = new Subject<void>();
+  public readonly labelChanges: Subject<void> = new Subject<void>();
 
   /**
    * Manages keyboard events for options in the panel.
@@ -326,9 +336,8 @@ export class TsSelectComponent implements
   /**
    * Combined stream of all of the child options' change events
    */
-  readonly optionSelectionChanges: Observable<TsOptionSelectionChange> = defer(() => {
-    return merge(...this.options.map((option) => option.selectionChange));
-  });
+  public readonly optionSelectionChanges: Observable<TsOptionSelectionChange> =
+    defer(() => merge(...this.options.map(option => option.selectionChange)));
 
   /**
    * Emits when the panel element is finished transforming in.
@@ -380,12 +389,12 @@ export class TsSelectComponent implements
 
   // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
   // Instead, we pass it manually through the template with this reference.
-  selfReference = this;
+  public selfReference = this;
 
   /*
    * Implemented as part of TsFormFieldControl.
    */
-  readonly stateChanges: Subject<void> = new Subject<void>();
+  public readonly stateChanges: Subject<void> = new Subject<void>();
 
   /**
    * The value of the select panel's transform-origin property
@@ -405,7 +414,7 @@ export class TsSelectComponent implements
   /**
    * Define the default component ID
    */
-  readonly uid = `ts-select-${nextUniqueId++}`;
+  public readonly uid = `ts-select-${nextUniqueId++}`;
 
   /**
    * Management of the query string
@@ -415,7 +424,7 @@ export class TsSelectComponent implements
   /**
    * Margin between select panel edge and viewport edge
    */
-  public viewportMarginSpacing = 100;
+  public viewportMarginSpacing = DEFAULT_VIEWPORT_MARGIN;
 
 
   /**
@@ -473,7 +482,9 @@ export class TsSelectComponent implements
   /**
    * Access a list of all the defined select options
    */
-  @ContentChildren(TsSelectOptionComponent, { descendants: true })
+  @ContentChildren(TsSelectOptionComponent, {
+    descendants: true,
+  })
   public options!: QueryList<TsSelectOptionComponent>;
 
   /**
@@ -561,15 +572,15 @@ export class TsSelectComponent implements
    */
   public get selectTriggerValue(): string {
     if (this.allowMultiple) {
-      const selectedOptions = this.selectionModel.selected.map((option) => option.viewValue);
+      const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
       return selectedOptions.join(`${this.delimiter} `);
     }
 
     if (this.autocomplete) {
       return this.autocompleteFormControl.value;
-    } else {
-      return this.selectionModel.selected[0].viewValue;
     }
+    return this.selectionModel.selected[0].viewValue;
+
   }
 
   /**
@@ -619,13 +630,10 @@ export class TsSelectComponent implements
       return;
     }
 
-     if (isFunction(value)) {
+    if (isFunction(value)) {
       this._chipFormatUIFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
     }
   }
   public get chipFormatUIFn(): TsSelectFormatFn {
@@ -821,15 +829,15 @@ export class TsSelectComponent implements
    * Value of the select control
    */
   @Input()
-  public set value(newValue: any) {
+  public set value(newValue: unknown) {
     if (newValue !== this._value) {
       this._value = newValue;
     }
   }
-  public get value(): any {
+  public get value(): unknown {
     return this._value;
   }
-  private _value: any;
+  private _value: unknown;
 
 
   /**
@@ -840,43 +848,43 @@ export class TsSelectComponent implements
    * Event for when the panel is closed
    */
   @Output()
-  readonly closed: EventEmitter<void> = new EventEmitter();
+  public readonly closed: EventEmitter<void> = new EventEmitter();
 
   /**
    * Event for when a duplicate selection is made
    */
   @Output()
-  readonly duplicateSelection: EventEmitter<string> = new EventEmitter();
+  public readonly duplicateSelection: EventEmitter<string> = new EventEmitter();
 
   /**
    * Event for when the panel is opened
    */
   @Output()
-  readonly opened: EventEmitter<void> = new EventEmitter();
+  public readonly opened: EventEmitter<void> = new EventEmitter();
 
   /**
    * Event for when an option is removed
    */
   @Output()
-  readonly optionDeselected: EventEmitter<TsSelectChange> = new EventEmitter();
+  public readonly optionDeselected: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
    * Event for when an option is selected
    */
   @Output()
-  readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
+  public readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
    * Event for when the autocomplete query has changed
    */
   @Output()
-  readonly queryChange: EventEmitter<string> = new EventEmitter();
+  public readonly queryChange: EventEmitter<string> = new EventEmitter();
 
   /**
    * Event for when the selections change
    */
   @Output()
-  readonly selectionChange: EventEmitter<TsSelectChange> = new EventEmitter();
+  public readonly selectionChange: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
    * Event that emits whenever the raw value of the select changes. This is here primarily
@@ -885,10 +893,10 @@ export class TsSelectComponent implements
    * Needed for {@link TsFormFieldComponent}.
    */
   @Output()
-  readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
+  public readonly valueChange: EventEmitter<unknown> = new EventEmitter<unknown>();
 
 
-  constructor(
+  public constructor(
     private viewportRuler: ViewportRuler,
     private changeDetectorRef: ChangeDetectorRef,
     private ngZone: NgZone,
@@ -917,6 +925,7 @@ export class TsSelectComponent implements
     // Seed the control value in autocomplete mode
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
     // We need to push it to the next event loop. When using a FormControl the value is there on the first run.
+    // eslint-disable-next-line dot-notation
     if (this.ngControl && this.ngControl['form']) {
       // istanbul ignore else
       if (this.autocomplete && this.ngControl.value) {
@@ -929,12 +938,14 @@ export class TsSelectComponent implements
       if (this.ngControl.valueChanges) {
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
-          .subscribe((newValue) => {
+          .subscribe(newValue => {
 
             // istanbul ignore else
             if (newValue) {
               if (this.autocomplete) {
-                this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
+                this.autocompleteFormControl.setValue(newValue, {
+                  emitEvent: false,
+                });
                 this.autocompleteSelections = this.ngControl.value;
               } else {
                 this.setSelectionByValue(newValue);
@@ -960,9 +971,7 @@ export class TsSelectComponent implements
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // If the query is shorter than allowed, convert to an empty string
-      switchMap((query) => {
-        return of((query && (query.length >= this.minimumCharacters)) ? query : '');
-      }),
+      switchMap(query => of((query && (query.length >= this.minimumCharacters)) ? query : '')),
       // Only allow a query through if it is different from the previous query
       distinctUntilChanged(),
     ).subscribe((query: string) => {
@@ -977,7 +986,7 @@ export class TsSelectComponent implements
     // Propagate changes from the autocomplete form control
     this.autocompleteFormControl.valueChanges.pipe(
       untilComponentDestroyed(this),
-    ).subscribe((v) => {
+    ).subscribe(v => {
       this.propagateChanges(v);
     });
   }
@@ -990,17 +999,15 @@ export class TsSelectComponent implements
     this.initKeyManager();
 
     // NOTE: Known bug: This event will come through twice for each selection.
-    // NOTE: Selection model is created during OnInit so it cannot be null here
-    // tslint:disable: no-non-null-assertion
-    this.selectionModel.onChange!.pipe(
+    this.selectionModel.changed.pipe(
       untilComponentDestroyed(this),
-    ).subscribe((event) => {
-      event.added.forEach((option) => {
+    ).subscribe(event => {
+      event.added.forEach(option => {
         option.select();
         this.optionSelected.emit(new TsSelectChange(this, option.value));
       });
 
-      event.removed.forEach((option) => {
+      event.removed.forEach(option => {
         option.deselect();
         this.optionDeselected.emit(new TsSelectChange(this, option.value));
       });
@@ -1048,7 +1055,7 @@ export class TsSelectComponent implements
    * Needed for ControlValueAccessor (View -> model callback called when value changes)
    */
   // istanbul ignore next
-  public onChange: (value: any) => void = () => {};
+  public onChange: (value: unknown) => void = () => {};
 
 
   /**
@@ -1175,6 +1182,7 @@ export class TsSelectComponent implements
    *
    * @param event - The KeyboardEvent
    */
+  // eslint-disable-next-line complexity
   private handleOpenKeydown(event: KeyboardEvent): void {
     const keyCode = event.code;
     const isArrowKey = keyCode === KEYS.DOWN_ARROW.code || keyCode === KEYS.UP_ARROW.code;
@@ -1197,9 +1205,9 @@ export class TsSelectComponent implements
     } else if (this.allowMultiple && keyCode === KEYS.A.code && event.ctrlKey) {
       // Select all with CTRL+A
       event.preventDefault();
-      const hasDeselectedOptions = this.options.some((opt) => !opt.isDisabled && !opt.selected);
+      const hasDeselectedOptions = this.options.some(opt => !opt.isDisabled && !opt.selected);
 
-      this.options.forEach((option) => {
+      this.options.forEach(option => {
         // istanbul ignore else
         if (!option.isDisabled) {
           hasDeselectedOptions ? option.select() : option.deselect();
@@ -1231,7 +1239,7 @@ export class TsSelectComponent implements
     this.optionSelectionChanges.pipe(
       takeUntil(this.options.changes),
       untilComponentDestroyed(this),
-    ).subscribe((event) => {
+    ).subscribe(event => {
       // istanbul ignore else
       if (!this.autocomplete) {
         this.onSelect(event.source, event.isUserInput);
@@ -1246,7 +1254,7 @@ export class TsSelectComponent implements
 
     // Listen to changes in the internal state of the options and react accordingly.
     // Handles cases like the labels of the selected options changing.
-    merge(...this.options.map((option) => option.stateChanges))
+    merge(...this.options.map(option => option.stateChanges))
       .pipe(untilComponentDestroyed(this))
       .subscribe(() => {
         this.changeDetectorRef.markForCheck();
@@ -1305,7 +1313,7 @@ export class TsSelectComponent implements
    * Records option IDs to pass to the aria-owns property
    */
   private setOptionIds(): void {
-    this.optionIds = this.options.map((option) => option.id).join(' ');
+    this.optionIds = this.options.map(option => option.id).join(' ');
   }
 
 
@@ -1369,9 +1377,13 @@ export class TsSelectComponent implements
     if (this.allowMultiple) {
       const options = this.options.toArray();
 
-      this.selectionModel.sort((a, b) => {
-        return this.sortComparator ? this.sortComparator(a, b, options) : options.indexOf(a) - options.indexOf(b);
-      });
+      this.selectionModel
+        .sort((a, b) => {
+          if (this.sortComparator) {
+            return this.sortComparator(a, b, options);
+          }
+          return options.indexOf(a) - options.indexOf(b);
+        });
 
       this.stateChanges.next();
     }
@@ -1383,17 +1395,15 @@ export class TsSelectComponent implements
    *
    * @param fallbackValue - A fallback value to use when no selection exists
    */
-  private propagateChanges(fallbackValue?: any): void {
-    let valueToEmit: any = null;
+  private propagateChanges(fallbackValue?: unknown): void {
+    let valueToEmit: unknown = null;
 
     if (this.autocomplete) {
       valueToEmit = this.autocompleteFormControl.value;
+    } else if (this.allowMultiple) {
+      valueToEmit = (this.selected as TsSelectOptionComponent[]).map(option => option.value);
     } else {
-      if (this.allowMultiple) {
-        valueToEmit = (this.selected as TsSelectOptionComponent[]).map((option) => option.value);
-      } else {
-        valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
-      }
+      valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
     }
 
     this.value = valueToEmit;
@@ -1421,7 +1431,7 @@ export class TsSelectComponent implements
    *
    * @param value - New value to be written to the model
    */
-  public writeValue(value: any): void {}
+  public writeValue(value: unknown): void {}
 
 
   /**
@@ -1430,7 +1440,7 @@ export class TsSelectComponent implements
    *
    * @param fn - Callback to be triggered when the value changes
    */
-  public registerOnChange(fn: (value: any) => void): void {
+  public registerOnChange(fn: (value: unknown) => void): void {
     this.onChange = fn;
   }
 
@@ -1477,11 +1487,12 @@ export class TsSelectComponent implements
    *
    * @param value - The value to use to look up options
    */
+  // tslint:disable-next-line no-any
   private setSelectionByValue(value: any | any[]): void {
     if (this.allowMultiple && value) {
       value = coerceArray(value);
       this.selectionModel.clear();
-      value.forEach((currentValue: any) => this.selectOptionByValue(currentValue));
+      value.forEach((currentValue: unknown) => this.selectOptionByValue(currentValue));
       this.sortValues();
     } else {
       this.selectionModel.clear();
@@ -1504,7 +1515,7 @@ export class TsSelectComponent implements
    * @param value - The value to use when searching for a matching option
    * @return Option that has the corresponding value
    */
-  private selectOptionByValue(value: any): TsSelectOptionComponent | undefined {
+  private selectOptionByValue(value: unknown): TsSelectOptionComponent | undefined {
     const correspondingOption = this.options.find((option: TsSelectOptionComponent) => {
       try {
         // Treat null as a special reset value.
@@ -1571,6 +1582,7 @@ export class TsSelectComponent implements
 
     // We must maintain a scroll buffer so the selected option will be scrolled to the
     // center of the overlay panel rather than the top.
+    // eslint-disable-next-line no-magic-numbers
     const scrollBuffer = panelHeight / 2;
     this.scrollTop = this.calculateOverlayScroll(selectedOptionOffset, scrollBuffer, maxScroll);
     this.offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
@@ -1592,6 +1604,7 @@ export class TsSelectComponent implements
   private calculateOverlayScroll(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
     const itemHeight = this.itemHeight;
     const optionOffsetFromScrollTop = itemHeight * selectedIndex;
+    // eslint-disable-next-line no-magic-numbers
     const halfOptionHeight = itemHeight / 2;
 
     // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the scroll container, then subtracts the scroll
@@ -1615,6 +1628,7 @@ export class TsSelectComponent implements
     // NOTE: scrollBuffer is half of the panel height - which is really half of SELECT_PANEL_MAX_HEIGHT (when many options exist)
     // NOTE: maxScroll is the height of all options minus the height of the panel
     const itemHeight = this.itemHeight;
+    // eslint-disable-next-line no-magic-numbers
     const optionHeightAdjustment = (itemHeight - (this.triggerRect ? this.triggerRect.height : 0)) / 2;
     const maxOptionsDisplayed = Math.floor(SELECT_PANEL_MAX_HEIGHT / itemHeight);
 
@@ -1627,26 +1641,24 @@ export class TsSelectComponent implements
       const firstDisplayedIndex = this.itemCount - maxOptionsDisplayed;
       const selectedDisplayIndex = selectedIndex - firstDisplayedIndex;
 
-      // The first item is partially out of the viewport. Therefore we need to calculate what
-      // portion of it is shown in the viewport and account for it in our offset.
-      const partialItemHeight = itemHeight - (this.itemCount * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
+      // The first item is partially out of the viewport. Therefore we need to calculate what portion of it is shown in the viewport and
+      // account for it in our offset.
+      const partialItemHeight = itemHeight - (((this.itemCount * itemHeight) - SELECT_PANEL_MAX_HEIGHT) % itemHeight);
 
-      // Because the panel height is longer than the height of the options alone,
-      // there is always extra padding at the top or bottom of the panel. When
-      // scrolled to the very bottom, this padding is at the top of the panel and
-      // must be added to the offset.
-      optionOffsetFromPanelTop = selectedDisplayIndex * itemHeight + partialItemHeight;
+      // Because the panel height is longer than the height of the options alone, there is always extra padding at the top or bottom of the
+      // panel. When scrolled to the very bottom, this padding is at the top of the panel and must be added to the offset.
+      optionOffsetFromPanelTop = (selectedDisplayIndex * itemHeight) + partialItemHeight;
     } else {
-      // If the option was scrolled to the middle of the panel using a scroll buffer,
-      // its offset will be the scroll buffer minus the half height that was added to
-      // center it.
-      optionOffsetFromPanelTop = scrollBuffer - itemHeight / 2;
+      // If the option was scrolled to the middle of the panel using a scroll buffer, its offset will be the scroll buffer minus the half
+      // height that was added to center it.
+      // eslint-disable-next-line no-magic-numbers
+      optionOffsetFromPanelTop = scrollBuffer - (itemHeight / 2);
     }
 
     // The final offset is the option's offset from the top, adjusted for the height difference,
     // multiplied by -1 to ensure that the overlay moves in the correct direction up the page.
     // The value is rounded to prevent some browsers from blurring the content.
-    return Math.round(optionOffsetFromPanelTop * -1 - optionHeightAdjustment);
+    return Math.round((optionOffsetFromPanelTop * -1) - optionHeightAdjustment);
   }
 
 
@@ -1674,7 +1686,7 @@ export class TsSelectComponent implements
     if (panelHeightBottom > bottomSpaceAvailable) {
       this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
     } else if (panelHeightTop > topSpaceAvailable) {
-     this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
+      this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
     } else {
       this.transformOrigin = this.getOriginBasedOnOption();
     }
@@ -1747,8 +1759,10 @@ export class TsSelectComponent implements
    */
   private getOriginBasedOnOption(): string {
     const itemHeight = this.itemHeight;
+    /* eslint-disable no-magic-numbers */
     const optionHeightAdjustment = (itemHeight - (this.triggerRect ? this.triggerRect.height : 0)) / 2;
-    const originY = Math.abs(this.offsetY) - optionHeightAdjustment + itemHeight / 2;
+    const originY = Math.abs(this.offsetY) - optionHeightAdjustment + (itemHeight / 2);
+    /* eslint-enable no-magic-numbers */
 
     return `50% ${originY}px 0px`;
   }
@@ -1762,7 +1776,10 @@ export class TsSelectComponent implements
    */
   private getOptionIndex(option: TsSelectOptionComponent): number | undefined {
     return this.options.reduce((result: number | undefined, current: TsSelectOptionComponent, index: number) => {
-      return result === undefined ? (option === current ? index : undefined) : result;
+      // eslint-disable-next-line no-undefined
+      const optionIndexIfCurrent = option === current ? index : undefined;
+      return isUndefined(result) ? optionIndexIfCurrent : result;
+      // eslint-disable-next-line no-undefined
     }, undefined);
   }
 
@@ -1843,23 +1860,17 @@ export class TsSelectComponent implements
    * @param event - The keyboard or mouse event
    */
   public handleInputBlur(event: KeyboardEvent | MouseEvent): void {
-    // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
-    const hasRelatedTarget = !!(event && event['relatedTarget']);
-    const hasNodeName = !!(hasRelatedTarget && event['relatedTarget'].nodeName);
-
-    if (hasRelatedTarget && hasNodeName) {
+    if (isMouseEvent(event)) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
       // will be `TS_SELECT_OPTION`.
       // istanbul ignore else
-      if (event['relatedTarget'].nodeName !== 'TS-SELECT-OPTION') {
+      // NOTE: TypeScript warns `Property 'nodeName' does not exist on type 'EventTarget'.`
+      // tslint:disable-next-line no-any
+      if ((event.relatedTarget as any).nodeName !== 'TS-SELECT-OPTION') {
         this.resetAutocompleteQuery();
       }
-    } else {
-      // Close the autocomplete planel
-      // istanbul ignore else
-      if (this.autocompleteTrigger.panelOpen) {
-        this.autocompleteTrigger.closePanel(true);
-      }
+    } else if (this.autocompleteTrigger.panelOpen) {
+      this.autocompleteTrigger.closePanel(true);
     }
 
     // Mark this control as 'touched' to trigger any validations needed on blur
@@ -1922,8 +1933,8 @@ export class TsSelectComponent implements
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.chipFormatUIFn ?
-        this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
+      const newValue = this.chipFormatUIFn
+        ? this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
       this.inputElement.nativeElement.value = newValue;
     }
 
@@ -1989,8 +2000,19 @@ export class TsSelectComponent implements
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: any, formatter?: TsSelectFormatFn): any {
+  public retrieveValue(option: unknown, formatter?: TsSelectFormatFn): unknown {
     return (formatter && formatter(option)) ? formatter(option) : option;
+  }
+
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @return The unique ID
+   */
+  public trackByFn(index): number {
+    return index;
   }
 
 }

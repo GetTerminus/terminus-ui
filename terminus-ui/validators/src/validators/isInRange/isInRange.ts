@@ -16,11 +16,8 @@ import { isNumber } from '@terminus/ngx-tools';
  * @param maximum - The minimum value
  * @return The validator function
  */
-export function isInRangeValidator(
-minimum: number | AbstractControl = 0,
-maximum: number | AbstractControl = 0):
-  ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
+export function isInRangeValidator(minimum: number | AbstractControl = 0, maximum: number | AbstractControl = 0): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control) {
       return null;
@@ -35,9 +32,9 @@ maximum: number | AbstractControl = 0):
 
     if (isAbstractControl(minimum) && isAbstractControl(maximum)) {
       return getValidationResult(minimum.value, maximum.value, control);
-    } else {
-      return getValidationResult(coerceNumberProperty(minimum), coerceNumberProperty(maximum), control);
     }
+    return getValidationResult(coerceNumberProperty(minimum), coerceNumberProperty(maximum), control);
+
   };
 }
 
@@ -55,10 +52,10 @@ function getValidationResult(minimum: number | undefined, maximum: number | unde
   maximum = coerceNumberProperty(maximum);
   const invalidResponse: ValidationErrors = {
     isInRange: {
-    valid: false,
-    minimum: minimum,
-    maximum: maximum,
-    actual: control.value,
+      valid: false,
+      minimum,
+      maximum,
+      actual: control.value,
     },
   };
 

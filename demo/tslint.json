@@ -1,0 +1,15 @@
+{
+  "extends": "./../tslint.json",
+  "rules": {
+    "component-selector": [
+      true,
+      "element",
+      "demo",
+      "kebab-case"
+    ],
+    "member-access": false,
+    "prefer-on-push-component-change-detection": false,
+    "template-no-call-expression": false,
+    "template-use-track-by-function": false
+  }
+}

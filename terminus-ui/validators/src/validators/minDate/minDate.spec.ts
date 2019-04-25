@@ -49,7 +49,7 @@ describe(`minDateValidator`, function() {
       const actual = validatorFn(stringControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: minDate,
+        minDate,
         actual: 'foo',
       };
 
@@ -66,7 +66,7 @@ describe(`minDateValidator`, function() {
       const actual = validatorFn(invalidDateControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: minDate,
+        minDate,
         actual: invalidDate,
       };
 
@@ -115,7 +115,7 @@ describe(`minDateValidator`, function() {
       const actual = validatorFn(stringControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: minDate,
+        minDate,
         actual: 'foo',
       };
 
@@ -132,7 +132,7 @@ describe(`minDateValidator`, function() {
       const actual = validatorFn(invalidDateControl)!.minDate;
       const expected = {
         valid: false,
-        minDate: minDate,
+        minDate,
         actual: invalidDate,
       };
 

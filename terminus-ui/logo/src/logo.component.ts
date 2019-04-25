@@ -6,7 +6,10 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  DomSanitizer,
+  SafeHtml,
+} from '@angular/platform-browser';
 
 import { FULL_ACCOUNT_HUB_LOGO } from './logo-types/full-account-hub';
 import { FULL_GRADIENT_LOGO } from './logo-types/full-gradient';
@@ -75,7 +78,7 @@ export const TS_LOGO_COLORS: TS_LOGO_COLOR[] = [
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   host: {
-    class: 'ts-logo',
+    'class': 'ts-logo',
     '[class.ts-logo--black]': 'logoColor === "black"',
     '[class.ts-logo--gray]': 'logoColor === "gray"',
   },
@@ -93,8 +96,8 @@ export class TsLogoComponent implements OnInit {
   public set type(value: TS_LOGO_TYPE) {
     // If an unsupported value is passed in
     if (value && TS_LOGO_TYPES.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsLogoComponent: "${value}" is not a supported logo type. ` +
-      `See TS_LOGO_TYPE for available options.`);
+      console.warn(`TsLogoComponent: "${value}" is not a supported logo type. `
+      + `See TS_LOGO_TYPE for available options.`);
       return;
     }
     this._type = value;
@@ -112,8 +115,8 @@ export class TsLogoComponent implements OnInit {
   public set logoColor(value: TS_LOGO_COLOR) {
     // If an unsupported value is passed in
     if (value && TS_LOGO_COLORS.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsLogoComponent: "${value}" is not a supported logo color. ` +
-      `See TS_LOGO_COLOR for available options.`);
+      console.warn(`TsLogoComponent: "${value}" is not a supported logo color. `
+      + `See TS_LOGO_COLOR for available options.`);
       return;
     }
     this._logoColor = value;
@@ -139,22 +142,22 @@ export class TsLogoComponent implements OnInit {
    */
   private setType(): void {
     switch (this.type) {
-      case('full-account-hub'):
+      case ('full-account-hub'):
         this.logoColor = 'white';
         this.svg = this.domSanitizer.bypassSecurityTrustHtml(FULL_ACCOUNT_HUB_LOGO);
         break;
-      case('full-gradient'):
+      case ('full-gradient'):
         this.logoColor = 'white';
         this.svg = this.domSanitizer.bypassSecurityTrustHtml(FULL_GRADIENT_LOGO);
         break;
-      case('full-solid'):
+      case ('full-solid'):
         this.svg = this.domSanitizer.bypassSecurityTrustHtml(FULL_SOLID_LOGO);
         break;
-      case('mark-gradient'):
+      case ('mark-gradient'):
         this.logoColor = 'white';
         this.svg = this.domSanitizer.bypassSecurityTrustHtml(MARK_GRADIENT_LOGO);
         break;
-      case('mark-solid'):
+      case ('mark-solid'):
         this.svg = this.domSanitizer.bypassSecurityTrustHtml(MARK_SOLID_LOGO);
         break;
       default:

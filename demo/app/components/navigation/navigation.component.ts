@@ -82,7 +82,7 @@ export class NavigationComponent {
    *
    * @param {Object} item The navigation item
    */
-  triggerAction(payload: TsNavigationPayload): void {
+  public triggerAction(payload: TsNavigationPayload): void {
     console.log('DEMO: triggerAction: ', payload);
 
     if (payload.event.metaKey) {
@@ -95,7 +95,7 @@ export class NavigationComponent {
 
   }
 
-  updateNav(): void {
+  public updateNav(): void {
     const newNav = NAV_ITEMS_MOCK.slice(0);
     newNav.unshift(NEW_NAV_ITEM);
     this.navigationItems$ = of(newNav);

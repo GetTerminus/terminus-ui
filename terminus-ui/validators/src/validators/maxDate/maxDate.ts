@@ -22,9 +22,9 @@ export function maxDateValidator(maxDate: string | AbstractControl): ValidatorFn
 
     if (isAbstractControl(maxDate)) {
       return getValidationResult(maxDate.value, control);
-    } else {
-      return getValidationResult(maxDate, control);
     }
+
+    return getValidationResult(maxDate, control);
   };
 }
 
@@ -40,7 +40,7 @@ function getValidationResult(maxDate: string | undefined, control: AbstractContr
   const invalidResponse: ValidationErrors = {
     maxDate: {
       valid: false,
-      maxDate: maxDate,
+      maxDate,
       actual: control.value,
     },
   };
@@ -48,11 +48,10 @@ function getValidationResult(maxDate: string | undefined, control: AbstractContr
   // Verify the dates are valid
   if (!isValid(control.value) || !maxDate || !isValid(maxDate)) {
     return invalidResponse;
-  } else {
-    const controlDateTime: number = new Date(control.value).getTime();
-    const maxDateTime: number = new Date(maxDate).getTime();
-
-    return (maxDateTime >= controlDateTime) ? null : invalidResponse;
   }
 
+  const controlDateTime: number = new Date(control.value).getTime();
+  const maxDateTime: number = new Date(maxDate).getTime();
+
+  return (maxDateTime >= controlDateTime) ? null : invalidResponse;
 }

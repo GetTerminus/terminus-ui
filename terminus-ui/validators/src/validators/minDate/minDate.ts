@@ -22,9 +22,9 @@ export function minDateValidator(minDate: string | AbstractControl): ValidatorFn
 
     if (isAbstractControl(minDate)) {
       return getValidationResult(minDate.value, control);
-    } else {
-      return getValidationResult(minDate, control);
     }
+
+    return getValidationResult(minDate, control);
   };
 }
 
@@ -40,7 +40,7 @@ function getValidationResult(minDate: string | undefined, control: AbstractContr
   const invalidResponse: ValidationErrors = {
     minDate: {
       valid: false,
-      minDate: minDate,
+      minDate,
       actual: control.value,
     },
   };
@@ -48,11 +48,11 @@ function getValidationResult(minDate: string | undefined, control: AbstractContr
   // Verify the dates are valid
   if (!isValid(control.value) || !minDate || !isValid(minDate)) {
     return invalidResponse;
-  } else {
-    const controlDateTime = new Date(control.value).getTime();
-    const minDateTime = new Date(minDate).getTime();
-    const dateIsAfterMin = minDateTime <= controlDateTime;
-
-    return dateIsAfterMin ? null : invalidResponse;
   }
+
+  const controlDateTime = new Date(control.value).getTime();
+  const minDateTime = new Date(minDate).getTime();
+  const dateIsAfterMin = minDateTime <= controlDateTime;
+
+  return dateIsAfterMin ? null : invalidResponse;
 }

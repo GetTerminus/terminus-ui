@@ -18,21 +18,18 @@ export class TsSortHeaderIntl {
    * Stream that emits whenever the labels here are changed. Use this to notify
    * components if the labels have changed after initialization.
    */
-  changes: Subject<void> = new Subject<void>();
+  public changes: Subject<void> = new Subject<void>();
 
   /**
    * ARIA label for the sorting button
    */
-  sortButtonLabel = (id: string) => {
-    return `Change sorting for ${id}`;
-  }
+  public sortButtonLabel = (id: string) => `Change sorting for ${id}`;
 
   /**
    * A label to describe the current sort (visible only to screenreaders)
    */
-  sortDescriptionLabel = (id: string, direction: TsSortDirection) => {
-    return `Sorted by ${id} ${direction === 'asc' ? 'ascending' : 'descending'}`;
-  }
+  public sortDescriptionLabel =
+    (id: string, direction: TsSortDirection) => `Sorted by ${id} ${direction === 'asc' ? 'ascending' : 'descending'}`
 }
 
 

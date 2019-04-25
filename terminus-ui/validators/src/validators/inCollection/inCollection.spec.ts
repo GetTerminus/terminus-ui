@@ -5,7 +5,7 @@ import { inCollectionValidator } from './inCollection';
 
 
 describe(`inCollectionValidator`, function() {
-  const myCollectionFn = (a) => a.name;
+  const myCollectionFn = a => a.name;
   const shallowCollection = ['foo', 'bar', 'baz'];
   const deepCollection = [
     {

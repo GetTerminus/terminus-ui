@@ -17,7 +17,7 @@ let nextUniqueId = 0;
   selector: 'ts-select-trigger',
   template: `<ng-content></ng-content>`,
   host: {
-    class: 'ts-select-custom-trigger qa-select-custom-trigger',
+    'class': 'ts-select-custom-trigger qa-select-custom-trigger',
     '[attr.id]': 'id',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +28,7 @@ export class TsSelectTriggerComponent {
   /**
    * Define the default component ID
    */
-  readonly uid = `ts-select-trigger-${nextUniqueId++}`;
+  public readonly uid = `ts-select-trigger-${nextUniqueId++}`;
 
   /**
    * Define an ID for the component

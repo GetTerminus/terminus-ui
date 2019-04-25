@@ -19,7 +19,7 @@ import {
 })
 export class TsTabLabelWrapperDirective {
   // This is needed by the CdkListKeyManager - they are checking for `disabled` rather than `isDisabled`
-  disabled = false;
+  public disabled = false;
   /**
    * Determine the left offset
    */

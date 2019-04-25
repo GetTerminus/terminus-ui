@@ -1,5 +1,7 @@
 // tslint:disable: no-non-null-assertion
-import { FormBuilder } from '@angular/forms';
+import {
+  FormBuilder, FormGroup,
+} from '@angular/forms';
 
 import { TsSearchComponent } from './search.component';
 
@@ -151,7 +153,9 @@ describe('TsSearchComponent', function() {
     test(`should emit an event if the form is valid`, () => {
       component['emitSubmit']();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
+      expect(component.submitted.emit).toHaveBeenCalledWith({
+        query: 'foo',
+      });
     });
 
 
@@ -160,7 +164,23 @@ describe('TsSearchComponent', function() {
       component['debouncedEmit']();
       jest.runAllTimers();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
+      expect(component.submitted.emit).toHaveBeenCalledWith({
+        query: 'foo',
+      });
+    });
+
+  });
+
+
+  describe(`get searchFormControl`, function() {
+
+    test(`should return the control`, function() {
+      expect(component.searchFormControl!.statusChanges).toBeTruthy();
+    });
+
+    test(`should return null if the control doesn't exist`, function() {
+      component.searchForm = new FormGroup({});
+      expect(component.searchFormControl).toEqual(null);
     });
 
   });

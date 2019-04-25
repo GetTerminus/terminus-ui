@@ -313,7 +313,7 @@ export class Clearable {
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
   // Must be overwritten with a spy in the test
-  cleared = (v) => {};
+  cleared = v => {};
 }
 
 @Component({

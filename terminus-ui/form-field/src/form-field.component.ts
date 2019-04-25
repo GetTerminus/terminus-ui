@@ -73,7 +73,7 @@ const OUTLINE_GAP_PADDING = 5;
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   host: {
-    class: 'ts-form-field',
+    'class': 'ts-form-field',
     '[class.ts-form-field--invalid]': 'controlIsInErrorState',
     '[class.ts-form-field--float]': 'shouldLabelFloat()',
     '[class.ts-form-field--disabled]': 'control.isDisabled',
@@ -185,6 +185,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    * NOTE: Using non-null-assertion as since the existence is verified by `confirmControlExists()`
    */
   @Input()
+  // tslint:disable-next-line no-any
   public control!: TsFormFieldControl<any>;
 
   /**
@@ -282,7 +283,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     }
 
     // Run change detection if the value, prefix, or suffix changes.
-    const valueChanges = this.control.ngControl && this.control.ngControl.valueChanges || EMPTY;
+    const valueChanges = (this.control.ngControl && this.control.ngControl.valueChanges) || EMPTY;
     merge(valueChanges, this.prefixChildren.changes, this.suffixChildren.changes).subscribe(() => this.changeDetectorRef.markForCheck());
 
     this.ngZone.onStable.pipe(take(1)).subscribe(() => {
@@ -406,12 +407,14 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
       }
 
       startWidth = labelStart - containerStart - OUTLINE_GAP_PADDING;
-      gapWidth = (labelWidth > 0) ? labelWidth * FLOATING_LABEL_SCALE + OUTLINE_GAP_PADDING * 2 : 0;
+      const TWO = 2;
+      gapWidth = (labelWidth > 0) ? (labelWidth * FLOATING_LABEL_SCALE) + (OUTLINE_GAP_PADDING * TWO) : 0;
     }
 
     for (let i = 0; i < startEls.length; i++) {
       startEls.item(i).style.width = `${startWidth}px`;
     }
+
     for (let i = 0; i < gapEls.length; i++) {
       gapEls.item(i).style.width = `${gapWidth}px`;
     }

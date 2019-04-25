@@ -1,11 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component, ViewChild,
+} from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { createComponent } from '@terminus/ngx-tools/testing';
 
 import { TsStyleThemeTypes } from '../../utilities/src/public-api';
-import { TsCardBorderOptions, TsCardComponent } from './card.component';
+import {
+  TsCardBorderOptions, TsCardComponent,
+} from './card.component';
 import { TsCardModule } from './card.module';
 
 @Component({

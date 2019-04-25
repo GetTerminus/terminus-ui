@@ -14,7 +14,7 @@ export function getAllInputInstances(fixture: ComponentFixture<any>): TsInputCom
   if (!debugElements) {
     throw new Error(`'getAllInputInstances' found no inputs`);
   }
-  return debugElements.map((i) => i.componentInstance);
+  return debugElements.map(i => i.componentInstance);
 }
 
 /**

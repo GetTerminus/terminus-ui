@@ -10,12 +10,12 @@ import { SimpleChanges } from '@angular/core';
  */
 export function inputHasChanged(changes: SimpleChanges, key: string): boolean | undefined {
   if (!changes || !key) {
-    return;
+    return undefined;
   }
 
   if (changes[key] && (changes[key].currentValue !== changes[key].previousValue)) {
     return true;
-  } else {
-    return false;
   }
+
+  return false;
 }

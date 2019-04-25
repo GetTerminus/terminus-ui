@@ -1,9 +1,13 @@
 // tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import {
+  Component, NgModule,
+} from '@angular/core';
 
 import { noop } from '@terminus/ngx-tools';
-import { TS_EXPANSION_PANEL_DEFAULT_OPTIONS, TsExpansionPanelModule } from '@terminus/ui/expansion-panel';
+import {
+  TS_EXPANSION_PANEL_DEFAULT_OPTIONS, TsExpansionPanelModule,
+} from '@terminus/ui/expansion-panel';
 
 
 @Component({
@@ -201,7 +205,7 @@ export class Events {
   afterExpand = noop;
   afterCollapse = noop;
   destroyed = noop;
-  expandedChange = (v) => {};
+  expandedChange = v => {};
 }
 
 @Component({

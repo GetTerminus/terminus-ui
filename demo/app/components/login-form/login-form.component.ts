@@ -27,4 +27,15 @@ export class LoginFormComponent {
     }, 1000);
   }
 
+  resetForm() {
+    console.log('in demo reset');
+    setTimeout(() => {
+      this.reset = true;
+
+      setTimeout(() => {
+        this.reset = false;
+      }, 10);
+    }, 10);
+  }
+
 }

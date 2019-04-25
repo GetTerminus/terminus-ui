@@ -14,16 +14,21 @@ import {
   of,
   Subscription,
 } from 'rxjs';
-import { delay, map, startWith, switchMap } from 'rxjs/operators';
+import {
+  delay,
+  map,
+  startWith,
+  switchMap,
+} from 'rxjs/operators';
 
 import {
   TsAutocompleteComparatorFn,
   TsAutocompleteComponent,
 } from '@terminus/ui/autocomplete';
 
-interface GitHubUser {
-  [key: string]: any;
-}
+// tslint:disable-next-line no-any
+type GitHubUser = Record<string, any>;
+
 
 // Values used to seed initial selections
 const INITIAL: GitHubUser[] = [
@@ -96,6 +101,7 @@ const INJECTION_ITEM = {
 interface OptionType {
   id: string;
   login: string;
+  // tslint:disable-next-line no-any
   [key: string]: any;
 }
 
@@ -128,12 +134,12 @@ export class AutocompleteComponent implements OnInit {
   inProgress = false;
   delayApiResponse = false;
   changesSubscription$!: Subscription;
-  users$: any;
+  users$: Observable<GitHubUser[]> | undefined;
   minCharacters = 4;
 
 
   ngOnInit() {
-    this.changesSubscription$ = this.auto.selection.subscribe((v: any) => {
+    this.changesSubscription$ = this.auto.selection.subscribe((v: OptionType) => {
       console.log('DEMO: subscription change ', v);
     });
 
@@ -148,7 +154,7 @@ export class AutocompleteComponent implements OnInit {
             return this.http.get(`https://api.github.com/search/users?q=${term}`)
               .pipe(
                 delay(this.delayApiResponse ? 3000 : 0),
-                map((response: any) => {
+                map((response) => {
                   this.inProgress = false;
                   const items: GitHubUser[] = response['items'];
 
@@ -193,9 +199,9 @@ export class AutocompleteComponent implements OnInit {
     }
   }
 
-  comparator: TsAutocompleteComparatorFn = (v: any) => v.id;
+  comparator: TsAutocompleteComparatorFn<OptionType> = (v: OptionType) => v.id;
 
-  displayFn(user?: any): string | undefined {
+  displayFn(user?: OptionType): string | undefined {
     return user ? user.login : undefined;
   }
 

@@ -15,7 +15,7 @@ export function getAllRadioGroupInstances(fixture: ComponentFixture<any>): TsRad
   if (!debugElements) {
     throw new Error(`'getAllRadioGroupInstances' found no radio groups`);
   }
-  return debugElements.map((i) => i.componentInstance);
+  return debugElements.map(i => i.componentInstance);
 }
 
 /**
@@ -66,7 +66,7 @@ export function selectStandardRadio(fixture: ComponentFixture<any>, radioValue: 
   }
   const labels: DebugElement[] = debugElement.queryAll(By.css('.mat-radio-label'));
 
-  labels.forEach((labelDebugEl) => {
+  labels.forEach(labelDebugEl => {
     const labelTextElement = labelDebugEl.query(By.css('.mat-radio-label-content')).nativeElement;
 
     if (labelTextElement.textContent.trim() === radioValue) {
@@ -93,7 +93,7 @@ export function selectVisualRadio(fixture: ComponentFixture<any>, radioValue: st
   }
   const labels: DebugElement[] = debugElement.queryAll(By.css('.c-radio__control'));
 
-  labels.forEach((labelDebugEl) => {
+  labels.forEach(labelDebugEl => {
     const labelTextElement = labelDebugEl.query(By.css('.c-radio__content-label')).nativeElement;
 
     if (labelTextElement.textContent.trim() === radioValue) {

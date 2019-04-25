@@ -1,5 +1,6 @@
 // FIXME: Can we refactor non-null-assertion?
 // tslint:disable: no-non-null-assertion
+/* eslint-disable no-underscore-dangle */
 import { DataSource } from '@angular/cdk/table';
 import {
   BehaviorSubject,
@@ -27,7 +28,7 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * Subscription to the changes that should trigger an update to the table's rendered rows, such
    * as filtering, sorting, pagination, or base data changes.
    */
-  _renderChangesSubscription!: Subscription;
+  public _renderChangesSubscription!: Subscription;
 
   /**
    * The filtered set of data that has been matched by the filter string, or all the data if there
@@ -35,15 +36,15 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * For example, a 'selectAll()' function would likely want to select the set of filtered data
    * shown to the user rather than all the data.
    */
-  filteredData!: T[];
+  public filteredData!: T[];
 
   /**
    * Array of data that should be rendered by the table, where each object represents one row.
    */
-  set data(data: T[]) {
+  public set data(data: T[]) {
     this._data.next(data);
   }
-  get data() {
+  public get data() {
     return this._data.value;
   }
 
@@ -62,7 +63,7 @@ export class TsTableDataSource<T> implements DataSource<T> {
    * changes occur, process the current state of the filter, sort, and pagination along with the
    * provided base data and send it to the table for rendering.
    */
-  _updateChangeSubscription(): void {
+  public _updateChangeSubscription(): void {
     if (this._renderChangesSubscription) {
       this._renderChangesSubscription.unsubscribe();
     }
@@ -70,19 +71,21 @@ export class TsTableDataSource<T> implements DataSource<T> {
     // Watch for base data or filter changes to provide a filtered set of data.
     this._renderChangesSubscription = this._data
     // Watched for paged data changes and send the result to the table to render.
-    .subscribe((data) => this._renderData.next(data));
+      .subscribe(data => this._renderData.next(data));
   }
 
 
   /**
    * Used by the {@link TsTableComponent}. Called when it connects to the data source.
    */
-  connect() { return this._renderData; }
+  public connect() {
+    return this._renderData;
+  }
 
 
   /**
    * Used by the {@link TsTableComponent}. Called when it is destroyed. No-op.
    */
-  disconnect() {}
+  public disconnect() {}
 
 }

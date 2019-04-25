@@ -8,14 +8,14 @@
     fxLayoutAlign="end stretch"
   >
 
-    <ng-container *ngFor="let item of visibleItems | async">
+    <ng-container *ngFor="let item of visibleItems | async; trackBy: trackByFn">
 
       <a
         class="c-navigation__item qa-navigation-item"
         routerLink="{{ item.destination }}"
         routerLinkActive="c-navigation__item--active"
         [routerLinkActiveOptions]="{exact: true}"
-        *ngIf="item.destination && !isExternalLink(item.destination)"
+        *ngIf="item.destination && !item.isExternal"
         #visibleLinkElement
         fxLayout="row"
         fxLayoutAlign="center center"
@@ -28,7 +28,7 @@
 
       <a
         class="c-navigation__item qa-navigation-item"
-        *ngIf="item.destination && isExternalLink(item.destination)"
+        *ngIf="item.destination && item.isExternal"
         href="{{ item.destination }}"
         #visibleLinkElement
         fxLayout="row"
@@ -77,14 +77,14 @@
       {{ welcomeMessage }}
     </span>
     <br *ngIf="usersFullName">
-    <span *ngIf="usersFullName && usersFullName.length>userNameLength">
+    <span *ngIf="usersFullName && usersFullName.length > userNameLength">
       <ts-tooltip
         [tooltipValue]="usersFullName"
       >
         {{ usersFullName | tsTruncateAt:userNameLength }}
-      </ts-tooltip>      
+      </ts-tooltip>
     </span>
-    <span *ngIf="usersFullName && usersFullName.length<=userNameLength">
+    <span *ngIf="usersFullName && usersFullName.length <= userNameLength">
         {{ usersFullName }}
     </span>
 
@@ -103,7 +103,7 @@
     [overlapTrigger]="false"
   >
 
-    <ng-container *ngFor="let item of hiddenItems | async">
+    <ng-container *ngFor="let item of hiddenItems | async; trackBy: trackByFn">
       <a
         class="c-navigation__hidden-item qa-navigation-secondary-item"
         [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"

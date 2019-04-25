@@ -13,7 +13,17 @@ import { SelectComponent } from './select.component';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  imports: [CommonModule, SelectRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule, TsCardModule, TsSelectModule, TsSpacingModule, TsToggleModule],
+  imports: [
+    CommonModule,
+    SelectRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TsCardModule,
+    TsSelectModule,
+    TsSpacingModule,
+    TsToggleModule,
+  ],
   declarations: [SelectComponent],
 })
 export class SelectModule {}

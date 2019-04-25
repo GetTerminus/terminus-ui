@@ -42,9 +42,10 @@ export class TsDateAdapter extends NativeDateAdapter {
    * Format the date when setting the UI
    *
    * @param date - The date chosen
-   * @param date - The desired format (not currently using, but must match API)
+   * @param displayFormat - The desired format (not currently using, but must match API)
    * @return The date string
    */
+  // tslint:disable-next-line no-any
   public format(date: Date, displayFormat?: any): string {
     const day = this.forceTwoDigits(date.getDate());
     const month = this.forceTwoDigits(date.getMonth() + 1);
@@ -74,6 +75,7 @@ export class TsDateAdapter extends NativeDateAdapter {
    * @return The two digit number
    */
   private forceTwoDigits(n: number): string {
-    return ('00' + n).slice(-2);
+    const digitsToRemove = -2;
+    return (`00${  n.toString()}`).slice(digitsToRemove);
   }
 }

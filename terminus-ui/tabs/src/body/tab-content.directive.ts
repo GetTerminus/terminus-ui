@@ -21,6 +21,7 @@ import {
 })
 export class TsTabContentDirective {
   constructor(
+    // tslint:disable-next-line no-any
     public template: TemplateRef<any>,
   ) {}
 }

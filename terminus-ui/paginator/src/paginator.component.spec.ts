@@ -3,7 +3,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-import { TsSelectChange, TsSelectComponent } from '@terminus/ui/select';
+import {
+  TsSelectChange, TsSelectComponent,
+} from '@terminus/ui/select';
 
 import { TsPaginatorComponent } from './paginator.component';
 
@@ -120,7 +122,7 @@ describe(`TsPaginatorComponent`, function() {
   describe(`changePage()`, () => {
 
     test(`should fake a changed page event when valid`, () => {
-      spyOn(component, 'currentPageChanged').and.callThrough();
+      jest.spyOn(component, 'currentPageChanged');
       component.totalRecords = 125;
       component.ngAfterViewInit();
       component.changePage(2, 1, component.pagesArray);
@@ -132,7 +134,7 @@ describe(`TsPaginatorComponent`, function() {
     test(`should do nothing when the destination is not valid`, () => {
       component.totalRecords = 125;
       component.ngAfterViewInit();
-      spyOn(component, 'currentPageChanged');
+      jest.spyOn(component, 'currentPageChanged');
 
       component.changePage(-1, 1, component.pagesArray);
       expect(component.currentPageChanged).not.toHaveBeenCalled();
@@ -146,7 +148,7 @@ describe(`TsPaginatorComponent`, function() {
     test(`should do nothing when already on the requested page`, () => {
       component.totalRecords = 125;
       component.ngAfterViewInit();
-      spyOn(component, 'currentPageChanged');
+      jest.spyOn(component, 'currentPageChanged');
 
       component.changePage(2, 2, component.pagesArray);
       expect(component.currentPageChanged).not.toHaveBeenCalled();
@@ -420,8 +422,12 @@ describe(`TsPaginatorComponent`, function() {
   describe(`trackPagesArray()`, () => {
 
     test(`should return a tracking property or undefined`, () => {
-      expect(component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
-      expect(component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
+      expect(component.trackPagesArray(1, {
+        name: 'foo',
+      })).toEqual('foo');
+      expect(component.trackPagesArray(2, {
+        name: 'bar',
+      })).toEqual('bar');
       expect(component.trackPagesArray(3, null as any)).toBeUndefined();
     });
 

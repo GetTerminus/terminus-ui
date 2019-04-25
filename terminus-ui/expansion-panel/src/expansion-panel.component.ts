@@ -36,7 +36,9 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { TS_ACCORDION, TsAccordionBase } from './accordion/accordion-base';
+import {
+  TS_ACCORDION, TsAccordionBase,
+} from './accordion/accordion-base';
 import { tsExpansionPanelAnimations } from './expansion-animations';
 import { TsExpansionPanelContentDirective } from './expansion-panel-content.directive';
 
@@ -108,11 +110,16 @@ let nextUniqueId = 0;
   templateUrl: './expansion-panel.component.html',
   styleUrls: ['./expansion-panel.component.scss'],
   // NOTE: @Outputs are defined here rather than using decorators since we are extending the @Outputs of the base class
-  // tslint:disable: use-output-property-decorator
-  outputs: ['opened', 'closed', 'expandedChange', 'destroyed'],
+  // tslint:disable-next-line:no-outputs-metadata-property
+  outputs: [
+    'opened',
+    'closed',
+    'expandedChange',
+    'destroyed',
+  ],
   animations: [tsExpansionPanelAnimations.bodyExpansion],
   host: {
-    class: 'ts-expansion-panel',
+    'class': 'ts-expansion-panel',
     '[class.ts-expansion-panel--expanded]': 'expanded',
     '[class.ts-expansion-panel--animation-noopable]': 'animationMode === "NoopAnimations"',
   },
@@ -151,7 +158,7 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
   /**
    * Stream that emits for changes in `@Input` properties
    */
-  readonly inputChanges = new Subject<SimpleChanges>();
+  public readonly inputChanges = new Subject<SimpleChanges>();
 
   /**
    * Optionally defined accordion the expansion panel belongs to
@@ -237,19 +244,19 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
    * The event emitted after the panel body's expansion animation finishes
    */
   @Output()
-  readonly afterExpand: EventEmitter<void> = new EventEmitter();
+  public readonly afterExpand: EventEmitter<void> = new EventEmitter();
 
   /**
    * The event emitted after the panel body's collapse animation finishes
    */
   @Output()
-  readonly afterCollapse: EventEmitter<void> = new EventEmitter();
+  public readonly afterCollapse: EventEmitter<void> = new EventEmitter();
 
 
   constructor(
     @Optional() @SkipSelf() @Inject(TS_ACCORDION) accordion: TsAccordionBase,
-    _changeDetectorRef: ChangeDetectorRef,
-    _uniqueSelectionDispatcher: UniqueSelectionDispatcher,
+      _changeDetectorRef: ChangeDetectorRef,
+      _uniqueSelectionDispatcher: UniqueSelectionDispatcher,
     private _viewContainerRef: ViewContainerRef,
     private documentService: TsDocumentService,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public animationMode?: string,
@@ -264,10 +271,8 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
     // See https://github.com/angular/angular/issues/24084
     this.bodyAnimationDone.pipe(
       untilComponentDestroyed(this),
-      distinctUntilChanged((x, y) => {
-        return x.fromState === y.fromState && x.toState === y.toState;
-      }),
-    ).subscribe((event) => {
+      distinctUntilChanged((x, y) => x.fromState === y.fromState && x.toState === y.toState),
+    ).subscribe(event => {
       // istanbul ignore else
       if (event.fromState !== 'void') {
         if (event.toState === 'expanded') {

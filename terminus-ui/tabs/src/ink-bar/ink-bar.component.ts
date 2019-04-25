@@ -7,6 +7,7 @@ import {
   NgZone,
   ViewEncapsulation,
 } from '@angular/core';
+import { isSet } from '@terminus/ngx-tools';
 
 
 /**
@@ -27,7 +28,7 @@ import {
 })
 export class TsTabInkBarComponent {
 
-  constructor(
+  public constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
   ) {}
@@ -40,12 +41,12 @@ export class TsTabInkBarComponent {
    * @param element
    */
   public alignToElement(element: HTMLElement): void {
-    if (typeof requestAnimationFrame !== 'undefined') {
+    if (typeof requestAnimationFrame === 'undefined') {
+      this.setStyles(element);
+    } else {
       this.ngZone.runOutsideAngular(() => {
         requestAnimationFrame(() => this.setStyles(element));
       });
-    } else {
-      this.setStyles(element);
     }
   }
 

@@ -21,7 +21,7 @@
 
   <label>
     Pagination is zero-based:
-    <input type="checkbox" [(ngModel)]="zeroBased">
+    <input type="checkbox" [(ngModel)]="zeroBased" (ngModelChange)="updatePages($event)">
   </label>
 </ts-card>
 

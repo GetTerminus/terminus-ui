@@ -25,6 +25,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import {
   isBoolean,
+  isUnset,
   TsDocumentService,
 } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
@@ -49,8 +50,14 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '../option/option-utilities';
-import { TsOptionSelectionChange, TsSelectOptionComponent } from '../option/option.component';
+import {
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
+} from '../option/option-utilities';
+import {
+  TsOptionSelectionChange,
+  TsSelectOptionComponent,
+} from '../option/option.component';
 import { TsAutocompletePanelComponent } from './autocomplete-panel.component';
 
 
@@ -101,7 +108,7 @@ let nextUniqueId = 0;
 @Directive({
   selector: '[tsAutocompleteTrigger]',
   host: {
-    class: 'ts-autocomplete-trigger qa-autocomplete-trigger',
+    'class': 'ts-autocomplete-trigger qa-autocomplete-trigger',
     '[attr.autocomplete]': 'autocompleteAttribute',
     '[attr.role]': 'autocompleteDisabled ? null : "combobox"',
     '[attr.aria-autocomplete]': 'autocompleteDisabled ? null : "list"',
@@ -116,11 +123,12 @@ let nextUniqueId = 0;
     '(keydown)': 'handleKeydown($event)',
   },
   providers: [
-    ControlValueAccessorProviderFactory(TsAutocompleteTriggerDirective),
+    ControlValueAccessorProviderFactory<TsAutocompleteTriggerDirective>(TsAutocompleteTriggerDirective),
   ],
   exportAs: 'tsAutocompleteTrigger',
 })
-export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnDestroy {
+// tslint:disable-next-line
+export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlValueAccessor, OnDestroy {
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused, closed autocomplete from being reopened if
    * the user switches to another browser tab and then comes back.
@@ -156,16 +164,16 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   /**
    * Stream of autocomplete option selections
    */
-  readonly optionSelections: Observable<TsOptionSelectionChange> = defer(() => {
+  public readonly optionSelections: Observable<TsOptionSelectionChange> = defer(() => {
     if (this.autocompletePanel && this.autocompletePanel.options) {
-     return merge(...this.autocompletePanel.options.map((option) => option.selectionChange));
+      return merge(...this.autocompletePanel.options.map(option => option.selectionChange));
     }
 
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this.ngZone.onStable
-        .asObservable()
-        .pipe(take(1), switchMap(() => this.optionSelections));
+      .asObservable()
+      .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
   /**
@@ -208,7 +216,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   /**
    * Define the default component ID
    */
-  readonly uid = `ts-autocomplete-trigger-${nextUniqueId++}`;
+  public readonly uid = `ts-autocomplete-trigger-${nextUniqueId++}`;
 
   /**
    * GETTERS
@@ -237,7 +245,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
       this.overlayRef ? this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) : of(),
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map((event) => event instanceof TsOptionSelectionChange ? event : null),
+      map(event => (event instanceof TsOptionSelectionChange ? event : null)),
     );
   }
 
@@ -268,8 +276,8 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   public set autocompleteDisabled(value: boolean) {
     /* istanbul ignore if */
     if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsAutocompleteTriggerDirective: "tsAutocompleteDisabled" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+      console.warn(`TsAutocompleteTriggerDirective: "tsAutocompleteDisabled" value is not a boolean. `
+      + `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
     }
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
@@ -294,8 +302,8 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   public set reopenAfterSelection(value: boolean) {
     /* istanbul ignore if */
     if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsAutocompleteTriggerDirective: "reopenAfterSelection" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+      console.warn(`TsAutocompleteTriggerDirective: "reopenAfterSelection" value is not a boolean. `
+      + `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
     }
     this._reopenAfterSelection = coerceBooleanProperty(value);
   }
@@ -313,6 +321,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
     private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
     private viewportRuler: ViewportRuler,
+    // tslint:disable-next-line no-any
     @Inject(TS_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Host() private formField: TsFormFieldComponent,
   ) {
@@ -461,6 +470,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   /**
    * View -> model callback called when value changes
    */
+  // tslint:disable-next-line no-any
   public onChange: (value: any) => void = () => {};
 
 
@@ -486,7 +496,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    *
    * @param fn - The new onChange function
    */
-  public registerOnChange(fn: (value: any) => {}): void {
+  public registerOnChange(fn: (value: ValueType) => {}): void {
     this.onChange = fn;
   }
 
@@ -522,7 +532,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    *
    * @param value - The value to write
    */
-  public writeValue(value: any): void {
+  public writeValue(value: ValueType): void {
     Promise.resolve(null).then(() => this.setTriggerValue(value));
   }
 
@@ -535,12 +545,17 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
       throw Error('TsAutocompleteTriggerDirective: Attempting to open an undefined instance of `ts-autocomplete-panel`.');
     }
 
-    if (!this.overlayRef) {
+    if (this.overlayRef) {
+      // Update the panel width in case anything has changed
+      this.overlayRef.updateSize({
+        width: this.getPanelWidth(),
+      });
+    } else {
       this.portal = new TemplatePortal(this.autocompletePanel.template, this.viewContainerRef);
       this.overlayRef = this.overlay.create(this.getOverlayConfig());
 
       // Use the `keydownEvents` in order to take advantage of the overlay event targeting provided by the CDK overlay.
-      this.overlayRef.keydownEvents().subscribe((event) => {
+      this.overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (event.code === KEYS.ESCAPE.code || (event.code === KEYS.UP_ARROW.code && event.altKey)) {
@@ -551,21 +566,20 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
 
       this.viewportSubscription = this.viewportRuler.change().subscribe(() => {
         if (this.panelOpen && this.overlayRef) {
-          this.overlayRef.updateSize({width: this.getPanelWidth()});
+          this.overlayRef.updateSize({
+            width: this.getPanelWidth(),
+          });
         }
       });
-    } else {
-      // Update the panel width and direction, in case anything has changed.
-      this.overlayRef.updateSize({width: this.getPanelWidth()});
     }
 
-    if (this.overlayRef && !this.overlayRef.hasAttached()) {
+    const overlayNotAttached = !this.overlayRef.hasAttached();
+    if (this.overlayRef && overlayNotAttached) {
       this.overlayRef.attach(this.portal);
       this.closingActionsSubscription = this.subscribeToClosingActions();
     }
 
     const wasOpen = this.panelOpen;
-
     this.autocompletePanel.setVisibility();
     this.autocompletePanel.isOpen = this.overlayAttached = true;
 
@@ -590,10 +604,10 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    * Clear any previous selected option and emit a selection change event for this option
    */
   private clearPreviousSelectedOption(skip: TsSelectOptionComponent): void {
-    this.autocompletePanel.options.forEach((option) => {
-      // NOTE: Loose check (`!=`) needed for comparing classes
+    this.autocompletePanel.options.forEach(option => {
       // istanbul ignore else
-      // tslint:disable-next-line triple-equals
+      // NOTE: Loose check (`!=`) needed for comparing classes
+      // eslint-disable-next-line eqeqeq
       if (option != skip && option.selected) {
         option.deselect();
       }
@@ -700,6 +714,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    *
    * @return The observable of clicks
    */
+  // tslint:disable-next-line no-any
   private getOutsideClickStream(): Observable<any> {
     if (!this.document) {
       return of(null);
@@ -709,15 +724,15 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
       fromEvent<MouseEvent>(this.document, 'click'),
       fromEvent<TouchEvent>(this.document, 'touchend'),
     )
-    .pipe(filter((event) => {
-      const clickTarget = event.target as HTMLElement;
-      const formField = this.formField ?  this.formField.elementRef.nativeElement : null;
+      .pipe(filter(event => {
+        const clickTarget = event.target as HTMLElement;
+        const formField = this.formField ?  this.formField.elementRef.nativeElement : null;
 
-      return this.overlayAttached &&
-              clickTarget !== this.elementRef.nativeElement &&
-              (!formField || !formField.contains(clickTarget)) &&
-              (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
-    }));
+        return this.overlayAttached
+              && clickTarget !== this.elementRef.nativeElement
+              && (!formField || !formField.contains(clickTarget))
+              && (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
+      }));
   }
 
 
@@ -781,13 +796,14 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    *
    * @param value - The value to set
    */
+  // tslint:disable-next-line no-any
   private setTriggerValue(value: any): void {
     const displayFn = this.autocompletePanel && this.autocompletePanel.displayWith;
-    const toDisplay = !!(displayFn) ? displayFn(value) : value;
+    const toDisplay = displayFn ? displayFn(value) : value;
 
     // Simply falling back to an empty string if the display value is falsy does not work properly.
-    // The display value can also be the number zero and shouldn't fall back to an empty string.
-    const inputValue = toDisplay != null ? toDisplay : '';
+    // The display value can also be the number zero and should not fall back to an empty string.
+    const inputValue = isUnset(toDisplay) ? toDisplay : '';
 
     // If it is used within a {@link TsFormFieldComponent}, we should set it through the property so it can go through change detection
     if (this.formField) {

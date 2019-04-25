@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { TS_AMCHARTS_TOKEN, TsAmChartsService } from './amcharts.service';
+import {
+  TS_AMCHARTS_TOKEN, TsAmChartsService,
+} from './amcharts.service';
 import { TsChartComponent } from './chart.component';
 
 export * from './chart.component';
 export * from './amcharts.service';
+export * from './chart-type-check';
 
 
 @NgModule({

@@ -44,7 +44,7 @@ describe(`maxDateValidator`, function() {
       const actual = validatorFn(new FormControl('foo'))!.maxDate;
       const expected = {
         valid: false,
-        maxDate: maxDate,
+        maxDate,
         actual: 'foo',
       };
 
@@ -61,7 +61,7 @@ describe(`maxDateValidator`, function() {
       const actual = validatorFn(invalidDateControl)!.maxDate;
       const expected = {
         valid: false,
-        maxDate: maxDate,
+        maxDate,
         actual: invalidDate,
       };
 
@@ -105,7 +105,7 @@ describe(`maxDateValidator`, function() {
       const actual = validatorFn(new FormControl('foo'))!.maxDate;
       const expected = {
         valid: false,
-        maxDate: maxDate,
+        maxDate,
         actual: 'foo',
       };
 
@@ -122,7 +122,7 @@ describe(`maxDateValidator`, function() {
       const actual = validatorFn(invalidDateControl)!.maxDate;
       const expected = {
         valid: false,
-        maxDate: maxDate,
+        maxDate,
         actual: invalidDate,
       };
 

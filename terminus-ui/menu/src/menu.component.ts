@@ -162,9 +162,9 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * Set the triggerIcon based on the triggerType
    */
-  ngOnInit(): void {
-    this.triggerIcon = (this.triggerType === 'default') ?
-      this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
+  public ngOnInit(): void {
+    this.triggerIcon = (this.triggerType === 'default')
+      ? this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
   }
 
 

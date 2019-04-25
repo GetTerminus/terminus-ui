@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
@@ -29,6 +30,10 @@ export interface TsSearchResponse {
    */
   query: string;
 }
+
+
+const INPUT_DEBOUNCE_DEFAULT_MS = 200;
+const INPUT_MINIMUM_LENGTH = 2;
 
 
 /**
@@ -65,13 +70,9 @@ export interface TsSearchResponse {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsSearch',
 })
 export class TsSearchComponent implements OnInit {
-  /**
-   * Define the time to wait for user interaction to stop before auto-submitting
-   */
-  private INPUT_DEBOUNCE_TIME = 200;
-
   /**
    * Define the button action label
    */
@@ -83,6 +84,13 @@ export class TsSearchComponent implements OnInit {
   public buttonType: TsButtonFunctionTypes = 'search';
 
   /**
+   * Get a reference to the search form control
+   */
+  public get searchFormControl(): AbstractControl | null {
+    return this.searchForm.get('query');
+  }
+
+  /**
    * Define a helper to return the current query string
    */
   public get currentQuery(): string {
@@ -92,7 +100,7 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define a debounced method to emit the submission event
    */
-  public debouncedEmit = debounce<TsSearchComponent>(this.emitSubmit, this.INPUT_DEBOUNCE_TIME);
+  public debouncedEmit = debounce<TsSearchComponent>(this.emitSubmit, INPUT_DEBOUNCE_DEFAULT_MS);
 
   /**
    * Define the icon name
@@ -107,7 +115,7 @@ export class TsSearchComponent implements OnInit {
   /**
    * Define the minimum length of a valid query
    */
-  public queryMinLength = 2;
+  public queryMinLength = INPUT_MINIMUM_LENGTH;
 
   /**
    * Initialize the form
@@ -185,19 +193,19 @@ export class TsSearchComponent implements OnInit {
    * The event to emit when the form is submitted
    */
   @Output()
-  public submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
+  public readonly submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
 
   /**
    * The event to emit when the internal input value is changed
    */
   @Output()
-  public changed: EventEmitter<string> = new EventEmitter();
+  public readonly changed: EventEmitter<string> = new EventEmitter();
 
   /**
    * The event to emit when the internal input value is cleared
    */
   @Output()
-  public cleared: EventEmitter<boolean> = new EventEmitter();
+  public readonly cleared: EventEmitter<boolean> = new EventEmitter();
 
 
   /**
@@ -241,7 +249,9 @@ export class TsSearchComponent implements OnInit {
    * NOTE: This wrapper is needed so that we can pass the query value to the emitter
    */
   private emitSubmit(): void {
-    this.submitted.emit({query: this.currentQuery});
+    this.submitted.emit({
+      query: this.currentQuery,
+    });
   }
 
 }

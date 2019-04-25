@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -36,6 +37,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
   host: {
     class: 'ts-copy',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCopy',
 })
@@ -53,13 +55,13 @@ export class TsCopyComponent {
   /**
    * Define the copy icon
    */
-  public icon: string = 'content_copy';
+  public icon = 'content_copy';
 
   /**
    * Define the color of the material ripple
    */
   // FIXME: This color should be coming from a config
-  public rippleColor: string = '#1a237e';
+  public rippleColor = '#1a237e';
 
   /**
    * Store a reference to the window object
@@ -111,9 +113,9 @@ export class TsCopyComponent {
 
     if (hasInnerText) {
       return this.content.nativeElement.innerText;
-    } else {
-      return '';
     }
+    return '';
+
   }
 
 
@@ -136,7 +138,7 @@ export class TsCopyComponent {
     // NOTE: Adding the type of 'Range' to this causes an error with `range.selectNodeContents`
     // `Argument of type ElementRef is not assignable to type 'Node'`
     const range = this.document.createRange();
-
+    // tslint:disable-next-line no-any
     range.selectNodeContents(element as any);
     selection.removeAllRanges();
     selection.addRange(range);

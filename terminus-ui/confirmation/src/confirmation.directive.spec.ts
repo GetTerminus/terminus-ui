@@ -7,89 +7,37 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import {
-  ComponentFixture,
-} from '@angular/core/testing';
-import { createComponent, expectNativeEl } from '@terminus/ngx-tools/testing';
+  createComponent,
+  expectNativeEl,
+} from '@terminus/ngx-tools/testing';
 import { TsButtonModule } from '@terminus/ui';
 
 import { TsConfirmationDirective } from './confirmation.directive';
 import { TsConfirmationModule } from './confirmation.module';
 
 
-
-
-/*******************************************
- * TsButtonComponentMock
- *******************************************/
-// tslint:disable: component-class-suffix
-@Component({
-  selector: 'ts-button',
-  template: `
-    <button (click)="clicked($event)">
-      <ng-content></ng-content>
-    </button>
-  `,
-  host: {
-    class: 'ts-button',
-  },
-  exportAs: 'tsButton',
-})
-class TsButtonComponentMock {
-  public interceptClick: boolean = false;
-  public originalClickEvent!: MouseEvent;
-  @Input()
-  public showProgress = false;
-  @Output()
-  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
-
-  public clickedButton(event: MouseEvent): void {
-    // Allow the click to propagate
-    if (!this.interceptClick) {
-      this.clicked.emit(event);
-    } else {
-      // Save the original event but don't emit the originalClickEvent
-      this.originalClickEvent = event;
-    }
-  }
-}
-// tslint:enable: component-class-suffix
-
-
-/*******************************************
- * TsButtonModuleMock
- *******************************************/
-@NgModule({
-  declarations: [
-    TsButtonComponentMock,
-  ],
-  exports: [
-    TsButtonComponentMock,
-  ],
-})
-export class TsButtonModuleMock {}
-
-
-/*******************************************
+/** *****************************************
  * TestHostComponent
  *******************************************/
 @Component({
   template: `
-    <ts-button tsConfirmation #confirmation="tsConfirmation"
+    <ts-button
+      tsConfirmation
+      #confirmation="tsConfirmation"
       [confirmationButtonText]="confirmText"
       [cancelButtonText]="cancelText"
       [explanationText]="explanation"
-      >
-      Foo
-    </ts-button>
+    >Foo</ts-button>
   `,
 })
 class TestHostComponent {
   @ViewChild(TsConfirmationDirective)
-  directive!: TsConfirmationDirective;
-  confirmText;
-  cancelText;
-  explanation;
+  public directive!: TsConfirmationDirective;
+  public confirmText;
+  public cancelText;
+  public explanation;
 }
 
 
@@ -242,7 +190,7 @@ describe(`TsConfirmationDirective`, function() {
 
   });
 
-  describe(`Positioning` , () => {
+  describe(`Positioning`, () => {
     test(`should default to 'below'`, () => {
       jest.useFakeTimers();
       button.click();
@@ -306,5 +254,4 @@ describe(`TsConfirmationDirective`, function() {
   });
 
 });
-
 

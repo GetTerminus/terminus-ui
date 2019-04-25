@@ -1,4 +1,5 @@
 import { AbstractControl } from '@angular/forms';
+import { isSet } from '@terminus/ngx-tools';
 
 
 /**
@@ -7,6 +8,7 @@ import { AbstractControl } from '@angular/forms';
  * @param x - The item to test
  * @return True if the value is a control
  */
+// tslint:disable-next-line no-any
 export function isAbstractControl(x: any): x is AbstractControl {
-  return x.pristine !== undefined;
+  return isSet(x.pristine);
 }

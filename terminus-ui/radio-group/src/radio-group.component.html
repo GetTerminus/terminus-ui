@@ -8,7 +8,7 @@
     [class.c-radio--sublabel]="formatUISubLabelFn"
     [(ngModel)]="value"
   >
-    <ng-container *ngFor="let option of options">
+    <ng-container *ngFor="let option of options; trackBy: trackByFn">
 
       <mat-radio-button
         class="c-radio__control qa-radio-control"
@@ -53,7 +53,7 @@
     </legend>
 
     <div class="c-radio__options">
-      <ng-container *ngFor="let option of options">
+      <ng-container *ngFor="let option of options; trackBy: trackByFn">
         <label
           class="c-radio__control qa-radio-control"
           [class.c-radio__control--disabled]="isDisabled || option.disabled"
