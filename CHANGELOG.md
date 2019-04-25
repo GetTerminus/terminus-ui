@@ -1,3 +1,7 @@
+## <small>12.1.2 (2019-04-25)</small>
+
+* fix(Utilities): sCSS bad inputs prevent a build and error messages are displayed ([dd80490](https://github.com/GetTerminus/terminus-ui/commit/dd80490)), closes [#1456](https://github.com/GetTerminus/terminus-ui/issues/1456)
+
 ## <small>12.1.1 (2019-04-16)</small>
 
 * fix(LoadingOverlay): fix for portal already loaded error ([003d795](https://github.com/GetTerminus/terminus-ui/commit/003d795)), closes [#1455](https://github.com/GetTerminus/terminus-ui/issues/1455)
