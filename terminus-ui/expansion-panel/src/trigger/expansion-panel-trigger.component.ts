@@ -17,22 +17,19 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
-import {
-  ENTER,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   EMPTY,
   merge,
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { tsExpansionPanelAnimations } from './../expansion-animations';
+import { tsExpansionPanelAnimations } from '../expansion-animations';
 import {
   TS_EXPANSION_PANEL_DEFAULT_OPTIONS,
   TsExpansionPanelComponent,
   TsExpansionPanelDefaultOptions,
-} from './../expansion-panel.component';
+} from '../expansion-panel.component';
 
 
 /**
@@ -198,8 +195,8 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    * Handle keydown event calling to toggle() if appropriate
    */
   public keydown(event: KeyboardEvent): void {
-    const {keyCode} = event;
-    const isSelectionKey = (keyCode === SPACE) || (keyCode === ENTER);
+    const {code} = event;
+    const isSelectionKey = (code === KEYS.SPACE.code) || (code === KEYS.ENTER.code);
 
     if (isSelectionKey) {
       // istanbul ignore else

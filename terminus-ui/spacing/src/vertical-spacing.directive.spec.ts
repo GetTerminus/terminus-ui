@@ -1,27 +1,63 @@
-import { ElementRefMock } from '@terminus/ngx-tools/testing';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+
+import { createComponent } from '@terminus/ngx-tools/testing';
 
 import { TS_SPACING } from './spacing.constant';
-import { TsVerticalSpacingDirective } from './vertical-spacing.directive';
+import { TsSpacingModule } from './spacing.module';
+import { TsVerticalSpacingDirective, TsVerticalSpacingTypes } from './vertical-spacing.directive';
+
+
+@Component({
+  template: `
+    <div [tsVerticalSpacing]="verticalSpacing">Vertical Spacing Content</div>
+  `,
+})
+class TestHostComponent {
+  verticalSpacing: TsVerticalSpacingTypes;
+
+  @ViewChild(TsVerticalSpacingDirective)
+  verticalSpacingDirective: TsVerticalSpacingDirective;
+}
+
+@Component({
+  template: `
+    <div tsVerticalSpacing>
+      Vertical Spacing Basic
+    </div>
+  `,
+})
+class TestHostBasicComponent {
+  @ViewChild(TsVerticalSpacingDirective)
+  verticalSpacingDirective: TsVerticalSpacingDirective;
+}
 
 
 describe(`TsVerticalSpacingDirective`, function() {
-  let directive: TsVerticalSpacingDirective;
-
-  beforeEach(() => {
-    directive = new TsVerticalSpacingDirective(
-      new ElementRefMock(),
-    );
-  });
-
-
-  it(`should exist`, () => {
-    expect(directive).toBeTruthy();
-  });
-
 
   describe(`set tsVerticalSpacing()`, () => {
+    let component: TestHostComponent;
+    let fixture: ComponentFixture<TestHostComponent>;
+    let spacingDiv: HTMLElement;
+    let directive: TsVerticalSpacingDirective;
 
-    it(`should set the default margin if no value is passed in`, () => {
+    beforeEach(() => {
+      fixture = createComponent(TestHostComponent, [], [TsSpacingModule]);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      directive = component.verticalSpacingDirective;
+      spacingDiv = fixture.debugElement.query(By.directive(TsVerticalSpacingDirective)).nativeElement as HTMLElement;
+    });
+
+
+    test(`should exist`, () => {
+      expect(fixture).toBeTruthy();
+      expect(spacingDiv).toBeTruthy();
+    });
+
+
+    test(`should set the default margin if no value is passed in`, () => {
       directive.tsVerticalSpacing = '' as any;
 
       expect(directive['elementRef'].nativeElement.style.marginBottom)
@@ -29,7 +65,7 @@ describe(`TsVerticalSpacingDirective`, function() {
     });
 
 
-    it(`should add the expected spacing class`, () => {
+    test(`should add the expected spacing class`, () => {
       directive.tsVerticalSpacing = 'large--2';
 
       expect(directive['elementRef'].nativeElement.style.marginBottom)
@@ -37,15 +73,15 @@ describe(`TsVerticalSpacingDirective`, function() {
     });
 
 
-    it(`should add the expected spacing class for 'none'`, () => {
+    test(`should add the expected spacing class for 'none'`, () => {
       directive.tsVerticalSpacing = 'none';
 
       expect(directive['elementRef'].nativeElement.style.marginBottom)
-        .toEqual(TS_SPACING.none[0]);
+        .toEqual('0px');
     });
 
 
-    it(`should throw an error if an unexpected value is passed in`, () => {
+    test(`should throw an error if an unexpected value is passed in`, () => {
       expect(() => {
         try {
           directive.tsVerticalSpacing = 'small--5' as any;
@@ -55,6 +91,18 @@ describe(`TsVerticalSpacingDirective`, function() {
       }).toThrowError();
     });
 
+  });
+
+  describe(`default TsVerticalSpacing`, () => {
+    test(`should set default values`, () => {
+      const fixtureBasic = createComponent(TestHostBasicComponent, [], [TsSpacingModule]);
+      fixtureBasic.detectChanges();
+
+      expect(fixtureBasic).toBeTruthy();
+      const spacingDiv = fixtureBasic.debugElement.query(By.directive(TsVerticalSpacingDirective));
+      expect(spacingDiv).toBeTruthy();
+      expect(spacingDiv.nativeElement.style.marginBottom).toEqual('16px');
+    });
   });
 
 });

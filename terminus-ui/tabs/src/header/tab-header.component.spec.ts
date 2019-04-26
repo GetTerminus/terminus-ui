@@ -3,7 +3,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
-  async,
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
@@ -12,43 +11,24 @@ import {
 } from '@angular/core/testing';
 import { MatRippleModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { KeyCode, KEYS } from '@terminus/ngx-tools/keycodes';
 import {
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
-import {
-  createComponent,
-  createKeyboardEvent,
-  createTouchEvent,
-  dispatchEvent,
   dispatchFakeEvent,
-  dispatchKeyboardEvent,
 } from '@terminus/ngx-tools/testing';
 import {
-  TsTabHeaderComponent, TsTabInkBarComponent, TsTabLabelWrapperDirective, TsTabsModule,
+  TsTabHeaderComponent, TsTabInkBarComponent, TsTabLabelWrapperDirective,
 } from '@terminus/ui/tabs';
 import * as testComponents from '@terminus/ui/tabs/testing';
-import { getTabLabelElement } from '@terminus/ui/tabs/testing';
 
 
-const IMPORTS = [
-  CommonModule,
-  NoopAnimationsModule,
-  TsTabsModule,
-];
 
-
-function createKeydownEvent(key: string, keyCode: number): KeyboardEvent {
+function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    keyCode: { get: () => keyCode },
-    key: { get: () => key },
+    keyCode: { get: () => key.keyCode },
+    key: { get: () => key.code },
+    code: { get: () => key.code },
   });
   event.preventDefault = jest.fn();
   return event;
@@ -74,12 +54,12 @@ describe(`TsTabHeaderComponent`, function() {
     TestBed.compileComponents();
 
     EVENTS = {
-      LEFT: createKeydownEvent('ArrowLeft', LEFT_ARROW),
-      RIGHT: createKeydownEvent('ArrowRight', RIGHT_ARROW),
-      ENTER: createKeydownEvent('Enter', ENTER),
-      SPACE: createKeydownEvent('Space', SPACE),
-      HOME: createKeydownEvent('Home', HOME),
-      END: createKeydownEvent('End', END),
+      LEFT: createKeydownEvent(KEYS.LEFT_ARROW),
+      RIGHT: createKeydownEvent(KEYS.RIGHT_ARROW),
+      ENTER: createKeydownEvent(KEYS.ENTER),
+      SPACE: createKeydownEvent(KEYS.SPACE),
+      HOME: createKeydownEvent(KEYS.HOME),
+      END: createKeydownEvent(KEYS.END),
     };
   });
 
@@ -243,9 +223,6 @@ describe(`TsTabHeaderComponent`, function() {
 
 
     test(`should not do anything if a modifier key is pressed`, () => {
-      const rightArrowEvent = createKeyboardEvent('keydown', RIGHT_ARROW);
-      const enterEvent = createKeyboardEvent('keydown', ENTER);
-
       [EVENTS.RIGHT, EVENTS.ENTER].forEach(event => {
         Object.defineProperty(event, 'shiftKey', {get: () => true});
       });

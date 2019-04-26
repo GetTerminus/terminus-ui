@@ -8,7 +8,6 @@ import {
   TestModuleMetadata,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { A, ENTER } from '@terminus/ngx-tools/keycodes';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
@@ -19,6 +18,7 @@ import {
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 import { FormControl } from '@angular/forms';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFileUploadComponent } from './file-upload.component';
 import { TsFileUploadModule } from './file-upload.module';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
@@ -505,7 +505,7 @@ describe(`TsFileUploadComponent`, function() {
       });
 
       test(`should trigger file selection if Enter was pressed`, () => {
-        dispatchKeyboardEvent(el, 'keydown', ENTER);
+        dispatchKeyboardEvent(el, 'keydown', KEYS.ENTER);
 
         expect(component.promptForFiles).toHaveBeenCalled();
         expect(el.blur).toHaveBeenCalled();
@@ -513,7 +513,7 @@ describe(`TsFileUploadComponent`, function() {
 
 
       test(`should do nothing if the key pressed was not Enter`, () => {
-        dispatchKeyboardEvent(el, 'keydown', A);
+        dispatchKeyboardEvent(el, 'keydown', KEYS.A);
 
         expect(component.promptForFiles).not.toHaveBeenCalled();
         expect(el.blur).not.toHaveBeenCalled();

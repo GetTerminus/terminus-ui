@@ -21,12 +21,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { ENTER, SPACE } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { TsSelectOption } from './../select.component';
+import { TsSelectOption } from '../select.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';
 
 
@@ -363,7 +363,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    */
   public handleKeydown(event: KeyboardEvent): void {
     // istanbul ignore else
-    if (event.keyCode === ENTER || event.keyCode === SPACE) {
+    if (event.code === KEYS.ENTER.code || event.code === KEYS.SPACE.code) {
       this.selectViaInteraction();
 
       // Prevent the page from scrolling down and form submits.

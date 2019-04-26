@@ -780,10 +780,10 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@terminus/ngx-tools@^6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.3.0.tgz#146b7cdadbc21bdd8d3cef6ff9c6d1b89fc98f22"
-  integrity sha512-4V4zC/Ctg5GPzb+gUdpUJf3yx+C4j2EAFDFaEaBNUGgoTSIynbVSqFgJAQOz3iVgqAvXNi/FpiJbsDs+kdNafA==
+"@terminus/ngx-tools@^6.5.1":
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.5.1.tgz#057285e775680ee208c689e499d9732cc59aefd1"
+  integrity sha512-GY6a9i/5Ac2St62gaNyRyREX4cMZktvL8TX/+pT2+6Tlijhaht6rc4hIaOyTm6hmnlAPshlMNTkUDnTmZJHFYA==
   dependencies:
     tslib "^1.9.0"
 

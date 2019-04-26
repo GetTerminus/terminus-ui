@@ -12,13 +12,9 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  END,
-  HOME,
-} from '@terminus/ngx-tools/keycodes';
-
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsExpansionPanelComponent } from '../expansion-panel.component';
-import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
+import { TsExpansionPanelTriggerComponent } from '../trigger/expansion-panel-trigger.component';
 import {
   TS_ACCORDION,
   TsAccordionBase,
@@ -118,13 +114,13 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
    * Handle keyboard events coming in from the panel triggers
    */
   public handleTriggerKeydown(event: KeyboardEvent): void {
-    const {keyCode} = event;
+    const {code} = event;
     const manager = this.keyManager;
 
-    if (keyCode === HOME) {
+    if (code === KEYS.HOME.code) {
       manager.setFirstItemActive();
       event.preventDefault();
-    } else if (keyCode === END) {
+    } else if (code === KEYS.END.code) {
       manager.setLastItemActive();
       event.preventDefault();
     } else {

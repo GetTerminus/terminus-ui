@@ -11,7 +11,7 @@ import {
 } from '@angular/core/testing';
 import { ValidatorFn, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { A, ENTER, TAB } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   configureTestBedWithoutReset,
   createFakeEvent,
@@ -179,27 +179,31 @@ describe(`TsCSVEntryComponent`, function() {
     TAB_EVENT = document.createEvent('KeyboardEvent');
     TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(TAB_EVENT, {
-      keyCode: { get: () => TAB },
-      key: { get: () => 'Tab' },
+      code: { get: () => KEYS.TAB.code },
+      key: { get: () => KEYS.TAB.code },
+      keyCode: { get: () => KEYS.TAB.keyCode },
     });
     SHIFT_TAB_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_TAB_EVENT, {
-      keyCode: { get: () => TAB },
-      key: { get: () => 'Tab' },
+      code: { get: () => KEYS.TAB.code },
+      key: { get: () => KEYS.TAB.code },
+      keyCode: { get: () => KEYS.TAB.keyCode },
       shiftKey: { get: () => true },
     });
     ENTER_EVENT = document.createEvent('KeyboardEvent');
     ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(ENTER_EVENT, {
-      keyCode: { get: () => ENTER },
-      key: { get: () => 'Enter' },
+      code: { get: () => KEYS.ENTER.code },
+      key: { get: () => KEYS.ENTER.code },
+      keyCode: { get: () => KEYS.ENTER.keyCode },
     });
     SHIFT_ENTER_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_ENTER_EVENT, {
-      keyCode: { get: () => ENTER },
-      key: { get: () => 'Enter' },
+      code: { get: () => KEYS.ENTER.code },
+      key: { get: () => KEYS.ENTER.code },
+      keyCode: { get: () => KEYS.ENTER.keyCode },
       shiftKey: { get: () => true },
     });
 
@@ -712,9 +716,9 @@ describe(`TsCSVEntryComponent`, function() {
       fixture.detectChanges();
 
       // Try typing to verify the input is readonly
-      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
-      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
-      dispatchKeyboardEvent(firstHeaderCell, 'keyup', A);
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', KEYS.A);
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', KEYS.A);
+      dispatchKeyboardEvent(firstHeaderCell, 'keyup', KEYS.A);
       fixture.detectChanges();
 
       expect(firstHeaderCell.value).toEqual('one');
