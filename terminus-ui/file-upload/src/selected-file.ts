@@ -157,7 +157,7 @@ export class TsSelectedFile {
    * @return Is valid
    */
   public get isValid(): boolean {
-    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
+    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions && this.validations.imageRatio);
   }
 
 

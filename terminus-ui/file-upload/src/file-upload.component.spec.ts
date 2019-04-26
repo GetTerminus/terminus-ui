@@ -237,8 +237,10 @@ describe(`TsFileUploadComponent`, function() {
       component.seedFile = FILE_MOCK;
       fixture.detectChanges();
       const messages = fixture.debugElement.query(By.css('.c-validation-message'));
+      const uploadDiv = fixture.debugElement.query(By.css('.c-file-upload'));
 
       expect(messages.nativeElement.textContent).toContain('Must be smaller than');
+      expect(uploadDiv.classes['c-file-upload--error']).toBeTruthy();
     });
 
 
@@ -248,12 +250,14 @@ describe(`TsFileUploadComponent`, function() {
       component.seedFile = FILE_MOCK;
       fixture.detectChanges();
       const messages = fixture.debugElement.query(By.css('.c-validation-message'));
+      const uploadDiv = fixture.debugElement.query(By.css('.c-file-upload'));
 
       expect(messages.nativeElement.textContent).toContain('is not an accepted MIME type');
+      expect(uploadDiv.classes['c-file-upload--error']).toBeTruthy();
     });
 
 
-    test(`should show MIME type validation message`, () => {
+    test(`should show image dimension validation message`, () => {
       hostComponent.constraints = [{
         height: {
           min: 50,
@@ -268,8 +272,23 @@ describe(`TsFileUploadComponent`, function() {
       component.seedFile = FILE_MOCK;
       fixture.detectChanges();
       const messages = fixture.debugElement.query(By.css('.c-validation-message'));
+      const uploadDiv = fixture.debugElement.query(By.css('.c-file-upload'));
 
       expect(messages.nativeElement.textContent).toContain('is not an allowed image dimension');
+      expect(uploadDiv.classes['c-file-upload--error']).toBeTruthy();
+    });
+
+
+    test(`should show image ratio validation message`, () => {
+      hostComponent.ratioConstraints = ['2:1'];
+      fixture.detectChanges();
+      component.seedFile = FILE_MOCK;
+      fixture.detectChanges();
+      const messages = fixture.debugElement.query(By.css('.c-validation-message'));
+      const uploadDiv = fixture.debugElement.query(By.css('.c-file-upload'));
+
+      expect(messages.nativeElement.textContent).toContain('is not an allowed image ratio');
+      expect(uploadDiv.classes['c-file-upload--error']).toBeTruthy();
     });
 
   });
