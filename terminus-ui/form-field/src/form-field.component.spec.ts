@@ -39,7 +39,8 @@ describe(`TsFormFieldComponent`, function() {
       fixture.detectChanges();
       const labelElement = fixture.debugElement.query(By.css('.ts-form-field__label'));
 
-      expect(labelElement.nativeElement.getAttribute('aria-owns')).toEqual('foo');
+      expect(labelElement.nativeElement.getAttribute('for')).toEqual('foo');
+      expect(labelElement.nativeElement.getAttribute('aria-owns')).toEqual('bar');
     });
 
 
@@ -49,7 +50,7 @@ describe(`TsFormFieldComponent`, function() {
       fixture.detectChanges();
       const labelElement = fixture.debugElement.query(By.css('.ts-form-field__label'));
 
-      expect(labelElement.nativeElement.getAttribute('aria-owns')).toEqual(expect.stringContaining('ts-form-field-'));
+      expect(labelElement.nativeElement.getAttribute('for')).toEqual(expect.stringContaining('ts-form-field-'));
     });
 
   });
@@ -197,7 +198,7 @@ describe(`TsFormFieldComponent`, function() {
 
 @Component({
   template: `
-    <ts-form-field [control]="inputComponent" [id]="myId">
+    <ts-form-field [control]="inputComponent" [id]="myId" [parentId]="parentId">
       <ts-input
         [hasExternalFormField]="true"
         [formControl]="formControl"
@@ -208,6 +209,7 @@ describe(`TsFormFieldComponent`, function() {
 export class Id {
   formControl = new FormControl();
   myId: string | undefined = 'foo';
+  parentId: string = 'bar';
 
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;

@@ -629,6 +629,7 @@ describe(`TsInputComponent`, function() {
       jest.advanceTimersByTime(200);
       const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
       const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
+      const labelEl: HTMLLabelElement = fixture.debugElement.query(By.css('.ts-form-field__label')).nativeElement;
       const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
       const bounding1 = { left: 50 };
       const bounding2 = { left: 100 };
@@ -646,6 +647,8 @@ describe(`TsInputComponent`, function() {
       expect(outlineGapEl.getAttribute('style')).toEqual('width: 40px;');
 
       expect(labelContent.innerHTML.trim()).toEqual('test label');
+      expect(labelEl.getAttribute('aria-owns')).toEqual(expect.stringContaining('ts-input-'));
+
       jest.runAllTimers();
     });
 

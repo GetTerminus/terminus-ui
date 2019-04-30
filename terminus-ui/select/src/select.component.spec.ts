@@ -1295,6 +1295,7 @@ describe(`TsSelectComponent`, function() {
 
       const label = fixture.debugElement.query(By.css('.ts-form-field__label'));
 
+      expect(label.nativeElement.getAttribute('aria-owns')).toEqual(expect.stringContaining('ts-select-'));
       expect(label.nativeElement.textContent.trim()).toEqual('bing baz');
       expect(instance['changeDetectorRef'].detectChanges).toHaveBeenCalled();
       expect(instance.labelChanges.next).toHaveBeenCalled();

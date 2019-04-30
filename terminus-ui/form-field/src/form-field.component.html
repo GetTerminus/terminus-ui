@@ -32,7 +32,7 @@
         <label
           class="ts-form-field__label qa-form-field-label"
           [attr.for]="id"
-          [attr.aria-owns]="id"
+          [attr.aria-owns]="parentId"
           [class.ts-form-field__label--empty]="control.empty && !shouldAlwaysFloat"
           [class.ts-accent]="theme == 'accent'"
           [class.ts-warn]="theme == 'warn'"

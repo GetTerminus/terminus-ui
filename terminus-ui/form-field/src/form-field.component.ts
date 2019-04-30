@@ -62,6 +62,7 @@ const OUTLINE_GAP_PADDING = 5;
  *              [hideRequiredMarker]="true"
  *              hint="My hint"
  *              id="my-id"
+ *              [parentId]="uid"
  *              theme="primary"
  *              [validateOnChange]="true"
  * ></ts-form-field>
@@ -232,6 +233,12 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     return this._id;
   }
   protected _id: string = this.uid;
+
+  /**
+   * Define the parent's id
+   */
+  @Input()
+  public parentId = this.parentId;
 
   /**
    * Define the component theme
