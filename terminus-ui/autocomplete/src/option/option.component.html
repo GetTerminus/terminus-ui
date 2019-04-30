@@ -1,0 +1,26 @@
+
+<ng-container >
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</ng-container>
+
+
+<div
+  class="mat-option-ripple"
+  mat-ripple
+  [matRippleTrigger]="hostElement"
+  [matRippleDisabled]="isDisabled"
+></div>
+
+
+<ng-template #contentTemplate>
+  <span class="ts-option-text qa-autocomplete-option-text">
+    <ng-content *ngIf="!optionTemplate">
+    </ng-content>
+
+    <ng-container
+      *ngIf="optionTemplate"
+      [ngTemplateOutlet]="optionTemplate"
+      [ngTemplateOutletContext]="{$implicit: option}"
+    ></ng-container>
+  </span>
+</ng-template>

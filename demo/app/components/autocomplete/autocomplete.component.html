@@ -1,4 +1,4 @@
-<ts-card tsVerticalSpacing>
+<!-- <ts-card tsVerticalSpacing>
   <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
 
   <div tsVerticalSpacing>
@@ -19,9 +19,9 @@
     <br>
     <button (click)="log(myForm.value)">Log form value</button>
   </div>
-</ts-card>
+</ts-card> -->
 
-<ts-card>
+<!-- <ts-card>
   <form name="myForm" novalidate>
     <ts-autocomplete
       tsVerticalSpacing
@@ -58,4 +58,46 @@
       #auto="tsAutocomplete"
     ></ts-autocomplete>
   </form>
+</ts-card> -->
+
+<ts-card tsVerticalSpacing fxFlex>
+  <form
+    novalidate
+    fxLayout="column"
+    fxLayout.gt-sm="row"
+    fxLayoutGap="1rem"
+  >
+    <h3 tsCardTitle tsVerticalSpacing="small--1">
+      Autocomplete
+    </h3>
+
+    <ts-autocomplete
+      label="Autocomplete Example"
+      hint="Begin typing to select.."
+      [formControl]="stateCtrl"
+      [allowMultiple]="true"
+      [allowDuplicateSelections]="false"
+      [reopenAfterSelection]="false"
+      [showProgress]="fakeAsync"
+      [chipFormatUIFn]="myFormatUIFn"
+      (queryChange)="queryHasChanged($event)"
+      (duplicateSelection)="duplicate($event)"
+      tsVerticalSpacing
+    >
+
+      <ts-select-option
+        [value]="state"
+        [option]="state"
+        *ngFor="let state of filteredStates | async"
+      >
+        {{ state.name }}
+      </ts-select-option>
+
+    </ts-autocomplete>
+
+    <div>
+      FormControl value: {{ stateCtrl.value | json }}
+    </div>
+  </form>
 </ts-card>
+

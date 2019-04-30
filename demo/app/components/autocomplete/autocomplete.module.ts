@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
 import { TsCardModule } from '@terminus/ui/card';
@@ -11,7 +11,15 @@ import { AutocompleteRoutingModule } from './autocomplete-routing.module';
 import { AutocompleteComponent } from './autocomplete.component';
 
 @NgModule({
-  imports: [AutocompleteRoutingModule, CommonModule, FormsModule, TsAutocompleteModule, TsCheckboxModule, TsCardModule, TsSpacingModule],
+  imports: [
+    AutocompleteRoutingModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TsAutocompleteModule,
+    TsCheckboxModule,
+    TsCardModule,
+    TsSpacingModule],
   declarations: [AutocompleteComponent],
 })
 export class AutocompleteModule {}

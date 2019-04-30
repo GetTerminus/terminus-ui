@@ -1,128 +1,101 @@
-<mat-form-field
-  class="c-autocomplete c-input qa-autocomplete"
-  appearance="outline"
-  [color]="theme"
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  [id]="id"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
 >
-
-  <mat-label *ngIf="label">
+  <ts-label *ngIf="label">
     {{ label }}
-  </mat-label>
+  </ts-label>
 
-  <ng-container *ngIf="multiple">
-    <mat-chip-list #chipList>
-      <mat-chip
-        *ngFor="let option of selectedOptions"
-        class="qa-autocomplete-chip"
-        [selectable]="selectableChips"
-        [removable]="true"
-        (removed)="deselectOption(option)"
-      >
-        {{ displayOption(option) }}
-        <ts-icon matChipRemove>
-          cancel
-        </ts-icon>
-      </mat-chip>
+  <!--
+     - TRIGGER / CHIPS LIST
+     -->
+  <div
+    class="ts-autocomplete__input-wrap"
+  >
 
+    <ng-container *ngIf="allowMultiple">
+      <mat-chip-list #chipList="matChipList">
+        <mat-chip
+          *ngFor="let option of autocompleteFormControl.value"
+          class="qa-autocomplete-chip"
+          [removable]="true"
+          (removed)="autocompleteDeselectItem(option)"
+        >
+          <span class="ts-autocomplete-chip-value">
+            {{ chipFormatUIFn ? retrieveValue(option, chipFormatUIFn) : option }}
+          </span>
+
+          <ts-icon matChipRemove>
+            cancel
+          </ts-icon>
+        </mat-chip>
+
+        <input
+          class="ts-autocomplete__input qa-select-autocomplete-input"
+          [matChipInputFor]="chipList"
+          [tsAutocompleteTrigger]="auto"
+          [reopenAfterSelection]="reopenAfterSelection"
+          [attr.id]="id"
+          [attr.tabindex]="tabIndex"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="querySubject.next(searchQuery)"
+          (blur)="handleInputBlur($event)"
+          (keydown)="$event.stopPropagation()"
+          #input
+        />
+
+        <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
+      </mat-chip-list>
+    </ng-container>
+
+    <ng-container *ngIf="!allowMultiple">
       <input
-        class="c-autocomplete__input qa-autocomplete-input"
-        matInput
-        [attr.name]="name"
-        [matChipInputFor]="chipList"
-        [matAutocomplete]="autocomplete"
+        class="ts-autocomplete__input qa-select-autocomplete-input"
+        [tsAutocompleteTrigger]="auto"
+        [attr.id]="id"
+        [attr.tabindex]="tabIndex"
         [(ngModel)]="searchQuery"
         (ngModelChange)="querySubject.next(searchQuery)"
-        (blur)="handleBlur($event)"
-        #autocompleteTrigger="matAutocompleteTrigger"
+        (blur)="handleInputBlur($event)"
         #input
       />
 
       <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
-    </mat-chip-list>
-  </ng-container>
-
-  <ng-container *ngIf="!multiple">
-    <input
-      class="c-autocomplete__input qa-autocomplete-input"
-      matInput
-      placeholder="{{ label }}"
-      [attr.name]="name"
-      [matAutocomplete]="autocomplete"
-      placeholder="{{ label }}"
-      [(ngModel)]="searchQuery"
-      (ngModelChange)="querySubject.next(searchQuery)"
-      (blur)="handleBlur($event)"
-      #autocompleteTrigger="matAutocompleteTrigger"
-      #input
-    />
-
-    <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
-  </ng-container>
-
-  <mat-autocomplete
-    class="c-autocomplete__options c-autocomplete__options--{{theme}} qa-autocomplete-options"
-    #autocomplete="matAutocomplete"
-    [autoActiveFirstOption]="true"
-    [displayWith]="displayWith"
-    (optionSelected)="selectOption($event)"
-  >
-    <ng-container *ngIf="!multiple">
-      <mat-option
-        class="qa-autocomplete-option"
-        *ngFor="let option of options"
-        [value]="option"
-      >
-        {{ displayOption(option) }}
-      </mat-option>
     </ng-container>
 
-    <ng-container *ngIf="multiple">
-      <mat-option
-        class="qa-autocomplete-option"
-        *ngFor="let option of options; trackBy: multiple"
-        [value]="option"
-      >
-        {{ displayOption(option) }}
-      </mat-option>
-    </ng-container>
-  </mat-autocomplete>
-
-
-  <div
-    class="ts-form-field__subscript-wrapper"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-  >
-    <div>
-      <ts-validation-messages
-        class="qa-autocomplete-validation-messages"
-        *ngIf="selectionsControl && selectionsControl.setValue"
-        [validateOnChange]="selectedOptions.length > 0"
-        [control]="selectionsControl"
-      ></ts-validation-messages>
-    </div>
-
-    <div
-      class="ts-form-field__hint-wrapper"
-    >
-      <mat-hint
-        class="hint qa-autocomplete-hint"
-        align="end"
-        *ngIf="hint"
-      >{{ hint }}</mat-hint>
-    </div>
   </div>
+</ts-form-field>
 
 
+<!--
+   -AUTOCOMPLETE PANEL
+   -->
+<ts-autocomplete-panel
+  class="ts-autocomplete"
+  #auto="tsAutocompletePanel"
+  [id]="id + '-panel'"
+  [options]="options"
+  [optionGroups]="optionGroups"
+  (optionSelected)="autocompleteSelectItem($event)"
+>
+  <!-- Outlet for options passed in by consumer -->
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</ts-autocomplete-panel>
 
 
-
-</mat-form-field>
-
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
 
 <ng-template #spinnerTemplate>
   <mat-progress-spinner
     *ngIf="showProgress"
-    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-c-autocomplete-spinner"
+    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-select-autocomplete-spinner"
     [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
     diameter="21"
     mode="indeterminate"

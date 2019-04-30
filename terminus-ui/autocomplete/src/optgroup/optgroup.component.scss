@@ -1,0 +1,27 @@
+@import './../../../scss/helpers/color';
+@import './../../../scss/helpers/spacing';
+@import './../../../scss/helpers/typography';
+
+
+//
+// @component
+//  Optgroup
+// @description
+//  An optgroup for a select menu
+//
+.ts-optgroup {
+  display: block;
+
+  &.ts-optgroup--disabled {
+    color: color(utility, dark);
+  }
+
+  .ts-optgroup-label {
+    @include typography(body, 2);
+    @include truncate-overflow;
+    color: color(utility);
+    display: block;
+    padding-left: spacing(small);
+  }
+
+}
