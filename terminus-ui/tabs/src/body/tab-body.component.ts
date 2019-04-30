@@ -146,7 +146,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
    * Event emitted when the tab begins to animate towards the center as the active tab
    */
   @Output()
-  readonly onCentering: EventEmitter<number> = new EventEmitter<number>();
+  readonly centering: EventEmitter<number> = new EventEmitter<number>();
 
   /**
    * Event emitted before the centering of the tab begins
@@ -164,7 +164,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
    * Event emitted when the tab completes its animation towards the center
    */
   @Output()
-  readonly onCentered: EventEmitter<void> = new EventEmitter<void>(true);
+  readonly centered: EventEmitter<void> = new EventEmitter<void>(true);
 
 
   constructor(
@@ -188,7 +188,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
     ).subscribe((event) => {
       // If the transition to the center is complete, emit an event.
       if (this.isCenterPosition(event.toState) && this.isCenterPosition(this.positionState)) {
-        this.onCentered.emit();
+        this.centered.emit();
       }
 
       if (this.isCenterPosition(event.fromState) && !this.isCenterPosition(this.positionState)) {
@@ -217,7 +217,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
     this.beforeCentering.emit(isCentering);
 
     if (isCentering) {
-      this.onCentering.emit(this.elementRef.nativeElement.clientHeight);
+      this.centering.emit(this.elementRef.nativeElement.clientHeight);
     }
   }
 
