@@ -2,14 +2,14 @@
 import { Provider, Type } from '@angular/core';
 import {
   ComponentFixture,
-  TestBed,
 } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { typeInElement } from '@terminus/ngx-tools/testing';
+import {
+  createComponent as createComponentInner,
+  typeInElement,
+ } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/date-range/testing';
 import {
-  getRangeInputElements,
   getRangeInputInstances,
 } from '@terminus/ui/date-range/testing';
 
@@ -237,19 +237,12 @@ describe(`TsDateRangeComponent`, function() {
  * HELPERS
  */
 
-// TODO: Move to ngx-tools (and all other instances of this utility)
 export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(component,
+    providers,
+    [
       ReactiveFormsModule,
       TsDateRangeModule,
       ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+    ]);
 }
