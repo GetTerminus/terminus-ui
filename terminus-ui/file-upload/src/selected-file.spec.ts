@@ -287,17 +287,37 @@ describe(`TsSelectedFile`, function() {
 
 
   describe(`isValid`, () => {
+    const file = createFile();
+
+    beforeEach(() => {
+      file.validations.fileType = true;
+      file.validations.fileSize = true;
+      file.validations.imageDimensions = true;
+      file.validations.imageRatio = true;
+    });
 
     test(`should return true if all validations are true`, () => {
-      const file = createFile();
-      file.validations.fileType = true;
-      file.validations.fileSize = false;
-      file.validations.imageDimensions = true;
-
-      expect(file.isValid).toEqual(false);
-
-      file.validations.fileSize = true;
       expect(file.isValid).toEqual(true);
+    });
+
+    test(`should return false if file type validation is false`, () => {
+      file.validations.fileType = false;
+      expect(file.isValid).toEqual(false);
+    });
+
+    test(`should return false if file size validation is false`, () => {
+      file.validations.fileSize = false;
+      expect(file.isValid).toEqual(false);
+    });
+
+    test(`should return false if image dimensions validation is false`, () => {
+      file.validations.imageDimensions = false;
+      expect(file.isValid).toEqual(false);
+    });
+
+    test(`should return false if image ration validation is false`, () => {
+      file.validations.imageRatio = false;
+      expect(file.isValid).toEqual(false);
     });
 
   });
