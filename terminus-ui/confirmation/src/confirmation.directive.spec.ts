@@ -1,24 +1,17 @@
 // tslint:disable: no-non-null-assertion
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
   Input,
   NgModule,
   Output,
-  Provider,
-  Type,
   ViewChild,
 } from '@angular/core';
 import {
   ComponentFixture,
-  TestBed,
 } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { expectNativeEl } from '@terminus/ngx-tools/testing';
-import { TsButtonComponent } from '@terminus/ui/button';
+import { createComponent, expectNativeEl } from '@terminus/ngx-tools/testing';
+import { TsButtonModule } from '@terminus/ui';
 
 import { TsConfirmationDirective } from './confirmation.directive';
 import { TsConfirmationModule } from './confirmation.module';
@@ -108,7 +101,7 @@ describe(`TsConfirmationDirective`, function() {
 
 
   beforeEach(() => {
-    fixture = createComponent(TestHostComponent);
+    fixture = createComponent(TestHostComponent, [], [TsConfirmationModule, TsButtonModule]);
     testComponent = fixture.componentInstance;
     directive = testComponent.directive;
     button = fixture.debugElement.nativeElement.querySelector('button');
@@ -315,33 +308,3 @@ describe(`TsConfirmationDirective`, function() {
 });
 
 
-
-
-/**
- * HELPERS
- */
-
-// TODO: Move to ngx-tools (and all other instances of this utility)
-export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      CommonModule,
-      OverlayModule,
-      PortalModule,
-      FlexLayoutModule,
-      TsButtonModuleMock,
-      TsConfirmationModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      {
-        provide: TsButtonComponent,
-        useClass: TsButtonComponentMock,
-      },
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
-}

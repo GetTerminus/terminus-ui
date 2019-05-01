@@ -2,13 +2,8 @@
 import {
   Component,
   OnInit,
-  Provider,
-  Type,
 } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { createComponent } from '@terminus/ngx-tools/testing';
 
 import { TsDateAdapter } from './date-adapter';
 
@@ -18,7 +13,7 @@ describe(`TsDateAdapter`, () => {
   describe(`format`, () => {
 
     test(`should format as dashed string`, () => {
-      const fixture = createComponent(DemoComponent);
+      const fixture = createComponent(DemoComponent, [TsDateAdapter], []);
       fixture.detectChanges();
 
       expect(fixture.componentInstance.setDate()).toEqual('02-01-2018');
@@ -27,24 +22,6 @@ describe(`TsDateAdapter`, () => {
   });
 
 });
-
-
-
-
-function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      TsDateAdapter,
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
-}
 
 
 /**
