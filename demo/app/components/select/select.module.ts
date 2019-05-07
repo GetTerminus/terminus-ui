@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TsCardModule } from '@terminus/ui/card';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 import { TsToggleModule } from '@terminus/ui/toggle';
@@ -13,7 +14,17 @@ import { SelectComponent } from './select.component';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  imports: [CommonModule, SelectRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule, TsCardModule, TsSelectModule, TsSpacingModule, TsToggleModule],
+  imports: [
+    CommonModule,
+    SelectRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule, 
+    TsCardModule,
+    TsOptionModule,
+    TsSelectModule,
+    TsSpacingModule,
+    TsToggleModule],
   declarations: [SelectComponent],
 })
 export class SelectModule {}

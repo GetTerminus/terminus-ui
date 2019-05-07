@@ -366,9 +366,9 @@ The comparator function type is `TsSelectSortComparatorFunction` and has the fol
 
 ```typescript
 type TsSelectSortComparatorFunction = (
-  a: TsSelectOptionComponent,
-  b: TsSelectOptionComponent,
-  options: TsSelectOptionComponent[],
+  a: TsOptionComponent,
+  b: TsOptionComponent,
+  options: TsOptionComponent[],
 ) => number;
 ```
 

@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 
-import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
-import { TsSelectOptionComponent } from './option.component';
+import { TsOptgroupComponent } from './optgroup.component';
+import { TsOptionComponent } from './option.component';
 
 
 /**
@@ -10,7 +10,7 @@ import { TsSelectOptionComponent } from './option.component';
  * @param options - The list of options
  * @return If all are selected
  */
-export function allOptionsAreSelected(options: QueryList<TsSelectOptionComponent>): boolean {
+export function allOptionsAreSelected(options: QueryList<TsOptionComponent>): boolean {
   if (!options || options.toArray().length < 1) {
     return false;
   }
@@ -30,8 +30,8 @@ export function allOptionsAreSelected(options: QueryList<TsSelectOptionComponent
  */
 export function countGroupLabelsBeforeOption(
   optionIndex: number,
-  options: QueryList<TsSelectOptionComponent>,
-  optionGroups: QueryList<TsSelectOptgroupComponent>,
+  options: QueryList<TsOptionComponent>,
+  optionGroups: QueryList<TsOptgroupComponent>,
 ): number {
 
   if (optionGroups.length) {
@@ -88,7 +88,7 @@ export function getOptionScrollPosition(
  * @param options - The list of options
  * @return If some are selected
  */
-export function someOptionsAreSelected(options: QueryList<TsSelectOptionComponent>): boolean {
+export function someOptionsAreSelected(options: QueryList<TsOptionComponent>): boolean {
   if (!options || options.toArray().length < 1) {
     return false;
   }
@@ -108,7 +108,7 @@ export function someOptionsAreSelected(options: QueryList<TsSelectOptionComponen
  *
  * @param options - The list of options
  */
-export function toggleAllOptions(options: QueryList<TsSelectOptionComponent>): void {
+export function toggleAllOptions(options: QueryList<TsOptionComponent>): void {
   if (!options || options.toArray().length < 1) {
     return;
   }

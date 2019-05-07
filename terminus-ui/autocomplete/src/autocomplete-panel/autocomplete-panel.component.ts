@@ -14,11 +14,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { TsSelectOptgroupComponent } from './../optgroup/optgroup.component';
+import { TsOptgroupComponent } from '@terminus/ui/option';
 import {
   TS_OPTION_PARENT_COMPONENT,
-  TsSelectOptionComponent,
-} from './../option/option.component';
+  TsOptionComponent,
+} from '@terminus/ui/option';
 
 
 /**
@@ -29,7 +29,7 @@ export class TsAutocompletePanelSelectedEvent {
     // Reference to the autocomplete panel that emitted the event
     public source: TsAutocompletePanelComponent,
     // The option that was selected
-    public option: TsSelectOptionComponent,
+    public option: TsOptionComponent,
   ) {}
 }
 
@@ -38,7 +38,7 @@ let nextUniqueId = 0;
 
 
 /**
- * The panel used to display autocomplete options when {@link TsSelectOptionComponent} is in autocomplete mode.
+ * The panel used to display autocomplete options when {@link TsOptionComponent} is in autocomplete mode.
  *
  * #### QA CSS CLASSES
  * - `qa-autocomplete-panel`: The panel container
@@ -73,7 +73,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    *
    * NOTE: {@link TsAutocompleteTriggerDirective} needs access.
    */
-  public keyManager!: ActiveDescendantKeyManager<TsSelectOptionComponent>;
+  public keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
    * Whether the autocomplete panel should be visible
@@ -136,7 +136,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * in explicitly.
    */
   @Input()
-  public optionGroups!: QueryList<TsSelectOptgroupComponent>;
+  public optionGroups!: QueryList<TsOptgroupComponent>;
 
   /**
    * Access the list of options
@@ -145,7 +145,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * in explicitly.
    */
   @Input()
-  public options!: QueryList<TsSelectOptionComponent>;
+  public options!: QueryList<TsOptionComponent>;
 
   /**
    * EMITTERS
@@ -180,7 +180,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * Set up
    */
   public ngAfterContentInit(): void {
-    this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<TsOptionComponent>(this.options).withWrap();
 
     // Set the initial visibility state.
     this.setVisibility();
@@ -190,7 +190,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Emit the `select` event
    */
-  public emitSelectEvent(option: TsSelectOptionComponent): void {
+  public emitSelectEvent(option: TsOptionComponent): void {
     const event = new TsAutocompletePanelSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }

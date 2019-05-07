@@ -5,7 +5,7 @@ import {
 
 
 /**
- * Directive used to allow the consumer to define the view text for a {@link TsSelectOptionComponent}
+ * Directive used to allow the consumer to define the view text for a {@link TsOptionComponent}
  */
 @Directive({
   selector: '[tsSelectOptionDisplay]',

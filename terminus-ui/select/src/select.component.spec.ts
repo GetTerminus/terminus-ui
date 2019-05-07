@@ -923,7 +923,7 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
       };
 
-      expect(create).toThrowError(`TsSelectOptionComponent: The full 'option' object must be passed in when using a custom template.`);
+      expect(create).toThrowError(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     });
 
 

@@ -5,7 +5,6 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,15 +16,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatRippleModule } from '@angular/material';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsAutocompletePanelComponent } from './autocomplete-panel/autocomplete-panel.component';
 import { TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER, TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
 import { TsAutocompleteComponent } from './autocomplete.component';
-import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
-import { TsSelectOptionDisplayDirective } from './option/option-display.directive';
-import { TsSelectOptionComponent } from './option/option.component';
 
 export * from './autocomplete.component';
-
+export * from './autocomplete-panel/autocomplete-panel.component';
 
 /**
  * @deprecated in favor of the new TsInputComponent. Target 12.x for removal
@@ -44,6 +41,7 @@ export * from './autocomplete.component';
     TsCheckboxModule,
     TsIconModule,
     TsFormFieldModule,
+    TsOptionModule,
     TsValidationMessagesModule,
     TsInputModule,
   ],
@@ -54,17 +52,11 @@ export * from './autocomplete.component';
     TsAutocompleteComponent,
     TsAutocompletePanelComponent,
     TsAutocompleteTriggerDirective,
-    TsSelectOptgroupComponent,
-    TsSelectOptionComponent,
-    TsSelectOptionDisplayDirective,
   ],
   exports: [
     TsAutocompleteComponent,
     TsAutocompletePanelComponent,
     TsAutocompleteTriggerDirective,
-    TsSelectOptgroupComponent,
-    TsSelectOptionComponent,
-    TsSelectOptionDisplayDirective,
   ],
 })
 export class TsAutocompleteModule {}

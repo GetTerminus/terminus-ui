@@ -8,11 +8,8 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
-import {
-  TsSelectModule,
-  TsSelectOptionComponent,
-  TsSelectSortComparatorFunction,
-} from '@terminus/ui/select';
+import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
+import { TsOptionModule } from '@terminus/ui/option';
 
 
 interface State {
@@ -322,7 +319,6 @@ export class Disabled {
     <ts-autocomplete
       [formControl]="myCtrl"
       [allowMultiple]="true"
-      [sortComparator]="myComparator"
     >
       <ts-select-option
         [value]="option.name"
@@ -337,19 +333,6 @@ export class SelectOptionChange {
   myCtrl = new FormControl(['Texas', 'Florida']);
   options: State[] = STATES.slice(0, 10);
   // tslint:disable: max-line-length
-  myComparator: TsSelectSortComparatorFunction = (a: TsSelectOptionComponent, b: TsSelectOptionComponent, options: TsSelectOptionComponent[]) => {
-    // tslint:enable: max-line-length
-    const one = a.viewValue.toLowerCase();
-    const two = b.viewValue.toLowerCase();
-
-    if (one < two) {
-      return -1;
-    }
-    if (one > two) {
-      return 1;
-    }
-    return 0;
-  }
 
   updateOptions() {
     const otherStates: State[] = STATES.slice(10, 14);
@@ -362,7 +345,6 @@ export class SelectOptionChange {
     <ts-autocomplete
       [ngModel]="selectedFood"
       (ngModelChange)="setFoodByCopy($event)"
-      [compareWith]="comparator"
     >
       <ts-select-option
         [value]="option"
@@ -709,27 +691,6 @@ export class OptgroupBadIDs {
   groups = STATES_GROUPED.slice();
 }
 
-@Component({
-  template: `
-    <ts-autocomplete [formControl]="myCtrl">
-      <ts-autocomplete-trigger [id]="myId">
-        My custom trigger!
-      </ts-autocomplete-trigger>
-      <ts-select-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      >
-        {{ option.name }}
-      </ts-select-option>
-    </ts-autocomplete>
-  `,
-})
-export class CustomTrigger {
-  myCtrl = new FormControl();
-  options = STATES.slice();
-  myId = 'foo';
-}
 
 
 @Component({
@@ -775,7 +736,8 @@ export class SeededAutocompleteWithFormatFn {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TsSelectModule,
+    TsAutocompleteModule,
+    TsOptionModule,
   ],
   declarations: [
     Autocomplete,
@@ -784,7 +746,6 @@ export class SeededAutocompleteWithFormatFn {
     CustomCharacterCount,
     CustomCompareFn,
     CustomDebounce,
-    CustomTrigger,
     Debounce,
     DeferOptionSelectionStream,
     Disabled,

@@ -9,8 +9,11 @@ import {
   Validators,
 } from '@angular/forms';
 import {
+  TsOptionComponent,
+  TsOptionModule,
+} from '@terminus/ui/option';
+import {
   TsSelectModule,
-  TsSelectOptionComponent,
   TsSelectSortComparatorFunction,
 } from '@terminus/ui/select';
 
@@ -441,7 +444,7 @@ export class SelectOptionChange {
   myCtrl = new FormControl(['Texas', 'Florida']);
   options: State[] = STATES.slice(0, 10);
   // tslint:disable: max-line-length
-  myComparator: TsSelectSortComparatorFunction = (a: TsSelectOptionComponent, b: TsSelectOptionComponent, options: TsSelectOptionComponent[]) => {
+  myComparator: TsSelectSortComparatorFunction = (a: TsOptionComponent, b: TsOptionComponent, options: TsOptionComponent[]) => {
     // tslint:enable: max-line-length
     const one = a.viewValue.toLowerCase();
     const two = b.viewValue.toLowerCase();
@@ -834,6 +837,7 @@ export class Filterable {
     FormsModule,
     ReactiveFormsModule,
     TsSelectModule,
+    TsOptionModule,
   ],
   declarations: [
     Basic,

@@ -12,9 +12,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { getSelectInstance } from '@terminus/ui/select/testing';
+import { getAutocompleteInstance } from '@terminus/ui/autocomplete/testing';
 
-import { TsSelectModule } from '../select.module';
+import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
 import {
   allOptionsAreSelected,
   getOptionScrollPosition,
@@ -49,7 +49,7 @@ describe(`selectOptionUtilities`, function() {
     test(`should return undefined if no options exist`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(toggleAllOptions(instance.options)).toEqual(undefined);
       expect(toggleAllOptions(undefined as any)).toEqual(undefined);
@@ -63,7 +63,7 @@ describe(`selectOptionUtilities`, function() {
     test(`should do something`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(allOptionsAreSelected(instance.options)).toEqual(false);
       expect(allOptionsAreSelected(undefined as any)).toEqual(false);
@@ -77,7 +77,7 @@ describe(`selectOptionUtilities`, function() {
     test(`should do something`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(someOptionsAreSelected(instance.options)).toEqual(false);
       expect(someOptionsAreSelected(undefined as any)).toEqual(false);
@@ -93,7 +93,7 @@ describe(`selectOptionUtilities`, function() {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-select-option
         [value]="state.name"
         [option]="state"
@@ -101,7 +101,7 @@ describe(`selectOptionUtilities`, function() {
       >
         {{ state.name }}
       </ts-select-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class EmptyQueryList {
@@ -118,7 +118,7 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
   TestBed.configureTestingModule({
     imports: [
       ReactiveFormsModule,
-      TsSelectModule,
+      TsAutocompleteModule,
       NoopAnimationsModule,
       ...imports,
     ],

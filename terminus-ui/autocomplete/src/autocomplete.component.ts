@@ -60,20 +60,20 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
-import { DEFAULT_COMPARE_WITH, TsSelectOptionCompareWith } from '@terminus/ui/select';
-import { TsSelectTriggerComponent } from '@terminus/ui/select';
+import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '@terminus/ui/option';
+import {
+  TS_OPTION_PARENT_COMPONENT,
+  TsOptionComponent,
+  TsOptionSelectionChange,
+} from '@terminus/ui/option';
+import { TsOptgroupComponent } from '@terminus/ui/option';
+// import { DEFAULT_COMPARE_WITH, TsSelectOptionCompareWith } from '@terminus/ui/select';
+// import { TsSelectTriggerComponent } from '@terminus/ui/select';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { TsAutocompletePanelComponent, TsAutocompletePanelSelectedEvent } from './autocomplete-panel/autocomplete-panel.component';
 import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
-import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
-import { countGroupLabelsBeforeOption, getOptionScrollPosition } from './option/option-utilities';
-import {
-  TS_OPTION_PARENT_COMPONENT,
-  TsOptionSelectionChange,
-  TsSelectOptionComponent,
-} from './option/option.component';
 
 /**
  * The following style constants are necessary to save here in order to properly calculate the alignment of the selected option over the
@@ -243,7 +243,7 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Manages keyboard events for options in the panel.
    */
-  private keyManager!: ActiveDescendantKeyManager<TsSelectOptionComponent>;
+  private keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
    * Define the flex gap spacing
@@ -400,8 +400,8 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Access the user-supplied override of the trigger element
    */
-  @ContentChild(TsSelectTriggerComponent)
-  public customTrigger: TsSelectTriggerComponent | undefined;
+  // @ContentChild(TsSelectTriggerComponent)
+  // public customTrigger: TsSelectTriggerComponent | undefined;
 
   /**
    * Access to the actual HTML element
@@ -424,14 +424,14 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Access a list of all the defined select options
    */
-  @ContentChildren(TsSelectOptionComponent, { descendants: true })
-  public options!: QueryList<TsSelectOptionComponent>;
+  @ContentChildren(TsOptionComponent, { descendants: true })
+  public options!: QueryList<TsOptionComponent>;
 
   /**
    * Access all of the defined groups of options
    */
-  @ContentChildren(TsSelectOptgroupComponent)
-  public optionGroups!: QueryList<TsSelectOptgroupComponent>;
+  @ContentChildren(TsOptgroupComponent)
+  public optionGroups!: QueryList<TsOptgroupComponent>;
 
   /**
    * Access the overlay pane containing the options
@@ -555,19 +555,19 @@ export class TsAutocompleteComponent implements OnInit,
    * Learn more about `compareWith` in the Angular docs:
    * https://angular.io/api/forms/SelectControlValueAccessor#customizing-option-selection
    */
-  @Input()
-  public set compareWith(fn: TsSelectOptionCompareWith) {
-    if (typeof fn !== 'function' && isDevMode()) {
-      console.warn(`TsSelectComponent: "compareWith" must be a function. Falling back to the default.`);
-      this._compareWith = DEFAULT_COMPARE_WITH;
-    }
+  // @Input()
+  // public set compareWith(fn: TsSelectOptionCompareWith) {
+  //   if (typeof fn !== 'function' && isDevMode()) {
+  //     console.warn(`TsSelectComponent: "compareWith" must be a function. Falling back to the default.`);
+  //     this._compareWith = DEFAULT_COMPARE_WITH;
+  //   }
 
-    this._compareWith = fn;
-  }
-  public get compareWith(): TsSelectOptionCompareWith {
-    return this._compareWith;
-  }
-  private _compareWith: TsSelectOptionCompareWith = DEFAULT_COMPARE_WITH;
+  //   this._compareWith = fn;
+  // }
+  // public get compareWith(): TsSelectOptionCompareWith {
+  //   return this._compareWith;
+  // }
+  // private _compareWith: TsSelectOptionCompareWith = DEFAULT_COMPARE_WITH;
 
   /**
    * Define a debounce delay for the query stream
@@ -953,7 +953,7 @@ export class TsAutocompleteComponent implements OnInit,
       }
     } else {
       // HACK: Wait until the next detection cycle to set the value from an ngModel.
-      // NOTE: Using CDR.detectChanges causes errors in children that expect TsSelectOptionComponents to exist.
+      // NOTE: Using CDR.detectChanges causes errors in children that expect TsOptionComponent to exist.
       setTimeout(() => {
         console.log('inside timeout, ngControl: ', this.ngControl);
         // istanbul ignore else
@@ -1225,7 +1225,7 @@ export class TsAutocompleteComponent implements OnInit,
    */
   private initKeyManager(): void {
     // If this is an autocomplete instance we need to initialize with wrapping turned on
-    this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
+    this.keyManager = new ActiveDescendantKeyManager<TsOptionComponent>(this.options)
       .withTypeAhead()
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr')
@@ -1516,7 +1516,7 @@ export class TsAutocompleteComponent implements OnInit,
     }
 
     // HACK: For some reason, triggering change detection works in the selection method above, but not here. Same issue seems preset in
-    // TsSelectOptionComponent where `setActiveStyles` works by calling the CDR but `setInactiveStyles` required a timeout.
+    // TsOptionComponent where `setActiveStyles` works by calling the CDR but `setInactiveStyles` required a timeout.
     setTimeout(() => {
       // Update the panel position in case the removal of a chip causes the select height to change
       if (this.autocompleteTrigger.overlayRef) {

@@ -26,17 +26,20 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { TsSelectOption } from './../select.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';
 
+interface TsSelectOption {
+  isDisabled?: boolean;
+  children?: TsSelectOption[];
+}
 
 /**
- * Event object emitted by {@link TsSelectOptionComponent} when selected or deselected
+ * Event object emitted by {@link TsOptionComponent} when selected or deselected
  */
 export class TsOptionSelectionChange {
   constructor(
     // Reference to the option that emitted the event
-    public source: TsSelectOptionComponent,
+    public source: TsOptionComponent,
     // Whether the change in the option's value was a result of a user action
     public isUserInput = false,
   ) {}
@@ -56,9 +59,9 @@ export interface TsOptionParentComponent {
 
 
 /**
- * Injection token used to provide the parent component to options. Used by {@link TsSelectOptionComponent}
+ * Injection token used to provide the parent component to options. Used by {@link TsOptionComponent}
  *
- * Since TsSelectComponent imports TsSelectOptionComponent, importing TsSelectComponent here will cause a circular dependency. Injecting via
+ * Since TsSelectComponent imports TsOptionComponent, importing TsSelectComponent here will cause a circular dependency. Injecting via
  * an InjectionToken helps us circumvent that limitation.
  */
 export const TS_OPTION_PARENT_COMPONENT = new InjectionToken<TsOptionParentComponent>('TS_OPTION_PARENT_COMPONENT');
@@ -68,14 +71,14 @@ export const TS_OPTION_PARENT_COMPONENT = new InjectionToken<TsOptionParentCompo
  * Describes a parent optgroup component. Used by {@link TS_OPTGROUP_PARENT_COMPONENT}
  */
 export interface TsOptgroupParentComponent {
-  optgroupOptions: QueryList<TsSelectOptionComponent>;
+  optgroupOptions: QueryList<TsOptionComponent>;
   isDisabled: boolean;
   triggerChangeDetection: Function;
 }
 
 
 /**
- * Injection token used to provide the parent optgroup to options. Used by {@link TsSelectOptgroupComponent}
+ * Injection token used to provide the parent optgroup to options. Used by {@link TsOptgroupComponent}
  */
 export const TS_OPTGROUP_PARENT_COMPONENT = new InjectionToken<TsOptgroupParentComponent>('TS_OPTGROUP_PARENT_COMPONENT');
 
@@ -88,8 +91,8 @@ let nextUniqueId = 0;
  * Single option inside of a {@link TsSelectComponent}
  *
  * #### QA CSS CLASSES
- * - `qa-select-option-checkbox`: The option checkbox
- * - `qa-select-option-text`: The option text content
+ * - `qa-autocomplete-option-checkbox`: The option checkbox
+ * - `qa-autocomplete-option-text`: The option text content
  *
  * @example
  * <ts-select-option
@@ -124,9 +127,9 @@ let nextUniqueId = 0;
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'tsOption',
+  exportAs: 'tsSelectOption',
 })
-export class TsSelectOptionComponent implements Highlightable, AfterContentInit, AfterViewChecked, OnDestroy {
+export class TsOptionComponent implements Highlightable, AfterContentInit, AfterViewChecked, OnDestroy {
   /**
    * Store the most recent view value
    */
@@ -282,7 +285,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   public ngAfterContentInit(): void {
     // If a template is passed in but no option object, alert the consumer
     if (this.optionTemplate && !this.option && isDevMode()) {
-      throw Error(`TsSelectOptionComponent: The full 'option' object must be passed in when using a custom template.`);
+      throw Error(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     }
 
     // Set the title once the zone is stable. This is needed to avoid an ExpressionChangedAfterChecked error
@@ -417,6 +420,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   public setInactiveStyles(): void {
     if (this.active) {
       // HACK: For some reason, triggering change detection works in `setActiveStyles` above, but not here.
+      // Same issue seems preset in TsSelectComponent `autocompleteDeselectItem`.
       setTimeout(() => {
         this.active = false;
         this.changeDetectorRef.markForCheck();

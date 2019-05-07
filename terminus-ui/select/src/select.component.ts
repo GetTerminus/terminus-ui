@@ -72,19 +72,19 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
-import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
+import { TsOptgroupComponent } from '@terminus/ui/option';
 import {
   allOptionsAreSelected,
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   someOptionsAreSelected,
   toggleAllOptions,
-} from './option/option-utilities';
+} from '@terminus/ui/option';
 import {
   TS_OPTION_PARENT_COMPONENT,
+  TsOptionComponent,
   TsOptionSelectionChange,
-  TsSelectOptionComponent,
-} from './option/option.component';
+} from '@terminus/ui/option';
 import { tsSelectAnimations } from './select-animations';
 import { TsSelectTriggerComponent } from './select-trigger.component';
 
@@ -136,9 +136,9 @@ export type TsSelectFormatFn = (v: any) => string;
  * Function used to sort the values ina aselect in multiple mode. Follows the same logic as `Array.prototype.sort`.
  */
 export type TsSelectSortComparatorFunction = (
-  a: TsSelectOptionComponent,
-  b: TsSelectOptionComponent,
-  options: TsSelectOptionComponent[],
+  a: TsOptionComponent,
+  b: TsOptionComponent,
+  options: TsOptionComponent[],
 ) => number;
 
 /**
@@ -287,7 +287,7 @@ export class TsSelectComponent implements
   /**
    * Manages keyboard events for options in the panel.
    */
-  private keyManager!: ActiveDescendantKeyManager<TsSelectOptionComponent>;
+  private keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
    * The y-offset of the overlay panel in relation to the trigger's top start corner.
@@ -357,7 +357,7 @@ export class TsSelectComponent implements
    * Manage selections
    *
    */
-  public selectionModel!: SelectionModel<TsSelectOptionComponent>;
+  public selectionModel!: SelectionModel<TsOptionComponent>;
 
   // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
   // Instead, we pass it manually through the template with this reference.
@@ -436,14 +436,14 @@ export class TsSelectComponent implements
   /**
    * Access a list of all the defined select options
    */
-  @ContentChildren(TsSelectOptionComponent, { descendants: true })
-  public options!: QueryList<TsSelectOptionComponent>;
+  @ContentChildren(TsOptionComponent, { descendants: true })
+  public options!: QueryList<TsOptionComponent>;
 
   /**
    * Access all of the defined groups of options
    */
-  @ContentChildren(TsSelectOptgroupComponent)
-  public optionGroups!: QueryList<TsSelectOptgroupComponent>;
+  @ContentChildren(TsOptgroupComponent)
+  public optionGroups!: QueryList<TsOptgroupComponent>;
 
   /**
    * Access the overlay pane containing the options
@@ -531,7 +531,7 @@ export class TsSelectComponent implements
   /**
    * The currently selected option or options
    */
-  public get selected(): TsSelectOptionComponent | TsSelectOptionComponent[] {
+  public get selected(): TsOptionComponent | TsOptionComponent[] {
     return this.allowMultiple ? this.selectionModel.selected : this.selectionModel.selected[0];
   }
 
@@ -825,7 +825,7 @@ export class TsSelectComponent implements
    */
   public ngOnInit(): void {
     // TODO: re-initialize the selection model if this.allowMultiple changes (rather than throw error like material)
-    this.selectionModel = new SelectionModel<TsSelectOptionComponent>(this.allowMultiple);
+    this.selectionModel = new SelectionModel<TsOptionComponent>(this.allowMultiple);
 
     // Seed the control value
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
@@ -1120,7 +1120,7 @@ export class TsSelectComponent implements
    * @param option - The selected option
    * @param isUserInput - Whether this selection happened from a user's click
    */
-  private onSelect(option: TsSelectOptionComponent, isUserInput: boolean): void {
+  private onSelect(option: TsOptionComponent, isUserInput: boolean): void {
     const wasSelected = this.selectionModel.isSelected(option);
 
     // If not in multiple selection mode, clear any existing selection first
@@ -1144,7 +1144,7 @@ export class TsSelectComponent implements
           // In case the user selected the option with their mouse, we
           // want to restore focus back to the trigger, in order to
           // prevent the select keyboard controls from clashing with
-          // the ones from `TsSelectOptionComponent`.
+          // the ones from `TsOptionComponent`.
           this.focus();
         }
       }
@@ -1172,7 +1172,7 @@ export class TsSelectComponent implements
    */
   private initKeyManager(): void {
 
-    this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
+    this.keyManager = new ActiveDescendantKeyManager<TsOptionComponent>(this.options)
       .withTypeAhead()
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr');
@@ -1233,9 +1233,9 @@ export class TsSelectComponent implements
     let valueToEmit: any = null;
 
     if (this.allowMultiple) {
-      valueToEmit = (this.selected as TsSelectOptionComponent[]).map((option) => option.value);
+      valueToEmit = (this.selected as TsOptionComponent[]).map((option) => option.value);
     } else {
-      valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
+      valueToEmit = this.selected ? (this.selected as TsOptionComponent).value : fallbackValue;
     }
 
     this.value = valueToEmit;
@@ -1346,8 +1346,8 @@ export class TsSelectComponent implements
    * @param value - The value to use when searching for a matching option
    * @return Option that has the corresponding value
    */
-  private selectOptionByValue(value: any): TsSelectOptionComponent | undefined {
-    const correspondingOption = this.options.find((option: TsSelectOptionComponent) => {
+  private selectOptionByValue(value: any): TsOptionComponent | undefined {
+    const correspondingOption = this.options.find((option: TsOptionComponent) => {
       try {
         // Treat null as a special reset value.
         return option.value != null && this.compareWith(option.value,  value);
@@ -1598,8 +1598,8 @@ export class TsSelectComponent implements
    * @param option - The option whose index should be found
    * @return The index of the option
    */
-  private getOptionIndex(option: TsSelectOptionComponent): number | undefined {
-    return this.options.reduce((result: number | undefined, current: TsSelectOptionComponent, index: number) => {
+  private getOptionIndex(option: TsOptionComponent): number | undefined {
+    return this.options.reduce((result: number | undefined, current: TsOptionComponent, index: number) => {
       return result === undefined ? (option === current ? index : undefined) : result;
     }, undefined);
   }

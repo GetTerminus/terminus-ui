@@ -55,8 +55,8 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '../option/option-utilities';
-import { TsOptionSelectionChange, TsSelectOptionComponent } from '../option/option.component';
+import { countGroupLabelsBeforeOption, getOptionScrollPosition } from '@terminus/ui/option';
+import { TsOptionComponent, TsOptionSelectionChange } from '@terminus/ui/option';
 import { TsAutocompletePanelComponent } from './autocomplete-panel.component';
 
 
@@ -221,9 +221,9 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
    */
 
   /**
-   * The currently active option, coerced to TsSelectOptionComponent type
+   * The currently active option, coerced to TsOptionComponent type
    */
-  public get activeOption(): TsSelectOptionComponent | null {
+  public get activeOption(): TsOptionComponent | null {
     if (this.autocompletePanel && this.autocompletePanel.keyManager) {
       return this.autocompletePanel.keyManager.activeItem;
     }
@@ -595,7 +595,7 @@ export class TsAutocompleteTriggerDirective implements ControlValueAccessor, OnD
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private clearPreviousSelectedOption(skip: TsSelectOptionComponent): void {
+  private clearPreviousSelectedOption(skip: TsOptionComponent): void {
     this.autocompletePanel.options.forEach((option) => {
       // NOTE: Loose check (`!=`) needed for comparing classes
       // istanbul ignore else

@@ -3,9 +3,11 @@ import { ComponentFixture } from '@angular/core/testing';
 import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
 import {
+  TsOptgroupComponent,
+  TsOptionComponent,
+} from '@terminus/ui/option';
+import {
   TsSelectComponent,
-  TsSelectOptgroupComponent,
-  TsSelectOptionComponent,
 } from '@terminus/ui/select';
 
 
@@ -129,13 +131,13 @@ export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTML
 }
 
 /**
- * Get all TsSelectOptionComponent instances for a TsSelectComponent
+ * Get all TsOptionComponent instances for a TsSelectComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return An array of TsSelectOptionComponents
+ * @return An array of TsOptionComponents
  */
-export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsSelectOptionComponent[] {
+export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsOptionComponent[] {
   const instance = getSelectInstance(fixture, index);
   const options = instance.options.toArray();
   if (options.length < 1) {
@@ -145,14 +147,14 @@ export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0)
 }
 
 /**
- * Get a specific TsSelectOptionComponent instance for a TsSelectComponent
+ * Get a specific TsOptionComponent instance for a TsSelectComponent
  *
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
- * @param optionIndex - The index of the desired TsSelectOptionComponent
- * @return A TsSelectOptionComponent
+ * @param optionIndex - The index of the desired TsOptionComponent
+ * @return A TsOptionComponent
  */
-export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsSelectOptionComponent {
+export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsOptionComponent {
   const options = getAllOptionInstances(fixture, selectIndex);
   if (!options[optionIndex]) {
     throw new Error(`'getOptionInstance' did not find an option at index '${optionIndex}' from the select at index '${selectIndex}'`);
@@ -161,12 +163,12 @@ export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 
 }
 
 /**
- * Get the element of a TsSelectOptionComponent instance for a TsSelectComponent
+ * Get the element of a TsOptionComponent instance for a TsSelectComponent
  *
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
- * @param optionIndex - The index of the desired TsSelectOptionComponent
- * @return The TsSelectOptionComponent element
+ * @param optionIndex - The index of the desired TsOptionComponent
+ * @return The TsOptionComponent element
  */
 export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): HTMLElement {
   const option = getOptionInstance(fixture, selectIndex, optionIndex);
@@ -174,13 +176,13 @@ export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0
 }
 
 /**
- * Get an array of all TsSelectOptgroupComponents
+ * Get an array of all TsOptgroupComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return An array of TsSelectOptionComponents
+ * @return An array of TsOptionComponents
  */
-export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsSelectOptgroupComponent[] {
+export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOptgroupComponent[] {
   const debugElement = getSelectDebugElement(fixture, index);
   const optgroups = debugElement.queryAll(By.css('ts-select-optgroup'));
   if (!optgroups) {
@@ -190,14 +192,14 @@ export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsSe
 }
 
 /**
- * Get a specific TsSelectOptgroupComponent
+ * Get a specific TsOptgroupComponent
  *
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
- * @param groupIndex - The index of the desired TsSelectOptgroupComponent
- * @return A TsSelectOptgroupComponent
+ * @param groupIndex - The index of the desired TsOptgroupComponent
+ * @return A TsOptgroupComponent
  */
-export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsSelectOptgroupComponent {
+export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsOptgroupComponent {
   const groups = getAllOptgroups(fixture, selectIndex);
   if (!groups[groupIndex]) {
     throw new Error(`'getOptgroup' did not find an optgroup at index '${groupIndex}'`);
@@ -206,11 +208,11 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
 }
 
 /**
- * Get the element for a TsSelectOptgroupComponent
+ * Get the element for a TsOptgroupComponent
  *
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
- * @param groupIndex - The index of the desired TsSelectOptgroupComponent
+ * @param groupIndex - The index of the desired TsOptgroupComponent
  * @return The optgroup element
  */
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
