@@ -607,7 +607,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
         // istanbul ignore else
         if (name === 'url') {
           const maxItemLength = 20;
-          // tslint:disable-next-line
           const errorItem = (error.actual.length > maxItemLength) ? `${error.actual.slice(0, maxItemLength)  }...` : error.actual;
           message += `"${errorItem}" is not a valid URL.`;
         }
@@ -867,7 +866,9 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const prefix = 'data:text/csv;charset=utf-8,';
     const headers = `${content.headers.join('\t')  }\r\n`;
     // Encapsulate content with quotes and escape any existing quotes
-    const rows = `${content.records.map(v => v.columns.map(column => (column ? `"${column.replace(/"/g, '""')}"` : '')).join('\t')).join('\r\n')  }\r\n`;
+    const rows =
+      `${content.records.map(v => v.columns.map(column => (column ? `"${column.replace(/"/g, '""')}"` : '')).join('\t'))
+        .join('\r\n')  }\r\n`;
     let joined: string = prefix + headers + rows;
     // istanbul ignore else
     if (this.outputFormat === 'csv') {

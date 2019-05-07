@@ -332,14 +332,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * @param items - The complete list of navigation items
    */
   private setUpInitialArrays(items: TsNavigationItem[]): void {
-    // Clone the items so we can work freely with the array.
-    const allItems = Array.from(items);
-
-    for (const item of allItems) {
+    // Clone the items and define the external flag for links only
+    const allItems = Array.from(items).map(item => {
       if (isLinkItem(item)) {
         item.isExternal = this.isExternalLink(item.destination);
       }
-    }
+      return item;
+    });
 
     // Create an object with the arrays separated
     const splitArrays = groupBy(allItems, 'alwaysHidden');

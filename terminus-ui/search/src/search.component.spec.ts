@@ -1,6 +1,7 @@
 // tslint:disable: no-non-null-assertion
 import {
-  FormBuilder, FormGroup,
+  FormBuilder,
+  FormGroup,
 } from '@angular/forms';
 
 import { TsSearchComponent } from './search.component';

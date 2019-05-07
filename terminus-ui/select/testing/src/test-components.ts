@@ -1,7 +1,8 @@
 // tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
-  Component, NgModule,
+  Component,
+  NgModule,
 } from '@angular/core';
 import {
   FormControl,
@@ -176,11 +177,11 @@ const STATES_GROUPED: GroupedStates[] = [
   `,
 })
 export class Basic {
-  myCtrl = new FormControl();
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
 
   // Must be overwritten with a spy in the test
-  change = v => {};
+  public change = v => {};
 }
 
 @Component({
@@ -196,8 +197,8 @@ export class Basic {
   `,
 })
 export class SeededFormControl {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
+  public myCtrl = new FormControl('Florida');
+  public options = STATES.slice();
 }
 
 @Component({
@@ -213,8 +214,8 @@ export class SeededFormControl {
   `,
 })
 export class SeededNgModel {
-  myModel = 'Florida';
-  options = STATES.slice();
+  public myModel = 'Florida';
+  public options = STATES.slice();
 }
 
 @Component({
@@ -230,8 +231,8 @@ export class SeededNgModel {
   `,
 })
 export class SeededFallbackValue {
-  myValue = 'Florida';
-  options = STATES.slice();
+  public myValue = 'Florida';
+  public options = STATES.slice();
 }
 
 @Component({
@@ -250,12 +251,12 @@ export class SeededFallbackValue {
   `,
 })
 export class SelectionChangeEventEmitters {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
+  public myCtrl = new FormControl('Florida');
+  public options = STATES.slice();
 
   // Must be overwritten with a spy in the test
-  change = v => {};
-  selected = v => {};
+  public change = v => {};
+  public selected = v => {};
 }
 
 @Component({
@@ -276,8 +277,8 @@ export class SelectionChangeEventEmitters {
   `,
 })
 export class CustomOptionTemplate {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
+  public myCtrl = new FormControl('Florida');
+  public options = STATES.slice();
 }
 
 @Component({
@@ -297,8 +298,8 @@ export class CustomOptionTemplate {
   `,
 })
 export class CustomBlankOption {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
+  public myCtrl = new FormControl('Florida');
+  public options = STATES.slice();
 }
 
 @Component({
@@ -322,8 +323,8 @@ export class CustomBlankOption {
   `,
 })
 export class Optgroups {
-  myCtrl = new FormControl('Florida');
-  groups = STATES_GROUPED.slice();
+  public myCtrl = new FormControl('Florida');
+  public groups = STATES_GROUPED.slice();
 }
 
 @Component({
@@ -350,8 +351,8 @@ export class Optgroups {
   `,
 })
 export class OptgroupsMultiple {
-  myCtrl = new FormControl();
-  groups = STATES_GROUPED.slice();
+  public myCtrl = new FormControl();
+  public groups = STATES_GROUPED.slice();
 }
 
 @Component({
@@ -372,8 +373,8 @@ export class OptgroupsMultiple {
   `,
 })
 export class NoGroupsMultiple {
-  myCtrl = new FormControl();
-  items = STATES.slice();
+  public myCtrl = new FormControl();
+  public items = STATES.slice();
 }
 
 @Component({
@@ -398,14 +399,14 @@ export class NoGroupsMultiple {
   `,
 })
 export class Autocomplete {
-  myCtrl = new FormControl();
-  states: State[] = STATES.slice();
-  showProgress = false;
-  allowMultiple = true;
-  keepOpen = true;
-  disabled: boolean | undefined;
+  public myCtrl = new FormControl();
+  public states: State[] = STATES.slice();
+  public showProgress = false;
+  public allowMultiple = true;
+  public keepOpen = true;
+  public disabled: boolean | undefined;
 
-  changeOptionsLength() {
+  public changeOptionsLength() {
     this.states = STATES.slice(0, 5);
   }
 }
@@ -428,8 +429,8 @@ export class Autocomplete {
   `,
 })
 export class AutocompleteRequired {
-  myCtrl = new FormControl(null, [Validators.required]);
-  states: State[] = STATES.slice();
+  public myCtrl = new FormControl(null, [Validators.required]);
+  public states: State[] = STATES.slice();
 }
 
 @Component({
@@ -456,14 +457,14 @@ export class AutocompleteRequired {
   `,
 })
 export class SeededAutocomplete {
-  myCtrl = new FormControl(['Florida']);
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-  allowDuplicates = false;
-  keepOpen = false;
+  public myCtrl = new FormControl(['Florida']);
+  public states: State[] = STATES.slice();
+  public allowMultiple = true;
+  public allowDuplicates = false;
+  public keepOpen = false;
 
   // Must be overwritten with a spy in the test
-  duplicate = v => {};
+  public duplicate = v => {};
 }
 
 @Component({
@@ -486,8 +487,8 @@ export class SeededAutocomplete {
   `,
 })
 export class SeededNgModelAutocomplete {
-  myModel = ['Florida'];
-  states: State[] = STATES.slice();
+  public myModel = ['Florida'];
+  public states: State[] = STATES.slice();
 }
 
 @Component({
@@ -512,9 +513,9 @@ export class SeededNgModelAutocomplete {
   `,
 })
 export class AutocompleteAllowMultipleNoReopen {
-  myCtrl = new FormControl();
-  states: State[] = STATES.slice();
-  allowMultiple = true;
+  public myCtrl = new FormControl();
+  public states: State[] = STATES.slice();
+  public allowMultiple = true;
 }
 
 @Component({
@@ -534,10 +535,10 @@ export class AutocompleteAllowMultipleNoReopen {
   `,
 })
 export class Disabled {
-  myCtrl = new FormControl();
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
 
-  wasOpened = v => {};
+  public wasOpened = v => {};
 }
 
 @Component({
@@ -558,9 +559,9 @@ export class Disabled {
   `,
 })
 export class CustomDelimiter {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  delimiter = '-';
+  public myCtrl = new FormControl(['Florida', 'Texas']);
+  public options = STATES.slice();
+  public delimiter = '-';
 }
 
 @Component({
@@ -580,15 +581,13 @@ export class CustomDelimiter {
   `,
 })
 export class SelectOptionChange {
-  myCtrl = new FormControl(['Texas', 'Florida']);
-  options: State[] = STATES.slice(0, 10);
-  // tslint:disable: max-line-length
-  myComparator: TsSelectSortComparatorFunction = (
+  public myCtrl = new FormControl(['Texas', 'Florida']);
+  public options: State[] = STATES.slice(0, 10);
+  public myComparator: TsSelectSortComparatorFunction = (
     a: TsSelectOptionComponent,
     b: TsSelectOptionComponent,
     options: TsSelectOptionComponent[],
   ) => {
-    // tslint:enable: max-line-length
     const one = a.viewValue.toLowerCase();
     const two = b.viewValue.toLowerCase();
 
@@ -601,7 +600,7 @@ export class SelectOptionChange {
     return 0;
   }
 
-  updateOptions() {
+  public updateOptions() {
     const otherStates: State[] = STATES.slice(10, 14);
     this.options.push(...otherStates);
   }
@@ -624,7 +623,7 @@ export class SelectOptionChange {
   `,
 })
 export class CustomCompareFn {
-  foods: ({value: string; viewValue: string})[] = [
+  public foods: ({value: string; viewValue: string})[] = [
     {
       value: 'steak-0',
       viewValue: 'Steak',
@@ -638,30 +637,30 @@ export class CustomCompareFn {
       viewValue: 'Tacos',
     },
   ];
-  selectedFood: {value: string; viewValue: string} = {
+  public selectedFood: {value: string; viewValue: string} = {
     value: 'pizza-1',
     viewValue: 'Pizza',
   };
 
-  comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
+  public comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  useCompareByValue() {
+  public useCompareByValue() {
     this.comparator = this.compareByValue;
   }
-  useCompareByReference() {
+  public useCompareByReference() {
     this.comparator = this.compareByReference;
   }
-  useNullComparator() {
+  public useNullComparator() {
     this.comparator = null;
   }
 
-  compareByValue(f1: any, f2: any) {
+  public compareByValue(f1: any, f2: any) {
     return f1 && f2 && f1.value === f2.value;
   }
-  compareByReference(f1: any, f2: any) {
+  public compareByReference(f1: any, f2: any) {
     return f1 === f2;
   }
-  setFoodByCopy(newValue: {value: string; viewValue: string}) {
+  public setFoodByCopy(newValue: {value: string; viewValue: string}) {
     this.selectedFood = {
       ...{},
       ...newValue,
@@ -682,10 +681,10 @@ export class CustomCompareFn {
   `,
 })
 export class DeferOptionSelectionStream {
-  myCtrl = new FormControl('Florida');
-  items: any[] = [];
+  public myCtrl = new FormControl('Florida');
+  public items: any[] = [];
 
-  updateOptions() {
+  public updateOptions() {
     this.items = STATES.slice();
   }
 }
@@ -707,9 +706,9 @@ export class DeferOptionSelectionStream {
   `,
 })
 export class Debounce {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  change = v => {};
+  public myCtrl = new FormControl(['Florida', 'Texas']);
+  public options = STATES.slice();
+  public change = v => {};
 }
 
 @Component({
@@ -730,9 +729,9 @@ export class Debounce {
   `,
 })
 export class CustomDebounce {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  change = v => {};
+  public myCtrl = new FormControl(['Florida', 'Texas']);
+  public options = STATES.slice();
+  public change = v => {};
 }
 
 @Component({
@@ -754,10 +753,10 @@ export class CustomDebounce {
   `,
 })
 export class CustomCharacterCount {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  customCount: number | undefined;
-  change = v => {};
+  public myCtrl = new FormControl(['Florida', 'Texas']);
+  public options = STATES.slice();
+  public customCount: number | undefined;
+  public change = v => {};
 }
 
 @Component({
@@ -777,9 +776,9 @@ export class CustomCharacterCount {
   `,
 })
 export class HideRequired {
-  myCtrl = new FormControl();
-  options = STATES.slice();
-  hideRequired = false;
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
+  public hideRequired = false;
 }
 
 @Component({
@@ -798,9 +797,9 @@ export class HideRequired {
   `,
 })
 export class Hint {
-  myCtrl = new FormControl();
-  myHint = 'foo';
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public myHint = 'foo';
+  public options = STATES.slice();
 }
 
 @Component({
@@ -819,9 +818,9 @@ export class Hint {
   `,
 })
 export class Id {
-  myCtrl = new FormControl();
-  myId = 'foo';
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public myId = 'foo';
+  public options = STATES.slice();
 }
 
 @Component({
@@ -840,9 +839,9 @@ export class Id {
   `,
 })
 export class Label {
-  myCtrl = new FormControl();
-  myLabel = 'foo bar';
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public myLabel = 'foo bar';
+  public options = STATES.slice();
 }
 
 @Component({
@@ -862,10 +861,10 @@ export class Label {
   `,
 })
 export class Tabindex {
-  myCtrl = new FormControl();
-  index = 4;
-  autocomplete = false;
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public index = 4;
+  public autocomplete = false;
+  public options = STATES.slice();
 }
 
 @Component({
@@ -884,9 +883,9 @@ export class Tabindex {
   `,
 })
 export class ValidateOnChange {
-  myCtrl = new FormControl(null, Validators.required);
-  validateOnChange = true;
-  options = STATES.slice();
+  public myCtrl = new FormControl(null, Validators.required);
+  public validateOnChange = true;
+  public options = STATES.slice();
 }
 
 @Component({
@@ -901,8 +900,8 @@ export class ValidateOnChange {
   `,
 })
 export class NullSelection {
-  myCtrl = new FormControl('bar');
-  items = [
+  public myCtrl = new FormControl('bar');
+  public items = [
     {
       value: 'foo',
       viewValue: 'foo view',
@@ -936,8 +935,8 @@ export class NullSelection {
   `,
 })
 export class OptionError {
-  myCtrl = new FormControl();
-  items = STATES.slice(0, 2);
+  public myCtrl = new FormControl();
+  public items = STATES.slice(0, 2);
 }
 
 @Component({
@@ -956,9 +955,9 @@ export class OptionError {
   `,
 })
 export class OptionId {
-  myCtrl = new FormControl();
-  items = STATES.slice(0, 4);
-  change = v => {};
+  public myCtrl = new FormControl();
+  public items = STATES.slice(0, 4);
+  public change = v => {};
 }
 
 @Component({
@@ -981,8 +980,8 @@ export class OptionId {
   `,
 })
 export class OptgroupIDs {
-  myCtrl = new FormControl();
-  groups = STATES_GROUPED.slice();
+  public myCtrl = new FormControl();
+  public groups = STATES_GROUPED.slice();
 }
 
 @Component({
@@ -1005,8 +1004,8 @@ export class OptgroupIDs {
   `,
 })
 export class OptgroupBadIDs {
-  myCtrl = new FormControl('Florida');
-  groups = STATES_GROUPED.slice();
+  public myCtrl = new FormControl('Florida');
+  public groups = STATES_GROUPED.slice();
 }
 
 @Component({
@@ -1026,9 +1025,9 @@ export class OptgroupBadIDs {
   `,
 })
 export class CustomTrigger {
-  myCtrl = new FormControl();
-  options = STATES.slice();
-  myId = 'foo';
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
+  public myId = 'foo';
 }
 
 @Component({
@@ -1050,14 +1049,14 @@ export class CustomTrigger {
   `,
 })
 export class Filterable {
-  myCtrl = new FormControl();
-  options = STATES.slice();
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
 
-  onReset(): void {
+  public onReset(): void {
     this.options = STATES.slice();
   }
 
-  onFilter(value: string): void {
+  public onFilter(value: string): void {
     if (value) {
       const regex = new RegExp(value, 'i');
       this.options = STATES.slice().filter(state => state.name.match(regex));
@@ -1092,16 +1091,16 @@ export class Filterable {
   `,
 })
 export class SeededAutocompleteWithFormatFn {
-  myCtrl = new FormControl([{
+  public myCtrl = new FormControl([{
     name: 'Florida',
     population: '20.27M',
   }]);
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-  allowDuplicates = false;
-  keepOpen = false;
-  duplicate = jest.fn();
-  myFormatFn = (v: any) => v.name;
+  public states: State[] = STATES.slice();
+  public allowMultiple = true;
+  public allowDuplicates = false;
+  public keepOpen = false;
+  public duplicate = jest.fn();
+  public myFormatFn = (v: any) => v.name;
 }
 
 

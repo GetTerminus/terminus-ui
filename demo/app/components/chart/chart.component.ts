@@ -61,7 +61,6 @@ export class ChartComponent {
   }
 
 
-  // Currently using `any` here as I'm not sure how to let the consumer know what type is returned
   setChartData(chart: TsChart, type: TsChartVisualizationOptions) {
     /**
      * XY

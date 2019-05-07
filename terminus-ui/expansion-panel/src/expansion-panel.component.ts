@@ -37,7 +37,8 @@ import {
 } from 'rxjs/operators';
 
 import {
-  TS_ACCORDION, TsAccordionBase,
+  TS_ACCORDION,
+  TsAccordionBase,
 } from './accordion/accordion-base';
 import { tsExpansionPanelAnimations } from './expansion-animations';
 import { TsExpansionPanelContentDirective } from './expansion-panel-content.directive';

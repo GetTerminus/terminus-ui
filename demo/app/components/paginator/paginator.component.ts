@@ -37,6 +37,7 @@ export class PaginatorComponent {
       if (isZeroBased) {
         this.pages = Array.from(Array(this.paginator.pagesArray.length).keys());
       } else {
+        // NOTE: Prepending the incrementer (++) will increment the value _before_ returning the value.
         this.pages = Array.from(Array(this.paginator.pagesArray.length).keys()).map(v => ++v);
       }
       this.changeDetectorRef.detectChanges();

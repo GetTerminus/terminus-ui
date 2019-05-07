@@ -3,7 +3,8 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
-  CdkConnectedOverlay, ViewportRuler,
+  CdkConnectedOverlay,
+  ViewportRuler,
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,

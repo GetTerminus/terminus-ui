@@ -127,7 +127,7 @@ let nextUniqueId = 0;
   ],
   exportAs: 'tsAutocompleteTrigger',
 })
-// tslint:disable-next-line
+// tslint:disable-next-line no-any
 export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlValueAccessor, OnDestroy {
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused, closed autocomplete from being reopened if

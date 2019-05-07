@@ -15,7 +15,8 @@ import {
 import { Subject } from 'rxjs';
 
 import {
-  isNull, isUndefined,
+  isNull,
+  isUndefined,
 } from '@terminus/ngx-tools';
 import {
   getSortDuplicateSortableIdError,

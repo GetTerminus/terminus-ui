@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   Provider,
   Type,
@@ -189,8 +188,6 @@ describe(`TsDateRangeComponent`, function() {
       startInputInstance.inputElement.nativeElement.blur();
       fixture.detectChanges();
       const changeMock = fixture.componentInstance.dateRangeChange.mock;
-      // FIXME: Once https://github.com/GetTerminus/terminus-ui/issues/1361 is complete we should adjust this
-      // test to verify that the changeMock was called exactly 3 times.
       expect(changeMock.calls[changeMock.calls.length - 1][0]).toEqual({
         start: null,
         end: new Date('3-8-2019'),

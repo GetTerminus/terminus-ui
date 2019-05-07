@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion component-class-suffix
 /* eslint-disable no-underscore-dangle */
 import { DataSource } from '@angular/cdk/collections';
 import {
@@ -9,7 +8,8 @@ import {
 } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import {
-  FormsModule, ReactiveFormsModule,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsWindowService } from '@terminus/ngx-tools';
@@ -30,7 +30,6 @@ import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
-
 import { TsTableDataSource } from './table-data-source';
 import { TsTableComponent } from './table.component';
 import { TsTableModule } from './table.module';

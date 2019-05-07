@@ -45,7 +45,8 @@ import { filter } from 'rxjs/operators';
 import { TsDropProtectionService } from './drop-protection.service';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import {
-  TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes,
+  TS_ACCEPTED_MIME_TYPES,
+  TsFileAcceptedMimeTypes,
 } from './mime-types';
 import { TsSelectedFile } from './selected-file';
 

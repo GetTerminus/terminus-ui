@@ -539,7 +539,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       // (while the pages themselves may be based on 0 or 1)
       const pageNumber = (page < 1) ? 1 : page;
       const rangeStart = (pageNumber * perPage) - (perPage - 1);
-      const rangeEnd = (pageNumber * perPage);
+      const rangeEnd = pageNumber * perPage;
       const pageValue: number = paginatorArray.length + 1;
 
       // Create a page object

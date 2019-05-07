@@ -52,7 +52,6 @@ import { Subject } from 'rxjs';
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { createTextMaskInputElement } from 'text-mask-core/dist/textMaskCore';
-
 import {
   TS_DATE_FORMATS,
   TsDateAdapter,
@@ -952,10 +951,9 @@ export class TsInputComponent implements
     // Register this component as the associated input for the Material datepicker
     // istanbul ignore else
     // NOTE: Dangle naming controlled by Material
-    // eslint-disable-next-line no-underscore-dangle
+    /* eslint-disable no-underscore-dangle */
     if (this.picker && !this.picker._datepickerInput) {
       // NOTE: Dangle naming controlled by Material
-      /* eslint-disable no-underscore-dangle */
       // tslint:disable-next-line no-any
       this.picker._registerInput(this as any);
       /* eslint-enable no-underscore-dangle */

@@ -1,17 +1,17 @@
-// tslint:disable: no-non-null-assertion
 import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
 import {
-  FormBuilder, FormGroup,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormGroup,
 } from '@angular/forms';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 import { TsValidatorsServiceMock } from '@terminus/ui/validators/testing';
-
-import {
-  fakeAsync, tick,
-} from '@angular/core/testing';
 import { TsLoginFormComponent } from './login-form.component';
 
 

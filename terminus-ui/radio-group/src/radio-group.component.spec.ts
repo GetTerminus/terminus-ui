@@ -3,7 +3,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-
 import {
   TsRadioFormatFn,
   TsRadioGroupComponent,
@@ -70,9 +69,7 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatUILabelFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
+      const foo = void 0;
       expect(component.formatUILabelFn = foo).toEqual(undefined);
     });
 
@@ -97,9 +94,7 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatUISubLabelFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
+      const foo = void 0;
       expect(component.formatUISubLabelFn = foo).toEqual(undefined);
     });
 
@@ -124,9 +119,7 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatModelValueFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
+      const foo = void 0;
       expect(component.formatModelValueFn = foo).toEqual(undefined);
     });
 

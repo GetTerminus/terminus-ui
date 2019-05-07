@@ -1,4 +1,5 @@
-// FIXME: Can we refactor non-null-assertion?
+// TODO: Can we refactor non-null-assertion?
+// https://github.com/GetTerminus/terminus-ui/issues/1491
 // tslint:disable: no-non-null-assertion
 /* eslint-disable no-underscore-dangle */
 import { DataSource } from '@angular/cdk/table';

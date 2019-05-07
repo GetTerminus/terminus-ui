@@ -84,7 +84,6 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Store the initialized chart
    */
-  // tslint:disable-next-line no-any
   public chart: TsChart | undefined;
 
   /**

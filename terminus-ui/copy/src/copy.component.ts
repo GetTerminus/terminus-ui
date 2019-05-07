@@ -60,7 +60,8 @@ export class TsCopyComponent {
   /**
    * Define the color of the material ripple
    */
-  // FIXME: This color should be coming from a config
+  // TODO: This color should be coming from a config
+  // https://github.com/GetTerminus/terminus-ui/issues/1490
   public rippleColor = '#1a237e';
 
   /**

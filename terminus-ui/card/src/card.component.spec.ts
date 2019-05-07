@@ -1,16 +1,17 @@
 import {
-  Component, ViewChild,
+  Component,
+  ViewChild,
 } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { createComponent } from '@terminus/ngx-tools/testing';
-
 import { TsStyleThemeTypes } from '../../utilities/src/public-api';
 import {
-  TsCardBorderOptions, TsCardComponent,
+  TsCardBorderOptions,
+  TsCardComponent,
 } from './card.component';
 import { TsCardModule } from './card.module';
+
 
 @Component({
   template: `
@@ -26,15 +27,16 @@ import { TsCardModule } from './card.module';
   `,
 })
 class TestHostComponent {
-  border: TsCardBorderOptions | undefined;
-  isDisabled!: boolean;
-  flat!: boolean;
-  supportsInteraction!: boolean;
-  theme: TsStyleThemeTypes | undefined;
+  public border: TsCardBorderOptions | undefined;
+  public isDisabled!: boolean;
+  public flat!: boolean;
+  public supportsInteraction!: boolean;
+  public theme: TsStyleThemeTypes | undefined;
 
   @ViewChild(TsCardComponent)
-  cardComponent!: TsCardComponent;
+  public cardComponent!: TsCardComponent;
 }
+
 
 describe(`TsCardComponent`, function() {
   let component: TestHostComponent;
