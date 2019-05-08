@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { TsCardModule } from '@terminus/ui/card';
-import { TS_AMCHARTS_TOKEN, TsAmChartsToken, TsChartModule } from '@terminus/ui/chart';
+import {
+  TS_AMCHARTS_TOKEN,
+  TsAmChartsToken,
+  TsChartModule,
+} from '@terminus/ui/chart';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
-
-import { ChartRoutingModule } from './chart-routing.module';
-import { ChartComponent } from './chart.component';
-
 
 /**
  * Start amCharts config
@@ -31,8 +30,20 @@ export function amChartsFactory(): TsAmChartsToken {
  * End amCharts config
  */
 
+import { ChartRoutingModule } from './chart-routing.module';
+import { ChartComponent } from './chart.component';
+
+
 @NgModule({
-  imports: [ChartRoutingModule, CommonModule, FormsModule, TsCardModule, TsChartModule, TsSelectModule, TsSpacingModule],
+  imports: [
+    ChartRoutingModule,
+    CommonModule,
+    FormsModule,
+    TsCardModule,
+    TsChartModule,
+    TsSelectModule,
+    TsSpacingModule,
+  ],
   providers: [
     // Use the factory function to overwrite the `TS_AMCHARTS_TOKEN` injectable:
     {
@@ -40,7 +51,9 @@ export function amChartsFactory(): TsAmChartsToken {
       useFactory: amChartsFactory,
     },
   ],
-  declarations: [ChartComponent],
+  declarations: [
+    ChartComponent,
+  ],
 })
 
 export class ChartModule {}

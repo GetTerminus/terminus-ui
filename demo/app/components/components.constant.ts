@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 
-// INJECT: Import demo component to constants file
-// NB! The above line is required for our yeoman generator and should not be changed.
-
 
 export const componentsList: Routes = [
   {
@@ -257,6 +254,4 @@ export const componentsList: Routes = [
       name: 'Validation',
     },
   },
-  // INJECT: Add route for demo component
-  // NB! The above line is required for our yeoman generator and should not be changed.
 ];

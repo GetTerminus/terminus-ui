@@ -1,3 +1,5 @@
+import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4maps from '@amcharts/amcharts4/maps';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,20 +18,37 @@ import {
 } from '@angular/core';
 import { inputHasChanged } from '@terminus/ui/utilities';
 
-import { TsAmChartsService, TsAmChartsToken } from './amcharts.service';
+import {
+  TsAmChartsService,
+  TsAmChartsToken,
+} from './amcharts.service';
 
 
 /**
  * Define the supported chart visualizations
  */
 export type TsChartVisualizationOptions
-  = 'pie'
-  | 'xy'
+  = 'xy'
+  | 'pie'
   | 'map'
   | 'radar'
-  | 'treemap'
+  | 'tree'
   | 'sankey'
   | 'chord'
+;
+
+
+/**
+ * Define possible chart types
+ */
+export type TsChart
+  = am4charts.XYChart
+  | am4charts.PieChart
+  | am4maps.MapChart
+  | am4charts.RadarChart
+  | am4charts.TreeMap
+  | am4charts.SankeyDiagram
+  | am4charts.ChordDiagram
 ;
 
 
@@ -65,7 +84,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Store the initialized chart
    */
-  public chart: any;
+  public chart: TsChart | undefined;
 
   /**
    * Save a reference to the underlying amCharts library
@@ -100,7 +119,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
    * Emit an event containing the chart each time it is initialized
    */
   @Output()
-  public chartInitialized: EventEmitter<any> = new EventEmitter();
+  public readonly chartInitialized: EventEmitter<TsChart> = new EventEmitter();
 
 
   constructor(
@@ -118,14 +137,10 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
     // Don't initialize a chart if the Highcharts library wasn't passed in.
     if (this.amCharts) {
       this.init(this.visualization);
-      // istanbul ignore else
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        console.error(
-          'TsChartComponent: The amCharts library was not provided via injection token!',
-        );
-      }
+    } else if (isDevMode()) {
+      console.warn(
+        'TsChartComponent: The amCharts library was not provided via injection token!',
+      );
     }
   }
 
@@ -169,21 +184,14 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   private init(type: TsChartVisualizationOptions): void {
     this.zone.runOutsideAngular(() => {
       // Create the appropriate chart using a chained ternary
-      const chart: any =
-        type === 'xy'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.XYChart)
-        : type === 'pie'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.PieChart)
-        : type === 'map'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.maps.MapChart)
-        : type === 'radar'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.RadarChart)
-        : type === 'treemap'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.TreeMap)
-        : type === 'sankey'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.SankeyDiagram)
-        : type === 'chord'
-        ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.ChordDiagram)
+      const chart: TsChart
+        = type === 'xy'     ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.XYChart)
+        : type === 'pie'    ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.PieChart)
+        : type === 'map'    ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.maps.MapChart)
+        : type === 'radar'  ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.RadarChart)
+        : type === 'tree'   ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.TreeMap)
+        : type === 'sankey' ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.SankeyDiagram)
+        : type === 'chord'  ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.ChordDiagram)
         : undefined
       ;
 
@@ -192,7 +200,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
         this.chart = chart;
         this.chartInitialized.emit(chart);
       } else {
-        console.error(`TsChartComponent: ${this.visualization} is not a supported chart type. See TsChartVisualizationOptions.`);
+        console.warn(`TsChartComponent: ${type} is not a supported chart type. See TsChartVisualizationOptions.`);
       }
     });
   }

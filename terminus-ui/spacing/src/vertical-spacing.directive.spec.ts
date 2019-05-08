@@ -1,12 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { createComponent } from '@terminus/ngx-tools/testing';
 
 import { TS_SPACING } from './spacing.constant';
 import { TsSpacingModule } from './spacing.module';
-import { TsVerticalSpacingDirective, TsVerticalSpacingTypes } from './vertical-spacing.directive';
+import {
+  TsVerticalSpacingDirective,
+  TsVerticalSpacingTypes,
+} from './vertical-spacing.directive';
 
 
 @Component({

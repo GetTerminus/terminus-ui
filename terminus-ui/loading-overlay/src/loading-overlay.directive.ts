@@ -1,4 +1,7 @@
-import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+import {
+  ComponentPortal,
+  DomPortalHost,
+} from '@angular/cdk/portal';
 import {
   ApplicationRef,
   ComponentFactoryResolver,

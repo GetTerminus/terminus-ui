@@ -15,7 +15,9 @@ import {
 
 describe(`TsAutocompleteComponent`, function() {
   let component: TsAutocompleteComponent;
-  const opt1 = {id: 1};
+  const opt1 = {
+    id: 1,
+  };
   let trigger: jest.Mocked<MatAutocompleteTrigger>;
 
   beforeEach(() => {
@@ -95,7 +97,9 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.displayWith = 3 as any; })
+      expect(() => {
+        component.displayWith = 3 as any;
+      })
         .toThrowError(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
     });
 
@@ -131,7 +135,9 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.multiple = 3 as any; })
+      expect(() => {
+        component.multiple = 3 as any;
+      })
         .toThrowError(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
     });
 
@@ -144,7 +150,11 @@ describe(`TsAutocompleteComponent`, function() {
       expect(component.selectedOptions.length).toEqual(0);
 
       component.selectionsControl = new FormControl();
-      const initial = [{id: 1}, {id: 2}];
+      const initial = [{
+        id: 1,
+      }, {
+        id: 2,
+      }];
       component.initialSelections = initial;
 
       expect(component.selectedOptions.length).toEqual(2);
@@ -153,11 +163,17 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should not mutate the original array`, () => {
-      const initial = [{id: 1}, {id: 2}];
+      const initial = [{
+        id: 1,
+      }, {
+        id: 2,
+      }];
       component.initialSelections = initial;
-      component.multiple = (v) => v.id;
+      component.multiple = v => v.id;
       const event: any = createMockInstance(MatAutocompleteSelectedEvent);
-      const option = {id: 3};
+      const option = {
+        id: 3,
+      };
       event.option = {
         value: option,
       };
@@ -322,7 +338,9 @@ describe(`TsAutocompleteComponent`, function() {
       expect(component.selectedOptions).toEqual([opt1]);
       expect(component.selectionsControl.value).toEqual([opt1]);
 
-      const result = component.deselectOption({id: 2});
+      const result = component.deselectOption({
+        id: 2,
+      });
 
       expect(result).toEqual(undefined);
       expect(component.selectedOptions).toEqual([opt1]);
@@ -377,7 +395,7 @@ describe(`TsAutocompleteComponent`, function() {
     test(`should call resetSearch if there is no event.relatedTarget and in multiple selection mode`, () => {
       expect(component.selectionsControl.touched).toEqual(false);
 
-      component.multiple = (v) => v;
+      component.multiple = v => v;
       component.handleBlur(eventNoRelatedTarget);
       expect(component['resetSearch']).toHaveBeenCalled();
       expect(component.selectionsControl.touched).toEqual(true);
@@ -385,14 +403,14 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should call resetSearch if the relatedTarget has no nodeName and is in multiple mode`, () => {
-      component.multiple = (v) => v;
+      component.multiple = v => v;
       component.handleBlur(eventNoNode);
       expect(component['resetSearch']).toHaveBeenCalled();
     });
 
 
     test(`should NOT call resetSearch if the nodeName is MAT-OPTION`, () => {
-      component.multiple = (v) => v;
+      component.multiple = v => v;
       component.handleBlur(eventOpt);
       expect(component['resetSearch']).not.toHaveBeenCalled();
     });
@@ -400,7 +418,7 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should call resetSearch if the nodeName isn't MAT-OPTION`, () => {
-      component.multiple = (v) => v;
+      component.multiple = v => v;
       component.handleBlur(eventDiv);
       expect(component['resetSearch']).toHaveBeenCalled();
     });
@@ -501,9 +519,13 @@ describe(`TsAutocompleteComponent`, function() {
       component.ngAfterViewInit();
       expect(component.selectedOptions).toEqual([]);
 
-      component.selectionsControl.setValue([{id: 9}]);
+      component.selectionsControl.setValue([{
+        id: 9,
+      }]);
 
-      expect(component.selectedOptions).toEqual([{id: 9}]);
+      expect(component.selectedOptions).toEqual([{
+        id: 9,
+      }]);
     });
 
 

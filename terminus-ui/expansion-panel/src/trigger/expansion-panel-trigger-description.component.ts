@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 
 
 @Component({
@@ -7,5 +11,8 @@ import { Component } from '@angular/core';
   host: {
     class: 'ts-expansion-panel__trigger-description',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsExpansionPanelTriggerDescription',
 })
 export class TsExpansionPanelTriggerDescriptionComponent {}

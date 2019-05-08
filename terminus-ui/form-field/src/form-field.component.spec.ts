@@ -5,9 +5,7 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
-import {
-  ComponentFixture,
-} from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 import {
   FormControl,
   FormsModule,
@@ -22,9 +20,15 @@ import {
   createFakeEvent,
   TsDocumentServiceMock,
 } from '@terminus/ngx-tools/testing';
-import { TsInputComponent, TsInputModule } from '@terminus/ui/input';
+import {
+  TsInputComponent,
+  TsInputModule,
+} from '@terminus/ui/input';
 
-import { TsFormFieldComponent, TsFormFieldModule } from './form-field.module';
+import {
+  TsFormFieldComponent,
+  TsFormFieldModule,
+} from './form-field.module';
 
 
 // tslint:disable: no-use-before-declare
@@ -182,7 +186,9 @@ describe(`TsFormFieldComponent`, function() {
     expect(formField.shouldAlwaysFloat).toBe(false);
     expect(formField.floatLabel).toBe('always');
 
-    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), {propertyName: 'transform'});
+    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), {
+      propertyName: 'transform',
+    });
 
     label.dispatchEvent(fakeEvent);
     fixture.detectChanges();

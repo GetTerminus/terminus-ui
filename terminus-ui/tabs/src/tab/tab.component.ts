@@ -60,7 +60,7 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Emits whenever the internal state of the tab changes
    */
-  readonly stateChanges = new Subject<void>();
+  public readonly stateChanges = new Subject<void>();
 
   /**
    * The relatively indexed position where 0 represents the center, negative numbers are left, and positive numbers represent the right.
@@ -89,25 +89,29 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
    * Content for the tab label given by `<ng-template tsTabLabel>`
    */
   @ContentChild(TsTabLabelDirective)
-  public templateLabel: TsTabLabelDirective;
+  public templateLabel!: TsTabLabelDirective;
 
   /**
    * Template provided in the tab content that will be used if present, used to enable lazy-loading
    */
   // FIXME: Switch to `{read: TemplateRef, static: true}` once Angular v8 hits
-  @ContentChild(TsTabContentDirective, {read: TemplateRef})
-  public explicitContent: TemplateRef<any>;
+  @ContentChild(TsTabContentDirective, {
+    read: TemplateRef,
+  })
+  // tslint:disable-next-line no-any
+  public explicitContent: TemplateRef<any> | undefined;
 
   /**
    * Template inside the TsTabComponent view that contains an `<ng-content>`
    */
   // FIXME: Switch to `{static: true}` once Angular v8 hits
   @ViewChild(TemplateRef)
- public implicitContent: TemplateRef<any>;
+  // tslint:disable-next-line no-any
+  public implicitContent!: TemplateRef<any>;
 
- /**
-  * Define if the tab is disabled
-  */
+  /**
+   * Define if the tab is disabled
+   */
   @Input()
   public isDisabled = false;
 

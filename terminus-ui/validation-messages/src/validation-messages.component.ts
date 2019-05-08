@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -37,6 +38,7 @@ let nextUniqueId = 0;
     class: 'ts-validation-messages',
   },
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsValidationMessages',
 })
 export class TsValidationMessagesComponent implements OnDestroy {

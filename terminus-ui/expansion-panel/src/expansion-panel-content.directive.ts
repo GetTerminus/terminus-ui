@@ -24,5 +24,6 @@ import {
   selector: 'ng-template[tsExpansionPanelContent]',
 })
 export class TsExpansionPanelContentDirective {
+  // tslint:disable-next-line no-any
   constructor(public template: TemplateRef<any>) {}
 }

@@ -38,10 +38,10 @@ export const allowedTruncationTypes: TsTruncatePositionType[] = [
   name: 'tsTruncateAt',
 })
 export class TsTruncateAtPipe implements PipeTransform {
-  transform(value: string, charCount: number = 0, position: TsTruncatePositionType = 'end'): string | undefined {
+  public transform(value: string, charCount = 0, position: TsTruncatePositionType = 'end'): string | undefined {
     // Check for null values to avoid issues during data-binding
     if (!value) {
-      return;
+      return void 0;
     }
 
     // Insure the correct type
@@ -57,24 +57,25 @@ export class TsTruncateAtPipe implements PipeTransform {
     const ellipses = '\u2026';
 
     switch (position) {
-      case('start'):
+      case ('start'):
         newString = ellipses + value.slice(-(charCount - 1));
         break;
-      case('middle'):
+      case ('middle'):
         let charCountStart: number;
         let charCountEnd: number;
-        // determine how many characters are on each side of the split
-        // if there are an odd number of characters, the beginning of the string is longer
-        if ((charCount - 1) % 2 === 1) {
-          charCountEnd = (charCount - 1) / 2;
+        const TWO = 2;
+        // Determine how many characters are on each side of the split
+        // If there are an odd number of characters, the beginning of the string is longer
+        if ((charCount - 1) % TWO === 1) {
+          charCountEnd = (charCount - 1) / TWO;
           charCountStart = charCountEnd + 1;
         } else {
-          charCountEnd = (charCount - 1) / 2;
+          charCountEnd = (charCount - 1) / TWO;
           charCountStart = charCountEnd;
         }
         newString = value.slice(0, charCountStart) + ellipses + value.slice(-(charCountEnd));
         break;
-      case('end'):
+      case ('end'):
         newString = value.slice(0, charCount - 1) + ellipses;
         break;
       default:

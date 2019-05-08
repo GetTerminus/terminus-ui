@@ -17,7 +17,10 @@ import {
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { merge, Subscription } from 'rxjs';
+import {
+  merge,
+  Subscription,
+} from 'rxjs';
 
 import { TsTabHeaderComponent } from './../header/tab-header.component';
 import { TsTabComponent } from './../tab/tab.component';
@@ -27,7 +30,7 @@ import { TsTabComponent } from './../tab/tab.component';
  * A change event emitted on focus or selection changes
  */
 export class TsTabChangeEvent {
-  constructor(
+  public constructor(
     public index: number,
     public tab: TsTabComponent | null,
   ) {}
@@ -85,7 +88,7 @@ let nextUniqueId = 0;
   templateUrl: './tab-collection.component.html',
   styleUrls: ['./tab-collection.component.scss'],
   host: {
-    class: 'ts-tab-collection',
+    'class': 'ts-tab-collection',
     '[class.ts-tab-collection--inverted-header]': 'headerPosition === "below"',
     // Themes:
     '[class.ts-tab-collection--primary]': 'theme === "primary"',
@@ -105,7 +108,7 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
   /**
    * A unique ID per instance
    */
-  protected collectionId: number = nextUniqueId++;
+  public collectionId: number = nextUniqueId++;
 
   /**
    * Internal reference used to enable two-way binding for `selectedIndex`
@@ -181,13 +184,13 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
    * Event emitted when the body animation has completed
    */
   @Output()
-  readonly animationFinished: EventEmitter<void> = new EventEmitter<void>();
+  public readonly animationFinished: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Event emitted when focus has changed within a tab collection
    */
   @Output()
-  readonly focusChange: EventEmitter<TsTabChangeEvent> = new EventEmitter<TsTabChangeEvent>();
+  public readonly focusChange: EventEmitter<TsTabChangeEvent> = new EventEmitter<TsTabChangeEvent>();
 
   /**
    * Event emitted when the selected index changes.
@@ -195,16 +198,16 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
    * NOTE: This is to enable support for two-way binding on `[(selectedIndex)]`
    */
   @Output()
-  readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
+  public readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
   /**
    * Event emitted when the tab selection has changed
    */
   @Output()
-  readonly selectedTabChange: EventEmitter<TsTabChangeEvent> = new EventEmitter<TsTabChangeEvent>(true);
+  public readonly selectedTabChange: EventEmitter<TsTabChangeEvent> = new EventEmitter<TsTabChangeEvent>(true);
 
 
-  constructor(
+  public constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
@@ -258,7 +261,10 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
 
       // Defer changing these values until after change detection has run since the checked content may contain references to them
       Promise.resolve().then(() => {
-        this.tabs.forEach((tab, index) => tab.isActive = index === indexToSelect);
+        this.tabs.forEach((tab, index) => {
+          tab.isActive = index === indexToSelect;
+          return tab.isActive;
+        });
 
         if (!isFirstRun) {
           this.selectedIndexChange.emit(indexToSelect);
@@ -309,27 +315,6 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
     this.focusChange.emit(this.createChangeEvent(index));
   }
 
-
-  /**
-   * Return a unique id for each tab label element
-   *
-   * @param index - The current index
-   * @return The ID
-   */
-  public getTabLabelId(index: number): string {
-    return `ts-tab-label-${this.collectionId}-${index}`;
-  }
-
-  /**
-   * Return a unique id for each tab content element
-   *
-   * @param index - The current index
-   * @return The ID
-   */
-  public getTabContentId(index: number): string {
-    return `ts-tab-content-${this.collectionId}-${index}`;
-  }
-
   /**
    * Set the height of the body wrapper to the height of the activating tab
    *
@@ -376,21 +361,6 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
 
 
   /**
-   * Retrieve the tabindex for the tab
-   *
-   * @param tab - The tab
-   * @param index - The index of the tab
-   * @return The tabindex number
-   */
-  public getTabIndex(tab: TsTabComponent, index: number): number | null {
-    if (tab.isDisabled) {
-      return null;
-    }
-    return this.selectedIndex === index ? 0 : -1;
-  }
-
-
-  /**
    * Subscribes to changes in the tab labels.
    *
    * This is needed, because the @Input for the label is on the {@link TsTabComponent}, whereas the data binding is inside the
@@ -402,7 +372,7 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
       this.tabLabelSubscription.unsubscribe();
     }
 
-    this.tabLabelSubscription = merge(...this.tabs.map((tab) => tab.stateChanges))
+    this.tabLabelSubscription = merge(...this.tabs.map(tab => tab.stateChanges))
       .pipe(untilComponentDestroyed(this))
       .subscribe(() => this.changeDetectorRef.markForCheck());
   }
@@ -434,4 +404,17 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
     }
     return new TsTabChangeEvent(index, tab);
   }
+
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @param item - The item
+   * @return The unique ID
+   */
+  public trackByFn(index, item): number {
+    return item.id;
+  }
+
 }

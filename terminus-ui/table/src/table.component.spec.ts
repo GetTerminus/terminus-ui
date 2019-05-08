@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion component-class-suffix
+/* eslint-disable no-underscore-dangle */
 import { DataSource } from '@angular/cdk/collections';
 import {
   Component,
@@ -6,15 +6,17 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import {
-  ComponentFixture,
-} from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsWindowService } from '@terminus/ngx-tools';
 import {
   createComponent as createComponentInner,
-  TsWindowServiceMock } from '@terminus/ngx-tools/testing';
+  TsWindowServiceMock,
+} from '@terminus/ngx-tools/testing';
 import {
   TsPaginatorComponent,
   TsPaginatorModule,
@@ -28,7 +30,6 @@ import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
-
 import { TsTableDataSource } from './table-data-source';
 import { TsTableComponent } from './table.component';
 import { TsTableModule } from './table.module';
@@ -49,22 +50,28 @@ interface TestData {
 
 // TODO: change to my datasource - says properties connect aren't the same???
 class FakeDataSource extends DataSource<TestData> {
-  _dataChange = new BehaviorSubject<TestData[]>([]);
-  set data(data: TestData[]) { this._dataChange.next(data); }
-  get data() { return this._dataChange.getValue(); }
-
-  constructor() {
-    super();
-    for (let i = 0; i < 4; i++) { this.addData(); }
+  public _dataChange = new BehaviorSubject<TestData[]>([]);
+  public set data(data: TestData[]) {
+    this._dataChange.next(data);
+  }
+  public get data() {
+    return this._dataChange.getValue();
   }
 
-  connect(): Observable<TestData[]> {
+  public constructor() {
+    super();
+    for (let i = 0; i < 4; i++) {
+      this.addData();
+    }
+  }
+
+  public connect(): Observable<TestData[]> {
     return this._dataChange;
   }
 
-  disconnect() {}
+  public disconnect() {}
 
-  addData() {
+  public addData() {
     const nextIndex = this.data.length + 1;
 
     const copiedData = this.data.slice();
@@ -108,11 +115,11 @@ class FakeDataSource extends DataSource<TestData> {
 })
 class TableApp {
   @ViewChild(TsTableComponent)
-  table!: TsTableComponent<TestData>;
+  public table!: TsTableComponent<TestData>;
 
-  dataSource: FakeDataSource | null = new FakeDataSource();
-  columnsToRender = ['column_a', 'column_b', 'column_c'];
-  isFourthRow = (i: number, _rowData: TestData) => i === 3;
+  public dataSource: FakeDataSource | null = new FakeDataSource();
+  public columnsToRender = ['column_a', 'column_b', 'column_c'];
+  public isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
 }
 
@@ -136,9 +143,9 @@ class TableApp {
   `,
 })
 class TableWithWhenRowApp {
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
-  dataSource: FakeDataSource | null = new FakeDataSource();
-  isFourthRow = (i: number, _rowData: TestData) => i === 3;
+  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
+  public dataSource: FakeDataSource | null = new FakeDataSource();
+  public isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
 
 
@@ -168,16 +175,16 @@ class TableWithWhenRowApp {
   `,
 })
 class ArrayDataSourceTableApp {
-  underlyingDataSource = new FakeDataSource();
-  dataSource = new TsTableDataSource<TestData>();
-  columnsToRender = ['column_a', 'column_b', 'column_c'];
+  public underlyingDataSource = new FakeDataSource();
+  public dataSource = new TsTableDataSource<TestData>();
+  public columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
-  @ViewChild(TsPaginatorComponent) paginator!: TsPaginatorComponent;
-  @ViewChild(TsSortDirective) sort!: TsSortDirective;
-  @ViewChild(TsSortHeaderComponent) sortHeader!: TsSortHeaderComponent;
+  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
+  @ViewChild(TsPaginatorComponent) public paginator!: TsPaginatorComponent;
+  @ViewChild(TsSortDirective) public sort!: TsSortDirective;
+  @ViewChild(TsSortHeaderComponent) public sortHeader!: TsSortHeaderComponent;
 
-  constructor() {
+  public constructor() {
     this.underlyingDataSource.data = [];
 
     // Add three rows of data
@@ -185,7 +192,7 @@ class ArrayDataSourceTableApp {
     this.underlyingDataSource.addData();
     this.underlyingDataSource.addData();
 
-    this.underlyingDataSource.connect().subscribe((data) => {
+    this.underlyingDataSource.connect().subscribe(data => {
       this.dataSource.data = data;
     });
   }
@@ -216,19 +223,19 @@ class ArrayDataSourceTableApp {
   `,
 })
 class TableColumnAlignmentTableApp {
-  underlyingDataSource = new FakeDataSource();
-  dataSource = new TsTableDataSource<TestData>();
-  columnsToRender = ['column_a', 'column_b', 'column_c'];
+  public underlyingDataSource = new FakeDataSource();
+  public dataSource = new TsTableDataSource<TestData>();
+  public columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
 
-  constructor() {
+  public constructor() {
     this.underlyingDataSource.data = [];
 
     // Add a row of data
     this.underlyingDataSource.addData();
 
-    this.underlyingDataSource.connect().subscribe((data) => {
+    this.underlyingDataSource.connect().subscribe(data => {
       this.dataSource.data = data;
     });
   }
@@ -248,19 +255,19 @@ class TableColumnAlignmentTableApp {
   `,
 })
 class TableColumnInvalidAlignmentTableApp {
-  underlyingDataSource = new FakeDataSource();
-  dataSource = new TsTableDataSource<TestData>();
-  columnsToRender = ['column_a'];
+  public underlyingDataSource = new FakeDataSource();
+  public dataSource = new TsTableDataSource<TestData>();
+  public columnsToRender = ['column_a'];
 
-  @ViewChild(TsTableComponent) table!: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
 
-  constructor() {
+  public constructor() {
     this.underlyingDataSource.data = [];
 
     // Add a row of data
     this.underlyingDataSource.addData();
 
-    this.underlyingDataSource.connect().subscribe((data) => {
+    this.underlyingDataSource.connect().subscribe(data => {
       this.dataSource.data = data;
     });
   }
@@ -294,16 +301,17 @@ function expectTableToMatchContent(tableElement: Element, expectedTableContent: 
     const actualTextContent = cell.textContent!.trim();
     if (actualTextContent !== expectedTextContent) {
       missedExpectations.push(
-          `Expected cell contents to be ${expectedTextContent} but was ${actualTextContent}`);
+        `Expected cell contents to be ${expectedTextContent} but was ${actualTextContent}`
+      );
     }
   }
 
   // Check header cells
   const expectedHeaderContent = expectedTableContent.shift();
   getHeaderCells(tableElement).forEach((cell, index) => {
-    const expected = expectedHeaderContent ?
-        expectedHeaderContent[index] :
-        null;
+    const expected = expectedHeaderContent
+      ? expectedHeaderContent[index]
+      : null;
     checkCellContent(cell, expected);
   });
 
@@ -312,14 +320,15 @@ function expectTableToMatchContent(tableElement: Element, expectedTableContent: 
   expect(rows.length).toBe(expectedTableContent.length);
   rows.forEach((row, rowIndex) => {
     getCells(row).forEach((cell, cellIndex) => {
-      const expected = expectedTableContent.length ?
-          expectedTableContent[rowIndex][cellIndex] :
-          null;
+      const expected = expectedTableContent.length
+        ? expectedTableContent[rowIndex][cellIndex]
+        : null;
       checkCellContent(cell, expected);
     });
   });
 
   if (missedExpectations.length) {
+    // eslint-disable-next-line no-undef
     fail(missedExpectations.join('\n'));
   }
 }
@@ -340,7 +349,7 @@ describe(`TsTableComponent`, function() {
       const fixture = createComponent(TableApp);
       fixture.detectChanges();
 
-      const tableElement = fixture.nativeElement.querySelector('.ts-table')!;
+      const tableElement = fixture.nativeElement.querySelector('.ts-table');
       const data = fixture.componentInstance.dataSource!.data;
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -488,8 +497,7 @@ describe(`TsTableComponent`, function() {
 
     test(`should throw warning`, () => {
       window.console.warn = jest.fn();
-      let fixture: ComponentFixture<TableColumnInvalidAlignmentTableApp>;
-      fixture = createComponent(TableColumnInvalidAlignmentTableApp);
+      const fixture = createComponent(TableColumnInvalidAlignmentTableApp);
       fixture.detectChanges();
 
       expect(window.console.warn).toHaveBeenCalled();
@@ -523,6 +531,5 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
       TsPaginatorModule,
       TsSortModule,
       ...imports,
-    ],
-  );
+    ],);
 }

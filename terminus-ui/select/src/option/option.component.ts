@@ -26,7 +26,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { TsSelectOption } from '../select.component';
+import { TsSelectOption } from './../select.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';
 
 
@@ -105,11 +105,11 @@ let nextUniqueId = 0;
  */
 @Component({
   selector: 'ts-select-option',
-  templateUrl: 'option.component.html',
-  styleUrls: ['option.component.scss'],
+  templateUrl: './option.component.html',
+  styleUrls: ['./option.component.scss'],
   host: {
-    class: 'ts-select-option',
-    role: 'option',
+    'class': 'ts-select-option',
+    'role': 'option',
     '[class.ts-selected]': 'selected',
     '[class.ts-select-option--multiple]': 'allowMultiple',
     '[class.ts-select-option--active]': 'active',
@@ -136,7 +136,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   /**
    * Emits when the state of the option changes and any parents have to be notified
    */
-  readonly stateChanges = new Subject<void>();
+  public readonly stateChanges = new Subject<void>();
 
   /**
    * Store the text for the title attribute
@@ -209,6 +209,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * Optional template passed in by the consumer
    */
   @ContentChild(TemplateRef)
+  // tslint:disable-next-line no-any
   public optionTemplate: TemplateRef<any> | undefined;
 
   /**
@@ -225,10 +226,10 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this.uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this.uid;
@@ -249,6 +250,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * The form value of the option
    */
   @Input()
+  // tslint:disable-next-line no-any
   public value: any;
 
   /**
@@ -271,7 +273,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * Event emitted when the option is selected or deselected
    */
   @Output()
-  readonly selectionChange = new EventEmitter<TsOptionSelectionChange>();
+  public readonly selectionChange = new EventEmitter<TsOptionSelectionChange>();
 
 
   constructor(
@@ -280,7 +282,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
     private ngZone: NgZone,
     // Injecting via a provider helps us get around the circular dependency created by importing TsSelectComponent here.
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) private parent: TsOptionParentComponent,
-    @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) readonly group: TsOptgroupParentComponent,
+    @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) public readonly group: TsOptgroupParentComponent,
   ) {}
 
 

@@ -70,7 +70,7 @@ export class TsIconButtonComponent {
    * Pass the click event through to the parent
    */
   @Output()
-  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
 
   /**

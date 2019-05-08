@@ -1,3 +1,5 @@
+// NOTE: A method must be used to dynamically format values for the UI
+// tslint:disable: template-no-call-expression
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -33,36 +35,33 @@ import {
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+} from 'rxjs/operators';
 
-
-export interface KeyboardEvent {
-  [key: string]: any;
-}
-
-export interface MouseEvent {
-  [key: string]: any;
-}
 
 /**
  * Define a type for allowed {@link TsAutocompleteComponent} formatter function
  */
-export type TsAutocompleteFormatterFn = (value: any) => string;
+// tslint:disable-next-line no-any
+export type TsAutocompleteFormatterFn<OptionType> = (value: OptionType) => string;
 
 
 /**
  * Define a type for allowed {@link TsAutocompleteComponent} comparator function
  */
-export type TsAutocompleteComparatorFn = (value: any) => string;
-
+export type TsAutocompleteComparatorFn<OptionType> = (value: OptionType) => string;
 
 export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
+
+const DEFAULT_DEBOUNCE_MS = 200;
+const DEFAULT_MINIMUM_CHARACTERS = 2;
 
 
 /**
  * The autocomplete UI Component
- *
- * @deprecated in favor of the new TsInputComponent. Target 11.x
  *
  * #### QA CSS CLASSES
  * - `qa-autocomplete`: The primary container
@@ -106,11 +105,12 @@ export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsAutocomplete',
 })
+// tslint:disable-next-line no-any
 export class TsAutocompleteComponent<OptionType = {[name: string]: any}> implements AfterViewInit, OnDestroy {
   /**
    * Define the flex gap spacing
    */
-  flexGap = TS_SPACING.small[0];
+  public flexGap = TS_SPACING.small[0];
 
   /**
    * Management of the query string
@@ -147,10 +147,10 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Provide access to the input element
    */
   @ViewChild('autocompleteTrigger')
-  set autocompleteTrigger(value: MatAutocompleteTrigger) {
+  public set autocompleteTrigger(value: MatAutocompleteTrigger) {
     this.trigger = value;
   }
-  get autocompleteTrigger(): MatAutocompleteTrigger {
+  public get autocompleteTrigger(): MatAutocompleteTrigger {
     return this.trigger;
   }
   private trigger!: MatAutocompleteTrigger;
@@ -171,7 +171,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public get debounceDelay(): number {
     return this._debounceDelay;
   }
-  private _debounceDelay: number = 200;
+  private _debounceDelay = DEFAULT_DEBOUNCE_MS;
 
   /**
    * A function to output the UI text from the selected item
@@ -179,28 +179,24 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * When undefined the full selection object will be used as the display value
    */
   @Input()
-  public set displayWith(value: TsAutocompleteFormatterFn) {
+  public set displayWith(value: TsAutocompleteFormatterFn<OptionType>) {
     if (!value) {
       return;
     }
 
     if (isFunction(value)) {
       this.uiFormatFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
     }
   }
-  public get displayWith(): TsAutocompleteFormatterFn {
+  public get displayWith(): TsAutocompleteFormatterFn<OptionType> {
     return this.uiFormatFn;
   }
 
   /**
    * Define a hint for the input
    */
-  // FIXME: Fix potential overlap of hint and error messages
   @Input()
   public hint: string | undefined;
 
@@ -220,30 +216,27 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
   public get minimumCharacters(): number {
     return this._minimumCharacters;
   }
-  private _minimumCharacters: number = 2;
+  private _minimumCharacters = DEFAULT_MINIMUM_CHARACTERS;
 
   /**
    * Define if multiple selections are allowed by passing in a comparator function
    */
   @Input()
-  public set multiple(v: TsAutocompleteComparatorFn) {
+  public set multiple(v: TsAutocompleteComparatorFn<OptionType>) {
     if (!v) {
       return;
     }
 
     if (isFunction(v)) {
       this.comparatorFn = v;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
     }
   }
-  public get multiple(): TsAutocompleteComparatorFn {
+  public get multiple(): TsAutocompleteComparatorFn<OptionType> {
     return this.comparatorFn;
   }
-  private comparatorFn!: TsAutocompleteComparatorFn;
+  private comparatorFn!: TsAutocompleteComparatorFn<OptionType>;
 
   /**
    * Define the name attribute value
@@ -307,28 +300,28 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * Emit the selected chip
    */
   @Output()
-  public optionSelected: EventEmitter<OptionType> = new EventEmitter();
+  public readonly optionSelected: EventEmitter<OptionType> = new EventEmitter();
 
   /**
    * Emit the removed chip
    */
   @Output()
-  public optionRemoved: EventEmitter<OptionType> = new EventEmitter();
+  public readonly optionRemoved: EventEmitter<OptionType> = new EventEmitter();
 
   /**
    * Emit the current selection
    */
   @Output()
-  public selection: EventEmitter<OptionType[]> = new EventEmitter();
+  public readonly selection: EventEmitter<OptionType[]> = new EventEmitter();
 
   /**
    * Emit the query string
    */
   @Output()
-  public query: EventEmitter<string> = new EventEmitter();
+  public readonly query: EventEmitter<string> = new EventEmitter();
 
 
-  constructor(
+  public constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
@@ -344,7 +337,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
     // Take a stream of query changes
     this.querySubject.pipe(
       untilComponentDestroyed(this),
-      filter((v) => (typeof v === 'string') && v.length >= this.minimumCharacters),
+      filter(v => (typeof v === 'string') && v.length >= this.minimumCharacters),
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // Only allow a query through if it is different from the previous query
@@ -464,21 +457,21 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    */
   public handleBlur(event: KeyboardEvent | MouseEvent): void {
     // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
-    const eventValue: KeyboardEvent | MouseEvent | null =
-      (event && event['relatedTarget']) ? event['relatedTarget'] : null;
+    // eslint-disable-next-line dot-notation
+    const eventValue: Node | null = (event && event['relatedTarget']) ? event['relatedTarget'] : null;
 
-    if (eventValue && eventValue.nodeName && !!this.multiple) {
-      // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
-      // will be `MAT-OPTION`.
-      if (eventValue.nodeName !== 'MAT-OPTION') {
-        this.resetSearch();
-      }
-    } else {
-      // If no eventValue exists, this was a blur event triggered by the Escape key
-      if (!!this.multiple) {
+    if (this.multiple) {
+      if (eventValue && eventValue.nodeName) {
+        // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName` will be `MAT-OPTION`.
+        if (eventValue.nodeName !== 'MAT-OPTION') {
+          this.resetSearch();
+        }
+      } else {
+        // If no eventValue exists, this was a blur event triggered by the Escape key
         this.resetSearch();
       }
     }
+
 
     // Since the user never interacts directly with the 'selectionsControl' formControl, we need to
     // manually mark it as 'touched' to trigger validation messages.
@@ -514,7 +507,7 @@ export class TsAutocompleteComponent<OptionType = {[name: string]: any}> impleme
    * @param selection - The selected option
    * @param formatter - The UI formatter function
    */
-  private setDuplicateError(control: FormControl, selection: OptionType, formatter?: TsAutocompleteFormatterFn): void {
+  private setDuplicateError(control: FormControl, selection: OptionType, formatter?: TsAutocompleteFormatterFn<OptionType>): void {
     const invalidResponse: ValidationErrors = {
       notUnique: {
         valid: false,

@@ -1,3 +1,5 @@
+// NOTE: Our templates need to call a method to use the formatter functions
+// tslint:disable: template-no-call-expression
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -28,6 +30,7 @@ import {
  * Define the allowed keys for an item passed to the {@link TsRadioComponent}
  */
 export interface TsRadioOption {
+  // tslint:disable-next-line no-any
   [key: string]: any;
 
   /**
@@ -51,7 +54,7 @@ export class TsRadioChange extends MatRadioChange {}
 /**
  * Expose the formatter function type used by {@link TsRadioGroupComponent}
  */
-export type TsRadioFormatFn = (v: any) => string;
+export type TsRadioFormatFn = (v: TsRadioOption) => string;
 
 
 /**
@@ -89,7 +92,7 @@ let nextUniqueId = 0;
   host: {
     class: 'ts-radio-group',
   },
-  providers: [ControlValueAccessorProviderFactory(TsRadioGroupComponent)],
+  providers: [ControlValueAccessorProviderFactory<TsRadioGroupComponent>(TsRadioGroupComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsRadioGroup',
@@ -105,6 +108,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * TODO: abstract out to a service or utility function or set as a global default for ripples
    */
   public rippleColor = 'rgba(0, 83, 138, .1)';
+
+  /**
+   * Getter to determine if the group is required
+   */
+  public get isRequired(): boolean {
+    return hasRequiredControl(this.formControl);
+  }
 
   // NOTE: Since we are matching standard HTML attributes, we will rename for internal use.
   // tslint:disable: no-input-rename
@@ -138,11 +148,8 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
     if (isFunction(value)) {
       this._formatUILabelFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsRadioGroupComponent: 'formatUILabelFn' must be passed a 'TsRadioFormatFn'.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsRadioGroupComponent: 'formatUILabelFn' must be passed a 'TsRadioFormatFn'.`);
     }
   }
   public get formatUILabelFn(): TsRadioFormatFn {
@@ -161,11 +168,8 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
     if (isFunction(value)) {
       this._formatUISubLabelFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsRadioGroupComponent: 'formatUISubLabelFn' must be passed a 'TsRadioFormatFn'.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsRadioGroupComponent: 'formatUISubLabelFn' must be passed a 'TsRadioFormatFn'.`);
     }
   }
   public get formatUISubLabelFn(): TsRadioFormatFn {
@@ -184,11 +188,8 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
 
     if (isFunction(value)) {
       this._formatModelValueFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsRadioGroupComponent: 'formatModelValueFn' must be passed a 'TsRadioFormatFn'.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsRadioGroupComponent: 'formatModelValueFn' must be passed a 'TsRadioFormatFn'.`);
     }
   }
   public get formatModelValueFn(): TsRadioFormatFn {
@@ -200,10 +201,10 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * Define an ID for the component
    */
   @Input()
-  set id(value: string) {
+  public set id(value: string) {
     this._id = value || this._uid;
   }
-  get id(): string {
+  public get id(): string {
     return this._id;
   }
   protected _id: string = this._uid;
@@ -269,15 +270,10 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Emit event when a selection occurs. {@link TsRadioChange}
    */
+  // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1465
+  // tslint:disable-next-line: no-output-native
   @Output()
-  public change: EventEmitter<TsRadioChange> = new EventEmitter();
-
-  /**
-   * Getter to determine if the group is required
-   */
-  public get isRequired(): boolean {
-    return hasRequiredControl(this.formControl);
-  }
+  public readonly change: EventEmitter<TsRadioChange> = new EventEmitter();
 
 
   constructor(
@@ -298,6 +294,7 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
         .pipe(
           untilComponentDestroyed(this),
         )
+        // tslint:disable-next-line no-any
         .subscribe((v: any) => {
           this.writeValue(v);
           this.changeDetectorRef.markForCheck();
@@ -336,6 +333,17 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
     const value = this.retrieveValue(option, this.formatModelValueFn);
     this.value = value;
     this.changeDetectorRef.markForCheck();
+  }
+
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @return The unique ID
+   */
+  public trackByFn(index): number {
+    return index;
   }
 
 }

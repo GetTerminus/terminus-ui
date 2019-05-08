@@ -6,7 +6,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
-export function ControlValueAccessorProviderFactory(type: Type<any>): ExistingProvider {
+export function ControlValueAccessorProviderFactory<T>(type: Type<T>): ExistingProvider {
   return {
     provide: NG_VALUE_ACCESSOR,
     // tslint:disable-next-line:no-forward-ref

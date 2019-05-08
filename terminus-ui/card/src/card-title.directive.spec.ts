@@ -1,9 +1,6 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
-
 import { TsCardTitleDirective } from './card-title.directive';
 import { TsCardModule } from './card.module';
 

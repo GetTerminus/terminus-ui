@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -11,6 +13,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
@@ -73,6 +76,7 @@ export interface TsLoginFormResponse {
   host: {
     class: 'ts-login-form',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLoginForm',
 })
@@ -100,14 +104,9 @@ export class TsLoginFormComponent implements OnChanges {
   };
 
   /**
-   * Define the minimum length for a password
-   */
-  public PASSWORD_MINLENGTH: number = 8;
-
-  /**
    * Initialize the login form
    */
-  public loginForm: FormGroup = this.formBuilder.group(this.FORM_GROUP);
+  public loginForm: FormGroup | undefined = this.formBuilder.group(this.FORM_GROUP);
 
   /**
    * Define a flag to add/remove the form from the DOM
@@ -115,16 +114,40 @@ export class TsLoginFormComponent implements OnChanges {
   public showForm = true;
 
   /**
+   * Access the email form control
+   */
+  public get emailControl(): AbstractControl | null {
+    const form = this.loginForm;
+    return form ? form.get('email') : null;
+  }
+
+  /**
+   * Access the password form control
+   */
+  public get passwordControl(): AbstractControl | null {
+    const form = this.loginForm;
+    return form ? form.get('password') : null;
+  }
+
+  /**
+   * Access the rememberMe form control
+   */
+  public get rememberMeControl(): AbstractControl | null {
+    const form = this.loginForm;
+    return form ? form.get('rememberMe') : null;
+  }
+
+  /**
    * Provide access to the text inputs
    */
   @ViewChildren(TsInputComponent)
-  inputComponents!: QueryList<TsInputComponent>;
+  public inputComponents!: QueryList<TsInputComponent>;
 
   /**
    * Provide access to the checkbox inputs
    */
   @ViewChild(TsCheckboxComponent)
-  checkbox!: TsCheckboxComponent;
+  public checkbox!: TsCheckboxComponent;
 
   /**
    * Define the link to the 'forgot password' view
@@ -136,7 +159,7 @@ export class TsLoginFormComponent implements OnChanges {
    * Define the text for the 'forgot password' link
    */
   @Input()
-  public forgotPasswordText: string = 'Forgot your password?';
+  public forgotPasswordText = 'Forgot your password?';
 
   /**
    * Define if the form button is showing progress
@@ -154,7 +177,7 @@ export class TsLoginFormComponent implements OnChanges {
    * Define the login call to action
    */
   @Input()
-  public loginCTA: string = 'Log In';
+  public loginCTA = 'Log In';
 
   /**
    * Allow a consumer to reset the form via an input
@@ -165,8 +188,10 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Emit an event on form submission
    */
+  // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1469
+  // tslint:disable-next-line: no-output-native
   @Output()
-  public submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
+  public readonly submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
 
 
   /**
@@ -175,6 +200,7 @@ export class TsLoginFormComponent implements OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
 
@@ -194,12 +220,8 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Reset the form
    *
-   * This is a hack. Currently there doesn't seem to be a good way to reset the form value and
+   * HACK: This is a hack. Currently there doesn't seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
-   *
-   * HACK: The `showForm` value is a 'hack' to reset the input validation styles by removing the
-   * form from the dom and re-adding it. This method won't break if the Material team changes any
-   * validation classes but it may be more performant to simply remove the classes.
    */
   private resetForm(): void {
     // Destroy the form
@@ -207,16 +229,17 @@ export class TsLoginFormComponent implements OnChanges {
 
     // Clear out the form
     // HACK: This is a hack around Angular to fully reset the form.
-    this.loginForm = undefined as any;
+    this.loginForm = undefined;
 
     // Re-initialize the form
     this.loginForm = this.formBuilder.group(this.FORM_GROUP);
 
     // This timeout lets one change detection cycle pass so that the form is actually removed from
     // the DOM
-    setTimeout(() => {
+    Promise.resolve().then(() => {
       // Add the form back to the DOM
       this.showForm = true;
+      this.changeDetectorRef.detectChanges();
     });
   }
 

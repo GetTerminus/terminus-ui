@@ -27,6 +27,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   'after',
 ];
 
+
 /**
  * This is the tooltip UI Component
  *
@@ -60,7 +61,7 @@ export class TsTooltipComponent {
   @Input()
   public set tooltipPosition(value: TsTooltipPositionTypes) {
     if (value && isDevMode() && (allowedTooltipTypes.indexOf(value) < 0)) {
-      console.warn(`TsTooltipComponent: "${value}" is not an allowed position. ` + 'Allowed positions defined by "allowedTooltipTypes".');
+      console.warn(`TsTooltipComponent: "${value}" is not an allowed position. Allowed positions defined by "TsTooltipPositionTypes".`);
     }
     this._tooltipPosition = value;
   }

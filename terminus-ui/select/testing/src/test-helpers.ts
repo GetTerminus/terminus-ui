@@ -21,9 +21,15 @@ export function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    key: { get: () => key.code },
-    code: { get: () => key.code },
-    keyCode: { get: () => key.keyCode },
+    key: {
+      get: () => key.code,
+    },
+    code: {
+      get: () => key.code,
+    },
+    keyCode: {
+      get: () => key.keyCode,
+    },
   });
   return event;
 }
@@ -34,6 +40,7 @@ export function createKeydownEvent(key: KeyCode): KeyboardEvent {
  * @param fixture - The component fixture
  * @return An array of DebugElements
  */
+// tslint:disable-next-line no-any
 export function getAllSelectDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-select'));
   if (!debugElements) {
@@ -48,8 +55,9 @@ export function getAllSelectDebugElements(fixture: ComponentFixture<any>): Debug
  * @param fixture - The component fixture
  * @return An array of TsSelectComponents
  */
+// tslint:disable-next-line no-any
 export function getAllSelectInstances(fixture: ComponentFixture<any>): TsSelectComponent[] {
-  return getAllSelectDebugElements(fixture).map((v) => v.componentInstance);
+  return getAllSelectDebugElements(fixture).map(v => v.componentInstance);
 }
 
 /**
@@ -59,6 +67,7 @@ export function getAllSelectInstances(fixture: ComponentFixture<any>): TsSelectC
  * @param index - The index of the desired TsSelectComponent
  * @return The DebugElement
  */
+// tslint:disable-next-line no-any
 export function getSelectDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllSelectDebugElements(fixture);
   if (!debugElements[index]) {
@@ -74,6 +83,7 @@ export function getSelectDebugElement(fixture: ComponentFixture<any>, index = 0)
  * @param index - The index of the desired TsSelectComponent
  * @return The instance
  */
+// tslint:disable-next-line no-any
 export function getSelectInstance(fixture: ComponentFixture<any>, index = 0): TsSelectComponent {
   const instances = getAllSelectInstances(fixture);
   if (!instances[index]) {
@@ -89,8 +99,10 @@ export function getSelectInstance(fixture: ComponentFixture<any>, index = 0): Ts
  * @param index - The index of the desired TsSelectComponent
  * @return The element
  */
+// tslint:disable-next-line no-any
 export function getSelectElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const instance = getSelectInstance(fixture, index);
+  // eslint-disable-next-line dot-notation
   return instance['elementRef'].nativeElement as HTMLElement;
 }
 
@@ -101,6 +113,7 @@ export function getSelectElement(fixture: ComponentFixture<any>, index = 0): HTM
  * @param index - The index of the desired TsSelectComponent
  * @return The element
  */
+// tslint:disable-next-line no-any
 export function getSelectTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getSelectDebugElement(fixture, index);
   return debugElement.query(By.css('.ts-select-trigger')).nativeElement as HTMLElement;
@@ -113,6 +126,7 @@ export function getSelectTriggerElement(fixture: ComponentFixture<any>, index = 
  * @param index - The index of the desired TsSelectComponent
  * @return The trigger element
  */
+// tslint:disable-next-line no-any
 export function getToggleAllElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getSelectDebugElement(fixture, index);
   return debugElement.query(By.css('.ts-select-panel__toggle-all')).nativeElement as HTMLElement;
@@ -125,6 +139,7 @@ export function getToggleAllElement(fixture: ComponentFixture<any>, index = 0): 
  * @param index - The index of the desired TsSelectComponent
  * @return The panel element
  */
+// tslint:disable-next-line no-any
 export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getSelectDebugElement(fixture, index);
   return debugElement.query(By.css('.ts-select-panel')).nativeElement as HTMLElement;
@@ -137,6 +152,7 @@ export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTML
  * @param index - The index of the desired TsSelectComponent
  * @return An array of TsSelectOptionComponents
  */
+// tslint:disable-next-line no-any
 export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsSelectOptionComponent[] {
   const instance = getSelectInstance(fixture, index);
   const options = instance.options.toArray();
@@ -154,6 +170,7 @@ export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0)
  * @param optionIndex - The index of the desired TsSelectOptionComponent
  * @return A TsSelectOptionComponent
  */
+// tslint:disable-next-line no-any
 export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsSelectOptionComponent {
   const options = getAllOptionInstances(fixture, selectIndex);
   if (!options[optionIndex]) {
@@ -170,6 +187,7 @@ export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 
  * @param optionIndex - The index of the desired TsSelectOptionComponent
  * @return The TsSelectOptionComponent element
  */
+// tslint:disable-next-line no-any
 export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): HTMLElement {
   const option = getOptionInstance(fixture, selectIndex, optionIndex);
   return option.elementRef.nativeElement;
@@ -182,13 +200,14 @@ export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0
  * @param index - The index of the desired TsSelectComponent
  * @return An array of TsSelectOptionComponents
  */
+// tslint:disable-next-line no-any
 export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsSelectOptgroupComponent[] {
   const debugElement = getSelectDebugElement(fixture, index);
   const optgroups = debugElement.queryAll(By.css('ts-select-optgroup'));
   if (!optgroups) {
     throw new Error(`'getAllOptgroups' did not find any optgroups`);
   }
-  return optgroups.map((i) => i.componentInstance);
+  return optgroups.map(i => i.componentInstance);
 }
 
 /**
@@ -199,6 +218,7 @@ export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsSe
  * @param groupIndex - The index of the desired TsSelectOptgroupComponent
  * @return A TsSelectOptgroupComponent
  */
+// tslint:disable-next-line no-any
 export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsSelectOptgroupComponent {
   const groups = getAllOptgroups(fixture, selectIndex);
   if (!groups[groupIndex]) {
@@ -215,8 +235,10 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
  * @param groupIndex - The index of the desired TsSelectOptgroupComponent
  * @return The optgroup element
  */
+// tslint:disable-next-line no-any
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
   const group = getOptgroup(fixture, selectIndex, groupIndex);
+  // eslint-disable-next-line dot-notation
   return group['elementRef'].nativeElement;
 }
 
@@ -227,6 +249,7 @@ export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex =
  * @param index - The index of the desired TsSelectComponent
  * @return The input element
  */
+// tslint:disable-next-line no-any
 export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
   const debugElement = getSelectDebugElement(fixture, index);
   const inputDebugElement = debugElement.query(By.css('.ts-select__autocomplete-input'));
@@ -243,6 +266,7 @@ export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0):
  * @param index - The index of the desired TsSelectComponent
  * @return An array of chip instances
  */
+// tslint:disable-next-line no-any
 export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): MatChip[] {
   const instance = getSelectInstance(fixture, index);
   if (!instance.chipList) {
@@ -259,6 +283,7 @@ export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): 
  * @param chipIndex - The index of the desired chip
  * @return A chip instances
  */
+// tslint:disable-next-line no-any
 export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): MatChip {
   const chips = getAllChipInstances(fixture, selectIndex);
   if (!chips[chipIndex]) {
@@ -275,8 +300,11 @@ export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0,
  * @param chipIndex - The index of the desired chip
  * @return The chip element
  */
+// tslint:disable-next-line no-any
 export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): HTMLElement {
   const chip = getChipInstance(fixture, selectIndex, chipIndex);
+  // NOTE: Material is in control of this name
+  // eslint-disable-next-line no-underscore-dangle
   return chip._elementRef.nativeElement;
 }
 
@@ -287,6 +315,7 @@ export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, 
  * @param selectIndex - The index of the desired TsSelectComponent
  * @return The chip element
  */
+// tslint:disable-next-line no-any
 export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): string | null {
   const chipElement = getChipElement(fixture, selectIndex, chipIndex);
   // We need to remove the text that represents the chip's delete icon
@@ -300,6 +329,7 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
  * @param index - The index of the desired TsSelectComponent
  * @return The filter input element
  */
+// tslint:disable-next-line no-any
 export function getFilterInputElement(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
   const debugElement = getSelectDebugElement(fixture, index);
   const inputDebugElement = debugElement.query(By.css('.ts-select-panel__filter-input .c-input__text'));
@@ -316,6 +346,7 @@ export function getFilterInputElement(fixture: ComponentFixture<any>, index = 0)
  * @param index - The index of the desired TsSelectComponent
  * @return The whenStable promise
  */
+// tslint:disable-next-line no-any
 export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {
   const trigger = getSelectTriggerElement(fixture, index);
   trigger.click();
@@ -331,9 +362,10 @@ export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<a
  * @param selectIndex - The index of the desired TsSelectComponent
  * @return The whenStable promise
  */
+// tslint:disable-next-line no-any
 export function selectOption(fixture: ComponentFixture<any>, optionText: string, selectIndex = 0): Promise<any> {
   const allOptions = getAllOptionInstances(fixture, selectIndex);
-  const foundOptions = allOptions.filter((option) => option.viewValue === optionText);
+  const foundOptions = allOptions.filter(option => option.viewValue === optionText);
 
   if (foundOptions.length < 1) {
     throw new Error(`'selectOption' did not find an option with the view value of '${optionText}'`);

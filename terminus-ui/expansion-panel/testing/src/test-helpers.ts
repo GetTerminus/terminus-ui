@@ -29,7 +29,7 @@ export function getAllPanelInstances(fixture: ComponentFixture<any>): TsExpansio
   if (debugElements.length < 1) {
     throw new Error(`getAllPanelInstances did not find any instances`);
   }
-  return debugElements.map((debugElement) => debugElement.componentInstance);
+  return debugElements.map(debugElement => debugElement.componentInstance);
 }
 
 /**
@@ -117,7 +117,7 @@ export function getAllAccordionInstances(fixture: ComponentFixture<any>): TsAcco
   if (debugElements.length < 1) {
     throw new Error(`getAllAccordionInstances did not find any instances`);
   }
-  return debugElements.map((debugElement) => debugElement.componentInstance);
+  return debugElements.map(debugElement => debugElement.componentInstance);
 }
 
 /**

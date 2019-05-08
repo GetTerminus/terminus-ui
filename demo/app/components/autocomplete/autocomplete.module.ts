@@ -11,7 +11,15 @@ import { AutocompleteRoutingModule } from './autocomplete-routing.module';
 import { AutocompleteComponent } from './autocomplete.component';
 
 @NgModule({
-  imports: [AutocompleteRoutingModule, CommonModule, FormsModule, TsAutocompleteModule, TsCheckboxModule, TsCardModule, TsSpacingModule],
+  imports: [
+    AutocompleteRoutingModule,
+    CommonModule,
+    FormsModule,
+    TsAutocompleteModule,
+    TsCheckboxModule,
+    TsCardModule,
+    TsSpacingModule,
+  ],
   declarations: [AutocompleteComponent],
 })
 export class AutocompleteModule {}

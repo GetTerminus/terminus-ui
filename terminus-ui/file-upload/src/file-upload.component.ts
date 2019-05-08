@@ -30,6 +30,7 @@ import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   ControlValueAccessorProviderFactory,
@@ -41,10 +42,12 @@ import {
 } from '@terminus/ui/utilities';
 import { filter } from 'rxjs/operators';
 
-import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsDropProtectionService } from './drop-protection.service';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
-import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
+import {
+  TS_ACCEPTED_MIME_TYPES,
+  TsFileAcceptedMimeTypes,
+} from './mime-types';
 import { TsSelectedFile } from './selected-file';
 
 
@@ -58,6 +61,7 @@ export interface ImageRatio {
  *
  * NOTE: Currently nginx has a hard limit of 10mb
  */
+// eslint-disable-next-line no-magic-numbers
 const MAXIMUM_KILOBYTES_PER_FILE = 10 * 1024;
 
 /**
@@ -106,15 +110,15 @@ let nextUniqueId = 0;
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
   host: {
-    class: 'ts-file-upload',
+    'class': 'ts-file-upload',
     '(keydown)': 'handleKeydown($event)',
   },
-  providers: [ControlValueAccessorProviderFactory(TsFileUploadComponent)],
+  providers: [ControlValueAccessorProviderFactory<TsFileUploadComponent>(TsFileUploadComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsFileUpload',
 })
-export class TsFileUploadComponent extends TsReactiveFormBaseComponent implements OnInit , OnChanges, OnDestroy, AfterContentInit {
+export class TsFileUploadComponent extends TsReactiveFormBaseComponent implements OnInit, OnChanges, OnDestroy, AfterContentInit {
   /**
    * Define the default component ID
    */
@@ -158,9 +162,9 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   public get buttonMessage(): string {
     if (this.dragInProgress) {
       return `Drop File${this.multiple ? 's' : ''}`;
-    } else {
-      return `Select File${this.multiple ? 's' : ''}`;
     }
+    return `Select File${this.multiple ? 's' : ''}`;
+
   }
 
   /**
@@ -170,13 +174,11 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   public get hints(): string[] {
     const hints: string[] = [];
-    const types: string = this.acceptedTypes.slice().map((v) => {
-      return v.split('/')[1];
-    }).join(', ');
-    const allowsImage =
-      (this.acceptedTypes.indexOf('image/png') >= 0) ||
-      (this.acceptedTypes.indexOf('image/jpeg') >= 0) ||
-      (this.acceptedTypes.indexOf('image/jpg') >= 0);
+    const types: string = this.acceptedTypes.slice().map(v => v.split('/')[1]).join(', ');
+    const allowsImage
+      = (this.acceptedTypes.indexOf('image/png') >= 0)
+      || (this.acceptedTypes.indexOf('image/jpeg') >= 0)
+      || (this.acceptedTypes.indexOf('image/jpg') >= 0);
 
     if (allowsImage && this.supportedImageDimensions.length > 0) {
       hints.push(`Must be a valid dimension: ${this.supportedImageDimensions}`);
@@ -234,10 +236,10 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set accept(value: TsFileAcceptedMimeTypes | TsFileAcceptedMimeTypes[] | undefined) {
-    if (!value) {
-      this._acceptedTypes = TS_ACCEPTED_MIME_TYPES.slice();
-    } else {
+    if (value) {
       this._acceptedTypes = coerceArray(value);
+    } else {
+      this._acceptedTypes = TS_ACCEPTED_MIME_TYPES.slice();
     }
   }
   // NOTE: Setter name is different to allow different types passed in vs returned
@@ -297,14 +299,14 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Define supported ratio for images
    */
-
   @Input()
   public set ratioConstraints(values: Array<string> | undefined) {
     if (values) {
       for (const value of values) {
         const v = value.split(':');
-        if ((v.length !== 2) || (!isNumber(v[0]) && !isNumber(v[1]))) {
-          throw new Error('An array of image ratio should be as ["1:2", "3:4"]');
+        const minPartsForValidRatio = 2;
+        if ((v.length !== minPartsForValidRatio) || (!isNumber(v[0]) && !isNumber(v[1]))) {
+          throw new Error('TsFileUploadComponent: An array of image ratios should be formatted as ["1:2", "3:4"]');
         }
       }
     }
@@ -332,7 +334,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   public get progress(): number {
     return this._progress;
   }
-  private _progress: number = 0;
+  private _progress = 0;
 
   /**
    * Seed an existing file (used for multiple upload hack)
@@ -353,7 +355,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
       newFile.fileLoaded$.pipe(
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => t !== undefined),
         untilComponentDestroyed(this),
-      ).subscribe((f) => {
+      ).subscribe(f => {
         this.formControl.setValue(f.file);
         this.selected.emit(f);
         this.setUpNewFile(f);
@@ -388,31 +390,31 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * Event emitted when the user's cursor enters the field while dragging a file
    */
   @Output()
-  public enter: EventEmitter<boolean> = new EventEmitter();
+  public readonly enter: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Event emitted when the user's cursor exits the field while dragging a file
    */
   @Output()
-  public exit: EventEmitter<boolean> = new EventEmitter();
+  public readonly exit: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Event emitted when the user drops or selects a file
    */
   @Output()
-  public selected: EventEmitter<TsSelectedFile> = new EventEmitter();
+  public readonly selected: EventEmitter<TsSelectedFile> = new EventEmitter();
 
   /**
    * Event emitted when the user drops or selects multiple files
    */
   @Output()
-  public selectedMultiple: EventEmitter<File[]> = new EventEmitter();
+  public readonly selectedMultiple: EventEmitter<File[]> = new EventEmitter();
 
   /**
    * Event emitted when the user clears a loaded file
    */
   @Output()
-  public cleared: EventEmitter<boolean> = new EventEmitter();
+  public readonly cleared: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * HostListeners
@@ -444,7 +446,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   }
 
 
-  constructor(
+  public constructor(
     private documentService: TsDocumentService,
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef,
@@ -467,6 +469,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
     // NOTE: This `if` is to avoid: `Error: ViewDestroyedError: Attempt to use a destroyed view: detectChanges`
     // istanbul ignore else
+    // eslint-disable-next-line dot-notation
     if (!this.changeDetectorRef['destroyed']) {
       this.changeDetectorRef.detectChanges();
     }
@@ -484,6 +487,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
       ).subscribe(() => {
         // NOTE: This `if` is to avoid: `Error: ViewDestroyedError: Attempt to use a destroyed view: detectChanges`
         // istanbul ignore else
+        // eslint-disable-next-line dot-notation
         if (!this.changeDetectorRef['destroyed']) {
           this.changeDetectorRef.detectChanges();
         }
@@ -614,12 +618,13 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
         this.dimensionConstraints,
         this.acceptedTypes,
         this.maximumKilobytesPerFile,
-        this._ratioConstraints);
+        this._ratioConstraints
+      );
 
       newFile.fileLoaded$.pipe(
         filter((t: TsSelectedFile | undefined): t is TsSelectedFile => !!t),
         untilComponentDestroyed(this),
-      ).subscribe((f) => {
+      ).subscribe(f => {
         this.formControl.setValue(f.file);
         this.selected.emit(f);
         this.setUpNewFile(f);
@@ -769,10 +774,10 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   private parseRatioStringToObject(ratios: Array<string> | undefined): Array<ImageRatio> | undefined {
     if (!ratios) {
-      return;
+      return undefined;
     }
     const parsedImageRatio: Array<ImageRatio> = [];
-    ratios.map((r) => parsedImageRatio.push({
+    ratios.map(r => parsedImageRatio.push({
       widthRatio: Number(r.split(':')[0]),
       heightRatio: Number(r.split(':')[1]),
     }));
@@ -787,11 +792,22 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   private parseRatioToString(ratios: Array<ImageRatio> | undefined): Array<string> | undefined {
     if (!ratios) {
-      return;
+      return undefined;
     }
     const parsedRatio: Array<string> = [];
-    ratios.map((r) => parsedRatio.push(r.widthRatio.toString() + ':' + r.heightRatio.toString()));
+    ratios.map(r => parsedRatio.push(`${r.widthRatio.toString()  }:${  r.heightRatio.toString()}`));
     return parsedRatio;
+  }
+
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @return The unique ID
+   */
+  public trackByFn(index): number {
+    return index;
   }
 
 }

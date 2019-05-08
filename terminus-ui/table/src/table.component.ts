@@ -40,15 +40,7 @@ import {
  */
 @Component({
   selector: 'ts-table',
-  template: `
-    <div class="ts-table__container">
-      <div class="ts-table__table">
-        <ng-container headerRowOutlet></ng-container>
-        <ng-container rowOutlet></ng-container>
-        <ng-container footerRowOutlet></ng-container>
-      </div>
-    </div>
-  `,
+  templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   host: {
     class: 'ts-table',

@@ -15,7 +15,7 @@ export class TsDropProtectionService {
   /**
    * Add drop protection
    */
-  add(): void {
+  public add(): void {
     if (!this.hasProtection) {
       this.windowService.nativeWindow.addEventListener('dragover', this.prevent, false);
       this.windowService.nativeWindow.addEventListener('drop', this.prevent, false);
@@ -27,7 +27,7 @@ export class TsDropProtectionService {
   /**
    * Remove drop protection
    */
-  remove(): void {
+  public remove(): void {
     if (this.hasProtection) {
       this.windowService.nativeWindow.removeEventListener('dragover', this.prevent, false);
       this.windowService.nativeWindow.removeEventListener('drop', this.prevent, false);
@@ -43,7 +43,7 @@ export class TsDropProtectionService {
    *
    * @param event - The event
    */
-  prevent(e: Event): void {
+  public prevent(e: Event): void {
     e.preventDefault();
   }
 

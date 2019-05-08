@@ -123,6 +123,5 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
       TsSelectModule,
       NoopAnimationsModule,
       ...imports,
-    ],
-  );
+    ],);
 }

@@ -1,4 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,

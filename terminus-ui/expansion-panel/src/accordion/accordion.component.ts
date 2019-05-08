@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsExpansionPanelComponent } from '../expansion-panel.component';
-import { TsExpansionPanelTriggerComponent } from '../trigger/expansion-panel-trigger.component';
+import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
 import {
   TS_ACCORDION,
   TsAccordionBase,
@@ -49,7 +49,7 @@ import {
   selector: 'ts-accordion',
   template: `<ng-content></ng-content>`,
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable: use-input-property-decorator
+  // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['multi'],
   providers: [
     {
@@ -73,7 +73,9 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
   /**
    * Collect a list of all triggers
    */
-  @ContentChildren(TsExpansionPanelTriggerComponent, {descendants: true})
+  @ContentChildren(TsExpansionPanelTriggerComponent, {
+    descendants: true,
+  })
   public triggers!: QueryList<TsExpansionPanelTriggerComponent>;
 
   /**
@@ -92,7 +94,7 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
    * The event emitted as the accordion is destroyed
    */
   @Output()
-  public destroyed: EventEmitter<void> = new EventEmitter();
+  public readonly destroyed: EventEmitter<void> = new EventEmitter();
 
 
   /**

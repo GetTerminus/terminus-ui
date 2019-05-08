@@ -1,6 +1,12 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, tick } from '@angular/core/testing';
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
+import {
+  ComponentFixture,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -37,7 +43,10 @@ describe(`TsLinkComponent`, function() {
   let linkComponent: TsLinkComponent;
 
   beforeEach(() => {
-    fixture = createComponent(TestHostComponent, [{provide: APP_BASE_HREF, useValue: '/my/app'}], [TsLinkModule, RouterModule.forRoot([])]);
+    fixture = createComponent(TestHostComponent, [{
+      provide: APP_BASE_HREF,
+      useValue: '/my/app',
+    }], [TsLinkModule, RouterModule.forRoot([])]);
     component = fixture.componentInstance;
     linkComponent = component.linkComponent;
     fixture.detectChanges();

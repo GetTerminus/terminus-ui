@@ -24,10 +24,17 @@ import {
   TsDocumentServiceMock,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { TsFormFieldComponent, TsFormFieldModule } from '@terminus/ui/form-field';
-import { Observable, Subject } from 'rxjs';
+import {
+  TsFormFieldComponent,
+  TsFormFieldModule,
+} from '@terminus/ui/form-field';
+import {
+  Observable,
+  Subject,
+} from 'rxjs';
 
 import * as TestComponents from '@terminus/ui/input/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   getInputElement,
   getInputInstance,
@@ -631,13 +638,19 @@ describe(`TsInputComponent`, function() {
       const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
       const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
       const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
-      const bounding1 = { left: 50 };
-      const bounding2 = { left: 100 };
+      const bounding1 = {
+        left: 50,
+      };
+      const bounding2 = {
+        left: 100,
+      };
       const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
       formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
       formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
       Object.defineProperty(formFieldInstance['labelElement'].nativeElement.children[0], 'offsetWidth', {
-        get() { return 40; },
+        get() {
+          return 40;
+        },
       });
 
       formFieldInstance['updateOutlineGap']();
@@ -955,14 +968,16 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
       {
         provide: AutofillMonitor,
         useClass: AutofillMonitorMock,
-      }],
+      },
+    ],
     [
       FormsModule,
       ReactiveFormsModule,
       TsFormFieldModule,
       TsInputModule,
       NoopAnimationsModule,
-    ]);
+    ],
+  );
 }
 
 
@@ -971,10 +986,10 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
  */
 
 class MyDocumentService extends TsDocumentServiceMock {
-  shouldContain = true;
-  document: any = {
+  public shouldContain = true;
+  public document: any = {
     documentElement: {
-      contains: jest.fn(() => this.shouldContain ? true : false),
+      contains: jest.fn(() => !!this.shouldContain),
     },
     createEvent() {
       return document.createEvent('Event');
@@ -988,19 +1003,22 @@ interface AutofillEvent {
   isAutofilled: boolean;
 }
 class AutofillMonitorMock {
-  result = new Subject<AutofillEvent>();
-  el!: Element;
+  public result = new Subject<AutofillEvent>();
+  public el!: Element;
 
-  monitor(el: Element): Observable<any> {
+  public monitor(el: Element): Observable<any> {
     this.el = el;
     return this.result;
   }
 
-  fireMockFillEvent() {
-    this.result.next({target: this.el as Element, isAutofilled: true});
+  public fireMockFillEvent() {
+    this.result.next({
+      target: this.el,
+      isAutofilled: true,
+    });
   }
 
-  stopMonitoring(element: Element) {
+  public stopMonitoring(element: Element) {
     this.result.complete();
   }
 }

@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ViewChild,
 } from '@angular/core';
@@ -14,25 +14,35 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
   selector: 'demo-paginator',
   templateUrl: './paginator.component.html',
 })
-export class PaginatorComponent implements AfterViewInit {
+export class PaginatorComponent {
   myTheme: TsStyleThemeTypes = 'primary';
   recordCount = 114;
   showSelector = true;
   currentPageIndex = 0;
   location = 'below';
   pages: number[] = [0, 1, 2, 3, 4, 5];
-  zeroBased = false;
+  zeroBased = true;
 
   @ViewChild(TsPaginatorComponent)
   paginator!: TsPaginatorComponent;
 
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.pages = Array.apply(null, {length: this.paginator.pagesArray.length}).map(Number.call, Number);
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
+
+  updatePages(isZeroBased: boolean): void {
+    Promise.resolve().then(() => {
+      if (isZeroBased) {
+        this.pages = Array.from(Array(this.paginator.pagesArray.length).keys());
+      } else {
+        // NOTE: Prepending the incrementer (++) will increment the value _before_ returning the value.
+        this.pages = Array.from(Array(this.paginator.pagesArray.length).keys()).map(v => ++v);
+      }
+      this.changeDetectorRef.detectChanges();
     });
   }
-
 
   onPageSelect(e: TsPaginatorMenuItem): void {
     console.log('DEMO: page selected: ', e);

@@ -3,25 +3,25 @@ import { TsScrollbarsComponent } from './scrollbars.component';
 
 const divMock = document.createElement('div');
 Object.defineProperties(divMock, {
-  scrollHeight: { get: () => 300 },
-  scrollWidth: { get: () => 200 },
+  scrollHeight: {
+    get: () => 300,
+  },
+  scrollWidth: {
+    get: () => 200,
+  },
 });
 
 class PerfectScrollbarDirectiveMock {
-  geometry = jest.fn().mockImplementation(() => {
-    return {
-      x: this.elementRef.nativeElement.scrollLeft,
-      y: this.elementRef.nativeElement.scrollTop,
-      h: this.elementRef.nativeElement.scrollHeight,
-      w: this.elementRef.nativeElement.scrollWidth,
-    };
-  });
-  position = jest.fn().mockImplementation(() => {
-    return {
-      x: this.elementRef.nativeElement.scrollLeft,
-      y: this.elementRef.nativeElement.scrollTop,
-    };
-  });
+  geometry = jest.fn().mockImplementation(() => ({
+    x: this.elementRef.nativeElement.scrollLeft,
+    y: this.elementRef.nativeElement.scrollTop,
+    h: this.elementRef.nativeElement.scrollHeight,
+    w: this.elementRef.nativeElement.scrollWidth,
+  }));
+  position = jest.fn().mockImplementation(() => ({
+    x: this.elementRef.nativeElement.scrollLeft,
+    y: this.elementRef.nativeElement.scrollTop,
+  }));
   elementRef = {
     nativeElement: divMock,
   };
@@ -80,7 +80,12 @@ describe(`TsScrollbarsComponent`, function() {
   describe(`get geometry()`, () => {
 
     test(`should return an object representing the position`, () => {
-      expect(component.geometry).toEqual({x: 0, y: 0, h: 300, w: 200});
+      expect(component.geometry).toEqual({
+        x: 0,
+        y: 0,
+        h: 300,
+        w: 200,
+      });
     });
 
 
@@ -95,7 +100,10 @@ describe(`TsScrollbarsComponent`, function() {
   describe(`get position()`, () => {
 
     test(`should return an object representing the current position`, () => {
-      expect(component.position).toEqual({x: 0, y: 0});
+      expect(component.position).toEqual({
+        x: 0,
+        y: 0,
+      });
     });
 
 

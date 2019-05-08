@@ -3,6 +3,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/expansion-panel/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   getPanelActionRow,
   getPanelBodyContentElement,
@@ -125,7 +126,9 @@ describe(`TsExpansionPanelComponent`, function() {
       const trigger = getTriggerInstance(fixture);
       const panel = getPanelInstance(fixture);
       Object.defineProperties(panel, {
-        contentContainsFocus: { get: () => true },
+        contentContainsFocus: {
+          get: () => true,
+        },
       });
       trigger['focusMonitor'].focusVia = jest.fn();
 

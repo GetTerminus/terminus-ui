@@ -9,7 +9,11 @@ import {
   TestBed,
   TestModuleMetadata,
 } from '@angular/core/testing';
-import { ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
@@ -33,8 +37,8 @@ import { TsCSVEntryModule } from './csv-entry.module';
  * Helper to turn JSON form into stringified content
  */
 function stringifyForm(content: TsCSVFormContents): string {
-  const headers: string = content.headers.join('\t') + '\r\n';
-  const rows: string = content.records.map((v) => v.columns.join('\t')).join('\r\n') + '\r\n';
+  const headers = `${content.headers.join('\t')  }\r\n`;
+  const rows = `${content.records.map(v => v.columns.join('\t')).join('\r\n')  }\r\n`;
   return headers + rows;
 }
 
@@ -55,18 +59,18 @@ function stringifyForm(content: TsCSVFormContents): string {
   `,
 })
 class TestHostComponent {
-  id: number | undefined;
-  maxRows: number | undefined;
-  columnCount: number | undefined;
-  rowCount: number | undefined;
-  columnValidators: undefined | (ValidatorFn | null)[];
-  columnHeaders: undefined | string[];
-  fullWidth: boolean;
-  outputFormat = 'csv';
-  gotFile = jest.fn();
+  public id: number | undefined;
+  public maxRows: number | undefined;
+  public columnCount: number | undefined;
+  public rowCount: number | undefined;
+  public columnValidators: undefined | (ValidatorFn | null)[];
+  public columnHeaders: undefined | string[];
+  public fullWidth: boolean;
+  public outputFormat = 'csv';
+  public gotFile = jest.fn();
 
   @ViewChild(TsCSVEntryComponent)
-  component!: TsCSVEntryComponent;
+  public component!: TsCSVEntryComponent;
 
   constructor(
     public validatorsService: TsValidatorsService,
@@ -130,47 +134,110 @@ describe(`TsCSVEntryComponent`, function() {
     formContentTwoCol = {
       headers: ['foo', 'bar'],
       records: [
-        { recordId: 0, columns: ['foo1', 'bar1'] },
-        { recordId: 1, columns: ['foo2', 'bar2'] },
-        { recordId: 2, columns: ['foo3', 'bar3'] },
+        {
+          recordId: 0,
+          columns: ['foo1', 'bar1'],
+        },
+        {
+          recordId: 1,
+          columns: ['foo2', 'bar2'],
+        },
+        {
+          recordId: 2,
+          columns: ['foo3', 'bar3'],
+        },
       ],
     };
     formContentThreeCol = {
       headers: ['bing', 'bang', 'boom'],
       records: [
-        { recordId: 0, columns: ['bing1', 'bang1', 'http://foo.com'] },
-        { recordId: 1, columns: ['bing2', 'bang2', 'boom2'] },
-        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
-        { recordId: 3, columns: ['bing4', 'bang4', 'boom4'] },
+        {
+          recordId: 0,
+          columns: ['bing1', 'bang1', 'http://foo.com'],
+        },
+        {
+          recordId: 1,
+          columns: ['bing2', 'bang2', 'boom2'],
+        },
+        {
+          recordId: 2,
+          columns: ['bing3', 'bang3', 'boom3'],
+        },
+        {
+          recordId: 3,
+          columns: ['bing4', 'bang4', 'boom4'],
+        },
       ],
     };
     formContentManyErrors = {
       headers: ['bing', 'bang', 'boom'],
       records: [
-        { recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1'] },
-        { recordId: 1, columns: ['bing2', 'bang2', 'boom2'] },
-        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
-        { recordId: 3, columns: ['bing4', 'bang4', 'boom4'] },
-        { recordId: 4, columns: ['bing5', '1234567890987654321234567890', 'boom5'] },
-        { recordId: 5, columns: ['bing6', 'bang6', 'boom6'] },
-        { recordId: 6, columns: ['bing7', 'bang7', 'boom7'] },
-        { recordId: 7, columns: ['bing8', 'bang8', 'boom8'] },
-        { recordId: 8, columns: ['bing9', 'bang9', 'boom9'] },
+        {
+          recordId: 0,
+          columns: ['bing1', 'http://foo.com', 'boom1'],
+        },
+        {
+          recordId: 1,
+          columns: ['bing2', 'bang2', 'boom2'],
+        },
+        {
+          recordId: 2,
+          columns: ['bing3', 'bang3', 'boom3'],
+        },
+        {
+          recordId: 3,
+          columns: ['bing4', 'bang4', 'boom4'],
+        },
+        {
+          recordId: 4,
+          columns: ['bing5', '1234567890987654321234567890', 'boom5'],
+        },
+        {
+          recordId: 5,
+          columns: ['bing6', 'bang6', 'boom6'],
+        },
+        {
+          recordId: 6,
+          columns: ['bing7', 'bang7', 'boom7'],
+        },
+        {
+          recordId: 7,
+          columns: ['bing8', 'bang8', 'boom8'],
+        },
+        {
+          recordId: 8,
+          columns: ['bing9', 'bang9', 'boom9'],
+        },
       ],
     };
     formContentRequiredErrors = {
       headers: ['bing', 'bang'],
       records: [
-        { recordId: 0, columns: ['bing1', 'http://foo.com', 'boom1'] },
-        { recordId: 1, columns: [null, 'bang2', 'boom2'] },
-        { recordId: 2, columns: ['bing3', 'bang3', 'boom3'] },
+        {
+          recordId: 0,
+          columns: ['bing1', 'http://foo.com', 'boom1'],
+        },
+        {
+          recordId: 1,
+          columns: [null, 'bang2', 'boom2'],
+        },
+        {
+          recordId: 2,
+          columns: ['bing3', 'bang3', 'boom3'],
+        },
       ],
     };
     formContentWithQuotesAndCommas = {
       headers: ['bing', 'bang'],
       records: [
-        { recordId: 0, columns: ['a, b', '"foo"'] },
-        { recordId: 1, columns: ['"foo, bar"', '"foo", "bar"'] },
+        {
+          recordId: 0,
+          columns: ['a, b', '"foo"'],
+        },
+        {
+          recordId: 1,
+          columns: ['"foo, bar"', '"foo", "bar"'],
+        },
       ],
     };
     /**
@@ -179,32 +246,60 @@ describe(`TsCSVEntryComponent`, function() {
     TAB_EVENT = document.createEvent('KeyboardEvent');
     TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(TAB_EVENT, {
-      code: { get: () => KEYS.TAB.code },
-      key: { get: () => KEYS.TAB.code },
-      keyCode: { get: () => KEYS.TAB.keyCode },
+      code: {
+        get: () => KEYS.TAB.code,
+      },
+      key: {
+        get: () => KEYS.TAB.code,
+      },
+      keyCode: {
+        get: () => KEYS.TAB.keyCode,
+      },
     });
     SHIFT_TAB_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_TAB_EVENT, {
-      code: { get: () => KEYS.TAB.code },
-      key: { get: () => KEYS.TAB.code },
-      keyCode: { get: () => KEYS.TAB.keyCode },
-      shiftKey: { get: () => true },
+      code: {
+        get: () => KEYS.TAB.code,
+      },
+      key: {
+        get: () => KEYS.TAB.code,
+      },
+      keyCode: {
+        get: () => KEYS.TAB.keyCode,
+      },
+      shiftKey: {
+        get: () => true,
+      },
     });
     ENTER_EVENT = document.createEvent('KeyboardEvent');
     ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(ENTER_EVENT, {
-      code: { get: () => KEYS.ENTER.code },
-      key: { get: () => KEYS.ENTER.code },
-      keyCode: { get: () => KEYS.ENTER.keyCode },
+      code: {
+        get: () => KEYS.ENTER.code,
+      },
+      key: {
+        get: () => KEYS.ENTER.code,
+      },
+      keyCode: {
+        get: () => KEYS.ENTER.keyCode,
+      },
     });
     SHIFT_ENTER_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_ENTER_EVENT, {
-      code: { get: () => KEYS.ENTER.code },
-      key: { get: () => KEYS.ENTER.code },
-      keyCode: { get: () => KEYS.ENTER.keyCode },
-      shiftKey: { get: () => true },
+      code: {
+        get: () => KEYS.ENTER.code,
+      },
+      key: {
+        get: () => KEYS.ENTER.code,
+      },
+      keyCode: {
+        get: () => KEYS.ENTER.keyCode,
+      },
+      shiftKey: {
+        get: () => true,
+      },
     });
 
     /**
@@ -582,7 +677,7 @@ describe(`TsCSVEntryComponent`, function() {
     });
 
 
-    test(`should respect output format of tsv`, fakeAsync((done) => {
+    test(`should respect output format of tsv`, fakeAsync(done => {
       jest.useFakeTimers();
       expect(firstHeaderCell.value).toEqual('');
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -601,7 +696,7 @@ describe(`TsCSVEntryComponent`, function() {
     }));
 
 
-    test(`should respect output format of csv`, fakeAsync((done) => {
+    test(`should respect output format of csv`, fakeAsync(done => {
       jest.useFakeTimers();
       expect(firstHeaderCell.value).toEqual('');
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -657,6 +752,11 @@ describe(`TsCSVEntryComponent`, function() {
     });
 
 
+    test(`should do nothing if the event has no target`, () => {
+      expect(component.onScroll({} as any)).toEqual(undefined);
+    });
+
+
     test(`should prevent the default event when reaching the left edge`, () => {
       component.onScroll(event);
       expect(event.preventDefault).not.toHaveBeenCalled();
@@ -665,16 +765,6 @@ describe(`TsCSVEntryComponent`, function() {
 
       component.onScroll(event);
       expect(event.preventDefault).toHaveBeenCalled();
-
-      // Check that it works with srcElement instead
-      Object.defineProperties(event, {
-        target: {
-          value: null,
-        },
-      });
-
-      component.onScroll(event);
-      expect(event.preventDefault).toHaveBeenCalledTimes(2);
     });
 
 
@@ -728,7 +818,8 @@ describe(`TsCSVEntryComponent`, function() {
 
   });
 
-  test(`should correctly handle commas and quotes`, fakeAsync((done) => {
+
+  test(`should correctly handle commas and quotes`, fakeAsync(done => {
     jest.useFakeTimers();
     hostComponent.outputFormat = 'csv';
     firstHeaderCell.dispatchEvent(createPasteEvent(formContentWithQuotesAndCommas));
@@ -746,5 +837,21 @@ describe(`TsCSVEntryComponent`, function() {
     };
     reader.readAsText(content);
   }));
+
+
+  describe(`collectErrors`, function() {
+
+    test(`should return null if the form group is not found`, function() {
+      component.recordsForm = new FormGroup({});
+      expect(component.collectErrors()).toEqual(null);
+    });
+
+
+    test(`should return null if no errors exist`, function() {
+      component['getFormErrors'] = jest.fn(() => null);
+      expect(component.collectErrors()).toEqual(null);
+    });
+
+  });
 
 });

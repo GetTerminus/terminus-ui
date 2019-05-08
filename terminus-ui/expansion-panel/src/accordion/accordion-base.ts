@@ -1,6 +1,8 @@
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { InjectionToken } from '@angular/core';
 
+import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
+
 
 /**
  * Base interface for a {@link TsAccordionComponent}
@@ -14,7 +16,7 @@ export interface TsAccordionBase extends CdkAccordion {
   /**
    * Handle focus events on the panel triggers
    */
-  handleTriggerFocus: (trigger: any) => void;
+  handleTriggerFocus: (trigger: TsExpansionPanelTriggerComponent) => void;
 
   /**
    * Determine if the toggle icon should be hidden

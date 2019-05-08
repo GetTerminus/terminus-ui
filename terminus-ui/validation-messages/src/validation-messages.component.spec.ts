@@ -1,7 +1,7 @@
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
+import { TsValidationMessagesServiceMock } from '@terminus/ui/validation-messages/testing';
 import { TsValidationMessagesComponent } from './validation-messages.component';
-import { TsValidationMessagesServiceMock } from './validation-messages.service.mock';
 
 
 describe('InputMessagesComponent', function() {

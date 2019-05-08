@@ -1,4 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+} from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 

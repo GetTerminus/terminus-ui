@@ -52,8 +52,8 @@ let nextUniqueId = 0;
  */
 @Component({
   selector: 'ts-autocomplete-panel',
-  templateUrl: 'autocomplete-panel.component.html',
-  styleUrls: ['autocomplete-panel.component.scss'],
+  templateUrl: './autocomplete-panel.component.html',
+  styleUrls: ['./autocomplete-panel.component.scss'],
   host: {
     class: 'ts-autocomplete-panel qa-autocomplete-panel',
   },
@@ -83,7 +83,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Define the default component ID
    */
-  readonly uid = `ts-select-autocomplete-${nextUniqueId++}`;
+  public readonly uid = `ts-select-autocomplete-${nextUniqueId++}`;
 
   /**
    * VIEW ACCESS
@@ -93,6 +93,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * Access the template. Used by {@link TsAutocompleteTriggerDirective}
    */
   @ViewChild(TemplateRef)
+  // tslint:disable-next-line no-any
   public template!: TemplateRef<any>;
 
   /**
@@ -114,6 +115,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * Function that maps an option's control value to its display value in the trigger
    */
   @Input()
+  // tslint:disable-next-line no-any
   public displayWith: ((value: any) => string) | null = null;
 
   /**
@@ -155,19 +157,19 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * Event that is emitted whenever an option from the list is selected
    */
   @Output()
-  readonly optionSelected = new EventEmitter<TsAutocompletePanelSelectedEvent>();
+  public readonly optionSelected = new EventEmitter<TsAutocompletePanelSelectedEvent>();
 
   /**
    * Event that is emitted when the autocomplete panel is opened
    */
   @Output()
-  readonly opened = new EventEmitter<void>();
+  public readonly opened = new EventEmitter<void>();
 
   /**
    * Event that is emitted when the autocomplete panel is closed
    */
   @Output()
-  readonly closed = new EventEmitter<void>();
+  public readonly closed = new EventEmitter<void>();
 
 
   constructor(

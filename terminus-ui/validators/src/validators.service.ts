@@ -22,19 +22,19 @@ import { urlValidator } from './validators/url/url';
  */
 @Injectable()
 export class TsValidatorsService {
-  creditCard = creditCardValidator;
-  domain = domainValidator;
-  email = emailValidator;
-  equalToControl = equalToControlValidator;
-  greaterThan = greaterThanValidator;
-  inCollection = inCollectionValidator;
-  isInRange = isInRangeValidator;
-  lessThan = lessThanValidator;
-  lowercase = lowercaseValidator;
-  maxDate = maxDateValidator;
-  minDate = minDateValidator;
-  numbers = numbersValidator;
-  password = passwordValidator;
-  uppercase = uppercaseValidator;
-  url = urlValidator;
+  public creditCard = creditCardValidator;
+  public domain = domainValidator;
+  public email = emailValidator;
+  public equalToControl = equalToControlValidator;
+  public greaterThan = greaterThanValidator;
+  public inCollection = inCollectionValidator;
+  public isInRange = isInRangeValidator;
+  public lessThan = lessThanValidator;
+  public lowercase = lowercaseValidator;
+  public maxDate = maxDateValidator;
+  public minDate = minDateValidator;
+  public numbers = numbersValidator;
+  public password = passwordValidator;
+  public uppercase = uppercaseValidator;
+  public url = urlValidator;
 }

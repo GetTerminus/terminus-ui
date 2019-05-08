@@ -2,22 +2,27 @@ import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
+import { Component } from '@angular/core';
 import {
-  AfterViewInit,
-  Component,
-} from '@angular/core';
-import {
+  TsChart,
+  tsChartChordTypeCheck,
   TsChartComponent,
+  tsChartMapTypeCheck,
+  tsChartPieTypeCheck,
+  tsChartRadarTypeCheck,
+  tsChartSankeyTypeCheck,
+  tsChartTreeTypeCheck,
   TsChartVisualizationOptions,
+  tsChartXYTypeCheck
 } from '@terminus/ui/chart';
 
-const XY_DATA: {[key: string]: any}[] = [];
+const XY_DATA: Record<string, any>[] = [];
 let visits = 10;
 for (let i = 1; i < 366; i++) {
   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-  XY_DATA.push({ date: new Date(2018, 0, i), name: 'name' + i, value: visits });
+  XY_DATA.push({ date: new Date(2018, 0, i), name: `name${i}`, value: visits });
 }
-const MAP_DATA: {[key: string]: any}[] = [{
+const MAP_DATA: Record<string, any>[] = [{
   latitude: 48.856614,
   longitude: 2.352222,
   title: 'Paris',
@@ -38,40 +43,38 @@ const MAP_DATA: {[key: string]: any}[] = [{
   selector: 'demo-chart',
   templateUrl: './chart.component.html',
 })
-export class ChartComponent implements AfterViewInit {
+export class ChartComponent {
   public visualizationOptions: TsChartVisualizationOptions[] = [
     'xy',
     'pie',
     'map',
     'radar',
-    'treemap',
+    'tree',
     'sankey',
     'chord',
   ];
   visualization: TsChartVisualizationOptions = this.visualizationOptions[0];
 
 
-  ngAfterViewInit() {
-  }
-
-  chartCreated(chart) {
+  chartCreated(chart: TsChart) {
     this.setChartData(chart, this.visualization);
   }
 
 
-  // Currently using `any` here as I'm not sure how to let the consumer know what type is returned
-  setChartData(chart: any, type: TsChartVisualizationOptions) {
+  setChartData(chart: TsChart, type: TsChartVisualizationOptions) {
     /**
      * XY
      */
-    if (type === 'xy') {
+    if (tsChartXYTypeCheck(chart)) {
       chart.data = XY_DATA;
 
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
       dateAxis.renderer.grid.template.location = 0;
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.tooltip.disabled = true;
+      if (valueAxis.tooltip) {
+        valueAxis.tooltip.disabled = true;
+      }
       valueAxis.renderer.minWidth = 35;
 
       const series = chart.series.push(new am4charts.LineSeries());
@@ -89,12 +92,9 @@ export class ChartComponent implements AfterViewInit {
     /**
      * MAP
      */
-    if (type === 'map') {
+    if (tsChartMapTypeCheck(chart)) {
       const polygonSeries = new am4maps.MapPolygonSeries();
       polygonSeries.useGeodata = true;
-      /*
-       *polygonSeries.exclude = ['AQ'];
-       */
       polygonSeries.include = [
         'PT', 'ES', 'FR', 'DE', 'BE', 'NL', 'IT', 'AT', 'GB', 'IE', 'CH', 'LU', 'GF', 'SR', 'GY', 'VE', 'CO', 'EC', 'PE', 'BO', 'CL', 'AR',
         'PY', 'UY', 'US', 'MX', 'CA', 'BR', 'PA', 'DR', 'HT', 'JM', 'CU', 'PA', 'CR', 'NI', 'HN', 'GT', 'MX',
@@ -150,7 +150,7 @@ export class ChartComponent implements AfterViewInit {
     /**
      * PIE
      */
-    if (type === 'pie') {
+    if (tsChartPieTypeCheck(chart)) {
       chart.data = [
         {
           country: 'Lithuania',
@@ -204,7 +204,7 @@ export class ChartComponent implements AfterViewInit {
     /**
      * RADAR
      */
-    if (type === 'radar') {
+    if (tsChartRadarTypeCheck(chart)) {
       chart.data = [
         {
           category: 'One',
@@ -266,12 +266,13 @@ export class ChartComponent implements AfterViewInit {
 
       chart.padding(20, 20, 20, 20);
 
-      const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      // NOTE: Not sure why the following `as any`s are needed. This code comes directly from AMCharts docs.
+      const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis() as any);
       categoryAxis.dataFields.category = 'category';
       categoryAxis.renderer.labels.template.location = 0.5;
       categoryAxis.renderer.tooltipLocation = 0.5;
 
-      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis() as any);
       valueAxis.tooltip.disabled = true;
       valueAxis.renderer.labels.template.horizontalCenter = 'left';
       valueAxis.min = 0;
@@ -314,7 +315,7 @@ export class ChartComponent implements AfterViewInit {
 
       chart.cursor = new am4charts.RadarCursor();
       chart.cursor.xAxis = categoryAxis;
-      chart.cursor.fullWidthXLine = true;
+      chart.cursor.fullWidthLineX = true;
       chart.cursor.lineX.strokeOpacity = 0;
       chart.cursor.lineX.fillOpacity = 0.1;
       chart.cursor.lineX.fill = am4core.color('#000000');
@@ -323,7 +324,7 @@ export class ChartComponent implements AfterViewInit {
     /**
      * TREEMAP
      */
-    if (type === 'treemap') {
+    if (tsChartTreeTypeCheck(chart)) {
       chart.data = [{
         name: 'First',
         children: [
@@ -401,7 +402,7 @@ export class ChartComponent implements AfterViewInit {
     /**
      * SANKEY
      */
-    if (type === 'sankey') {
+    if (tsChartSankeyTypeCheck(chart)) {
       // Set data
       chart.data = [
         { from: 'A', to: 'D', value: 10, nodeColor: '#06D6A0' },
@@ -435,7 +436,7 @@ export class ChartComponent implements AfterViewInit {
     /**
      * CHORD
      */
-    if (type === 'chord') {
+    if (tsChartChordTypeCheck(chart)) {
       chart.data = [
         { from: 'A', to: 'D', value: 10, nodeColor: '#CDCDCD' },
         { from: 'B', to: 'D', value: 8, nodeColor: '#06D6A0', linkColor: '#06D6A0', linkOpacity: 1 },
