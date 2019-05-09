@@ -214,6 +214,7 @@ export class TsAutocompleteChange {
 })
 export class TsAutocompleteComponent implements OnInit,
   AfterContentInit,
+  AfterViewInit,
   OnChanges,
   OnDestroy,
   TsFormFieldControl<any> {
@@ -229,8 +230,8 @@ export class TsAutocompleteComponent implements OnInit,
   public autocompleteSelections: string[] = [];
 
   /**
-  * Store a reference to the document object
-  */
+   * Store a reference to the document object
+   */
   private document: Document;
 
   /**
@@ -305,8 +306,8 @@ export class TsAutocompleteComponent implements OnInit,
   ];
 
   /**
-  * The scroll position of the overlay panel, calculated to center the selected option.
-  */
+   * The scroll position of the overlay panel, calculated to center the selected option.
+   */
   private scrollTop = 0;
 
   // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
@@ -547,27 +548,6 @@ export class TsAutocompleteComponent implements OnInit,
   }
   private _chipFormatUIFn!: TsAutocompleteFormatterFn;
 
-  /**
-   * Function to compare the option values with the selected values. The first argument
-   * is a value from an option. The second is a value from the selection. A boolean
-   * should be returned.
-   *
-   * Learn more about `compareWith` in the Angular docs:
-   * https://angular.io/api/forms/SelectControlValueAccessor#customizing-option-selection
-   */
-  // @Input()
-  // public set compareWith(fn: TsSelectOptionCompareWith) {
-  //   if (typeof fn !== 'function' && isDevMode()) {
-  //     console.warn(`TsSelectComponent: "compareWith" must be a function. Falling back to the default.`);
-  //     this._compareWith = DEFAULT_COMPARE_WITH;
-  //   }
-
-  //   this._compareWith = fn;
-  // }
-  // public get compareWith(): TsSelectOptionCompareWith {
-  //   return this._compareWith;
-  // }
-  // private _compareWith: TsSelectOptionCompareWith = DEFAULT_COMPARE_WITH;
 
   /**
    * Define a debounce delay for the query stream
@@ -581,27 +561,16 @@ export class TsAutocompleteComponent implements OnInit,
   }
   private _debounceDelay: number = 200;
 
-  // /**
-  //  * Define the delimiter used in the list of selected options
-  //  */
-  // @Input()
-  // public set delimiter(value: string) {
-  //   this._delimiter = isString(value) ? value : DEFAULT_DELIMITER;
-  // }
-  // public get delimiter(): string {
-  //   return this._delimiter;
-  // }
-  // private _delimiter: string = DEFAULT_DELIMITER;
 
   /**
- * Define if the required marker should be hidden
- */
+   * Define if the required marker should be hidden
+   */
   @Input()
   public hideRequiredMarker = false;
 
   /**
- * Define a hint for the input
- */
+   * Define a hint for the input
+   */
   @Input()
   public set hint(value: string | undefined) {
     this._hint = value;
@@ -675,8 +644,8 @@ export class TsAutocompleteComponent implements OnInit,
   public showProgress = false;
 
   /**
-  * Define the tab index for the component
-  */
+   * Define the tab index for the component
+   */
   @Input()
   public set tabIndex(value: string | number) {
     this._tabIndex = coerceNumberProperty(value);
@@ -711,59 +680,6 @@ export class TsAutocompleteComponent implements OnInit,
     return this._value;
   }
   private _value: any;
-
-
-
-  /**
-   * Provide access to the input element
-   */
-  // @ViewChild('autocomplete')
-  // public autocomplete!: MatAutocomplete;
-
-  /**
-   * Provide access to the input element
-   */
-  // @ViewChild('autocompleteTrigger')
-  // set autocompleteTrigger(value: MatAutocompleteTrigger) {
-  //   this.trigger = value;
-  // }
-  // get autocompleteTrigger(): MatAutocompleteTrigger {
-  //   return this.trigger;
-  // }
-  // private trigger!: MatAutocompleteTrigger;
-
-  /**
-   * Provide direct access to the input
-   */
-  // @ViewChild('input')
-  // public input!: ElementRef;
-
-
-
-  // /**
-  //  * A function to output the UI text from the selected item
-  //  *
-  //  * When undefined the full selection object will be used as the display value
-  //  */
-  // @Input()
-  // public set displayWith(value: TsAutocompleteFormatterFn) {
-  //   if (!value) {
-  //     return;
-  //   }
-
-  //   if (isFunction(value)) {
-  //     this.uiFormatFn = value;
-  //   } else {
-  //     // istanbul ignore else
-  //     if (isDevMode()) {
-  //       throw Error(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
-  //     }
-  //   }
-  // }
-  // public get displayWith(): TsAutocompleteFormatterFn {
-  //   return this.uiFormatFn;
-  // }
-
 
   /**
    * Define the placeholder/label
@@ -800,49 +716,9 @@ export class TsAutocompleteComponent implements OnInit,
   @Input()
   public name: string | undefined;
 
-  // /**
-  //  * The list of options to display in the drop down
-  //  */
-  // @Input()
-  // public options!: OptionType[];
-
   /**
-   * Define the form control to save selections to
+   * EMITTERS
    */
-  // @Input()
-  // public set selectionsControl(value: FormControl) {
-  //   if (!value) {
-  //     return;
-  //   }
-
-  //   this._selectionsControl = value;
-  // }
-  // public get selectionsControl(): FormControl {
-  //   return this._selectionsControl;
-  // }
-  // private _selectionsControl: FormControl = new FormControl();
-
-  /**
-   * Define items that should be selected when the component loads
-   */
-  // @Input()
-  // public set initialSelections(selections: string[]) {
-  //   // istanbul ignore else
-  //   if (selections) {
-  //     // Seed the array
-  //     this.autocompleteSelections = coerceArray(selections.slice());
-
-  //     // istanbul ignore else
-  //     if (this.selectionsControl && this.selectionsControl.setValue) {
-  //       // Seed the formControl
-  //       this.selectionsControl.setValue(this.autocompleteSelections.slice());
-  //     }
-  //   }
-  // }
-
-  /**
-  * EMITTERS
-  */
 
   /**
    * Event for when the panel is closed
@@ -943,7 +819,6 @@ export class TsAutocompleteComponent implements OnInit,
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
           .subscribe((newValue) => {
-            debugger;
             // istanbul ignore else
             if (newValue) {
               this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
@@ -1065,8 +940,8 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
-  * Open the overlay panel
-  */
+   * Open the overlay panel
+   */
   public open(): void {
     if (this.isDisabled || !this.options || !this.options.length || this.panelOpen) {
       return;
@@ -1162,7 +1037,9 @@ export class TsAutocompleteComponent implements OnInit,
       event.preventDefault();
       this.open();
     } else if (!this.allowMultiple) {
-      this.keyManager.onKeydown(event);
+      if (this.keyManager) {
+        this.keyManager.onKeydown(event);
+      }
     }
   }
 
@@ -1250,8 +1127,8 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
-  * Scroll the active option into view
-  */
+   * Scroll the active option into view
+   */
   private scrollActiveOptionIntoView(): void {
     const activeOptionIndex = this.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
@@ -1266,10 +1143,10 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
-  * Get the panel's scrollTop
-  *
-  * @return The scrollTop number
-  */
+   * Get the panel's scrollTop
+   *
+   * @return The scrollTop number
+   */
   private getPanelScrollTop(): number {
     return this.panel ? this.panel.nativeElement.scrollTop : 0;
   }
@@ -1299,10 +1176,10 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
-  * Emit a change event to set the model value
-  *
-  * @param fallbackValue - A fallback value to use when no selection exists
-  */
+   * Emit a change event to set the model value
+   *
+   * @param fallbackValue - A fallback value to use when no selection exists
+   */
   private propagateChanges(fallbackValue?: any): void {
     let valueToEmit: any = null;
 
@@ -1435,7 +1312,6 @@ export class TsAutocompleteComponent implements OnInit,
    * @param selection - The item to select
    */
   public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
-    debugger;
     const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
 
     // istanbul ignore else

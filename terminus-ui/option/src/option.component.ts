@@ -18,6 +18,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
@@ -91,8 +92,8 @@ let nextUniqueId = 0;
  * Single option inside of a {@link TsSelectComponent}
  *
  * #### QA CSS CLASSES
- * - `qa-autocomplete-option-checkbox`: The option checkbox
- * - `qa-autocomplete-option-text`: The option text content
+ * - `qa-option-checkbox`: The option checkbox
+ * - `qa-option-text`: The option text content
  *
  * @example
  * <ts-select-option
@@ -170,6 +171,16 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
    * Whether or not the option is currently selected
    */
   public selected = false;
+
+  /**
+   * Whether parent component is an autocomplete component
+   */
+  public autocompleteComponent = false;
+
+  /**
+   * Whether parent component is an autocomplete component
+   */
+  public selectComponent = false;
 
   /**
    * Returns the correct tabindex for the option depending on the disabled state
@@ -276,7 +287,17 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     // Injecting via a provider helps us get around the circular dependency created by importing TsSelectComponent here.
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) private parent: TsOptionParentComponent,
     @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) readonly group: TsOptgroupParentComponent,
-  ) {}
+    private viewContainerRef: ViewContainerRef,
+  ) {
+    if (this.viewContainerRef['_data'].componentView) {
+      const parentComponent = this.viewContainerRef['_data'].componentView.parent.component.constructor.name.toLowerCase();
+      if (parentComponent.includes('autocomplete')) {
+        this.autocompleteComponent = true;
+      } else if (parentComponent.includes('select')) {
+        this.selectComponent = true;
+      }
+    }
+  }
 
 
   /**

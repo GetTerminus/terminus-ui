@@ -23,8 +23,7 @@ import {
   typeInElement,
 } from '@terminus/ngx-tools/testing';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
-import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
-import * as testComponents from '../testing/src/public-api';
+import * as testComponents from '@terminus/ui/select/testing';
 import {
   getAllChipInstances,
   getAutocompleteElement,
@@ -36,7 +35,8 @@ import {
   getOptgroupElement,
   getOptionElement,
   getOptionInstance,
-} from '../testing/src/public-api';
+} from '@terminus/ui/select/testing';
+import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 import { TsAutocompleteFormatFn, TsAutocompleteModule } from './autocomplete.module';
 
 
