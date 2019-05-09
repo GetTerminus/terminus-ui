@@ -154,22 +154,14 @@ describe(`TsAccordionComponent`, function() {
       const spaceEvent = document.createEvent('KeyboardEvent');
       spaceEvent.initEvent('keydown', true, false);
       Object.defineProperties(spaceEvent, {
-        code: {
-          get: () => KEYS.SPACE.code,
-        },
-        key: {
-          get: () => KEYS.SPACE.code,
-        },
+        code: {get: () => KEYS.SPACE.code},
+        key: {get: () => KEYS.SPACE.code},
       });
       const enterEvent = document.createEvent('KeyboardEvent');
       enterEvent.initEvent('keydown', true, false);
       Object.defineProperties(enterEvent, {
-        code: {
-          get: () => KEYS.ENTER.code,
-        },
-        key: {
-          get: () => KEYS.ENTER.code,
-        },
+        code: {get: () => KEYS.ENTER.code},
+        key: {get: () => KEYS.ENTER.code},
       });
 
       trigger1.dispatchEvent(spaceEvent);

@@ -99,12 +99,8 @@ describe(`TsDateRangeComponent`, function() {
         endInputInstance.inputElement.nativeElement.blur();
         fixture.detectChanges();
 
-        expect(startInputInstance.formControl.errors).toEqual({
-          required: true,
-        });
-        expect(endInputInstance.formControl.errors).toEqual({
-          required: true,
-        });
+        expect(startInputInstance.formControl.errors).toEqual({required: true});
+        expect(endInputInstance.formControl.errors).toEqual({required: true});
         jest.runAllTimers();
         expect.assertions(4);
       });

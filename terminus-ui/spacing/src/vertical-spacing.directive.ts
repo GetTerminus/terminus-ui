@@ -45,9 +45,7 @@ export type TsVerticalSpacingTypes
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
  */
-@Directive({
-  selector: '[tsVerticalSpacing]',
-})
+@Directive({selector: '[tsVerticalSpacing]'})
 export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value

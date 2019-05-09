@@ -9,9 +9,7 @@
  * @return A new object
  */
 export function merge(obj1: object, obj2: object): object {
-  const freshObject: object = {
-    ...obj1,
-  };
+  const freshObject: object = {...obj1};
 
   for (const n in obj2) {
     if (typeof freshObject[n] !== 'object') {

@@ -17,9 +17,7 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsTimeAgo',
-})
+@Pipe({name: 'tsTimeAgo'})
 export class TsTimeAgoPipe implements PipeTransform {
   public transform(value: string | Date, comparedDate: string | Date): string | undefined {
     // Check for null values to avoid issues during data-binding

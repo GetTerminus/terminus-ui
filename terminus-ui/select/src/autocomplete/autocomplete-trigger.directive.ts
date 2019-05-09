@@ -547,9 +547,7 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
 
     if (this.overlayRef) {
       // Update the panel width in case anything has changed
-      this.overlayRef.updateSize({
-        width: this.getPanelWidth(),
-      });
+      this.overlayRef.updateSize({width: this.getPanelWidth()});
     } else {
       this.portal = new TemplatePortal(this.autocompletePanel.template, this.viewContainerRef);
       this.overlayRef = this.overlay.create(this.getOverlayConfig());
@@ -566,9 +564,7 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
 
       this.viewportSubscription = this.viewportRuler.change().subscribe(() => {
         if (this.panelOpen && this.overlayRef) {
-          this.overlayRef.updateSize({
-            width: this.getPanelWidth(),
-          });
+          this.overlayRef.updateSize({width: this.getPanelWidth()});
         }
       });
     }

@@ -29,9 +29,7 @@ describe(`TsDateAdapter`, () => {
  */
 
 
-@Component({
-  template: ``,
-})
+@Component({template: ``})
 class DemoComponent implements OnInit {
 
   constructor(

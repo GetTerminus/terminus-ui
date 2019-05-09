@@ -232,9 +232,7 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(1);
-      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({
-        index: 1,
-      }));
+      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({index: 1}));
     });
 
 
@@ -258,23 +256,15 @@ describe(`TsTabCollectionComponent`, function() {
       const KEY_EVENT = document.createEvent('KeyboardEvent');
       KEY_EVENT.initEvent('keydown', true, false);
       Object.defineProperties(KEY_EVENT, {
-        code: {
-          get: () => KEYS.LEFT_ARROW.code,
-        },
-        key: {
-          get: () => KEYS.LEFT_ARROW.code,
-        },
-        keyCode: {
-          get: () => KEYS.LEFT_ARROW.keyCode,
-        },
+        code: {get: () => KEYS.LEFT_ARROW.code},
+        key: {get: () => KEYS.LEFT_ARROW.code},
+        keyCode: {get: () => KEYS.LEFT_ARROW.keyCode},
       });
       tabLabelContainer.dispatchEvent(KEY_EVENT);
       fixture.detectChanges();
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(2);
-      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({
-        index: 0,
-      }));
+      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({index: 0}));
     });
 
   });
@@ -638,11 +628,7 @@ describe(`TsTabCollectionComponent`, function() {
 
 
       const bodyInstance = fixture.debugElement.query(By.css('.ts-tab-body')).componentInstance;
-      Object.defineProperties(instance.tabBodyWrapper.nativeElement, {
-        offsetHeight: {
-          get: () => '80px',
-        },
-      });
+      Object.defineProperties(instance.tabBodyWrapper.nativeElement, {offsetHeight: {get: () => '80px'}});
 
       instance.setTabBodyWrapperHeight(75);
       fixture.detectChanges();

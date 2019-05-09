@@ -780,10 +780,10 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@terminus/eslint-config-frontend@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@terminus/eslint-config-frontend/-/eslint-config-frontend-1.0.2.tgz#d155a0f8162dc452a1d03341dd24ec02293ab45b"
-  integrity sha512-GLfmGaQEzJW2B5S1oLjh45a9oM/bbrhTPxktZfybiQjeoIM8EG1AqoHgBxlqeZWrHBKq4RaRtrvwPKbGrhQa+w==
+"@terminus/eslint-config-frontend@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@terminus/eslint-config-frontend/-/eslint-config-frontend-1.0.3.tgz#2641a474f0ea9463022c692acb151f2d0babb8e6"
+  integrity sha512-kjUY4L2VUpQsLxgKT5wy5ElLO3YzzPVuPt6XQh8Yaz20788GxEzXrU4Hh3tqqpnlhJ3QFWowvITVwShiLSgWTQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^1.4.2"
     "@typescript-eslint/eslint-plugin-tslint" "^1.4.2"

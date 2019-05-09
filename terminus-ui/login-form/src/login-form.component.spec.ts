@@ -66,9 +66,7 @@ describe(`TsLoginFormComponent`, function() {
 
     test(`should reset the form if 'triggerFormReset' was the passed in change`, () => {
       component['resetForm'] = jest.fn();
-      const changesMock: SimpleChanges = {
-        triggerFormReset: new SimpleChange(true, false, false),
-      };
+      const changesMock: SimpleChanges = {triggerFormReset: new SimpleChange(true, false, false)};
       component.ngOnChanges(changesMock);
 
       expect(component['resetForm']).toHaveBeenCalled();
@@ -77,9 +75,7 @@ describe(`TsLoginFormComponent`, function() {
 
     test(`should not reset the form if 'resetForm' was not passed in with changes`, () => {
       component['resetForm'] = jest.fn();
-      const changesMock: SimpleChanges = {
-        foo: new SimpleChange(true, false, false),
-      };
+      const changesMock: SimpleChanges = {foo: new SimpleChange(true, false, false)};
       component.ngOnChanges(changesMock);
 
       expect(component['resetForm']).not.toHaveBeenCalled();

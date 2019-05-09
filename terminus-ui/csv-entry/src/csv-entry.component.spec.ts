@@ -105,9 +105,7 @@ describe(`TsCSVEntryComponent`, function() {
   const createPasteEvent = (content: TsCSVFormContents): ClipboardEvent => {
     const event = createFakeEvent('paste') as ClipboardEvent;
     const stringValue = stringifyForm(content);
-    (event.clipboardData as any) = {
-      getData: jest.fn().mockReturnValue(stringValue),
-    };
+    (event.clipboardData as any) = {getData: jest.fn().mockReturnValue(stringValue)};
     return event;
   };
   let ENTER_EVENT: KeyboardEvent;
@@ -246,60 +244,32 @@ describe(`TsCSVEntryComponent`, function() {
     TAB_EVENT = document.createEvent('KeyboardEvent');
     TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(TAB_EVENT, {
-      code: {
-        get: () => KEYS.TAB.code,
-      },
-      key: {
-        get: () => KEYS.TAB.code,
-      },
-      keyCode: {
-        get: () => KEYS.TAB.keyCode,
-      },
+      code: {get: () => KEYS.TAB.code},
+      key: {get: () => KEYS.TAB.code},
+      keyCode: {get: () => KEYS.TAB.keyCode},
     });
     SHIFT_TAB_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_TAB_EVENT, {
-      code: {
-        get: () => KEYS.TAB.code,
-      },
-      key: {
-        get: () => KEYS.TAB.code,
-      },
-      keyCode: {
-        get: () => KEYS.TAB.keyCode,
-      },
-      shiftKey: {
-        get: () => true,
-      },
+      code: {get: () => KEYS.TAB.code},
+      key: {get: () => KEYS.TAB.code},
+      keyCode: {get: () => KEYS.TAB.keyCode},
+      shiftKey: {get: () => true},
     });
     ENTER_EVENT = document.createEvent('KeyboardEvent');
     ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(ENTER_EVENT, {
-      code: {
-        get: () => KEYS.ENTER.code,
-      },
-      key: {
-        get: () => KEYS.ENTER.code,
-      },
-      keyCode: {
-        get: () => KEYS.ENTER.keyCode,
-      },
+      code: {get: () => KEYS.ENTER.code},
+      key: {get: () => KEYS.ENTER.code},
+      keyCode: {get: () => KEYS.ENTER.keyCode},
     });
     SHIFT_ENTER_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_ENTER_EVENT, {
-      code: {
-        get: () => KEYS.ENTER.code,
-      },
-      key: {
-        get: () => KEYS.ENTER.code,
-      },
-      keyCode: {
-        get: () => KEYS.ENTER.keyCode,
-      },
-      shiftKey: {
-        get: () => true,
-      },
+      code: {get: () => KEYS.ENTER.code},
+      key: {get: () => KEYS.ENTER.code},
+      keyCode: {get: () => KEYS.ENTER.keyCode},
+      shiftKey: {get: () => true},
     });
 
     /**
@@ -365,9 +335,7 @@ describe(`TsCSVEntryComponent`, function() {
 
       const stringRecords = 'bing4\tbang4\r\nbing5\tbang5\r\n';
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {
-        getData: jest.fn().mockReturnValue(stringRecords),
-      };
+      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue(stringRecords)};
       row2Cell1.dispatchEvent(event);
       fixture.detectChanges();
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
@@ -380,9 +348,7 @@ describe(`TsCSVEntryComponent`, function() {
 
     test(`should not create new rows when pasting content to a single cell`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {
-        getData: jest.fn().mockReturnValue('new'),
-      };
+      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue('new')};
       component['splitContent'] = jest.fn();
       component.onPaste(event);
 
@@ -392,9 +358,7 @@ describe(`TsCSVEntryComponent`, function() {
 
     test(`should do nothing if the paste event has no content`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {
-        getData: jest.fn().mockReturnValue(''),
-      };
+      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue('')};
       component['splitContent'] = jest.fn();
       component.onPaste(event);
 
@@ -731,18 +695,10 @@ describe(`TsCSVEntryComponent`, function() {
       event = createFakeEvent('scroll') as WheelEvent;
       event.preventDefault = jest.fn();
       Object.defineProperties(event, {
-        target: {
-          value: target,
-        },
-        srcElement: {
-          value: target,
-        },
-        screenY: {
-          value: 200,
-        },
-        deltaX: {
-          value: -1,
-        },
+        target: {value: target},
+        srcElement: {value: target},
+        screenY: {value: 200},
+        deltaX: {value: -1},
       });
     });
 
@@ -769,11 +725,7 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should prevent the default event when reaching the right edge`, () => {
-      Object.defineProperties(event, {
-        deltaX: {
-          value: 1,
-        },
-      });
+      Object.defineProperties(event, {deltaX: {value: 1}});
       component.onScroll(event);
       expect(event.preventDefault).not.toHaveBeenCalled();
 

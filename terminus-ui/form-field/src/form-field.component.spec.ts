@@ -186,9 +186,7 @@ describe(`TsFormFieldComponent`, function() {
     expect(formField.shouldAlwaysFloat).toBe(false);
     expect(formField.floatLabel).toBe('always');
 
-    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), {
-      propertyName: 'transform',
-    });
+    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), {propertyName: 'transform'});
 
     label.dispatchEvent(fakeEvent);
     fixture.detectChanges();
@@ -344,9 +342,7 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
 class MyDocumentService extends TsDocumentServiceMock {
   shouldContain = true;
   document: any = {
-    documentElement: {
-      contains: jest.fn(() => false),
-    },
+    documentElement: {contains: jest.fn(() => false)},
     createEvent() {
       return document.createEvent('Event');
     },

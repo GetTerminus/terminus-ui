@@ -19,9 +19,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   },
   {
     name: 'NAV_ITEM_THREE',
-    action: {
-      type: 'foo:bar',
-    },
+    action: {type: 'foo:bar'},
     alwaysHidden: true,
   },
   {
@@ -49,21 +47,9 @@ const USER_MOCK_23 = {
 };
 
 const visibleLinkElementMock = [
-  {
-    nativeElement: {
-      offsetWidth: 50,
-    },
-  },
-  {
-    nativeElement: {
-      offsetWidth: 100,
-    },
-  },
-  {
-    nativeElement: {
-      offsetWidth: 200,
-    },
-  },
+  {nativeElement: {offsetWidth: 50}},
+  {nativeElement: {offsetWidth: 100}},
+  {nativeElement: {offsetWidth: 200}},
 ];
 
 
@@ -228,11 +214,7 @@ describe(`TsNavigationComponent`, function() {
     // NOTE: For some reason we need to re-declare the visibleItemsList element each time. Using the
     // mock created very odd issues even when using Object.assign or {...}
     beforeEach(() => {
-      component.visibleItemsList = {
-        nativeElement: {
-          offsetWidth: 180,
-        },
-      };
+      component.visibleItemsList = {nativeElement: {offsetWidth: 180}};
       component.visibleLinkElement = visibleLinkElementMock as any;
       component['breakWidths'] = [50, 150, 350];
       component.items = NAV_ITEMS_MOCK;
@@ -261,11 +243,7 @@ describe(`TsNavigationComponent`, function() {
         expect(component.visibleItemsLength).toEqual(2);
         expect(component.hiddenItems.getValue().length).toEqual(1);
 
-        component.visibleItemsList = {
-          nativeElement: {
-            offsetWidth: 380,
-          },
-        };
+        component.visibleItemsList = {nativeElement: {offsetWidth: 380}};
         component['updateLists']();
 
         const actualVisableLength = component.visibleItems.getValue().length;

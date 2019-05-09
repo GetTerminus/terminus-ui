@@ -33,9 +33,7 @@ import {
   selector: 'ts-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
-  host: {
-    class: 'ts-link',
-  },
+  host: {class: 'ts-link'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLink',

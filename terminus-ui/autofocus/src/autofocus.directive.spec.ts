@@ -26,9 +26,7 @@ describe(`TsAutofocusDirective`, function() {
       new ElementRefMock(),
       new ChangeDetectorRefMock(),
     );
-    directive['elementRef'].nativeElement = {
-      focus: jest.fn(),
-    };
+    directive['elementRef'].nativeElement = {focus: jest.fn()};
     directive['changeDetectorRef'].detectChanges = jest.fn();
     directive.tsAutofocus = '';
   };

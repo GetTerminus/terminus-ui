@@ -3,12 +3,8 @@ import { TsScrollbarsComponent } from './scrollbars.component';
 
 const divMock = document.createElement('div');
 Object.defineProperties(divMock, {
-  scrollHeight: {
-    get: () => 300,
-  },
-  scrollWidth: {
-    get: () => 200,
-  },
+  scrollHeight: {get: () => 300},
+  scrollWidth: {get: () => 200},
 });
 
 class PerfectScrollbarDirectiveMock {
@@ -22,9 +18,7 @@ class PerfectScrollbarDirectiveMock {
     x: this.elementRef.nativeElement.scrollLeft,
     y: this.elementRef.nativeElement.scrollTop,
   }));
-  elementRef = {
-    nativeElement: divMock,
-  };
+  elementRef = {nativeElement: divMock};
   scrollable = jest.fn().mockImplementation(() => true);
   scrollTo = jest.fn();
   scrollToElement = jest.fn();

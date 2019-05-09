@@ -483,9 +483,7 @@ export class TsSelectComponent implements
   /**
    * Access a list of all the defined select options
    */
-  @ContentChildren(TsSelectOptionComponent, {
-    descendants: true,
-  })
+  @ContentChildren(TsSelectOptionComponent, {descendants: true})
   public options!: QueryList<TsSelectOptionComponent>;
 
   /**
@@ -944,9 +942,7 @@ export class TsSelectComponent implements
             // istanbul ignore else
             if (newValue) {
               if (this.autocomplete) {
-                this.autocompleteFormControl.setValue(newValue, {
-                  emitEvent: false,
-                });
+                this.autocompleteFormControl.setValue(newValue, {emitEvent: false});
                 this.autocompleteSelections = this.ngControl.value;
               } else {
                 this.setSelectionByValue(newValue);

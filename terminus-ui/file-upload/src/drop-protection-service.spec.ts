@@ -8,13 +8,9 @@ describe(`TsDropProtectionService`, function() {
   let service: TsDropProtectionService;
   let myWindow: Window;
   const eventDrop = createFakeEvent('drop');
-  Object.defineProperty(eventDrop, 'preventDefault', {
-    value: jest.fn(),
-  });
+  Object.defineProperty(eventDrop, 'preventDefault', {value: jest.fn()});
   const eventDrag = createFakeEvent('dragover');
-  Object.defineProperty(eventDrag, 'preventDefault', {
-    value: jest.fn(),
-  });
+  Object.defineProperty(eventDrag, 'preventDefault', {value: jest.fn()});
 
 
   beforeEach(() => {

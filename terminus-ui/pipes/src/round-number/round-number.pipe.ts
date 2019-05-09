@@ -14,9 +14,7 @@ import { roundNumber } from '@terminus/ngx-tools';
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsRoundNumber',
-})
+@Pipe({name: 'tsRoundNumber'})
 export class TsRoundNumberPipe implements PipeTransform {
   public transform(value: number, precision = 0): number | undefined {
     // Check for null values to avoid issues during data-binding

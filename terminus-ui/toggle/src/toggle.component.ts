@@ -44,9 +44,7 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
   selector: 'ts-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
-  host: {
-    class: 'ts-toggle',
-  },
+  host: {class: 'ts-toggle'},
   providers: [ControlValueAccessorProviderFactory<TsToggleComponent>(TsToggleComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

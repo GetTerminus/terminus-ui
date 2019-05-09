@@ -66,9 +66,7 @@ export const allowedOverlayPositionTypes: TsConfirmationOverlayPositionTypes[] =
  */
 @Directive({
   selector: '[tsConfirmation]',
-  host: {
-    class: 'ts-confirmation',
-  },
+  host: {class: 'ts-confirmation'},
   exportAs: 'tsConfirmation',
 })
 export class TsConfirmationDirective implements OnDestroy, OnInit {

@@ -57,9 +57,7 @@ import {
       useExisting: TsAccordionComponent,
     },
   ],
-  host: {
-    class: 'ts-accordion',
-  },
+  host: {class: 'ts-accordion'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsAccordion',
@@ -73,9 +71,7 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
   /**
    * Collect a list of all triggers
    */
-  @ContentChildren(TsExpansionPanelTriggerComponent, {
-    descendants: true,
-  })
+  @ContentChildren(TsExpansionPanelTriggerComponent, {descendants: true})
   public triggers!: QueryList<TsExpansionPanelTriggerComponent>;
 
   /**

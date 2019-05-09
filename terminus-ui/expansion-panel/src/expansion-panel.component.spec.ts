@@ -125,11 +125,7 @@ describe(`TsExpansionPanelComponent`, function() {
       fixture.detectChanges();
       const trigger = getTriggerInstance(fixture);
       const panel = getPanelInstance(fixture);
-      Object.defineProperties(panel, {
-        contentContainsFocus: {
-          get: () => true,
-        },
-      });
+      Object.defineProperties(panel, {contentContainsFocus: {get: () => true}});
       trigger['focusMonitor'].focusVia = jest.fn();
 
       panel.expanded = false;

@@ -32,15 +32,9 @@ function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    keyCode: {
-      get: () => key.keyCode,
-    },
-    key: {
-      get: () => key.code,
-    },
-    code: {
-      get: () => key.code,
-    },
+    keyCode: {get: () => key.keyCode},
+    key: {get: () => key.code},
+    code: {get: () => key.code},
   });
   event.preventDefault = jest.fn();
   return event;
@@ -236,9 +230,7 @@ describe(`TsTabHeaderComponent`, function() {
 
     test(`should not do anything if a modifier key is pressed`, () => {
       [EVENTS.RIGHT, EVENTS.ENTER].forEach(event => {
-        Object.defineProperty(event, 'shiftKey', {
-          get: () => true,
-        });
+        Object.defineProperty(event, 'shiftKey', {get: () => true});
       });
 
       hostComponent.tabHeader.focusIndex = 0;
@@ -282,28 +274,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {
-            scrollWidth: {
-              get: () => tabElements.length * 100,
-            },
-          });
+          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
 
           // Set container width
-          Object.defineProperties(containerElement, {
-            offsetWidth: {
-              get: () => 300,
-            },
-          });
+          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: {
-                get: () => i * 100,
-              },
-              offsetWidth: {
-                get: () => 100,
-              },
+              offsetLeft: {get: () => i * 100},
+              offsetWidth: {get: () => 100},
             });
           }
         };
@@ -391,28 +371,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {
-            scrollWidth: {
-              get: () => tabElements.length * 100,
-            },
-          });
+          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
 
           // Set container width
-          Object.defineProperties(containerElement, {
-            offsetWidth: {
-              get: () => 300,
-            },
-          });
+          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: {
-                get: () => i * 100,
-              },
-              offsetWidth: {
-                get: () => 100,
-              },
+              offsetLeft: {get: () => i * 100},
+              offsetWidth: {get: () => 100},
             });
           }
         };
@@ -661,26 +629,14 @@ describe(`TsTabHeaderComponent`, function() {
 
       // Set mock dimensions
       const listElement = fixture.componentInstance.tabHeader.tabList.nativeElement;
-      Object.defineProperties(listElement, {
-        scrollWidth: {
-          get: () => 600,
-        },
-      });
-      Object.defineProperties(headerElement, {
-        offsetWidth: {
-          get: () => 300,
-        },
-      });
+      Object.defineProperties(listElement, {scrollWidth: {get: () => 600}});
+      Object.defineProperties(headerElement, {offsetWidth: {get: () => 300}});
 
       // Change label content to trigger update
       labels.forEach(label => {
         label.style.width = '';
         label.textContent += extraText;
-        Object.defineProperties(label, {
-          offsetWidth: {
-            get: () => 200,
-          },
-        });
+        Object.defineProperties(label, {offsetWidth: {get: () => 200}});
       });
 
       mutationCallbacks.forEach(callback => callback());

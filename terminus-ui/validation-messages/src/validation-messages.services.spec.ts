@@ -19,9 +19,7 @@ describe(`TsValidationMessagesService`, function() {
   describe(`getValidatorErrorMessage()`, () => {
 
     test(`should return a supplied minLength message`, () => {
-      const validatorValueMock = {
-        requiredLength: 9,
-      };
+      const validatorValueMock = {requiredLength: 9};
       const actual = service.getValidatorErrorMessage('minLength', validatorValueMock);
       const expected = `be at least 9`;
 
@@ -30,9 +28,7 @@ describe(`TsValidationMessagesService`, function() {
 
 
     test(`should return an error message when supplied lowercase letters less than required`, () => {
-      const validatorValueMock = {
-        lowercase: 4,
-      };
+      const validatorValueMock = {lowercase: 4};
       const actual = service.getValidatorErrorMessage('lowercase', validatorValueMock);
       const expected = `4 lowercase letters`;
 
@@ -41,9 +37,7 @@ describe(`TsValidationMessagesService`, function() {
 
 
     test(`should return a maxLength message`, () => {
-      const validatorValueMock = {
-        requiredLength: 12,
-      };
+      const validatorValueMock = {requiredLength: 12};
       const actual = service.getValidatorErrorMessage('maxLength', validatorValueMock);
       const expected = `less than 12`;
 
@@ -80,9 +74,7 @@ describe(`TsValidationMessagesService`, function() {
 
 
     test(`should return a maxLength message`, () => {
-      const validatorValueMock = {
-        actual: '3:12',
-      };
+      const validatorValueMock = {actual: '3:12'};
       const actual = service.getValidatorErrorMessage('imageRatio', validatorValueMock);
       const expected = `3:12 is not an allowed image ratio.`;
 
@@ -115,9 +107,7 @@ describe(`TsValidationMessagesService`, function() {
       });
 
       test(`requiredTrue should return requiredTrue message`, () => {
-        const validatorValueMock = {
-          actual: false,
-        };
+        const validatorValueMock = {actual: false};
         const actual = service.getValidatorErrorMessage('requiredTrue', validatorValueMock);
         const expected = `be checked.`;
 

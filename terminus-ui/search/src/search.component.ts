@@ -65,9 +65,7 @@ const INPUT_MINIMUM_LENGTH = 2;
   selector: 'ts-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  host: {
-    class: 'ts-search',
-  },
+  host: {class: 'ts-search'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsSearch',
@@ -222,9 +220,7 @@ export class TsSearchComponent implements OnInit {
   public ngOnInit(): void {
     // istanbul ignore else
     if (this.initialValue) {
-      this.searchForm.patchValue({
-        query: this.initialValue,
-      });
+      this.searchForm.patchValue({query: this.initialValue});
     }
   }
 
@@ -249,9 +245,7 @@ export class TsSearchComponent implements OnInit {
    * NOTE: This wrapper is needed so that we can pass the query value to the emitter
    */
   private emitSubmit(): void {
-    this.submitted.emit({
-      query: this.currentQuery,
-    });
+    this.submitted.emit({query: this.currentQuery});
   }
 
 }

@@ -64,9 +64,7 @@ describe(`TsPaginatorComponent`, function() {
 
     test(`should set the recordCountTooHighMessage if passed in`, () => {
       component.recordCountTooHighMessage = 'my new message';
-      const changesMock: SimpleChanges = {
-        recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false),
-      };
+      const changesMock: SimpleChanges = {recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock);
 
@@ -75,17 +73,13 @@ describe(`TsPaginatorComponent`, function() {
 
 
     test(`should reset currentPageIndex if isZeroBased changed`, () => {
-      const changesMock1: SimpleChanges = {
-        isZeroBased: new SimpleChange(true, false, false),
-      };
+      const changesMock1: SimpleChanges = {isZeroBased: new SimpleChange(true, false, false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock1);
 
       expect(component.currentPageIndex).toEqual(1);
 
-      const changesMock2: SimpleChanges = {
-        isZeroBased: new SimpleChange(false, true, false),
-      };
+      const changesMock2: SimpleChanges = {isZeroBased: new SimpleChange(false, true, false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock2);
 
@@ -422,12 +416,8 @@ describe(`TsPaginatorComponent`, function() {
   describe(`trackPagesArray()`, () => {
 
     test(`should return a tracking property or undefined`, () => {
-      expect(component.trackPagesArray(1, {
-        name: 'foo',
-      })).toEqual('foo');
-      expect(component.trackPagesArray(2, {
-        name: 'bar',
-      })).toEqual('bar');
+      expect(component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
+      expect(component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
       expect(component.trackPagesArray(3, null as any)).toBeUndefined();
     });
 

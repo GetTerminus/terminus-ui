@@ -638,12 +638,8 @@ describe(`TsInputComponent`, function() {
       const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
       const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
       const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
-      const bounding1 = {
-        left: 50,
-      };
-      const bounding2 = {
-        left: 100,
-      };
+      const bounding1 = {left: 50};
+      const bounding2 = {left: 100};
       const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
       formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
       formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
@@ -988,9 +984,7 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
 class MyDocumentService extends TsDocumentServiceMock {
   public shouldContain = true;
   public document: any = {
-    documentElement: {
-      contains: jest.fn(() => !!this.shouldContain),
-    },
+    documentElement: {contains: jest.fn(() => !!this.shouldContain)},
     createEvent() {
       return document.createEvent('Event');
     },

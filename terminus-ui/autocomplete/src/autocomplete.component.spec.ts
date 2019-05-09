@@ -15,9 +15,7 @@ import {
 
 describe(`TsAutocompleteComponent`, function() {
   let component: TsAutocompleteComponent;
-  const opt1 = {
-    id: 1,
-  };
+  const opt1 = {id: 1};
   let trigger: jest.Mocked<MatAutocompleteTrigger>;
 
   beforeEach(() => {
@@ -150,11 +148,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(component.selectedOptions.length).toEqual(0);
 
       component.selectionsControl = new FormControl();
-      const initial = [{
-        id: 1,
-      }, {
-        id: 2,
-      }];
+      const initial = [{id: 1}, {id: 2}];
       component.initialSelections = initial;
 
       expect(component.selectedOptions.length).toEqual(2);
@@ -163,20 +157,12 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should not mutate the original array`, () => {
-      const initial = [{
-        id: 1,
-      }, {
-        id: 2,
-      }];
+      const initial = [{id: 1}, {id: 2}];
       component.initialSelections = initial;
       component.multiple = v => v.id;
       const event: any = createMockInstance(MatAutocompleteSelectedEvent);
-      const option = {
-        id: 3,
-      };
-      event.option = {
-        value: option,
-      };
+      const option = {id: 3};
+      event.option = {value: option};
       component.selectOption(event);
 
       expect(component.selectedOptions).toContain(option);
@@ -190,9 +176,7 @@ describe(`TsAutocompleteComponent`, function() {
 
     beforeEach(() => {
       jest.useFakeTimers();
-      component.query = {
-        next: jest.fn(),
-      } as any;
+      component.query = {next: jest.fn()} as any;
     });
 
     afterEach(() => {
@@ -265,9 +249,7 @@ describe(`TsAutocompleteComponent`, function() {
 
   describe(`selectOption`, () => {
     const event: any = createMockInstance(MatAutocompleteSelectedEvent);
-    event.option = {
-      value: opt1,
-    };
+    event.option = {value: opt1};
 
     beforeEach(() => {
       component.selectionsControl = new FormControl();
@@ -338,9 +320,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(component.selectedOptions).toEqual([opt1]);
       expect(component.selectionsControl.value).toEqual([opt1]);
 
-      const result = component.deselectOption({
-        id: 2,
-      });
+      const result = component.deselectOption({id: 2});
 
       expect(result).toEqual(undefined);
       expect(component.selectedOptions).toEqual([opt1]);
@@ -366,19 +346,9 @@ describe(`TsAutocompleteComponent`, function() {
 
 
   describe(`handleBlur`, () => {
-    const eventDiv = {
-      relatedTarget: {
-        nodeName: 'DIV',
-      },
-    } as any;
-    const eventOpt = {
-      relatedTarget: {
-        nodeName: 'MAT-OPTION',
-      },
-    } as any;
-    const eventNoNode = {
-      relatedTarget: {},
-    } as MouseEvent;
+    const eventDiv = {relatedTarget: {nodeName: 'DIV'}} as any;
+    const eventOpt = {relatedTarget: {nodeName: 'MAT-OPTION'}} as any;
+    const eventNoNode = {relatedTarget: {}} as MouseEvent;
     const eventNoRelatedTarget = {} as KeyboardEvent;
 
 
@@ -431,11 +401,7 @@ describe(`TsAutocompleteComponent`, function() {
     beforeEach(() => {
       component.searchQuery = 'foo';
       component.querySubject.next = jest.fn();
-      component.input = {
-        nativeElement: {
-          value: 'foo',
-        },
-      };
+      component.input = {nativeElement: {value: 'foo'}};
       component['trigger'] = {
         panelOpen: jest.fn().mockReturnValue(true),
         closePanel: jest.fn(),
@@ -519,13 +485,9 @@ describe(`TsAutocompleteComponent`, function() {
       component.ngAfterViewInit();
       expect(component.selectedOptions).toEqual([]);
 
-      component.selectionsControl.setValue([{
-        id: 9,
-      }]);
+      component.selectionsControl.setValue([{id: 9}]);
 
-      expect(component.selectedOptions).toEqual([{
-        id: 9,
-      }]);
+      expect(component.selectedOptions).toEqual([{id: 9}]);
     });
 
 

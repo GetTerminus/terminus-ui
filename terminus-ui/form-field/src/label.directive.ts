@@ -6,7 +6,5 @@ import { Directive } from '@angular/core';
 /**
  * The floating label for a {@link TsFormFieldComponent}
  */
-@Directive({
-  selector: 'ts-label',
-})
+@Directive({selector: 'ts-label'})
 export class TsLabelDirective {}
