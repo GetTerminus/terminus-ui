@@ -82,9 +82,7 @@ const DEFAULT_COLLAPSE_DELAY_MS = 4000;
   selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {
-    class: 'ts-button',
-  },
+  host: {class: 'ts-button'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsButton',

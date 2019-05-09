@@ -28,13 +28,9 @@ export const tsSortAnimations: {
    * Animation that moves the sort indicator
    */
   indicator: trigger('indicator', [
-    state('asc', style({
-      transform: 'translateY(0px)',
-    })),
+    state('asc', style({transform: 'translateY(0px)'})),
     // 10px is the height of the sort indicator, minus the width of the pointers
-    state('desc', style({
-      transform: 'translateY(10px)',
-    })),
+    state('desc', style({transform: 'translateY(10px)'})),
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
 
@@ -43,12 +39,8 @@ export const tsSortAnimations: {
    * Animation that rotates the left pointer of the indicator based on the sorting direction
    */
   leftPointer: trigger('leftPointer', [
-    state('asc', style({
-      transform: 'rotate(-45deg)',
-    })),
-    state('desc', style({
-      transform: 'rotate(45deg)',
-    })),
+    state('asc', style({transform: 'rotate(-45deg)'})),
+    state('desc', style({transform: 'rotate(45deg)'})),
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
 
@@ -57,12 +49,8 @@ export const tsSortAnimations: {
    * Animation that rotates the right pointer of the indicator based on the sorting direction
    */
   rightPointer: trigger('rightPointer', [
-    state('asc', style({
-      transform: 'rotate(45deg)',
-    })),
-    state('desc', style({
-      transform: 'rotate(-45deg)',
-    })),
+    state('asc', style({transform: 'rotate(45deg)'})),
+    state('desc', style({transform: 'rotate(-45deg)'})),
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
 

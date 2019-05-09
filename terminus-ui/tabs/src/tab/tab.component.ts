@@ -95,9 +95,7 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
    * Template provided in the tab content that will be used if present, used to enable lazy-loading
    */
   // FIXME: Switch to `{read: TemplateRef, static: true}` once Angular v8 hits
-  @ContentChild(TsTabContentDirective, {
-    read: TemplateRef,
-  })
+  @ContentChild(TsTabContentDirective, {read: TemplateRef})
   // tslint:disable-next-line no-any
   public explicitContent: TemplateRef<any> | undefined;
 

@@ -5,9 +5,7 @@ import {
 
 
 const AM_CHARTS_TOKEN_MOCK = {
-  core: {
-    useTheme: jest.fn(),
-  },
+  core: {useTheme: jest.fn()},
   themes: ['foo', null, 'bar'],
 } as TsAmChartsToken;
 

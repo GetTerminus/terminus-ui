@@ -55,14 +55,10 @@ describe('TsSearchComponent', function() {
       component.ngOnInit();
       expect(component.currentQuery).toEqual('foo');
 
-      component.searchForm.patchValue({
-        query: ' foo 23 ',
-      });
+      component.searchForm.patchValue({query: ' foo 23 '});
       expect(component.currentQuery).toEqual('foo 23');
 
-      component.searchForm.patchValue({
-        query: null,
-      });
+      component.searchForm.patchValue({query: null});
       expect(component.currentQuery).toEqual('');
     });
 
@@ -154,9 +150,7 @@ describe('TsSearchComponent', function() {
     test(`should emit an event if the form is valid`, () => {
       component['emitSubmit']();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({
-        query: 'foo',
-      });
+      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
     });
 
 
@@ -165,9 +159,7 @@ describe('TsSearchComponent', function() {
       component['debouncedEmit']();
       jest.runAllTimers();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({
-        query: 'foo',
-      });
+      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
     });
 
   });

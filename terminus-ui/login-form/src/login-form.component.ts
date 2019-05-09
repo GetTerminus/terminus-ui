@@ -73,9 +73,7 @@ export interface TsLoginFormResponse {
   selector: 'ts-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
-  host: {
-    class: 'ts-login-form',
-  },
+  host: {class: 'ts-login-form'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLoginForm',

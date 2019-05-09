@@ -64,9 +64,7 @@ export interface TsDateRange {
   selector: 'ts-date-range',
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
-  host: {
-    class: 'ts-date-range',
-  },
+  host: {class: 'ts-date-range'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsDateRange',

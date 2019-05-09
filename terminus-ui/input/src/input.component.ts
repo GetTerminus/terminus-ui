@@ -879,9 +879,7 @@ export class TsInputComponent implements
     this.document = this.documentService.document;
 
     // If no inputValueAccessor was passed in, default to a basic object with a value.
-    this.inputValueAccessor = inputValueAccessor || {
-      value: undefined,
-    };
+    this.inputValueAccessor = inputValueAccessor || {value: undefined};
 
     // If no value accessor was passed in, use this component for the ngControl ValueAccessor
     // istanbul ignore else
@@ -1243,9 +1241,7 @@ export class TsInputComponent implements
         unmaskRegex: NUMBER_ONLY_REGEX,
       },
       currency: {
-        mask: createNumberMask({
-          allowDecimal,
-        }),
+        mask: createNumberMask({allowDecimal}),
         unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
       },
       number: {
@@ -1265,17 +1261,13 @@ export class TsInputComponent implements
         }),
         unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
       },
-      postal: {
-        mask: this.determinePostalMask,
-      },
+      postal: {mask: this.determinePostalMask},
       date: {
         mask: [/\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         pipe: createAutoCorrectedDatePipe(this.defaultDateFormat),
         keepCharPositions: true,
       },
-      default: {
-        mask: false,
-      },
+      default: {mask: false},
     };
   }
 

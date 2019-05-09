@@ -48,9 +48,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   selector: 'ts-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
-  host: {
-    class: 'ts-tooltip',
-  },
+  host: {class: 'ts-tooltip'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

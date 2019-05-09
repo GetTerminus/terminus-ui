@@ -52,7 +52,7 @@ import { TsSortModule } from './sort.module';
 function testSingleColumnSortDirectionSequence(
   fixture: ComponentFixture<SimpleTsSortApp>,
   expectedSequence: TsSortDirection[],
-  id: string = 'defaultSortHeaderA',
+  id = 'defaultSortHeaderA',
 ) {
   // Detect any changes that were made in preparation for this sort sequence
   fixture.detectChanges();
@@ -193,9 +193,7 @@ class TsTableTsSortApp {
 }
 
 
-@Component({
-  template: `<div ts-sort-header="a"> A </div>`,
-})
+@Component({template: `<div ts-sort-header="a"> A </div>`})
 class TsSortHeaderMissingTsSortApp { }
 
 

@@ -275,9 +275,7 @@ export class TabHeader {
 
   public addTabsForScrolling(amount = 4) {
     for (let i = 0; i < amount; i++) {
-      this.tabs.push({
-        label: 'new',
-      });
+      this.tabs.push({label: 'new'});
     }
   }
 }

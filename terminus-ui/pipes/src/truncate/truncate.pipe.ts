@@ -34,9 +34,7 @@ export const allowedTruncationTypes: TsTruncatePositionType[] = [
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsTruncateAt',
-})
+@Pipe({name: 'tsTruncateAt'})
 export class TsTruncateAtPipe implements PipeTransform {
   public transform(value: string, charCount = 0, position: TsTruncatePositionType = 'end'): string | undefined {
     // Check for null values to avoid issues during data-binding

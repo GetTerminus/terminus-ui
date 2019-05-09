@@ -54,9 +54,7 @@ let nextUniqueId = 0;
   selector: 'ts-autocomplete-panel',
   templateUrl: './autocomplete-panel.component.html',
   styleUrls: ['./autocomplete-panel.component.scss'],
-  host: {
-    class: 'ts-autocomplete-panel qa-autocomplete-panel',
-  },
+  host: {class: 'ts-autocomplete-panel qa-autocomplete-panel'},
   providers: [
     {
       provide: TS_OPTION_PARENT_COMPONENT,

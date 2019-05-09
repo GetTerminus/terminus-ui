@@ -46,12 +46,8 @@ export const tsExpansionPanelAnimations: {
    * Animation that rotates the indicator arrow
    */
   indicatorRotate: trigger('indicatorRotate', [
-    state('collapsed, void', style({
-      transform: 'rotate(0deg)',
-    })),
-    state('expanded', style({
-      transform: 'rotate(180deg)',
-    })),
+    state('collapsed, void', style({transform: 'rotate(0deg)'})),
+    state('expanded', style({transform: 'rotate(180deg)'})),
     transition('expanded <=> collapsed, void => collapsed',
       animate(TS_EXPANSION_PANEL_ANIMATION_TIMING)),
   ]),
@@ -60,24 +56,10 @@ export const tsExpansionPanelAnimations: {
    * Animation that expands and collapses the panel trigger height
    */
   expansionTriggerHeight: trigger('expansionHeight', [
-    state('collapsed, void', style({
-      height: '{{collapsedHeight}}',
-    }), {
-      params: {
-        collapsedHeight: '48px',
-      },
-    }),
-    state('expanded', style({
-      height: '{{expandedHeight}}',
-    }), {
-      params: {
-        expandedHeight: '64px',
-      },
-    }),
+    state('collapsed, void', style({height: '{{collapsedHeight}}'}), {params: {collapsedHeight: '48px'}}),
+    state('expanded', style({height: '{{expandedHeight}}'}), {params: {expandedHeight: '64px'}}),
     transition('expanded <=> collapsed, void => collapsed', group([
-      query('@indicatorRotate', animateChild(), {
-        optional: true,
-      }),
+      query('@indicatorRotate', animateChild(), {optional: true}),
       animate(TS_EXPANSION_PANEL_ANIMATION_TIMING),
     ])),
   ]),

@@ -98,9 +98,7 @@ const DEFAULT_MINIMUM_CHARACTERS = 2;
   selector: 'ts-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
-  host: {
-    class: 'ts-autocomplete',
-  },
+  host: {class: 'ts-autocomplete'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsAutocomplete',

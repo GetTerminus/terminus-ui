@@ -97,9 +97,7 @@ const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
   selector: 'ts-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
-  host: {
-    class: 'ts-paginator',
-  },
+  host: {class: 'ts-paginator'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsPaginator',
@@ -149,9 +147,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the template context for the record count message
    */
-  public templateContext = {
-    $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
-  };
+  public templateContext = {$implicit: this.DEFAULT_HIGH_RECORD_MESSAGE};
 
   /**
    * GETTERS
@@ -506,9 +502,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
     // This may be the case if there are no records
     if (!foundPage || !foundPage.name) {
-      foundPage = {
-        name: '0',
-      };
+      foundPage = {name: '0'};
     }
 
     // '1 - 10 of 243'

@@ -13,9 +13,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { TsCardComponent } from './card.component';
 
 
-@Directive({
-  selector: '[tsCardTitle]',
-})
+@Directive({selector: '[tsCardTitle]'})
 export class TsCardTitleDirective {
   /**
    * Option to add a border to the header

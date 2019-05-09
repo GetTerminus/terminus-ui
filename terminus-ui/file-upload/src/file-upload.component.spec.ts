@@ -34,9 +34,7 @@ const fileContentsMock = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABI
 // IMAGE MOCK
 const FILE_BLOB = new Blob(
   [fileContentsMock],
-  {
-    type: 'image/png',
-  },
+  {type: 'image/png'},
 );
 FILE_BLOB['lastModifiedDate'] = new Date();
 FILE_BLOB['name'] = 'foo';
@@ -558,12 +556,8 @@ describe(`TsFileUploadComponent`, function() {
 
     test(`should throw an error if no files exist in the dataTransfer object`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {
-        files: [],
-      };
-      Object.defineProperty(event, 'dataTransfer', {
-        value: dataTransfer,
-      });
+      const dataTransfer = {files: []};
+      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
       component['setUpNewFile'] = jest.fn();
       expect(() => {
         component['collectFilesFromEvent'](event);
@@ -578,9 +572,7 @@ describe(`TsFileUploadComponent`, function() {
     test(`should throw an error if no files exist on the event target`, () => {
       const event = createFakeEvent('Event');
       const input = document.createElement('input');
-      Object.defineProperty(event, 'target', {
-        value: input,
-      });
+      Object.defineProperty(event, 'target', {value: input});
       component['setUpNewFile'] = jest.fn();
       expect(() => {
         component['collectFilesFromEvent'](event);
@@ -594,12 +586,8 @@ describe(`TsFileUploadComponent`, function() {
 
     test(`should collect a file from a drag/drop event`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {
-        files: [FILE_MOCK],
-      };
-      Object.defineProperty(event, 'dataTransfer', {
-        value: dataTransfer,
-      });
+      const dataTransfer = {files: [FILE_MOCK]};
+      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
       component['setUpNewFile'] = jest.fn();
       fixture.detectChanges();
       component['collectFilesFromEvent'](event);
@@ -614,12 +602,8 @@ describe(`TsFileUploadComponent`, function() {
     test(`should collect a file from an input change (manual selection)`, () => {
       const event = createFakeEvent('Event');
       const input = document.createElement('input');
-      Object.defineProperty(input, 'files', {
-        value: [FILE_MOCK],
-      });
-      Object.defineProperty(event, 'target', {
-        value: input,
-      });
+      Object.defineProperty(input, 'files', {value: [FILE_MOCK]});
+      Object.defineProperty(event, 'target', {value: input});
       component['setUpNewFile'] = jest.fn();
       component['collectFilesFromEvent'](event);
       fixture.detectChanges();
@@ -631,12 +615,8 @@ describe(`TsFileUploadComponent`, function() {
 
     test(`should collect emit when multiple files are selected`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {
-        files: [FILE_MOCK, FILE_MOCK],
-      };
-      Object.defineProperty(event, 'dataTransfer', {
-        value: dataTransfer,
-      });
+      const dataTransfer = {files: [FILE_MOCK, FILE_MOCK]};
+      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
       component['setUpNewFile'] = jest.fn();
       component['collectFilesFromEvent'](event);
       fixture.detectChanges();
@@ -686,12 +666,8 @@ describe(`TsFileUploadComponent`, function() {
     test(`should both prevent and stop event propogation`, () => {
       const event = createFakeEvent('fake');
       Object.defineProperties(event, {
-        preventDefault: {
-          value: jest.fn(),
-        },
-        stopPropagation: {
-          value: jest.fn(),
-        },
+        preventDefault: {value: jest.fn()},
+        stopPropagation: {value: jest.fn()},
       });
       component['preventAndStopEventPropagation'](event);
 

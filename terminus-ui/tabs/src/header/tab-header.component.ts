@@ -43,9 +43,7 @@ import { TsTabLabelWrapperDirective } from './../label/tab-label-wrapper.directi
 /**
  * Config used to bind passive event listeners
  */
-const passiveEventListenerOptions = normalizePassiveListenerOptions({
-  passive: true,
-}) as EventListenerOptions;
+const passiveEventListenerOptions = normalizePassiveListenerOptions({passive: true}) as EventListenerOptions;
 
 /**
  * The directions that scrolling can go in when the header's tabs exceed the header width. 'After' will scroll the header towards the end of

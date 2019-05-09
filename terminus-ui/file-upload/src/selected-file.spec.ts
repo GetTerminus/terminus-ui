@@ -31,9 +31,7 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
 const FILE_BLOB = new Blob(
   // eslint-disable-next-line max-len
   ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII='],
-  {
-    type: 'image/png',
-  },
+  {type: 'image/png'},
 );
 FILE_BLOB['lastModifiedDate'] = new Date();
 FILE_BLOB['name'] = 'foo';
@@ -43,9 +41,7 @@ const FILE_MOCK = FILE_BLOB as File;
 // CSV MOCK
 const FILE_CSV_BLOB = new Blob(
   ['my csv value'],
-  {
-    type: 'text/csv',
-  },
+  {type: 'text/csv'},
 );
 FILE_CSV_BLOB['lastModifiedDate'] = new Date();
 FILE_CSV_BLOB['name'] = 'myCSV';
@@ -55,9 +51,7 @@ const FILE_CSV_MOCK = FILE_CSV_BLOB as File;
 // VIDEO MOCK
 const FILE_VIDEO_BLOB = new Blob(
   ['my video value'],
-  {
-    type: 'video/mp4',
-  },
+  {type: 'video/mp4'},
 );
 FILE_VIDEO_BLOB['lastModifiedDate'] = new Date();
 FILE_VIDEO_BLOB['name'] = 'myVideo';

@@ -27,9 +27,7 @@ import { TsLoadingOverlayComponent } from './loading-overlay.component';
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/loading-overlay</example-url>
  */
-@Directive({
-  selector: '[tsLoadingOverlay]',
-})
+@Directive({selector: '[tsLoadingOverlay]'})
 export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * A reference to the portal

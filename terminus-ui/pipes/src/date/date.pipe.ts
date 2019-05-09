@@ -33,9 +33,7 @@ export type TsDateTypes =
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsDate',
-})
+@Pipe({name: 'tsDate'})
 export class TsDatePipe implements PipeTransform {
   public transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
     const validFormats: TsDateTypes[] = [

@@ -14,17 +14,13 @@ describe(`TsTableDataSource`, function() {
 
   beforeEach(() => {
     source = new TsTableDataSource();
-    seededSource = new TsTableDataSource([{
-      foo: 'bar',
-    }]);
+    seededSource = new TsTableDataSource([{foo: 'bar'}]);
   });
 
 
   test(`should initialize an empty array if no data passed in`, () => {
     expect(source.data).toEqual([]);
-    expect(seededSource.data).toEqual([{
-      foo: 'bar',
-    }]);
+    expect(seededSource.data).toEqual([{foo: 'bar'}]);
   });
 
 

@@ -34,9 +34,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
   selector: 'ts-copy',
   templateUrl: './copy.component.html',
   styleUrls: ['./copy.component.scss'],
-  host: {
-    class: 'ts-copy',
-  },
+  host: {class: 'ts-copy'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCopy',

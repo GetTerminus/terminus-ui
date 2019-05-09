@@ -74,9 +74,7 @@ describe(`TsCopyComponent`, function() {
         addRange: noop,
       });
 
-      component['document'].createRange = jest.fn().mockReturnValue({
-        selectNodeContents: noop,
-      });
+      component['document'].createRange = jest.fn().mockReturnValue({selectNodeContents: noop});
       component.selectText(component.content.nativeElement, false, false);
 
       expect(component['window'].getSelection).toHaveBeenCalled();

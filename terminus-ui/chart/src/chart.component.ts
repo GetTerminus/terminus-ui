@@ -73,9 +73,7 @@ export type TsChart
   selector: 'ts-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
-  host: {
-    class: 'ts-chart',
-  },
+  host: {class: 'ts-chart'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsChart',

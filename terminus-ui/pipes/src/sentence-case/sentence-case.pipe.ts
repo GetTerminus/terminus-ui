@@ -12,9 +12,7 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsSentenceCase',
-})
+@Pipe({name: 'tsSentenceCase'})
 export class TsSentenceCasePipe implements PipeTransform {
   public transform(value: string): string | undefined {
     // Check for null values to avoid issues during data-binding
