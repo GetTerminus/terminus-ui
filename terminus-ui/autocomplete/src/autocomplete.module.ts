@@ -18,7 +18,10 @@ import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsOptionModule } from '@terminus/ui/option';
 import { TsAutocompletePanelComponent } from './autocomplete-panel/autocomplete-panel.component';
-import { TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER, TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
+import {
+  TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  TsAutocompleteTriggerDirective,
+} from './autocomplete-panel/autocomplete-trigger.directive';
 import { TsAutocompleteComponent } from './autocomplete.component';
 
 export * from './autocomplete.component';
