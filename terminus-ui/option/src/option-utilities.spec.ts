@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import { getAutocompleteInstance } from '@terminus/ui/autocomplete/testing';
 
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
@@ -116,19 +117,5 @@ export class EmptyQueryList {
  */
 
 export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      ReactiveFormsModule,
-      TsAutocompleteModule,
-      TsOptionModule,
-      NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+  return createComponentInner<T>(component, [], [TsOptionModule, TsAutocompleteModule, ReactiveFormsModule, NoopAnimationsModule]);
 }
