@@ -121,7 +121,6 @@ export const SELECT_MULTIPLE_PANEL_PADDING_X = 0;
  */
 export const SELECT_PANEL_VIEWPORT_PADDING = 8;
 
-const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
 const DEFAULT_DEBOUNCE_DELAY = 200;
 const DEFAULT_DELIMITER = ',';
 
@@ -204,7 +203,6 @@ let nextUniqueId = 0;
  *              [isFilterable]="true"
  *              [isRequired]="true"
  *              label="My label!"
- *              minimumCharacters="3"
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
  *              [sortComparator]="myComparator"
@@ -664,18 +662,6 @@ export class TsSelectComponent implements
     return this._label;
   }
   private _label: string | undefined;
-
-  /**
-   * Define a minimum character count for queries
-   */
-  @Input()
-  public set minimumCharacters(value: number) {
-    this._minimumCharacters = coerceNumberProperty(value, DEFAULT_MINIMUM_CHARACTER_COUNT);
-  }
-  public get minimumCharacters(): number {
-    return this._minimumCharacters;
-  }
-  private _minimumCharacters = DEFAULT_MINIMUM_CHARACTER_COUNT;
 
   /**
    * Placeholder to be shown if no value has been selected
