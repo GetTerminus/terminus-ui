@@ -6,6 +6,7 @@ import {
   END,
   ENTER,
   HOME,
+  KEYS,
   SPACE,
 } from '@terminus/ngx-tools/keycodes';
 import {
@@ -123,18 +124,18 @@ describe(`TsAccordionComponent`, function() {
       expect(document.activeElement === trigger2).toEqual(false);
 
       // Non-special key to complete coverage
-      const keyEvent = createKeyboardEvent('keydown', A, trigger1);
+      const keyEvent = createKeyboardEvent('keydown', KEYS.A, trigger1);
       trigger1.dispatchEvent(keyEvent);
       fixture.detectChanges();
 
-      const homeEvent = createKeyboardEvent('keydown', HOME, trigger1);
+      const homeEvent = createKeyboardEvent('keydown', KEYS.HOME, trigger1);
       trigger1.dispatchEvent(homeEvent);
       fixture.detectChanges();
 
       expect(document.activeElement === trigger1).toEqual(true);
       expect(document.activeElement === trigger2).toEqual(false);
 
-      const endEvent = createKeyboardEvent('keydown', END, trigger1);
+      const endEvent = createKeyboardEvent('keydown', KEYS.END, trigger1);
       trigger1.dispatchEvent(endEvent);
       fixture.detectChanges();
 

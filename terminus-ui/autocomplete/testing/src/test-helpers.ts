@@ -222,6 +222,13 @@ export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex =
   return group['elementRef'].nativeElement;
 }
 
+export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {
+  const trigger = getAutocompleteTriggerElement(fixture, index);
+  trigger.click();
+  fixture.detectChanges();
+  return fixture.whenStable();
+}
+
 // /**
 //  * Open a select element
 //  *

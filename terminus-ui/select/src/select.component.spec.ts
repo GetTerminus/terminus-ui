@@ -22,6 +22,7 @@ import {
   TAB,
   UP_ARROW,
 } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -43,9 +44,9 @@ import {
   getSelectTriggerElement,
   openSelect,
 } from '@terminus/ui/select/testing';
-import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
-import { TsSelectFormatFn, TsSelectModule } from './select.module';
+import { TsOptionModule } from '@terminus/ui/option';
+import { TsSelectModule } from './select.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -53,6 +54,7 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     FormsModule,
     ReactiveFormsModule,
     TsSelectModule,
+    TsOptionModule,
     NoopAnimationsModule,
   ];
 
@@ -399,11 +401,11 @@ describe(`TsSelectComponent`, function() {
         const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
 
         // Move down the list so that the first item is no longer focused
-        dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
-        dispatchKeyboardEvent(element, 'keydown', DOWN_ARROW);
+        dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
+        dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
         fixture.detectChanges();
 
-        const eventHome = dispatchKeyboardEvent(element, 'keydown', HOME);
+        const eventHome = dispatchKeyboardEvent(element, 'keydown', KEYS.HOME);
         fixture.detectChanges();
 
         expect(options[0].active).toEqual(true);
@@ -426,7 +428,7 @@ describe(`TsSelectComponent`, function() {
         element.dispatchEvent(event);
         fixture.detectChanges();
 
-        const eventEnd = dispatchKeyboardEvent(element, 'keydown', END);
+        const eventEnd = dispatchKeyboardEvent(element, 'keydown', KEYS.END);
         fixture.detectChanges();
 
         expect(options[options.length - 1].active).toEqual(true);
@@ -445,7 +447,7 @@ describe(`TsSelectComponent`, function() {
 
         expect(instance.panelOpen).toEqual(true);
 
-        const event = createKeyboardEvent('keydown', DOWN_ARROW);
+        const event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
         Object.defineProperty(event, 'altKey', {get: () => true});
         dispatchEvent(element, event);
         fixture.detectChanges();
@@ -470,7 +472,7 @@ describe(`TsSelectComponent`, function() {
         element.dispatchEvent(event);
         fixture.detectChanges();
 
-        const eventSpace = dispatchKeyboardEvent(element, 'keydown', SPACE);
+        const eventSpace = dispatchKeyboardEvent(element, 'keydown', KEYS.SPACE);
         fixture.detectChanges();
 
         expect(instance.value).toEqual('California');
@@ -493,7 +495,7 @@ describe(`TsSelectComponent`, function() {
         element.dispatchEvent(eventDown);
         fixture.detectChanges();
 
-        const event = dispatchKeyboardEvent(element, 'keydown', ENTER);
+        const event = dispatchKeyboardEvent(element, 'keydown', KEYS.ENTER);
         fixture.detectChanges();
 
         expect(instance.value).toEqual('California');
@@ -649,7 +651,7 @@ describe(`TsSelectComponent`, function() {
         const element = getSelectElement(fixture);
         openSelect(fixture);
 
-        const event = createKeyboardEvent('keydown', A, element);
+        const event = createKeyboardEvent('keydown', KEYS.A, element);
         Object.defineProperty(event, 'ctrlKey', {get: () => true});
         dispatchEvent(element, event);
         fixture.detectChanges();
@@ -873,7 +875,7 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(true);
 
-      dispatchKeyboardEvent(element, 'keydown', TAB);
+      dispatchKeyboardEvent(element, 'keydown', KEYS.TAB);
       fixture.detectChanges();
 
       expect(instance.panelOpen).toEqual(false);
@@ -971,7 +973,7 @@ describe(`TsSelectComponent`, function() {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
         const option = getOptionInstance(fixture, 0, 1);
-        const event = createKeyboardEvent('keydown', SPACE);
+        const event = createKeyboardEvent('keydown', KEYS.SPACE);
         option.selectViaInteraction = jest.fn();
 
         option.handleKeydown(event);
@@ -985,7 +987,7 @@ describe(`TsSelectComponent`, function() {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
         const option = getOptionInstance(fixture, 0, 1);
-        const event = createKeyboardEvent('keydown', ENTER);
+        const event = createKeyboardEvent('keydown', KEYS.ENTER);
         option.selectViaInteraction = jest.fn();
 
         option.handleKeydown(event);
@@ -1097,7 +1099,7 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(true);
 
-      dispatchKeyboardEvent(trigger, 'keydown', ESCAPE);
+      dispatchKeyboardEvent(trigger, 'keydown', KEYS.ESCAPE);
       fixture.detectChanges();
 
       expect(instance.panelOpen).toEqual(false);
@@ -1115,7 +1117,7 @@ describe(`TsSelectComponent`, function() {
       // open
       expect(instance.panelOpen).toEqual(true);
 
-      let event = createKeyboardEvent('keydown', DOWN_ARROW);
+      let event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
       Object.defineProperty(event, 'altKey', {get: () => true});
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();
@@ -1129,7 +1131,7 @@ describe(`TsSelectComponent`, function() {
       // open again
       expect(instance.panelOpen).toEqual(true);
 
-      event = createKeyboardEvent('keydown', UP_ARROW);
+      event = createKeyboardEvent('keydown', KEYS.UP_ARROW);
       Object.defineProperty(event, 'altKey', {get: () => true});
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();

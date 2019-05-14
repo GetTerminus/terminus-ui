@@ -21,6 +21,7 @@ import {
   someOptionsAreSelected,
   toggleAllOptions,
 } from './option-utilities';
+import { TsOptionModule } from './option.module';
 
 
 // tslint:disable: no-use-before-declare
@@ -119,6 +120,7 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
     imports: [
       ReactiveFormsModule,
       TsAutocompleteModule,
+      TsOptionModule,
       NoopAnimationsModule,
       ...imports,
     ],

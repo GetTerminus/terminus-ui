@@ -149,22 +149,8 @@ export class AutocompleteComponent implements OnInit {
     this.filteredStates = this.myQuery$
       .pipe(
         map((state) => {
-          /*
-           *console.log('in myQuery$ pipe: state: ', state);
-           */
-          /*
-           *const val = state ? this.filterStates(state) : this.states.slice();
-           */
           const val = state ? this.filterStates(state) : [];
           console.log('Demo: in pipe: ', state, val);
-          /*
-           *if (state) {
-           *  this.fakeAsync = true;
-           *  setTimeout(() => {
-           *    this.fakeAsync = false;
-           *  }, 4000);
-           *}
-           */
           return val;
         }),
       );
@@ -177,9 +163,6 @@ export class AutocompleteComponent implements OnInit {
   private filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
     const r = this.states.filter((state) => state.name.toLowerCase().indexOf(filterValue) === 0);
-    /*
-     *console.log('filterStates returning: ', r);
-     */
     return r;
   }
 
