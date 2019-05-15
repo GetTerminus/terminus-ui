@@ -194,7 +194,6 @@ let nextUniqueId = 0;
  * <ts-select
  *              [allowMultiple]="true"
  *              [compareWith]="myCompareFn"
- *              debounceDelay="400"
  *              delimiter=","
  *              [hideRequiredMarker]="true"
  *              hint="My hint!"
@@ -570,18 +569,6 @@ export class TsSelectComponent implements
     return this._compareWith;
   }
   private _compareWith: TsSelectOptionCompareWith = DEFAULT_COMPARE_WITH;
-
-  /**
-   * Define a debounce delay for the query stream
-   */
-  @Input()
-  public set debounceDelay(value: number) {
-    this._debounceDelay = coerceNumberProperty(value, DEFAULT_DEBOUNCE_DELAY);
-  }
-  public get debounceDelay(): number {
-    return this._debounceDelay;
-  }
-  private _debounceDelay = DEFAULT_DEBOUNCE_DELAY;
 
   /**
    * Define the delimiter used in the list of selected options
