@@ -9,6 +9,7 @@
   - [Inject the needed libraries](#inject-the-needed-libraries)
   - [Set up the chart](#set-up-the-chart)
 - [Supported chart types](#supported-chart-types)
+  - [Chart Type Coercion](#chart-type-coercion)
 - [AmCharts documentation](#amcharts-documentation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -81,11 +82,32 @@ setUpChart(chart: am4charts.Chart) {
 - `pie`
 - `map`
 - `radar`
-- `treemap`
+- `tree`
 - `sankey`
 - `chord`
 
 > See `TsChartVisualizationOptions` for all supported types.
+
+
+### Chart Type Coercion
+
+The library exposes functions for coercing to specific chart types:
+
+- `tsChartXYTypeCheck`
+- `tsChartPieTypeCheck`
+- `tsChartMapTypeCheck`
+- `tsChartRadarTypeCheck`
+- `tsChartTreeTypeCheck`
+- `tsChartSankeyTypeCheck`
+- `tsChartChordTypeCheck`
+
+Example:
+
+```typescript
+if (tsChartXYTypeCheck(chart)) {
+  // Now we know we are dealing with an XY chart type
+}
+```
 
 
 ## AmCharts documentation
