@@ -1,3 +1,11 @@
+## <small>12.1.4 (2019-05-15)</small>
+
+* fix(Chart): expose type coercion functions for charts ([193d482](https://github.com/GetTerminus/terminus-ui/commit/193d482))
+* style(Input): remove outdated commented code ([6b7f3b0](https://github.com/GetTerminus/terminus-ui/commit/6b7f3b0))
+* style: update code to pass object format lint rule change ([054f322](https://github.com/GetTerminus/terminus-ui/commit/054f322))
+* chore: integrate new lint rules and fix all issues (#1488) ([8648c3d](https://github.com/GetTerminus/terminus-ui/commit/8648c3d)), closes [#1488](https://github.com/GetTerminus/terminus-ui/issues/1488)
+* chore(Tabs): outputs are now called centering and centered (#1487) ([d85b207](https://github.com/GetTerminus/terminus-ui/commit/d85b207)), closes [#1487](https://github.com/GetTerminus/terminus-ui/issues/1487) [#1478](https://github.com/GetTerminus/terminus-ui/issues/1478)
+
 ## <small>12.1.3 (2019-05-01)</small>
 
 * fix(FileUpload): consistent error handling (#1483) ([302c58d](https://github.com/GetTerminus/terminus-ui/commit/302c58d)), closes [#1483](https://github.com/GetTerminus/terminus-ui/issues/1483) [#1357](https://github.com/GetTerminus/terminus-ui/issues/1357)
