@@ -33,7 +33,7 @@ import { TsConfirmationModule } from './confirmation.module';
 @Component({
   selector: 'ts-button',
   template: `
-    <button (click)="clicked($event)">
+    <button (click)="clickedButton($event)">
       <ng-content></ng-content>
     </button>
   `,

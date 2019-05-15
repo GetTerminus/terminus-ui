@@ -327,8 +327,7 @@ describe(`TsAutocompleteComponent`, function() {
   describe(`duplicate selections`, function() {
 
     // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
-    test(`should not be allowed by default but should emit an event`, function() {
-      jest.useFakeTimers();
+    test(`should not be allowed by default but should emit an event`, fakeAsync(function() {
       const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
       fixture.detectChanges();
       fixture.componentInstance.duplicate = jest.fn();
@@ -338,25 +337,26 @@ describe(`TsAutocompleteComponent`, function() {
 
       const input = getAutocompleteInput(fixture);
       typeInElement('fl', input);
+      tick(1000);
       fixture.detectChanges();
 
       // Select Florida (it's selected by default in this test component)
       const opt = getOptionElement(fixture, 0, 4);
       opt.click();
+      tick(1000);
       fixture.detectChanges();
 
       // Verify the selection did NOT work
       chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(1);
       expect(fixture.componentInstance.duplicate).toHaveBeenCalledWith('Florida');
-      jest.runAllTimers();
       expect.assertions(3);
-    });
+    }));
 
 
     describe(`when allowed`, function() {
 
-      test(`should allow a duplicate selection`, () => {
+      test(`should allow a duplicate selection`, fakeAsync(() => {
         const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
         fixture.componentInstance.allowDuplicates = true;
         fixture.detectChanges();
@@ -366,11 +366,13 @@ describe(`TsAutocompleteComponent`, function() {
 
         const input = getAutocompleteInput(fixture);
         typeInElement('fl', input);
+        tick(1000);
         fixture.detectChanges();
 
         // Select Florida (it's selected by default in this test component)
         const opt = getOptionElement(fixture, 0, 4);
         opt.click();
+        tick(1000);
         fixture.detectChanges();
 
         // Verify the selection DID work
@@ -379,7 +381,7 @@ describe(`TsAutocompleteComponent`, function() {
         expect(getAutocompleteInstance(fixture).autocompleteSelections).toEqual(['Florida', 'Florida']);
 
         expect.assertions(3);
-      });
+      }));
 
     });
 
@@ -390,44 +392,49 @@ describe(`TsAutocompleteComponent`, function() {
 
       describe(`in single selection mode`, function() {
 
-        test(`should set single value`, () => {
+        test(`should set single value`, fakeAsync(() => {
           const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
           fixture.componentInstance.allowMultiple = false;
           fixture.componentInstance.keepOpen = false;
+          tick(1000);
           fixture.detectChanges();
           const instance = getAutocompleteInstance(fixture);
           const input = getAutocompleteInput(fixture);
 
           typeInElement('fl', input);
+          tick(1000);
           fixture.detectChanges();
 
           const opt = getOptionElement(fixture);
           opt.click();
+          tick(1000);
           fixture.detectChanges();
 
           expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
-        });
+        }));
 
       });
 
 
 
-    test(`should reset the query when a selection is made`, function() {
+    test(`should reset the query when a selection is made`, fakeAsync(function() {
       const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
       fixture.detectChanges();
 
       const input = getAutocompleteInput(fixture);
       typeInElement('fl', input);
+      tick(1000);
       fixture.detectChanges();
 
       expect(input.value).toEqual('fl');
 
       const opt = getOptionElement(fixture, 0, 4);
       opt.click();
+      tick(1000);
       fixture.detectChanges();
 
       expect(input.value).toEqual('');
-    });
+    }));
 
 
     test(`should seed the autocomplete model(s) after timeout when using ngModel`, fakeAsync(function() {
@@ -442,18 +449,20 @@ describe(`TsAutocompleteComponent`, function() {
       expect(instance.autocompleteSelections).toEqual(['Florida']);
     }));
 
-    test(`should allow a value seeded by a FormControl`, function() {
+    test(`should allow a value seeded by a FormControl`, fakeAsync(function() {
       const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
       fixture.detectChanges();
 
       const input = getAutocompleteInput(fixture);
       typeInElement('al', input);
+      tick(1000);
       fixture.detectChanges();
       const opt = getOptionElement(fixture, 0, 2);
       opt.click();
+      tick(1000);
       fixture.detectChanges();
       expect(getAutocompleteInstance(fixture).autocompleteFormControl.value).toEqual(['Alaska']);
-    });
+    }));
 
     test(`should close the panel if open when getting a blur event that isn't from a selection`, function() {
       const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
