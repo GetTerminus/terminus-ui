@@ -9,9 +9,19 @@ import { TsSpacingModule } from '@terminus/ui/spacing';
 
 import { AutofocusRoutingModule } from './autofocus-routing.module';
 import { AutofocusComponent } from './autofocus.component';
+import { TsOptionModule } from '@terminus/ui/option';
 
 @NgModule({
-  imports: [AutofocusRoutingModule, CommonModule, FormsModule, TsAutofocusModule, TsCardModule, TsSelectModule, TsSpacingModule],
+  imports: [
+    AutofocusRoutingModule,
+    CommonModule,
+    FormsModule,
+    TsAutofocusModule,
+    TsCardModule,
+    TsOptionModule,
+    TsSelectModule,
+    TsSpacingModule
+  ],
   declarations: [AutofocusComponent],
 })
 export class AutofocusModule {}

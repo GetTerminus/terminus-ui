@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TsCardModule } from '@terminus/ui/card';
 import { TsInputModule } from '@terminus/ui/input';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 
@@ -12,7 +13,7 @@ import { InputComponent } from './input.component';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  imports: [CommonModule, InputRoutingModule, FormsModule, ReactiveFormsModule, TsCardModule, TsInputModule, TsSelectModule, TsSpacingModule],
+  imports: [CommonModule, InputRoutingModule, FormsModule, ReactiveFormsModule, TsCardModule, TsInputModule, TsOptionModule, TsSelectModule, TsSpacingModule],
   declarations: [InputComponent],
 })
 export class InputModule {}

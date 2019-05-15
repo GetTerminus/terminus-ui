@@ -6,6 +6,7 @@ import { TsCardModule } from '@terminus/ui/card';
 import { TS_AMCHARTS_TOKEN, TsAmChartsToken, TsChartModule } from '@terminus/ui/chart';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsOptionModule } from '@terminus/ui/option';
 
 import { ChartRoutingModule } from './chart-routing.module';
 import { ChartComponent } from './chart.component';
@@ -19,6 +20,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4themes_material from '@amcharts/amcharts4/themes/animated';
+
 export function amChartsFactory(): TsAmChartsToken {
   return {
     core: am4core,
@@ -32,7 +34,7 @@ export function amChartsFactory(): TsAmChartsToken {
  */
 
 @NgModule({
-  imports: [ChartRoutingModule, CommonModule, FormsModule, TsCardModule, TsChartModule, TsSelectModule, TsSpacingModule],
+  imports: [ChartRoutingModule, CommonModule, FormsModule, TsCardModule, TsChartModule, TsOptionModule, TsSelectModule, TsSpacingModule],
   providers: [
     // Use the factory function to overwrite the `TS_AMCHARTS_TOKEN` injectable:
     {
