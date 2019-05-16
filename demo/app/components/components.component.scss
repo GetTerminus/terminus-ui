@@ -1,3 +1,5 @@
+@import '~@terminus/ui/helpers';
+
 .versions {
   color: rgba(black, .6);
   font-size: 12px;
@@ -12,4 +14,8 @@
 ::ng-deep .menu-nav.mat-menu-panel {
   // This height makes it obvious there is more content by scrolling
   max-height: 30rem;
+}
+
+::ng-deep .mat-toolbar {
+  z-index: z(global-header);
 }
