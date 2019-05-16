@@ -155,6 +155,9 @@
   }
 }
 
+// Scope to target the datepicker overlay
 .cdk-overlay-container {
-  z-index: z(attached-panel-overlay);
+  .mat-datepicker-popup {
+    z-index: z(attached-panel-overlay);
+  }
 }
