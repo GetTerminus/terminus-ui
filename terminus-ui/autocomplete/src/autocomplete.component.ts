@@ -118,7 +118,6 @@ export class TsAutocompleteChange {
  *              selectionsControl="myForm.get('myControl')"
  *              [showProgress]="inProgress"
  *              theme="primary"
- *              initialSelections="[{}]"
  *              (optionSelected)="mySelected($event)"
  *              (optionRemoved)="myRemoved($event)"
  *              (selection)="mySelection($event)"
@@ -249,7 +248,7 @@ export class TsAutocompleteComponent implements OnInit,
   public autocompleteTrigger!: TsAutocompleteTriggerDirective;
 
   /**
-   * Access to the chip list
+   * Access the chip list
    */
   @ViewChild('chipList')
   public chipList: MatChipList | undefined;
@@ -261,7 +260,7 @@ export class TsAutocompleteComponent implements OnInit,
   public containerElement!: ElementRef;
 
   /**
-   * Access to the actual HTML element
+   * Access the actual HTML element
    */
   @ViewChild('input')
   public inputElement!: ElementRef<HTMLInputElement>;
@@ -839,10 +838,6 @@ export class TsAutocompleteComponent implements OnInit,
     }
     // Deselect the option from the key manager
     this.keyManager.updateActiveItem(-1);
-
-    // Clear input
-    // NOTE: I am not sure why simply setting `searchQuery` to an empty string doesn't work. It seems the model is not updated (even with
-    // manual change detection).
     this.inputElement.nativeElement.value = '';
   }
 

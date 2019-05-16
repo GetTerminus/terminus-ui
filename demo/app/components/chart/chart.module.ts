@@ -34,7 +34,16 @@ export function amChartsFactory(): TsAmChartsToken {
  */
 
 @NgModule({
-  imports: [ChartRoutingModule, CommonModule, FormsModule, TsCardModule, TsChartModule, TsOptionModule, TsSelectModule, TsSpacingModule],
+  imports: [
+    ChartRoutingModule,
+    CommonModule,
+    FormsModule,
+    TsCardModule,
+    TsChartModule,
+    TsOptionModule,
+    TsSelectModule,
+    TsSpacingModule
+  ],
   providers: [
     // Use the factory function to overwrite the `TS_AMCHARTS_TOKEN` injectable:
     {

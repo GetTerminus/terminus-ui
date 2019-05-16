@@ -16,7 +16,19 @@ import { TableComponent } from './table.component';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  imports: [CommonModule, FlexLayoutModule, FormsModule, TableRoutingModule, TsCardModule, TsPaginatorModule, TsOptionModule, TsSelectModule, TsSortModule, TsSpacingModule, TsTableModule],
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    FormsModule,
+    TableRoutingModule,
+    TsCardModule,
+    TsPaginatorModule,
+    TsOptionModule,
+    TsSelectModule,
+    TsSortModule,
+    TsSpacingModule,
+    TsTableModule
+  ],
   declarations: [TableComponent],
 })
 export class TableModule {}

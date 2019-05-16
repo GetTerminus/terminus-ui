@@ -6,27 +6,21 @@ import {
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import {
   BehaviorSubject,
   Observable,
-  of,
 } from 'rxjs';
 import {
-  filter,
   map,
-  startWith,
 } from 'rxjs/operators';
-
 
 
 export interface State {
   name: string;
   population: string;
 }
-
 
 
 @Component({
@@ -130,8 +124,6 @@ export class AutocompleteComponent implements OnInit {
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
     setTimeout(() => {
       this.stateCtrl.setValue([
@@ -169,15 +161,9 @@ export class AutocompleteComponent implements OnInit {
   myFormatUIFn = (v: any): string => v.name;
 
   compareByValue(f1: any, f2: any) {
-    /*
-     *console.log('in compareByValue: ', f1, f2);
-     */
     return f1 && f2 && f1.text === f2.text;
   }
   compareByReference(f1: any, f2: any) {
-    /*
-     *console.log('in compareByReference: ', f1, f2, f1 === f2);
-     */
     return f1 === f2;
   }
 

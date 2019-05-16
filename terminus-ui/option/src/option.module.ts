@@ -14,9 +14,6 @@ export * from './option-utilities';
 export * from './option-display.directive';
 export * from './optgroup.component';
 
-/**
- * @deprecated in favor of the new TsInputComponent. Target 12.x for removal
- */
 @NgModule({
   imports: [
     CommonModule,

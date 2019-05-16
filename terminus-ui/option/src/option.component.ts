@@ -289,6 +289,7 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) readonly group: TsOptgroupParentComponent,
     private viewContainerRef: ViewContainerRef,
   ) {
+    // From view container ref to decide the parent component. Possible refactoring with injector.
     if (this.viewContainerRef['_data'].componentView) {
       const parentComponent = this.viewContainerRef['_data'].componentView.parent.component.constructor.name.toLowerCase();
       if (parentComponent.includes('autocomplete')) {
