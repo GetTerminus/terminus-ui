@@ -57,14 +57,6 @@ import { TsAutocompletePanelComponent, TsAutocompletePanelSelectedEvent } from '
 import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
 
 
-export interface KeyboardEvent {
-  [key: string]: any;
-}
-
-export interface MouseEvent {
-  [key: string]: any;
-}
-
 // Unique ID for each instance
 let nextUniqueId = 0;
 

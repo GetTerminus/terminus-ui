@@ -228,38 +228,3 @@ export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<a
   fixture.detectChanges();
   return fixture.whenStable();
 }
-
-// /**
-//  * Open a select element
-//  *
-//  * @param fixture - The component fixture
-//  * @param index - The index of the desired TsSelectComponent
-//  * @return The whenStable promise
-//  */
-// export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {
-//   const trigger = getSelectTriggerElement(fixture, index);
-//   trigger.click();
-//   fixture.detectChanges();
-//   return fixture.whenStable();
-// }
-
-// /**
-//  * Select an option
-//  *
-//  * @param fixture - The component fixture
-//  * @param optionText - The text to find the option by
-//  * @param selectIndex - The index of the desired TsSelectComponent
-//  * @return The whenStable promise
-//  */
-// export function selectOption(fixture: ComponentFixture<any>, optionText: string, selectIndex = 0): Promise<any> {
-//   const allOptions = getAllOptionInstances(fixture, selectIndex);
-//   const foundOptions = allOptions.filter((option) => option.viewValue === optionText);
-
-//   if (foundOptions.length < 1) {
-//     throw new Error(`'selectOption' did not find an option with the view value of '${optionText}'`);
-//   }
-
-//   foundOptions[0].select();
-//   fixture.detectChanges();
-//   return fixture.whenStable();
-// }
