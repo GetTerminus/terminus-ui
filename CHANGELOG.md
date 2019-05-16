@@ -1,3 +1,7 @@
+## <small>12.1.5 (2019-05-16)</small>
+
+* fix(Input): scope overlay z-index for datepicker ([1fe1a5f](https://github.com/GetTerminus/terminus-ui/commit/1fe1a5f))
+
 ## <small>12.1.4 (2019-05-15)</small>
 
 * fix(Chart): expose type coercion functions for charts ([193d482](https://github.com/GetTerminus/terminus-ui/commit/193d482))
