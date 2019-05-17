@@ -1,470 +1,372 @@
+import { Type } from '@angular/core';
 import {
-  SimpleChange,
-  SimpleChanges,
-} from '@angular/core';
-import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+  ComponentFixture,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
+import * as TestComponents from '../testing/src/test-components';
 import {
-  TsSelectChange, TsSelectComponent,
-} from '@terminus/ui/select';
+  clickToChangePage,
+  updateRecordsPerPage,
+} from '../testing/src/test-helpers';
+import { TsPaginatorMenuItem } from './paginator.component';
+import { TsPaginatorModule } from './paginator.module';
 
-import { TsPaginatorComponent } from './paginator.component';
 
 
 describe(`TsPaginatorComponent`, function() {
-  let component: TsPaginatorComponent;
-  const TOTAL_RECORDS = 100;
-
-  beforeEach(() => {
-    component = new TsPaginatorComponent(
-      new ChangeDetectorRefMock(),
-    );
-  });
-
-
   test(`should exist`, () => {
-    component.totalRecords = 125;
-    component.ngAfterViewInit();
+    const fixture = createComponent(TestComponents.Basic);
+    fixture.detectChanges();
 
-    expect(component).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.ts-paginator'))).toBeTruthy();
   });
 
   describe(`showRecordsPerPageSelector`, () => {
-    test(`should set and retrieve`, () => {
-      component.showRecordsPerPageSelector = true;
-      expect(component.showRecordsPerPageSelector).toEqual(true);
-    });
-  });
-
-
-  describe(`ngAfterViewInit()`, () => {
-
-    test(`should call the initialization method`, () => {
-      component['initialize'] = jest.fn();
-      component.ngAfterViewInit();
-
-      expect(component['initialize']).toHaveBeenCalled();
-    });
-
-  });
-
-
-  describe(`ngOnChanges()`, () => {
+    let fixture: ComponentFixture<TestComponents.RecordsPerPage>;
+    let hostComponent: TestComponents.RecordsPerPage;
 
     beforeEach(() => {
-      component['initialize'] = jest.fn();
+      fixture = createComponent(TestComponents.RecordsPerPage);
+      hostComponent = fixture.componentInstance;
     });
 
+    test(`should set and retrieve dropdown to choose page`, () => {
+      fixture.detectChanges();
 
-    test(`should call the initialization method`, () => {
-      component.ngOnChanges({});
-
-      expect(component['initialize']).toHaveBeenCalled();
+      expect(hostComponent.showRecordsPerPageSelector).toEqual(true);
+      expect(fixture.debugElement.query(By.css('.qa-paginator-per-page-select'))).toBeTruthy();
     });
 
+    test(`should change page on select`, () => {
+      const index: string = hostComponent.recordsPerPageChoices[1].toString();
+      fixture.detectChanges();
+      updateRecordsPerPage(fixture, index);
 
-    test(`should set the recordCountTooHighMessage if passed in`, () => {
-      component.recordCountTooHighMessage = 'my new message';
-      const changesMock: SimpleChanges = {recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false)};
-      // Fake the change event that Angular would normally trigger
-      component.ngOnChanges(changesMock);
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      expect(titleEl.textContent).toContain('1 - 20 of 100');
 
-      expect(component.templateContext.$implicit).toEqual('my new message');
     });
 
+    test(`should be hidden when set`, () => {
+      hostComponent.showRecordsPerPageSelector = false;
+      fixture.detectChanges();
 
-    test(`should reset currentPageIndex if isZeroBased changed`, () => {
-      const changesMock1: SimpleChanges = {isZeroBased: new SimpleChange(true, false, false)};
-      // Fake the change event that Angular would normally trigger
-      component.ngOnChanges(changesMock1);
-
-      expect(component.currentPageIndex).toEqual(1);
-
-      const changesMock2: SimpleChanges = {isZeroBased: new SimpleChange(false, true, false)};
-      // Fake the change event that Angular would normally trigger
-      component.ngOnChanges(changesMock2);
-
-      expect(component.currentPageIndex).toEqual(0);
+      expect(hostComponent.showRecordsPerPageSelector).toEqual(false);
+      expect(fixture.debugElement.query(By.css('.qa-paginator-per-page-select'))).toBeFalsy();
     });
+  });
+
+  describe(`clicking page buttons`, () => {
+    let fixture: ComponentFixture<TestComponents.RecordsPerPage>;
+
+    beforeEach(() => {
+      fixture = createComponent(TestComponents.RecordsPerPage);
+    });
+
+    test(`should go to the next page`, fakeAsync(() => {
+      const hostComponent = fixture.componentInstance;
+      fixture.detectChanges();
+      const dir = 'next';
+      tick(2000);
+      clickToChangePage(fixture, dir);
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const nextPageIndex = hostComponent.paginatorComponent.nextPageIndex;
+
+      expect(titleEl.textContent).toContain('11 - 20 of 100');
+      expect(nextPageIndex).toEqual(1);
+    }));
+
+    test(`should go to the previous page`, fakeAsync(() => {
+      fixture.detectChanges();
+      const dir = 'previous';
+      tick(2000);
+      clickToChangePage(fixture, 'next');
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+
+      expect(titleEl.textContent).toContain('11 - 20 of 100');
+
+      clickToChangePage(fixture, dir);
+
+      expect(titleEl.textContent).toContain('1 - 10 of 100');
+    }));
+
+    test(`should go to the first page and disable first & prev buttons`, fakeAsync(() => {
+      fixture.detectChanges();
+      const dir = 'first';
+      tick(2000);
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      clickToChangePage(fixture, 'next');
+      clickToChangePage(fixture, 'next');
+
+      expect(titleEl.textContent).toContain('21 - 30 of 100');
+
+      clickToChangePage(fixture, dir);
+
+      const firstPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-${dir}-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const previousPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
+
+      expect(titleEl.textContent).toContain('1 - 10 of 100');
+      expect(firstPageBut.disabled).toEqual(true);
+      expect(previousPageBut.disabled).toEqual(true);
+    }));
+
+
+    test(`should go to the last page and disable last and next buttons`, fakeAsync(() => {
+      fixture.detectChanges();
+      const dir = 'last';
+      tick(2000);
+      clickToChangePage(fixture, dir);
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const lastPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-${dir}-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const nextPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
+
+      expect(titleEl.textContent).toContain('91 - 100 of 100');
+      expect(lastPageBut.disabled).toEqual(true);
+      expect(nextPageBut.disabled).toEqual(true);
+    }));
 
   });
 
+  describe(`current page menu`, () => {
+    let fixture: ComponentFixture<TestComponents.RecordsPerPage>;
+    let hostComponent: TestComponents.RecordsPerPage;
 
-  describe(`currentPageChanged()`, () => {
+    beforeEach(() => {
+      fixture = createComponent(TestComponents.RecordsPerPage);
+      hostComponent = fixture.componentInstance;
+    });
 
-    test(`should set the current page, and trigger methods`, () => {
-      const eventMock = {
-        name: '21 - 30 of 125',
-        value: 2,
+    test(`should default to first set of results`, () => {
+      fixture.detectChanges();
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+
+      expect(titleEl.textContent).toContain('1 - 10 of 100');
+      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+    });
+
+    /** TODO revisit this after menu component has been converted to INT
+     * menu:  https://github.com/GetTerminus/terminus-ui/issues/1288
+     * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
+     *
+    test(`should change page when another page is selected from the menu`, () => {});
+     */
+
+    test(`should show all results if they fit on a page, zeroBased`, () => {
+      hostComponent.totalRecords = 8;
+      fixture.detectChanges();
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+
+      expect(titleEl.textContent).toContain('1 - 8 of 8');
+      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+
+      const firstPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-first-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const previousPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const lastPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-last-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const nextPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
+
+      expect(firstPageBut.disabled).toEqual(true);
+      expect(previousPageBut.disabled).toEqual(true);
+      expect(lastPageBut.disabled).toEqual(true);
+      expect(nextPageBut.disabled).toEqual(true);
+    });
+
+    test(`should show all results if they fit on a page, not zeroBased`, () => {
+      hostComponent.totalRecords = 8;
+      hostComponent.zeroBased = false;
+      fixture.detectChanges();
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+
+      expect(titleEl.textContent).toContain('1 - 8 of 8');
+      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+
+      const firstPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-first-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const previousPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const lastPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-last-page-button .c-button`)).nativeElement as HTMLButtonElement;
+      const nextPageBut =
+        fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
+
+      expect(firstPageBut.disabled).toEqual(true);
+      expect(previousPageBut.disabled).toEqual(true);
+      expect(lastPageBut.disabled).toEqual(true);
+      expect(nextPageBut.disabled).toEqual(true);
+    });
+
+    test(`should specify partial results on the last page, zeroBased`, fakeAsync(() => {
+      // testing number coercion
+      hostComponent.totalRecords = '95' as any;
+      fixture.detectChanges();
+      tick(2000);
+      clickToChangePage(fixture, 'last');
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const lastPageIndex = hostComponent.paginatorComponent.lastPageIndex;
+
+      expect(titleEl.textContent).toContain('91 - 95 of 95');
+      expect(hostComponent.paginatorComponent.isLastPage(lastPageIndex)).toEqual(true);
+    }));
+
+    test(`should specify partial results on the last page, not zeroBased`, fakeAsync(() => {
+      hostComponent.totalRecords = 15;
+      hostComponent.zeroBased = false;
+      fixture.detectChanges();
+      tick(2000);
+      clickToChangePage(fixture, 'last');
+
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+      const lastPageIndex = hostComponent.paginatorComponent.lastPageIndex;
+
+      expect(titleEl.textContent).toContain('11 - 15 of 15');
+      expect(hostComponent.paginatorComponent.isLastPage(lastPageIndex)).toEqual(true);
+    }));
+
+    test(`should return to current page if invalid page is requested`, () => {
+      const requestedPage: TsPaginatorMenuItem = {
+        name: '10',
+        value: 10,
       };
-      component.pageSelect.emit = jest.fn();
-      component['createCurrentPageLabel'] = jest.fn();
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
+      fixture.detectChanges();
+      hostComponent.paginatorComponent.currentPageChanged(requestedPage);
 
-      expect(component.currentPageIndex).toEqual(0);
+      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
 
-      component.currentPageChanged(eventMock);
-
-      expect(component.currentPageIndex).toEqual(2);
-      expect(component['createCurrentPageLabel']).toHaveBeenCalled();
-      expect(component.pageSelect.emit).toHaveBeenCalled();
+      expect(titleEl.textContent).toContain('91 - 100 of 100');
+      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(hostComponent.paginatorComponent.lastPageIndex);
     });
-
   });
-
-
-  describe(`changePage()`, () => {
-
-    test(`should fake a changed page event when valid`, () => {
-      jest.spyOn(component, 'currentPageChanged');
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
-      component.changePage(2, 1, component.pagesArray);
-
-      expect(component.currentPageChanged).toHaveBeenCalled();
-    });
-
-
-    test(`should do nothing when the destination is not valid`, () => {
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
-      jest.spyOn(component, 'currentPageChanged');
-
-      component.changePage(-1, 1, component.pagesArray);
-      expect(component.currentPageChanged).not.toHaveBeenCalled();
-
-      const invalidLength = component.pagesArray.length + 2;
-      component.changePage(invalidLength, 1, component.pagesArray);
-      expect(component.currentPageChanged).not.toHaveBeenCalled();
-    });
-
-
-    test(`should do nothing when already on the requested page`, () => {
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
-      jest.spyOn(component, 'currentPageChanged');
-
-      component.changePage(2, 2, component.pagesArray);
-      expect(component.currentPageChanged).not.toHaveBeenCalled();
-    });
-
-  });
-
-
-  describe(`isFirstPage()`, () => {
-
-    test(`should return TRUE when the passed in page is 0`, () => {
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
-
-      expect(component.isFirstPage(0)).toEqual(true);
-    });
-
-
-    test(`should return FALSE when the passed in page is not 0`, () => {
-      component.totalRecords = 125;
-      component.ngAfterViewInit();
-
-      expect(component.isFirstPage(7)).toEqual(false);
-      expect(component.isFirstPage(1)).toEqual(false);
-      expect(component.isFirstPage(-2)).toEqual(false);
-    });
-
-  });
-
-
-  describe(`isLastPage()`, () => {
-
-    test(`should return TRUE when the page is the last in the array`, () => {
-      component.totalRecords = 20;
-      component.ngAfterViewInit();
-
-      expect(component.isLastPage(1)).toEqual(true);
-    });
-
-
-    test(`should return FALSE when the page is not the last in the array`, () => {
-      component.totalRecords = 20;
-      component.ngAfterViewInit();
-
-      expect(component.isLastPage(0)).toEqual(false);
-    });
-
-
-    test(`should return FALSE if the pagesArray doesn't exist`, () => {
-      component.pagesArray = undefined as any;
-
-      expect(component.isLastPage(1)).toEqual(false);
-    });
-
-
-    test(`should return TRUE when the page is the last in the array and not zero-based`, () => {
-      component.totalRecords = 20;
-      component.isZeroBased = false;
-      component.ngAfterViewInit();
-
-      expect(component.isLastPage(2)).toEqual(true);
-    });
-
-  });
-
-
-  describe(`shouldShowRecordsMessage()`, () => {
-
-    test(`should return TRUE if there are more records than the recommended max and the message exists`, () => {
-      component.totalRecords = 101;
-      component.ngAfterViewInit();
-
-      const actual = component.shouldShowRecordsMessage('foo', 100, 101);
-      const expected = true;
-      expect(actual).toEqual(expected);
-    });
-
-
-    test(`should return FALSE if there are more records than the recommended max but there is no message`, () => {
-      component.totalRecords = 101;
-      component.ngAfterViewInit();
-
-      const actual = component.shouldShowRecordsMessage('', 100, 101);
-      const expected = false;
-      expect(actual).toEqual(expected);
-    });
-
-
-    test(`should return FALSE if there are less records than the recommended max`, () => {
-      component.totalRecords = 99;
-      component.ngAfterViewInit();
-
-      const actual = component.shouldShowRecordsMessage('foo', 100, 99);
-      const expected = false;
-      expect(actual).toEqual(expected);
-    });
-
-  });
-
-
-  describe(`recordsPerPageUpdated()`, () => {
-
-    test(`should update the records per page, reset current page & re-initialize`, () => {
-      component['initialize'] = jest.fn();
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-      const change = new TsSelectChange({} as TsSelectComponent, 25);
-
-      component.recordsPerPageUpdated(change);
-
-      expect(component.recordsPerPage).toEqual(25);
-      expect(component.currentPageIndex).toEqual(0);
-      expect(component['initialize']).toHaveBeenCalled();
-    });
-
-  });
-
-
-  describe(`menuIsDisabled()`, () => {
-
-    test(`should return TRUE if there are less than 2 pages`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-
-      expect(component.menuIsDisabled(1)).toEqual(true);
-    });
-
-
-    test(`should return FALSE if there are 2 or more pages`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-
-      expect(component.menuIsDisabled(3)).toEqual(false);
-    });
-
-  });
-
-
-  describe(`disableRecordsPerPage()`, () => {
-    const options = [5, 10, 20];
-
-    test(`should return TRUE if there are fewer records than the amount of the lowest records-per-page option`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-
-      expect(component.disableRecordsPerPage(4, options)).toEqual(true);
-    });
-
-
-    test(`should return FALSE if there are more records than the amount of the lowest records-per-page option`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-
-      expect(component.disableRecordsPerPage(6, options)).toEqual(false);
-    });
-
-  });
-
-
-  describe(`createCurrentPageLabel()`, () => {
-
-    test(`should return a valid title`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-      const actual = component['createCurrentPageLabel'](2, component.pagesArray, 100);
-      const expected = '21 - 30 of 100';
-
-      expect(actual).toEqual(expected);
-    });
-
-
-    test(`should return a valid title when no records exist`, () => {
-      component.ngAfterViewInit();
-      const actual = component['createCurrentPageLabel'](1, [], 0);
-      const expected = '0 of 0';
-
-      expect(actual).toEqual(expected);
-    });
-
-
-    test(`should return a valid title when the requested page doesn't exist`, () => {
-      component.totalRecords = TOTAL_RECORDS;
-      component.ngAfterViewInit();
-      const actual = component['createCurrentPageLabel'](10, component.pagesArray, TOTAL_RECORDS);
-      const expected = '91 - 100 of 100';
-
-      expect(actual).toEqual(expected);
-    });
-
-  });
-
-
-  describe(`createPagesArray()`, () => {
-
-    test(`should return an empty array if there are no records`, () => {
-      const actual = component['createPagesArray'](0, 10, true);
-
-      expect(actual).toEqual([]);
-    });
-
-
-    test(`should create a valid array`, () => {
-      const actual = component['createPagesArray'](105, 10, true);
-
-      expect(actual.length).toEqual(11);
-    });
-
-
-    test(`should create a final page when fewer than the per-page amount are remaining`, () => {
-      const array = component['createPagesArray'](105, 10, true);
-
-      expect(array.length).toEqual(11);
-      expect(array[array.length - 1].name).toEqual('101 - 105');
-    });
-
-
-    test(`should create a valid array when there are fewer total records than the per page amount`, () => {
-      const array1 = component['createPagesArray'](8, 10, true);
-      expect(array1.length).toEqual(1);
-      expect(array1[array1.length - 1].name).toEqual('1 - 8');
-
-      const array2 = component['createPagesArray'](8, 10, false);
-      expect(array2.length).toEqual(1);
-      expect(array2[array2.length - 1].name).toEqual('1 - 8');
-    });
-
-
-    test(`should create a valid array with '1' as the base page value`, () => {
-      const array = component['createPagesArray'](105, 10, false);
-
-      expect(array.length).toEqual(11);
-      expect(array[0].value).toEqual(1);
-    });
-
-
-    test(`should create a valid array with more than 10 per page`, () => {
-      // 1-based
-      const actual1 = component['createPagesArray'](59, 50, false);
-      const expected1 = [
-        {
-          name: '1 - 50',
-          value: 1,
-        },
-        {
-          name: '51 - 59',
-          value: 2,
-        },
-      ];
-
-      expect(actual1).toEqual(expected1);
-
-      // 0-based
-      const actual2 = component['createPagesArray'](59, 50, true);
-      const expected2 = [
-        {
-          name: '1 - 50',
-          value: 0,
-        },
-        {
-          name: '51 - 59',
-          value: 1,
-        },
-      ];
-
-      expect(actual2).toEqual(expected2);
-    });
-
-  });
-
-
-  describe(`trackPagesArray()`, () => {
-
-    test(`should return a tracking property or undefined`, () => {
-      expect(component.trackPagesArray(1, {name: 'foo'})).toEqual('foo');
-      expect(component.trackPagesArray(2, {name: 'bar'})).toEqual('bar');
-      expect(component.trackPagesArray(3, null as any)).toBeUndefined();
-    });
-
-  });
-
 
   describe(`isZeroBased`, () => {
 
-    test(`should set/get the value`, () => {
-      expect(component.isZeroBased).toEqual(true);
-      component.isZeroBased = false;
+    test(`should be zero-based by default`, () => {
+      const fixture = createComponent(TestComponents.Basic);
+      const hostComponent = fixture.componentInstance;
+      fixture.detectChanges();
 
-      expect(component.isZeroBased).toEqual(false);
+      expect(hostComponent.paginatorComponent.isZeroBased).toEqual(true);
+      expect(hostComponent.paginatorComponent.firstPageIndex).toEqual(0);
+      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(0);
     });
 
+    test(`should not be zero-based when set`, () => {
+      const fixture = createComponent(TestComponents.ZeroBased);
+      const hostComponent = fixture.componentInstance;
+      hostComponent.isZeroBased = false;
+      fixture.detectChanges();
+
+      expect(hostComponent.paginatorComponent.isZeroBased).toEqual(false);
+      expect(hostComponent.paginatorComponent.firstPageIndex).toEqual(1);
+      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(1);
+    });
+
+    test(`should adjust lastPageIndex`, () => {
+      const fixture = createComponent(TestComponents.ZeroBased);
+      const hostComponent = fixture.componentInstance;
+      hostComponent.isZeroBased = true;
+      fixture.detectChanges();
+
+      expect(hostComponent.paginatorComponent.lastPageIndex).toEqual(9);
+
+      hostComponent.isZeroBased = false;
+      fixture.detectChanges();
+
+      expect(hostComponent.paginatorComponent.lastPageIndex).toEqual(10);
+    });
   });
 
 
-  describe(`nextPageIndex`, () => {
+  describe(`recordCountTooHighMessage`, () => {
 
-    test(`should return the index for the next page`, () => {
-      component.isZeroBased = false;
-      component.currentPageIndex = 10;
+    test(`should not display message when totalRecords is less than maxPreferredRecords`, () => {
+      const fixture = createComponent(TestComponents.RecordsPerPage);
+      const hostComponent = fixture.componentInstance;
+      fixture.detectChanges();
 
-      expect(component.nextPageIndex).toEqual(9);
+      expect(fixture.debugElement.query(By.css('.c-paginator__message'))).toBeFalsy();
+      expect(hostComponent.paginatorComponent.totalRecords).toEqual(100);
+      expect(hostComponent.paginatorComponent.maxPreferredRecords).toEqual(100);
     });
 
+    test(`should display message when totalRecords is greater than maxPreferredRecords`, () => {
+      const fixture = createComponent(TestComponents.RecordsPerPage);
+      const hostComponent = fixture.componentInstance;
+      hostComponent.totalRecords = 125;
+      fixture.detectChanges();
+
+      // check default message
+      const messageEl = fixture.debugElement.query(By.css('.c-paginator__message')).nativeElement as HTMLElement;
+
+      expect(messageEl.textContent.trim()).toEqual('That\'s a lot of results! Try refining your filters for better results.');
+    });
+
+    test(`should update message text`, () => {
+      const fixture = createComponent(TestComponents.RecordsCount);
+      const hostComponent = fixture.componentInstance;
+      hostComponent.recordCountTooHighMessage = 'There are too many results!';
+      fixture.detectChanges();
+
+      const messageEl = fixture.debugElement.query(By.css('.c-paginator__message')).nativeElement as HTMLElement;
+
+      expect(messageEl.textContent.trim()).toEqual('There are too many results!');
+    });
+
+    test(`should set maxPreferredRecords`, () => {
+      const fixture = createComponent(TestComponents.RecordsCount);
+      const hostComponent = fixture.componentInstance;
+      hostComponent.maxPreferredRecords = 200;
+      fixture.detectChanges();
+
+      expect(hostComponent.paginatorComponent.maxPreferredRecords).toEqual(200);
+      expect(fixture.debugElement.query(By.css('.c-paginator__message'))).toBeFalsy();
+    });
   });
 
 
-  describe(`lastPageIndex`, () => {
+/* TODO: revisit this after tooltip tests have been converted to INT
+ * tooltip:   https://github.com/GetTerminus/terminus-ui/issues/1296
+ * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
+  describe(`tooltips`, () => {
 
-    test(`should return the index for the last page`, () => {
-      component.isZeroBased = true;
-      component.pagesArray = [1, 2, 3, 4, 5] as any[];
+    test(`should display default tooltips by default`, () => { });
 
-      expect(component.lastPageIndex).toEqual(4);
-    });
-
-
-    test(`should return the index for the last page when not zero-based`, () => {
-      component.isZeroBased = false;
-      component.pagesArray = [1, 2, 3, 4, 5] as any[];
-
-      expect(component.lastPageIndex).toEqual(5);
-    });
-
+    test(`should update tooltips if set`, () => { });
   });
-
+ */
 });
+
+
+/**
+ * HELPERS
+ */
+
+function createComponent<T>(component: Type<T>): ComponentFixture<T> {
+
+  return createComponentInner<T>(
+    component,
+    undefined,
+    [
+      TsPaginatorModule,
+    ],
+  );
+}
