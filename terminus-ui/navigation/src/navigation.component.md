@@ -7,7 +7,9 @@
 
 - [Basic Usage](#basic-usage)
 - [Navigation Item](#navigation-item)
-  - [Nav Items](#nav-items)
+  - [Actions](#actions)
+  - [Links](#links)
+- [Nav Items Array](#nav-items-array)
 - [Welcome Message](#welcome-message)
 - [User](#user)
 
@@ -17,7 +19,7 @@
 
 ## Basic Usage
 
-Create a navigation menu
+Create a navigation menu. A navigation menu is a collection of [Nav Items](#nav-items) grouped together, with a space for [User](#user) and [Welcome Message](#welcome-message).
 
 ```html
 <ts-navigation
@@ -30,7 +32,7 @@ Create a navigation menu
 
 ## Navigation Item
 
-An object describing a "link" within the navigation. It gets a name, action or destination, and a boolean alwaysHidden.
+An object describing a "link" within the navigation. It gets a name, an action or destination, and a boolean alwaysHidden. Optionally, it can receive boolean values for `isForAdmin` and `isDisabled`.
 
 ```typescript
 const NEW_NAV_ITEM: TsNavigationItem = {
@@ -51,10 +53,37 @@ const NEW_NAV_ITEM: TsNavigationItem = {
 };
 ```
 
-### Nav Items
+### Actions
 
-An array of navigation items that is passed to `ts-navigation`.
+An action is an object with a `type`. It gets emitted upon click.
 
+### Links
+
+A link is a string or string[], with a `destination` and optional boolean `isExternal`. Without isExternal, a link is considered a router link, and with isExternal, it's treated as an href.
+
+## Nav Items Array
+
+An array of navigation items that is passed to `ts-navigation` as `items`.
+
+```typescript
+const NAV_ITEMS_MOCK: TsNavigationItem[] = [
+  {
+    name: '1 Components',
+    destination: '/components',
+    alwaysHidden: false,
+  },
+  {
+    name: '2 Nav',
+    action: 'my:navigationAction',
+    alwaysHidden: false,
+  },
+  {
+    name: '3 Buttons',
+    destination: ['/components/button'],
+    alwaysHidden: true,
+  },
+];
+```
 
 
 ## Welcome Message
