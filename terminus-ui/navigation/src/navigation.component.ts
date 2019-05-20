@@ -331,7 +331,8 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   private setUpInitialArrays(items: TsNavigationItem[]): void {
     // Clone the items and define the external flag for links only
-    const allItems = Array.from(items).map(item => {
+    const allItems = items.map(i => {
+      const item: TsNavigationItem = { ...i };
       if (isLinkItem(item)) {
         item.isExternal = this.isExternalLink(item.destination);
       }
