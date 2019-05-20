@@ -1,3 +1,7 @@
+## <small>12.1.6 (2019-05-20)</small>
+
+* fix(Navigation): clone navigation object to prevent mutation of original ([00fde32](https://github.com/GetTerminus/terminus-ui/commit/00fde32))
+
 ## <small>12.1.5 (2019-05-16)</small>
 
 * fix(Input): scope overlay z-index for datepicker ([1fe1a5f](https://github.com/GetTerminus/terminus-ui/commit/1fe1a5f))
