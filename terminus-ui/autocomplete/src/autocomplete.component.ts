@@ -1,3 +1,5 @@
+// NOTE: A method must be used to dynamically format values for the UI
+// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterContentInit,

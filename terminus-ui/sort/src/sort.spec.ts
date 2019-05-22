@@ -31,9 +31,9 @@ import {
   getSortInvalidDirectionError,
 } from './sort-errors';
 import { TsSortHeaderComponent } from './sort-header.component';
-import { TsSortDirective } from './sort.directive';
 import {
   TsSortDirection,
+  TsSortDirective,
   TsSortState,
 } from './sort.directive';
 import { TsSortModule } from './sort.module';
@@ -52,7 +52,7 @@ import { TsSortModule } from './sort.module';
 function testSingleColumnSortDirectionSequence(
   fixture: ComponentFixture<SimpleTsSortApp>,
   expectedSequence: TsSortDirection[],
-  id: string = 'defaultSortHeaderA',
+  id = 'defaultSortHeaderA',
 ) {
   // Detect any changes that were made in preparation for this sort sequence
   fixture.detectChanges();
@@ -193,9 +193,7 @@ class TsTableTsSortApp {
 }
 
 
-@Component({
-  template: `<div ts-sort-header="a"> A </div>`,
-})
+@Component({template: `<div ts-sort-header="a"> A </div>`})
 class TsSortHeaderMissingTsSortApp { }
 
 
@@ -388,37 +386,40 @@ describe('TsSort', () => {
 
   test('should throw an error if an TsSortable is not contained within an TsSort directive', () => {
     expect(() => TestBed.createComponent(TsSortHeaderMissingTsSortApp).detectChanges())
-        .toThrowError(wrappedErrorMessage(getSortHeaderNotContainedWithinSortError()));
+      .toThrowError(wrappedErrorMessage(getSortHeaderNotContainedWithinSortError()));
   });
 
 
   test('should throw an error if two TsSortables have the same id', () => {
     expect(() => TestBed.createComponent(TsSortDuplicateTsSortableIdsApp).detectChanges())
-        .toThrowError(wrappedErrorMessage(getSortDuplicateSortableIdError('duplicateId')));
+      .toThrowError(wrappedErrorMessage(getSortDuplicateSortableIdError('duplicateId')));
   });
 
 
   test('should throw an error if an TsSortable is missing an id', () => {
     expect(() => TestBed.createComponent(TsSortableMissingIdApp).detectChanges())
-        .toThrowError(wrappedErrorMessage(getSortHeaderMissingIdError()));
+      .toThrowError(wrappedErrorMessage(getSortHeaderMissingIdError()));
   });
 
 
   test('should throw an error if the provided direction is invalid', () => {
     expect(() => TestBed.createComponent(TsSortableInvalidDirection).detectChanges())
-        .toThrowError(wrappedErrorMessage(getSortInvalidDirectionError('ascending')));
+      .toThrowError(wrappedErrorMessage(getSortInvalidDirectionError('ascending')));
   });
 
 
   test('should allow let TsSortable override the default sort parameters', () => {
     testSingleColumnSortDirectionSequence(
-        fixture, ['asc', 'desc', '']);
+      fixture, ['asc', 'desc', '']
+    );
 
     testSingleColumnSortDirectionSequence(
-        fixture, ['desc', 'asc', ''], 'overrideStart');
+      fixture, ['desc', 'asc', ''], 'overrideStart'
+    );
 
     testSingleColumnSortDirectionSequence(
-        fixture, ['asc', 'desc'], 'overrideDisableClear');
+      fixture, ['asc', 'desc'], 'overrideDisableClear'
+    );
   });
 
 

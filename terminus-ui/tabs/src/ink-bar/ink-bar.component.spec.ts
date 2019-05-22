@@ -21,7 +21,10 @@ describe(`TsTabInkBarComponent`, function() {
 
     test(`should return 0s if no element is passed in`, function() {
       const fixture = createComponent(testComponents.InkBar, [], [TsTabsModule]);
-      expect(fixture.componentInstance.inkBar['determineInkBarPositions'](undefined as any)).toEqual({left: '0', width: '0'});
+      expect(fixture.componentInstance.inkBar['determineInkBarPositions'](undefined as any)).toEqual({
+        left: '0',
+        width: '0',
+      });
     });
 
   });

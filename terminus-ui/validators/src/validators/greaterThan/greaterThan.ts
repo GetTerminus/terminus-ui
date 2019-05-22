@@ -18,13 +18,13 @@ export function greaterThanValidator(minimum: number | AbstractControl = 0): Val
     // Allow optional controls by not validating empty values
     if (!control || isNaN(control.value)) {
       return null;
-   }
+    }
 
     if (isAbstractControl(minimum)) {
       return getValidationResult(minimum.value, control);
-    } else {
-      return getValidationResult(minimum, control);
     }
+    return getValidationResult(minimum, control);
+
   };
 }
 

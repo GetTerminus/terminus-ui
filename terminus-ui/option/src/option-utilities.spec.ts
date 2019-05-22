@@ -117,5 +117,12 @@ export class EmptyQueryList {
  */
 
 export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  return createComponentInner<T>(component, [], [TsOptionModule, TsAutocompleteModule, ReactiveFormsModule, NoopAnimationsModule]);
+  return createComponentInner<T>(component,
+    providers,
+    [
+      ReactiveFormsModule,
+      TsSelectModule,
+      NoopAnimationsModule,
+      ...imports,
+    ],);
 }

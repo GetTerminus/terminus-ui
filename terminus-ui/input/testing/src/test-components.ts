@@ -60,9 +60,7 @@ export class Autocomplete implements AfterContentInit {
   }
 }
 
-@Component({
-  template: `<ts-input [readOnly]="readOnly"></ts-input>`,
-})
+@Component({template: `<ts-input [readOnly]="readOnly"></ts-input>`})
 export class AttrReadonly {
   readOnly = false;
 
@@ -70,9 +68,7 @@ export class AttrReadonly {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input [spellcheck]="spellcheck"></ts-input>`,
-})
+@Component({template: `<ts-input [spellcheck]="spellcheck"></ts-input>`})
 export class AttrSpellcheck {
   spellcheck = false;
 
@@ -80,9 +76,7 @@ export class AttrSpellcheck {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input [autocapitalize]="autocapitalize"></ts-input>`,
-})
+@Component({template: `<ts-input [autocapitalize]="autocapitalize"></ts-input>`})
 export class AttrAutocapitalize {
   autocapitalize = false;
 
@@ -90,30 +84,22 @@ export class AttrAutocapitalize {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input [autocomplete]="autocomplete"></ts-input>`,
-})
+@Component({template: `<ts-input [autocomplete]="autocomplete"></ts-input>`})
 export class AttrAutocomplete {
   autocomplete: TsInputAutocompleteTypes = 'on';
 }
 
-@Component({
-  template: `<ts-input [id]="id"></ts-input>`,
-})
+@Component({template: `<ts-input [id]="id"></ts-input>`})
 export class AttrId {
   id: string | undefined = undefined;
 }
 
-@Component({
-  template: `<ts-input [isDisabled]="disabled"></ts-input>`,
-})
+@Component({template: `<ts-input [isDisabled]="disabled"></ts-input>`})
 export class AttrDisabled {
   disabled = false;
 }
 
-@Component({
-  template: `<ts-input [isFocused]="focused"></ts-input>`,
-})
+@Component({template: `<ts-input [isFocused]="focused"></ts-input>`})
 export class AttrAutofocus {
   focused = false;
 }
@@ -216,9 +202,7 @@ export class PostalMask {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input></ts-input>`,
-})
+@Component({template: `<ts-input></ts-input>`})
 export class MissingFormControl {
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
@@ -271,9 +255,7 @@ export class MinMaxDate {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input [formControl]="formControl" [hideRequiredMarker]="hideRequiredMarker"></ts-input>`,
-})
+@Component({template: `<ts-input [formControl]="formControl" [hideRequiredMarker]="hideRequiredMarker"></ts-input>`})
 export class AttrRequiredHidden {
   formControl: FormControl = new FormControl(null, Validators.required);
   hideRequiredMarker: boolean | undefined = false;
@@ -313,7 +295,7 @@ export class Clearable {
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
   // Must be overwritten with a spy in the test
-  cleared = (v) => {};
+  cleared = v => {};
 }
 
 @Component({
@@ -332,40 +314,30 @@ export class NoExternalFormField {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<ts-input [formControl]="formControl" [hint]="hint"></ts-input>`,
-})
+@Component({template: `<ts-input [formControl]="formControl" [hint]="hint"></ts-input>`})
 export class Hint {
   formControl = new FormControl();
   hint: string | undefined = undefined;
 }
 
-@Component({
-  template: `<ts-input [formControl]="formControl"></ts-input>`,
-})
+@Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
 export class AttrNotRequired {
   formControl: FormControl = new FormControl(null);
 }
 
-@Component({
-  template: `<ts-input [formControl]="formControl"></ts-input>`,
-})
+@Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
 export class FormControlAttrRequired {
   formControl: FormControl = new FormControl(null, Validators.required);
 }
 
-@Component({
-  template: `<ts-input [formControl]="formControl" [isRequired]="required"></ts-input>`,
-})
+@Component({template: `<ts-input [formControl]="formControl" [isRequired]="required"></ts-input>`})
 export class AttrInputRequired {
   formControl: FormControl = new FormControl(null);
   required = false;
 }
 
 
-@Component({
-  template: `<ts-input label="test label"></ts-input>`,
-})
+@Component({template: `<ts-input label="test label"></ts-input>`})
 export class Label {
   @ViewChild(TsInputComponent)
   inputComponent: TsInputComponent;
@@ -442,9 +414,7 @@ export class Textarea {
   inputComponent: TsInputComponent;
 }
 
-@Component({
-  template: `<div *ngIf="show"><ts-input></ts-input></div>`,
-})
+@Component({template: `<div *ngIf="show"><ts-input></ts-input></div>`})
 export class ToggleInputComponent {
 
   @ViewChild(TsInputComponent)

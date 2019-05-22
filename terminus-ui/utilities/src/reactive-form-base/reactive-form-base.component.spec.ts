@@ -11,20 +11,6 @@ describe(`TsReactiveFormBaseComponent`, function() {
   });
 
 
-  // FIXME: Currently our coverage reporting includes spec files. This test gets us to 100%
-  // coverage. We should ultimately fix our reporting so that only non-spec files count against our
-  // coverage report.
-/*
- *  describe(`METHOD_MOCK`, () => {
- *
- *    test(`should verify the testing utility`, () => {
- *      expect(METHOD_MOCK()).toEqual('foo');
- *    });
- *
- *  });
- */
-
-
   test(`should exist`, () => {
     expect(component).toBeTruthy();
   });

@@ -1,6 +1,4 @@
-import {
-  Type,
-} from '@angular/core';
+import { Type } from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -11,27 +9,18 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  A,
-  DOWN_ARROW,
-  END,
-  ENTER,
-  ESCAPE,
-  HOME,
-  SPACE,
-  TAB,
-  UP_ARROW,
-} from '@terminus/ngx-tools/keycodes';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
+  createComponent as createComponentInner,
+  createFakeEvent,
   createKeyboardEvent,
   dispatchEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/select/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   createKeydownEvent,
   getAllOptionInstances,
@@ -81,7 +70,7 @@ describe(`TsSelectComponent`, function() {
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
-      const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+      const event = createKeydownEvent(KEYS.DOWN_ARROW);
       trigger.dispatchEvent(event);
 
       const options = getAllOptionInstances(fixture);
@@ -99,7 +88,7 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should allow a value seeded by a FormControl`, (done) => {
+    test(`should allow a value seeded by a FormControl`, done => {
       const fixture = createComponent(testComponents.SeededFormControl);
       fixture.detectChanges();
 
@@ -145,7 +134,7 @@ describe(`TsSelectComponent`, function() {
       fixture.componentInstance.selected = jest.fn();
       fixture.componentInstance.change = jest.fn();
       const trigger = getSelectTriggerElement(fixture);
-      const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+      const event = createKeydownEvent(KEYS.DOWN_ARROW);
       trigger.dispatchEvent(event);
 
       // NOTE: Ideally we would verify what was passed through the emitter but doing so causes a memory error with Jest.
@@ -167,7 +156,7 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should support a custom trigger`, (done) => {
+    test(`should support a custom trigger`, done => {
       const fixture = createComponent(testComponents.CustomOptionTemplate);
       fixture.detectChanges();
 
@@ -240,9 +229,8 @@ describe(`TsSelectComponent`, function() {
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
           const valueSpan = trigger.querySelector('.ts-select-value-text');
-          if (valueSpan) {
-            expect(valueSpan.textContent).toEqual('Florida- Texas');
-          }
+
+          expect(valueSpan!.textContent).toEqual('Florida- Texas');
         });
       });
 
@@ -256,9 +244,7 @@ describe(`TsSelectComponent`, function() {
           const trigger = getSelectTriggerElement(fixture);
           const valueSpan = trigger.querySelector('.ts-select-value-text');
 
-          if (valueSpan) {
-            expect(valueSpan.textContent).toEqual('Florida, Texas');
-          }
+          expect(valueSpan!.textContent).toEqual('Florida, Texas');
         });
       });
 
@@ -285,15 +271,11 @@ describe(`TsSelectComponent`, function() {
 
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        let selected = getSelectInstance(fixture).selectionModel.selected.map((v) => {
-          return v.viewValue;
-        });
+        let selected = getSelectInstance(fixture).selectionModel.selected.map(v => v.viewValue);
         expect(selected).toEqual(['Florida', 'Texas']);
 
         fixture.componentInstance.updateOptions();
-        selected = getSelectInstance(fixture).selectionModel.selected.map((v) => {
-          return v.viewValue;
-        });
+        selected = getSelectInstance(fixture).selectionModel.selected.map(v => v.viewValue);
         expect(selected).toEqual(['Florida', 'Texas']);
         expect.assertions(2);
       });
@@ -398,7 +380,7 @@ describe(`TsSelectComponent`, function() {
         const options = getAllOptionInstances(fixture);
         instance.open();
         fixture.detectChanges();
-        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const event = createKeydownEvent(KEYS.DOWN_ARROW);
 
         // Move down the list so that the first item is no longer focused
         dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
@@ -421,7 +403,7 @@ describe(`TsSelectComponent`, function() {
         const options = getAllOptionInstances(fixture);
         instance.open();
         fixture.detectChanges();
-        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const event = createKeydownEvent(KEYS.DOWN_ARROW);
 
         // Move down the list so that the first item is no longer focused
         element.dispatchEvent(event);
@@ -464,7 +446,7 @@ describe(`TsSelectComponent`, function() {
         const element = getSelectElement(fixture);
         instance.open();
         fixture.detectChanges();
-        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const event = createKeydownEvent(KEYS.DOWN_ARROW);
 
         // Move down the list so that the first item is no longer focused
         element.dispatchEvent(event);
@@ -487,7 +469,7 @@ describe(`TsSelectComponent`, function() {
         const element = getSelectElement(fixture);
         instance.open();
         fixture.detectChanges();
-        const eventDown = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const eventDown = createKeydownEvent(KEYS.DOWN_ARROW);
 
         // Move down the list so that the first item is no longer focused
         element.dispatchEvent(eventDown);
@@ -674,7 +656,7 @@ describe(`TsSelectComponent`, function() {
         const element = getSelectElement(fixture);
         instance.open();
         fixture.detectChanges();
-        const eventDown = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const eventDown = createKeydownEvent(KEYS.DOWN_ARROW);
 
         // Move focus past disabled item for testing ease
         element.dispatchEvent(eventDown);
@@ -682,7 +664,7 @@ describe(`TsSelectComponent`, function() {
         element.dispatchEvent(eventDown);
         fixture.detectChanges();
 
-        const event = createKeydownEvent('ArrowDown', DOWN_ARROW);
+        const event = createKeydownEvent(KEYS.DOWN_ARROW);
         Object.defineProperty(event, 'shiftKey', {get: () => true});
 
         element.dispatchEvent(event);
@@ -690,7 +672,7 @@ describe(`TsSelectComponent`, function() {
 
         expect(instance.value).toEqual(['Florida']);
 
-        const event2 = createKeyboardEvent('keydown', UP_ARROW);
+        const event2 = createKeyboardEvent('keydown', KEYS.UP_ARROW);
         Object.defineProperty(event2, 'shiftKey', {get: () => true});
         element.dispatchEvent(event2);
 
@@ -1190,7 +1172,7 @@ describe(`TsSelectComponent`, function() {
       expect(options.length).toBe(fixture.componentInstance.options.length);
 
       typeInElement('something', input);
-      dispatchKeyboardEvent(input, 'keydown', SPACE, input);
+      dispatchKeyboardEvent(input, 'keydown', KEYS.SPACE, input);
       expect(fixture.componentInstance.options.length).toBe(0);
       expect.assertions(3);
     });

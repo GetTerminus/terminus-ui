@@ -30,16 +30,18 @@ const passwordMessage = `Password must be between 6 and 100 characters, and cont
 @Injectable()
 export class TsValidationMessagesService {
 
+  constructor(private datePipe: TsDatePipe) {}
+
+
   /**
    * Return the correct error message for a validator
    *
    * @param validatorName - The name of the validator
    * @param validatorValue - The value of the validator
    * @return The error message
-   *
    */
+  // tslint:disable-next-line no-any
   public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
-
     const config: { [key: string]: string } = {
       // Standard responses:
       required: `Required`,
@@ -97,7 +99,5 @@ export class TsValidationMessagesService {
 
     return config[validatorName];
   }
-
-  constructor(private datePipe: TsDatePipe) { }
 
 }

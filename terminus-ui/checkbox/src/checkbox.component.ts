@@ -58,10 +58,10 @@ let nextUniqueId = 0;
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   host: {
-    class: 'ts-checkbox',
+    'class': 'ts-checkbox',
     '[attr.id]': 'id',
   },
-  providers: [ControlValueAccessorProviderFactory(TsCheckboxComponent)],
+  providers: [ControlValueAccessorProviderFactory<TsCheckboxComponent>(TsCheckboxComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCheckbox',
@@ -76,7 +76,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Provide access to the MatCheckboxComponent
    */
   @ViewChild(MatCheckbox)
-  checkbox!: MatCheckbox;
+  public checkbox!: MatCheckbox;
 
   /**
    * Define an ID for the component
@@ -149,13 +149,13 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  readonly inputChange: EventEmitter<boolean> = new EventEmitter();
+  public readonly inputChange: EventEmitter<boolean> = new EventEmitter();
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter();
+  public readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter();
 
 
   constructor(

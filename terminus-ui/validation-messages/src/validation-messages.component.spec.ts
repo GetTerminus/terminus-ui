@@ -1,7 +1,7 @@
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
 
+import { TsValidationMessagesServiceMock } from '@terminus/ui/validation-messages/testing';
 import { TsValidationMessagesComponent } from './validation-messages.component';
-import { TsValidationMessagesServiceMock } from './validation-messages.service.mock';
 
 
 describe('InputMessagesComponent', function() {
@@ -24,15 +24,11 @@ describe('InputMessagesComponent', function() {
   describe(`get validationMessage()`, () => {
 
     test(`should return messages for validation errors if the control has been touched`, () => {
-      const ERROR = {
-        valid: false,
-      };
+      const ERROR = {valid: false};
       component.validateOnChange = false;
       component.control = {
         touched: true,
-        errors: {
-          invalidEmail: ERROR,
-        },
+        errors: {invalidEmail: ERROR},
       } as any;
       // tslint:disable: no-unused-variable
       const message = component.validationMessage;
@@ -57,14 +53,10 @@ describe('InputMessagesComponent', function() {
 
 
     test(`should return null if the control hasn't been touched`, () => {
-      const ERROR = {
-        valid: false,
-      };
+      const ERROR = {valid: false};
       component.control = {
         touched: false,
-        errors: {
-          invalidEmail: ERROR,
-        },
+        errors: {invalidEmail: ERROR},
       } as any;
       const message = component.validationMessage;
 

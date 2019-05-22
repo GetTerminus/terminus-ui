@@ -52,7 +52,8 @@ export interface NavigationItemBase {
   /**
    * Define if the item is for admin functionality only
    */
-  // TODO: API change for clarity
+  // TODO: API change for clarity. Should likely be something more general that defines how the link is treated rather than where it takes
+  // the user.
   isForAdmin?: boolean;
 }
 
@@ -66,6 +67,11 @@ export interface TsNavigationLinkItem extends NavigationItemBase {
    * locations while an array of strings are used for routerLinks
    */
   destination: string | string[];
+
+  /**
+   * Whether this link should navigate via the router or standard href
+   */
+  isExternal?: boolean;
 }
 
 
@@ -79,6 +85,17 @@ export interface TsNavigationActionItem extends NavigationItemBase {
   action: {
     type: string;
   };
+}
+
+
+/**
+ * Determine if a navigation item is a {@link TsNavigationLinkItem}
+ *
+ * @param x - The item to check
+ * @return True if the item is a TsNavigationLinkItem
+ */
+export function isLinkItem(x: TsNavigationLinkItem | TsNavigationActionItem): x is TsNavigationLinkItem {
+  return !!(x as TsNavigationLinkItem).destination;
 }
 
 
@@ -104,6 +121,9 @@ export interface TsNavigationPayload {
     type: string;
   };
 }
+
+const DEFAULT_USER_NAME_MAX_LENGTH = 20;
+const DEFAULT_WELCOME_MESSAGE_MAX_LENGTH = 20;
 
 
 /**
@@ -137,9 +157,7 @@ export interface TsNavigationPayload {
   selector: 'ts-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  host: {
-    class: 'ts-navigation',
-  },
+  host: {class: 'ts-navigation'},
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsNavigation',
@@ -177,7 +195,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * @return The user's full name
    */
   public get usersFullName(): string | null {
-    const userExists = this.user ? true : false;
+    const userExists = !!this.user;
     const nameExists = userExists && (this.user.fullName.length > 0);
 
     return (userExists && nameExists) ? this.user.fullName : null;
@@ -203,9 +221,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   @Input()
   public set items(value: TsNavigationItem[]) {
     // Filter out disabled items
-    const enabledItems = value.filter((item: TsNavigationItem) => {
-      return !item.isDisabled;
-    });
+    const enabledItems = value.filter((item: TsNavigationItem) => !item.isDisabled);
 
     this.pristineItems = enabledItems;
     this.setUpInitialArrays(this.pristineItems);
@@ -223,20 +239,19 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Define the user name length
    */
   @Input()
-  public userNameLength: number = 20;
+  public userNameLength = DEFAULT_USER_NAME_MAX_LENGTH;
 
   /**
    * Define the welcome message
    */
   @Input()
-  public welcomeMessage: string = 'Welcome';
+  public welcomeMessage = 'Welcome';
 
   /**
    * Define the welcome message length
    */
   @Input()
-  public welcomeMsgLength: number = 25;
-
+  public welcomeMsgLength = DEFAULT_WELCOME_MESSAGE_MAX_LENGTH;
 
   /**
    * Element reference for visible list items
@@ -254,13 +269,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * Emit the click event with the {@link TsNavigationPayload}
    */
   @Output()
-  public action: EventEmitter<TsNavigationPayload> = new EventEmitter();
+  public readonly action: EventEmitter<TsNavigationPayload> = new EventEmitter();
 
   /**
    * Trigger a layout update when the window resizes
    */
   @HostListener('window:resize')
-  onResize(): void {
+  public onResize(): void {
     this.updateLists();
   }
 
@@ -315,8 +330,15 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    * @param items - The complete list of navigation items
    */
   private setUpInitialArrays(items: TsNavigationItem[]): void {
-    // Clone the items so we can work freely with the array.
-    const allItems = Array.from(items);
+    // Clone the items and define the external flag for links only
+    const allItems = items.map(i => {
+      const item: TsNavigationItem = { ...i };
+      if (isLinkItem(item)) {
+        item.isExternal = this.isExternalLink(item.destination);
+      }
+      return item;
+    });
+
     // Create an object with the arrays separated
     const splitArrays = groupBy(allItems, 'alwaysHidden');
 
@@ -382,6 +404,17 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
    */
   public isExternalLink(destination: string | string[]): boolean {
     return destination.indexOf('http') >= 0;
+  }
+
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @return The unique ID
+   */
+  public trackByFn(index): number {
+    return index;
   }
 
 }

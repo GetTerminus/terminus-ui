@@ -14,9 +14,7 @@ import { Subject } from 'rxjs';
   selector: 'ts-confirmation-overlay',
   styleUrls: ['./confirmation-overlay.component.scss'],
   templateUrl: './confirmation-overlay.component.html',
-  host: {
-    class: 'ts-confirmation',
-  },
+  host: {class: 'ts-confirmation'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsConfirmation',

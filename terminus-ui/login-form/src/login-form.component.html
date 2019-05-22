@@ -3,7 +3,7 @@
   [formGroup]="loginForm"
   fxLayout="column"
   *ngIf="showForm"
-  (keydown.enter)="loginForm.valid && submit.emit(loginForm.value)"
+  (keydown.enter)="loginForm?.valid && submit.emit(loginForm?.value)"
 >
 
   <ts-input
@@ -11,7 +11,7 @@
     label="Email"
     name="email"
     type="email"
-    [formControl]="loginForm.get('email')"
+    [formControl]="emailControl"
     [isRequired]="true"
     [spellcheck]="false"
     [autocapitalize]="false"
@@ -24,7 +24,7 @@
     label="Password"
     name="password"
     type="password"
-    [formControl]="loginForm.get('password')"
+    [formControl]="passwordControl"
     [isRequired]="true"
     autocomplete="current-password"
     [autocapitalize]="false"
@@ -35,7 +35,7 @@
 
   <ts-checkbox
     class="qa-login-form-remember-me"
-    [formControl]="loginForm.get('rememberMe')"
+    [formControl]="rememberMeControl"
     tabindex="-1"
     tabIndex="3"
     tsVerticalSpacing
@@ -57,8 +57,8 @@
       actionName="Submit"
       buttonType="submit"
       [showProgress]="inProgress || isRedirecting"
-      [isDisabled]="!loginForm.valid"
-      (clicked)="submit.emit(loginForm.value)"
+      [isDisabled]="!loginForm?.valid"
+      (clicked)="submit.emit(loginForm?.value)"
       tabindex="-1"
       tabIndex="4"
     >

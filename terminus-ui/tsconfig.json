@@ -4,21 +4,17 @@
     "target": "es2015",
     "rootDir": ".",
     "baseUrl": "",
+    "experimentalDecorators": true,
     "types": []
   },
-  "files": [
-    "./src/index.ts",
-    "./typings.d.ts"
-  ],
   "exclude": [
     "**/*.spec.ts",
-    "**/*.mock.ts"
+    "**/testing/*"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleId": "@terminus/ui",
-    "preserveWhitespaces": false
+    "flatModuleId": "@terminus/ui"
   }
 }

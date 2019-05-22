@@ -33,9 +33,7 @@ import {
   selector: 'ts-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
-  host: {
-    class: 'ts-link',
-  },
+  host: {class: 'ts-link'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLink',
@@ -44,13 +42,13 @@ export class TsLinkComponent {
   /**
    * Define the icon for external links
    */
-  public externalIcon: string = `open_in_new`;
+  public externalIcon = `open_in_new`;
 
   /**
    * Define the link's destination
    */
   @Input()
-  public destination: any;
+  public destination: string | string[] | undefined;
 
   /**
    * Define if the link is to an external page
@@ -62,6 +60,6 @@ export class TsLinkComponent {
    * Define the tabindex
    */
   @Input()
-  public tabIndex: number = 0;
+  public tabIndex = 0;
 
 }

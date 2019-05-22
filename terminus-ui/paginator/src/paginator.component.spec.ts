@@ -3,7 +3,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-import { TsSelectChange, TsSelectComponent } from '@terminus/ui/select';
+import {
+  TsSelectChange, TsSelectComponent,
+} from '@terminus/ui/select';
 
 import { TsPaginatorComponent } from './paginator.component';
 
@@ -62,9 +64,7 @@ describe(`TsPaginatorComponent`, function() {
 
     test(`should set the recordCountTooHighMessage if passed in`, () => {
       component.recordCountTooHighMessage = 'my new message';
-      const changesMock: SimpleChanges = {
-        recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false),
-      };
+      const changesMock: SimpleChanges = {recordCountTooHighMessage: new SimpleChange('old message', 'my new message', false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock);
 
@@ -73,17 +73,13 @@ describe(`TsPaginatorComponent`, function() {
 
 
     test(`should reset currentPageIndex if isZeroBased changed`, () => {
-      const changesMock1: SimpleChanges = {
-        isZeroBased: new SimpleChange(true, false, false),
-      };
+      const changesMock1: SimpleChanges = {isZeroBased: new SimpleChange(true, false, false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock1);
 
       expect(component.currentPageIndex).toEqual(1);
 
-      const changesMock2: SimpleChanges = {
-        isZeroBased: new SimpleChange(false, true, false),
-      };
+      const changesMock2: SimpleChanges = {isZeroBased: new SimpleChange(false, true, false)};
       // Fake the change event that Angular would normally trigger
       component.ngOnChanges(changesMock2);
 
@@ -120,7 +116,7 @@ describe(`TsPaginatorComponent`, function() {
   describe(`changePage()`, () => {
 
     test(`should fake a changed page event when valid`, () => {
-      spyOn(component, 'currentPageChanged').and.callThrough();
+      jest.spyOn(component, 'currentPageChanged');
       component.totalRecords = 125;
       component.ngAfterViewInit();
       component.changePage(2, 1, component.pagesArray);
@@ -132,7 +128,7 @@ describe(`TsPaginatorComponent`, function() {
     test(`should do nothing when the destination is not valid`, () => {
       component.totalRecords = 125;
       component.ngAfterViewInit();
-      spyOn(component, 'currentPageChanged');
+      jest.spyOn(component, 'currentPageChanged');
 
       component.changePage(-1, 1, component.pagesArray);
       expect(component.currentPageChanged).not.toHaveBeenCalled();
@@ -146,7 +142,7 @@ describe(`TsPaginatorComponent`, function() {
     test(`should do nothing when already on the requested page`, () => {
       component.totalRecords = 125;
       component.ngAfterViewInit();
-      spyOn(component, 'currentPageChanged');
+      jest.spyOn(component, 'currentPageChanged');
 
       component.changePage(2, 2, component.pagesArray);
       expect(component.currentPageChanged).not.toHaveBeenCalled();

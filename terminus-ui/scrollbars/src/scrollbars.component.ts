@@ -42,6 +42,7 @@ export class TsScrollbarPosition extends Position {}
  * Unique ID for each instance
  */
 let nextUniqueId = 0;
+const DEFAULT_SCROLL_SPEED = 400;
 
 
 /**
@@ -73,11 +74,11 @@ let nextUniqueId = 0;
   templateUrl: './scrollbars.component.html',
   styleUrls: [
     './scrollbars.component.scss',
+    // NOTE: Currently Codelyzer does not consider deep relative URLs correctly prefixed: https://github.com/mgechev/codelyzer/issues/816
+    // tslint:disable-next-line relative-url-prefix
     './../../../node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
   ],
-  host: {
-    class: 'ts-scrollbars',
-  },
+  host: {class: 'ts-scrollbars'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsScrollbars',
@@ -91,7 +92,7 @@ export class TsScrollbarsComponent {
   /**
    * Define the speed at which to scroll during automated movements
    */
-  protected scrollSpeed = 400;
+  protected scrollSpeed = DEFAULT_SCROLL_SPEED;
 
   /**
    * Define an ID for the component
@@ -121,34 +122,34 @@ export class TsScrollbarsComponent {
    * Event Emitters:
    */
   @Output()
-  public scrollDown: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollDown: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public scrollLeft: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollLeft: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public scrollRight: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollRight: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public scrollUp: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollUp: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public scrollX: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollX: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public scrollY: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollY: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public xReachEnd: EventEmitter<Event> = new EventEmitter();
+  public readonly xReachEnd: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public xReachStart: EventEmitter<Event> = new EventEmitter();
+  public readonly xReachStart: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public yReachEnd: EventEmitter<Event> = new EventEmitter();
+  public readonly yReachEnd: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  public yReachStart: EventEmitter<Event> = new EventEmitter();
+  public readonly yReachStart: EventEmitter<Event> = new EventEmitter();
 
 
 
@@ -161,9 +162,9 @@ export class TsScrollbarsComponent {
   public get geometry(): TsScrollbarsGeometry | null {
     if (this.scrollbar) {
       return this.scrollbar.geometry('scroll') as TsScrollbarsGeometry;
-    } else {
-      return null;
     }
+    return null;
+
   }
 
 
@@ -175,9 +176,9 @@ export class TsScrollbarsComponent {
   public get position(): TsScrollbarPosition | null {
     if (this.scrollbar) {
       return this.scrollbar.position() as TsScrollbarPosition;
-    } else {
-      return null;
     }
+    return null;
+
   }
 
 
@@ -190,9 +191,9 @@ export class TsScrollbarsComponent {
   public scrollable(direction: TsScrollbarsScrollDirections = 'any'): boolean | null {
     if (this.scrollbar) {
       return this.scrollbar.scrollable(direction);
-    } else {
-      return null;
     }
+    return null;
+
   }
 
 

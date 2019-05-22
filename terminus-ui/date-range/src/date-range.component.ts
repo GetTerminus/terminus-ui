@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -63,9 +64,8 @@ export interface TsDateRange {
   selector: 'ts-date-range',
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
-  host: {
-    class: 'ts-date-range',
-  },
+  host: {class: 'ts-date-range'},
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsDateRange',
 })
@@ -95,6 +95,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    *
    * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
+  // tslint:disable-next-line no-any
   public endMinDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
@@ -130,6 +131,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    *
    * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
+  // tslint:disable-next-line no-any
   public startMaxDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
@@ -195,23 +197,25 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    * Event emitted anytime the range is changed
    */
   @Output()
-  public dateRangeChange: EventEmitter<TsDateRange> = new EventEmitter();
+  public readonly dateRangeChange: EventEmitter<TsDateRange> = new EventEmitter();
 
   /**
    * Output the end date when selected
    */
   @Output()
-  public endSelected: EventEmitter<Date | undefined> = new EventEmitter();
+  public readonly endSelected: EventEmitter<Date | undefined> = new EventEmitter();
 
   /**
    * Output the start date when selected
    */
   @Output()
-  public startSelected: EventEmitter<Date | undefined> = new EventEmitter();
+  public readonly startSelected: EventEmitter<Date | undefined> = new EventEmitter();
+
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
   ) { }
+
 
   /**
    * Seed initial date range values
@@ -265,7 +269,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.internalEndControl.setValue(endCtrl.value);
 
     // START DATE
-    startCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((value) => {
+    startCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe(value => {
       this.internalStartControl.setValue(value);
       this.endMinDate$.next(value);
     });
@@ -274,7 +278,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     });
 
     // END DATE
-    endCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe((value) => {
+    endCtrl.valueChanges.pipe(untilComponentDestroyed(this)).subscribe(value => {
       this.internalEndControl.setValue(value);
       this.startMaxDate$.next(value);
     });

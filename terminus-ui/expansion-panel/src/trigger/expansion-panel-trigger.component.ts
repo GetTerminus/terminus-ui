@@ -17,10 +17,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
-import {
-  ENTER,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   EMPTY,
   merge,
@@ -61,8 +58,8 @@ import {
   styleUrls: ['./expansion-panel-trigger.component.scss'],
   templateUrl: './expansion-panel-trigger.component.html',
   host: {
-    class: 'ts-expansion-panel__trigger',
-    role: 'button',
+    'class': 'ts-expansion-panel__trigger',
+    'role': 'button',
     '[attr.id]': 'panel.triggerId',
     '[attr.tabindex]': 'disabled ? -1 : 0',
     '[attr.aria-controls]': 'panel.id',
@@ -87,14 +84,14 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
   /**
    * Determine the current expanded state string of the panel
    */
-  get currentPanelExpandedState(): string {
+  public get currentPanelExpandedState(): string {
     return this.panel.currentExpandedState;
   }
 
   /**
    * Determine if the panel is currently expanded
    */
-  get isExpanded(): boolean {
+  public get isExpanded(): boolean {
     return this.panel.expanded;
   }
 
@@ -103,12 +100,12 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    *
    * Implemented as a part of `FocusableOption`.
    */
-  get disabled(): boolean {
+  public get disabled(): boolean {
     return this.panel.disabled;
   }
 
   /** Gets whether the expand indicator should be shown. */
-  get shouldShowToggle(): boolean {
+  public get shouldShowToggle(): boolean {
     return !this.panel.hideToggle && !this.panel.disabled;
   }
 
@@ -116,13 +113,13 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    * Height of the trigger while the panel is collapsed
    */
   @Input()
-  collapsedHeight: string | undefined;
+  public collapsedHeight: string | undefined;
 
   /**
    * Height of the trigger while the panel is expanded
    */
   @Input()
-  expandedHeight: string | undefined;
+  public expandedHeight: string | undefined;
 
 
   constructor(
@@ -133,18 +130,20 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
     @Inject(TS_EXPANSION_PANEL_DEFAULT_OPTIONS) @Optional() defaultOptions?: TsExpansionPanelDefaultOptions,
   ) {
     const accordionHideToggleChange =
-      panel.accordion ?
-      panel.accordion._stateChanges.pipe(filter((changes) => !!changes['hideToggle'])) :
-      EMPTY;
+      panel.accordion
+        // NOTE: Underscore naming controlled by Material
+        // eslint-disable-next-line no-underscore-dangle
+        ? panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle))
+        : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we need to subscribe and trigger change detection manually.
     merge(
       panel.opened, panel.closed, accordionHideToggleChange,
-      panel.inputChanges.pipe(filter((changes) => !!(changes['hideToggle'] || changes['disabled']))),
+      panel.inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled))),
     ).pipe(
       untilComponentDestroyed(this),
     )
-    .subscribe(() => this.changeDetectorRef.markForCheck());
+      .subscribe(() => this.changeDetectorRef.markForCheck());
 
     // Avoid focus being lost if the panel contained the focused element and was closed.
     panel.closed.pipe(
@@ -153,7 +152,7 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
     ).subscribe(() => focusMonitor.focusVia(elementRef, 'program'));
 
     // Subscribe to trigger focus events
-    focusMonitor.monitor(elementRef).subscribe((origin) => {
+    focusMonitor.monitor(elementRef).subscribe(origin => {
       if (origin && panel.accordion) {
         panel.accordion.handleTriggerFocus(this);
       }
@@ -198,8 +197,8 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    * Handle keydown event calling to toggle() if appropriate
    */
   public keydown(event: KeyboardEvent): void {
-    const {keyCode} = event;
-    const isSelectionKey = (keyCode === SPACE) || (keyCode === ENTER);
+    const {code} = event;
+    const isSelectionKey = (code === KEYS.SPACE.code) || (code === KEYS.ENTER.code);
 
     if (isSelectionKey) {
       // istanbul ignore else
@@ -207,11 +206,8 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
         event.preventDefault();
         this.toggle();
       }
-    } else {
-      // istanbul ignore else
-      if (this.panel.accordion) {
-        this.panel.accordion.handleTriggerKeydown(event);
-      }
+    } else if (this.panel.accordion) {
+      this.panel.accordion.handleTriggerKeydown(event);
     }
   }
 

@@ -44,8 +44,8 @@ describe(`TsValidatorsService`, function() {
   describe(`isInRange()`, () => {
 
     test(`should exist`, () => {
-     expect(service.isInRange).toBeTruthy();
-   });
+      expect(service.isInRange).toBeTruthy();
+    });
 
   });
 

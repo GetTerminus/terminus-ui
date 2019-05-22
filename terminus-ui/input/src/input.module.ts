@@ -10,9 +10,6 @@ import {
   NativeDateModule,
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-/*
- *import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- */
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsDatePipe } from '@terminus/ui/pipes';
@@ -22,6 +19,7 @@ import { TsValidatorsService } from '@terminus/ui/validators';
 import { TS_DATE_FORMATS } from './date-adapter';
 import { TsInputComponent } from './input.component';
 
+
 export * from './date-adapter';
 export * from './input-value-accessor';
 export * from './input.component';
@@ -30,9 +28,6 @@ export * from './input.component';
 @NgModule({
   imports: [
     CommonModule,
-    /*
-     *BrowserAnimationsModule,
-     */
     FlexLayoutModule,
     FormsModule,
     MatDatepickerModule,

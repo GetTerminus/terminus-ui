@@ -48,11 +48,11 @@ let nextUniqueId = 0;
  */
 @Component({
   selector: 'ts-select-optgroup',
-  templateUrl: 'optgroup.component.html',
-  styleUrls: ['optgroup.component.scss'],
+  templateUrl: './optgroup.component.html',
+  styleUrls: ['./optgroup.component.scss'],
   host: {
-    class: 'ts-optgroup',
-    role: 'group',
+    'class': 'ts-optgroup',
+    'role': 'group',
     '[class.ts-optgroup--disabled]': 'isDisabled',
     '[attr.id]': 'id',
     '[attr.aria-disabled]': '!!isDisabled',

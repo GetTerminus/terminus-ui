@@ -1,9 +1,11 @@
-import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
+import {
+  MutationObserverFactory,
+  ObserversModule,
+} from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
-  async,
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
@@ -12,43 +14,27 @@ import {
 } from '@angular/core/testing';
 import { MatRippleModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  SPACE,
+  KeyCode,
+  KEYS,
 } from '@terminus/ngx-tools/keycodes';
+import { dispatchFakeEvent } from '@terminus/ngx-tools/testing';
 import {
-  createComponent,
-  createKeyboardEvent,
-  createTouchEvent,
-  dispatchEvent,
-  dispatchFakeEvent,
-  dispatchKeyboardEvent,
-} from '@terminus/ngx-tools/testing';
-import {
-  TsTabHeaderComponent, TsTabInkBarComponent, TsTabLabelWrapperDirective, TsTabsModule,
+  TsTabHeaderComponent,
+  TsTabInkBarComponent,
+  TsTabLabelWrapperDirective,
 } from '@terminus/ui/tabs';
 import * as testComponents from '@terminus/ui/tabs/testing';
-import { getTabLabelElement } from '@terminus/ui/tabs/testing';
 
 
-const IMPORTS = [
-  CommonModule,
-  NoopAnimationsModule,
-  TsTabsModule,
-];
 
-
-function createKeydownEvent(key: string, keyCode: number): KeyboardEvent {
+function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    keyCode: { get: () => keyCode },
-    key: { get: () => key },
+    keyCode: {get: () => key.keyCode},
+    key: {get: () => key.code},
+    code: {get: () => key.code},
   });
   event.preventDefault = jest.fn();
   return event;
@@ -74,12 +60,12 @@ describe(`TsTabHeaderComponent`, function() {
     TestBed.compileComponents();
 
     EVENTS = {
-      LEFT: createKeydownEvent('ArrowLeft', LEFT_ARROW),
-      RIGHT: createKeydownEvent('ArrowRight', RIGHT_ARROW),
-      ENTER: createKeydownEvent('Enter', ENTER),
-      SPACE: createKeydownEvent('Space', SPACE),
-      HOME: createKeydownEvent('Home', HOME),
-      END: createKeydownEvent('End', END),
+      LEFT: createKeydownEvent(KEYS.LEFT_ARROW),
+      RIGHT: createKeydownEvent(KEYS.RIGHT_ARROW),
+      ENTER: createKeydownEvent(KEYS.ENTER),
+      SPACE: createKeydownEvent(KEYS.SPACE),
+      HOME: createKeydownEvent(KEYS.HOME),
+      END: createKeydownEvent(KEYS.END),
     };
   });
 
@@ -243,9 +229,6 @@ describe(`TsTabHeaderComponent`, function() {
 
 
     test(`should not do anything if a modifier key is pressed`, () => {
-      const rightArrowEvent = createKeyboardEvent('keydown', RIGHT_ARROW);
-      const enterEvent = createKeyboardEvent('keydown', ENTER);
-
       [EVENTS.RIGHT, EVENTS.ENTER].forEach(event => {
         Object.defineProperty(event, 'shiftKey', {get: () => true});
       });
@@ -291,20 +274,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {
-            scrollWidth: { get: () => tabElements.length * 100 },
-          });
+          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
 
           // Set container width
-          Object.defineProperties(containerElement, {
-            offsetWidth: { get: () => 300 },
-          });
+          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: { get: () => i * 100 },
-              offsetWidth: { get: () => 100 },
+              offsetLeft: {get: () => i * 100},
+              offsetWidth: {get: () => 100},
             });
           }
         };
@@ -392,20 +371,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {
-            scrollWidth: { get: () => tabElements.length * 100 },
-          });
+          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
 
           // Set container width
-          Object.defineProperties(containerElement, {
-            offsetWidth: { get: () => 300 },
-          });
+          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: { get: () => i * 100 },
-              offsetWidth: { get: () => 100 },
+              offsetLeft: {get: () => i * 100},
+              offsetWidth: {get: () => 100},
             });
           }
         };
@@ -632,9 +607,12 @@ describe(`TsTabHeaderComponent`, function() {
       TestBed.overrideProvider(MutationObserverFactory, {
         useValue: {
           // Stub out the MutationObserver since the native one is async.
-          create: function(callback: Function) {
+          create(callback: Function) {
             mutationCallbacks.push(callback);
-            return {observe: () => {}, disconnect: () => {}};
+            return {
+              observe: () => {},
+              disconnect: () => {},
+            };
           },
         },
       });
@@ -651,20 +629,14 @@ describe(`TsTabHeaderComponent`, function() {
 
       // Set mock dimensions
       const listElement = fixture.componentInstance.tabHeader.tabList.nativeElement;
-      Object.defineProperties(listElement, {
-        scrollWidth: { get: () => 600 },
-      });
-      Object.defineProperties(headerElement, {
-        offsetWidth: { get: () => 300 },
-      });
+      Object.defineProperties(listElement, {scrollWidth: {get: () => 600}});
+      Object.defineProperties(headerElement, {offsetWidth: {get: () => 300}});
 
       // Change label content to trigger update
       labels.forEach(label => {
         label.style.width = '';
         label.textContent += extraText;
-        Object.defineProperties(label, {
-          offsetWidth: { get: () => 200 },
-        });
+        Object.defineProperties(label, {offsetWidth: {get: () => 200}});
       });
 
       mutationCallbacks.forEach(callback => callback());

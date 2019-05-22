@@ -56,16 +56,8 @@ export const tsExpansionPanelAnimations: {
    * Animation that expands and collapses the panel trigger height
    */
   expansionTriggerHeight: trigger('expansionHeight', [
-    state('collapsed, void', style({
-      height: '{{collapsedHeight}}',
-    }), {
-      params: {collapsedHeight: '48px'},
-    }),
-    state('expanded', style({
-      height: '{{expandedHeight}}',
-    }), {
-      params: {expandedHeight: '64px'},
-    }),
+    state('collapsed, void', style({height: '{{collapsedHeight}}'}), {params: {collapsedHeight: '48px'}}),
+    state('expanded', style({height: '{{expandedHeight}}'}), {params: {expandedHeight: '64px'}}),
     transition('expanded <=> collapsed, void => collapsed', group([
       query('@indicatorRotate', animateChild(), {optional: true}),
       animate(TS_EXPANSION_PANEL_ANIMATION_TIMING),
@@ -76,9 +68,15 @@ export const tsExpansionPanelAnimations: {
    * Animation that expands and collapses the panel content
    */
   bodyExpansion: trigger('bodyExpansion', [
-    state('collapsed, void', style({height: '0px', visibility: 'hidden'})),
-    state('expanded', style({height: '*', visibility: 'visible'})),
+    state('collapsed, void', style({
+      height: '0px',
+      visibility: 'hidden',
+    })),
+    state('expanded', style({
+      height: '*',
+      visibility: 'visible',
+    })),
     transition('expanded <=> collapsed, void => collapsed',
-    animate(TS_EXPANSION_PANEL_ANIMATION_TIMING)),
+      animate(TS_EXPANSION_PANEL_ANIMATION_TIMING)),
   ]),
 };

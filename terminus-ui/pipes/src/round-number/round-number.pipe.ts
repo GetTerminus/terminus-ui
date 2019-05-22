@@ -14,14 +14,12 @@ import { roundNumber } from '@terminus/ngx-tools';
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsRoundNumber',
-})
+@Pipe({name: 'tsRoundNumber'})
 export class TsRoundNumberPipe implements PipeTransform {
-  transform(value: number, precision = 0): number | undefined {
+  public transform(value: number, precision = 0): number | undefined {
     // Check for null values to avoid issues during data-binding
     if (!value) {
-      return;
+      return undefined;
     }
 
     return roundNumber(value, precision);

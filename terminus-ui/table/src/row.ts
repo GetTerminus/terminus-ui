@@ -20,11 +20,13 @@ import {
  */
 @Directive({
   selector: '[tsHeaderRowDef]',
-  providers: [{provide: CdkHeaderRowDef, useExisting: TsHeaderRowDefDirective}],
-  // NOTE(B$): Disabling this rule as I am unsure why this type of input was needed by Material
-  // tslint:disable: use-input-property-decorator
+  providers: [{
+    provide: CdkHeaderRowDef,
+    useExisting: TsHeaderRowDefDirective,
+  }],
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['columns: tsHeaderRowDef'],
-  // tslint:enable: use-input-property-decorator
 })
 export class TsHeaderRowDefDirective extends CdkHeaderRowDef {}
 
@@ -37,11 +39,16 @@ export class TsHeaderRowDefDirective extends CdkHeaderRowDef {}
  */
 @Directive({
   selector: '[tsRowDef]',
-  providers: [{provide: CdkRowDef, useExisting: TsRowDefDirective}],
-  // NOTE(B$): Disabling this rule as I am unsure why it was needed by Material
-  // tslint:disable: use-input-property-decorator
-  inputs: ['columns: tsRowDefColumns', 'when: tsRowDefWhen'],
-  // tslint:enable: use-input-property-decorator
+  providers: [{
+    provide: CdkRowDef,
+    useExisting: TsRowDefDirective,
+  }],
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
+  inputs: [
+    'columns: tsRowDefColumns',
+    'when: tsRowDefWhen',
+  ],
 })
 export class TsRowDefDirective<T> extends CdkRowDef<T> {}
 

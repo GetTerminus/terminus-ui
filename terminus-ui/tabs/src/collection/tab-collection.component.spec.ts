@@ -7,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LEFT_ARROW } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent,
   dispatchFakeEvent,
@@ -18,6 +18,7 @@ import {
   TsTabsModule,
 } from '@terminus/ui/tabs';
 import * as testComponents from '@terminus/ui/tabs/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   checkSelectedIndex,
   getAllTabLabelElements,
@@ -236,7 +237,7 @@ describe(`TsTabCollectionComponent`, function() {
 
 
     test(`should emit focusChange on arrow key navigation`, () => {
-      spyOn(fixture.componentInstance, 'handleFocus');
+      jest.spyOn(fixture.componentInstance, 'handleFocus');
       fixture.detectChanges();
 
       // const tabLabels = getAllTabLabelElements(fixture);
@@ -255,8 +256,9 @@ describe(`TsTabCollectionComponent`, function() {
       const KEY_EVENT = document.createEvent('KeyboardEvent');
       KEY_EVENT.initEvent('keydown', true, false);
       Object.defineProperties(KEY_EVENT, {
-        keyCode: { get: () => LEFT_ARROW },
-        key: { get: () => 'ArrowLeft' },
+        code: {get: () => KEYS.LEFT_ARROW.code},
+        key: {get: () => KEYS.LEFT_ARROW.code},
+        keyCode: {get: () => KEYS.LEFT_ARROW.keyCode},
       });
       tabLabelContainer.dispatchEvent(KEY_EVENT);
       fixture.detectChanges();
@@ -433,7 +435,10 @@ describe(`TsTabCollectionComponent`, function() {
         expect(tabs[2].origin).toBe(null);
 
         // Add a new tab on the right and select it, expect an origin >= than 0 (animate right)
-        fixture.componentInstance.tabs.push({label: 'New tab', content: 'to right of index'});
+        fixture.componentInstance.tabs.push({
+          label: 'New tab',
+          content: 'to right of index',
+        });
         fixture.componentInstance.selectedIndex = 4;
         fixture.detectChanges();
         tick();
@@ -446,13 +451,16 @@ describe(`TsTabCollectionComponent`, function() {
         fixture.detectChanges();
         tick();
 
-        fixture.componentInstance.tabs.push({label: 'New tab', content: 'to left of index'});
+        fixture.componentInstance.tabs.push({
+          label: 'New tab',
+          content: 'to left of index',
+        });
         fixture.detectChanges();
         tick();
 
         tabs = component.tabs.toArray();
         expect(tabs[0].origin).toBeLessThan(0);
-    }));
+      }));
 
 
     test(`should update selected index if the last tab removed while selected`, fakeAsync(() => {
@@ -480,7 +488,10 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
 
       // Add a new tab at the beginning.
-      fixture.componentInstance.tabs.unshift({label: 'New tab', content: 'at the start'});
+      fixture.componentInstance.tabs.unshift({
+        label: 'New tab',
+        content: 'at the start',
+      });
       fixture.detectChanges();
 
       expect(component.selectedIndex).toBe(2);
@@ -509,7 +520,10 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
       const component: TsTabCollectionComponent = getTabCollectionInstance(fixture);
 
-      fixture.componentInstance.tabs.push({label: 'Last tab', content: 'at the end'});
+      fixture.componentInstance.tabs.push({
+        label: 'Last tab',
+        content: 'at the end',
+      });
       fixture.componentInstance.selectedIndex = 3;
 
       fixture.detectChanges();
@@ -526,8 +540,11 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
 
       // Add a new tab at the beginning.
-      spyOn(fixture.componentInstance, 'handleSelection');
-      fixture.componentInstance.tabs.unshift({label: 'New tab', content: 'at the start'});
+      jest.spyOn(fixture.componentInstance, 'handleSelection');
+      fixture.componentInstance.tabs.unshift({
+        label: 'New tab',
+        content: 'at the start',
+      });
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -605,15 +622,13 @@ describe(`TsTabCollectionComponent`, function() {
       const fixture = createComponent<testComponents.DynamicHeight>(testComponents.DynamicHeight, undefined, IMPORTS);
       fixture.detectChanges();
       const instance = getTabCollectionInstance(fixture);
-      // Set a fake existing height (would normally be set during initialization)
-      instance.tabBodyWrapperHeight = 50;
+      // Set a fake existing height (this would normally be set during initialization)
+      instance['tabBodyWrapperHeight'] = 50;
       fixture.detectChanges();
 
 
       const bodyInstance = fixture.debugElement.query(By.css('.ts-tab-body')).componentInstance;
-      Object.defineProperties(instance.tabBodyWrapper.nativeElement, {
-        offsetHeight: { get: () => '80px' },
-      });
+      Object.defineProperties(instance.tabBodyWrapper.nativeElement, {offsetHeight: {get: () => '80px'}});
 
       instance.setTabBodyWrapperHeight(75);
       fixture.detectChanges();

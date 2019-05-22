@@ -5,10 +5,7 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 import {
   FormControl,
   FormsModule,
@@ -18,10 +15,20 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
-import { createFakeEvent, TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
-import { TsInputComponent, TsInputModule } from '@terminus/ui/input';
+import {
+  createComponent as createComponentInner,
+  createFakeEvent,
+  TsDocumentServiceMock,
+} from '@terminus/ngx-tools/testing';
+import {
+  TsInputComponent,
+  TsInputModule,
+} from '@terminus/ui/input';
 
-import { TsFormFieldComponent, TsFormFieldModule } from './form-field.module';
+import {
+  TsFormFieldComponent,
+  TsFormFieldModule,
+} from './form-field.module';
 
 
 // tslint:disable: no-use-before-declare
@@ -321,30 +328,21 @@ export class UpdateOutline {
 
 
 function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(component,
+    providers,
+    [
       FormsModule,
       ReactiveFormsModule,
       TsFormFieldModule,
       TsInputModule,
       NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+    ]);
 }
 
 class MyDocumentService extends TsDocumentServiceMock {
   shouldContain = true;
   document: any = {
-    documentElement: {
-      contains: jest.fn(() => false),
-    },
+    documentElement: {contains: jest.fn(() => false)},
     createEvent() {
       return document.createEvent('Event');
     },

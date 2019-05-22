@@ -90,7 +90,9 @@ describe(`TsLoadingOverlayDirective`, function() {
       directive['bodyPortalHost'] = undefined as any;
       directive.ngOnDestroy();
 
-      expect(() => {directive.ngOnDestroy(); }).not.toThrow();
+      expect(() => {
+        directive.ngOnDestroy();
+      }).not.toThrow();
     });
 
   });

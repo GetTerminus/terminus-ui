@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { TsTableDataSource } from './table-data-source';
 
 

@@ -1,3 +1,30 @@
+## <small>12.1.6 (2019-05-20)</small>
+
+* fix(Navigation): clone navigation object to prevent mutation of original ([00fde32](https://github.com/GetTerminus/terminus-ui/commit/00fde32))
+
+## <small>12.1.5 (2019-05-16)</small>
+
+* fix(Input): scope overlay z-index for datepicker ([1fe1a5f](https://github.com/GetTerminus/terminus-ui/commit/1fe1a5f))
+
+## <small>12.1.4 (2019-05-15)</small>
+
+* fix(Chart): expose type coercion functions for charts ([193d482](https://github.com/GetTerminus/terminus-ui/commit/193d482))
+* style(Input): remove outdated commented code ([6b7f3b0](https://github.com/GetTerminus/terminus-ui/commit/6b7f3b0))
+* style: update code to pass object format lint rule change ([054f322](https://github.com/GetTerminus/terminus-ui/commit/054f322))
+* chore: integrate new lint rules and fix all issues (#1488) ([8648c3d](https://github.com/GetTerminus/terminus-ui/commit/8648c3d)), closes [#1488](https://github.com/GetTerminus/terminus-ui/issues/1488)
+* chore(Tabs): outputs are now called centering and centered (#1487) ([d85b207](https://github.com/GetTerminus/terminus-ui/commit/d85b207)), closes [#1487](https://github.com/GetTerminus/terminus-ui/issues/1487) [#1478](https://github.com/GetTerminus/terminus-ui/issues/1478)
+
+## <small>12.1.3 (2019-05-01)</small>
+
+* fix(FileUpload): consistent error handling (#1483) ([302c58d](https://github.com/GetTerminus/terminus-ui/commit/302c58d)), closes [#1483](https://github.com/GetTerminus/terminus-ui/issues/1483) [#1357](https://github.com/GetTerminus/terminus-ui/issues/1357)
+* chore(Spacing): has integration tests (#1481) ([b08f5e8](https://github.com/GetTerminus/terminus-ui/commit/b08f5e8)), closes [#1481](https://github.com/GetTerminus/terminus-ui/issues/1481) [#1294](https://github.com/GetTerminus/terminus-ui/issues/1294)
+* chore: Use code instead of keyCode (#1482) ([c66e9df](https://github.com/GetTerminus/terminus-ui/commit/c66e9df)), closes [#1482](https://github.com/GetTerminus/terminus-ui/issues/1482)
+* chore(testing): use ngx-tools createComponent utility (#1479) ([ca6376c](https://github.com/GetTerminus/terminus-ui/commit/ca6376c)), closes [#1479](https://github.com/GetTerminus/terminus-ui/issues/1479)
+
+## <small>12.1.2 (2019-04-25)</small>
+
+* fix(Utilities): sCSS bad inputs prevent a build and error messages are displayed ([dd80490](https://github.com/GetTerminus/terminus-ui/commit/dd80490)), closes [#1456](https://github.com/GetTerminus/terminus-ui/issues/1456)
+
 ## <small>12.1.1 (2019-04-16)</small>
 
 * fix(LoadingOverlay): fix for portal already loaded error ([003d795](https://github.com/GetTerminus/terminus-ui/commit/003d795)), closes [#1455](https://github.com/GetTerminus/terminus-ui/issues/1455)

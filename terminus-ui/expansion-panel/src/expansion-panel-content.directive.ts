@@ -20,9 +20,8 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/expansion-panel</example-url>
  */
-@Directive({
-  selector: 'ng-template[tsExpansionPanelContent]',
-})
+@Directive({selector: 'ng-template[tsExpansionPanelContent]'})
 export class TsExpansionPanelContentDirective {
+  // tslint:disable-next-line no-any
   constructor(public template: TemplateRef<any>) {}
 }

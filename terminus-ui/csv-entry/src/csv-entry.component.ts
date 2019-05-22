@@ -1,3 +1,7 @@
+// NOTE: Moving items like `getHeaderCellName` into the template would add too much logic to the template
+// tslint:disable: template-no-call-expression
+// NOTE: Using trackBy on form groups actually changes the output since there is no static ID to reference
+// tslint:disable template-use-track-by-function
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,6 +14,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -29,7 +34,6 @@ import { stripControlCharacters } from '@terminus/ui/utilities';
 import { debounceTime } from 'rxjs/operators';
 
 
-
 /**
  * The structure for an individual row
  */
@@ -46,11 +50,47 @@ export interface TsCSVFormContents {
   records: TsCSVEntryRecord[];
 }
 
+/**
+ * The structure for a required error
+ */
+export interface TsCSVRequiredError {
+  rowId: number;
+  valid: boolean;
+}
+
+/**
+ * The structure for a URL error
+ */
+export interface TsCSVUrlError {
+  actual: string;
+  rowId: number;
+  valid: boolean;
+}
+
+/**
+ * The structure for the error set
+ */
+export interface TsCSVFormError {
+  // The control name
+  control: string;
+  required?: TsCSVRequiredError;
+  url?: TsCSVUrlError;
+}
+
+export interface TsCSVRow {
+  recordId: FormControl;
+  columns: FormArray;
+}
+
 
 /**
  * Unique ID for each instance
  */
 let nextUniqueId = 0;
+const DEFAULT_ROW_COUNT = 4;
+const DEFAULT_COLUMN_COUNT = 2;
+const DEFAULT_MAX_ROWS = 2000;
+const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
 
 
 /**
@@ -86,7 +126,7 @@ let nextUniqueId = 0;
   templateUrl: './csv-entry.component.html',
   styleUrls: ['./csv-entry.component.scss'],
   host: {
-    class: 'ts-csv-entry',
+    'class': 'ts-csv-entry',
     '[class.c-csv-entry--full-width]': 'fullWidth',
     '[attr.id]': 'id',
   },
@@ -101,21 +141,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   protected _uid = `ts-csv-entry-${nextUniqueId++}`;
 
   /**
-   * Define the default number of rows
-   */
-  public defaultRowCount = 4;
-
-  /**
-   * Define the default number of columns
-   */
-  public defaultColumnCount = 2;
-
-  /**
-   * Define the default for the maximum allowed rows
-   */
-  public defaultMaxRows = 2000;
-
-  /**
    * Expose the flexbox layout gap
    */
   public layoutGap: string = TS_SPACING.small[0];
@@ -124,11 +149,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Expose a validation message if too many rows are added
    */
   public tooManyRowsMessage: string | null = null;
-
-  /**
-   * Define the number of validation messages that can be shown at once
-   */
-  public maximumValidationMessages = 6;
 
   /**
    * Store records (rows)
@@ -143,10 +163,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     records: this.formBuilder.array([]),
   });
 
-  /*
-   *public validationMessages: string[] | undefined;
+  /**
+   * Store a reference to all existing errors
    */
-  public allErrors: {[key: string]: any}[] | null = null;
+  public allErrors: TsCSVFormError[] | null = null;
 
   /**
    * Get header cells as a form array
@@ -179,36 +199,36 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set maxRows(value: number) {
-    this._maxRows = coerceNumberProperty(value, this.defaultMaxRows);
+    this._maxRows = coerceNumberProperty(value, DEFAULT_MAX_ROWS);
   }
   public get maxRows(): number {
     return this._maxRows;
   }
-  private _maxRows: number = this.defaultMaxRows;
+  private _maxRows: number = DEFAULT_MAX_ROWS;
 
   /**
    * Set the number of columns
    */
   @Input()
   public set columnCount(value: number) {
-    this._columnCount = coerceNumberProperty(value, this.defaultColumnCount);
+    this._columnCount = coerceNumberProperty(value, DEFAULT_COLUMN_COUNT);
   }
   public get columnCount(): number {
     return this._columnCount;
   }
-  private _columnCount: number = this.defaultColumnCount;
+  private _columnCount: number = DEFAULT_COLUMN_COUNT;
 
   /**
    * Define the number of rows
    */
   @Input()
   public set rowCount(value: number) {
-    this._rowCount = coerceNumberProperty(value, this.defaultRowCount);
+    this._rowCount = coerceNumberProperty(value, DEFAULT_ROW_COUNT);
   }
   public get rowCount(): number {
     return this._rowCount;
   }
-  private _rowCount: number = this.defaultRowCount;
+  private _rowCount: number = DEFAULT_ROW_COUNT;
 
   /**
    * Allow full-width mode
@@ -256,7 +276,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Emit the built file blob
    */
   @Output()
-  public blobGenerated: EventEmitter<Blob> = new EventEmitter();
+  public readonly blobGenerated: EventEmitter<Blob> = new EventEmitter();
 
 
   constructor(
@@ -277,7 +297,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       // Let the form values 'settle' before we emit anything
       debounceTime(1),
       untilComponentDestroyed(this),
-    ).subscribe((v) => {
+    ).subscribe(v => {
       const blob = this.generateBlob(v);
       this.blobGenerated.emit(blob);
     });
@@ -299,6 +319,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public addRows(rowCount = 1, columnCount: number = this.columnCount, content?: string[][], index?: number): void {
     if ((this.rows.length + rowCount) > this.maxRows) {
+      // eslint-disable-next-line no-magic-numbers
       const rowsThatDontFit = (rowCount === 1 ? 2 : rowCount) - ((this.rows.length + rowCount) - this.maxRows);
       this.tooManyRowsMessage =
         `Adding ${rowsThatDontFit} row${rowsThatDontFit > 1 ? 's' : ''} would exceed the maximum rows allowed (${this.maxRows}).`;
@@ -310,7 +331,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
 
     for (let i = 0; i < rowCount; i += 1) {
-      const indexToInjectAt: number = (index !== undefined ? index : this.rowCount) + i;
+      const indexToInjectAt: number = (index === undefined ? this.rowCount : index) + i;
       const c: string[] | null = content ? content[i] : null;
       const createdRow: FormGroup = this.createRow(this.rows.length, c);
 
@@ -429,10 +450,17 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       return;
     }
     const dir: string = (event.deltaX < 0) ? 'right' : 'left';
-    // TypeScript doesn't believe `form` exists on `EventTarget`
-    const targetEl: any = event.target || event.srcElement;
+    // NOTE: TypeScript doesn't believe `form` exists on `EventTarget`
+    // tslint:disable-next-line no-any
+    const targetEl: any = event.target;
+
+    if (!targetEl) {
+      return;
+    }
+
     const borderSize = 2;
-    const scrollRight: number = targetEl.form.scrollWidth - (targetEl.form.offsetWidth + borderSize) - targetEl.form.scrollLeft;
+    const scrollRight: number =
+      targetEl.form.scrollWidth - (parseInt(targetEl.form.offsetWidth, 10) + borderSize) - targetEl.form.scrollLeft;
     const scrollLeft = targetEl.form.scrollLeft;
     const stopRightScroll: boolean = (dir === 'right') && (scrollLeft < 1);
     const stopLeftScroll: boolean = (dir === 'left') && (scrollRight < 1);
@@ -457,7 +485,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const [rowId, columnId]: string[] = currentCellId.split('X');
     const row: string = rowId.split('_')[1];
     const column: string = columnId.split('_')[1];
-    const newId: string = 'r_' + (parseInt(row, 10) + (up ? -1 : 1)) + 'Xc_' + column;
+    const newId = `r_${parseInt(row, 10) + (up ? -1 : 1)}Xc_${column}`;
     const input: HTMLElement | null = this.documentService.document.querySelector(`#${newId}`);
 
     if (input) {
@@ -498,16 +526,14 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       } else {
         newColumnNumber = column - 1;
       }
-    } else {
+    } else if (islastColumn) {
       // Forward
-      if (islastColumn) {
-        newColumnNumber = 0;
-        newRowNumber += 1;
-      } else {
-        newColumnNumber = column + 1;
-      }
+      newColumnNumber = 0;
+      newRowNumber += 1;
+    } else {
+      newColumnNumber = column + 1;
     }
-    const newId: string = 'r_' + newRowNumber + 'Xc_' + newColumnNumber;
+    const newId = `r_${newRowNumber}Xc_${newColumnNumber}`;
     const input: HTMLElement | null = this.documentService.document.querySelector(`#${newId}`);
 
     // istanbul ignore else
@@ -532,7 +558,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   /**
    * Collect all errors from the recordsForm and set to allErrors
    */
-  public collectErrors(): {[key: string]: any}[] | null {
+  public collectErrors(): TsCSVFormError[] | null {
     const group: FormArray | null = this.recordsForm.get('records') as FormArray;
 
     // istanbul ignore else
@@ -541,21 +567,19 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
       // istanbul ignore else
       if (errors) {
-        const resultsArray: {[key: string]: any}[] = Object.keys(errors).map((key) => {
-          return {
-            control: key,
-            // De-duplicate the errors array
-            [key]: errors[key].filter((el, i, arr) => arr.indexOf(el) === i),
-          };
-        });
+        const resultsArray: TsCSVFormError[] = Object.keys(errors).map(key => ({
+          control: key,
+          // De-duplicate the errors array
+          [key]: errors[key].filter((el, i, arr) => arr.indexOf(el) === i),
+        }));
 
         return resultsArray;
-      } else {
-        return null;
       }
-    } else {
       return null;
+
     }
+    return null;
+
   }
 
 
@@ -569,7 +593,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public get validationMessages(): string[] | undefined {
     if (!this.allErrors) {
-      return;
+      return undefined;
     }
     const messages: string[] = [];
 
@@ -579,11 +603,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       for (const error of errorObj[name]) {
         let message = '';
         // The ID is zero-based
-        message += `<b>Row ${error.rowId + 1}:</b> `;
+        message += `<b>Row ${parseInt(error.rowId, 10) + 1}:</b> `;
         // istanbul ignore else
         if (name === 'url') {
           const maxItemLength = 20;
-          const errorItem = (error.actual.length > maxItemLength) ? error.actual.slice(0, maxItemLength) + '...' : error.actual;
+          const errorItem = (error.actual.length > maxItemLength) ? `${error.actual.slice(0, maxItemLength)  }...` : error.actual;
           message += `"${errorItem}" is not a valid URL.`;
         }
         // istanbul ignore else
@@ -595,9 +619,9 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
 
     // If more messages than allowed exist, truncate the list with a message
-    if (messages.length > this.maximumValidationMessages) {
-      const count = messages.length - this.maximumValidationMessages;
-      messages.length = this.maximumValidationMessages;
+    if (messages.length > DEFAULT_VALIDATION_MESSAGES_MAX) {
+      const count = messages.length - DEFAULT_VALIDATION_MESSAGES_MAX;
+      messages.length = DEFAULT_VALIDATION_MESSAGES_MAX;
       messages.push(`and ${count} more errors...`);
     }
 
@@ -627,7 +651,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public resetTable(): void {
     this.clearAllRows();
     this.clearHeaderCells();
-    this.columnCount = this.columnCount || this.defaultColumnCount;
+    this.columnCount = this.columnCount;
     this.addRows(this.rowCount, this.columnCount);
     this.addHeaders(this.columnCount, this.columnHeaders);
     this.allErrors = null;
@@ -640,10 +664,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * NOTE: This external function and `result` object is needed since `getAllErrors` may be recursive
    *
    * @param form - The form
-   * @return The object of errors
+   * @return An object containing all errors
    */
-  private getFormErrors(form: FormGroup | FormArray): {[key: string]: any} {
-    const result: {[key: string]: any} = {};
+  private getFormErrors(form: FormGroup | FormArray): {required?: TsCSVRequiredError; url?: TsCSVUrlError} {
+    const result: {required?: TsCSVRequiredError; url?: TsCSVUrlError} = {};
     this.getAllErrors(form, result);
     return result;
   }
@@ -655,7 +679,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param form - The primary form group
    * @return An object containing all errors
    */
-  private getAllErrors(form: FormGroup | FormArray, result: {[key: string]: any}): void {
+  private getAllErrors(form: FormGroup | FormArray, result: {required?: TsCSVRequiredError; url?: TsCSVUrlError}): void {
     const keys = Object.keys(form.controls);
 
     for (let i = 0; i < keys.length; i += 1) {
@@ -668,26 +692,26 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
         // istanbul ignore else
         if (errors) {
           // Get the record ID from the grandparent control
+          // tslint:disable-next-line no-any
           const grandparentControls: any = ctrl.parent.parent.controls;
-          const rowId: number | undefined = grandparentControls.recordId ?
-            grandparentControls.recordId.value /* istanbul ignore next - Unreachable */ : undefined;
+          const rowId: number | undefined = grandparentControls.recordId
+            ? grandparentControls.recordId.value /* istanbul ignore next - Unreachable */ : undefined;
           const errorKeys = Object.keys(errors);
 
           for (let j = 0; j < errorKeys.length; j += 1) {
             const errorKey: string = errorKeys[j];
-            let error: {[key: string]: any} = errors[errorKeys[j]];
+            // tslint:disable-next-line no-any
+            let error: Record<string, any> = errors[errorKeys[j]];
 
             // Angular built in required validator only returns a boolean
             if (typeof error === 'boolean') {
-              error = {
-                valid: false,
-              };
+              error = {valid: false};
             }
 
             // If the rowId exists, add it to the errors object
             // istanbul ignore else
             if (rowId !== undefined) {
-              error['rowId'] = rowId;
+              error.rowId = rowId;
             }
 
             // Add this error to the result object
@@ -709,7 +733,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param content - The event content
    * @return An object containing all data
    */
-  private splitContent(content: string, hasHeaders: boolean): {[key: string]: any} {
+  // tslint:disable-next-line no-any
+  private splitContent(content: string, hasHeaders: boolean): Record<string, any> {
     const result: {headers: undefined|string[]; rows: undefined|string[]|string[][]} = {
       headers: undefined,
       rows: undefined,
@@ -718,9 +743,9 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
     if (hasHeaders) {
       result.headers = rows[0].split('\t');
-      result.rows = rows.slice(1, rows.length).map((r) => r.split('\t'));
+      result.rows = rows.slice(1, rows.length).map(r => r.split('\t'));
     } else {
-      result.rows = rows.slice(0, rows.length).map((r) => r.split('\t'));
+      result.rows = rows.slice(0, rows.length).map(r => r.split('\t'));
     }
 
     return result;
@@ -837,11 +862,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   private generateBlob(content: TsCSVFormContents): Blob {
     const prefix = 'data:text/csv;charset=utf-8,';
-    const headers: string = content.headers.join('\t') + '\r\n';
-    const rows: string = content.records.map((v) => {
-      // Encapsulate content with quotes and escape any existing quotes
-      return v.columns.map((column) => column ? `"${column.replace(/"/g, '""')}"` : '').join('\t');
-    }).join('\r\n') + '\r\n';
+    const headers = `${content.headers.join('\t')  }\r\n`;
+    // Encapsulate content with quotes and escape any existing quotes
+    const rows =
+      `${content.records.map(v => v.columns.map(column => (column ? `"${column.replace(/"/g, '""')}"` : '')).join('\t'))
+        .join('\r\n')  }\r\n`;
     let joined: string = prefix + headers + rows;
     // istanbul ignore else
     if (this.outputFormat === 'csv') {

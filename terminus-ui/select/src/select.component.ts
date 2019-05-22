@@ -1,3 +1,5 @@
+// NOTE: Our templates need to call a method to use the `chipFormatUIFn` if one exists
+// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, ViewportRuler } from '@angular/cdk/overlay';
@@ -158,7 +160,7 @@ export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
 /**
  * The event object that is emitted when the select value has changed
  */
-export class TsSelectChange {
+export class TsSelectChange<T = unknown> {
   constructor(
     // Reference to the select that emitted the change event
     public source: TsSelectComponent,

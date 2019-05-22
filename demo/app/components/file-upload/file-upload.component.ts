@@ -173,7 +173,7 @@ export class FileUploadComponent {
   }
 
 
-  mimeTypeChange(change: TsSelectChange) {
+  mimeTypeChange(change: TsSelectChange<string[]>) {
     if (change.value.length < 1) {
       this.mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
     }

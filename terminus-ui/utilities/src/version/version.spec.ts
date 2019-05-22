@@ -1,4 +1,7 @@
-import { Version, VERSION } from './version';
+import {
+  Version,
+  VERSION,
+} from './version';
 
 
 describe(`Version`, function() {

@@ -33,11 +33,9 @@ export type TsDateTypes =
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
  */
-@Pipe({
-  name: 'tsDate',
-})
+@Pipe({name: 'tsDate'})
 export class TsDatePipe implements PipeTransform {
-  transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
+  public transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
     const validFormats: TsDateTypes[] = [
       'short',
       'medium',
@@ -47,7 +45,7 @@ export class TsDatePipe implements PipeTransform {
 
     // Check for null values to avoid issues during data-binding
     if (!value) {
-      return;
+      return undefined;
     }
 
     // Check for date validity
@@ -65,14 +63,10 @@ export class TsDatePipe implements PipeTransform {
 
     // Set the formatted date or an empty string if no format is matched
     const dateString =
-      (format === 'short')
-      ? formatDate(date, 'MM-dd-yyyy')
-      : (format === 'medium')
-      ? formatDate(date, 'MMM do, yyyy')
-      : (format === 'extended')
-      ? formatDate(date, 'EEEE, MMMM do, yyyy, h:mm:ssa')
-      : (format === 'timestamp')
-      ? new Date(date).toISOString()
+      (format === 'short') ? formatDate(date, 'MM-dd-yyyy')
+      : (format === 'medium') ? formatDate(date, 'MMM do, yyyy')
+      : (format === 'extended') ? formatDate(date, 'EEEE, MMMM do, yyyy, h:mm:ssa')
+      : (format === 'timestamp') ? new Date(date).toISOString()
       // NOTE: Final case is untestable since it would be caught by the `if` above
       // istanbul ignore next
       : '';

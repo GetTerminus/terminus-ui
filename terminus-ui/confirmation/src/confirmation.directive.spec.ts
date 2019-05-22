@@ -1,102 +1,43 @@
 // tslint:disable: no-non-null-assertion
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
   Input,
   NgModule,
   Output,
-  Provider,
-  Type,
   ViewChild,
 } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { expectNativeEl } from '@terminus/ngx-tools/testing';
-import { TsButtonComponent } from '@terminus/ui/button';
+  createComponent,
+  expectNativeEl,
+} from '@terminus/ngx-tools/testing';
+import { TsButtonModule } from '@terminus/ui';
 
 import { TsConfirmationDirective } from './confirmation.directive';
 import { TsConfirmationModule } from './confirmation.module';
 
 
-
-
-/*******************************************
- * TsButtonComponentMock
- *******************************************/
-// tslint:disable: component-class-suffix
-@Component({
-  selector: 'ts-button',
-  template: `
-    <button (click)="clickedButton($event)">
-      <ng-content></ng-content>
-    </button>
-  `,
-  host: {
-    class: 'ts-button',
-  },
-  exportAs: 'tsButton',
-})
-class TsButtonComponentMock {
-  public interceptClick: boolean = false;
-  public originalClickEvent!: MouseEvent;
-  @Input()
-  public showProgress = false;
-  @Output()
-  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
-
-  public clickedButton(event: MouseEvent): void {
-    // Allow the click to propagate
-    if (!this.interceptClick) {
-      this.clicked.emit(event);
-    } else {
-      // Save the original event but don't emit the originalClickEvent
-      this.originalClickEvent = event;
-    }
-  }
-}
-// tslint:enable: component-class-suffix
-
-
-/*******************************************
- * TsButtonModuleMock
- *******************************************/
-@NgModule({
-  declarations: [
-    TsButtonComponentMock,
-  ],
-  exports: [
-    TsButtonComponentMock,
-  ],
-})
-export class TsButtonModuleMock {}
-
-
-/*******************************************
+/** *****************************************
  * TestHostComponent
  *******************************************/
 @Component({
   template: `
-    <ts-button tsConfirmation #confirmation="tsConfirmation"
+    <ts-button
+      tsConfirmation
+      #confirmation="tsConfirmation"
       [confirmationButtonText]="confirmText"
       [cancelButtonText]="cancelText"
       [explanationText]="explanation"
-      >
-      Foo
-    </ts-button>
+    >Foo</ts-button>
   `,
 })
 class TestHostComponent {
   @ViewChild(TsConfirmationDirective)
-  directive!: TsConfirmationDirective;
-  confirmText;
-  cancelText;
-  explanation;
+  public directive!: TsConfirmationDirective;
+  public confirmText;
+  public cancelText;
+  public explanation;
 }
 
 
@@ -108,7 +49,7 @@ describe(`TsConfirmationDirective`, function() {
 
 
   beforeEach(() => {
-    fixture = createComponent(TestHostComponent);
+    fixture = createComponent(TestHostComponent, [], [TsConfirmationModule, TsButtonModule]);
     testComponent = fixture.componentInstance;
     directive = testComponent.directive;
     button = fixture.debugElement.nativeElement.querySelector('button');
@@ -249,7 +190,7 @@ describe(`TsConfirmationDirective`, function() {
 
   });
 
-  describe(`Positioning` , () => {
+  describe(`Positioning`, () => {
     test(`should default to 'below'`, () => {
       jest.useFakeTimers();
       button.click();
@@ -314,34 +255,3 @@ describe(`TsConfirmationDirective`, function() {
 
 });
 
-
-
-
-/**
- * HELPERS
- */
-
-// TODO: Move to ngx-tools (and all other instances of this utility)
-export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      CommonModule,
-      OverlayModule,
-      PortalModule,
-      FlexLayoutModule,
-      TsButtonModuleMock,
-      TsConfirmationModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      {
-        provide: TsButtonComponent,
-        useClass: TsButtonComponentMock,
-      },
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
-}

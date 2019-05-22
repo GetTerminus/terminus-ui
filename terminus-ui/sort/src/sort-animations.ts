@@ -13,7 +13,7 @@ import {
 } from '@angular/material/core';
 
 
-const SORT_ANIMATION_TRANSITION = AnimationDurations.ENTERING + ' ' + AnimationCurves.STANDARD_CURVE;
+const SORT_ANIMATION_TRANSITION = `${AnimationDurations.ENTERING  } ${  AnimationCurves.STANDARD_CURVE}`;
 
 
 /** Animations used by TsSort. */
@@ -60,20 +60,44 @@ export const tsSortAnimations: {
    */
   indicatorToggle: trigger('indicatorToggle', [
     transition('void => asc', animate(SORT_ANIMATION_TRANSITION, keyframes([
-      style({transform: 'translateY(25%)', opacity: 0}),
-      style({transform: 'none', opacity: 1}),
+      style({
+        transform: 'translateY(25%)',
+        opacity: 0,
+      }),
+      style({
+        transform: 'none',
+        opacity: 1,
+      }),
     ]))),
     transition('asc => void', animate(SORT_ANIMATION_TRANSITION, keyframes([
-      style({transform: 'none', opacity: 1}),
-      style({transform: 'translateY(-25%)', opacity: 0}),
+      style({
+        transform: 'none',
+        opacity: 1,
+      }),
+      style({
+        transform: 'translateY(-25%)',
+        opacity: 0,
+      }),
     ]))),
     transition('void => desc', animate(SORT_ANIMATION_TRANSITION, keyframes([
-      style({transform: 'translateY(-25%)', opacity: 0}),
-      style({transform: 'none', opacity: 1}),
+      style({
+        transform: 'translateY(-25%)',
+        opacity: 0,
+      }),
+      style({
+        transform: 'none',
+        opacity: 1,
+      }),
     ]))),
     transition('desc => void', animate(SORT_ANIMATION_TRANSITION, keyframes([
-      style({transform: 'none', opacity: 1}),
-      style({transform: 'translateY(25%)', opacity: 0}),
+      style({
+        transform: 'none',
+        opacity: 1,
+      }),
+      style({
+        transform: 'translateY(25%)',
+        opacity: 0,
+      }),
     ]))),
   ]),
 

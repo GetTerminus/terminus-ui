@@ -1,5 +1,8 @@
 // tslint:disable: no-non-null-assertion
-import { FormBuilder } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 
 import { TsSearchComponent } from './search.component';
 
@@ -52,14 +55,10 @@ describe('TsSearchComponent', function() {
       component.ngOnInit();
       expect(component.currentQuery).toEqual('foo');
 
-      component.searchForm.patchValue({
-        query: ' foo 23 ',
-      });
+      component.searchForm.patchValue({query: ' foo 23 '});
       expect(component.currentQuery).toEqual('foo 23');
 
-      component.searchForm.patchValue({
-        query: null,
-      });
+      component.searchForm.patchValue({query: null});
       expect(component.currentQuery).toEqual('');
     });
 
@@ -161,6 +160,20 @@ describe('TsSearchComponent', function() {
       jest.runAllTimers();
 
       expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
+    });
+
+  });
+
+
+  describe(`get searchFormControl`, function() {
+
+    test(`should return the control`, function() {
+      expect(component.searchFormControl!.statusChanges).toBeTruthy();
+    });
+
+    test(`should return null if the control doesn't exist`, function() {
+      component.searchForm = new FormGroup({});
+      expect(component.searchFormControl).toEqual(null);
     });
 
   });

@@ -20,9 +20,7 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/autofocus</example-url>
  */
-@Directive({
-  selector: '[tsAutofocus]',
-})
+@Directive({selector: '[tsAutofocus]'})
 export class TsAutofocusDirective implements AfterViewInit {
   /**
    * Store the shouldFocus value
@@ -33,7 +31,7 @@ export class TsAutofocusDirective implements AfterViewInit {
    * Define if the element should be focused after initialization
    */
   @Input()
-  public set tsAutofocus(value: any) {
+  public set tsAutofocus(value: string | boolean) {
     this.shouldFocus = coerceBooleanProperty(value);
   }
 
@@ -53,11 +51,8 @@ export class TsAutofocusDirective implements AfterViewInit {
       if (el.focus) {
         el.focus();
         this.changeDetectorRef.detectChanges();
-      } else {
-        // istanbul ignore else
-        if (isDevMode()) {
-          throw Error(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
-        }
+      } else if (isDevMode()) {
+        throw Error(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
       }
     }
   }

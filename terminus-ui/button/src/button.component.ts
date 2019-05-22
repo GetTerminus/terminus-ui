@@ -52,6 +52,8 @@ export type TsButtonFormatTypes
 
 export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
 
+const DEFAULT_COLLAPSE_DELAY_MS = 4000;
+
 
 /**
  * A presentational component to render a button
@@ -80,19 +82,12 @@ export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
   selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {
-    class: 'ts-button',
-  },
+  host: {class: 'ts-button'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsButton',
 })
 export class TsButtonComponent implements OnInit, OnDestroy {
-  /**
-   * Define the default delay for collapsable buttons
-   */
-  private COLLAPSE_DEFAULT_DELAY = 4000;
-
   /**
    * Store a reference to the timeout needed for collapsable buttons
    */
@@ -157,8 +152,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
     // Verify the value is allowed
     if (tsButtonFormatTypesArray.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsButtonComponent: "${value}" is not an allowed format. ` +
-      `See TsButtonFormatTypes for available options.`);
+      console.warn(`TsButtonComponent: "${value}" is not an allowed format. See TsButtonFormatTypes for available options.`);
       return;
     }
 
@@ -168,13 +162,11 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     if (this._format === 'collapsable') {
       // Set the collapse delay
       if (!this.collapseDelay) {
-        this.collapseDelay = this.COLLAPSE_DEFAULT_DELAY;
+        this.collapseDelay = DEFAULT_COLLAPSE_DELAY_MS;
       }
-    } else {
+    } else if (this.collapseDelay) {
       // If the format is NOT collapsable, remove the delay
-      if (this.collapseDelay) {
-        this.collapseDelay = undefined;
-      }
+      this.collapseDelay = undefined;
     }
 
     this.changeDetectorRef.detectChanges();
@@ -207,7 +199,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Define the tabindex for the button
    */
   @Input()
-  public tabIndex: number = 0;
+  public tabIndex = 0;
 
   /**
    * Define the theme
@@ -220,8 +212,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
     // Verify the value is allowed
     if (tsStyleThemeTypesArray.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsButtonComponent: "${value}" is not an allowed theme. ` +
-      `See TsStyleThemeTypes for available options.`);
+      console.warn(`TsButtonComponent: "${value}" is not an allowed theme. `
+      + `See TsStyleThemeTypes for available options.`);
       return;
     }
 
@@ -237,7 +229,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Pass the click event through to the parent
    */
   @Output()
-  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
   /**
    * Provide access to the inner button element
@@ -298,12 +290,12 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * @param event - The MouseEvent
    */
   public clickedButton(event: MouseEvent): void {
-    // Allow the click to propagate
-    if (!this.interceptClick) {
-      this.clicked.emit(event);
-    } else {
+    if (this.interceptClick) {
       // Save the original event but don't emit the originalClickEvent
       this.originalClickEvent = event;
+    } else {
+      // Allow the click to propagate
+      this.clicked.emit(event);
     }
   }
 
@@ -342,10 +334,14 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     const formatOptions = ['filled', 'hollow', 'collapsable'];
     const isTheme = themeOptions.indexOf(classname) >= 0;
     const isFormat = formatOptions.indexOf(classname) >= 0;
-    // This 'any' is needed since the `mat-raised-button` directive overwrites elementRef
+    // NOTE: Underscore dangle name controlled by Material
+    /* eslint-disable no-underscore-dangle */
+    // NOTE: This 'any' is needed since the `mat-raised-button` directive overwrites elementRef
+    // tslint:disable-next-line no-any
     const buttonEl = (this.button as any)._elementRef.nativeElement;
-    const themeClasses = ['c-button--primary', 'c-button--accent', 'c-button--warn'];
-    const formatClasses = ['c-button--filled', 'c-button--hollow', 'c-button--collapsable'];
+    /* eslint-enable no-underscore-dangle */
+    const themeClasses = themeOptions.map(theme => `c-button--${theme}`);
+    const formatClasses = formatOptions.map(format => `c-button--${format}`);
 
     // If dealing with a theme class
     // istanbul ignore else

@@ -10,6 +10,8 @@ export * from './strip-control-characters/strip-control-characters';
 export * from './type-coercion/is-abstract-control';
 export * from './type-coercion/is-drag-event';
 export * from './type-coercion/is-html-input-element';
+export * from './type-coercion/is-keyboard-event';
+export * from './type-coercion/is-mouse-event';
 export * from './types/style-theme.types';
 export * from './version/version';
 

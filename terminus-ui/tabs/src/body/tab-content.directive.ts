@@ -16,11 +16,10 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-master/components/tabs</example-url>
  */
-@Directive({
-  selector: '[tsTabContent]',
-})
+@Directive({selector: '[tsTabContent]'})
 export class TsTabContentDirective {
   constructor(
+    // tslint:disable-next-line no-any
     public template: TemplateRef<any>,
   ) {}
 }

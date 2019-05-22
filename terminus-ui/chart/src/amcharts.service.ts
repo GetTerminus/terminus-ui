@@ -5,12 +5,14 @@ import {
 } from '@angular/core';
 
 
+// tslint:disable no-any
 export interface TsAmChartsToken {
   core: any;
   charts: any;
   maps?: any;
   themes?: any[];
 }
+// tslint:enable no-any
 
 /**
  * Create an injection token that the consumer can override with their version of Highcharts

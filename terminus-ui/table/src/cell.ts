@@ -13,7 +13,7 @@ import {
   ElementRef,
   Input,
   isDevMode,
-  Renderer,
+  Renderer2,
 } from '@angular/core';
 
 export type TsTableColumnAlignment
@@ -35,7 +35,10 @@ export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = ['left
  */
 @Directive({
   selector: '[tsCellDef]',
-  providers: [{provide: CdkCellDef, useExisting: TsCellDefDirective}],
+  providers: [{
+    provide: CdkCellDef,
+    useExisting: TsCellDefDirective,
+  }],
 })
 export class TsCellDefDirective extends CdkCellDef {}
 
@@ -47,7 +50,10 @@ export class TsCellDefDirective extends CdkCellDef {}
  */
 @Directive({
   selector: '[tsHeaderCellDef]',
-  providers: [{provide: CdkHeaderCellDef, useExisting: TsHeaderCellDefDirective}],
+  providers: [{
+    provide: CdkHeaderCellDef,
+    useExisting: TsHeaderCellDefDirective,
+  }],
 })
 export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
 
@@ -85,12 +91,13 @@ export class TsCellDirective extends CdkCell {
   constructor(
     columnDef: CdkColumnDef,
     elementRef: ElementRef,
-    public renderer: Renderer,
+    public renderer: Renderer2,
   ) {
     super(columnDef, elementRef);
 
-    // NOTE(B$): We are adding `noWrap` to the column in `TsColumnDefDirective` which doesn't exist
+    // NOTE: We are adding `noWrap` to the column in `TsColumnDefDirective` which doesn't exist
     // in the `CdkColumnDef` so we cast it to 'any'.
+    // tslint:disable-next-line no-any
     const column: any = columnDef;
 
     // Set a custom class for each column
@@ -103,20 +110,20 @@ export class TsCellDirective extends CdkCell {
 
     // Set inline style for min-width if passed in
     if (column.minWidth) {
-      renderer.setElementStyle(elementRef.nativeElement, 'minWidth', column.minWidth);
+      renderer.setStyle(elementRef.nativeElement, 'minWidth', column.minWidth);
     }
 
     // Skip the following in or to maintain backward compatibility with cells that do not use alignment
     if (column.alignment) {
       // Verify the alignment value is allowed
       if (tsTableColumnAlignmentTypesArray.indexOf(column.alignment) < 0 && isDevMode()) {
-        console.warn(`TsCellDirective: "${column.alignment}" is not an allowed alignment. ` +
-        `See TsTableColumnAlignment for available options.`);
+        console.warn(`TsCellDirective: "${column.alignment}" is not an allowed alignment. `
+        + `See TsTableColumnAlignment for available options.`);
         return;
       }
 
       // Set inline style for text-align
-      renderer.setElementStyle(elementRef.nativeElement, 'textAlign', column.alignment);
+      renderer.setStyle(elementRef.nativeElement, 'textAlign', column.alignment);
     }
   }
 }
@@ -129,7 +136,10 @@ export class TsCellDirective extends CdkCell {
  */
 @Directive({
   selector: '[tsColumnDef]',
-  providers: [{provide: CdkColumnDef, useExisting: TsColumnDefDirective}],
+  providers: [{
+    provide: CdkColumnDef,
+    useExisting: TsColumnDefDirective,
+  }],
 })
 export class TsColumnDefDirective extends CdkColumnDef {
   // NOTE(B$): We must rename here so that the property matches the extended CdkColumnDef class
@@ -138,14 +148,14 @@ export class TsColumnDefDirective extends CdkColumnDef {
    * Define a unique name for this column
    */
   @Input('tsColumnDef')
-  name!: string;
+  public name!: string;
   // tslint:enable: no-input-rename
 
   /**
    * Define if a column's contents should wrap when long
    */
   @Input()
-  public noWrap: boolean = false;
+  public noWrap = false;
 
   /**
    * Define a minimum width for the column

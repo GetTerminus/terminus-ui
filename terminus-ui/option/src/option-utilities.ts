@@ -16,7 +16,7 @@ export function allOptionsAreSelected(options: QueryList<TsOptionComponent>): bo
   }
 
   // Return false if at least one options is not selected
-  return !options.toArray().some((option) => !option.selected);
+  return !options.toArray().some(option => !option.selected);
 }
 
 
@@ -92,7 +92,7 @@ export function someOptionsAreSelected(options: QueryList<TsOptionComponent>): b
   if (!options || options.toArray().length < 1) {
     return false;
   }
-  const someSelected = options.toArray().some((option) => option.selected);
+  const someSelected = options.toArray().some(option => option.selected);
   const allSelected = allOptionsAreSelected(options);
 
   // Return true if at least one option is selected but not all
@@ -114,7 +114,7 @@ export function toggleAllOptions(options: QueryList<TsOptionComponent>): void {
   }
   const optionsArray = options.toArray();
   // If at least one option is selected, we should deselect all
-  const shouldDeselectAll = options.some((option) => option.selected);
+  const shouldDeselectAll = options.some(option => option.selected);
 
   for (const option of optionsArray) {
     // If it is selected and should be deselected

@@ -65,9 +65,7 @@ let nextUniqueId = 0;
   selector: 'ts-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  host: {
-    class: 'ts-card',
-  },
+  host: {class: 'ts-card'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCard',
@@ -92,9 +90,11 @@ export class TsCardComponent {
   public set aspectRatio(value: TsAspectRatioTypes) {
     const x: number = parseInt(value.split(':')[0], 10);
     const y: number = parseInt(value.split(':')[1], 10);
-    const percentage: number = ((y / x) * 100);
+    const percentageMultiplier = 100;
+    const percentage: number = (y / x) * percentageMultiplier;
+    const percentageMaxLength = 2;
 
-    this.aspectRatioPadding = `${percentage.toFixed(2)}%`;
+    this.aspectRatioPadding = `${percentage.toFixed(percentageMaxLength)}%`;
   }
 
   /**
@@ -177,7 +177,7 @@ export class TsCardComponent {
    * Getter to return a border class if the border is set
    */
   public get borderClass(): string {
-    return (!this.border || this.border === 'none') ? '' : `c-card--border-${this.border}` ;
+    return (!this.border || this.border === 'none') ? '' : `c-card--border-${this.border}`;
   }
 
 

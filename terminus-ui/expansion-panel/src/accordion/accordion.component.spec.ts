@@ -1,19 +1,13 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  A,
-  END,
-  ENTER,
-  HOME,
-  KEYS,
-  SPACE,
-} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createKeyboardEvent,
 } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/expansion-panel/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   getAccordionElement,
   getAccordionInstance,
@@ -22,7 +16,7 @@ import {
   togglePanel,
 } from '@terminus/ui/expansion-panel/testing';
 
-import { TsExpansionPanelModule } from './../expansion-panel.module';
+import { TsExpansionPanelModule } from '../expansion-panel.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -160,14 +154,14 @@ describe(`TsAccordionComponent`, function() {
       const spaceEvent = document.createEvent('KeyboardEvent');
       spaceEvent.initEvent('keydown', true, false);
       Object.defineProperties(spaceEvent, {
-        keyCode: { get: () => SPACE },
-        key: { get: () => 'Space' },
+        code: {get: () => KEYS.SPACE.code},
+        key: {get: () => KEYS.SPACE.code},
       });
       const enterEvent = document.createEvent('KeyboardEvent');
       enterEvent.initEvent('keydown', true, false);
       Object.defineProperties(enterEvent, {
-        keyCode: { get: () => ENTER },
-        key: { get: () => 'Enter' },
+        code: {get: () => KEYS.ENTER.code},
+        key: {get: () => KEYS.ENTER.code},
       });
 
       trigger1.dispatchEvent(spaceEvent);

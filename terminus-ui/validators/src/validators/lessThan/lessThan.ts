@@ -22,9 +22,9 @@ export function lessThanValidator(max: number | AbstractControl = 0): ValidatorF
 
     if (isAbstractControl(max)) {
       return getValidationResult(max.value, control);
-    } else {
-      return getValidationResult(max, control);
     }
+    return getValidationResult(max, control);
+
   };
 }
 

@@ -6,9 +6,7 @@ describe(`merge`, function() {
     key1: {},
     key2: 'test',
     key3: [5, 2, 76, 21],
-    key4: {
-      key4a: 'foo',
-    },
+    key4: {key4a: 'foo'},
   };
   const obj2 = {
     key1: {
@@ -16,9 +14,7 @@ describe(`merge`, function() {
       ik2: 'world',
       ik3: 3,
     },
-    key4: {
-      key4b: 'bar',
-    },
+    key4: {key4b: 'bar'},
   };
   const expected = {
     key1: {

@@ -48,9 +48,7 @@ describe(`TsMenuComponent`, function() {
   describe(`ngAfterViewInit()`, () => {
 
     it(`should not open the menu when 'defaultOpened' is FALSE`, () => {
-      component.trigger = {
-        openMenu: jest.fn(),
-      } as any;
+      component.trigger = {openMenu: jest.fn()} as any;
       component.ngAfterViewInit();
 
       expect(component.trigger.openMenu).not.toHaveBeenCalled();
@@ -59,9 +57,7 @@ describe(`TsMenuComponent`, function() {
 
     it(`should open the menu when 'defaultOpened' is TRUE`, () => {
       component.defaultOpened = true;
-      component.trigger = {
-        openMenu: jest.fn(),
-      } as any;
+      component.trigger = {openMenu: jest.fn()} as any;
       component.ngAfterViewInit();
 
       expect(component.trigger.openMenu).toHaveBeenCalled();

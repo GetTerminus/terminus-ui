@@ -9,6 +9,7 @@ export class Version {
   constructor(public full: string) {
     this.major = full.split('.')[0];
     this.minor = full.split('.')[1];
+    // eslint-disable-next-line no-magic-numbers
     this.patch = full.split('.').slice(2).join('.');
   }
 }

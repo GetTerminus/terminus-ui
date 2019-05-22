@@ -27,6 +27,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   'after',
 ];
 
+
 /**
  * This is the tooltip UI Component
  *
@@ -47,9 +48,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   selector: 'ts-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
-  host: {
-    class: 'ts-tooltip',
-  },
+  host: {class: 'ts-tooltip'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -60,7 +59,7 @@ export class TsTooltipComponent {
   @Input()
   public set tooltipPosition(value: TsTooltipPositionTypes) {
     if (value && isDevMode() && (allowedTooltipTypes.indexOf(value) < 0)) {
-      console.warn(`TsTooltipComponent: "${value}" is not an allowed position. ` + 'Allowed positions defined by "allowedTooltipTypes".');
+      console.warn(`TsTooltipComponent: "${value}" is not an allowed position. Allowed positions defined by "TsTooltipPositionTypes".`);
     }
     this._tooltipPosition = value;
   }

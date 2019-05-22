@@ -34,9 +34,7 @@ import {
   selector: 'ts-icon-button',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
-  host: {
-    class: 'ts-icon-button',
-  },
+  host: {class: 'ts-icon-button'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsIconButton',
@@ -70,7 +68,7 @@ export class TsIconButtonComponent {
    * Pass the click event through to the parent
    */
   @Output()
-  public clicked: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
 
   /**

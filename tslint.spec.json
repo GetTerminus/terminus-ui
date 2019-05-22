@@ -1,0 +1,22 @@
+{
+  "extends": "@terminus/tslint-config-frontend/testing",
+  "rules": {
+    "component-selector": [
+      true,
+      "element",
+      "ts",
+      "kebab-case"
+    ],
+    "directive-selector": [
+      true,
+      "attribute",
+      "ts",
+      "camelCase"
+    ],
+    "pipe-prefix": [
+      true,
+      "ts"
+    ],
+    "no-implicit-dependencies": false
+  }
+}

@@ -1,17 +1,16 @@
-// tslint:disable: no-non-null-assertion
-import { Provider, Type } from '@angular/core';
 import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+  Provider,
+  Type,
+} from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { typeInElement } from '@terminus/ngx-tools/testing';
-import * as testComponents from '@terminus/ui/date-range/testing';
 import {
-  getRangeInputElements,
-  getRangeInputInstances,
-} from '@terminus/ui/date-range/testing';
+  createComponent as createComponentInner,
+  typeInElement,
+} from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/date-range/testing';
+// eslint-disable-next-line no-duplicate-imports
+import { getRangeInputInstances } from '@terminus/ui/date-range/testing';
 
 import { TsDateRangeModule } from './date-range.module';
 
@@ -167,21 +166,28 @@ describe(`TsDateRangeComponent`, function() {
       typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       expect(fixture.componentInstance.startSelected).toHaveBeenCalledWith(new Date('3-4-2019'));
-      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: null});
+      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({
+        start: new Date('3-4-2019'),
+        end: null,
+      });
 
       typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       expect(fixture.componentInstance.endSelected).toHaveBeenCalledWith(new Date('3-8-2019'));
-      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({start: new Date('3-4-2019'), end: new Date('3-8-2019')});
+      expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({
+        start: new Date('3-4-2019'),
+        end: new Date('3-8-2019'),
+      });
 
       typeInElement('', startInputInstance.inputElement.nativeElement);
       fixture.detectChanges();
       startInputInstance.inputElement.nativeElement.blur();
       fixture.detectChanges();
       const changeMock = fixture.componentInstance.dateRangeChange.mock;
-      // FIXME: Once https://github.com/GetTerminus/terminus-ui/issues/1361 is complete we should adjust this
-      // test to verify that the changeMock was called exactly 3 times.
-      expect(changeMock.calls[changeMock.calls.length - 1][0]).toEqual({start: null, end: new Date('3-8-2019')});
+      expect(changeMock.calls[changeMock.calls.length - 1][0]).toEqual({
+        start: null,
+        end: new Date('3-8-2019'),
+      });
 
       expect.assertions(5);
     });
@@ -237,19 +243,12 @@ describe(`TsDateRangeComponent`, function() {
  * HELPERS
  */
 
-// TODO: Move to ngx-tools (and all other instances of this utility)
 export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
+  return createComponentInner<T>(component,
+    providers,
+    [
       ReactiveFormsModule,
       TsDateRangeModule,
       ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+    ]);
 }

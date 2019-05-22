@@ -9,9 +9,15 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@angular/material/core';
+import {
+  CanDisable, mixinDisabled,
+} from '@angular/material/core';
 import { Subject } from 'rxjs';
 
+import {
+  isNull,
+  isUndefined,
+} from '@terminus/ngx-tools';
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
@@ -68,6 +74,7 @@ export interface TsSortState {
 
 // Boilerplate for applying mixins to TsSort.
 export class TsSortBase {}
+// eslint-disable-next-line no-underscore-dangle
 export const _TsSortMixinBase = mixinDisabled(TsSortBase);
 
 
@@ -85,6 +92,8 @@ export const _TsSortMixinBase = mixinDisabled(TsSortBase);
 @Directive({
   selector: '[tsSort]',
   exportAs: 'tsSort',
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disabled: tsSortDisabled'],
 })
 export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnChanges, OnDestroy {
@@ -139,7 +148,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * Event emitted when the user changes either the active sort or sort direction
    */
   @Output('tsSortChange')
-  readonly sortChange = new EventEmitter<TsSortState>();
+  public readonly sortChange = new EventEmitter<TsSortState>();
 
 
   /**
@@ -162,7 +171,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * Register function to be used by the contained TsSortables. Adds the TsSortable to the
    * collection of TsSortables.
    */
-  register(sortable: TsSortableItem): void {
+  public register(sortable: TsSortableItem): void {
     if (!sortable.id && isDevMode()) {
       throw getSortHeaderMissingIdError();
     }
@@ -179,7 +188,7 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
    * Unregister function to be used by the contained TsSortables. Removes the TsSortable from the
    * collection of contained TsSortables.
    */
-  deregister(sortable: TsSortableItem): void {
+  public deregister(sortable: TsSortableItem): void {
     this.sortables.delete(sortable.id);
   }
 
@@ -187,28 +196,32 @@ export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnC
   /**
    * Sets the active sort id and determines the new sort direction
    */
-  sort(sortable: TsSortableItem): void {
-    if (this.active !== sortable.id) {
+  public sort(sortable: TsSortableItem): void {
+    if (this.active === sortable.id) {
+      this.direction = this.getNextSortDirection(sortable);
+    } else {
       this.active = sortable.id;
       this.direction = sortable.start ? sortable.start : this.start;
-    } else {
-      this.direction = this.getNextSortDirection(sortable);
     }
 
-    this.sortChange.next({active: this.active, direction: this.direction});
+    this.sortChange.next({
+      active: this.active,
+      direction: this.direction,
+    });
   }
 
 
   /**
    * Returns the next sort direction of the active sortable, checking for potential overrides
    */
-  getNextSortDirection(sortable: TsSortableItem): TsSortDirection {
+  public getNextSortDirection(sortable: TsSortableItem): TsSortDirection {
     if (!sortable) {
       return '';
     }
 
     // Get the sort direction cycle with the potential sortable overrides.
-    const disableClear = sortable.disableClear != null ? sortable.disableClear : this.disableClear;
+    const disableClearDoesntExist = isNull(sortable.disableClear) || isUndefined(sortable.disableClear);
+    const disableClear = disableClearDoesntExist ? this.disableClear : sortable.disableClear;
     const sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
 
     // Get and return the next direction in the cycle

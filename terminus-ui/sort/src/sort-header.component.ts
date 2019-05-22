@@ -1,4 +1,6 @@
-// tslint:disable: use-input-property-decorator triple-equals
+// tslint:disable: template-no-call-expression
+// FIXME: Should refactor out all dangles and remove this rule:
+/* eslint-disable no-underscore-dangle */
 import { CdkColumnDef } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,
@@ -11,7 +13,10 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@angular/material/core';
+import {
+  CanDisable,
+  mixinDisabled,
+} from '@angular/material/core';
 import {
   isBoolean,
   untilComponentDestroyed,
@@ -22,8 +27,10 @@ import { merge } from 'rxjs';
 import { tsSortAnimations } from './sort-animations';
 import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
 import { TsSortHeaderIntl } from './sort-header-intl';
-import { TsSortDirective } from './sort.directive';
-import { TsSortableItem } from './sort.directive';
+import {
+  TsSortableItem,
+  TsSortDirective,
+} from './sort.directive';
 
 
 // Boilerplate for applying mixins to the sort header.
@@ -57,7 +64,7 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
   templateUrl: './sort-header.component.html',
   styleUrls: ['./sort-header.component.scss'],
   host: {
-    class: 'ts-sortable',
+    'class': 'ts-sortable',
     '[class.ts-sort-header-sorted]': '_isSorted()',
     '[class.ts-sort-header-disabled]': '_isDisabled()',
     '(click)': '_handleClick()',
@@ -65,6 +72,8 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disabled'],
   animations: [
     tsSortAnimations.indicator,
@@ -81,20 +90,20 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   // NOTE(B$): Renaming input so that we can pull a value from the primary directive
   // tslint:disable: no-input-rename
   @Input('ts-sort-header')
-  id!: string;
+  public id!: string;
   // tslint:enable: no-input-rename
 
   /**
    * Sets the position of the arrow that displays when sorted
    */
   @Input()
-  arrowPosition: 'before' | 'after' = 'after';
+  public arrowPosition: 'before' | 'after' = 'after';
 
   /**
    * Overrides the sort start value of the containing TsSort for this TsSortable
    */
   @Input()
-  start!: 'asc' | 'desc';
+  public start!: 'asc' | 'desc';
 
   /**
    * Overrides the disable clear value of the containing TsSort for this TsSortable
@@ -103,8 +112,8 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   public set disableClear(value: boolean) {
     /* istanbul ignore if */
     if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsSortHeaderComponent: "disableClear" value is not a boolean. ` +
-      `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
+      console.warn(`TsSortHeaderComponent: "disableClear" value is not a boolean. `
+      + `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
     }
     this._disableClear = coerceBooleanProperty(value);
   }
@@ -118,9 +127,9 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
   /**
    * Check for _sort and set up auto-change-detection
    */
-  constructor(
+  public constructor(
     public _intl: TsSortHeaderIntl,
-    changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef,
     @Optional() public _sort: TsSortDirective,
     @Optional() public _cdkColumnDef: CdkColumnDef,
   ) {
@@ -173,8 +182,8 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
    * Whether this TsSortHeader is currently sorted in either ascending or descending order
    */
   public _isSorted() {
-    return this._sort.active == this.id &&
-        (this._sort.direction === 'asc' || this._sort.direction === 'desc');
+    return this._sort.active === this.id
+        && (this._sort.direction === 'asc' || this._sort.direction === 'desc');
   }
 
 

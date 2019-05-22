@@ -12,11 +12,7 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  END,
-  HOME,
-} from '@terminus/ngx-tools/keycodes';
-
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsExpansionPanelComponent } from '../expansion-panel.component';
 import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
 import {
@@ -53,7 +49,7 @@ import {
   selector: 'ts-accordion',
   template: `<ng-content></ng-content>`,
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable: use-input-property-decorator
+  // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['multi'],
   providers: [
     {
@@ -61,9 +57,7 @@ import {
       useExisting: TsAccordionComponent,
     },
   ],
-  host: {
-    class: 'ts-accordion',
-  },
+  host: {class: 'ts-accordion'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsAccordion',
@@ -96,7 +90,7 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
    * The event emitted as the accordion is destroyed
    */
   @Output()
-  public destroyed: EventEmitter<void> = new EventEmitter();
+  public readonly destroyed: EventEmitter<void> = new EventEmitter();
 
 
   /**
@@ -118,13 +112,13 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
    * Handle keyboard events coming in from the panel triggers
    */
   public handleTriggerKeydown(event: KeyboardEvent): void {
-    const {keyCode} = event;
+    const {code} = event;
     const manager = this.keyManager;
 
-    if (keyCode === HOME) {
+    if (code === KEYS.HOME.code) {
       manager.setFirstItemActive();
       event.preventDefault();
-    } else if (keyCode === END) {
+    } else if (code === KEYS.END.code) {
       manager.setLastItemActive();
       event.preventDefault();
     } else {

@@ -1,4 +1,4 @@
-// tslint:disable: max-line-length
+/* eslint-disable max-len */
 export const FULL_ACCOUNT_HUB_LOGO = `
   <svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
     <title>Terminus Account Hub</title>

@@ -1,11 +1,14 @@
 import { isDevMode } from '@angular/core';
+import { isString } from '@terminus/ngx-tools';
 import { BehaviorSubject } from 'rxjs';
 
-import { isString } from '@terminus/ngx-tools';
 import { ImageRatio } from './file-upload.module';
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsImageDimensions } from './image-dimensions';
-import { TS_ACCEPTED_MIME_TYPES, TsFileAcceptedMimeTypes } from './mime-types';
+import {
+  TS_ACCEPTED_MIME_TYPES,
+  TsFileAcceptedMimeTypes,
+} from './mime-types';
 
 
 /**
@@ -142,13 +145,11 @@ export class TsSelectedFile {
    */
   public get fileContents(): string {
     if (isString(this.fileReader.result)) {
-     return this.fileReader.result;
-    } else {
-      // istanbul ignore else
-      if (isDevMode) {
-        console.warn(`${this.fileReader.result} is not returning a string.`);
-      }
+      return this.fileReader.result;
+    } else if (isDevMode) {
+      console.warn(`${this.fileReader.result} is not returning a string.`);
     }
+    return '';
   }
 
   /**
@@ -157,7 +158,7 @@ export class TsSelectedFile {
    * @return Is valid
    */
   public get isValid(): boolean {
-    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions);
+    return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions && this.validations.imageRatio);
   }
 
 
@@ -178,11 +179,8 @@ export class TsSelectedFile {
         if (img) {
           if (isString(this.fileReader.result)) {
             img.src = this.fileReader.result;
-          } else {
-            // istanbul ignore else
-            if (isDevMode) {
-              console.warn(`${img} is not returning a string.`);
-            }
+          } else if (isDevMode) {
+            console.warn(`${img} is not returning a string.`);
           }
         }
       };
@@ -255,7 +253,7 @@ export class TsSelectedFile {
       return true;
     }
 
-    const ratios = constraints.map((r) => r.widthRatio / r.heightRatio);
+    const ratios = constraints.map(r => r.widthRatio / r.heightRatio);
     for (const r of ratios) {
       const ratio = this.width / this.height;
       if (this.isSame(r, ratio)) {
@@ -268,17 +266,17 @@ export class TsSelectedFile {
 
   /**
    * A utility function to determine whether two numbers are the same
+   *
    * @param number1 - one number
    * @param number2 - another number
    * @return Whether these two numbers are the same
    */
-
-  private isSame(number1: number, number2: number) {
-    if (Math.abs((number1 - number2) / number1) < 0.001) {
+  private isSame(number1: number, number2: number): boolean {
+    const minimumAmountToConsiderMatch = .001;
+    if (Math.abs((number1 - number2) / number1) < minimumAmountToConsiderMatch) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
 }
@@ -292,8 +290,6 @@ export class TsSelectedFile {
  */
 function typeNeedsDimensionValidation(type: TsFileAcceptedMimeTypes): boolean {
   const allTypes = TS_ACCEPTED_MIME_TYPES.slice();
-  const itemsNeedingValidation = allTypes.filter((item) => {
-    return !typesWithoutDimensionValidation.includes(item);
-  });
+  const itemsNeedingValidation = allTypes.filter(item => !typesWithoutDimensionValidation.includes(item));
   return itemsNeedingValidation.indexOf(type) >= 0;
 }

@@ -66,9 +66,7 @@ export type TsMenuTriggerTypes
   selector: 'ts-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  host: {
-    class: 'ts-menu',
-  },
+  host: {class: 'ts-menu'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsMenu',
@@ -162,9 +160,9 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * Set the triggerIcon based on the triggerType
    */
-  ngOnInit(): void {
-    this.triggerIcon = (this.triggerType === 'default') ?
-      this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
+  public ngOnInit(): void {
+    this.triggerIcon = (this.triggerType === 'default')
+      ? this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
   }
 
 

@@ -19,7 +19,7 @@
           class="c-csv-entry__column-id"
           [class.c-csv-entry__column-id--invalid]="row.invalid"
           [attr.id]="'csv-row-id-' + (idIndex + 1)"
-          *ngFor="let row of rows?.controls; let idIndex = index;"
+          *ngFor="let row of rows?.controls; let idIndex = index"
           fxFlex="noshrink"
           fxLayout="row"
           fxLayoutAlign="center center"
@@ -49,7 +49,7 @@
             type="text"
             title="Header, Column: {{ getHeaderCellName(headerIndex) || headerIndex + 1 }}"
             [readonly]="(columnHeaders && columnHeaders[headerIndex])"
-            *ngFor="let c of headerCells?.controls; let headerIndex = index;"
+            *ngFor="let c of headerCells?.controls; let headerIndex = index"
             [attr.id]="createId(-1, headerIndex)"
             [formControlName]="headerIndex"
             (paste)="onPaste($event, true)"
@@ -64,17 +64,18 @@
         <div formArrayName="records">
           <div
             class="c-csv-entry__row qa-csv-entry-row"
-            *ngFor="let record of rows?.controls; let recordIndex = index;"
+            *ngFor="let record of rows?.controls; let recordIndex = index"
             [formGroupName]="recordIndex"
           >
             <div
               formArrayName="columns"
             >
               <input
-                *ngFor="let c of getColumns(record)?.controls; let columnIndex = index;"
+                *ngFor="let c of getColumns(record)?.controls; let columnIndex = index"
                 class="c-csv-entry__input qa-csv-entry-cell"
                 [class.c-csv-entry__input--invalid]="c.invalid"
                 type="text"
+                placeholder="{{ recordIndex === 0 ? 'Hi ho, Silver!' : '' }}"
                 title="Row: {{ record.controls?.recordId?.value + 1 }}, Column: {{ getHeaderCellName(columnIndex) || columnIndex + 1 }}"
                 [attr.id]="createId(recordIndex, columnIndex)"
                 [formControlName]="columnIndex"

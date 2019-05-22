@@ -31,7 +31,7 @@ export function getAllDateRangeDebugElements(fixture: ComponentFixture<any>): De
  * @return The array of TsDateRangeComponent instances
  */
 export function getAllDateRangeInstances(fixture: ComponentFixture<any>): TsDateRangeComponent[] {
-  return getAllDateRangeDebugElements(fixture).map((i) => i.componentInstance);
+  return getAllDateRangeDebugElements(fixture).map(i => i.componentInstance);
 }
 
 /**
@@ -57,7 +57,7 @@ export function getDateRangeInputDebugElements(fixture: ComponentFixture<any>, i
  * @return The array of TsInputComponent instances
  */
 export function getRangeInputInstances(fixture: ComponentFixture<any>, index = 0): TsInputComponent[] {
-  return getDateRangeInputDebugElements(fixture, index).map((v) => v.componentInstance);
+  return getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance);
 }
 
 /**
@@ -68,7 +68,7 @@ export function getRangeInputInstances(fixture: ComponentFixture<any>, index = 0
  * @return The array of TsInputComponent instances
  */
 export function getRangeInputElements(fixture: ComponentFixture<any>, index = 0): HTMLInputElement[] {
-  return getDateRangeInputDebugElements(fixture, index).map((v) => v.componentInstance.inputElement.nativeElement);
+  return getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance.inputElement.nativeElement);
 }
 
 /**

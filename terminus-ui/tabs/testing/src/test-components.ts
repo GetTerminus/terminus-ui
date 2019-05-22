@@ -47,29 +47,29 @@ import { Observable } from 'rxjs';
   `,
 })
 export class Basic {
-  selectedIndex = 1;
-  focusEvent: any;
-  selectEvent: any;
+  public selectedIndex = 1;
+  public focusEvent: any;
+  public selectEvent: any;
 
-  handleFocus(event: any) {
+  public handleFocus(event: any) {
     this.focusEvent = event;
   }
-  handleSelection(event: any) {
+  public handleSelection(event: any) {
     this.selectEvent = event;
   }
-  animationFinished() {}
+  public animationFinished() {}
 }
 
  @Component({
-  template: `
+   template: `
     <ts-tab-collection>
       <ts-tab [ariaLabel]="ariaLabel" [ariaLabelledby]="ariaLabelledby"></ts-tab>
     </ts-tab-collection>
   `,
-})
+ })
 export class CollectionWithAriaInputs {
-  ariaLabel: string | undefined;
-  ariaLabelledby: string | undefined;
+  public ariaLabel: string | undefined;
+  public ariaLabelledby: string | undefined;
 }
 
 @Component({
@@ -87,7 +87,7 @@ export class CollectionWithAriaInputs {
   `,
 })
 export class DisabledTabs {
-  isDisabled = false;
+  public isDisabled = false;
 }
 
 @Component({
@@ -105,19 +105,28 @@ export class DisabledTabs {
   `,
 })
 export class DynamicTabs {
-  tabs = [
-    {label: 'Label 1', content: 'Content 1'},
-    {label: 'Label 2', content: 'Content 2'},
-    {label: 'Label 3', content: 'Content 3'},
+  public tabs = [
+    {
+      label: 'Label 1',
+      content: 'Content 1',
+    },
+    {
+      label: 'Label 2',
+      content: 'Content 2',
+    },
+    {
+      label: 'Label 3',
+      content: 'Content 3',
+    },
   ];
-  selectedIndex = 1;
-  focusEvent: any;
-  selectEvent: any;
+  public selectedIndex = 1;
+  public focusEvent: any;
+  public selectEvent: any;
 
-  handleFocus(event: any) {
+  public handleFocus(event: any) {
     this.focusEvent = event;
   }
-  handleSelection(event: any) {
+  public handleSelection(event: any) {
     this.selectEvent = event;
   }
 }
@@ -134,12 +143,18 @@ export class DynamicTabs {
 })
 export class AsyncTabs implements OnInit {
   private _tabs = [
-    { label: 'one', content: 'one' },
-    { label: 'two', content: 'two' },
+    {
+      label: 'one',
+      content: 'one',
+    },
+    {
+      label: 'two',
+      content: 'two',
+    },
   ];
-  tabs!: Observable<any>;
+  public tabs!: Observable<any>;
 
-  ngOnInit() {
+  public ngOnInit() {
     // Use ngOnInit because there is some issue with scheduling the async task in the constructor.
     this.tabs = new Observable((observer: any) => {
       setTimeout(() => observer.next(this._tabs));
@@ -162,9 +177,9 @@ export class AsyncTabs implements OnInit {
   `,
 })
 export class SimpleLabels {
-  otherLabel = 'Bar';
-  otherContent = 'bar content';
-  @ViewChild('test') testSelector: any;
+  public otherLabel = 'Bar';
+  public otherContent = 'bar content';
+  @ViewChild('test') public testSelector: any;
 }
 
 @Component({
@@ -180,8 +195,8 @@ export class SimpleLabels {
       </ts-tab>
     </ts-tab-collection>
   `,
- })
- export class TemplateTabs {}
+})
+export class TemplateTabs {}
 
 @Component({
   template: `
@@ -198,8 +213,8 @@ export class SimpleLabels {
       </ts-tab>
     </ts-tab-collection>
   `,
- })
- export class DynamicHeight {}
+})
+export class DynamicHeight {}
 
 
 interface Tab {
@@ -229,24 +244,36 @@ interface Tab {
   `,
 })
 export class TabHeader {
-  selectedIndex = 0;
-  focusedIndex: number | undefined;
-  disabledTabIndex = 1;
-  tabs: Tab[] = [
-    {label: 'tab one', disabled: false},
-    {label: 'tab two', disabled: false},
-    {label: 'tab three', disabled: false},
-    {label: 'tab four', disabled: false},
+  public selectedIndex = 0;
+  public focusedIndex: number | undefined;
+  public disabledTabIndex = 1;
+  public tabs: Tab[] = [
+    {
+      label: 'tab one',
+      disabled: false,
+    },
+    {
+      label: 'tab two',
+      disabled: false,
+    },
+    {
+      label: 'tab three',
+      disabled: false,
+    },
+    {
+      label: 'tab four',
+      disabled: false,
+    },
   ];
 
   @ViewChild(TsTabHeaderComponent)
-  tabHeader: TsTabHeaderComponent;
+  public tabHeader: TsTabHeaderComponent;
 
-  constructor() {
+  public constructor() {
     this.tabs[this.disabledTabIndex].disabled = true;
   }
 
-  addTabsForScrolling(amount = 4) {
+  public addTabsForScrolling(amount = 4) {
     for (let i = 0; i < amount; i++) {
       this.tabs.push({label: 'new'});
     }
@@ -264,19 +291,19 @@ export class TabHeader {
   `,
 })
 export class TabBody implements AfterContentInit {
-  content!: TemplatePortal;
-  position: number;
-  origin: number | null;
+  public content!: TemplatePortal;
+  public position: number;
+  public origin: number | null;
 
   @ViewChild(TsTabBodyComponent)
-  tabBody: TsTabBodyComponent;
+  public tabBody: TsTabBodyComponent;
 
   @ViewChild(TemplateRef)
-  template: TemplateRef<any>;
+  public template: TemplateRef<any>;
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  public constructor(private viewContainerRef: ViewContainerRef) { }
 
-  ngAfterContentInit() {
+  public ngAfterContentInit() {
     this.content = new TemplatePortal(this.template, this.viewContainerRef);
   }
 }
@@ -288,7 +315,7 @@ export class TabBody implements AfterContentInit {
 })
 export class InkBar {
   @ViewChild(TsTabInkBarComponent)
-  inkBar: TsTabInkBarComponent;
+  public inkBar: TsTabInkBarComponent;
 }
 
 

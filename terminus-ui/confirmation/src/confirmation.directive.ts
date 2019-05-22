@@ -1,5 +1,6 @@
 import {
   ConnectedPositionStrategy,
+  FlexibleConnectedPositionStrategy,
   HorizontalConnectionPos,
   Overlay,
   OverlayConfig,
@@ -22,7 +23,7 @@ import {
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { TsButtonComponent } from '@terminus/ui/button';
-import { merge } from 'rxjs/operators';
+import { merge } from 'rxjs';
 
 import { TsConfirmationOverlayComponent } from './confirmation-overlay.component';
 
@@ -65,9 +66,7 @@ export const allowedOverlayPositionTypes: TsConfirmationOverlayPositionTypes[] =
  */
 @Directive({
   selector: '[tsConfirmation]',
-  host: {
-    class: 'ts-confirmation',
-  },
+  host: {class: 'ts-confirmation'},
   exportAs: 'tsConfirmation',
 })
 export class TsConfirmationDirective implements OnDestroy, OnInit {
@@ -134,8 +133,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   @Input()
   public set overlayPosition(value: TsConfirmationOverlayPositionTypes) {
     if (value && isDevMode() && (allowedOverlayPositionTypes.indexOf(value) < 0)) {
-      console.warn(`TsConfirmationOverlay: "${value}" is not an allowed position.` +
-       `Allowed positions are defined by "allowedOverlayPositionTypes".`);
+      console.warn(`TsConfirmationOverlay: "${value}" is not an allowed position.`
+       + `Allowed positions are defined by "allowedOverlayPositionTypes".`);
     }
     this._overlayPosition = value;
   }
@@ -149,7 +148,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * An event emitted when the confirmation is cancelled
    */
   @Output()
-  public cancelled: EventEmitter<boolean> = new EventEmitter();
+  public readonly cancelled: EventEmitter<boolean> = new EventEmitter();
 
 
   constructor(
@@ -208,9 +207,13 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Create the overlay
     this.overlayRef = this.overlay.create(overlayConfig);
 
-    // Wire up listeners for overlay clicks
-    this.overlayRef._keydownEvents.pipe(
-      merge(this.overlayRef.backdropClick()),
+    // Wire up listeners for keydown events and overlay clicks
+    merge(
+      // NOTE: Naming controlled by the CDK
+      // eslint-disable-next-line no-underscore-dangle
+      this.overlayRef._keydownEvents,
+      this.overlayRef.backdropClick(),
+    ).pipe(
       untilComponentDestroyed(this),
     ).subscribe(() => {
       this.dismissOverlay();
@@ -242,23 +245,31 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   /**
    * Configure the overlay
    */
-  private generateOverlayConfig(value: TsConfirmationOverlayPositionTypes) {
+  private generateOverlayConfig(value: TsConfirmationOverlayPositionTypes = 'below') {
     let overlayPosOriginX: HorizontalConnectionPos = 'center';
     let overlayPosOriginY: VerticalConnectionPos = 'bottom';
     let overlayPosOverlayX: HorizontalConnectionPos = 'center';
     let overlayPosOverlayY: VerticalConnectionPos = 'top';
     let positionClass = 'ts-confirmation-overlay__panel-below';
+    // Define custom offsets so that the full button is still visible after the overlay is opened
+    const OFFSET_Y = 16;
+    const OFFSET_X_BEFORE = -38;
+    const OFFSET_X_AFTER = 38;
+    let defaultOffsetY = 0;
+    let defaultOffsetX = 0;
 
     switch (value) {
       case ('above'):
         overlayPosOriginY = 'top';
         overlayPosOverlayY = 'bottom';
         positionClass = 'ts-confirmation-overlay__panel-above';
+        defaultOffsetY = -(OFFSET_Y);
         break;
       case ('below'):
         overlayPosOriginY = 'bottom';
         overlayPosOverlayY = 'top';
         positionClass = 'ts-confirmation-overlay__panel-below';
+        defaultOffsetY = OFFSET_Y;
         break;
       case ('before'):
         overlayPosOriginX = 'start';
@@ -266,6 +277,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
         overlayPosOverlayX = 'end';
         overlayPosOverlayY = 'center';
         positionClass = 'ts-confirmation-overlay__panel-before';
+        defaultOffsetX = OFFSET_X_BEFORE;
         break;
       case ('after'):
         overlayPosOriginX = 'end';
@@ -273,25 +285,25 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
         overlayPosOverlayX = 'start';
         overlayPosOverlayY = 'center';
         positionClass = 'ts-confirmation-overlay__panel-after';
+        defaultOffsetX = OFFSET_X_AFTER;
         break;
-      default:
-        overlayPosOriginY = 'bottom';
-        overlayPosOverlayY = 'top';
-        positionClass = 'ts-confirmation-overlay__panel-below';
-        break;
+      // skip default - unreachable
     }
 
-    const positionStrategy: ConnectedPositionStrategy = this.overlay.position().connectedTo(
-      this.elementRef,
-      {
-        originX: overlayPosOriginX,
-        originY: overlayPosOriginY,
-      },
-      {
-        overlayX: overlayPosOverlayX,
-        overlayY: overlayPosOverlayY,
-      },
-    );
+
+    const positionStrategy: FlexibleConnectedPositionStrategy =
+      this.overlay.position()
+        .flexibleConnectedTo(this.elementRef)
+        .withDefaultOffsetY(defaultOffsetY)
+        .withDefaultOffsetX(defaultOffsetX)
+        .withPositions([
+          {
+            originX: overlayPosOriginX,
+            originY: overlayPosOriginY,
+            overlayX: overlayPosOverlayX,
+            overlayY: overlayPosOverlayY,
+          },
+        ]);
 
     const overlayConfig: OverlayConfig = new OverlayConfig({
       positionStrategy,

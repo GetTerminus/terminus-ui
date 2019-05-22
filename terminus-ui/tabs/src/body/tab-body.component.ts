@@ -68,9 +68,7 @@ let nextUniqueId = 0;
   selector: 'ts-tab-body',
   templateUrl: './tab-body.component.html',
   styleUrls: ['./tab-body.component.scss'],
-  host: {
-    class: 'ts-tab-body',
-  },
+  host: {class: 'ts-tab-body'},
   animations: [tsTabsAnimations.translateTab],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -85,7 +83,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
   /**
    * Current position of the tab-body in the tab-group. Zero means that the tab is visible.
    */
-  private positionIndex: number;
+  private positionIndex: number | undefined;
 
   /**
    * Emits when an animation on the tab is complete
@@ -104,12 +102,14 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
    * Determine the computed position state that will be used for the tab-body animation trigger
    */
   private get computedPositionAnimationState(): 'left' | 'right' | 'center' {
-    const position = (this.positionIndex < 0)
-      ? 'left'
-      : (this.positionIndex > 0)
-      ? 'right'
-      : 'center'
-    ;
+    // eslint-disable-next-line no-negated-condition
+    const position = !this.positionIndex
+      ? 'center'
+      : (this.positionIndex < 0)
+        ? 'left'
+        : (this.positionIndex > 0)
+          ? 'right'
+          : 'center';
     return position;
   }
 
@@ -117,13 +117,13 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
    * The tab body content to display
    */
   @Input()
-  public content: TemplatePortal;
+  public content!: TemplatePortal;
 
   /**
    * Position that will be used when the tab is immediately becoming visible after creation
    */
   @Input()
-  public origin: number;
+  public origin: number | undefined;
 
   /**
    * The shifted index position of the tab body, where zero represents the active center tab.
@@ -146,25 +146,25 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
    * Event emitted when the tab begins to animate towards the center as the active tab
    */
   @Output()
-  readonly onCentering: EventEmitter<number> = new EventEmitter<number>();
+  public readonly centering: EventEmitter<number> = new EventEmitter<number>();
 
   /**
    * Event emitted before the centering of the tab begins
    */
   @Output()
-  readonly beforeCentering: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public readonly beforeCentering: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /**
    * Event emitted after the tab has left the center position
    */
   @Output()
-  readonly afterLeavingCenter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public readonly afterLeavingCenter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /**
    * Event emitted when the tab completes its animation towards the center
    */
   @Output()
-  readonly onCentered: EventEmitter<void> = new EventEmitter<void>(true);
+  public readonly centered: EventEmitter<void> = new EventEmitter<void>(true);
 
 
   constructor(
@@ -182,13 +182,11 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
       untilComponentDestroyed(this),
       // Ensure that we get unique animation events, because the `.done` callback can get invoked twice in some browsers.
       // See https://github.com/angular/angular/issues/24084.
-      distinctUntilChanged((x, y) => {
-        return x.fromState === y.fromState && x.toState === y.toState;
-      }),
-    ).subscribe((event) => {
+      distinctUntilChanged((x, y) => x.fromState === y.fromState && x.toState === y.toState),
+    ).subscribe(event => {
       // If the transition to the center is complete, emit an event.
       if (this.isCenterPosition(event.toState) && this.isCenterPosition(this.positionState)) {
-        this.onCentered.emit();
+        this.centered.emit();
       }
 
       if (this.isCenterPosition(event.fromState) && !this.isCenterPosition(this.positionState)) {
@@ -217,7 +215,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
     this.beforeCentering.emit(isCentering);
 
     if (isCentering) {
-      this.onCentering.emit(this.elementRef.nativeElement.clientHeight);
+      this.centering.emit(this.elementRef.nativeElement.clientHeight);
     }
   }
 

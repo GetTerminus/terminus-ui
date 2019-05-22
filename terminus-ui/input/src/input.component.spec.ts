@@ -17,16 +17,24 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TsDocumentService } from '@terminus/ngx-tools';
-import { A } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
+  createComponent as createComponentInner,
   createKeyboardEvent,
   TsDocumentServiceMock,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { TsFormFieldComponent, TsFormFieldModule } from '@terminus/ui/form-field';
-import { Observable, Subject } from 'rxjs';
+import {
+  TsFormFieldComponent,
+  TsFormFieldModule,
+} from '@terminus/ui/form-field';
+import {
+  Observable,
+  Subject,
+} from 'rxjs';
 
 import * as TestComponents from '@terminus/ui/input/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   getInputElement,
   getInputInstance,
@@ -630,13 +638,15 @@ describe(`TsInputComponent`, function() {
       const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
       const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
       const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
-      const bounding1 = { left: 50 };
-      const bounding2 = { left: 100 };
+      const bounding1 = {left: 50};
+      const bounding2 = {left: 100};
       const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
       formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
       formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
       Object.defineProperty(formFieldInstance['labelElement'].nativeElement.children[0], 'offsetWidth', {
-        get() { return 40; },
+        get() {
+          return 40;
+        },
       });
 
       formFieldInstance['updateOutlineGap']();
@@ -679,7 +689,7 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent(TestComponents.OnChanges);
         fixture.detectChanges();
         const inputElement = getInputElement(fixture);
-        const keyboardEvent: KeyboardEvent = createKeyboardEvent('keyup', A, inputElement);
+        const keyboardEvent: KeyboardEvent = createKeyboardEvent('keyup', KEYS.A, inputElement);
         inputElement.setSelectionRange = jest.fn();
         fixture.componentInstance.inputComponent['platform'].IOS = true;
         fixture.componentInstance.inputComponent.ngAfterContentInit();
@@ -942,18 +952,11 @@ describe(`TsInputComponent`, function() {
  */
 
 
-function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      FormsModule,
-      ReactiveFormsModule,
-      TsFormFieldModule,
-      TsInputModule,
-      NoopAnimationsModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
+function createComponent<T>(component: Type<T>): ComponentFixture<T> {
+
+  return createComponentInner<T>(
+    component,
+    [
       {
         provide: TsDocumentService,
         useClass: MyDocumentService,
@@ -962,11 +965,15 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
         provide: AutofillMonitor,
         useClass: AutofillMonitorMock,
       },
-      ...providers,
     ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
+    [
+      FormsModule,
+      ReactiveFormsModule,
+      TsFormFieldModule,
+      TsInputModule,
+      NoopAnimationsModule,
+    ],
+  );
 }
 
 
@@ -975,11 +982,9 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
  */
 
 class MyDocumentService extends TsDocumentServiceMock {
-  shouldContain = true;
-  document: any = {
-    documentElement: {
-      contains: jest.fn(() => this.shouldContain ? true : false),
-    },
+  public shouldContain = true;
+  public document: any = {
+    documentElement: {contains: jest.fn(() => !!this.shouldContain)},
     createEvent() {
       return document.createEvent('Event');
     },
@@ -992,19 +997,22 @@ interface AutofillEvent {
   isAutofilled: boolean;
 }
 class AutofillMonitorMock {
-  result = new Subject<AutofillEvent>();
-  el!: Element;
+  public result = new Subject<AutofillEvent>();
+  public el!: Element;
 
-  monitor(el: Element): Observable<any> {
+  public monitor(el: Element): Observable<any> {
     this.el = el;
     return this.result;
   }
 
-  fireMockFillEvent() {
-    this.result.next({target: this.el as Element, isAutofilled: true});
+  public fireMockFillEvent() {
+    this.result.next({
+      target: this.el,
+      isAutofilled: true,
+    });
   }
 
-  stopMonitoring(element: Element) {
+  public stopMonitoring(element: Element) {
     this.result.complete();
   }
 }

@@ -1,3 +1,4 @@
+// tslint:disable: template-no-call-expression
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,7 +15,10 @@ import {
 } from '@angular/core';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsSelectChange } from '@terminus/ui/select';
-import { inputHasChanged, TsStyleThemeTypes } from '@terminus/ui/utilities';
+import {
+  inputHasChanged,
+  TsStyleThemeTypes,
+} from '@terminus/ui/utilities';
 
 
 /**
@@ -32,6 +36,22 @@ export interface TsPaginatorMenuItem {
    */
   value?: number;
 }
+
+/**
+ * Define the default count of records per page
+ */
+const DEFAULT_RECORDS_PER_PAGE = 10;
+
+/**
+ * Default max records before message is shown
+ */
+const DEFAULT_MAX_PREFERED_RECORDS = 100;
+
+/**
+ * Define the default options for the records per page select menu
+ */
+// eslint-disable-next-line no-magic-numbers
+const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
 
 
 /**
@@ -77,34 +97,17 @@ export interface TsPaginatorMenuItem {
   selector: 'ts-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
-  host: {
-    class: 'ts-paginator',
-  },
+  host: {class: 'ts-paginator'},
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsPaginator',
 })
 export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
-   * Define the default count of records per page
-   */
-  private DEFAULT_PER_PAGE = 10;
-
-  /**
-   * Default max records before message is shown
-   */
-  private DEFAULT_MAX_PREFERED_RECORDS = 100;
-
-  /**
-   * Define the default options for the records per page select menu
-   */
-  private DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
-
-  /**
    * Define the default message to show when too many records are returned
    */
-  private DEFAULT_HIGH_RECORD_MESSAGE = 'That\'s a lot of results! ' +
-    'Try refining your filters for better results.';
+  private DEFAULT_HIGH_RECORD_MESSAGE = 'That\'s a lot of results! '
+    + 'Try refining your filters for better results.';
 
   /**
    * Define the icon for the 'first page' button
@@ -139,14 +142,12 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the amount of records show per page
    */
-  public recordsPerPage: number = this.DEFAULT_PER_PAGE;
+  public recordsPerPage: number = DEFAULT_RECORDS_PER_PAGE;
 
   /**
    * Define the template context for the record count message
    */
-  public templateContext = {
-    $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE,
-  };
+  public templateContext = {$implicit: this.DEFAULT_HIGH_RECORD_MESSAGE};
 
   /**
    * GETTERS
@@ -170,7 +171,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Getter to return the index of the last page
    */
   public get lastPageIndex(): number {
-    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length ;
+    return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length;
   }
 
   /**
@@ -223,7 +224,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define how many pages exist to show a prompt about better filtering
    */
   @Input()
-  public maxPreferredRecords: number = this.DEFAULT_MAX_PREFERED_RECORDS;
+  public maxPreferredRecords: number = DEFAULT_MAX_PREFERED_RECORDS;
 
   /**
    * Define the menu location (open up or open down)
@@ -265,7 +266,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define how many records are shown per page
    */
   @Input()
-  public recordsPerPageChoices: number[] = this.DEFAULT_RECORDS_PER_PAGE_OPTIONS;
+  public recordsPerPageChoices: number[] = DEFAULT_RECORDS_PER_PAGE_OPTIONS;
 
   /**
    * Define the label for the records per page select
@@ -283,13 +284,13 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Emit a page selected event
    */
   @Output()
-  readonly pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
+  public readonly pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
 
   /**
    * Emit a change event when the records per page changes
    */
   @Output()
-  readonly recordsPerPageChange: EventEmitter<number> = new EventEmitter();
+  public readonly recordsPerPageChange: EventEmitter<number> = new EventEmitter();
 
 
   constructor(
@@ -329,18 +330,16 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Set up initial resources
    */
-   private initialize(): void {
-     this.pagesArray =
-       this.createPagesArray(this.totalRecords, this.recordsPerPage, this.isZeroBased);
-     this.currentPageLabel =
-       this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
+  private initialize(): void {
+    this.pagesArray = this.createPagesArray(this.totalRecords, this.recordsPerPage, this.isZeroBased);
+    this.currentPageLabel = this.createCurrentPageLabel(this.currentPageIndex, this.pagesArray, this.totalRecords);
 
-     // Change to the current page
-     // istanbul ignore else
-     if (this.totalRecords > 0) {
-       this.changePage(this.currentPageIndex, -1, this.pagesArray);
-     }
-   }
+    // Change to the current page
+    // istanbul ignore else
+    if (this.totalRecords > 0) {
+      this.changePage(this.currentPageIndex, -1, this.pagesArray);
+    }
+  }
 
 
   /**
@@ -378,9 +377,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     const notAlreadyOnPage: boolean = destinationPage !== currentPage;
 
     if (destinationIsValid && notAlreadyOnPage) {
-      const foundPage: TsPaginatorMenuItem | undefined = pages.find((page: TsPaginatorMenuItem): boolean => {
-        return page.value === destinationPage;
-      });
+      const foundPage: TsPaginatorMenuItem | undefined = pages.find((page: TsPaginatorMenuItem): boolean => page.value === destinationPage);
 
       // istanbul ignore else
       if (foundPage) {
@@ -410,9 +407,9 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public isLastPage(page: number): boolean {
     if (this.pagesArray) {
       return page === (this.pagesArray.length - (this.isZeroBased ? 1 : 0));
-    } else {
-      return false;
     }
+    return false;
+
   }
 
 
@@ -426,10 +423,10 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    */
   public shouldShowRecordsMessage(message: string, max: number, totalRecords: number): boolean {
     if (totalRecords > max) {
-      return (message && message.length > 0) ? true : false;
-    } else {
-      return false;
+      return !!((message && message.length > 0));
     }
+    return false;
+
   }
 
 
@@ -438,7 +435,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    *
    * @param selection - The selected records-per-page count
    */
-  public recordsPerPageUpdated(selection: TsSelectChange): void {
+  public recordsPerPageUpdated(selection: TsSelectChange<number>): void {
     this.recordsPerPage = selection.value;
     this.currentPageIndex = this.firstPageIndex;
     this.recordsPerPageChange.emit(selection.value);
@@ -454,7 +451,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * @return A boolean representing if the menu should be disabled
    */
   public menuIsDisabled(pagesCount: number): boolean {
-    return coerceNumberProperty(pagesCount) < 2;
+    const moreThanOne = 2;
+    return coerceNumberProperty(pagesCount) < moreThanOne;
   }
 
 
@@ -485,11 +483,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     pages: TsPaginatorMenuItem[],
     totalRecords: number,
   ): string {
-    const findPage = (allPages: TsPaginatorMenuItem[], index: number) => {
-      return pages.find((page: TsPaginatorMenuItem): boolean => {
-        return page.value === index;
-      });
-    };
+    const findPage =
+      (allPages: TsPaginatorMenuItem[], index: number) => pages.find((page: TsPaginatorMenuItem): boolean => page.value === index);
 
     let foundPage: TsPaginatorMenuItem | undefined = findPage(pages, currentPage);
 
@@ -507,9 +502,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
     // This may be the case if there are no records
     if (!foundPage || !foundPage.name) {
-      foundPage = {
-        name: '0',
-      };
+      foundPage = {name: '0'};
     }
 
     // '1 - 10 of 243'
@@ -539,8 +532,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       // We are creating the text for the range here so we are dealing with records based on 1
       // (while the pages themselves may be based on 0 or 1)
       const pageNumber = (page < 1) ? 1 : page;
-      const rangeStart = pageNumber * perPage - (perPage - 1);
-      const rangeEnd = (pageNumber * perPage);
+      const rangeStart = (pageNumber * perPage) - (perPage - 1);
+      const rangeEnd = pageNumber * perPage;
       const pageValue: number = paginatorArray.length + 1;
 
       // Create a page object
@@ -568,7 +561,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       const pageValue: number = paginatorArray.length + 1;
 
       if (paginatorArray.length > 0) {
-        name = `${pageNumber * perPage + 1} - ${pageNumber * perPage + recordsRemaining}`;
+        name = `${(pageNumber * perPage) + 1} - ${(pageNumber * perPage) + recordsRemaining}`;
         value = (pageValue - (zeroBased ? 1 : 0));
       } else {
         name = `${pageNumber} - ${recordsRemaining}`;
@@ -576,8 +569,8 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       }
 
       paginatorArray.push({
-        name: name,
-        value: value,
+        name,
+        value,
       });
     }
 

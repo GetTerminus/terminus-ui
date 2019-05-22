@@ -3,7 +3,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-
 import {
   TsRadioFormatFn,
   TsRadioGroupComponent,
@@ -18,7 +17,7 @@ const SVG = `
 `;
 
 class DomSanitizerMock {
-  bypassSecurityTrustHtml = jest.fn().mockReturnValue(SVG);
+  public bypassSecurityTrustHtml = jest.fn().mockReturnValue(SVG);
 }
 
 describe('TsRadioGroupComponent', function() {
@@ -70,10 +69,8 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatUILabelFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
-      expect(component.formatUILabelFn = foo as any).toEqual(undefined);
+      const foo = void 0;
+      expect(component.formatUILabelFn = foo).toEqual(undefined);
     });
 
 
@@ -85,7 +82,9 @@ describe('TsRadioGroupComponent', function() {
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.formatUILabelFn = 3 as any; })
+      expect(() => {
+        component.formatUILabelFn = 3 as any;
+      })
         .toThrowError(`TsRadioGroupComponent: 'formatUILabelFn' must be passed a 'TsRadioFormatFn'.`);
     });
 
@@ -95,10 +94,8 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatUISubLabelFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
-      expect(component.formatUISubLabelFn = foo as any).toEqual(undefined);
+      const foo = void 0;
+      expect(component.formatUISubLabelFn = foo).toEqual(undefined);
     });
 
 
@@ -110,7 +107,9 @@ describe('TsRadioGroupComponent', function() {
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.formatUISubLabelFn = 3 as any; })
+      expect(() => {
+        component.formatUISubLabelFn = 3 as any;
+      })
         .toThrowError(`TsRadioGroupComponent: 'formatUISubLabelFn' must be passed a 'TsRadioFormatFn'.`);
     });
 
@@ -120,10 +119,8 @@ describe('TsRadioGroupComponent', function() {
   describe(`formatModelValueFn`, () => {
 
     test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo;
-      // tslint:enable: prefer-const
-      expect(component.formatModelValueFn = foo as any).toEqual(undefined);
+      const foo = void 0;
+      expect(component.formatModelValueFn = foo).toEqual(undefined);
     });
 
 
@@ -135,7 +132,9 @@ describe('TsRadioGroupComponent', function() {
 
 
     test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {component.formatModelValueFn = 3 as any; })
+      expect(() => {
+        component.formatModelValueFn = 3 as any;
+      })
         .toThrowError(`TsRadioGroupComponent: 'formatModelValueFn' must be passed a 'TsRadioFormatFn'.`);
     });
 
@@ -239,11 +238,11 @@ describe('TsRadioGroupComponent', function() {
   describe(`retrieveValue`, () => {
 
     test(`should use a formatter to return a value`, () => {
-      const fn1: TsRadioFormatFn = (v) => v.foo;
+      const fn1: TsRadioFormatFn = v => v.foo;
       const val1: string | TsRadioOption = component.retrieveValue(options[0], fn1);
       expect(val1).toEqual('foo_value');
 
-      const fn2: TsRadioFormatFn = (v) => v.bar;
+      const fn2: TsRadioFormatFn = v => v.bar;
       const val2: string | TsRadioOption = component.retrieveValue(options[1], fn2);
       expect(val2).toEqual('Bar Display');
     });
@@ -280,6 +279,16 @@ describe('TsRadioGroupComponent', function() {
     test(`should default to the uid`, () => {
       component.id = null as any;
       expect(component.id).toEqual(component['_uid']);
+    });
+
+  });
+
+
+  describe(`trackByFn`, function() {
+
+    test(`should return the passed index`, function() {
+      expect(component.trackByFn(1)).toEqual(1);
+      expect(component.trackByFn(4)).toEqual(4);
     });
 
   });

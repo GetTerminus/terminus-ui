@@ -1,4 +1,3 @@
-import { DebugElement, Predicate } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
@@ -15,7 +14,7 @@ export function getAllCheckboxInstances(fixture: ComponentFixture<any>): TsCheck
   if (!debugElements) {
     throw new Error(`'getAllCheckboxInstances' found no checkboxes`);
   }
-  return debugElements.map((i) => i.componentInstance);
+  return debugElements.map(i => i.componentInstance);
 }
 
 /**

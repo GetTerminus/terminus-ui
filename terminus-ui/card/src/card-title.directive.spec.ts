@@ -1,14 +1,6 @@
-import {
-  Component,
-  Provider,
-  Type,
-} from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
+import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsCardTitleDirective } from './card-title.directive';
 import { TsCardModule } from './card.module';
 
@@ -42,7 +34,7 @@ class TestHostErrorComponent {}
 describe(`TsCardTitleDirective`, () => {
 
   test(`should add the title class`, () => {
-    const fixture = createComponent(TestHostComponent);
+    const fixture = createComponent(TestHostComponent, [], [TsCardModule]);
     fixture.detectChanges();
     const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
 
@@ -51,7 +43,7 @@ describe(`TsCardTitleDirective`, () => {
 
 
   test(`should add the accent border class`, () => {
-    const fixture = createComponent(TestHostAccentBorderComponent);
+    const fixture = createComponent(TestHostAccentBorderComponent, [], [TsCardModule]);
     fixture.detectChanges();
     const classElement = fixture.debugElement.query(By.directive(TsCardTitleDirective));
 
@@ -61,7 +53,7 @@ describe(`TsCardTitleDirective`, () => {
 
   test(`should throw an error if not nested within a TsCardComponent`, () => {
     const create = () => {
-      const fixture = createComponent(TestHostErrorComponent);
+      const fixture = createComponent(TestHostErrorComponent, [], [TsCardModule]);
       fixture.detectChanges();
     };
 
@@ -69,21 +61,3 @@ describe(`TsCardTitleDirective`, () => {
   });
 
 });
-
-
-
-
-function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  TestBed.configureTestingModule({
-    imports: [
-      TsCardModule,
-      ...imports,
-    ],
-    declarations: [component],
-    providers: [
-      ...providers,
-    ],
-  }).compileComponents();
-
-  return TestBed.createComponent<T>(component);
-}
