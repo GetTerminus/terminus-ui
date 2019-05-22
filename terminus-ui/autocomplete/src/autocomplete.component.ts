@@ -511,7 +511,7 @@ export class TsAutocompleteComponent implements OnInit,
    * Event for when a duplicate selection is made
    */
   @Output()
-  readonly duplicateSelection: EventEmitter<string> = new EventEmitter();
+  readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
 
   /**
    * Event for when the panel is opened
@@ -819,6 +819,7 @@ export class TsAutocompleteComponent implements OnInit,
       // istanbul ignore else
       if (this.autocompleteTrigger.panelOpen) {
         this.autocompleteTrigger.closePanel(true);
+        this.closed.emit();
       }
     }
 

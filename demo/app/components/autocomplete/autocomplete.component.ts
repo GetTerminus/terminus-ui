@@ -123,21 +123,7 @@ export class AutocompleteComponent implements OnInit {
 
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  constructor(
-  ) {
-    setTimeout(() => {
-      this.stateCtrl.setValue([
-        {
-          name: 'Arkansas',
-          population: '2.978M',
-        },
-        {
-          name: 'Alabama',
-          population: '3.29M',
-        },
-      ]);
-    }, 2000);
-
+  constructor() {
     this.filteredStates = this.myQuery$
       .pipe(
         map((state) => {
