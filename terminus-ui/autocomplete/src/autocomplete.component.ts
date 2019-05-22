@@ -502,22 +502,10 @@ export class TsAutocompleteComponent implements OnInit,
    */
 
   /**
-   * Event for when the panel is closed
-   */
-  @Output()
-  readonly closed: EventEmitter<void> = new EventEmitter();
-
-  /**
    * Event for when a duplicate selection is made
    */
   @Output()
   readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
-
-  /**
-   * Event for when the panel is opened
-   */
-  @Output()
-  readonly opened: EventEmitter<void> = new EventEmitter();
 
   /**
    * Emit the selected chip
@@ -819,7 +807,6 @@ export class TsAutocompleteComponent implements OnInit,
       // istanbul ignore else
       if (this.autocompleteTrigger.panelOpen) {
         this.autocompleteTrigger.closePanel(true);
-        this.closed.emit();
       }
     }
 
