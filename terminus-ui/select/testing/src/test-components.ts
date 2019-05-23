@@ -1,6 +1,8 @@
 // tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import {
+  Component, NgModule,
+} from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -181,7 +183,7 @@ export class Basic {
   options = STATES.slice();
 
   // Must be overwritten with a spy in the test
-  change = (v) => {};
+  change = v => {};
 }
 
 @Component({
@@ -255,8 +257,8 @@ export class SelectionChangeEventEmitters {
   options = STATES.slice();
 
   // Must be overwritten with a spy in the test
-  change = (v) => {};
-  selected = (v) => {};
+  change = v => {};
+  selected = v => {};
 }
 
 @Component({
@@ -398,7 +400,7 @@ export class Disabled {
   myCtrl = new FormControl();
   options = STATES.slice();
 
-  wasOpened = (v) => {};
+  wasOpened = v => {};
 }
 
 @Component({
@@ -482,22 +484,47 @@ export class SelectOptionChange {
 })
 export class CustomCompareFn {
   foods: ({value: string; viewValue: string})[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    {
+      value: 'steak-0',
+      viewValue: 'Steak',
+    },
+    {
+      value: 'pizza-1',
+      viewValue: 'Pizza',
+    },
+    {
+      value: 'tacos-2',
+      viewValue: 'Tacos',
+    },
   ];
-  selectedFood: {value: string; viewValue: string} = { value: 'pizza-1', viewValue: 'Pizza' };
+  selectedFood: {value: string; viewValue: string} = {
+    value: 'pizza-1',
+    viewValue: 'Pizza',
+  };
 
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  useCompareByValue() { this.comparator = this.compareByValue; }
-  useCompareByReference() { this.comparator = this.compareByReference; }
-  useNullComparator() { this.comparator = null; }
+  useCompareByValue() {
+    this.comparator = this.compareByValue;
+  }
+  useCompareByReference() {
+    this.comparator = this.compareByReference;
+  }
+  useNullComparator() {
+    this.comparator = null;
+  }
 
-  compareByValue(f1: any, f2: any) { return f1 && f2 && f1.value === f2.value; }
-  compareByReference(f1: any, f2: any) { return f1 === f2; }
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.value === f2.value;
+  }
+  compareByReference(f1: any, f2: any) {
+    return f1 === f2;
+  }
   setFoodByCopy(newValue: {value: string; viewValue: string}) {
-    this.selectedFood = {...{}, ...newValue};
+    this.selectedFood = {
+      ...{},
+      ...newValue,
+    };
   }
 }
 
@@ -718,7 +745,7 @@ export class OptionError {
 export class OptionId {
   myCtrl = new FormControl();
   items = STATES.slice(0, 4);
-  change = (v) => {};
+  change = v => {};
 }
 
 @Component({
@@ -818,11 +845,11 @@ export class Filterable {
   }
 
   onFilter(value: string): void {
-    if (!value) {
-      this.options = STATES.slice();
-    } else {
+    if (value) {
       const regex = new RegExp(value, 'i');
-      this.options = STATES.slice().filter((state) => state.name.match(regex));
+      this.options = STATES.slice().filter(state => state.name.match(regex));
+    } else {
+      this.options = STATES.slice();
     }
   }
 }

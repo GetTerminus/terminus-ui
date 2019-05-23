@@ -138,7 +138,7 @@ export class TsOptgroupComponent {
     private changeDetectorRef: ChangeDetectorRef,
     // NOTE: Useful for testing
     // tslint:disable-next-line
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) public parent: TsOptionParentComponent,
   ) {}
 

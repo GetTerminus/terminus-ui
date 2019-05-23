@@ -7,9 +7,7 @@ import {
   TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
-import {
-  TsSelectComponent,
-} from '@terminus/ui/select';
+import {TsSelectComponent} from '@terminus/ui/select';
 
 
 /**

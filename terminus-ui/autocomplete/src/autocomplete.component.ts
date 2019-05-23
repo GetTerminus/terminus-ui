@@ -25,9 +25,7 @@ import {
   FormControl,
   NgControl,
 } from '@angular/forms';
-import {
-  MatAutocompleteSelectedEvent,
-} from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 import {
   BehaviorSubject,
@@ -43,19 +41,21 @@ import {
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
-import {
-  coerceNumberProperty,
-} from '@terminus/ngx-tools/coercion';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
   TS_OPTION_PARENT_COMPONENT,
+  TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
-import { TsOptgroupComponent } from '@terminus/ui/option';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
-import { TsAutocompletePanelComponent, TsAutocompletePanelSelectedEvent } from './autocomplete-panel/autocomplete-panel.component';
+import {
+  debounceTime, distinctUntilChanged, filter, switchMap,
+} from 'rxjs/operators';
+import {
+  TsAutocompletePanelComponent, TsAutocompletePanelSelectedEvent,
+} from './autocomplete-panel/autocomplete-panel.component';
 import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
 
 
@@ -65,38 +65,37 @@ let nextUniqueId = 0;
 /**
  * Define a type for allowed {@link TsAutocompleteComponent} formatter function
  */
-export type TsAutocompleteFormatterFn = (value: any) => string;
+export type TsAutocompleteFormatterFn = (value: string) => string;
 
 
 /**
  * Define a type for allowed {@link TsAutocompleteComponent} comparator function
  */
-export type TsAutocompleteComparatorFn = (value: any) => string;
+export type TsAutocompleteComparatorFn = (value: string) => string;
 
 
 export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
 
 const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
+const DEBOUNCE_DELAY = 200;
 
 /**
  *  The formatter function type
  */
-export type TsAutocompleteFormatFn = (v: any) => string;
+export type TsAutocompleteFormatFn = (v: string) => string;
 
 /**
  * The event object that is emitted when the select value has changed
  */
-export class TsAutocompleteChange {
+export class TsAutocompleteChange<T = unknown> {
   constructor(
     public source: TsAutocompleteComponent,
-    public value: any,
+    public value: T,
   ) { }
 }
 
 /**
  * The UI Component
- *
- * @deprecated in favor of the new TsInputComponent. Target 11.x
  *
  * #### QA CSS CLASSES
  * - `qa-autocomplete`: The primary container
@@ -133,7 +132,7 @@ export class TsAutocompleteChange {
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
   host: {
-    class: 'ts-autocomplete',
+    'class': 'ts-autocomplete',
     '[class.ts-autocomplete--required]': 'isRequired',
     '[class.ts-autocomplete--disabled]': 'isDisabled',
     '[attr.aria-owns]': 'panelOpen ? optionIds : null',
@@ -158,7 +157,7 @@ export class TsAutocompleteComponent implements OnInit,
   AfterContentInit,
   AfterViewInit,
   OnDestroy,
-  TsFormFieldControl<any> {
+  TsFormFieldControl<unknown> {
 
   /**
    * Define the FormControl
@@ -180,7 +179,7 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * Implemented as part of TsFormFieldControl.
    */
-  readonly labelChanges: Subject<void> = new Subject<void>();
+  public readonly labelChanges: Subject<void> = new Subject<void>();
 
   /**
    * Manages keyboard events for options in the panel.
@@ -209,18 +208,18 @@ export class TsAutocompleteComponent implements OnInit,
 
   // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
   // Instead, we pass it manually through the template with this reference.
-  selfReference = this;
+  public selfReference = this;
 
   /*
    * Implemented as part of TsFormFieldControl.
    */
-  readonly stateChanges: Subject<void> = new Subject<void>();
+  public readonly stateChanges: Subject<void> = new Subject<void>();
 
 
   /**
    * Define the default component ID
    */
-  readonly uid = `ts-autocomplete-${nextUniqueId++}`;
+  public readonly uid = `ts-autocomplete-${nextUniqueId++}`;
 
   /**
    * Management of the query string
@@ -367,11 +366,8 @@ export class TsAutocompleteComponent implements OnInit,
 
     if (isFunction(value)) {
       this._chipFormatUIFn = value;
-    } else {
-      // istanbul ignore else
-      if (isDevMode()) {
-        throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsAutocompleteFormatFn'.`);
-      }
+    } else if (isDevMode()) {
+      throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsAutocompleteFormatFn'.`);
     }
   }
   public get chipFormatUIFn(): TsAutocompleteFormatterFn {
@@ -390,7 +386,7 @@ export class TsAutocompleteComponent implements OnInit,
   public get debounceDelay(): number {
     return this._debounceDelay;
   }
-  private _debounceDelay: number = 200;
+  private _debounceDelay = DEBOUNCE_DELAY;
 
 
   /**
@@ -477,15 +473,15 @@ export class TsAutocompleteComponent implements OnInit,
    * Value of the select control
    */
   @Input()
-  public set value(newValue: any) {
+  public set value(newValue: string | undefined) {
     if (newValue !== this._value) {
       this._value = newValue;
     }
   }
-  public get value(): any {
+  public get value(): string | undefined {
     return this._value;
   }
-  private _value: any;
+  private _value: string | undefined;
 
   /**
    * Define the placeholder/label
@@ -507,43 +503,43 @@ export class TsAutocompleteComponent implements OnInit,
    * Event for when a duplicate selection is made
    */
   @Output()
-  readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
 
   /**
    * Emit the selected chip
    */
   @Output()
-  public optionSelected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly optionSelected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
 
   /**
    * Event for when an option is removed
    */
   @Output()
-  readonly optionDeselected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly optionDeselected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
 
   /**
    * Emit the current selection
    */
   @Output()
-  public selection: EventEmitter<string[]> = new EventEmitter();
+  public readonly selection: EventEmitter<string[]> = new EventEmitter();
 
   /**
    * Emit the query string
    */
   @Output()
-  public query: EventEmitter<string> = new EventEmitter();
+  public readonly query: EventEmitter<string> = new EventEmitter();
 
   /**
    * Event for when the query has changed
    */
   @Output()
-  readonly queryChange: EventEmitter<string> = new EventEmitter();
+  public readonly queryChange: EventEmitter<string> = new EventEmitter();
 
   /**
    * Event for when the selections change
    */
   @Output()
-  readonly selectionChange: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly selectionChange: EventEmitter<TsAutocompleteChange> = new EventEmitter();
 
   /**
    * Event that emits whenever the raw value of the select changes. This is here primarily
@@ -552,12 +548,12 @@ export class TsAutocompleteComponent implements OnInit,
    * Needed for {@link TsFormFieldComponent}.
    */
   @Output()
-  readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
+  public readonly valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
     @Self() @Optional() public ngControl: NgControl,
   ) {
     this.document = this.documentService.document;
@@ -575,6 +571,7 @@ export class TsAutocompleteComponent implements OnInit,
     // Seed the control value
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
     // We need to push it to the next event loop. When using a FormControl the value is there on the first run.
+    // eslint-disable-next-line dot-notation
     if (this.ngControl && this.ngControl['form']) {
       // istanbul ignore else
       if (this.ngControl.value) {
@@ -587,7 +584,7 @@ export class TsAutocompleteComponent implements OnInit,
       if (this.ngControl.valueChanges) {
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
-          .subscribe((newValue) => {
+          .subscribe(newValue => {
             // istanbul ignore else
             if (newValue) {
               this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
@@ -613,9 +610,7 @@ export class TsAutocompleteComponent implements OnInit,
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // If the query is shorter than allowed, convert to an empty string
-      switchMap((query) => {
-        return of((query && (query.length >= this.minimumCharacters)) ? query : '');
-      }),
+      switchMap(query => of((query && (query.length >= this.minimumCharacters)) ? query : '')),
       // Only allow a query through if it is different from the previous query
       distinctUntilChanged(),
     ).subscribe((query: string) => {
@@ -630,7 +625,7 @@ export class TsAutocompleteComponent implements OnInit,
     // Propagate changes from form control
     this.autocompleteFormControl.valueChanges.pipe(
       untilComponentDestroyed(this),
-    ).subscribe((v) => {
+    ).subscribe(v => {
       this.propagateChanges();
     });
   }
@@ -652,7 +647,7 @@ export class TsAutocompleteComponent implements OnInit,
     // Take a stream of query changes
     this.querySubject.pipe(
       untilComponentDestroyed(this),
-      filter((v) => (typeof v === 'string') && v.length >= this.minimumCharacters),
+      filter(v => (typeof v === 'string') && v.length >= this.minimumCharacters),
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // Only allow a query through if it is different from the previous query
@@ -675,7 +670,7 @@ export class TsAutocompleteComponent implements OnInit,
    * Needed for ControlValueAccessor (View -> model callback called when value changes)
    */
   // istanbul ignore next
-  public onChange: (value: any) => void = () => { };
+  public onChange: (value: string) => void = () => { };
 
 
   /**
@@ -739,7 +734,7 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * @param value - New value to be written to the model
    */
-  public writeValue(value: any): void { }
+  public writeValue(value: string): void { }
 
 
   /**
@@ -748,7 +743,7 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * @param fn - Callback to be triggered when the value changes
    */
-  public registerOnChange(fn: (value: any) => void): void {
+  public registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
@@ -794,22 +789,22 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public handleInputBlur(event: KeyboardEvent | MouseEvent): void {
     // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
+    // eslint-disable-next-line dot-notation
     const hasRelatedTarget = !!(event && event['relatedTarget']);
+    // eslint-disable-next-line dot-notation
     const hasNodeName = !!(hasRelatedTarget && event['relatedTarget'].nodeName);
 
     if (hasRelatedTarget && hasNodeName) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
       // will be `TS_SELECT_OPTION`.
       // istanbul ignore else
+      // NOTE: TypeScript warns `Property 'nodeName' does not exist on type 'EventTarget'.`
+      // eslint-disable-next-line dot-notation
       if (event['relatedTarget'].nodeName !== 'TS-SELECT-OPTION') {
         this.resetAutocompleteQuery();
       }
-    } else {
-      // Close the panel
-      // istanbul ignore else
-      if (this.autocompleteTrigger.panelOpen) {
-        this.autocompleteTrigger.closePanel(true);
-      }
+    } else if (this.autocompleteTrigger.panelOpen) {
+      this.autocompleteTrigger.closePanel(true);
     }
 
     // Mark this control as 'touched' to trigger any validations needed on blur
@@ -872,8 +867,8 @@ export class TsAutocompleteComponent implements OnInit,
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.chipFormatUIFn ?
-        this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
+      const newValue = this.chipFormatUIFn
+        ? this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
       this.inputElement.nativeElement.value = newValue;
     }
 
@@ -939,8 +934,18 @@ export class TsAutocompleteComponent implements OnInit,
    * @param formatter - The formatter function used to retrieve the value
    * @return The retrieved value
    */
-  public retrieveValue(option: any, formatter?: TsAutocompleteFormatFn): any {
+  public retrieveValue(option: string, formatter?: TsAutocompleteFormatFn): string {
     return (formatter && formatter(option)) ? formatter(option) : option;
+  }
+
+  /**
+   * Function for tracking for-loops changes
+   *
+   * @param index - The item index
+   * @return The unique ID
+   */
+  public trackByFn(index): number {
+    return index;
   }
 
 }

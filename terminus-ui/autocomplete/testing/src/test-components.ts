@@ -1,6 +1,8 @@
 // tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import {
+  Component, NgModule,
+} from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -180,7 +182,7 @@ export class Autocomplete {
   allowMultiple = true;
   keepOpen = true;
   disabled: boolean | undefined;
-  change = (v) => {};
+  change = v => {};
 
   changeOptionsLength() {
     this.states = STATES.slice(0, 5);
@@ -238,7 +240,7 @@ export class SeededAutocomplete {
   keepOpen = false;
 
   // Must be overwritten with a spy in the test
-  duplicate = (v) => { };
+  duplicate = v => { };
 }
 
 @Component({
@@ -310,7 +312,7 @@ export class Disabled {
   myCtrl = new FormControl();
   options = STATES.slice();
 
-  wasOpened = (v) => { };
+  wasOpened = v => { };
 }
 
 
@@ -357,22 +359,47 @@ export class SelectOptionChange {
 })
 export class CustomCompareFn {
   foods: ({ value: string; viewValue: string })[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    {
+      value: 'steak-0',
+      viewValue: 'Steak',
+    },
+    {
+      value: 'pizza-1',
+      viewValue: 'Pizza',
+    },
+    {
+      value: 'tacos-2',
+      viewValue: 'Tacos',
+    },
   ];
-  selectedFood: { value: string; viewValue: string } = { value: 'pizza-1', viewValue: 'Pizza' };
+  selectedFood: { value: string; viewValue: string } = {
+    value: 'pizza-1',
+    viewValue: 'Pizza',
+  };
 
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  useCompareByValue() { this.comparator = this.compareByValue; }
-  useCompareByReference() { this.comparator = this.compareByReference; }
-  useNullComparator() { this.comparator = null; }
+  useCompareByValue() {
+    this.comparator = this.compareByValue;
+  }
+  useCompareByReference() {
+    this.comparator = this.compareByReference;
+  }
+  useNullComparator() {
+    this.comparator = null;
+  }
 
-  compareByValue(f1: any, f2: any) { return f1 && f2 && f1.value === f2.value; }
-  compareByReference(f1: any, f2: any) { return f1 === f2; }
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.value === f2.value;
+  }
+  compareByReference(f1: any, f2: any) {
+    return f1 === f2;
+  }
   setFoodByCopy(newValue: { value: string; viewValue: string }) {
-    this.selectedFood = { ...{}, ...newValue };
+    this.selectedFood = {
+      ...{},
+      ...newValue,
+    };
   }
 }
 
@@ -415,7 +442,7 @@ export class DeferOptionSelectionStream {
 export class Debounce {
   myCtrl = new FormControl(['Florida', 'Texas']);
   options = STATES.slice();
-  change = (v) => { };
+  change = v => { };
 }
 
 @Component({
@@ -437,7 +464,7 @@ export class Debounce {
 export class CustomDebounce {
   myCtrl = new FormControl(['Florida', 'Texas']);
   options = STATES.slice();
-  change = (v) => { };
+  change = v => { };
 }
 
 @Component({
@@ -461,7 +488,7 @@ export class CustomCharacterCount {
   myCtrl = new FormControl(['Florida', 'Texas']);
   options = STATES.slice();
   customCount: number | undefined;
-  change = (v) => { };
+  change = v => { };
 }
 
 @Component({
@@ -640,7 +667,7 @@ export class OptionError {
 export class OptionId {
   myCtrl = new FormControl();
   items = STATES.slice(0, 4);
-  change = (v) => { };
+  change = v => { };
 }
 
 @Component({
@@ -717,7 +744,10 @@ export class OptgroupBadIDs {
   `,
 })
 export class SeededAutocompleteWithFormatFn {
-  myCtrl = new FormControl([{ name: 'Florida', population: '20.27M' }]);
+  myCtrl = new FormControl([{
+    name: 'Florida',
+    population: '20.27M',
+  }]);
   states: State[] = STATES.slice();
   allowMultiple = true;
   allowDuplicates = false;

@@ -19,7 +19,7 @@
     <ng-container *ngIf="allowMultiple">
       <mat-chip-list #chipList="matChipList">
         <mat-chip
-          *ngFor="let option of autocompleteFormControl.value"
+          *ngFor="let option of autocompleteFormControl.value; trackBy: trackByFn"
           class="qa-autocomplete-chip"
           [removable]="true"
           (removed)="autocompleteDeselectItem(option)"

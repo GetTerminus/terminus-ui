@@ -588,7 +588,7 @@ describe(`TsSelectComponent`, function() {
    */
   describe(`multi-select`, function() {
 
-/*
+    /*
  *    test(`should toggle all enabled items when toggle all is clicked and show a selected count`, () => {
  *      jest.useFakeTimers();
  *      const fixture = createComponent(testComponents.OptgroupsMultiple);

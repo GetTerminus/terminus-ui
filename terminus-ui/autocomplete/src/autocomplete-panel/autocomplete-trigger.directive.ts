@@ -31,6 +31,12 @@ import {
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
+import {
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
+  TsOptionComponent,
+  TsOptionSelectionChange,
+} from '@terminus/ui/option';
 import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
 import {
   defer,
@@ -49,12 +55,6 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-import {
-  countGroupLabelsBeforeOption,
-  getOptionScrollPosition,
-  TsOptionSelectionChange,
-  TsOptionComponent,
-} from '@terminus/ui/option';
 
 import { TsAutocompletePanelComponent } from './autocomplete-panel.component';
 

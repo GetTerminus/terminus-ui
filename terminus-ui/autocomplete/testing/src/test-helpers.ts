@@ -4,8 +4,10 @@ import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
 
 import { TsAutocompleteComponent } from '@terminus/ui/autocomplete';
-import { TsOptgroupComponent } from '@terminus/ui/option';
-import { TsOptionComponent } from '@terminus/ui/option';
+import {
+  TsOptionComponent,
+  TsOptgroupComponent,
+} from '@terminus/ui/option';
 
 export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllAutocompleteDebugElements(fixture);
@@ -42,7 +44,7 @@ export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>):
 }
 
 export function getAllAutocompleteInstances(fixture: ComponentFixture<any>): TsAutocompleteComponent[] {
-  return getAllAutocompleteDebugElements(fixture).map((v) => v.componentInstance);
+  return getAllAutocompleteDebugElements(fixture).map(v => v.componentInstance);
 }
 
 export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 0): TsAutocompleteComponent {
@@ -62,7 +64,7 @@ export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 
  */
 export function getAutocompleteElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const instance = getAutocompleteInstance(fixture, index);
-  return instance['elementRef'].nativeElement as HTMLElement;
+  return instance.elementRef.nativeElement as HTMLElement;
 }
 
 /**
@@ -122,9 +124,9 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
   const chipTextContent = chipElement.textContent;
   if (chipTextContent) {
     return chipTextContent.replace(/cancel/g, '').trim();
-  } else {
-    return null;
   }
+  return null;
+
 }
 
 export function getAutocompleteTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
@@ -190,7 +192,7 @@ export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOp
   if (!optgroups) {
     throw new Error(`'getAllOptgroups' did not find any optgroups`);
   }
-  return optgroups.map((i) => i.componentInstance);
+  return optgroups.map(i => i.componentInstance);
 }
 
 /**
@@ -219,7 +221,7 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
  */
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
   const group = getOptgroup(fixture, selectIndex, groupIndex);
-  return group['elementRef'].nativeElement;
+  return group.elementRef.nativeElement;
 }
 
 export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {

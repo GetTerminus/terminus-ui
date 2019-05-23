@@ -292,7 +292,9 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     private viewContainerRef: ViewContainerRef,
   ) {
     // From view container ref to decide the parent component. Possible refactoring with injector.
+    // eslint-disable-next-line dot-notation
     if (this.viewContainerRef['_data'].componentView) {
+      // eslint-disable-next-line dot-notation
       const parentComponent = this.viewContainerRef['_data'].componentView.parent.component.constructor.name.toLowerCase();
       if (parentComponent.includes('autocomplete')) {
         this.autocompleteComponent = true;

@@ -1,6 +1,4 @@
-import {
-  Type,
-} from '@angular/core';
+import {Type} from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -13,8 +11,11 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DOWN_ARROW, KEYS } from '@terminus/ngx-tools/keycodes';
 import {
+  DOWN_ARROW, KEYS,
+} from '@terminus/ngx-tools/keycodes';
+import {
+  createComponent as createComponentInner,
   createFakeEvent,
   createKeyboardEvent,
   dispatchEvent,
@@ -22,7 +23,6 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
-import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/autocomplete/testing';
 import {
   getAllChipInstances,
@@ -38,10 +38,10 @@ import {
   getOptionInstance,
 } from '@terminus/ui/autocomplete/testing';
 import { TsOptionModule } from '@terminus/ui/option';
-import { createKeydownEvent } from '@terminus/ui/select/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
-import { openSelect } from '../testing/src/test-helpers';
-import { TsAutocompleteChange, TsAutocompleteFormatFn, TsAutocompleteModule } from './autocomplete.module';
+import {
+  TsAutocompleteChange, TsAutocompleteFormatFn, TsAutocompleteModule,
+} from './autocomplete.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -139,7 +139,7 @@ describe(`TsAutocompleteComponent`, function() {
 
       // Open the panel so that overlayRef is created
       instance.autocompleteTrigger.handleFocus();
-      instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
+      instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
 
       dispatchMouseEvent(chipRemovalButton, 'click');
       fixture.detectChanges();
@@ -214,7 +214,9 @@ describe(`TsAutocompleteComponent`, function() {
       fixture.detectChanges();
       const component = getAutocompleteInstance(fixture);
       fixture.detectChanges();
-      expect(() => { component.chipFormatUIFn = 3 as any; })
+      expect(() => {
+        component.chipFormatUIFn = 3 as any;
+      })
         .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsAutocompleteFormatFn'.`);
     });
 
@@ -390,30 +392,30 @@ describe(`TsAutocompleteComponent`, function() {
 
   describe(`trigger`, function() {
 
-      describe(`in single selection mode`, function() {
+    describe(`in single selection mode`, function() {
 
-        test(`should set single value`, fakeAsync(() => {
-          const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
-          fixture.componentInstance.allowMultiple = false;
-          fixture.componentInstance.keepOpen = false;
-          tick(1000);
-          fixture.detectChanges();
-          const instance = getAutocompleteInstance(fixture);
-          const input = getAutocompleteInput(fixture);
+      test(`should set single value`, fakeAsync(() => {
+        const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
+        fixture.componentInstance.allowMultiple = false;
+        fixture.componentInstance.keepOpen = false;
+        tick(1000);
+        fixture.detectChanges();
+        const instance = getAutocompleteInstance(fixture);
+        const input = getAutocompleteInput(fixture);
 
-          typeInElement('fl', input);
-          tick(1000);
-          fixture.detectChanges();
+        typeInElement('fl', input);
+        tick(1000);
+        fixture.detectChanges();
 
-          const opt = getOptionElement(fixture);
-          opt.click();
-          tick(1000);
-          fixture.detectChanges();
+        const opt = getOptionElement(fixture);
+        opt.click();
+        tick(1000);
+        fixture.detectChanges();
 
-          expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
-        }));
+        expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
+      }));
 
-      });
+    });
 
 
 
@@ -501,13 +503,13 @@ describe(`TsAutocompleteComponent`, function() {
 
       triggerInstance.openPanel();
       fixture.detectChanges();
-      instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
+      instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
 
       dispatchMouseEvent(chipRemovalButton, 'click');
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
 
-      expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
+      expect(instance.autocompleteTrigger.overlayRef!.updatePosition).toHaveBeenCalled();
       jest.runAllTimers();
     });
 

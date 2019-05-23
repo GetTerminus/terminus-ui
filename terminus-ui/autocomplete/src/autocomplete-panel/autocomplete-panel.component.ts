@@ -14,9 +14,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { TsOptgroupComponent } from '@terminus/ui/option';
 import {
   TS_OPTION_PARENT_COMPONENT,
+  TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
 

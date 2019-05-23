@@ -16,6 +16,7 @@ import { createComponent as createComponentInner } from '@terminus/ngx-tools/tes
 import { getAutocompleteInstance } from '@terminus/ui/autocomplete/testing';
 
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
+import { TsSelectModule } from '@terminus/ui/select';
 import {
   allOptionsAreSelected,
   getOptionScrollPosition,
@@ -121,6 +122,8 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
     providers,
     [
       ReactiveFormsModule,
+      TsAutocompleteModule,
+      TsOptionModule,
       TsSelectModule,
       NoopAnimationsModule,
       ...imports,
