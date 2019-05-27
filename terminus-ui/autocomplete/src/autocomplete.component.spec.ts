@@ -24,6 +24,7 @@ import {
   typeInElement,
 } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/autocomplete/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   getAllChipInstances,
   getAllOptionInstances,
