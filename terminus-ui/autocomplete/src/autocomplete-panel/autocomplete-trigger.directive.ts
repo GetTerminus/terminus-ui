@@ -770,8 +770,8 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
    * adjusted.
    */
   private scrollToOption(): void {
-    const index = this.autocompletePanel.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(index, this.autocompletePanel.options, this.autocompletePanel.optionGroups);
+    const index: number = this.autocompletePanel.keyManager.activeItemIndex || 0;
+    const labelCount: number = countGroupLabelsBeforeOption(index, this.autocompletePanel.options, this.autocompletePanel.optionGroups);
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,

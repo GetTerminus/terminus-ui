@@ -1348,8 +1348,8 @@ export class TsSelectComponent implements
    * Scroll the active option into view
    */
   private scrollActiveOptionIntoView(): void {
-    const activeOptionIndex = this.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
+    const activeOptionIndex: number = this.keyManager.activeItemIndex || 0;
+    const labelCount: number = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
     const total = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this.itemHeight,
