@@ -14,5 +14,17 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  'overrides': [
+    {
+      'files': [
+        '**/*.spec.ts',
+        '**/*.mock.ts',
+        '**/test-sass.js',
+      ],
+      'env': {
+        'jest': true,
+      },
+    },
+  ],
 }
