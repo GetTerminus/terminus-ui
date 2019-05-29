@@ -18,14 +18,13 @@
       [allowDuplicateSelections]="true"
       [reopenAfterSelection]="false"
       [showProgress]="fakeAsync"
-      [chipFormatUIFn]="myFormatUIFn"
       (queryChange)="queryHasChanged($event)"
       (duplicateSelection)="duplicate($event)"
       tsVerticalSpacing
     >
 
       <ts-select-option
-        [value]="state"
+        [value]="state.name"
         [option]="state"
         *ngFor="let state of filteredStates | async"
       >

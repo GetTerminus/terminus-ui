@@ -40,6 +40,7 @@ import {
   isFunction,
   TsDocumentService,
   untilComponentDestroyed,
+  isString,
 } from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
@@ -80,14 +81,9 @@ const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
 const DEBOUNCE_DELAY = 200;
 
 /**
- *  The formatter function type
- */
-export type TsAutocompleteFormatFn = (v: string) => string;
-
-/**
  * The event object that is emitted when the select value has changed
  */
-export class TsAutocompleteChange<T = unknown> {
+export class TsAutocompleteChange<T = string[] | string> {
   constructor(
     public source: TsAutocompleteComponent,
     public value: T,
@@ -116,7 +112,6 @@ export class TsAutocompleteChange<T = unknown> {
  *              multiple="(v) => v.id"
  *              name="product selections"
  *              options="[{}, {}, ...]"
- *              selectionsControl="myForm.get('myControl')"
  *              [showProgress]="inProgress"
  *              theme="primary"
  *              (optionSelected)="mySelected($event)"
@@ -157,7 +152,7 @@ export class TsAutocompleteComponent implements OnInit,
   AfterContentInit,
   AfterViewInit,
   OnDestroy,
-  TsFormFieldControl<unknown> {
+  TsFormFieldControl<string> {
 
   /**
    * Define the FormControl
@@ -353,27 +348,6 @@ export class TsAutocompleteComponent implements OnInit,
    */
   @Input()
   public reopenAfterSelection = false;
-
-
-  /**
-   * Define a function to retrieve the UI value for an option
-   */
-  @Input()
-  public set chipFormatUIFn(value: TsAutocompleteFormatterFn) {
-    if (!value) {
-      return;
-    }
-
-    if (isFunction(value)) {
-      this._chipFormatUIFn = value;
-    } else if (isDevMode()) {
-      throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsAutocompleteFormatFn'.`);
-    }
-  }
-  public get chipFormatUIFn(): TsAutocompleteFormatterFn {
-    return this._chipFormatUIFn;
-  }
-  private _chipFormatUIFn!: TsAutocompleteFormatterFn;
 
 
   /**
@@ -721,7 +695,7 @@ export class TsAutocompleteComponent implements OnInit,
    * Call FormControl updateValueAndValidity function to ensure value and valid status get updated.
    */
 
-  private updateValueAndValidity() {
+  private updateValueAndValidity(): void {
     if (this.ngControl && this.ngControl.control) {
       this.ngControl.control.updateValueAndValidity();
     }
@@ -833,11 +807,14 @@ export class TsAutocompleteComponent implements OnInit,
    * @param selection - The item to select
    */
   public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
+    if (!isString(selection.option.value)) {
+      throw Error("The value passing into autocomplete has to be string type");
+    }
     const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
 
     // istanbul ignore else
     if (isDuplicate) {
-      this.duplicateSelection.emit(selection.option.value);
+      this.duplicateSelection.emit(new TsAutocompleteChange(this, selection.option.value));
     }
 
     // Stop the flow if the selection already exists in the array and duplicates aren't allowed
@@ -867,8 +844,7 @@ export class TsAutocompleteComponent implements OnInit,
       this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.chipFormatUIFn
-        ? this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
+      const newValue = this.autocompleteFormControl.value[0];
       this.inputElement.nativeElement.value = newValue;
     }
 
@@ -926,17 +902,6 @@ export class TsAutocompleteComponent implements OnInit,
     this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteSelections.slice()));
   }
 
-
-  /**
-   * Retrieve a value determined by the passed in formatter
-   *
-   * @param option - The select option
-   * @param formatter - The formatter function used to retrieve the value
-   * @return The retrieved value
-   */
-  public retrieveValue(option: string, formatter?: TsAutocompleteFormatFn): string {
-    return (formatter && formatter(option)) ? formatter(option) : option;
-  }
 
   /**
    * Function for tracking for-loops changes

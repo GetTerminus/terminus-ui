@@ -1,4 +1,3 @@
-// NOTE: Our templates need to call a method to use the `chipFormatUIFn` if one exists
 // tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';

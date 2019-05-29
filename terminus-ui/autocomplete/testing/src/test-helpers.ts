@@ -8,6 +8,7 @@ import {
   TsOptionComponent,
   TsOptgroupComponent,
 } from '@terminus/ui/option';
+import { TsAutocompletePanelComponent } from '@terminus/ui/fesm2015/terminus-ui-autocomplete';
 
 export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllAutocompleteDebugElements(fixture);

@@ -33,17 +33,16 @@ import {
   getAutocompleteInstance,
   getAutocompleteTriggerElement,
   getChipElement,
-  getChipElementDisplayValue,
-  getOptgroupElement,
   getOptionElement,
   getOptionInstance,
 } from '@terminus/ui/autocomplete/testing';
 import { TsOptionModule } from '@terminus/ui/option';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 import {
-  TsAutocompleteChange, TsAutocompleteFormatFn, TsAutocompleteModule,
+  TsAutocompleteModule,
+  TsAutocompletePanelSelectedEvent,
+  TsAutocompletePanelComponent,
 } from './autocomplete.module';
-
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   const moduleImports = [
@@ -176,51 +175,6 @@ describe(`TsAutocompleteComponent`, function() {
       expect(chips.length).toEqual(0);
     });
 
-
-    test(`should show UI element based on format function passed in`, () => {
-      const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-      fixture.detectChanges();
-      const displayValue = getChipElementDisplayValue(fixture);
-
-      expect(displayValue).toEqual('Florida');
-    });
-
-
-    test(`should set/get the chipFormatUIFn`, () => {
-      const myFn: TsAutocompleteFormatFn = (v: any) => v.name;
-      const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-      fixture.detectChanges();
-      const component = getAutocompleteInstance(fixture);
-      fixture.detectChanges();
-
-      component.chipFormatUIFn = myFn;
-      expect(component.chipFormatUIFn).toEqual(myFn);
-    });
-
-
-    test(`should return undefined if no value is passed in chipFormatUIFn`, () => {
-      // tslint:disable: prefer-const
-      let foo: any;
-      const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-      fixture.detectChanges();
-      const component = getAutocompleteInstance(fixture);
-      fixture.detectChanges();
-      // tslint:enable: prefer-const
-      expect(component.chipFormatUIFn = foo).toEqual(undefined);
-    });
-
-
-    test(`should throw an error in dev mode when passed a value to chipFormatUIFn that is not a function`, () => {
-      const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-      fixture.detectChanges();
-      const component = getAutocompleteInstance(fixture);
-      fixture.detectChanges();
-      expect(() => {
-        component.chipFormatUIFn = 3 as any;
-      })
-        .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsAutocompleteFormatFn'.`);
-    });
-
   });
 
 
@@ -326,6 +280,25 @@ describe(`TsAutocompleteComponent`, function() {
     expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
   });
 
+  test (`should only allow string type passed in the component`, fakeAsync(function() {
+    const fixture = createComponent<testComponents.PassingInObjectValue>(testComponents.PassingInObjectValue);
+    fixture.detectChanges();
+    fixture.componentInstance.autocompleteSelectItem = jest.fn();
+    const input = getAutocompleteInput(fixture);
+    typeInElement('fl', input);
+    tick(1000);
+    fixture.detectChanges();
+    const opt = getOptionElement(fixture, 0, 2);
+    opt.click();
+    tick(1000);
+    fixture.detectChanges();
+    expect(() => 
+      getAutocompleteInstance(fixture).autocompleteSelectItem(
+        new TsAutocompletePanelSelectedEvent({} as TsAutocompletePanelComponent, getOptionInstance(fixture, 0, 1))
+      )).toThrowError(`The value passing into autocomplete has to be string type`);
+  })
+  );
+
 
   describe(`duplicate selections`, function() {
 
@@ -352,7 +325,7 @@ describe(`TsAutocompleteComponent`, function() {
       // Verify the selection did NOT work
       chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(1);
-      expect(fixture.componentInstance.duplicate).toHaveBeenCalledWith('Florida');
+      expect(fixture.componentInstance.duplicate).toHaveBeenCalled();
       expect.assertions(3);
     }));
 

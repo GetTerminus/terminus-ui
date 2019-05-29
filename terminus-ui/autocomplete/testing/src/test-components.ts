@@ -246,6 +246,38 @@ export class SeededAutocomplete {
 @Component({
   template: `
     <ts-autocomplete
+      [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      [allowDuplicateSelections]="allowDuplicates"
+      [reopenAfterSelection]="keepOpen"
+    >
+      <ts-select-option
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsSelectOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-select-option>
+    </ts-autocomplete>
+  `,
+})
+export class PassingInObjectValue {
+  myCtrl = new FormControl([{name: 'Florida'}]);
+  states: State[] = STATES.slice();
+  allowMultiple = false;
+  allowDuplicates = false;
+  keepOpen = false;
+
+  // Must be overwritten with a spy in the test
+  duplicate = v => { };
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
       [(ngModel)]="myModel"
     >
       <ts-select-option
@@ -719,45 +751,6 @@ export class OptgroupBadIDs {
 }
 
 
-
-@Component({
-  template: `
-    <ts-autocomplete
-      [formControl]="myCtrl"
-      [allowMultiple]="allowMultiple"
-      [allowDuplicateSelections]="allowDuplicates"
-      [reopenAfterSelection]="keepOpen"
-      [chipFormatUIFn]="myFormatFn"
-      (duplicateSelection)="duplicate($event)"
-    >
-      <ts-select-option
-        *ngFor="let option of states"
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsSelectOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-select-option>
-    </ts-autocomplete>
-  `,
-})
-export class SeededAutocompleteWithFormatFn {
-  myCtrl = new FormControl([{
-    name: 'Florida',
-    population: '20.27M',
-  }]);
-  states: State[] = STATES.slice();
-  allowMultiple = true;
-  allowDuplicates = false;
-  keepOpen = false;
-  duplicate = jest.fn();
-  myFormatFn = (v: any) => v.name;
-}
-
-
-
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
  */
@@ -789,7 +782,7 @@ export class SeededAutocompleteWithFormatFn {
     OptionError,
     OptionId,
     SeededAutocomplete,
-    SeededAutocompleteWithFormatFn,
+    PassingInObjectValue,
     SeededNgModelAutocomplete,
     SelectOptionChange,
     ValidateOnChange,
