@@ -280,7 +280,7 @@ describe(`TsAutocompleteComponent`, function() {
     expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
   });
 
-  test (`should only allow string type passed in the component`, fakeAsync(function() {
+  test(`should only allow string type passed in the component`, fakeAsync(function() {
     const fixture = createComponent<testComponents.PassingInObjectValue>(testComponents.PassingInObjectValue);
     fixture.detectChanges();
     fixture.componentInstance.autocompleteSelectItem = jest.fn();
@@ -292,12 +292,10 @@ describe(`TsAutocompleteComponent`, function() {
     opt.click();
     tick(1000);
     fixture.detectChanges();
-    expect(() => 
-      getAutocompleteInstance(fixture).autocompleteSelectItem(
-        new TsAutocompletePanelSelectedEvent({} as TsAutocompletePanelComponent, getOptionInstance(fixture, 0, 1))
-      )).toThrowError(`The value passing into autocomplete has to be string type`);
-  })
-  );
+    expect(() => getAutocompleteInstance(fixture).autocompleteSelectItem(
+      new TsAutocompletePanelSelectedEvent({} as TsAutocompletePanelComponent, getOptionInstance(fixture, 0, 1))
+    )).toThrowError(`The value passing into autocomplete has to be string type`);
+  }));
 
 
   describe(`duplicate selections`, function() {

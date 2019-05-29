@@ -807,7 +807,7 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
     if (!isString(selection.option.value)) {
-      throw Error("The value passing into autocomplete has to be string type");
+      throw Error('The value passing into autocomplete has to be string type');
     }
     const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
 
