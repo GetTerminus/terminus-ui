@@ -44,7 +44,7 @@
     "predocs": "yarn run docs:toc",
     "docs": "yarn run docs:ts",
     "docs:ts": "npx compodoc -p terminus-ui/tsconfig.compodoc.json -d docs --hideGenerator --toggleMenuItems all --theme material",
-    "docs:toc": "npx doctoc --title '**Table of Contents**' --maxlevel 4 .",
+    "docs:toc": "find . -path ./node_modules -prune -o -path ./dist -prune -o -path ./demo -prune -o -path ./.github -prune -o -path ./.git -prune -o -path ./CHANGELOG.md -prune -o -path ./CODE_OF_CONDUCT.md -prune -o -name '*.md' -print |  xargs npx doctoc --title '**Table of Contents**' --maxlevel 4",
     "//=> Section: Yarn Management": "==============================",
     "fresh-yarn-install": "rm -rf node_modules && yarn install",
     "////////// Section: Linting": "==============================",
