@@ -37,10 +37,9 @@ import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import { MatChipList } from '@angular/material';
 import {
   hasRequiredControl,
-  isFunction,
+  isString,
   TsDocumentService,
   untilComponentDestroyed,
-  isString,
 } from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
