@@ -38,7 +38,12 @@
       "profile": "https://github.com/atlwendy",
       "contributions": [
         "bug",
-        "code"
+        "code",
+        "doc",
+        "ideas",
+        "maintenance",
+        "review",
+        "test"
       ]
     },
     {
@@ -110,7 +115,10 @@
         "doc",
         "example",
         "review",
-        "test"
+        "test",
+        "ideas",
+        "maintenance",
+        "tool"
       ]
     },
     {

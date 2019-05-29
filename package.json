@@ -264,6 +264,7 @@
     "rxjs": "^6.3.3",
     "sass-lint": "^1.12.1",
     "sass-module-importer": "^1.4.0",
+    "sass-true": "^4.0.0",
     "scssfmt": "^1.0.6",
     "semantic-release": "^15.13.3",
     "source-map-explorer": "^1.6.0",
