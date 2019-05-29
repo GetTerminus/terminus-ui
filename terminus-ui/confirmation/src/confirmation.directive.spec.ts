@@ -8,19 +8,21 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent,
+  dispatchKeyboardEvent,
   expectNativeEl,
 } from '@terminus/ngx-tools/testing';
-import { TsButtonModule } from '@terminus/ui';
+import { TsButtonModule } from '@terminus/ui/button';
 
 import { TsConfirmationDirective } from './confirmation.directive';
 import { TsConfirmationModule } from './confirmation.module';
 
 
-/** *****************************************
+/**
  * TestHostComponent
- *******************************************/
+ */
 @Component({
   template: `
     <ts-button
@@ -79,18 +81,31 @@ describe(`TsConfirmationDirective`, function() {
   });
 
 
-  describe(`ESCAPE key`, () => {
+  describe(`dismissing the overlay`, () => {
 
-    test(`should dismiss the overlay`, () => {
+    test(`should dismiss the overlay by clicking the backdrop`, () => {
       expect(directive['overlayRef']).toBeFalsy();
       button.click();
       expect(directive['overlayRef']).toBeTruthy();
 
-      directive['overlayRef']['_backdropClick'].next(new Event('click'));
+      directive['overlayRef']!['_backdropClick'].next(new Event('click'));
       fixture.detectChanges();
 
       expect(directive['overlayRef']!.hasAttached()).toEqual(false);
     });
+
+
+    test(`should dismiss the overlay by using the escape key`, function() {
+      expect(directive['overlayRef']).toBeFalsy();
+      button.click();
+      expect(directive['overlayRef']).toBeTruthy();
+
+      dispatchKeyboardEvent(button, 'keydown', KEYS.ESCAPE);
+      fixture.detectChanges();
+
+      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
+    });
+
 
   });
 
@@ -190,7 +205,9 @@ describe(`TsConfirmationDirective`, function() {
 
   });
 
+
   describe(`Positioning`, () => {
+
     test(`should default to 'below'`, () => {
       jest.useFakeTimers();
       button.click();
@@ -200,6 +217,7 @@ describe(`TsConfirmationDirective`, function() {
       expect(directive['overlayPosition']).toEqual('below');
       expect(document.querySelector('.ts-confirmation-overlay__panel-below')).not.toBeNull();
     });
+
 
     test(`should accept 'above' position type and set class`, () => {
       jest.useFakeTimers();
@@ -211,6 +229,7 @@ describe(`TsConfirmationDirective`, function() {
       expect(document.querySelector('.ts-confirmation-overlay__panel-above')).not.toBeNull();
     });
 
+
     test(`should accept 'below' position type and set class`, () => {
       jest.useFakeTimers();
       directive.overlayPosition = 'below';
@@ -220,6 +239,7 @@ describe(`TsConfirmationDirective`, function() {
 
       expect(document.querySelector('.ts-confirmation-overlay__panel-below')).not.toBeNull();
     });
+
 
     test(`should accept 'before' position type and set class`, () => {
       jest.useFakeTimers();
@@ -231,6 +251,7 @@ describe(`TsConfirmationDirective`, function() {
       expect(document.querySelector('.ts-confirmation-overlay__panel-before')).not.toBeNull();
     });
 
+
     test(`should accept 'after' position type and set class`, () => {
       jest.useFakeTimers();
       directive.overlayPosition = 'after';
@@ -240,6 +261,7 @@ describe(`TsConfirmationDirective`, function() {
 
       expect(document.querySelector('.ts-confirmation-overlay__panel-after')).not.toBeNull();
     });
+
 
     test(`should throw error if invalid position is set`, () => {
       jest.useFakeTimers();
@@ -251,7 +273,17 @@ describe(`TsConfirmationDirective`, function() {
 
       expect(window.console.warn).toHaveBeenCalled();
     });
+
+  });
+
+
+  describe(`generateOverlayConfig`, function() {
+
+    test(`should use default value`, function() {
+      const result = directive['generateOverlayConfig']();
+      expect(result.panelClass).toContain('ts-confirmation-overlay__panel-below');
+    });
+
   });
 
 });
-
