@@ -287,7 +287,7 @@ $palettes: (
 /**
  * Retrieve a color from the colors map
  *
- * @mixin color
+ * @function color
  * @section Functions
  * @param $palette
  *  The palette to use from the map
@@ -346,7 +346,7 @@ $theme-and-color: (
 @mixin theme-color($property: 'background-color') {
   // Verify an allowed property was passed in
   @if not(($property == background-color)) and not(($property == color)) {
-    @error 'The `theme__color` mixin only accepts `background-color` or `color`';
+    @error 'The `theme-color` mixin only accepts `background-color` or `color`';
   }
 
   @each $key, $value in $theme-and-color {

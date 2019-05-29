@@ -13,35 +13,51 @@
 
   @include describe ('small') {
     @include test('should return the correct small spacing') {
-      $test1: spacing(small);
-      $expect1: 12px;
+      $test0: spacing(small);
+      $expect0: 12px;
 
-      $test2: spacing(small, 1);
-      $expect2: 8px;
+      $test1: spacing(small, 1);
+      $expect1: 8px;
 
-      $test3: spacing(small, 2);
-      $expect3: 4px;
+      $test2: spacing(small, 2);
+      $expect2: 4px;
 
+      @include assert-equal($test0, $expect0);
       @include assert-equal($test1, $expect1);
       @include assert-equal($test2, $expect2);
-      @include assert-equal($test3, $expect3);
     }
   }
 
   @include describe ('large') {
     @include test('should return the correct large spacing') {
-      $test1: spacing(large);
-      $expect1: 24px;
+      $test0: spacing(large);
+      $expect0: 24px;
 
-      $test2: spacing(large, 3);
-      $expect2: 48px;
+      $test1: spacing(large, 1);
+      $expect1: 32px;
 
-      $test3: spacing(large, 6);
-      $expect3: 96px;
+      $test2: spacing(large, 2);
+      $expect2: 40px;
 
+      $test3: spacing(large, 3);
+      $expect3: 48px;
+
+      $test4: spacing(large, 4);
+      $expect4: 56px;
+
+      $test5: spacing(large, 5);
+      $expect5: 72px;
+
+      $test6: spacing(large, 6);
+      $expect6: 96px;
+
+      @include assert-equal($test0, $expect0);
       @include assert-equal($test1, $expect1);
       @include assert-equal($test2, $expect2);
       @include assert-equal($test3, $expect3);
+      @include assert-equal($test4, $expect4);
+      @include assert-equal($test5, $expect5);
+      @include assert-equal($test6, $expect6);
     }
   }
 

@@ -1,16 +1,119 @@
 @import 'true';
 @import './breakpoints';
 
-/* @include describe ('breakpoints') {
-  @include test ('should correctly render bp') {
-        @include assert {
-      @include output {
-        @include bp(layout-xs);
-      }
-      // is there a way to tests @media queries?
-      @include expect {
+// can we mimick breakpoints, force media queries, etc?
 
+/* @include describe ('breakpoints') {
+  @include test ('should correctly media query for "layout-xs"') {
+    @include assert {
+      @include output {
+        .xs-test {
+          @include bp('layout-xs');
+        }
+      }
+      @include expect {
+        .xs-test {
+          @media (max-width: 599px) {
+            width: 100%;
+          }
+        }
       }
     }
   }
-} */
+
+  @include test ('should correctly media query for "layout-gt-xs"') {
+    @include assert {
+      @include output {
+        .gt-xs-test {
+          width: 1000px;
+          @include bp(layout-gt-xs);
+        }
+      }
+      @include expect {
+        .gt-xs-test {
+          @media (min-width: 600px) {
+            width: 500px;
+          }
+        }
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-sm"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-gt-sm"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-mat"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-gt-mat"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-lg"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-gt-lg"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+
+  @include test ('should correctly media query for "layout-xl"') {
+    @include assert {
+      @include output {
+        @include bp(layout-xs);
+      }
+      @include expect {
+        @media (max-width: 599px) {}
+      }
+    }
+  }
+}
+ */

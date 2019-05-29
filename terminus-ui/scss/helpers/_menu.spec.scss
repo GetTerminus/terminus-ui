@@ -1,2 +1,21 @@
 @import 'true';
 @import './menu';
+
+@include describe('menu') {
+  @include test('should set menu-item-base') {
+    @include assert {
+      @include output {
+        @include menu-item-base();
+      }
+      @include expect {
+        @include truncate-overflow;
+        display: block;
+        max-width: 100%;
+        padding: 0 $mat-menu-side-padding;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+      }
+    }
+  }
+}

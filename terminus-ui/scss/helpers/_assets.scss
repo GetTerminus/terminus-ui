@@ -10,7 +10,7 @@ $g-asset-base-path: '/assets' !default;
 /**
  * Asset URL builder
  *
- * @mixin asset
+ * @function asset
  * @section Functions
  * @param $type
  *  Asset type, matching folder name (icons|backgrounds|etc)
@@ -31,7 +31,7 @@ $g-asset-base-path: '/assets' !default;
 /**
  * Image asset URL builder
  *
- * @mixin image
+ * @function image
  * @section Functions
  * @param $file
  *  Asset file name, including extension

@@ -1,2 +1,53 @@
 @import 'true';
 @import './opposite-direction';
+
+@include describe ('opposite-direction') {
+  @include test('should set opposite of top') {
+    $direction: #{opposite-direction(top)};
+    $expect: bottom;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of bottom') {
+    $direction: #{opposite-direction(bottom)};
+    $expect: top;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of right') {
+    $direction: #{opposite-direction(right)};
+    $expect: left;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of left') {
+    $direction: #{opposite-direction(left)};
+    $expect: right;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of center') {
+    $direction: #{opposite-direction(center)};
+    $expect: center;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of rtl') {
+    $direction: #{opposite-direction(rtl)};
+    $expect: ltr;
+
+    @include assert-equal($direction, $expect);
+  }
+
+  @include test('should set opposite of ltr') {
+    $direction: #{opposite-direction(ltr)};
+    $expect: rtl;
+
+    @include assert-equal($direction, $expect);
+  }
+}

@@ -1,2 +1,50 @@
 @import 'true';
 @import './card';
+
+
+@include describe ('card') {
+  @include test ('should correctly render card with interaction') {
+    @include assert {
+      @include output {
+        .card-test {
+          @include card(true);
+        }
+      }
+      @include expect {
+        .card-test {
+          @include elevation-element(card);
+          cursor: cursor(pointer);
+          min-height: calc(100% - #{spacing(large) * 2});
+          padding: spacing(large);
+          vertical-align: top;
+        }
+
+        .card-test .c-card__title {
+          @include typography(title);
+        }
+      }
+    }
+  }
+
+  @include test ('should correctly render card without interaction') {
+    @include assert {
+      @include output {
+        .card-test {
+          @include card(false);
+        }
+      }
+      @include expect {
+        .card-test {
+          @include elevation(2);
+          min-height: calc(100% - #{spacing(large) * 2});
+          padding: spacing(large);
+          vertical-align: top;
+        }
+
+        .card-test .c-card__title {
+          @include typography(title);
+        }
+      }
+    }
+  }
+}

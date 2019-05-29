@@ -1,2 +1,133 @@
 @import 'true';
 @import './layout';
+
+@include describe ('layout') {
+  @include describe ('take-space') {
+    @include test('should set default take-space') {
+      @include assert {
+        @include output {
+          @include take-space();
+        }
+        @include expect {
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+
+    @include test('should set take-space based on input margin') {
+      @include assert {
+        @include output {
+          @include take-space(10);
+        }
+        @include expect {
+          bottom: 10;
+          left: 10;
+          position: absolute;
+          right: 10;
+          top: 10;
+        }
+      }
+    }
+  }
+
+  @include describe('pseudo') {
+    @include test('should set default pseudo') {
+      @include assert {
+        @include output {
+          @include pseudo();
+        }
+        @include expect {
+          content: '';
+          display: block;
+          position: absolute;
+        }
+      }
+    }
+
+    @include test('should set pseudo based on display, position and content') {
+      @include assert {
+        @include output {
+          @include pseudo(inline, relative, 'hello');
+        }
+        @include expect {
+          content: 'hello';
+          display: inline;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  @include describe ('responsive-ratio') {
+    @include test('should set responsive-ratio') {
+      @include assert {
+        @include output {
+          @include responsive-ratio(3, 4);
+        }
+        @include expect {
+          $padding: unquote((( 4 / 3 ) * 100) + '%');
+
+          &::before {
+            @include pseudo($position: relative);
+            padding-top: $padding;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    @include test('should set responsive-ratio') {
+      @include assert {
+        @include output {
+          .test-ratio {
+            @include responsive-ratio(3, 4, false);
+          }
+        }
+        @include expect {
+          $padding: unquote((( 4 / 3 ) * 100) + '%');
+
+          .test-ratio {
+            padding-top: $padding;
+          }
+        }
+      }
+    }
+  }
+
+  @include test('should set center-content') {
+    @include assert {
+      @include output {
+        @include center-content();
+      }
+      @include expect {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  @include test('should set visually-hidden') {
+    @include assert {
+      @include output {
+        @include visually-hidden();
+      }
+      @include expect {
+        border: 0;
+        clip-path: rect(0, 0, 0, 0);
+        display: block;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        pointer-events: none;
+        position: absolute;
+        width: 1px;
+      }
+    }
+  }
+}

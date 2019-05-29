@@ -21,7 +21,7 @@
 /**
  * Pseudo element base styles
  *
- * @mixin psuedo
+ * @mixin pseudo
  * @section Layout
  * @param $display
  *  The display value (block/inline/etc)
@@ -35,7 +35,7 @@
   $position: absolute,
   $content: ''
 ) {
-  content: $content;
+  content: unquote("\'#{$content}\'");
   display: $display;
   position: $position;
 }
@@ -75,7 +75,7 @@
     padding-top: $padding;
   }
 
-  @if image != null {
+  @if $image != null {
     background-image: url($image);
     background-position: center;
     background-repeat: no-repeat;

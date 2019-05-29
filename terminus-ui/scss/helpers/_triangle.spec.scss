@@ -1,2 +1,148 @@
 @import 'true';
 @import './triangle';
+
+@include describe('triangle') {
+  @include describe ('direction') {
+    @include test('should set triangle based on direction-top') {
+      @include assert {
+        @include output {
+          .triangle {
+            @include triangle(top);
+          }
+        }
+        @include expect {
+          .triangle {
+            $perpendicular-borders: 1em solid transparent;
+            border-left:   $perpendicular-borders;
+            border-right:  $perpendicular-borders;
+            bottom: 100%;
+            content: '';
+            height: 0;
+            position: absolute;
+            width: 0;
+            z-index: z(tooltip);
+            border-#{opposite-direction(top)}: (1em * 1.5) solid currentColor;
+          }
+        }
+      }
+    }
+
+    @include test('should set triangle based on direction-right') {
+      @include assert {
+        @include output {
+          .triangle {
+            @include triangle(right);
+          }
+        }
+        @include expect {
+          .triangle {
+            $perpendicular-borders: 1em solid transparent;
+            border-bottom:   $perpendicular-borders;
+            border-top:  $perpendicular-borders;
+            content: '';
+            height: 0;
+            position: absolute;
+            width: 0;
+            z-index: z(tooltip);
+            border-#{opposite-direction(right)}: (1em * 1.5) solid currentColor;
+          }
+        }
+      }
+    }
+
+    @include test('should set triangle based on direction-bottom') {
+      @include assert {
+        @include output {
+          .triangle {
+            @include triangle(bottom);
+          }
+        }
+        @include expect {
+          .triangle {
+            $perpendicular-borders: 1em solid transparent;
+            border-left:   $perpendicular-borders;
+            border-right:  $perpendicular-borders;
+            content: '';
+            height: 0;
+            position: absolute;
+            top: 100%;
+            width: 0;
+            z-index: z(tooltip);
+            border-#{opposite-direction(bottom)}: (1em * 1.5) solid currentColor;
+          }
+        }
+      }
+    }
+
+    @include test('should set triangle based on direction-left') {
+      @include assert {
+        @include output {
+          .triangle {
+            @include triangle(left);
+          }
+        }
+        @include expect {
+          .triangle {
+            $perpendicular-borders: 1em solid transparent;
+            border-bottom:   $perpendicular-borders;
+            border-top:  $perpendicular-borders;
+            content: '';
+            height: 0;
+            position: absolute;
+            width: 0;
+            z-index: z(tooltip);
+            border-#{opposite-direction(left)}: (1em * 1.5) solid currentColor;
+          }
+        }
+      }
+    }
+  }
+
+  @include test('should set triangle based on color') {
+    @include assert {
+      @include output {
+        .triangle {
+          @include triangle(top, #f903e2);
+        }
+      }
+      @include expect {
+        .triangle {
+          $perpendicular-borders: 1em solid transparent;
+          border-left:   $perpendicular-borders;
+          border-right:  $perpendicular-borders;
+          bottom: 100%;
+          content: '';
+          height: 0;
+          position: absolute;
+          width: 0;
+          z-index: z(tooltip);
+          border-#{opposite-direction(top)}: (1em * 1.5) solid #f903e2;
+        }
+      }
+    }
+  }
+
+  @include test('should set triangle based on size') {
+    @include assert {
+      @include output {
+        .triangle {
+          @include triangle(top, currentcolor, 15px);
+        }
+      }
+      @include expect {
+        .triangle {
+          $perpendicular-borders: 15px solid transparent;
+          border-left:   $perpendicular-borders;
+          border-right:  $perpendicular-borders;
+          bottom: 100%;
+          content: '';
+          height: 0;
+          position: absolute;
+          width: 0;
+          z-index: z(tooltip);
+          border-#{opposite-direction(top)}: (15px * 1.5) solid currentColor;
+        }
+      }
+    }
+  }
+}

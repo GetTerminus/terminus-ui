@@ -1,2 +1,79 @@
 @import 'true';
 @import './cursors';
+
+@include describe ('cursors') {
+  @include test('should set cursor type') {
+    $type: (
+      auto,
+      text,
+      pointer,
+      not-allowed,
+      copy,
+      alias,
+      help,
+    );
+    @include assert {
+      @include output {
+        @each $type, $value in $type {
+          @include cursor($type);
+        }
+      }
+      @include expect {
+        @each $type, $value in $type {
+          cursor: $type;
+        }
+      }
+    }
+  }
+
+  @include describe ('types') {
+    @include test('should validate cursor auto') {
+      $test: cursor(auto);
+      $expect: 'auto';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor text') {
+      $test: cursor(text);
+      $expect: 'text';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor pointer') {
+      $test: cursor(pointer);
+      $expect: 'pointer';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor not-allowed') {
+      $test: cursor(not-allowed);
+      $expect: 'not-allowed';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor copy') {
+      $test: cursor(copy);
+      $expect: 'copy';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor alias') {
+      $test: cursor(alias);
+      $expect: 'alias';
+
+      @include assert-equal($test, $expect);
+    }
+
+    @include test('should validate cursor help') {
+      $test: cursor(help);
+      $expect: 'help';
+
+      @include assert-equal($test, $expect);
+    }
+  }
+}

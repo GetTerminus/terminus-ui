@@ -18,7 +18,7 @@
 
 We are using a tool called `true` to test our SCSS output. `https://www.oddbird.net/true/docs/`
 
-Think SASS… @include everything (describe, test, etc.)
+Think SASS… `@include` everything (describe, test, etc.)
 
 Each helper file has a .spec.scss file that imports both `true` and the corresponding helper .scss file
 
@@ -59,15 +59,34 @@ Define the function, define the expected value, assert they’re equal
 Example mixin test: 
 In this scenario the assert has two pieces, an output that includes the mixin, and an expect block of rendered CSS.
 
+*Note* In some scenarios, it is beneficial to encompass a mixin with a class. True does this automatically with `.test-output`, for simple scenarios, but it can get problematic with multiple class outputs in the same mixin.
+
 ```scss
-@include test('should return the correct default spacing') {
+@include test('should return the correct white') {
   @include assert {
     @include output {
       @include make-white();
     }
     @include expect {
+      color: #ffffff;
+    }
+  }
+}
+
+@include test('should return the correct white with more classes') {
+  @include assert {
+    @include output {
+      .sample-class {
+        @include make-white-paragraph();
+      }
+    }
+    @include expect {
       .sample-class {
         color: #ffffff;
+      }
+
+      .sample-class a {
+        color: lightblue;
       }
     }
   }
@@ -81,7 +100,11 @@ It's highly recommended to write your tests to fail, to insure the test is runni
 
 ## Issues, idiosyncracies, etc
 
-1. Not quite sure how to navigate large blocks of rendered scss (reference _color.spec.scss’s commented-out test. Currently investigating how `true` adds classes in the tests so we can better mitigate this critical functionality.
+1. There is no way to test a fail scenario. For example, the `theme-color` mixin only accepts 'background-color' and 'color' as parameters. When intentionally testing a fail scenario, e.g. `theme-color(width)` the SCSS fails, and the test spits out an error.
 
-1. It doesn’t care for ticks, so use single quotes in describe and test statements
+1. True does not translate `@content`.
+
+1. Does not seem to have support for pseudo classes.
+
+1. It doesn’t care for ticks, so use single quotes in describe and test statements.
 

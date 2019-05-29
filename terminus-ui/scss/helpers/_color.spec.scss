@@ -9,80 +9,63 @@
     @include assert-equal($test, $expect);
   }
 
-  /*   @include test('should return the correct theme (this seems to fail due to class being added by true)') {
-    @include assert{
+  @include test('should return the correct theme and color for background-color') {
+    @include assert {
       @include output {
         @include theme-color(background-color);
       }
       @include expect {
-        ::ng-deep .u-theme--primary .test-output {
-          background-color: #00538a;
-          color: #fafafa;
-        }
+        @each $key, $value in $theme-and-color {
+          ::ng-deep .u-theme--#{$key} & {
+            background-color: $value;
 
-        ::ng-deep .u-theme--primary .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
-        }
+            &[disabled] {
+              background-color: color(utility, light);
+              color: color(utility);
+            }
 
-        ::ng-deep .u-theme--accent .test-output {
-          background-color: #2f854d;
-          color: #fafafa;
-        }
+            @if (not(($key == 'pure')) and not(($key == 'highlight'))) {
+              color: $color__pure--light;
+            }
 
-        ::ng-deep .u-theme--accent .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
+            @if ($key == 'highlight') {
+              color: $color__pure--dark;
+            }
+          }
         }
+      }
+    }
+  }
 
-        ::ng-deep .u-theme--error .test-output {
-          background-color: #c8604d;
-          color: #fafafa;
-        }
+  @include test('should return the correct theme and color for color') {
+    @include assert {
+      @include output {
+        @include theme-color(color);
+      }
+      @include expect {
+        @each $key, $value in $theme-and-color {
+          ::ng-deep .u-theme--#{$key} & {
+            color: $value;
 
-        ::ng-deep .u-theme--error .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
+            &[disabled] {
+              background-color: color(utility, light);
+              color: color(utility);
+            }
+          }
         }
+      }
+    }
+  }
 
-        ::ng-deep .u-theme--warn .test-output {
-          background-color: #dea83b;
-          color: #fafafa;
-        }
+  // this functionality currently doesn't exist
 
-        ::ng-deep .u-theme--warn .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
-        }
-
-        ::ng-deep .u-theme--highlight .test-output {
-          background-color: #efe557;
-          color: #302d35;
-        }
-
-        ::ng-deep .u-theme--highlight .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
-        }
-
-        ::ng-deep .u-theme--pure .test-output {
-          background-color: #fafafa;
-        }
-
-        ::ng-deep .u-theme--pure .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
-        }
-
-        ::ng-deep .u-theme--utility .test-output {
-          background-color: #999;
-          color: #fafafa;
-        }
-
-        ::ng-deep .u-theme--utility .test-output[disabled] {
-          background-color: #cecdd1;
-          color: #999;
-        }
+  /* @include test('should fail with invalid property') {
+    @include assert-false(
+      theme-color(width),
+    );
+    {
+      @include output {
+        @include theme-color(width)
       }
     }
   } */
