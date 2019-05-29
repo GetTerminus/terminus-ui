@@ -22,6 +22,7 @@ module.exports = {
   clearMocks: true,
   collectCoverageFrom: [
     'terminus-ui/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts',
+    'terminus-ui/**/*.directive.ts',
     '!terminus-ui/**/testing/**',
   ],
   moduleFileExtensions: [
