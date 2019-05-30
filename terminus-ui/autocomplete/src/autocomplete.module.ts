@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -5,18 +6,17 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatRippleModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TsIconModule } from '@terminus/ui/icon';
-import { TsInputModule } from '@terminus/ui/input';
-import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
-
-import { OverlayModule } from '@angular/cdk/overlay';
-import { MatRippleModule } from '@angular/material';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
+import { TsIconModule } from '@terminus/ui/icon';
+import { TsInputModule } from '@terminus/ui/input';
 import { TsOptionModule } from '@terminus/ui/option';
+import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
+
 import { TsAutocompletePanelComponent } from './autocomplete-panel/autocomplete-panel.component';
 import {
   TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
@@ -27,9 +27,6 @@ import { TsAutocompleteComponent } from './autocomplete.component';
 export * from './autocomplete.component';
 export * from './autocomplete-panel/autocomplete-panel.component';
 
-/**
- * @deprecated in favor of the new TsInputComponent. Target 12.x for removal
- */
 @NgModule({
   imports: [
     CommonModule,

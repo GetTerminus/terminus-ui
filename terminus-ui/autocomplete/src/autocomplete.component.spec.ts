@@ -1,6 +1,5 @@
 import {Type} from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   tick,
@@ -11,14 +10,10 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  DOWN_ARROW, KEYS,
-} from '@terminus/ngx-tools/keycodes';
+import {KEYS} from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createFakeEvent,
-  createKeyboardEvent,
-  dispatchEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
   typeInElement,
@@ -27,7 +22,6 @@ import * as testComponents from '@terminus/ui/autocomplete/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   getAllChipInstances,
-  getAllOptionInstances,
   getAutocompleteElement,
   getAutocompleteInput,
   getAutocompleteInstance,
@@ -38,6 +32,7 @@ import {
 } from '@terminus/ui/autocomplete/testing';
 import { TsOptionModule } from '@terminus/ui/option';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
+
 import {
   TsAutocompleteModule,
   TsAutocompletePanelSelectedEvent,
@@ -280,22 +275,16 @@ describe(`TsAutocompleteComponent`, function() {
     expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
   });
 
-  test(`should only allow string type passed in the component`, fakeAsync(function() {
+  test(`should only allow string type passed in the component`, function() {
     const fixture = createComponent<testComponents.PassingInObjectValue>(testComponents.PassingInObjectValue);
     fixture.detectChanges();
-    fixture.componentInstance.autocompleteSelectItem = jest.fn();
-    const input = getAutocompleteInput(fixture);
-    typeInElement('fl', input);
-    tick(1000);
-    fixture.detectChanges();
-    const opt = getOptionElement(fixture, 0, 2);
-    opt.click();
-    tick(1000);
-    fixture.detectChanges();
     expect(() => getAutocompleteInstance(fixture).autocompleteSelectItem(
-      new TsAutocompletePanelSelectedEvent({} as TsAutocompletePanelComponent, getOptionInstance(fixture, 0, 1))
+      new TsAutocompletePanelSelectedEvent(
+        {} as TsAutocompletePanelComponent,
+        getOptionInstance(fixture, 0, 1)
+      )
     )).toThrowError(`The value passing into autocomplete has to be string type`);
-  }));
+  });
 
 
   describe(`duplicate selections`, function() {

@@ -51,10 +51,15 @@ import {
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
-  debounceTime, distinctUntilChanged, filter, switchMap,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
 } from 'rxjs/operators';
+
 import {
-  TsAutocompletePanelComponent, TsAutocompletePanelSelectedEvent,
+  TsAutocompletePanelComponent,
+  TsAutocompletePanelSelectedEvent,
 } from './autocomplete-panel/autocomplete-panel.component';
 import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplete-trigger.directive';
 
@@ -77,7 +82,7 @@ export type TsAutocompleteComparatorFn = (value: string) => string;
 export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
 
 const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
-const DEBOUNCE_DELAY = 200;
+const DEFAULT_DEBOUNCE_DELAY = 200;
 
 /**
  * The event object that is emitted when the select value has changed
@@ -359,7 +364,7 @@ export class TsAutocompleteComponent implements OnInit,
   public get debounceDelay(): number {
     return this._debounceDelay;
   }
-  private _debounceDelay = DEBOUNCE_DELAY;
+  private _debounceDelay = DEFAULT_DEBOUNCE_DELAY;
 
 
   /**
@@ -604,12 +609,6 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
-   * Initialize the key manager and set up change listeners
-   */
-  public ngAfterContentInit(): void {
-  }
-
-  /**
    * Subscribe to the querySubject and pass values to the query emitter
    *
    * NOTE: When an option is selected, the full selected value is piped through this stream
@@ -693,7 +692,6 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Call FormControl updateValueAndValidity function to ensure value and valid status get updated.
    */
-
   private updateValueAndValidity(): void {
     if (this.ngControl && this.ngControl.control) {
       this.ngControl.control.updateValueAndValidity();
