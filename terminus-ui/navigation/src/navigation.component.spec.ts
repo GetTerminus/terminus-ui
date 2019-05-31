@@ -276,4 +276,14 @@ describe(`TsNavigationComponent`, function() {
 
   });
 
+
+  describe(`trackByFn`, function() {
+
+    test(`should return the index passed to it`, function() {
+      expect(component.trackByFn(3)).toEqual(3);
+      expect(component.trackByFn(6)).toEqual(6);
+    });
+
+  });
+
 });
