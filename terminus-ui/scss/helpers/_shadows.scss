@@ -143,7 +143,7 @@ $material-elements: (
  * In the case where the supplied elevation exceeds the maximum reference elevation, the last two
  * reference shadows are returned.
  *
- * @mixin find-bounding-shadow-sets
+ * @function find-bounding-shadow-sets
  * @section Shadow-Functions
  * @param $elevation
  *  The elevation
@@ -176,7 +176,7 @@ $material-elements: (
  * Returns the value between a and b proportional to x (when x is between 0 and 1. When x is outside
  * this range, the return value is a linear extrapolation)
  *
- * @mixin lerp
+ * @function lerp
  * @section Shadow-Functions
  * @param $x
  *  The proportional control
@@ -198,7 +198,7 @@ $material-elements: (
  * Returns the value between shadow1 and shadow2 proportional to x (when x is between 0 and 1. When
  * x is outside this range, the return value is a linear extrapolation).
  *
- * @mixin lerp-shadow
+ * @function lerp-shadow
  * @section Shadow-Functions
  * @param $x
  *  The proportional control
@@ -207,7 +207,7 @@ $material-elements: (
  * @param $shadow2
  *  The ending shadow
  * @example
- *  $foo = calculate-shadow-set-at-depth(2);
+ *  $foo = lerp-shadow(.2, 1 2 3 4 rgba(0, 0, 0, .2), 5 6 7 8 );
  */
 @function lerp-shadow($x, $shadow1, $shadow2) {
   // Round all parameters, as shadow definitions do not support subpixels
@@ -226,7 +226,7 @@ $material-elements: (
 /**
  * Calculates the set of shadows at a given elevation
  *
- * @mixin calculate-shadow-set-at-depth
+ * @function calculate-shadow-set-at-depth
  * @section Shadow-Functions
  * @param $elevation
  *  The desired elevation
@@ -262,7 +262,7 @@ $material-elements: (
  * @param $easing
  *  The easing function or name
  * @example
- *  @include elevation-transition(dialog);
+ *  @include elevation-transition(4, $easing);
  */
 @mixin elevation-transition($elevation-change: 6, $easing: cubic-bezier(.4, 0, .2, 1)) {
   $duration: lerp($elevation-change / 24, $min-animation-length, $max-animation-length);
@@ -299,15 +299,17 @@ $material-elements: (
   }
 
   @if $elevation2 != null {
-    @include elevation-transition($elevation2 -$elevation2);
+    @include elevation-transition($elevation2);
 
-    &:#{$state} {
-      @if $elevation1 == 0 {
-        // stylelint-disable declaration-no-important
-        box-shadow: none !important;
-        // stylelint-enable declaration-no-important
-      } @else {
-        box-shadow: calculate-shadow-set-at-depth($elevation2);
+    @if $state != null {
+      &:#{$state} {
+        @if $elevation1 == 0 {
+          // stylelint-disable declaration-no-important
+          box-shadow: none !important;
+          // stylelint-enable declaration-no-important
+        } @else {
+          box-shadow: calculate-shadow-set-at-depth($elevation2);
+        }
       }
     }
   }

@@ -1,20 +1,21 @@
 @import 'true';
 @import './breakpoints';
 
-// can we mimick breakpoints, force media queries, etc?
 
-/* @include describe ('breakpoints') {
+@include describe ('breakpoints') {
   @include test ('should correctly media query for "layout-xs"') {
     @include assert {
       @include output {
         .xs-test {
-          @include bp('layout-xs');
+          @include bp(layout-xs){
+            content: 'hello';
+          }
         }
       }
       @include expect {
         .xs-test {
           @media (max-width: 599px) {
-            width: 100%;
+            content: 'hello';
           }
         }
       }
@@ -25,14 +26,15 @@
     @include assert {
       @include output {
         .gt-xs-test {
-          width: 1000px;
-          @include bp(layout-gt-xs);
+          @include bp(layout-gt-xs){
+            content: 'hello';
+          }
         }
       }
       @include expect {
         .gt-xs-test {
           @media (min-width: 600px) {
-            width: 500px;
+            content: 'hello';
           }
         }
       }
@@ -42,10 +44,18 @@
   @include test ('should correctly media query for "layout-sm"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-sm){
+          .sm-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .sm-test {
+          @media (min-width: 600px) and (max-width: 959px) {
+            content: 'hello';
+          }
+        }
       }
     }
   }
@@ -53,10 +63,18 @@
   @include test ('should correctly media query for "layout-gt-sm"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-gt-sm){
+          .gt-sm-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+          @media (min-width: 960px) {
+            .gt-sm-test {
+              content: 'hello';
+            }
+          }
       }
     }
   }
@@ -64,10 +82,18 @@
   @include test ('should correctly media query for "layout-mat"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-mat) {
+          .mat-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .mat-test {
+          @media (min-width: 960px) and (max-width: 1279px) {
+            content: 'hello';
+          }
+        }      
       }
     }
   }
@@ -75,10 +101,18 @@
   @include test ('should correctly media query for "layout-gt-mat"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-gt-mat){
+          .gt-mat-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .gt-mat-test {
+          @media (min-width: 1280px) {
+            content: 'hello';
+          }
+        }
       }
     }
   }
@@ -86,10 +120,18 @@
   @include test ('should correctly media query for "layout-lg"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-lg){
+          .lg-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .lg-test {
+          @media (min-width: 1280px) and (max-width: 1919px) {
+            content: 'hello';
+          }
+        }
       }
     }
   }
@@ -97,10 +139,18 @@
   @include test ('should correctly media query for "layout-gt-lg"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-gt-lg){
+          .gt-lg-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .gt-lg-test {
+          @media (min-width: 1920px){
+            content: 'hello';
+          }
+        }
       }
     }
   }
@@ -108,12 +158,19 @@
   @include test ('should correctly media query for "layout-xl"') {
     @include assert {
       @include output {
-        @include bp(layout-xs);
+        @include bp(layout-xl){
+          .xl-test {
+            content: 'hello';
+          }
+        }
       }
       @include expect {
-        @media (max-width: 599px) {}
+        .xl-test {
+          @media (min-width: 1920px) {
+            content: 'hello';
+          }
+        }
       }
     }
   }
 }
- */

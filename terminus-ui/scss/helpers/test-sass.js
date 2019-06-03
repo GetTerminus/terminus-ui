@@ -7,5 +7,8 @@ describe('Sass', () => {
     path.resolve(process.cwd(), 'terminus-ui/**/*.spec.scss')
   )
 
-  sassTestFiles.forEach(file => sassTrue.runSass({ file }, describe, test))
+  sassTestFiles.forEach(file => sassTrue.runSass({ file }, {
+    describe,
+    it,
+  }))
 })

@@ -1,2 +1,46 @@
 @import 'true';
 @import './z-index';
+
+@include describe ('z-index') {
+  @include test('should set z index global-overlay') {
+    $assert: z(global-overlay);
+    $expect: 6;
+
+    @include assert-equal($assert, $expect);
+  }
+
+  @include test('should set z index global-header') {
+    $assert: z(global-header);
+    $expect: 5;
+
+    @include assert-equal($assert, $expect);
+  }
+
+  @include test('should set z index tooltip') {
+    $assert: z(tooltip);
+    $expect: 4;
+
+    @include assert-equal($assert, $expect);
+  }
+
+  @include test('should set z index attached-panel-overlay') {
+    $assert: z(attached-panel-overlay);
+    $expect: 3;
+
+    @include assert-equal($assert, $expect);
+  }
+
+  @include test('should set z index panel-header') {
+    $assert: z(panel-header);
+    $expect: 2;
+
+    @include assert-equal($assert, $expect);
+  }
+
+  @include test('should set z index menu-trigger') {
+    $assert: z(menu-trigger);
+    $expect: 1;
+
+    @include assert-equal($assert, $expect);
+  }
+}

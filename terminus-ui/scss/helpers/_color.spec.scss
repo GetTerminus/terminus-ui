@@ -9,63 +9,141 @@
     @include assert-equal($test, $expect);
   }
 
-  @include test('should return the correct theme and color for background-color') {
-    @include assert {
-      @include output {
-        @include theme-color(background-color);
-      }
-      @include expect {
-        @each $key, $value in $theme-and-color {
-          ::ng-deep .u-theme--#{$key} & {
-            background-color: $value;
-
-            &[disabled] {
-              background-color: color(utility, light);
-              color: color(utility);
-            }
-
-            @if (not(($key == 'pure')) and not(($key == 'highlight'))) {
-              color: $color__pure--light;
-            }
-
-            @if ($key == 'highlight') {
-              color: $color__pure--dark;
-            }
-          }
-        }
-      }
-    }
-  }
-
   @include test('should return the correct theme and color for color') {
     @include assert {
       @include output {
         @include theme-color(color);
       }
       @include expect {
-        @each $key, $value in $theme-and-color {
-          ::ng-deep .u-theme--#{$key} & {
-            color: $value;
+        ::ng-deep .u-theme--primary & {
+          color: #00538a;
+        }
+        ::ng-deep .u-theme--primary &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--accent & {
+          color: #2f854d;
+        }
+        ::ng-deep .u-theme--accent &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--error & {
+          color: #c8604d;
+        }
+        ::ng-deep .u-theme--error &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--warn & {
+          color: #dea83b;
+        }
+        ::ng-deep .u-theme--warn &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--highlight & {
+          color: #efe557;
+        }
+        ::ng-deep .u-theme--highlight &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--pure & {
+          color: #fafafa;
+        }
+        ::ng-deep .u-theme--pure &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+        ::ng-deep .u-theme--utility & {
+          color: #999;
+        }
+        ::ng-deep .u-theme--utility &[disabled] {
+          background-color: #cecdd1;
+          color: #999;
+        }
+      }
+    }
 
-            &[disabled] {
-              background-color: color(utility, light);
-              color: color(utility);
-            }
+    @include test('should return the correct theme and color for background-color') {
+      @include assert {
+        @include output {
+          @include theme-color(background-color);
+        }
+        @include expect {
+          ::ng-deep .u-theme--primary & {
+            background-color: #00538a;
+            color: #fafafa;
+          }
+          ::ng-deep .u-theme--primary &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--accent & {
+            background-color: #2f854d;
+            color: #fafafa;
+          }
+          ::ng-deep .u-theme--accent &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--error & {
+            background-color: #c8604d;
+            color: #fafafa;
+          }
+          ::ng-deep .u-theme--error &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--warn & {
+            background-color: #dea83b;
+            color: #fafafa;
+          }
+          ::ng-deep .u-theme--warn &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--highlight & {
+            background-color: #efe557;
+            color: #302d35;
+          }
+          ::ng-deep .u-theme--highlight &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--pure & {
+            background-color: #fafafa;
+          }
+          ::ng-deep .u-theme--pure &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
+          }
+          ::ng-deep .u-theme--utility & {
+            background-color: #999;
+            color: #fafafa;
+          }
+          ::ng-deep .u-theme--utility &[disabled] {
+            background-color: #cecdd1;
+            color: #999;
           }
         }
       }
     }
   }
 
-  // this functionality currently doesn't exist
+/*
+NOTE: SASS fails when given invalid properties, so we have to create a mixin to manage the errors.
+https://github.com/GetTerminus/terminus-ui/issues/1532
 
-  /* @include test('should fail with invalid property') {
-    @include assert-false(
-      theme-color(width),
-    );
-    {
+@include test('should fail with invalid property') {
+    @include assert{
       @include output {
-        @include theme-color(width)
+        @include theme-color(width);
+      }
+      @include expect {
+        failure: message;
       }
     }
   } */

@@ -1,2 +1,279 @@
 @import 'true';
 @import './typography';
+
+@include describe ('typography') {
+  @include test('should set truncate-overflow') {
+    @include assert {
+      @include output {
+        @include truncate-overflow();
+      }
+      @include expect {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @include test('should set default format to body, level to 1 and typeface to primary') {
+    @include assert {
+      @include output {
+        .typography-default-test {
+          @include typography();
+        }
+      }
+      @include expect {
+        .typography-default-test {
+          font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+          font-size: 16px;
+          letter-spacing: .01em;
+          font-weight: 400;
+
+          &:not(.c-button) {
+            &:not(.c-input) {
+              &:not(.c-select) {
+                &:not(.ts-checkbox) {
+                  line-height: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include describe('format') {
+    @include test('should set format to "display"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(display);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 34px;
+            font-weight: 500;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+
+    @include test('should set format to "headline"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(headline);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 32px;
+          }
+        }
+      }
+    }
+
+    @include test('should set format to "title"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(title);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: .005em;
+          }
+        }
+      }
+    }
+
+
+    @include test('should set format to "subhead"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(subhead);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: .01em;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+
+    @include test('should set format to "caption"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(caption);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: .02em;
+          }
+        }
+      }
+    }
+
+
+    @include test('should set format to "fixedwidth"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(fixedwidth);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
+          }
+        }
+      }
+    }
+
+
+    @include test('should set format to "hint"') {
+      @include assert {
+        @include output {
+          .format-test {
+            @include typography(hint);
+          }
+        }
+        @include expect {
+          .format-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: color(utility);
+            font-size: 75%;
+            font-weight: 400;
+            letter-spacing: .01em;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+  }
+
+  @include describe('level') {
+    @include test('should set level to 2 (format=display)') {
+      @include assert {
+        @include output {
+          .level-test {
+            @include typography(display, 2);
+          }
+        }
+        @include expect {
+          .level-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 45px;
+            font-weight: 500;
+            line-height: 64px;
+          }
+        }
+      }
+    }
+
+    @include test('should set level to 3 (format=display)') {
+      @include assert {
+        @include output {
+          .level-test {
+            @include typography(display, 3);
+          }
+        }
+        @include expect {
+          .level-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 56px;
+            font-weight: 500;
+            letter-spacing: -.005em;
+            line-height: 56px;
+          }
+        }
+      }
+    }
+
+    @include test('should set level to 4 (format=display)') {
+      @include assert {
+        @include output {
+          .level-test {
+            @include typography(display, 4);
+          }
+        }
+        @include expect {
+          .level-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 112px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 112px;
+          }
+        }
+      }
+    }
+
+    @include test('should set level to 2 (format=body)') {
+      @include assert {
+        @include output {
+          .level-test {
+            @include typography(body, 2);
+          }
+        }
+        @include expect {
+          .level-test {
+            font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            letter-spacing: .01em;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  @include describe('typeface') {
+    @include test('should set to typeface to monospaced') {
+      @include assert {
+        @include output {
+          @include typography(body, 1, monospaced);
+        }
+        @include expect {
+          font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
+          font-size: 16px;
+          letter-spacing: .01em;
+          font-weight: 400;
+
+          &:not(.c-button) {
+            &:not(.c-input) {
+              &:not(.c-select) {
+                &:not(.ts-checkbox) {
+                  line-height: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

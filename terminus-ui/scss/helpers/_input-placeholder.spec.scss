@@ -1,26 +1,34 @@
 @import 'true';
 @import './input-placeholder';
 
-/**
-* This is not the best test.
-* True does not have a way to test pseudo-classes
-* @content is whatever the content is, so in the test it just has to match, nothing happens with it.
-*/
-
 @include describe ('input-placeholder') {
   @include test('should set input-placeholder') {
     @include assert {
       @include output {
         .test {
-          @include input-placeholder();
-          color: green;
+          @include input-placeholder{
+            content: 'hello';
+          }
         }
       }
       @include expect {
-        .test {
-          color: green;
+        .test::placeholder {
+          content: 'hello';
+        }
+
+        .test::-moz-placeholder {
+          content: 'hello';
+        }
+      
+        .test::-webkit-input-placeholder {
+          content: 'hello';
+        }
+      
+        .test:-ms-input-placeholder {
+          content: 'hello';
         }
       }
     }
   }
 }
+

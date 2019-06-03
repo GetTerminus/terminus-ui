@@ -13,15 +13,15 @@
         @include expect {
           .triangle {
             $perpendicular-borders: 1em solid transparent;
-            border-left:   $perpendicular-borders;
-            border-right:  $perpendicular-borders;
-            bottom: 100%;
             content: '';
             height: 0;
             position: absolute;
             width: 0;
             z-index: z(tooltip);
-            border-#{opposite-direction(top)}: (1em * 1.5) solid currentColor;
+            border-left: $perpendicular-borders;
+            border-right: $perpendicular-borders;
+            bottom: 100%;
+            border-#{opposite-direction(top)}: (1em * 1.5) solid currentcolor;
           }
         }
       }
@@ -37,14 +37,14 @@
         @include expect {
           .triangle {
             $perpendicular-borders: 1em solid transparent;
-            border-bottom:   $perpendicular-borders;
-            border-top:  $perpendicular-borders;
             content: '';
             height: 0;
             position: absolute;
             width: 0;
             z-index: z(tooltip);
-            border-#{opposite-direction(right)}: (1em * 1.5) solid currentColor;
+            border-bottom: $perpendicular-borders;
+            border-top: $perpendicular-borders;
+            border-#{opposite-direction(right)}: (1em * 1.5) solid currentcolor;
           }
         }
       }
@@ -60,15 +60,15 @@
         @include expect {
           .triangle {
             $perpendicular-borders: 1em solid transparent;
-            border-left:   $perpendicular-borders;
-            border-right:  $perpendicular-borders;
             content: '';
             height: 0;
             position: absolute;
-            top: 100%;
             width: 0;
             z-index: z(tooltip);
-            border-#{opposite-direction(bottom)}: (1em * 1.5) solid currentColor;
+            border-left: $perpendicular-borders;
+            border-right: $perpendicular-borders;
+            top: 100%;
+            border-#{opposite-direction(bottom)}: (1em * 1.5) solid currentcolor;
           }
         }
       }
@@ -84,14 +84,14 @@
         @include expect {
           .triangle {
             $perpendicular-borders: 1em solid transparent;
-            border-bottom:   $perpendicular-borders;
-            border-top:  $perpendicular-borders;
             content: '';
             height: 0;
             position: absolute;
             width: 0;
             z-index: z(tooltip);
-            border-#{opposite-direction(left)}: (1em * 1.5) solid currentColor;
+            border-bottom: $perpendicular-borders;
+            border-top: $perpendicular-borders;
+            border-#{opposite-direction(left)}: (1em * 1.5) solid currentcolor;
           }
         }
       }
@@ -108,14 +108,14 @@
       @include expect {
         .triangle {
           $perpendicular-borders: 1em solid transparent;
-          border-left:   $perpendicular-borders;
-          border-right:  $perpendicular-borders;
-          bottom: 100%;
           content: '';
           height: 0;
           position: absolute;
           width: 0;
           z-index: z(tooltip);
+          border-left: $perpendicular-borders;
+          border-right: $perpendicular-borders;
+          bottom: 100%;
           border-#{opposite-direction(top)}: (1em * 1.5) solid #f903e2;
         }
       }
@@ -132,15 +132,15 @@
       @include expect {
         .triangle {
           $perpendicular-borders: 15px solid transparent;
-          border-left:   $perpendicular-borders;
-          border-right:  $perpendicular-borders;
-          bottom: 100%;
           content: '';
           height: 0;
           position: absolute;
           width: 0;
           z-index: z(tooltip);
-          border-#{opposite-direction(top)}: (15px * 1.5) solid currentColor;
+          border-left: $perpendicular-borders;
+          border-right: $perpendicular-borders;
+          bottom: 100%;
+          border-#{opposite-direction(top)}: (15px * 1.5) solid currentcolor;
         }
       }
     }

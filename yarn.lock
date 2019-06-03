@@ -3929,11 +3929,6 @@ css-select@~1.2.0:
     domutils "1.5.1"
     nth-check "~1.0.1"
 
-css-selector-parser@^1.1.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/css-selector-parser/-/css-selector-parser-1.3.0.tgz#5f1ad43e2d8eefbfdc304fcd39a521664943e3eb"
-  integrity sha1-XxrUPi2O77/cME/NOaUhZklD4+s=
-
 css-selector-tokenizer@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.7.1.tgz#a177271a8bca5019172f4f891fc6eed9cbf68d5d"
@@ -13741,13 +13736,13 @@ sass-module-importer@^1.4.0:
     resolve "1.1.7"
     resolve-bower "0.0.1"
 
-sass-true@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/sass-true/-/sass-true-4.0.0.tgz#4f1573f5d75f0c5d8539f57ca9c374995d15f278"
-  integrity sha512-2CqHkWr+0cRHaMU92r90/84Uwpejy2v5lPUMKGBMCeo0r4KFaRd4jddsxrS3jb8umL9A24FZwbDt0WKGEMfRLQ==
+sass-true@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/sass-true/-/sass-true-5.0.0.tgz#b93cecd7af9fdb8796323ce2cfc94387a48a4848"
+  integrity sha512-Q2HONu8QJcx8Lsdn8RqSHRGGB0aPlqCpXMDONtuXedaNIecz6QD3NCwkZiR4mprr5ZDiFcZwYT6fHDbyBXmDLQ==
   dependencies:
+    chalk "^2.4.2"
     css "^2.2.1"
-    css-selector-parser "^1.1.0"
     lodash.find "^4.6.0"
     lodash.foreach "^4.5.0"
     lodash.last "^3.0.0"

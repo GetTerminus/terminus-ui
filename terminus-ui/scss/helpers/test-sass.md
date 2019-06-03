@@ -100,11 +100,17 @@ It's highly recommended to write your tests to fail, to insure the test is runni
 
 ## Issues, idiosyncracies, etc
 
+1. Some lint fixes, especially ordering, will cause tests to fail. For this reason, the '.spec.scss' files are omitted from stylelint.
+
 1. There is no way to test a fail scenario. For example, the `theme-color` mixin only accepts 'background-color' and 'color' as parameters. When intentionally testing a fail scenario, e.g. `theme-color(width)` the SCSS fails, and the test spits out an error.
 
-1. True does not translate `@content`.
+1. Tests for `@media` queries will need a selector nested inside the mixin. Reference breakpoints as an example.
 
-1. Does not seem to have support for pseudo classes.
+1. True does not translate `@content`. It needs actual content.
+
+1. If a test fails due to a sass error (e.g. `theme-color(foo)`), the test stops where it fails.
+
+1. Does not seem to fully support for pseudo classes.
 
 1. It doesn’t care for ticks, so use single quotes in describe and test statements.
 

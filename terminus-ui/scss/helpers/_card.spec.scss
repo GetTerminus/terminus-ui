@@ -1,7 +1,6 @@
 @import 'true';
 @import './card';
 
-
 @include describe ('card') {
   @include test ('should correctly render card with interaction') {
     @include assert {
@@ -12,11 +11,11 @@
       }
       @include expect {
         .card-test {
-          @include elevation-element(card);
-          cursor: cursor(pointer);
           min-height: calc(100% - #{spacing(large) * 2});
           padding: spacing(large);
           vertical-align: top;
+          @include elevation-element(card);
+          cursor: cursor(pointer);
         }
 
         .card-test .c-card__title {
@@ -35,10 +34,10 @@
       }
       @include expect {
         .card-test {
-          @include elevation(2);
           min-height: calc(100% - #{spacing(large) * 2});
           padding: spacing(large);
           vertical-align: top;
+          @include elevation(2);
         }
 
         .card-test .c-card__title {

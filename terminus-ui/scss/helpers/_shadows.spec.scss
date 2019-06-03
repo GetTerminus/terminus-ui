@@ -1,2 +1,732 @@
 @import 'true';
 @import './shadows';
+
+@include describe ('shadows') {
+  @include test('should set lerp') {
+    $output: lerp(.5, 10, 50);
+    $expect: 30;
+
+    @include assert-equal($output, $expect);
+  }
+
+/* 
+NOTE: This test returns a failure with the message "Compared values have no visual differences.
+https://github.com/GetTerminus/terminus-ui/issues/1531
+Also affects calculate-shadow-set-at-depth
+
+  @include test('should set lerp-shadow') {
+    $output: lerp-shadow(.2, 1 2 3 4 rgba(0, 0, 0, .2), 2 3 4 5);
+    $expect: 1px 2px 3px 4px rgba(0, 0, 0, .2);
+
+    @include assert-equal($output, $expect);
+  } */
+
+  @include describe('find-bounding-shadow-sets') {
+    @include test('should set on elevation of 0') {
+      $output: find-bounding-shadow-sets(0);
+      $expect: (
+        elevation: 0,
+        shadows: (
+          (0, 0, 0, 0, rgba(0, 0, 0, .2)),
+          (0, 0, 0, 0, rgba(0, 0, 0, .14)),
+          (0, 0, 0, 0, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 2,
+        shadows: (
+          (0, 3, 1, -2, rgba(0, 0, 0, .2)),
+          (0, 2, 2, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 5, 0, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 2') {
+      $output: find-bounding-shadow-sets(2);
+      $expect: (
+        elevation: 2,
+        shadows: (
+          (0, 3, 1, -2, rgba(0, 0, 0, .2)),
+          (0, 2, 2, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 5, 0, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 3,
+        shadows: (
+          (0, 3, 3, -2, rgba(0, 0, 0, .2)),
+          (0, 3, 4, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 8, 0, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 3') {
+      $output: find-bounding-shadow-sets(3);
+      $expect: (
+        elevation: 3,
+        shadows: (
+          (0, 3, 3, -2, rgba(0, 0, 0, .2)),
+          (0, 3, 4, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 8, 0, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 4,
+        shadows: (
+          (0, 2, 4, -1, rgba(0, 0, 0, .2)),
+          (0, 4, 5, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 10, 0, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 4') {
+      $output: find-bounding-shadow-sets(4);
+      $expect: (
+        elevation: 4,
+        shadows: (
+          (0, 2, 4, -1, rgba(0, 0, 0, .2)),
+          (0, 4, 5, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 10, 0, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 6,
+        shadows: (
+          (0, 3, 5, -1, rgba(0, 0, 0, .2)),
+          (0, 6, 10, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 18, 0, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 6') {
+      $output: find-bounding-shadow-sets(6);
+      $expect: (
+        elevation: 6,
+        shadows: (
+          (0, 3, 5, -1, rgba(0, 0, 0, .2)),
+          (0, 6, 10, 0, rgba(0, 0, 0, .14)),
+          (0, 1, 18, 0, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 8,
+        shadows: (
+          (0, 5, 5, -3, rgba(0, 0, 0, .2)),
+          (0, 8, 10, 1, rgba(0, 0, 0, .14)),
+          (0, 3, 14, 2, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 8') {
+      $output: find-bounding-shadow-sets(8);
+      $expect: (
+        elevation: 8,
+        shadows: (
+          (0, 5, 5, -3, rgba(0, 0, 0, .2)),
+          (0, 8, 10, 1, rgba(0, 0, 0, .14)),
+          (0, 3, 14, 2, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 16,
+        shadows: (
+          (0, 8, 10, -5, rgba(0, 0, 0, .2)),
+          (0, 16, 24, 2, rgba(0, 0, 0, .14)),
+          (0, 6, 30, 5, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set on elevation of 16') {
+      $output: find-bounding-shadow-sets(16);
+      $expect: (
+        elevation: 8,
+        shadows: (
+          (0, 5, 5, -3, rgba(0, 0, 0, .2)),
+          (0, 8, 10, 1, rgba(0, 0, 0, .14)),
+          (0, 3, 14, 2, rgba(0, 0, 0, .12)))
+        ),
+        (elevation: 16,
+        shadows: (
+          (0, 8, 10, -5, rgba(0, 0, 0, .2)),
+          (0, 16, 24, 2, rgba(0, 0, 0, .14)),
+          (0, 6, 30, 5, rgba(0, 0, 0, .12))
+        )
+      );
+
+      @include assert-equal($output, $expect);
+    }
+  }
+
+/*
+calculate-at-depth calls lerp-shadow, which is returning the message "Compared values have no visual differences.
+https://github.com/GetTerminus/terminus-ui/issues/1531
+
+  @include describe('calculate-shadow-at-depth') {
+    @include test('should set elevation 0') {
+      $output: calculate-shadow-set-at-depth(0);
+      $expect:
+        0px 0px 0px 0px rgba(0, 0, 0, .2),
+        0px 0px 0px 0px rgba(0, 0, 0, .14),
+        0px 0px 0px 0px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 2') {
+      $output: calculate-shadow-set-at-depth(2);
+      $expect:
+        0px 3px 1px -2px rgba(0, 0, 0, .2),
+        0px 2px 2px 0px rgba(0, 0, 0, .14),
+        0px 1px 5px 0px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 3') {
+      $output: calculate-shadow-set-at-depth(3);
+      $expect:
+        0px 3px 3px -2px rgba(0, 0, 0, .2),
+        0px 3px 4px 0px rgba(0, 0, 0, .14),
+        0px 1px 8px 0px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 4') {
+      $output: calculate-shadow-set-at-depth(4);
+      $expect:
+        0px 2px 4px -1px rgba(0, 0, 0, .2),
+        0px 4px 5px 0px rgba(0, 0, 0, .14),
+        0px 1px 10px 0px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 6') {
+      $output: calculate-shadow-set-at-depth(6);
+      $expect:
+        0px 3px 5px -1px rgba(0, 0, 0, .2),
+        0px 6px 10px 0px rgba(0, 0, 0, .14),
+        0px 1px 18px 0px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 8') {
+      $output: calculate-shadow-set-at-depth(8);
+      $expect:
+        0px 5px 5px -3px rgba(0, 0, 0, .2),
+        0px 8px 10px 1px rgba(0, 0, 0, .14),
+        0px 3px 14px 2px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+
+    @include test('should set elevation 16') {
+      $output: calculate-shadow-set-at-depth(16);
+      $expect:
+        0px 8px 10px -5px rgba(0, 0, 0, .2),
+        0px 16px 24px 2px rgba(0, 0, 0, .14),
+        0px 6px 30px 5px rgba(0, 0, 0, .12);
+
+      @include assert-equal($output, $expect);
+    }
+  }
+ */
+
+  @include describe('elevation-transition') {
+    @include test('should set default') {
+      @include assert {
+        @include output {
+          @include elevation-transition();
+        }
+        @include expect {
+          transition: box-shadow 287.5ms cubic-bezier(.4, 0, .2, 1);
+        }
+      }
+    }
+
+    @include test('should set elevation-change') {
+      @include assert {
+        @include output {
+          @include elevation-transition(4);
+        }
+        @include expect {
+          transition: box-shadow 275ms cubic-bezier(.4, 0, .2, 1);
+        }
+      }
+    }
+
+    @include test('should set easing') {
+      @include assert {
+        @include output {
+          @include elevation-transition(6, cubic-bezier(.5, .5, 1, 0));
+        }
+        @include expect {
+          transition: box-shadow 287.5ms cubic-bezier(.5, .5, 1, 0);
+        }
+      }
+    }
+  }
+
+  @include describe('elevation') {
+
+
+    /* stylelint-disable */
+    @include test('should set elevation when elevation1 is set to 0') {
+      @include assert {
+        @include output {
+          @include elevation(0);
+        }
+
+        @include expect {
+          box-shadow: none !important;
+        }
+      }
+    }
+
+    /* stylelint-enable */
+
+    @include test('should set elevation when elevation1 is set to 1') {
+      @include assert {
+        @include output {
+          @include elevation(1);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(1);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 2') {
+      @include assert {
+        @include output {
+          @include elevation(2);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 3') {
+      @include assert {
+        @include output {
+          @include elevation(3);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(3);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 4') {
+      @include assert {
+        @include output {
+          @include elevation(4);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(4);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 6') {
+      @include assert {
+        @include output {
+          @include elevation(6);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(6);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 8') {
+      @include assert {
+        @include output {
+          @include elevation(8);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(8);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is set to 16') {
+      @include assert {
+        @include output {
+          @include elevation(16);
+        }
+        @include expect {
+          box-shadow: calculate-shadow-set-at-depth(16);
+        }
+      }
+    }
+
+    /** two parameters **/
+
+    @include test('should set elevation when elevation2 is set to 0') {
+      @include assert {
+        @include output {
+          @include elevation(2, 0);
+        }
+        @include expect {
+          $val: 0;
+          @include elevation-transition(0);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 1') {
+      @include assert {
+        @include output {
+          @include elevation(2, 1);
+        }
+        @include expect {
+          @include elevation-transition(1);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 2') {
+      @include assert {
+        @include output {
+          @include elevation(2, 2);
+        }
+        @include expect {
+          @include elevation-transition(2);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 3') {
+      @include assert {
+        @include output {
+          @include elevation(2, 3);
+        }
+        @include expect {
+          @include elevation-transition(3);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 4') {
+      @include assert {
+        @include output {
+          @include elevation(2, 4);
+        }
+        @include expect {
+          @include elevation-transition(4);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 6') {
+      @include assert {
+        @include output {
+          @include elevation(2, 6);
+        }
+        @include expect {
+          @include elevation-transition(6);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 8') {
+      @include assert {
+        @include output {
+          @include elevation(2, 8);
+        }
+        @include expect {
+          @include elevation-transition(8);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation2 is set to 16') {
+      @include assert {
+        @include output {
+          @include elevation(2, 16);
+        }
+        @include expect {
+          @include elevation-transition(16);
+          box-shadow: calculate-shadow-set-at-depth(2);
+        }
+      }
+    }
+
+    /** three parameters */
+
+    @include test('should set elevation when elevation1 is 2, elevation2 is 4, and state is hover') {
+      @include assert {
+        @include output {
+          @include elevation(2, 4, hover);
+        }
+        @include expect {
+          @include elevation-transition(4);
+          box-shadow: calculate-shadow-set-at-depth(2);
+
+          &:hover {
+            box-shadow: calculate-shadow-set-at-depth(4);
+          }
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is 2, elevation2 is 4, and state is focus') {
+      @include assert {
+        @include output {
+          @include elevation(2, 4, focus);
+        }
+        @include expect {
+          @include elevation-transition(4);
+          box-shadow: calculate-shadow-set-at-depth(2);
+
+          &:focus {
+            box-shadow: calculate-shadow-set-at-depth(4);
+          }
+        }
+      }
+    }
+
+    @include test('should set elevation when elevation1 is 2, elevation2 is 4, and state is active') {
+      @include assert {
+        @include output {
+          @include elevation(2, 4, active);
+        }
+        @include expect {
+          @include elevation-transition(4);
+          box-shadow: calculate-shadow-set-at-depth(2);
+
+          &:active {
+            box-shadow: calculate-shadow-set-at-depth(4);
+          }
+        }
+      }
+    }
+  }
+
+  @include describe('elevation-element') {
+    @include test('should set dialog') {
+      @include assert {
+        @include output {
+          @include elevation-element(dialog);
+        }
+        @include expect {
+          @include elevation(24);
+        }
+      }
+    }
+
+    @include test('should set picker') {
+      @include assert {
+        @include output {
+          @include elevation-element(picker);
+        }
+        @include expect {
+          @include elevation(24);
+        }
+      }
+    }
+
+    @include test('should set nav-drawer') {
+      @include assert {
+        @include output {
+          @include elevation-element(nav-drawer);
+        }
+        @include expect {
+          @include elevation(16);
+        }
+      }
+    }
+
+    @include test('should set right-drawer') {
+      @include assert {
+        @include output {
+          @include elevation-element(right-drawer);
+        }
+        @include expect {
+          @include elevation(16);
+        }
+      }
+    }
+
+    @include test('should set bottom-sheet') {
+      @include assert {
+        @include output {
+          @include elevation-element(bottom-sheet);
+        }
+        @include expect {
+          @include elevation(16);
+        }
+      }
+    }
+
+    @include test('should set fab') {
+      @include assert {
+        @include output {
+          @include elevation-element(fab);
+        }
+        @include expect {
+          @include elevation(6, 12, active);
+        }
+      }
+    }
+    @include test('should set sub-menu-3') {
+      @include assert {
+        @include output {
+          @include elevation-element(sub-menu-3);
+        }
+        @include expect {
+          @include elevation(11);
+        }
+      }
+    }
+
+    @include test('should set sub-menu-2') {
+      @include assert {
+        @include output {
+          @include elevation-element(sub-menu-2);
+        }
+        @include expect {
+          @include elevation(10);
+        }
+      }
+    }
+
+    @include test('should set sub-menu-1') {
+      @include assert {
+        @include output {
+          @include elevation-element(sub-menu-1);
+        }
+        @include expect {
+          @include elevation(9);
+        }
+      }
+    }
+
+    @include test('should set menu') {
+      @include assert {
+        @include output {
+          @include elevation-element(menu);
+        }
+        @include expect {
+          @include elevation(8);
+        }
+      }
+    }
+
+    @include test('should set bottom-nav-bar') {
+      @include assert {
+        @include output {
+          @include elevation-element(bottom-nav-bar);
+        }
+        @include expect {
+          @include elevation(8);
+        }
+      }
+    }
+
+    @include test('should set card') {
+      @include assert {
+        @include output {
+          @include elevation-element(card);
+        }
+        @include expect {
+          @include elevation(2, 8, hover);
+        }
+      }
+    }
+
+    @include test('should set raised-button') {
+      @include assert {
+        @include output {
+          @include elevation-element(raised-button);
+        }
+        @include expect {
+          @include elevation(2, 8, active);
+        }
+      }
+    }
+
+    @include test('should set snackbar') {
+      @include assert {
+        @include output {
+          @include elevation-element(snackbar);
+        }
+        @include expect {
+          @include elevation(6);
+        }
+      }
+    }
+
+    @include test('should set app-bar') {
+      @include assert {
+        @include output {
+          @include elevation-element(app-bar);
+        }
+        @include expect {
+          @include elevation(4);
+        }
+      }
+    }
+
+    @include test('should set refresh-indicator') {
+      @include assert {
+        @include output {
+          @include elevation-element(refresh-indicator);
+        }
+        @include expect {
+          @include elevation(3);
+        }
+      }
+    }
+
+    @include test('should set quick-entry') {
+      @include assert {
+        @include output {
+          @include elevation-element(quick-entry);
+        }
+        @include expect {
+          @include elevation(2, 3, active);
+        }
+      }
+    }
+
+    @include test('should set search-bar') {
+      @include assert {
+        @include output {
+          @include elevation-element(search-bar);
+        }
+        @include expect {
+          @include elevation(2, 3, active);
+        }
+      }
+    }
+
+    @include test('should set switch') {
+      @include assert {
+        @include output {
+          @include elevation-element(switch);
+        }
+        @include expect {
+          @include elevation(1);
+        }
+      }
+    }
+  }
+}
