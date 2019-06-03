@@ -58,11 +58,7 @@ import {
   Subject,
 } from 'rxjs';
 import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
   startWith,
-  switchMap,
   take,
   takeUntil,
 } from 'rxjs/operators';

@@ -2,6 +2,8 @@ import { Type } from '@angular/core';
 import {
   async,
   ComponentFixture,
+  fakeAsync,
+  tick,
 } from '@angular/core/testing';
 import {
   FormsModule,
@@ -222,17 +224,19 @@ describe(`TsSelectComponent`, function() {
 
     describe(`delimiter`, function() {
 
-      test(`should allow custom delimiters`, () => {
+      test(`should allow custom delimiters`, fakeAsync(function() {
         const fixture = createComponent(testComponents.CustomDelimiter);
         fixture.detectChanges();
-
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
+          trigger.click();
+          fixture.detectChanges();
           const valueSpan = trigger.querySelector('.ts-select-value-text');
 
-          expect(valueSpan!.textContent).toEqual('Florida- Texas');
+          expect(valueSpan!.textContent!.trim()).toEqual('Florida- Texas');
         });
-      });
+        expect.assertions(1);
+      }));
 
 
       test(`should fall back to the default delimiter if a non-string value is passed in`, () => {
@@ -242,10 +246,13 @@ describe(`TsSelectComponent`, function() {
 
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
+          trigger.click();
+          fixture.detectChanges();
           const valueSpan = trigger.querySelector('.ts-select-value-text');
 
-          expect(valueSpan!.textContent).toEqual('Florida, Texas');
+          expect(valueSpan!.textContent!.trim()).toEqual('Florida, Texas');
         });
+        expect.assertions(1);
       });
 
     });
@@ -978,6 +985,32 @@ describe(`TsSelectComponent`, function() {
         expect(event.defaultPrevented).toEqual(true);
       });
 
+      test(`should return if isDisabled true`, () => {
+        const fixture = createComponent(testComponents.Basic);
+        getSelectInstance(fixture).isDisabled = true;
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+        const event = createKeyboardEvent('keydown', KEYS.ENTER);
+        const instance = getSelectInstance(fixture);
+        option.selectViaInteraction = jest.fn();
+        instance.open = jest.fn()
+
+        instance.handleKeydown(event);
+        expect(option.selectViaInteraction).not.toHaveBeenCalled();
+      });
+
+      test(`should open the panel if allow multiple`, () => {
+        const fixture = createComponent(testComponents.Basic);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+        const event = createKeyboardEvent('keydown', KEYS.ENTER);
+        const instance = getSelectInstance(fixture);
+        option.selectViaInteraction = jest.fn();
+        instance.open = jest.fn()
+
+        instance.handleKeydown(event);
+        expect(instance.open).toHaveBeenCalled();
+      })
     });
 
 
@@ -1086,7 +1119,6 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(false);
     });
-
 
     test(`should close with alt+up or alt+down`, () => {
       const fixture = createComponent(testComponents.Basic);

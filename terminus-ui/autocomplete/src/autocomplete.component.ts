@@ -153,7 +153,6 @@ export class TsAutocompleteChange<T = string[] | string> {
   exportAs: 'tsAutocomplete',
 })
 export class TsAutocompleteComponent implements OnInit,
-  AfterContentInit,
   AfterViewInit,
   OnDestroy,
   TsFormFieldControl<string> {
