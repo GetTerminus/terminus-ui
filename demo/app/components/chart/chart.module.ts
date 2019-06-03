@@ -45,7 +45,7 @@ import { ChartComponent } from './chart.component';
     TsChartModule,
     TsOptionModule,
     TsSelectModule,
-    TsSpacingModule
+    TsSpacingModule,
   ],
   providers: [
     // Use the factory function to overwrite the `TS_AMCHARTS_TOKEN` injectable:

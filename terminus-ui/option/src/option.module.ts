@@ -23,8 +23,6 @@ export * from './optgroup.component';
     TsFormFieldModule,
     TsInputModule,
   ],
-  providers: [
-  ],
   declarations: [
     TsOptionComponent,
     TsOptgroupComponent,

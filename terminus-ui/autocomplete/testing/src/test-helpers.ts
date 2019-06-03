@@ -2,13 +2,19 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
-
 import { TsAutocompleteComponent } from '@terminus/ui/autocomplete';
 import {
   TsOptionComponent,
   TsOptgroupComponent,
 } from '@terminus/ui/option';
-import { TsAutocompletePanelComponent } from '@terminus/ui/fesm2015/terminus-ui-autocomplete';
+
+/**
+ * Get the DebugElement for a TsAutocompleteComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsAutocompleteComponent
+ * @return The DebugElement
+ */
 
 export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllAutocompleteDebugElements(fixture);
@@ -19,10 +25,10 @@ export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, inde
 }
 
 /**
- * Get the autocomplete input element for a TsSelectComponent
+ * Get the autocomplete input element for a TsAutocompleteComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsSelectComponent
+ * @param index - The index of the desired TsAutocompleteComponent
  * @return The input element
  *
  *
@@ -36,6 +42,13 @@ export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0):
   return inputDebugElement.nativeElement as HTMLInputElement;
 }
 
+/**
+ * Get an array of all DebugElements for TsAutocompleteComponent
+ *
+ * @param fixture - The component fixture
+ * @return An array of DebugElements
+ */
+
 export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-autocomplete'));
   if (!debugElements) {
@@ -44,9 +57,24 @@ export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>):
   return debugElements;
 }
 
+/**
+ * Get an array of all component instances for TsAutocompleteComponent
+ *
+ * @param fixture - The component fixture
+ * @return An array of TsAutocompleteComponent
+ */
+
 export function getAllAutocompleteInstances(fixture: ComponentFixture<any>): TsAutocompleteComponent[] {
   return getAllAutocompleteDebugElements(fixture).map(v => v.componentInstance);
 }
+
+/**
+ * Get a component instances for TsAutocompleteComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsAutocompleteComponent
+ * @return The instance
+ */
 
 export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 0): TsAutocompleteComponent {
   const instances = getAllAutocompleteInstances(fixture);
@@ -129,6 +157,14 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
   return null;
 
 }
+
+/**
+ * Get the trigger element for a TsAutocompleteComponent
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsAutocompleteComponent
+ * @return The element
+ */
 
 export function getAutocompleteTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getAutocompleteDebugElement(fixture, index);
@@ -223,11 +259,4 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
   const group = getOptgroup(fixture, selectIndex, groupIndex);
   return group.elementRef.nativeElement;
-}
-
-export function openSelect(fixture: ComponentFixture<any>, index = 0): Promise<any> {
-  const trigger = getAutocompleteTriggerElement(fixture, index);
-  trigger.click();
-  fixture.detectChanges();
-  return fixture.whenStable();
 }

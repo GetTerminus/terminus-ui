@@ -11,7 +11,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  isDevMode,
   OnDestroy,
   OnInit,
   Optional,
@@ -26,15 +25,19 @@ import {
   NgControl,
 } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
+import { CdkConnectedOverlay } from '@angular/cdk/overlay';
+import { MatChipList } from '@angular/material';
 import {
   BehaviorSubject,
   of,
   Subject,
 } from 'rxjs';
-
-import { CdkConnectedOverlay } from '@angular/cdk/overlay';
-import { MatChipList } from '@angular/material';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from 'rxjs/operators';
 import {
   hasRequiredControl,
   isString,
@@ -50,12 +53,6 @@ import {
 } from '@terminus/ui/option';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  switchMap,
-} from 'rxjs/operators';
 
 import {
   TsAutocompletePanelComponent,
@@ -66,18 +63,6 @@ import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplet
 
 // Unique ID for each instance
 let nextUniqueId = 0;
-
-/**
- * Define a type for allowed {@link TsAutocompleteComponent} formatter function
- */
-export type TsAutocompleteFormatterFn = (value: string) => string;
-
-
-/**
- * Define a type for allowed {@link TsAutocompleteComponent} comparator function
- */
-export type TsAutocompleteComparatorFn = (value: string) => string;
-
 
 export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
 
@@ -95,7 +80,7 @@ export class TsAutocompleteChange<T = string[] | string> {
 }
 
 /**
- * The UI Component
+ * The autocomplete UI Component
  *
  * #### QA CSS CLASSES
  * - `qa-autocomplete`: The primary container
@@ -271,12 +256,6 @@ export class TsAutocompleteComponent implements OnInit,
   public labelElement!: ElementRef;
 
   /**
-   * Access the trigger that opens the select
-   */
-  @ViewChild('trigger')
-  public trigger!: ElementRef;
-
-  /**
    * Access a list of all the defined select options
    */
   @ContentChildren(TsOptionComponent, { descendants: true })
@@ -358,7 +337,7 @@ export class TsAutocompleteComponent implements OnInit,
    */
   @Input()
   public set debounceDelay(value: number) {
-    this._debounceDelay = coerceNumberProperty(value);
+    this._debounceDelay = coerceNumberProperty(value, DEFAULT_DEBOUNCE_DELAY);
   }
   public get debounceDelay(): number {
     return this._debounceDelay;

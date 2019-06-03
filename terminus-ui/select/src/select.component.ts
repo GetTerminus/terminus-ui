@@ -149,7 +149,7 @@ export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
 /**
  * The event object that is emitted when the select value has changed
  */
-export class TsSelectChange<T = unknown> {
+export class TsSelectChange<T = string | string[]> {
   constructor(
     // Reference to the select that emitted the change event
     public source: TsSelectComponent,
@@ -762,7 +762,7 @@ export class TsSelectComponent implements
    * Needed for {@link TsFormFieldComponent}.
    */
   @Output()
-  public readonly valueChange: EventEmitter<unknown> = new EventEmitter<unknown>();
+  public readonly valueChange: EventEmitter<string | string[]> = new EventEmitter<string | string[]>();
 
 
   constructor(
@@ -821,7 +821,6 @@ export class TsSelectComponent implements
 
     // NOTE: Known bug: This event will come through twice for each selection.
     // NOTE: Selection model is created during OnInit so it cannot be null here
-    // tslint:disable: no-non-null-assertion
     this.selectionModel.changed.pipe(
       untilComponentDestroyed(this),
     ).subscribe(event => {
@@ -835,7 +834,6 @@ export class TsSelectComponent implements
         this.optionDeselected.emit(new TsSelectChange(this, option.value));
       });
     });
-    // tslint:enable: no-non-null-assertion
 
     // If the array changes, reset options
     this.options.changes.pipe(
@@ -1057,7 +1055,6 @@ export class TsSelectComponent implements
       takeUntil(this.options.changes),
       untilComponentDestroyed(this),
     ).subscribe(event => {
-      // istanbul ignore else
       this.onSelect(event.source, event.isUserInput);
 
       // istanbul ignore else
@@ -1199,7 +1196,7 @@ export class TsSelectComponent implements
    * @param fallbackValue - A fallback value to use when no selection exists
    */
   private propagateChanges(fallbackValue?: unknown): void {
-    let valueToEmit: unknown = null;
+    let valueToEmit: string | string[];
 
     if (this.allowMultiple) {
       valueToEmit = (this.selected as TsOptionComponent[]).map(option => option.value);
@@ -1288,12 +1285,11 @@ export class TsSelectComponent implements
    *
    * @param value - The value to use to look up options
    */
-  // tslint:disable-next-line no-any
-  private setSelectionByValue(value: any | any[]): void {
+  private setSelectionByValue(value: string | string[]): void {
     if (this.allowMultiple && value) {
       value = coerceArray(value);
       this.selectionModel.clear();
-      value.forEach((currentValue: unknown) => this.selectOptionByValue(currentValue));
+      value.forEach((currentValue: string) => this.selectOptionByValue(currentValue));
       this.sortValues();
     } else {
       this.selectionModel.clear();
@@ -1316,7 +1312,7 @@ export class TsSelectComponent implements
    * @param value - The value to use when searching for a matching option
    * @return Option that has the corresponding value
    */
-  private selectOptionByValue(value: unknown): TsOptionComponent | undefined {
+  private selectOptionByValue(value: string | string[]): TsOptionComponent | undefined {
     const correspondingOption = this.options.find((option: TsOptionComponent) => {
       try {
         // Treat null as a special reset value.

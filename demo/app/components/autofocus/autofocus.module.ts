@@ -20,7 +20,7 @@ import { TsOptionModule } from '@terminus/ui/option';
     TsCardModule,
     TsOptionModule,
     TsSelectModule,
-    TsSpacingModule
+    TsSpacingModule,
   ],
   declarations: [AutofocusComponent],
 })

@@ -1,4 +1,4 @@
-import {Type} from '@angular/core';
+import { Type } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {KEYS} from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createFakeEvent,
@@ -35,8 +35,8 @@ import { getValidationMessageElement } from '@terminus/ui/validation-messages/te
 
 import {
   TsAutocompleteModule,
-  TsAutocompletePanelSelectedEvent,
   TsAutocompletePanelComponent,
+  TsAutocompletePanelSelectedEvent,
 } from './autocomplete.module';
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -275,7 +275,7 @@ describe(`TsAutocompleteComponent`, function() {
     expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
   });
 
-  test(`should only allow string type passed in the component`, function() {
+  test(`should throw an error if non string type passed in the component`, function() {
     const fixture = createComponent<testComponents.PassingInObjectValue>(testComponents.PassingInObjectValue);
     fixture.detectChanges();
     expect(() => getAutocompleteInstance(fixture).autocompleteSelectItem(
@@ -593,7 +593,7 @@ describe(`TsAutocompleteComponent`, function() {
     });
 
 
-    describe(`Id`, function() {
+    describe(`id`, function() {
 
       test(`should support custom IDs`, () => {
         const fixture = createComponent(testComponents.OptionId);

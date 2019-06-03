@@ -366,7 +366,6 @@ export class Disabled {
 export class SelectOptionChange {
   myCtrl = new FormControl(['Texas', 'Florida']);
   options: State[] = STATES.slice(0, 10);
-  // tslint:disable: max-line-length
 
   updateOptions() {
     const otherStates: State[] = STATES.slice(10, 14);

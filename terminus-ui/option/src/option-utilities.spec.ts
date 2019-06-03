@@ -63,7 +63,7 @@ describe(`selectOptionUtilities`, function() {
 
   describe(`allOptionsAreSelected`, () => {
 
-    test(`should do something`, () => {
+    test(`should select all the options`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
       const instance = getAutocompleteInstance(fixture);
@@ -77,7 +77,7 @@ describe(`selectOptionUtilities`, function() {
 
   describe(`someOptionsAreSelected`, () => {
 
-    test(`should do something`, () => {
+    test(`should select some options`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
       const instance = getAutocompleteInstance(fixture);

@@ -21,7 +21,8 @@ import { AutocompleteComponent } from './autocomplete.component';
     TsCheckboxModule,
     TsCardModule,
     TsOptionModule,
-    TsSpacingModule],
+    TsSpacingModule,
+  ],
   declarations: [AutocompleteComponent],
 })
 export class AutocompleteModule {}
