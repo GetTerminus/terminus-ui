@@ -136,8 +136,8 @@ export class TsOptgroupComponent {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    // NOTE: Useful for testing
-    // tslint:disable-next-line
+    // NOTE: Useful for testing but not used in this file
+    // tslint:disable-next-line no-unused-variable
     public elementRef: ElementRef,
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) public parent: TsOptionParentComponent,
   ) {}
