@@ -15,7 +15,6 @@ import {
  * @param index - The index of the desired TsAutocompleteComponent
  * @return The DebugElement
  */
-
 export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllAutocompleteDebugElements(fixture);
   if (!debugElements[index]) {
@@ -47,7 +46,6 @@ export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0):
  * @param fixture - The component fixture
  * @return An array of DebugElements
  */
-
 export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-autocomplete'));
   if (!debugElements) {
@@ -62,7 +60,6 @@ export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>):
  * @param fixture - The component fixture
  * @return An array of TsAutocompleteComponent
  */
-
 export function getAllAutocompleteInstances(fixture: ComponentFixture<any>): TsAutocompleteComponent[] {
   return getAllAutocompleteDebugElements(fixture).map(v => v.componentInstance);
 }
@@ -74,7 +71,6 @@ export function getAllAutocompleteInstances(fixture: ComponentFixture<any>): TsA
  * @param index - The index of the desired TsAutocompleteComponent
  * @return The instance
  */
-
 export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 0): TsAutocompleteComponent {
   const instances = getAllAutocompleteInstances(fixture);
   if (!instances[index]) {
@@ -144,6 +140,7 @@ export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, 
  *
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
+ * @param chipIndex - The index of the desired chip
  * @return The chip element
  */
 export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): string | null {
@@ -154,7 +151,6 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
     return chipTextContent.replace(/cancel/g, '').trim();
   }
   return null;
-
 }
 
 /**
@@ -164,7 +160,6 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
  * @param index - The index of the desired TsAutocompleteComponent
  * @return The element
  */
-
 export function getAutocompleteTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getAutocompleteDebugElement(fixture, index);
   return debugElement.query(By.css('.ts-autocomplete-trigger')).nativeElement as HTMLElement;
