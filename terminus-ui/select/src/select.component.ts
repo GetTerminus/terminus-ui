@@ -2,7 +2,8 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
-  CdkConnectedOverlay, ViewportRuler,
+  CdkConnectedOverlay,
+  ViewportRuler,
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
@@ -45,24 +46,6 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
-import { TS_SPACING } from '@terminus/ui/spacing';
-import {
-  inputHasChanged, TsStyleThemeTypes,
-} from '@terminus/ui/utilities';
-import {
-  BehaviorSubject,
-  defer,
-  merge,
-  Observable,
-  of,
-  Subject,
-} from 'rxjs';
-import {
-  startWith,
-  take,
-  takeUntil,
-} from 'rxjs/operators';
-
 import {
   allOptionsAreSelected,
   countGroupLabelsBeforeOption,
@@ -74,6 +57,23 @@ import {
   TsOptionComponent,
   TsOptionSelectionChange,
 } from '@terminus/ui/option';
+import { TS_SPACING } from '@terminus/ui/spacing';
+import {
+  inputHasChanged,
+  TsStyleThemeTypes,
+} from '@terminus/ui/utilities';
+import {
+  BehaviorSubject,
+  defer,
+  merge,
+  Observable,
+  Subject,
+} from 'rxjs';
+import {
+  startWith,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 import { tsSelectAnimations } from './select-animations';
 import { TsSelectTriggerComponent } from './select-trigger.component';

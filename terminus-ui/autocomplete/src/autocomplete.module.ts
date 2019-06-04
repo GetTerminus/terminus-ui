@@ -6,8 +6,8 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatRippleModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';

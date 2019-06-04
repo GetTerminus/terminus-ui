@@ -1,7 +1,8 @@
 // tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
-  Component, NgModule,
+  Component,
+  NgModule,
 } from '@angular/core';
 import {
   FormControl,

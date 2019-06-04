@@ -1,6 +1,7 @@
 // NOTE: A method must be used to dynamically format values for the UI
 // tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -24,20 +25,8 @@ import {
   FormControl,
   NgControl,
 } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import { MatChipList } from '@angular/material';
-import {
-  BehaviorSubject,
-  of,
-  Subject,
-} from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  switchMap,
-} from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {
   hasRequiredControl,
   isString,
@@ -53,6 +42,17 @@ import {
 } from '@terminus/ui/option';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import {
+  BehaviorSubject,
+  of,
+  Subject,
+} from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from 'rxjs/operators';
 
 import {
   TsAutocompletePanelComponent,
@@ -98,7 +98,7 @@ export class TsAutocompleteChange<T = string[] | string> {
  *              displayWith="(v) => v.name"
  *              hint="Begin typing to search.."
  *              label="Select options:"
- *              multiple="(v) => v.id"
+ *              [allowMultiple]="allowMultiple"
  *              name="product selections"
  *              options="[{}, {}, ...]"
  *              [showProgress]="inProgress"
@@ -863,7 +863,7 @@ export class TsAutocompleteComponent implements OnInit,
       this.focus();
     }
 
-    // HACK: For some reason, triggering change detection works in the selection method above, but not here. Same issue seems preset in
+    // HACK: For some reason, triggering change detection works in the selection method above, but not here. Same issue seems present in
     // TsOptionComponent where `setActiveStyles` works by calling the CDR but `setInactiveStyles` required a timeout.
     setTimeout(() => {
       // Update the panel position in case the removal of a chip causes the select height to change

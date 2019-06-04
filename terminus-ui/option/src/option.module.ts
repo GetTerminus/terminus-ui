@@ -5,6 +5,7 @@ import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsInputModule } from '@terminus/ui/input';
+
 import { TsOptgroupComponent } from './optgroup.component';
 import { TsSelectOptionDisplayDirective } from './option-display.directive';
 import { TsOptionComponent } from './option.component';

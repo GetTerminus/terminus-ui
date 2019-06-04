@@ -98,14 +98,17 @@ describe(`TsAutocompleteComponent`, function() {
     const fixture = createComponent(testComponents.Autocomplete);
     fixture.detectChanges();
     const instance = getAutocompleteInstance(fixture);
+    const autocomplete = fixture.debugElement.query(By.css('.ts-autocomplete')).nativeElement;
     instance['changeDetectorRef'].markForCheck = jest.fn();
     instance.stateChanges.next = jest.fn();
 
     instance.setDisabledState(true);
+    fixture.detectChanges();
 
     expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
     expect(instance.stateChanges.next).toHaveBeenCalled();
     expect(instance.isDisabled).toEqual(true);
+    expect(autocomplete.classList).toContain('ts-autocomplete--disabled');
   });
 
   describe(`chips`, function() {

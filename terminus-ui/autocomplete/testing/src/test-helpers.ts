@@ -31,7 +31,6 @@ export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, inde
  * @param index - The index of the desired TsAutocompleteComponent
  * @return The input element
  *
- *
  */
 export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
   const debugElement = getAutocompleteDebugElement(fixture, index);

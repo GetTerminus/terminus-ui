@@ -14,9 +14,7 @@ import { TsIconModule } from '@terminus/ui/icon';
 import { TsInputModule } from '@terminus/ui/input';
 import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 
-import {
-  TsOptgroupComponent, TsOptionModule,
-} from '@terminus/ui/option';
+import {TsOptionModule} from '@terminus/ui/option';
 import { TsSelectTriggerComponent } from './select-trigger.component';
 import { TsSelectComponent } from './select.component';
 
