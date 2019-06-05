@@ -5,7 +5,11 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
-import { ComponentFixture } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 
 import { TsAmChartsService } from './amcharts.service';
@@ -47,14 +51,15 @@ describe(`ChartComponent`, function() {
     });
 
 
-    test(`should call to initialize the chart if amCharts exists`, () => {
+    test(`should call to initialize the chart if amCharts exists`, fakeAsync(() => {
       const fixture = createComponent(SimpleHost);
       fixture.detectChanges();
       fixture.componentInstance.component['init'] = jest.fn();
       fixture.componentInstance.component.ngOnInit();
+      tick();
 
       expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('xy');
-    });
+    }));
 
   });
 
@@ -79,13 +84,14 @@ describe(`ChartComponent`, function() {
 
   describe(`ngOnDestroy`, () => {
 
-    test(`should destroy the chart`, () => {
+    test(`should destroy the chart`, fakeAsync(() => {
       const fixture = createComponent(SimpleHost);
       fixture.detectChanges();
+      tick();
       fixture.componentInstance.component.ngOnDestroy();
 
       expect(fixture.componentInstance.component.chart.dispose).toHaveBeenCalled();
-    });
+    }));
 
   });
 
