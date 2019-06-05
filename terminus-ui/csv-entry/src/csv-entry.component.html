@@ -75,7 +75,6 @@
                 class="c-csv-entry__input qa-csv-entry-cell"
                 [class.c-csv-entry__input--invalid]="c.invalid"
                 type="text"
-                placeholder="{{ recordIndex === 0 ? 'Hi ho, Silver!' : '' }}"
                 title="Row: {{ record.controls?.recordId?.value + 1 }}, Column: {{ getHeaderCellName(columnIndex) || columnIndex + 1 }}"
                 [attr.id]="createId(recordIndex, columnIndex)"
                 [formControlName]="columnIndex"
