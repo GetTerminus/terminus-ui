@@ -1,3 +1,14 @@
+## 13.0.0 (2019-06-05)
+
+* fix(Select): split autocomplete and select into seperate components ([8f81e2d](https://github.com/GetTerminus/terminus-ui/commit/8f81e2d))
+* 1444 split select & autocomplete ([314df47](https://github.com/GetTerminus/terminus-ui/commit/314df47))
+
+
+### BREAKING CHANGE
+
+* Select no longer supports autocomplete functionality. The deprecated autocomplete component now has
+been updated and un-deprecated.
+
 ## <small>12.1.7 (2019-06-05)</small>
 
 * fix(Chart): chart now renders after first tick ([d943224](https://github.com/GetTerminus/terminus-ui/commit/d943224)), closes [#1324](https://github.com/GetTerminus/terminus-ui/issues/1324)
