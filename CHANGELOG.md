@@ -1,3 +1,16 @@
+## <small>12.1.7 (2019-06-05)</small>
+
+* fix(Chart): chart now renders after first tick ([d943224](https://github.com/GetTerminus/terminus-ui/commit/d943224)), closes [#1324](https://github.com/GetTerminus/terminus-ui/issues/1324)
+* revert(CSVEntry): remove placeholder experiment ([8d90318](https://github.com/GetTerminus/terminus-ui/commit/8d90318)), closes [#1533](https://github.com/GetTerminus/terminus-ui/issues/1533)
+* chore(SCSS): created skeleton for testing SCSS (#1521) ([cde99e3](https://github.com/GetTerminus/terminus-ui/commit/cde99e3)), closes [#1521](https://github.com/GetTerminus/terminus-ui/issues/1521) [#952](https://github.com/GetTerminus/terminus-ui/issues/952)
+* chore(CI): doctoc now running on smaller set of directories and files (#1523) ([4c972fa](https://github.com/GetTerminus/terminus-ui/commit/4c972fa)), closes [#1523](https://github.com/GetTerminus/terminus-ui/issues/1523) [#1341](https://github.com/GetTerminus/terminus-ui/issues/1341)
+* chore(Navigation): documentation elaborated ([47ff01d](https://github.com/GetTerminus/terminus-ui/commit/47ff01d)), closes [#1265](https://github.com/GetTerminus/terminus-ui/issues/1265)
+* chore: remove outdated issue templates (#1525) ([f58583a](https://github.com/GetTerminus/terminus-ui/commit/f58583a)), closes [#1525](https://github.com/GetTerminus/terminus-ui/issues/1525)
+* chore: update contributors (#1522) ([582c20e](https://github.com/GetTerminus/terminus-ui/commit/582c20e)), closes [#1522](https://github.com/GetTerminus/terminus-ui/issues/1522)
+* test(Navigation): add missing test for trackBy ([982ac02](https://github.com/GetTerminus/terminus-ui/commit/982ac02))
+* test(Confirmation): add test for missed paths ([def2b6b](https://github.com/GetTerminus/terminus-ui/commit/def2b6b))
+* test: explicitly collect coverage from directives ([76cb6d8](https://github.com/GetTerminus/terminus-ui/commit/76cb6d8)), closes [#1480](https://github.com/GetTerminus/terminus-ui/issues/1480)
+
 ## <small>12.1.6 (2019-05-20)</small>
 
 * fix(Navigation): clone navigation object to prevent mutation of original ([00fde32](https://github.com/GetTerminus/terminus-ui/commit/00fde32))
