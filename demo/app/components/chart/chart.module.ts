@@ -9,6 +9,7 @@ import {
 } from '@terminus/ui/chart';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsOptionModule } from '@terminus/ui/option';
 
 /**
  * Start amCharts config
@@ -18,6 +19,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4themes_material from '@amcharts/amcharts4/themes/animated';
+
 export function amChartsFactory(): TsAmChartsToken {
   return {
     core: am4core,
@@ -41,6 +43,7 @@ import { ChartComponent } from './chart.component';
     FormsModule,
     TsCardModule,
     TsChartModule,
+    TsOptionModule,
     TsSelectModule,
     TsSpacingModule,
   ],

@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsInputModule } from '@terminus/ui/input';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 
@@ -21,6 +22,7 @@ import { InputComponent } from './input.component';
     ReactiveFormsModule,
     TsCardModule,
     TsInputModule,
+    TsOptionModule,
     TsSelectModule,
     TsSpacingModule,
   ],

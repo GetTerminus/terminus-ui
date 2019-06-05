@@ -1,4 +1,3 @@
-// NOTE: Our templates need to call a method to use the `chipFormatUIFn` if one exists
 // tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -34,10 +33,8 @@ import {
   NgControl,
 } from '@angular/forms';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
-import { MatChipList } from '@angular/material/chips';
 import {
   hasRequiredControl,
-  isFunction,
   isString,
   isUndefined,
   TsDocumentService,
@@ -49,10 +46,20 @@ import {
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
+import {
+  allOptionsAreSelected,
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
+  someOptionsAreSelected,
+  toggleAllOptions,
+  TS_OPTION_PARENT_COMPONENT,
+  TsOptgroupComponent,
+  TsOptionComponent,
+  TsOptionSelectionChange,
+} from '@terminus/ui/option';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   inputHasChanged,
-  isMouseEvent,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
 import {
@@ -60,37 +67,14 @@ import {
   defer,
   merge,
   Observable,
-  of,
   Subject,
 } from 'rxjs';
 import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
   startWith,
-  switchMap,
   take,
   takeUntil,
 } from 'rxjs/operators';
 
-import {
-  TsAutocompletePanelComponent,
-  TsAutocompletePanelSelectedEvent,
-} from './autocomplete/autocomplete-panel.component';
-import { TsAutocompleteTriggerDirective } from './autocomplete/autocomplete-trigger.directive';
-import { TsSelectOptgroupComponent } from './optgroup/optgroup.component';
-import {
-  allOptionsAreSelected,
-  countGroupLabelsBeforeOption,
-  getOptionScrollPosition,
-  someOptionsAreSelected,
-  toggleAllOptions,
-} from './option/option-utilities';
-import {
-  TS_OPTION_PARENT_COMPONENT,
-  TsOptionSelectionChange,
-  TsSelectOptionComponent,
-} from './option/option.component';
 import { tsSelectAnimations } from './select-animations';
 import { TsSelectTriggerComponent } from './select-trigger.component';
 
@@ -105,13 +89,14 @@ export const SELECT_PANEL_MAX_HEIGHT = 256;
 
 // The panel's padding on the x-axis
 export const SELECT_PANEL_PADDING_X = 16;
+const SELECT_ITEM_HEIGHT = 3;
 
 // The panel's x axis padding if it is indented (e.g. there is an option group)
 // eslint-disable-next-line no-magic-numbers
 export const SELECT_PANEL_INDENT_PADDING_X = SELECT_PANEL_PADDING_X * 2;
 
 // The height of the select items in `em` units
-export const SELECT_ITEM_HEIGHT_EM = 3;
+export const SELECT_ITEM_HEIGHT_EM = SELECT_ITEM_HEIGHT;
 
 /**
  * Distance between the panel edge and the option text in multi-selection mode.
@@ -128,8 +113,6 @@ export const SELECT_MULTIPLE_PANEL_PADDING_X = 0;
  */
 export const SELECT_PANEL_VIEWPORT_PADDING = 8;
 
-const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
-const DEFAULT_DEBOUNCE_DELAY = 200;
 const DEFAULT_DELIMITER = ',';
 
 /**
@@ -143,9 +126,9 @@ export type TsSelectFormatFn = (v: unknown) => string;
  * Function used to sort the values ina aselect in multiple mode. Follows the same logic as `Array.prototype.sort`.
  */
 export type TsSelectSortComparatorFunction = (
-  a: TsSelectOptionComponent,
-  b: TsSelectOptionComponent,
-  options: TsSelectOptionComponent[],
+  a: TsOptionComponent,
+  b: TsOptionComponent,
+  options: TsOptionComponent[],
 ) => number;
 
 /**
@@ -166,8 +149,8 @@ export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
 /**
  * The event object that is emitted when the select value has changed
  */
-export class TsSelectChange<T = unknown> {
-  public constructor(
+export class TsSelectChange<T = string | string[]> {
+  constructor(
     // Reference to the select that emitted the change event
     public source: TsSelectComponent,
     // The current value
@@ -195,21 +178,14 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  * - `qa-select-trigger`: The trigger that opens the select
  * - `qa-select-value-text`: The container for the select trigger text content
  * - `qa-select-arrow-wrapper`: The container for the select arrow
- * - `qa-autocomplete-chip`: An individual chip in autocomplete mode
- * - `qa-select-autocomplete-input`: The autocomplete input
- * - `qa-select-panel`: The panel for select options when not in autocomplete mode
+ * - `qa-select-panel`: The panel for select options
  * - `qa-select-toggle-all`: The checkbox to toggle all selections
  * - `qa-select-selected-count`: The current count of selected items
- * - `qa-select-autocomplete-spinner`: The progress spinner used in the autocomplete input
  *
  * @example
  * <ts-select
  *              [allowMultiple]="true"
- *              [autocomplete]="true"
- *              [autocompleteAllowDuplicateSelections]="true"
- *              [autocompleteReopenAfterSelection]="true"
  *              [compareWith]="myCompareFn"
- *              debounceDelay="400"
  *              delimiter=","
  *              [hideRequiredMarker]="true"
  *              hint="My hint!"
@@ -218,11 +194,9 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  *              [isFilterable]="true"
  *              [isRequired]="true"
  *              label="My label!"
- *              minimumCharacters="3"
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
  *              [sortComparator]="myComparator"
- *              [chipFormatUIFn]="myUIFormatter"
  *              tabIndex="-1"
  *              theme="primary"
  *              [validateOnChange]="true"
@@ -247,7 +221,6 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
     'class': 'ts-select',
     '[class.ts-select--required]': 'isRequired',
     '[class.ts-select--disabled]': 'isDisabled',
-    '[class.ts-select--autocomplete]': '!!autocomplete',
     '[attr.aria-owns]': 'panelOpen ? optionIds : null',
     '[attr.aria-required]': 'isRequired.toString()',
     '[attr.aria-multiselectable]': 'allowMultiple',
@@ -282,18 +255,6 @@ export class TsSelectComponent implements
   OnChanges,
   OnDestroy,
   TsFormFieldControl<unknown> {
-  /**
-   * The FormControl to store selections in autocomplete mode
-   *
-   * NOTE: Currently we need two different selection collections due to how the SelectionModel works. This can likely be aligned at a later
-   * date.
-   */
-  public autocompleteFormControl = new FormControl([]);
-
-  /**
-   * An array of selected values in autocomplete mode
-   */
-  public autocompleteSelections: string[] = [];
 
   /**
    * Store a reference to the document object
@@ -315,7 +276,7 @@ export class TsSelectComponent implements
   /**
    * Manages keyboard events for options in the panel.
    */
-  private keyManager!: ActiveDescendantKeyManager<TsSelectOptionComponent>;
+  private keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
    * The y-offset of the overlay panel in relation to the trigger's top start corner.
@@ -381,12 +342,10 @@ export class TsSelectComponent implements
   public searchQuery = '';
 
   /**
-   * Manage selections when not in autocomplete mode.
+   * Manage selections
    *
-   * NOTE: Currently we need two different selection collections due to how the SelectionModel works. This can likely be aligned with
-   * autocomplete mode at a later date.
    */
-  public selectionModel!: SelectionModel<TsSelectOptionComponent>;
+  public selectionModel!: SelectionModel<TsOptionComponent>;
 
   // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
   // Instead, we pass it manually through the template with this reference.
@@ -433,24 +392,6 @@ export class TsSelectComponent implements
    */
 
   /**
-   * Access the trigger that opens the autocomplete
-   */
-  @ViewChild('auto')
-  public autocompletePanel!: TsAutocompletePanelComponent;
-
-  /**
-   * Access the trigger that opens the autocomplete
-   */
-  @ViewChild(TsAutocompleteTriggerDirective)
-  public autocompleteTrigger!: TsAutocompleteTriggerDirective;
-
-  /**
-   * Access to the chip list in autocomplete mode
-   */
-  @ViewChild('chipList')
-  public chipList: MatChipList | undefined;
-
-  /**
    * Access the container element
    */
   @ViewChild('containerElement')
@@ -483,14 +424,14 @@ export class TsSelectComponent implements
   /**
    * Access a list of all the defined select options
    */
-  @ContentChildren(TsSelectOptionComponent, {descendants: true})
-  public options!: QueryList<TsSelectOptionComponent>;
+  @ContentChildren(TsOptionComponent, { descendants: true })
+  public options!: QueryList<TsOptionComponent>;
 
   /**
    * Access all of the defined groups of options
    */
-  @ContentChildren(TsSelectOptgroupComponent)
-  public optionGroups!: QueryList<TsSelectOptgroupComponent>;
+  @ContentChildren(TsOptgroupComponent)
+  public optionGroups!: QueryList<TsOptgroupComponent>;
 
   /**
    * Access the overlay pane containing the options
@@ -520,9 +461,7 @@ export class TsSelectComponent implements
    * Whether the select has a value
    */
   public get empty(): boolean {
-    const emptySelect = !this.autocomplete && this.selectionModel && this.selectionModel.isEmpty();
-    const emptyAutocomplete = this.autocomplete && !this.autocompleteFormControl.value.length;
-    return emptySelect || emptyAutocomplete;
+    return this.selectionModel && this.selectionModel.isEmpty();
   }
 
   /**
@@ -574,18 +513,13 @@ export class TsSelectComponent implements
       const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
       return selectedOptions.join(`${this.delimiter} `);
     }
-
-    if (this.autocomplete) {
-      return this.autocompleteFormControl.value;
-    }
     return this.selectionModel.selected[0].viewValue;
-
   }
 
   /**
    * The currently selected option or options
    */
-  public get selected(): TsSelectOptionComponent | TsSelectOptionComponent[] {
+  public get selected(): TsOptionComponent | TsOptionComponent[] {
     return this.allowMultiple ? this.selectionModel.selected : this.selectionModel.selected[0];
   }
 
@@ -599,46 +533,6 @@ export class TsSelectComponent implements
    */
   @Input()
   public allowMultiple = false;
-
-  /**
-   * Define if the select should be in autocomplete mode
-   */
-  @Input()
-  public autocomplete = false;
-
-  /**
-   * Define if the autocomplete should allow duplicate selections
-   */
-  @Input()
-  public autocompleteAllowDuplicateSelections = false;
-
-  /**
-   * Define if the autocomplete panel should reopen after a selection is made
-   *
-   * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.
-   */
-  @Input()
-  public autocompleteReopenAfterSelection = false;
-
-  /**
-   * Define a function to retrieve the UI value for an option
-   */
-  @Input()
-  public set chipFormatUIFn(value: TsSelectFormatFn) {
-    if (!value) {
-      return;
-    }
-
-    if (isFunction(value)) {
-      this._chipFormatUIFn = value;
-    } else if (isDevMode()) {
-      throw Error(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
-    }
-  }
-  public get chipFormatUIFn(): TsSelectFormatFn {
-    return this._chipFormatUIFn;
-  }
-  private _chipFormatUIFn!: TsSelectFormatFn;
 
   /**
    * Function to compare the option values with the selected values. The first argument
@@ -666,18 +560,6 @@ export class TsSelectComponent implements
     return this._compareWith;
   }
   private _compareWith: TsSelectOptionCompareWith = DEFAULT_COMPARE_WITH;
-
-  /**
-   * Define a debounce delay for the query stream
-   */
-  @Input()
-  public set debounceDelay(value: number) {
-    this._debounceDelay = coerceNumberProperty(value, DEFAULT_DEBOUNCE_DELAY);
-  }
-  public get debounceDelay(): number {
-    return this._debounceDelay;
-  }
-  private _debounceDelay = DEFAULT_DEBOUNCE_DELAY;
 
   /**
    * Define the delimiter used in the list of selected options
@@ -758,18 +640,6 @@ export class TsSelectComponent implements
     return this._label;
   }
   private _label: string | undefined;
-
-  /**
-   * Define a minimum character count for queries
-   */
-  @Input()
-  public set minimumCharacters(value: number) {
-    this._minimumCharacters = coerceNumberProperty(value, DEFAULT_MINIMUM_CHARACTER_COUNT);
-  }
-  public get minimumCharacters(): number {
-    return this._minimumCharacters;
-  }
-  private _minimumCharacters = DEFAULT_MINIMUM_CHARACTER_COUNT;
 
   /**
    * Placeholder to be shown if no value has been selected
@@ -874,7 +744,7 @@ export class TsSelectComponent implements
   public readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
-   * Event for when the autocomplete query has changed
+   * Event for when the query has changed
    */
   @Output()
   public readonly queryChange: EventEmitter<string> = new EventEmitter();
@@ -892,10 +762,10 @@ export class TsSelectComponent implements
    * Needed for {@link TsFormFieldComponent}.
    */
   @Output()
-  public readonly valueChange: EventEmitter<unknown> = new EventEmitter<unknown>();
+  public readonly valueChange: EventEmitter<string | string[]> = new EventEmitter<string | string[]>();
 
 
-  public constructor(
+  constructor(
     private viewportRuler: ViewportRuler,
     private changeDetectorRef: ChangeDetectorRef,
     private ngZone: NgZone,
@@ -919,73 +789,27 @@ export class TsSelectComponent implements
    */
   public ngOnInit(): void {
     // TODO: re-initialize the selection model if this.allowMultiple changes (rather than throw error like material)
-    this.selectionModel = new SelectionModel<TsSelectOptionComponent>(this.allowMultiple);
+    this.selectionModel = new SelectionModel<TsOptionComponent>(this.allowMultiple);
 
-    // Seed the control value in autocomplete mode
+    // Seed the control value
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
     // We need to push it to the next event loop. When using a FormControl the value is there on the first run.
+    // istanbul ignore else
     // eslint-disable-next-line dot-notation
     if (this.ngControl && this.ngControl['form']) {
-      // istanbul ignore else
-      if (this.autocomplete && this.ngControl.value) {
-        this.autocompleteFormControl.setValue(this.ngControl.value);
-        this.autocompleteSelections = this.ngControl.value;
-      }
-
       // Support dynamic form control updates
       // istanbul ignore else
       if (this.ngControl.valueChanges) {
         this.ngControl.valueChanges
           .pipe(untilComponentDestroyed(this))
           .subscribe(newValue => {
-
             // istanbul ignore else
             if (newValue) {
-              if (this.autocomplete) {
-                this.autocompleteFormControl.setValue(newValue, {emitEvent: false});
-                this.autocompleteSelections = this.ngControl.value;
-              } else {
-                this.setSelectionByValue(newValue);
-              }
+              this.setSelectionByValue(newValue);
             }
           });
       }
-    } else {
-      // HACK: Wait until the next detection cycle to set the value from an ngModel.
-      // NOTE: Using CDR.detectChanges causes errors in children that expect TsSelectOptionComponents to exist.
-      setTimeout(() => {
-        // istanbul ignore else
-        if (this.autocomplete && this.ngControl && this.ngControl.value) {
-          this.autocompleteFormControl.setValue(this.ngControl.value);
-          this.autocompleteSelections = this.ngControl.value;
-        }
-      });
     }
-
-    // Take a stream of query changes
-    this.querySubject.pipe(
-      untilComponentDestroyed(this),
-      // Debounce the query changes
-      debounceTime(this.debounceDelay),
-      // If the query is shorter than allowed, convert to an empty string
-      switchMap(query => of((query && (query.length >= this.minimumCharacters)) ? query : '')),
-      // Only allow a query through if it is different from the previous query
-      distinctUntilChanged(),
-    ).subscribe((query: string) => {
-      // NOTE: When an option is selected, the full string value comes through this stream. We are checking the stream value against the
-      // input element value to verify we are sending a query rather than a selected option.
-      const inputValue = this.inputElement.nativeElement.value;
-      const queryIsValid = (query === inputValue) || (query === '');
-
-      this.queryChange.emit(queryIsValid ? query : inputValue);
-    });
-
-    // Propagate changes from the autocomplete form control
-    this.autocompleteFormControl.valueChanges.pipe(
-      untilComponentDestroyed(this),
-    ).subscribe(v => {
-      this.propagateChanges(v);
-    });
   }
 
 
@@ -996,6 +820,7 @@ export class TsSelectComponent implements
     this.initKeyManager();
 
     // NOTE: Known bug: This event will come through twice for each selection.
+    // NOTE: Selection model is created during OnInit so it cannot be null here
     this.selectionModel.changed.pipe(
       untilComponentDestroyed(this),
     ).subscribe(event => {
@@ -1009,13 +834,10 @@ export class TsSelectComponent implements
         this.optionDeselected.emit(new TsSelectChange(this, option.value));
       });
     });
-    // tslint:enable: no-non-null-assertion
 
     // If the array changes, reset options
     this.options.changes.pipe(
       startWith(null),
-      // Stop this initialization when in autocomplete mode
-      filter(() => !this.autocomplete),
       untilComponentDestroyed(this),
     ).subscribe(() => {
       this.resetOptions();
@@ -1096,11 +918,8 @@ export class TsSelectComponent implements
     // Set the font size on the panel element once it exists.
     this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
       // istanbul ignore else
-      if (!this.autocomplete) {
-        // istanbul ignore else
-        if (this.triggerFontSize && this.overlayDir.overlayRef && this.overlayDir.overlayRef.overlayElement) {
-          this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
-        }
+      if (this.triggerFontSize && this.overlayDir.overlayRef && this.overlayDir.overlayRef.overlayElement) {
+        this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
       }
 
       this.optionRect = this.options.first.elementRef.nativeElement.getBoundingClientRect();
@@ -1228,7 +1047,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Drops current option subscriptions and IDs and resets from scratch
    */
@@ -1237,10 +1055,7 @@ export class TsSelectComponent implements
       takeUntil(this.options.changes),
       untilComponentDestroyed(this),
     ).subscribe(event => {
-      // istanbul ignore else
-      if (!this.autocomplete) {
-        this.onSelect(event.source, event.isUserInput);
-      }
+      this.onSelect(event.source, event.isUserInput);
 
       // istanbul ignore else
       if (event.isUserInput && !this.allowMultiple && this.panelOpen) {
@@ -1267,7 +1082,7 @@ export class TsSelectComponent implements
    * @param option - The selected option
    * @param isUserInput - Whether this selection happened from a user's click
    */
-  private onSelect(option: TsSelectOptionComponent, isUserInput: boolean): void {
+  private onSelect(option: TsOptionComponent, isUserInput: boolean): void {
     const wasSelected = this.selectionModel.isSelected(option);
 
     // If not in multiple selection mode, clear any existing selection first
@@ -1291,7 +1106,7 @@ export class TsSelectComponent implements
           // In case the user selected the option with their mouse, we
           // want to restore focus back to the trigger, in order to
           // prevent the select keyboard controls from clashing with
-          // the ones from `TsSelectOptionComponent`.
+          // the ones from `TsOptionComponent`.
           this.focus();
         }
       }
@@ -1318,19 +1133,12 @@ export class TsSelectComponent implements
    * Set up a key manager to listen to keyboard events on the overlay panel
    */
   private initKeyManager(): void {
-    // If this is an autocomplete instance we need to initialize with wrapping turned on
-    if (this.autocomplete) {
-      this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
-        .withTypeAhead()
-        .withVerticalOrientation()
-        .withHorizontalOrientation('ltr')
-        .withWrap();
-    } else {
-      this.keyManager = new ActiveDescendantKeyManager<TsSelectOptionComponent>(this.options)
-        .withTypeAhead()
-        .withVerticalOrientation()
-        .withHorizontalOrientation('ltr');
-    }
+
+    this.keyManager = new ActiveDescendantKeyManager<TsOptionComponent>(this.options)
+      .withTypeAhead()
+      .withVerticalOrientation()
+      .withHorizontalOrientation('ltr');
+
 
     this.keyManager.tabOut.pipe(
       untilComponentDestroyed(this),
@@ -1354,15 +1162,10 @@ export class TsSelectComponent implements
   /**
    * Focus the correct element
    *
-   * When in autocomplete mode we should focus the text input.
    * When in standard select mode we should focus the select itself.
    */
   public focus(): void {
-    if (this.autocomplete) {
-      this.inputElement.nativeElement.focus();
-    } else {
-      this.elementRef.nativeElement.focus();
-    }
+    this.elementRef.nativeElement.focus();
   }
 
 
@@ -1393,14 +1196,12 @@ export class TsSelectComponent implements
    * @param fallbackValue - A fallback value to use when no selection exists
    */
   private propagateChanges(fallbackValue?: unknown): void {
-    let valueToEmit: unknown = null;
+    let valueToEmit: string | string[];
 
-    if (this.autocomplete) {
-      valueToEmit = this.autocompleteFormControl.value;
-    } else if (this.allowMultiple) {
-      valueToEmit = (this.selected as TsSelectOptionComponent[]).map(option => option.value);
+    if (this.allowMultiple) {
+      valueToEmit = (this.selected as TsOptionComponent[]).map(option => option.value);
     } else {
-      valueToEmit = this.selected ? (this.selected as TsSelectOptionComponent).value : fallbackValue;
+      valueToEmit = this.selected ? (this.selected as TsOptionComponent).value : fallbackValue;
     }
 
     this.value = valueToEmit;
@@ -1484,12 +1285,11 @@ export class TsSelectComponent implements
    *
    * @param value - The value to use to look up options
    */
-  // tslint:disable-next-line no-any
-  private setSelectionByValue(value: any | any[]): void {
+  private setSelectionByValue(value: string | string[]): void {
     if (this.allowMultiple && value) {
       value = coerceArray(value);
       this.selectionModel.clear();
-      value.forEach((currentValue: unknown) => this.selectOptionByValue(currentValue));
+      value.forEach((currentValue: string) => this.selectOptionByValue(currentValue));
       this.sortValues();
     } else {
       this.selectionModel.clear();
@@ -1512,8 +1312,8 @@ export class TsSelectComponent implements
    * @param value - The value to use when searching for a matching option
    * @return Option that has the corresponding value
    */
-  private selectOptionByValue(value: unknown): TsSelectOptionComponent | undefined {
-    const correspondingOption = this.options.find((option: TsSelectOptionComponent) => {
+  private selectOptionByValue(value: string | string[]): TsOptionComponent | undefined {
+    const correspondingOption = this.options.find((option: TsOptionComponent) => {
       try {
         // Treat null as a special reset value.
         return option.value != null && this.compareWith(option.value,  value);
@@ -1539,8 +1339,8 @@ export class TsSelectComponent implements
    * Scroll the active option into view
    */
   private scrollActiveOptionIntoView(): void {
-    const activeOptionIndex = this.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
+    const activeOptionIndex: number = this.keyManager.activeItemIndex || 0;
+    const labelCount: number = countGroupLabelsBeforeOption(activeOptionIndex, this.options, this.optionGroups);
     const total = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this.itemHeight,
@@ -1556,10 +1356,6 @@ export class TsSelectComponent implements
    * Calculate the scroll position and x- and y- offsets of the overlay panel
    */
   private calculateOverlayPosition(): void {
-    // Not needed when in autocomplete mode
-    if (this.autocomplete) {
-      return;
-    }
     const itemHeight = this.itemHeight;
     const items = this.itemCount;
     const panelHeight = Math.min(items * itemHeight, SELECT_PANEL_MAX_HEIGHT);
@@ -1638,16 +1434,19 @@ export class TsSelectComponent implements
       const firstDisplayedIndex = this.itemCount - maxOptionsDisplayed;
       const selectedDisplayIndex = selectedIndex - firstDisplayedIndex;
 
-      // The first item is partially out of the viewport. Therefore we need to calculate what portion of it is shown in the viewport and
-      // account for it in our offset.
+      // The first item is partially out of the viewport. Therefore we need to calculate what
+      // portion of it is shown in the viewport and account for it in our offset.
       const partialItemHeight = itemHeight - (((this.itemCount * itemHeight) - SELECT_PANEL_MAX_HEIGHT) % itemHeight);
 
-      // Because the panel height is longer than the height of the options alone, there is always extra padding at the top or bottom of the
-      // panel. When scrolled to the very bottom, this padding is at the top of the panel and must be added to the offset.
+      // Because the panel height is longer than the height of the options alone,
+      // there is always extra padding at the top or bottom of the panel. When
+      // scrolled to the very bottom, this padding is at the top of the panel and
+      // must be added to the offset.
       optionOffsetFromPanelTop = (selectedDisplayIndex * itemHeight) + partialItemHeight;
     } else {
-      // If the option was scrolled to the middle of the panel using a scroll buffer, its offset will be the scroll buffer minus the half
-      // height that was added to center it.
+      // If the option was scrolled to the middle of the panel using a scroll buffer,
+      // its offset will be the scroll buffer minus the half height that was added to
+      // center it.
       // eslint-disable-next-line no-magic-numbers
       optionOffsetFromPanelTop = scrollBuffer - (itemHeight / 2);
     }
@@ -1771,8 +1570,8 @@ export class TsSelectComponent implements
    * @param option - The option whose index should be found
    * @return The index of the option
    */
-  private getOptionIndex(option: TsSelectOptionComponent): number | undefined {
-    return this.options.reduce((result: number | undefined, current: TsSelectOptionComponent, index: number) => {
+  private getOptionIndex(option: TsOptionComponent): number | undefined {
+    return this.options.reduce((result: number | undefined, current: TsOptionComponent, index: number) => {
       // eslint-disable-next-line no-undefined
       const optionIndexIfCurrent = option === current ? index : undefined;
       return isUndefined(result) ? optionIndexIfCurrent : result;
@@ -1816,9 +1615,8 @@ export class TsSelectComponent implements
   public onContainerClick(): void {
     this.focus();
 
-    // Don't open on click when in autocomplete mode
     // istanbul ignore else
-    if (!this.autocomplete && !this.isDisabled) {
+    if (!this.isDisabled) {
       this.open();
     }
   }
@@ -1839,7 +1637,6 @@ export class TsSelectComponent implements
    *
    * This allows us to manually scroll to display options above or below the fold, as they are not actually being focused when active.
    *
-   * Implemented as part of autocomplete.
    *
    * @param scrollTop - The number to set scrollTop to
    */
@@ -1848,168 +1645,6 @@ export class TsSelectComponent implements
     if (this.panel) {
       this.panel.nativeElement.scrollTop = scrollTop;
     }
-  }
-
-
-  /**
-   * Close the dropdown and reset the query when the user leaves the input
-   *
-   * @param event - The keyboard or mouse event
-   */
-  public handleInputBlur(event: KeyboardEvent | MouseEvent): void {
-    if (isMouseEvent(event)) {
-      // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
-      // will be `TS_SELECT_OPTION`.
-      // istanbul ignore else
-      // NOTE: TypeScript warns `Property 'nodeName' does not exist on type 'EventTarget'.`
-      // tslint:disable-next-line no-any
-      if ((event.relatedTarget as any).nodeName !== 'TS-SELECT-OPTION') {
-        this.resetAutocompleteQuery();
-      }
-    } else if (this.autocompleteTrigger.panelOpen) {
-      this.autocompleteTrigger.closePanel(true);
-    }
-
-    // Mark this control as 'touched' to trigger any validations needed on blur
-    this.onTouched();
-    this.updateValueAndValidity();
-  }
-
-
-  /**
-   * Reset the autocomplete input
-   */
-  private resetAutocompleteQuery(): void {
-    // Deselect the option from the key manager
-    this.keyManager.updateActiveItem(-1);
-
-    // Clear the autocomplete input
-    // NOTE: I am not sure why simply setting `searchQuery` to an empty string doesn't work. It seems the model is not updated (even with
-    // manual change detection).
-    this.inputElement.nativeElement.value = '';
-  }
-
-
-  /**
-   * Select an autocomplete item
-   *
-   * @param selection - The item to select
-   */
-  public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
-    const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
-
-    // istanbul ignore else
-    if (isDuplicate) {
-      this.duplicateSelection.emit(selection.option.value);
-    }
-
-    // Stop the flow if the selection already exists in the array and duplicates aren't allowed
-    if (!this.autocompleteAllowDuplicateSelections && isDuplicate) {
-      return;
-    }
-
-    if (this.allowMultiple) {
-      // If supporting multiple selections, reset the input text value as long as the panel should NOT reopen
-      // istanbul ignore else
-      if (!this.autocompleteReopenAfterSelection) {
-        this.resetAutocompleteQuery();
-      }
-
-      // Add to the collection
-      const newSelection = this.autocompleteSelections.slice();
-      newSelection.push(selection.option.value);
-      this.autocompleteSelections = newSelection;
-
-      // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-    } else {
-      // Update the selected value
-      this.autocompleteSelections = [selection.option.value];
-
-      // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-
-      // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.chipFormatUIFn
-        ? this.retrieveValue(this.autocompleteFormControl.value[0], this.chipFormatUIFn) : this.autocompleteFormControl.value[0];
-      this.inputElement.nativeElement.value = newValue;
-    }
-
-    // Update the panel position in case the addition of a chip causes the select height to change
-    // istanbul ignore else
-    if (this.autocompleteTrigger.overlayRef) {
-      this.autocompleteTrigger.overlayRef.updatePosition();
-      this.changeDetectorRef.detectChanges();
-    }
-
-    // Notify consumers about changes
-    this.optionSelected.emit(new TsSelectChange(this, selection.option.value));
-    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections));
-  }
-
-
-  /**
-   * Deselect an autocomplete item
-   *
-   * @param value - The value of the item to remove
-   */
-  public autocompleteDeselectItem(value: string): void {
-    // Find the key of the selection in the selectedOptions array
-    const index = this.autocompleteSelections.indexOf(value);
-    const selections = this.autocompleteSelections.slice();
-    // If not found
-    if (index < 0) {
-      return;
-    }
-
-    // Remove the selection from the selectedOptions array
-    selections.splice(index, 1);
-    this.autocompleteSelections = selections;
-
-    // Update the form control
-    this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
-
-    // If the only chip was removed, re-focus the input
-    // istanbul ignore else
-    if (this.autocompleteSelections.length < 1) {
-      this.focus();
-    }
-
-    // HACK: For some reason, triggering change detection works in the selection method above, but not here. Same issue seems preset in
-    // TsSelectOptionComponent where `setActiveStyles` works by calling the CDR but `setInactiveStyles` required a timeout.
-    setTimeout(() => {
-      // Update the panel position in case the removal of a chip causes the select height to change
-      if (this.autocompleteTrigger.overlayRef) {
-        this.autocompleteTrigger.overlayRef.updatePosition();
-      }
-    });
-
-    // Notify consumers about changes
-    this.optionDeselected.emit(new TsSelectChange(this, value));
-    this.selectionChange.emit(new TsSelectChange(this, this.autocompleteSelections.slice()));
-  }
-
-
-  /**
-   * Retrieve a value determined by the passed in formatter
-   *
-   * @param option - The select option
-   * @param formatter - The formatter function used to retrieve the value
-   * @return The retrieved value
-   */
-  public retrieveValue(option: unknown, formatter?: TsSelectFormatFn): unknown {
-    return (formatter && formatter(option)) ? formatter(option) : option;
-  }
-
-
-  /**
-   * Function for tracking for-loops changes
-   *
-   * @param index - The item index
-   * @return The unique ID
-   */
-  public trackByFn(index): number {
-    return index;
   }
 
 }

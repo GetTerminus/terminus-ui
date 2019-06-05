@@ -11,14 +11,8 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
-import {
-  TsOptionComponent,
-  TsOptionModule,
-} from '@terminus/ui/option';
-import {
-  TsSelectModule,
-  TsSelectSortComparatorFunction,
-} from '@terminus/ui/select';
+import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
+import { TsOptionModule } from '@terminus/ui/option';
 
 
 interface State {
@@ -162,228 +156,178 @@ const STATES_GROUPED: GroupedStates[] = [
 ];
 
 
-
-
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
-      (selectionChange)="change($event)"
+      [allowMultiple]="allowMultiple"
+      [reopenAfterSelection]="keepOpen"
+      [showProgress]="showProgress"
+      [isDisabled]="disabled"
     >
       <ts-option
-        [value]="option.name"
+        *ngFor="let option of states"
+        [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
+      >
+        {{ option.foo }}
+      </ts-option>
+    </ts-autocomplete>
   `,
 })
-export class Basic {
+export class Autocomplete {
   myCtrl = new FormControl();
-  options = STATES.slice();
-
-  // Must be overwritten with a spy in the test
+  states: State[] = STATES.slice();
+  showProgress = false;
+  allowMultiple = true;
+  keepOpen = true;
+  disabled: boolean | undefined;
   change = v => {};
+
+  changeOptionsLength() {
+    this.states = STATES.slice(0, 5);
+  }
 }
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
-  `,
-})
-export class SeededFormControl {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select [(ngModel)]="myModel">
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
-  `,
-})
-export class SeededNgModel {
-  myModel = 'Florida';
-  options = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select [value]="myValue">
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
-  `,
-})
-export class SeededFallbackValue {
-  myValue = 'Florida';
-  options = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      (optionSelected)="selected($event)"
-      (selectionChange)="change($event)"
-    >
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
-  `,
-})
-export class SelectionChangeEventEmitters {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
-
-  // Must be overwritten with a spy in the test
-  change = v => {};
-  selected = v => {};
-}
-
-@Component({
-  template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-select-trigger id="foo">
-        My custom trigger!
-      </ts-select-trigger>
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      >
-        <span tsOptionDisplay>{{ option.name }}</span>
-        <i>bar</i>
-      </ts-option>
-    </ts-select>
-  `,
-})
-export class CustomOptionTemplate {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-option>
-        <h4 tsOptionDisplay>FOO</h4>
-      </ts-option>
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      >
-        {{ option.name }}
-      </ts-option>
-    </ts-select>
-  `,
-})
-export class CustomBlankOption {
-  myCtrl = new FormControl('Florida');
-  options = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-select-optgroup
-        *ngFor="let group of groups"
-        [label]="group.name"
-        [isDisabled]="group.disabled"
-      >
-        <ts-option
-          *ngFor="let option of group.children"
-          [value]="option.slug"
-          [option]="option"
-          [isDisabled]="option?.disabled"
-        >
-          {{ option.foo }}
-        </ts-option>
-      </ts-select-optgroup>
-    </ts-select>
-  `,
-})
-export class Optgroups {
-  myCtrl = new FormControl('Florida');
-  groups = STATES_GROUPED.slice();
-}
-
-@Component({
-  template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [allowMultiple]="true"
     >
-      <ts-select-optgroup
-        *ngFor="let group of groups"
-        [label]="group.name"
-        [isDisabled]="group.disabled"
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option.slug"
+        [option]="option"
       >
-        <ts-option
-          *ngFor="let option of group.children"
-          [value]="option.name"
-          [option]="option"
-          [isDisabled]="option?.disabled"
-        >
+        {{ option.foo }}
+      </ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class AutocompleteRequired {
+  myCtrl = new FormControl(null, [Validators.required]);
+  states: State[] = STATES.slice();
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
+      [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      [allowDuplicateSelections]="allowDuplicates"
+      [reopenAfterSelection]="keepOpen"
+      (duplicateSelection)="duplicate($event)"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsOptionDisplay>
           {{ option.name }}
-        </ts-option>
-      </ts-select-optgroup>
-    </ts-select>
+        </span>
+      </ts-option>
+    </ts-autocomplete>
   `,
 })
-export class OptgroupsMultiple {
-  myCtrl = new FormControl();
-  groups = STATES_GROUPED.slice();
+export class SeededAutocomplete {
+  myCtrl = new FormControl(['Florida']);
+  states: State[] = STATES.slice();
+  allowMultiple = true;
+  allowDuplicates = false;
+  keepOpen = false;
+
+  // Must be overwritten with a spy in the test
+  duplicate = v => { };
 }
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
-      [allowMultiple]="true"
+      [allowMultiple]="allowMultiple"
+      [allowDuplicateSelections]="allowDuplicates"
+      [reopenAfterSelection]="keepOpen"
     >
       <ts-option
-        *ngFor="let option of items"
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class PassingInObjectValue {
+  myCtrl = new FormControl([{name: 'Florida'}]);
+  states: State[] = STATES.slice();
+  allowMultiple = false;
+  allowDuplicates = false;
+  keepOpen = false;
+
+  // Must be overwritten with a spy in the test
+  duplicate = v => { };
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
+      [(ngModel)]="myModel"
+    >
+      <ts-option
+        *ngFor="let option of states"
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.name }}
+        <span tsOptionDisplay>
+          {{ option.name }}
+        </span>
       </ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
-export class NoGroupsMultiple {
-  myCtrl = new FormControl();
-  items = STATES.slice();
+export class SeededNgModelAutocomplete {
+  myModel = ['Florida'];
+  states: State[] = STATES.slice();
 }
-
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
+      [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      [reopenAfterSelection]="false"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class AutocompleteAllowMultipleNoReopen {
+  myCtrl = new FormControl();
+  states: State[] = STATES.slice();
+  allowMultiple = true;
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
       [formControl]="myCtrl"
       [isDisabled]="true"
       (opened)="wasOpened($event)"
@@ -394,45 +338,22 @@ export class NoGroupsMultiple {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class Disabled {
   myCtrl = new FormControl();
   options = STATES.slice();
 
-  wasOpened = v => {};
+  wasOpened = v => { };
 }
+
 
 @Component({
   template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [isDisabled]="true"
-      [delimiter]="delimiter"
-      [allowMultiple]="true"
-    >
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
-  `,
-})
-export class CustomDelimiter {
-  myCtrl = new FormControl(['Florida', 'Texas']);
-  options = STATES.slice();
-  delimiter = '-';
-}
-
-@Component({
-  template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [allowMultiple]="true"
-      [sortComparator]="myComparator"
     >
       <ts-option
         [value]="option.name"
@@ -440,26 +361,12 @@ export class CustomDelimiter {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class SelectOptionChange {
   myCtrl = new FormControl(['Texas', 'Florida']);
   options: State[] = STATES.slice(0, 10);
-  // tslint:disable: max-line-length
-  myComparator: TsSelectSortComparatorFunction = (a: TsOptionComponent, b: TsOptionComponent, options: TsOptionComponent[]) => {
-    // tslint:enable: max-line-length
-    const one = a.viewValue.toLowerCase();
-    const two = b.viewValue.toLowerCase();
-
-    if (one < two) {
-      return -1;
-    }
-    if (one > two) {
-      return 1;
-    }
-    return 0;
-  }
 
   updateOptions() {
     const otherStates: State[] = STATES.slice(10, 14);
@@ -469,10 +376,9 @@ export class SelectOptionChange {
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [ngModel]="selectedFood"
       (ngModelChange)="setFoodByCopy($event)"
-      [compareWith]="comparator"
     >
       <ts-option
         [value]="option"
@@ -480,11 +386,11 @@ export class SelectOptionChange {
         [isDisabled]="option?.disabled"
         *ngFor="let option of foods"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class CustomCompareFn {
-  foods: ({value: string; viewValue: string})[] = [
+  foods: ({ value: string; viewValue: string })[] = [
     {
       value: 'steak-0',
       viewValue: 'Steak',
@@ -498,7 +404,7 @@ export class CustomCompareFn {
       viewValue: 'Tacos',
     },
   ];
-  selectedFood: {value: string; viewValue: string} = {
+  selectedFood: { value: string; viewValue: string } = {
     value: 'pizza-1',
     viewValue: 'Pizza',
   };
@@ -521,7 +427,7 @@ export class CustomCompareFn {
   compareByReference(f1: any, f2: any) {
     return f1 === f2;
   }
-  setFoodByCopy(newValue: {value: string; viewValue: string}) {
+  setFoodByCopy(newValue: { value: string; viewValue: string }) {
     this.selectedFood = {
       ...{},
       ...newValue,
@@ -531,14 +437,14 @@ export class CustomCompareFn {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of items"
       ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class DeferOptionSelectionStream {
@@ -552,7 +458,74 @@ export class DeferOptionSelectionStream {
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
+      [formControl]="myCtrl"
+      (queryChange)="change($event)"
+    >
+      <ts-option
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of options"
+      >{{ option.name }}</ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class Debounce {
+  myCtrl = new FormControl(['Florida', 'Texas']);
+  options = STATES.slice();
+  change = v => { };
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
+      [formControl]="myCtrl"
+      debounceDelay="0"
+      (queryChange)="change($event)"
+    >
+      <ts-option
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of options"
+      >{{ option.name }}</ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class CustomDebounce {
+  myCtrl = new FormControl(['Florida', 'Texas']);
+  options = STATES.slice();
+  change = v => { };
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
+      [formControl]="myCtrl"
+      [minimumCharacters]="customCount"
+      debounceDelay="0"
+      (queryChange)="change($event)"
+    >
+      <ts-option
+        [value]="option.name"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+        *ngFor="let option of options"
+      >{{ option.name }}</ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class CustomCharacterCount {
+  myCtrl = new FormControl(['Florida', 'Texas']);
+  options = STATES.slice();
+  customCount: number | undefined;
+  change = v => { };
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
       [formControl]="myCtrl"
       [hideRequiredMarker]="hideRequired"
       [isRequired]="true"
@@ -563,7 +536,7 @@ export class DeferOptionSelectionStream {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class HideRequired {
@@ -574,7 +547,7 @@ export class HideRequired {
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [hint]="myHint"
     >
@@ -584,7 +557,7 @@ export class HideRequired {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class Hint {
@@ -595,7 +568,7 @@ export class Hint {
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [id]="myId"
     >
@@ -605,7 +578,7 @@ export class Hint {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class Id {
@@ -616,7 +589,7 @@ export class Id {
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [label]="myLabel"
     >
@@ -626,7 +599,7 @@ export class Id {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class Label {
@@ -635,30 +608,10 @@ export class Label {
   options = STATES.slice();
 }
 
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [tabIndex]="index"
-    >
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of options"
-      >{{ option.name }}</ts-option>
-    </ts-select>
-  `,
-})
-export class Tabindex {
-  myCtrl = new FormControl();
-  index = 4;
-  options = STATES.slice();
-}
 
 @Component({
   template: `
-    <ts-select
+    <ts-autocomplete
       [formControl]="myCtrl"
       [validateOnChange]="validateOnChange"
     >
@@ -668,7 +621,7 @@ export class Tabindex {
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
       >{{ option.name }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class ValidateOnChange {
@@ -679,13 +632,13 @@ export class ValidateOnChange {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-option
         [value]="option.value"
         [option]="option"
         *ngFor="let option of items"
       >{{ option.viewValue }}</ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class NullSelection {
@@ -708,7 +661,7 @@ export class NullSelection {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-option
         [value]="state.name"
         *ngFor="let state of items"
@@ -720,7 +673,7 @@ export class NullSelection {
           </div>
         </ng-template>
       </ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class OptionError {
@@ -730,7 +683,7 @@ export class OptionError {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-option
         [value]="state.name"
         [option]="state"
@@ -740,18 +693,18 @@ export class OptionError {
       >
         {{ state.name }}
       </ts-option>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class OptionId {
   myCtrl = new FormControl();
   items = STATES.slice(0, 4);
-  change = v => {};
+  change = v => { };
 }
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-select-optgroup
         *ngFor="let group of groups"
         [id]="group.name"
@@ -765,7 +718,7 @@ export class OptionId {
           {{ option.name }}
         </ts-option>
       </ts-select-optgroup>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class OptgroupIDs {
@@ -775,7 +728,7 @@ export class OptgroupIDs {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
+    <ts-autocomplete [formControl]="myCtrl">
       <ts-select-optgroup
         *ngFor="let group of groups"
         [id]="group.foo"
@@ -789,70 +742,12 @@ export class OptgroupIDs {
           {{ option.name }}
         </ts-option>
       </ts-select-optgroup>
-    </ts-select>
+    </ts-autocomplete>
   `,
 })
 export class OptgroupBadIDs {
   myCtrl = new FormControl('Florida');
   groups = STATES_GROUPED.slice();
-}
-
-@Component({
-  template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-select-trigger [id]="myId">
-        My custom trigger!
-      </ts-select-trigger>
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      >
-        {{ option.name }}
-      </ts-option>
-    </ts-select>
-  `,
-})
-export class CustomTrigger {
-  myCtrl = new FormControl();
-  options = STATES.slice();
-  myId = 'foo';
-}
-
-@Component({
-  template: `
-    <ts-select
-      [formControl]="myCtrl"
-      [isFilterable]="true"
-      (queryChange)="onFilter($event)"
-      (selectionChange)="onReset()"
-    >
-      <ts-option
-        [value]="option.name"
-        [option]="option"
-        *ngFor="let option of options"
-      >
-        {{ option.name }}
-      </ts-option>
-    </ts-select>
-  `,
-})
-export class Filterable {
-  myCtrl = new FormControl();
-  options = STATES.slice();
-
-  onReset(): void {
-    this.options = STATES.slice();
-  }
-
-  onFilter(value: string): void {
-    if (value) {
-      const regex = new RegExp(value, 'i');
-      this.options = STATES.slice().filter(state => state.name.match(regex));
-    } else {
-      this.options = STATES.slice();
-    }
-  }
 }
 
 
@@ -864,38 +759,33 @@ export class Filterable {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TsSelectModule,
+    TsAutocompleteModule,
     TsOptionModule,
   ],
   declarations: [
-    Basic,
-    CustomBlankOption,
+    Autocomplete,
+    AutocompleteAllowMultipleNoReopen,
+    AutocompleteRequired,
+    CustomCharacterCount,
     CustomCompareFn,
-    CustomDelimiter,
-    CustomOptionTemplate,
-    CustomTrigger,
+    CustomDebounce,
+    Debounce,
     DeferOptionSelectionStream,
     Disabled,
-    Filterable,
     HideRequired,
     Hint,
     Id,
     Label,
-    NoGroupsMultiple,
     NullSelection,
     OptgroupBadIDs,
     OptgroupIDs,
-    Optgroups,
-    OptgroupsMultiple,
     OptionError,
     OptionId,
-    SeededFallbackValue,
-    SeededFormControl,
-    SeededNgModel,
-    SelectionChangeEventEmitters,
+    SeededAutocomplete,
+    PassingInObjectValue,
+    SeededNgModelAutocomplete,
     SelectOptionChange,
-    Tabindex,
     ValidateOnChange,
   ],
 })
-export class TsSelectTestComponentsModule {}
+export class TsAutocompleteTestComponentsModule { }

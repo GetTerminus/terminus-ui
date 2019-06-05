@@ -17,13 +17,13 @@ import {
   allOptionsAreSelected,
   someOptionsAreSelected,
   toggleAllOptions,
-} from './../option/option-utilities';
+} from './option-utilities';
 import {
   TS_OPTGROUP_PARENT_COMPONENT,
   TS_OPTION_PARENT_COMPONENT,
+  TsOptionComponent,
   TsOptionParentComponent,
-  TsSelectOptionComponent,
-} from './../option/option.component';
+} from './option.component';
 
 
 // Unique ID for each instance
@@ -31,7 +31,7 @@ let nextUniqueId = 0;
 
 
 /**
- * Component that is used to group instances of {@link TsSelectOptionComponent}s
+ * Component that is used to group instances of {@link TsOptionComponent}s
  *
  * #### QA CSS CLASSES
  * - `qa-optgroup-label`: The group label
@@ -61,14 +61,14 @@ let nextUniqueId = 0;
   providers: [
     {
       provide: TS_OPTGROUP_PARENT_COMPONENT,
-      useExisting: TsSelectOptgroupComponent,
+      useExisting: TsOptgroupComponent,
     },
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'tsSelectOptgroup',
+  exportAs: 'tsOptgroup',
 })
-export class TsSelectOptgroupComponent {
+export class TsOptgroupComponent {
   /**
    * A flag signifying all child options are selected
    */
@@ -102,8 +102,8 @@ export class TsSelectOptgroupComponent {
   /**
    * Access the list of options
    */
-  @ContentChildren(TsSelectOptionComponent)
-  public optgroupOptions!: QueryList<TsSelectOptionComponent>;
+  @ContentChildren(TsOptionComponent)
+  public optgroupOptions!: QueryList<TsOptionComponent>;
 
   /**
    * INPUTS
@@ -136,9 +136,9 @@ export class TsSelectOptgroupComponent {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    // NOTE: Useful for testing
-    // tslint:disable-next-line
-    private elementRef: ElementRef,
+    // NOTE: Useful for testing but not used in this file
+    // tslint:disable-next-line no-unused-variable
+    public elementRef: ElementRef,
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) public parent: TsOptionParentComponent,
   ) {}
 

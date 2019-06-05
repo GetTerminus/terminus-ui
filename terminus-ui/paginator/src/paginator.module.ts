@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsMenuModule } from '@terminus/ui/menu';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsTooltipModule } from '@terminus/ui/tooltip';
 
@@ -17,6 +18,7 @@ export * from './paginator.component';
     FormsModule,
     TsButtonModule,
     TsMenuModule,
+    TsOptionModule,
     TsSelectModule,
     TsTooltipModule,
   ],

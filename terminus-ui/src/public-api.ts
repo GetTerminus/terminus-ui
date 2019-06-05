@@ -20,6 +20,7 @@ export * from '@terminus/ui/loading-overlay';
 export * from '@terminus/ui/login-form';
 export * from '@terminus/ui/menu';
 export * from '@terminus/ui/navigation';
+export * from '@terminus/ui/option';
 export * from '@terminus/ui/paginator';
 export * from '@terminus/ui/pipes';
 export * from '@terminus/ui/radio-group';

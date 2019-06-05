@@ -1,5 +1,6 @@
 @import './../../scss/helpers/animation';
 @import './../../scss/helpers/color';
+@import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
@@ -7,116 +8,32 @@
 
 $transition-duration: 200;
 
-//
-// @component
-//  Autocomplete
-// @description
-//  Styles for the autocomplete component
-//
-.ts-autocomplete {
-  @include reset;
-  display: block;
+.ts-autocomplete__input-wrap {
+  &--hidden {
+    @include visually-hidden;
+  }
+}
+
+.ts-autocomplete__input {
+  background: transparent;
+  border: none;
+  color: currentColor;
+  font: inherit;
+  max-width: 100%;
+  outline: none;
+  padding: 0;
+  // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
+  // easily overwritten by targeting the input element using a simple CSS selector, but since
+  // the text-align will be applied most of the time on the `ts-form-field` to also align the
+  // placeholder, the alignment should be inherited here.
+  text-align: inherit;
+  // Needed to make last line of the textarea line up with the baseline.
+  vertical-align: bottom;
   width: 100%;
 
-  // Top level styles belong here
-  .c-autocomplete {
-    //
-  }
-}
-
-.c-autocomplete {
-  // Create space for progress spinner
-  .mat-chip-list-wrapper {
-    padding-right: 32px;
-  }
-
-  // Create space below in preparation for multiple rows of chips
-  .mat-chip:not(.mat-basic-chip) + .mat-chip:not(.mat-basic-chip) {
-    margin-top: spacing(small, 2);
-  }
-
-  // Fix slight alignment issue between chip and input
-  .c-autocomplete__input {
-    position: relative;
-    top: 2px;
-  }
-
-  // Overwrite the Material spinner to fit our layout
-  .c-autocomplete__spinner {
-    display: inline-block;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: .2em;
-    transition: opacity $transition-duration $g-easing;
-    will-change: opacity;
-
-    &--active {
-      opacity: 1;
-    }
-
-    &.c-autocomplete__spinner--primary {
-      circle {
-        stroke: color(primary);
-      }
-    }
-
-    &.c-autocomplete__spinner--accent {
-      circle {
-        stroke: color(accent);
-      }
-    }
-
-    &.c-autocomplete__spinner--warn {
-      circle {
-        stroke: color(warn);
-      }
-    }
-  }
-
-  .ts-form-field__subscript-wrapper {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-  }
-
-  .hint {
-    @include typography(hint);
-  }
-
-}
-
-// <mat-autocomplete> container for dropdown
-.c-autocomplete__options {
-  &.c-autocomplete__options--primary {
-    .mat-active {
-      $color: color(primary, light);
-      background-color: rgba($color, .2);
-    }
-  }
-
-  &.c-autocomplete__options--accent {
-    .mat-active {
-      $color: color(accent, light);
-      background-color: rgba($color, .2);
-    }
-  }
-
-  &.c-autocomplete__options--warn {
-    .mat-active {
-      $color: color(warn, light);
-      background-color: rgba($color, .2);
-    }
-  }
-}
-
-
-// Use until I figure out how to merge with ts-input
-.c-input {
-  $icon-top-adjustment: 6px;
-
-  &.mat-form-field {
-    @include typography;
-    width: 100%;
+  // Undo the red box-shadow glow added by Firefox on invalid inputs.
+  // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+  &:-moz-ui-invalid {
+    box-shadow: none;
   }
 }

@@ -31,6 +31,12 @@ import {
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
+import {
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
+  TsOptionComponent,
+  TsOptionSelectionChange,
+} from '@terminus/ui/option';
 import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
 import {
   defer,
@@ -50,14 +56,6 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import {
-  countGroupLabelsBeforeOption,
-  getOptionScrollPosition,
-} from '../option/option-utilities';
-import {
-  TsOptionSelectionChange,
-  TsSelectOptionComponent,
-} from '../option/option.component';
 import { TsAutocompletePanelComponent } from './autocomplete-panel.component';
 
 
@@ -128,7 +126,7 @@ let nextUniqueId = 0;
   exportAs: 'tsAutocompleteTrigger',
 })
 // tslint:disable-next-line no-any
-export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlValueAccessor, OnDestroy {
+export class TsAutocompleteTriggerDirective<ValueType = string> implements ControlValueAccessor, OnDestroy {
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused, closed autocomplete from being reopened if
    * the user switches to another browser tab and then comes back.
@@ -223,9 +221,9 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
    */
 
   /**
-   * The currently active option, coerced to TsSelectOptionComponent type
+   * The currently active option, coerced to TsOptionComponent type
    */
-  public get activeOption(): TsSelectOptionComponent | null {
+  public get activeOption(): TsOptionComponent | null {
     if (this.autocompletePanel && this.autocompletePanel.keyManager) {
       return this.autocompletePanel.keyManager.activeItem;
     }
@@ -496,7 +494,7 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
    *
    * @param fn - The new onChange function
    */
-  public registerOnChange(fn: (value: ValueType) => {}): void {
+  public registerOnChange(fn: (value: string) => {}): void {
     this.onChange = fn;
   }
 
@@ -532,7 +530,7 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
    *
    * @param value - The value to write
    */
-  public writeValue(value: ValueType): void {
+  public writeValue(value: string): void {
     Promise.resolve(null).then(() => this.setTriggerValue(value));
   }
 
@@ -599,7 +597,7 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private clearPreviousSelectedOption(skip: TsSelectOptionComponent): void {
+  private clearPreviousSelectedOption(skip: TsOptionComponent): void {
     this.autocompletePanel.options.forEach(option => {
       // istanbul ignore else
       // NOTE: Loose check (`!=`) needed for comparing classes
@@ -772,8 +770,8 @@ export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlV
    * adjusted.
    */
   private scrollToOption(): void {
-    const index = this.autocompletePanel.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(index, this.autocompletePanel.options, this.autocompletePanel.optionGroups);
+    const index: number = this.autocompletePanel.keyManager.activeItemIndex || 0;
+    const labelCount: number = countGroupLabelsBeforeOption(index, this.autocompletePanel.options, this.autocompletePanel.optionGroups);
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,

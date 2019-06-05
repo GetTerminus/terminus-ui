@@ -77,11 +77,11 @@
         <strong>{{ myForm.get('myChoices1')?.value }}</strong>
       </ts-select-trigger>
 
-      <ts-select-option>
-        <h4 tsSelectOptionDisplay>None</h4>
-      </ts-select-option>
+      <ts-option>
+        <h4 tsOptionDisplay>None</h4>
+      </ts-option>
 
-      <ts-select-option
+      <ts-option
         [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
@@ -92,13 +92,13 @@
            -->
         <ng-template let-option>
           <div class="myClass" style="padding: 8px 0;">
-            <h4 tsSelectOptionDisplay>{{ option?.foo }}</h4>
+            <h4 tsOptionDisplay>{{ option?.foo }}</h4>
             <small>An example of a larger template.</small>
             <br>
             <small>Slug: {{ option?.slug }}</small>
           </div>
         </ng-template>
-      </ts-select-option>
+      </ts-option>
     </ts-select>
 
     <div>
@@ -167,14 +167,14 @@
         [label]="option.foo"
         [isDisabled]="option.disabled"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let child of option.children"
           [value]="child.slug"
           [option]="child"
           [isDisabled]="child?.disabled"
         >
           {{ child.foo }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
 
@@ -199,14 +199,14 @@
       (selectionChange)="isChanged($event)"
       tsVerticalSpacing
     >
-      <ts-select-option
+      <ts-option
         [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of singleWithCustomTrigger | async"
       >
         {{ option.slug }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
 
     <div>
@@ -235,55 +235,19 @@
         [label]="option.foo"
         [isDisabled]="option.disabled"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let child of option.children"
           [value]="child.slug"
           [option]="child"
           [isDisabled]="child?.disabled"
         >
           {{ child.foo }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
 
     <div>
       FormControl value: {{ myForm.get('myChoices3')?.value | json }}
-    </div>
-  </ts-card>
-
-
-  <ts-card tsVerticalSpacing fxFlex>
-    <h3 tsCardTitle tsVerticalSpacing="small--1">
-      Select w/Autocomplete
-    </h3>
-
-    <ts-select
-      label="Autocomplete Example"
-      hint="Begin typing to select.."
-      [formControl]="stateCtrl"
-      [autocomplete]="true"
-      [allowMultiple]="true"
-      [autocompleteAllowDuplicateSelections]="false"
-      [autocompleteReopenAfterSelection]="true"
-      [showProgress]="fakeAsync"
-      [chipFormatUIFn]="myFormatUIFn"
-      (queryChange)="queryHasChanged($event)"
-      (duplicateSelection)="duplicate($event)"
-      tsVerticalSpacing
-    >
-
-      <ts-select-option
-        [value]="state"
-        [option]="state"
-        *ngFor="let state of filteredStates | async"
-      >
-        {{ state.name }}
-      </ts-select-option>
-
-    </ts-select>
-
-    <div>
-      FormControl value: {{ stateCtrl.value | json }}
     </div>
   </ts-card>
 
@@ -306,21 +270,21 @@
     >
       <ts-select-trigger>
         My custom trigger!
-        <strong>{{ myForm.get('myChoices1')?.value?.text }}</strong>
+        <strong>{{ myForm.get('myChoices1')?.value }}</strong>
       </ts-select-trigger>
 
-      <ts-select-option>
-        <h4 tsSelectOptionDisplay>None</h4>
-      </ts-select-option>
+      <ts-option>
+        <h4 tsOptionDisplay>None</h4>
+      </ts-option>
 
-      <ts-select-option
+      <ts-option
         [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of firstOptions | async"
       >
         {{ option.slug }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
 
     <div>

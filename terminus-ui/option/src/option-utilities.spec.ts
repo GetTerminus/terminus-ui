@@ -13,15 +13,17 @@ import {
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
-import { getSelectInstance } from '@terminus/ui/select/testing';
+import { getAutocompleteInstance } from '@terminus/ui/autocomplete/testing';
 
-import { TsSelectModule } from '../select.module';
+import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
+import { TsSelectModule } from '@terminus/ui/select';
 import {
   allOptionsAreSelected,
   getOptionScrollPosition,
   someOptionsAreSelected,
   toggleAllOptions,
 } from './option-utilities';
+import { TsOptionModule } from './option.module';
 
 
 // tslint:disable: no-use-before-declare
@@ -50,7 +52,7 @@ describe(`selectOptionUtilities`, function() {
     test(`should return undefined if no options exist`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(toggleAllOptions(instance.options)).toEqual(undefined);
       expect(toggleAllOptions(undefined as any)).toEqual(undefined);
@@ -61,10 +63,10 @@ describe(`selectOptionUtilities`, function() {
 
   describe(`allOptionsAreSelected`, () => {
 
-    test(`should do something`, () => {
+    test(`should select all the options`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(allOptionsAreSelected(instance.options)).toEqual(false);
       expect(allOptionsAreSelected(undefined as any)).toEqual(false);
@@ -75,10 +77,10 @@ describe(`selectOptionUtilities`, function() {
 
   describe(`someOptionsAreSelected`, () => {
 
-    test(`should do something`, () => {
+    test(`should select some options`, () => {
       const fixture = createComponent(EmptyQueryList);
       fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
+      const instance = getAutocompleteInstance(fixture);
 
       expect(someOptionsAreSelected(instance.options)).toEqual(false);
       expect(someOptionsAreSelected(undefined as any)).toEqual(false);
@@ -94,15 +96,15 @@ describe(`selectOptionUtilities`, function() {
 
 @Component({
   template: `
-    <ts-select [formControl]="myCtrl">
-      <ts-select-option
+    <ts-autocomplete [formControl]="myCtrl">
+      <ts-option
         [value]="state.name"
         [option]="state"
         *ngFor="let state of items"
       >
         {{ state.name }}
-      </ts-select-option>
-    </ts-select>
+      </ts-option>
+    </ts-autocomplete>
   `,
 })
 export class EmptyQueryList {
@@ -120,6 +122,8 @@ export function createComponent<T>(component: Type<T>, providers: Provider[] = [
     providers,
     [
       ReactiveFormsModule,
+      TsAutocompleteModule,
+      TsOptionModule,
       TsSelectModule,
       NoopAnimationsModule,
       ...imports,

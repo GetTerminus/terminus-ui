@@ -18,10 +18,10 @@
           [(ngModel)]="mimeTypes"
           (selectionChange)="mimeTypeChange($event)"
         >
-          <ts-select-option
+          <ts-option
             [value]="option"
             *ngFor="let option of mimeTypeOptions"
-          >{{ option }}</ts-select-option>
+          >{{ option }}</ts-option>
         </ts-select>
       </div>
     </div>

@@ -8,10 +8,10 @@
       label="Select visualization"
       [(ngModel)]="visualization"
     >
-      <ts-select-option
+      <ts-option
         [value]="option"
         *ngFor="let option of visualizationOptions"
-      >{{ option }}</ts-select-option>
+      >{{ option }}</ts-option>
     </ts-select>
   </div>
 </ts-card>

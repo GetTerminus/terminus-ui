@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsFileUploadModule } from '@terminus/ui/file-upload';
 import { TsInputModule } from '@terminus/ui/input';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 import { TsToggleModule } from '@terminus/ui/toggle';
@@ -20,6 +21,7 @@ import { FileUploadComponent } from './file-upload.component';
     TsCardModule,
     TsFileUploadModule,
     TsInputModule,
+    TsOptionModule,
     TsSelectModule,
     TsSpacingModule,
     TsToggleModule,

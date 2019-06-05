@@ -1,6 +1,6 @@
 <ts-checkbox
   class="qa-select-option-checkbox"
-  *ngIf="allowMultiple && !autocomplete"
+  *ngIf="allowMultiple && !autocompleteComponent"
   tabIndex="-1"
   [isDisabled]="isDisabled"
   [isChecked]="selected"
@@ -8,7 +8,7 @@
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 </ts-checkbox>
 
-<ng-container *ngIf="!allowMultiple || autocomplete">
+<ng-container *ngIf="!allowMultiple || autocompleteComponent">
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 </ng-container>
 
@@ -21,10 +21,8 @@
 ></div>
 
 
-
-
 <ng-template #contentTemplate>
-  <span class="ts-option-text qa-select-option-text">
+  <span class="ts-option-text qa-option-text">
     <ng-content *ngIf="!optionTemplate">
     </ng-content>
 

@@ -1,501 +1,673 @@
-import { ElementRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Type } from '@angular/core';
 import {
-  MatAutocompleteSelectedEvent,
-  MatAutocompleteTrigger,
-} from '@angular/material/autocomplete';
-import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
-import createMockInstance from 'jest-create-mock-instance';
+  ComponentFixture,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
+import {
+  createComponent as createComponentInner,
+  createFakeEvent,
+  dispatchKeyboardEvent,
+  dispatchMouseEvent,
+  typeInElement,
+} from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/autocomplete/testing';
+// eslint-disable-next-line no-duplicate-imports
+import {
+  getAllChipInstances,
+  getAutocompleteElement,
+  getAutocompleteInput,
+  getAutocompleteInstance,
+  getAutocompleteTriggerElement,
+  getChipElement,
+  getOptionElement,
+  getOptionInstance,
+} from '@terminus/ui/autocomplete/testing';
+import { TsOptionModule } from '@terminus/ui/option';
+import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
 import {
-  TsAutocompleteComponent,
-  TsAutocompleteFormatterFn,
-} from './autocomplete.component';
+  TsAutocompleteModule,
+  TsAutocompletePanelComponent,
+  TsAutocompletePanelSelectedEvent,
+} from './autocomplete.module';
+
+function createComponent<T>(component: Type<T>): ComponentFixture<T> {
+  const moduleImports = [
+    FormsModule,
+    ReactiveFormsModule,
+    TsAutocompleteModule,
+    TsOptionModule,
+    NoopAnimationsModule,
+  ];
+
+  return createComponentInner(component, undefined, moduleImports);
+}
 
 
 describe(`TsAutocompleteComponent`, function() {
-  let component: TsAutocompleteComponent;
-  const opt1 = {id: 1};
-  let trigger: jest.Mocked<MatAutocompleteTrigger>;
 
-  beforeEach(() => {
-    trigger = createMockInstance(MatAutocompleteTrigger);
-    component = new TsAutocompleteComponent(
-      new ChangeDetectorRefMock,
-    );
-    component['trigger'] = trigger;
-    component.input = new ElementRef({});
+  test(`should exist`, function() {
+    const fixture = createComponent(testComponents.Autocomplete);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.ts-autocomplete'))).toBeTruthy();
   });
 
 
-  test(`should exist`, () => {
-    expect(component).toBeTruthy();
-  });
+  test(`should show a progress indicator`, () => {
+    jest.useFakeTimers();
+    const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
+    fixture.detectChanges();
 
-  describe(`showProgress`, () => {
-    test(`should set and retrieve`, () => {
-      component.showProgress = true;
-      expect(component.showProgress).toEqual(true);
-    });
-  });
+    let spinner = fixture.debugElement.query(By.css('.c-autocomplete__spinner'));
+    expect(spinner).toBeFalsy();
 
+    fixture.componentInstance.showProgress = true;
+    fixture.detectChanges();
 
-  describe(`autocompleteTrigger`, () => {
+    spinner = fixture.debugElement.query(By.css('.c-autocomplete__spinner'));
+    expect(spinner).toBeTruthy();
 
-    test(`should should set/get the trigger component`, () => {
-      component['trigger'] = null as any;
-      expect(component['trigger']).toBeFalsy();
-
-      component.autocompleteTrigger = trigger;
-      expect(component['trigger']).toBeTruthy();
-      expect(component.autocompleteTrigger).toBeTruthy();
-    });
-
+    expect.assertions(2);
   });
 
 
-  describe(`debounceDelay`, () => {
+  test(`should not open when disabled`, () => {
+    const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
+    fixture.componentInstance.disabled = true;
+    fixture.detectChanges();
+    const trigger = getAutocompleteTriggerElement(fixture);
+    const instance = getAutocompleteInstance(fixture);
 
-    test(`should set the debounceDelay`, () => {
-      expect(component.debounceDelay).toEqual(200);
-      component.debounceDelay = 10;
-      expect(component.debounceDelay).toEqual(10);
-    });
+    expect(instance.panelOpen).toEqual(false);
 
+    dispatchKeyboardEvent(trigger, 'keydown', KEYS.DOWN_ARROW);
 
-    test(`should set the debounceDelay to 0`, () => {
-      component.debounceDelay = 0;
-      expect(component.debounceDelay).toEqual(0);
-    });
-
-
-    test(`should convert any non-number into 0`, () => {
-      component.debounceDelay = null as any;
-      expect(component.debounceDelay).toEqual(0);
-    });
-
+    expect(instance.panelOpen).toEqual(false);
   });
 
+  test(`should set the disabled state when called`, () => {
+    const fixture = createComponent(testComponents.Autocomplete);
+    fixture.detectChanges();
+    const instance = getAutocompleteInstance(fixture);
+    const autocomplete = fixture.debugElement.query(By.css('.ts-autocomplete')).nativeElement;
+    instance['changeDetectorRef'].markForCheck = jest.fn();
+    instance.stateChanges.next = jest.fn();
 
-  describe(`displayWith`, () => {
+    instance.setDisabledState(true);
+    fixture.detectChanges();
 
-    test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo: any;
-      // tslint:enable: prefer-const
-      expect(component.displayWith = foo).toEqual(undefined);
-    });
-
-
-    test(`should set/get the uiFormatFn`, () => {
-      const myFn: TsAutocompleteFormatterFn = (v: any) => v.id;
-      component.displayWith = myFn;
-      expect(component.displayWith).toEqual(myFn);
-    });
-
-
-    test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {
-        component.displayWith = 3 as any;
-      })
-        .toThrowError(`TsAutocompleteComponent: 'displayWith' must be passed a function.`);
-    });
-
+    expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+    expect(instance.stateChanges.next).toHaveBeenCalled();
+    expect(instance.isDisabled).toEqual(true);
+    expect(autocomplete.classList).toContain('ts-autocomplete--disabled');
   });
 
+  describe(`chips`, function() {
 
-  describe(`minimumCharacters`, () => {
+    test(`should show selections as chips`, () => {
+      const fixture = createComponent(testComponents.SeededAutocomplete);
+      fixture.detectChanges();
 
-    test(`should set/retrieve the minimum characters needed for a query`, () => {
-      expect(component.minimumCharacters).toEqual(2);
-      component.minimumCharacters = 5;
-      expect(component.minimumCharacters).toEqual(5);
-    });
+      const chip = getChipElement(fixture);
 
-  });
-
-
-  describe(`multiple`, () => {
-
-    test(`should return undefined if no value is passed in`, () => {
-      // tslint:disable: prefer-const
-      let foo: any;
-      // tslint:enable: prefer-const
-      expect(component.multiple = foo).toEqual(undefined);
+      expect(chip).toBeTruthy();
     });
 
 
-    test(`should set/get the uiFormatFn`, () => {
-      const myFn = (v: any) => v.id;
-      component.multiple = myFn;
-      expect(component.multiple).toEqual(myFn);
-    });
-
-
-    test(`should throw an error in dev mode when passed a value that is not a function`, () => {
-      expect(() => {
-        component.multiple = 3 as any;
-      })
-        .toThrowError(`TsAutocompleteComponent: 'multiple' must be passed a 'TsAutocompleteComparatorFn' function.`);
-    });
-
-  });
-
-
-  describe(`initialSelections`, () => {
-
-    test(`should seed the selectedOptions array and selectionsControl`, () => {
-      expect(component.selectedOptions.length).toEqual(0);
-
-      component.selectionsControl = new FormControl();
-      const initial = [{id: 1}, {id: 2}];
-      component.initialSelections = initial;
-
-      expect(component.selectedOptions.length).toEqual(2);
-      expect(component.selectionsControl.value.length).toEqual(2);
-    });
-
-
-    test(`should not mutate the original array`, () => {
-      const initial = [{id: 1}, {id: 2}];
-      component.initialSelections = initial;
-      component.multiple = v => v.id;
-      const event: any = createMockInstance(MatAutocompleteSelectedEvent);
-      const option = {id: 3};
-      event.option = {value: option};
-      component.selectOption(event);
-
-      expect(component.selectedOptions).toContain(option);
-      expect(initial).not.toContain(option);
-    });
-
-  });
-
-
-  describe(`ngAfterViewInit`, () => {
-
-    beforeEach(() => {
+    test(`should allow chips to be removed`, () => {
       jest.useFakeTimers();
-      component.query = {next: jest.fn()} as any;
-    });
+      const fixture = createComponent(testComponents.SeededAutocomplete);
+      fixture.detectChanges();
 
-    afterEach(() => {
-      (component.query as any).next.mockClear();
-    });
+      let chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(1);
 
+      const chip = getChipElement(fixture);
+      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
+      const instance = getAutocompleteInstance(fixture);
 
-    test(`should filter out items that aren't strings`, () => {
-      component.ngAfterViewInit();
-      component.querySubject.next('foo');
+      // Open the panel so that overlayRef is created
+      instance.autocompleteTrigger.handleFocus();
+      instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
+
+      dispatchMouseEvent(chipRemovalButton, 'click');
+      fixture.detectChanges();
+
+      chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(0);
+
+      const input = getAutocompleteInput(fixture);
+      expect(document.activeElement).toEqual(input);
+      jest.advanceTimersByTime(200);
+
+      expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
       jest.runAllTimers();
-
-      expect(component.query.next).toHaveBeenCalledWith('foo');
     });
 
+
+    test(`should allow removal with the backspace key`, () => {
+      jest.useFakeTimers();
+      const fixture = createComponent(testComponents.SeededAutocomplete);
+      fixture.detectChanges();
+
+      let chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(1);
+
+      const chip = getChipElement(fixture);
+      // The first backspace selects the previous chip
+      dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
+      jest.advanceTimersByTime(250);
+      dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
+      fixture.detectChanges();
+
+      chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(0);
+    });
+
+  });
+
+
+  describe(`debounce`, function() {
 
     test(`should debounce the stream`, () => {
-      component.ngAfterViewInit();
-      component.querySubject.next('fo');
+      jest.useFakeTimers();
+      const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
+      fixture.componentInstance.change = jest.fn();
+      fixture.detectChanges();
+      const instance = getAutocompleteInstance(fixture);
+
+      instance.querySubject.next('ab');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('foo');
+      instance.querySubject.next('abc');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('fooo');
+      instance.querySubject.next('abcd');
       jest.runAllTimers();
 
-      expect(component.query.next).toHaveBeenCalledTimes(1);
+      expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
     });
 
 
-    test(`should allow debounce to be overridden`, () => {
-      component.debounceDelay = 0;
-      component.ngAfterViewInit();
-      component.querySubject.next('foo');
+    test(`should allow a custom debounce delay`, () => {
+      jest.useFakeTimers();
+      const fixture = createComponent<testComponents.CustomDebounce>(testComponents.CustomDebounce);
+      fixture.componentInstance.change = jest.fn();
+      fixture.detectChanges();
+      const instance = getAutocompleteInstance(fixture);
+
+      instance.querySubject.next('ab');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('fooo');
+      instance.querySubject.next('abc');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('foooo');
+      instance.querySubject.next('abcd');
       jest.runAllTimers();
 
-      expect(component.query.next).toHaveBeenCalledTimes(3);
+      expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
     });
 
+  });
 
-    test(`should only pass through a value if different from the previous value`, () => {
-      component.ngAfterViewInit();
-      component.querySubject.next('fo');
-      jest.advanceTimersByTime(500);
-      component.querySubject.next('fo');
+
+  describe(`minimumCharacters`, function() {
+
+    test(`should only emit query once past the minimum character count`, () => {
+      jest.useFakeTimers();
+      const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
+      fixture.componentInstance.change = jest.fn();
+      fixture.detectChanges();
+      const instance = getAutocompleteInstance(fixture);
+
+      instance.querySubject.next('');
+      jest.advanceTimersByTime(1);
+      instance.querySubject.next('a');
+      jest.advanceTimersByTime(1);
+      instance.querySubject.next('ab');
+      jest.advanceTimersByTime(1);
+      instance.querySubject.next('abc');
       jest.runAllTimers();
 
-      expect(component.query.next).toHaveBeenCalledTimes(1);
+      expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
     });
 
 
-    test(`should respect the minimum characters required`, () => {
-      component.debounceDelay = 0;
-      component.ngAfterViewInit();
-      component.querySubject.next('f');
+    test(`should allow a custom minimum character count`, () => {
+      jest.useFakeTimers();
+      const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
+      fixture.componentInstance.customCount = 1;
+      fixture.componentInstance.change = jest.fn();
+      fixture.detectChanges();
+      const instance = getAutocompleteInstance(fixture);
+
+      instance.querySubject.next('');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('fo');
+      instance.querySubject.next('a');
       jest.advanceTimersByTime(1);
-      component.querySubject.next('foo');
+      instance.querySubject.next('ab');
+      jest.advanceTimersByTime(1);
+      instance.querySubject.next('abc');
       jest.runAllTimers();
 
-      expect(component.query.next).toHaveBeenCalledTimes(2);
+      expect(fixture.componentInstance.change).toHaveBeenCalledTimes(4);
     });
 
   });
 
 
-  describe(`selectOption`, () => {
-    const event: any = createMockInstance(MatAutocompleteSelectedEvent);
-    event.option = {value: opt1};
+  test(`should only allow unique queries`, function() {
+    jest.useFakeTimers();
+    const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
+    fixture.componentInstance.change = jest.fn();
+    fixture.detectChanges();
+    const instance = getAutocompleteInstance(fixture);
 
-    beforeEach(() => {
-      component.selectionsControl = new FormControl();
-      component.optionSelected.emit = jest.fn();
-      component.selection.emit = jest.fn();
-    });
+    instance.querySubject.next('ab');
+    jest.advanceTimersByTime(1);
+    instance.querySubject.next('ab');
+    jest.advanceTimersByTime(1);
+    instance.querySubject.next('ab');
+    jest.runAllTimers();
 
+    expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
+  });
 
-    test(`should add the selection and emit events`, () => {
-      component.selectOption(event);
-
-      // check data
-      expect(component.selectedOptions).toEqual([opt1]);
-      expect(component.selectionsControl.value).toEqual([opt1]);
-
-      // check for both emits
-      expect(component.optionSelected.emit).toHaveBeenCalledWith(opt1);
-      expect(component.selection.emit).toHaveBeenCalledWith([opt1]);
-    });
-
-
-    test(`should reset the search if multiple selections are allowed`, () => {
-      component.multiple = (v: any) => v.id;
-      component['resetSearch'] = jest.fn();
-      component.selectOption(event);
-
-      expect(component['resetSearch']).toHaveBeenCalled();
-    });
+  test(`should throw an error if non string type passed in the component`, function() {
+    const fixture = createComponent<testComponents.PassingInObjectValue>(testComponents.PassingInObjectValue);
+    fixture.detectChanges();
+    expect(() => getAutocompleteInstance(fixture).autocompleteSelectItem(
+      new TsAutocompletePanelSelectedEvent(
+        {} as TsAutocompletePanelComponent,
+        getOptionInstance(fixture, 0, 1)
+      )
+    )).toThrowError(`The value passing into autocomplete has to be string type`);
+  });
 
 
-    test(`should set a validation error if a duplicate is selected`, () => {
-      component.multiple = (v: any) => v.id;
-      component.selectedOptions = [opt1];
-      component['setDuplicateError'] = jest.fn();
-      const result = component.selectOption(event);
+  describe(`duplicate selections`, function() {
 
-      expect(component['setDuplicateError']).toHaveBeenCalled();
-      expect(result).toEqual(undefined);
+    // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
+    test(`should not be allowed by default but should emit an event`, fakeAsync(function() {
+      const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
+      fixture.detectChanges();
+      fixture.componentInstance.duplicate = jest.fn();
+
+      let chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(1);
+
+      const input = getAutocompleteInput(fixture);
+      typeInElement('fl', input);
+      tick(1000);
+      fixture.detectChanges();
+
+      // Select Florida (it's selected by default in this test component)
+      const opt = getOptionElement(fixture, 0, 4);
+      opt.click();
+      tick(1000);
+      fixture.detectChanges();
+
+      // Verify the selection did NOT work
+      chips = getAllChipInstances(fixture);
+      expect(chips.length).toEqual(1);
+      expect(fixture.componentInstance.duplicate).toHaveBeenCalled();
+      expect.assertions(3);
+    }));
+
+
+    describe(`when allowed`, function() {
+
+      test(`should allow a duplicate selection`, fakeAsync(() => {
+        const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
+        fixture.componentInstance.allowDuplicates = true;
+        fixture.detectChanges();
+
+        let chips = getAllChipInstances(fixture);
+        expect(chips.length).toEqual(1);
+
+        const input = getAutocompleteInput(fixture);
+        typeInElement('fl', input);
+        tick(1000);
+        fixture.detectChanges();
+
+        // Select Florida (it's selected by default in this test component)
+        const opt = getOptionElement(fixture, 0, 4);
+        opt.click();
+        tick(1000);
+        fixture.detectChanges();
+
+        // Verify the selection DID work
+        chips = getAllChipInstances(fixture);
+        expect(chips.length).toEqual(2);
+        expect(getAutocompleteInstance(fixture).autocompleteSelections).toEqual(['Florida', 'Florida']);
+
+        expect.assertions(3);
+      }));
+
     });
 
   });
 
 
-  describe(`deselectOption`, () => {
+  describe(`trigger`, function() {
 
-    beforeEach(() => {
-      component.selectionsControl = new FormControl();
-      component.optionRemoved.emit = jest.fn();
-      component.selection.emit = jest.fn();
-      component.initialSelections = [opt1];
+    describe(`in single selection mode`, function() {
+
+      test(`should set single value`, fakeAsync(() => {
+        const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
+        fixture.componentInstance.allowMultiple = false;
+        fixture.componentInstance.keepOpen = false;
+        tick(1000);
+        fixture.detectChanges();
+        const instance = getAutocompleteInstance(fixture);
+        const input = getAutocompleteInput(fixture);
+
+        typeInElement('fl', input);
+        tick(1000);
+        fixture.detectChanges();
+
+        const opt = getOptionElement(fixture);
+        opt.click();
+        tick(1000);
+        fixture.detectChanges();
+
+        expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
+      }));
+
     });
 
 
-    test(`should remove an item from the selections array and form control`, () => {
-      expect(component.selectedOptions).toEqual([opt1]);
-      expect(component.selectionsControl.value).toEqual([opt1]);
 
-      component.deselectOption(opt1);
+    test(`should reset the query when a selection is made`, fakeAsync(function() {
+      const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
+      fixture.detectChanges();
 
-      expect(component.selectedOptions).toEqual([]);
-      expect(component.selectionsControl.value).toEqual([]);
-      expect(component.optionRemoved.emit).toHaveBeenCalledWith(opt1);
-      expect(component.selection.emit).toHaveBeenCalledWith([]);
+      const input = getAutocompleteInput(fixture);
+      typeInElement('fl', input);
+      tick(1000);
+      fixture.detectChanges();
+
+      expect(input.value).toEqual('fl');
+
+      const opt = getOptionElement(fixture, 0, 4);
+      opt.click();
+      tick(1000);
+      fixture.detectChanges();
+
+      expect(input.value).toEqual('');
+    }));
+
+
+    test(`should seed the autocomplete model(s) after timeout when using ngModel`, fakeAsync(function() {
+      const fixture = createComponent(testComponents.SeededNgModelAutocomplete);
+      fixture.detectChanges();
+
+      tick(1000);
+      fixture.detectChanges();
+
+      const instance = getAutocompleteInstance(fixture);
+      expect(instance.autocompleteFormControl.value).toEqual(['Florida']);
+      expect(instance.autocompleteSelections).toEqual(['Florida']);
+    }));
+
+    test(`should allow a value seeded by a FormControl`, fakeAsync(function() {
+      const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
+      fixture.detectChanges();
+
+      const input = getAutocompleteInput(fixture);
+      typeInElement('al', input);
+      tick(1000);
+      fixture.detectChanges();
+      const opt = getOptionElement(fixture, 0, 2);
+      opt.click();
+      tick(1000);
+      fixture.detectChanges();
+      expect(getAutocompleteInstance(fixture).autocompleteFormControl.value).toEqual(['Alaska']);
+    }));
+
+    test(`should close the panel if open when getting a blur event that isn't from a selection`, function() {
+      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
+      fixture.componentInstance.disabled = true;
+      fixture.detectChanges();
+      const input = getAutocompleteInput(fixture);
+      const instance = getAutocompleteInstance(fixture);
+      const triggerInstance = instance.autocompleteTrigger;
+
+      instance.focus();
+      triggerInstance.openPanel();
+      fixture.detectChanges();
+
+      expect(triggerInstance.panelOpen).toEqual(true);
+
+      const event = createFakeEvent('blur');
+
+      fixture.componentInstance.states.length = 0;
+      fixture.detectChanges();
+
+      input.dispatchEvent(event);
+      fixture.detectChanges();
+
+      expect(triggerInstance.panelOpen).toEqual(false);
     });
 
 
-    test(`should return undefined if deselecting an item that doesnt exist`, () => {
-      expect(component.selectedOptions).toEqual([opt1]);
-      expect(component.selectionsControl.value).toEqual([opt1]);
+    test(`should update the overlay position when a chip is removed`, function() {
+      jest.useFakeTimers();
+      const fixture = createComponent(testComponents.SeededAutocomplete);
+      fixture.detectChanges();
+      const instance = getAutocompleteInstance(fixture);
+      const triggerInstance = instance.autocompleteTrigger;
+      const chip = getChipElement(fixture);
+      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
 
-      const result = component.deselectOption({id: 2});
+      triggerInstance.openPanel();
+      fixture.detectChanges();
+      instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
 
-      expect(result).toEqual(undefined);
-      expect(component.selectedOptions).toEqual([opt1]);
-      expect(component.selectionsControl.value).toEqual([opt1]);
+      dispatchMouseEvent(chipRemovalButton, 'click');
+      jest.advanceTimersByTime(1000);
+      fixture.detectChanges();
+
+      expect(instance.autocompleteTrigger.overlayRef!.updatePosition).toHaveBeenCalled();
+      jest.runAllTimers();
+    });
+
+
+    describe(`required`, () => {
+
+      test(`should set required if the form control is required`, () => {
+        const fixture = createComponent(testComponents.ValidateOnChange);
+        fixture.detectChanges();
+        const component = getAutocompleteElement(fixture);
+        const selectTrigger = getAutocompleteTriggerElement(fixture);
+        dispatchMouseEvent(selectTrigger, 'click');
+        dispatchMouseEvent(component, 'click');
+        const validationMessage = getValidationMessageElement(fixture);
+
+        expect(validationMessage).toBeTruthy();
+      });
+
+      test(`should set required if the form control is required for autocomplete mode`, () => {
+        const fixture = createComponent(testComponents.AutocompleteRequired);
+        fixture.detectChanges();
+        const component = getAutocompleteInput(fixture);
+
+        const selectTrigger = getAutocompleteTriggerElement(fixture);
+        dispatchMouseEvent(selectTrigger, 'click');
+        dispatchMouseEvent(component, 'click');
+        const validationMessage = getValidationMessageElement(fixture);
+
+        expect(validationMessage).toBeTruthy();
+      });
+    });
+
+
+    describe(`panel`, function() {
+
+      test(`should support a custom ID`, () => {
+        const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
+        fixture.componentInstance.disabled = true;
+        fixture.detectChanges();
+        const instance = getAutocompleteInstance(fixture);
+        instance.autocompleteTrigger.openPanel();
+        fixture.detectChanges();
+        const panel = fixture.debugElement.query(By.css('.ts-autocomplete-panel__inner')).nativeElement as HTMLElement;
+
+        expect(instance.autocompletePanel.isOpen).toEqual(true);
+        expect(panel.getAttribute('id')).toEqual(expect.stringContaining('-panel'));
+      });
+
     });
 
   });
 
 
-  describe(`displayOption`, () => {
+  test(`should be able to hide the required marker`, function() {
+    const fixture = createComponent<testComponents.HideRequired>(testComponents.HideRequired);
+    fixture.detectChanges();
+    let marker = fixture.debugElement.query(By.css('.ts-form-field-required-marker'));
+    expect(marker).toBeTruthy();
 
-    test(`should return a value determined by uiFormatFn if it exists`, () => {
-      component['uiFormatFn'] = (v: any) => v.id.toString();
-      expect(component.displayOption(opt1)).toEqual('1');
+    fixture.componentInstance.hideRequired = true;
+    fixture.detectChanges();
+
+    marker = fixture.debugElement.query(By.css('.ts-form-field-required-marker'));
+    expect(marker).toBeFalsy();
+  });
+
+
+  test(`should support a custom hint`, function() {
+    const fixture = createComponent(testComponents.Hint);
+    fixture.detectChanges();
+    const hintElement = fixture.debugElement.query(By.css('.ts-form-field__hint-wrapper'));
+    const contents = fixture.debugElement.query(By.css('.c-input__hint'));
+
+    expect(hintElement).toBeTruthy();
+    expect(contents.nativeElement.textContent).toEqual('foo');
+  });
+
+
+  describe(`ID`, function() {
+
+    test(`should support a custom ID`, () => {
+      const fixture = createComponent(testComponents.Id);
+      fixture.detectChanges();
+      const trigger = getAutocompleteTriggerElement(fixture);
+
+      expect(trigger.getAttribute('id')).toEqual('foo');
     });
 
 
-    test(`should return the full option if uiFormatFn does not exist`, () => {
-      expect(component.displayOption(opt1)).toEqual(opt1);
+    test(`should fall back to the UID if no ID is passed in`, () => {
+      const fixture = createComponent<testComponents.Id>(testComponents.Id);
+      fixture.componentInstance.myId = undefined as any;
+      fixture.detectChanges();
+      const trigger = getAutocompleteTriggerElement(fixture);
+
+      expect(trigger.getAttribute('id')).toEqual(expect.stringContaining('ts-autocomplete-'));
     });
 
   });
 
 
-  describe(`handleBlur`, () => {
-    const eventDiv = {relatedTarget: {nodeName: 'DIV'}} as any;
-    const eventOpt = {relatedTarget: {nodeName: 'MAT-OPTION'}} as any;
-    const eventNoNode = {relatedTarget: {}} as MouseEvent;
-    const eventNoRelatedTarget = {} as KeyboardEvent;
+  test(`should show error immediately if validating on change`, function() {
+    const fixture = createComponent(testComponents.ValidateOnChange);
+    fixture.detectChanges();
+    const messageContainer = fixture.debugElement.query(By.css('.c-validation-message'));
 
-
-    beforeEach(() => {
-      component.selectionsControl = new FormControl();
-      component['resetSearch'] = jest.fn();
-    });
-
-    afterEach(() => {
-      (component['resetSearch'] as any).mockClear();
-    });
-
-
-    test(`should call resetSearch if there is no event.relatedTarget and in multiple selection mode`, () => {
-      expect(component.selectionsControl.touched).toEqual(false);
-
-      component.multiple = v => v;
-      component.handleBlur(eventNoRelatedTarget);
-      expect(component['resetSearch']).toHaveBeenCalled();
-      expect(component.selectionsControl.touched).toEqual(true);
-    });
-
-
-    test(`should call resetSearch if the relatedTarget has no nodeName and is in multiple mode`, () => {
-      component.multiple = v => v;
-      component.handleBlur(eventNoNode);
-      expect(component['resetSearch']).toHaveBeenCalled();
-    });
-
-
-    test(`should NOT call resetSearch if the nodeName is MAT-OPTION`, () => {
-      component.multiple = v => v;
-      component.handleBlur(eventOpt);
-      expect(component['resetSearch']).not.toHaveBeenCalled();
-    });
-
-
-
-    test(`should call resetSearch if the nodeName isn't MAT-OPTION`, () => {
-      component.multiple = v => v;
-      component.handleBlur(eventDiv);
-      expect(component['resetSearch']).toHaveBeenCalled();
-    });
-
+    expect(messageContainer.nativeElement.textContent.trim()).toEqual('Required');
   });
 
 
-  describe(`resetSearch`, () => {
+  describe(`option`, function() {
 
-    beforeEach(() => {
-      component.searchQuery = 'foo';
-      component.querySubject.next = jest.fn();
-      component.input = {nativeElement: {value: 'foo'}};
-      component['trigger'] = {
-        panelOpen: jest.fn().mockReturnValue(true),
-        closePanel: jest.fn(),
-      } as any;
-    });
-
-    test(`should clear the search everywhere`, () => {
-      (component['trigger'].panelOpen as any) = jest.fn().mockReturnValue(false);
-
-      expect(component.searchQuery).toEqual('foo');
-      component['resetSearch']();
-
-      expect(component.searchQuery).toEqual('');
-      expect(component.querySubject.next).toHaveBeenCalledWith('');
-      expect(component.input.nativeElement.value).toEqual('');
-    });
-
-
-    test(`should close the panel if it is open`, () => {
-      component['resetSearch']();
-
-      expect(component['trigger'].closePanel).toHaveBeenCalled();
-    });
-
-  });
-
-
-  describe(`setDuplicateError`, () => {
-    let formControl: FormControl;
-    interface ValidationErr {
-      notUnique: {
-        valid: boolean;
-        actual: any;
+    test(`should throw error if template is used but no option is passed in`, () => {
+      const create = () => {
+        const fixture = createComponent(testComponents.OptionError);
+        fixture.detectChanges();
       };
-    }
-    const error: ValidationErr = {
-      notUnique: {
-        valid: false,
-        actual: 1,
-      },
-    };
-    const formatter = (v: any) => v.id;
 
-    beforeEach(() => {
-      formControl = new FormControl();
+      expect(create).toThrowError(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     });
 
 
-    test(`should set an error on the form control`, () => {
-      component['setDuplicateError'](formControl, opt1, formatter);
-      expect(formControl.errors).toEqual(error);
+    describe(`id`, function() {
+
+      test(`should support custom IDs`, () => {
+        const fixture = createComponent(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+
+        expect(option.id).toEqual('Alabama');
+      });
+
+
+      test(`should fall back to UID`, () => {
+        const fixture = createComponent(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+
+        option.id = undefined as any;
+        fixture.detectChanges();
+
+        expect(option.id).toEqual(expect.stringContaining('ts-option-'));
+      });
+
     });
 
 
-    test(`should set actual to the full option if a formatter was not passed in`, () => {
-      component['setDuplicateError'](formControl, opt1);
-      error.notUnique.actual = opt1;
-      expect(formControl.errors).toEqual(error);
+    describe(`getLabel`, function() {
+
+      test(`should return the viewValue`, () => {
+        const fixture = createComponent(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+
+        expect(option.getLabel()).toEqual('Alabama');
+      });
+
+    });
+
+
+    describe(`option`, function() {
+
+      test(`should retrieve the option object`, () => {
+        const fixture = createComponent(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+
+        expect(option.option).toEqual(expect.objectContaining({ name: 'Alabama' }));
+      });
+
+    });
+
+
+    describe(`deselect`, function() {
+
+      test(`should emit event not from user interaction`, () => {
+        const fixture = createComponent<testComponents.OptionId>(testComponents.OptionId);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 2);
+        option.select();
+        fixture.detectChanges();
+        option.emitSelectionChangeEvent = jest.fn();
+
+        option.deselect();
+        fixture.detectChanges();
+
+        expect(option.emitSelectionChangeEvent.mock.calls.length).toEqual(1);
+        // Verify it was not called with the boolean
+        expect(option.emitSelectionChangeEvent.mock.calls[0]).toEqual([]);
+      });
+
     });
 
   });
 
-
-  describe(`dummy test for ngOnDestroy`, () => {
-
-    test(`should return undefined`, () => {
-      expect(component.ngOnDestroy()).toEqual(undefined);
-    });
-
-  });
-
-
-  describe(`selectionsControl`, () => {
-
-    beforeEach(() => {
-      component.selectionsControl = new FormControl();
-    });
-
-
-    test(`should reflect changes to selectedOptions if dynamically updated`, () => {
-      component.ngAfterViewInit();
-      expect(component.selectedOptions).toEqual([]);
-
-      component.selectionsControl.setValue([{id: 9}]);
-
-      expect(component.selectedOptions).toEqual([{id: 9}]);
-    });
-
-
-    test(`should fall back to a default formControl if no value is passed in`, () => {
-      component.selectionsControl = null as any;
-      expect(component.selectionsControl instanceof FormControl).toBeTruthy();
-    });
-
-  });
 
 });

@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
+import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectModule } from '@terminus/ui/select';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 import { TsToggleModule } from '@terminus/ui/toggle';
@@ -22,6 +23,7 @@ import { SelectComponent } from './select.component';
     ReactiveFormsModule,
     SelectRoutingModule,
     TsCardModule,
+    TsOptionModule,
     TsSelectModule,
     TsSpacingModule,
     TsToggleModule,

@@ -38,11 +38,11 @@ $ts-autocomplete-panel-border-radius: 4px !default;
   // Selected options in autocompletes should not be gray, but we only want to override the background for selected options if they are
   // *not* in hover or focus state. This change has to be made here because base option styles are shared between the autocomplete and the
   // select.
-  .ts-select-option.ts-select-option--selected:not(.ts-active):not(:hover) {
+  .ts-option.ts-option--selected:not(.ts-active):not(:hover) {
     background: color(primary, xlight);
   }
 
-  .ts-select-option:not(.ts-select-option--template) {
+  .ts-option:not(.ts-option--template) {
     font-size: inherit;
     height: $ts-select-item-height;
     line-height: $ts-select-item-height;

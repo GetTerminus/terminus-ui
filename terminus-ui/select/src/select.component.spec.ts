@@ -25,11 +25,7 @@ import * as testComponents from '@terminus/ui/select/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   createKeydownEvent,
-  getAllChipInstances,
   getAllOptionInstances,
-  getAutocompleteInput,
-  getChipElement,
-  getChipElementDisplayValue,
   getFilterInputElement,
   getOptgroupElement,
   getOptionElement,
@@ -39,12 +35,9 @@ import {
   getSelectTriggerElement,
   openSelect,
 } from '@terminus/ui/select/testing';
-import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
-import {
-  TsSelectFormatFn,
-  TsSelectModule,
-} from './select.module';
+import { TsOptionModule } from '@terminus/ui/option';
+import { TsSelectModule } from './select.module';
 
 
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
@@ -52,6 +45,7 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     FormsModule,
     ReactiveFormsModule,
     TsSelectModule,
+    TsOptionModule,
     NoopAnimationsModule,
   ];
 
@@ -191,19 +185,18 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should style disabled and selected options`, async(() => {
+    test(`should style disabled and selected options`, fakeAsync(function() {
       const fixture = createComponent(testComponents.SeededFormControl);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
+      tick(1000);
       fixture.detectChanges();
 
-      fixture.whenStable().then(() => {
-        const disabledOption = getOptionElement(fixture, 0, 1);
-        const activeOption = getOptionElement(fixture, 0, 4);
-        expect(disabledOption.classList.contains('ts-select-option--disabled')).toEqual(true);
-        expect(activeOption.classList.contains('ts-selected')).toEqual(true);
-      });
+      const disabledOption = getOptionElement(fixture, 0, 1);
+      const activeOption = getOptionElement(fixture, 0, 4);
+      expect(disabledOption.classList.contains('ts-option--disabled')).toEqual(true);
+      expect(activeOption.classList.contains('ts-selected')).toEqual(true);
     }));
 
 
@@ -230,17 +223,19 @@ describe(`TsSelectComponent`, function() {
 
     describe(`delimiter`, function() {
 
-      test(`should allow custom delimiters`, () => {
+      test(`should allow custom delimiters`, fakeAsync(function() {
         const fixture = createComponent(testComponents.CustomDelimiter);
         fixture.detectChanges();
-
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
+          trigger.click();
+          fixture.detectChanges();
           const valueSpan = trigger.querySelector('.ts-select-value-text');
 
-          expect(valueSpan.textContent).toEqual('Florida- Texas');
+          expect(valueSpan!.textContent!.trim()).toEqual('Florida- Texas');
         });
-      });
+        expect.assertions(1);
+      }));
 
 
       test(`should fall back to the default delimiter if a non-string value is passed in`, () => {
@@ -250,10 +245,13 @@ describe(`TsSelectComponent`, function() {
 
         fixture.whenStable().then(() => {
           const trigger = getSelectTriggerElement(fixture);
+          trigger.click();
+          fixture.detectChanges();
           const valueSpan = trigger.querySelector('.ts-select-value-text');
 
-          expect(valueSpan.textContent).toEqual('Florida, Texas');
+          expect(valueSpan!.textContent!.trim()).toEqual('Florida, Texas');
         });
+        expect.assertions(1);
       });
 
     });
@@ -720,513 +718,6 @@ describe(`TsSelectComponent`, function() {
   });
 
 
-  /**
-   * AUTOCOMPLETE
-   */
-  describe(`autocomplete`, function() {
-
-    test(`should show a progress indicator`, () => {
-      jest.useFakeTimers();
-      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
-      fixture.detectChanges();
-
-      let spinner = fixture.debugElement.query(By.css('.c-autocomplete__spinner'));
-      expect(spinner).toBeFalsy();
-
-      fixture.componentInstance.showProgress = true;
-      fixture.detectChanges();
-
-      spinner = fixture.debugElement.query(By.css('.c-autocomplete__spinner'));
-      expect(spinner).toBeTruthy();
-
-      expect.assertions(2);
-    });
-
-
-    test(`should not open when disabled`, () => {
-      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
-      fixture.componentInstance.disabled = true;
-      fixture.detectChanges();
-      const trigger = getSelectTriggerElement(fixture);
-      const instance = getSelectInstance(fixture);
-
-      expect(instance.panelOpen).toEqual(false);
-
-      dispatchKeyboardEvent(trigger, 'keydown', KEYS.DOWN_ARROW);
-
-      expect(instance.panelOpen).toEqual(false);
-    });
-
-
-    describe(`chips`, function() {
-
-      test(`should show selections as chips`, () => {
-        const fixture = createComponent(testComponents.SeededAutocomplete);
-        fixture.detectChanges();
-
-        const chip = getChipElement(fixture);
-
-        expect(chip).toBeTruthy();
-      });
-
-
-      test(`should allow chips to be removed`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent(testComponents.SeededAutocomplete);
-        fixture.detectChanges();
-
-        let chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(1);
-
-        const chip = getChipElement(fixture);
-        const chipRemovalButton = chip.querySelector('.mat-chip-remove');
-        const instance = getSelectInstance(fixture);
-
-        // Open the panel so that overlayRef is created
-        instance.autocompleteTrigger.handleFocus();
-        instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
-
-        dispatchMouseEvent(chipRemovalButton, 'click');
-        fixture.detectChanges();
-
-        chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(0);
-
-        const input = getAutocompleteInput(fixture);
-        expect(document.activeElement).toEqual(input);
-        jest.advanceTimersByTime(200);
-
-        expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
-        jest.runAllTimers();
-      });
-
-
-      test(`should allow removal with the backspace key`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent(testComponents.SeededAutocomplete);
-        fixture.detectChanges();
-
-        let chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(1);
-
-        const chip = getChipElement(fixture);
-        // The first backspace selects the previous chip
-        dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
-        jest.advanceTimersByTime(250);
-        dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
-        fixture.detectChanges();
-
-        chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(0);
-      });
-
-
-      test(`should show UI element based on format function passed in`, () => {
-        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-        fixture.detectChanges();
-        const displayValue = getChipElementDisplayValue(fixture);
-
-        expect(displayValue).toEqual('Florida');
-      });
-
-
-      test(`should set/get the chipFormatUIFn`, () => {
-        const myFn: TsSelectFormatFn = (v: any) => v.name;
-        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-        fixture.detectChanges();
-        const component = getSelectInstance(fixture);
-        fixture.detectChanges();
-
-        component.chipFormatUIFn = myFn;
-        expect(component.chipFormatUIFn).toEqual(myFn);
-      });
-
-
-      test(`should return undefined if no value is passed in chipFormatUIFn`, () => {
-        // tslint:disable: prefer-const
-        let foo: any;
-        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-        fixture.detectChanges();
-        const component = getSelectInstance(fixture);
-        fixture.detectChanges();
-        // tslint:enable: prefer-const
-        expect(component.chipFormatUIFn = foo).toEqual(undefined);
-      });
-
-
-      test(`should throw an error in dev mode when passed a value to chipFormatUIFn that is not a function`, () => {
-        const fixture = createComponent(testComponents.SeededAutocompleteWithFormatFn);
-        fixture.detectChanges();
-        const component = getSelectInstance(fixture);
-        fixture.detectChanges();
-        expect(() => {
-          component.chipFormatUIFn = 3 as any;
-        })
-          .toThrowError(`TsSelectComponent: 'chipFormatUIFn' must be passed a 'TsSelectFormatFn'.`);
-      });
-
-    });
-
-
-    describe(`debounce`, function() {
-
-      test(`should debounce the stream`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
-        fixture.componentInstance.change = jest.fn();
-        fixture.detectChanges();
-        const instance = getSelectInstance(fixture);
-
-        instance.querySubject.next('ab');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abc');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abcd');
-        jest.runAllTimers();
-
-        expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
-      });
-
-
-      test(`should allow a custom debounce delay`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent<testComponents.CustomDebounce>(testComponents.CustomDebounce);
-        fixture.componentInstance.change = jest.fn();
-        fixture.detectChanges();
-        const instance = getSelectInstance(fixture);
-
-        instance.querySubject.next('ab');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abc');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abcd');
-        jest.runAllTimers();
-
-        expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
-      });
-
-    });
-
-
-    describe(`minimumCharacters`, function() {
-
-      test(`should only emit query once past the minimum character count`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
-        fixture.componentInstance.change = jest.fn();
-        fixture.detectChanges();
-        const instance = getSelectInstance(fixture);
-
-        instance.querySubject.next('');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('a');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('ab');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abc');
-        jest.runAllTimers();
-
-        expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
-      });
-
-
-      test(`should allow a custom minimum character count`, () => {
-        jest.useFakeTimers();
-        const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
-        fixture.componentInstance.customCount = 1;
-        fixture.componentInstance.change = jest.fn();
-        fixture.detectChanges();
-        const instance = getSelectInstance(fixture);
-
-        instance.querySubject.next('');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('a');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('ab');
-        jest.advanceTimersByTime(1);
-        instance.querySubject.next('abc');
-        jest.runAllTimers();
-
-        expect(fixture.componentInstance.change).toHaveBeenCalledTimes(4);
-      });
-
-    });
-
-
-    test(`should only allow unique queries`, function() {
-      jest.useFakeTimers();
-      const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
-      fixture.componentInstance.change = jest.fn();
-      fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
-
-      instance.querySubject.next('ab');
-      jest.advanceTimersByTime(1);
-      instance.querySubject.next('ab');
-      jest.advanceTimersByTime(1);
-      instance.querySubject.next('ab');
-      jest.runAllTimers();
-
-      expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
-    });
-
-
-    describe(`duplicate selections`, function() {
-
-      // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
-      test(`should not be allowed by default but should emit an event`, function() {
-        jest.useFakeTimers();
-        const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
-        fixture.detectChanges();
-        fixture.componentInstance.duplicate = jest.fn();
-
-        let chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(1);
-
-        const input = getAutocompleteInput(fixture);
-        typeInElement('fl', input);
-        fixture.detectChanges();
-
-        // Select Florida (it's selected by default in this test component)
-        const opt = getOptionElement(fixture, 0, 4);
-        opt.click();
-        fixture.detectChanges();
-
-        // Verify the selection did NOT work
-        chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(1);
-        expect(fixture.componentInstance.duplicate).toHaveBeenCalledWith('Florida');
-        jest.runAllTimers();
-        expect.assertions(3);
-      });
-
-
-      describe(`when allowed`, function() {
-
-        test(`should allow a duplicate selection`, () => {
-          const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
-          fixture.componentInstance.allowDuplicates = true;
-          fixture.detectChanges();
-
-          let chips = getAllChipInstances(fixture);
-          expect(chips.length).toEqual(1);
-
-          const input = getAutocompleteInput(fixture);
-          typeInElement('fl', input);
-          fixture.detectChanges();
-
-          // Select Florida (it's selected by default in this test component)
-          const opt = getOptionElement(fixture, 0, 4);
-          opt.click();
-          fixture.detectChanges();
-
-          // Verify the selection DID work
-          chips = getAllChipInstances(fixture);
-          expect(chips.length).toEqual(2);
-          expect(getSelectInstance(fixture).autocompleteSelections).toEqual(['Florida', 'Florida']);
-
-          expect.assertions(3);
-        });
-
-      });
-
-    });
-
-
-    describe(`trigger`, function() {
-
-      describe(`in single selection mode`, function() {
-
-        test(`should set single value`, () => {
-          const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
-          fixture.componentInstance.allowMultiple = false;
-          fixture.componentInstance.keepOpen = false;
-          fixture.detectChanges();
-          const instance = getSelectInstance(fixture);
-          const input = getAutocompleteInput(fixture);
-
-          typeInElement('fl', input);
-          fixture.detectChanges();
-
-          const opt = getOptionElement(fixture);
-          opt.click();
-          fixture.detectChanges();
-
-          expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
-        });
-
-
-        test(`should set single value 2`, () => {
-          const fixture = createComponent<testComponents.SeededAutocompleteWithFormatFn>(testComponents.SeededAutocompleteWithFormatFn);
-          fixture.componentInstance.allowMultiple = false;
-          fixture.componentInstance.keepOpen = false;
-          fixture.componentInstance.myCtrl.setValue([{
-            name: 'Florida',
-            population: '20.27M',
-          }]);
-          fixture.detectChanges();
-          const instance = getSelectInstance(fixture);
-          const input = getAutocompleteInput(fixture);
-
-          typeInElement('fl', input);
-          fixture.detectChanges();
-
-          const opt = getOptionElement(fixture);
-          opt.click();
-          fixture.detectChanges();
-
-          expect(instance.autocompleteFormControl.value).toEqual(['Arkansas']);
-        });
-
-      });
-
-    });
-
-
-    test(`should reset the query when a selection is made`, function() {
-      const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
-      fixture.detectChanges();
-
-      const element = getSelectElement(fixture);
-      const input = getAutocompleteInput(fixture);
-      typeInElement('fl', input);
-      fixture.detectChanges();
-
-      expect(input.value).toEqual('fl');
-
-      // move down to Florida and try to select it
-      dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
-      dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
-      dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
-      dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
-      dispatchKeyboardEvent(element, 'keydown', KEYS.DOWN_ARROW);
-      dispatchKeyboardEvent(element, 'keydown', KEYS.ENTER);
-      fixture.detectChanges();
-
-      expect(input.value).toEqual('');
-    });
-
-
-    test(`should support a custom tabindex`, function() {
-      const fixture = createComponent<testComponents.Tabindex>(testComponents.Tabindex);
-      fixture.componentInstance.autocomplete = true;
-      fixture.detectChanges();
-      const input = getAutocompleteInput(fixture);
-
-      expect(input.getAttribute('tabindex')).toEqual('4');
-    });
-
-
-    test(`should seed the autocomplete model(s) after timeout when using ngModel`, fakeAsync(function() {
-      const fixture = createComponent(testComponents.SeededNgModelAutocomplete);
-      fixture.detectChanges();
-
-      tick(1000);
-      fixture.detectChanges();
-
-      const instance = getSelectInstance(fixture);
-      expect(instance.autocompleteFormControl.value).toEqual(['Florida']);
-      expect(instance.autocompleteSelections).toEqual(['Florida']);
-    }));
-
-
-    test(`should close the panel if open when getting a blur event that isn't from a selection`, function() {
-      const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
-      fixture.componentInstance.disabled = true;
-      fixture.detectChanges();
-      const input = getAutocompleteInput(fixture);
-      const instance = getSelectInstance(fixture);
-      const triggerInstance = instance.autocompleteTrigger;
-
-      instance.focus();
-      triggerInstance.openPanel();
-      fixture.detectChanges();
-
-      expect(triggerInstance.panelOpen).toEqual(true);
-
-      const event = createFakeEvent('blur');
-
-      fixture.componentInstance.states.length = 0;
-      fixture.detectChanges();
-
-      input.dispatchEvent(event);
-      fixture.detectChanges();
-
-      expect(triggerInstance.panelOpen).toEqual(false);
-    });
-
-
-    test(`should update the overlay position when a chip is removed`, function() {
-      jest.useFakeTimers();
-      const fixture = createComponent(testComponents.SeededAutocomplete);
-      fixture.detectChanges();
-      const instance = getSelectInstance(fixture);
-      const triggerInstance = instance.autocompleteTrigger;
-      const chip = getChipElement(fixture);
-      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
-
-      triggerInstance.openPanel();
-      fixture.detectChanges();
-      instance.autocompleteTrigger.overlayRef.updatePosition = jest.fn();
-
-      dispatchMouseEvent(chipRemovalButton, 'click');
-      jest.advanceTimersByTime(1000);
-      fixture.detectChanges();
-
-      expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
-      jest.runAllTimers();
-    });
-
-
-    describe(`required`, () => {
-
-      test(`should set required if the form control is required`, () => {
-        const fixture = createComponent(testComponents.ValidateOnChange);
-        fixture.detectChanges();
-        const component = getSelectElement(fixture);
-        const selectTrigger = getSelectTriggerElement(fixture);
-        dispatchMouseEvent(selectTrigger, 'click');
-        dispatchMouseEvent(component, 'click');
-        const validationMessage = getValidationMessageElement(fixture);
-
-        expect(validationMessage).toBeTruthy();
-      });
-
-      test(`should set required if the form control is required for autocomplete mode`, () => {
-        const fixture = createComponent(testComponents.AutocompleteRequired);
-        fixture.detectChanges();
-        const component = getAutocompleteInput(fixture);
-
-        const selectTrigger = getSelectTriggerElement(fixture);
-        dispatchMouseEvent(selectTrigger, 'click');
-        dispatchMouseEvent(component, 'click');
-        const validationMessage = getValidationMessageElement(fixture);
-
-        expect(validationMessage).toBeTruthy();
-      });
-    });
-
-
-    describe(`panel`, function() {
-
-      test(`should support a custom ID`, () => {
-        const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
-        fixture.componentInstance.disabled = true;
-        fixture.detectChanges();
-        const instance = getSelectInstance(fixture);
-        instance.autocompleteTrigger.openPanel();
-        fixture.detectChanges();
-        const panel = fixture.debugElement.query(By.css('.ts-autocomplete-panel__inner')).nativeElement as HTMLElement;
-
-        expect(instance.autocompletePanel.isOpen).toEqual(true);
-        expect(panel.getAttribute('id')).toEqual(expect.stringContaining('-panel'));
-      });
-
-    });
-
-  });
-
-
   test(`should be able to hide the required marker`, function() {
     const fixture = createComponent<testComponents.HideRequired>(testComponents.HideRequired);
     fixture.detectChanges();
@@ -1422,7 +913,7 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
       };
 
-      expect(create).toThrowError(`TsSelectOptionComponent: The full 'option' object must be passed in when using a custom template.`);
+      expect(create).toThrowError(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     });
 
 
@@ -1445,7 +936,7 @@ describe(`TsSelectComponent`, function() {
         option.id = undefined as any;
         fixture.detectChanges();
 
-        expect(option.id).toEqual(expect.stringContaining('ts-select-option-'));
+        expect(option.id).toEqual(expect.stringContaining('ts-option-'));
       });
 
     });
@@ -1493,6 +984,32 @@ describe(`TsSelectComponent`, function() {
         expect(event.defaultPrevented).toEqual(true);
       });
 
+      test(`should return if isDisabled true`, () => {
+        const fixture = createComponent(testComponents.Basic);
+        getSelectInstance(fixture).isDisabled = true;
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+        const event = createKeyboardEvent('keydown', KEYS.ENTER);
+        const instance = getSelectInstance(fixture);
+        option.selectViaInteraction = jest.fn();
+        instance.open = jest.fn()
+
+        instance.handleKeydown(event);
+        expect(option.selectViaInteraction).not.toHaveBeenCalled();
+      });
+
+      test(`should open the panel if allow multiple`, () => {
+        const fixture = createComponent(testComponents.Basic);
+        fixture.detectChanges();
+        const option = getOptionInstance(fixture, 0, 1);
+        const event = createKeyboardEvent('keydown', KEYS.ENTER);
+        const instance = getSelectInstance(fixture);
+        option.selectViaInteraction = jest.fn();
+        instance.open = jest.fn()
+
+        instance.handleKeydown(event);
+        expect(instance.open).toHaveBeenCalled();
+      })
     });
 
 
@@ -1601,7 +1118,6 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(false);
     });
-
 
     test(`should close with alt+up or alt+down`, () => {
       const fixture = createComponent(testComponents.Basic);

@@ -6,10 +6,12 @@
       [(ngModel)]="example"
       label="Change binding example"
     >
-      <ts-select-option
+      <ts-option
         [value]="item.value"
         *ngFor="let item of items"
-      >{{ item.name }}</ts-select-option>
+      >
+        {{ item.name }}
+      </ts-option>
     </ts-select>
   </div>
 </ts-card>

@@ -29,12 +29,6 @@
   - [Custom Delimiter](#custom-delimiter)
   - [Custom Sort Comparator](#custom-sort-comparator)
   - [Filterable](#filterable)
-- [Autocomplete](#autocomplete)
-  - [Duplicate selections](#duplicate-selections)
-  - [Keep Panel Open After Selection](#keep-panel-open-after-selection)
-  - [Debouncing](#debouncing)
-  - [Minimum Characters](#minimum-characters)
-  - [Progress Indicator](#progress-indicator)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -43,15 +37,15 @@
 
 ## Basic usage
 
-The most basic usage is by wrapping one or more `ts-select-option`s inside an `ts-select`:
+The most basic usage is by wrapping one or more `ts-option`s inside an `ts-select`:
 
 ```html
 <!-- Define the option value by passing a property to the option's `value` input -->
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let item of items"
     [value]="item.value"
-  >{{ item.name }}</ts-select-option>
+  >{{ item.name }}</ts-option>
 </ts-select>
 ```
 
@@ -119,7 +113,7 @@ compareByValue(f1: any, f2: any) { return f1 && f2 && f1.text === f2.text; }
 ```
 
 ```typescript
-TsSelectOptionCompareWith = (o1: any, o2: any) => boolean;
+TsOptionCompareWith = (o1: any, o2: any) => boolean;
 ```
 
 
@@ -133,10 +127,10 @@ Optgroups can be used by wrapping one or more options inside an optgroup compone
     *ngFor="let group of itemsWithGroups"
     [label]="group.myLabel"
   >
-    <ts-select-option
+    <ts-option
       *ngFor="let child of group.children"
       [value]="child.slug"
-    >{{ child.foo }}</ts-select-option>
+    >{{ child.foo }}</ts-option>
   </ts-select-optgroup>
 </ts-select>
 ```
@@ -173,11 +167,11 @@ Individual options may also be disabled:
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [isDisabled]="option.disabled" <!-- Disabled when true -->
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
@@ -194,10 +188,10 @@ are also disabled.
     [label]="group.myLabel"
     [isDisabled]="option.disabled" <!-- Disabled when true -->
   >
-    <ts-select-option
+    <ts-option
       *ngFor="let child of group.children"
       [value]="child.slug"
-    >{{ child.foo }}</ts-select-option>
+    >{{ child.foo }}</ts-option>
   </ts-select-optgroup>
 </ts-select>
 ```
@@ -253,28 +247,28 @@ model does have value.
     With <strong>custom</strong> HTML!
   </ts-select-trigger>
 
-  <ts-select-option
+  <ts-option
     [value]="option.value"
     *ngFor="let option of options"
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
 
 ### Blank Option
 
-A blank option can be implemented by adding a `ts-select-option` with no value:
+A blank option can be implemented by adding a `ts-option` with no value:
 
 ```html
 <ts-select [formControl]="myForm.get('myChoices1')">
-  <ts-select-option>
+  <ts-option>
     None
-  </ts-select-option>
+  </ts-option>
 
-  <ts-select-option
+  <ts-option
     [value]="option.value"
     *ngFor="let option of options"
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
@@ -287,7 +281,7 @@ A custom template can be used for the option content.
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [option]="option"
@@ -299,7 +293,7 @@ A custom template can be used for the option content.
         <small>{{ option.value / 100 }}%</small>
       </div>
     </ng-template>
-  </ts-select-option>
+  </ts-option>
 </ts-select>
 ```
 
@@ -310,7 +304,7 @@ Part of the option view can be defined as the 'view value' which is used to defi
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [option]="option"
@@ -318,11 +312,11 @@ Part of the option view can be defined as the 'view value' which is used to defi
     <ng-template let-option>
       <div class="myClass">
         <!-- The content of this h4 will be used for the option title -->
-        <h4 tsSelectOptionDisplay>{{ option.name }}</h4>
+        <h4 tsOptionDisplay>{{ option.name }}</h4>
         <small>{{ option.value / 100 }}%</small>
       </div>
     </ng-template>
-  </ts-select-option>
+  </ts-option>
 </ts-select>
 ```
 
@@ -372,9 +366,9 @@ The comparator function type is `TsSelectSortComparatorFunction` and has the fol
 
 ```typescript
 type TsSelectSortComparatorFunction = (
-  a: TsSelectOptionComponent,
-  b: TsSelectOptionComponent,
-  options: TsSelectOptionComponent[],
+  a: TsOptionComponent,
+  b: TsOptionComponent,
+  options: TsOptionComponent[],
 ) => number;
 ```
 
@@ -397,97 +391,6 @@ Any unique, debounced query will be emitted through the `queryChange` emitter. T
 blank option can be used to show the user a message when no items are found by the query.
 
 
-## Autocomplete
-
-Enable autocomplete functionality by setting the `autocomplete` flag to `true`:
-
-```html
-<ts-select [autocomplete]="true">
-  ...
-</ts-select>
-```
-
-
-### Duplicate selections
-
-By default, duplicate selections are ignored. They can be allowed via a flag:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [allowMultiple]="true"
-  [autocompleteAllowDuplicateSelections]="true"
->
-  ...
-</ts-select>
-```
-
-
-### Keep Panel Open After Selection
-
-By default, the panel will close after each selection. It can be forced to stay open via a flag.
-
-> NOTE: While the panel seems to stay open, it is actually closing and reopening immediately. That is why the `@Input` is named
-`autocompleteReopenAfterSelection`
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [allowMultiple]="true"
-  [autocompleteReopenAfterSelection]="true"
->
-  ...
-</ts-select>
-```
-
-
-### Debouncing
-
-By default, the autocomplete input query will be debounced 200ms. This time may be adjusted as needed:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [debounceDelay]="400"
->
-  ...
-</ts-select>
-```
-
-
-### Minimum Characters
-
-By default, at least two characters must be typed before the query is fired. This limit may be adjusted:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [minimumCharacters]="4"
->
-  ...
-</ts-select>
-```
-
-
-### Progress Indicator
-
-A progress spinner can be shown while queries are happening in the background:
-
-```html
-<ts-select
-  [formControl]="myCtrl"
-  [autocomplete]="true"
-  [showProgress]="true"
->
-  ...
-</ts-select>
-```
-
-
 ## Events
 
 Multiple events are fired during interaction with the select:
@@ -499,7 +402,7 @@ Multiple events are fired during interaction with the select:
 | `opened`             | Fired when the panel is open             | `undefined`      |
 | `optionDeselected`   | Fired when an option is deselected       | `TsSelectChange` |
 | `optionSelected`     | Fired when an option is selected         | `TsSelectChange` |
-| `queryChange`        | Fired when autocomplete query changes    | `string`         |
+| `queryChange`        | Fired when query changes                 | `string`         |
 | `selectionChange`    | Fired when the selection changes         | `TsSelectChange` |
 
 ```html
@@ -542,7 +445,6 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `getAllOptgroups`         |
 | `getOptgroup`             |
 | `getOptgroupElement`      |
-| `getAutocompleteInput`    |
 | `getAllChipInstances`     |
 | `getChipInstance`         |
 | `getChipElement`          |

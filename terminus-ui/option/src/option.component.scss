@@ -1,10 +1,10 @@
-@import './../../../scss/helpers/reset';
-@import './../../../scss/helpers/menu';
-@import './../../../scss/helpers/color';
-@import './../../../scss/helpers/shadows';
-@import './../../../scss/helpers/cursors';
-@import './../../../scss/helpers/spacing';
-@import './../../../scss/helpers/z-index';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/menu';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/z-index';
 
 
 // FIXME: Remove custom color once our palette supports a color for this use-case.
@@ -19,24 +19,24 @@ $ts-select-item-height: 3em !default;
 // @description
 //  An individual option for a select component
 //
-.ts-select-option {
+.ts-option {
   @include reset;
   @include menu-item-base;
   cursor: cursor(pointer);
   transition: background-color 200ms ease-out;
 
-  &:not(.ts-select-option--disabled) {
+  &:not(.ts-option--disabled) {
     &:focus,
     &:hover {
       background-color: color(utility, xlight);
     }
   }
 
-  &.ts-select-option--active {
+  &.ts-option--active {
     background-color: $select-color-active;
   }
 
-  &.ts-select-option--disabled {
+  &.ts-option--disabled {
     color: color(utility);
     cursor: cursor(auto);
   }
@@ -56,18 +56,18 @@ $ts-select-item-height: 3em !default;
   z-index: z(attached-panel-overlay);
 
   .ts-optgroup-label,
-  .ts-select-option:not(.ts-select-option--template) {
+  .ts-option:not(.ts-option--template) {
     font-size: inherit;
     height: $ts-select-item-height;
     line-height: $ts-select-item-height;
   }
 
-  .ts-select-option.ts-selected:not(.ts-select-option--multiple) {
+  .ts-option.ts-selected:not(.ts-option--multiple) {
     background-color: $select-color-active;
   }
 
   .ts-optgroup {
-    .ts-select-option {
+    .ts-option {
       padding-left: spacing(large);
     }
   }
@@ -79,7 +79,7 @@ $ts-select-item-height: 3em !default;
       padding-left: 0;
     }
 
-    .ts-select-option {
+    .ts-option {
       padding-left: spacing(small, 2);
     }
   }

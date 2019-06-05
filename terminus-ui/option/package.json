@@ -1,0 +1,10 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools": "terminus.ngxTools"
+      }
+    }
+  }
+}

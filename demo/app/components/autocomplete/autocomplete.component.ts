@@ -1,108 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import {
   FormBuilder,
-  ValidationErrors,
+  FormControl,
   Validators,
 } from '@angular/forms';
 import {
+  BehaviorSubject,
   Observable,
-  of,
-  Subscription,
 } from 'rxjs';
 import {
-  delay,
   map,
-  startWith,
-  switchMap,
 } from 'rxjs/operators';
 
-import {
-  TsAutocompleteComparatorFn,
-  TsAutocompleteComponent,
-} from '@terminus/ui/autocomplete';
 
-// tslint:disable-next-line no-any
-type GitHubUser = Record<string, any>;
-
-
-// Values used to seed initial selections
-const INITIAL: GitHubUser[] = [
-  {
-    login: 'benjamincharity',
-    id: 270193,
-    avatar_url: 'https://avatars3.githubusercontent.com/u/270193?v=4',
-    gravatar_id: '',
-    url: 'https://api.github.com/users/benjamincharity',
-    html_url: 'https://github.com/benjamincharity',
-    followers_url: 'https://api.github.com/users/benjamincharity/followers',
-    following_url: 'https://api.github.com/users/benjamincharity/following{/other_user}',
-    gists_url: 'https://api.github.com/users/benjamincharity/gists{/gist_id}',
-    starred_url: 'https://api.github.com/users/benjamincharity/starred{/owner}{/repo}',
-    subscriptions_url: 'https://api.github.com/users/benjamincharity/subscriptions',
-    organizations_url: 'https://api.github.com/users/benjamincharity/orgs',
-    repos_url: 'https://api.github.com/users/benjamincharity/repos',
-    events_url: 'https://api.github.com/users/benjamincharity/events{/privacy}',
-    received_events_url: 'https://api.github.com/users/benjamincharity/received_events',
-    type: 'User',
-    site_admin: false,
-    score: 82.52784,
-  },
-  {
-    login: 'jnystrom',
-    id: 1293142,
-    avatar_url: 'https://avatars0.githubusercontent.com/u/1293142?v=4',
-    gravatar_id: '',
-    url: 'https://api.github.com/users/jnystrom',
-    html_url: 'https://github.com/jnystrom',
-    followers_url: 'https://api.github.com/users/jnystrom/followers',
-    following_url: 'https://api.github.com/users/jnystrom/following{/other_user}',
-    gists_url: 'https://api.github.com/users/jnystrom/gists{/gist_id}',
-    starred_url: 'https://api.github.com/users/jnystrom/starred{/owner}{/repo}',
-    subscriptions_url: 'https://api.github.com/users/jnystrom/subscriptions',
-    organizations_url: 'https://api.github.com/users/jnystrom/orgs',
-    repos_url: 'https://api.github.com/users/jnystrom/repos',
-    events_url: 'https://api.github.com/users/jnystrom/events{/privacy}',
-    received_events_url: 'https://api.github.com/users/jnystrom/received_events',
-    type: 'User',
-    site_admin: false,
-    score: 27.880474,
-  },
-];
-const INJECTION_ITEM = {
-   login: 'asgg4321',
-   id: 26461261,
-   node_id: 'MDQ6VXNlcjI2NDYxMjYx',
-   avatar_url: 'https://avatars2.githubusercontent.com/u/26461261?v=4',
-   gravatar_id: '',
-   url: 'https://api.github.com/users/asgg4321',
-   html_url: 'https://github.com/asgg4321',
-   followers_url: 'https://api.github.com/users/asgg4321/followers',
-   following_url: 'https://api.github.com/users/asgg4321/following{/other_user}',
-   gists_url: 'https://api.github.com/users/asgg4321/gists{/gist_id}',
-   starred_url: 'https://api.github.com/users/asgg4321/starred{/owner}{/repo}',
-   subscriptions_url: 'https://api.github.com/users/asgg4321/subscriptions',
-   organizations_url: 'https://api.github.com/users/asgg4321/orgs',
-   repos_url: 'https://api.github.com/users/asgg4321/repos',
-   events_url: 'https://api.github.com/users/asgg4321/events{/privacy}',
-   received_events_url: 'https://api.github.com/users/asgg4321/received_events',
-   type: 'User',
-   site_admin: false,
-   score: 52.41921,
-};
-
-/**
- * Define an interface that represents the options we present to the user
- */
-interface OptionType {
-  id: string;
-  login: string;
-  // tslint:disable-next-line no-any
-  [key: string]: any;
+export interface State {
+  name: string;
+  population: string;
 }
 
 
@@ -111,114 +28,153 @@ interface OptionType {
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
-  // Using ViewChild to get a reference, we can pass in an interface for our autocomplete options
-  @ViewChild('auto')
-  public auto!: TsAutocompleteComponent<OptionType>;
+  
+  stateCtrl = new FormControl(null, [Validators.required]);
+  
+  filteredStates!: Observable<State[]>;
+  states: State[] = [
+    {
+      name: 'Arkansas',
+      population: '2.978M',
+    },
+    {
+      name: 'Alabama',
+      population: '3.29M',
+    },
+    {
+      name: 'Alaska',
+      population: '1.341M',
+    },
+    {
+      name: 'California',
+      population: '39.14M',
+    },
+    {
+      name: 'Florida',
+      population: '20.27M',
+    },
+    {
+      name: 'Texas',
+      population: '27.47M',
+    },
+    {
+      name: 'Arizona',
+      population: '24.112M',
+    },
+    {
+      name: 'Arkansas 2',
+      population: '2.978M',
+    },
+    {
+      name: 'Alabama 2',
+      population: '3.29M',
+    },
+    {
+      name: 'Alaska 2',
+      population: '1.341M',
+    },
+    {
+      name: 'California 2',
+      population: '39.14M',
+    },
+    {
+      name: 'Florida 2',
+      population: '20.27M',
+    },
+    {
+      name: 'Texas 2',
+      population: '27.47M',
+    },
+    {
+      name: 'Arizona 2',
+      population: '24.112M',
+    },
+    {
+      name: 'Arkansas 3',
+      population: '2.978M',
+    },
+    {
+      name: 'Alabama 3',
+      population: '3.29M',
+    },
+    {
+      name: 'Alaska 3',
+      population: '1.341M',
+    },
+    {
+      name: 'California 3',
+      population: '39.14M',
+    },
+    {
+      name: 'Florida 3',
+      population: '20.27M',
+    },
+    {
+      name: 'Texas 3',
+      population: '27.47M',
+    },
+    {
+      name: 'Arizona 3',
+      population: '24.112M',
+    },
+  ];
+  myQuery$: BehaviorSubject<string> = new BehaviorSubject('');
+  fakeAsync = false;
 
-  myForm = this.formBuilder.group({
-    selections: [
-      null,
-      [
-        Validators.required,
-      ],
-    ],
-    selectionsMultiple: [
-      null,
-      [
-        Validators.required,
-      ],
-    ],
-  });
-  initial = INITIAL.slice();
-  debounceDelay = 2000;
-  inProgress = false;
-  delayApiResponse = false;
-  changesSubscription$!: Subscription;
-  users$: Observable<GitHubUser[]> | undefined;
-  minCharacters = 4;
+  comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
+  constructor() {
+    this.filteredStates = this.myQuery$
+      .pipe(
+        map((state) => {
+          const val = state ? this.filterStates(state) : [];
+          console.log('Demo: in pipe: ', state, val);
+          return val;
+        }),
+      );
+  }
 
   ngOnInit() {
-    this.changesSubscription$ = this.auto.selection.subscribe((v: OptionType) => {
-      console.log('DEMO: subscription change ', v);
-    });
-
-    this.users$ = this.auto
-      .query
-      .pipe(
-        startWith(''),
-        switchMap((term) => {
-          if (term) {
-            this.inProgress = true;
-            console.warn('searching term: ', term);
-            return this.http.get(`https://api.github.com/search/users?q=${term}`)
-              .pipe(
-                delay(this.delayApiResponse ? 3000 : 0),
-                map((response) => {
-                  this.inProgress = false;
-                  const items: GitHubUser[] = response['items'];
-
-                  // If no results are found, notify the user via a validation message
-                  if (items.length < 1) {
-                    const invalidResponse: ValidationErrors = {
-                      noResults: {
-                        valid: false,
-                      },
-                    };
-
-                    const control = this.myForm.get('selections');
-
-                    if (control) {
-                      control.setErrors(invalidResponse);
-                      control.markAsTouched();
-                    }
-                  }
-                  return items;
-                }),
-              );
-          } else {
-            this.inProgress = false;
-            return of([]);
-          }
-        }),
-      )
-    ;
   }
 
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient,
-  ) {}
-
-
-  updateSelections() {
-    const ctrl = this.myForm.get('selections');
-    if (ctrl) {
-      ctrl.setValue([INJECTION_ITEM]);
-    }
+  private filterStates(value: string): State[] {
+    const filterValue = value.toLowerCase();
+    const r = this.states.filter((state) => state.name.toLowerCase().indexOf(filterValue) === 0);
+    return r;
   }
 
-  comparator: TsAutocompleteComparatorFn<OptionType> = (v: OptionType) => v.id;
+  myFormatUIFn = (v: any): string => v.name;
 
-  displayFn(user?: OptionType): string | undefined {
-    return user ? user.login : undefined;
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.text === f2.text;
+  }
+  compareByReference(f1: any, f2: any) {
+    return f1 === f2;
   }
 
-  added(selection: OptionType): void {
-    console.log('DEMO: selection added', selection);
+  panelChange(e: boolean): void {
+    console.log(`DEMO: Panel ${e ? 'opened' : 'closed'}`);
   }
 
-  removed(selection: OptionType): void {
-    console.log('DEMO: selection removed', selection);
+  isSelected(v) {
+    console.log('DEMO: optionSelected: ', v);
   }
 
-  selection(selections: OptionType[]): void {
-    console.log('DEMO: selections changed', selections);
+  isDeselected(v) {
+    console.log('DEMO: optionDeselected: ', v);
   }
 
-  log(formValue: {selections: OptionType[]}): void {
-    console.log('Demo: form submit: ', formValue);
+  log(v: any): void {
+    console.log('DEMO: Form value: ', v);
   }
 
+  queryHasChanged(v) {
+    console.log('DEMO: query string changed: ', v);
+    this.myQuery$.next(v);
+  }
+
+  duplicate(e) {
+    console.log('DEMO: Duplicate selection: ', e);
+  }
 }

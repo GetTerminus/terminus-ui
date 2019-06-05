@@ -18,6 +18,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
@@ -26,17 +27,20 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { TsSelectOption } from './../select.component';
-import { TsSelectOptionDisplayDirective } from './option-display.directive';
+import { TsOptionDisplayDirective } from './option-display.directive';
 
+interface TsOption {
+  isDisabled?: boolean;
+  children?: TsOption[];
+}
 
 /**
- * Event object emitted by {@link TsSelectOptionComponent} when selected or deselected
+ * Event object emitted by {@link TsOptionComponent} when selected or deselected
  */
 export class TsOptionSelectionChange {
   constructor(
     // Reference to the option that emitted the event
-    public source: TsSelectOptionComponent,
+    public source: TsOptionComponent,
     // Whether the change in the option's value was a result of a user action
     public isUserInput = false,
   ) {}
@@ -50,16 +54,15 @@ export class TsOptionSelectionChange {
  */
 export interface TsOptionParentComponent {
   allowMultiple: boolean;
-  autocomplete: boolean;
   theme: TsStyleThemeTypes;
   ngControl?: NgModel;
 }
 
 
 /**
- * Injection token used to provide the parent component to options. Used by {@link TsSelectOptionComponent}
+ * Injection token used to provide the parent component to options. Used by {@link TsOptionComponent}
  *
- * Since TsSelectComponent imports TsSelectOptionComponent, importing TsSelectComponent here will cause a circular dependency. Injecting via
+ * Since TsSelectComponent imports TsOptionComponent, importing TsSelectComponent here will cause a circular dependency. Injecting via
  * an InjectionToken helps us circumvent that limitation.
  */
 export const TS_OPTION_PARENT_COMPONENT = new InjectionToken<TsOptionParentComponent>('TS_OPTION_PARENT_COMPONENT');
@@ -69,14 +72,14 @@ export const TS_OPTION_PARENT_COMPONENT = new InjectionToken<TsOptionParentCompo
  * Describes a parent optgroup component. Used by {@link TS_OPTGROUP_PARENT_COMPONENT}
  */
 export interface TsOptgroupParentComponent {
-  optgroupOptions: QueryList<TsSelectOptionComponent>;
+  optgroupOptions: QueryList<TsOptionComponent>;
   isDisabled: boolean;
   triggerChangeDetection: Function;
 }
 
 
 /**
- * Injection token used to provide the parent optgroup to options. Used by {@link TsSelectOptgroupComponent}
+ * Injection token used to provide the parent optgroup to options. Used by {@link TsOptgroupComponent}
  */
 export const TS_OPTGROUP_PARENT_COMPONENT = new InjectionToken<TsOptgroupParentComponent>('TS_OPTGROUP_PARENT_COMPONENT');
 
@@ -89,32 +92,32 @@ let nextUniqueId = 0;
  * Single option inside of a {@link TsSelectComponent}
  *
  * #### QA CSS CLASSES
- * - `qa-select-option-checkbox`: The option checkbox
- * - `qa-select-option-text`: The option text content
+ * - `qa-option-checkbox`: The option checkbox
+ * - `qa-option-text`: The option text content
  *
  * @example
- * <ts-select-option
+ * <ts-option
  *              id="my-id"
  *              [isDisabled]="true"
  *              value="My value!"
  *              [option]="myOptionObject"
  *              (selectionChange)="selectedStateChanged($event)"
- * ></ts-select-option>
+ * ></ts-option>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
-  selector: 'ts-select-option',
+  selector: 'ts-option',
   templateUrl: './option.component.html',
   styleUrls: ['./option.component.scss'],
   host: {
-    'class': 'ts-select-option',
+    'class': 'ts-option',
     'role': 'option',
     '[class.ts-selected]': 'selected',
-    '[class.ts-select-option--multiple]': 'allowMultiple',
-    '[class.ts-select-option--active]': 'active',
-    '[class.ts-select-option--disabled]': 'isDisabled',
-    '[class.ts-select-option--template]': 'optionTemplate',
+    '[class.ts-option--multiple]': 'allowMultiple',
+    '[class.ts-option--active]': 'active',
+    '[class.ts-option--disabled]': 'isDisabled',
+    '[class.ts-option--template]': 'optionTemplate',
     '[attr.tabindex]': 'tabIndex',
     '[attr.aria-selected]': 'selected.toString()',
     '[attr.aria-disabled]': '!!isDisabled',
@@ -127,7 +130,7 @@ let nextUniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsOption',
 })
-export class TsSelectOptionComponent implements Highlightable, AfterContentInit, AfterViewChecked, OnDestroy {
+export class TsOptionComponent implements Highlightable, AfterContentInit, AfterViewChecked, OnDestroy {
   /**
    * Store the most recent view value
    */
@@ -146,7 +149,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   /**
    * Define the default component ID
    */
-  protected uid = `ts-select-option-${nextUniqueId++}`;
+  protected uid = `ts-option-${nextUniqueId++}`;
 
   /**
    * GETTERS
@@ -165,16 +168,19 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   }
 
   /**
-   * Whether the wrapping component is in autocomplete mode
-   */
-  public get autocomplete(): boolean {
-    return !!(this.parent && this.parent.autocomplete);
-  }
-
-  /**
    * Whether or not the option is currently selected
    */
   public selected = false;
+
+  /**
+   * Whether parent component is an autocomplete component
+   */
+  public autocompleteComponent = false;
+
+  /**
+   * Whether parent component is an autocomplete component
+   */
+  public selectComponent = false;
 
   /**
    * Returns the correct tabindex for the option depending on the disabled state
@@ -196,7 +202,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * It is necessary to show the selected option in the {@link TsSelectComponent} trigger.
    */
   public get viewValue(): string {
-    // Use the user defined content if the {@link TsSelectOptionDisplayDirective} was used
+    // Use the user defined content if the {@link TsOptionDisplayDirective} was used
     const content = this.displayElementRef ? this.displayElementRef.elementRef.nativeElement.textContent : this.hostElement.textContent;
     return (content || '').trim();
   }
@@ -215,8 +221,8 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   /**
    * Access the user-defined text content
    */
-  @ContentChild(TsSelectOptionDisplayDirective)
-  public displayElementRef: TsSelectOptionDisplayDirective | undefined;
+  @ContentChild(TsOptionDisplayDirective)
+  public displayElementRef: TsOptionDisplayDirective | undefined;
 
   /**
    * INPUTS
@@ -257,13 +263,13 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
    * Define the option data object (needed for template support)
    */
   @Input()
-  public set option(value: TsSelectOption | undefined) {
+  public set option(value: TsOption | undefined) {
     this._option = value;
   }
-  public get option(): TsSelectOption | undefined {
+  public get option(): TsOption | undefined {
     return this._option;
   }
-  private _option: TsSelectOption | undefined;
+  private _option: TsOption | undefined;
 
   /**
    * EMITTERS
@@ -283,7 +289,20 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
     // Injecting via a provider helps us get around the circular dependency created by importing TsSelectComponent here.
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) private parent: TsOptionParentComponent,
     @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) public readonly group: TsOptgroupParentComponent,
-  ) {}
+    private viewContainerRef: ViewContainerRef,
+  ) {
+    // From view container ref to decide the parent component. Possible refactoring with injector.
+    // eslint-disable-next-line dot-notation
+    if (this.viewContainerRef['_data'].componentView) {
+      // eslint-disable-next-line dot-notation
+      const parentComponent = this.viewContainerRef['_data'].componentView.parent.component.constructor.name.toLowerCase();
+      if (parentComponent.includes('autocomplete')) {
+        this.autocompleteComponent = true;
+      } else if (parentComponent.includes('select')) {
+        this.selectComponent = true;
+      }
+    }
+  }
 
 
   /**
@@ -292,7 +311,7 @@ export class TsSelectOptionComponent implements Highlightable, AfterContentInit,
   public ngAfterContentInit(): void {
     // If a template is passed in but no option object, alert the consumer
     if (this.optionTemplate && !this.option && isDevMode()) {
-      throw Error(`TsSelectOptionComponent: The full 'option' object must be passed in when using a custom template.`);
+      throw Error(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     }
 
     // Set the title once the zone is stable. This is needed to avoid an ExpressionChangedAfterChecked error
