@@ -5,10 +5,10 @@
     [allowMultiple]="true"
     [(ngModel)]="displayedColumns"
   >
-    <ts-select-option
+    <ts-option
       [value]="column.value"
       *ngFor="let column of allColumns"
-    >{{ column.name }}</ts-select-option>
+    >{{ column.name }}</ts-option>
   </ts-select>
 
 </div>

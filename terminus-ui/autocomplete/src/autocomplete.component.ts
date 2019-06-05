@@ -749,7 +749,7 @@ export class TsAutocompleteComponent implements OnInit,
       // istanbul ignore else
       // NOTE: TypeScript warns `Property 'nodeName' does not exist on type 'EventTarget'.`
       // eslint-disable-next-line dot-notation
-      if (event['relatedTarget'].nodeName !== 'TS-SELECT-OPTION') {
+      if (event['relatedTarget'].nodeName !== 'TS-OPTION') {
         this.resetAutocompleteQuery();
       }
     } else if (this.autocompleteTrigger.panelOpen) {

@@ -165,14 +165,14 @@ const STATES_GROUPED: GroupedStates[] = [
       [showProgress]="showProgress"
       [isDisabled]="disabled"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
         {{ option.foo }}
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -196,13 +196,13 @@ export class Autocomplete {
       [formControl]="myCtrl"
       [allowMultiple]="true"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option.slug"
         [option]="option"
       >
         {{ option.foo }}
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -220,16 +220,16 @@ export class AutocompleteRequired {
       [reopenAfterSelection]="keepOpen"
       (duplicateSelection)="duplicate($event)"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        <span tsSelectOptionDisplay>
+        <span tsOptionDisplay>
           {{ option.name }}
         </span>
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -252,16 +252,16 @@ export class SeededAutocomplete {
       [allowDuplicateSelections]="allowDuplicates"
       [reopenAfterSelection]="keepOpen"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        <span tsSelectOptionDisplay>
+        <span tsOptionDisplay>
           {{ option.name }}
         </span>
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -281,16 +281,16 @@ export class PassingInObjectValue {
     <ts-autocomplete
       [(ngModel)]="myModel"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        <span tsSelectOptionDisplay>
+        <span tsOptionDisplay>
           {{ option.name }}
         </span>
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -306,16 +306,16 @@ export class SeededNgModelAutocomplete {
       [allowMultiple]="allowMultiple"
       [reopenAfterSelection]="false"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of states"
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        <span tsSelectOptionDisplay>
+        <span tsOptionDisplay>
           {{ option.name }}
         </span>
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -332,12 +332,12 @@ export class AutocompleteAllowMultipleNoReopen {
       [isDisabled]="true"
       (opened)="wasOpened($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-autocomplete>
   `,
 })
@@ -355,12 +355,12 @@ export class Disabled {
       [formControl]="myCtrl"
       [allowMultiple]="true"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -380,12 +380,12 @@ export class SelectOptionChange {
       [ngModel]="selectedFood"
       (ngModelChange)="setFoodByCopy($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of foods"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -438,12 +438,12 @@ export class CustomCompareFn {
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of items"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-autocomplete>
   `,
 })
@@ -462,12 +462,12 @@ export class DeferOptionSelectionStream {
       [formControl]="myCtrl"
       (queryChange)="change($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -484,12 +484,12 @@ export class Debounce {
       debounceDelay="0"
       (queryChange)="change($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -507,12 +507,12 @@ export class CustomDebounce {
       debounceDelay="0"
       (queryChange)="change($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -530,12 +530,12 @@ export class CustomCharacterCount {
       [hideRequiredMarker]="hideRequired"
       [isRequired]="true"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -551,12 +551,12 @@ export class HideRequired {
       [formControl]="myCtrl"
       [hint]="myHint"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -572,12 +572,12 @@ export class Hint {
       [formControl]="myCtrl"
       [id]="myId"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -593,12 +593,12 @@ export class Id {
       [formControl]="myCtrl"
       [label]="myLabel"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -615,12 +615,12 @@ export class Label {
       [formControl]="myCtrl"
       [validateOnChange]="validateOnChange"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -633,11 +633,11 @@ export class ValidateOnChange {
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="option.value"
         [option]="option"
         *ngFor="let option of items"
-      >{{ option.viewValue }}</ts-select-option>
+      >{{ option.viewValue }}</ts-option>
     </ts-autocomplete>
   `,
 })
@@ -662,17 +662,17 @@ export class NullSelection {
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="state.name"
         *ngFor="let state of items"
       >
         <ng-template let-option>
           <div class="myClass">
-            <h4 tsSelectOptionDisplay>{{ option?.state }}</h4>
+            <h4 tsOptionDisplay>{{ option?.state }}</h4>
             <small>{{ option?.population }}</small>
           </div>
         </ng-template>
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -684,7 +684,7 @@ export class OptionError {
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="state.name"
         [option]="state"
         [id]="state.name"
@@ -692,7 +692,7 @@ export class OptionError {
         (selectionChange)="change($event)"
       >
         {{ state.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })
@@ -710,13 +710,13 @@ export class OptionId {
         [id]="group.name"
         [label]="group.name"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-autocomplete>
   `,
@@ -734,13 +734,13 @@ export class OptgroupIDs {
         [id]="group.foo"
         [label]="group.name"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-autocomplete>
   `,

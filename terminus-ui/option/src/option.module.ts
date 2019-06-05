@@ -7,7 +7,7 @@ import { TsIconModule } from '@terminus/ui/icon';
 import { TsInputModule } from '@terminus/ui/input';
 
 import { TsOptgroupComponent } from './optgroup.component';
-import { TsSelectOptionDisplayDirective } from './option-display.directive';
+import { TsOptionDisplayDirective } from './option-display.directive';
 import { TsOptionComponent } from './option.component';
 
 export * from './option.component';
@@ -27,12 +27,12 @@ export * from './optgroup.component';
   declarations: [
     TsOptionComponent,
     TsOptgroupComponent,
-    TsSelectOptionDisplayDirective,
+    TsOptionDisplayDirective,
   ],
   exports: [
     TsOptionComponent,
     TsOptgroupComponent,
-    TsSelectOptionDisplayDirective,
+    TsOptionDisplayDirective,
   ],
 })
 export class TsOptionModule { }

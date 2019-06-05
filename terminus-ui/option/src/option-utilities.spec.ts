@@ -97,13 +97,13 @@ describe(`selectOptionUtilities`, function() {
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="state.name"
         [option]="state"
         *ngFor="let state of items"
       >
         {{ state.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-autocomplete>
   `,
 })

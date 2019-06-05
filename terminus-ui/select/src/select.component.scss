@@ -37,7 +37,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
       @include visually-hidden;
     }
 
-    .ts-select-option--disabled & {
+    .ts-option--disabled & {
       cursor: cursor(not-allowed);
       user-select: none;
     }
@@ -117,7 +117,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
 
   // Indent the checkboxes if children of an optgroup
   .ts-optgroup {
-    .ts-select-option {
+    .ts-option {
       .ts-checkbox {
         padding-left: spacing();
       }

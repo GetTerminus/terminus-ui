@@ -185,19 +185,18 @@ describe(`TsSelectComponent`, function() {
     });
 
 
-    test(`should style disabled and selected options`, async(() => {
+    test(`should style disabled and selected options`, fakeAsync(function() {
       const fixture = createComponent(testComponents.SeededFormControl);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
       dispatchMouseEvent(trigger, 'click');
+      tick(1000);
       fixture.detectChanges();
 
-      fixture.whenStable().then(() => {
-        const disabledOption = getOptionElement(fixture, 0, 1);
-        const activeOption = getOptionElement(fixture, 0, 4);
-        expect(disabledOption.classList.contains('ts-select-option--disabled')).toEqual(true);
-        expect(activeOption.classList.contains('ts-selected')).toEqual(true);
-      });
+      const disabledOption = getOptionElement(fixture, 0, 1);
+      const activeOption = getOptionElement(fixture, 0, 4);
+      expect(disabledOption.classList.contains('ts-option--disabled')).toEqual(true);
+      expect(activeOption.classList.contains('ts-selected')).toEqual(true);
     }));
 
 
@@ -937,7 +936,7 @@ describe(`TsSelectComponent`, function() {
         option.id = undefined as any;
         fixture.detectChanges();
 
-        expect(option.id).toEqual(expect.stringContaining('ts-select-option-'));
+        expect(option.id).toEqual(expect.stringContaining('ts-option-'));
       });
 
     });

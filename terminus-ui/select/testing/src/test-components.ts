@@ -170,12 +170,12 @@ const STATES_GROUPED: GroupedStates[] = [
       [formControl]="myCtrl"
       (selectionChange)="change($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -190,12 +190,12 @@ export class Basic {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -207,12 +207,12 @@ export class SeededFormControl {
 @Component({
   template: `
     <ts-select [(ngModel)]="myModel">
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -224,12 +224,12 @@ export class SeededNgModel {
 @Component({
   template: `
     <ts-select [value]="myValue">
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -245,11 +245,11 @@ export class SeededFallbackValue {
       (optionSelected)="selected($event)"
       (selectionChange)="change($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -268,14 +268,14 @@ export class SelectionChangeEventEmitters {
       <ts-select-trigger id="foo">
         My custom trigger!
       </ts-select-trigger>
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         *ngFor="let option of options"
       >
-        <span tsSelectOptionDisplay>{{ option.name }}</span>
+        <span tsOptionDisplay>{{ option.name }}</span>
         <i>bar</i>
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -287,16 +287,16 @@ export class CustomOptionTemplate {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option>
-        <h4 tsSelectOptionDisplay>FOO</h4>
-      </ts-select-option>
-      <ts-select-option
+      <ts-option>
+        <h4 tsOptionDisplay>FOO</h4>
+      </ts-option>
+      <ts-option
         [value]="option.name"
         [option]="option"
         *ngFor="let option of options"
       >
         {{ option.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -313,14 +313,14 @@ export class CustomBlankOption {
         [label]="group.name"
         [isDisabled]="group.disabled"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.slug"
           [option]="option"
           [isDisabled]="option?.disabled"
         >
           {{ option.foo }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
   `,
@@ -341,14 +341,14 @@ export class Optgroups {
         [label]="group.name"
         [isDisabled]="group.disabled"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.name"
           [option]="option"
           [isDisabled]="option?.disabled"
         >
           {{ option.name }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
   `,
@@ -364,14 +364,14 @@ export class OptgroupsMultiple {
       [formControl]="myCtrl"
       [allowMultiple]="true"
     >
-      <ts-select-option
+      <ts-option
         *ngFor="let option of items"
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
         {{ option.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -388,12 +388,12 @@ export class NoGroupsMultiple {
       [isDisabled]="true"
       (opened)="wasOpened($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -412,12 +412,12 @@ export class Disabled {
       [delimiter]="delimiter"
       [allowMultiple]="true"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -434,12 +434,12 @@ export class CustomDelimiter {
       [allowMultiple]="true"
       [sortComparator]="myComparator"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -474,12 +474,12 @@ export class SelectOptionChange {
       (ngModelChange)="setFoodByCopy($event)"
       [compareWith]="comparator"
     >
-      <ts-select-option
+      <ts-option
         [value]="option"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of foods"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -532,12 +532,12 @@ export class CustomCompareFn {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of items"
-      ><span tsSelectOptionDisplay>{{ option.name }}</span></ts-select-option>
+      ><span tsOptionDisplay>{{ option.name }}</span></ts-option>
     </ts-select>
   `,
 })
@@ -557,12 +557,12 @@ export class DeferOptionSelectionStream {
       [hideRequiredMarker]="hideRequired"
       [isRequired]="true"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -578,12 +578,12 @@ export class HideRequired {
       [formControl]="myCtrl"
       [hint]="myHint"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -599,12 +599,12 @@ export class Hint {
       [formControl]="myCtrl"
       [id]="myId"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -620,12 +620,12 @@ export class Id {
       [formControl]="myCtrl"
       [label]="myLabel"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -641,12 +641,12 @@ export class Label {
       [formControl]="myCtrl"
       [tabIndex]="index"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -662,12 +662,12 @@ export class Tabindex {
       [formControl]="myCtrl"
       [validateOnChange]="validateOnChange"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
-      >{{ option.name }}</ts-select-option>
+      >{{ option.name }}</ts-option>
     </ts-select>
   `,
 })
@@ -680,11 +680,11 @@ export class ValidateOnChange {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="option.value"
         [option]="option"
         *ngFor="let option of items"
-      >{{ option.viewValue }}</ts-select-option>
+      >{{ option.viewValue }}</ts-option>
     </ts-select>
   `,
 })
@@ -709,17 +709,17 @@ export class NullSelection {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="state.name"
         *ngFor="let state of items"
       >
         <ng-template let-option>
           <div class="myClass">
-            <h4 tsSelectOptionDisplay>{{ option?.state }}</h4>
+            <h4 tsOptionDisplay>{{ option?.state }}</h4>
             <small>{{ option?.population }}</small>
           </div>
         </ng-template>
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -731,7 +731,7 @@ export class OptionError {
 @Component({
   template: `
     <ts-select [formControl]="myCtrl">
-      <ts-select-option
+      <ts-option
         [value]="state.name"
         [option]="state"
         [id]="state.name"
@@ -739,7 +739,7 @@ export class OptionError {
         (selectionChange)="change($event)"
       >
         {{ state.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -757,13 +757,13 @@ export class OptionId {
         [id]="group.name"
         [label]="group.name"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
   `,
@@ -781,13 +781,13 @@ export class OptgroupIDs {
         [id]="group.foo"
         [label]="group.name"
       >
-        <ts-select-option
+        <ts-option
           *ngFor="let option of group.children"
           [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
-        </ts-select-option>
+        </ts-option>
       </ts-select-optgroup>
     </ts-select>
   `,
@@ -803,13 +803,13 @@ export class OptgroupBadIDs {
       <ts-select-trigger [id]="myId">
         My custom trigger!
       </ts-select-trigger>
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         *ngFor="let option of options"
       >
         {{ option.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })
@@ -827,13 +827,13 @@ export class CustomTrigger {
       (queryChange)="onFilter($event)"
       (selectionChange)="onReset()"
     >
-      <ts-select-option
+      <ts-option
         [value]="option.name"
         [option]="option"
         *ngFor="let option of options"
       >
         {{ option.name }}
-      </ts-select-option>
+      </ts-option>
     </ts-select>
   `,
 })

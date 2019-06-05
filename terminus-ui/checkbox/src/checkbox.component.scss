@@ -68,9 +68,9 @@ $ts-select-item-height: 3em !default;
     }
   }
 
-  // Target checkboxes inside a TsSelectOptionComponent
+  // Target checkboxes inside a TsOptionComponent
   .ts-select-panel__toggle-all &,
-  .ts-select-option & {
+  .ts-option & {
     .mat-checkbox-layout {
       width: 100%;
 

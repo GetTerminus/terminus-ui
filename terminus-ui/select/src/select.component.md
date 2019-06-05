@@ -37,15 +37,15 @@
 
 ## Basic usage
 
-The most basic usage is by wrapping one or more `ts-select-option`s inside an `ts-select`:
+The most basic usage is by wrapping one or more `ts-option`s inside an `ts-select`:
 
 ```html
 <!-- Define the option value by passing a property to the option's `value` input -->
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let item of items"
     [value]="item.value"
-  >{{ item.name }}</ts-select-option>
+  >{{ item.name }}</ts-option>
 </ts-select>
 ```
 
@@ -113,7 +113,7 @@ compareByValue(f1: any, f2: any) { return f1 && f2 && f1.text === f2.text; }
 ```
 
 ```typescript
-TsSelectOptionCompareWith = (o1: any, o2: any) => boolean;
+TsOptionCompareWith = (o1: any, o2: any) => boolean;
 ```
 
 
@@ -127,10 +127,10 @@ Optgroups can be used by wrapping one or more options inside an optgroup compone
     *ngFor="let group of itemsWithGroups"
     [label]="group.myLabel"
   >
-    <ts-select-option
+    <ts-option
       *ngFor="let child of group.children"
       [value]="child.slug"
-    >{{ child.foo }}</ts-select-option>
+    >{{ child.foo }}</ts-option>
   </ts-select-optgroup>
 </ts-select>
 ```
@@ -167,11 +167,11 @@ Individual options may also be disabled:
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [isDisabled]="option.disabled" <!-- Disabled when true -->
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
@@ -188,10 +188,10 @@ are also disabled.
     [label]="group.myLabel"
     [isDisabled]="option.disabled" <!-- Disabled when true -->
   >
-    <ts-select-option
+    <ts-option
       *ngFor="let child of group.children"
       [value]="child.slug"
-    >{{ child.foo }}</ts-select-option>
+    >{{ child.foo }}</ts-option>
   </ts-select-optgroup>
 </ts-select>
 ```
@@ -247,28 +247,28 @@ model does have value.
     With <strong>custom</strong> HTML!
   </ts-select-trigger>
 
-  <ts-select-option
+  <ts-option
     [value]="option.value"
     *ngFor="let option of options"
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
 
 ### Blank Option
 
-A blank option can be implemented by adding a `ts-select-option` with no value:
+A blank option can be implemented by adding a `ts-option` with no value:
 
 ```html
 <ts-select [formControl]="myForm.get('myChoices1')">
-  <ts-select-option>
+  <ts-option>
     None
-  </ts-select-option>
+  </ts-option>
 
-  <ts-select-option
+  <ts-option
     [value]="option.value"
     *ngFor="let option of options"
-  >{{ option.name }}</ts-select-option>
+  >{{ option.name }}</ts-option>
 </ts-select>
 ```
 
@@ -281,7 +281,7 @@ A custom template can be used for the option content.
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [option]="option"
@@ -293,7 +293,7 @@ A custom template can be used for the option content.
         <small>{{ option.value / 100 }}%</small>
       </div>
     </ng-template>
-  </ts-select-option>
+  </ts-option>
 </ts-select>
 ```
 
@@ -304,7 +304,7 @@ Part of the option view can be defined as the 'view value' which is used to defi
 
 ```html
 <ts-select>
-  <ts-select-option
+  <ts-option
     *ngFor="let option of options"
     [value]="option.value"
     [option]="option"
@@ -312,11 +312,11 @@ Part of the option view can be defined as the 'view value' which is used to defi
     <ng-template let-option>
       <div class="myClass">
         <!-- The content of this h4 will be used for the option title -->
-        <h4 tsSelectOptionDisplay>{{ option.name }}</h4>
+        <h4 tsOptionDisplay>{{ option.name }}</h4>
         <small>{{ option.value / 100 }}%</small>
       </div>
     </ng-template>
-  </ts-select-option>
+  </ts-option>
 </ts-select>
 ```
 

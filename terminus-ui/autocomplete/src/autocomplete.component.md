@@ -26,13 +26,13 @@ b) Create a local reference to the autocomplete component.
 <ts-autocomplete
   [showProgress]="inProgress"
 >
- <ts-select-option
+ <ts-option
     [value]="state"
     [option]="state"
     *ngFor="let state of states | async"
   >
     {{ state.name }}
-  </ts-select-option>
+  </ts-option>
 </ts-autocomplete>
 ```
 

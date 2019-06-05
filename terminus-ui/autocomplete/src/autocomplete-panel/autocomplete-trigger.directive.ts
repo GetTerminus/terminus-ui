@@ -126,7 +126,7 @@ let nextUniqueId = 0;
   exportAs: 'tsAutocompleteTrigger',
 })
 // tslint:disable-next-line no-any
-export class TsAutocompleteTriggerDirective<ValueType = any> implements ControlValueAccessor, OnDestroy {
+export class TsAutocompleteTriggerDirective<ValueType = string> implements ControlValueAccessor, OnDestroy {
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused, closed autocomplete from being reopened if
    * the user switches to another browser tab and then comes back.

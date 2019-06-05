@@ -10,10 +10,10 @@
       [isDisabled]="disableRecordsPerPage(totalRecords, recordsPerPageChoices)"
       (selectionChange)="recordsPerPageUpdated($event)"
     >
-      <ts-select-option
+      <ts-option
         [value]="count"
         *ngFor="let count of recordsPerPageChoices"
-      >{{ count }}</ts-select-option>
+      >{{ count }}</ts-option>
     </ts-select>
 
 

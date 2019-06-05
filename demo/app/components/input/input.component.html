@@ -9,10 +9,10 @@
       [(ngModel)]="activeMask"
       hint="Select a mask to apply it to the input below."
     >
-      <ts-select-option
+      <ts-option
         [value]="mask"
         *ngFor="let mask of masks"
-      >{{ mask }}</ts-select-option>
+      >{{ mask }}</ts-option>
     </ts-select>
 
     <label>

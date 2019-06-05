@@ -615,7 +615,7 @@ describe(`TsAutocompleteComponent`, function() {
         option.id = undefined as any;
         fixture.detectChanges();
 
-        expect(option.id).toEqual(expect.stringContaining('ts-select-option-'));
+        expect(option.id).toEqual(expect.stringContaining('ts-option-'));
       });
 
     });

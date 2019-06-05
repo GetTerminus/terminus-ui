@@ -27,11 +27,11 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { TsSelectOptionDisplayDirective } from './option-display.directive';
+import { TsOptionDisplayDirective } from './option-display.directive';
 
-interface TsSelectOption {
+interface TsOption {
   isDisabled?: boolean;
-  children?: TsSelectOption[];
+  children?: TsOption[];
 }
 
 /**
@@ -96,28 +96,28 @@ let nextUniqueId = 0;
  * - `qa-option-text`: The option text content
  *
  * @example
- * <ts-select-option
+ * <ts-option
  *              id="my-id"
  *              [isDisabled]="true"
  *              value="My value!"
  *              [option]="myOptionObject"
  *              (selectionChange)="selectedStateChanged($event)"
- * ></ts-select-option>
+ * ></ts-option>
  *
  * <example-url>https://goo.gl/ieUPaG</example-url>
  */
 @Component({
-  selector: 'ts-select-option',
+  selector: 'ts-option',
   templateUrl: './option.component.html',
   styleUrls: ['./option.component.scss'],
   host: {
-    'class': 'ts-select-option',
+    'class': 'ts-option',
     'role': 'option',
     '[class.ts-selected]': 'selected',
-    '[class.ts-select-option--multiple]': 'allowMultiple',
-    '[class.ts-select-option--active]': 'active',
-    '[class.ts-select-option--disabled]': 'isDisabled',
-    '[class.ts-select-option--template]': 'optionTemplate',
+    '[class.ts-option--multiple]': 'allowMultiple',
+    '[class.ts-option--active]': 'active',
+    '[class.ts-option--disabled]': 'isDisabled',
+    '[class.ts-option--template]': 'optionTemplate',
     '[attr.tabindex]': 'tabIndex',
     '[attr.aria-selected]': 'selected.toString()',
     '[attr.aria-disabled]': '!!isDisabled',
@@ -128,7 +128,7 @@ let nextUniqueId = 0;
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'tsSelectOption',
+  exportAs: 'tsOption',
 })
 export class TsOptionComponent implements Highlightable, AfterContentInit, AfterViewChecked, OnDestroy {
   /**
@@ -149,7 +149,7 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   /**
    * Define the default component ID
    */
-  protected uid = `ts-select-option-${nextUniqueId++}`;
+  protected uid = `ts-option-${nextUniqueId++}`;
 
   /**
    * GETTERS
@@ -202,7 +202,7 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
    * It is necessary to show the selected option in the {@link TsSelectComponent} trigger.
    */
   public get viewValue(): string {
-    // Use the user defined content if the {@link TsSelectOptionDisplayDirective} was used
+    // Use the user defined content if the {@link TsOptionDisplayDirective} was used
     const content = this.displayElementRef ? this.displayElementRef.elementRef.nativeElement.textContent : this.hostElement.textContent;
     return (content || '').trim();
   }
@@ -221,8 +221,8 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   /**
    * Access the user-defined text content
    */
-  @ContentChild(TsSelectOptionDisplayDirective)
-  public displayElementRef: TsSelectOptionDisplayDirective | undefined;
+  @ContentChild(TsOptionDisplayDirective)
+  public displayElementRef: TsOptionDisplayDirective | undefined;
 
   /**
    * INPUTS
@@ -263,13 +263,13 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
    * Define the option data object (needed for template support)
    */
   @Input()
-  public set option(value: TsSelectOption | undefined) {
+  public set option(value: TsOption | undefined) {
     this._option = value;
   }
-  public get option(): TsSelectOption | undefined {
+  public get option(): TsOption | undefined {
     return this._option;
   }
-  private _option: TsSelectOption | undefined;
+  private _option: TsOption | undefined;
 
   /**
    * EMITTERS
