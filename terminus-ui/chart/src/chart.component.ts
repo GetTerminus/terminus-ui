@@ -134,7 +134,10 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   public ngOnInit(): void {
     // Don't initialize a chart if the Highcharts library wasn't passed in.
     if (this.amCharts) {
-      this.init(this.visualization);
+      // NOTE: We must delay for the first tick so the outer component has a width set.
+      Promise.resolve().then(() => {
+        this.init(this.visualization);
+      });
     } else if (isDevMode()) {
       console.warn(
         'TsChartComponent: The amCharts library was not provided via injection token!',
