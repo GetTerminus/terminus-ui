@@ -1,7 +1,7 @@
 
 ## 13.0.0 (2019-06-05)
 
-* fix(Select): split `TsAutocomplete` and `TsSelect` into seperate components ([314df47](https://github.com/GetTerminus/terminus-ui/commit/314df47))
+* fix(Select): split `TsAutocomplete` and `TsSelect` into separate components ([314df47](https://github.com/GetTerminus/terminus-ui/commit/314df47))
 
 
 ### BREAKING CHANGES & Migration Notes
