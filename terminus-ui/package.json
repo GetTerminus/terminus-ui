@@ -16,7 +16,7 @@
     "tag": "next"
   },
   "release": {
-    "branch": "master",
+    "branch": "release",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",

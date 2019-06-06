@@ -70,4 +70,4 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `toggleCheckbox`          |
 
 
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/master/terminus-ui/checkbox/testing/src/test-helpers.ts
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/checkbox/testing/src/test-helpers.ts

@@ -15,7 +15,7 @@ import {
  * @example
  * {{ date | tsTimeAgo:oldDate }}
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
 @Pipe({name: 'tsTimeAgo'})
 export class TsTimeAgoPipe implements PipeTransform {

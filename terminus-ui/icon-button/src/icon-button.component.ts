@@ -28,7 +28,7 @@ import {
  *              (clicked)="myMethod($event)"
  * >delete_forever</ts-icon-button>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/icon-button</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/icon-button</example-url>
  */
 @Component({
   selector: 'ts-icon-button',

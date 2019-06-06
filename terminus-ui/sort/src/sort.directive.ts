@@ -87,7 +87,7 @@ export const _TsSortMixinBase = mixinDisabled(TsSortBase);
  *   ...
  * </ts-table>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/table</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
  */
 @Directive({
   selector: '[tsSort]',

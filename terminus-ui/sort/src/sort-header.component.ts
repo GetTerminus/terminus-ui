@@ -52,7 +52,7 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
  *              Created
  * </ts-header-cell>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/table</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
  */
 @Component({
   // NOTE(B$): This component needs to be added to another component so we need a non-element

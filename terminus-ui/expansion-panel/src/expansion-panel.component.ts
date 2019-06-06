@@ -104,7 +104,7 @@ let nextUniqueId = 0;
  *               Panel content
  * </ts-expansion-panel>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/expansion-panel</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/expansion-panel</example-url>
  */
 @Component({
   selector: 'ts-expansion-panel',

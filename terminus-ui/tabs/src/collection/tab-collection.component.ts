@@ -81,7 +81,7 @@ let nextUniqueId = 0;
  *              </ts-tab>
  * </ts-tab-collection>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/tabs</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/tabs</example-url>
  */
 @Component({
   selector: 'ts-tab-collection',

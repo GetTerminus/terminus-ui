@@ -62,7 +62,7 @@ export const allowedOverlayPositionTypes: TsConfirmationOverlayPositionTypes[] =
  *           Click me!
  *         </ts-button>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/confirmation</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/confirmation</example-url>
  */
 @Directive({
   selector: '[tsConfirmation]',

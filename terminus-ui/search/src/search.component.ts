@@ -59,7 +59,7 @@ const INPUT_MINIMUM_LENGTH = 2;
  *              (cleared)="doSomething()"
  * ></ts-search>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/search</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/search</example-url>
  */
 @Component({
   selector: 'ts-search',

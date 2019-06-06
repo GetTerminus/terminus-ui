@@ -83,7 +83,7 @@ let nextUniqueId = 0;
  *              (change)="doSomething($event)"
  * ></ts-radio-group>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/radio-group</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/radio-group</example-url>
  */
 @Component({
   selector: 'ts-radio-group',

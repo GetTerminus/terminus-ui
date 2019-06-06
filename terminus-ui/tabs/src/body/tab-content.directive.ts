@@ -14,7 +14,7 @@ import {
  *              </ng-template>
  * </ts-tab>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/tabs</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/tabs</example-url>
  */
 @Directive({selector: '[tsTabContent]'})
 export class TsTabContentDirective {

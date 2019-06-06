@@ -12,7 +12,7 @@ import { roundNumber } from '@terminus/ngx-tools';
  * {{ 3456.3456 | tsRoundNumber }}
  * {{ 3456.3456 | tsRoundNumber:2 }}
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
 @Pipe({name: 'tsRoundNumber'})
 export class TsRoundNumberPipe implements PipeTransform {

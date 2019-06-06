@@ -18,7 +18,7 @@ import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
  * <input type="text" tsAutofocus />
  * <button [tsAutofocus]="true">Click Me</button>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/autofocus</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/autofocus</example-url>
  */
 @Directive({selector: '[tsAutofocus]'})
 export class TsAutofocusDirective implements AfterViewInit {

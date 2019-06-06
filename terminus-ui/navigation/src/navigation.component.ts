@@ -151,7 +151,7 @@ const DEFAULT_WELCOME_MESSAGE_MAX_LENGTH = 20;
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/navigation</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/navigation</example-url>
  */
 @Component({
   selector: 'ts-navigation',

@@ -33,7 +33,8 @@ Help us keep Terminus open and inclusive. Please read and follow our [Code of Co
 
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 [submitting an issue](#submit-issue) to our [GitHub repository][github]. Including an issue
--reproduction (via our [starter app][starter-app]) is the absolute best way to help the team quickly diagnose the problem. Screenshots are also helpful.
+-reproduction (via our [starter app][starter-app]) is the absolute best way to help the team quickly diagnose the problem.
+Screenshots are also helpful.
 
 You can help the team even more and [submit a Pull Request](#submit-pr) with a fix! :pray:
 
@@ -81,7 +82,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 - Search [GitHub][pulls] for an open or closed PR that relates to your submission. You don't want to
   duplicate effort.
 - Make your changes in a new git branch:
-    - `git checkout -b 312-my-fix-branch master`
+    - `git checkout -b 312-my-fix-branch`
     - Note: You should prefix your branch name with the associated issue number.
 - Create your patch, **including appropriate test cases**.
 - Follow our coding rules (by verifying all linters pass).
@@ -92,13 +93,13 @@ Before you submit your Pull Request (PR) consider the following guidelines:
   feature branch to ensure clear, concise commits)
 - Push your branch to GitHub:
     - `git push my-fork 312-my-fix-branch`
-- In GitHub, send a pull request to `terminus-ui:master`.
+- In GitHub, send a pull request to `terminus-ui:release`.
 - If we suggest changes then:
   - Make the required updates.
   - Re-run all test suites to ensure tests are still passing.
   - Re-run all linters.
   - Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
-      1. `git rebase master -i`
+      1. `git rebase release -i`
       1. `git push -f`
 
 That's it! Thank you for your contribution! :pray:
@@ -111,12 +112,12 @@ main (upstream) repository:
 
 - Delete the remote branch on GitHub either through the GitHub web UI or your local shell:
     - `git push my-fork --delete 312-my-fix-branch`
-- Check out the master branch:
-    - `git checkout master -f`
+- Check out the `release` branch:
+    - `git checkout release -f`
 - Delete the local branch:
     - `git branch -D 312-my-fix-branch`
-- Update your master with the latest upstream version:
-    - `git pull --ff upstream master`
+- Update your `release` with the latest upstream version:
+    - `git pull --ff upstream release`
 
 
 ### Coding Rules & Workflow
@@ -130,12 +131,12 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 
 
-[coc]: https://github.com/GetTerminus/terminus-ui/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/GetTerminus/terminus-ui/blob/release/CODE_OF_CONDUCT.md
 [github]: https://github.com/GetTerminus/terminus-ui/
-[demo]: http://uilibrary-demo.terminus.ninja/master
+[demo]: http://uilibrary-demo.terminus.ninja/release
 [issues]: https://github.com/GetTerminus/terminus-ui/issues
 [issues-create]: https://github.com/GetTerminus/terminus-ui/issues/new
 [pulls]: https://github.com/GetTerminus/terminus-ui/pulls
-[dev-docs]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md
-[commit]: https://github.com/GetTerminus/terminus-ui/blob/master/DEVELOPMENT.md#committing
+[dev-docs]: https://github.com/GetTerminus/terminus-ui/blob/release/DEVELOPMENT.md
+[commit]: https://github.com/GetTerminus/terminus-ui/blob/release/DEVELOPMENT.md#committing
 [starter-app]: https://github.com/GetTerminus/ui-stackblitz-starter

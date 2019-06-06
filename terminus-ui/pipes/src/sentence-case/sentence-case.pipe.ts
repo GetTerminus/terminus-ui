@@ -10,7 +10,7 @@ import {
  * @example
  * {{ 'HERE IS MY STRING' | tsSentenceCase }}
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
 @Pipe({name: 'tsSentenceCase'})
 export class TsSentenceCasePipe implements PipeTransform {

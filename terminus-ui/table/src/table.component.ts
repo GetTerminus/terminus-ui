@@ -36,7 +36,7 @@ import {
  *    </ts-row>
  *  </ts-table>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/table</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
  */
 @Component({
   selector: 'ts-table',

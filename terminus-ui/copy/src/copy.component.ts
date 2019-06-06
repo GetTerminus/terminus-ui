@@ -28,7 +28,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
  *              theme="accent"
  * >My text to copy!</ts-copy>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/copy</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/copy</example-url>
  */
 @Component({
   selector: 'ts-copy',

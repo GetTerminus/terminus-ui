@@ -103,7 +103,7 @@ let nextUniqueId = 0;
  *              (cleared)="fileWasCleared($event)"
  * ></ts-file-upload>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/file-upload</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/file-upload</example-url>
  */
 @Component({
   selector: 'ts-file-upload',
