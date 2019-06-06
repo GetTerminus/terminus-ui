@@ -1,13 +1,70 @@
+
 ## 13.0.0 (2019-06-05)
 
-* fix(Select): split autocomplete and select into seperate components ([8f81e2d](https://github.com/GetTerminus/terminus-ui/commit/8f81e2d))
-* 1444 split select & autocomplete ([314df47](https://github.com/GetTerminus/terminus-ui/commit/314df47))
+* fix(Select): split `TsAutocomplete` and `TsSelect` into seperate components ([314df47](https://github.com/GetTerminus/terminus-ui/commit/314df47))
 
 
-### BREAKING CHANGE
+### BREAKING CHANGES & Migration Notes
 
-* Select no longer supports autocomplete functionality. The deprecated autocomplete component now has
-been updated and un-deprecated.
+#### Select
+
+- Dropped support for `formatUIFn`. Select only supports `string` values now. It is up to the consumer to map the string value to a complex value if needed.
+- No longer supporting autocomplete features. They have been moved to `TsAutocomplete`.
+- `TsSelectChange` value property is no longer generic; it is now `string | string[]`.
+
+#### Option
+
+- Has been renamed from `ts-select-option` to `ts-option` as it is used by multiple components. All functionality remains the same.
+
+```html
+<!-- Current -->
+<ts-select-option>
+  ...
+</ts-select-option>
+
+<!-- New -->
+<ts-option>
+  ...
+</ts-option>
+```
+
+- The import endpoint has also changed to `@terminus/ui/option`.
+
+```typescript
+// Current
+@import { TsSelectOption } from '@terminus/ui/select';
+
+// New
+@import { TsOption } from '@terminus/ui/option';
+```
+
+#### Autocomplete
+
+- This component has been un-deprecated and updated.
+- `TsAutocomplete` still has the same basic functions it had when combined with `TsSelect`.
+- `TsAutocomplete` leverages the same `<ts-option>` as `TsSelect`:
+
+```html
+<!-- Example -->
+<ts-autocomplete
+  label="Autocomplete Example"
+  hint="Begin typing to select.."
+  [formControl]="stateCtrl"
+  (queryChange)="queryHasChanged($event)"
+>
+  <ts-option
+    [value]="state.name"
+    [option]="state"
+    *ngFor="let state of filteredStates | async"
+  >
+    {{ state.name }}
+  </ts-option>
+</ts-autocomplete>
+```
+
+- Autocomplete only supports `string` as it's value type. The selection value will always be `string[]`.
+- Dropped support for `chipFormatFn`. For any type other than `string`, it is up to consumer to manage mapping that value to a complex value.
+
 
 ## <small>12.1.7 (2019-06-05)</small>
 
