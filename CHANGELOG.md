@@ -1,3 +1,7 @@
+## <small>13.0.2 (2019-06-06)</small>
+
+* fix: update primary README information ([a89aa5d](https://github.com/GetTerminus/terminus-ui/commit/a89aa5d))
+
 ## <small>13.0.1 (2019-06-06)</small>
 
 * fix: update all references from master to release ([701626f](https://github.com/GetTerminus/terminus-ui/commit/701626f))
