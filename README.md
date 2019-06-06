@@ -12,10 +12,10 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-33-%2316a085.svg)](#components)
+[![components](https://img.shields.io/badge/Components-35-%2316a085.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
-[![style helpers](https://img.shields.io/badge/StyleHelpers-8-%2316a085.svg)](#style-helpers)
+[![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
 
 
@@ -193,18 +193,22 @@ for each feature.
 
 ### Style Helpers
 
-| Feature     | Notes | Status             | Docs                     |
-|-------------|-------|:------------------:|--------------------------|
-| animation   |       | :hammer:           |                          |
-| assets      |       | :hammer:           |                          |
-| breakpoints |       | :white_check_mark: | [Docs][breakpoints-docs] |
-| colors      |       | :white_check_mark: | [Docs][color-docs]       |
-| cursors     |       | :white_check_mark: | [Docs][cursors-docs]     |
-| layout      |       | :white_check_mark: | [Docs][layout-docs]      |
-| shadows     |       | :white_check_mark: | [Docs][shadows-docs]     |
-| spacing     |       | :white_check_mark: | [Docs][spacing-docs]     |
-| typography  |       | :white_check_mark: | [Docs][typography-docs]  |
-| z-index     |       | :white_check_mark: | [Docs][z-index-docs]     |
+| Feature            | Notes                       | Status             | Docs                     |
+|--------------------|-----------------------------|:------------------:|--------------------------|
+| a11y               | Accessibility helpers       | :white_check_mark: |                          |
+| animation          |                             | :hammer:           |                          |
+| assets             |                             | :hammer:           |                          |
+| breakpoints        |                             | :white_check_mark: | [Docs][breakpoints-docs] |
+| colors             |                             | :white_check_mark: | [Docs][color-docs]       |
+| cursors            |                             | :white_check_mark: | [Docs][cursors-docs]     |
+| input-placeholder  |                             | :white_check_mark: |                          |
+| layout             |                             | :white_check_mark: | [Docs][layout-docs]      |
+| opposite-direction | Reverse a direction         | :white_check_mark: |                          |
+| shadows            |                             | :white_check_mark: | [Docs][shadows-docs]     |
+| spacing            |                             | :white_check_mark: | [Docs][spacing-docs]     |
+| triangle           | Create a triangle using CSS | :white_check_mark: |                          |
+| typography         |                             | :white_check_mark: | [Docs][typography-docs]  |
+| z-index            |                             | :white_check_mark: | [Docs][z-index-docs]     |
 
 
 ## Installation
