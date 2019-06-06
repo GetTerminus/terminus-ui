@@ -7,6 +7,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+
 ## Breakpoints
 
 Terminus uses specific breakpoints meant to be used in a mobile-first development process.
@@ -30,6 +31,7 @@ The general rule for responsive development:
 }
 ```
 
+
 ## Available breakpoints
 
 [Live Example][demo]
@@ -51,4 +53,4 @@ Passing an invalid `$breakpoint` will throw a Sass compilation error.
 
 
 <!-- Links -->
-[demo]: http://uilibrary-demo.terminus.ninja/master/components/breakpoints
+[demo]: http://uilibrary-demo.terminus.ninja/release/components/breakpoints

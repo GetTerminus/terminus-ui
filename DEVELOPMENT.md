@@ -96,7 +96,7 @@ $ yarn run contributors:generate
 
 ### Branching
 
-Note: `master` is **always deployable**.
+Note: Our base branch, `release`, is **always deployable**.
 
 #### Naming
 
@@ -118,9 +118,9 @@ Note: `master` is **always deployable**.
 
 ##### Beginning a feature
 
-1. Checkout `master`
-1. Pull `master`
-1. Create a feature branch from `master` (see [branch naming](#naming))
+1. Checkout `release`
+1. Pull `release`
+1. Create a feature branch from `release` (see [branch naming](#naming))
 
 ##### Working on a feature
 
@@ -133,13 +133,13 @@ Note: `master` is **always deployable**.
 
 ##### Finish a feature
 
-1. If there are conflicts, merge `master` into the feature branch
+1. If there are conflicts, merge `release` into the feature branch
     - Only do this if there are conflicts
     - See [Pull Requests](#pull-requests) for more information
 1. Verify **all** [linters](#linting) run successfully
 1. Verify all [tests](#testing) are passing **and** code coverage did not decrease (bonus points if
    it increases)
-1. If you haven't yet, create a pull request from the feature branch into `master`
+1. If you haven't yet, create a pull request from the feature branch into `release`
 1. Add as much [information into the pull request body](#pull-requests) as possible
 1. Request a review
 
@@ -151,7 +151,7 @@ Hotfixes follow the same strategy as features.
 
 ### Committing
 
-When code gets merged to master, many of our projects are automatically versioned and released. In
+When code gets merged to `release`, many of our projects are automatically versioned and released. In
 order to give our tooling the information it needs, we write our commit messages in a specific
 format. This has the added benefit of improving the readability of our commit history.
 
@@ -222,7 +222,7 @@ Look at the scripts section in the project's `package.json` for the command to r
 
 ### Pull Requests
 
-When it is time merge a branch into `master`, create a pull request from the feature into `master`.
+When it is time merge a branch into `release`, create a pull request from the feature into `release`.
 
 1. At the top of the pull request, link to the original issue.
     - If the [ZenHub][zenhub] extension is installed in your browser, you can attach an issue to the
@@ -235,11 +235,11 @@ When it is time merge a branch into `master`, create a pull request from the fea
    while the work is in progress. Include `WIP: ` at the beginning of the pull request title, add
    the `DO NOT MERGE` label so that it is not accidentally merged and `cc/ @mention` anyone that
    should take a look.
-1. There are two options to check for merge conflicts between your branch and master:
-    - Create a pull request against master. (Note: This will cause any associated CI service to
+1. There are two options to check for merge conflicts between your branch and release:
+    - Create a pull request against release. (Note: This will cause any associated CI service to
       begin building the feature branch on every push)
     - Use GitHub's compare view:
-    `https://github.com/GetTerminus/terminus-ui/compare/your-branch-name...master`
+    `https://github.com/GetTerminus/terminus-ui/compare/your-branch-name...release`
 1. The pull request body, just like the issue body, is the **single source of truth**. Any
    discussions, decisions or relevant information should be added to the pull request body
    immediately.
@@ -247,10 +247,10 @@ When it is time merge a branch into `master`, create a pull request from the fea
 
 ### Releasing
 
-Releases are handled automatically when code is merged to master. Never merge code to master that is
+Releases are handled automatically when code is merged to `release`. Never merge code to `release` that is
 not production ready!
 
-1. [Semantic Release][semantic-release] looks at all commits since the last tag on master.
+1. [Semantic Release][semantic-release] looks at all commits since the last tag on `release`.
 1. Based on those commits it will [bump the version number appropriately][semver].
 1. A changelog is generated in the release notes on [Github][ui-github].
 1. The new version is published to [NPM][ui-npm] under the `next` tag.
@@ -365,7 +365,7 @@ the table of contents.
 1. Do not close an issue until it is fully complete, which means code has been merged, tested, all
    issue trackers are updated, and any documentation is written and merged.
 1. When closing an issue, leave a comment explaining why you are closing the issue.
-1. If you notice that the tests for the master branch of any project are failing (red) or broken
+1. If you notice that the tests for the `release` branch of any project are failing (red) or broken
    (green as a false positive), fixing this takes priority over everything else development related,
    since everything we do while test are broken may break functionality, or introduce new bugs and
    security issues. If the problem cannot be fixed by you within a few hours, because if it is too
@@ -378,19 +378,19 @@ the table of contents.
 
 <!-- LINKS -->
 
-[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
-[docs-url]: http://uilibrary-docs.terminus.ninja/master/
+[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/release/docs/typescript/images/coverage-badge.svg
+[docs-url]: http://uilibrary-docs.terminus.ninja/release/
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
 [npm-url]: https://npmjs.org/package/@terminus/ui
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
-[circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield
-[circle-link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master
+[circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
+[circle-link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/release
 [greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
 [greenkeeper]: https://greenkeeper.io/
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
+[codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
 [file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
 [raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
@@ -414,6 +414,6 @@ the table of contents.
 [generator]: https://github.com/GetTerminus/generator-terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
-[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
+[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/release/package.json
 [jest]: https://facebook.github.io/jest/
 [zenhub]: https://www.zenhub.com/

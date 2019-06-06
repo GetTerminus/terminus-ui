@@ -222,7 +222,7 @@ const DEFAULT_TEXTAREA_ROWS = 4;
  *              (selected)="userSelectedFromCalendar($event)"
  * ></ts-input>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/input</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/input</example-url>
  */
 @Component({
   selector: 'ts-input',

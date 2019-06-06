@@ -43,7 +43,7 @@ export type TsVerticalSpacingTypes
  *   My content!
  * </div>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/spacing</example-url>
  */
 @Directive({selector: '[tsVerticalSpacing]'})
 export class TsVerticalSpacingDirective {

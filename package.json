@@ -107,7 +107,7 @@
     "tag": "next"
   },
   "release": {
-    "branch": "master",
+    "branch": "release",
     "plugins": [
       [
         "@semantic-release/release-notes-generator",

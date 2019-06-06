@@ -109,7 +109,7 @@ export class TsAutocompleteChange<T = string[] | string> {
  *              (query)="myQuery($event)"
  * ></ts-autocomplete>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/autocomplete</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/autocomplete</example-url>
  */
 @Component({
   selector: 'ts-autocomplete',

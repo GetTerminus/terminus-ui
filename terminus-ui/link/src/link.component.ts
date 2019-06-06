@@ -27,7 +27,7 @@ import {
  *              theme="warn"
  * >My link</ts-link>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/link</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/link</example-url>
  */
 @Component({
   selector: 'ts-link',

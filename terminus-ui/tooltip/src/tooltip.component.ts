@@ -42,7 +42,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
  *              [hasUnderline]="myUnderlineOption"
  * >My Tooltip!</ts-tooltip>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/tooltip</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/tooltip</example-url>
  */
 @Component({
   selector: 'ts-tooltip',

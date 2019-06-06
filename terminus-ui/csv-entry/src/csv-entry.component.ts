@@ -119,7 +119,7 @@ const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/csv-entry</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/csv-entry</example-url>
  */
 @Component({
   selector: 'ts-csv-entry',

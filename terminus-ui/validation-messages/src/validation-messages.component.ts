@@ -28,7 +28,7 @@ let nextUniqueId = 0;
  *              [validateOnChange]="true"
  * ></ts-validation-messages>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/validation</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/validation</example-url>
  */
 @Component({
   selector: 'ts-validation-messages',

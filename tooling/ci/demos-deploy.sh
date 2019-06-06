@@ -10,7 +10,7 @@
 echo 'Current Branch: ' $CIRCLE_BRANCH
 
 # Demos will only deploy when merging to one of these branches:
-releaseBranches=("master" "8.x.x" "9.x.x" "10.x.x" "11.x.x")
+releaseBranches=("release" "8.x.x" "9.x.x" "10.x.x" "11.x.x" "12.x.x" "13.x.x")
 
 
 # Only publish demos if this is a release branch
@@ -37,7 +37,7 @@ if [[ " ${releaseBranches[@]} " =~ " ${CIRCLE_BRANCH} " ]]; then
   git commit -m "Update via CircleCI: ${CIRCLE_BRANCH}"
 
   # Push quietly to prevent showing the token in log
-  git push -q https://${GH_TOKEN}@github.com/GetTerminus/ui-demos-${CIRCLE_BRANCH}.git master
+  git push -q https://${GH_TOKEN}@github.com/GetTerminus/ui-demos-${CIRCLE_BRANCH}.git release
 else
   echo "Branch '${CIRCLE_BRANCH}' is not a release branch. Skipping demo release."
   echo "Valid release branches:  ${releaseBranches[*]}"

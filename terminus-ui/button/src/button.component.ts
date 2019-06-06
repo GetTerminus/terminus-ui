@@ -76,7 +76,7 @@ const DEFAULT_COLLAPSE_DELAY_MS = 4000;
  *              (clicked)="myMethod($event)"
  * >Click Me!</ts-button>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/button</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/button</example-url>
  */
 @Component({
   selector: 'ts-button',

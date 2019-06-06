@@ -37,7 +37,7 @@ let nextUniqueId = 0;
  *               My tab content!
  * </ts-tab>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/tabs</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/tabs</example-url>
  */
 @Component({
   selector: 'ts-tab',

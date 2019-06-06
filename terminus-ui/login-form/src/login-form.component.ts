@@ -67,7 +67,7 @@ export interface TsLoginFormResponse {
  *              (submit)="myMethod($event)"
  * ></ts-login-form>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/login-form</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/login-form</example-url>
  */
 @Component({
   selector: 'ts-login-form',

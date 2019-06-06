@@ -38,7 +38,7 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
  *              (change)="myMethod($event)"
  * >My Toggle!</ts-toggle>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/toggle</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/toggle</example-url>
  */
 @Component({
   selector: 'ts-toggle',

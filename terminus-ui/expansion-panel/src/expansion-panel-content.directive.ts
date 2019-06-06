@@ -18,7 +18,7 @@ import {
  *               </ng-template>
  * </ts-expansion-panel>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/expansion-panel</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/expansion-panel</example-url>
  */
 @Directive({selector: 'ng-template[tsExpansionPanelContent]'})
 export class TsExpansionPanelContentDirective {

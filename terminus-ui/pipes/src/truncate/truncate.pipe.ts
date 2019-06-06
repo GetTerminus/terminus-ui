@@ -32,7 +32,7 @@ export const allowedTruncationTypes: TsTruncatePositionType[] = [
  * {{ 'Here is my string' | tsTruncateAt:7 }} // Outputs: `Here i…`
  * {{ 'Here is my string' | tsTruncateAt:8:'middle' }} // Outputs: `Here…ing`
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
 @Pipe({name: 'tsTruncateAt'})
 export class TsTruncateAtPipe implements PipeTransform {

@@ -91,7 +91,7 @@ const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
  *   <a href="/faq">Learn more</a>
  * </ng-template>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/paginator</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/paginator</example-url>
  */
 @Component({
   selector: 'ts-paginator',

@@ -211,7 +211,7 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  *              (valueChange)="theValueWasChanged($event)"
  * ></ts-select>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/select</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/select</example-url>
  */
 @Component({
   selector: 'ts-select',

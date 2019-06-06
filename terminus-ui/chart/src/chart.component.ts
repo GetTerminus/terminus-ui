@@ -67,7 +67,7 @@ export type TsChart
  *              (chartInitialized)="myFunc($event)"
  * ></ts-chart>
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/chart</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/chart</example-url>
  */
 @Component({
   selector: 'ts-chart',

@@ -31,7 +31,7 @@ export type TsDateTypes =
  * {{ date | tsDate }}
  * {{ date | tsDate:'timestamp' }}
  *
- * <example-url>https://getterminus.github.io/ui-demos-master/components/pipes</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
 @Pipe({name: 'tsDate'})
 export class TsDatePipe implements PipeTransform {
