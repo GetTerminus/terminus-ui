@@ -1,3 +1,7 @@
+## <small>13.0.3 (2019-06-06)</small>
+
+* fix(Demo): correct over-zealous find and replace for 'master' ([ae0ceb3](https://github.com/GetTerminus/terminus-ui/commit/ae0ceb3))
+
 ## <small>13.0.2 (2019-06-06)</small>
 
 * fix: update primary README information ([a89aa5d](https://github.com/GetTerminus/terminus-ui/commit/a89aa5d))
