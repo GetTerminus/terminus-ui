@@ -1,3 +1,8 @@
+## <small>13.0.1 (2019-06-06)</small>
+
+* fix: update all references from master to release ([701626f](https://github.com/GetTerminus/terminus-ui/commit/701626f))
+* I don't know why I cant spell ceperatte correctly ([af3c66c](https://github.com/GetTerminus/terminus-ui/commit/af3c66c))
+* docs(Select): update migration notes for v13 [skip ci] ([7de7d94](https://github.com/GetTerminus/terminus-ui/commit/7de7d94))
 
 ## 13.0.0 (2019-06-05)
 
