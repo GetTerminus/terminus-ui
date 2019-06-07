@@ -111,6 +111,19 @@ describe(`TsAutocompleteComponent`, function() {
     expect(autocomplete.classList).toContain('ts-autocomplete--disabled');
   });
 
+  test(`should not open when disabled`, () => {
+    const fixture = createComponent<testComponents.Disabled>(testComponents.Disabled);
+    fixture.detectChanges();
+    fixture.componentInstance.wasOpened = jest.fn();
+    const trigger = getAutocompleteTriggerElement(fixture);
+    dispatchMouseEvent(trigger, 'click');
+    fixture.detectChanges();
+    const instance = getAutocompleteInstance(fixture);
+
+    expect(fixture.componentInstance.wasOpened).not.toHaveBeenCalled();
+    expect(instance.panelOpen).toEqual(false);
+  });
+
   describe(`chips`, function() {
 
     test(`should show selections as chips`, () => {
@@ -453,6 +466,7 @@ describe(`TsAutocompleteComponent`, function() {
       fixture.detectChanges();
 
       expect(triggerInstance.panelOpen).toEqual(false);
+      expect(instance.panelOpen).toEqual(false);
     });
 
 

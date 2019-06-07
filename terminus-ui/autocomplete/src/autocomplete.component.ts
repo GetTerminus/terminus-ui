@@ -94,19 +94,21 @@ export class TsAutocompleteChange<T = string[] | string> {
  *
  * @example
  * <ts-autocomplete
+ *              [allowMultiple]="allowMultiple"
  *              debounceDelay="300"
  *              displayWith="(v) => v.name"
  *              hint="Begin typing to search.."
  *              label="Select options:"
- *              [allowMultiple]="allowMultiple"
  *              name="product selections"
  *              options="[{}, {}, ...]"
  *              [showProgress]="inProgress"
  *              theme="primary"
+ *              (closed)="panelWasClosed($event)"
+ *              (opened)="panelWasOpened($event)"
  *              (optionSelected)="mySelected($event)"
  *              (optionRemoved)="myRemoved($event)"
- *              (selection)="mySelection($event)"
  *              (query)="myQuery($event)"
+ *              (selection)="mySelection($event)"
  * ></ts-autocomplete>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/autocomplete</example-url>
@@ -456,10 +458,22 @@ export class TsAutocompleteComponent implements OnInit,
    */
 
   /**
+   * Event for when the panel is closed
+   */
+  @Output()
+  public readonly closed: EventEmitter<void> = new EventEmitter();
+
+  /**
    * Event for when a duplicate selection is made
    */
   @Output()
   public readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+
+  /**
+   * Event for when the panel is opened
+   */
+  @Output()
+  public readonly opened: EventEmitter<void> = new EventEmitter();
 
   /**
    * Emit the selected chip
@@ -576,6 +590,9 @@ export class TsAutocompleteComponent implements OnInit,
       const queryIsValid = (query === inputValue) || (query === '');
 
       this.queryChange.emit(queryIsValid ? query : inputValue);
+      if (!this.panelOpen) {
+        this.open();
+      }
     });
 
     // Propagate changes from form control
@@ -631,7 +648,19 @@ export class TsAutocompleteComponent implements OnInit,
   // istanbul ignore next
   public onTouched = () => { };
 
-
+  /**
+   * Close the overlay panel
+   */
+  public close(): void {
+    if (this.autocompleteTrigger.panelOpen) {
+      this.panelOpen = false;
+      this.changeDetectorRef.markForCheck();
+      this.onTouched();
+      this.updateValueAndValidity();
+      // Alert the consumer
+      this.closed.emit();
+    }
+  }
 
   /**
    * Set up a key manager to listen to keyboard events on the overlay panel
@@ -652,6 +681,16 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public focus(): void {
     this.inputElement.nativeElement.focus();
+  }
+
+  /**
+   * Open the overlay panel
+   */
+  public open(): void {
+    if (this.isDisabled || !this.options || !this.options.length || this.panelOpen) {
+      return;
+    }
+    this.opened.emit();
   }
 
   /**
@@ -745,7 +784,7 @@ export class TsAutocompleteComponent implements OnInit,
 
     if (hasRelatedTarget && hasNodeName) {
       // If the blur event comes from the user clicking an option, `event.relatedTarget.nodeName`
-      // will be `TS_SELECT_OPTION`.
+      // will be `TS-OPTION`.
       // istanbul ignore else
       // NOTE: TypeScript warns `Property 'nodeName' does not exist on type 'EventTarget'.`
       // eslint-disable-next-line dot-notation
@@ -753,6 +792,7 @@ export class TsAutocompleteComponent implements OnInit,
         this.resetAutocompleteQuery();
       }
     } else if (this.autocompleteTrigger.panelOpen) {
+      this.close();
       this.autocompleteTrigger.closePanel(true);
     }
 
@@ -801,6 +841,7 @@ export class TsAutocompleteComponent implements OnInit,
       // If supporting multiple selections, reset the input text value as long as the panel should NOT reopen
       // istanbul ignore else
       if (!this.reopenAfterSelection) {
+        this.close();
         this.resetAutocompleteQuery();
       }
 
