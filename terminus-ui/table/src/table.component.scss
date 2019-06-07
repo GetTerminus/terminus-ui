@@ -42,12 +42,13 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   // Target a table inside of a card component
   // When inside a card we adjust the top|right|left margins to cancel the default card padding
   .c-card & {
-    $table-adjustment-for-margins: spacing(large) * 2;
-
     // NOTE: Currently the table component does not include pagination so the table's bottom margin
     // is not adjusted here. Once we have a `paged-table` that includes pagination we can add the
     // negative bottom margin.
-    margin: -#{spacing(large)} -#{spacing(large)} 0 -#{spacing(large)};
+    $table-margin-adjustment-for-pagination: -#{spacing(large)} -#{spacing(large)} 0 -#{spacing(large)};
+    $table-adjustment-for-margins: spacing(large) * 2;
+
+    margin: $table-margin-adjustment-for-pagination;
     width: calc(100% + #{$table-adjustment-for-margins});
   }
 
@@ -100,7 +101,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Body cell
   .ts-cell {
-    padding: spacing();
+    padding: spacing(default);
   }
 
   // Header cell
@@ -108,7 +109,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
     // If the column isn't sortable, add padding here that would normally be added by
     // `ts-sort-header-container`
     &:not(.ts-sortable) {
-      padding: spacing();
+      padding: spacing(default);
     }
 
     &.ts-sortable {
@@ -125,7 +126,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
     // <div> inner container wrapping the sort control
     .ts-sort-header-container {
-      padding: spacing();
+      padding: spacing(default);
     }
   }
 

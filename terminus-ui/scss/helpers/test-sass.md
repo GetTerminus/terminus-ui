@@ -52,7 +52,7 @@ Also available are `assert-true` and `assert-false`
 ```scss
 Define the function, define the expected value, assert they’re equal
    @include test('should return the correct default spacing') {
-      $test: spacing();
+      $test: spacing(default);
       $expect: 16px;
       @include assert-equal($test, $expect);
    }

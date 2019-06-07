@@ -8,6 +8,8 @@
 
 $header-border: 1px solid color(utility, light);
 $tab-bar-height: #{spacing(large, 3)} !default;
+$z-index-lower: 1;
+$z-index-upper: 2;
 
 
 // The top section of the view containing the tab labels
@@ -27,7 +29,7 @@ $tab-bar-height: #{spacing(large, 3)} !default;
   align-items: center;
   box-sizing: border-box;
   color: color(pure, dark);
-  cursor: pointer;
+  cursor: cursor(pointer);
   display: inline-flex;
   height: $tab-bar-height;
   justify-content: center;
@@ -69,7 +71,7 @@ $tab-bar-height: #{spacing(large, 3)} !default;
 // Pagination controls for when tabs are wider than allowed width
 .ts-tab-header__pagination {
   align-items: center;
-  cursor: pointer;
+  cursor: cursor(pointer);
   display: none;
   justify-content: center;
   min-width: spacing(large, 1);
@@ -77,10 +79,20 @@ $tab-bar-height: #{spacing(large, 3)} !default;
   -webkit-tap-highlight-color: transparent;
   touch-action: none;
   user-select: none;
-  z-index: 2;
+  z-index: $z-index-upper;
 
   .ts-tab-header__pagination--enabled & {
     display: flex;
+  }
+
+  // Icon within a pagination control
+  .ts-tab-header__pagination-chevron {
+    border-color: color(pure, dark);
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: '';
+    height: spacing(small, 1);
+    width: spacing(small, 1);
   }
 
   // The pagination control that is displayed at the beginning of the tab header
@@ -103,19 +115,9 @@ $tab-bar-height: #{spacing(large, 3)} !default;
 }
 
 
-// Icon within a pagination control
-.ts-tab-header__pagination-chevron {
-  border-color: color(pure, dark);
-  border-style: solid;
-  border-width: 2px 2px 0 0;
-  content: '';
-  height: spacing(small, 1);
-  width: spacing(small, 1);
-}
-
 .ts-tab-header__pagination--disabled {
   box-shadow: none;
-  cursor: default;
+  cursor: cursor(default);
 
   .ts-tab-header__pagination-chevron {
     color: color(utility);
@@ -126,7 +128,7 @@ $tab-bar-height: #{spacing(large, 3)} !default;
   display: flex;
   flex-grow: 1;
   overflow: hidden;
-  z-index: 1;
+  z-index: $z-index-lower;
 }
 
 // Inner container around tabs within the label container

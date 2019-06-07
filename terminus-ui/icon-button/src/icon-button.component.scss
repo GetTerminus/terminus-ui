@@ -13,6 +13,8 @@ $ripple-black: rgba($black, $ripple-opacity);
 $ripple-primary: rgba($primary, $ripple-opacity);
 $ripple-accent: rgba($accent, $ripple-opacity);
 $ripple-warn: rgba($warn, $ripple-opacity);
+$icon-dimension: 40px;
+
 
 //
 // @component
@@ -23,19 +25,21 @@ $ripple-warn: rgba($warn, $ripple-opacity);
 .ts-icon-button {
   @include reset;
   display: inline-block;
-  height: 40px;
+  height: $icon-dimension;
   // Set up for inner button
   position: relative;
   // Align with standard buttons
   vertical-align: bottom;
-  width: 40px;
+  width: $icon-dimension;
 
   // Top level styles belong here
   .c-icon-button {
+    $alignment-adjustment: 1px;
     @include button-base;
     @include take-space;
     border-radius: 50%;
     color: color(pure, dark);
+    margin-left: $alignment-adjustment;
     transition: color 200ms ease;
     will-change: color;
 
@@ -98,12 +102,6 @@ $ripple-warn: rgba($warn, $ripple-opacity);
     .mat-ripple-element {
       background-color: $ripple-warn;
     }
-  }
-}
-
-.ts-icon-button {
-  .c-icon-button {
-    margin-left: 1px;
   }
 
   // When used within the file upload component, the button should be our utility color by default

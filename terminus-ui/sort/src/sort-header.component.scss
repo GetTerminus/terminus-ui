@@ -1,3 +1,5 @@
+@import './../../scss/helpers/cursors';
+
 $ts-sort-header-arrow-margin: 6px;
 $ts-sort-header-arrow-container-size: 12px;
 $ts-sort-header-arrow-stem-size: 10px;
@@ -15,11 +17,11 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
 // <div> primary container
 .ts-sort-header-container {
   align-items: center;
-  cursor: pointer;
+  cursor: cursor(pointer);
   display: flex;
 
   .ts-sort-header-disabled & {
-    cursor: default;
+    cursor: cursor(default);
   }
 }
 
@@ -45,9 +47,10 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
 
 // <div> container for sorting arrow
 .ts-sort-header-arrow {
+  $arrow-margin: -2px 0 0 $ts-sort-header-arrow-margin;
   display: flex;
   height: $ts-sort-header-arrow-container-size;
-  margin: -2px 0 0 $ts-sort-header-arrow-margin;
+  margin: $arrow-margin;
   min-width: $ts-sort-header-arrow-container-size;
   position: absolute;
   right: 0;

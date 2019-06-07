@@ -65,9 +65,9 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   // <div> container for the selected file
   .c-file-upload__file {
+    @include typography(hint);
     @include typography(fixedwidth);
     color: color(utility, dark);
-    font-size: .7em;
     overflow: auto;
     // Set up for progress bar
     position: relative;
@@ -107,7 +107,6 @@ $drag-bg: lighten(color(primary, xlight), 50%);
       display: block;
       max-height: 100%;
       max-width: 100%;
-      vertical-align: middle;
     }
   }
 
@@ -155,7 +154,9 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
 // <div> replication of mat-hint
 .c-file-upload__hints {
+  $hint-padding: .3em .4em .2em;
+
   @include typography(hint);
-  padding: .3em .4em .2em;
+  padding: $hint-padding;
   text-align: right;
 }

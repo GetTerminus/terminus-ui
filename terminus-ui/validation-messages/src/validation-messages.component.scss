@@ -11,6 +11,7 @@
 //
 .ts-validation-messages {
   @include reset;
+  $message-padding: .3em .4em .2em;
 
   // Top level styles should be nested here
   .c-validation-message {
@@ -18,30 +19,25 @@
     color: color(warn);
     z-index: z(tooltip);
   }
-}
 
-// Styles when inside a radio group component
-.ts-validation-messages {
+  // Styles when inside a radio group component
   .c-radio & {
     display: inline-block;
   }
-}
 
-// Styles when inside a file upload component
-.ts-validation-messages {
+  // Styles when inside a file upload component
   .ts-file-upload & {
     .c-validation-message {
-      padding: .3em .4em .2em;
+      padding: $message-padding;
     }
   }
-}
 
-// Adjust the vertical layout when inside a radio button component
-.ts-validation-messages {
+  // Adjust the vertical layout when inside a radio button component
   .c-select & {
     .c-validation-message {
-      margin-top: .6em;
-      padding: .3em .4em .2em 0;
+      $added-margin-for-select: .6em;
+      margin-top: $added-margin-for-select;
+      padding: $message-padding 0;
       position: absolute;
       top: 90%;
     }

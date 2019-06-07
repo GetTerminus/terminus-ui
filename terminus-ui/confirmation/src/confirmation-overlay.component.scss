@@ -25,35 +25,43 @@
   @include elevation-element(menu);
   background-color: color(pure);
   display: block;
-  padding: spacing();
+  padding: spacing(default);
 
   .ts-confirmation-overlay__explanation {
     margin-bottom: spacing(large);
   }
 
   // Create the triangle above the popup box
-  &.ts-confirmation-overlay__panel-above::before {
-    @include triangle(bottom, color(pure), spacing(small, 1));
-    left: 50%;
+  &.ts-confirmation-overlay__panel-above {
+    &::before {
+      @include triangle(bottom, color(pure), spacing(small, 1));
+      left: 50%;
+    }
   }
 
-  &.ts-confirmation-overlay__panel-below::before {
-    @include triangle(top, color(pure), spacing(small, 1));
-    left: 50%;
-    transform: translateX(-50%);
+  &.ts-confirmation-overlay__panel-below {
+    &::before {
+      @include triangle(top, color(pure), spacing(small, 1));
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
-  &.ts-confirmation-overlay__panel-before::before {
-    @include triangle(right, color(pure), spacing(small, 1));
-    right: -#{spacing(small)};
-    top: 50%;
-    transform: translateY(-50%);
+  &.ts-confirmation-overlay__panel-before {
+    &::before {
+      @include triangle(right, color(pure), spacing(small, 1));
+      right: -#{spacing(small)};
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
-  &.ts-confirmation-overlay__panel-after::before {
-    @include triangle(left, color(pure), spacing(small, 1));
-    left: -#{spacing(small)};
-    top: 50%;
-    transform: translateY(-50%);
+  &.ts-confirmation-overlay__panel-after {
+    &::before {
+      @include triangle(left, color(pure), spacing(small, 1));
+      left: -#{spacing(small)};
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }

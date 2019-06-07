@@ -2,10 +2,6 @@
 @import './spacing';
 
 
-$mat-menu-item-height: spacing(large, 3) !default;
-$mat-menu-side-padding: spacing() !default;
-
-
 /**
  * Base styles for menu items
  *
@@ -20,8 +16,9 @@ $mat-menu-side-padding: spacing() !default;
   display: block;
   // Required for Edge not to show scrollbars when setting the width manually.
   max-width: 100%;
-  padding: 0 $mat-menu-side-padding;
+  padding: 0 spacing(default);
   position: relative;
   text-align: left;
-  text-decoration: none;   // necessary to reset anchor tags
+  // Necessary to reset anchor tags:
+  text-decoration: none;
 }

@@ -68,16 +68,17 @@ $radius: 3px;
 
   // <div> The container for the icon
   .c-copy__icon {
+    $vertical-margin: calc(#{-$margin__vertical} - 1px);
+    $horizontal-margin: calc(#{-$margin__horizontal} - 1px);
+    $icon-margin: $vertical-margin $horizontal-margin $vertical-margin 0;
+    $icon-padding: .25em .2em .2em .5em;
+
     @include cursor(pointer);
     background-color: color(primary);
     border-radius: 0 $radius $radius 0;
     color: color(pure);
-    margin:
-      calc(-#{$margin__vertical} - 1px)
-      calc(-#{$margin__horizontal} - 1px)
-      calc(-#{$margin__vertical} - 1px)
-      0;
-    padding: .25em .2em .2em .5em;
+    margin: $icon-margin;
+    padding: $icon-padding;
     // Set up for mat-ripple
     position: relative;
     transition: background-color 200ms ease-in;
@@ -86,10 +87,8 @@ $radius: 3px;
     will-change: background-color;
   }
 
+  // Adjust icon alignment
   .mat-icon {
-    // Set up for zindex
-    position: relative;
     vertical-align: bottom;
-    z-index: 1;
   }
 }
