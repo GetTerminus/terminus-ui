@@ -162,7 +162,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Stream of autocomplete option selections
    */
-  public readonly optionSelections: Observable<TsOptionSelectionChange> = defer(() => {
+  public readonly optionSelections: Observable<TsOptionSelectionChange> | Observable<{}> = defer(() => {
     if (this.autocompletePanel && this.autocompletePanel.options) {
       return merge(...this.autocompletePanel.options.map(option => option.selectionChange));
     }

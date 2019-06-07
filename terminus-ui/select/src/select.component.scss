@@ -1,4 +1,3 @@
-/* stylelint-disable */
 @import './../../scss/helpers/color';
 @import './../../scss/helpers/cursors';
 @import './../../scss/helpers/layout';
@@ -65,7 +64,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   }
 
   .ts-select-value-text {
-    @include truncate-overflow();
+    @include truncate-overflow;
   }
 
   .ts-select-arrow-wrapper {
@@ -99,8 +98,10 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     width: calc(100% - #{$padding * 2});
     z-index: z(panel-header);
 
-    .ts-form-field .ts-form-field__wrapper {
-      padding-bottom: 0;
+    .ts-form-field {
+      .ts-form-field__wrapper {
+        padding-bottom: 0;
+      }
     }
   }
 }
@@ -111,9 +112,10 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   // Allow long lists to scroll
   overflow: auto;
 
+  // Create space for the absolutely positioned filter input
   &.ts-select-panel--filter {
-    // Create space for the absolutely positioned filter input
-    padding-top: 85px;
+    $space-for-filter-input: 85px;
+    padding-top: $space-for-filter-input;
   }
 
   // Indent the checkboxes if children of an optgroup
@@ -157,7 +159,8 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     width: 5em;
 
     .ts-form-field__infix {
-      padding: .4em 0;
+      $padding-adjustment-for-paginator: .4em 0;
+      padding: $padding-adjustment-for-paginator;
     }
 
     // Move the arrow down to center with less padding

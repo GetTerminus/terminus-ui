@@ -317,7 +317,6 @@ $outline-appearance-label-offset: -.25em;
 
 
 
-  // stylelint-disable order/properties-alphabetical-order
   // The label itself. This is invisible unless it is. The logic to show it is basically `empty || (float && (!empty || focused))`. Float is
   // dependent on the `floatingPlaceholder` property.
   .ts-form-field__label {
@@ -351,7 +350,6 @@ $outline-appearance-label-offset: -.25em;
       display: block;
     }
   }
-  // stylelint-enable order/properties-alphabetical-order
 
   .ts-form-field--float {
     .ts-form-field__label {

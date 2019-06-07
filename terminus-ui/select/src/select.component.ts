@@ -298,7 +298,7 @@ export class TsSelectComponent implements
   /**
    * Combined stream of all of the child options' change events
    */
-  public readonly optionSelectionChanges: Observable<any> =
+  public readonly optionSelectionChanges: Observable<TsOptionSelectionChange> =
     defer(() => merge(...this.options.map(option => option.selectionChange)));
 
   /**
