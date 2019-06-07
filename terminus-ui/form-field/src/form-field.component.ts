@@ -266,7 +266,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     // Subscribe to changes in the child control state in order to update the form field UI.
     // NOTE: non-null-assertion needed to pass `null` to `startWith`
     // tslint:disable: no-non-null-assertion
-    this.control.stateChanges.pipe(startWith<void>(null!)).subscribe(() => {
+    this.control.stateChanges.pipe(startWith<void, string>(null!)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
     // tslint:enable: no-non-null-assertion
@@ -276,7 +276,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     if (this.control.labelChanges) {
       // NOTE: non-null-assertion needed to pass `null` to `startWith`
       // tslint:disable: no-non-null-assertion
-      this.control.labelChanges.pipe(startWith<void>(null!)).subscribe(() => {
+      this.control.labelChanges.pipe(startWith<void, string>(null!)).subscribe(() => {
         this.updateOutlineGap();
       });
       // tslint:enable: no-non-null-assertion

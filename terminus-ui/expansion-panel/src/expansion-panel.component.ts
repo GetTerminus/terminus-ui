@@ -298,9 +298,8 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
     if (this.lazyContent) {
       // Render the content as soon as the panel becomes open.
       this.opened.pipe(
-        // tslint:disable: no-non-null-assertion
-        startWith<void>(null!),
-        // tslint:enable: no-non-null-assertion
+        // tslint:disable-next-line no-non-null-assertion
+        startWith<void, string>(null!),
         filter(() => this.expanded && !this.portal),
         take(1),
       ).subscribe(() => {

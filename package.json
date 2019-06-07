@@ -202,7 +202,7 @@
     "@semantic-release/npm": "^5.1.4",
     "@semantic-release/release-notes-generator": "^7.1.4",
     "@terminus/eslint-config-frontend": "^1.0.3",
-    "@terminus/stylelint-config-frontend": "^1.0.1",
+    "@terminus/stylelint-config-frontend": "^1.0.2",
     "@terminus/tslint-config-frontend": "^1.0.3",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.19",
