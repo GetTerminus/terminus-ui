@@ -1,9 +1,13 @@
 @import './generated-classes';
 @import './../helpers/theme';
 
+
 // Remove outline from all focused elements. Focus styles should be handled by the component
-*:focus {
-  outline: 0;
+* {
+  &:focus {
+    outline: 0;
+  }
 }
 
+// Include our custom theme
 @include angular-material-theme($ts-app-theme);

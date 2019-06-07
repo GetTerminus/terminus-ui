@@ -1,3 +1,4 @@
+/* stylelint-disable */
 @import './../../scss/helpers/color';
 @import './../../scss/helpers/cursors';
 @import './../../scss/helpers/layout';
@@ -119,7 +120,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   .ts-optgroup {
     .ts-option {
       .ts-checkbox {
-        padding-left: spacing();
+        padding-left: spacing(default);
       }
     }
   }

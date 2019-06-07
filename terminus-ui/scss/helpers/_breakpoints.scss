@@ -33,9 +33,7 @@ $breakpoints: (
  *  }
  */
 @mixin bp($point) {
-
   @if index($breakpoints, $point) {
-
     @if $point == 'layout-xs' {
       @media (max-width: 599px) {
         @content;
@@ -89,9 +87,7 @@ $breakpoints: (
         @content;
       }
     }
-
   } @else {
     @error 'There is no breakpoint `#{$point}` in this list; choose one of: #{$breakpoints}';
   }
-
 }

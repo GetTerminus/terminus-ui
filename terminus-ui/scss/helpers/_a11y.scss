@@ -1,19 +1,25 @@
+/**
+ * A mixin that enables hidden styles for a nested cdk class
+ */
 @mixin cdk-a11y {
   .cdk-visually-hidden {
+    $smallest-adjustment: 1px;
+
     // Avoid some cases where the browser will still render the native controls (see #9049).
     -webkit-appearance: none;
     -moz-appearance: none;
 
     border: 0;
     clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
+    height: $smallest-adjustment;
+    margin: -$smallest-adjustment;
+
     // Avoid browsers rendering the focus ring in some cases.
     outline: 0;
     overflow: hidden;
     padding: 0;
     position: absolute;
-    width: 1px;
+    width: $smallest-adjustment;
   }
 }
 

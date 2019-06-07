@@ -102,17 +102,18 @@
         width: 1px;
       }
     }
-  }
 
-  // Prevents IE from always adding a scrollbar by default.
-  .c-input__text {
+    // Prevents IE from always adding a scrollbar by default.
     &textarea {
+      $textarea-padding-negation: -2px 0;
+      $textarea-padding-for-scrollbars: 2px 0;
+
       // Negative margin to negate the effect of the padding on the layout.
-      margin: -2px 0;
+      margin: $textarea-padding-negation;
       // Only allow resizing along the Y axis.
       overflow: auto;
       // The 2px padding prevents scrollbars from appearing on Chrome even when they aren't needed.
-      padding: 2px 0;
+      padding: $textarea-padding-for-scrollbars;
       resize: vertical;
 
       &.cdk-textarea-autosize {

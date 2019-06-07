@@ -56,8 +56,8 @@
     "lint:eslint": "npx eslint \"terminus-ui/**/*.{js,ts}\" --ignore-pattern \"terminus-ui/**/*.d.ts\" --config .eslintrc.js",
     "lint:eslint:fix": "npx eslint \"terminus-ui/**/*.{js,ts}\" --ignore-pattern \"terminus-ui/**/*.d.ts\" --config .eslintrc.js --fix",
     "lint:eslint:ci": "npx eslint \"terminus-ui/**/*.{js,ts}\" --ignore-pattern \"terminus-ui/**/*.d.ts\" --config .eslintrc.ci.js",
-    "lint:scss": "npx stylelint 'terminus-ui/**/*.scss'",
-    "lint:scss:fix": "npx stylelint 'terminus-ui/**/*.scss' --fix",
+    "lint:scss": "npx stylelint 'terminus-ui/**/!(*.spec).scss'",
+    "lint:scss:fix": "npx stylelint 'terminus-ui/**/!(*.spec).scss' --fix",
     "lint": "yarn run lint:tslint:fix && yarn run lint:eslint:fix && yarn run lint:scss:fix",
     "lint:ci": "yarn run lint:tslint:ci && yarn run lint:eslint:ci && yarn run lint:scss",
     "codecov:upload": "npx codecov -f coverage/*.json",
@@ -98,7 +98,7 @@
       "yarn run lint:eslint:fix",
       "git add"
     ],
-    "terminus-ui/**/*.scss": [
+    "terminus-ui/**/!(*.spec).scss": [
       "yarn run lint:scss",
       "git add"
     ]
@@ -202,6 +202,7 @@
     "@semantic-release/npm": "^5.1.4",
     "@semantic-release/release-notes-generator": "^7.1.4",
     "@terminus/eslint-config-frontend": "^1.0.3",
+    "@terminus/stylelint-config-frontend": "^1.0.1",
     "@terminus/tslint-config-frontend": "^1.0.3",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.19",
@@ -261,7 +262,7 @@
     "scssfmt": "^1.0.6",
     "semantic-release": "^15.13.3",
     "source-map-explorer": "^1.6.0",
-    "stylelint": "^9.10.1",
+    "stylelint": "^10.0.1",
     "stylelint-order": "^2.0.0",
     "systemjs": "^0.21.4",
     "tsickle": "^0.34.0",

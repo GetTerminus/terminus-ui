@@ -48,7 +48,7 @@ When an offset is passed in, it will be used as the space between the parent's b
 child's boundaries.
 
 ```scss
-// Don't do this in production code! Use the `spacing()` function!
+// Don't do this in production code! Use the `spacing(default)` function!
 $child-padding: 2em;
 
 .parent {

@@ -23,9 +23,11 @@
  * @nuclide Shadow-Colors
  * @section Config > Shadows
  */
+// stylelint-disable plugin/stylelint-no-indistinguishable-colors
 $key-umbra: rgba(0, 0, 0, .2);
 $key-penumbra: rgba(0, 0, 0, .14);
 $ambient: rgba(0, 0, 0, .12);
+// stylelint-enable plugin/stylelint-no-indistinguishable-colors
 
 
 /**
@@ -148,21 +150,22 @@ $material-elements: (
  * @param $elevation
  *  The elevation
  * @example
- *  $foo = find-bounding-shadow-sets();
+ *  $foo = find-bounding-shadow-sets(2);
  */
 @function find-bounding-shadow-sets($elevation) {
+  @if $elevation < 0 {
+    @error 'find-bounding-shadow-sets: Elevation is less than zero';
+  }
+
   $lower: nth($reference-shadows, length($reference-shadows) - 1);
   $upper: nth($reference-shadows, length($reference-shadows));
 
-  @if $elevation < 0 {
-    @error 'Elevation is less than zero';
-  }
-
   @for $i from 1 to length($reference-shadows) {
-    $lower: nth($reference-shadows, $i);
-    $upper: nth($reference-shadows, $i + 1);
-    @if (map-get($lower, 'elevation') <= $elevation) and (map-get($upper, 'elevation') > $elevation) {
-      @return ($lower, $upper);
+    $inner-lower: nth($reference-shadows, $i);
+    $inner-upper: nth($reference-shadows, $i + 1);
+
+    @if (map-get($inner-lower, 'elevation') <= $elevation) and (map-get($inner-upper, 'elevation') > $elevation) {
+      @return ($inner-lower, $inner-upper);
     }
   }
 
@@ -206,8 +209,6 @@ $material-elements: (
  *  The starting shadow
  * @param $shadow2
  *  The ending shadow
- * @example
- *  $foo = calculate-shadow-set-at-depth(2);
  */
 @function lerp-shadow($x, $shadow1, $shadow2) {
   // Round all parameters, as shadow definitions do not support subpixels
@@ -299,7 +300,8 @@ $material-elements: (
   }
 
   @if $elevation2 != null {
-    @include elevation-transition($elevation2 -$elevation2);
+    // TODO: Fix missuse of mixin https://github.com/GetTerminus/terminus-ui/issues/1529
+    @include elevation-transition($elevation2 - $elevation2);
 
     &:#{$state} {
       @if $elevation1 == 0 {

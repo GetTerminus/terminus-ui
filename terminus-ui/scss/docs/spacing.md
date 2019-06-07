@@ -9,13 +9,13 @@
 
 ## Spacing
 
-All spacing should be defined using the `spacing()` helper method. This ensures that each spacing
+All spacing should be defined using the `spacing(default)` helper method. This ensures that each spacing
 is a valid spacing within our design language.
 
 ```scss
 // Use the default spacing:
 .foo {
-  margin-bottom: spacing();
+  margin-bottom: spacing(default);
 }
 
 // Use a specific spacing:
@@ -35,7 +35,7 @@ is a valid spacing within our design language.
 You can access each option using zero-based indexes:
 
 ```scss
-spacing() // 16px
+spacing(default) // 16px
 // (for the first space in a collection we can omit the second parameter)
 spacing(small) // 12px
 spacing(small, 2) // 4px

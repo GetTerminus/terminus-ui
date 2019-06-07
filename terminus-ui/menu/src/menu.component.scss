@@ -52,7 +52,9 @@ $icon-margin: 16px;
     // For the dropdown caret, lessen the right side whitespace
     .c-button {
       .ts-icon {
-        margin-right: -.4em;
+        $icon-adjustment-for-menu: -.4em;
+
+        margin-right: $icon-adjustment-for-menu;
       }
     }
   }

@@ -4,7 +4,7 @@
 @include describe ('spacing') {
   @include describe ('default') {
     @include test('should return the correct default spacing') {
-      $test: spacing();
+      $test: spacing(default);
       $expect: 16px;
 
       @include assert-equal($test, $expect);

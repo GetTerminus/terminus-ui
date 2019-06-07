@@ -55,7 +55,7 @@
   .c-csv-entry__form {
     $space: spacing(small);
     border: 1px solid color(utility, light);
-    display: inline;
+    // Allow horizontal scrolling when all columns cannot be displayed
     overflow-x: auto;
   }
 

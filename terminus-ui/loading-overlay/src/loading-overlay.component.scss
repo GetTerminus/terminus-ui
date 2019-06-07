@@ -4,9 +4,7 @@
 
 
 $overlay-color: color(pure);
-$debug: $overlay-color;
 $overlay-color-opaque: transparentize($overlay-color, .2);
-$debug: $overlay-color-opaque;
 $offset: 187;
 $duration: 1.4s;
 
