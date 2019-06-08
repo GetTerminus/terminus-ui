@@ -744,7 +744,7 @@ export class TsSelectComponent implements
   public readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
 
   /**
-   * Event for when the query has changed
+   * Event for when the query has changed, used by filterable select
    */
   @Output()
   public readonly queryChange: EventEmitter<string> = new EventEmitter();

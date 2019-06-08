@@ -98,6 +98,7 @@ export class TsAutocompleteChange<T = string[] | string> {
  *              debounceDelay="300"
  *              displayWith="(v) => v.name"
  *              hint="Begin typing to search.."
+ *              [isDisabled]="isDisabled"
  *              label="Select options:"
  *              name="product selections"
  *              options="[{}, {}, ...]"
