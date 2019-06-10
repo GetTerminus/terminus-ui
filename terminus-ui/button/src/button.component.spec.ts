@@ -7,7 +7,6 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { getDomAttribute } from '@terminus/ngx-tools';
 import {
   createComponent,
   createMouseEvent,
