@@ -11,6 +11,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "incremental": true,
     "lib": [
       "es2016",
       "es2015",
