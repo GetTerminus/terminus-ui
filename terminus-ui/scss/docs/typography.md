@@ -71,4 +71,4 @@ sizes/weights/line-heights/etc are using styles explicitly defined in our design
 Passing an invalid typography `$format`, `$level` or `$typeface` will throw a Sass compilation error.
 
 <!-- Links -->
-[demo]: http://uilibrary-demo.terminus.ninja/release/components/typography
+[demo]: https://getterminus.github.io/ui-demos-release/components/typography
