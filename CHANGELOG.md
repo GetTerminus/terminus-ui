@@ -1,3 +1,9 @@
+## <small>13.0.5 (2019-06-18)</small>
+
+* fix(SCSS): docs links to SCSS helpers are working properly ([edd3a33](https://github.com/GetTerminus/terminus-ui/commit/edd3a33)), closes [#1498](https://github.com/GetTerminus/terminus-ui/issues/1498)
+* chore(Paginator): converted to integration tests ([3775c31](https://github.com/GetTerminus/terminus-ui/commit/3775c31))
+* chore(Demo): remove karma and jasmine ([3c0106c](https://github.com/GetTerminus/terminus-ui/commit/3c0106c)), closes [#1412](https://github.com/GetTerminus/terminus-ui/issues/1412)
+
 ## <small>13.0.4 (2019-06-10)</small>
 
 * fix(autocomplete): better docs ([817fdd6](https://github.com/GetTerminus/terminus-ui/commit/817fdd6))

@@ -72,17 +72,8 @@ for each feature.
 ### Versioned Documentation and Demos
 
 - `latest`
-  - [Latest Documentation][docs-latest]
+  - [Latest TypeScript Documentation][docs-latest]
   - [Latest Demos][demo-latest]
-- `10.x.x`
-  - [10.x.x Documentation][docs-v10]
-  - [10.x.x Demos][demo-v10]
-- `9.x.x`
-  - [9.x.x Documentation][docs-v9]
-  - [9.x.x Demos][demo-v9]
-- `8.x.x`
-  - [8.x.x Documentation][docs-v8]
-  - [8.x.x Demos][demo-v8]
 
 
 ## Available Features
@@ -371,14 +362,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-validators]:       https://getterminus.github.io/ui-demos-release/components/validation
 
 <!-- SCSS Docs -->
-[breakpoints-docs]: ./terminus-ui/scss/docs/breakpoints.md
-[color-docs]:       ./terminus-ui/scss/docs/color.md
-[cursors-docs]:     ./terminus-ui/scss/docs/cursors.md
-[layout-docs]:      ./terminus-ui/scss/docs/layout.md
-[shadows-docs]:     ./terminus-ui/scss/docs/shadows.md
-[spacing-docs]:     ./terminus-ui/scss/docs/spacing.md
-[typography-docs]:  ./terminus-ui/scss/docs/typography.md
-[z-index-docs]:     ./terminus-ui/scss/docs/z-index.md
+[breakpoints-docs]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/breakpoints.md
+[color-docs]:       https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/color.md
+[cursors-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/cursors.md
+[layout-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/layout.md
+[shadows-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/shadows.md
+[spacing-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/spacing.md
+[typography-docs]:  https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/typography.md
+[z-index-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/z-index.md
 
 <!-- Source Directories -->
 [src-autocomplete]:       ./terminus-ui/autocomplete/src/

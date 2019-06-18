@@ -47,4 +47,4 @@ Passing an invalid spacing will throw a Sass compilation error.
 
 
 <!-- Links -->
-[demo]: http://uilibrary-demo.terminus.ninja/release/components/spacing-styles
+[demo]: https://getterminus.github.io/ui-demos-release/components/spacing-styles
