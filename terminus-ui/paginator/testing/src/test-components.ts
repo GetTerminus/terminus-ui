@@ -17,14 +17,10 @@ import {
 import { TsSelectModule } from '@terminus/ui/select';
 
 
-@Component({
-  template: `
-  <ts-paginator></ts-paginator>
-  `,
-})
+@Component({template: `<ts-paginator></ts-paginator>`})
 export class Basic {
-  @ViewChild(TsPaginatorComponent)
-  paginatorComponent: TsPaginatorComponent;
+  @ViewChild(TsPaginatorComponent, {static: true})
+  public paginatorComponent: TsPaginatorComponent;
 }
 
 
@@ -39,13 +35,13 @@ export class Basic {
   `,
 })
 export class RecordsPerPage {
-  showRecordsPerPageSelector = true;
-  recordsPerPageChoices = [10, 20, 50];
-  totalRecords = 100;
-  zeroBased = true;
+  public showRecordsPerPageSelector = true;
+  public recordsPerPageChoices = [10, 20, 50];
+  public totalRecords = 100;
+  public zeroBased = true;
 
-  @ViewChild(TsPaginatorComponent)
-  paginatorComponent!: TsPaginatorComponent;
+  @ViewChild(TsPaginatorComponent, {static: true})
+  public paginatorComponent!: TsPaginatorComponent;
 }
 
 
@@ -59,12 +55,12 @@ export class RecordsPerPage {
   `,
 })
 export class RecordsCount {
-  maxPreferredRecords = 50;
-  recordCountTooHighMessage = 'Too many records';
-  totalRecords = 100;
+  public maxPreferredRecords = 50;
+  public recordCountTooHighMessage = 'Too many records';
+  public totalRecords = 100;
 
-  @ViewChild(TsPaginatorComponent)
-  paginatorComponent!: TsPaginatorComponent;
+  @ViewChild(TsPaginatorComponent, {static: true})
+  public paginatorComponent!: TsPaginatorComponent;
 }
 
 
@@ -77,11 +73,11 @@ export class RecordsCount {
   `,
 })
 export class ZeroBased {
-  isZeroBased: boolean | undefined;
-  totalRecords = 100;
+  public isZeroBased: boolean | undefined;
+  public totalRecords = 100;
 
-  @ViewChild(TsPaginatorComponent)
-  paginatorComponent!: TsPaginatorComponent;
+  @ViewChild(TsPaginatorComponent, {static: true})
+  public paginatorComponent!: TsPaginatorComponent;
 }
 
 

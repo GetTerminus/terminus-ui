@@ -209,44 +209,51 @@ describe(`TsExpansionPanelComponent`, function() {
     });
 
 
-    test(`should have customizable collapsed and expanded heights`, function() {
+    test(`should have customizable collapsed and expanded heights`, fakeAsync(function() {
       const fixture = createComponent<testComponents.CustomHeights>(testComponents.CustomHeights);
       fixture.detectChanges();
       const triggerElement: HTMLElement = getTriggerElement(fixture);
 
       // Open the panel
-      togglePanel(fixture).then(() => {
-        expect(triggerElement.getAttribute('style')).toContain('height:66px');
-      });
+      togglePanel(fixture);
+      tick();
+      fixture.detectChanges();
+      expect(triggerElement.getAttribute('style')).toContain('height:66px');
 
       // Close the panel
-      togglePanel(fixture).then(() => {
-        expect(triggerElement.getAttribute('style')).toContain('height:33px');
-      });
+      togglePanel(fixture);
+      tick();
+      fixture.detectChanges();
+      expect(triggerElement.getAttribute('style')).toContain('height:33px');
 
+      discardPeriodicTasks();
       expect.assertions(2);
-    });
+    }));
 
 
-    test(`should be able to set custom heights & toggle visibility via provider configuration`, function() {
+    test(`should be able to set custom heights & toggle visibility via provider configuration`, fakeAsync(function() {
       const fixture = createComponent<testComponents.CustomDefaults>(testComponents.CustomDefaults);
       fixture.detectChanges();
       const triggerElement: HTMLElement = getTriggerElement(fixture);
 
       // Open the panel
-      togglePanel(fixture).then(() => {
-        expect(triggerElement.getAttribute('style')).toContain('height:88px');
-      });
+      togglePanel(fixture);
+      tick();
+      fixture.detectChanges();
+      expect(triggerElement.getAttribute('style')).toContain('height:88px');
 
       // Close the panel
-      togglePanel(fixture).then(() => {
-        expect(triggerElement.getAttribute('style')).toContain('height:55px');
-      });
+      togglePanel(fixture);
+      tick();
+      fixture.detectChanges();
+      expect(triggerElement.getAttribute('style')).toContain('height:55px');
 
       const toggleIcon = triggerElement.querySelector('.ts-expansion-panel__indicator');
       expect(toggleIcon).toBeNull();
+
+      discardPeriodicTasks();
       expect.assertions(3);
-    });
+    }));
 
 
     test(`should be able to hide the toggle icon`, function() {

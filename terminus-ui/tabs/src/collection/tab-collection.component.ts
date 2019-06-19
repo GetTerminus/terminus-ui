@@ -133,7 +133,7 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
   /**
    * Reference for the wrapper around the tabs
    */
-  @ViewChild('tabBodyWrapper')
+  @ViewChild('tabBodyWrapper', {static: true})
   public tabBodyWrapper: ElementRef;
 
   /**
@@ -141,7 +141,7 @@ export class TsTabCollectionComponent implements AfterContentInit, AfterContentC
    *
    * NOTE: We are using a template reference rather than class reference because the template needs to reference this also.
    */
-  @ViewChild('tabHeader')
+  @ViewChild('tabHeader', {static: true})
   public tabHeader: TsTabHeaderComponent;
 
   /**

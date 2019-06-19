@@ -33,7 +33,7 @@ class TestHostComponent {
   public supportsInteraction!: boolean;
   public theme: TsStyleThemeTypes | undefined;
 
-  @ViewChild(TsCardComponent)
+  @ViewChild(TsCardComponent, {static: true})
   public cardComponent!: TsCardComponent;
 }
 

@@ -23,7 +23,7 @@ export class PaginatorComponent {
   pages: number[] = [0, 1, 2, 3, 4, 5];
   zeroBased = true;
 
-  @ViewChild(TsPaginatorComponent)
+  @ViewChild(TsPaginatorComponent, {static: true})
   paginator!: TsPaginatorComponent;
 
 

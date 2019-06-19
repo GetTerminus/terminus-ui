@@ -1,36 +1,25 @@
 module.exports = {
-  preset: 'jest-preset-angular',
-  setupFilesAfterEnv: [
-    '<rootDir>/tooling/jest-setup.ts',
-  ],
-  globals: {
-    'ts-jest': {
-      tsConfigFile: './terminus-ui/tsconfig.spec.json',
-      ignoreCoverageForAllDecorators: true,
-    },
-    '__TRANSFORM_HTML__': true,
-  },
-  transform: {'^.+\\.(ts|js|html)$': '<rootDir>/node_modules/jest-preset-angular/preprocessor.js' },
-  testMatch: [
-    '<rootDir>/**/?(*.)spec.ts?(x)',
-    '<rootDir>/**/?(*.)test-sass.js?(x)',
-  ],
-  transformIgnorePatterns: [
-    'node_modules/(?!@ngrx)',
-  ],
-  reporters: ['default', ['jest-junit', { output: './coverage/junit/report.xml' }]],
   clearMocks: true,
   collectCoverageFrom: [
     'terminus-ui/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts',
     'terminus-ui/**/*.directive.ts',
     '!terminus-ui/**/testing/**',
   ],
+  coverageDirectory: '<rootDir>/coverage/',
+  globals: {
+    'ts-jest': {
+      tsConfig: './terminus-ui/tsconfig.spec.json',
+      ignoreCoverageForAllDecorators: true,
+      diagnostics: false,
+      stringifyContentPathRegex: '\\.html$',
+      astTransformers: [require.resolve('jest-preset-angular/InlineHtmlStripStylesTransformer')],
+    },
+  },
   moduleFileExtensions: [
     'ts',
     'js',
     'html',
   ],
-  coverageDirectory: '<rootDir>/coverage/',
   moduleNameMapper: {
     'app/(.*)': '<rootDir>/demo/app/$1',
     'assets/(.*)': '<rootDir>/demo/assets/$1',
@@ -38,5 +27,21 @@ module.exports = {
     '^@terminus/ui(.*)$': '<rootDir>/terminus-ui$1/src/public-api.ts',
     '^@terminus/ui(.*)/testing$': '<rootDir>/terminus-ui$1/testing/src/public-api.ts',
   },
+  preset: 'jest-preset-angular',
+  reporters: ['default', ['jest-junit', { output: './coverage/junit/report.xml' }]],
+  setupFilesAfterEnv: ['<rootDir>/tooling/jest-setup.ts'],
+  snapshotSerializers: [
+    'jest-preset-angular/AngularNoNgAttributesSnapshotSerializer.js',
+    'jest-preset-angular/AngularSnapshotSerializer.js',
+    'jest-preset-angular/HTMLCommentSerializer.js',
+  ],
+  testMatch: [
+    '<rootDir>/**/?(*.)spec.ts?(x)',
+    '<rootDir>/**/?(*.)test-sass.js?(x)',
+  ],
+  transform: {'^.+\\.(ts|js|html)$': 'ts-jest'},
+  transformIgnorePatterns: [
+    'node_modules/(?!@ngrx)',
+  ],
 };
 

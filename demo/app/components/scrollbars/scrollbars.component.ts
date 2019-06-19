@@ -13,7 +13,7 @@ import { TsScrollbarsComponent } from '@terminus/ui/scrollbars';
   styleUrls: ['./scrollbars.component.scss'],
 })
 export class ScrollbarsComponent implements AfterContentChecked {
-  @ViewChild(TsScrollbarsComponent)
+  @ViewChild(TsScrollbarsComponent, {static: true})
   public scrollbars!: TsScrollbarsComponent;
 
   isDisabled = false;

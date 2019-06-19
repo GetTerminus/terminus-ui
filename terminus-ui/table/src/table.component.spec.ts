@@ -114,7 +114,7 @@ class FakeDataSource extends DataSource<TestData> {
   `,
 })
 class TableApp {
-  @ViewChild(TsTableComponent)
+  @ViewChild(TsTableComponent, {static: true})
   public table!: TsTableComponent<TestData>;
 
   public dataSource: FakeDataSource | null = new FakeDataSource();
@@ -143,7 +143,8 @@ class TableApp {
   `,
 })
 class TableWithWhenRowApp {
-  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent, {static: true})
+  public table!: TsTableComponent<TestData>;
   public dataSource: FakeDataSource | null = new FakeDataSource();
   public isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
@@ -179,10 +180,14 @@ class ArrayDataSourceTableApp {
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
-  @ViewChild(TsPaginatorComponent) public paginator!: TsPaginatorComponent;
-  @ViewChild(TsSortDirective) public sort!: TsSortDirective;
-  @ViewChild(TsSortHeaderComponent) public sortHeader!: TsSortHeaderComponent;
+  @ViewChild(TsTableComponent, {static: true})
+  public table!: TsTableComponent<TestData>;
+  @ViewChild(TsPaginatorComponent, {static: true})
+  public paginator!: TsPaginatorComponent;
+  @ViewChild(TsSortDirective, {static: true})
+  public sort!: TsSortDirective;
+  @ViewChild(TsSortHeaderComponent, {static: true})
+  public sortHeader!: TsSortHeaderComponent;
 
   public constructor() {
     this.underlyingDataSource.data = [];
@@ -227,7 +232,8 @@ class TableColumnAlignmentTableApp {
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent, {static: true})
+  public table!: TsTableComponent<TestData>;
 
   public constructor() {
     this.underlyingDataSource.data = [];
@@ -259,7 +265,8 @@ class TableColumnInvalidAlignmentTableApp {
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a'];
 
-  @ViewChild(TsTableComponent) public table!: TsTableComponent<TestData>;
+  @ViewChild(TsTableComponent, {static: true})
+  public table!: TsTableComponent<TestData>;
 
   public constructor() {
     this.underlyingDataSource.data = [];

@@ -20,7 +20,7 @@ export class TabsComponent implements OnInit {
   alignmentControl = new FormControl('start');
   dynamicTabs = ['First', 'Second', 'Third'];
 
-  @ViewChild('tabCollection')
+  @ViewChild('tabCollection', {static: true})
   public tabCollection!: TsTabCollectionComponent;
 
 

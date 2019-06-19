@@ -256,7 +256,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Element reference for visible list items
    */
-  @ViewChild('visibleItemsList')
+  @ViewChild('visibleItemsList', {static: true})
   public visibleItemsList!: ElementRef;
 
   /**

@@ -179,7 +179,7 @@ export class AsyncTabs implements OnInit {
 export class SimpleLabels {
   public otherLabel = 'Bar';
   public otherContent = 'bar content';
-  @ViewChild('test') public testSelector: any;
+  @ViewChild('test', {static: true}) public testSelector: any;
 }
 
 @Component({
@@ -266,7 +266,7 @@ export class TabHeader {
     },
   ];
 
-  @ViewChild(TsTabHeaderComponent)
+  @ViewChild(TsTabHeaderComponent, {static: true})
   public tabHeader: TsTabHeaderComponent;
 
   public constructor() {
@@ -295,10 +295,10 @@ export class TabBody implements AfterContentInit {
   public position: number;
   public origin: number | null;
 
-  @ViewChild(TsTabBodyComponent)
+  @ViewChild(TsTabBodyComponent, {static: true})
   public tabBody: TsTabBodyComponent;
 
-  @ViewChild(TemplateRef)
+  @ViewChild(TemplateRef, {static: true})
   public template: TemplateRef<any>;
 
   public constructor(private viewContainerRef: ViewContainerRef) { }
@@ -314,7 +314,7 @@ export class TabBody implements AfterContentInit {
   `,
 })
 export class InkBar {
-  @ViewChild(TsTabInkBarComponent)
+  @ViewChild(TsTabInkBarComponent, {static: true})
   public inkBar: TsTabInkBarComponent;
 }
 

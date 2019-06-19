@@ -35,7 +35,7 @@ import { TsConfirmationModule } from './confirmation.module';
   `,
 })
 class TestHostComponent {
-  @ViewChild(TsConfirmationDirective)
+  @ViewChild(TsConfirmationDirective, {static: true})
   public directive!: TsConfirmationDirective;
   public confirmText;
   public cancelText;

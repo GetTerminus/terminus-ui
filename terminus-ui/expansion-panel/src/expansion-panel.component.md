@@ -158,7 +158,7 @@ Custom heights can be set for a trigger's collapsed and/or expanded state.
 Panels can be programatically opened, closed or toggled through a reference to the instance.
 
 ```typescript
-@ViewChild(TsExpansionPanelComponent)
+@ViewChild(TsExpansionPanelComponent, {static: false})
 public panel: TsExpansionPanelComponent;
 
 ...
@@ -325,7 +325,7 @@ controls.
 An accordion can programatically open or close all panels at once.
 
 ```typescript
-@ViewChild(TsAccordionComponent)
+@ViewChild(TsAccordionComponent, {static: false})
 public accordion: TsAccordionComponent;
 
 ...

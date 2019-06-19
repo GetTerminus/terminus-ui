@@ -236,7 +236,7 @@ To get a reference to the component class, assign the exported name to a local v
 ```
 
 ```typescript
-@ViewChild(TsInputComponent)
+@ViewChild(TsInputComponent, {static: false})
 myVar: TsInputComponent;
 
 console.log('Component Class: ', this.myVar);

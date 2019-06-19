@@ -37,7 +37,7 @@ class TestHostComponent implements OnInit, OnDestroy {
   public iconName!: string | undefined;
   public theme!: string;
 
-  @ViewChild(TsButtonComponent)
+  @ViewChild(TsButtonComponent, {static: true})
   public buttonComponent!: TsButtonComponent;
 
   public changed = jest.fn();
@@ -98,9 +98,11 @@ describe(`TsButtonComponent`, function() {
     test(`should set disabled attribute if showProgress is true`, () => {
       component.showProgress = true;
       fixture.detectChanges();
+      button = fixture.debugElement.query(By.css('.c-button')).nativeElement as HTMLButtonElement;
       expect(buttonComponent.showProgress).toEqual(true);
-      expect(button.getAttribute('disabled')).toEqual('');
+      expect(button.getAttribute('disabled')).toEqual('true');
     });
+
 
     test(`should not set disabled if showProgress and disabled are false`, () => {
       component.showProgress = false;

@@ -115,7 +115,7 @@ export class TsScrollbarsComponent {
   /**
    * Access underlying scrollbar directive
    */
-  @ViewChild(forwardRef(() => PerfectScrollbarDirective))
+  @ViewChild(forwardRef(() => PerfectScrollbarDirective), {static: false})
   public scrollbar!: PerfectScrollbarDirective;
 
   /**

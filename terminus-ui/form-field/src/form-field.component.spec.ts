@@ -213,14 +213,14 @@ describe(`TsFormFieldComponent`, function() {
   `,
 })
 export class Id {
-  formControl = new FormControl();
-  myId: string | undefined = 'foo';
+  public formControl = new FormControl();
+  public myId: string | undefined = 'foo';
 
-  @ViewChild(TsInputComponent)
-  inputComponent: TsInputComponent;
+  @ViewChild(TsInputComponent, {static: true})
+  public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent)
-  formField: TsFormFieldComponent;
+  @ViewChild(TsFormFieldComponent, {static: true})
+  public formField: TsFormFieldComponent;
 }
 
 @Component({
@@ -237,11 +237,11 @@ export class Id {
   `,
 })
 export class RequiredMarker {
-  formControl = new FormControl(null, Validators.required);
-  hideRequiredMarker = false;
+  public formControl = new FormControl(null, Validators.required);
+  public hideRequiredMarker = false;
 
-  @ViewChild(TsInputComponent)
-  inputComponent: TsInputComponent;
+  @ViewChild(TsInputComponent, {static: true})
+  public inputComponent: TsInputComponent;
 }
 
 @Component({
@@ -258,14 +258,14 @@ export class RequiredMarker {
   `,
 })
 export class Float {
-  formControl = new FormControl();
-  float;
+  public formControl = new FormControl();
+  public float;
 
-  @ViewChild(TsInputComponent)
-  inputComponent: TsInputComponent;
+  @ViewChild(TsInputComponent, {static: true})
+  public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent)
-  formField: TsFormFieldComponent;
+  @ViewChild(TsFormFieldComponent, {static: true})
+  public formField: TsFormFieldComponent;
 }
 
 @Component({
@@ -290,24 +290,22 @@ export class NoControl {
   `,
 })
 export class ErrorState implements OnInit {
-  formControl = new FormControl(null, Validators.required);
+  public formControl = new FormControl(null, Validators.required);
 
-  @ViewChild(TsInputComponent)
-  inputComponent: TsInputComponent;
+  @ViewChild(TsInputComponent, {static: true})
+  public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent)
-  formField: TsFormFieldComponent;
+  @ViewChild(TsFormFieldComponent, {static: true})
+  public formField: TsFormFieldComponent;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.formControl.markAsDirty();
   }
 }
 
 @Component({
   template: `
-    <ts-form-field
-      [control]="inputComponent"
-    >
+    <ts-form-field [control]="inputComponent">
       <ts-input
         [hasExternalFormField]="true"
         [formControl]="formControl"
@@ -316,13 +314,13 @@ export class ErrorState implements OnInit {
   `,
 })
 export class UpdateOutline {
-  formControl = new FormControl();
+  public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent)
-  inputComponent: TsInputComponent;
+  @ViewChild(TsInputComponent, {static: true})
+  public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent)
-  formField: TsFormFieldComponent;
+  @ViewChild(TsFormFieldComponent, {static: true})
+  public formField: TsFormFieldComponent;
 }
 
 
@@ -340,8 +338,8 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
 }
 
 class MyDocumentService extends TsDocumentServiceMock {
-  shouldContain = true;
-  document: any = {
+  public shouldContain = true;
+  public document: any = {
     documentElement: {contains: jest.fn(() => false)},
     createEvent() {
       return document.createEvent('Event');

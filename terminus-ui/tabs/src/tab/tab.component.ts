@@ -86,26 +86,27 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   /**
-   * Content for the tab label given by `<ng-template tsTabLabel>`
-   */
-  @ContentChild(TsTabLabelDirective)
-  public templateLabel!: TsTabLabelDirective;
-
-  /**
    * Template provided in the tab content that will be used if present, used to enable lazy-loading
    */
-  // FIXME: Switch to `{read: TemplateRef, static: true}` once Angular v8 hits
-  @ContentChild(TsTabContentDirective, {read: TemplateRef})
+  @ContentChild(TsTabContentDirective, {
+    read: TemplateRef,
+    static: true,
+  })
   // tslint:disable-next-line no-any
   public explicitContent: TemplateRef<any> | undefined;
 
   /**
    * Template inside the TsTabComponent view that contains an `<ng-content>`
    */
-  // FIXME: Switch to `{static: true}` once Angular v8 hits
-  @ViewChild(TemplateRef)
+  @ViewChild(TemplateRef, {static: true})
   // tslint:disable-next-line no-any
   public implicitContent!: TemplateRef<any>;
+
+  /**
+   * Content for the tab label given by `<ng-template tsTabLabel>`
+   */
+  @ContentChild(TsTabLabelDirective, {static: false})
+  public templateLabel!: TsTabLabelDirective;
 
   /**
    * Define if the tab is disabled

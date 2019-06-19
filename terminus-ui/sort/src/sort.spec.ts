@@ -118,9 +118,14 @@ class SimpleTsSortApp {
   disabledColumnSort = false;
   disableAllSort = false;
 
-  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
-  @ViewChild('defaultSortHeaderA') tsSortHeaderDefaultA!: TsSortHeaderComponent;
-  @ViewChild('defaultSortHeaderB') tsSortHeaderDefaultB!: TsSortHeaderComponent;
+  @ViewChild(TsSortDirective, {static: true})
+  tsSort!: TsSortDirective;
+
+  @ViewChild('defaultSortHeaderA', {static: true})
+  tsSortHeaderDefaultA!: TsSortHeaderComponent;
+
+  @ViewChild('defaultSortHeaderB', {static: true})
+  tsSortHeaderDefaultB!: TsSortHeaderComponent;
 
   constructor(public elementRef: ElementRef) {}
 
@@ -159,7 +164,8 @@ class FakeDataSource extends DataSource<any> {
   `,
 })
 class CdkTableTsSortApp {
-  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
+  @ViewChild(TsSortDirective, {static: true})
+  tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -186,7 +192,8 @@ class CdkTableTsSortApp {
   `,
 })
 class TsTableTsSortApp {
-  @ViewChild(TsSortDirective) tsSort!: TsSortDirective;
+  @ViewChild(TsSortDirective, {static: true})
+  tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];

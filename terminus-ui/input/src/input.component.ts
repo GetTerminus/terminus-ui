@@ -366,21 +366,16 @@ export class TsInputComponent implements
    */
   protected uid = `ts-input-${nextUniqueId++}`;
 
-
-  /**
-   * VIEW ACCESS
-   */
-
   /**
    * Expose reference to the Material datepicker component
    */
-  @ViewChild('picker')
+  @ViewChild('picker', {static: false})
   public picker!: MatDatepicker<string>;
 
   /**
    * Provide access to the input
    */
-  @ViewChild('inputElement')
+  @ViewChild('inputElement', {static: false})
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
@@ -444,11 +439,6 @@ export class TsInputComponent implements
   public get value(): any {
     return this.inputValueAccessor.value;
   }
-
-
-  /**
-   * INPUTS
-   */
 
   /**
    * Define if the input should autocapitalize
@@ -831,11 +821,6 @@ export class TsInputComponent implements
    */
   @Input()
   public validateOnChange = false;
-
-
-  /**
-   * EMITTERS
-   */
 
   /**
    * The event to emit when the input value is cleared

@@ -231,7 +231,7 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHART
 
  @Component({template: `<ts-chart></ts-chart>`})
 class SimpleHost {
-  @ViewChild(TsChartComponent)
+  @ViewChild(TsChartComponent, {static: true})
   public component: TsChartComponent;
  }
 
@@ -239,7 +239,7 @@ class SimpleHost {
 class VisualizationsHost {
   public visualization: TsChartVisualizationOptions | undefined;
 
-  @ViewChild(TsChartComponent)
+  @ViewChild(TsChartComponent, {static: true})
   public component: TsChartComponent;
  }
 
@@ -257,7 +257,7 @@ class TypeChecking {
    */
   public chart!: TsChart;
 
-  @ViewChild(TsChartComponent)
+  @ViewChild(TsChartComponent, {static: true})
   public component!: TsChartComponent;
 
   public chartCreated(chart: TsChart): void {
