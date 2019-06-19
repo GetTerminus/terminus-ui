@@ -1,5 +1,10 @@
 import { Type } from '@angular/core';
-import { ComponentFixture } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  discardPeriodicTasks,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/expansion-panel/testing';
@@ -29,20 +34,21 @@ describe(`TsExpansionPanelComponent`, function() {
 
   describe(`Single panel`, function() {
 
-    test(`should defer rendering content when ng-template is used`, function() {
+    test(`should defer rendering content when ng-template is used`, fakeAsync(function() {
       const fixture = createComponent<testComponents.DeferredContent>(testComponents.DeferredContent);
       fixture.detectChanges();
       const body = getPanelBodyContentElement(fixture);
 
       expect(body.textContent).toEqual('');
 
-      // Open the panel
-      togglePanel(fixture).then(() => {
-        expect(body.textContent.trim()).toEqual('My content');
-      });
+      togglePanel(fixture);
+      tick();
+      fixture.detectChanges();
+      expect(body.textContent.trim()).toEqual('My content');
 
+      discardPeriodicTasks();
       expect.assertions(2);
-    });
+    }));
 
 
     test(`should be able to default to open`, function() {
