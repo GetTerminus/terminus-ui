@@ -144,7 +144,7 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Provide access to the checkbox inputs
    */
-  @ViewChild(TsCheckboxComponent)
+  @ViewChild(TsCheckboxComponent, {static: true})
   public checkbox!: TsCheckboxComponent;
 
   /**

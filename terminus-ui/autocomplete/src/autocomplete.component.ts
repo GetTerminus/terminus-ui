@@ -206,7 +206,6 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public readonly stateChanges: Subject<void> = new Subject<void>();
 
-
   /**
    * Define the default component ID
    */
@@ -222,46 +221,29 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public searchQuery!: string;
 
-
-  /**
-   * VIEW ACCESS
-   */
-
   /**
    * Access the trigger
    */
-  @ViewChild('auto')
+  @ViewChild('auto', {static: true})
   public autocompletePanel!: TsAutocompletePanelComponent;
 
   /**
    * Access the trigger
    */
-  @ViewChild(TsAutocompleteTriggerDirective)
+  @ViewChild(TsAutocompleteTriggerDirective, {static: false})
   public autocompleteTrigger!: TsAutocompleteTriggerDirective;
 
   /**
    * Access the chip list
    */
-  @ViewChild('chipList')
+  @ViewChild('chipList', {static: false})
   public chipList: MatChipList | undefined;
-
-  /**
-   * Access the container element
-   */
-  @ViewChild('containerElement')
-  public containerElement!: ElementRef;
 
   /**
    * Access the actual HTML element
    */
-  @ViewChild('input')
+  @ViewChild('input', {static: false})
   public inputElement!: ElementRef<HTMLInputElement>;
-
-  /**
-   * Access the label element
-   */
-  @ViewChild('labelElement')
-  public labelElement!: ElementRef;
 
   /**
    * Access a list of all the defined select options
@@ -274,23 +256,6 @@ export class TsAutocompleteComponent implements OnInit,
    */
   @ContentChildren(TsOptgroupComponent)
   public optionGroups!: QueryList<TsOptgroupComponent>;
-
-  /**
-   * Access the overlay pane containing the options
-   */
-  @ViewChild(CdkConnectedOverlay)
-  public overlayDir!: CdkConnectedOverlay;
-
-  /**
-   * Access the panel containing the select options
-   */
-  @ViewChild('panel')
-  public panel!: ElementRef;
-
-
-  /**
-   * GETTERS
-   */
 
   /**
    * Whether the select has a value
@@ -314,11 +279,6 @@ export class TsAutocompleteComponent implements OnInit,
     return this.focused || !this.empty;
   }
 
-
-  /**
-   * INPUTS
-   */
-
   /**
    * Define if multiple selections are allowed
    */
@@ -339,7 +299,6 @@ export class TsAutocompleteComponent implements OnInit,
   @Input()
   public reopenAfterSelection = false;
 
-
   /**
    * Define a debounce delay for the query stream
    */
@@ -351,7 +310,6 @@ export class TsAutocompleteComponent implements OnInit,
     return this._debounceDelay;
   }
   private _debounceDelay = DEFAULT_DEBOUNCE_DELAY;
-
 
   /**
    * Define if the required marker should be hidden
@@ -458,10 +416,6 @@ export class TsAutocompleteComponent implements OnInit,
    */
   @Input()
   public name: string | undefined;
-
-  /**
-   * EMITTERS
-   */
 
   /**
    * Event for when the panel is closed

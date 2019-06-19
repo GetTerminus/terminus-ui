@@ -13,14 +13,18 @@ import {
   tsChartSankeyTypeCheck,
   tsChartTreeTypeCheck,
   TsChartVisualizationOptions,
-  tsChartXYTypeCheck
+  tsChartXYTypeCheck,
 } from '@terminus/ui/chart';
 
 const XY_DATA: Record<string, any>[] = [];
 let visits = 10;
 for (let i = 1; i < 366; i++) {
   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-  XY_DATA.push({ date: new Date(2018, 0, i), name: `name${i}`, value: visits });
+  XY_DATA.push({
+    date: new Date(2018, 0, i),
+    name: `name${i}`,
+    value: visits,
+  });
 }
 const MAP_DATA: Record<string, any>[] = [{
   latitude: 48.856614,
@@ -68,25 +72,25 @@ export class ChartComponent {
     if (tsChartXYTypeCheck(chart)) {
       chart.data = XY_DATA;
 
-      const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+      const dateAxis = chart.xAxes.push(new am4charts.DateAxis() as any);
       dateAxis.renderer.grid.template.location = 0;
 
-      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis() as any);
       if (valueAxis.tooltip) {
         valueAxis.tooltip.disabled = true;
       }
       valueAxis.renderer.minWidth = 35;
 
-      const series = chart.series.push(new am4charts.LineSeries());
+      const series = chart.series.push(new am4charts.LineSeries() as any);
       series.dataFields.dateX = 'date';
       series.dataFields.valueY = 'value';
 
       series.tooltipText = '{valueY.value}';
-      chart.cursor = new am4charts.XYCursor();
+      chart.cursor = new am4charts.XYCursor() as any;
 
       const scrollbarX = new am4charts.XYChartScrollbar();
       scrollbarX.series.push(series);
-      chart.scrollbarX = scrollbarX;
+      chart.scrollbarX = scrollbarX as any;
     }
 
     /**
@@ -96,8 +100,45 @@ export class ChartComponent {
       const polygonSeries = new am4maps.MapPolygonSeries();
       polygonSeries.useGeodata = true;
       polygonSeries.include = [
-        'PT', 'ES', 'FR', 'DE', 'BE', 'NL', 'IT', 'AT', 'GB', 'IE', 'CH', 'LU', 'GF', 'SR', 'GY', 'VE', 'CO', 'EC', 'PE', 'BO', 'CL', 'AR',
-        'PY', 'UY', 'US', 'MX', 'CA', 'BR', 'PA', 'DR', 'HT', 'JM', 'CU', 'PA', 'CR', 'NI', 'HN', 'GT', 'MX',
+        'PT',
+        'ES',
+        'FR',
+        'DE',
+        'BE',
+        'NL',
+        'IT',
+        'AT',
+        'GB',
+        'IE',
+        'CH',
+        'LU',
+        'GF',
+        'SR',
+        'GY',
+        'VE',
+        'CO',
+        'EC',
+        'PE',
+        'BO',
+        'CL',
+        'AR',
+        'PY',
+        'UY',
+        'US',
+        'MX',
+        'CA',
+        'BR',
+        'PA',
+        'DR',
+        'HT',
+        'JM',
+        'CU',
+        'PA',
+        'CR',
+        'NI',
+        'HN',
+        'GT',
+        'MX',
       ];
       polygonSeries.data = MAP_DATA;
 
@@ -107,7 +148,7 @@ export class ChartComponent {
       polygonTemplate.fill = am4core.color('#74B266');
       polygonTemplate.propertyFields.fill = 'fill';
 
-      chart.series.push(polygonSeries);
+      chart.series.push(polygonSeries as any);
       chart.geodata = am4geodata_worldLow;
 
       // Create hover state and set alternative fill color
@@ -115,7 +156,7 @@ export class ChartComponent {
       hs.properties.fill = am4core.color('#367B25');
 
       // Create image series
-      const imageSeries = chart.series.push(new am4maps.MapImageSeries());
+      const imageSeries = chart.series.push(new am4maps.MapImageSeries() as any);
 
       // Create a circle image in image series template so it gets replicated to all new images
       const imageSeriesTemplate = imageSeries.mapImages.template;
@@ -183,12 +224,12 @@ export class ChartComponent {
       ];
 
       // Add and configure Series
-      const pieSeries = chart.series.push(new am4charts.PieSeries());
+      const pieSeries = chart.series.push(new am4charts.PieSeries() as any);
       pieSeries.dataFields.value = 'litres';
       pieSeries.dataFields.category = 'country';
 
       // Let's cut a hole in our Pie chart the size of 40% the radius
-      chart.innerRadius = am4core.percent(40);
+      chart.innerRadius = am4core.percent(40) as any;
 
       // Disable ticks and labels
       pieSeries.labels.template.disabled = true;
@@ -198,7 +239,7 @@ export class ChartComponent {
       pieSeries.slices.template.tooltipText = '';
 
       // Add a legend
-      chart.legend = new am4charts.Legend();
+      chart.legend = new am4charts.Legend() as any;
     }
 
     /**
@@ -328,39 +369,90 @@ export class ChartComponent {
       chart.data = [{
         name: 'First',
         children: [
-          { name: 'A1', value: 100 },
-          { name: 'A2', value: 60 },
-          { name: 'A3', value: 30 },
+          {
+            name: 'A1',
+            value: 100,
+          },
+          {
+            name: 'A2',
+            value: 60,
+          },
+          {
+            name: 'A3',
+            value: 30,
+          },
         ],
       }, {
         name: 'Second',
         children: [
-          { name: 'B1', value: 135 },
-          { name: 'B2', value: 98 },
-          { name: 'B3', value: 56 },
+          {
+            name: 'B1',
+            value: 135,
+          },
+          {
+            name: 'B2',
+            value: 98,
+          },
+          {
+            name: 'B3',
+            value: 56,
+          },
         ],
       }, {
         name: 'Third',
         children: [
-          { name: 'C1', value: 335 },
-          { name: 'C2', value: 148 },
-          { name: 'C3', value: 126 },
-          { name: 'C4', value: 26 },
+          {
+            name: 'C1',
+            value: 335,
+          },
+          {
+            name: 'C2',
+            value: 148,
+          },
+          {
+            name: 'C3',
+            value: 126,
+          },
+          {
+            name: 'C4',
+            value: 26,
+          },
         ],
       }, {
         name: 'Fourth',
         children: [
-          { name: 'D1', value: 415 },
-          { name: 'D2', value: 148 },
-          { name: 'D3', value: 89 },
-          { name: 'D4', value: 64 },
-          { name: 'D5', value: 16 },
+          {
+            name: 'D1',
+            value: 415,
+          },
+          {
+            name: 'D2',
+            value: 148,
+          },
+          {
+            name: 'D3',
+            value: 89,
+          },
+          {
+            name: 'D4',
+            value: 64,
+          },
+          {
+            name: 'D5',
+            value: 16,
+          },
         ],
       }, {
         name: 'Fifth',
         children: [
-          { name: 'E1', value: 687 },
-          { name: 'E2', value: 148 },
+          {
+            name: 'E1',
+            value: 687,
+          },
+          {
+            name: 'E2',
+            value: 148,
+          },
         ],
       }];
 
@@ -405,18 +497,76 @@ export class ChartComponent {
     if (tsChartSankeyTypeCheck(chart)) {
       // Set data
       chart.data = [
-        { from: 'A', to: 'D', value: 10, nodeColor: '#06D6A0' },
-        { from: 'B', to: 'D', value: 8, nodeColor: '#CDCDCD' },
-        { from: 'B', to: 'E', value: 4, nodeColor: '#CDCDCD' },
-        { from: 'C', to: 'E', value: 3, nodeColor: '#CDCDCD' },
-        { from: 'D', to: 'G', value: 5, nodeColor: '#06D6A0' },
-        { from: 'D', to: 'I', value: 2, nodeColor: '#06D6A0' },
-        { from: 'D', to: 'H', value: 3, nodeColor: '#06D6A0' },
-        { from: 'E', to: 'H', value: 6, nodeColor: '#CDCDCD' },
-        { from: 'G', to: 'J', value: 5, nodeColor: '#CDCDCD' },
-        { from: 'I', to: 'J', value: 1, nodeColor: '#CDCDCD' },
-        { from: 'H', to: 'J', value: 9, nodeColor: '#06D6A0' },
-        { from: 'J', nodeColor: '#06D6A0' },
+        {
+          from: 'A',
+          to: 'D',
+          value: 10,
+          nodeColor: '#06D6A0',
+        },
+        {
+          from: 'B',
+          to: 'D',
+          value: 8,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'B',
+          to: 'E',
+          value: 4,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'C',
+          to: 'E',
+          value: 3,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'D',
+          to: 'G',
+          value: 5,
+          nodeColor: '#06D6A0',
+        },
+        {
+          from: 'D',
+          to: 'I',
+          value: 2,
+          nodeColor: '#06D6A0',
+        },
+        {
+          from: 'D',
+          to: 'H',
+          value: 3,
+          nodeColor: '#06D6A0',
+        },
+        {
+          from: 'E',
+          to: 'H',
+          value: 6,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'G',
+          to: 'J',
+          value: 5,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'I',
+          to: 'J',
+          value: 1,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'H',
+          to: 'J',
+          value: 9,
+          nodeColor: '#06D6A0',
+        },
+        {
+          from: 'J',
+          nodeColor: '#06D6A0',
+        },
       ];
 
       // Configure data fields
@@ -438,15 +588,68 @@ export class ChartComponent {
      */
     if (tsChartChordTypeCheck(chart)) {
       chart.data = [
-        { from: 'A', to: 'D', value: 10, nodeColor: '#CDCDCD' },
-        { from: 'B', to: 'D', value: 8, nodeColor: '#06D6A0', linkColor: '#06D6A0', linkOpacity: 1 },
-        { from: 'B', to: 'E', value: 4, nodeColor: '#06D6A0', linkColor: '#06D6A0', linkOpacity: 1 },
-        { from: 'B', to: 'C', value: 2, nodeColor: '#06D6A0', linkColor: '#06D6A0', linkOpacity: 1 },
-        { from: 'C', to: 'E', value: 14, nodeColor: '#CDCDCD' },
-        { from: 'E', to: 'D', value: 8, nodeColor: '#CDCDCD' },
-        { from: 'C', to: 'A', value: 4, nodeColor: '#CDCDCD' },
-        { from: 'G', to: 'A', value: 7, nodeColor: '#CDCDCD' },
-        { from: 'D', to: 'B', value: 1, nodeColor: '#CDCDCD', linkColor: '#06D6A0', linkOpacity: 1 },
+        {
+          from: 'A',
+          to: 'D',
+          value: 10,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'B',
+          to: 'D',
+          value: 8,
+          nodeColor: '#06D6A0',
+          linkColor: '#06D6A0',
+          linkOpacity: 1,
+        },
+        {
+          from: 'B',
+          to: 'E',
+          value: 4,
+          nodeColor: '#06D6A0',
+          linkColor: '#06D6A0',
+          linkOpacity: 1,
+        },
+        {
+          from: 'B',
+          to: 'C',
+          value: 2,
+          nodeColor: '#06D6A0',
+          linkColor: '#06D6A0',
+          linkOpacity: 1,
+        },
+        {
+          from: 'C',
+          to: 'E',
+          value: 14,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'E',
+          to: 'D',
+          value: 8,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'C',
+          to: 'A',
+          value: 4,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'G',
+          to: 'A',
+          value: 7,
+          nodeColor: '#CDCDCD',
+        },
+        {
+          from: 'D',
+          to: 'B',
+          value: 1,
+          nodeColor: '#CDCDCD',
+          linkColor: '#06D6A0',
+          linkOpacity: 1,
+        },
       ];
 
       chart.dataFields.fromName = 'from';

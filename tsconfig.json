@@ -6,7 +6,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "allowJs": true,
-    "alwaysStrict": true,
     "baseUrl": "demo",
     "declaration": false,
     "emitDecoratorMetadata": true,

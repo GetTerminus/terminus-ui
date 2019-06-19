@@ -116,6 +116,12 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   public originalClickEvent!: MouseEvent;
 
   /**
+   * Provide access to the inner button element
+   */
+  @ViewChild('button', {static: true})
+  public button!: ElementRef;
+
+  /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
   @Input()
@@ -230,12 +236,6 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Output()
   public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
-
-  /**
-   * Provide access to the inner button element
-   */
-  @ViewChild('button')
-  public button!: ElementRef;
 
 
   /**

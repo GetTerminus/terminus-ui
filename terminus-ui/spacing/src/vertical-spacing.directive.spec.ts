@@ -22,7 +22,7 @@ import {
 class TestHostComponent {
   verticalSpacing: TsVerticalSpacingTypes;
 
-  @ViewChild(TsVerticalSpacingDirective)
+  @ViewChild(TsVerticalSpacingDirective, {static: true})
   verticalSpacingDirective: TsVerticalSpacingDirective;
 }
 
@@ -34,7 +34,7 @@ class TestHostComponent {
   `,
 })
 class TestHostBasicComponent {
-  @ViewChild(TsVerticalSpacingDirective)
+  @ViewChild(TsVerticalSpacingDirective, {static: true})
   verticalSpacingDirective: TsVerticalSpacingDirective;
 }
 

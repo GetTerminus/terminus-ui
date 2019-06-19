@@ -39,7 +39,7 @@ class TestHostComponent {
   indeterminate!: boolean | undefined;
 
 
-  @ViewChild(TsCheckboxComponent)
+  @ViewChild(TsCheckboxComponent, {static: true})
   component!: TsCheckboxComponent;
 
   changed = jest.fn();

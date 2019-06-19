@@ -90,14 +90,14 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Access the template. Used by {@link TsAutocompleteTriggerDirective}
    */
-  @ViewChild(TemplateRef)
+  @ViewChild(TemplateRef, {static: false})
   // tslint:disable-next-line no-any
   public template!: TemplateRef<any>;
 
   /**
    * Access the element for the panel containing the autocomplete options
    */
-  @ViewChild('panel')
+  @ViewChild('panel', {static: true})
   public panel!: ElementRef;
 
   /**

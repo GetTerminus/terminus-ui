@@ -9,7 +9,8 @@
   },
   "exclude": [
     "**/*.spec.ts",
-    "**/testing/*"
+    "**/testing/*",
+    "**/test-sass.js"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

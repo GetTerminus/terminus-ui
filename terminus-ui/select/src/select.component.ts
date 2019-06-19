@@ -304,7 +304,7 @@ export class TsSelectComponent implements
    * Combined stream of all of the child options' change events
    */
   public readonly optionSelectionChanges: Observable<TsOptionSelectionChange> =
-    defer(() => merge(...this.options.map(option => option.selectionChange)));
+    defer(() => merge<TsOptionSelectionChange>(...this.options.map(option => option.selectionChange)));
 
   /**
    * Emits when the panel element is finished transforming in.
@@ -391,70 +391,6 @@ export class TsSelectComponent implements
    */
   public viewportMarginSpacing = DEFAULT_VIEWPORT_MARGIN;
 
-
-  /**
-   * VIEW ACCESS
-   */
-
-  /**
-   * Access the container element
-   */
-  @ViewChild('containerElement')
-  public containerElement!: ElementRef;
-
-  /**
-   * Access the user-supplied override of the trigger element
-   */
-  @ContentChild(TsSelectTriggerComponent)
-  public customTrigger: TsSelectTriggerComponent | undefined;
-
-  /**
-   * Access to the actual HTML element
-   */
-  @ViewChild('input')
-  public inputElement!: ElementRef<HTMLInputElement>;
-
-  /**
-   * Access the label element
-   */
-  @ViewChild('labelElement')
-  public labelElement!: ElementRef;
-
-  /**
-   * Access the trigger that opens the select
-   */
-  @ViewChild('trigger')
-  public trigger!: ElementRef;
-
-  /**
-   * Access a list of all the defined select options
-   */
-  @ContentChildren(TsOptionComponent, { descendants: true })
-  public options!: QueryList<TsOptionComponent>;
-
-  /**
-   * Access all of the defined groups of options
-   */
-  @ContentChildren(TsOptgroupComponent)
-  public optionGroups!: QueryList<TsOptgroupComponent>;
-
-  /**
-   * Access the overlay pane containing the options
-   */
-  @ViewChild(CdkConnectedOverlay)
-  public overlayDir!: CdkConnectedOverlay;
-
-  /**
-   * Access the panel containing the select options
-   */
-  @ViewChild('panel')
-  public panel!: ElementRef;
-
-
-  /**
-   * GETTERS
-   */
-
   /**
    * Whether all options are selected
    */
@@ -528,10 +464,53 @@ export class TsSelectComponent implements
     return this.allowMultiple ? this.selectionModel.selected : this.selectionModel.selected[0];
   }
 
+  /**
+   * Access the user-supplied override of the trigger element
+   */
+  @ContentChild(TsSelectTriggerComponent, {static: false})
+  public customTrigger: TsSelectTriggerComponent | undefined;
 
   /**
-   * INPUTS
+   * Access to the actual HTML element
    */
+  @ViewChild('input', {static: false})
+  public inputElement!: ElementRef<HTMLInputElement>;
+
+  /**
+   * Access the label element
+   */
+  @ViewChild('labelElement', {static: false})
+  public labelElement!: ElementRef;
+
+  /**
+   * Access the trigger that opens the select
+   */
+  @ViewChild('trigger', {static: false})
+  public trigger!: ElementRef;
+
+  /**
+   * Access the overlay pane containing the options
+   */
+  @ViewChild(CdkConnectedOverlay, {static: false})
+  public overlayDir!: CdkConnectedOverlay;
+
+  /**
+   * Access the panel containing the select options
+   */
+  @ViewChild('panel', {static: false})
+  public panel!: ElementRef;
+
+  /**
+   * Access a list of all the defined select options
+   */
+  @ContentChildren(TsOptionComponent, { descendants: true })
+  public options!: QueryList<TsOptionComponent>;
+
+  /**
+   * Access all of the defined groups of options
+   */
+  @ContentChildren(TsOptgroupComponent)
+  public optionGroups!: QueryList<TsOptgroupComponent>;
 
   /**
    * Define if multiple selections are allowed
@@ -712,11 +691,6 @@ export class TsSelectComponent implements
     return this._value;
   }
   private _value: unknown;
-
-
-  /**
-   * EMITTERS
-   */
 
   /**
    * Event for when the panel is closed

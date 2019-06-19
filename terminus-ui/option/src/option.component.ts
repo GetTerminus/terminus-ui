@@ -153,10 +153,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   protected uid = `ts-option-${nextUniqueId++}`;
 
   /**
-   * GETTERS
-   */
-
-  /**
    * Define the active state
    */
   public active = false;
@@ -209,25 +205,17 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   }
 
   /**
-   * VIEW ACCESS
-   */
-
-  /**
    * Optional template passed in by the consumer
    */
-  @ContentChild(TemplateRef)
+  @ContentChild(TemplateRef, {static: false})
   // tslint:disable-next-line no-any
   public optionTemplate: TemplateRef<any> | undefined;
 
   /**
    * Access the user-defined text content
    */
-  @ContentChild(TsOptionDisplayDirective)
+  @ContentChild(TsOptionDisplayDirective, {static: false})
   public displayElementRef: TsOptionDisplayDirective | undefined;
-
-  /**
-   * INPUTS
-   */
 
   /**
    * Define an ID for the component
@@ -271,10 +259,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     return this._option;
   }
   private _option: TsOption | undefined;
-
-  /**
-   * EMITTERS
-   */
 
   /**
    * Event emitted when the option is selected or deselected

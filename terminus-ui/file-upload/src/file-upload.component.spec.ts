@@ -75,7 +75,7 @@ class TestHostComponent {
   public hideButton = false;
   public formControl = new FormControl('test');
 
-  @ViewChild(TsFileUploadComponent)
+  @ViewChild(TsFileUploadComponent, {static: true})
   public component!: TsFileUploadComponent;
 
   public userDragBegin = jest.fn();

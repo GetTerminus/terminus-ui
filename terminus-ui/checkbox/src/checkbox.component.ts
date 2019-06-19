@@ -75,7 +75,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**
    * Provide access to the MatCheckboxComponent
    */
-  @ViewChild(MatCheckbox)
+  @ViewChild(MatCheckbox, {static: true})
   public checkbox!: MatCheckbox;
 
   /**

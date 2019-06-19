@@ -69,7 +69,7 @@ class TestHostComponent {
   public outputFormat = 'csv';
   public gotFile = jest.fn();
 
-  @ViewChild(TsCSVEntryComponent)
+  @ViewChild(TsCSVEntryComponent, {static: true})
   public component!: TsCSVEntryComponent;
 
   constructor(

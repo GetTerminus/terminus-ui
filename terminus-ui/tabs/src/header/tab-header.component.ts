@@ -176,41 +176,38 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
   /**
    * Reference to the ink bar (underline element for the selected tab)
    */
-  // FIXME: Add `{static: true}` once Angular v8 hits
-  @ViewChild(TsTabInkBarComponent)
+  @ViewChild(TsTabInkBarComponent, {static: true})
   public inkBar!: TsTabInkBarComponent;
+
+  /**
+   * Reference to the paginator that reveals tabs at the beginning of the list
+   */
+  @ViewChild('previousPaginator', {static: true})
+  public previousPaginator!: ElementRef<HTMLElement>;
+
+  /**
+   * Reference to the paginator that reveals tabs at the end of the list
+   */
+  @ViewChild('nextPaginator', {static: true})
+  public nextPaginator!: ElementRef<HTMLElement>;
+
+  /**
+   * Reference to the outer container for the list of tabs
+   */
+  @ViewChild('tabListContainer', {static: true})
+  public tabListContainer!: ElementRef;
+
+  /**
+   * Reference to the inner container for the list of tabs
+   */
+  @ViewChild('tabList', {static: true})
+  public tabList!: ElementRef;
 
   /**
    * Reference for the list of individual label wrappers
    */
   @ContentChildren(TsTabLabelWrapperDirective)
   public labelWrappers!: QueryList<TsTabLabelWrapperDirective>;
-
-  /**
-   * Reference to the paginator that reveals tabs at the beginning of the list
-   */
-  @ViewChild('previousPaginator')
-  public previousPaginator!: ElementRef<HTMLElement>;
-
-  /**
-   * Reference to the paginator that reveals tabs at the end of the list
-   */
-  @ViewChild('nextPaginator')
-  public nextPaginator!: ElementRef<HTMLElement>;
-
-  /**
-   * Reference to the inner container for the list of tabs
-   */
-  // FIXME: Add `{static: true}` once Angular v8 hits
-  @ViewChild('tabList')
-  public tabList!: ElementRef;
-
-  /**
-   * Reference to the outer container for the list of tabs
-   */
-  // FIXME: Add `{static: true}` once Angular v8 hits
-  @ViewChild('tabListContainer')
-  public tabListContainer!: ElementRef;
 
   /**
    * The index of the active tab

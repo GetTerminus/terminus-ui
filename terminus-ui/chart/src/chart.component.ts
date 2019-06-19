@@ -92,7 +92,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Get access to the chart container
    */
-  @ViewChild('chartDiv')
+  @ViewChild('chartDiv', {static: true})
   private chartDiv!: ElementRef;
 
   /**

@@ -12,9 +12,7 @@ import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
-import {
-  map,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 export interface State {
@@ -28,9 +26,9 @@ export interface State {
   templateUrl: './autocomplete.component.html',
 })
 export class AutocompleteComponent implements OnInit {
-  
+
   stateCtrl = new FormControl(null, [Validators.required]);
-  
+
   filteredStates!: Observable<State[]>;
   states: State[] = [
     {
@@ -126,7 +124,7 @@ export class AutocompleteComponent implements OnInit {
   constructor() {
     this.filteredStates = this.myQuery$
       .pipe(
-        map((state) => {
+        map(state => {
           const val = state ? this.filterStates(state) : [];
           console.log('Demo: in pipe: ', state, val);
           return val;
@@ -140,7 +138,7 @@ export class AutocompleteComponent implements OnInit {
 
   private filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
-    const r = this.states.filter((state) => state.name.toLowerCase().indexOf(filterValue) === 0);
+    const r = this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
     return r;
   }
 

@@ -241,7 +241,8 @@ import { TsSortDirective } from '@terminus/ui';
 
 export class TableComponent implements AfterViewInit {
   // Get a reference to the TsSortDirective instance
-  @ViewChild(TsSortDirective) sort: TsSortDirective;
+  @ViewChild(TsSortDirective, {static: false})
+  sort: TsSortDirective;
 
   public ngAfterViewInit(): void {
     // Subscribe to the sortChange event to reset pagination, fetch new data, etc
@@ -464,10 +465,10 @@ export class TableComponent implements AfterViewInit {
   dataSource: TsTableDataSource = new TsTableDataSource();
   resultsLength: number = 0;
 
-  @ViewChild(TsSortDirective)
+  @ViewChild(TsSortDirective, {static: true})
   sort: TsSortDirective;
 
-  @ViewChild(TsPaginatorComponent)
+  @ViewChild(TsPaginatorComponent, {static: true})
   paginator: TsPaginatorComponent;
 
 

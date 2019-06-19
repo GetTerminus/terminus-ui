@@ -852,6 +852,14 @@ describe(`TsSelectComponent`, function() {
   describe(`keyManager`, function() {
 
     test(`should close the panel and focus the select if the user TABs out`, () => {
+      // NOTE: `dispatchKeyboardEvent` suddenly stopped working for this test during the Angular v8 upgrade
+      const event = document.createEvent('KeyboardEvent');
+      event.initEvent('keydown', true, false);
+      Object.defineProperties(event, {
+        keyCode: { get: () => KEYS.TAB.keyCode },
+        key: { get: () => KEYS.TAB.code },
+      });
+
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
@@ -863,7 +871,7 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(true);
 
-      dispatchKeyboardEvent(element, 'keydown', KEYS.TAB);
+      element.dispatchEvent(event);
       fixture.detectChanges();
 
       expect(instance.panelOpen).toEqual(false);
@@ -1117,6 +1125,14 @@ describe(`TsSelectComponent`, function() {
   describe(`Select Panel`, function() {
 
     test(`should close with esc or alt+up`, () => {
+      // NOTE: `dispatchKeyboardEvent` suddenly stopped working for this test during the Angular v8 upgrade
+      const event = document.createEvent('KeyboardEvent');
+      event.initEvent('keydown', true, false);
+      Object.defineProperties(event, {
+        keyCode: { get: () => KEYS.ESCAPE.keyCode },
+        key: { get: () => KEYS.ESCAPE.code },
+      });
+
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
       const trigger = getSelectTriggerElement(fixture);
@@ -1126,11 +1142,12 @@ describe(`TsSelectComponent`, function() {
 
       expect(instance.panelOpen).toEqual(true);
 
-      dispatchKeyboardEvent(trigger, 'keydown', KEYS.ESCAPE);
+      trigger.dispatchEvent(event);
       fixture.detectChanges();
 
       expect(instance.panelOpen).toEqual(false);
     });
+
 
     test(`should close with alt+up or alt+down`, () => {
       const fixture = createComponent(testComponents.Basic);

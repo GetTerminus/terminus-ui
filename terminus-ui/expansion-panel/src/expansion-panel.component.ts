@@ -28,14 +28,20 @@ import {
   TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
-import { Subject } from 'rxjs';
 import {
+  of,
+  scheduled,
+  Subject,
+} from 'rxjs';
+import {
+  concatAll,
   distinctUntilChanged,
   filter,
   startWith,
   take,
 } from 'rxjs/operators';
 
+import { asap } from 'rxjs/internal/scheduler/asap';
 import {
   TS_ACCORDION,
   TsAccordionBase,
@@ -192,13 +198,13 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
   /**
    * Reference to a passed in template (for lazy loading)
    */
-  @ContentChild(TsExpansionPanelContentDirective)
+  @ContentChild(TsExpansionPanelContentDirective, {static: false})
   public lazyContent!: TsExpansionPanelContentDirective;
 
   /**
    * The element containing the panel's user-provided content
    */
-  @ViewChild('panelBody')
+  @ViewChild('panelBody', {static: true})
   public panelBody!: ElementRef<HTMLElement>;
 
   /**
@@ -297,9 +303,8 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
     // istanbul ignore else
     if (this.lazyContent) {
       // Render the content as soon as the panel becomes open.
-      this.opened.pipe(
-        // tslint:disable-next-line no-non-null-assertion
-        startWith<void, string>(null!),
+      scheduled([[of(null)], this.opened], asap).pipe(
+        concatAll(),
         filter(() => this.expanded && !this.portal),
         take(1),
       ).subscribe(() => {

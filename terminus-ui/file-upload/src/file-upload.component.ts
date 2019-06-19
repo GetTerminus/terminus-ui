@@ -56,6 +56,11 @@ export interface ImageRatio {
   heightRatio: number;
 }
 
+// NOTE: During the last batch of dependency upgrades `DragEvent` began throwing a reference error:
+// `ReferenceError: DragEvent is not defined`. A workaround is to assign it first to our own type.
+// See https://github.com/thymikee/jest-preset-angular/issues/245#issuecomment-475982348
+export type TsFileUploadDragEvent = DragEvent;
+
 /**
  * The maximum file size in bytes
  *
@@ -153,7 +158,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Provide access to the file preview element
    */
-  @ViewChild('preview')
+  @ViewChild('preview', {static: false})
   public preview!: ElementRef;
 
   /**
@@ -420,21 +425,21 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * HostListeners
    */
   @HostListener('dragover', ['$event'])
-  public handleDragover(event: DragEvent) {
+  public handleDragover(event: TsFileUploadDragEvent) {
     this.preventAndStopEventPropagation(event);
     this.enter.emit(true);
     this.dragInProgress = true;
   }
 
   @HostListener('dragleave', ['$event'])
-  public handleDragleave(event: DragEvent) {
+  public handleDragleave(event: TsFileUploadDragEvent) {
     this.preventAndStopEventPropagation(event);
     this.exit.emit(true);
     this.dragInProgress = false;
   }
 
   @HostListener('drop', ['$event'])
-  public handleDrop(event: DragEvent) {
+  public handleDrop(event: TsFileUploadDragEvent) {
     this.preventAndStopEventPropagation(event);
     this.dragInProgress = false;
     this.collectFilesFromEvent(event);
@@ -585,7 +590,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    *
    * @param event - The event
    */
-  private collectFilesFromEvent(event: DragEvent | Event): void {
+  private collectFilesFromEvent(event: TsFileUploadDragEvent | Event): void {
     let files: FileList | undefined;
 
     if (isDragEvent(event)) {

@@ -16,14 +16,14 @@ import { TsLogoModule } from './logo.module';
   `,
  })
 class TestHostComponent {
-  type = '';
-  logoColor = '';
+  public type = '';
+  public logoColor = '';
 
-  @ViewChild('one')
-  one!: TsLogoComponent;
+  @ViewChild('one', {static: true})
+  public one!: TsLogoComponent;
 
-  @ViewChild('two')
-  two!: TsLogoComponent;
+  @ViewChild('two', {static: true})
+  public two!: TsLogoComponent;
  }
 
 

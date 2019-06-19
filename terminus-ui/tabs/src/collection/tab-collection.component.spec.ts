@@ -587,7 +587,6 @@ describe(`TsTabCollectionComponent`, function() {
       secondLabel.click();
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
 
       child = fixture.debugElement.query(By.css('.child'));
       expect(child.nativeElement).toBeDefined();

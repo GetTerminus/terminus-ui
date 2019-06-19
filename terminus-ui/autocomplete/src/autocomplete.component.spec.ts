@@ -168,7 +168,14 @@ describe(`TsAutocompleteComponent`, function() {
 
 
     test(`should allow removal with the backspace key`, () => {
-      jest.useFakeTimers();
+      // NOTE: `dispatchKeyboardEvent` suddenly stopped working for this test during the Angular v8 upgrade
+      const event = document.createEvent('KeyboardEvent');
+      event.initEvent('keydown', true, false);
+      Object.defineProperties(event, {
+        keyCode: { get: () => KEYS.BACKSPACE.keyCode },
+        key: { get: () => KEYS.BACKSPACE.code },
+      });
+
       const fixture = createComponent(testComponents.SeededAutocomplete);
       fixture.detectChanges();
 
@@ -177,9 +184,10 @@ describe(`TsAutocompleteComponent`, function() {
 
       const chip = getChipElement(fixture);
       // The first backspace selects the previous chip
-      dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
-      jest.advanceTimersByTime(250);
-      dispatchKeyboardEvent(chip, 'keydown', KEYS.BACKSPACE);
+      chip.dispatchEvent(event);
+      fixture.detectChanges();
+
+      chip.dispatchEvent(event);
       fixture.detectChanges();
 
       chips = getAllChipInstances(fixture);

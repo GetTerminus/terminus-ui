@@ -31,7 +31,7 @@ class TestHostComponent {
   isExternal!: boolean;
   tabIndex!: number | undefined;
 
-  @ViewChild(TsLinkComponent)
+  @ViewChild(TsLinkComponent, {static: true})
   linkComponent!: TsLinkComponent;
 }
 

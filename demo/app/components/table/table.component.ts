@@ -119,10 +119,10 @@ export class TableComponent implements AfterViewInit {
   dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();
   resultsLength = 0;
 
-  @ViewChild(TsSortDirective)
+  @ViewChild(TsSortDirective, {static: true})
   sort!: TsSortDirective;
 
-  @ViewChild(TsPaginatorComponent)
+  @ViewChild(TsPaginatorComponent, {static: true})
   paginator!: TsPaginatorComponent;
 
 

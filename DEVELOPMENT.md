@@ -47,7 +47,7 @@ $ yarn run test:ci:local
 $ yarn run start:app
 
 # Test the demo app
-$ yarn run test:demo
+$ yarn run test:app
 
 # Lint the demo app
 $ yarn run lint:app

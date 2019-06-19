@@ -54,7 +54,7 @@ If the scrollbars content is dynamically updated, you will need to update the sc
 ```typescript
 ...
 
-@ViewChild(TsScrollbarsComponent)
+@ViewChild(TsScrollbarsComponent, {static: false})
 public scrollbars!: TsScrollbarsComponent;
 
 
@@ -81,7 +81,7 @@ Scrolling methods can be called directly once a reference to the component is at
 ```typescript
 ...
 // A reference to the component instance:
-@ViewChild(TsScrollbarsComponent)
+@ViewChild(TsScrollbarsComponent, {static: false})
 public scrollbars!: TsScrollbarsComponent;
 ...
 ```
@@ -91,7 +91,7 @@ The following scroll examples will assume that a reference has already been crea
 ### Scroll to fixed location
 
 ```typescript
-@ViewChild(TsScrollbarsComponent)
+@ViewChild(TsScrollbarsComponent, {static: false})
 public scrollbars!: TsScrollbarsComponent;
 
 scrollToTop() {
@@ -115,7 +115,7 @@ Available fixed location methods:
 Scroll the container to a specific x/y location:
 
 ```typescript
-@ViewChild(TsScrollbarsComponent)
+@ViewChild(TsScrollbarsComponent, {static: false})
 public scrollbars!: TsScrollbarsComponent;
 
 scrollToCoordinates() {
@@ -130,7 +130,7 @@ scrollToCoordinates() {
 The component can scroll a nested element to the top of the scroll container:
 
 ```typescript
-@ViewChild(TsScrollbarsComponent)
+@ViewChild(TsScrollbarsComponent, {static: false})
 public scrollbars!: TsScrollbarsComponent;
 
 scrollToElement() {

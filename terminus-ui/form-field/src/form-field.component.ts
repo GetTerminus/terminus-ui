@@ -144,21 +144,16 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     return false;
   }
 
-
-  /**
-   * VIEW ACCESS
-   */
-
   /**
    * Access the container element
    */
-  @ViewChild('containerElement')
+  @ViewChild('containerElement', {static: true})
   public containerElement!: ElementRef;
 
   /**
    * Access the label container
    */
-  @ViewChild('labelElement')
+  @ViewChild('labelElement', {static: true})
   public labelElement!: ElementRef;
 
   /**
@@ -172,11 +167,6 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    */
   @ContentChildren(TsSuffixDirective)
   public suffixChildren!: QueryList<TsSuffixDirective>;
-
-
-  /**
-   * INPUTS
-   */
 
   /**
    * Let implementers pass the control in
@@ -266,7 +256,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     // Subscribe to changes in the child control state in order to update the form field UI.
     // NOTE: non-null-assertion needed to pass `null` to `startWith`
     // tslint:disable: no-non-null-assertion
-    this.control.stateChanges.pipe(startWith<void, string>(null!)).subscribe(() => {
+    this.control.stateChanges.pipe(startWith<void, null>(null!)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
     // tslint:enable: no-non-null-assertion
@@ -276,7 +266,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     if (this.control.labelChanges) {
       // NOTE: non-null-assertion needed to pass `null` to `startWith`
       // tslint:disable: no-non-null-assertion
-      this.control.labelChanges.pipe(startWith<void, string>(null!)).subscribe(() => {
+      this.control.labelChanges.pipe(startWith<void, null>(null!)).subscribe(() => {
         this.updateOutlineGap();
       });
       // tslint:enable: no-non-null-assertion

@@ -14,7 +14,7 @@ export class CardComponent implements AfterViewInit {
   theme = 'primary';
   border: TsCardBorderOptions = 'none';
 
-  @ViewChild('transitionCard')
+  @ViewChild('transitionCard', {static: true})
   transitionCard!: TsCardComponent;
 
   ngAfterViewInit() {
