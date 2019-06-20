@@ -257,6 +257,11 @@ export class TsSelectComponent implements
   TsFormFieldControl<unknown> {
 
   /**
+   * Give the component an explicit name
+   */
+  public readonly componentName = 'TsSelectComponent';
+
+  /**
    * Store a reference to the document object
    */
   private document: Document;

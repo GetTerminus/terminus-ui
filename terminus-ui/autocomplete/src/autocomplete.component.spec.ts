@@ -681,6 +681,23 @@ describe(`TsAutocompleteComponent`, function() {
 
     });
 
+    describe(`checkbox`, function() {
+
+      test(`should not have checkbox in front of an item list`, fakeAsync(() => {
+        const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
+        fixture.detectChanges();
+
+        const input = getAutocompleteInput(fixture);
+        typeInElement('al', input);
+        tick(1000);
+        fixture.detectChanges();
+        const opt = getOptionElement(fixture, 0, 1);
+        fixture.detectChanges();
+        expect(opt.querySelectorAll('ts-checkbox')).toHaveLength(0);
+
+      }));
+    });
+
   });
 
 

@@ -954,6 +954,19 @@ describe(`TsSelectComponent`, function() {
 
     });
 
+    describe(`checkbox`, function() {
+
+      test(`should have checkbox in front of each option item`, fakeAsync(() => {
+        const fixture = createComponent(testComponents.OptgroupsMultiple);
+        fixture.detectChanges();
+
+        fixture.detectChanges();
+        const opt = getOptionElement(fixture, 0, 1);
+        expect(opt.querySelector('ts-checkbox')).toBeTruthy();
+
+      }));
+    });
+
 
     describe(`handleKeydown`, function() {
 
@@ -992,7 +1005,7 @@ describe(`TsSelectComponent`, function() {
         const event = createKeyboardEvent('keydown', KEYS.ENTER);
         const instance = getSelectInstance(fixture);
         option.selectViaInteraction = jest.fn();
-        instance.open = jest.fn()
+        instance.open = jest.fn();
 
         instance.handleKeydown(event);
         expect(option.selectViaInteraction).not.toHaveBeenCalled();
@@ -1005,11 +1018,11 @@ describe(`TsSelectComponent`, function() {
         const event = createKeyboardEvent('keydown', KEYS.ENTER);
         const instance = getSelectInstance(fixture);
         option.selectViaInteraction = jest.fn();
-        instance.open = jest.fn()
+        instance.open = jest.fn();
 
         instance.handleKeydown(event);
         expect(instance.open).toHaveBeenCalled();
-      })
+      });
     });
 
 
