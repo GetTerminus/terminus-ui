@@ -1,3 +1,12 @@
+## <small>13.0.6 (2019-06-21)</small>
+
+* fix(autocomplete): checkbox no longer appears in front of autocomplete options (#1565) ([cb3ca47](https://github.com/GetTerminus/terminus-ui/commit/cb3ca47)), closes [#1565](https://github.com/GetTerminus/terminus-ui/issues/1565)
+* chore(Demo): Add missing flexbox module to the icon-button demo ([bdf3d46](https://github.com/GetTerminus/terminus-ui/commit/bdf3d46))
+* chore: integrate new stylelint config and fix issues ([f9d7a5e](https://github.com/GetTerminus/terminus-ui/commit/f9d7a5e)), closes [#1526](https://github.com/GetTerminus/terminus-ui/issues/1526)
+* chore(ValidationMessages): tests are converted to integration (#1558) ([43025e2](https://github.com/GetTerminus/terminus-ui/commit/43025e2)), closes [#1558](https://github.com/GetTerminus/terminus-ui/issues/1558) [#1297](https://github.com/GetTerminus/terminus-ui/issues/1297)
+* chore(Packages): update cs-customizable ([4fdb921](https://github.com/GetTerminus/terminus-ui/commit/4fdb921))
+* refactor: fix for linting issues ([730e347](https://github.com/GetTerminus/terminus-ui/commit/730e347))
+
 ## <small>13.0.5 (2019-06-18)</small>
 
 * fix(SCSS): docs links to SCSS helpers are working properly ([edd3a33](https://github.com/GetTerminus/terminus-ui/commit/edd3a33)), closes [#1498](https://github.com/GetTerminus/terminus-ui/issues/1498)
