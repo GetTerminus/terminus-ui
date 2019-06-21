@@ -1,3 +1,7 @@
+## <small>14.0.3 (2019-06-21)</small>
+
+* fix(Packages): now latest UI package is 14.0.2 ([d51e201](https://github.com/GetTerminus/terminus-ui/commit/d51e201))
+
 ## <small>14.0.2 (2019-06-21)</small>
 
 * fix(Packages): update internal package.json ([b989ac1](https://github.com/GetTerminus/terminus-ui/commit/b989ac1)), closes [#1563](https://github.com/GetTerminus/terminus-ui/issues/1563)
