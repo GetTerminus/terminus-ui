@@ -146,6 +146,11 @@ export class TsAutocompleteComponent implements OnInit,
   TsFormFieldControl<string> {
 
   /**
+   * Give the component an explicit name
+   */
+  public readonly componentName = 'TsAutocompleteComponent';
+
+  /**
    * Define the FormControl
    */
   public autocompleteFormControl = new FormControl([]);

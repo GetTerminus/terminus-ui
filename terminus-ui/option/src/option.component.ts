@@ -53,6 +53,7 @@ export class TsOptionSelectionChange {
  * Contains properties that the options can inherit. Used by {@link TS_OPTION_PARENT_COMPONENT}
  */
 export interface TsOptionParentComponent {
+  componentName: string;
   allowMultiple: boolean;
   theme: TsStyleThemeTypes;
   ngControl?: NgModel;
@@ -289,18 +290,11 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     // Injecting via a provider helps us get around the circular dependency created by importing TsSelectComponent here.
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) private parent: TsOptionParentComponent,
     @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) public readonly group: TsOptgroupParentComponent,
-    private viewContainerRef: ViewContainerRef,
   ) {
-    // From view container ref to decide the parent component. Possible refactoring with injector.
-    // eslint-disable-next-line dot-notation
-    if (this.viewContainerRef['_data'].componentView) {
-      // eslint-disable-next-line dot-notation
-      const parentComponent = this.viewContainerRef['_data'].componentView.parent.component.constructor.name.toLowerCase();
-      if (parentComponent.includes('autocomplete')) {
-        this.autocompleteComponent = true;
-      } else if (parentComponent.includes('select')) {
-        this.selectComponent = true;
-      }
+    if (parent.componentName.includes('Autocomplete')) {
+      this.autocompleteComponent = true;
+    } else if (parent.componentName.includes('Select')) {
+      this.selectComponent = true;
     }
   }
 
