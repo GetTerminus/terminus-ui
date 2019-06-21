@@ -2,27 +2,10 @@
 # yarn lockfile v1
 
 
-"@amcharts/amcharts4-geodata@^4.0.29", "@amcharts/amcharts4-geodata@^4.1.6":
+"@amcharts/amcharts4-geodata@^4.1.6":
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.6.tgz#d19c2dbaf88c9cdce04a4f614f50c3c5eee2c40f"
   integrity sha512-PtddTIPqYki6CqvCO/1C5beCHMPRYAtvJqVoX0ABMVc8wfV8WviVlrB6YqWc4DprI3c9hCQeXbxxC+Vy6A1Z1w==
-
-"@amcharts/amcharts4@^4.0.24":
-  version "4.4.10"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.4.10.tgz#2ecf1851841d610ab6d3533f33f25da4a984f94d"
-  integrity sha512-MRgUrofIc8x2JoXPZ3QQujtGseQVSjsVUlXdIlUKD+fwbcErnItvwUMG/GqSa2OAzgbE0xie/haIc0tDXYPiBQ==
-  dependencies:
-    "@types/regression" "^2.0.0"
-    canvg "^1.5.3"
-    css-element-queries "^1.0.5"
-    d3-force "^2.0.1"
-    d3-geo "^1.11.3"
-    d3-geo-projection "^2.6.0"
-    pdfmake "^0.1.36"
-    polylabel "^1.0.2"
-    regression "^2.0.1"
-    tslib "^1.9.3"
-    xlsx "^0.12.8"
 
 "@amcharts/amcharts4@^4.5.3":
   version "4.5.3"
@@ -1134,9 +1117,9 @@
     tslint "^5.17.0"
 
 "@terminus/ui@latest":
-  version "13.0.3"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-13.0.3.tgz#b2e105c379de35008c19c63a9752cd48ee697df6"
-  integrity sha512-9FTKfTkAafLWt1GOjYdkJmaYJNhlT5b/04ytY9FnxS7aQuMDcwuV12J17OHq9TtDim1YVPGo8NY/r8/ivM2VHA==
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-14.0.1.tgz#d6a23c469bc155b0395e644bebd2a98950e2290e"
+  integrity sha512-PjhxkjwK9u2gsdjVj4Ewh9tl+2ixa2oxBj6ENiLJzg3LlX2O+F11ChVkwC6SLTRyl6Wcbsf71WakmtqnWqSQaQ==
   dependencies:
     "@angular/cdk" "^7.3.0"
     ngx-perfect-scrollbar "^7.2.0"
@@ -1144,8 +1127,8 @@
     text-mask-core "^5.1.2"
     tslib "^1.9.0"
   optionalDependencies:
-    "@amcharts/amcharts4" "^4.0.24"
-    "@amcharts/amcharts4-geodata" "^4.0.29"
+    "@amcharts/amcharts4" "^4.5.3"
+    "@amcharts/amcharts4-geodata" "^4.1.6"
 
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.1"
