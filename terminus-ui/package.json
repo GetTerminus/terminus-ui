@@ -51,20 +51,20 @@
     "text-mask-core": "^5.1.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^7.2.2",
-    "@angular/core": "^7.2.2",
-    "@angular/flex-layout": "7.0.0-beta.22",
-    "@angular/forms": "^7.2.2",
-    "@angular/material": "^7.3.0",
-    "@angular/platform-browser": "^7.2.2",
-    "@angular/router": "^7.2.2",
-    "@terminus/ngx-tools": ">=5.0.0",
+    "@angular/animations": "^8.0.1",
+    "@angular/core": "^8.0.1",
+    "@angular/flex-layout": "8.0.0-beta.26",
+    "@angular/forms": "^8.0.1",
+    "@angular/material": "^8.0.1",
+    "@angular/platform-browser": "^8.0.1",
+    "@angular/router": "^8.0.1",
+    "@terminus/ngx-tools": ">=7.0.0",
     "date-fns": "2.0.0-alpha.26",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.5.2"
   },
   "optionalDependencies": {
-    "@amcharts/amcharts4": "^4.0.24",
-    "@amcharts/amcharts4-geodata": "^4.0.29"
+    "@amcharts/amcharts4": "^4.5.3",
+    "@amcharts/amcharts4-geodata": "^4.1.6"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
