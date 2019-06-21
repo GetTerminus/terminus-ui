@@ -1,3 +1,8 @@
+## <small>14.0.1 (2019-06-21)</small>
+
+* fix(Demo): fix odd layout for select demo ([d217e65](https://github.com/GetTerminus/terminus-ui/commit/d217e65))
+* fix(Packages): update internal package dependency versions ([f0f5231](https://github.com/GetTerminus/terminus-ui/commit/f0f5231))
+
 ## 14.0.0 (2019-06-21)
 
 * chore: enable TypeScript incremental build ([abdad58](https://github.com/GetTerminus/terminus-ui/commit/abdad58))
