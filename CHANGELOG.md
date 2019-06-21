@@ -1,3 +1,15 @@
+## 14.0.0 (2019-06-21)
+
+* chore: enable TypeScript incremental build ([abdad58](https://github.com/GetTerminus/terminus-ui/commit/abdad58))
+* chore(Packages): upgrade all packages ([627f2f2](https://github.com/GetTerminus/terminus-ui/commit/627f2f2)), closes [#1540](https://github.com/GetTerminus/terminus-ui/issues/1540)
+* test(ExpansionPanel): fix for trailing Promise error when running all tests ([e218502](https://github.com/GetTerminus/terminus-ui/commit/e218502))
+* feat(Dockerfile): update node version for compatability with angular buildkit ([34a9124](https://github.com/GetTerminus/terminus-ui/commit/34a9124))
+
+
+### BREAKING CHANGE
+
+* Angular v8 is now required. TypeScript 3.4.x is now required.
+
 ## <small>13.0.6 (2019-06-21)</small>
 
 * fix(autocomplete): checkbox no longer appears in front of autocomplete options (#1565) ([cb3ca47](https://github.com/GetTerminus/terminus-ui/commit/cb3ca47)), closes [#1565](https://github.com/GetTerminus/terminus-ui/issues/1565)
