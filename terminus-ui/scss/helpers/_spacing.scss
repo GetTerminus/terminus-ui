@@ -48,21 +48,21 @@ $g-spacings: (
  * @param $size
  *  The value desired from the map. Default: 0
  * @example
- *  padding: spacing();
+ *  padding: spacing(default);
  *  padding: spacing(large);
  *  padding: spacing(large, 4);
  */
 @function spacing($type: default, $size: 0) {
   // Verify the type exists
   @if not(map-has-key($g-spacings, $type)) {
-    $allowed: map-keys($g-spacings);
-    @error 'Invalid spacing type name: `#{$type}`. Allowed type: #{$allowed}';
+    $allowed-types: map-keys($g-spacings);
+    @error 'Invalid spacing type name: `#{$type}`. Allowed type: #{$allowed-types}';
   }
 
   // Verify the size
   @if not(map-has-key(map-get($g-spacings, $type), $size)) {
-    $allowed: map-keys(map-get($g-spacings, $type));
-    @error 'Invalid size: `#{$size}`. Allowed sizes for `#{$type}` are: #{$allowed}';
+    $allowed-sizes: map-keys(map-get($g-spacings, $type));
+    @error 'Invalid size: `#{$size}`. Allowed sizes for `#{$type}` are: #{$allowed-sizes}';
   }
 
   @return map-get(map-get($g-spacings, $type), $size);

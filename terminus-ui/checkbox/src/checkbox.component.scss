@@ -36,7 +36,7 @@ $ts-select-item-height: 3em !default;
     // Match the material button line-height and spacing
     .c-checkbox {
       line-height: 3em;
-      padding: 0 spacing();
+      padding: 0 spacing(default);
     }
 
     // Support text truncation
@@ -64,7 +64,7 @@ $ts-select-item-height: 3em !default;
     // Match the material button line-height and spacing
     .c-checkbox {
       line-height: 2em;
-      padding: 0 spacing();
+      padding: 0 spacing(default);
     }
   }
 

@@ -85,14 +85,18 @@ $outline-appearance-label-offset: -.25em;
     }
   }
 
-  &:not(.ts-form-field--disabled) .ts-form-field__container:hover {
-    &.ts-form-field__outline {
-      opacity: 0;
-      transition: opacity 600ms $swift-ease-out-timing-function;
-    }
+  &:not(.ts-form-field--disabled) {
+    .ts-form-field__container {
+      &:hover {
+        &.ts-form-field__outline {
+          opacity: 0;
+          transition: opacity 600ms $swift-ease-out-timing-function;
+        }
 
-    &.ts-form-field__outline--thick {
-      opacity: 1;
+        &.ts-form-field__outline--thick {
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -110,24 +114,31 @@ $outline-appearance-label-offset: -.25em;
     }
   }
 
+  // Focused theme support
   &.ts-form-field--focused {
     .ts-form-field__outline--thick {
       color: $outline-color-primary;
     }
 
-    &.ts-form-field--accent .ts-form-field__outline--thick {
-      color: $outline-color-accent;
+    &.ts-form-field--accent {
+      .ts-form-field__outline--thick {
+        color: $outline-color-accent;
+      }
     }
 
-    &.ts-form-field--warn .ts-form-field__outline--thick {
-      color: $outline-color-warn;
+    &.ts-form-field--warn {
+      .ts-form-field__outline--thick {
+        color: $outline-color-warn;
+      }
     }
   }
 
-  // Class repeated so that rule is specific enough to override focused accent color case.
-  &.ts-form-field--invalid.ts-form-field--invalid {
-    .ts-form-field__outline--thick {
-      color: $outline-color-warn;
+  // NOTE: Class is repeated so that rule is specific enough to override focused accent color case.
+  &.ts-form-field--invalid {
+    &.ts-form-field--invalid {
+      .ts-form-field__outline--thick {
+        color: $outline-color-warn;
+      }
     }
   }
 
@@ -177,16 +188,14 @@ $outline-appearance-label-offset: -.25em;
 
   .ts-form-field__outline-end {
     border-left-style: none;
-    // stylelint-disable order/properties-alphabetical-order
     border-radius: 0 $form-field-outline-border-radius $form-field-outline-border-radius 0;
-    // stylelint-enable order/properties-alphabetical-order
     flex-grow: 1;
   }
 
   .ts-form-field__outline-gap {
     border: $form-field-outline-width solid currentColor;
     border-left-style: none;
-    // Hack for Chrome's treatment of borders with non-integer (scaled) widths refer to https://github.com/angular/material2/issues/10710
+    // HACK: For Chrome's treatment of borders with non-integer (scaled) widths refer to https://github.com/angular/material2/issues/10710
     border-radius: .000001px;
     border-right-style: none;
   }
@@ -308,7 +317,6 @@ $outline-appearance-label-offset: -.25em;
 
 
 
-  // stylelint-disable order/properties-alphabetical-order
   // The label itself. This is invisible unless it is. The logic to show it is basically `empty || (float && (!empty || focused))`. Float is
   // dependent on the `floatingPlaceholder` property.
   .ts-form-field__label {
@@ -337,11 +345,16 @@ $outline-appearance-label-offset: -.25em;
     &:not(.ts-form-field__label--empty) {
       transition: none;
     }
+
+    &.ts-form-field__label--empty {
+      display: block;
+    }
   }
-  // stylelint-enable order/properties-alphabetical-order
-  .ts-form-field__label.ts-form-field__label--empty,
-  .ts-form-field--float .ts-form-field__label {
-    display: block;
+
+  .ts-form-field--float {
+    .ts-form-field__label {
+      display: block;
+    }
   }
 
   // Top level styles belong here
@@ -363,7 +376,9 @@ $outline-appearance-label-offset: -.25em;
   .ts-form-field {
     // Center the datepicker icon vertically
     .ts-form-field__suffix {
-      padding: .5em 0;
+      $padding-adjustment-for-datepicker: .5em 0;
+
+      padding: $padding-adjustment-for-datepicker;
       top: .2em;
     }
   }

@@ -14,6 +14,8 @@
 
 .c-date-range {
   .c-date-range__seperator {
-    margin: 1.8em .6em;
+    $seperator-spacing: 1.8em .6em;
+
+    margin: $seperator-spacing;
   }
 }

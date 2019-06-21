@@ -87,10 +87,12 @@
 
 
 .c-link {
-  // Force the icon to assume the size of it's context
+  // Force the icon to assume the size of its context
   .mat-icon {
     &.material-icons {
-      font-size: 1.2em;
+      $mat-icon-font-override: 1.2em;
+
+      font-size: $mat-icon-font-override;
       height: auto;
       line-height: 1em;
       vertical-align: middle;
@@ -100,7 +102,9 @@
 
   // Target links inside a TsMenuComponent
   .c-menu & {
-    margin: spacing(small, 1) 0;
+    $margin-adjustment-for-menu: spacing(small, 1) 0;
+
+    margin: $margin-adjustment-for-menu;
   }
 
   // Target links inside a TsMenuComponent
@@ -108,7 +112,7 @@
     color: color(pure, dark);
     display: block;
     font-weight: $type__weight--base;
-    padding: spacing(small, 1) spacing();
+    padding: spacing(small, 1) spacing(default);
     text-decoration: none;
     transition: background 400ms $g-material-background-easing;
     will-change: background-color;

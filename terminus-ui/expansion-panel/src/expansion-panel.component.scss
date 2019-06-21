@@ -1,10 +1,8 @@
-@import './../../scss/helpers/color';
-@import './../../scss/helpers/spacing';
 @import './../../scss/helpers/a11y';
 @import './../../scss/helpers/animation';
+@import './../../scss/helpers/color';
 @import './../../scss/helpers/shadows';
-
-
+@import './../../scss/helpers/spacing';
 
 
 .ts-expansion-panel {
@@ -14,6 +12,7 @@
   }
   background: color(pure);
   border-radius: $border-radius;
+  // stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   box-sizing: content-box;
   color: color(pure, dark);
@@ -52,7 +51,7 @@
 }
 
 .ts-expansion-panel__body {
-  padding: 0 spacing(large) spacing();
+  padding: 0 spacing(large) spacing(default);
 }
 
 .ts-expansion-panel__action-row {
@@ -60,7 +59,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: spacing() spacing(small, 1) spacing() spacing(large);
+  padding: spacing(default) spacing(small, 1) spacing(default) spacing(large);
 
   .ts-button {
     margin-left: spacing(small, 1);

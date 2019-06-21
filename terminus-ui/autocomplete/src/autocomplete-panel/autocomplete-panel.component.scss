@@ -5,8 +5,10 @@
 
 
 // Menu width must be a multiple of 56px
-$ts-menu-overlay-min-width: 112px !default; // 56 * 2
-$ts-menu-overlay-max-width: 280px !default; // 56 * 5
+// 56 * 2:
+$ts-menu-overlay-min-width: 112px !default;
+// 56 * 5:
+$ts-menu-overlay-max-width: 280px !default;
 $ts-select-item-height: 3em !default;
 
 /**
@@ -38,14 +40,20 @@ $ts-autocomplete-panel-border-radius: 4px !default;
   // Selected options in autocompletes should not be gray, but we only want to override the background for selected options if they are
   // *not* in hover or focus state. This change has to be made here because base option styles are shared between the autocomplete and the
   // select.
-  .ts-option.ts-option--selected:not(.ts-active):not(:hover) {
-    background: color(primary, xlight);
-  }
+  .ts-option {
+    &.ts-option--selected {
+      &:not(.ts-active) {
+        &:not(:hover) {
+          background: color(primary, xlight);
+        }
+      }
+    }
 
-  .ts-option:not(.ts-option--template) {
-    font-size: inherit;
-    height: $ts-select-item-height;
-    line-height: $ts-select-item-height;
+    &:not(.ts-option--template) {
+      font-size: inherit;
+      height: $ts-select-item-height;
+      line-height: $ts-select-item-height;
+    }
   }
 
   &.ts-autocomplete-visible {
@@ -62,9 +70,9 @@ $ts-autocomplete-panel-border-radius: 4px !default;
     border-top-right-radius: $ts-autocomplete-panel-border-radius;
   }
 
-  // We need to offset horizontal dividers by their height, because they throw off the keyboard navigation inside the panel.
   .ts-divider-horizontal {
-    margin-top: -1px;
+    // We need to offset horizontal dividers by their height, because they throw off the keyboard navigation inside the panel.
+    $offset-for-divider-line: -1px;
+    margin-top: $offset-for-divider-line;
   }
-
 }

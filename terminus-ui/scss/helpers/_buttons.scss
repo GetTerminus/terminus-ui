@@ -1,3 +1,6 @@
+@import './cursors';
+
+
 /**
  * Reset button styles
  *
@@ -9,7 +12,7 @@
 @mixin button-base {
   background-color: transparent;
   border: 0;
-  cursor: pointer;
+  cursor: cursor(pointer);
   outline: 0;
   text-align: center;
 

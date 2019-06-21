@@ -48,8 +48,10 @@
 
 // Class added when sublabels are present
 .c-radio--sublabel {
+  $sublabel-padding: 1.25em;
+
   // Create space for validation messages (this is usually handled by `mat-form-field`
-  padding-bottom: 1.25em;
+  padding-bottom: $sublabel-padding;
 
   .c-radio__control {
     .mat-radio-label {
@@ -86,7 +88,7 @@
   .c-radio__control {
     @include responsive-ratio(1, 1);
     overflow: hidden;
-    padding: spacing();
+    padding: spacing(default);
     position: relative;
   }
 
@@ -101,12 +103,13 @@
     justify-content: center;
     padding: spacing(small);
     transition: border-color 200ms ease-in;
-    will-change: border-color;
 
-    &:focus:not(.c-radio__content--disabled),
-    &:hover:not(.c-radio__content--disabled) {
-      border-color: color(primary);
-      cursor: cursor(pointer);
+    &:focus,
+    &:hover {
+      &:not(.c-radio__content--disabled) {
+        border-color: color(primary);
+        cursor: cursor(pointer);
+      }
     }
 
     // Create blue triangle at top right for the icon to display over
@@ -121,8 +124,8 @@
       position: absolute;
       right: -1px;
       top: -1px;
-      //transition: opacity 200ms ease;
-      will-change: opacity;
+      // Local z-index:
+      // stylelint-disable-next-line scale-unlimited/declaration-strict-value
       z-index: 1;
     }
 
@@ -142,41 +145,41 @@
     top: -.2em;
     transition: opacity 200ms ease;
     will-change: opacity;
+    // Local z-index:
+    // stylelint-disable-next-line scale-unlimited/declaration-strict-value
     z-index: 2;
   }
 
   // <input> radio input
   .c-radio__input {
     display: none;
-  }
 
-  // Styles for selected option
-  .c-radio__input:checked {
-    & ~ .c-radio__content:not(.c-radio__content--disabled) {
-      border: 1px solid color(primary);
-    }
-
-    // If selected AND disabled
-    & ~ .c-radio__content {
-      &.c-radio__content--disabled {
-        border: 1px solid color(utility, dark);
-        color: color(utility, dark);
-
-        &::after {
-          border-right-color: color(utility, dark);
-          border-top-color: color(utility, dark);
+    // Styles for selected option
+    &:checked {
+      ~ .c-radio__content {
+        &:not(.c-radio__content--disabled) {
+          border: 1px solid color(primary);
         }
-      }
-    }
 
-    // Make the checkmark visible
-    & ~ .c-radio__content {
-      &::after {
-        opacity: 1;
-      }
+        // If selected AND disabled
+        &.c-radio__content--disabled {
+          border: 1px solid color(utility, dark);
+          color: color(utility, dark);
 
-      .c-radio__content-checkmark {
-        opacity: 1;
+          &::after {
+            border-right-color: color(utility, dark);
+            border-top-color: color(utility, dark);
+          }
+        }
+
+        // Make the checkmark visible
+        &::after {
+          opacity: 1;
+        }
+
+        .c-radio__content-checkmark {
+          opacity: 1;
+        }
       }
     }
   }

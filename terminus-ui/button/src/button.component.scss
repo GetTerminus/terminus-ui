@@ -9,13 +9,12 @@
 // This makes the bottom padding space look better than the default 36px
 $button-line-height: 35px;
 $rotation: 360deg;
-// NOTE: All transition durations are based off of the content transition. We should only need to
-// adjust this value.
+// NOTE: All transition durations are based off of the content transition. We should only need to adjust this value.
 $content-transition-duration: 500ms;
-$icon-transition-duration-collapse: $content-transition-duration - 100ms; // 400
-$icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms; // 300
-$label-transition-duration: $icon-transition-duration-expand - 100ms; // 200
-$color-transition-duration: $label-transition-duration - 100ms; // 100
+$icon-transition-duration-collapse: $content-transition-duration - 100ms;
+$icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms;
+$label-transition-duration: $icon-transition-duration-expand - 100ms;
+$color-transition-duration: $label-transition-duration - 100ms;
 
 $color-transition: color $color-transition-duration $g-easing;
 // FIXME: This exact transition is needed in the link styles (when inside a menu, links emulate
@@ -25,8 +24,10 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 
 // Styles applied when the button is collapsed
 @mixin collapsed {
-  padding-left: 6px;
-  padding-right: 6px;
+  $collapsed-padding: 6px;
+
+  padding-left: $collapsed-padding;
+  padding-right: $collapsed-padding;
 
   .c-icon {
     margin-left: 0;
@@ -70,6 +71,13 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     // stylelint-enable declaration-no-important
     will-change: background, color, contents;
   }
+
+  // Target instances nested inside the TsSearchComponent
+  .ts-search & {
+    // Offset to account for space under input for error messages
+    position: relative;
+    top: -#{spacing(small)};
+  }
 }
 
 
@@ -92,15 +100,20 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
   // Class added when progress indicator is shown
   &.c-button--progress {
     .mat-button-wrapper {
-      padding-right: 36px;
+      $custom-progress-padding: 36px;
+
+      padding-right: $custom-progress-padding;
     }
   }
 
   // Adjust icon vertical layout
   .c-icon {
-    margin-right: .2em;
+    $horizontal-alignment-fix: .2em;
+    $vertical-alignment-fix: -.15em;
+
+    margin-right: $horizontal-alignment-fix;
     // Fix small vertical aligment issue between icon & text
-    margin-top: -.15em;
+    margin-top: $vertical-alignment-fix;
     transition: transform $icon-transition-duration-expand $g-easing;
     vertical-align: middle;
     will-change: transform;
@@ -163,7 +176,9 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 
         // Fix left alignment when the icon is the first item
         .c-icon {
-          margin-left: -.15em;
+          $first-icon-adjustment: -.15em;
+
+          margin-left: $first-icon-adjustment;
         }
 
         .c-button__content {
@@ -201,14 +216,8 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
       }
     }
   }
-}
 
-
-
-
-//
-// Target button instances nested inside a TsMenuComponent
-.c-button {
+  // Target button instances nested inside a TsMenuComponent
   .mat-menu-panel & {
     // needed for specificity
     &.c-button {
@@ -226,15 +235,5 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
         color: color(primary);
       }
     }
-  }
-}
-
-
-// Target instances nested inside the TsSearchComponent
-.ts-button {
-  .ts-search & {
-    // Offset to account for space under input for error messages
-    position: relative;
-    top: -#{spacing(small)};
   }
 }
