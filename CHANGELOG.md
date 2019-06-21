@@ -1,3 +1,7 @@
+## <small>14.0.2 (2019-06-21)</small>
+
+* fix(Packages): update internal package.json ([b989ac1](https://github.com/GetTerminus/terminus-ui/commit/b989ac1)), closes [#1563](https://github.com/GetTerminus/terminus-ui/issues/1563)
+
 ## <small>14.0.1 (2019-06-21)</small>
 
 * fix(Demo): fix odd layout for select demo ([d217e65](https://github.com/GetTerminus/terminus-ui/commit/d217e65))
