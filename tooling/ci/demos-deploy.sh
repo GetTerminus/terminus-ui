@@ -10,7 +10,7 @@
 echo 'Current Branch: ' $CIRCLE_BRANCH
 
 # Demos will only deploy when merging to one of these branches:
-releaseBranches=("release" "8.x.x" "9.x.x" "10.x.x" "11.x.x" "12.x.x" "13.x.x")
+releaseBranches=("release")
 
 
 # Only publish demos if this is a release branch
