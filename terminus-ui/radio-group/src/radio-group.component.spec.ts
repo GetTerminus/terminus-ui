@@ -1,13 +1,28 @@
 import {
+  ChangeDetectorRef,
+  Component,
+  ViewChild,
+} from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
+import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+import {
+  ChangeDetectorRefMock,
+  createComponent,
+} from '@terminus/ngx-tools/testing';
+import {
+  selectStandardRadio,
+  selectVisualRadio,
+} from '@terminus/ui/radio-group/testing';
+
 import {
   TsRadioFormatFn,
   TsRadioGroupComponent,
   TsRadioOption,
 } from './radio-group.component';
+import { TsRadioGroupModule } from './radio-group.module';
 
 
 const SVG = `
@@ -19,6 +34,64 @@ const SVG = `
 class DomSanitizerMock {
   public bypassSecurityTrustHtml = jest.fn().mockReturnValue(SVG);
 }
+
+@Component({
+  template: `
+  <ts-radio-group
+    [isVisual]="isVisual"
+    [formatUILabelFn]="uiFormatter"
+    [formatModelValueFn]="modelFormatter"
+    [formControl]="control"
+    [options]="optionsArray"
+    (change)="change($event)"
+  ></ts-radio-group>
+  `,
+})
+class TestHostComponent {
+  private control: FormControl | undefined = new FormControl();
+  public isVisual = false;
+  public optionsArray: TsRadioOption[] = [
+    {
+      foo: 'bar',
+      bar: 'baz',
+    },
+  ];
+
+  @ViewChild(TsRadioGroupComponent, {static: true})
+  public component: TsRadioGroupComponent;
+
+  public change = jest.fn();
+  private uiFormatter: TsRadioFormatFn = optionsArray => optionsArray.bar;
+  private modelFormatter: TsRadioFormatFn = optionsArray => optionsArray.foo;
+}
+
+describe('TsRadioGroupComponent INT test', function() {
+  let fixture: ComponentFixture<TestHostComponent>;
+
+  beforeEach(() => {
+    fixture = createComponent(TestHostComponent, [], [TsRadioGroupModule]);
+    fixture.detectChanges();
+  });
+
+  describe(`change`, () => {
+
+    test(`should emit change for non-isVisual radios`, () => {
+      selectStandardRadio(fixture, 'baz');
+
+      expect(fixture.componentInstance.change).toHaveBeenCalled();
+    });
+
+    test(`should emit change for isVisual radios`, () => {
+      fixture.componentInstance.component.isVisual = true;
+      fixture.detectChanges();
+      selectVisualRadio(fixture, 'baz');
+
+      expect(fixture.componentInstance.change).toHaveBeenCalled();
+    });
+
+  });
+
+});
 
 describe('TsRadioGroupComponent', function() {
   let component: TsRadioGroupComponent;
@@ -234,7 +307,6 @@ describe('TsRadioGroupComponent', function() {
 
   });
 
-
   describe(`retrieveValue`, () => {
 
     test(`should use a formatter to return a value`, () => {
@@ -250,25 +322,6 @@ describe('TsRadioGroupComponent', function() {
 
     test(`should return the option if no formatter was passed in`, () => {
       expect(component.retrieveValue(options[0])).toEqual(options[0]);
-    });
-
-  });
-
-
-  describe(`labelClick()`, () => {
-
-    test(`should set the value`, () => {
-      const myFn = (v: any) => v.foo;
-      component.formatModelValueFn = myFn;
-      component.labelClick(options[2]);
-      expect(component.value).toEqual(options[2].foo);
-    });
-
-    test(`should return if disabled`, () => {
-      const myFn = (v: any) => v.foo;
-      component.formatModelValueFn = myFn;
-      component.labelClick(options[1]);
-      expect(component.value).toEqual('');
     });
 
   });

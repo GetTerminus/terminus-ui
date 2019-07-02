@@ -12,7 +12,6 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { MatRadioChange } from '@angular/material/radio';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   hasRequiredControl,
@@ -46,10 +45,17 @@ export interface TsRadioOption {
 
 
 /**
- * Expose the MatRadioChange event as TsRadioChange. Used by {@link TsRadioGroupComponent}
+ * The change event as TsRadioChange. Used by {@link TsRadioGroupComponent}
  */
-export class TsRadioChange extends MatRadioChange {}
-
+export class TsRadioChange {
+  constructor(
+    // The group that emit the change event
+    public source: TsRadioGroupComponent,
+    // The value of the TsRadioButton
+    // tslint:disable-next-line:no-any
+    public value: any,
+  ) {}
+}
 
 /**
  * Expose the formatter function type used by {@link TsRadioGroupComponent}
@@ -318,18 +324,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
     return (formatter && formatter(option)) ? formatter(option) : option;
   }
 
-
   /**
-   * Handle clicks on labels
+   * Handle changes
    *
    * @param option - The selected option
    */
-  public labelClick(option: TsRadioOption): void {
-    if (this.isDisabled || (option && option.disabled)) {
-      return;
-    }
-    const value = this.retrieveValue(option, this.formatModelValueFn);
-    this.value = value;
+  public radioGroupChange(option: TsRadioOption): void {
+    this.change.emit(new TsRadioChange(this, option));
     this.changeDetectorRef.markForCheck();
   }
 
