@@ -71,6 +71,8 @@ export function selectStandardRadio(fixture: ComponentFixture<any>, radioValue: 
 
     if (labelTextElement.textContent.trim() === radioValue) {
       labelDebugEl.nativeElement.click();
+      fixture.detectChanges();
+      return fixture.whenStable();
     }
   });
 

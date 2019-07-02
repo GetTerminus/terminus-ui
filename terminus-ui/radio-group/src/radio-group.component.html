@@ -15,7 +15,7 @@
         [value]="retrieveValue(option, formatModelValueFn)"
         [disabled]="option.disabled"
         [name]="id"
-        (change)="change.emit($event)"
+        (change)="radioGroupChange($event)"
         #radio="matRadioButton"
       >
         {{ retrieveValue(option, formatUILabelFn) }}
@@ -57,7 +57,7 @@
         <label
           class="c-radio__control qa-radio-control"
           [class.c-radio__control--disabled]="isDisabled || option.disabled"
-          (click)="labelClick(option)"
+          (click)="radioGroupChange($event)"
         >
           <input
             type="radio"
