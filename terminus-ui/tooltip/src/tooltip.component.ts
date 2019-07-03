@@ -3,8 +3,10 @@ import {
   Component,
   Input,
   isDevMode,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+
 
 
 /**
@@ -79,4 +81,17 @@ export class TsTooltipComponent {
    */
   @Input()
   public hasUnderline = false;
+
+  /**
+   * Access Material Tooltip Directive
+   */
+  @ViewChild('tooltip', {static: true})
+  public matTooltip;
+
+  /**
+   * Call Material Tooltip's show() method
+   */
+  public showTooltip(): void {
+    this.matTooltip.show();
+  }
 }
