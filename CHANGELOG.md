@@ -1,3 +1,10 @@
+## [14.0.4](https://github.com/GetTerminus/terminus-ui/compare/v14.0.3...v14.0.4) (2019-07-03)
+
+
+### Bug Fixes
+
+* **Input:** passing theme to form field ([8914856](https://github.com/GetTerminus/terminus-ui/commit/8914856)), closes [#1513](https://github.com/GetTerminus/terminus-ui/issues/1513)
+
 ## <small>14.0.3 (2019-06-21)</small>
 
 * fix(Packages): now latest UI package is 14.0.2 ([d51e201](https://github.com/GetTerminus/terminus-ui/commit/d51e201))
