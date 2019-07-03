@@ -235,6 +235,55 @@ describe(`TsInputComponent`, function() {
 
     });
 
+
+    describe(`theme`, () => {
+
+      test(`should default to primary`, () => {
+        const fixture = createComponent(TestComponents.SimpleFormControl);
+        const input = fixture.componentInstance;
+        fixture.detectChanges();
+
+        const inputContainer = fixture.debugElement.query(By.css('.c-input__text')).nativeElement as HTMLElement;
+        inputContainer.click();
+        fixture.detectChanges();
+
+        expect(input.inputComponent.theme).toEqual('primary');
+      });
+
+      test(`should set input theme to accent`, () => {
+        const fixture = createComponent(TestComponents.Theme);
+        const input = fixture.componentInstance;
+        input.theme = 'accent';
+        fixture.detectChanges();
+
+        const inputContainer = fixture.debugElement.query(By.css('.c-input__text')).nativeElement as HTMLElement;
+        inputContainer.click();
+        fixture.detectChanges();
+
+        const formFieldEl = fixture.debugElement.query(By.css(' ts-form-field')).nativeElement as HTMLElement;
+
+        expect(input.inputComponent.theme).toEqual('accent');
+        expect(formFieldEl.classList).toContain('ts-form-field--accent');
+      });
+
+      test(`should set input theme to warn`, () => {
+        const fixture = createComponent(TestComponents.Theme);
+        const input = fixture.componentInstance;
+        input.theme = 'warn';
+        fixture.detectChanges();
+
+        const inputContainer = fixture.debugElement.query(By.css('.c-input__text')).nativeElement as HTMLElement;
+        inputContainer.click();
+        fixture.detectChanges();
+
+        const formFieldEl = fixture.debugElement.query(By.css(' ts-form-field')).nativeElement as HTMLElement;
+
+        expect(input.inputComponent.theme).toEqual('warn');
+        expect(formFieldEl.classList).toContain('ts-form-field--warn');
+      });
+
+    });
+
   });
 
 

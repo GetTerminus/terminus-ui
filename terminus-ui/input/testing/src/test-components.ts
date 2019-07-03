@@ -19,6 +19,7 @@ import {
   TsInputTypes,
   TsMaskShortcutOptions,
 } from '@terminus/ui/input';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 // tslint:disable: component-class-suffix
@@ -29,7 +30,7 @@ import {
   `,
 })
 export class SimpleFormControl {
-  control: FormControl | undefined = new FormControl();
+  public control: FormControl | undefined = new FormControl();
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -38,9 +39,9 @@ export class SimpleFormControl {
 
 @Component({template: `<ts-input [datepicker]="true"></ts-input>`})
 export class Autocomplete implements AfterContentInit {
-  control: FormControl | undefined = new FormControl();
-  firstDate = new Date(2018, 1, 1);
-  secondDate = new Date(2017, 3, 3);
+  public control: FormControl | undefined = new FormControl();
+  public firstDate = new Date(2018, 1, 1);
+  public secondDate = new Date(2017, 3, 3);
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -56,7 +57,7 @@ export class Autocomplete implements AfterContentInit {
 
 @Component({template: `<ts-input [readOnly]="readOnly"></ts-input>`})
 export class AttrReadonly {
-  readOnly = false;
+  public readOnly = false;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -64,7 +65,7 @@ export class AttrReadonly {
 
 @Component({template: `<ts-input [spellcheck]="spellcheck"></ts-input>`})
 export class AttrSpellcheck {
-  spellcheck = false;
+  public spellcheck = false;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -72,7 +73,7 @@ export class AttrSpellcheck {
 
 @Component({template: `<ts-input [autocapitalize]="autocapitalize"></ts-input>`})
 export class AttrAutocapitalize {
-  autocapitalize = false;
+  public autocapitalize = false;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -80,27 +81,39 @@ export class AttrAutocapitalize {
 
 @Component({template: `<ts-input [autocomplete]="autocomplete"></ts-input>`})
 export class AttrAutocomplete {
-  autocomplete: TsInputAutocompleteTypes = 'on';
+  public autocomplete: TsInputAutocompleteTypes = 'on';
 }
 
 @Component({template: `<ts-input [id]="id"></ts-input>`})
 export class AttrId {
-  id: string | undefined = undefined;
+  public id: string | undefined = undefined;
 }
 
 @Component({template: `<ts-input [isDisabled]="disabled"></ts-input>`})
 export class AttrDisabled {
-  disabled = false;
+  public disabled = false;
 }
 
 @Component({template: `<ts-input [isFocused]="focused"></ts-input>`})
 export class AttrAutofocus {
-  focused = false;
+  public focused = false;
+}
+
+@Component({
+  template: `
+    <ts-input [theme]="theme"></ts-input>
+  `,
+})
+export class Theme {
+  public theme: TsStyleThemeTypes | undefined;
+
+  @ViewChild(TsInputComponent, {static: true})
+  inputComponent: TsInputComponent;
 }
 
 @Component({template: `<ts-input [tabIndex]="index"></ts-input>`})
 export class TabIndex {
-  index = 4;
+  public index = 4;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -115,8 +128,8 @@ export class TabIndex {
   `,
 })
 export class Mask {
-  mask: TsMaskShortcutOptions | undefined = undefined;
-  formControl = new FormControl();
+  public mask: TsMaskShortcutOptions | undefined = undefined;
+  public formControl = new FormControl();
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -132,9 +145,9 @@ export class Mask {
   `,
 })
 export class MaskSanitize {
-  mask: TsMaskShortcutOptions | undefined;
-  formControl = new FormControl();
-  maskSanitizeValue = true;
+  public mask: TsMaskShortcutOptions | undefined;
+  public formControl = new FormControl();
+  public maskSanitizeValue = true;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -150,9 +163,9 @@ export class MaskSanitize {
   `,
 })
 export class MaskDecimal {
-  mask: TsMaskShortcutOptions | undefined;
-  formControl = new FormControl();
-  maskAllowDecimal = true;
+  public mask: TsMaskShortcutOptions | undefined;
+  public formControl = new FormControl();
+  public maskAllowDecimal = true;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -167,8 +180,8 @@ export class MaskDecimal {
   `,
 })
 export class MaskDateFormat {
-  mask: TsMaskShortcutOptions = 'date';
-  formControl = new FormControl();
+  public mask: TsMaskShortcutOptions = 'date';
+  public formControl = new FormControl();
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -183,8 +196,8 @@ export class MaskDateFormat {
   `,
 })
 export class PostalMask {
-  formControl = new FormControl();
-  mask: TsMaskShortcutOptions = 'postal';
+  public formControl = new FormControl();
+  public mask: TsMaskShortcutOptions = 'postal';
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -205,7 +218,7 @@ export class MissingFormControl {
   `,
 })
 export class StartingView {
-  startingView = 'month';
+  public startingView = 'month';
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -220,7 +233,7 @@ export class StartingView {
   `,
 })
 export class OpenTo {
-  openTo: undefined | Date = new Date(2018, 1, 1);
+  public openTo: undefined | Date = new Date(2018, 1, 1);
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -236,8 +249,8 @@ export class OpenTo {
   `,
 })
 export class MinMaxDate {
-  minDate: undefined | Date = undefined;
-  maxDate: undefined | Date = undefined;
+  public minDate: undefined | Date = undefined;
+  public maxDate: undefined | Date = undefined;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -252,8 +265,8 @@ export class MinMaxDate {
   `,
 })
 export class AttrRequiredHidden {
-  formControl: FormControl = new FormControl(null, Validators.required);
-  hideRequiredMarker: boolean | undefined = false;
+  public formControl: FormControl = new FormControl(null, Validators.required);
+  public hideRequiredMarker: boolean | undefined = false;
 }
 
 @Component({
@@ -266,9 +279,9 @@ export class AttrRequiredHidden {
   `,
 })
 export class InputType {
-  mask: TsMaskShortcutOptions | undefined = 'number';
-  formControl = new FormControl();
-  type: TsInputTypes | undefined;
+  public mask: TsMaskShortcutOptions | undefined = 'number';
+  public formControl = new FormControl();
+  public type: TsInputTypes | undefined;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -284,8 +297,8 @@ export class InputType {
   `,
 })
 export class Clearable {
-  clearable: boolean | undefined = undefined;
-  formControl = new FormControl();
+  public clearable: boolean | undefined = undefined;
+  public formControl = new FormControl();
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -302,8 +315,8 @@ export class Clearable {
   `,
 })
 export class NoExternalFormField {
-  formControl = new FormControl();
-  hasFormField = true;
+  public formControl = new FormControl();
+  public hasFormField = true;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -311,24 +324,24 @@ export class NoExternalFormField {
 
 @Component({template: `<ts-input [formControl]="formControl" [hint]="hint"></ts-input>`})
 export class Hint {
-  formControl = new FormControl();
-  hint: string | undefined = undefined;
+  public formControl = new FormControl();
+  public hint: string | undefined = undefined;
 }
 
 @Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
 export class AttrNotRequired {
-  formControl: FormControl = new FormControl(null);
+  public formControl: FormControl = new FormControl(null);
 }
 
 @Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
 export class FormControlAttrRequired {
-  formControl: FormControl = new FormControl(null, Validators.required);
+  public formControl: FormControl = new FormControl(null, Validators.required);
 }
 
 @Component({template: `<ts-input [formControl]="formControl" [isRequired]="required"></ts-input>`})
 export class AttrInputRequired {
-  formControl: FormControl = new FormControl(null);
-  required = false;
+  public formControl: FormControl = new FormControl(null);
+  public required = false;
 }
 
 
@@ -350,7 +363,7 @@ export class Label {
   `,
 })
 export class DateFilter {
-  dateFilter = undefined;
+  public dateFilter = undefined;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -358,7 +371,7 @@ export class DateFilter {
 
 @Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
 export class Autofill {
-  formControl = new FormControl();
+  public formControl = new FormControl();
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -376,11 +389,11 @@ export class Autofill {
   `,
 })
 export class OnChanges {
-  formControl = new FormControl('foo');
-  mask: TsMaskShortcutOptions = 'number';
-  maskSanitizeValue = true;
-  maskAllowDecimal = true;
-  label = 'my first label';
+  public formControl = new FormControl('foo');
+  public mask: TsMaskShortcutOptions = 'number';
+  public maskSanitizeValue = true;
+  public maskAllowDecimal = true;
+  public label = 'my first label';
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -396,8 +409,8 @@ export class OnChanges {
   `,
 })
 export class Textarea {
-  formControl = new FormControl();
-  rows: undefined | number;
+  public formControl = new FormControl();
+  public rows: undefined | number;
 
   @ViewChild(TsInputComponent, {static: true})
   inputComponent: TsInputComponent;
@@ -456,6 +469,7 @@ export class ToggleInputComponent {
     StartingView,
     TabIndex,
     Textarea,
+    Theme,
     ToggleInputComponent,
   ],
 })
