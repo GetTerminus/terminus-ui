@@ -59,6 +59,7 @@
       [showProgress]="inProgress || isRedirecting"
       [isDisabled]="!loginForm?.valid"
       (clicked)="submit.emit(loginForm?.value)"
+      (clicked)="submission.emit(loginForm?.value)"
       tabindex="-1"
       tabIndex="4"
     >
