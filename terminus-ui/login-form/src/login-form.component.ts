@@ -61,10 +61,10 @@ export interface TsLoginFormResponse {
  * <ts-login-form
  *              [inProgress]="true"
  *              [forgotPasswordLink]="['my/', 'path']"
- *              [resetForm]="myBoolean"
+ *              [triggerFormReset]="myBoolean"
  *              [loginCTA]=" 'Sign In' "
  *              [forgotPasswordText]=" 'Forget something?' "
- *              (submit)="myMethod($event)"
+ *              (submission)="myMethod($event)"
  * ></ts-login-form>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/login-form</example-url>
@@ -187,9 +187,19 @@ export class TsLoginFormComponent implements OnChanges {
    * Emit an event on form submission
    */
   // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1469
+  /**
+   * @deprecated Use 'submission' instead
+   */
   // tslint:disable-next-line: no-output-native
   @Output()
   public readonly submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
+
+  /**
+   * Emit an event on form submission
+   */
+  // tslint:disable-next-line: no-output-native
+  @Output()
+  public readonly submission: EventEmitter<TsLoginFormResponse> = new EventEmitter();
 
 
   /**

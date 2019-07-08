@@ -1,18 +1,60 @@
 import {
+  Component,
   SimpleChange,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
+  ComponentFixture,
   fakeAsync,
   tick,
 } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import {
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
-import { ChangeDetectorRefMock } from '@terminus/ngx-tools/testing';
+  ChangeDetectorRefMock,
+  createComponent,
+} from '@terminus/ngx-tools/testing';
+import { sendInput } from '@terminus/ui/input/testing';
 import { TsValidatorsServiceMock } from '@terminus/ui/validators/testing';
 import { TsLoginFormComponent } from './login-form.component';
+import { TsLoginFormModule } from './login-form.module';
+
+
+@Component({
+  template: `
+  <ts-login-form
+    (submission)="submission($event)"
+    ></ts-login-form>
+  `,
+})
+class TestHostComponent {
+  @ViewChild(TsLoginFormComponent, {static: true})
+  public submission = jest.fn();
+}
+
+describe(`TsLoginFormComponent INT test`, function() {
+
+  let fixture: ComponentFixture<TestHostComponent>;
+  let submitEl: HTMLElement;
+
+  beforeEach(() => {
+    fixture = createComponent(TestHostComponent, [], [RouterTestingModule.withRoutes([]), TsLoginFormModule]);
+    fixture.detectChanges();
+    submitEl = fixture.debugElement.query(By.css('.c-button')).nativeElement as HTMLElement;
+  });
+
+  test(`should emit submission on click`, () => {
+    fixture.componentInstance.submission = jest.fn();
+
+    sendInput(fixture, 'foo@bar.com', 0);
+    sendInput(fixture, 'p@$$w0rd', 1);
+    submitEl.click();
+
+    expect(fixture.componentInstance.submission).toHaveBeenCalled();
+  });
+});
 
 
 describe(`TsLoginFormComponent`, function() {
