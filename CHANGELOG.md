@@ -1,3 +1,10 @@
+## [14.0.5](https://github.com/GetTerminus/terminus-ui/compare/v14.0.4...v14.0.5) (2019-07-10)
+
+
+### Bug Fixes
+
+* **RadioGroup:** visual radios now dispatch change event ([6702ec7](https://github.com/GetTerminus/terminus-ui/commit/6702ec7)), closes [#1549](https://github.com/GetTerminus/terminus-ui/issues/1549)
+
 ## [14.0.4](https://github.com/GetTerminus/terminus-ui/compare/v14.0.3...v14.0.4) (2019-07-03)
 
 
