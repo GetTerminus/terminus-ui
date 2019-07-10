@@ -3,6 +3,7 @@
 @import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/spacing';
+@import './../../scss/helpers/shadows';
 @import './../../scss/helpers/typography';
 
 
@@ -86,6 +87,7 @@
 
   // <label> container for a single option
   .c-radio__control {
+    @include elevation-element(raised-button);
     @include responsive-ratio(1, 1);
     overflow: hidden;
     padding: spacing(default);
