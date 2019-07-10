@@ -79,13 +79,20 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-radio-group
- *              options="myItemsArray | $async"
- *              [formControl]="myForm.get('myRadioGroup')"
- *              [isDisabled]="true"
- *              theme="primary"
+ *              [ariaDescribedby]="Aria Describedby"
+ *              [ariaLabel]="Aria Label"
+ *              [ariaLabelledby]="Aria Labelledby"
  *              [formatUILabelFn]="myUIFormatter"
  *              [formatUISubLabelFn]="myUISubFormatter"
  *              [formatModelValueFn]="myModelFormatter"
+ *              [formControl]="myForm.get('myRadioGroup')"
+ *              [id]="uid"
+ *              [isDisabled]="true"
+ *              [isVisual]="false"
+ *              [name]="myName"
+ *              [options]="myItemsArray | $async"
+ *              [small]=false
+ *              [theme]="primary"
  *              (selectionChange)="doSomething($event)"
  * ></ts-radio-group>
  *

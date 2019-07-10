@@ -12,6 +12,7 @@
 - [Disabled](#disabled)
   - [Disabled option](#disabled-option)
 - [Visual mode](#visual-mode)
+  - [Small](#small)
   - [Custom content](#custom-content)
 - [Test Helpers](#test-helpers)
 
@@ -167,6 +168,7 @@ items$: Observable<TsRadioOption[]> = of([
 ]);
 ```
 
+
 ## Visual mode
 
 Visual mode displays radio options as large clickable areas containing content.
@@ -176,6 +178,20 @@ Enable by setting the `isVisual` flag:
 ```html
 <ts-radio-group
   [isVisual]="true"
+  ...
+></ts-radio-group>
+```
+
+### Small
+
+For a smaller clickable area, use the `small` flag. This sets the visual radio buttons to 13.75rem x 7rem. 
+
+_Note_ The maximum content should be a title with two lines and body with 3 lines
+
+```html
+<ts-radio-group
+  [isVisual]="true"
+  [small]="true"
   ...
 ></ts-radio-group>
 ```
