@@ -43,7 +43,7 @@ class DomSanitizerMock {
     [formatModelValueFn]="modelFormatter"
     [formControl]="control"
     [options]="optionsArray"
-    (change)="change($event)"
+    (selectionChange)="selectionChange($event)"
   ></ts-radio-group>
   `,
 })
@@ -60,7 +60,7 @@ class TestHostComponent {
   @ViewChild(TsRadioGroupComponent, {static: true})
   public component: TsRadioGroupComponent;
 
-  public change = jest.fn();
+  public selectionChange = jest.fn();
   private uiFormatter: TsRadioFormatFn = optionsArray => optionsArray.bar;
   private modelFormatter: TsRadioFormatFn = optionsArray => optionsArray.foo;
 }
@@ -78,7 +78,7 @@ describe('TsRadioGroupComponent INT test', function() {
     test(`should emit change for non-isVisual radios`, () => {
       selectStandardRadio(fixture, 'baz');
 
-      expect(fixture.componentInstance.change).toHaveBeenCalled();
+      expect(fixture.componentInstance.selectionChange).toHaveBeenCalled();
     });
 
     test(`should emit change for isVisual radios`, () => {
@@ -86,7 +86,7 @@ describe('TsRadioGroupComponent INT test', function() {
       fixture.detectChanges();
       selectVisualRadio(fixture, 'baz');
 
-      expect(fixture.componentInstance.change).toHaveBeenCalled();
+      expect(fixture.componentInstance.selectionChange).toHaveBeenCalled();
     });
 
   });

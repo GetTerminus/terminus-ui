@@ -107,7 +107,7 @@ Listen for change events:
 ```html
 <ts-radio-group
   [options]="items$ | async"
-  (change)="selected($event)"
+  (selectionChange)="selected($event)"
 ></ts-radio-group>
 ```
 
