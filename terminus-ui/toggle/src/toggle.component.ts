@@ -35,7 +35,7 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
  *              labelPosition="before"
  *              name="My toggle"
  *              theme="accent"
- *              (change)="myMethod($event)"
+ *              (selectionChange)="myMethod($event)"
  * >My Toggle!</ts-toggle>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/toggle</example-url>
@@ -104,7 +104,18 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
    * Emit an event each time the toggle value changes
    */
   // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1472
+  /**
+   * @deprecated change will be deprecated, use 'selectionChange' instead
+   */
   // tslint:disable-next-line: no-output-native
   @Output()
   public readonly change: EventEmitter<TsSlideToggleChange> = new EventEmitter();
+
+  /**
+   * Emit an event each time the toggle value changes
+   */
+  // tslint:disable-next-line: no-output-native
+  @Output()
+  public readonly selectionChange: EventEmitter<TsSlideToggleChange> = new EventEmitter();
+
 }
