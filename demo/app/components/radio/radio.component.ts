@@ -86,8 +86,8 @@ export class RadioComponent {
     },
     {
       foo: 'baz2_value',
-      bar: 'Baz2 Display',
-      bing: 'Some helper text. Some helper text for my item. Some helper text.',
+      bar: 'Baz2 Display Baz2 Display Baz2 Display',
+      bing: 'Some helper text. Some helper text for my item. Some helper text. And even more text.',
     },
   ]);
   // tslint:enable: max-line-length
