@@ -22,7 +22,7 @@
       [formatUISubLabelFn]="uiSubFormatter"
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup')"
-      (change)="selected($event)"
+      (selectionChange)="selected($event)"
       tsVerticalSpacing
     ></ts-radio-group>
 
@@ -40,7 +40,7 @@
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup2')"
       [options]="items2$ | async"
-      (change)="selected($event)"
+      (selectionChange)="selected($event)"
     ></ts-radio-group>
 
     Selected value: {{ myForm.get('myRadioGroup2')?.value }}
@@ -59,7 +59,7 @@
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup2')"
       [options]="items2$ | async"
-      (change)="selected($event)"
+      (selectionChange)="selected($event)"
     ></ts-radio-group>
 
     Selected value: {{ myForm.get('myRadioGroup2')?.value }}
@@ -78,7 +78,7 @@
       [formatModelValueFn]="modelFormatter"
       [formControl]="myForm.get('myRadioGroup2')"
       [options]="items2$ | async"
-      (change)="selected($event)"
+      (selectionChange)="selected($event)"
     ></ts-radio-group>
 
     Selected value: {{ myForm.get('myRadioGroup2')?.value }}

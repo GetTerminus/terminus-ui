@@ -86,7 +86,7 @@ let nextUniqueId = 0;
  *              [formatUILabelFn]="myUIFormatter"
  *              [formatUISubLabelFn]="myUISubFormatter"
  *              [formatModelValueFn]="myModelFormatter"
- *              (change)="doSomething($event)"
+ *              (selectionChange)="doSomething($event)"
  * ></ts-radio-group>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/radio-group</example-url>
@@ -274,11 +274,18 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Emit event when a selection occurs. {@link TsRadioChange}
    */
-  // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1465
+  /**
+   * @deprecated Use 'selectionChange' instead
+   */
   // tslint:disable-next-line: no-output-native
   @Output()
   public readonly change: EventEmitter<TsRadioChange> = new EventEmitter();
 
+  /**
+   * Emit event when a selection occurs. {@link TsRadioChange}
+   */
+  @Output()
+  public readonly selectionChange: EventEmitter<TsRadioChange> = new EventEmitter();
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -330,7 +337,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    * @param option - The selected option
    */
   public radioGroupChange(option: TsRadioOption): void {
+    // tslint:disable-next-line: deprecation
     this.change.emit(new TsRadioChange(this, option));
+    this.selectionChange.emit(new TsRadioChange(this, option));
     this.changeDetectorRef.markForCheck();
   }
 
