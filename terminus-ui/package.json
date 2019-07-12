@@ -45,13 +45,13 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "@angular/cdk": "^7.3.0",
-    "ngx-perfect-scrollbar": "^7.2.0",
+    "ngx-perfect-scrollbar": "^8.0.0",
     "text-mask-addons": "^3.8.0",
     "text-mask-core": "^5.1.2"
   },
   "peerDependencies": {
     "@angular/animations": "^8.0.1",
+    "@angular/cdk": "^8.0.1",
     "@angular/core": "^8.0.1",
     "@angular/flex-layout": "8.0.0-beta.26",
     "@angular/forms": "^8.0.1",
@@ -86,7 +86,6 @@
       "comments": "none"
     },
     "whitelistedNonPeerDependencies": [
-      "@angular/cdk",
       "ngx-perfect-scrollbar",
       "text-mask-addons",
       "text-mask-core"
