@@ -92,7 +92,7 @@
       "yarn run lint:tslint:spec:fix",
       "git add"
     ],
-    "terminus-ui/**/(!testing)/!(*.spec|*.mock).ts": [
+    "terminus-ui/**/!(testing)/!(*.spec|*.mock).ts": [
       "yarn run lint:tslint:fix",
       "yarn run lint:eslint:fix",
       "git add"
