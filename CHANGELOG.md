@@ -1,3 +1,10 @@
+## [14.0.6](https://github.com/GetTerminus/terminus-ui/compare/v14.0.5...v14.0.6) (2019-07-12)
+
+
+### Bug Fixes
+
+* **Packages:** use correct versions for internal package.json ([f62d54e](https://github.com/GetTerminus/terminus-ui/commit/f62d54e)), closes [#1596](https://github.com/GetTerminus/terminus-ui/issues/1596) [#1597](https://github.com/GetTerminus/terminus-ui/issues/1597) [#1598](https://github.com/GetTerminus/terminus-ui/issues/1598)
+
 ## [14.0.5](https://github.com/GetTerminus/terminus-ui/compare/v14.0.4...v14.0.5) (2019-07-10)
 
 
