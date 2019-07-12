@@ -1,3 +1,11 @@
+# [14.1.0](https://github.com/GetTerminus/terminus-ui/compare/v14.0.6...v14.1.0) (2019-07-12)
+
+
+### Features
+
+* **RadioGroup:** has a hard-coded size for `small` in visual mode ([39c3362](https://github.com/GetTerminus/terminus-ui/commit/39c3362)), closes [#1569](https://github.com/GetTerminus/terminus-ui/issues/1569)
+* **RadioGroup:** has a shadow to make interactability more clear ([1258f33](https://github.com/GetTerminus/terminus-ui/commit/1258f33)), closes [#1574](https://github.com/GetTerminus/terminus-ui/issues/1574)
+
 ## [14.0.6](https://github.com/GetTerminus/terminus-ui/compare/v14.0.5...v14.0.6) (2019-07-12)
 
 
