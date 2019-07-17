@@ -4,6 +4,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 /**
@@ -33,7 +34,12 @@ import {
   selector: 'ts-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
-  host: {class: 'ts-link'},
+  host: {
+    'class': 'ts-link',
+    '[class.ts-link--primary]': 'theme === "primary"',
+    '[class.ts-link--accent]': 'theme === "accent"',
+    '[class.ts-link--warn]': 'theme === "warn"',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLink',
@@ -62,4 +68,9 @@ export class TsLinkComponent {
   @Input()
   public tabIndex = 0;
 
+  /**
+   * Define the component theme
+   */
+  @Input()
+  public theme: TsStyleThemeTypes = 'primary';
 }

@@ -31,9 +31,7 @@
   }
 
   // Primary theme
-  &[theme='primary'],
-  // @deprecated 'color'
-  &[color='primary'] {
+  &--primary {
     color: color('primary');
 
     .c-link {
@@ -49,9 +47,7 @@
   }
 
   // Accent theme
-  &[theme='accent'],
-  // @deprecated 'color'
-  &[color='accent'] {
+  &--accent {
     color: color('accent');
 
     .c-link {
@@ -67,9 +63,7 @@
   }
 
   // Warn theme
-  &[theme='warn'],
-  // @deprecated 'color'
-  &[color='warn'] {
+  &--warn {
     color: color('warn');
 
     .c-link {
