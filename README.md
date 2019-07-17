@@ -7,6 +7,7 @@ The library of UI components used for Terminus applications.
 [![codecov][codecov-badge]][codecov-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
+[![ZenHub][zenhub-image]][zenhub-url]
 <br>
 [![NPM version][npm-version-image]][npm-url]
 [![Github release][gh-release-badge]][gh-releases]
@@ -17,7 +18,6 @@ The library of UI components used for Terminus applications.
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
-
 
 ---
 
@@ -306,6 +306,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [license-image]:          http://img.shields.io/badge/license-MIT-blue.svg
 [gh-release-badge]:       https://img.shields.io/github/release/GetTerminus/terminus-ui.svg
 [gh-releases]:            https://github.com/GetTerminus/terminus-ui/releases/
+[zenhub-image]:           https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.png
+[zenhub-url]:             https://github.com/GetTerminus/terminus-ui#zenhub
 
 <!-- 3RD PARTY -->
 [codecov]:                https://codecov.io
