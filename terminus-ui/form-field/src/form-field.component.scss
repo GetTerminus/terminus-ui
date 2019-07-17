@@ -265,7 +265,7 @@ $outline-appearance-label-offset: -.25em;
   .ts-form-field__suffix {
     flex: none;
     position: relative;
-    top: $form-field-outline-label-overlap;
+    top: $form-field-outline-label-overlap - .1;
     white-space: nowrap;
   }
 
