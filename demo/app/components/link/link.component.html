@@ -1,14 +1,24 @@
 <ts-card>
-  <ts-link
-    [destination]="localDestination"
-    tsVerticalSpacing
-  >My standard link.</ts-link>
+  <div>
+    <ts-link
+      [destination]="localDestination"
+      tsVerticalSpacing
+    >Standard link.</ts-link>
+  </div>
 
-  <br>
+  <div>
+    <ts-link
+      [destination]="localDestination"
+      theme="accent"
+      tsVerticalSpacing
+    >Accent link</ts-link>
+  </div>
 
-  <ts-link
-    [destination]="externalDestination"
-    [isExternal]="external"
-    color="warn"
-  >An external 'warning' link.</ts-link>
+  <div>
+    <ts-link
+      [destination]="externalDestination"
+      [isExternal]="external"
+      theme="warn"
+    >An external link using the 'warn' theme.</ts-link>
+  </div>
 </ts-card>
