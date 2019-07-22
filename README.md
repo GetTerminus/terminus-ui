@@ -4,14 +4,14 @@
 The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
-[![codecov][codecov-badge]][codecov-project]
+[![Codacy Coverage][codacy-coverage-badge]][codacy-project]
+[![Codacy Grade][codacy-grade-badge]][codacy-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
 [![ZenHub][zenhub-image]][zenhub-url]
 <br>
 [![NPM version][npm-version-image]][npm-url]
 [![Github release][gh-release-badge]][gh-releases]
-[![Library size][file-size-badge]][raw-distribution-js]
 <br>
 [![components](https://img.shields.io/badge/Components-35-%2316a085.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
@@ -264,16 +264,6 @@ Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 
-## Project Resources
-
-- [Semantic Release][semantic-release] - Automatically release versioned release to NPM and generate
-    a changelog in the Github tag.
-- [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
-- [Commitizen VSCode Plugin][commitizen_vsc] - VSCode plugin for commitizen.
-- [Doctoc][doctoc] - Generate documentation table of contents.
-- [CodeCov][codecov] - Code coverage reporting.
-
-
 
 
 <!--
@@ -282,7 +272,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 <!-- PROJECT -->
 [circle-link]:               https://circleci.com/gh/GetTerminus/terminus-ui/tree/release
-[codecov-project]:           https://codecov.io/gh/GetTerminus/terminus-ui
+[codacy-project]:            https://www.codacy.com/app/Terminus/terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [dev-workflow]:              https://github.com/GetTerminus/terminus-ui/blob/release/DEVELOPMENT.md
 [contributing]:              https://github.com/GetTerminus/terminus-ui/blob/release/CONTRIBUTING.md
@@ -291,16 +281,15 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [docs-url]:                  http://uilibrary-docs.terminus.ninja/release/
 [generator]:                 https://github.com/GetTerminus/generator-terminus-ui
 [npm-url]:                   https://npmjs.org/package/@terminus/ui
-[raw-distribution-js]:       https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js
 [ui-github]:                 https://github.com/GetTerminus/terminus-ui
 [ui-npm]:                    https://www.npmjs.com/package/@terminus/ui
 [unpkg-terminus]:            https://unpkg.com/@terminus/ui/
 
 <!-- BADGES -->
 [circle-badge]:           https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
-[codecov-badge]:          https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
+[codacy-coverage-badge]:  https://api.codacy.com/project/badge/coverage/8ab20f8cfa5f4c0284082fac4c47a241
+[codacy-grade-badge]:     https://api.codacy.com/project/badge/grade/8ab20f8cfa5f4c0284082fac4c47a241
 [compodoc-badge]:         https://rawgit.com/GetTerminus/terminus-ui/release/docs/images/coverage-badge.svg
-[file-size-badge]:        http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js?compression=gzip
 [npm-version-image]:      http://img.shields.io/npm/v/@terminus/ui.svg
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [license-image]:          http://img.shields.io/badge/license-MIT-blue.svg
@@ -310,8 +299,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [zenhub-url]:             https://github.com/GetTerminus/terminus-ui#zenhub
 
 <!-- 3RD PARTY -->
-[codecov]:                https://codecov.io
-[codecov_browser]:        https://docs.codecov.io/docs/browser-extension
 [commitizen-cli]:         https://github.com/commitizen/cz-cli
 [commitizen]:             https://github.com/commitizen
 [commitizen_vsc]:         https://github.com/KnisterPeter/vscode-commitizen
@@ -453,13 +440,13 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [validators-docs]:      http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html
 
 <!-- Versioned Docs & Demos -->
-[docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
-[docs-v9]: http://uilibrary-docs.terminus.ninja/9.x.x/
-[docs-v10]: http://uilibrary-docs.terminus.ninja/10.x.x/
+[docs-v8]:     http://uilibrary-docs.terminus.ninja/8.x.x/
+[docs-v9]:     http://uilibrary-docs.terminus.ninja/9.x.x/
+[docs-v10]:    http://uilibrary-docs.terminus.ninja/10.x.x/
 [docs-latest]: http://uilibrary-docs.terminus.ninja/release/
-[demo-v8]: https://getterminus.github.io/ui-demos-8.x.x/
-[demo-v9]: https://getterminus.github.io/ui-demos-9.x.x/
-[demo-v10]: https://getterminus.github.io/ui-demos-10.x.x/
+[demo-v8]:     https://getterminus.github.io/ui-demos-8.x.x/
+[demo-v9]:     https://getterminus.github.io/ui-demos-9.x.x/
+[demo-v10]:    https://getterminus.github.io/ui-demos-10.x.x/
 [demo-latest]: https://getterminus.github.io/ui-demos-release/
 
 <!-- TS Usage Docs -->

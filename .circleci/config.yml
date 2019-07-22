@@ -38,6 +38,10 @@ jobs:
           name: Run Tests
           command: tooling/ci/test-unit.sh
 
+      - run:
+          name: Upload Coverage to Codacy
+          command: tooling/ci/codacy-upload.sh
+
       - store_test_results:
           path: coverage/junit/
 

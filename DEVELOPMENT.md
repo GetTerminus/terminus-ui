@@ -70,11 +70,10 @@ $ yarn run contributors:generate
 2. Navigate to `http://localhost:4300/components/`
 3. Select a component from the menu (top right)
 
-![Demos Screenshot](https://user-images.githubusercontent.com/270193/35576969-67e0eab6-05ae-11e8-9c38-7d44bcf2c848.png)
+![Demos Screenshot][component-demo-screenshot]
+
 
 ## Adding a Component
-
-> NOTE: You can also use the [yeoman generator][generator] to quickly scaffold a new component
 
 1. Create a directory using the component name: `terminus-ui/src/button/`
     - Necessary files:
@@ -377,42 +376,14 @@ the table of contents.
 
 
 <!-- LINKS -->
-
-[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/release/docs/typescript/images/coverage-badge.svg
-[docs-url]: http://uilibrary-docs.terminus.ninja/release/
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: LICENSE
-[npm-url]: https://npmjs.org/package/@terminus/ui
-[npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
-[circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
-[circle-link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/release
-[greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
-[greenkeeper]: https://greenkeeper.io/
-[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release]: https://github.com/semantic-release/semantic-release
-[codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
-[codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
-[raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
-[commitizen]: https://github.com/commitizen
-[commitizen_vsc]: https://github.com/commitizen
-[saucelab_platforms]: https://saucelabs.com/platforms
-[compodoc]: https://compodoc.github.io/website/
 [compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
-[doctoc]: https://github.com/thlorenz/doctoc
-[codecov]: https://codecov.io
-[codecov_browser]: https://docs.codecov.io/docs/browser-extension
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [semantic-release-video]: https://youtu.be/tc2UgG5L7WM
-[markdown]: https://daringfireball.net/projects/markdown/syntax
-[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
-[commitizen-cli]: https://github.com/commitizen/cz-cli
 [validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
 [ui-npm]: https://www.npmjs.com/package/@terminus/ui
 [ui-github]: https://github.com/GetTerminus/terminus-ui
 [semver]: http://semver.org/
-[generator]: https://github.com/GetTerminus/generator-terminus-ui
-[component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
+[component-demo-screenshot]: https://user-images.githubusercontent.com/270193/35576969-67e0eab6-05ae-11e8-9c38-7d44bcf2c848.png
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
 [pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/release/package.json
 [jest]: https://facebook.github.io/jest/
