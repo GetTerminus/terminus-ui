@@ -1,3 +1,10 @@
+## [14.1.3](https://github.com/GetTerminus/terminus-ui/compare/v14.1.2...v14.1.3) (2019-07-23)
+
+
+### Bug Fixes
+
+* **Input:** correct alignment between prefix icon and input content ([d2ae252](https://github.com/GetTerminus/terminus-ui/commit/d2ae252)), closes [#1588](https://github.com/GetTerminus/terminus-ui/issues/1588)
+
 ## [14.1.2](https://github.com/GetTerminus/terminus-ui/compare/v14.1.1...v14.1.2) (2019-07-23)
 
 
