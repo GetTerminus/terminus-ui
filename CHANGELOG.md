@@ -1,3 +1,10 @@
+## [14.1.2](https://github.com/GetTerminus/terminus-ui/compare/v14.1.1...v14.1.2) (2019-07-23)
+
+
+### Bug Fixes
+
+* **Link:** controlling theme via input rather than data attr now ([9b2a57e](https://github.com/GetTerminus/terminus-ui/commit/9b2a57e)), closes [#1585](https://github.com/GetTerminus/terminus-ui/issues/1585)
+
 ## [14.1.1](https://github.com/GetTerminus/terminus-ui/compare/v14.1.0...v14.1.1) (2019-07-23)
 
 
