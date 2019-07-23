@@ -1,3 +1,10 @@
+## [14.1.1](https://github.com/GetTerminus/terminus-ui/compare/v14.1.0...v14.1.1) (2019-07-23)
+
+
+### Bug Fixes
+
+* **CI:** enforce node 11 usage to match dockerfile ([#1605](https://github.com/GetTerminus/terminus-ui/issues/1605)) ([c7ed782](https://github.com/GetTerminus/terminus-ui/commit/c7ed782)), closes [#1581](https://github.com/GetTerminus/terminus-ui/issues/1581)
+
 # [14.1.0](https://github.com/GetTerminus/terminus-ui/compare/v14.0.6...v14.1.0) (2019-07-12)
 
 
