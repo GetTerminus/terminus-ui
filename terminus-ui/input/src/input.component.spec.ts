@@ -7,7 +7,9 @@ import {
 } from '@angular/core';
 import {
   ComponentFixture,
+  fakeAsync,
   TestBed,
+  tick,
 } from '@angular/core/testing';
 import {
   FormControl,
@@ -715,19 +717,23 @@ describe(`TsInputComponent`, function() {
 
     describe(`AutofillMonitor`, () => {
 
-      test(`should monitor the input for autofill and cleanup after ngOnDestroy`, () => {
-        const fixture = createComponent(TestComponents.Autofill);
+      test(`should monitor the input for autofill and cleanup after ngOnDestroy`, fakeAsync(() => {
+        const fixture = createComponent<TestComponents.Autofill>(TestComponents.Autofill);
         fixture.detectChanges();
-        fixture.componentInstance.inputComponent['autofillMonitor'].stopMonitoring = jest.fn();
+        const instance = getInputInstance(fixture);
+        instance['autofillMonitor'].stopMonitoring = jest.fn();
 
-        expect(fixture.componentInstance.inputComponent.autofilled).toEqual(false);
-        fixture.componentInstance.inputComponent['autofillMonitor']['fireMockFillEvent']();
+        expect(instance.autofilled).toEqual(false);
+        instance['autofillMonitor']['fireMockFillEvent']();
+        fixture.detectChanges();
+        tick(1000);
+        fixture.detectChanges();
 
-        expect(fixture.componentInstance.inputComponent.autofilled).toEqual(true);
+        expect(instance.autofilled).toEqual(true);
 
-        fixture.componentInstance.inputComponent.ngOnDestroy();
-        expect(fixture.componentInstance.inputComponent['autofillMonitor'].stopMonitoring).toHaveBeenCalled();
-      });
+        instance.ngOnDestroy();
+        expect(instance['autofillMonitor'].stopMonitoring).toHaveBeenCalled();
+      }));
 
     });
 

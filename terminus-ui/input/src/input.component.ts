@@ -15,7 +15,6 @@ import {
   NgZone,
   OnChanges,
   OnDestroy,
-  OnInit,
   Optional,
   Output,
   Renderer2,
@@ -253,7 +252,6 @@ const DEFAULT_TEXTAREA_ROWS = 4;
 export class TsInputComponent implements
   // tslint:disable-next-line no-any
   TsFormFieldControl<any>,
-  OnInit,
   AfterViewInit,
   AfterContentInit,
   DoCheck,
@@ -882,13 +880,30 @@ export class TsInputComponent implements
 
 
   /**
-   * Begin monitoring for the input autofill
+   * After the view is initialized, trigger any needed animations
    */
-  public ngOnInit(): void {
-    this.autofillMonitor.monitor(this.elementRef.nativeElement).subscribe(event => {
+  public ngAfterViewInit(): void {
+    // Begin monitoring for the input autofill
+    this.autofillMonitor.monitor(this.inputElement.nativeElement).subscribe(event => {
       this.autofilled = event.isAutofilled;
       this.stateChanges.next();
     });
+
+    // istanbul ignore else
+    if (this.mask) {
+      this.setUpMask();
+    }
+
+    // Register this component as the associated input for the Material datepicker
+    // istanbul ignore else
+    // NOTE: Dangle naming controlled by Material
+    /* eslint-disable no-underscore-dangle */
+    if (this.picker && !this.picker._datepickerInput) {
+      // NOTE: Dangle naming controlled by Material
+      // tslint:disable-next-line no-any
+      this.picker._registerInput(this as any);
+      /* eslint-enable no-underscore-dangle */
+    }
   }
 
 
@@ -918,28 +933,6 @@ export class TsInputComponent implements
     // istanbul ignore else
     if (this.platform.IOS) {
       this.fixIOSCaretBug();
-    }
-  }
-
-
-  /**
-   * After the view is initialized, trigger any needed animations
-   */
-  public ngAfterViewInit(): void {
-    // istanbul ignore else
-    if (this.mask) {
-      this.setUpMask();
-    }
-
-    // Register this component as the associated input for the Material datepicker
-    // istanbul ignore else
-    // NOTE: Dangle naming controlled by Material
-    /* eslint-disable no-underscore-dangle */
-    if (this.picker && !this.picker._datepickerInput) {
-      // NOTE: Dangle naming controlled by Material
-      // tslint:disable-next-line no-any
-      this.picker._registerInput(this as any);
-      /* eslint-enable no-underscore-dangle */
     }
   }
 
