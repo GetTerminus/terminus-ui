@@ -9,5 +9,5 @@ import { isSet } from '@terminus/ngx-tools';
  */
 // tslint:disable-next-line no-any
 export function isMouseEvent(x: any): x is MouseEvent {
-  return isSet(x.relatedTarget);
+  return !!x && isSet(x.relatedTarget);
 }
