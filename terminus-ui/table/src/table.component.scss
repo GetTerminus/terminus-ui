@@ -102,6 +102,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   // Body cell
   .ts-cell {
     padding: spacing(default);
+    vertical-align: middle;
   }
 
   // Header cell
