@@ -146,6 +146,31 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     position: absolute;
     right: spacing(small);
   }
+
+  // <div> trigger to call for options refresh
+  .ts-select-panel__refresh {
+    // Match the height of the options (3em)
+    $height: 3 * 16;
+    @include typography(body, 2);
+    @include typography(caption);
+    background-color: color(utility, xlight);
+    color: color(utility, dark);
+    cursor: cursor(pointer);
+    height: #{$height}px;
+    line-height: #{$height}px;
+    padding: 0 spacing(default);
+    transition: color 200ms ease;
+
+    .ts-icon {
+      height: 24px;
+      vertical-align: text-bottom;
+    }
+
+    &:focus,
+    &:hover {
+      color: color(primary);
+    }
+  }
 }
 
 

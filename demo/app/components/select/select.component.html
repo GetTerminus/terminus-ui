@@ -252,7 +252,7 @@
 
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle tsVerticalSpacing>
-      Single Select w/ Filtering
+      Single Select w/ Filtering & refresh request
     </h3>
 
     <ts-select
@@ -261,10 +261,12 @@
       [isFilterable]="true"
       [formControl]="myForm.get('myChoices1')"
       [compareWith]="comparator"
+      [showRefresh]="true"
       (selectionChange)="isChanged($event)"
       (queryChange)="onFilterOptions($event)"
       (optionSelected)="isSelected($event)"
       (optionDeselected)="isDeselected($event)"
+      (optionsRefreshRequested)="refreshRequested()"
       tsVerticalSpacing
     >
       <ts-select-trigger>

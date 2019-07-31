@@ -108,6 +108,17 @@
 
     <!-- Outlet for options passed in by consumer -->
     <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+
+    <div
+      class="ts-select-panel__refresh"
+      *ngIf="showRefresh"
+      (click)="optionsRefreshRequested.emit()"
+    >
+      <ts-icon>refresh</ts-icon>
+      <span>
+        Refresh &amp; reload to bring in new choices.
+      </span>
+    </div>
   </div>
 </ng-template>
 

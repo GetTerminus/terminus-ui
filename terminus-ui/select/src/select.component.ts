@@ -196,6 +196,7 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  *              label="My label!"
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
+ *              [showRefresh]="true"
  *              [sortComparator]="myComparator"
  *              tabIndex="-1"
  *              theme="primary"
@@ -206,6 +207,7 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  *              (opened)="panelWasOpened($event)"
  *              (optionDeselected)="optionWasDeselected($event)"
  *              (optionSelected)="optionWasSelected($event)"
+ *              (optionsRefreshRequested)="refreshWasSelected()"
  *              (queryChange)="searchQueryChanged($event)"
  *              (selectionChange)="aSelectionWasChanged($event)"
  *              (valueChange)="theValueWasChanged($event)"
@@ -639,10 +641,16 @@ export class TsSelectComponent implements
   private _placeholder: string | undefined;
 
   /**
-   * Define if the input should currently be showing a progress spinner
+   * Define if the component should currently be showing a progress spinner
    */
   @Input()
   public showProgress = false;
+
+  /**
+   * Define if the select should show an option to trigger a refresh (by emitting an event)
+   */
+  @Input()
+  public showRefresh = false;
 
   /**
    * Function used to sort the values in a select in multiple mode
@@ -721,6 +729,12 @@ export class TsSelectComponent implements
    */
   @Output()
   public readonly optionSelected: EventEmitter<TsSelectChange> = new EventEmitter();
+
+  /**
+   * Event for when the user requests a refresh of the available options
+   */
+  @Output()
+  public readonly optionsRefreshRequested: EventEmitter<void> = new EventEmitter();
 
   /**
    * Event for when the query has changed, used by filterable select

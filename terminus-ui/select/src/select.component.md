@@ -29,6 +29,7 @@
   - [Custom Delimiter](#custom-delimiter)
   - [Custom Sort Comparator](#custom-sort-comparator)
   - [Filterable](#filterable)
+  - [Allow user to request update](#allow-user-to-request-update)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -391,19 +392,37 @@ Any unique, debounced query will be emitted through the `queryChange` emitter. T
 blank option can be used to show the user a message when no items are found by the query.
 
 
+### Allow user to request update
+
+There are times where the data may change after it is loaded. The `showRefresh` option allows the user to manually request updated data.
+
+```html
+<ts-select
+  [formControl]="myCtrl"
+  [showRefresh]="true"
+  (optionsRefreshRequested)="userRequestedRefresh()"
+>
+  ...
+</ts-select>
+```
+
+
 ## Events
 
 Multiple events are fired during interaction with the select:
 
-| Event                | Description                              | Payload          |
-|:---------------------|:-----------------------------------------|:-----------------|
-| `closed`             | Fired when the panel is closed           | `undefined`      |
-| `duplicateSelection` | Fired when a duplicate selection is made | `string`         |
-| `opened`             | Fired when the panel is open             | `undefined`      |
-| `optionDeselected`   | Fired when an option is deselected       | `TsSelectChange` |
-| `optionSelected`     | Fired when an option is selected         | `TsSelectChange` |
-| `queryChange`        | Fired when query changes                 | `string`         |
-| `selectionChange`    | Fired when the selection changes         | `TsSelectChange` |
+| Event                     | Description                                     | Payload              |
+|:--------------------------|:------------------------------------------------|:---------------------|
+| `closed`                  | Fired when the panel is closed                  | `undefined`          |
+| `duplicateSelection`      | Fired when a duplicate selection is made        | `string`             |
+| `opened`                  | Fired when the panel is open                    | `undefined`          |
+| `optionDeselected`        | Fired when an option is deselected              | `TsSelectChange`     |
+| `optionSelected`          | Fired when an option is selected                | `TsSelectChange`     |
+| `optionsRefreshRequested` | Fired when the user selects the refresh trigger | `undefined`          |
+| `queryChange`             | Fired when query changes                        | `string`             |
+| `selectionChange`         | Fired when the selection changes                | `TsSelectChange`     |
+| `valueChange`             | Fired when the selection value changes          | `string \| string[]` |
+
 
 ```html
 <ts-select (selectionChange)="myFunction($event)">

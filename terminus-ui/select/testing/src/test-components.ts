@@ -855,6 +855,34 @@ export class Filterable {
   }
 }
 
+@Component({
+  template: `
+    <ts-select
+      [formControl]="myCtrl"
+      [showRefresh]="true"
+      (optionsRefreshRequested)="refreshRequested()"
+    >
+      <ts-option
+        [value]="option.name"
+        [option]="option"
+        *ngFor="let option of options"
+      >
+        {{ option.name }}
+      </ts-option>
+    </ts-select>
+  `,
+})
+export class TriggerRefresh {
+  public myCtrl = new FormControl();
+  public options = STATES.slice();
+  public hasRequested = false;
+
+  public refreshRequested() {
+    this.hasRequested = true;
+  }
+}
+
+
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -895,6 +923,7 @@ export class Filterable {
     SelectionChangeEventEmitters,
     SelectOptionChange,
     Tabindex,
+    TriggerRefresh,
     ValidateOnChange,
   ],
 })
