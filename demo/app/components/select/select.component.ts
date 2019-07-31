@@ -13,9 +13,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import {
-  map,
-} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 
 
@@ -285,11 +283,15 @@ export class SelectComponent implements OnInit {
     } else {
       const regex = new RegExp(v, 'i');
       this.firstOptions = this.singleWithCustomTrigger
-        .pipe(map((a) => a.filter((i) => i.slug.match(regex))));
+        .pipe(map(a => a.filter(i => i.slug.match(regex))));
     }
   }
 
   duplicate(e) {
     console.log('DEMO: Duplicate selection: ', e);
+  }
+
+  refreshRequested() {
+    console.log('DEMO: Options refresh requested!');
   }
 }

@@ -1240,4 +1240,24 @@ describe(`TsSelectComponent`, function() {
 
   });
 
+
+  describe(`allow refresh requests`, function() {
+
+    test(`should show the refresh trigger and emit the event on selection`, function() {
+      const fixture = createComponent<testComponents.TriggerRefresh>(testComponents.TriggerRefresh);
+      fixture.detectChanges();
+      openSelect(fixture);
+
+      const refreshTrigger = fixture.debugElement.query(By.css('.ts-select-panel__refresh'));
+      expect(refreshTrigger).toBeTruthy();
+      expect(fixture.componentInstance.hasRequested).toEqual(false);
+
+      refreshTrigger.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.hasRequested).toEqual(true);
+    });
+
+  });
+
 });
