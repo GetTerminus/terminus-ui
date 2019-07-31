@@ -47,8 +47,8 @@
     "//=> Section: Yarn Management": "==============================",
     "fresh-yarn-install": "rm -rf node_modules && yarn install",
     "////////// Section: Linting": "==============================",
-    "lint:tslint": "npx tslint --project ./terminus-ui/tsconfig.json --config ./tslint.json --format stylish",
-    "lint:tslint:fix": "npx tslint --project ./terminus-ui/tsconfig.json --config ./tslint.json --format stylish --fix",
+    "lint:tslint": "npx tslint --project ./terminus-ui/tsconfig.lint.json --config ./tslint.json --format stylish",
+    "lint:tslint:fix": "npx tslint --project ./terminus-ui/tsconfig.lint.json --config ./tslint.json --format stylish --fix",
     "lint:tslint:spec": "npx tslint --project ./terminus-ui/tsconfig.spec.json --config ./tslint.spec.json --format stylish",
     "lint:tslint:spec:fix": "npx tslint --project ./terminus-ui/tsconfig.spec.json --config ./tslint.spec.json --format stylish --fix",
     "lint:tslint:ci": "npx tslint --project ./terminus-ui/tsconfig.json --config ./tslint.ci.json --format stylish",
@@ -86,21 +86,6 @@
     "cz-customizable": {
       "config": "./tooling/cz-config.js"
     }
-  },
-  "lint-staged": {
-    "terminus-ui/**/*.spec.ts": [
-      "yarn run lint:tslint:spec:fix",
-      "git add"
-    ],
-    "terminus-ui/**/!(testing)/!(*.spec|*.mock).ts": [
-      "yarn run lint:tslint:fix",
-      "yarn run lint:eslint:fix",
-      "git add"
-    ],
-    "terminus-ui/**/!(*.spec).scss": [
-      "yarn run lint:scss",
-      "git add"
-    ]
   },
   "publishConfig": {
     "tag": "next"
@@ -235,7 +220,7 @@
     "jest-create-mock-instance": "^1.1.0",
     "jest-junit": "^6.4.0",
     "jest-preset-angular": "^7.1.1",
-    "lint-staged": "^8.2.1",
+    "lint-staged": "^9.2.1",
     "markdown-link-check": "^3.7.3",
     "merge-files": "^0.1.1",
     "ng-packagr": "^5.3.0",
