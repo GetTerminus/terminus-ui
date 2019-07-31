@@ -52,28 +52,22 @@
       Group 2 - visual
     </h3>
 
-    <ts-radio-group
-      [isVisual]="true"
-      [formatUILabelFn]="uiFormatter"
-      [formatUISubLabelFn]="uiSubFormatter"
-      [formatModelValueFn]="modelFormatter"
-      [formControl]="myForm.get('myRadioGroup2')"
-      [options]="items2$ | async"
-      (selectionChange)="selected($event)"
-    ></ts-radio-group>
-
-    Selected value: {{ myForm.get('myRadioGroup2')?.value }}
-  </ts-card>
-
-
-  <ts-card tsVerticalSpacing>
-    <h3 tsCardTitle tsVerticalSpacing>
-      Group 2 - visual:small
-    </h3>
+    <div>
+      <label>
+        <input formControlName="isSmall" type="checkbox">
+        Small
+      </label>
+      <br>
+      <label>
+        <input formControlName="isCentered" type="checkbox">
+        Centered Content
+      </label>
+    </div>
 
     <ts-radio-group
       [isVisual]="true"
-      [small]="true"
+      [small]="myForm.get('isSmall')?.value"
+      [centeredContent]="myForm.get('isCentered')?.value"
       [formatUILabelFn]="uiFormatter"
       [formatUISubLabelFn]="uiSubFormatter"
       [formatModelValueFn]="modelFormatter"

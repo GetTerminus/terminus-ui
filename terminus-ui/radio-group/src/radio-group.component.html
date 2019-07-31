@@ -73,7 +73,8 @@
           >
           <div
             class="c-radio__content"
-            [class.c-radio__content--disabled]="(isDisabled || option.disabled) ? 'disabled' : null"
+            [class.c-radio__content--disabled]="isDisabled || option.disabled"
+            [class.c-radio__content--centered]="centeredContent"
             mat-ripple
             [matRippleDisabled]="(isDisabled || option.disabled) ? 'disabled' : null"
             [matRippleColor]="rippleColor"

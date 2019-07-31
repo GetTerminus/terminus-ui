@@ -82,6 +82,7 @@ let nextUniqueId = 0;
  *              [ariaDescribedby]="Aria Describedby"
  *              [ariaLabel]="Aria Label"
  *              [ariaLabelledby]="Aria Labelledby"
+ *              [centeredContent]="false"
  *              [formatUILabelFn]="myUIFormatter"
  *              [formatUISubLabelFn]="myUISubFormatter"
  *              [formatModelValueFn]="myModelFormatter"
@@ -147,6 +148,12 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   @Input('aria-describedby')
   public ariaDescribedby: string | undefined;
   // tslint:enable: no-input-rename
+
+  /**
+   * Define if the radio contents should be centered (used with the visual radio group layout)
+   */
+  @Input()
+  public centeredContent = true;
 
   /**
    * Define a function to retrieve the UI value for an option

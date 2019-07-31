@@ -92,6 +92,8 @@ export class RadioComponent {
   ]);
   // tslint:enable: max-line-length
   myForm: FormGroup = this.formBuilder.group({
+    isSmall: false,
+    isCentered: true,
     myRadioGroup: [
       null,
       [
@@ -107,9 +109,9 @@ export class RadioComponent {
   });
 
 
-  uiFormatter: TsRadioFormatFn = (v) => v.bar;
-  uiSubFormatter: TsRadioFormatFn = (v) => v.bing;
-  modelFormatter: TsRadioFormatFn = (v) => v.foo;
+  uiFormatter: TsRadioFormatFn = v => v.bar;
+  uiSubFormatter: TsRadioFormatFn = v => v.bing;
+  modelFormatter: TsRadioFormatFn = v => v.foo;
 
 
 

@@ -101,9 +101,6 @@
     align-items: center;
     border: 1px solid color(utility, light);
     border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     padding: spacing(default);
     transition: border-color 200ms ease-in;
 
@@ -130,6 +127,12 @@
       // Local z-index:
       // stylelint-disable-next-line scale-unlimited/declaration-strict-value
       z-index: 1;
+    }
+
+    &--centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     // Class added when the option is disabled
