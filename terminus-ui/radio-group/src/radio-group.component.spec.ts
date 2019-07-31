@@ -8,6 +8,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import {
   ChangeDetectorRefMock,
   createComponent,
@@ -39,6 +40,8 @@ class DomSanitizerMock {
   template: `
   <ts-radio-group
     [isVisual]="isVisual"
+    [small]="small"
+    [centeredContent]="centered"
     [formatUILabelFn]="uiFormatter"
     [formatModelValueFn]="modelFormatter"
     [formControl]="control"
@@ -50,6 +53,8 @@ class DomSanitizerMock {
 class TestHostComponent {
   private control: FormControl | undefined = new FormControl();
   public isVisual = false;
+  public small = false;
+  public centered = true;
   public optionsArray: TsRadioOption[] = [
     {
       foo: 'bar',
@@ -73,6 +78,7 @@ describe('TsRadioGroupComponent INT test', function() {
     fixture.detectChanges();
   });
 
+
   describe(`change`, () => {
 
     test(`should emit change for non-isVisual radios`, () => {
@@ -91,7 +97,55 @@ describe('TsRadioGroupComponent INT test', function() {
 
   });
 
+
+  describe(`visual mode`, function() {
+
+    beforeEach(() => {
+      fixture.componentInstance.isVisual = true;
+      fixture.detectChanges();
+    });
+
+
+    test(`should add the visual layout class`, function() {
+      const visualClass = fixture.debugElement.query(By.css('.c-radio--visual'));
+      expect(visualClass).toBeTruthy();
+    });
+
+
+    describe(`small`, function() {
+
+      test(`should add the correct class for the small layout`, function() {
+        let smallClass = fixture.debugElement.queryAll(By.css('.c-radio--small'));
+        expect(smallClass.length).toEqual(0);
+
+        fixture.componentInstance.small = true;
+        fixture.detectChanges();
+
+        smallClass = fixture.debugElement.queryAll(By.css('.c-radio--small'));
+        expect(smallClass.length).toBeGreaterThan(0);
+      });
+
+    });
+
+
+    describe(`centeredContent`, function() {
+
+      test(`should add the correct class for centered content`, function() {
+        let centeredClass = fixture.debugElement.queryAll(By.css('.c-radio__content--centered'));
+        expect(centeredClass.length).toBeGreaterThan(0);
+
+        fixture.componentInstance.centered = false;
+        fixture.detectChanges();
+
+        centeredClass = fixture.debugElement.queryAll(By.css('.c-radio__content--centered'));
+        expect(centeredClass.length).toEqual(0);
+      });
+
+    });
+  });
+
 });
+
 
 describe('TsRadioGroupComponent', function() {
   let component: TsRadioGroupComponent;
@@ -143,7 +197,7 @@ describe('TsRadioGroupComponent', function() {
 
     test(`should return undefined if no value is passed in`, () => {
       const foo = void 0;
-      expect(component.formatUILabelFn = foo).toEqual(undefined);
+      expect(component.formatUILabelFn = foo as any).toEqual(undefined);
     });
 
 
@@ -168,7 +222,7 @@ describe('TsRadioGroupComponent', function() {
 
     test(`should return undefined if no value is passed in`, () => {
       const foo = void 0;
-      expect(component.formatUISubLabelFn = foo).toEqual(undefined);
+      expect(component.formatUISubLabelFn = foo as any).toEqual(undefined);
     });
 
 
@@ -193,7 +247,7 @@ describe('TsRadioGroupComponent', function() {
 
     test(`should return undefined if no value is passed in`, () => {
       const foo = void 0;
-      expect(component.formatModelValueFn = foo).toEqual(undefined);
+      expect(component.formatModelValueFn = foo as any).toEqual(undefined);
     });
 
 
@@ -241,27 +295,6 @@ describe('TsRadioGroupComponent', function() {
     test(`should not change the name if no value was passed in`, () => {
       component.name = '' as any;
       expect(component.name).toEqual(expect.stringContaining('ts-radio-group'));
-    });
-
-  });
-
-
-  describe(`isVisual`, () => {
-
-    test(`should set and retrieve the visual value`, () => {
-      expect(component.isVisual).toEqual(false);
-      component.isVisual = true;
-      expect(component.isVisual).toEqual(true);
-    });
-
-  });
-
-  describe(`small`, () => {
-
-    test(`should set and retrieve the small value`, () => {
-      expect(component.small).toEqual(false);
-      component.small = true;
-      expect(component.small).toEqual(true);
     });
 
   });
