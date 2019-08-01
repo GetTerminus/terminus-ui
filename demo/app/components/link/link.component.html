@@ -1,4 +1,4 @@
-<ts-card>
+<ts-card id="top">
   <div>
     <ts-link
       [destination]="localDestination"
@@ -19,6 +19,30 @@
       [destination]="externalDestination"
       [isExternal]="external"
       theme="warn"
+      tsVerticalSpacing
     >An external link using the 'warn' theme.</ts-link>
   </div>
+
+  <div>
+    <ts-link
+      fragment="bottom"
+      tsVerticalSpacing
+    >A local fragment link to go down</ts-link>
+  </div>
 </ts-card>
+
+
+<div style="height:400px;"></div>
+
+
+<ts-card id="bottom">
+  <div>
+    <ts-link
+      fragment="top"
+      tsVerticalSpacing
+    >A local fragment link to go up</ts-link>
+  </div>
+</ts-card>
+
+
+<div style="height:400px;"></div>

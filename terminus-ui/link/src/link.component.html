@@ -1,18 +1,20 @@
 <a
-  class="c-link qa-link qa-link-internal"
-  [routerLink]="destination"
-  tabindex="{{ tabIndex }}"
   *ngIf="!isExternal"
+  class="c-link qa-link qa-link-internal"
+  [routerLink]="destination || localRoute"
+  fragment="{{ fragment }}"
+  tabindex="{{ tabIndex }}"
 >
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 </a>
 
+
 <a
+  *ngIf="isExternal"
   class="c-link qa-link qa-link-external"
   [href]="destination"
   target="_blank"
   tabindex="{{ tabIndex }}"
-  *ngIf="isExternal"
 >
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 
