@@ -23,6 +23,7 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
  *
  * <ts-link
  *              destination="http://google.com"
+ *              fragment="myElementId"
  *              [isExternal]="true"
  *              tabIndex="2"
  *              theme="warn"
@@ -51,10 +52,21 @@ export class TsLinkComponent {
   public externalIcon = `open_in_new`;
 
   /**
+   * Define the route needed when only using a fragment
+   */
+  public localRoute = ['.'];
+
+  /**
    * Define the link's destination
    */
   @Input()
   public destination: string | string[] | undefined;
+
+  /**
+   * Define the link's fragment
+   */
+  @Input()
+  public fragment: string | undefined;
 
   /**
    * Define if the link is to an external page

@@ -1,14 +1,19 @@
 import { APP_BASE_HREF } from '@angular/common';
 import {
   Component,
+  Provider,
+  Type,
   ViewChild,
 } from '@angular/core';
 import {
+  async,
   ComponentFixture,
+  TestBed,
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { getDomAttribute } from '@terminus/ngx-tools';
 import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
@@ -18,18 +23,20 @@ import { TsLinkModule } from './link.module';
 
 @Component({
   template: `
-  <ts-link
-    [destination]="destination"
-    [isExternal]="isExternal"
-    [tabIndex]="tabIndex"
-    [theme]="theme"
-  >
-  My Link Text
-  </ts-link>
+    <ts-link
+      [destination]="destination"
+      [fragment]="fragment"
+      [isExternal]="isExternal"
+      [tabIndex]="tabIndex"
+      [theme]="theme"
+    >
+    My Link Text
+    </ts-link>
   `,
 })
 class TestHostComponent {
-  public destination!: any;
+  public destination!: undefined | string | string[];
+  public fragment!: undefined | string;
   public isExternal!: boolean;
   public tabIndex!: number | undefined;
   public theme: TsStyleThemeTypes = 'primary';
@@ -45,19 +52,12 @@ describe(`TsLinkComponent`, function() {
   let link: HTMLElement;
   let linkComponent: TsLinkComponent;
 
-  beforeEach(() => {
-    fixture = createComponent(
-      TestHostComponent,
-      [{
-        provide: APP_BASE_HREF,
-        useValue: '/my/app',
-      }],
-      [TsLinkModule, RouterModule.forRoot([])],
-    );
+  beforeEach(async(() => {
+    fixture = createComponent(TestHostComponent, [], [TsLinkModule, RouterTestingModule]);
     component = fixture.componentInstance;
     linkComponent = component.linkComponent;
     fixture.detectChanges();
-  });
+  }));
 
 
   test(`should exist`, () => {
@@ -68,11 +68,36 @@ describe(`TsLinkComponent`, function() {
   describe(`isInternal`, () => {
 
     test(`should default and retrieve`, () => {
-      link = fixture.debugElement.query(By.css('.c-link')).nativeElement as HTMLElement;
+      link = fixture.debugElement.query(By.css('.c-link')).nativeElement;
       component.isExternal = false;
       component.destination = ['/#'];
 
       expect(link.classList).toContain('qa-link-internal');
+    });
+
+
+    describe(`fragment`, function() {
+
+      test(`should correctly add the fragment`, function() {
+        fixture.componentInstance.destination = ['foo', 'bar'];
+        fixture.componentInstance.fragment = 'fooBar-bing';
+        fixture.detectChanges();
+        link = fixture.debugElement.query(By.css('.ts-link')).nativeElement;
+
+        const href = fixture.debugElement.query(By.css('a')).nativeElement.getAttribute('href');
+        expect(href).toEqual('/foo/bar#fooBar-bing');
+      });
+
+
+      test(`should use a route to the current page if none is passed in`, function() {
+        fixture.componentInstance.fragment = 'fooBar-bing';
+        fixture.detectChanges();
+        link = fixture.debugElement.query(By.css('.ts-link')).nativeElement;
+
+        const href = fixture.debugElement.query(By.css('a')).nativeElement.getAttribute('href');
+        expect(href).toEqual('/#fooBar-bing');
+      });
+
     });
 
   });
@@ -84,7 +109,7 @@ describe(`TsLinkComponent`, function() {
       component.destination = 'www.google.com';
       component.isExternal = true;
       fixture.detectChanges();
-      link = fixture.debugElement.query(By.css('.c-link')).nativeElement as HTMLElement;
+      link = fixture.debugElement.query(By.css('.c-link')).nativeElement;
 
       expect(link.classList).toContain('qa-link-external');
       expect(link.children[0].textContent).toContain('open_in_new');
@@ -100,7 +125,7 @@ describe(`TsLinkComponent`, function() {
 
       component.tabIndex = 9;
       fixture.detectChanges();
-      link = fixture.debugElement.query(By.css('.c-link')).nativeElement as HTMLElement;
+      link = fixture.debugElement.query(By.css('.c-link')).nativeElement;
 
       expect(link.tabIndex).toEqual(9);
     });
@@ -111,13 +136,13 @@ describe(`TsLinkComponent`, function() {
   describe(`theme`, function() {
 
     test(`should set the appropriate class`, function() {
-      link = fixture.debugElement.query(By.css('.ts-link')).nativeElement as HTMLElement;
+      link = fixture.debugElement.query(By.css('.ts-link')).nativeElement;
 
       expect(link.classList).toContain('ts-link--primary');
 
       component.theme = 'accent';
       fixture.detectChanges();
-      link = fixture.debugElement.query(By.css('.ts-link')).nativeElement as HTMLElement;
+      link = fixture.debugElement.query(By.css('.ts-link')).nativeElement;
 
       expect(link.classList).not.toContain('ts-link--primary');
       expect(link.classList).toContain('ts-link--accent');

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './link.component.html',
 })
 export class LinkComponent {
-  localDestination: string[] = ['/components/copy'];
-  externalDestination: string = `http://google.com`;
+  localDestination = ['/components/copy'];
+  externalDestination = `http://google.com`;
   external = true;
 }
