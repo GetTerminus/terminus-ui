@@ -1,6 +1,7 @@
 @import './../../scss/helpers/color';
 @import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
+@import './../../scss/helpers/scrollbars';
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
 
@@ -28,6 +29,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // <div> inner container for overflow control
   &__container {
+    @include visible-scrollbars;
     max-height: 100%;
     overflow: auto;
   }
