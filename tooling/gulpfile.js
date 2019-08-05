@@ -28,27 +28,26 @@ const rootFolder           = path.join(__dirname, '../');
 
 // General configurations for the build process
 const config = {
-  libName: libName,
+  libName,
   paths: {
-    rootFolder: rootFolder,
+    rootFolder,
     distFolder: path.join(rootFolder, 'dist/terminus-ui'),
     npmFolder: path.join(rootFolder, 'node_modules/@terminus/ui'),
     scss: {
       helpersInputs: [
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_a11y.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_typography.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_cursors.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_color.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_animation.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_assets.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_breakpoints.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_color.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_cursors.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_layout.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_input-placeholder.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_z-index.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_menu.scss'),
-        // Spacing must be after typography
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_spacing.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_animation.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_scrollbars.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_shadows.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_spacing.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_triangle.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_typography.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_z-index.scss'),
         // Card must be after spacing and shadows
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_card.scss'),
       ],
@@ -61,13 +60,10 @@ const config = {
       importer: sassModuleImporter(),
     },
     postCss: [
-      autoprefixer({
-        grid: true,
-      }),
+      autoprefixer({grid: true}),
     ],
   },
 };
-
 
 
 
@@ -83,11 +79,9 @@ const config = {
  * 1) Merge all SCSS helper files
  * 2) Save to dist
  */
-gulp.task('bundle-exposed-scss', () => {
-  return gulp.src(config.paths.scss.helpersInputs)
-    .pipe(gulpConcat('helpers.scss'))
-    .pipe(gulp.dest(config.paths.distFolder));
-});
+gulp.task('bundle-exposed-scss', () => gulp.src(config.paths.scss.helpersInputs)
+  .pipe(gulpConcat('helpers.scss'))
+  .pipe(gulp.dest(config.paths.distFolder)));
 
 
 /**
@@ -97,13 +91,11 @@ gulp.task('bundle-exposed-scss', () => {
  * 2) Strip @imports
  * 3) Remove empty lines
  */
-gulp.task('sanitize-exposed-scss', () => {
-  return gulp.src(path.join(config.paths.distFolder, 'helpers.scss'))
-    .pipe(gulpStripComments())
-    .pipe(gulpReplace(/@import.*/g, ''))
-    .pipe(gulpRemoveEmptyLines())
-    .pipe(gulp.dest(config.paths.distFolder));
-});
+gulp.task('sanitize-exposed-scss', () => gulp.src(path.join(config.paths.distFolder, 'helpers.scss'))
+  .pipe(gulpStripComments())
+  .pipe(gulpReplace(/@import.*/g, ''))
+  .pipe(gulpRemoveEmptyLines())
+  .pipe(gulp.dest(config.paths.distFolder)));
 
 
 /**
@@ -112,12 +104,10 @@ gulp.task('sanitize-exposed-scss', () => {
  * 1) Compile to CSS
  * 2) Run through PostCSS/AutoPrefixer
  */
-gulp.task('generate:css', () => {
-  return gulp.src(config.paths.scss.globalStylesInput)
-    .pipe(gulpSass(config.sass.shared).on('error', gulpSass.logError))
-    .pipe(postcss(config.sass.postCss))
-    .pipe(gulp.dest(config.paths.distFolder));
-});
+gulp.task('generate:css', () => gulp.src(config.paths.scss.globalStylesInput)
+  .pipe(gulpSass(config.sass.shared).on('error', gulpSass.logError))
+  .pipe(postcss(config.sass.postCss))
+  .pipe(gulp.dest(config.paths.distFolder)));
 
 
 /**
@@ -126,13 +116,11 @@ gulp.task('generate:css', () => {
  *
  * 1) Copy files to `node_modules/@terminus/ui`
  */
-gulp.task('copy-to-npm', () => {
-  return gulp.src([
-    path.join(config.paths.distFolder, 'helpers.scss'),
-    path.join(config.paths.distFolder, 'terminus-ui.css'),
-  ])
-    .pipe(gulp.dest(config.paths.npmFolder));
-});
+gulp.task('copy-to-npm', () => gulp.src([
+  path.join(config.paths.distFolder, 'helpers.scss'),
+  path.join(config.paths.distFolder, 'terminus-ui.css'),
+])
+  .pipe(gulp.dest(config.paths.npmFolder)));
 
 
 
@@ -155,4 +143,3 @@ gulp.task('generate:styles', gulp.series(
   'generate:css',
   'copy-to-npm'
 ));
-
