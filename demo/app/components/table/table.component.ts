@@ -15,7 +15,12 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  startWith,
+  switchMap,
+} from 'rxjs/operators';
 
 
 export interface TableItem {
@@ -108,7 +113,6 @@ export class TableComponent implements AfterViewInit {
     'number',
     'state',
     'title',
-    'body',
     'labels',
     'comments',
     'assignee',
@@ -144,15 +148,13 @@ export class TableComponent implements AfterViewInit {
     merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
-        switchMap(() => {
-          return this.exampleDatabase.getRepoIssues(
-            this.sort.active,
-            this.sort.direction,
-            this.paginator.currentPageIndex,
-            this.paginator.recordsPerPage,
-          );
-        }),
-        map((data) => {
+        switchMap(() => this.exampleDatabase.getRepoIssues(
+          this.sort.active,
+          this.sort.direction,
+          this.paginator.currentPageIndex,
+          this.paginator.recordsPerPage,
+        )),
+        map(data => {
           console.log('Demo: fetched data: ', data);
           this.resultsLength = data.total_count;
 
@@ -162,7 +164,7 @@ export class TableComponent implements AfterViewInit {
           console.warn('GitHub API rate limit has been reached!');
           return of([]);
         }),
-      ).subscribe((data) => {
+      ).subscribe(data => {
         this.dataSource.data = data;
       });
   }
