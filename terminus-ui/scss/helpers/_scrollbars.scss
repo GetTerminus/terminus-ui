@@ -35,4 +35,8 @@ $defaultColor: #{color(pure)};
     background-color: $color;
     border-radius: $webkit-default-radius;
   }
+
+  &::-webkit-scrollbar-corner {
+    background-color: $color;
+  }
 }
