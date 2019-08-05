@@ -1,3 +1,10 @@
+# [14.2.0](https://github.com/GetTerminus/terminus-ui/compare/v14.1.4...v14.2.0) (2019-08-05)
+
+
+### Features
+
+* **RadioGroup:** now supports centered content OR left/top aligned content ([7c540f6](https://github.com/GetTerminus/terminus-ui/commit/7c540f6)), closes [#1570](https://github.com/GetTerminus/terminus-ui/issues/1570)
+
 ## [14.1.4](https://github.com/GetTerminus/terminus-ui/compare/v14.1.3...v14.1.4) (2019-07-30)
 
 
