@@ -907,10 +907,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@terminus/stylelint-config-frontend@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@terminus/stylelint-config-frontend/-/stylelint-config-frontend-1.0.2.tgz#5dfbaae9e2c00099e2f5f5d8d0495f16db6b8de1"
-  integrity sha512-3ZqhDcVXaEQECLaIMGHQVbJrYAAyA6jsEyuVAN9KPuBfZRCIXF+SXP0Q8Kx7F2o0KOgIR2sH8EA742GoNRmuRw==
+"@terminus/stylelint-config-frontend@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@terminus/stylelint-config-frontend/-/stylelint-config-frontend-1.1.0.tgz#d0302f7e8caa43368e5ce5e17a498d6f970eaaaa"
+  integrity sha512-oGx9FwUre7ndCMvPmXJCdxRxFcI37ayo+0E2Fh3GQkvLQi9yEYxaKdpHqZuxT0KZYAKWOUHacvCOSAxD3KPUKg==
   dependencies:
     stylelint "^10.0.1"
     stylelint-declaration-block-no-ignored-properties "^2.1.0"
