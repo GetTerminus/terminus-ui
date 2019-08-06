@@ -1,3 +1,10 @@
+## [14.2.2](https://github.com/GetTerminus/terminus-ui/compare/v14.2.1...v14.2.2) (2019-08-06)
+
+
+### Bug Fixes
+
+* **Table:** row content now vertically centered ([5fff67a](https://github.com/GetTerminus/terminus-ui/commit/5fff67a)), closes [#1579](https://github.com/GetTerminus/terminus-ui/issues/1579)
+
 ## [14.2.1](https://github.com/GetTerminus/terminus-ui/compare/v14.2.0...v14.2.1) (2019-08-06)
 
 
