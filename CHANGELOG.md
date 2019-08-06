@@ -1,3 +1,11 @@
+## [14.2.1](https://github.com/GetTerminus/terminus-ui/compare/v14.2.0...v14.2.1) (2019-08-06)
+
+
+### Bug Fixes
+
+* **RadioGroup:** corner not spilling outside border radius ([fd6ec43](https://github.com/GetTerminus/terminus-ui/commit/fd6ec43))
+* **RadioGroup:** small layout no longer using grid ([5193792](https://github.com/GetTerminus/terminus-ui/commit/5193792))
+
 # [14.2.0](https://github.com/GetTerminus/terminus-ui/compare/v14.1.4...v14.2.0) (2019-08-05)
 
 
