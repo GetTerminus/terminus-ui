@@ -67,6 +67,7 @@
  */
 
 .c-radio--visual {
+  $radius: 3px;
   &.c-radio--small {
     .c-radio__control {
       height: 7rem;
@@ -90,6 +91,7 @@
   .c-radio__control {
     @include elevation-element(raised-button);
     @include responsive-ratio(1, 1);
+    border-radius: $radius;
     overflow: hidden;
     padding: spacing(default);
     position: relative;
@@ -100,7 +102,7 @@
     @include take-space;
     align-items: center;
     border: 1px solid color(utility, light);
-    border-radius: 3px;
+    border-radius: $radius;
     padding: spacing(default);
     transition: border-color 200ms ease-in;
 
