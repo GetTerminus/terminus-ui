@@ -68,10 +68,17 @@
 
 .c-radio--visual {
   $radius: 3px;
+
   &.c-radio--small {
     .c-radio__control {
+      float: left;
       height: 7rem;
+      margin-bottom: spacing(small);
       width: 13.75rem;
+
+      &:not(:last-child) {
+        margin-right: spacing(small);
+      }
     }
   }
 
@@ -80,11 +87,13 @@
     all: unset;
   }
 
-  // <div> wrapper for all options
-  .c-radio__options {
-    display: grid;
-    grid-gap: spacing(small);
-    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+  &:not(.c-radio--small) {
+    // <div> wrapper for all options
+    .c-radio__options {
+      display: grid;
+      grid-gap: spacing(small);
+      grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    }
   }
 
   // <label> container for a single option
