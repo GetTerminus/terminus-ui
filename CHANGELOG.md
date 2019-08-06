@@ -1,3 +1,10 @@
+# [14.3.0](https://github.com/GetTerminus/terminus-ui/compare/v14.2.2...v14.3.0) (2019-08-06)
+
+
+### Features
+
+* **Link:** support for local anchor links ([9360cc1](https://github.com/GetTerminus/terminus-ui/commit/9360cc1)), closes [#1607](https://github.com/GetTerminus/terminus-ui/issues/1607)
+
 ## [14.2.2](https://github.com/GetTerminus/terminus-ui/compare/v14.2.1...v14.2.2) (2019-08-06)
 
 
