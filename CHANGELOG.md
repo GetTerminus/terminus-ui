@@ -1,3 +1,11 @@
+# [14.4.0](https://github.com/GetTerminus/terminus-ui/compare/v14.3.0...v14.4.0) (2019-08-07)
+
+
+### Features
+
+* **SCSS:** expose helper to style webkit scrollbars ([83593c1](https://github.com/GetTerminus/terminus-ui/commit/83593c1))
+* **Table:** scrollbars now always visible if there is scrollable content ([4bbe00e](https://github.com/GetTerminus/terminus-ui/commit/4bbe00e)), closes [#1616](https://github.com/GetTerminus/terminus-ui/issues/1616)
+
 # [14.3.0](https://github.com/GetTerminus/terminus-ui/compare/v14.2.2...v14.3.0) (2019-08-06)
 
 
