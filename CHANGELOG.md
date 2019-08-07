@@ -1,3 +1,10 @@
+# [14.5.0](https://github.com/GetTerminus/terminus-ui/compare/v14.4.0...v14.5.0) (2019-08-07)
+
+
+### Features
+
+* **Select:** now supports user requests options refresh ([170fb1e](https://github.com/GetTerminus/terminus-ui/commit/170fb1e)), closes [#1572](https://github.com/GetTerminus/terminus-ui/issues/1572)
+
 # [14.4.0](https://github.com/GetTerminus/terminus-ui/compare/v14.3.0...v14.4.0) (2019-08-07)
 
 
