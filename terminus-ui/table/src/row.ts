@@ -14,46 +14,6 @@ import {
 
 
 /**
- * Header row definition for the {@link TsTableComponent}.
- *
- * Captures the header row's template and other header properties such as the columns to display.
- */
-@Directive({
-  selector: '[tsHeaderRowDef]',
-  providers: [{
-    provide: CdkHeaderRowDef,
-    useExisting: TsHeaderRowDefDirective,
-  }],
-  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable-next-line:no-inputs-metadata-property
-  inputs: ['columns: tsHeaderRowDef'],
-})
-export class TsHeaderRowDefDirective extends CdkHeaderRowDef {}
-
-
-/**
- * Data row definition for the {@link TsTableComponent}.
- *
- * Captures the header row's template and other row properties such as the columns to display and
- * a when predicate that describes when this row should be used.
- */
-@Directive({
-  selector: '[tsRowDef]',
-  providers: [{
-    provide: CdkRowDef,
-    useExisting: TsRowDefDirective,
-  }],
-  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable-next-line:no-inputs-metadata-property
-  inputs: [
-    'columns: tsRowDefColumns',
-    'when: tsRowDefWhen',
-  ],
-})
-export class TsRowDefDirective<T> extends CdkRowDef<T> {}
-
-
-/**
  * Header template container that contains the cell outlet. Adds the right class and role.
  */
 @Component({
@@ -87,3 +47,57 @@ export class TsHeaderRowComponent extends CdkHeaderRow {}
   preserveWhitespaces: false,
 })
 export class TsRowComponent extends CdkRow {}
+
+/**
+ * Header row definition for the {@link TsTableComponent}.
+ *
+ * Captures the header row's template and other header properties such as the columns to display.
+ */
+@Directive({
+  selector: '[tsHeaderRowDef]',
+  providers: [
+    {
+      provide: CdkHeaderRowDef,
+      useExisting: TsHeaderRowDefDirective,
+    },
+    {
+      provide: CdkHeaderRow,
+      useExisting: TsHeaderRowComponent,
+    },
+  ],
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
+  inputs: [
+    'columns: tsHeaderRowDef',
+    'sticky: tsHeaderRowDefSticky',
+  ],
+})
+export class TsHeaderRowDefDirective extends CdkHeaderRowDef {}
+
+
+/**
+ * Data row definition for the {@link TsTableComponent}.
+ *
+ * Captures the header row's template and other row properties such as the columns to display and
+ * a when predicate that describes when this row should be used.
+ */
+@Directive({
+  selector: '[tsRowDef]',
+  providers: [
+    {
+      provide: CdkRowDef,
+      useExisting: TsRowDefDirective,
+    },
+    {
+      provide: CdkRow,
+      useExisting: TsRowComponent,
+    },
+  ],
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
+  inputs: [
+    'columns: tsRowDefColumns',
+    'when: tsRowDefWhen',
+  ],
+})
+export class TsRowDefDirective<T> extends CdkRowDef<T> {}

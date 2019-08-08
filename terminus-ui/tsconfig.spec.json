@@ -12,6 +12,7 @@
     ],
     "paths": {
       "@terminus/ui/autocomplete":           ["terminus-ui/autocomplete/src/public-api.ts"],
+      "@terminus/ui/autocomplete/testing" : ["terminus-ui/autocomplete/testing/src/public-api.ts"],
       "@terminus/ui/autofocus":              ["terminus-ui/autofocus/src/public-api.ts"],
       "@terminus/ui/button":                 ["terminus-ui/button/src/public-api.ts"],
       "@terminus/ui/card":                   ["terminus-ui/card/src/public-api.ts"],
@@ -45,6 +46,7 @@
       "@terminus/ui/sort":                   ["terminus-ui/sort/src/public-api.ts"],
       "@terminus/ui/spacing":                ["terminus-ui/spacing/src/public-api.ts"],
       "@terminus/ui/table":                  ["terminus-ui/table/src/public-api.ts"],
+      "@terminus/ui/table/testing"        : ["terminus-ui/table/testing/src/public-api.ts"],
       "@terminus/ui/toggle":                 ["terminus-ui/toggle/src/public-api.ts"],
       "@terminus/ui/tooltip":                ["terminus-ui/tooltip/src/public-api.ts"],
       "@terminus/ui/tooltip/testing":        ["terminus-ui/tooltip/testing/src/public-api.ts"],
