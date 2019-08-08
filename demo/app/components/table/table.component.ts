@@ -105,19 +105,20 @@ export class ExampleHttpDao {
 @Component({
   selector: 'demo-table',
   templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterViewInit {
   allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
   displayedColumns: string[] = [
-    'updated',
-    'number',
-    'state',
     'title',
-    'labels',
+    'updated',
     'comments',
     'assignee',
-    'id',
+    'number',
+    'labels',
     'created',
+    'id',
+    'body',
   ];
   exampleDatabase!: ExampleHttpDao;
   dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();

@@ -21,39 +21,9 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 .ts-table {
   @include reset;
   @include typography;
-  border-collapse: collapse;
-  display: block;
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-
-  // <div> inner container for overflow control
-  &__container {
-    @include visible-scrollbars;
-    max-height: 100%;
-    overflow: auto;
-  }
-
-  // <div> Emulate <table> element and hide overflow caused by hover crosshairs
-  &__table {
-    display: table;
-    min-width: 100%;
-    overflow: hidden;
-  }
-
-  // Target a table inside of a card component
-  // When inside a card we adjust the top|right|left margins to cancel the default card padding
-  .c-card & {
-    // NOTE: Currently the table component does not include pagination so the table's bottom margin
-    // is not adjusted here. Once we have a `paged-table` that includes pagination we can add the
-    // negative bottom margin.
-    $table-margin-adjustment-for-pagination: -#{spacing(large)} -#{spacing(large)} 0 -#{spacing(large)};
-    $table-adjustment-for-margins: spacing(large) * 2;
-
-    margin: $table-margin-adjustment-for-pagination;
-    width: calc(100% + #{$table-adjustment-for-margins});
-  }
-
+  @include visible-scrollbars;
+  display: inline-block;
+  max-height: 100%;
 
   //
   // Rows
@@ -91,9 +61,10 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   // Any row
   .ts-row,
   .ts-header-row {
+    align-items: stretch;
     border-bottom: 1px solid color(utility, xlight);
     box-sizing: border-box;
-    display: table-row;
+    display: flex;
   }
 
 
@@ -103,12 +74,18 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Body cell
   .ts-cell {
+    background-color: color(pure);
     padding: spacing(default);
     vertical-align: middle;
+
+    &.ts-table--sticky {
+      border-right: 1px solid color(utility, xlight);
+    }
   }
 
   // Header cell
   .ts-header-cell {
+    background-color: color(pure);
     // If the column isn't sortable, add padding here that would normally be added by
     // `ts-sort-header-container`
     &:not(.ts-sortable) {
@@ -136,7 +113,14 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   // Any cell
   .ts-cell,
   .ts-header-cell {
-    display: table-cell;
+    align-items: stretch;
+    background-color: color(pure);
+    display: flex;
+    flex: 1;
+    flex-basis: 6em;
+    min-height: inherit;
+    overflow: hidden;
+    word-wrap: break-word;
 
     // Class added if a column should not wrap
     &.ts-column-no-wrap {

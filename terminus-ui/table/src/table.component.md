@@ -14,6 +14,9 @@
 - [No-wrap for a column](#no-wrap-for-a-column)
 - [Min-width for a column](#min-width-for-a-column)
 - [Alignment for a cell](#alignment-for-a-cell)
+- [Sticky header](#sticky-header)
+- [Sticky column](#sticky-column)
+  - [StickyEnd](#stickyend)
 - [Full example with pagination, sorting and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -312,6 +315,47 @@ directive `alignment` and pass it any valid TsTableColumnAlignment value (`left`
     {{ item.created_at | date:shortDate }}
   </ts-cell>
 </ng-container>
+```
+
+
+## Sticky header
+
+Defining the header as sticky will ensure it is always visible as the table scrolls. Set `sticky: true` in the `ts-header-row`'s `tsHeaderRowDef` directive.
+
+```html
+  <ts-header-row *tsHeaderRowDef="displayedColumns; sticky: true"></ts-header-row>
+```
+
+
+## Sticky column
+
+Defining a sticky column will pin it to the left side as the table scrolls horizontally. Add the sticky parameter to the `<ng-container>` of the column definition. This can be applied to more than one column.
+
+```html
+  <ng-container tsColumnDef="updated" sticky>
+    <ts-header-cell *tsHeaderCellDef>
+      Updated
+    </ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.updated_at | date:"shortDate" }}
+    </ts-cell>
+  </ng-container>
+```
+
+### StickyEnd
+
+Defining a stickyEnd column will pin it to the right side as the table scrolls horizontally. Add the stickyEnd parameter to the `<ng-container>` of the column definition. This can be applied to more than one column.
+
+
+```html
+  <ng-container tsColumnDef="updated" stickyEnd>
+    <ts-header-cell *tsHeaderCellDef>
+      Updated
+    </ts-header-cell>
+    <ts-cell *tsCellDef="let item">
+      {{ item.updated_at | date:"shortDate" }}
+    </ts-cell>
+  </ng-container>
 ```
 
 ---
