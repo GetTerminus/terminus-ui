@@ -43,8 +43,17 @@ import {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   host: { class: 'ts-table' },
+  providers: [{
+    provide: CdkTable,
+    useExisting: TsTableComponent,
+  }],
   exportAs: 'tsTable',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TsTableComponent<T> extends CdkTable<T> { }
+export class TsTableComponent<T> extends CdkTable<T> {
+  /**
+   * Override CDK's class
+   */
+  protected stickyCssClass = 'ts-table--sticky';
+}
