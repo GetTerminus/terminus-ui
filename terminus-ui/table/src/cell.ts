@@ -70,9 +70,21 @@ export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
   },
 })
 export class TsHeaderCellDirective extends CdkHeaderCell {
-  constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
+  constructor(
+    columnDef: CdkColumnDef,
+    elementRef: ElementRef,
+    public renderer: Renderer2,
+  ) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
+
+    // tslint:disable-next-line no-any
+    const column: any = columnDef;
+
+    // Set inline style for min-width if passed in
+    if (column.minWidth) {
+      renderer.setStyle(elementRef.nativeElement, 'flex-basis', column.minWidth);
+    }
   }
 }
 
@@ -110,7 +122,7 @@ export class TsCellDirective extends CdkCell {
 
     // Set inline style for min-width if passed in
     if (column.minWidth) {
-      renderer.setStyle(elementRef.nativeElement, 'minWidth', column.minWidth);
+      renderer.setStyle(elementRef.nativeElement, 'flex-basis', column.minWidth);
     }
 
     // Skip the following in or to maintain backward compatibility with cells that do not use alignment
@@ -136,10 +148,12 @@ export class TsCellDirective extends CdkCell {
  */
 @Directive({
   selector: '[tsColumnDef]',
-  providers: [{
-    provide: CdkColumnDef,
-    useExisting: TsColumnDefDirective,
-  }],
+  providers: [
+    {
+      provide: CdkColumnDef,
+      useExisting: TsColumnDefDirective,
+    },
+  ],
 })
 export class TsColumnDefDirective extends CdkColumnDef {
   // NOTE(B$): We must rename here so that the property matches the extended CdkColumnDef class
@@ -168,4 +182,16 @@ export class TsColumnDefDirective extends CdkColumnDef {
    */
   @Input()
   public alignment: TsTableColumnAlignment | undefined;
+
+  /**
+   * Define stickiness for the column
+   */
+  @Input()
+  public sticky = false;
+
+  /**
+   * Define if a column should stick to the end
+   */
+  @Input()
+  public stickyEnd = false;
 }
