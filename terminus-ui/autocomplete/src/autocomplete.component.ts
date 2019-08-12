@@ -27,13 +27,13 @@ import {
 } from '@angular/forms';
 import { MatChipList } from '@angular/material';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { isString } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
-  isString,
-  TsDocumentService,
   untilComponentDestroyed,
-} from '@terminus/ngx-tools';
-import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+} from '@terminus/ngx-tools/utilities';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
   TS_OPTION_PARENT_COMPONENT,

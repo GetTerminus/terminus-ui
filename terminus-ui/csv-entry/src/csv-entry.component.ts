@@ -21,14 +21,12 @@ import {
   FormGroup,
   ValidatorFn,
 } from '@angular/forms';
-import {
-  TsDocumentService,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
   coerceBooleanProperty,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { stripControlCharacters } from '@terminus/ui/utilities';
 import { debounceTime } from 'rxjs/operators';

@@ -1,4 +1,4 @@
-import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
 import { createFakeEvent } from '@terminus/ngx-tools/testing';
 
 import { TsDropProtectionService } from './drop-protection.service';

@@ -18,12 +18,12 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
+import { TsDocumentServiceMock } from '@terminus/ngx-tools/browser/testing';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createKeyboardEvent,
-  TsDocumentServiceMock,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
 import {

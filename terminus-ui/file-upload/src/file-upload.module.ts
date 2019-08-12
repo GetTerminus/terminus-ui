@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsIconButtonModule } from '@terminus/ui/icon-button';

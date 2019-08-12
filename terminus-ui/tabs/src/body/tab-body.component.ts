@@ -16,10 +16,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  isNumber,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { isNumber } from '@terminus/ngx-tools/type-guards';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import {
   Subject,
   Subscription,

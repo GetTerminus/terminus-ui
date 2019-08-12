@@ -10,14 +10,15 @@ import {
   Output,
 } from '@angular/core';
 import {
-  CanDisable, mixinDisabled,
+  CanDisable,
+  mixinDisabled,
 } from '@angular/material/core';
-import { Subject } from 'rxjs';
-
 import {
   isNull,
   isUndefined,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/type-guards';
+import { Subject } from 'rxjs';
+
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,

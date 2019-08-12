@@ -23,12 +23,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  isNumber,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { isNumber } from '@terminus/ngx-tools/type-guards';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import {
   fromEvent,
   Subject,

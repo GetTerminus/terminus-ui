@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
 
 
 @Injectable()

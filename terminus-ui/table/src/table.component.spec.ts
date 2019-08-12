@@ -12,11 +12,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TsWindowService } from '@terminus/ngx-tools';
-import {
-  createComponent as createComponentInner,
-  TsWindowServiceMock,
-} from '@terminus/ngx-tools/testing';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
+import { TsWindowServiceMock } from '@terminus/ngx-tools/browser/testing';
+import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import {
   TsPaginatorComponent,
   TsPaginatorModule,

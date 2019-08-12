@@ -1,4 +1,4 @@
-import { isSet } from '@terminus/ngx-tools';
+import { isSet } from '@terminus/ngx-tools/type-guards';
 
 
 /**

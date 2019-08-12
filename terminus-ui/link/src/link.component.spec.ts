@@ -13,7 +13,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { getDomAttribute } from '@terminus/ngx-tools';
+import { getDomAttribute } from '@terminus/ngx-tools/browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 

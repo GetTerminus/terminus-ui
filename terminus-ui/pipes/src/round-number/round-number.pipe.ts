@@ -2,7 +2,7 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import { roundNumber } from '@terminus/ngx-tools';
+import { roundNumber } from '@terminus/ngx-tools/utilities';
 
 
 /**

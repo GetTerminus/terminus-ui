@@ -4,9 +4,9 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { isNumber } from '@terminus/ngx-tools/type-guards';
 import { isAbstractControl } from '@terminus/ui/utilities';
 
-import { isNumber } from '@terminus/ngx-tools';
 
 
 /**

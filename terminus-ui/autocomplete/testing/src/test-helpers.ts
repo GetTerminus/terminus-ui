@@ -4,8 +4,8 @@ import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
 import { TsAutocompleteComponent } from '@terminus/ui/autocomplete';
 import {
-  TsOptionComponent,
   TsOptgroupComponent,
+  TsOptionComponent,
 } from '@terminus/ui/option';
 
 /**

@@ -24,10 +24,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import {
-  TsDocumentService,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import {
   of,
   scheduled,

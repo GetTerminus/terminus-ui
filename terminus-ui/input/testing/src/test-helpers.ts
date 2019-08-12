@@ -44,7 +44,7 @@ export function getInputElement(fixture: ComponentFixture<any>, index = 0): HTML
   if (!instance.inputElement) {
     throw new Error(`'getInputElement' found no input elements at index '${index}'`);
   }
-  return instance.inputElement.nativeElement as HTMLInputElement;
+  return instance.inputElement.nativeElement;
 }
 
 /**

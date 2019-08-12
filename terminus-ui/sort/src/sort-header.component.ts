@@ -17,11 +17,9 @@ import {
   CanDisable,
   mixinDisabled,
 } from '@angular/material/core';
-import {
-  isBoolean,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { isBoolean } from '@terminus/ngx-tools/type-guards';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { merge } from 'rxjs';
 
 import { tsSortAnimations } from './sort-animations';

@@ -421,7 +421,7 @@ export class ToggleInputComponent {
 
   @ViewChild(TsInputComponent, {static: false})
   inputComponent!: TsInputComponent;
-  public show: boolean = true;
+  public show = true;
 }
 
 
