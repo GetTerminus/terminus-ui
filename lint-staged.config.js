@@ -3,7 +3,7 @@ const micromatch = require('micromatch')
 module.exports = {
 
   // Target TESTING files
-  '**/testing/**': [
+  '**/testing/**/*.ts': [
     `yarn run lint:tslint:spec:fix`,
     `git add`,
   ],
