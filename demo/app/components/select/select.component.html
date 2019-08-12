@@ -252,7 +252,7 @@
 
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle tsVerticalSpacing>
-      Single Select w/ Filtering & refresh request
+      Single Select w/ Filtering, refresh request, & high count message
     </h3>
 
     <ts-select
@@ -262,6 +262,8 @@
       [formControl]="myForm.get('myChoices1')"
       [compareWith]="comparator"
       [showRefresh]="true"
+      [showRefineSearchMessage]="true"
+      [totalHiddenResults]="972"
       (selectionChange)="isChanged($event)"
       (queryChange)="onFilterOptions($event)"
       (optionSelected)="isSelected($event)"

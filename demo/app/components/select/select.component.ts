@@ -13,7 +13,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 

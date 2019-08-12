@@ -30,6 +30,7 @@
   - [Custom Sort Comparator](#custom-sort-comparator)
   - [Filterable](#filterable)
   - [Allow user to request update](#allow-user-to-request-update)
+  - [Prompt the user to refine their search](#prompt-the-user-to-refine-their-search)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -404,6 +405,45 @@ There are times where the data may change after it is loaded. The `showRefresh` 
 >
   ...
 </ts-select>
+```
+
+
+### Prompt the user to refine their search
+
+For certain queries it is not always possible to return all options. In those cases, we should prompt the user to refine their search for
+better results.
+
+```html
+<ts-select
+  [formControl]="myCtrl"
+  [showRefineSearchMessage]="true"
+>
+  ...
+</ts-select>
+```
+
+This will show a message below all existing options:
+
+```bash
+Narrow your search to reveal hidden results.
+```
+
+If the `totalHiddenResults` input is defined, the count will be included in the message:
+
+```html
+<ts-select
+  [formControl]="myCtrl"
+  [showRefineSearchMessage]="true"
+  [totalHiddenResults]="972"
+>
+  ...
+</ts-select>
+```
+
+This will show a message below all existing options:
+
+```bash
+Narrow your search to reveal 972 hidden results.
 ```
 
 
