@@ -1,9 +1,9 @@
-import { noop } from '@terminus/ngx-tools';
 import {
-  ElementRefMock,
   TsDocumentServiceMock,
   TsWindowServiceMock,
-} from '@terminus/ngx-tools/testing';
+} from '@terminus/ngx-tools/browser/testing';
+import { ElementRefMock } from '@terminus/ngx-tools/testing';
+import { noop } from '@terminus/ngx-tools/utilities';
 
 import { TsCopyComponent } from './copy.component';
 

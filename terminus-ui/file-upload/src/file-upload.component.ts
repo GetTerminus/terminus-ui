@@ -21,16 +21,14 @@ import {
   FormControl,
   ValidationErrors,
 } from '@angular/forms';
-import {
-  isNumber,
-  TsDocumentService,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { isNumber } from '@terminus/ngx-tools/type-guards';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   ControlValueAccessorProviderFactory,

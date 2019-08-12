@@ -16,8 +16,8 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import {
   EMPTY,
   merge,

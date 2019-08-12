@@ -14,7 +14,7 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { BehaviorSubject } from 'rxjs';
 

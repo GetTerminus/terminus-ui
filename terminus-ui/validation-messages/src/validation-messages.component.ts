@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 
 import { TsValidationMessagesService } from './validation-messages.service';
 

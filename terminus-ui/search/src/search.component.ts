@@ -13,7 +13,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { debounce } from '@terminus/ngx-tools';
+import { debounce } from '@terminus/ngx-tools/utilities';
 import {
   TsButtonActionTypes,
   TsButtonFunctionTypes,

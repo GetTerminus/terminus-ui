@@ -13,7 +13,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
 
 import { TsLoadingOverlayComponent } from './loading-overlay.component';
 

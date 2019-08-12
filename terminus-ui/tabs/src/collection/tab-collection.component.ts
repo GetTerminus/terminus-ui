@@ -14,8 +14,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
   merge,

@@ -3,7 +3,7 @@ import {
   Input,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { noop } from '@terminus/ngx-tools';
+import { noop } from '@terminus/ngx-tools/utilities';
 
 
 /**

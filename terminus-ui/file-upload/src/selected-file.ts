@@ -1,5 +1,5 @@
 import { isDevMode } from '@angular/core';
-import { isString } from '@terminus/ngx-tools';
+import { isString } from '@terminus/ngx-tools/type-guards';
 import { BehaviorSubject } from 'rxjs';
 
 import { ImageRatio } from './file-upload.module';

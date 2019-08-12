@@ -13,7 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {

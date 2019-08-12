@@ -33,18 +33,20 @@ import {
   NgControl,
 } from '@angular/forms';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
-import {
-  hasRequiredControl,
-  isString,
-  isUndefined,
-  TsDocumentService,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
   coerceArray,
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import {
+  isString,
+  isUndefined,
+} from '@terminus/ngx-tools/type-guards';
+import {
+  hasRequiredControl,
+  untilComponentDestroyed,
+} from '@terminus/ngx-tools/utilities';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
   allOptionsAreSelected,

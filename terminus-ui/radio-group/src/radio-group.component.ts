@@ -13,11 +13,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isFunction } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
-  isFunction,
   untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/utilities';
 import {
   ControlValueAccessorProviderFactory,
   TsReactiveFormBaseComponent,

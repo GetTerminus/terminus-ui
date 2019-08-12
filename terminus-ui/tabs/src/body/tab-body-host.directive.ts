@@ -8,7 +8,7 @@ import {
   OnInit,
   ViewContainerRef,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 

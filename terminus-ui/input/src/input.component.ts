@@ -32,13 +32,13 @@ import {
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
+import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { isNumber } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
-  isNumber,
   noop,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
-import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+} from '@terminus/ngx-tools/utilities';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import { TsDatePipe } from '@terminus/ui/pipes';
 import { TS_SPACING } from '@terminus/ui/spacing';

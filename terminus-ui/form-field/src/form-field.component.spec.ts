@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TsDocumentService } from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
   createComponent as createComponentInner,
   createFakeEvent,

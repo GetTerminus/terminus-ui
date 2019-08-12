@@ -20,8 +20,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsButtonComponent } from '@terminus/ui/button';
 import { merge } from 'rxjs';
 

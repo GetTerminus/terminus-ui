@@ -23,13 +23,11 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import {
-  isBoolean,
-  isUnset,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { isBoolean } from '@terminus/ngx-tools/type-guards';
+import { isUnset } from '@terminus/ngx-tools/utilities';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
 import {
   countGroupLabelsBeforeOption,

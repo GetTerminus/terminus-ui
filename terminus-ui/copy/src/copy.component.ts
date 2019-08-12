@@ -9,7 +9,7 @@ import {
 import {
   TsDocumentService,
   TsWindowService,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/browser';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 

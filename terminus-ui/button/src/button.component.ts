@@ -13,7 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
 import {
   TsStyleThemeTypes,
   tsStyleThemeTypesArray,

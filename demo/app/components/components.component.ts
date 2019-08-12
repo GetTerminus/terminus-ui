@@ -8,7 +8,7 @@ import {
   NavigationEnd,
   Router,
 } from '@angular/router';
-import { VERSION as NGX_VERSION } from '@terminus/ngx-tools';
+import { VERSION as NGX_VERSION } from '@terminus/ngx-tools/utilities';
 import { VERSION as UI_VERSION } from '@terminus/ui';
 import { componentsList } from './components.constant';
 

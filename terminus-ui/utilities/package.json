@@ -3,7 +3,8 @@
     "lib": {
       "entryFile": "src/public-api.ts",
       "umdModuleIds": {
-        "@terminus/ngx-tools": "terminus.ngxTools"
+        "@terminus/ngx-tools/utilities": "terminus.ngxTools.utilities",
+        "@terminus/ngx-tools/type-guards": "terminus.ngxTools.type-guards"
       }
     }
   }
