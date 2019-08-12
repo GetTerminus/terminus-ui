@@ -1260,4 +1260,32 @@ describe(`TsSelectComponent`, function() {
 
   });
 
+
+  describe.only(`showRefineSearchMessage`, function() {
+
+    test(`should not show the message by default`, function() {
+      const fixture = createComponent(testComponents.Basic);
+      const refineDom = fixture.debugElement.query(By.css('.ts-select-panel__refine'));
+
+      expect(refineDom).toBeFalsy();
+    });
+
+
+    test(`should show the message with a count if defined`, function() {
+      const fixture = createComponent<testComponents.TooManyResults>(testComponents.TooManyResults);
+      fixture.detectChanges();
+      openSelect(fixture);
+
+      let refineDom = fixture.debugElement.query(By.css('.ts-select-panel__refine'));
+      expect(refineDom.nativeElement.textContent.trim()).toEqual('Narrow your search to reveal hidden results.');
+
+      fixture.componentInstance.total = 99;
+      fixture.detectChanges();
+
+      refineDom = fixture.debugElement.query(By.css('.ts-select-panel__refine'));
+      expect(refineDom.nativeElement.textContent.trim()).toEqual('Narrow your search to reveal 99 hidden results.');
+    });
+
+  });
+
 });

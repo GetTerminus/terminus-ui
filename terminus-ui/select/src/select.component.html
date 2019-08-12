@@ -119,6 +119,13 @@
         Refresh &amp; reload to bring in new choices.
       </span>
     </div>
+
+    <div
+      class="ts-select-panel__refine"
+      *ngIf="showRefineSearchMessage"
+    >
+      Narrow your search to reveal {{ totalHiddenResults ? totalHiddenResults + ' ' : '' }}hidden results.
+    </div>
   </div>
 </ng-template>
 

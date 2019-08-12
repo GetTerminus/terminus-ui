@@ -198,10 +198,12 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
  *              label="My label!"
  *              placeholder="My placeholder!"
  *              [showProgress]="true"
+ *              [showRefineSearchMessage]="true"
  *              [showRefresh]="true"
  *              [sortComparator]="myComparator"
  *              tabIndex="-1"
  *              theme="primary"
+ *              [totalHiddenResults]="1278"
  *              [validateOnChange]="true"
  *              value="My value!"
  *              (closed)="panelWasClosed($event)"
@@ -649,6 +651,12 @@ export class TsSelectComponent implements
   public showProgress = false;
 
   /**
+   * Define if the component should expose a message telling the user to refine their search
+   */
+  @Input()
+  public showRefineSearchMessage = false;
+
+  /**
    * Define if the select should show an option to trigger a refresh (by emitting an event)
    */
   @Input()
@@ -681,6 +689,12 @@ export class TsSelectComponent implements
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
+
+  /**
+   * Define the total number of records
+   */
+  @Input()
+  public totalHiddenResults: undefined | number;
 
   /**
    * Define if validation messages should be shown immediately or on blur
