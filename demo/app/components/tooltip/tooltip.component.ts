@@ -7,7 +7,7 @@ import { TsTooltipPositionTypes } from '@terminus/ui/tooltip';
   templateUrl: './tooltip.component.html',
 })
 export class TooltipComponent {
-  myTooltip = 'Here is my content';
+  myTooltip = 'Here is my content.';
   myPosition: TsTooltipPositionTypes = 'below';
   showUnderline = true;
 }
