@@ -1,3 +1,10 @@
+# [14.7.0](https://github.com/GetTerminus/terminus-ui/compare/v14.6.0...v14.7.0) (2019-08-15)
+
+
+### Features
+
+* **Tooltip:** styles match our palette ([e84b2fd](https://github.com/GetTerminus/terminus-ui/commit/e84b2fd)), closes [#1635](https://github.com/GetTerminus/terminus-ui/issues/1635)
+
 # [14.6.0](https://github.com/GetTerminus/terminus-ui/compare/v14.5.0...v14.6.0) (2019-08-15)
 
 
