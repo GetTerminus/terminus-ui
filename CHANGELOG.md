@@ -1,3 +1,10 @@
+# [14.6.0](https://github.com/GetTerminus/terminus-ui/compare/v14.5.0...v14.6.0) (2019-08-15)
+
+
+### Features
+
+* **Select:** expose prompt to tell users to refine their search ([6fb7144](https://github.com/GetTerminus/terminus-ui/commit/6fb7144)), closes [#1573](https://github.com/GetTerminus/terminus-ui/issues/1573)
+
 # [14.5.0](https://github.com/GetTerminus/terminus-ui/compare/v14.4.0...v14.5.0) (2019-08-07)
 
 
