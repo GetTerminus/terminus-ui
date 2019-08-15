@@ -3,14 +3,28 @@ import {
   Component,
   ElementRef,
   Input,
-  ViewChild,
+  isDevMode, QueryList,
+  ViewChild, ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools/browser';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import { TsTooltipComponent } from '@terminus/ui/tooltip';
+import {
+  TsStyleThemeTypes,
+  TsUILibraryError,
+} from '@terminus/ui/utilities';
+
+
+
+
+export type TsCopyDisplayFormat
+  = 'standard'
+  | 'minimal'
+  | 'icon'
+;
 
 
 /**
@@ -34,7 +48,15 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
   selector: 'ts-copy',
   templateUrl: './copy.component.html',
   styleUrls: ['./copy.component.scss'],
-  host: {class: 'ts-copy'},
+  host: {
+    'class': 'ts-copy',
+    '[class.ts-copy--standard]': 'format === "standard"',
+    '[class.ts-copy--minimal]': 'format === "minimal"',
+    '[class.ts-copy--icon]': 'format === "icon"',
+    '[class.ts-copy--primary]': 'theme === "primary"',
+    '[class.ts-copy--accent]': 'theme === "accent"',
+    '[class.ts-copy--warn]': 'theme === "warn"',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCopy',
@@ -74,6 +96,12 @@ export class TsCopyComponent {
   public content!: ElementRef;
 
   /**
+   * Define access to all tooltip instances
+   */
+  @ViewChildren(TsTooltipComponent)
+  public tooltipCollection!: QueryList<TsTooltipComponent>;
+
+  /**
    * Define if the initial click should select the contents
    */
   @Input()
@@ -83,7 +111,29 @@ export class TsCopyComponent {
    * Define if the copy to clipboard functionality is enabled
    */
   @Input()
-  public enableQuickCopy = false;
+  public enableQuickCopy = true;
+
+  /**
+   * Define the UI style
+   */
+  @Input()
+  public set format(value: TsCopyDisplayFormat) {
+    this._format = value ? value : 'standard';
+
+    if (this.format === 'icon' && !this.enableQuickCopy) {
+      this.enableQuickCopy = true;
+
+      // istanbul ignore else
+      if (isDevMode()) {
+        throw new TsUILibraryError(`'enableQuickCopy' must be set to 'true' when using the icon only display mode`);
+      }
+    }
+  }
+  public get format(): TsCopyDisplayFormat {
+    return this._format;
+  }
+  private _format: TsCopyDisplayFormat = 'standard';
+
 
   /**
    * Define the component theme
@@ -107,14 +157,8 @@ export class TsCopyComponent {
    * @return The text content of the inner <ng-content>
    */
   public get textContent(): string {
-    const hasInnerText =
-      this.content && this.content.nativeElement && this.content.nativeElement.innerText;
-
-    if (hasInnerText) {
-      return this.content.nativeElement.innerText;
-    }
-    return '';
-
+    const hasInnerText = this.content && this.content.nativeElement && this.content.nativeElement.innerText;
+    return hasInnerText ? this.content.nativeElement.innerText : '';
   }
 
 

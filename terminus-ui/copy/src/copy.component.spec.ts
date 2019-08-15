@@ -4,6 +4,7 @@ import {
 } from '@terminus/ngx-tools/browser/testing';
 import { ElementRefMock } from '@terminus/ngx-tools/testing';
 import { noop } from '@terminus/ngx-tools/utilities';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 
 import { TsCopyComponent } from './copy.component';
 
@@ -20,36 +21,38 @@ describe(`TsCopyComponent`, function() {
   });
 
 
-  it(`should exist`, () => {
+  test(`should exist`, () => {
     expect(component).toBeTruthy();
   });
 
   describe(`disableInitialSelection`, () => {
+
     test(`should set and retrieve`, () => {
       component.disableInitialSelection = true;
       expect(component.disableInitialSelection).toEqual(true);
     });
+
   });
 
   describe(`enableQuickCopy`, () => {
+
     test(`should set and retrieve`, () => {
       component.enableQuickCopy = true;
       expect(component.enableQuickCopy).toEqual(true);
     });
+
   });
 
   describe(`get textContent()`, () => {
 
-    it(`should return the content if accessible`, () => {
+    test(`should return the content if accessible`, () => {
       component.content.nativeElement.innerText = 'foo';
-
       expect(component.textContent).toEqual('foo');
     });
 
 
-    it(`should return an empty string if the content is not accessible`, () => {
+    test(`should return an empty string if the content is not accessible`, () => {
       component.content.nativeElement.innerText = null;
-
       expect(component.textContent).toEqual('');
     });
 
@@ -58,17 +61,17 @@ describe(`TsCopyComponent`, function() {
 
   describe(`selectText()`, () => {
 
-    it(`should return false if disabled`, () => {
+    test(`should return false if disabled`, () => {
       expect(component.selectText(component.content, false, true)).toEqual(false);
     });
 
 
-    it(`should return if already selected`, () => {
+    test(`should return if already selected`, () => {
       expect(component.selectText(component.content, true, false)).toEqual(false);
     });
 
 
-    it(`should select the text within the passed in element`, () => {
+    test(`should select the text within the passed in element`, () => {
       component['window'].getSelection = jest.fn().mockReturnValue({
         removeAllRanges: noop,
         addRange: noop,
@@ -87,7 +90,7 @@ describe(`TsCopyComponent`, function() {
 
   describe(`resetSelection()`, () => {
 
-    it(`should set the flag to false`, () => {
+    test(`should set the flag to false`, () => {
       component.hasSelected = true;
 
       expect(component.hasSelected).toEqual(true);
@@ -117,7 +120,7 @@ describe(`TsCopyComponent`, function() {
     });
 
 
-    it(`should set the text to the clipboard`, () => {
+    test(`should set the text to the clipboard`, () => {
       component['document'].body.appendChild = jest.fn();
       component['document'].execCommand = jest.fn();
       component.copyToClipboard('foo');
@@ -129,15 +132,34 @@ describe(`TsCopyComponent`, function() {
     });
 
 
-    it(`should fall back to a prompt if execCommand fails`, () => {
+    test(`should fall back to a prompt if execCommand fails`, () => {
       component['document'].execCommand = () => {
         throw new Error('fake error');
       };
       component['window'].prompt = jest.fn();
-
       component.copyToClipboard('foo');
 
       expect(component['window'].prompt).toHaveBeenCalled();
+    });
+
+  });
+
+
+  describe(`format`, () => {
+
+    test(`should set a default format and allow custom`, () => {
+      expect(component.format).toEqual('standard');
+      component.format = 'minimal';
+      expect(component.format).toEqual('minimal');
+    });
+
+
+    test(`should throw an error if consumer ues icon mode without quick copy enabled`, () => {
+      component.enableQuickCopy = false;
+      const actual = () => {
+        component.format = 'icon';
+      };
+      expect(actual).toThrowError(Error);
     });
 
   });
