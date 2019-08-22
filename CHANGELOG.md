@@ -1,3 +1,10 @@
+## [14.8.1](https://github.com/GetTerminus/terminus-ui/compare/v14.8.0...v14.8.1) (2019-08-22)
+
+
+### Bug Fixes
+
+* **autocomplete:** add comparator/formatter. fix things ([aeb09a8](https://github.com/GetTerminus/terminus-ui/commit/aeb09a8))
+
 # [14.8.0](https://github.com/GetTerminus/terminus-ui/compare/v14.7.0...v14.8.0) (2019-08-22)
 
 
