@@ -101,7 +101,9 @@
       "contributions": [
         "code",
         "ideas",
-        "test"
+        "test",
+        "design",
+        "bug"
       ]
     },
     {
@@ -135,5 +137,7 @@
       ]
     }
   ],
-  "repoType": "github"
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
 }
