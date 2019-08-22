@@ -15,9 +15,10 @@
       hint="Begin typing to select.."
       [formControl]="stateCtrl"
       [allowMultiple]="true"
-      [allowDuplicateSelections]="true"
+      [allowDuplicateSelections]="false"
       [reopenAfterSelection]="false"
       [showProgress]="fakeAsync"
+      [displayFormatter]="formatter"
       (queryChange)="queryHasChanged($event)"
       (duplicateSelection)="duplicate($event)"
       tsVerticalSpacing
@@ -58,6 +59,7 @@
       [allowDuplicateSelections]="true"
       [reopenAfterSelection]="false"
       [showProgress]="fakeAsync"
+      [displayFormatter]="formatter"
       (queryChange)="queryHasChanged($event)"
       (duplicateSelection)="duplicate($event)"
       tsVerticalSpacing

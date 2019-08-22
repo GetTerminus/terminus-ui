@@ -350,14 +350,13 @@ describe(`TsAutocompleteComponent`, function() {
 
         // Verify the selection DID work
         chips = getAllChipInstances(fixture);
-        expect(chips.length).toEqual(1);
+        expect(chips.length).toEqual(2);
         const autocomplete = getAutocompleteInstance(fixture);
         const option = autocomplete.options.find(o => o.value === states[4]);
-        expect(autocomplete.autocompleteSelections).toEqual([option]);
         expect(autocomplete.autocompleteFormControl.value.length).toEqual(2);
         expect(autocomplete.autocompleteFormControl.value).toEqual([states[4], states[4]]);
 
-        expect.assertions(5);
+        expect.assertions(4);
       }));
 
     });
@@ -432,8 +431,6 @@ describe(`TsAutocompleteComponent`, function() {
 
       const instance = getAutocompleteInstance(fixture);
       expect(instance.autocompleteFormControl.value).toEqual([states[4]]);
-      expect(instance.autocompleteSelections.length).toEqual(1);
-      expect(instance.autocompleteSelections[0]).toEqual(instance.options.find(opt => opt.value === states[4]));
     }));
 
     test(`should allow a value seeded by a FormControl`, fakeAsync(function() {
@@ -710,5 +707,19 @@ describe(`TsAutocompleteComponent`, function() {
 
   });
 
+  test('onContainerClick', () => {
+    const fixture = createComponent(testComponents.SeededAutocomplete);
+    const autocomplete = getAutocompleteInstance(fixture);
+    autocomplete.focus = jest.fn();
+    autocomplete.onContainerClick();
+    expect(autocomplete.focus).toHaveBeenCalled();
+  });
+
+  test('value getter/setter', () => {
+    const fixture = createComponent(testComponents.SeededAutocomplete);
+    const autocomplete = getAutocompleteInstance(fixture);
+    autocomplete.value = 'testing';
+    expect(autocomplete.value).toEqual('testing');
+  });
 
 });
