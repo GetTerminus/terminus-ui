@@ -1,3 +1,10 @@
+# [14.8.0](https://github.com/GetTerminus/terminus-ui/compare/v14.7.0...v14.8.0) (2019-08-22)
+
+
+### Features
+
+* **Autocomplete:** chip display based on option view ([6b4cca2](https://github.com/GetTerminus/terminus-ui/commit/6b4cca2))
+
 # [14.7.0](https://github.com/GetTerminus/terminus-ui/compare/v14.6.0...v14.7.0) (2019-08-15)
 
 
