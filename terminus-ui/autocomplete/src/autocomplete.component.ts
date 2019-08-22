@@ -1,7 +1,6 @@
 // NOTE: A method must be used to dynamically format values for the UI
 // tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -29,7 +28,6 @@ import { MatChipList } from '@angular/material';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { isString } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
   untilComponentDestroyed,
@@ -54,6 +52,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+import { isArray } from '@terminus/ngx-tools';
 import {
   TsAutocompletePanelComponent,
   TsAutocompletePanelSelectedEvent,
@@ -142,6 +141,7 @@ export class TsAutocompleteChange<T = string[] | string> {
 })
 export class TsAutocompleteComponent implements OnInit,
   AfterViewInit,
+  AfterContentInit,
   OnDestroy,
   TsFormFieldControl<string> {
 
@@ -158,7 +158,7 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * An array of selected values
    */
-  public autocompleteSelections: string[] = [];
+  public autocompleteSelections: TsOptionComponent[] = [];
 
   /**
    * Store a reference to the document object
@@ -504,9 +504,11 @@ export class TsAutocompleteComponent implements OnInit,
     // eslint-disable-next-line dot-notation
     if (this.ngControl && this.ngControl['form']) {
       // istanbul ignore else
-      if (this.ngControl.value) {
+      if (this.ngControl.value && !isArray(this.ngControl.value)) {
+        throw Error('form control values must be an array of values');
+      } else if (this.ngControl.value) {
         this.autocompleteFormControl.setValue(this.ngControl.value);
-        this.autocompleteSelections = this.ngControl.value;
+        this.setSelections();
       }
 
       // Support dynamic form control updates
@@ -518,7 +520,7 @@ export class TsAutocompleteComponent implements OnInit,
             // istanbul ignore else
             if (newValue) {
               this.autocompleteFormControl.setValue(newValue, { emitEvent: false });
-              this.autocompleteSelections = this.ngControl.value;
+              this.setSelections();
             }
           });
       }
@@ -528,8 +530,11 @@ export class TsAutocompleteComponent implements OnInit,
       setTimeout(() => {
         // istanbul ignore else
         if (this.ngControl && this.ngControl.value) {
+          if (!isArray(this.ngControl.value)) {
+            throw Error('ngModel must be an array of values');
+          }
           this.autocompleteFormControl.setValue(this.ngControl.value);
-          this.autocompleteSelections = this.ngControl.value;
+          this.setSelections();
         }
       });
     }
@@ -585,6 +590,12 @@ export class TsAutocompleteComponent implements OnInit,
 
   }
 
+  public ngAfterContentInit(): void {
+    this.setSelections();
+    this.options.changes
+      .pipe(untilComponentDestroyed(this))
+      .subscribe(() => this.setSelections());
+  }
 
   /**
    * Needed for untilComponentDestroyed
@@ -782,10 +793,8 @@ export class TsAutocompleteComponent implements OnInit,
    * @param selection - The item to select
    */
   public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
-    if (!isString(selection.option.value)) {
-      throw Error('The value passing into autocomplete has to be string type');
-    }
-    const isDuplicate = this.autocompleteSelections.indexOf(selection.option.value) >= 0;
+    const isDuplicate = this.autocompleteSelections
+      .findIndex(s => selection.option.value === s.value) >= 0;
 
     // istanbul ignore else
     if (isDuplicate) {
@@ -806,22 +815,19 @@ export class TsAutocompleteComponent implements OnInit,
       }
 
       // Add to the collection
-      const newSelection = this.autocompleteSelections.slice();
-      newSelection.push(selection.option.value);
-      this.autocompleteSelections = newSelection;
+      this.autocompleteSelections = this.autocompleteSelections.concat(selection.option);
 
       // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
+      this.autocompleteFormControl.setValue(this.autocompleteSelections.map(s => s.value));
     } else {
       // Update the selected value
-      this.autocompleteSelections = [selection.option.value];
+      this.autocompleteSelections = [selection.option];
 
       // Update the form control
-      this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
+      this.autocompleteFormControl.setValue(this.autocompleteSelections.map(s => s.value));
 
       // In single selection mode, set the query input to the selection so the user can see what was selected
-      const newValue = this.autocompleteFormControl.value[0];
-      this.inputElement.nativeElement.value = newValue;
+      this.inputElement.nativeElement.value = selection.option.viewValue;
     }
 
     // Update the panel position in case the addition of a chip causes the select height to change
@@ -833,7 +839,7 @@ export class TsAutocompleteComponent implements OnInit,
 
     // Notify consumers about changes
     this.optionSelected.emit(new TsAutocompleteChange(this, selection.option.value));
-    this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteSelections));
+    this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteSelections.map(s => s.value)));
   }
 
 
@@ -842,9 +848,9 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * @param value - The value of the item to remove
    */
-  public autocompleteDeselectItem(value: string): void {
+  public autocompleteDeselectItem(option: TsOptionComponent): void {
     // Find the key of the selection in the selectedOptions array
-    const index = this.autocompleteSelections.indexOf(value);
+    const index = this.autocompleteSelections.findIndex(s => s.value === option.value);
     const selections = this.autocompleteSelections.slice();
     // If not found
     if (index < 0) {
@@ -856,7 +862,7 @@ export class TsAutocompleteComponent implements OnInit,
     this.autocompleteSelections = selections;
 
     // Update the form control
-    this.autocompleteFormControl.setValue(this.autocompleteSelections.slice());
+    this.autocompleteFormControl.setValue(this.autocompleteSelections.map(s => s.value));
 
     // If the only chip was removed, re-focus the input
     // istanbul ignore else
@@ -874,8 +880,8 @@ export class TsAutocompleteComponent implements OnInit,
     });
 
     // Notify consumers about changes
-    this.optionDeselected.emit(new TsAutocompleteChange(this, value));
-    this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteSelections.slice()));
+    this.optionDeselected.emit(new TsAutocompleteChange(this, option.value));
+    this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteSelections.map(s => s.value)));
   }
 
 
@@ -887,6 +893,16 @@ export class TsAutocompleteComponent implements OnInit,
    */
   public trackByFn(index): number {
     return index;
+  }
+
+  /**
+   * Finds the options that have been selected.
+   */
+  private setSelections(): void  {
+    if (this.ngControl && this.ngControl.value && this.options) {
+      this.autocompleteSelections = this.options.filter(opt => this.ngControl.value.indexOf(opt.value) >= 0);
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
 }
