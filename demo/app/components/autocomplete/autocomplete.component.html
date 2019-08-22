@@ -7,7 +7,7 @@
     fxLayoutGap="1rem"
   >
     <h3 tsCardTitle tsVerticalSpacing="small--1">
-      Autocomplete w/ Multiple
+      Autocomplete
     </h3>
 
     <ts-autocomplete
@@ -24,7 +24,7 @@
     >
 
       <ts-option
-        [value]="state"
+        [value]="state.name"
         [option]="state"
         *ngFor="let state of filteredStates | async"
       >
@@ -35,46 +35,6 @@
 
     <div>
       FormControl value: {{ stateCtrl.value | json }}
-    </div>
-  </form>
-</ts-card>
-
-<ts-card tsVerticalSpacing fxFlex>
-  <form
-    novalidate
-    fxLayout="column"
-    fxLayout.gt-sm="row"
-    fxLayoutGap="1rem"
-  >
-    <h3 tsCardTitle tsVerticalSpacing="small--1">
-      Autocomplete w/ Single
-    </h3>
-
-    <ts-autocomplete
-      label="Autocomplete Example"
-      hint="Begin typing to select.."
-      [formControl]="singleStateCtrl"
-      [allowMultiple]="false"
-      [allowDuplicateSelections]="true"
-      [reopenAfterSelection]="false"
-      [showProgress]="fakeAsync"
-      (queryChange)="queryHasChanged($event)"
-      (duplicateSelection)="duplicate($event)"
-      tsVerticalSpacing
-    >
-
-      <ts-option
-        [value]="state"
-        [option]="state"
-        *ngFor="let state of filteredStates | async"
-      >
-        {{ state.name }}
-      </ts-option>
-
-    </ts-autocomplete>
-
-    <div>
-      FormControl value: {{ singleStateCtrl.value | json }}
     </div>
   </form>
 </ts-card>

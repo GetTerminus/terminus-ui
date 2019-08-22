@@ -8,6 +8,7 @@ import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
+  Validator,
   Validators,
 } from '@angular/forms';
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
@@ -20,7 +21,7 @@ interface State {
   disabled?: boolean;
 }
 
-export const STATES: State[] = [
+const STATES: State[] = [
   {
     name: 'Arkansas',
     population: '2.978M',
@@ -166,7 +167,7 @@ const STATES_GROUPED: GroupedStates[] = [
     >
       <ts-option
         *ngFor="let option of states"
-        [value]="option"
+        [value]="option.slug"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
@@ -197,7 +198,7 @@ export class Autocomplete {
     >
       <ts-option
         *ngFor="let option of states"
-        [value]="option"
+        [value]="option.slug"
         [option]="option"
       >
         {{ option.foo }}
@@ -221,7 +222,7 @@ export class AutocompleteRequired {
     >
       <ts-option
         *ngFor="let option of states"
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
@@ -233,8 +234,8 @@ export class AutocompleteRequired {
   `,
 })
 export class SeededAutocomplete {
+  public myCtrl = new FormControl(['Florida']);
   public states: State[] = STATES.slice();
-  public myCtrl = new FormControl([STATES[4]]);
   public allowMultiple = true;
   public allowDuplicates = false;
   public keepOpen = false;
@@ -265,8 +266,8 @@ export class SeededAutocomplete {
   `,
 })
 export class PassingInObjectValue {
+  public myCtrl = new FormControl([{name: 'Florida'}]);
   public states: State[] = STATES.slice();
-  public myCtrl = new FormControl([STATES[4]]);
   public allowMultiple = false;
   public allowDuplicates = false;
   public keepOpen = false;
@@ -282,7 +283,7 @@ export class PassingInObjectValue {
     >
       <ts-option
         *ngFor="let option of states"
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
@@ -294,29 +295,8 @@ export class PassingInObjectValue {
   `,
 })
 export class SeededNgModelAutocomplete {
-  public myModel = [STATES[4]];
+  public myModel = ['Florida'];
   public states: State[] = STATES.slice();
-}
-
-@Component({
-  template: `
-    <ts-autocomplete [formControl]="meow">
-      <ts-option
-        *ngFor="let option of states"
-        [value]="option"
-        [option]="option"
-        [isDisabled]="option?.disabled"
-      >
-        <span tsOptionDisplay>
-          {{ option.name }}
-        </span>
-      </ts-option>
-    </ts-autocomplete>
-  `,
-})
-export class SeededNonArrayAutocomplete {
-  public states: State[] = STATES.slice();
-  public meow = new FormControl(this.states[0]);
 }
 
 @Component({
@@ -328,7 +308,7 @@ export class SeededNonArrayAutocomplete {
     >
       <ts-option
         *ngFor="let option of states"
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
       >
@@ -353,7 +333,7 @@ export class AutocompleteAllowMultipleNoReopen {
       (opened)="wasOpened($event)"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -376,7 +356,7 @@ export class Disabled {
       [allowMultiple]="true"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -385,7 +365,7 @@ export class Disabled {
   `,
 })
 export class SelectOptionChange {
-  public myCtrl = new FormControl([STATES[3], STATES[4]]);
+  public myCtrl = new FormControl(['Texas', 'Florida']);
   public options: State[] = STATES.slice(0, 10);
 
   public updateOptions() {
@@ -459,7 +439,7 @@ export class CustomCompareFn {
   template: `
     <ts-autocomplete [formControl]="myCtrl">
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of items"
@@ -468,7 +448,7 @@ export class CustomCompareFn {
   `,
 })
 export class DeferOptionSelectionStream {
-  public myCtrl = new FormControl([STATES[4]]);
+  public myCtrl = new FormControl('Florida');
   public items: any[] = [];
 
   public updateOptions() {
@@ -483,7 +463,7 @@ export class DeferOptionSelectionStream {
       (queryChange)="change($event)"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -492,7 +472,7 @@ export class DeferOptionSelectionStream {
   `,
 })
 export class Debounce {
-  public myCtrl = new FormControl([STATES[3], STATES[4]]);
+  public myCtrl = new FormControl(['Florida', 'Texas']);
   public options = STATES.slice();
   public change = v => { };
 }
@@ -505,7 +485,7 @@ export class Debounce {
       (queryChange)="change($event)"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -514,7 +494,7 @@ export class Debounce {
   `,
 })
 export class CustomDebounce {
-  public myCtrl = new FormControl([STATES[3], STATES[4]]);
+  public myCtrl = new FormControl(['Florida', 'Texas']);
   public options = STATES.slice();
   public change = v => { };
 }
@@ -528,7 +508,7 @@ export class CustomDebounce {
       (queryChange)="change($event)"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -537,7 +517,7 @@ export class CustomDebounce {
   `,
 })
 export class CustomCharacterCount {
-  public myCtrl = new FormControl([STATES[3], STATES[4]]);
+  public myCtrl = new FormControl(['Florida', 'Texas']);
   public options = STATES.slice();
   public customCount: number | undefined;
   public change = v => { };
@@ -551,7 +531,7 @@ export class CustomCharacterCount {
       [isRequired]="true"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -572,7 +552,7 @@ export class HideRequired {
       [hint]="myHint"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -593,7 +573,7 @@ export class Hint {
       [id]="myId"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -614,7 +594,7 @@ export class Id {
       [label]="myLabel"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -636,7 +616,7 @@ export class Label {
       [validateOnChange]="validateOnChange"
     >
       <ts-option
-        [value]="option"
+        [value]="option.name"
         [option]="option"
         [isDisabled]="option?.disabled"
         *ngFor="let option of options"
@@ -654,7 +634,7 @@ export class ValidateOnChange {
   template: `
     <ts-autocomplete [formControl]="myCtrl">
       <ts-option
-        [value]="option"
+        [value]="option.value"
         [option]="option"
         *ngFor="let option of items"
       >{{ option.viewValue }}</ts-option>
@@ -662,6 +642,7 @@ export class ValidateOnChange {
   `,
 })
 export class NullSelection {
+  public myCtrl = new FormControl('bar');
   public items = [
     {
       value: 'foo',
@@ -676,14 +657,13 @@ export class NullSelection {
       viewValue: 'bar view',
     },
   ];
-  public myCtrl = new FormControl(this.items[2]);
 }
 
 @Component({
   template: `
     <ts-autocomplete [formControl]="myCtrl">
       <ts-option
-        [value]="state"
+        [value]="state.name"
         *ngFor="let state of items"
       >
         <ng-template let-option>
@@ -705,7 +685,7 @@ export class OptionError {
   template: `
     <ts-autocomplete [formControl]="myCtrl">
       <ts-option
-        [value]="state"
+        [value]="state.name"
         [option]="state"
         [id]="state.name"
         *ngFor="let state of items"
@@ -732,7 +712,7 @@ export class OptionId {
       >
         <ts-option
           *ngFor="let option of group.children"
-          [value]="option"
+          [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
@@ -756,7 +736,7 @@ export class OptgroupIDs {
       >
         <ts-option
           *ngFor="let option of group.children"
-          [value]="option"
+          [value]="option.name"
           [option]="option"
         >
           {{ option.name }}
@@ -766,7 +746,7 @@ export class OptgroupIDs {
   `,
 })
 export class OptgroupBadIDs {
-  public myCtrl = new FormControl([STATES[4]]);
+  public myCtrl = new FormControl('Florida');
   public groups = STATES_GROUPED.slice();
 }
 
@@ -802,7 +782,6 @@ export class OptgroupBadIDs {
     OptionError,
     OptionId,
     SeededAutocomplete,
-    SeededNonArrayAutocomplete,
     PassingInObjectValue,
     SeededNgModelAutocomplete,
     SelectOptionChange,

@@ -17,13 +17,13 @@
     <ng-container *ngIf="allowMultiple">
       <mat-chip-list #chipList="matChipList">
         <mat-chip
-          *ngFor="let option of autocompleteSelections; trackBy: trackByFn"
+          *ngFor="let option of autocompleteFormControl.value; trackBy: trackByFn"
           class="qa-autocomplete-chip"
           [removable]="true"
           (removed)="autocompleteDeselectItem(option)"
         >
           <span class="ts-autocomplete-chip-value">
-            {{ option.viewValue }}
+            {{ option }}
           </span>
 
           <ts-icon matChipRemove>
