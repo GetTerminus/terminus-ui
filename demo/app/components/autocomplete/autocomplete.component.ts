@@ -116,7 +116,7 @@ export class AutocompleteComponent implements OnInit {
   fakeAsync = false;
 
   stateCtrl = new FormControl([this.states[4]], [Validators.required]);
-  singleStateCtrl = new FormControl(null, [Validators.required]);
+  singleStateCtrl = new FormControl([this.states[4]], [Validators.required]);
 
   constructor() {
     this.filteredStates = this.myQuery$
@@ -148,5 +148,9 @@ export class AutocompleteComponent implements OnInit {
 
   duplicate(e) {
     console.log('DEMO: Duplicate selection: ', e);
+  }
+
+  formatter(value: State): string {
+    return value.name;
   }
 }

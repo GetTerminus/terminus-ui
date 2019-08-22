@@ -100,6 +100,17 @@ By default, at least two characters must be typed before the query is fired. Thi
 </ts-autocomplete>
 ```
 
+## Formatting options
+```html
+<ts-autocomplete
+  [formControl]="myCtrl"
+  [displayFormatter]="formatDisplay"
+  [valueComparator]="compareValues"
+>
+  ...
+</ts-autocomplete>
+```
+
 ## Test Helpers
 
 Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/autocomplete/testing`;
