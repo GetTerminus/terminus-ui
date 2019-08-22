@@ -12,6 +12,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatRadioChange } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isFunction } from '@terminus/ngx-tools/type-guards';
 import {
@@ -350,10 +351,25 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    *
    * @param option - The selected option
    */
-  public radioGroupChange(option: TsRadioOption): void {
+  public radioGroupChange(option: MatRadioChange): void {
+    const change = new TsRadioChange(this, option.value);
     // tslint:disable-next-line: deprecation
-    this.change.emit(new TsRadioChange(this, option));
-    this.selectionChange.emit(new TsRadioChange(this, option));
+    this.change.emit(change);
+    this.selectionChange.emit(change);
+    this.changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Handles changes for visual radio groups
+   *
+   * @param option - The selected option
+   */
+  public visualRadioGroupChange(option: TsRadioOption): void {
+    const value = this.retrieveValue(option, this.formatModelValueFn);
+    const change = new TsRadioChange(this, value);
+    // tslint:disable-next-line: deprecation
+    this.change.emit(change);
+    this.selectionChange.emit(change);
     this.changeDetectorRef.markForCheck();
   }
 

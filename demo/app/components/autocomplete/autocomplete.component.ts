@@ -1,10 +1,8 @@
 import {
-  ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   Validators,
 } from '@angular/forms';
@@ -27,9 +25,6 @@ export interface State {
 })
 export class AutocompleteComponent implements OnInit {
 
-  stateCtrl = new FormControl(null, [Validators.required]);
-
-  filteredStates!: Observable<State[]>;
   states: State[] = [
     {
       name: 'Arkansas',
@@ -116,10 +111,12 @@ export class AutocompleteComponent implements OnInit {
       population: '24.112M',
     },
   ];
+  filteredStates!: Observable<State[]>;
   myQuery$: BehaviorSubject<string> = new BehaviorSubject('');
   fakeAsync = false;
 
-  comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
+  stateCtrl = new FormControl([this.states[4]], [Validators.required]);
+  singleStateCtrl = new FormControl([this.states[4]], [Validators.required]);
 
   constructor() {
     this.filteredStates = this.myQuery$
@@ -135,32 +132,9 @@ export class AutocompleteComponent implements OnInit {
   ngOnInit() {
   }
 
-
   private filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
-    const r = this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
-    return r;
-  }
-
-  myFormatUIFn = (v: any): string => v.name;
-
-  compareByValue(f1: any, f2: any) {
-    return f1 && f2 && f1.text === f2.text;
-  }
-  compareByReference(f1: any, f2: any) {
-    return f1 === f2;
-  }
-
-  panelChange(e: boolean): void {
-    console.log(`DEMO: Panel ${e ? 'opened' : 'closed'}`);
-  }
-
-  isSelected(v) {
-    console.log('DEMO: optionSelected: ', v);
-  }
-
-  isDeselected(v) {
-    console.log('DEMO: optionDeselected: ', v);
+    return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   log(v: any): void {
@@ -174,5 +148,9 @@ export class AutocompleteComponent implements OnInit {
 
   duplicate(e) {
     console.log('DEMO: Duplicate selection: ', e);
+  }
+
+  formatter(value: State): string {
+    return value.name;
   }
 }

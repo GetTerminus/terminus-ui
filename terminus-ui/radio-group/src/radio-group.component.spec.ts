@@ -14,10 +14,12 @@ import {
   createComponent,
 } from '@terminus/ngx-tools/testing';
 import {
+  getRadioGroupInstance,
   selectStandardRadio,
   selectVisualRadio,
 } from '@terminus/ui/radio-group/testing';
 
+import { TsRadioChange } from '@terminus/ui/radio-group';
 import {
   TsRadioFormatFn,
   TsRadioGroupComponent,
@@ -84,7 +86,9 @@ describe('TsRadioGroupComponent INT test', function() {
     test(`should emit change for non-isVisual radios`, () => {
       selectStandardRadio(fixture, 'baz');
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalled();
+      const radioComponent = getRadioGroupInstance(fixture);
+      const change = new TsRadioChange(radioComponent, 'bar');
+      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith(change);
     });
 
     test(`should emit change for isVisual radios`, () => {
@@ -92,7 +96,9 @@ describe('TsRadioGroupComponent INT test', function() {
       fixture.detectChanges();
       selectVisualRadio(fixture, 'baz');
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalled();
+      const radioComponent = getRadioGroupInstance(fixture);
+      const change = new TsRadioChange(radioComponent, 'bar');
+      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith(change);
     });
 
   });

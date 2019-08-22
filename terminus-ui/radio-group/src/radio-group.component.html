@@ -57,7 +57,7 @@
         <label
           class="c-radio__control qa-radio-control"
           [class.c-radio__control--disabled]="isDisabled || option.disabled"
-          (click)="radioGroupChange($event)"
+          (click)="visualRadioGroupChange(option)"
         >
           <input
             type="radio"
