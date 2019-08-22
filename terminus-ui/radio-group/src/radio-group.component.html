@@ -62,13 +62,13 @@
           <input
             type="radio"
             class="c-radio__input"
-            value="{{ retrieveValue(option, formatModelValueFn) }}"
-            [attr.name]="id"
-            [attr.disabled]="(isDisabled || option.disabled) ? 'disabled' : null"
+            [name]="id"
+            [value]="retrieveValue(option, formatModelValueFn)"
+            [disabled]="(isDisabled || option.disabled)"
+            [checked]="retrieveValue(option, formatModelValueFn) === value"
             [attr.aria-label]="ariaLabel"
             [attr.aria-labelledby]="ariaLabelledby"
             [attr.aria-describedby]="ariaDescribedby"
-            [attr.checked]="retrieveValue(option, formatModelValueFn) === value"
             [(ngModel)]="value"
           >
           <div
