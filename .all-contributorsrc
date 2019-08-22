@@ -133,7 +133,19 @@
         "example",
         "test"
       ]
+    },
+    {
+      "login": "deanproxy",
+      "name": "Dean",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/154620?v=4",
+      "profile": "http://deanproxy.com",
+      "contributions": [
+        "design",
+        "bug"
+      ]
     }
   ],
-  "repoType": "github"
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
 }
