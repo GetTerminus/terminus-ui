@@ -1,3 +1,10 @@
+## [14.8.2](https://github.com/GetTerminus/terminus-ui/compare/v14.8.1...v14.8.2) (2019-08-22)
+
+
+### Bug Fixes
+
+* **radio-group:** fix emitting the correct TsRadioChange on changes ([e9c0d63](https://github.com/GetTerminus/terminus-ui/commit/e9c0d63))
+
 ## [14.8.1](https://github.com/GetTerminus/terminus-ui/compare/v14.8.0...v14.8.1) (2019-08-22)
 
 
