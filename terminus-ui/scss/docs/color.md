@@ -41,7 +41,7 @@ color(accent, dark)
 
 | Palette   | `xdark`                          | `dark`                          | `base` <sub>(default)</sub>     | `light`                         | `xlight`                         |
 |-----------|:--------------------------------:|:-------------------------------:|:-------------------------------:|:-------------------------------:|:--------------------------------:|
-| `pure`    | <img src="./assets/na.png">      | <img src="./assets/na.png">     | <img src="./assets/pure-l.png"> | <img src="./assets/pure-d.png"> | <img src="./assets/na.png">      |
+| `pure`    | <img src="./assets/na.png">      | <img src="./assets/pure-d.png">     | <img src="./assets/pure-l.png"> | <img src="./assets/na.png"> | <img src="./assets/na.png">      |
 | `utility` | <img src="./assets/util-xd.png"> | <img src="./assets/util-d.png"> | <img src="./assets/util.png">   | <img src="./assets/util-l.png"> | <img src="./assets/util-xl.png"> |
 | `primary` | <img src="./assets/prim-xd.png"> | <img src="./assets/prim-d.png"> | <img src="./assets/prim.png">   | <img src="./assets/prim-l.png"> | <img src="./assets/prim-xl.png"> |
 | `accent`  | <img src="./assets/acc-xd.png">  | <img src="./assets/acc-d.png">  | <img src="./assets/acc.png">    | <img src="./assets/acc-l.png">  | <img src="./assets/acc-xl.png">  |
