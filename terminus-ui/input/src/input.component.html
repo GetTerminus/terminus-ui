@@ -104,7 +104,7 @@
       [(ngModel)]="value"
       (blur)="focusChanged(false)"
       (focus)="focusChanged(true)"
-      (input)="onInput($event.target.value)"
+      (input)="onInput($event.target)"
       #inputElement
     >
   </ng-container>
@@ -128,7 +128,7 @@
       [(ngModel)]="value"
       (blur)="focusChanged(false)"
       (focus)="focusChanged(true)"
-      (input)="onInput($event.target.value)"
+      (input)="onInput($event.target)"
       [matDatepickerFilter]="dateFilter"
       [matDatepicker]="picker"
       [min]="minDate"
@@ -157,7 +157,7 @@
       [(ngModel)]="value"
       (blur)="focusChanged(false)"
       (focus)="focusChanged(true)"
-      (input)="onInput($event.target.value)"
+      (input)="onInput($event.target)"
       #inputElement
     ></textarea>
   </ng-container>
