@@ -2,13 +2,11 @@
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
   ElementRef,
-  Provider,
   Type,
 } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
-  TestBed,
   tick,
 } from '@angular/core/testing';
 import {
@@ -901,6 +899,17 @@ describe(`TsInputComponent`, function() {
       expect(component.selected.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
     });
 
+    test('should return if target is not set', () => {
+      const fixture = createComponent(TestComponents.DateFilter);
+      const component = fixture.componentInstance.inputComponent;
+      component._valueChange.emit = jest.fn();
+      component.selected.emit = jest.fn();
+      component.onInput(null as any);
+
+      expect(component._valueChange.emit).not.toHaveBeenCalled();
+      expect(component.selected.emit).not.toHaveBeenCalled();
+    });
+
     describe(`updateInnerValue`, () => {
       test(`should not call detectChange if component is destroyed when no toggling input`, () => {
         const fixture = createComponent(TestComponents.SimpleFormControl);
@@ -924,6 +933,7 @@ describe(`TsInputComponent`, function() {
         fixture.destroy();
         expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
       });
+
     });
 
   });

@@ -1155,10 +1155,15 @@ export class TsInputComponent implements
    *
    * NOTE: KNOWN BUG that allows model and UI to get out of sync when extra characters are added after a fully satisfied mask.
    *
-   * @param value - The typed value
+   * @param target - The event target for the input event.
    */
   // tslint:disable: no-unused-variable
-  public onInput(value: string): void {
+  public onInput(target: HTMLInputElement | HTMLTextAreaElement): void {
+    if (!target) {
+      return;
+    }
+
+    let value = target.value;
     // We need to trim the last character due to a bug in the text-mask library
     const trimmedValue = this.trimLastCharacter(value);
     this.inputElement.nativeElement.value = trimmedValue;
@@ -1168,13 +1173,16 @@ export class TsInputComponent implements
       // Update the mask.
       this.textMaskInputElement.update(trimmedValue);
 
+      // Reset the value after the mask has had a chance to update it.
+      value = target.value;
+
       // Verify the value has changed
       // istanbul ignore else
       if (this.lastValue !== value) {
         this.lastValue = value;
 
         // Trigger the change (and remove mask if needed)
-        this.setValue(trimmedValue);
+        this.setValue(value);
       }
     }
 
@@ -1243,7 +1251,7 @@ export class TsInputComponent implements
       date: {
         mask: [/\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         pipe: createAutoCorrectedDatePipe(this.defaultDateFormat),
-        keepCharPositions: true,
+        keepCharPositions: false,
       },
       default: {mask: false},
     };
