@@ -1,3 +1,10 @@
+## [14.8.4](https://github.com/GetTerminus/terminus-ui/compare/v14.8.3...v14.8.4) (2019-08-23)
+
+
+### Bug Fixes
+
+* **date-range:** fix invalid date range when changing text ([ac0156e](https://github.com/GetTerminus/terminus-ui/commit/ac0156e))
+
 ## [14.8.3](https://github.com/GetTerminus/terminus-ui/compare/v14.8.2...v14.8.3) (2019-08-23)
 
 
