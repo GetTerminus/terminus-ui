@@ -4,7 +4,6 @@ name: "Label Approved PRs"
 
 jobs:
   trigger-label:
-    name: "Add label to approved PR"
     runs-on: ubuntu-latest
     steps:
       - uses: pullreminders/label-when-approved-action@v1.0.3
