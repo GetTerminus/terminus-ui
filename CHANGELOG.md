@@ -1,3 +1,10 @@
+## [14.8.5](https://github.com/GetTerminus/terminus-ui/compare/v14.8.4...v14.8.5) (2019-08-26)
+
+
+### Bug Fixes
+
+* try small format changes ([ac5b2a9](https://github.com/GetTerminus/terminus-ui/commit/ac5b2a9))
+
 ## [14.8.4](https://github.com/GetTerminus/terminus-ui/compare/v14.8.3...v14.8.4) (2019-08-23)
 
 
