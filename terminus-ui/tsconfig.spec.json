@@ -45,6 +45,7 @@
       "@terminus/ui/table"               : ["terminus-ui/table/src/public-api.ts"],
       "@terminus/ui/toggle"              : ["terminus-ui/toggle/src/public-api.ts"],
       "@terminus/ui/tooltip"             : ["terminus-ui/tooltip/src/public-api.ts"],
+      "@terminus/ui/tooltip/testing"     : ["terminus-ui/tooltip/testing/src/public-api.ts"],
       "@terminus/ui/utilities"           : ["terminus-ui/utilities/src/public-api.ts"],
       "@terminus/ui/validation-messages" : ["terminus-ui/validation-messages/src/public-api.ts"],
       "@terminus/ui/validators"          : ["terminus-ui/validators/src/public-api.ts"]
