@@ -5,13 +5,11 @@ on: [pull_request_review]
 jobs:
   trigger-label:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Label approved pull requests
       uses: pullreminders/label-when-approved-action@v1.0.3
-      with:
-        secrets = ["GITHUB_TOKEN"]
-        env = {
-          LABEL_NAME = "Status: ready to merge"
-          APPROVALS  = "2"
-        }
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APPROVALS: 2
+        LABEL_NAME: "Status: ready to merge"
