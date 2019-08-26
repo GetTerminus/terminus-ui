@@ -1,13 +1,11 @@
-on: pull_request_review
-
 name: "Label Approved PRs"
+on: pull_request_review
 
 jobs:
   trigger-label:
-    runs-on: ubuntu-latest
     steps:
       - uses: pullreminders/label-when-approved-action@v1.0.3
         env:
           APPROVALS: "1"
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LABEL_NAME: "Status: ready to merge"
