@@ -1,3 +1,10 @@
+# [14.9.0](https://github.com/GetTerminus/terminus-ui/compare/v14.8.5...v14.9.0) (2019-08-28)
+
+
+### Features
+
+* **Copy:** support for 'minimal' and 'icon' modes ([c835f5d](https://github.com/GetTerminus/terminus-ui/commit/c835f5d)), closes [#848](https://github.com/GetTerminus/terminus-ui/issues/848)
+
 ## [14.8.5](https://github.com/GetTerminus/terminus-ui/compare/v14.8.4...v14.8.5) (2019-08-26)
 
 
