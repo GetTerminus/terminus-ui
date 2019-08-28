@@ -1,3 +1,15 @@
+## [14.9.1](https://github.com/GetTerminus/terminus-ui/compare/v14.9.0...v14.9.1) (2019-08-28)
+
+
+### Bug Fixes
+
+* **Tooltip:** add testing packgage.json ([3681da8](https://github.com/GetTerminus/terminus-ui/commit/3681da8)), closes [#1638](https://github.com/GetTerminus/terminus-ui/issues/1638)
+
+
+### Reverts
+
+* **CI:** remove workflow ([5ff0e95](https://github.com/GetTerminus/terminus-ui/commit/5ff0e95))
+
 # [14.9.0](https://github.com/GetTerminus/terminus-ui/compare/v14.8.5...v14.9.0) (2019-08-28)
 
 
