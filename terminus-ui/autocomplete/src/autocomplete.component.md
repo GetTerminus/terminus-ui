@@ -10,6 +10,7 @@
 - [Keep Panel Open After Selection](#keep-panel-open-after-selection)
 - [Debouncing](#debouncing)
 - [Minimum Characters](#minimum-characters)
+- [Formatting options](#formatting-options)
 - [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

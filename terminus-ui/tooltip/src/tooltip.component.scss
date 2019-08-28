@@ -29,5 +29,7 @@
     @include elevation-element(snackbar);
     background-color: color(pure);
     color: color(pure, dark);
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 }

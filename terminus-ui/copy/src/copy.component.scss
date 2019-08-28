@@ -2,11 +2,26 @@
 @import './../../scss/helpers/cursors';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/typography';
+@import './../../scss/helpers/scrollbars';
 
 
 $margin__vertical: .2em;
 $margin__horizontal: $margin__vertical * 2;
 $radius: 3px;
+/*
+ * TODO: We are manually adjusting the ripple in multiple places now. We should abstract this out.
+ * https://github.com/GetTerminus/terminus-ui/issues/1653
+*/
+$ripple-opacity: .4;
+$black: color(pure, dark);
+$primary: darken(color(primary), 10%);
+$accent: darken(color(accent), 10%);
+$warn: darken(color(warn), 10%);
+$ripple-black: rgba($black, $ripple-opacity);
+$ripple-primary: rgba($primary, $ripple-opacity);
+$ripple-accent: rgba($accent, $ripple-opacity);
+$ripple-warn: rgba($warn, $ripple-opacity);
+$icon-padding: .25em .3em .25em .4em;
 
 //
 // @component
@@ -21,13 +36,59 @@ $radius: 3px;
   // Top level styles should be nested here
   .c-copy {
     @include typography;
+    color: color(utility, dark);
+    position: relative;
+  }
+
+  //
+  // Theme support
+  //
+  &--primary {
+    // These are the default styles
+
+    .mat-ripple-element {
+      // NOTE: Important needed to override inline Material styles
+      // stylelint-disable-next-line declaration-no-important
+      background-color: $ripple-primary !important;
+    }
+  }
+
+  &--accent {
+    .c-copy {
+      .c-copy__icon {
+        background-color: color(accent);
+      }
+    }
+
+    .mat-ripple-element {
+      // NOTE: Important needed to override inline Material styles
+      // stylelint-disable-next-line declaration-no-important
+      background-color: $ripple-accent !important;
+    }
+  }
+
+  &--warn {
+    .c-copy {
+      .c-copy__icon {
+        background-color: color(warn);
+      }
+    }
+
+    .mat-ripple-element {
+      // NOTE: Important needed to override inline Material styles
+      // stylelint-disable-next-line declaration-no-important
+      background-color: $ripple-warn !important;
+    }
+  }
+
+  //
+  // Format support
+  //
+  &--standard {
     background-color: color(utility, xlight);
     border: 1px solid color(utility, light);
     border-radius: $radius;
-    color: color(utility, dark);
-    padding: $margin__vertical $margin__horizontal;
     transition: border-color 200ms ease-in-out 50ms;
-    will-change: border-color;
 
     // Adding tabindex to the element allows focus, but we don't need the visual indicator
     &:focus {
@@ -37,22 +98,43 @@ $radius: 3px;
     }
   }
 
-  //
-  // Theme support
-  //
-  &[theme='primary'] {
-    // These are the default styles
-  }
+  &--minimal {
+    .c-copy__content {
+      line-height: 24px;
+      padding: $icon-padding;
+    }
 
-  &[theme='accent'] {
-    .c-copy__icon {
-      background-color: color(accent);
+    .c-copy {
+      .c-copy__tooltip {
+        $offset-for-border-minimal: 3px;
+        bottom: $offset-for-border-minimal;
+        top: $offset-for-border-minimal;
+      }
     }
   }
 
-  &[theme='warn'] {
-    .c-copy__icon {
-      background-color: color(warn);
+  &--icon {
+    display: inline-block;
+
+    .c-copy__content {
+      // Match the width of the icon
+      width: 35px;
+    }
+
+    .c-copy {
+      .c-copy__tooltip {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &:focus,
+  &:hover {
+    .c-copy__tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 70ms;
     }
   }
 }
@@ -60,35 +142,71 @@ $radius: 3px;
 .c-copy {
   // <div> Container for text content
   .c-copy__content {
-    // Match the line height of the copy icon
-    line-height: 24px;
-    overflow-x: scroll;
+    $icon-width: 35px;
+    @include hidden-scrollbars;
+    align-items: center;
+    justify-content: center;
+    line-height: 32px;
+    min-width: $icon-width;
+    overflow: hidden;
     white-space: nowrap;
+
+    .ts-tooltip {
+      display: block;
+      max-width: 100%;
+    }
+
+    .c-tooltip {
+      display: block;
+      overflow: hidden;
+      padding: $margin__vertical 0 $margin__vertical $margin__horizontal;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .c-copy__tooltip {
+    $offset-for-border-standard: -1px;
+    bottom: $offset-for-border-standard;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: $offset-for-border-standard;
+    top: $offset-for-border-standard;
+    transition: opacity 200ms ease-out;
+
+    .ts-tooltip {
+      height: 100%;
+    }
+
+    .ts-icon {
+      align-items: center;
+      display: flex;
+    }
   }
 
   // <div> The container for the icon
   .c-copy__icon {
     $vertical-margin: calc(#{-$margin__vertical} - 1px);
     $horizontal-margin: calc(#{-$margin__horizontal} - 1px);
-    $icon-margin: $vertical-margin $horizontal-margin $vertical-margin 0;
-    $icon-padding: .25em .2em .2em .5em;
 
     @include cursor(pointer);
     background-color: color(primary);
-    border-radius: 0 $radius $radius 0;
+    border-radius: $radius;
+    bottom: 0;
     color: color(pure);
-    margin: $icon-margin;
+    height: 100%;
     padding: $icon-padding;
-    // Set up for mat-ripple
-    position: relative;
     transition: background-color 200ms ease-in;
-    // Double the width of the 24px icon
-    width: 38px;
-    will-change: background-color;
   }
 
   // Adjust icon alignment
   .mat-icon {
     vertical-align: bottom;
+  }
+
+  .ts-copy--standard & {
+    .c-copy__icon {
+      border-radius: 0 $radius $radius 0;
+    }
   }
 }
