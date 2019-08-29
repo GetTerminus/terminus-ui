@@ -476,6 +476,23 @@ describe(`TsAutocompleteComponent`, function() {
       expect(instance.panelOpen).toEqual(false);
     });
 
+    test(`should close the panel if focus on another autocomplete instance`, () => {
+      const fixture = createComponent(testComponents.MultipleAutocomplete);
+      fixture.detectChanges();
+      const input2 = getAutocompleteInput(fixture, 1);
+      const instance = getAutocompleteInstance(fixture);
+      const triggerinstance = instance.autocompleteTrigger;
+
+      instance.focus();
+      triggerinstance.openPanel();
+      fixture.detectChanges();
+      expect(triggerinstance.panelOpen).toEqual(true);
+
+      input2.click();
+      fixture.detectChanges();
+      expect(instance.panelOpen).toEqual(false);
+    });
+
 
     test(`should update the overlay position when a chip is removed`, function() {
       jest.useFakeTimers();
