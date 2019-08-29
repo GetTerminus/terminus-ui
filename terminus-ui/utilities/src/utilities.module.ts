@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { TsReactiveFormBaseComponent } from './reactive-form-base/reactive-form-base.component';
 
 export * from './cva-provider-factory/cva-provider-factory';
+export * from './error/ui-error';
 export * from './input-has-changed/input-has-changed';
 export * from './merge/merge';
 export * from './reactive-form-base/reactive-form-base.component';

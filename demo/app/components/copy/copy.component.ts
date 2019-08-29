@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 @Component({
@@ -6,8 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './copy.component.html',
 })
 export class CopyComponent {
-  // tslint:disable: max-line-length
-  fakeUrl = 'https://github.com/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom';
-  // tslint:enable: max-line-length
-  canCopy = false;
+  // eslint-disable-next-line max-len
+  public fakeUrl = 'https://github.com/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom/foo/bar/baz/bing/bang/boom';
+  public canCopy = true;
+  public format = 'standard';
+  public theme: TsStyleThemeTypes = 'primary';
+  public themes: TsStyleThemeTypes[] = ['primary', 'accent', 'warn'];
 }

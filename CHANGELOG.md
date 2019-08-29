@@ -1,9 +1,35 @@
+## [14.9.1](https://github.com/GetTerminus/terminus-ui/compare/v14.9.0...v14.9.1) (2019-08-28)
+
+
+### Bug Fixes
+
+* **Tooltip:** add testing packgage.json ([3681da8](https://github.com/GetTerminus/terminus-ui/commit/3681da8)), closes [#1638](https://github.com/GetTerminus/terminus-ui/issues/1638)
+
+
+### Reverts
+
+* **CI:** remove workflow ([5ff0e95](https://github.com/GetTerminus/terminus-ui/commit/5ff0e95))
+
+# [14.9.0](https://github.com/GetTerminus/terminus-ui/compare/v14.8.5...v14.9.0) (2019-08-28)
+
+
+### Features
+
+* **Copy:** support for 'minimal' and 'icon' modes ([c835f5d](https://github.com/GetTerminus/terminus-ui/commit/c835f5d)), closes [#848](https://github.com/GetTerminus/terminus-ui/issues/848)
+
+## [14.8.5](https://github.com/GetTerminus/terminus-ui/compare/v14.8.4...v14.8.5) (2019-08-26)
+
+
+### Bug Fixes
+
+* try small format changes ([ac5b2a9](https://github.com/GetTerminus/terminus-ui/commit/ac5b2a9))
+
 ## [14.8.4](https://github.com/GetTerminus/terminus-ui/compare/v14.8.3...v14.8.4) (2019-08-23)
 
 
 ### Bug Fixes
 
-* **date-range:** fix invalid date range when changing text ([ac0156e](https://github.com/GetTerminus/terminus-ui/commit/ac0156e))
+* **DateRange:** user can now manually adjust date without potentially entering an erred state ([ac0156e](https://github.com/GetTerminus/terminus-ui/commit/ac0156e))
 
 ## [14.8.3](https://github.com/GetTerminus/terminus-ui/compare/v14.8.2...v14.8.3) (2019-08-23)
 

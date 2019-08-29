@@ -133,7 +133,7 @@
       [matDatepicker]="picker"
       [min]="minDate"
       [max]="maxDate"
-      (dateChange)="selected.emit($event.value)"
+      (dateChange)="onDateChanged($event.value)"
       #inputElement
     >
   </ng-container>

@@ -394,7 +394,7 @@ export class TsInputComponent implements
       return true;
     }
 
-    return !!(input && !input.value && !this.isBadInput() && !this.autofilled);
+    return !!input && !input.value && !this.isBadInput() && !this.autofilled;
   }
 
   /**
@@ -844,6 +844,8 @@ export class TsInputComponent implements
   @Output()
   public readonly selected: EventEmitter<Date> = new EventEmitter();
 
+  // The textual value of the date entered into the input.
+  private textualDateValue = '';
 
   public constructor(
     private elementRef: ElementRef,
@@ -1111,6 +1113,7 @@ export class TsInputComponent implements
     } else {
       // Trigger the onTouchedCallback for blur events
       this.onTouchedCallback();
+      this.onDateChanged(this.value);
       this.inputBlur.emit(this.value);
     }
   }
@@ -1164,6 +1167,7 @@ export class TsInputComponent implements
     }
 
     let value = target.value;
+
     // We need to trim the last character due to a bug in the text-mask library
     const trimmedValue = this.trimLastCharacter(value);
     this.inputElement.nativeElement.value = trimmedValue;
@@ -1188,11 +1192,30 @@ export class TsInputComponent implements
 
     // istanbul ignore else
     if (this.datepicker) {
-      this.selected.emit(this.value);
+      // set the new date string the user input
+      this.textualDateValue = value;
       this._valueChange.emit(new Date(value));
     }
   }
   // tslint:enable: no-unused-variable
+
+
+  /**
+   * Notify consumer of date changed from the picker being used.
+   *
+   * @param date - The date that has been set.
+   */
+  public onDateChanged(date: Date): void {
+    // if the user input changed since the last selection, we want to use that date.
+    // we also need to reset the textual date value once we use it because we don't
+    // want to keep it fresh in case another date is selected but no user input was given.
+    if (!date && this.textualDateValue) {
+      date = new Date(this.textualDateValue);
+      this.textualDateValue = '';
+    }
+
+    this.selected.emit(date);
+  }
 
 
   /**
