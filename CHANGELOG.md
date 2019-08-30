@@ -1,3 +1,10 @@
+## [14.9.3](https://github.com/GetTerminus/terminus-ui/compare/v14.9.2...v14.9.3) (2019-08-30)
+
+
+### Bug Fixes
+
+* **Autocomplete:** selecting a second autocomplete now working ([#1673](https://github.com/GetTerminus/terminus-ui/issues/1673)) ([eacf941](https://github.com/GetTerminus/terminus-ui/commit/eacf941))
+
 ## [14.9.2](https://github.com/GetTerminus/terminus-ui/compare/v14.9.1...v14.9.2) (2019-08-30)
 
 
