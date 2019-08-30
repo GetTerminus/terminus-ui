@@ -839,6 +839,29 @@ describe(`TsInputComponent`, function() {
   });
 
 
+  describe(`onDateChanged`, () => {
+    test(`should trigger selected.emit with the date passed in`, () => {
+      const date = new Date();
+      const fixture = createComponent(TestComponents.DateFilter);
+      const component = fixture.componentInstance.inputComponent;
+      (component as any).textualDateValue = '01-02-2019';
+      component.selected.emit = jest.fn();
+      component.onDateChanged(date);
+      expect(component.selected.emit).toHaveBeenCalledWith(date);
+    });
+
+    test(`should trigger selected.emit with the text value date`, () => {
+      const date = new Date('01-02-2019');
+      const fixture = createComponent(TestComponents.DateFilter);
+      const component = fixture.componentInstance.inputComponent;
+      (component as any).textualDateValue = '01-02-2019';
+      component.selected.emit = jest.fn();
+      component.onDateChanged(undefined as any);
+      expect(component.selected.emit).toHaveBeenCalledWith(date);
+    });
+  });
+
+
   describe(`reset()`, () => {
 
     test(`should reset the input`, () => {
@@ -896,7 +919,6 @@ describe(`TsInputComponent`, function() {
       typeInElement('01-01-2018', inputElement);
 
       expect(component._valueChange.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
-      expect(component.selected.emit).toHaveBeenCalledWith(new Date('01-01-2018'));
     });
 
     test('should return if target is not set', () => {
