@@ -8,7 +8,7 @@ import {
 @Component({
   selector: 'ts-expansion-panel-trigger-description',
   template: `<ng-content></ng-content>`,
-  host: {class: 'ts-expansion-panel__trigger-description'},
+  host: { class: 'ts-expansion-panel__trigger-description' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsExpansionPanelTriggerDescription',

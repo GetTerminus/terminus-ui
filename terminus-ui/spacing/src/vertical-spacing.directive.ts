@@ -45,7 +45,7 @@ export type TsVerticalSpacingTypes
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/spacing</example-url>
  */
-@Directive({selector: '[tsVerticalSpacing]'})
+@Directive({ selector: '[tsVerticalSpacing]' })
 export class TsVerticalSpacingDirective {
   /**
    * Set a spacing class based on the passed in value

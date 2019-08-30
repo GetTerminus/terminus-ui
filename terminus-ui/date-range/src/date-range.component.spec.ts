@@ -75,8 +75,8 @@ describe(`TsDateRangeComponent`, function() {
         endInputInstance.formControl.setValue(date);
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.dateRangeComponent['internalStartControl'].value).toEqual(date);
-        expect(fixture.componentInstance.dateRangeComponent['internalEndControl'].value).toEqual(date);
+        expect(fixture.componentInstance.dateRangeComponent.internalStartControl.value).toEqual(date);
+        expect(fixture.componentInstance.dateRangeComponent.internalEndControl.value).toEqual(date);
         expect.assertions(4);
       });
 
@@ -99,8 +99,8 @@ describe(`TsDateRangeComponent`, function() {
         endInputInstance.inputElement.nativeElement.blur();
         fixture.detectChanges();
 
-        expect(startInputInstance.formControl.errors).toEqual({required: true});
-        expect(endInputInstance.formControl.errors).toEqual({required: true});
+        expect(startInputInstance.formControl.errors).toEqual({ required: true });
+        expect(endInputInstance.formControl.errors).toEqual({ required: true });
         jest.runAllTimers();
         expect.assertions(4);
       });
@@ -148,8 +148,8 @@ describe(`TsDateRangeComponent`, function() {
         endInputInstance.inputElement.nativeElement.blur();
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.dateRangeComponent['internalStartControl'].value).toEqual(new Date('3-4-2019'));
-        expect(fixture.componentInstance.dateRangeComponent['internalEndControl'].value).toEqual(new Date('3-8-2019'));
+        expect(fixture.componentInstance.dateRangeComponent.internalStartControl.value).toEqual(new Date('3-4-2019'));
+        expect(fixture.componentInstance.dateRangeComponent.internalEndControl.value).toEqual(new Date('3-8-2019'));
         expect.assertions(4);
       });
 

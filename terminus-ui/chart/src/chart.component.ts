@@ -73,7 +73,7 @@ export type TsChart
   selector: 'ts-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
-  host: {class: 'ts-chart'},
+  host: { class: 'ts-chart' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsChart',
@@ -92,7 +92,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Get access to the chart container
    */
-  @ViewChild('chartDiv', {static: true})
+  @ViewChild('chartDiv', { static: true })
   private chartDiv!: ElementRef;
 
   /**

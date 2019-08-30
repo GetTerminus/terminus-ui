@@ -54,7 +54,7 @@ let nextUniqueId = 0;
   selector: 'ts-autocomplete-panel',
   templateUrl: './autocomplete-panel.component.html',
   styleUrls: ['./autocomplete-panel.component.scss'],
-  host: {class: 'ts-autocomplete-panel qa-autocomplete-panel'},
+  host: { class: 'ts-autocomplete-panel qa-autocomplete-panel' },
   providers: [
     {
       provide: TS_OPTION_PARENT_COMPONENT,
@@ -90,14 +90,14 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Access the template. Used by {@link TsAutocompleteTriggerDirective}
    */
-  @ViewChild(TemplateRef, {static: false})
+  @ViewChild(TemplateRef, { static: false })
   // tslint:disable-next-line no-any
   public template!: TemplateRef<any>;
 
   /**
    * Access the element for the panel containing the autocomplete options
    */
-  @ViewChild('panel', {static: true})
+  @ViewChild('panel', { static: true })
   public panel!: ElementRef;
 
   /**

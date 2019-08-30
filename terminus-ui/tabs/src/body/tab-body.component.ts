@@ -66,7 +66,7 @@ let nextUniqueId = 0;
   selector: 'ts-tab-body',
   templateUrl: './tab-body.component.html',
   styleUrls: ['./tab-body.component.scss'],
-  host: {class: 'ts-tab-body'},
+  host: { class: 'ts-tab-body' },
   animations: [tsTabsAnimations.translateTab],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

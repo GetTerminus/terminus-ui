@@ -54,11 +54,11 @@ describe(`ChartComponent`, function() {
     test(`should call to initialize the chart if amCharts exists`, fakeAsync(() => {
       const fixture = createComponent(SimpleHost);
       fixture.detectChanges();
-      fixture.componentInstance.component['init'] = jest.fn();
+      fixture.componentInstance.component.init = jest.fn();
       fixture.componentInstance.component.ngOnInit();
       tick();
 
-      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('xy');
+      expect(fixture.componentInstance.component.init).toHaveBeenCalledWith('xy');
     }));
 
   });
@@ -69,14 +69,14 @@ describe(`ChartComponent`, function() {
     test(`should should destroy and reinit when the visualization changes`, () => {
       const fixture = createComponent(VisualizationsHost);
       fixture.detectChanges();
-      fixture.componentInstance.component['destroyChart'] = jest.fn();
-      fixture.componentInstance.component['init'] = jest.fn();
+      fixture.componentInstance.component.destroyChart = jest.fn();
+      fixture.componentInstance.component.init = jest.fn();
 
       fixture.componentInstance.visualization = 'pie';
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.component['destroyChart']).toHaveBeenCalled();
-      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('pie');
+      expect(fixture.componentInstance.component.destroyChart).toHaveBeenCalled();
+      expect(fixture.componentInstance.component.init).toHaveBeenCalledWith('pie');
     });
 
   });
@@ -117,7 +117,7 @@ describe(`ChartComponent`, function() {
         fixture.componentInstance.visualization = t;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.component['amCharts'].core.create).toHaveBeenCalled();
+        expect(fixture.componentInstance.component.amCharts.core.create).toHaveBeenCalled();
         expect(window.console.warn).not.toHaveBeenCalled();
       });
     }
@@ -130,43 +130,43 @@ describe(`ChartComponent`, function() {
   describe(`chart type coercion`, function() {
 
     test(`should validate xy chart`, function() {
-      const chart = {className: 'XYChart'} as TsChart;
+      const chart = { className: 'XYChart' } as TsChart;
       expect(tsChartXYTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate pie chart`, function() {
-      const chart = {className: 'PieChart'} as TsChart;
+      const chart = { className: 'PieChart' } as TsChart;
       expect(tsChartPieTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate map chart`, function() {
-      const chart = {className: 'MapChart'} as TsChart;
+      const chart = { className: 'MapChart' } as TsChart;
       expect(tsChartMapTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate radar chart`, function() {
-      const chart = {className: 'RadarChart'} as TsChart;
+      const chart = { className: 'RadarChart' } as TsChart;
       expect(tsChartRadarTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate tree chart`, function() {
-      const chart = {className: 'TreeMap'} as TsChart;
+      const chart = { className: 'TreeMap' } as TsChart;
       expect(tsChartTreeTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate sankey chart`, function() {
-      const chart = {className: 'SankeyDiagram'} as TsChart;
+      const chart = { className: 'SankeyDiagram' } as TsChart;
       expect(tsChartSankeyTypeCheck(chart)).toEqual(true);
     });
 
 
     test(`should validate chord chart`, function() {
-      const chart = {className: 'ChordDiagram'} as TsChart;
+      const chart = { className: 'ChordDiagram' } as TsChart;
       expect(tsChartChordTypeCheck(chart)).toEqual(true);
     });
 
@@ -186,7 +186,7 @@ class AmChartsServiceMock {
     return {
       core: {
         create: jest.fn(() => ({
-          responsive: {enabled: false},
+          responsive: { enabled: false },
           dispose: jest.fn(),
         })),
       },
@@ -198,7 +198,7 @@ class AmChartsServiceMock {
         SankeyDiagram: {},
         ChordDiagram: {},
       },
-      maps: {MapChart: {}},
+      maps: { MapChart: {} },
     };
   }
 }
@@ -229,17 +229,17 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHART
  * TEMPLATES
  */
 
- @Component({template: `<ts-chart></ts-chart>`})
+ @Component({ template: `<ts-chart></ts-chart>` })
 class SimpleHost {
-  @ViewChild(TsChartComponent, {static: true})
+  @ViewChild(TsChartComponent, { static: true })
   public component: TsChartComponent;
  }
 
- @Component({template: `<ts-chart [visualization]="visualization"></ts-chart>`})
+ @Component({ template: `<ts-chart [visualization]="visualization"></ts-chart>` })
 class VisualizationsHost {
   public visualization: TsChartVisualizationOptions | undefined;
 
-  @ViewChild(TsChartComponent, {static: true})
+  @ViewChild(TsChartComponent, { static: true })
   public component: TsChartComponent;
  }
 
@@ -257,7 +257,7 @@ class TypeChecking {
    */
   public chart!: TsChart;
 
-  @ViewChild(TsChartComponent, {static: true})
+  @ViewChild(TsChartComponent, { static: true })
   public component!: TsChartComponent;
 
   public chartCreated(chart: TsChart): void {

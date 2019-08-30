@@ -3,10 +3,8 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import {
-  format as formatDate,
-  isValid,
-} from 'date-fns';
+import { isValidDate } from '@terminus/ui/utilities';
+import { format as formatDate } from 'date-fns';
 
 
 /**
@@ -33,7 +31,7 @@ export type TsDateTypes =
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
-@Pipe({name: 'tsDate'})
+@Pipe({ name: 'tsDate' })
 export class TsDatePipe implements PipeTransform {
   public transform(value: string|Date, format: TsDateTypes = 'short'): string | undefined {
     const validFormats: TsDateTypes[] = [
@@ -49,8 +47,8 @@ export class TsDatePipe implements PipeTransform {
     }
 
     // Check for date validity
-    if (!isValid(value) && isDevMode()) {
-      throw Error(`'${value}' is not a valid date.`);
+    if (!isValidDate(value) && isDevMode()) {
+      throw Error(`'${value}' is not a valid date object.`);
     }
 
     // Check for format validity
@@ -59,7 +57,7 @@ export class TsDatePipe implements PipeTransform {
     }
 
     // If dealing with a date object, convert to string
-    const date: string = (typeof value === 'string') ? value : new Date(value).toISOString();
+    const date: Date = (typeof value === 'string') ? new Date(value) : value;
 
     // Set the formatted date or an empty string if no format is matched
     const dateString =

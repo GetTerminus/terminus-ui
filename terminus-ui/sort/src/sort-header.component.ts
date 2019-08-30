@@ -31,11 +31,6 @@ import {
 } from './sort.directive';
 
 
-// Boilerplate for applying mixins to the sort header.
-export class TsSortHeaderBase {}
-export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
-
-
 /**
  * Applies sorting behavior (click to change sort) and styles to an element, including an
  * arrow to display the current sort direction.
@@ -80,7 +75,9 @@ export const _TsSortHeaderMixinBase = mixinDisabled(TsSortHeaderBase);
     tsSortAnimations.indicatorToggle,
   ],
 })
-export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsSortableItem, CanDisable, OnInit, OnDestroy  {
+export class TsSortHeaderComponent implements TsSortableItem, CanDisable, OnInit, OnDestroy  {
+  public disabled = false;
+
   /**
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
@@ -131,8 +128,6 @@ export class TsSortHeaderComponent extends _TsSortHeaderMixinBase implements TsS
     @Optional() public _sort: TsSortDirective,
     @Optional() public _cdkColumnDef: CdkColumnDef,
   ) {
-    super();
-
     if (!_sort && isDevMode()) {
       throw getSortHeaderNotContainedWithinSortError();
     }

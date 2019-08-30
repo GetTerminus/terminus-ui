@@ -13,6 +13,7 @@ export * from './type-coercion/is-drag-event';
 export * from './type-coercion/is-html-input-element';
 export * from './type-coercion/is-keyboard-event';
 export * from './type-coercion/is-mouse-event';
+export * from './is-valid-date/is-valid-date';
 export * from './types/style-theme.types';
 export * from './version/version';
 

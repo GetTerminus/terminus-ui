@@ -74,9 +74,9 @@ export interface TsSortState {
 
 
 // Boilerplate for applying mixins to TsSort.
-export class TsSortBase {}
+// export class TsSortBase {}
 // eslint-disable-next-line no-underscore-dangle
-export const _TsSortMixinBase = mixinDisabled(TsSortBase);
+// export const _TsSortMixinBase = mixinDisabled(TsSortBase);
 
 
 /**
@@ -97,7 +97,9 @@ export const _TsSortMixinBase = mixinDisabled(TsSortBase);
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disabled: tsSortDisabled'],
 })
-export class TsSortDirective extends _TsSortMixinBase implements CanDisable, OnChanges, OnDestroy {
+export class TsSortDirective implements OnChanges, OnDestroy {
+  public disabled = false;
+
   /**
    * Collection of all registered sortables that this directive manages
    */

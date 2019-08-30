@@ -57,7 +57,7 @@ import {
       useExisting: TsAccordionComponent,
     },
   ],
-  host: {class: 'ts-accordion'},
+  host: { class: 'ts-accordion' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsAccordion',
@@ -71,7 +71,7 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
   /**
    * Collect a list of all triggers
    */
-  @ContentChildren(TsExpansionPanelTriggerComponent, {descendants: true})
+  @ContentChildren(TsExpansionPanelTriggerComponent, { descendants: true })
   public triggers!: QueryList<TsExpansionPanelTriggerComponent>;
 
   /**
@@ -112,7 +112,7 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
    * Handle keyboard events coming in from the panel triggers
    */
   public handleTriggerKeydown(event: KeyboardEvent): void {
-    const {code} = event;
+    const { code } = event;
     const manager = this.keyManager;
 
     if (code === KEYS.HOME.code) {

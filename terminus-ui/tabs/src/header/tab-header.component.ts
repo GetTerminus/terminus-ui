@@ -41,7 +41,7 @@ import { TsTabLabelWrapperDirective } from './../label/tab-label-wrapper.directi
 /**
  * Config used to bind passive event listeners
  */
-const passiveEventListenerOptions = normalizePassiveListenerOptions({passive: true}) as EventListenerOptions;
+const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true }) as EventListenerOptions;
 
 /**
  * The directions that scrolling can go in when the header's tabs exceed the header width. 'After' will scroll the header towards the end of
@@ -174,31 +174,31 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
   /**
    * Reference to the ink bar (underline element for the selected tab)
    */
-  @ViewChild(TsTabInkBarComponent, {static: true})
+  @ViewChild(TsTabInkBarComponent, { static: true })
   public inkBar!: TsTabInkBarComponent;
 
   /**
    * Reference to the paginator that reveals tabs at the beginning of the list
    */
-  @ViewChild('previousPaginator', {static: true})
+  @ViewChild('previousPaginator', { static: true })
   public previousPaginator!: ElementRef<HTMLElement>;
 
   /**
    * Reference to the paginator that reveals tabs at the end of the list
    */
-  @ViewChild('nextPaginator', {static: true})
+  @ViewChild('nextPaginator', { static: true })
   public nextPaginator!: ElementRef<HTMLElement>;
 
   /**
    * Reference to the outer container for the list of tabs
    */
-  @ViewChild('tabListContainer', {static: true})
+  @ViewChild('tabListContainer', { static: true })
   public tabListContainer!: ElementRef;
 
   /**
    * Reference to the inner container for the list of tabs
    */
-  @ViewChild('tabList', {static: true})
+  @ViewChild('tabList', { static: true })
   public tabList!: ElementRef;
 
   /**
@@ -451,7 +451,7 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
         takeUntil(this.stopScrolling),
       )
       .subscribe(() => {
-        const {maxScrollDistance, distance} = this.scrollHeader(direction);
+        const { maxScrollDistance, distance } = this.scrollHeader(direction);
 
         // Stop the timer if we've reached the start or the end
         if (distance === 0 || distance >= maxScrollDistance) {

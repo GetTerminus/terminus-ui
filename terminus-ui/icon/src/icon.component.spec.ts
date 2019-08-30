@@ -24,10 +24,10 @@ class TestHostComponent {
   customIcon = 'csv';
   hasBackground = false;
 
-  @ViewChild('one', {static: true})
+  @ViewChild('one', { static: true })
   one!: TsIconComponent;
 
-  @ViewChild('two', {static: true})
+  @ViewChild('two', { static: true })
   two!: TsIconComponent;
 }
 

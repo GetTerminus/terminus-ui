@@ -34,7 +34,7 @@ import {
   selector: 'ts-icon-button',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
-  host: {class: 'ts-icon-button'},
+  host: { class: 'ts-icon-button' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsIconButton',

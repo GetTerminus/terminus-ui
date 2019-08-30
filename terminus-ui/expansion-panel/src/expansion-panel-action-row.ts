@@ -26,7 +26,7 @@ import {
 @Component({
   selector: 'ts-expansion-panel-action-row',
   template: `<ng-content></ng-content>`,
-  host: {class: 'ts-expansion-panel__action-row'},
+  host: { class: 'ts-expansion-panel__action-row' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsExpansionPanelActionRow',

@@ -78,7 +78,7 @@ const DEFAULT_SCROLL_SPEED = 400;
     // tslint:disable-next-line relative-url-prefix
     './../../../node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
   ],
-  host: {class: 'ts-scrollbars'},
+  host: { class: 'ts-scrollbars' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsScrollbars',
@@ -115,7 +115,7 @@ export class TsScrollbarsComponent {
   /**
    * Access underlying scrollbar directive
    */
-  @ViewChild(forwardRef(() => PerfectScrollbarDirective), {static: false})
+  @ViewChild(forwardRef(() => PerfectScrollbarDirective), { static: false })
   public scrollbar!: PerfectScrollbarDirective;
 
   /**

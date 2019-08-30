@@ -34,7 +34,7 @@ let nextUniqueId = 0;
   selector: 'ts-validation-messages',
   templateUrl: './validation-messages.component.html',
   styleUrls: ['./validation-messages.component.scss'],
-  host: {class: 'ts-validation-messages'},
+  host: { class: 'ts-validation-messages' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsValidationMessages',

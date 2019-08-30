@@ -82,7 +82,7 @@ const DEFAULT_COLLAPSE_DELAY_MS = 4000;
   selector: 'ts-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {class: 'ts-button'},
+  host: { class: 'ts-button' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsButton',
@@ -118,7 +118,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Provide access to the inner button element
    */
-  @ViewChild('button', {static: true})
+  @ViewChild('button', { static: true })
   public button!: ElementRef;
 
   /**

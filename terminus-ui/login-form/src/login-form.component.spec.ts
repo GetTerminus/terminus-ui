@@ -30,7 +30,7 @@ import { TsLoginFormModule } from './login-form.module';
   `,
 })
 class TestHostComponent {
-  @ViewChild(TsLoginFormComponent, {static: true})
+  @ViewChild(TsLoginFormComponent, { static: true })
   public submission = jest.fn();
 }
 
@@ -107,20 +107,20 @@ describe(`TsLoginFormComponent`, function() {
   describe(`ngOnChanges()`, () => {
 
     test(`should reset the form if 'triggerFormReset' was the passed in change`, () => {
-      component['resetForm'] = jest.fn();
-      const changesMock: SimpleChanges = {triggerFormReset: new SimpleChange(true, false, false)};
+      component.resetForm = jest.fn();
+      const changesMock: SimpleChanges = { triggerFormReset: new SimpleChange(true, false, false) };
       component.ngOnChanges(changesMock);
 
-      expect(component['resetForm']).toHaveBeenCalled();
+      expect(component.resetForm).toHaveBeenCalled();
     });
 
 
     test(`should not reset the form if 'resetForm' was not passed in with changes`, () => {
-      component['resetForm'] = jest.fn();
-      const changesMock: SimpleChanges = {foo: new SimpleChange(true, false, false)};
+      component.resetForm = jest.fn();
+      const changesMock: SimpleChanges = { foo: new SimpleChange(true, false, false) };
       component.ngOnChanges(changesMock);
 
-      expect(component['resetForm']).not.toHaveBeenCalled();
+      expect(component.resetForm).not.toHaveBeenCalled();
     });
 
   });
@@ -129,7 +129,7 @@ describe(`TsLoginFormComponent`, function() {
   describe(`resetForm()`, () => {
 
     test(`should reset all inputs to their initial value`, fakeAsync(() => {
-      component['changeDetectorRef'].detectChanges = jest.fn();
+      component.changeDetectorRef.detectChanges = jest.fn();
       component.loginForm!.patchValue({
         email: 'foo',
         password: 'bar',
@@ -141,7 +141,7 @@ describe(`TsLoginFormComponent`, function() {
       const passwordValueBefore = component.loginForm!.get('password')!.value;
       expect(passwordValueBefore).toEqual('bar');
 
-      component['resetForm']();
+      component.resetForm();
       tick(100);
 
       const emailValueAfter = component.loginForm!.get('email')!.value;
@@ -151,7 +151,7 @@ describe(`TsLoginFormComponent`, function() {
       expect(passwordValueAfter).toEqual(null);
 
       expect(component.showForm).toEqual(true);
-      expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+      expect(component.changeDetectorRef.detectChanges).toHaveBeenCalled();
     }));
 
   });

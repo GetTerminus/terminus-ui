@@ -3,8 +3,10 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { isAbstractControl } from '@terminus/ui/utilities';
-import { isValid } from 'date-fns';
+import {
+  isAbstractControl,
+  isValidDate,
+} from '@terminus/ui/utilities';
 
 
 /**
@@ -46,7 +48,7 @@ function getValidationResult(maxDate: string | undefined, control: AbstractContr
   };
 
   // Verify the dates are valid
-  if (!isValid(control.value) || !maxDate || !isValid(maxDate)) {
+  if (!isValidDate(control.value) || !maxDate || !isValidDate(maxDate)) {
     return invalidResponse;
   }
 

@@ -232,7 +232,7 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(1);
-      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({index: 1}));
+      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({ index: 1 }));
     });
 
 
@@ -256,15 +256,15 @@ describe(`TsTabCollectionComponent`, function() {
       const KEY_EVENT = document.createEvent('KeyboardEvent');
       KEY_EVENT.initEvent('keydown', true, false);
       Object.defineProperties(KEY_EVENT, {
-        code: {get: () => KEYS.LEFT_ARROW.code},
-        key: {get: () => KEYS.LEFT_ARROW.code},
-        keyCode: {get: () => KEYS.LEFT_ARROW.keyCode},
+        code: { get: () => KEYS.LEFT_ARROW.code },
+        key: { get: () => KEYS.LEFT_ARROW.code },
+        keyCode: { get: () => KEYS.LEFT_ARROW.keyCode },
       });
       tabLabelContainer.dispatchEvent(KEY_EVENT);
       fixture.detectChanges();
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(2);
-      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({index: 0}));
+      expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(expect.objectContaining({ index: 0 }));
     });
 
   });
@@ -606,7 +606,7 @@ describe(`TsTabCollectionComponent`, function() {
       expect(instance.setTabBodyWrapperHeight(10)).toEqual(undefined);
 
       // Set a fake existing height (would normally be set during initialization)
-      instance['tabBodyWrapperHeight'] = 50;
+      instance.tabBodyWrapperHeight = 50;
       fixture.detectChanges();
 
       instance.setTabBodyWrapperHeight(75);
@@ -622,12 +622,12 @@ describe(`TsTabCollectionComponent`, function() {
       fixture.detectChanges();
       const instance = getTabCollectionInstance(fixture);
       // Set a fake existing height (this would normally be set during initialization)
-      instance['tabBodyWrapperHeight'] = 50;
+      instance.tabBodyWrapperHeight = 50;
       fixture.detectChanges();
 
 
       const bodyInstance = fixture.debugElement.query(By.css('.ts-tab-body')).componentInstance;
-      Object.defineProperties(instance.tabBodyWrapper.nativeElement, {offsetHeight: {get: () => '80px'}});
+      Object.defineProperties(instance.tabBodyWrapper.nativeElement, { offsetHeight: { get: () => '80px' } });
 
       instance.setTabBodyWrapperHeight(75);
       fixture.detectChanges();

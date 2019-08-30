@@ -293,12 +293,12 @@ describe(`TsSelectComponent`, function() {
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
-      instance['changeDetectorRef'].markForCheck = jest.fn();
+      instance.changeDetectorRef.markForCheck = jest.fn();
       instance.stateChanges.next = jest.fn();
 
       instance.setDisabledState(true);
 
-      expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+      expect(instance.changeDetectorRef.markForCheck).toHaveBeenCalled();
       expect(instance.stateChanges.next).toHaveBeenCalled();
       expect(instance.isDisabled).toEqual(true);
     });
@@ -348,12 +348,12 @@ describe(`TsSelectComponent`, function() {
 
         expect(instance.panelOpen).toEqual(true);
 
-        instance['changeDetectorRef'].markForCheck = jest.fn();
+        instance.changeDetectorRef.markForCheck = jest.fn();
         instance.open();
         fixture.detectChanges();
 
         expect(instance.panelOpen).toEqual(true);
-        expect(instance['changeDetectorRef'].markForCheck).not.toHaveBeenCalled();
+        expect(instance.changeDetectorRef.markForCheck).not.toHaveBeenCalled();
       });
 
 
@@ -436,7 +436,7 @@ describe(`TsSelectComponent`, function() {
         expect(instance.panelOpen).toEqual(true);
 
         const event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
-        Object.defineProperty(event, 'altKey', {get: () => true});
+        Object.defineProperty(event, 'altKey', { get: () => true });
         dispatchEvent(element, event);
         fixture.detectChanges();
 
@@ -640,7 +640,7 @@ describe(`TsSelectComponent`, function() {
         openSelect(fixture);
 
         const event = createKeyboardEvent('keydown', KEYS.A, element);
-        Object.defineProperty(event, 'ctrlKey', {get: () => true});
+        Object.defineProperty(event, 'ctrlKey', { get: () => true });
         dispatchEvent(element, event);
         fixture.detectChanges();
 
@@ -671,7 +671,7 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
 
         const event = createKeydownEvent(KEYS.DOWN_ARROW);
-        Object.defineProperty(event, 'shiftKey', {get: () => true});
+        Object.defineProperty(event, 'shiftKey', { get: () => true });
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -679,7 +679,7 @@ describe(`TsSelectComponent`, function() {
         expect(instance.value).toEqual(['Florida']);
 
         const event2 = createKeyboardEvent('keydown', KEYS.UP_ARROW);
-        Object.defineProperty(event2, 'shiftKey', {get: () => true});
+        Object.defineProperty(event2, 'shiftKey', { get: () => true });
         element.dispatchEvent(event2);
 
         fixture.detectChanges();
@@ -781,7 +781,7 @@ describe(`TsSelectComponent`, function() {
       const fixture = createComponent<testComponents.Label>(testComponents.Label);
       fixture.detectChanges();
       const instance = getSelectInstance(fixture);
-      instance['changeDetectorRef'].detectChanges = jest.fn();
+      instance.changeDetectorRef.detectChanges = jest.fn();
       instance.labelChanges.next = jest.fn();
 
       fixture.componentInstance.myLabel = 'bing baz';
@@ -790,7 +790,7 @@ describe(`TsSelectComponent`, function() {
       const label = fixture.debugElement.query(By.css('.ts-form-field__label'));
 
       expect(label.nativeElement.textContent.trim()).toEqual('bing baz');
-      expect(instance['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+      expect(instance.changeDetectorRef.detectChanges).toHaveBeenCalled();
       expect(instance.labelChanges.next).toHaveBeenCalled();
     });
 
@@ -890,10 +890,10 @@ describe(`TsSelectComponent`, function() {
       const instance = getSelectInstance(fixture);
       fixture.componentInstance.change = jest.fn();
 
-      instance['propagateChanges']('foo');
+      instance.propagateChanges('foo');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.change).toHaveBeenCalledWith(expect.objectContaining({value: 'foo'}));
+      expect(fixture.componentInstance.change).toHaveBeenCalledWith(expect.objectContaining({ value: 'foo' }));
     });
 
   });
@@ -907,7 +907,7 @@ describe(`TsSelectComponent`, function() {
       const instance = getSelectInstance(fixture);
       instance.panel = undefined as any;
 
-      expect(instance['getPanelScrollTop']()).toEqual(0);
+      expect(instance.getPanelScrollTop()).toEqual(0);
     });
 
   });
@@ -1041,7 +1041,7 @@ describe(`TsSelectComponent`, function() {
         fixture.detectChanges();
         const option = getOptionInstance(fixture, 0, 1);
 
-        expect(option.option).toEqual(expect.objectContaining({name: 'Alabama'}));
+        expect(option.option).toEqual(expect.objectContaining({ name: 'Alabama' }));
       });
 
     });
@@ -1161,7 +1161,7 @@ describe(`TsSelectComponent`, function() {
       expect(instance.panelOpen).toEqual(true);
 
       let event = createKeyboardEvent('keydown', KEYS.DOWN_ARROW);
-      Object.defineProperty(event, 'altKey', {get: () => true});
+      Object.defineProperty(event, 'altKey', { get: () => true });
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();
 
@@ -1175,7 +1175,7 @@ describe(`TsSelectComponent`, function() {
       expect(instance.panelOpen).toEqual(true);
 
       event = createKeyboardEvent('keydown', KEYS.UP_ARROW);
-      Object.defineProperty(event, 'altKey', {get: () => true});
+      Object.defineProperty(event, 'altKey', { get: () => true });
       dispatchEvent(getSelectElement(fixture), event);
       fixture.detectChanges();
 

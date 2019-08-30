@@ -44,9 +44,9 @@ import { TsDatePipe } from '@terminus/ui/pipes';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   inputHasChanged,
+  isValidDate,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
-import { isValid as isValidDate } from 'date-fns';
 import { Subject } from 'rxjs';
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -372,13 +372,13 @@ export class TsInputComponent implements
   /**
    * Expose reference to the Material datepicker component
    */
-  @ViewChild('picker', {static: false})
+  @ViewChild('picker', { static: false })
   public picker!: MatDatepicker<string>;
 
   /**
    * Provide access to the input
    */
-  @ViewChild('inputElement', {static: false})
+  @ViewChild('inputElement', { static: false })
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
@@ -866,7 +866,7 @@ export class TsInputComponent implements
     this.document = this.documentService.document;
 
     // If no inputValueAccessor was passed in, default to a basic object with a value.
-    this.inputValueAccessor = inputValueAccessor || {value: undefined};
+    this.inputValueAccessor = inputValueAccessor || { value: undefined };
 
     // If no value accessor was passed in, use this component for the ngControl ValueAccessor
     // istanbul ignore else
@@ -1252,7 +1252,7 @@ export class TsInputComponent implements
         unmaskRegex: NUMBER_ONLY_REGEX,
       },
       currency: {
-        mask: createNumberMask({allowDecimal}),
+        mask: createNumberMask({ allowDecimal }),
         unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
       },
       number: {
@@ -1272,13 +1272,13 @@ export class TsInputComponent implements
         }),
         unmaskRegex: allowDecimal ? NUMBER_WITH_DECIMAL_REGEX : NUMBER_ONLY_REGEX,
       },
-      postal: {mask: this.determinePostalMask},
+      postal: { mask: this.determinePostalMask },
       date: {
         mask: [/\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         pipe: createAutoCorrectedDatePipe(this.defaultDateFormat),
         keepCharPositions: false,
       },
-      default: {mask: false},
+      default: { mask: false },
     };
   }
 

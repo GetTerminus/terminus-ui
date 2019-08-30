@@ -8,14 +8,14 @@ describe(`TsDropProtectionService`, function() {
   let service: TsDropProtectionService;
   let myWindow: Window;
   const eventDrop = createFakeEvent('drop');
-  Object.defineProperty(eventDrop, 'preventDefault', {value: jest.fn()});
+  Object.defineProperty(eventDrop, 'preventDefault', { value: jest.fn() });
   const eventDrag = createFakeEvent('dragover');
-  Object.defineProperty(eventDrag, 'preventDefault', {value: jest.fn()});
+  Object.defineProperty(eventDrag, 'preventDefault', { value: jest.fn() });
 
 
   beforeEach(() => {
     service = new TsDropProtectionService(new TsWindowService());
-    myWindow = service['windowService'].nativeWindow;
+    myWindow = service.windowService.nativeWindow;
   });
 
 
@@ -28,7 +28,7 @@ describe(`TsDropProtectionService`, function() {
 
       expect(eventDrop.preventDefault).toHaveBeenCalled();
       expect(eventDrag.preventDefault).toHaveBeenCalled();
-      expect(service['hasProtection']).toEqual(true);
+      expect(service.hasProtection).toEqual(true);
     });
 
 
@@ -48,12 +48,12 @@ describe(`TsDropProtectionService`, function() {
       service.add();
       myWindow.dispatchEvent(eventDrag);
       expect(eventDrag.preventDefault).toHaveBeenCalledTimes(1);
-      expect(service['hasProtection']).toEqual(true);
+      expect(service.hasProtection).toEqual(true);
 
       service.remove();
       myWindow.dispatchEvent(eventDrag);
       expect(eventDrag.preventDefault).toHaveBeenCalledTimes(1);
-      expect(service['hasProtection']).toEqual(false);
+      expect(service.hasProtection).toEqual(false);
     });
 
 

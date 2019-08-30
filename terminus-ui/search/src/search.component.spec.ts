@@ -55,10 +55,10 @@ describe('TsSearchComponent', function() {
       component.ngOnInit();
       expect(component.currentQuery).toEqual('foo');
 
-      component.searchForm.patchValue({query: ' foo 23 '});
+      component.searchForm.patchValue({ query: ' foo 23 ' });
       expect(component.currentQuery).toEqual('foo 23');
 
-      component.searchForm.patchValue({query: null});
+      component.searchForm.patchValue({ query: null });
       expect(component.currentQuery).toEqual('');
     });
 
@@ -84,7 +84,7 @@ describe('TsSearchComponent', function() {
 
     beforeEach(() => {
       component.changed.emit = jest.fn();
-      component['debouncedEmit'] = jest.fn();
+      component.debouncedEmit = jest.fn();
     });
 
 
@@ -94,7 +94,7 @@ describe('TsSearchComponent', function() {
       component.keyup();
 
       expect(component.changed.emit).toHaveBeenCalledWith('foo');
-      expect(component['debouncedEmit']).not.toHaveBeenCalled();
+      expect(component.debouncedEmit).not.toHaveBeenCalled();
     });
 
 
@@ -106,7 +106,7 @@ describe('TsSearchComponent', function() {
         component.ngOnInit();
         component.keyup();
 
-        expect(component['debouncedEmit']).toHaveBeenCalled();
+        expect(component.debouncedEmit).toHaveBeenCalled();
       });
 
 
@@ -116,7 +116,7 @@ describe('TsSearchComponent', function() {
         component.ngOnInit();
         component.keyup();
 
-        expect(component['debouncedEmit']).not.toHaveBeenCalled();
+        expect(component.debouncedEmit).not.toHaveBeenCalled();
       });
 
     });
@@ -130,7 +130,7 @@ describe('TsSearchComponent', function() {
         component.ngOnInit();
         component.keyup();
 
-        expect(component['debouncedEmit']).not.toHaveBeenCalled();
+        expect(component.debouncedEmit).not.toHaveBeenCalled();
       });
 
     });
@@ -148,18 +148,18 @@ describe('TsSearchComponent', function() {
 
 
     test(`should emit an event if the form is valid`, () => {
-      component['emitSubmit']();
+      component.emitSubmit();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
+      expect(component.submitted.emit).toHaveBeenCalledWith({ query: 'foo' });
     });
 
 
     test(`should call emitSubmit via debouncedEmit`, () => {
       jest.useFakeTimers();
-      component['debouncedEmit']();
+      component.debouncedEmit();
       jest.runAllTimers();
 
-      expect(component.submitted.emit).toHaveBeenCalledWith({query: 'foo'});
+      expect(component.submitted.emit).toHaveBeenCalledWith({ query: 'foo' });
     });
 
   });

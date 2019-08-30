@@ -98,14 +98,14 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Template inside the TsTabComponent view that contains an `<ng-content>`
    */
-  @ViewChild(TemplateRef, {static: true})
+  @ViewChild(TemplateRef, { static: true })
   // tslint:disable-next-line no-any
   public implicitContent!: TemplateRef<any>;
 
   /**
    * Content for the tab label given by `<ng-template tsTabLabel>`
    */
-  @ContentChild(TsTabLabelDirective, {static: false})
+  @ContentChild(TsTabLabelDirective, { static: false })
   public templateLabel!: TsTabLabelDirective;
 
   /**

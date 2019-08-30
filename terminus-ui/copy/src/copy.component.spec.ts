@@ -72,16 +72,16 @@ describe(`TsCopyComponent`, function() {
 
 
     test(`should select the text within the passed in element`, () => {
-      component['window'].getSelection = jest.fn().mockReturnValue({
+      component.window.getSelection = jest.fn().mockReturnValue({
         removeAllRanges: noop,
         addRange: noop,
       });
 
-      component['document'].createRange = jest.fn().mockReturnValue({selectNodeContents: noop});
+      component.document.createRange = jest.fn().mockReturnValue({ selectNodeContents: noop });
       component.selectText(component.content.nativeElement, false, false);
 
-      expect(component['window'].getSelection).toHaveBeenCalled();
-      expect(component['document'].createRange).toHaveBeenCalled();
+      expect(component.window.getSelection).toHaveBeenCalled();
+      expect(component.document.createRange).toHaveBeenCalled();
       expect(component.hasSelected).toEqual(true);
     });
 
@@ -116,30 +116,30 @@ describe(`TsCopyComponent`, function() {
         remove: jest.fn(),
         setSelectionRange: jest.fn(),
       };
-      component['document'].createElement = jest.fn().mockReturnValue(MOCK_TEXTAREA);
+      component.document.createElement = jest.fn().mockReturnValue(MOCK_TEXTAREA);
     });
 
 
     test(`should set the text to the clipboard`, () => {
-      component['document'].body.appendChild = jest.fn();
-      component['document'].execCommand = jest.fn();
+      component.document.body.appendChild = jest.fn();
+      component.document.execCommand = jest.fn();
       component.copyToClipboard('foo');
 
-      expect(component['document'].createElement).toHaveBeenCalledWith('textarea');
-      expect(component['document'].body.appendChild).toHaveBeenCalled();
-      expect(component['document'].execCommand).toHaveBeenCalledWith('copy');
-      expect(component['document'].execCommand).toHaveBeenCalledWith('copy');
+      expect(component.document.createElement).toHaveBeenCalledWith('textarea');
+      expect(component.document.body.appendChild).toHaveBeenCalled();
+      expect(component.document.execCommand).toHaveBeenCalledWith('copy');
+      expect(component.document.execCommand).toHaveBeenCalledWith('copy');
     });
 
 
     test(`should fall back to a prompt if execCommand fails`, () => {
-      component['document'].execCommand = () => {
+      component.document.execCommand = () => {
         throw new Error('fake error');
       };
-      component['window'].prompt = jest.fn();
+      component.window.prompt = jest.fn();
       component.copyToClipboard('foo');
 
-      expect(component['window'].prompt).toHaveBeenCalled();
+      expect(component.window.prompt).toHaveBeenCalled();
     });
 
   });

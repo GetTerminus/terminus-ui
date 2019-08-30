@@ -33,7 +33,7 @@ class TestHostComponent {
   public supportsInteraction!: boolean;
   public theme: TsStyleThemeTypes | undefined;
 
-  @ViewChild(TsCardComponent, {static: true})
+  @ViewChild(TsCardComponent, { static: true })
   public cardComponent!: TsCardComponent;
 }
 
@@ -133,7 +133,7 @@ describe(`TsCardComponent`, function() {
       expect(cardComponent.id).toEqual('foo');
 
       cardComponent.id = null as any;
-      expect(cardComponent.id).toEqual(cardComponent['_uid']);
+      expect(cardComponent.id).toEqual(cardComponent._uid);
     });
 
   });

@@ -21,7 +21,7 @@ export class Basic {
   public controlForm: FormControl | undefined;
   public validateOnChange: boolean;
 
-  @ViewChild(TsValidationMessagesComponent, {static: true})
+  @ViewChild(TsValidationMessagesComponent, { static: true })
   public validationMessagesComponent: TsValidationMessagesComponent;
 }
 
@@ -42,7 +42,7 @@ export class TestHostComponent {
   public validateImmediately: boolean;
   public validateOnChange: boolean;
 
-  @ViewChild(TsValidationMessagesComponent, {static: true})
+  @ViewChild(TsValidationMessagesComponent, { static: true })
   public validationMessagesComponent: TsValidationMessagesComponent;
 }
 

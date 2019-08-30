@@ -50,7 +50,7 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   selector: 'ts-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
-  host: {class: 'ts-tooltip'},
+  host: { class: 'ts-tooltip' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -85,7 +85,7 @@ export class TsTooltipComponent {
   /**
    * Access Material Tooltip Directive
    */
-  @ViewChild('tooltip', {static: true})
+  @ViewChild('tooltip', { static: true })
   public matTooltip;
 
   /**

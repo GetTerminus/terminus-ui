@@ -92,7 +92,7 @@ export class TsCopyComponent {
   /**
    * Define access to the wrapper around the content to be copied
    */
-  @ViewChild('content', {static: true})
+  @ViewChild('content', { static: true })
   public content!: ElementRef;
 
   /**

@@ -118,13 +118,13 @@ class SimpleTsSortApp {
   disabledColumnSort = false;
   disableAllSort = false;
 
-  @ViewChild(TsSortDirective, {static: true})
+  @ViewChild(TsSortDirective, { static: true })
   tsSort!: TsSortDirective;
 
-  @ViewChild('defaultSortHeaderA', {static: true})
+  @ViewChild('defaultSortHeaderA', { static: true })
   tsSortHeaderDefaultA!: TsSortHeaderComponent;
 
-  @ViewChild('defaultSortHeaderB', {static: true})
+  @ViewChild('defaultSortHeaderB', { static: true })
   tsSortHeaderDefaultB!: TsSortHeaderComponent;
 
   constructor(public elementRef: ElementRef) {}
@@ -164,7 +164,7 @@ class FakeDataSource extends DataSource<any> {
   `,
 })
 class CdkTableTsSortApp {
-  @ViewChild(TsSortDirective, {static: true})
+  @ViewChild(TsSortDirective, { static: true })
   tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
@@ -192,7 +192,7 @@ class CdkTableTsSortApp {
   `,
 })
 class TsTableTsSortApp {
-  @ViewChild(TsSortDirective, {static: true})
+  @ViewChild(TsSortDirective, { static: true })
   tsSort!: TsSortDirective;
 
   dataSource = new FakeDataSource();
@@ -200,7 +200,7 @@ class TsTableTsSortApp {
 }
 
 
-@Component({template: `<div ts-sort-header="a"> A </div>`})
+@Component({ template: `<div ts-sort-header="a"> A </div>` })
 class TsSortHeaderMissingTsSortApp { }
 
 
@@ -272,7 +272,7 @@ describe('TsSort', () => {
 
 
   test('should have the sort headers register and deregister themselves', () => {
-    const sortables = component.tsSort['sortables'];
+    const sortables = component.tsSort.sortables;
     expect(sortables.size).toBe(4);
     expect(sortables.get('defaultSortHeaderA')).toBe(component.tsSortHeaderDefaultA);
     expect(sortables.get('defaultSortHeaderB')).toBe(component.tsSortHeaderDefaultB);
@@ -289,7 +289,7 @@ describe('TsSort', () => {
     cdkTableTsSortAppFixture.detectChanges();
     cdkTableTsSortAppFixture.detectChanges();
 
-    const sortables = cdkTableTsSortAppComponent.tsSort['sortables'];
+    const sortables = cdkTableTsSortAppComponent.tsSort.sortables;
     expect(sortables.size).toBe(3);
     expect(sortables.has('column_a')).toBe(true);
     expect(sortables.has('column_b')).toBe(true);
@@ -304,7 +304,7 @@ describe('TsSort', () => {
     tsTableTsSortAppFixture.detectChanges();
     tsTableTsSortAppFixture.detectChanges();
 
-    const sortables = tsTableTsSortAppComponent.tsSort['sortables'];
+    const sortables = tsTableTsSortAppComponent.tsSort.sortables;
     expect(sortables.size).toBe(3);
     expect(sortables.has('column_a')).toBe(true);
     expect(sortables.has('column_b')).toBe(true);

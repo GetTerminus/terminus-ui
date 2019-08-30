@@ -35,7 +35,7 @@ import { TsConfirmationModule } from './confirmation.module';
   `,
 })
 class TestHostComponent {
-  @ViewChild(TsConfirmationDirective, {static: true})
+  @ViewChild(TsConfirmationDirective, { static: true })
   public directive!: TsConfirmationDirective;
   public confirmText;
   public cancelText;
@@ -75,7 +75,7 @@ describe(`TsConfirmationDirective`, function() {
       button.click();
 
       expect(document.querySelector('.cdk-overlay-container')).not.toBeNull();
-      expect(directive['host'].showProgress).toEqual(true);
+      expect(directive.host.showProgress).toEqual(true);
     });
 
   });
@@ -84,26 +84,26 @@ describe(`TsConfirmationDirective`, function() {
   describe(`dismissing the overlay`, () => {
 
     test(`should dismiss the overlay by clicking the backdrop`, () => {
-      expect(directive['overlayRef']).toBeFalsy();
+      expect(directive.overlayRef).toBeFalsy();
       button.click();
-      expect(directive['overlayRef']).toBeTruthy();
+      expect(directive.overlayRef).toBeTruthy();
 
-      directive['overlayRef']!['_backdropClick'].next(new Event('click'));
+      directive.overlayRef!._backdropClick.next(new Event('click'));
       fixture.detectChanges();
 
-      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
+      expect(directive.overlayRef!.hasAttached()).toEqual(false);
     });
 
 
     test(`should dismiss the overlay by using the escape key`, function() {
-      expect(directive['overlayRef']).toBeFalsy();
+      expect(directive.overlayRef).toBeFalsy();
       button.click();
-      expect(directive['overlayRef']).toBeTruthy();
+      expect(directive.overlayRef).toBeTruthy();
 
       dispatchKeyboardEvent(button, 'keydown', KEYS.ESCAPE);
       fixture.detectChanges();
 
-      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
+      expect(directive.overlayRef!.hasAttached()).toEqual(false);
     });
 
 
@@ -113,27 +113,27 @@ describe(`TsConfirmationDirective`, function() {
   describe(`overlay content`, () => {
 
     test(`should dismiss the overlay and emit event on confirm`, () => {
-      directive['host'].clicked.emit = jest.fn();
-      expect(directive['overlayRef']).toBeFalsy();
+      directive.host.clicked.emit = jest.fn();
+      expect(directive.overlayRef).toBeFalsy();
       button.click();
-      expect(directive['overlayRef']).toBeTruthy();
+      expect(directive.overlayRef).toBeTruthy();
 
-      directive['overlayInstance'].confirm.next(true);
+      directive.overlayInstance.confirm.next(true);
 
-      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
-      expect(directive['host'].clicked.emit).toHaveBeenCalled();
+      expect(directive.overlayRef!.hasAttached()).toEqual(false);
+      expect(directive.host.clicked.emit).toHaveBeenCalled();
     });
 
 
     test(`should dismiss the overlay and emit event on cancel`, () => {
       directive.cancelled.emit = jest.fn();
-      expect(directive['overlayRef']).toBeFalsy();
+      expect(directive.overlayRef).toBeFalsy();
       button.click();
-      expect(directive['overlayRef']).toBeTruthy();
+      expect(directive.overlayRef).toBeTruthy();
 
-      directive['overlayInstance'].confirm.next(false);
+      directive.overlayInstance.confirm.next(false);
 
-      expect(directive['overlayRef']!.hasAttached()).toEqual(false);
+      expect(directive.overlayRef!.hasAttached()).toEqual(false);
       expect(directive.cancelled.emit).toHaveBeenCalledWith(true);
     });
 
@@ -145,12 +145,12 @@ describe(`TsConfirmationDirective`, function() {
     describe(`confirmation button`, () => {
 
       test(`should accept custom text`, () => {
-        expect(directive['confirmationButtonText']).toEqual('Confirm');
+        expect(directive.confirmationButtonText).toEqual('Confirm');
 
         testComponent.confirmText = 'hello';
         fixture.detectChanges();
         button.click();
-        expect(directive['confirmationButtonText']).toEqual('hello');
+        expect(directive.confirmationButtonText).toEqual('hello');
       });
     });
 
@@ -158,12 +158,12 @@ describe(`TsConfirmationDirective`, function() {
     describe(`cancel button`, () => {
 
       test(`should accept custom text`, () => {
-        expect(directive['cancelButtonText']).toEqual('Cancel');
+        expect(directive.cancelButtonText).toEqual('Cancel');
 
         testComponent.cancelText = 'goodbye';
         fixture.detectChanges();
         button.click();
-        expect(directive['cancelButtonText']).toEqual('goodbye');
+        expect(directive.cancelButtonText).toEqual('goodbye');
       });
 
     });
@@ -179,7 +179,7 @@ describe(`TsConfirmationDirective`, function() {
 
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
-      expect(directive['explanationText']).toBeUndefined();
+      expect(directive.explanationText).toBeUndefined();
       expect(document.querySelector('.ts-confirmation-overlay__explanation')).toBeNull();
 
       jest.runAllTimers();
@@ -195,8 +195,8 @@ describe(`TsConfirmationDirective`, function() {
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
 
-      expect(directive['explanationText']).toEqual('Explanation');
-      expect(directive['explanationText']).toBeTruthy();
+      expect(directive.explanationText).toEqual('Explanation');
+      expect(directive.explanationText).toBeTruthy();
 
       expect(document.querySelector('.ts-confirmation-overlay__explanation')).not.toBeNull();
 
@@ -214,7 +214,7 @@ describe(`TsConfirmationDirective`, function() {
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
 
-      expect(directive['overlayPosition']).toEqual('below');
+      expect(directive.overlayPosition).toEqual('below');
       expect(document.querySelector('.ts-confirmation-overlay__panel-below')).not.toBeNull();
     });
 
@@ -280,7 +280,7 @@ describe(`TsConfirmationDirective`, function() {
   describe(`generateOverlayConfig`, function() {
 
     test(`should use default value`, function() {
-      const result = directive['generateOverlayConfig']();
+      const result = directive.generateOverlayConfig();
       expect(result.panelClass).toContain('ts-confirmation-overlay__panel-below');
     });
 

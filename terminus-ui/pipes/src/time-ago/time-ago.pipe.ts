@@ -3,10 +3,8 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import {
-  formatDistance,
-  isValid,
-} from 'date-fns';
+import { isValidDate } from '@terminus/ui/utilities';
+import { formatDistance } from 'date-fns';
 
 
 /**
@@ -17,7 +15,7 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/pipes</example-url>
  */
-@Pipe({name: 'tsTimeAgo'})
+@Pipe({ name: 'tsTimeAgo' })
 export class TsTimeAgoPipe implements PipeTransform {
   public transform(value: string | Date, comparedDate: string | Date): string | undefined {
     // Check for null values to avoid issues during data-binding
@@ -26,10 +24,10 @@ export class TsTimeAgoPipe implements PipeTransform {
     }
 
     // Check for date validity
-    if (!isValid(value) && isDevMode()) {
+    if (!isValidDate(value) && isDevMode()) {
       throw Error(`'${value}' is not a valid date.`);
     }
-    if (!isValid(comparedDate) && isDevMode()) {
+    if (!isValidDate(comparedDate) && isDevMode()) {
       throw Error(`'${comparedDate}' is not a valid date.`);
     }
 

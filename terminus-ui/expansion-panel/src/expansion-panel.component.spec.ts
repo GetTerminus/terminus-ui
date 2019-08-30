@@ -131,12 +131,12 @@ describe(`TsExpansionPanelComponent`, function() {
       fixture.detectChanges();
       const trigger = getTriggerInstance(fixture);
       const panel = getPanelInstance(fixture);
-      Object.defineProperties(panel, {contentContainsFocus: {get: () => true}});
-      trigger['focusMonitor'].focusVia = jest.fn();
+      Object.defineProperties(panel, { contentContainsFocus: { get: () => true } });
+      trigger.focusMonitor.focusVia = jest.fn();
 
       panel.expanded = false;
       fixture.detectChanges();
-      expect(trigger['focusMonitor'].focusVia).toHaveBeenCalled();
+      expect(trigger.focusMonitor.focusVia).toHaveBeenCalled();
     });
 
 
@@ -270,13 +270,13 @@ describe(`TsExpansionPanelComponent`, function() {
       const fixture = createComponent<testComponents.SinglePanel>(testComponents.SinglePanel);
       fixture.detectChanges();
       const trigger = getTriggerInstance(fixture);
-      trigger['focusMonitor'].focusVia = jest.fn();
+      trigger.focusMonitor.focusVia = jest.fn();
 
       trigger.focus();
-      expect(trigger['focusMonitor'].focusVia.mock.calls[0][1]).toEqual('program');
+      expect(trigger.focusMonitor.focusVia.mock.calls[0][1]).toEqual('program');
 
       trigger.focus('keyboard');
-      expect(trigger['focusMonitor'].focusVia.mock.calls[1][1]).toEqual('keyboard');
+      expect(trigger.focusMonitor.focusVia.mock.calls[1][1]).toEqual('keyboard');
     });
 
   });
