@@ -143,7 +143,9 @@ describe(`TsDateRangeComponent`, function() {
         expect(endInputInstance.formControl.value).toBeNull();
 
         typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+        startInputInstance.inputElement.nativeElement.blur();
         typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
+        endInputInstance.inputElement.nativeElement.blur();
         fixture.detectChanges();
 
         expect(fixture.componentInstance.dateRangeComponent['internalStartControl'].value).toEqual(new Date('3-4-2019'));
@@ -164,6 +166,7 @@ describe(`TsDateRangeComponent`, function() {
       const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
       typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+      startInputInstance.inputElement.nativeElement.blur();
       fixture.detectChanges();
       expect(fixture.componentInstance.startSelected).toHaveBeenCalledWith(new Date('3-4-2019'));
       expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({
@@ -172,6 +175,7 @@ describe(`TsDateRangeComponent`, function() {
       });
 
       typeInElement('3-8-2019', endInputInstance.inputElement.nativeElement);
+      endInputInstance.inputElement.nativeElement.blur();
       fixture.detectChanges();
       expect(fixture.componentInstance.endSelected).toHaveBeenCalledWith(new Date('3-8-2019'));
       expect(fixture.componentInstance.dateRangeChange).toHaveBeenCalledWith({
@@ -229,6 +233,7 @@ describe(`TsDateRangeComponent`, function() {
     fixture.detectChanges();
     const startInputInstance = getRangeInputInstances(fixture)[0];
     typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
+    startInputInstance.inputElement.nativeElement.blur();
     fixture.detectChanges();
 
     expect(fixture.componentInstance.startSelected).toHaveBeenCalled();

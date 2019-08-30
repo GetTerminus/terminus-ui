@@ -1,3 +1,10 @@
+## [14.9.2](https://github.com/GetTerminus/terminus-ui/compare/v14.9.1...v14.9.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **Input:** Datepicker handles manual input correctly ([#1672](https://github.com/GetTerminus/terminus-ui/issues/1672)) ([d61ae61](https://github.com/GetTerminus/terminus-ui/commit/d61ae61))
+
 ## [14.9.1](https://github.com/GetTerminus/terminus-ui/compare/v14.9.0...v14.9.1) (2019-08-28)
 
 
