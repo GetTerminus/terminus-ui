@@ -213,6 +213,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'selection-list',
+    loadChildren: `./components/selection-list/selection-list.module#SelectionListModule`,
+    data: {
+      name: 'Selection List',
+    },
+  },
+  {
     path: 'spacing',
     loadChildren: `./components/spacing/spacing.module#SpacingModule`,
     data: {

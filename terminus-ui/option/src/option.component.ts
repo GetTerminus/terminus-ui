@@ -275,9 +275,9 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) private parent: TsOptionParentComponent,
     @Optional() @Inject(TS_OPTGROUP_PARENT_COMPONENT) public readonly group: TsOptgroupParentComponent,
   ) {
-    if (parent.componentName.includes('Autocomplete')) {
+    if (parent.componentName === 'TsAutocompleteComponent') {
       this.autocompleteComponent = true;
-    } else if (parent.componentName.includes('Select')) {
+    } else if (parent.componentName === 'TsSelectComponent') {
       this.selectComponent = true;
     }
   }

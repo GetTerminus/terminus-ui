@@ -4,38 +4,16 @@
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
 
-$ts-chip-height: 35px;
-$ts-chip-vertical-padding: 3px;
-$ts-chip-horizontal-padding: 8px;
-$ts-chip-remove-width: 18px;
-$ts-chip-remove-height: 18px;
+
 $ts-chip-focus-background-color: color(utility);
-$ts-chip-color: color(pure, dark);
-$c-chip-top-margin: 7px;
-$c-chip-right-margin: 4px;
-$c-chip-padding: 25px;
 
 .ts-chip {
-  @include typography;
-  align-items: center;
-  background-color: color(utility, light);
-  border-radius: 16px;
-  box-sizing: border-box;
-  color: $ts-chip-color;
-  display: inline-flex;
-  height: $ts-chip-height;
-  margin: spacing(small, 2);
-  overflow: hidden;
-  padding: $ts-chip-vertical-padding $ts-chip-horizontal-padding;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  transform: translateZ(0);
-  transition: background-color 200ms ease-out;
-
   &:focus,
   &:hover {
-    background-color: $ts-chip-focus-background-color;
-    transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+    .c-chip {
+      background-color: $ts-chip-focus-background-color;
+      transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+    }
   }
 
   &.ts-chip--selected {
@@ -44,7 +22,9 @@ $c-chip-padding: 25px;
 
     @each $theme in $themes {
       &.ts-chip--#{$theme} {
-        background-color: color(#{$theme});
+        .c-chip {
+          background-color: color(#{$theme});
+        }
       }
     }
 
@@ -52,36 +32,52 @@ $c-chip-padding: 25px;
       color: color(pure);
     }
   }
-
-  .c-chip__remove {
-    color: $ts-chip-color;
-    cursor: cursor(pointer);
-    display: none;
-    height: $ts-chip-remove-height;
-    opacity: .4;
-    position: absolute;
-    right: 5%;
-    top: 42%;
-    transform: translate(-50%, -50%);
-    transition: color 200ms ease-out;
-    width: $ts-chip-remove-width;
-
-    &:hover {
-      opacity: .7;
-    }
-  }
 }
 
 
 
 .c-chip {
-  margin: $c-chip-top-margin $c-chip-right-margin;
+  $chip-height: spacing(large, 1);
+  $chip-padding: spacing(small, 2) spacing(small, 1);
+  @include typography;
+  align-items: center;
+  background-color: color(utility, light);
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: color(pure, dark);
+  display: inline-flex;
+  height: $chip-height;
+  margin: spacing(small, 2);
+  overflow: hidden;
+  padding: $chip-padding;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+  transition: background-color 200ms ease-out;
 
-  &--removable {
-    padding-right: $c-chip-padding;
+  &.c-chip--removable {
+    padding-right: spacing(large, 1);
 
     .c-chip__remove {
       display: block;
+    }
+  }
+
+  .c-chip__remove {
+    $size: 24px;
+    cursor: cursor(pointer);
+    display: none;
+    height: $size;
+    opacity: .4;
+    position: absolute;
+    right: spacing(small, 2);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 200ms ease-out;
+    width: $size;
+
+    &:hover {
+      opacity: .7;
     }
   }
 }

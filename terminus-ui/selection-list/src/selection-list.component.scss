@@ -6,24 +6,28 @@
 @import './../../scss/helpers/typography';
 
 
-.ts-autocomplete__input-wrap {
+$transition-duration: 200;
+
+.ts-selection-list__input-wrap {
+  position: relative;
+
   &--hidden {
     @include visually-hidden;
   }
 
-  // NOTE: Currently hardcode the text size since typography doesn't support 14px at this moment.
-  .ts-chip {
-    $chip-font-size: 14px;
-    font-size: $chip-font-size;
+  > .ts-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
-.ts-autocomplete__input {
+.ts-selection-list__input {
   background: transparent;
   border: none;
   color: currentColor;
   display: inline-block;
-  flex: 1 0 10px;
   font: inherit;
   max-width: 100%;
   outline: none;
@@ -35,7 +39,6 @@
   text-align: inherit;
   // Needed to make last line of the textarea line up with the baseline.
   vertical-align: bottom;
-  width: 100%;
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
   // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
@@ -43,6 +46,7 @@
     box-shadow: none;
   }
 }
+
 
 .cdk-overlay-container {
   .ts-autocomplete__backdrop {

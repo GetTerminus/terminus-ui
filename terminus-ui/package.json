@@ -40,7 +40,7 @@
     ]
   },
   "engines": {
-    "node": ">= 11.0.0",
+    "node": ">= 12.0.0",
     "npm": ">= 5.0.0",
     "yarn": ">= 1.0.0"
   },
@@ -59,7 +59,7 @@
     "@angular/platform-browser": "^8.0.1",
     "@angular/router": "^8.0.1",
     "@terminus/ngx-tools": ">=7.0.0",
-    "date-fns": "2.0.0-alpha.26",
+    "date-fns": "^2.0.1",
     "rxjs": "^6.5.2"
   },
   "optionalDependencies": {
