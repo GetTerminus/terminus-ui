@@ -1,0 +1,74 @@
+@import './../../../scss/helpers/menu';
+@import './../../../scss/helpers/shadows';
+@import './../../../scss/helpers/a11y';
+@import './../../../scss/helpers/color';
+
+
+// Menu width must be a multiple of 56px
+// 56 * 2:
+$ts-menu-overlay-min-width: 112px !default;
+// 56 * 5:
+$ts-menu-overlay-max-width: 280px !default;
+$ts-select-item-height: 3em !default;
+
+// The max-height of the panel, currently matching ts-select value
+$ts-selection-list-panel-max-height: 256px !default;
+$ts-selection-list-panel-border-radius: 4px !default;
+
+
+.ts-selection-list-panel__inner {
+  @include elevation-element(menu);
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+  background: color(pure);
+  border-bottom-left-radius: $ts-selection-list-panel-border-radius;
+  border-bottom-right-radius: $ts-selection-list-panel-border-radius;
+  color: color(pure, dark);
+  max-height: $ts-selection-list-panel-max-height;
+  max-width: none;
+  min-width: $ts-menu-overlay-min-width;
+  overflow: auto;
+  // Enable momentum scroll on mobile
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  visibility: hidden;
+  width: 100%;
+
+  // Selected options in autocompletes should not be gray, but we only want to override the background for selected options if they are
+  // *not* in hover or focus state. This change has to be made here because base option styles are shared between the selection list and the
+  // select.
+  .ts-option {
+    &.ts-option--selected {
+      &:not(.ts-active) {
+        &:not(:hover) {
+          background: color(primary, xlight);
+        }
+      }
+    }
+
+    &:not(.ts-option--template) {
+      font-size: inherit;
+      height: $ts-select-item-height;
+      line-height: $ts-select-item-height;
+    }
+  }
+
+  &.ts-selection-list-visible {
+    visibility: visible;
+  }
+
+  &.ts-selection-list-hidden {
+    visibility: hidden;
+  }
+
+  .ts-selection-list-panel-above & {
+    border-radius: $ts-selection-list-panel-border-radius $ts-selection-list-panel-border-radius 0 0;
+  }
+
+  .ts-divider-horizontal {
+    // We need to offset horizontal dividers by their height, because they throw off the keyboard navigation inside the panel.
+    $offset-for-divider-line: -1px;
+    margin-top: $offset-for-divider-line;
+  }
+}

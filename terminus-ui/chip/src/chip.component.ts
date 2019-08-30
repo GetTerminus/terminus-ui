@@ -362,7 +362,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    *
    * Informs any listeners of the removal request. Does not remove the chip from the DOM.
    */
-  public removeChip(event?: MouseEvent): void {
+  public removeChip(event?: MouseEvent | KeyboardEvent): void {
     // istanbul ignore else
     if (this.isRemovable) {
       this.remove.emit(new TsChipEvent(this));
@@ -415,7 +415,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
     switch (code) {
       case KEYS.DELETE.code:
       case KEYS.BACKSPACE.code:
-        this.removeChip();
+        this.removeChip(event);
         break;
       case KEYS.SPACE.code:
         // istanbul ignore else

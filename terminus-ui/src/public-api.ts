@@ -29,6 +29,7 @@ export * from '@terminus/ui/radio-group';
 export * from '@terminus/ui/scrollbars';
 export * from '@terminus/ui/search';
 export * from '@terminus/ui/select';
+export * from '@terminus/ui/selection-list';
 export * from '@terminus/ui/sort';
 export * from '@terminus/ui/spacing';
 export * from '@terminus/ui/table';

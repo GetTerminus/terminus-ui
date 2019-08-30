@@ -67,7 +67,7 @@ export abstract class TsFormFieldControl<T> {
   public readonly autofilled?: boolean;
 
   /**
-   * An optional form control (used by DateRange)
+   * An optional form control
    */
   public readonly formControl?: FormControl;
 

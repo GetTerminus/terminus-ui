@@ -44,6 +44,7 @@ module.exports = {
     {name: 'Scrollbars'},
     {name: 'Search'},
     {name: 'Select'},
+    {name: 'SelectionList'},
     {name: 'Services'},
     {name: 'SCSS'},
     {name: 'Sort'},

@@ -1261,7 +1261,7 @@ describe(`TsSelectComponent`, function() {
   });
 
 
-  describe.only(`showRefineSearchMessage`, function() {
+  describe(`showRefineSearchMessage`, function() {
 
     test(`should not show the message by default`, function() {
       const fixture = createComponent(testComponents.Basic);

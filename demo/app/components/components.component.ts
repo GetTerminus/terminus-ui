@@ -9,7 +9,7 @@ import {
   Router,
 } from '@angular/router';
 import { VERSION as NGX_VERSION } from '@terminus/ngx-tools/utilities';
-import { VERSION as UI_VERSION } from '@terminus/ui';
+import { VERSION as UI_VERSION } from '@terminus/ui/utilities';
 import { componentsList } from './components.constant';
 
 import { orderArrayByProperty } from './../utilities/orderArrayByProperty';
