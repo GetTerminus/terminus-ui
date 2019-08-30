@@ -359,6 +359,11 @@ export class TsInputComponent implements
    */
   private textMaskInputElement!: TextMaskInputElement;
 
+  /*
+   * The textual value of the date entered into the input.
+   */
+  private textualDateValue = '';
+
   /**
    * Define the default component ID
    */
@@ -843,9 +848,6 @@ export class TsInputComponent implements
    */
   @Output()
   public readonly selected: EventEmitter<Date> = new EventEmitter();
-
-  // The textual value of the date entered into the input.
-  private textualDateValue = '';
 
   public constructor(
     private elementRef: ElementRef,
