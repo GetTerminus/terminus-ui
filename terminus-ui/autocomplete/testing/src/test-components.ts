@@ -193,6 +193,58 @@ export class Autocomplete {
   template: `
     <ts-autocomplete
       [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      [reopenAfterSelection]="keepOpen"
+      [showProgress]="showProgress"
+      [isDisabled]="disabled"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        {{ option.foo }}
+      </ts-option>
+    </ts-autocomplete>
+
+    <ts-autocomplete
+      [formControl]="secondCtrl"
+      [allowMultiple]="allowMultiple"
+      [reopenAfterSelection]="keepOpen"
+      [showProgress]="showProgress"
+      [isDisabled]="disabled"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        {{ option.foo }}
+      </ts-option>
+    </ts-autocomplete>
+  `,
+})
+export class MultipleAutocomplete {
+  public myCtrl = new FormControl();
+  public secondCtrl = new FormControl();
+  public states: State[] = STATES.slice();
+  public showProgress = false;
+  public allowMultiple = true;
+  public keepOpen = true;
+  public disabled: boolean | undefined;
+  public change = v => { };
+
+  public changeOptionsLength() {
+    this.states = STATES.slice(0, 5);
+  }
+}
+
+@Component({
+  template: `
+    <ts-autocomplete
+      [formControl]="myCtrl"
       [allowMultiple]="true"
     >
       <ts-option
@@ -796,6 +848,7 @@ export class OptgroupBadIDs {
     Hint,
     Id,
     Label,
+    MultipleAutocomplete,
     NullSelection,
     OptgroupBadIDs,
     OptgroupIDs,

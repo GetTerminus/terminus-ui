@@ -51,6 +51,7 @@ import {
   map,
   switchMap,
   take,
+  takeUntil,
   tap,
 } from 'rxjs/operators';
 
@@ -478,10 +479,39 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
 
   /**
    * Open the autocomplete suggestion panel
+   * Subscribe to click event stream and if two conditions described below met,
+   * close the panel.
    */
   public openPanel(): void {
     this.attachOverlay();
     this.floatLabel();
+    this.overlayClickOutside(this.overlayRef, this.elementRef.nativeElement).subscribe(() => this.closePanel());
+  }
+
+  /**
+   * Generate document’s click event stream,
+   * when a click meets two conditions:
+   * 1) The click target isn’t the origin.
+   * 2) The click target isn’t the panel or any one of its children.
+   * @param overlayRef
+   * @param origin
+   * @return observable
+   */
+
+  public overlayClickOutside(overlayRef: OverlayRef | null | undefined, origin: HTMLElement) {
+    if (!overlayRef) {
+      return of();
+    }
+    return fromEvent<MouseEvent>(document, 'click')
+      .pipe(
+        filter(event => {
+          const clickTarget = event.target as HTMLElement;
+          const notOrigin = clickTarget !== origin;
+          const notOverlay = !!overlayRef && (!overlayRef.overlayElement.contains(clickTarget));
+          return notOrigin && notOverlay;
+        }),
+        takeUntil(overlayRef.detachments())
+      );
   }
 
 
@@ -857,7 +887,6 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
         }
       });
   }
-
 
   /**
    * Event handler for when the window is blurred.
