@@ -20,7 +20,7 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import { TsValidatorsService } from '@terminus/ui';
+import { TsValidatorsService } from '@terminus/ui/validators';
 
 
 @Component({

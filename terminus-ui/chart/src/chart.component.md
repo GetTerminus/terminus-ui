@@ -24,7 +24,7 @@
 Create a factory function to inject the needed libraries:
 
 ```typescript
-import { TS_AMCHARTS_TOKEN, TsAmChartsToken } from '@terminus/ui';
+import { TS_AMCHARTS_TOKEN, TsAmChartsToken } from '@terminus/ui/chart';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import * as am4maps from '@amcharts/amcharts4/maps';

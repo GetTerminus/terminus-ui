@@ -16,7 +16,7 @@
 Import the `TsPipesModule` module into your app:
 
 ```typescript
-import { TsPipesModule } from '@terminus/ui';
+import { TsPipesModule } from '@terminus/ui/pipes';
 
 @NgModule({
   imports: [
@@ -40,7 +40,7 @@ Then use the pipe in HTML:
 Import the pipes module to your app:
 
 ```typescript
-import { TsPipesModule } from '@terminus/ui';
+import { TsPipesModule } from '@terminus/ui/pipes';
 
 @NgModule({
   ...
@@ -55,7 +55,7 @@ export class AppModule {}
 Then inject the pipe into your class and use:
 
 ```typescript
-import { TsSentenceCasePipe } from '@terminus/ui';
+import { TsSentenceCasePipe } from '@terminus/ui/pipes';
 
 @Component({
   ...
