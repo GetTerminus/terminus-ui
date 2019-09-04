@@ -1,3 +1,10 @@
+## [14.9.4](https://github.com/GetTerminus/terminus-ui/compare/v14.9.3...v14.9.4) (2019-09-04)
+
+
+### Bug Fixes
+
+* **Packages:** all dependencies upgraded ([#1674](https://github.com/GetTerminus/terminus-ui/issues/1674)) ([af5d113](https://github.com/GetTerminus/terminus-ui/commit/af5d113))
+
 ## [14.9.3](https://github.com/GetTerminus/terminus-ui/compare/v14.9.2...v14.9.3) (2019-08-30)
 
 
