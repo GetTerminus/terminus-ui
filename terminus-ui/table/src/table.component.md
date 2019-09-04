@@ -237,7 +237,7 @@ In your class, get a reference to the `TsSortDirective` using `@ViewChild`:
 
 ```typescript
 import { AfterViewInit } from '@angular/core';
-import { TsSortDirective } from '@terminus/ui';
+import { TsSortDirective } from '@terminus/ui/sort';
 
 export class TableComponent implements AfterViewInit {
   // Get a reference to the TsSortDirective instance
@@ -333,12 +333,13 @@ import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { catchError } from 'rxjs/operators/catchError';
 
+import { TsSortDirective } from '@terminus/ui/sort';
 import {
   TsTableDataSource,
   TsSortDirective,
   TsPaginatorComponent,
   TsPaginatorMenuItem,
-} from '@terminus/ui';
+} from '@terminus/ui/table';
 
 
 @Component({

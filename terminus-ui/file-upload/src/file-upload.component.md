@@ -29,7 +29,7 @@ Collect the selected file via the `selected` event:
 ```
 
 ```typescript
-@import { TsSelectedFile } from '@terminus/ui';
+@import { TsSelectedFile } from '@terminus/ui/file-upload';
 
 ...
 
@@ -60,7 +60,7 @@ file.width        // number (will be 0 for CSVs)
 Accepted file types can be set by the `accept` input:
 
 ```typescript
-@import { TsFileAcceptedMimeTypes } from '@terminus/ui';
+@import { TsFileAcceptedMimeTypes } from '@terminus/ui/file-upload';
 
 ...
 
@@ -140,7 +140,7 @@ For fixed image dimensions set the min and max to the same number. The component
 Example:
 
 ```typescript
-@import { TsFileImageDimensionConstraints } from '@terminus/ui';
+@import { TsFileImageDimensionConstraints } from '@terminus/ui/file-upload';
 
 ...
 
