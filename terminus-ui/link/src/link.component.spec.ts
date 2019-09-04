@@ -41,7 +41,7 @@ class TestHostComponent {
   public tabIndex!: number | undefined;
   public theme: TsStyleThemeTypes = 'primary';
 
-  @ViewChild(TsLinkComponent, {static: true})
+  @ViewChild(TsLinkComponent, { static: true })
   public linkComponent!: TsLinkComponent;
 }
 

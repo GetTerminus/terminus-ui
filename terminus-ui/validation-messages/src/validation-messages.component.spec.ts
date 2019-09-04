@@ -22,7 +22,7 @@ describe(`TsValidationMessagesComponent`, function() {
       validationMessage = component.validationMessagesComponent;
       validationMessageEl = fixture.debugElement.query(By.css('.c-validation-message')).nativeElement as HTMLElement;
 
-      validationMessage['validationMessageService'].getValidatorErrorMessage = jest.fn();
+      validationMessage.validationMessageService.getValidatorErrorMessage = jest.fn();
     });
 
     test(`should exist`, () => {
@@ -41,17 +41,17 @@ describe(`TsValidationMessagesComponent`, function() {
       });
 
       test(`should return error if control is touched`, () => {
-        const ERROR = {valid: false};
+        const ERROR = { valid: false };
         const control = {
           touched: true,
-          errors: {invalidEmail: ERROR},
+          errors: { invalidEmail: ERROR },
         // tslint:disable-next-line:no-any
         } as any;
         component.controlForm = control;
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
+        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
           .toHaveBeenCalledWith('invalidEmail', ERROR);
       });
 
@@ -66,24 +66,24 @@ describe(`TsValidationMessagesComponent`, function() {
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
+        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
           .not.toHaveBeenCalled();
         expect(validationMessage.validationMessage).toBeNull();
       });
 
       test(`should return error if validateOnChange is true, error is present, and control is not touched`, () => {
         component.validateOnChange = true;
-        const ERROR = {valid: false};
+        const ERROR = { valid: false };
         const control = {
           touched: false,
-          errors: {invalidEmail: ERROR},
+          errors: { invalidEmail: ERROR },
         // tslint:disable-next-line:no-any
         } as any;
         component.controlForm = control;
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
+        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
           .toHaveBeenCalledWith('invalidEmail', ERROR);
       });
     });

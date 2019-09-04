@@ -147,13 +147,13 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
   /**
    * Access the container element
    */
-  @ViewChild('containerElement', {static: true})
+  @ViewChild('containerElement', { static: true })
   public containerElement!: ElementRef;
 
   /**
    * Access the label container
    */
-  @ViewChild('labelElement', {static: true})
+  @ViewChild('labelElement', { static: true })
   public labelElement!: ElementRef;
 
   /**

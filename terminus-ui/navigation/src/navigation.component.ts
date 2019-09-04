@@ -157,7 +157,7 @@ const DEFAULT_WELCOME_MESSAGE_MAX_LENGTH = 20;
   selector: 'ts-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  host: {class: 'ts-navigation'},
+  host: { class: 'ts-navigation' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsNavigation',
@@ -256,7 +256,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Element reference for visible list items
    */
-  @ViewChild('visibleItemsList', {static: true})
+  @ViewChild('visibleItemsList', { static: true })
   public visibleItemsList!: ElementRef;
 
   /**

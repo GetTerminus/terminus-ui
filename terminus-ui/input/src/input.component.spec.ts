@@ -687,18 +687,18 @@ describe(`TsInputComponent`, function() {
       const outlineStartEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-start')).nativeElement;
       const outlineGapEl: HTMLDivElement = fixture.debugElement.query(By.css('.js-outline-gap')).nativeElement;
       const labelContent: HTMLSpanElement = fixture.debugElement.query(By.css('.c-input__label-text')).nativeElement;
-      const bounding1 = {left: 50};
-      const bounding2 = {left: 100};
+      const bounding1 = { left: 50 };
+      const bounding2 = { left: 100 };
       const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
-      formFieldInstance['containerElement'].nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
-      formFieldInstance['labelElement'].nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
-      Object.defineProperty(formFieldInstance['labelElement'].nativeElement.children[0], 'offsetWidth', {
+      formFieldInstance.containerElement.nativeElement.getBoundingClientRect = jest.fn(() => bounding1);
+      formFieldInstance.labelElement.nativeElement.children[0].getBoundingClientRect = jest.fn(() => bounding2);
+      Object.defineProperty(formFieldInstance.labelElement.nativeElement.children[0], 'offsetWidth', {
         get() {
           return 40;
         },
       });
 
-      formFieldInstance['updateOutlineGap']();
+      formFieldInstance.updateOutlineGap();
       fixture.detectChanges();
 
       expect(outlineStartEl.getAttribute('style')).toEqual('width: 45px;');
@@ -719,10 +719,10 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent<TestComponents.Autofill>(TestComponents.Autofill);
         fixture.detectChanges();
         const instance = getInputInstance(fixture);
-        instance['autofillMonitor'].stopMonitoring = jest.fn();
+        instance.autofillMonitor.stopMonitoring = jest.fn();
 
         expect(instance.autofilled).toEqual(false);
-        instance['autofillMonitor']['fireMockFillEvent']();
+        instance.autofillMonitor.fireMockFillEvent();
         fixture.detectChanges();
         tick(1000);
         fixture.detectChanges();
@@ -730,7 +730,7 @@ describe(`TsInputComponent`, function() {
         expect(instance.autofilled).toEqual(true);
 
         instance.ngOnDestroy();
-        expect(instance['autofillMonitor'].stopMonitoring).toHaveBeenCalled();
+        expect(instance.autofillMonitor.stopMonitoring).toHaveBeenCalled();
       }));
 
     });
@@ -744,7 +744,7 @@ describe(`TsInputComponent`, function() {
         const inputElement = getInputElement(fixture);
         const keyboardEvent: KeyboardEvent = createKeyboardEvent('keyup', KEYS.A, inputElement);
         inputElement.setSelectionRange = jest.fn();
-        fixture.componentInstance.inputComponent['platform'].IOS = true;
+        fixture.componentInstance.inputComponent.platform.IOS = true;
         fixture.componentInstance.inputComponent.ngAfterContentInit();
         inputElement.dispatchEvent(keyboardEvent);
 
@@ -760,28 +760,28 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent(TestComponents.OnChanges);
         fixture.detectChanges();
         const inputComponent = fixture.componentInstance.inputComponent;
-        inputComponent['setUpMask'] = jest.fn();
-        inputComponent['updateMaskModelHack'] = jest.fn();
-        inputComponent['setValue'] = jest.fn();
-        inputComponent['textMaskInputElement'].update = jest.fn();
+        inputComponent.setUpMask = jest.fn();
+        inputComponent.updateMaskModelHack = jest.fn();
+        inputComponent.setValue = jest.fn();
+        inputComponent.textMaskInputElement.update = jest.fn();
 
         fixture.componentInstance.mask = 'percentage';
         fixture.detectChanges();
-        expect(inputComponent['setUpMask']).toHaveBeenCalledTimes(2);
-        expect(inputComponent['updateMaskModelHack']).toHaveBeenCalledTimes(1);
+        expect(inputComponent.setUpMask).toHaveBeenCalledTimes(2);
+        expect(inputComponent.updateMaskModelHack).toHaveBeenCalledTimes(1);
 
         fixture.componentInstance.maskSanitizeValue = false;
         fixture.detectChanges();
-        expect(inputComponent['setUpMask']).toHaveBeenCalledTimes(3);
-        expect(inputComponent['updateMaskModelHack']).toHaveBeenCalledTimes(2);
-        expect(inputComponent['setValue']).toHaveBeenCalledTimes(1);
+        expect(inputComponent.setUpMask).toHaveBeenCalledTimes(3);
+        expect(inputComponent.updateMaskModelHack).toHaveBeenCalledTimes(2);
+        expect(inputComponent.setValue).toHaveBeenCalledTimes(1);
 
         fixture.componentInstance.maskAllowDecimal = false;
         fixture.detectChanges();
-        expect(inputComponent['setUpMask']).toHaveBeenCalledTimes(4);
-        expect(inputComponent['updateMaskModelHack']).toHaveBeenCalledTimes(3);
+        expect(inputComponent.setUpMask).toHaveBeenCalledTimes(4);
+        expect(inputComponent.updateMaskModelHack).toHaveBeenCalledTimes(3);
 
-        expect(inputComponent['textMaskInputElement'].update).toHaveBeenCalledWith('');
+        expect(inputComponent.textMaskInputElement.update).toHaveBeenCalledWith('');
         expect.assertions(8);
       });
 
@@ -790,11 +790,11 @@ describe(`TsInputComponent`, function() {
         const fixture = createComponent(TestComponents.OnChanges);
         fixture.detectChanges();
         const formFieldInstance: TsFormFieldComponent = fixture.debugElement.query(By.css('.ts-form-field')).componentInstance;
-        formFieldInstance['updateOutlineGap'] = jest.fn();
+        formFieldInstance.updateOutlineGap = jest.fn();
         fixture.componentInstance.label = 'my new label';
         fixture.detectChanges();
 
-        expect(formFieldInstance['updateOutlineGap']).toHaveBeenCalled();
+        expect(formFieldInstance.updateOutlineGap).toHaveBeenCalled();
       });
 
     });
@@ -827,12 +827,12 @@ describe(`TsInputComponent`, function() {
       const fixture = createComponent(TestComponents.OnChanges);
       fixture.detectChanges();
       const component = fixture.componentInstance.inputComponent;
-      component['onTouchedCallback'] = jest.fn();
+      component.onTouchedCallback = jest.fn();
       component.inputBlur.emit = jest.fn();
 
       component.onBlur();
 
-      expect(component['onTouchedCallback']).toHaveBeenCalled();
+      expect(component.onTouchedCallback).toHaveBeenCalled();
       expect(component.inputBlur.emit).toHaveBeenCalledWith('foo');
     });
 
@@ -869,7 +869,7 @@ describe(`TsInputComponent`, function() {
       fixture.componentInstance.clearable = true;
       fixture.componentInstance.cleared = jest.fn();
       fixture.detectChanges();
-      fixture.componentInstance.inputComponent['changeDetectorRef'].markForCheck = jest.fn();
+      fixture.componentInstance.inputComponent.changeDetectorRef.markForCheck = jest.fn();
 
       const resetButton = fixture.debugElement.query(By.css('.c-input__clear')).nativeElement as HTMLButtonElement;
       const component = fixture.componentInstance.inputComponent;
@@ -881,7 +881,7 @@ describe(`TsInputComponent`, function() {
       expect(component.value).toEqual('');
       expect(fixture.componentInstance.cleared).toHaveBeenCalledWith(true);
       expect(fixture.componentInstance.formControl.untouched).toEqual(true);
-      expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+      expect(component.changeDetectorRef.markForCheck).toHaveBeenCalled();
       expect.assertions(4);
     });
 
@@ -894,14 +894,14 @@ describe(`TsInputComponent`, function() {
       const fixture = createComponent(TestComponents.SimpleFormControl);
       fixture.detectChanges();
       const component = fixture.componentInstance.inputComponent;
-      component['renderer'].setProperty = jest.fn();
+      component.renderer.setProperty = jest.fn();
       const date = new Date(2018, 3, 3);
       const isoDate = date.toISOString();
       component.writeValue(date);
       fixture.detectChanges();
 
       expect(component.value.toISOString()).toEqual(isoDate);
-      expect(component['renderer'].setProperty).toHaveBeenCalledWith(expect.any(ElementRef), 'value', isoDate);
+      expect(component.renderer.setProperty).toHaveBeenCalledWith(expect.any(ElementRef), 'value', isoDate);
     });
 
   });
@@ -936,11 +936,11 @@ describe(`TsInputComponent`, function() {
       test(`should not call detectChange if component is destroyed when no toggling input`, () => {
         const fixture = createComponent(TestComponents.SimpleFormControl);
         const comp = fixture.componentInstance.inputComponent;
-        comp['changeDetectorRef'].detectChanges = jest.fn();
+        comp.changeDetectorRef.detectChanges = jest.fn();
         fixture.detectChanges();
         fixture.destroy();
         comp.updateInnerValue('abc');
-        setTimeout(() => expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled());
+        setTimeout(() => expect(comp.changeDetectorRef.detectChanges).not.toHaveBeenCalled());
       });
 
       test(`should not call detectChange if component is destroyed with toggling`, () => {
@@ -948,12 +948,12 @@ describe(`TsInputComponent`, function() {
         fixture.detectChanges();
         const comp = fixture.componentInstance.inputComponent;
         fixture.detectChanges();
-        comp['changeDetectorRef'].detectChanges = jest.fn();
+        comp.changeDetectorRef.detectChanges = jest.fn();
         fixture.detectChanges();
         fixture.componentInstance.show = false;
         fixture.detectChanges();
         fixture.destroy();
-        expect(comp['changeDetectorRef'].detectChanges).not.toHaveBeenCalled();
+        expect(comp.changeDetectorRef.detectChanges).not.toHaveBeenCalled();
       });
 
     });
@@ -968,7 +968,7 @@ describe(`TsInputComponent`, function() {
       fixture.detectChanges();
       const regexFunction = () => /[^0-9.]/g;
 
-      expect(fixture.componentInstance.inputComponent['cleanValue']('12.34%', regexFunction)).toEqual('12.34');
+      expect(fixture.componentInstance.inputComponent.cleanValue('12.34%', regexFunction)).toEqual('12.34');
     });
 
 
@@ -977,7 +977,7 @@ describe(`TsInputComponent`, function() {
       fixture.detectChanges();
       const regexFunction = () => undefined;
 
-      expect(fixture.componentInstance.inputComponent['cleanValue']('12.34%', regexFunction)).toEqual('12.34%');
+      expect(fixture.componentInstance.inputComponent.cleanValue('12.34%', regexFunction)).toEqual('12.34%');
     });
 
   });
@@ -989,7 +989,7 @@ describe(`TsInputComponent`, function() {
       const fixture = createComponent(TestComponents.SimpleFormControl);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.inputComponent['trimLastCharacter']('foo')).toEqual('foo');
+      expect(fixture.componentInstance.inputComponent.trimLastCharacter('foo')).toEqual('foo');
     });
 
 
@@ -998,7 +998,7 @@ describe(`TsInputComponent`, function() {
       fixture.componentInstance.mask = 'number';
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.inputComponent['trimLastCharacter']('12.345')).toEqual('12.34');
+      expect(fixture.componentInstance.inputComponent.trimLastCharacter('12.345')).toEqual('12.34');
     });
 
   });
@@ -1071,7 +1071,7 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
 class MyDocumentService extends TsDocumentServiceMock {
   public shouldContain = true;
   public document: any = {
-    documentElement: {contains: jest.fn(() => !!this.shouldContain)},
+    documentElement: { contains: jest.fn(() => !!this.shouldContain) },
     createEvent() {
       return document.createEvent('Event');
     },

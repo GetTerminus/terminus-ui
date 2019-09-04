@@ -21,9 +21,9 @@ export function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    key: {get: () => key.code},
-    code: {get: () => key.code},
-    keyCode: {get: () => key.keyCode},
+    key: { get: () => key.code },
+    code: { get: () => key.code },
+    keyCode: { get: () => key.keyCode },
   });
   return event;
 }

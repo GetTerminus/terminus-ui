@@ -19,10 +19,10 @@ class TestHostComponent {
   public type = '';
   public logoColor = '';
 
-  @ViewChild('one', {static: true})
+  @ViewChild('one', { static: true })
   public one!: TsLogoComponent;
 
-  @ViewChild('two', {static: true})
+  @ViewChild('two', { static: true })
   public two!: TsLogoComponent;
  }
 

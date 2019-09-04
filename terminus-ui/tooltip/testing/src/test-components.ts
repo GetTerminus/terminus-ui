@@ -17,7 +17,7 @@ import {
   `,
 })
 export class Basic {
-  @ViewChild(TsTooltipComponent, {static: false})
+  @ViewChild(TsTooltipComponent, { static: false })
   public tooltipComponent!: TsTooltipComponent;
 }
 
@@ -34,7 +34,7 @@ export class TestHostComponent {
   public hasUnderline: boolean;
   public tooltipPosition: TsTooltipPositionTypes;
 
-  @ViewChild(TsTooltipComponent, {static: false})
+  @ViewChild(TsTooltipComponent, { static: false })
   public tooltipComponent!: TsTooltipComponent;
 }
 
@@ -49,7 +49,7 @@ export class TestHostComponent {
 export class TooltipValue {
   public tooltipValue: string;
 
-  @ViewChild(TsTooltipComponent, {static: false})
+  @ViewChild(TsTooltipComponent, { static: false })
   public tooltipComponent!: TsTooltipComponent;
 }
 

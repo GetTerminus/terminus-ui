@@ -64,7 +64,7 @@ class TestHostComponent {
     },
   ];
 
-  @ViewChild(TsRadioGroupComponent, {static: true})
+  @ViewChild(TsRadioGroupComponent, { static: true })
   public component: TsRadioGroupComponent;
 
   public selectionChange = jest.fn();
@@ -180,7 +180,7 @@ describe('TsRadioGroupComponent', function() {
         bing: 'Some helper text for my item',
       },
     ];
-    component['changeDetectorRef'].markForCheck = jest.fn();
+    component.changeDetectorRef.markForCheck = jest.fn();
   });
 
 
@@ -340,7 +340,7 @@ describe('TsRadioGroupComponent', function() {
       component.ngOnInit();
       ctrl.setValue('bar');
 
-      expect(component['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+      expect(component.changeDetectorRef.markForCheck).toHaveBeenCalled();
       expect(component.value).toEqual('bar');
     });
 
@@ -370,7 +370,7 @@ describe('TsRadioGroupComponent', function() {
 
     test(`should default to the uid`, () => {
       component.id = null as any;
-      expect(component.id).toEqual(component['_uid']);
+      expect(component.id).toEqual(component._uid);
     });
 
   });

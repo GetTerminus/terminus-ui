@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: benjamincharity/terminus-ui-ci:0.0.6
+      - image: getterminus/terminus-ui-circleci:11.11-20190830194903
 
     working_directory: ~/ci-build
 

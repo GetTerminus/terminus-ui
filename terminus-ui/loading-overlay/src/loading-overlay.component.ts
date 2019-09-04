@@ -17,7 +17,7 @@ import {
 @Component({
   selector: 'ts-loading-overlay',
   styleUrls: ['./loading-overlay.component.scss'],
-  host: {class: 'ts-loading-overlay'},
+  host: { class: 'ts-loading-overlay' },
   templateUrl: './loading-overlay.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

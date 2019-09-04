@@ -69,7 +69,7 @@ class TestHostComponent {
   public outputFormat = 'csv';
   public gotFile = jest.fn();
 
-  @ViewChild(TsCSVEntryComponent, {static: true})
+  @ViewChild(TsCSVEntryComponent, { static: true })
   public component!: TsCSVEntryComponent;
 
   constructor(
@@ -105,7 +105,7 @@ describe(`TsCSVEntryComponent`, function() {
   const createPasteEvent = (content: TsCSVFormContents): ClipboardEvent => {
     const event = createFakeEvent('paste') as ClipboardEvent;
     const stringValue = stringifyForm(content);
-    (event.clipboardData as any) = {getData: jest.fn().mockReturnValue(stringValue)};
+    (event.clipboardData as any) = { getData: jest.fn().mockReturnValue(stringValue) };
     return event;
   };
   let ENTER_EVENT: KeyboardEvent;
@@ -244,32 +244,32 @@ describe(`TsCSVEntryComponent`, function() {
     TAB_EVENT = document.createEvent('KeyboardEvent');
     TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(TAB_EVENT, {
-      code: {get: () => KEYS.TAB.code},
-      key: {get: () => KEYS.TAB.code},
-      keyCode: {get: () => KEYS.TAB.keyCode},
+      code: { get: () => KEYS.TAB.code },
+      key: { get: () => KEYS.TAB.code },
+      keyCode: { get: () => KEYS.TAB.keyCode },
     });
     SHIFT_TAB_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_TAB_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_TAB_EVENT, {
-      code: {get: () => KEYS.TAB.code},
-      key: {get: () => KEYS.TAB.code},
-      keyCode: {get: () => KEYS.TAB.keyCode},
-      shiftKey: {get: () => true},
+      code: { get: () => KEYS.TAB.code },
+      key: { get: () => KEYS.TAB.code },
+      keyCode: { get: () => KEYS.TAB.keyCode },
+      shiftKey: { get: () => true },
     });
     ENTER_EVENT = document.createEvent('KeyboardEvent');
     ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(ENTER_EVENT, {
-      code: {get: () => KEYS.ENTER.code},
-      key: {get: () => KEYS.ENTER.code},
-      keyCode: {get: () => KEYS.ENTER.keyCode},
+      code: { get: () => KEYS.ENTER.code },
+      key: { get: () => KEYS.ENTER.code },
+      keyCode: { get: () => KEYS.ENTER.keyCode },
     });
     SHIFT_ENTER_EVENT = document.createEvent('KeyboardEvent');
     SHIFT_ENTER_EVENT.initEvent('keydown', true, false);
     Object.defineProperties(SHIFT_ENTER_EVENT, {
-      code: {get: () => KEYS.ENTER.code},
-      key: {get: () => KEYS.ENTER.code},
-      keyCode: {get: () => KEYS.ENTER.keyCode},
-      shiftKey: {get: () => true},
+      code: { get: () => KEYS.ENTER.code },
+      key: { get: () => KEYS.ENTER.code },
+      keyCode: { get: () => KEYS.ENTER.keyCode },
+      shiftKey: { get: () => true },
     });
 
     /**
@@ -335,7 +335,7 @@ describe(`TsCSVEntryComponent`, function() {
 
       const stringRecords = 'bing4\tbang4\r\nbing5\tbang5\r\n';
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue(stringRecords)};
+      (event.clipboardData as any) = { getData: jest.fn().mockReturnValue(stringRecords) };
       row2Cell1.dispatchEvent(event);
       fixture.detectChanges();
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
@@ -348,40 +348,40 @@ describe(`TsCSVEntryComponent`, function() {
 
     test(`should not create new rows when pasting content to a single cell`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue('new')};
-      component['splitContent'] = jest.fn();
+      (event.clipboardData as any) = { getData: jest.fn().mockReturnValue('new') };
+      component.splitContent = jest.fn();
       component.onPaste(event);
 
-      expect(component['splitContent']).not.toHaveBeenCalled();
+      expect(component.splitContent).not.toHaveBeenCalled();
     });
 
 
     test(`should do nothing if the paste event has no content`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
-      (event.clipboardData as any) = {getData: jest.fn().mockReturnValue('')};
-      component['splitContent'] = jest.fn();
+      (event.clipboardData as any) = { getData: jest.fn().mockReturnValue('') };
+      component.splitContent = jest.fn();
       component.onPaste(event);
 
-      expect(component['splitContent']).not.toHaveBeenCalled();
+      expect(component.splitContent).not.toHaveBeenCalled();
     });
 
 
     test(`should consider a header paste to be a body paste if columnHeaders are set`, () => {
       hostComponent.columnHeaders = ['one', 'two'];
-      component['clearAllRows'] = jest.fn();
+      component.clearAllRows = jest.fn();
       fixture.detectChanges();
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       fixture.detectChanges();
-      expect(component['clearAllRows']).not.toHaveBeenCalled();
+      expect(component.clearAllRows).not.toHaveBeenCalled();
     });
 
 
     test(`should allow for fullWidth table`, () => {
-      expect(component['fullWidth']).toBeFalsy();
+      expect(component.fullWidth).toBeFalsy();
       expect(document.querySelector('.c-csv-entry--full-width')).toBeNull();
       component.fullWidth = true;
       fixture.detectChanges();
-      expect(component['fullWidth']).toBeTruthy();
+      expect(component.fullWidth).toBeTruthy();
       expect(document.querySelector('.c-csv-entry--full-width')).not.toBeNull();
     });
 
@@ -457,7 +457,7 @@ describe(`TsCSVEntryComponent`, function() {
     let mock;
 
     beforeEach(() => {
-      mock = jest.spyOn(component['documentService'].document, 'querySelector');
+      mock = jest.spyOn(component.documentService.document, 'querySelector');
     });
 
 
@@ -592,7 +592,7 @@ describe(`TsCSVEntryComponent`, function() {
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
       message = fixture.debugElement.query(By.css('.c-csv-entry__message'));
       expect(row2Cell1.value).toEqual('');
-      expect(component.columnCount).toEqual(component['columnCount']);
+      expect(component.columnCount).toEqual(component.columnCount);
       expect(component.rows.length).toEqual(component.rowCount);
       expect(message).toBeFalsy();
     });
@@ -695,10 +695,10 @@ describe(`TsCSVEntryComponent`, function() {
       event = createFakeEvent('scroll') as WheelEvent;
       event.preventDefault = jest.fn();
       Object.defineProperties(event, {
-        target: {value: target},
-        srcElement: {value: target},
-        screenY: {value: 200},
-        deltaX: {value: -1},
+        target: { value: target },
+        srcElement: { value: target },
+        screenY: { value: 200 },
+        deltaX: { value: -1 },
       });
     });
 
@@ -725,7 +725,7 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should prevent the default event when reaching the right edge`, () => {
-      Object.defineProperties(event, {deltaX: {value: 1}});
+      Object.defineProperties(event, { deltaX: { value: 1 } });
       component.onScroll(event);
       expect(event.preventDefault).not.toHaveBeenCalled();
 
@@ -800,7 +800,7 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should return null if no errors exist`, function() {
-      component['getFormErrors'] = jest.fn(() => null);
+      component.getFormErrors = jest.fn(() => null);
       expect(component.collectErrors()).toEqual(null);
     });
 

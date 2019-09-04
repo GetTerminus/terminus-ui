@@ -96,7 +96,7 @@ describe(`TsDatePipe`, function() {
 
       it(`should throw an error`, () => {
         const errFunc = () => pipe('foo');
-        expect(errFunc).toThrowError(`'foo' is not a valid date.`);
+        expect(errFunc).toThrowError(`'foo' is not a valid date object.`);
       });
 
     });

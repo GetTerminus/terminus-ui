@@ -703,7 +703,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
             // Angular built in required validator only returns a boolean
             if (typeof error === 'boolean') {
-              error = {valid: false};
+              error = { valid: false };
             }
 
             // If the rowId exists, add it to the errors object
@@ -871,7 +871,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       joined = JSON.stringify(joined).replace(/\\t/g, ',');
     }
 
-    return new Blob([joined], {type: 'text/csv'});
+    return new Blob([joined], { type: 'text/csv' });
   }
 
 }

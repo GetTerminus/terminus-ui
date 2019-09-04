@@ -3,8 +3,10 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { isAbstractControl } from '@terminus/ui/utilities';
-import { isValid } from 'date-fns';
+import {
+  isAbstractControl,
+  isValidDate,
+} from '@terminus/ui/utilities';
 
 
 /**
@@ -46,7 +48,7 @@ function getValidationResult(minDate: string | undefined, control: AbstractContr
   };
 
   // Verify the dates are valid
-  if (!isValid(control.value) || !minDate || !isValid(minDate)) {
+  if (!isValidDate(control.value) || !minDate || !isValidDate(minDate)) {
     return invalidResponse;
   }
 

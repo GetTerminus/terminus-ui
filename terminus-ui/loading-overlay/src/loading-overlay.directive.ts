@@ -1,6 +1,6 @@
 import {
   ComponentPortal,
-  DomPortalHost,
+  DomPortalOutlet,
 } from '@angular/cdk/portal';
 import {
   ApplicationRef,
@@ -27,7 +27,7 @@ import { TsLoadingOverlayComponent } from './loading-overlay.component';
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/loading-overlay</example-url>
  */
-@Directive({selector: '[tsLoadingOverlay]'})
+@Directive({ selector: '[tsLoadingOverlay]' })
 export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * A reference to the portal
@@ -37,7 +37,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * Reference to our portal host
    */
-  private bodyPortalHost: DomPortalHost;
+  private bodyPortalHost: DomPortalOutlet;
 
   /**
    * Define a setter to show/hide the loading overlay
@@ -71,7 +71,7 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
     private injector: Injector,
   ) {
     // Create the body portal host
-    this.bodyPortalHost = new DomPortalHost(
+    this.bodyPortalHost = new DomPortalOutlet(
       this.elementRef.nativeElement,
       this.componentFactoryResolver,
       this.appRef,

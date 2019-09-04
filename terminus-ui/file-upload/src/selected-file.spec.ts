@@ -31,30 +31,30 @@ const CONSTRAINTS_MOCK: TsFileImageDimensionConstraints = [
 const FILE_BLOB = new Blob(
   // eslint-disable-next-line max-len
   ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII='],
-  {type: 'image/png'},
+  { type: 'image/png' },
 );
-FILE_BLOB['lastModifiedDate'] = new Date();
-FILE_BLOB['name'] = 'foo';
+FILE_BLOB.lastModifiedDate = new Date();
+FILE_BLOB.name = 'foo';
 jest.spyOn(FILE_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_MOCK = FILE_BLOB as File;
 
 // CSV MOCK
 const FILE_CSV_BLOB = new Blob(
   ['my csv value'],
-  {type: 'text/csv'},
+  { type: 'text/csv' },
 );
-FILE_CSV_BLOB['lastModifiedDate'] = new Date();
-FILE_CSV_BLOB['name'] = 'myCSV';
+FILE_CSV_BLOB.lastModifiedDate = new Date();
+FILE_CSV_BLOB.name = 'myCSV';
 jest.spyOn(FILE_CSV_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_CSV_MOCK = FILE_CSV_BLOB as File;
 
 // VIDEO MOCK
 const FILE_VIDEO_BLOB = new Blob(
   ['my video value'],
-  {type: 'video/mp4'},
+  { type: 'video/mp4' },
 );
-FILE_VIDEO_BLOB['lastModifiedDate'] = new Date();
-FILE_VIDEO_BLOB['name'] = 'myVideo';
+FILE_VIDEO_BLOB.lastModifiedDate = new Date();
+FILE_VIDEO_BLOB.name = 'myVideo';
 jest.spyOn(FILE_VIDEO_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_VIDEO_MOCK = FILE_VIDEO_BLOB as File;
 
@@ -383,13 +383,13 @@ describe(`TsSelectedFile`, function() {
 
     test(`should return true if no constraints exist`, () => {
       const file = createFile();
-      expect(file['validateImageRatio'](undefined)).toEqual(true);
+      expect(file.validateImageRatio(undefined)).toEqual(true);
     });
 
 
     test(`should return true if ratio are valid`, () => {
       const file = createFile();
-      const result = file['validateImageRatio']([{
+      const result = file.validateImageRatio([{
         widthRatio: 1,
         heightRatio: 1,
       }]);
@@ -399,7 +399,7 @@ describe(`TsSelectedFile`, function() {
 
     test(`should return false if ratio are not valid`, () => {
       const file = createFile();
-      const result = file['validateImageRatio']([{
+      const result = file.validateImageRatio([{
         widthRatio: 2,
         heightRatio: 1,
       }]);
@@ -412,13 +412,13 @@ describe(`TsSelectedFile`, function() {
 
     test(`should return true if no constraints exist`, () => {
       const file = createFile();
-      expect(file['validateImageDimensions'](undefined)).toEqual(true);
+      expect(file.validateImageDimensions(undefined)).toEqual(true);
     });
 
 
     test(`should return true if dimensions are valid`, () => {
       const file = createFile();
-      const result = file['validateImageDimensions'](CONSTRAINTS_MOCK);
+      const result = file.validateImageDimensions(CONSTRAINTS_MOCK);
       expect(result).toEqual(true);
     });
 
@@ -447,7 +447,7 @@ describe(`TsSelectedFile`, function() {
           },
         },
       ];
-      const result = file['validateImageDimensions'](constraints);
+      const result = file.validateImageDimensions(constraints);
       expect(result).toEqual(false);
     });
 

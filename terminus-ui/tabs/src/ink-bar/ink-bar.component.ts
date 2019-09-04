@@ -19,7 +19,7 @@ import { isSet } from '@terminus/ngx-tools/type-guards';
   selector: 'ts-tab-ink-bar',
   template: ``,
   styleUrls: ['./ink-bar.component.scss'],
-  host: {class: 'ts-ink-bar'},
+  host: { class: 'ts-ink-bar' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsTabInkBar',

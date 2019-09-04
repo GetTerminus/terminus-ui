@@ -17,9 +17,9 @@ import {
 import { TsSelectModule } from '@terminus/ui/select';
 
 
-@Component({template: `<ts-paginator></ts-paginator>`})
+@Component({ template: `<ts-paginator></ts-paginator>` })
 export class Basic {
-  @ViewChild(TsPaginatorComponent, {static: true})
+  @ViewChild(TsPaginatorComponent, { static: true })
   public paginatorComponent: TsPaginatorComponent;
 }
 
@@ -40,7 +40,7 @@ export class RecordsPerPage {
   public totalRecords = 100;
   public zeroBased = true;
 
-  @ViewChild(TsPaginatorComponent, {static: true})
+  @ViewChild(TsPaginatorComponent, { static: true })
   public paginatorComponent!: TsPaginatorComponent;
 }
 
@@ -59,7 +59,7 @@ export class RecordsCount {
   public recordCountTooHighMessage = 'Too many records';
   public totalRecords = 100;
 
-  @ViewChild(TsPaginatorComponent, {static: true})
+  @ViewChild(TsPaginatorComponent, { static: true })
   public paginatorComponent!: TsPaginatorComponent;
 }
 
@@ -76,7 +76,7 @@ export class ZeroBased {
   public isZeroBased: boolean | undefined;
   public totalRecords = 100;
 
-  @ViewChild(TsPaginatorComponent, {static: true})
+  @ViewChild(TsPaginatorComponent, { static: true })
   public paginatorComponent!: TsPaginatorComponent;
 }
 

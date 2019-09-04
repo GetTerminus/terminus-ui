@@ -222,25 +222,25 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Access the trigger
    */
-  @ViewChild('auto', {static: true})
+  @ViewChild('auto', { static: true })
   public autocompletePanel!: TsAutocompletePanelComponent;
 
   /**
    * Access the trigger
    */
-  @ViewChild(TsAutocompleteTriggerDirective, {static: false})
+  @ViewChild(TsAutocompleteTriggerDirective, { static: false })
   public autocompleteTrigger!: TsAutocompleteTriggerDirective;
 
   /**
    * Access the chip list
    */
-  @ViewChild('chipList', {static: false})
+  @ViewChild('chipList', { static: false })
   public chipList: MatChipList | undefined;
 
   /**
    * Access the actual HTML element
    */
-  @ViewChild('input', {static: false})
+  @ViewChild('input', { static: false })
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**

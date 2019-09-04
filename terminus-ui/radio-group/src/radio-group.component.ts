@@ -104,7 +104,7 @@ let nextUniqueId = 0;
   selector: 'ts-radio-group',
   templateUrl: './radio-group.component.html',
   styleUrls: ['./radio-group.component.scss'],
-  host: {class: 'ts-radio-group'},
+  host: { class: 'ts-radio-group' },
   providers: [ControlValueAccessorProviderFactory<TsRadioGroupComponent>(TsRadioGroupComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

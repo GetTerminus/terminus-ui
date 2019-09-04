@@ -16,7 +16,7 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/tabs</example-url>
  */
-@Directive({selector: '[tsTabContent]'})
+@Directive({ selector: '[tsTabContent]' })
 export class TsTabContentDirective {
   constructor(
     // tslint:disable-next-line no-any

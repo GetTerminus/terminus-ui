@@ -34,10 +34,10 @@ const fileContentsMock = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABI
 // IMAGE MOCK
 const FILE_BLOB = new Blob(
   [fileContentsMock],
-  {type: 'image/png'},
+  { type: 'image/png' },
 );
-FILE_BLOB['lastModifiedDate'] = new Date();
-FILE_BLOB['name'] = 'foo';
+FILE_BLOB.lastModifiedDate = new Date();
+FILE_BLOB.name = 'foo';
 jest.spyOn(FILE_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_MOCK = FILE_BLOB as File;
 
@@ -75,7 +75,7 @@ class TestHostComponent {
   public hideButton = false;
   public formControl = new FormControl('test');
 
-  @ViewChild(TsFileUploadComponent, {static: true})
+  @ViewChild(TsFileUploadComponent, { static: true })
   public component!: TsFileUploadComponent;
 
   public userDragBegin = jest.fn();
@@ -192,7 +192,7 @@ describe(`TsFileUploadComponent`, function() {
   describe(`buttonMessage`, () => {
 
     test(`should set the correct drop vs select message pluralized if neeeded`, () => {
-      const el = component['elementRef'].nativeElement;
+      const el = component.elementRef.nativeElement;
       hostComponent.multiple = true;
       dispatchMouseEvent(el, 'dragover');
       fixture.detectChanges();
@@ -405,11 +405,11 @@ describe(`TsFileUploadComponent`, function() {
     test(`should stop event propogation`, () => {
       component.seedFile = FILE_MOCK;
       fixture.detectChanges();
-      component['preventAndStopEventPropagation'] = jest.fn();
+      component.preventAndStopEventPropagation = jest.fn();
       const mouseEvent = createMouseEvent('click');
       component.removeFile(mouseEvent);
 
-      expect(component['preventAndStopEventPropagation']).toHaveBeenCalledWith(mouseEvent);
+      expect(component.preventAndStopEventPropagation).toHaveBeenCalledWith(mouseEvent);
     });
 
   });
@@ -418,10 +418,10 @@ describe(`TsFileUploadComponent`, function() {
   describe(`setUpNewFile`, () => {
 
     test(`should not continue if no file is passed in`, () => {
-      component['setValidationMessages'] = jest.fn();
-      component['setUpNewFile'](undefined as any);
+      component.setValidationMessages = jest.fn();
+      component.setUpNewFile(undefined as any);
 
-      expect(component['setValidationMessages']).not.toHaveBeenCalled();
+      expect(component.setValidationMessages).not.toHaveBeenCalled();
     });
 
   });
@@ -431,7 +431,7 @@ describe(`TsFileUploadComponent`, function() {
 
     test(`should do nothing if no file was passed in`, () => {
       component.formControl.setErrors = jest.fn();
-      component['setValidationMessages'](undefined);
+      component.setValidationMessages(undefined);
       expect(component.formControl.setErrors).not.toHaveBeenCalled();
     });
 
@@ -441,32 +441,32 @@ describe(`TsFileUploadComponent`, function() {
   describe(`updateVirtualFileInputAttrs`, () => {
 
     test(`should add and remove the multiple attr`, () => {
-      expect(component['virtualFileInput'].getAttribute('multiple')).toBeFalsy();
+      expect(component.virtualFileInput.getAttribute('multiple')).toBeFalsy();
 
       hostComponent.multiple = true;
       fixture.detectChanges();
 
-      expect(component['virtualFileInput'].getAttribute('multiple')).toBeTruthy();
+      expect(component.virtualFileInput.getAttribute('multiple')).toBeTruthy();
 
       hostComponent.multiple = false;
       fixture.detectChanges();
 
-      expect(component['virtualFileInput'].getAttribute('multiple')).toBeFalsy();
+      expect(component.virtualFileInput.getAttribute('multiple')).toBeFalsy();
     });
 
 
     test(`should add and remove the accept attr`, () => {
-      expect(component['virtualFileInput'].getAttribute('accept')).toBeFalsy();
+      expect(component.virtualFileInput.getAttribute('accept')).toBeFalsy();
 
       hostComponent.mimeTypes = 'text/csv';
       fixture.detectChanges();
 
-      expect(component['virtualFileInput'].getAttribute('accept')).toEqual('text/csv');
+      expect(component.virtualFileInput.getAttribute('accept')).toEqual('text/csv');
 
       hostComponent.mimeTypes = undefined;
       fixture.detectChanges();
 
-      expect(component['virtualFileInput'].getAttribute('accept')).toEqual('text/csv,image/jpeg,image/jpg,image/png,image/gif,video/mp4');
+      expect(component.virtualFileInput.getAttribute('accept')).toEqual('text/csv,image/jpeg,image/jpg,image/png,image/gif,video/mp4');
     });
 
   });
@@ -475,52 +475,52 @@ describe(`TsFileUploadComponent`, function() {
   describe(`HostListeners`, () => {
 
     test(`should handle dragover`, () => {
-      component['preventAndStopEventPropagation'] = jest.fn();
-      dispatchMouseEvent(component['elementRef'].nativeElement, 'dragover');
+      component.preventAndStopEventPropagation = jest.fn();
+      dispatchMouseEvent(component.elementRef.nativeElement, 'dragover');
       fixture.detectChanges();
       const foundClass = fixture.debugElement.query(By.css('.c-file-upload--drag'));
 
       expect(foundClass).toBeTruthy();
-      expect(component['preventAndStopEventPropagation']).toHaveBeenCalledWith(expect.any(Event));
+      expect(component.preventAndStopEventPropagation).toHaveBeenCalledWith(expect.any(Event));
       expect(hostComponent.userDragBegin).toHaveBeenCalled();
     });
 
 
     test(`should handle dragleave`, () => {
-      component['preventAndStopEventPropagation'] = jest.fn();
-      dispatchMouseEvent(component['elementRef'].nativeElement, 'dragleave');
+      component.preventAndStopEventPropagation = jest.fn();
+      dispatchMouseEvent(component.elementRef.nativeElement, 'dragleave');
       fixture.detectChanges();
       const foundClass = fixture.debugElement.query(By.css('.c-file-upload--drag'));
 
       expect(foundClass).toBeFalsy();
-      expect(component['preventAndStopEventPropagation']).toHaveBeenCalledWith(expect.any(Event));
+      expect(component.preventAndStopEventPropagation).toHaveBeenCalledWith(expect.any(Event));
       expect(hostComponent.userDragEnd).toHaveBeenCalled();
     });
 
 
     test(`should handle drop`, () => {
       component.dragInProgress = true;
-      component['preventAndStopEventPropagation'] = jest.fn();
-      component['collectFilesFromEvent'] = jest.fn();
+      component.preventAndStopEventPropagation = jest.fn();
+      component.collectFilesFromEvent = jest.fn();
       const event = createFakeEvent('drop');
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.c-file-upload--drag'))).toBeTruthy();
 
-      component['elementRef'].nativeElement.dispatchEvent(event);
+      component.elementRef.nativeElement.dispatchEvent(event);
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.c-file-upload--drag'))).toBeFalsy();
-      expect(component['preventAndStopEventPropagation']).toHaveBeenCalled();
-      expect(component['collectFilesFromEvent']).toHaveBeenCalled();
+      expect(component.preventAndStopEventPropagation).toHaveBeenCalled();
+      expect(component.collectFilesFromEvent).toHaveBeenCalled();
     });
 
 
     test(`should handle click`, () => {
-      component['virtualFileInput'].click = jest.fn();
-      dispatchMouseEvent(component['elementRef'].nativeElement, 'click');
+      component.virtualFileInput.click = jest.fn();
+      dispatchMouseEvent(component.elementRef.nativeElement, 'click');
 
-      expect(component['virtualFileInput'].click).toHaveBeenCalled();
+      expect(component.virtualFileInput.click).toHaveBeenCalled();
     });
 
 
@@ -528,7 +528,7 @@ describe(`TsFileUploadComponent`, function() {
       let el: HTMLElement;
 
       beforeEach(() => {
-        el = component['elementRef'].nativeElement;
+        el = component.elementRef.nativeElement;
         component.promptForFiles = jest.fn();
         el.blur = jest.fn();
       });
@@ -556,15 +556,15 @@ describe(`TsFileUploadComponent`, function() {
 
     test(`should throw an error if no files exist in the dataTransfer object`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {files: []};
-      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
-      component['setUpNewFile'] = jest.fn();
+      const dataTransfer = { files: [] };
+      Object.defineProperty(event, 'dataTransfer', { value: dataTransfer });
+      component.setUpNewFile = jest.fn();
       expect(() => {
-        component['collectFilesFromEvent'](event);
+        component.collectFilesFromEvent(event);
       }).toThrowError();
       fixture.detectChanges();
 
-      expect(component['setUpNewFile']).not.toHaveBeenCalled();
+      expect(component.setUpNewFile).not.toHaveBeenCalled();
       expect(hostComponent.handleFile).not.toHaveBeenCalled();
     });
 
@@ -572,28 +572,28 @@ describe(`TsFileUploadComponent`, function() {
     test(`should throw an error if no files exist on the event target`, () => {
       const event = createFakeEvent('Event');
       const input = document.createElement('input');
-      Object.defineProperty(event, 'target', {value: input});
-      component['setUpNewFile'] = jest.fn();
+      Object.defineProperty(event, 'target', { value: input });
+      component.setUpNewFile = jest.fn();
       expect(() => {
-        component['collectFilesFromEvent'](event);
+        component.collectFilesFromEvent(event);
       }).toThrowError();
       fixture.detectChanges();
 
-      expect(component['setUpNewFile']).not.toHaveBeenCalled();
+      expect(component.setUpNewFile).not.toHaveBeenCalled();
       expect(hostComponent.handleFile).not.toHaveBeenCalled();
     });
 
 
     test(`should collect a file from a drag/drop event`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {files: [FILE_MOCK]};
-      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
-      component['setUpNewFile'] = jest.fn();
+      const dataTransfer = { files: [FILE_MOCK] };
+      Object.defineProperty(event, 'dataTransfer', { value: dataTransfer });
+      component.setUpNewFile = jest.fn();
       fixture.detectChanges();
-      component['collectFilesFromEvent'](event);
+      component.collectFilesFromEvent(event);
       fixture.detectChanges();
 
-      expect(component['setUpNewFile']).toHaveBeenCalledWith(expect.any(TsSelectedFile));
+      expect(component.setUpNewFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
       expect(hostComponent.handleFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
       expect(hostComponent.formControl.value).toEqual(FILE_MOCK);
     });
@@ -602,28 +602,28 @@ describe(`TsFileUploadComponent`, function() {
     test(`should collect a file from an input change (manual selection)`, () => {
       const event = createFakeEvent('Event');
       const input = document.createElement('input');
-      Object.defineProperty(input, 'files', {value: [FILE_MOCK]});
-      Object.defineProperty(event, 'target', {value: input});
-      component['setUpNewFile'] = jest.fn();
-      component['collectFilesFromEvent'](event);
+      Object.defineProperty(input, 'files', { value: [FILE_MOCK] });
+      Object.defineProperty(event, 'target', { value: input });
+      component.setUpNewFile = jest.fn();
+      component.collectFilesFromEvent(event);
       fixture.detectChanges();
 
-      expect(component['setUpNewFile']).toHaveBeenCalledWith(expect.any(TsSelectedFile));
+      expect(component.setUpNewFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
       expect(hostComponent.handleFile).toHaveBeenCalledWith(expect.any(TsSelectedFile));
     });
 
 
     test(`should collect emit when multiple files are selected`, () => {
       const event = createFakeEvent('DragEvent') as DragEvent;
-      const dataTransfer = {files: [FILE_MOCK, FILE_MOCK]};
-      Object.defineProperty(event, 'dataTransfer', {value: dataTransfer});
-      component['setUpNewFile'] = jest.fn();
-      component['collectFilesFromEvent'](event);
+      const dataTransfer = { files: [FILE_MOCK, FILE_MOCK] };
+      Object.defineProperty(event, 'dataTransfer', { value: dataTransfer });
+      component.setUpNewFile = jest.fn();
+      component.collectFilesFromEvent(event);
       fixture.detectChanges();
 
       expect(hostComponent.handleMultipleFiles).toHaveBeenCalled();
       expect(hostComponent.handleFile).not.toHaveBeenCalled();
-      expect(component['setUpNewFile']).not.toHaveBeenCalled();
+      expect(component.setUpNewFile).not.toHaveBeenCalled();
     });
 
   });
@@ -632,14 +632,14 @@ describe(`TsFileUploadComponent`, function() {
   describe(`ngOnDestroy`, () => {
 
     test(`should remove the event listener`, () => {
-      component['onVirtualInputElementChange'] = jest.fn();
-      component['dropProtectionService'].remove = jest.fn();
+      component.onVirtualInputElementChange = jest.fn();
+      component.dropProtectionService.remove = jest.fn();
       component.ngOnDestroy();
       const event = createFakeEvent('change');
-      component['virtualFileInput'].dispatchEvent(event);
+      component.virtualFileInput.dispatchEvent(event);
 
-      expect(component['onVirtualInputElementChange']).not.toHaveBeenCalled();
-      expect(component['dropProtectionService'].remove).toHaveBeenCalled();
+      expect(component.onVirtualInputElementChange).not.toHaveBeenCalled();
+      expect(component.dropProtectionService.remove).toHaveBeenCalled();
     });
 
   });
@@ -648,14 +648,14 @@ describe(`TsFileUploadComponent`, function() {
   describe(`virtualFileInput.change`, () => {
 
     test(`should trigger the file handler`, () => {
-      component['collectFilesFromEvent'] = jest.fn();
+      component.collectFilesFromEvent = jest.fn();
       // Wire up bindings
       component.ngAfterContentInit();
       const event = createFakeEvent('change');
-      component['virtualFileInput'].dispatchEvent(event);
+      component.virtualFileInput.dispatchEvent(event);
 
-      expect(component['collectFilesFromEvent']).toHaveBeenCalled();
-      expect(component['virtualFileInput'].value).toEqual('');
+      expect(component.collectFilesFromEvent).toHaveBeenCalled();
+      expect(component.virtualFileInput.value).toEqual('');
     });
 
   });
@@ -666,10 +666,10 @@ describe(`TsFileUploadComponent`, function() {
     test(`should both prevent and stop event propogation`, () => {
       const event = createFakeEvent('fake');
       Object.defineProperties(event, {
-        preventDefault: {value: jest.fn()},
-        stopPropagation: {value: jest.fn()},
+        preventDefault: { value: jest.fn() },
+        stopPropagation: { value: jest.fn() },
       });
-      component['preventAndStopEventPropagation'](event);
+      component.preventAndStopEventPropagation(event);
 
       expect(event.preventDefault).toHaveBeenCalled();
       expect(event.stopPropagation).toHaveBeenCalled();
@@ -681,10 +681,10 @@ describe(`TsFileUploadComponent`, function() {
   describe(`ngOnInit`, () => {
 
     test(`should enable dropProtectionService`, () => {
-      component['dropProtectionService'].add = jest.fn();
+      component.dropProtectionService.add = jest.fn();
       component.ngOnInit();
 
-      expect(component['dropProtectionService'].add).toHaveBeenCalled();
+      expect(component.dropProtectionService.add).toHaveBeenCalled();
     });
 
   });

@@ -197,7 +197,7 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    * Handle keydown event calling to toggle() if appropriate
    */
   public keydown(event: KeyboardEvent): void {
-    const {code} = event;
+    const { code } = event;
     const isSelectionKey = (code === KEYS.SPACE.code) || (code === KEYS.ENTER.code);
 
     if (isSelectionKey) {

@@ -65,7 +65,7 @@ let nextUniqueId = 0;
   selector: 'ts-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  host: {class: 'ts-card'},
+  host: { class: 'ts-card' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCard',

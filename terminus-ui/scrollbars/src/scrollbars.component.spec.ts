@@ -3,8 +3,8 @@ import { TsScrollbarsComponent } from './scrollbars.component';
 
 const divMock = document.createElement('div');
 Object.defineProperties(divMock, {
-  scrollHeight: {get: () => 300},
-  scrollWidth: {get: () => 200},
+  scrollHeight: { get: () => 300 },
+  scrollWidth: { get: () => 200 },
 });
 
 class PerfectScrollbarDirectiveMock {
@@ -18,7 +18,7 @@ class PerfectScrollbarDirectiveMock {
     x: this.elementRef.nativeElement.scrollLeft,
     y: this.elementRef.nativeElement.scrollTop,
   }));
-  elementRef = {nativeElement: divMock};
+  elementRef = { nativeElement: divMock };
   scrollable = jest.fn().mockImplementation(() => true);
   scrollTo = jest.fn();
   scrollToElement = jest.fn();
@@ -148,7 +148,7 @@ describe(`TsScrollbarsComponent`, function() {
 
     test(`should call the underlying implmentation`, () => {
       component.scrollToElement('.foo');
-      expect(component.scrollbar.scrollToElement).toHaveBeenCalledWith('.foo', undefined, component['scrollSpeed']);
+      expect(component.scrollbar.scrollToElement).toHaveBeenCalledWith('.foo', undefined, component.scrollSpeed);
 
       component.scrollToElement('.foo', 100, 10);
       expect(component.scrollbar.scrollToElement).toHaveBeenCalledWith('.foo', 10, 100);
@@ -161,7 +161,7 @@ describe(`TsScrollbarsComponent`, function() {
 
     test(`should call the underlying implmentation`, () => {
       component.scrollToBottom();
-      expect(component.scrollbar.scrollToBottom).toHaveBeenCalledWith(undefined, component['scrollSpeed']);
+      expect(component.scrollbar.scrollToBottom).toHaveBeenCalledWith(undefined, component.scrollSpeed);
 
       component.scrollToBottom(100, 10);
       expect(component.scrollbar.scrollToBottom).toHaveBeenCalledWith(10, 100);
@@ -174,7 +174,7 @@ describe(`TsScrollbarsComponent`, function() {
 
     test(`should call the underlying implmentation`, () => {
       component.scrollToLeft();
-      expect(component.scrollbar.scrollToLeft).toHaveBeenCalledWith(undefined, component['scrollSpeed']);
+      expect(component.scrollbar.scrollToLeft).toHaveBeenCalledWith(undefined, component.scrollSpeed);
 
       component.scrollToLeft(100, 10);
       expect(component.scrollbar.scrollToLeft).toHaveBeenCalledWith(10, 100);
@@ -187,7 +187,7 @@ describe(`TsScrollbarsComponent`, function() {
 
     test(`should call the underlying implmentation`, () => {
       component.scrollToRight();
-      expect(component.scrollbar.scrollToRight).toHaveBeenCalledWith(undefined, component['scrollSpeed']);
+      expect(component.scrollbar.scrollToRight).toHaveBeenCalledWith(undefined, component.scrollSpeed);
 
       component.scrollToRight(100, 10);
       expect(component.scrollbar.scrollToRight).toHaveBeenCalledWith(10, 100);
@@ -200,7 +200,7 @@ describe(`TsScrollbarsComponent`, function() {
 
     test(`should call the underlying implmentation`, () => {
       component.scrollToTop();
-      expect(component.scrollbar.scrollToTop).toHaveBeenCalledWith(undefined, component['scrollSpeed']);
+      expect(component.scrollbar.scrollToTop).toHaveBeenCalledWith(undefined, component.scrollSpeed);
 
       component.scrollToTop(100, 10);
       expect(component.scrollbar.scrollToTop).toHaveBeenCalledWith(10, 100);

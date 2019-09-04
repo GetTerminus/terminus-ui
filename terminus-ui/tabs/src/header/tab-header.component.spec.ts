@@ -32,9 +32,9 @@ function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
   Object.defineProperties(event, {
-    keyCode: {get: () => key.keyCode},
-    key: {get: () => key.code},
-    code: {get: () => key.code},
+    keyCode: { get: () => key.keyCode },
+    key: { get: () => key.code },
+    code: { get: () => key.code },
   });
   event.preventDefault = jest.fn();
   return event;
@@ -230,7 +230,7 @@ describe(`TsTabHeaderComponent`, function() {
 
     test(`should not do anything if a modifier key is pressed`, () => {
       [EVENTS.RIGHT, EVENTS.ENTER].forEach(event => {
-        Object.defineProperty(event, 'shiftKey', {get: () => true});
+        Object.defineProperty(event, 'shiftKey', { get: () => true });
       });
 
       hostComponent.tabHeader.focusIndex = 0;
@@ -274,16 +274,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
+          Object.defineProperties(listElement, { scrollWidth: { get: () => tabElements.length * 100 } });
 
           // Set container width
-          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
+          Object.defineProperties(containerElement, { offsetWidth: { get: () => 300 } });
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: {get: () => i * 100},
-              offsetWidth: {get: () => 100},
+              offsetLeft: { get: () => i * 100 },
+              offsetWidth: { get: () => 100 },
             });
           }
         };
@@ -314,7 +314,7 @@ describe(`TsTabHeaderComponent`, function() {
         hostComponent.tabHeader.focusIndex = hostComponent.tabs.length - 1;
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader.scrollDistance).toEqual(hostComponent.tabHeader['getMaxScrollDistance']());
+        expect(hostComponent.tabHeader.scrollDistance).toEqual(hostComponent.tabHeader.getMaxScrollDistance());
 
         // Focus on the first tab, expect this to be the maximum scroll distance.
         hostComponent.tabHeader.focusIndex = 0;
@@ -371,16 +371,16 @@ describe(`TsTabHeaderComponent`, function() {
           tabElements = fixture.debugElement.queryAll(By.directive(TsTabLabelWrapperDirective)).map(d => d.nativeElement);
 
           // Set list scrollWidth
-          Object.defineProperties(listElement, {scrollWidth: {get: () => tabElements.length * 100}});
+          Object.defineProperties(listElement, { scrollWidth: { get: () => tabElements.length * 100 } });
 
           // Set container width
-          Object.defineProperties(containerElement, {offsetWidth: {get: () => 300}});
+          Object.defineProperties(containerElement, { offsetWidth: { get: () => 300 } });
 
           // Set tabs width and position
           for (let i = 0; i < tabElements.length; i += 1) {
             Object.defineProperties(tabElements[i], {
-              offsetLeft: {get: () => i * 100},
-              offsetWidth: {get: () => 100},
+              offsetLeft: { get: () => i * 100 },
+              offsetWidth: { get: () => 100 },
             });
           }
         };
@@ -629,14 +629,14 @@ describe(`TsTabHeaderComponent`, function() {
 
       // Set mock dimensions
       const listElement = fixture.componentInstance.tabHeader.tabList.nativeElement;
-      Object.defineProperties(listElement, {scrollWidth: {get: () => 600}});
-      Object.defineProperties(headerElement, {offsetWidth: {get: () => 300}});
+      Object.defineProperties(listElement, { scrollWidth: { get: () => 600 } });
+      Object.defineProperties(headerElement, { offsetWidth: { get: () => 300 } });
 
       // Change label content to trigger update
       labels.forEach(label => {
         label.style.width = '';
         label.textContent += extraText;
-        Object.defineProperties(label, {offsetWidth: {get: () => 200}});
+        Object.defineProperties(label, { offsetWidth: { get: () => 200 } });
       });
 
       mutationCallbacks.forEach(callback => callback());
@@ -677,7 +677,7 @@ describe(`TsTabHeaderComponent`, function() {
 
       test(`should return 0 if there is no key manager`, function() {
         fixture.detectChanges();
-        hostComponent.tabHeader['keyManager'] = undefined;
+        hostComponent.tabHeader.keyManager = undefined;
 
         expect(hostComponent.tabHeader.focusIndex).toEqual(0);
       });
@@ -688,12 +688,12 @@ describe(`TsTabHeaderComponent`, function() {
     describe(`ngAfterContentInit`, function() {
 
       test(`should realign if requestAnimationFrame is undefined`, function() {
-        hostComponent.tabHeader['updatePagination'] = jest.fn();
+        hostComponent.tabHeader.updatePagination = jest.fn();
         hostComponent.tabHeader.alignInkBarToSelectedTab = jest.fn();
         window.requestAnimationFrame = undefined;
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader['updatePagination']).toHaveBeenCalled();
+        expect(hostComponent.tabHeader.updatePagination).toHaveBeenCalled();
         expect(hostComponent.tabHeader.alignInkBarToSelectedTab).toHaveBeenCalled();
       });
 
@@ -720,14 +720,14 @@ describe(`TsTabHeaderComponent`, function() {
         fixture.detectChanges();
         hostComponent.tabHeader.labelWrappers = undefined;
 
-        expect(hostComponent.tabHeader['isValidIndex'](1)).toEqual(true);
+        expect(hostComponent.tabHeader.isValidIndex(1)).toEqual(true);
       });
 
 
       test(`should return false if the correct label wrapper is not found`, function() {
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader['isValidIndex'](99)).toEqual(false);
+        expect(hostComponent.tabHeader.isValidIndex(99)).toEqual(false);
       });
 
     });
@@ -736,14 +736,14 @@ describe(`TsTabHeaderComponent`, function() {
     describe(`updateTabScrollPosition`, function() {
 
       test(`should set scrollLeft to 0 on IE`, function() {
-        hostComponent.tabHeader['platform'].TRIDENT = true;
-        hostComponent.tabHeader['updateTabScrollPosition']();
+        hostComponent.tabHeader.platform.TRIDENT = true;
+        hostComponent.tabHeader.updateTabScrollPosition();
 
         expect(hostComponent.tabHeader.tabListContainer.nativeElement.scrollLeft).toEqual(0);
 
-        hostComponent.tabHeader['platform'].TRIDENT = false;
-        hostComponent.tabHeader['platform'].EDGE = true;
-        hostComponent.tabHeader['updateTabScrollPosition']();
+        hostComponent.tabHeader.platform.TRIDENT = false;
+        hostComponent.tabHeader.platform.EDGE = true;
+        hostComponent.tabHeader.updateTabScrollPosition();
 
         expect(hostComponent.tabHeader.tabListContainer.nativeElement.scrollLeft).toEqual(0);
       });
@@ -755,10 +755,10 @@ describe(`TsTabHeaderComponent`, function() {
 
       test(`should do nothing if no selected label is found`, function() {
         hostComponent.tabHeader.labelWrappers = undefined;
-        hostComponent.tabHeader['scrollTo'] = jest.fn();
+        hostComponent.tabHeader.scrollTo = jest.fn();
 
-        expect(hostComponent.tabHeader['scrollToLabel']()).toEqual(undefined);
-        expect(hostComponent.tabHeader['scrollTo']).not.toHaveBeenCalled();
+        expect(hostComponent.tabHeader.scrollToLabel()).toEqual(undefined);
+        expect(hostComponent.tabHeader.scrollTo).not.toHaveBeenCalled();
       });
 
     });

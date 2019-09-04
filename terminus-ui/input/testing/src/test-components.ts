@@ -32,18 +32,18 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 export class SimpleFormControl {
   public control: FormControl | undefined = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
 
-@Component({template: `<ts-input [datepicker]="true"></ts-input>`})
+@Component({ template: `<ts-input [datepicker]="true"></ts-input>` })
 export class Autocomplete implements AfterContentInit {
   public control: FormControl | undefined = new FormControl();
   public firstDate = new Date(2018, 1, 1);
   public secondDate = new Date(2017, 3, 3);
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 
   ngAfterContentInit() {
@@ -55,46 +55,46 @@ export class Autocomplete implements AfterContentInit {
   }
 }
 
-@Component({template: `<ts-input [readOnly]="readOnly"></ts-input>`})
+@Component({ template: `<ts-input [readOnly]="readOnly"></ts-input>` })
 export class AttrReadonly {
   public readOnly = false;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [spellcheck]="spellcheck"></ts-input>`})
+@Component({ template: `<ts-input [spellcheck]="spellcheck"></ts-input>` })
 export class AttrSpellcheck {
   public spellcheck = false;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [autocapitalize]="autocapitalize"></ts-input>`})
+@Component({ template: `<ts-input [autocapitalize]="autocapitalize"></ts-input>` })
 export class AttrAutocapitalize {
   public autocapitalize = false;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [autocomplete]="autocomplete"></ts-input>`})
+@Component({ template: `<ts-input [autocomplete]="autocomplete"></ts-input>` })
 export class AttrAutocomplete {
   public autocomplete: TsInputAutocompleteTypes = 'on';
 }
 
-@Component({template: `<ts-input [id]="id"></ts-input>`})
+@Component({ template: `<ts-input [id]="id"></ts-input>` })
 export class AttrId {
   public id: string | undefined = undefined;
 }
 
-@Component({template: `<ts-input [isDisabled]="disabled"></ts-input>`})
+@Component({ template: `<ts-input [isDisabled]="disabled"></ts-input>` })
 export class AttrDisabled {
   public disabled = false;
 }
 
-@Component({template: `<ts-input [isFocused]="focused"></ts-input>`})
+@Component({ template: `<ts-input [isFocused]="focused"></ts-input>` })
 export class AttrAutofocus {
   public focused = false;
 }
@@ -107,15 +107,15 @@ export class AttrAutofocus {
 export class Theme {
   public theme: TsStyleThemeTypes | undefined;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [tabIndex]="index"></ts-input>`})
+@Component({ template: `<ts-input [tabIndex]="index"></ts-input>` })
 export class TabIndex {
   public index = 4;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -131,7 +131,7 @@ export class Mask {
   public mask: TsMaskShortcutOptions | undefined = undefined;
   public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -149,7 +149,7 @@ export class MaskSanitize {
   public formControl = new FormControl();
   public maskSanitizeValue = true;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -167,7 +167,7 @@ export class MaskDecimal {
   public formControl = new FormControl();
   public maskAllowDecimal = true;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -183,7 +183,7 @@ export class MaskDateFormat {
   public mask: TsMaskShortcutOptions = 'date';
   public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -199,13 +199,13 @@ export class PostalMask {
   public formControl = new FormControl();
   public mask: TsMaskShortcutOptions = 'postal';
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input></ts-input>`})
+@Component({ template: `<ts-input></ts-input>` })
 export class MissingFormControl {
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -220,7 +220,7 @@ export class MissingFormControl {
 export class StartingView {
   public startingView = 'month';
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -235,7 +235,7 @@ export class StartingView {
 export class OpenTo {
   public openTo: undefined | Date = new Date(2018, 1, 1);
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -252,7 +252,7 @@ export class MinMaxDate {
   public minDate: undefined | Date = undefined;
   public maxDate: undefined | Date = undefined;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -283,7 +283,7 @@ export class InputType {
   public formControl = new FormControl();
   public type: TsInputTypes | undefined;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -300,7 +300,7 @@ export class Clearable {
   public clearable: boolean | undefined = undefined;
   public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
   // Must be overwritten with a spy in the test
   cleared = v => {};
@@ -318,39 +318,39 @@ export class NoExternalFormField {
   public formControl = new FormControl();
   public hasFormField = true;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [formControl]="formControl" [hint]="hint"></ts-input>`})
+@Component({ template: `<ts-input [formControl]="formControl" [hint]="hint"></ts-input>` })
 export class Hint {
   public formControl = new FormControl();
   public hint: string | undefined = undefined;
 }
 
-@Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
+@Component({ template: `<ts-input [formControl]="formControl"></ts-input>` })
 export class AttrNotRequired {
   public formControl: FormControl = new FormControl(null);
 }
 
-@Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
+@Component({ template: `<ts-input [formControl]="formControl"></ts-input>` })
 export class FormControlAttrRequired {
   public formControl: FormControl = new FormControl(null, Validators.required);
 }
 
-@Component({template: `<ts-input [formControl]="formControl" [isRequired]="required"></ts-input>`})
+@Component({ template: `<ts-input [formControl]="formControl" [isRequired]="required"></ts-input>` })
 export class AttrInputRequired {
   public formControl: FormControl = new FormControl(null);
   public required = false;
 }
 
 
-@Component({template: `<ts-input label="test label"></ts-input>`})
+@Component({ template: `<ts-input label="test label"></ts-input>` })
 export class Label {
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 
-  @ContentChild(TsFormFieldComponent, {static: false})
+  @ContentChild(TsFormFieldComponent, { static: false })
   formFieldComponent: TsFormFieldComponent;
 }
 
@@ -365,15 +365,15 @@ export class Label {
 export class DateFilter {
   public dateFilter = undefined;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<ts-input [formControl]="formControl"></ts-input>`})
+@Component({ template: `<ts-input [formControl]="formControl"></ts-input>` })
 export class Autofill {
   public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -395,7 +395,7 @@ export class OnChanges {
   public maskAllowDecimal = true;
   public label = 'my first label';
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
@@ -412,14 +412,14 @@ export class Textarea {
   public formControl = new FormControl();
   public rows: undefined | number;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   inputComponent: TsInputComponent;
 }
 
-@Component({template: `<div *ngIf="show"><ts-input></ts-input></div>`})
+@Component({ template: `<div *ngIf="show"><ts-input></ts-input></div>` })
 export class ToggleInputComponent {
 
-  @ViewChild(TsInputComponent, {static: false})
+  @ViewChild(TsInputComponent, { static: false })
   inputComponent!: TsInputComponent;
   public show = true;
 }

@@ -105,11 +105,11 @@ describe(`TsFormFieldComponent`, function() {
       fixture.detectChanges();
       const formField = fixture.componentInstance.formField;
 
-      formField['updateOutlineGap'] = jest.fn();
+      formField.updateOutlineGap = jest.fn();
       formField.outlineGapCalculationNeeded = true;
       formField.ngAfterContentChecked();
 
-      expect(formField['updateOutlineGap']).toHaveBeenCalled();
+      expect(formField.updateOutlineGap).toHaveBeenCalled();
     });
 
   });
@@ -124,7 +124,7 @@ describe(`TsFormFieldComponent`, function() {
 
       formField.labelElement = undefined;
 
-      expect(formField['updateOutlineGap']()).toEqual(undefined);
+      expect(formField.updateOutlineGap()).toEqual(undefined);
     });
 
 
@@ -139,7 +139,7 @@ describe(`TsFormFieldComponent`, function() {
       fixture.detectChanges();
       const formField = fixture.componentInstance.formField;
 
-      expect(formField['updateOutlineGap']()).toEqual(undefined);
+      expect(formField.updateOutlineGap()).toEqual(undefined);
       expect(formField.outlineGapCalculationNeeded).toEqual(true);
     });
 
@@ -186,7 +186,7 @@ describe(`TsFormFieldComponent`, function() {
     expect(formField.shouldAlwaysFloat).toBe(false);
     expect(formField.floatLabel).toBe('always');
 
-    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), {propertyName: 'transform'});
+    const fakeEvent = (Object as any).assign(createFakeEvent('transitionend'), { propertyName: 'transform' });
 
     label.dispatchEvent(fakeEvent);
     fixture.detectChanges();
@@ -216,10 +216,10 @@ export class Id {
   public formControl = new FormControl();
   public myId: string | undefined = 'foo';
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent, {static: true})
+  @ViewChild(TsFormFieldComponent, { static: true })
   public formField: TsFormFieldComponent;
 }
 
@@ -240,7 +240,7 @@ export class RequiredMarker {
   public formControl = new FormControl(null, Validators.required);
   public hideRequiredMarker = false;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   public inputComponent: TsInputComponent;
 }
 
@@ -261,10 +261,10 @@ export class Float {
   public formControl = new FormControl();
   public float;
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent, {static: true})
+  @ViewChild(TsFormFieldComponent, { static: true })
   public formField: TsFormFieldComponent;
 }
 
@@ -292,10 +292,10 @@ export class NoControl {
 export class ErrorState implements OnInit {
   public formControl = new FormControl(null, Validators.required);
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent, {static: true})
+  @ViewChild(TsFormFieldComponent, { static: true })
   public formField: TsFormFieldComponent;
 
   public ngOnInit() {
@@ -316,10 +316,10 @@ export class ErrorState implements OnInit {
 export class UpdateOutline {
   public formControl = new FormControl();
 
-  @ViewChild(TsInputComponent, {static: true})
+  @ViewChild(TsInputComponent, { static: true })
   public inputComponent: TsInputComponent;
 
-  @ViewChild(TsFormFieldComponent, {static: true})
+  @ViewChild(TsFormFieldComponent, { static: true })
   public formField: TsFormFieldComponent;
 }
 
@@ -340,7 +340,7 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = [], impo
 class MyDocumentService extends TsDocumentServiceMock {
   public shouldContain = true;
   public document: any = {
-    documentElement: {contains: jest.fn(() => false)},
+    documentElement: { contains: jest.fn(() => false) },
     createEvent() {
       return document.createEvent('Event');
     },

@@ -22,7 +22,7 @@ import { TsIconButtonModule } from './icon-button.module';
   `,
 })
 class TestHostComponent {
-  @ViewChild(TsIconButtonComponent, {static: true})
+  @ViewChild(TsIconButtonComponent, { static: true })
   iconButtonComponent: TsIconButtonComponent;
 }
 

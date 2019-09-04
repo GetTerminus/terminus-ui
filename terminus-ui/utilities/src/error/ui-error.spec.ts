@@ -1,4 +1,4 @@
-import {TsUILibraryError} from './ui-error';
+import { TsUILibraryError } from './ui-error';
 
 
 describe(`TsUILibraryError`, () => {

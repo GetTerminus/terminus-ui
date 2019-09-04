@@ -66,7 +66,7 @@ export type TsMenuTriggerTypes
   selector: 'ts-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  host: {class: 'ts-menu'},
+  host: { class: 'ts-menu' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsMenu',
@@ -102,7 +102,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * Provide access to the trigger
    */
-  @ViewChild(MatMenuTrigger, {static: false})
+  @ViewChild(MatMenuTrigger, { static: false })
   public trigger!: MatMenuTrigger;
 
   /**

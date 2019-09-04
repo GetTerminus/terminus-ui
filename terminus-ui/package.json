@@ -65,31 +65,5 @@
   "optionalDependencies": {
     "@amcharts/amcharts4": "^4.5.3",
     "@amcharts/amcharts4-geodata": "^4.1.6"
-  },
-  "ngPackage": {
-    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-    "workingDirectory": "../.ng_build",
-    "lib": {
-      "entryFile": "src/public-api.ts",
-      "umdModuleIds": {
-        "@angular/cdk": "ng.cdk",
-        "@terminus/ngx-tools": "terminus.ngxTools",
-        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion",
-        "@terminus/ngx-tools/regex": "terminus.ngxTools.regex",
-        "@terminus/ngx-tools/keycodes": "terminus.ngxTools.keycodes",
-        "date-fns": "dateFns",
-        "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
-        "text-mask-core/dist/textMaskCore": "textMaskCore",
-        "text-mask-addons/dist/createNumberMask": "createNumberMask",
-        "text-mask-addons/dist/createAutoCorrectedDatePipe": "createAutoCorrectedDatePipe"
-      },
-      "comments": "none"
-    },
-    "whitelistedNonPeerDependencies": [
-      "ngx-perfect-scrollbar",
-      "text-mask-addons",
-      "text-mask-core"
-    ],
-    "dest": "../dist/terminus-ui"
   }
 }

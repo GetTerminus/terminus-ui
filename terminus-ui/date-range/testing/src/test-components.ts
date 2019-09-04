@@ -29,7 +29,7 @@ import { createDateRangeGroup } from './test-helpers';
 export class Basic {
   dateGroup = createDateRangeGroup();
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 }
 
@@ -47,7 +47,7 @@ export class SeededDates {
   date2 = new Date(2018, 1, 12);
   dateGroup = createDateRangeGroup(this.date1, this.date2);
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 }
 
@@ -69,7 +69,7 @@ export class Emitters {
   endSelected = jest.fn();
   startSelected = jest.fn();
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 }
 
@@ -99,7 +99,7 @@ export class Params {
   startMin = new Date(2017, 5, 1);
   theme = 'accent';
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 }
 
@@ -112,7 +112,7 @@ export class Params {
 export class NoFormGroup {
   startSelected = jest.fn();
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 }
 
@@ -130,7 +130,7 @@ export class NoControls {
   dateGroup = this.formBuilder.group({});
   startSelected = jest.fn();
 
-  @ViewChild(TsDateRangeComponent, {static: true})
+  @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 
   constructor(private formBuilder: FormBuilder) {}
