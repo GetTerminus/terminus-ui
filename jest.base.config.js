@@ -28,7 +28,16 @@ module.exports = {
     '^@terminus/ui(.*)/testing$': '<rootDir>/terminus-ui$1/testing/src/public-api.ts',
   },
   preset: 'jest-preset-angular',
-  reporters: ['default', ['jest-junit', { output: './coverage/junit/report.xml' }]],
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: '<rootDir>/coverage/junit/',
+        outputName: 'report.xml',
+      },
+    ],
+  ],
   setupFilesAfterEnv: ['<rootDir>/tooling/jest-setup.ts'],
   snapshotSerializers: [
     'jest-preset-angular/AngularNoNgAttributesSnapshotSerializer.js',
