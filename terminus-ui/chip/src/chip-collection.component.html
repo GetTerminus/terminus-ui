@@ -1,0 +1,17 @@
+<div 
+  class="ts-chip-collection-wrapper"
+  fxLyaout="row"
+  [ngClass]="(orientation==='vertical') ? 'ts-chip-collection--stacked':''"
+>
+  <ts-chip
+    *ngFor="let chip of chipsInput; trackBy: trackByFn"
+    [isRemovable]="!isReadonly"
+    [isDisabled]="isDisabled"
+    [isSelectable]="isSelectable"
+    [value]="displayFormatter(chip)"
+    (removed)="remove(chip)"
+    (clicked)="clickSelect($event)"
+  >
+  </ts-chip>
+  <ng-content></ng-content>
+</div>

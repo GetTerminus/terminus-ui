@@ -7,6 +7,8 @@ import { TsCardModule } from '@terminus/ui/card';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsOptionModule } from '@terminus/ui/option';
 import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsChipModule } from '@terminus/ui/chip';
+import { TsIconModule } from '@terminus/ui/icon';
 
 import { AutocompleteRoutingModule } from './autocomplete-routing.module';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -20,6 +22,8 @@ import { AutocompleteComponent } from './autocomplete.component';
     TsAutocompleteModule,
     TsCheckboxModule,
     TsCardModule,
+    TsChipModule,
+    TsIconModule,
     TsOptionModule,
     TsSpacingModule,
   ],

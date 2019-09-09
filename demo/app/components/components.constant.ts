@@ -52,6 +52,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'chip',
+    loadChildren: `./components/chip/chip.module#ChipModule`,
+    data: {
+      name: 'Chip',
+    },
+  },
+  {
     path: 'confirmation',
     loadChildren: `./components/confirmation/confirmation.module#ConfirmationModule`,
     data: {

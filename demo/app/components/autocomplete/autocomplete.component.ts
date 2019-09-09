@@ -1,6 +1,8 @@
 import {
   Component,
   OnInit,
+  AfterViewInit,
+  ViewChild,
 } from '@angular/core';
 import {
   FormControl,
@@ -11,6 +13,7 @@ import {
   Observable,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TsChipCollectionComponent } from '@terminus/ui/chip';
 
 
 export interface State {
@@ -23,7 +26,9 @@ export interface State {
   selector: 'demo-autocomplete',
   templateUrl: './autocomplete.component.html',
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent {
+  @ViewChild(TsChipCollectionComponent, { static: false })
+  public list!: TsChipCollectionComponent;
 
   states: State[] = [
     {
@@ -39,7 +44,7 @@ export class AutocompleteComponent implements OnInit {
       population: '1.341M',
     },
     {
-      name: 'California',
+      name: 'CALIFORNIA',
       population: '39.14M',
     },
     {
@@ -119,6 +124,7 @@ export class AutocompleteComponent implements OnInit {
   singleStateCtrl = new FormControl([this.states[4]], [Validators.required]);
 
   constructor() {
+
     this.filteredStates = this.myQuery$
       .pipe(
         map(state => {

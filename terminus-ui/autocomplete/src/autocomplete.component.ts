@@ -23,7 +23,6 @@ import {
   FormControl,
   NgControl,
 } from '@angular/forms';
-import { MatChipList } from '@angular/material';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
@@ -52,6 +51,7 @@ import {
 } from 'rxjs/operators';
 
 import { isArray } from '@terminus/ngx-tools';
+import { TsChipCollectionComponent } from '@terminus/ui/chip';
 import {
   TsAutocompletePanelComponent,
   TsAutocompletePanelSelectedEvent,
@@ -234,8 +234,8 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Access the chip list
    */
-  @ViewChild('chipList', { static: false })
-  public chipList: MatChipList | undefined;
+  @ViewChild('chipCollection', { static: false })
+  public chipCollection: TsChipCollectionComponent | undefined;
 
   /**
    * Access the actual HTML element
@@ -847,6 +847,12 @@ export class TsAutocompleteComponent implements OnInit,
     this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteFormControl.value));
   }
 
+  /**
+   * Chip component emit a focusInput event, autocomplete puts focus on input field.
+   */
+  public focusInput(): void {
+    this.focus();
+  }
 
   /**
    * Deselect an item
@@ -880,7 +886,6 @@ export class TsAutocompleteComponent implements OnInit,
     this.optionDeselected.emit(new TsAutocompleteChange(this, option));
     this.selectionChange.emit(new TsAutocompleteChange(this, options));
   }
-
 
   /**
    * Function for tracking for-loops changes

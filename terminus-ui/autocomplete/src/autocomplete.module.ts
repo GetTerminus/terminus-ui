@@ -6,11 +6,11 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
+import { TsChipModule } from '@terminus/ui/chip';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';
 import { TsInputModule } from '@terminus/ui/input';
@@ -33,12 +33,12 @@ export * from './autocomplete-panel/autocomplete-panel.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatChipsModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatRippleModule,
     OverlayModule,
     TsCheckboxModule,
+    TsChipModule,
     TsIconModule,
     TsFormFieldModule,
     TsOptionModule,
