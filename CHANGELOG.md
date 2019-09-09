@@ -1,3 +1,10 @@
+## [14.9.5](https://github.com/GetTerminus/terminus-ui/compare/v14.9.4...v14.9.5) (2019-09-09)
+
+
+### Bug Fixes
+
+* **Navigation:** items in drop down respect external links ([#1686](https://github.com/GetTerminus/terminus-ui/issues/1686)) ([0159f5b](https://github.com/GetTerminus/terminus-ui/commit/0159f5b))
+
 ## [14.9.4](https://github.com/GetTerminus/terminus-ui/compare/v14.9.3...v14.9.4) (2019-09-04)
 
 
