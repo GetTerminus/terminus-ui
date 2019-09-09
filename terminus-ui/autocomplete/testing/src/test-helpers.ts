@@ -1,12 +1,12 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { MatChip } from '@angular/material/chips';
 import { By } from '@angular/platform-browser';
 import { TsAutocompleteComponent } from '@terminus/ui/autocomplete';
 import {
   TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
+import { TsChipComponent } from '@terminus/ui/chip';
 
 /**
  * Get the DebugElement for a TsAutocompleteComponent
@@ -98,12 +98,12 @@ export function getAutocompleteElement(fixture: ComponentFixture<any>, index = 0
  * @param index - The index of the desired TsSelectComponent
  * @return An array of chip instances
  */
-export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): MatChip[] {
+export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): TsChipComponent[] {
   const instance = getAutocompleteInstance(fixture, index);
-  if (!instance.chipList) {
+  if (!instance.chipCollection) {
     throw new Error(`'getAllChipInstances' did not find a chips collection from the select at index '${index}'`);
   }
-  return instance.chipList.chips.toArray();
+  return instance.chipCollection.chips.toArray();
 }
 
 /**
@@ -114,7 +114,7 @@ export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): 
  * @param chipIndex - The index of the desired chip
  * @return A chip instances
  */
-export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): MatChip {
+export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): TsChipComponent {
   const chips = getAllChipInstances(fixture, selectIndex);
   if (!chips[chipIndex]) {
     throw new Error(`'getChipInstance' did not find a chip at index '${chipIndex}'`);

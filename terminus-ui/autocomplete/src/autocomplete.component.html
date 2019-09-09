@@ -15,25 +15,17 @@
   <div class="ts-autocomplete__input-wrap">
 
     <ng-container *ngIf="allowMultiple">
-      <mat-chip-list #chipList="matChipList">
-        <mat-chip
-          *ngFor="let option of autocompleteFormControl.value; trackBy: trackByFn"
-          class="qa-autocomplete-chip"
-          [removable]="true"
-          (removed)="autocompleteDeselectItem(option)"
-        >
-          <span class="ts-autocomplete-chip-value">
-            {{ displayFormatter(option) }}
-          </span>
-
-          <ts-icon matChipRemove>
-            cancel
-          </ts-icon>
-        </mat-chip>
-
+      <ts-chip-collection
+        [chipsInput]="autocompleteFormControl.value"
+        [allowMultipleSelections]="true"
+        [displayFormatter]="displayFormatter"
+        [isDisabled]="false"
+        [isReadonly]="false"
+        (removed)="autocompleteDeselectItem($event)"
+        (tabUpdateFocus)="focusInput()"
+        #chipCollection="tsChipCollection">
         <input
           class="ts-autocomplete__input qa-select-autocomplete-input"
-          [matChipInputFor]="chipList"
           [tsAutocompleteTrigger]="auto"
           [reopenAfterSelection]="reopenAfterSelection"
           [attr.id]="id"
@@ -41,12 +33,10 @@
           [readonly]="isDisabled ? 'true' : null"
           (ngModelChange)="querySubject.next($event)"
           (blur)="handleInputBlur($event)"
-          (keydown)="$event.stopPropagation()"
           #input
         />
-
-        <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
-      </mat-chip-list>
+      </ts-chip-collection>
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
     </ng-container>
 
     <ng-container *ngIf="!allowMultiple">

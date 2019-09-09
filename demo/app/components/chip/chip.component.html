@@ -1,0 +1,14 @@
+<ts-card>
+  <ts-chip-collection 
+    [chipsInput]="options" 
+    [allowMultipleSelections]="true"
+    [isSelectable]="true"
+    [isDisabled]="false"
+    orientation="vertical"
+    (removed)="removingOption($event)"
+    (collectionChange)="change($event)"
+    #tsChipCollection
+  >
+  </ts-chip-collection>
+
+</ts-card>

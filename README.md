@@ -94,7 +94,7 @@ for each feature.
 | breadcrumbs                            |                                                           |                    |                                 |                              |                                |
 | [card][src-card]                       |                                                           | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]            | [Usage][card-usage]            |
 | [chart][src-chart]                     | Charts, graphs etc                                        | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]           | [Usage][chart-usage]           |
-| chip                                   |                                                           |                    |                                 |                              |                                |
+| [chip][src-chip]                       | Chip                                                      | :white_check_mark: | [Demo][demo-chip]               | [Docs][chip-docs]            | [Usage][chip-usage]            |
 | [checkbox][src-checkbox]               |                                                           | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]        | [Usage][checkbox-usage]        |
 | [confirmation][src-confirmation]       | Add a confirmation step to any `ts-button`                | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]    | [Usage][confirmation-usage]    |
 | [copy][src-copy]                       |                                                           | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]            |                                |
@@ -347,6 +347,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-button]:           https://getterminus.github.io/ui-demos-release/components/button
 [demo-card]:             https://getterminus.github.io/ui-demos-release/components/card
 [demo-chart]:            https://getterminus.github.io/ui-demos-release/components/chart
+[demo-chip]:             https://getterminus.github.io/ui-demos-release/components/chip
 [demo-checkbox]:         https://getterminus.github.io/ui-demos-release/components/checkbox
 [demo-confirmation]:     https://getterminus.github.io/ui-demos-release/components/confirmation
 [demo-copy]:             https://getterminus.github.io/ui-demos-release/components/copy
@@ -395,6 +396,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-card]:               ./terminus-ui/card/src/
 [src-chart]:              ./terminus-ui/chart/src/
 [src-checkbox]:           ./terminus-ui/checkbox/src/
+[src-chip]:               ./terminus-ui/chip/src
 [src-confirmation]:       ./terminus-ui/confirmation/src/
 [src-copy]:               ./terminus-ui/copy/src/
 [src-csv-entry]:          ./terminus-ui/csv-entry/src/
@@ -437,6 +439,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [card-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsCardComponent.html
 [chart-docs]:           http://uilibrary-docs.terminus.ninja/release/components/TsChartComponent.html
 [checkbox-docs]:        http://uilibrary-docs.terminus.ninja/release/components/TsCheckboxComponent.html
+[chip-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsChipCollectionComponent.html
 [confirmation-docs]:    http://uilibrary-docs.terminus.ninja/release/directives/TsConfirmationDirective.html
 [copy-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsCopyComponent.html
 [csv-entry-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html
@@ -483,6 +486,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [card-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsCardComponent.html#readme
 [chart-usage]:           http://uilibrary-docs.terminus.ninja/release/components/TsChartComponent.html#readme
 [checkbox-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsCheckboxComponent.html#readme
+[chip-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsChipCollectionComponent.html#readme
 [confirmation-usage]:    http://uilibrary-docs.terminus.ninja/release/directives/TsConfirmationDirective.html#readme
 [csv-entry-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html#readme
 [date-range-usage]:      http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html#readme

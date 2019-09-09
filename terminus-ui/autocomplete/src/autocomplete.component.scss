@@ -7,10 +7,16 @@
 
 
 $transition-duration: 200;
+$chip-font-size: 14px;
 
 .ts-autocomplete__input-wrap {
   &--hidden {
     @include visually-hidden;
+  }
+
+  // NOTE: Currently hardcode the text size since typography doesn't support 14px at this moment.
+  .ts-chip {
+    font-size: $chip-font-size;
   }
 }
 
@@ -18,6 +24,8 @@ $transition-duration: 200;
   background: transparent;
   border: none;
   color: currentColor;
+  display: inline-block;
+  flex: 1 0 10px;
   font: inherit;
   max-width: 100%;
   outline: none;

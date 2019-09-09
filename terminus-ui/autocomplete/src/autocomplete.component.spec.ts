@@ -14,6 +14,8 @@ import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   createFakeEvent,
+  createKeyboardEvent,
+  dispatchEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
   typeInElement,
@@ -141,7 +143,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(chips.length).toEqual(1);
 
       const chip = getChipElement(fixture);
-      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
+      const chipRemovalButton = chip.querySelector('.ts-chip-remove');
       const instance = getAutocompleteInstance(fixture);
 
       // Open the panel so that overlayRef is created
@@ -174,22 +176,23 @@ describe(`TsAutocompleteComponent`, function() {
 
       const fixture = createComponent(testComponents.SeededAutocomplete);
       fixture.detectChanges();
-
+      const nativeInput = fixture.nativeElement.querySelector('input');
       let chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(1);
 
       const chip = getChipElement(fixture);
+      const BACKSPACE_EVENT_CHIP = createKeyboardEvent('keydown', KEYS.BACKSPACE, chip);
       // The first backspace selects the previous chip
-      chip.dispatchEvent(event);
+      nativeInput.focus();
+      nativeInput.dispatchEvent(event);
       fixture.detectChanges();
+      dispatchEvent(chip, BACKSPACE_EVENT_CHIP);
 
-      chip.dispatchEvent(event);
       fixture.detectChanges();
 
       chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(0);
     });
-
   });
 
 
@@ -501,7 +504,7 @@ describe(`TsAutocompleteComponent`, function() {
       const instance = getAutocompleteInstance(fixture);
       const triggerInstance = instance.autocompleteTrigger;
       const chip = getChipElement(fixture);
-      const chipRemovalButton = chip.querySelector('.mat-chip-remove');
+      const chipRemovalButton = chip.querySelector('.ts-chip-remove');
 
       triggerInstance.openPanel();
       fixture.detectChanges();
