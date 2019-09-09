@@ -108,7 +108,18 @@
         class="c-navigation__hidden-item qa-navigation-secondary-item"
         [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
         routerLink="{{ item.destination }}"
-        *ngIf="item.destination"
+        *ngIf="item.destination && !item.isExternal"
+        mat-menu-item
+        #hiddenLinkElement
+      >
+        {{ item.name }}
+      </a>
+
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        href="{{ item.destination }}"
+        *ngIf="item.destination && item.isExternal"
         mat-menu-item
         #hiddenLinkElement
       >
