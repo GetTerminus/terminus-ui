@@ -1,3 +1,11 @@
+# [14.10.0](https://github.com/GetTerminus/terminus-ui/compare/v14.9.5...v14.10.0) (2019-09-11)
+
+
+### Features
+
+* **Chip:** Expose new chip component ([486e0d3](https://github.com/GetTerminus/terminus-ui/commit/486e0d3))
+* **dockerimage:** Upgrade to v12 docker image and remove a dependency- weak. ([9a1c65c](https://github.com/GetTerminus/terminus-ui/commit/9a1c65c))
+
 ## [14.9.5](https://github.com/GetTerminus/terminus-ui/compare/v14.9.4...v14.9.5) (2019-09-09)
 
 
