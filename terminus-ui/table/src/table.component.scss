@@ -109,6 +109,7 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Header cell
   .ts-header-cell {
+    vertical-align: bottom;
     // If the column isn't sortable, add padding here that would normally be added by
     // `ts-sort-header-container`
     &:not(.ts-sortable) {
