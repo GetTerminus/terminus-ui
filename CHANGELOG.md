@@ -1,3 +1,10 @@
+# [14.11.0](https://github.com/GetTerminus/terminus-ui/compare/v14.10.1...v14.11.0) (2019-09-12)
+
+
+### Features
+
+* **Datepicker:** enforce smaller width ([#1692](https://github.com/GetTerminus/terminus-ui/issues/1692)) ([47054be](https://github.com/GetTerminus/terminus-ui/commit/47054be))
+
 ## [14.10.1](https://github.com/GetTerminus/terminus-ui/compare/v14.10.0...v14.10.1) (2019-09-12)
 
 
