@@ -25,6 +25,12 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   @include reset;
   display: block;
   outline: none;
+  .ts-form-field {
+    .ts-form-field__infix {
+      $select-form-field-padding-top: .6em;
+      padding: $select-form-field-padding-top 0 1em;
+    }
+  }
 
   // <div> trigger to open select
   .ts-select-trigger {
