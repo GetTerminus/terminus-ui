@@ -1,3 +1,10 @@
+## [14.10.1](https://github.com/GetTerminus/terminus-ui/compare/v14.10.0...v14.10.1) (2019-09-12)
+
+
+### Bug Fixes
+
+* **table:** table header vertical align bottom ([a7b0774](https://github.com/GetTerminus/terminus-ui/commit/a7b0774))
+
 # [14.10.0](https://github.com/GetTerminus/terminus-ui/compare/v14.9.5...v14.10.0) (2019-09-11)
 
 
