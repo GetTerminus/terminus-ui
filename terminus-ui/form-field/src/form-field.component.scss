@@ -57,7 +57,8 @@ $subscript-margin-top: .5em / $subscript-font-scale;
 $wrapper-padding-bottom: ($subscript-margin-top + $line-height) * $subscript-font-scale;
 // The amount we offset the label from the input text in the outline appearance.
 $outline-appearance-label-offset: -.25em;
-
+// The width we set for datepicker
+$date-picker-width: 200px;
 
 
 //
@@ -373,6 +374,7 @@ $outline-appearance-label-offset: -.25em;
 
 // Target an input datepicker within a form field
 .ts-input--datepicker {
+  width: $date-picker-width;
   .ts-form-field {
     // Center the datepicker icon vertically
     .ts-form-field__suffix {
