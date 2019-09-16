@@ -50,6 +50,7 @@ describe(`TsLinkComponent`, function() {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let link: HTMLElement;
+  let emailLink: HTMLElement;
   let linkComponent: TsLinkComponent;
 
   beforeEach(async(() => {
@@ -117,6 +118,24 @@ describe(`TsLinkComponent`, function() {
 
   });
 
+  describe(`showExternalIcon`, () => {
+
+    test(`should not show external icon when it is an email or phone`, () => {
+      component.destination = 'mailto: support@comcast.com';
+      component.isExternal = true;
+      fixture.detectChanges();
+      emailLink = fixture.debugElement.query(By.css('.c-link')).nativeElement;
+      expect(emailLink.classList).toContain('qa-link-external');
+
+      component.destination = 'tel: 18003256789';
+      fixture.detectChanges();
+      link = fixture.debugElement.query(By.css('.c-link')).nativeElement;
+      expect(link.classList).toContain('qa-link-external');
+
+      const externalLink = fixture.debugElement.query(By.css('.ts-icon'));
+      expect(externalLink).toBeFalsy();
+    });
+  });
 
   describe(`tabIndex`, () => {
 
