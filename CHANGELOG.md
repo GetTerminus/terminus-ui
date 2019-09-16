@@ -1,3 +1,10 @@
+## [14.12.1](https://github.com/GetTerminus/terminus-ui/compare/v14.12.0...v14.12.1) (2019-09-16)
+
+
+### Bug Fixes
+
+* **Select:** Text vertical alignment ([#1693](https://github.com/GetTerminus/terminus-ui/issues/1693)) ([07c8521](https://github.com/GetTerminus/terminus-ui/commit/07c8521))
+
 # [14.12.0](https://github.com/GetTerminus/terminus-ui/compare/v14.11.0...v14.12.0) (2019-09-16)
 
 
