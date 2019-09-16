@@ -26,17 +26,21 @@ import {
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { isArray } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools/utilities';
+import {
+  TsChipCollectionComponent,
+  TsChipComponent,
+} from '@terminus/ui/chip';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
   TS_OPTION_PARENT_COMPONENT,
   TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
-import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
   BehaviorSubject,
@@ -50,8 +54,6 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-import { isArray } from '@terminus/ngx-tools';
-import { TsChipCollectionComponent } from '@terminus/ui/chip';
 import {
   TsAutocompletePanelComponent,
   TsAutocompletePanelSelectedEvent,
@@ -164,7 +166,7 @@ export class TsAutocompleteComponent implements OnInit,
   private document: Document;
 
   /**
-   * Subject used to alert the parent {@link FormFieldComponent} when the label gap should be recalculated
+   * Subject used to alert the parent {@link TsFormFieldComponent} when the label gap should be recalculated
    *
    * Implemented as part of TsFormFieldControl.
    */
@@ -176,31 +178,23 @@ export class TsAutocompleteComponent implements OnInit,
   private keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
-   * Define the flex gap spacing
-   */
-  public flexGap = TS_SPACING.small[0];
-
-  /**
    * The IDs of child options to be passed to the aria-owns attribute.
    */
   public optionIds = '';
-
-  /**
-   * Emits when the panel element is finished transforming in.
-   */
-  public panelDoneAnimatingStream = new Subject<string>();
 
   /**
    * Whether or not the overlay panel is open
    */
   public panelOpen = false;
 
-  // Since the FormFieldComponent is inside this template, we cannot use a provider to pass this component instance to the form field.
-  // Instead, we pass it manually through the template with this reference.
+  /**
+   * Since the {@link TsFormFieldComponent} is inside this template, we cannot use a provider to pass this component instance to the form
+   * field. Instead, we pass it manually through the template with this reference.
+   */
   public selfReference = this;
 
   /*
-   * Implemented as part of TsFormFieldControl.
+   * Implemented as part of {@link TsFormFieldControl}
    */
   public readonly stateChanges: Subject<void> = new Subject<void>();
 
@@ -847,6 +841,7 @@ export class TsAutocompleteComponent implements OnInit,
     this.selectionChange.emit(new TsAutocompleteChange(this, this.autocompleteFormControl.value));
   }
 
+
   /**
    * Chip component emit a focusInput event, autocomplete puts focus on input field.
    */
@@ -854,15 +849,15 @@ export class TsAutocompleteComponent implements OnInit,
     this.focus();
   }
 
+
   /**
    * Deselect an item
    *
-   * @param value - The value of the item to remove
+   * @param option - The value of the item to remove
    */
-  public autocompleteDeselectItem(option: unknown): void {
-    // Find the key of the selection in the selectedOptions array
-    const options = (this.autocompleteFormControl.value || [])
-      .filter(opt => !this.valueComparator(opt, option));
+  public autocompleteDeselectItem(option: TsChipComponent): void {
+    // Remove the selection from the array of selections
+    const options = (this.autocompleteFormControl.value || []).filter(opt => !this.valueComparator(opt, option.value));
 
     // Update the form control
     this.autocompleteFormControl.setValue(options);
@@ -887,6 +882,7 @@ export class TsAutocompleteComponent implements OnInit,
     this.selectionChange.emit(new TsAutocompleteChange(this, options));
   }
 
+
   /**
    * Function for tracking for-loops changes
    *
@@ -896,4 +892,5 @@ export class TsAutocompleteComponent implements OnInit,
   public trackByFn(index): number {
     return index;
   }
+
 }

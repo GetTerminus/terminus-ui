@@ -1,0 +1,22 @@
+@import './../../scss/helpers/spacing';
+
+
+.ts-chip-collection {
+  display: block;
+
+  &--vertical {
+    display: inline-block;
+
+    .ts-chip-collection-wrapper {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+}
+
+.ts-chip-collection-wrapper {
+  $negative-spacing: spacing(small, 2);
+  align-items: center;
+  display: flex;
+  margin: $negative-spacing;
+}

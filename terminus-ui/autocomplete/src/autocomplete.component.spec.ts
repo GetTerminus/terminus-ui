@@ -143,7 +143,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(chips.length).toEqual(1);
 
       const chip = getChipElement(fixture);
-      const chipRemovalButton = chip.querySelector('.ts-chip-remove');
+      const chipRemovalButton = chip.querySelector('.c-chip__remove');
       const instance = getAutocompleteInstance(fixture);
 
       // Open the panel so that overlayRef is created
@@ -504,7 +504,7 @@ describe(`TsAutocompleteComponent`, function() {
       const instance = getAutocompleteInstance(fixture);
       const triggerInstance = instance.autocompleteTrigger;
       const chip = getChipElement(fixture);
-      const chipRemovalButton = chip.querySelector('.ts-chip-remove');
+      const chipRemovalButton = chip.querySelector('.c-chip__remove');
 
       triggerInstance.openPanel();
       fixture.detectChanges();

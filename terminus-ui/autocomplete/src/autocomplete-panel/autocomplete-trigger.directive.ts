@@ -26,8 +26,10 @@ import { ControlValueAccessor } from '@angular/forms';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
-import { isBoolean } from '@terminus/ngx-tools/type-guards';
-import { isUnset } from '@terminus/ngx-tools/utilities';
+import {
+  isUnset,
+  untilComponentDestroyed,
+} from '@terminus/ngx-tools/utilities';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
 import {
   countGroupLabelsBeforeOption,
@@ -35,7 +37,10 @@ import {
   TsOptionComponent,
   TsOptionSelectionChange,
 } from '@terminus/ui/option';
-import { ControlValueAccessorProviderFactory } from '@terminus/ui/utilities';
+import {
+  ControlValueAccessorProviderFactory,
+  TsUILibraryError,
+} from '@terminus/ui/utilities';
 import {
   defer,
   fromEvent,
@@ -88,11 +93,6 @@ let nextUniqueId = 0;
 
 /**
  * A directive that adds autocomplete trigger functionality to an input. Used in {@link TsSelectComponent}.
- *
- * TODO: Convert all `getFoo()` functions into proper getters `get foo()`
- *
- * #### QA CSS CLASSES
- * - `qa-autocomplete-trigger`: The trigger input
  *
  * @example
  * <ts-input
@@ -151,7 +151,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Store a reference to the document object
    */
-  private document: Document;
+  private readonly document: Document;
 
   /**
    * Whether or not the label state is being overridden
@@ -167,7 +167,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
     }
 
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
-    // Return a stream that we'll replace with the real one once everything is in place.
+    // In that case, return a stream that we'll replace with the real one once everything is in place.
     return this.ngZone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
@@ -186,7 +186,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Old value of the native input
    *
-   * NOTE: Used to work around issues with the `input` event on IE
+   * NOTE: This is used to work around issues with the `input` event on IE
    */
   private previousValue: string | number | null | undefined;
 
@@ -203,7 +203,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * The defined scroll strategy
    */
-  private scrollStrategy: () => ScrollStrategy;
+  private readonly scrollStrategy: () => ScrollStrategy;
 
   /**
    * Subscription to viewport size changes
@@ -214,10 +214,6 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    * Define the default component ID
    */
   public readonly uid = `ts-autocomplete-trigger-${nextUniqueId++}`;
-
-  /**
-   * GETTERS
-   */
 
   /**
    * The currently active option, coerced to TsOptionComponent type
@@ -254,13 +250,10 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   }
 
   /**
-   * INPUTS
-   */
-
-  /**
    * The `autocomplete` attribute to be set on the input element.
+   *
+   * NOTE: Input has specific naming since it is accepting a standard HTML data attribute.
    */
-  // NOTE: Input has specific naming since it is accepting a standard HTML data attribute.
   // tslint:disable: no-input-rename
   @Input('autocomplete')
   public autocompleteAttribute = 'off';
@@ -271,11 +264,6 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    */
   @Input('tsAutocompleteDisabled')
   public set autocompleteDisabled(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsAutocompleteTriggerDirective: "tsAutocompleteDisabled" value is not a boolean. `
-      + `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
   public get autocompleteDisabled(): boolean {
@@ -297,12 +285,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    */
   @Input()
   public set reopenAfterSelection(value: boolean) {
-    /* istanbul ignore if */
-    if (!isBoolean(value) && value && isDevMode()) {
-      console.warn(`TsAutocompleteTriggerDirective: "reopenAfterSelection" value is not a boolean. `
-      + `String values of 'true' and 'false' will no longer be coerced to a true boolean with the next release.`);
-    }
-    this._reopenAfterSelection = coerceBooleanProperty(value);
+    this._reopenAfterSelection = value;
   }
   public get reopenAfterSelection(): boolean {
     return this._reopenAfterSelection;
@@ -382,6 +365,9 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
 
     if (this.reopenAfterSelection && !overrideReopenFlag) {
       this.openPanel();
+    } else {
+      // If the panel isn't reopened immediately, we must re-subscribe to the closing actions
+      this.closingActionsSubscription = this.subscribeToClosingActions();
     }
   }
 
@@ -568,7 +554,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    */
   private attachOverlay(): void {
     if (!this.autocompletePanel && isDevMode()) {
-      throw Error('TsAutocompleteTriggerDirective: Attempting to open an undefined instance of `ts-autocomplete-panel`.');
+      throw new TsUILibraryError('TsAutocompleteTriggerDirective: Attempting to open an undefined instance of `ts-autocomplete-panel`.');
     }
 
     if (this.overlayRef) {
@@ -595,8 +581,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
       });
     }
 
-    const overlayNotAttached = !this.overlayRef.hasAttached();
-    if (this.overlayRef && overlayNotAttached) {
+    if (this.overlayRef && !this.overlayRef.hasAttached()) {
       this.overlayRef.attach(this.portal);
       this.closingActionsSubscription = this.subscribeToClosingActions();
     }
@@ -858,7 +843,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    *
    * @return The subscription
    */
-  private subscribeToClosingActions(): Subscription {
+  public subscribeToClosingActions(): Subscription {
     const firstStable = this.ngZone.onStable.asObservable().pipe(take(1));
     const optionChanges = this.autocompletePanel.options.changes.pipe(
       tap(() => this.positionStrategy.reapplyLastPosition()),
@@ -877,8 +862,8 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
 
           return this.panelClosingActions;
         }),
-        // When the first closing event occurs...
         take(1),
+        untilComponentDestroyed(this),
       )
       // Set the value, close the panel, and complete.
       .subscribe((event: TsOptionSelectionChange | null) => {

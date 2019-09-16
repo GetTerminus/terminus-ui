@@ -4,36 +4,33 @@
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
 
-$ts-chips-chip-margin: 4px;
 $ts-chip-height: 35px;
 $ts-chip-vertical-padding: 3px;
 $ts-chip-horizontal-padding: 8px;
 $ts-chip-remove-width: 18px;
 $ts-chip-remove-height: 18px;
-$ts-chip-background-color: color(utility, light);
 $ts-chip-focus-background-color: color(utility);
-$ts-chip-color: rgba(0, 0, 0, .87);
+$ts-chip-color: color(pure, dark);
 $c-chip-top-margin: 7px;
 $c-chip-right-margin: 4px;
 $c-chip-padding: 25px;
 
 .ts-chip {
-  @include reset;
   @include typography;
   align-items: center;
-  background-color: $ts-chip-background-color;
+  background-color: color(utility, light);
   border-radius: 16px;
   box-sizing: border-box;
   color: $ts-chip-color;
   display: inline-flex;
   height: $ts-chip-height;
-  margin: $ts-chips-chip-margin;
+  margin: spacing(small, 2);
   overflow: hidden;
   padding: $ts-chip-vertical-padding $ts-chip-horizontal-padding;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   transform: translateZ(0);
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  transition: background-color 200ms ease-out;
 
   &:focus,
   &:hover {
@@ -41,16 +38,32 @@ $c-chip-padding: 25px;
     transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
   }
 
-  &.ts-chip-selected {
-    background-color: color(primary);
+  &.ts-chip--selected {
     color: color(pure);
+    $themes: primary accent warn;
+
+    @each $theme in $themes {
+      &.ts-chip--#{$theme} {
+        background-color: color(#{$theme});
+      }
+    }
+
+    .c-chip__remove {
+      color: color(pure);
+    }
   }
 
-  .ts-chip-remove {
+  .c-chip__remove {
     color: $ts-chip-color;
     cursor: cursor(pointer);
+    display: none;
     height: $ts-chip-remove-height;
     opacity: .4;
+    position: absolute;
+    right: 5%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+    transition: color 200ms ease-out;
     width: $ts-chip-remove-width;
 
     &:hover {
@@ -59,27 +72,16 @@ $c-chip-padding: 25px;
   }
 }
 
-.ts-icon {
-  position: absolute;
-  right: 5%;
-  top: 42%;
-  transform: translate(-50%, -50%);
-}
 
-.ts-chip-collection-wrapper {
-  align-items: center;
-  display: flex;
-  margin: -$ts-chips-chip-margin;
-  &.ts-chip-collection--stacked {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
 
 .c-chip {
   margin: $c-chip-top-margin $c-chip-right-margin;
 
   &--removable {
     padding-right: $c-chip-padding;
+
+    .c-chip__remove {
+      display: block;
+    }
   }
 }

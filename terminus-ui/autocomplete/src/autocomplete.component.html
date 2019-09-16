@@ -16,14 +16,20 @@
 
     <ng-container *ngIf="allowMultiple">
       <ts-chip-collection
-        [chipsInput]="autocompleteFormControl.value"
         [allowMultipleSelections]="true"
-        [displayFormatter]="displayFormatter"
         [isDisabled]="false"
         [isReadonly]="false"
-        (removed)="autocompleteDeselectItem($event)"
         (tabUpdateFocus)="focusInput()"
-        #chipCollection="tsChipCollection">
+        #chipCollection="tsChipCollection"
+      >
+        <ts-chip
+          *ngFor="let chip of autocompleteFormControl.value; trackBy: trackByFn"
+          [isRemovable]="true"
+          [isDisabled]="isDisabled"
+          [value]="chip"
+          (remove)="autocompleteDeselectItem($event.chip)"
+        >{{ displayFormatter(chip) }}</ts-chip>
+
         <input
           class="ts-autocomplete__input qa-select-autocomplete-input"
           [tsAutocompleteTrigger]="auto"
