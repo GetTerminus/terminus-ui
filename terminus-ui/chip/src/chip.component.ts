@@ -4,106 +4,74 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
-  Directive,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   NgZone,
   OnDestroy,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  CanColor,
-  CanColorCtor,
-  CanDisable,
-  CanDisableCtor,
-  CanDisableRippleCtor,
-  mixinColor,
-  mixinDisabled,
-  mixinDisableRipple,
-} from '@angular/material/core';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { isUndefined } from '@terminus/ngx-tools/type-guards';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-/**
- * Unique ID for each instance
- */
+
+// Unique ID for each instance
 let nextUniqueId = 0;
 
 
 /**
- * Represents an event fired on an individual `ts-chip`.
+ * Represents an event fired on an individual {@link TsChipComponent}
  */
-export interface TsChipEvent {
-  // The chip the event was fired on.
-  chip: TsChipComponent;
+export class TsChipEvent {
+  constructor(
+    public chip: TsChipComponent,
+  ) {}
 }
 
 /**
- * Represetns an event fired on clicking an individual chip
+ * Represents an event fired when clicking an individual {@link TsChipComponent}
  */
-
-export interface TsChipClickEvent {
-  chip: TsChipComponent;
-  event: Event;
+export class TsChipClickEvent {
+  constructor(
+    public chip: TsChipComponent,
+    event: MouseEvent,
+  ) {}
 }
 
 /**
- * Event object emitted by TsChip when selected or deselected.
+ * Event object emitted by {@link TsChipComponent} when selected or deselected
  */
 export class TsChipSelectionChange {
   constructor(
-    /** Reference to the chip that emitted the event. */
+    // Reference to the chip that emitted the event
     public source: TsChipComponent,
-    /** Whether the chip that emitted the event is selected. */
+    // Whether the chip that emitted the event is selected
     public selected: boolean,
   ) { }
 }
 
-/**
- * Boilerplate for applying mixins to TsChip.
- */
-class TsChipBase {
-  constructor(
-    public _elementRef: ElementRef,
-  ) {}
-}
-
-const TsChipMixinBase: CanColorCtor & CanDisableRippleCtor & CanDisableCtor & typeof TsChipBase =
-    mixinColor(mixinDisableRipple(mixinDisabled(TsChipBase)), 'primary');
-
-
-/**
- * Directive to add CSS class to chip trailing icon.
- */
-@Directive({
-  selector: 'ts-chip-trailing-icon, [tsChipTrailingIcon]',
-  host: {
-    'class': 'ts-chip-trailing-icon ts-chip__icon',
-    'tabindex': '-1',
-    'aria-hidden': 'true',
-  },
-})
-export class TsChipTrailingIconDirective {}
 
 /**
  * A presentational component to render a chip
  *
  * @example
  * <ts-chip
- *              [allowMultiple]="true"
  *              id="my-id"
  *              [isDisabled]="false"
- *              [isFocused]="true"
  *              [isRemovable]="true"
  *              [isSelectable]="false"
+ *              theme="primary"
  *              [selected]="true"
+ *              (clicked)="chipClicked($event)"
  *              (destroyed)="destroyed($event)"
- *              (removed)="removed($event)"
+ *              (blurred)="chipBlurred($event)"
+ *              (remove)="removeChip($event)"
  *              (selectionChange)="selectionChange($event)"
  * ></ts-chip>
  *
@@ -113,30 +81,45 @@ export class TsChipTrailingIconDirective {}
   selector: `ts-chip`,
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  exportAs: 'tsChip',
   host: {
     'class': 'ts-chip',
+    '[class.ts-chip--primary]': 'theme === "primary"',
+    '[class.ts-chip--accent]': 'theme === "accent"',
+    '[class.ts-chip--warn]': 'theme === "warn"',
     '[attr.tabindex]': 'isDisabled ? null : -1',
-    'role': 'option',
-    '[class.ts-chip-selected]': 'selected',
-    '[class.ts-chip-with-trailing-icon]': 'trailingIcon || removeIcon',
-    '[class.ts-chip-disabled]': 'isDisabled',
+    '[class.ts-chip--selected]': 'selected',
+    '[class.ts-chip--disabled]': 'isDisabled',
     '[attr.disabled]': 'isDisabled || null',
     '[attr.aria-disabled]': 'isDisabled',
     '[attr.aria-selected]': 'ariaSelected',
+    'role': 'option',
+    '(blur)': 'handleBlur()',
     '(click)': 'handleClick($event)',
-    '(keydown)': 'handleKeydown($event)',
     '(focus)': 'focus()',
-    '(blur)': 'blur()',
+    '(keydown)': 'handleKeydown($event)',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsChip',
 })
-export class TsChipComponent extends TsChipMixinBase implements
-  FocusableOption,
-  OnDestroy,
-  CanColor,
-  CanDisable {
+export class TsChipComponent implements FocusableOption, OnDestroy {
+  /**
+   * Define if multiple chips are allowed
+   *
+   * Used by the {@link TsAutocompleteComponent} consumer
+   */
+  public set allowMultiple(value: boolean) {
+    this._allowMultiple = value;
+  }
+  public get allowMultiple(): boolean {
+    return this._allowMultiple;
+  }
+  private _allowMultiple = false;
+
+  /**
+   * Define reference to the document
+   */
+  private document: Document;
 
   /**
    * Define the default component ID
@@ -144,18 +127,12 @@ export class TsChipComponent extends TsChipMixinBase implements
   protected uid = `ts-chip-${nextUniqueId++}`;
 
   /**
-   * Emits when the chip is focused.
+   * Emits when the chip is focused
    */
   public readonly onFocus = new Subject<TsChipEvent>();
 
   /**
-   * Emits when the chip is blured.
-   */
-  public readonly onBlur = new Subject<TsChipEvent>();
-
-
-  /**
-   * Whether the chip has focus.
+   * Whether the chip has focus
    */
   public hasFocus = false;
 
@@ -180,22 +157,10 @@ export class TsChipComponent extends TsChipMixinBase implements
   }
 
   /**
-   * The chip's trailing icon.
+   * Access to container for chip contents
    */
-  @ContentChild(TsChipTrailingIconDirective, { static: false })
-  public trailingIcon!: TsChipTrailingIconDirective;
-
-  /**
-   * The chip's remove toggler.
-   */
-  @ContentChild(forwardRef(() => TsChipRemoveDirective), { static: false })
-  public removeIcon!: TsChipRemoveDirective;
-
-  /**
-   * Define if the chip should be disabled
-   */
-  @Input()
-  public isDisabled = false;
+  @ViewChild('content', { static: true })
+  private content: ElementRef<HTMLElement>;
 
   /**
    * Define an ID for the component
@@ -209,9 +174,40 @@ export class TsChipComponent extends TsChipMixinBase implements
   }
   protected _id: string = this.uid;
 
+  /**
+   * Define if the chip should be disabled
+   */
+  @Input()
+  public isDisabled = false;
 
   /**
-   * Whether the chip is selected.
+   * Define if the chip is removable
+   */
+  @Input()
+  public set isRemovable(value: boolean) {
+    this._removable = value;
+  }
+  public get isRemovable(): boolean {
+    return this._removable;
+  }
+  protected _removable = true;
+
+  /**
+   * Whether or not the chip is selectable.
+   *
+   * By default a chip is selectable, and it becomes non-selectable if its parent chip collection is not selectable.
+   */
+  @Input()
+  public set isSelectable(value: boolean) {
+    this._selectable = value;
+  }
+  public get isSelectable(): boolean {
+    return this._selectable && this.chipCollectionSelectable;
+  }
+  protected _selectable = true;
+
+  /**
+   * Define if the chip is selected
    */
   @Input()
   public set selected(value: boolean) {
@@ -228,49 +224,41 @@ export class TsChipComponent extends TsChipMixinBase implements
   protected _selected = false;
 
   /**
-   * The value of the chip. Defaults to the content inside `<ts-chip>` tags.
+   * Define the value of the chip
+   *
+   * Falls back to the DOM content if not set.
    */
   @Input()
-  public get value(): string {
-    return this._value === undefined
-      ? this.elementRef.nativeElement.textContent : this._value;
-  }
-  public set value(value: string) {
+  public set value(value: string | undefined) {
     this._value = value;
   }
-  protected _value = '';
+  // NOTE: Despite the return type, this getter will only ever return a string
+  public get value(): string | undefined {
+    if (isUndefined(this._value)) {
+      return this.content.nativeElement.textContent.trim();
+    }
+
+    return this._value;
+  }
+  protected _value;
 
   /**
-   * Whether or not the chip is selectable.
-   * By default a chip is selectable, and it becomes non-selectable if its parent chip collection is not selectable.
+   * Define the theme for a chip
    */
   @Input()
-  public get isSelectable(): boolean {
-    return this._selectable && this.chipCollectionSelectable;
+  public set theme(value: TsStyleThemeTypes) {
+    this._theme = value || 'primary';
   }
-  public set isSelectable(value: boolean) {
-    this._selectable = coerceBooleanProperty(value);
+  public get theme(): TsStyleThemeTypes {
+    return this._theme;
   }
-  protected _selectable = true;
+  private _theme: TsStyleThemeTypes = 'primary';
 
   /**
-   * Determines whether or not the chip displays the remove styling and emits (removed) events.
-   */
-  @Input()
-  public get isRemovable(): boolean {
-    return this._removable;
-  }
-  public set isRemovable(value: boolean) {
-    this._removable = coerceBooleanProperty(value);
-    this.changeDetectorRef.detectChanges();
-  }
-  protected _removable = true;
-
-  /**
-   * Emitted when the chip is selected or deselected.
+   * Emitted when the chip is clicked
    */
   @Output()
-  public readonly selectionChange = new EventEmitter<TsChipSelectionChange>();
+  public readonly clicked = new EventEmitter<TsChipClickEvent>();
 
   /**
    * Emitted when the chip is destroyed.
@@ -279,41 +267,52 @@ export class TsChipComponent extends TsChipMixinBase implements
   public readonly destroyed = new EventEmitter<TsChipEvent>();
 
   /**
-   * Emitted when a chip is to be removed.
+   * Emitted when the chip is blurred
    */
   @Output()
-  public readonly removed = new EventEmitter<TsChipEvent>();
+  public readonly blurred = new EventEmitter<void>();
 
   /**
-   * Emitted when a chip is clicked
+   * Emitted when the chip is to be removed
    */
   @Output()
-  public readonly clicked = new EventEmitter<TsChipClickEvent>();
+  public readonly remove = new EventEmitter<TsChipEvent>();
+
+  /**
+   * Emitted when the chip is selected or deselected
+   */
+  @Output()
+  public readonly selectionChange = new EventEmitter<TsChipSelectionChange>();
+
 
   constructor(
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private documentService: TsDocumentService,
   ) {
-    super(elementRef);
+    this.document = documentService.document;
   }
 
-  public ngOnDestroy() {
+
+  /**
+   * Alert consumers about destruction
+   */
+  public ngOnDestroy(): void {
     this.destroyed.emit({ chip: this });
   }
 
-  /**
-   * Click the chip.
-   */
-  public click(event): void {
-    this.clicked.emit({
-      chip: this,
-      event,
-    });
-  }
 
   /**
-   * Selects the chip.
+   * Emit the 'clicked' event
+   */
+  public click(event: MouseEvent): void {
+    this.clicked.emit(new TsChipClickEvent(this, event));
+  }
+
+
+  /**
+   * Select the chip
    */
   public select(): void {
     if (!this.selected) {
@@ -322,8 +321,9 @@ export class TsChipComponent extends TsChipMixinBase implements
     }
   }
 
+
   /**
-   * Deselects the chip.
+   * Deselect the chip
    */
   public deselect(): void {
     if (this.selected) {
@@ -331,6 +331,7 @@ export class TsChipComponent extends TsChipMixinBase implements
       this.dispatchSelectionChange();
     }
   }
+
 
   /**
    * Toggles the current selected state of this chip.
@@ -341,42 +342,64 @@ export class TsChipComponent extends TsChipMixinBase implements
     return this.selected;
   }
 
+
   /**
    * Allows for programmatic focusing of the chip.
    */
   public focus(): void {
+    // istanbul ignore else
     if (!this.hasFocus) {
       this.hasFocus = true;
       this.elementRef.nativeElement.focus();
-      this.onFocus.next({ chip: this });
+      this.onFocus.next(new TsChipEvent(this));
     }
   }
 
+
   /**
-   * Allows for programmatic removal of the chip. Called by the TsChipCollectionComponent when the DELETE or
-   * BACKSPACE keys are pressed.
-   * {@link TsChipCollectionComponent}
+   * Allows for programmatic removal of the chip. Called by the {@link TsChipCollectionComponent} when the DELETE or BACKSPACE keys are
+   * pressed.
    *
    * Informs any listeners of the removal request. Does not remove the chip from the DOM.
    */
-  public remove(): void {
+  public removeChip(event?: MouseEvent): void {
+    // istanbul ignore else
     if (this.isRemovable) {
-      this.removed.emit({ chip: this });
+      this.remove.emit(new TsChipEvent(this));
+    }
+
+    // NOTE: We stop propagation here so clicking a chip does not bubble up to an autocomplete instance
+    // istanbul ignore else
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
   }
+
 
   /**
    * Handles click events on the chip.
    *
    * @param event - click event
    */
-  public handleClick(event: Event): void {
+  public handleClick(event: MouseEvent): void {
+    const shiftKey = event.shiftKey;
+
+    if (this.allowMultiple && this.isSelectable && shiftKey) {
+      // NOTE: This is needed to disable text highlight when shift clicking chips
+      this.document.onselectstart = () => false;
+      this.toggleSelected();
+    }
+
+    this.clicked.emit(new TsChipClickEvent(this, event));
+
     if (this.isDisabled) {
       event.preventDefault();
     } else {
       event.stopPropagation();
     }
   }
+
 
   /**
    * Handle custom key presses.
@@ -392,85 +415,43 @@ export class TsChipComponent extends TsChipMixinBase implements
     switch (code) {
       case KEYS.DELETE.code:
       case KEYS.BACKSPACE.code:
-        // If it is removable, remove the focused chip
-        this.remove();
-        // Always prevent so page navigation does not occur
-        event.preventDefault();
+        this.removeChip();
         break;
       case KEYS.SPACE.code:
-        // If it is selectable, toggle the focused chip
+        // istanbul ignore else
         if (this.isSelectable) {
           this.toggleSelected();
         }
-        // Always prevent space from scrolling the page since the list has focus
-        event.preventDefault();
         break;
-      default:
-        event.preventDefault();
-        break;
+        // skip default - no default logic
     }
+
+    // Always prevent so page navigation does not occur and to prevent space from scrolling the page since the list has focus
+    event.preventDefault();
   }
+
 
   /**
    * Defer marking the chip as not focused until the next time the zone stabilizes.
    */
-  public blur(): void {
+  public handleBlur(): void {
     this.ngZone.onStable
       .asObservable()
       .pipe(take(1))
       .subscribe(() => {
         this.ngZone.run(() => {
           this.hasFocus = false;
+          this.blurred.emit();
         });
       });
   }
 
+
   /**
    * When selection change action dispatched, emit selectionChange eventEmitter.
    */
-
-  private dispatchSelectionChange() {
-    this.selectionChange.emit(new TsChipSelectionChange(this, this._selected));
+  private dispatchSelectionChange(): void {
+    this.selectionChange.emit(new TsChipSelectionChange(this, this.selected));
   }
 }
 
-/**
- * Applies proper (click) support and adds styling for use with "cancel" icon
- *
- * @example:
- *
- * <ts-chip>
- *               <ts-icon tsChipRemove>cancel</ts-icon>
- * </ts-chip>
- *
- */
-@Directive({
-  selector: '[tsChipRemove]',
-  host: {
-    'class': 'ts-chip-remove ts-chip-trailing-icon',
-    '(click)': 'handleClick($event)',
-  },
-})
-export class TsChipRemoveDirective {
-  constructor(protected parentChip: TsChipComponent) {}
-
-  /**
-   * Calls the parent chip's public `remove()` method if applicable.
-   *
-   * @param - The Event
-   */
-  public handleClick(event: Event): void {
-    const parentChip = this.parentChip;
-
-    if (parentChip.isRemovable && !parentChip.isDisabled) {
-      parentChip.remove();
-    }
-
-    // We need to stop event propagation because otherwise the event will bubble up to the
-    // form field (if chip is part of a form) and cause the `onContainerClick` method to be invoked.
-    // This method would then reset the focused chip that has been focused after chip removal. Usually
-    // the parent click listener of the `TsChip` would prevent propagation, but it can happen
-    // that the chip is being removed before the event bubbles up.
-    event.stopPropagation();
-  }
-}

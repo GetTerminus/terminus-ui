@@ -7,11 +7,12 @@
   [attr.id]="id"
   (click)="click($event)"
 >
-  <span class="ts-chip-value">
-    {{ value }}
+  <span #content>
+     <ng-content></ng-content>
   </span>
-  <ts-icon tsChipRemove *ngIf="isRemovable">
+
+  <ts-icon class="c-chip__remove" (click)="removeChip($event)">
     cancel
   </ts-icon>
-  
+
 </div>

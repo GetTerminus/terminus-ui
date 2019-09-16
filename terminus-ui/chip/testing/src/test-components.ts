@@ -1,27 +1,29 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   NgModule,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
+  FormControl,
   FormsModule,
   ReactiveFormsModule,
-  FormControl,
 } from '@angular/forms';
+import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
 import {
-  TsChipModule,
+  TsChipComponent,
   TsChipEvent,
+  TsChipModule,
   TsChipSelectionChange,
 } from '@terminus/ui/chip';
-import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
 import { TsOptionModule } from '@terminus/ui/option';
 
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      #tsChipCollection
-    >
+    <ts-chip-collection>
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
@@ -29,13 +31,14 @@ export class RegularChip {
   public options = ['banana', 'apple', 'orange'];
 }
 
+// FIXME: Combine `OneChip` and `SingleChip`?
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      (removed)="removed()"
-      #tsChipCollection
-    >
+    <ts-chip-collection (removed)="removed()">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
@@ -51,39 +54,34 @@ export class OneChip {
     <ts-chip
       [value]="option"
       [selected]="selected"
-      (removed)="removed()"
+      (remove)="removed()"
       (destroyed)="chipDestroy($event)"
       (selectionChange)="selectionChange($event)"
-    >
-    </ts-chip>
+    ></ts-chip>
   `,
 })
 export class SingleChip {
   public option = 'banana';
   public selected = false;
-  removed: (event?: TsChipEvent) => void = () => { }
-  chipDestroy: (event?: TsChipEvent) => void = () => { };
-  selectionChange: (event?: TsChipSelectionChange) => void = () => { };
+  public removed: (event?: TsChipEvent) => void = () => { };
+  public chipDestroy: (event?: TsChipEvent) => void = () => { };
+  public selectionChange: (event?: TsChipSelectionChange) => void = () => { };
 }
 
 @Component({
   template: `
-    <ts-chip-collection
-      #tsChipCollection
-    >
-    </ts-chip-collection>
+    <ts-chip-collection></ts-chip-collection>
   `,
 })
-export class NoChip {
-}
+export class NoChip { }
 
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      [isDisabled]="isDisabled"
-      #tsChipCollection
-    >
+    <ts-chip-collection [isDisabled]="isDisabled" id="foooooooooooooo">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
@@ -94,11 +92,11 @@ export class DisabledChip {
 
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      [isReadonly]="isReadonly"
-      #tsChipCollection
-    >
+    <ts-chip-collection [isReadonly]="isReadonly">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
@@ -109,119 +107,136 @@ export class ReadonlyChip {
 
 @Component({
   template: `
-    <form
-    novalidate
-    fxLayout="column"
-    fxLayout.gt-sm="row"
-    fxLayoutGap="1rem"
-    >
     <ts-autocomplete
       [formControl]="myCtrl"
       [allowMultiple]="allowMultiple"
     >
       <ts-option
-        *ngFor="let option of items"
+        *ngFor="let option of options"
         [value]="option"
         [option]="option"
       >
         {{ option }}
       </ts-option>
     </ts-autocomplete>
-  </form>
-  `
-  ,
+  `,
 })
 export class Autocomplete {
   public allowMultiple = true;
   public myCtrl = new FormControl(['apple', 'orange']);
-  public items = ['apple', 'banana', 'orange'];
+  public options = ['apple', 'banana', 'orange'];
 }
 
 @Component({
   template: `
-    <ts-chip-collection
-      [isSelectable]="selectable"
-      [chipsInput]="options"
-    >
+    <ts-chip-collection [isSelectable]="selectable">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>`,
 })
 export class StandardChipCollection {
-  name: string = 'Test';
-  selectable: boolean = true;
-  chipSelect: (index?: number) => void = () => { };
-  chipDeselect: (index?: number) => void = () => { };
-  options = [0, 1, 2, 3, 4];
+  public options = [0, 1, 2, 3, 4];
+  public selectable = true;
 }
 
 @Component({
   template: `
     <ts-chip-collection
-      [chipsInput]="options"
       [tabIndex]="index"
       [isDisabled]="isDisabled"
     >
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
 export class Tabindex {
-  index = 4;
-  options = [1, 2, 3];
-  isDisabled = false;
+  public options = [1, 2, 3];
+  public index = 4;
+  public isDisabled = false;
 }
 
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      [id]="myId"
-    >
+    <ts-chip-collection [id]="myId">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
 export class Id {
-  options = [1, 2, 3];
-  myId = 100;
+  public options = [1, 2, 3];
+  public myId = 100;
 }
 
 @Component({
   template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      [id]="myId"
-      [isSelectable]="isSelectable"
-    >
-    </ts-chip-collection>
-  `,
-})
-export class isSelectable {
-  isSelectable = false;
-  myId = 'foo';
-  options = [1, 2, 3];
-}
-
-@Component({
-  template: `
-    <ts-chip-collection
-      [chipsInput]="options"
-      [allowMultipleSelections]="allowMultipleSelections"
-    >
+    <ts-chip-collection [allowMultipleSelections]="allowMultipleSelections">
+      <ts-chip
+        *ngFor="let chip of options"
+        [value]="chip"
+      >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
 export class NotAllowMultipleSelections {
-  allowMultipleSelections = false;
-  options = [1, 2, 3];
+  public options = [1, 2, 3];
+  public allowMultipleSelections = false;
+}
+
+@Component({
+  template: `
+    <ts-chip-collection>
+      <ts-chip *ngFor="let chip of options">{{ chip }}</ts-chip>
+    </ts-chip-collection>
+  `,
+})
+export class NoValueChip {
+  public options = [];
 }
 
 @Component({
   template: `
     <ts-chip-collection
+        (tabUpdateFocus)="tabbed()"
+        (removed)="removed($event)"
+        (collectionChange)="change($event)"
     >
+       <ts-chip
+           *ngFor="let chip of options"
+           [value]="chip"
+           (remove)="remove($event.chip)"
+       >{{ chip }}</ts-chip>
     </ts-chip-collection>
   `,
 })
-export class NoValueChip {
+export class Events {
+  public options = ['banana', 'apple'];
+  public change = v => { };
+  public removed = (v: TsChipEvent) => { };
+  public tabbed = () => { };
+  public remove = (v: TsChipComponent) => {
+    this.options = this.options.filter(option => v.value === option);
+  }
 }
+
+@Component({
+  template: `
+    <ts-chip-collection>
+      <ts-chip *ngFor="let chip of options">{{ chip }}</ts-chip>
+    </ts-chip-collection>
+  `,
+})
+export class ChipNoValue {
+  public options = ['banana'];
+}
+
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -238,9 +253,10 @@ export class NoValueChip {
   declarations: [
     Autocomplete,
     RegularChip,
+    ChipNoValue,
     DisabledChip,
+    Events,
     Id,
-    isSelectable,
     OneChip,
     NoChip,
     NotAllowMultipleSelections,

@@ -1,36 +1,38 @@
-import { Component, OnInit, ViewChild, AfterViewInit, QueryList, ElementRef, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
-  TsChipCollectionComponent,
-  TsChipComponent,
- } from '@terminus/ui/chip';
+  TsChipCollectionChange,
+  TsChipCollectionOrientation,
+  TsChipEvent,
+} from '@terminus/ui/chip';
+
 
 @Component({
   selector: 'demo-chip',
   templateUrl: './chip.component.html',
 })
-export class ChipComponent implements OnInit {
+export class ChipComponent {
+  public orientation: TsChipCollectionOrientation = 'horizontal';
+  public removable = true;
+  public disabled = false;
+  public readonly = false;
+  public selectable = true;
+  public optionsOriginal = ['banana', 'apple', 'orange', 'pear'];
+  public options = this.optionsOriginal.slice();
 
-  options = ['banana', 'apple', 'orange', 'pear'];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  removingOption(value: string) {
-    const ctrlValue = this.options;
-    const index = ctrlValue.indexOf(value);
-    const selections = ctrlValue.slice();
-    // If not found
+  public removeChip(event: TsChipEvent): void {
+    console.log('DEMO: remove chip: ', event);
+    if (!event.chip.value) {
+      return;
+    }
+    const index = this.options.indexOf(event.chip.value);
     if (index < 0) {
       return;
     }
-    selections.splice(index, 1);
-    this.options = selections;
+    this.options.splice(index, 1);
   }
 
-  change(value: string | string[]) {
-    console.log('DEMO: collection change triggered value: ', value);
+  public change(value: TsChipCollectionChange) {
+    console.log('DEMO: collection change triggered: value: ', value);
   }
 
 }

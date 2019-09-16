@@ -49,7 +49,6 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
 
 describe(`TsChipCollection`, function() {
   let fixture;
-
   let chipElements;
   let chipDebugElement;
   let chipNativeElement;
@@ -67,8 +66,8 @@ describe(`TsChipCollection`, function() {
   let BACKSPACE_EVENT: KeyboardEvent;
   let BACKSPACE_EVENT_CHIP: KeyboardEvent;
 
-  function setupStandardCollection(exampleComponent) {
-    fixture = createComponent(testComponents[exampleComponent]);
+  function setupStandardCollection(component) {
+    fixture = createComponent(component);
     fixture.detectChanges();
     chipCollectionElement = fixture.debugElement.query(By.directive(TsChipCollectionComponent));
     chipCollectionNativeElement = chipCollectionElement.nativeElement;
@@ -86,29 +85,32 @@ describe(`TsChipCollection`, function() {
   }
 
   test(`should exist`, function() {
-    setupStandardCollection('RegularChip');
+    setupStandardCollection(testComponents.RegularChip);
 
     expect(chipNativeElement).toBeTruthy();
   });
 
-  test(`should disable chip if isDisabled set`, function() {
-    setupStandardCollection('DisabledChip');
+  test(`should disable chip if isDisabled set`, fakeAsync(() => {
+    setupStandardCollection(testComponents.DisabledChip);
+    tick();
+    fixture.detectChanges();
 
     expect(chipInstance.isDisabled).toEqual(true);
-    expect(chipNativeElement.classList).toContain('ts-chip-disabled');
-  });
+    expect(chipNativeElement.classList).toContain('ts-chip--disabled');
+  }));
 
-  test(`should disable chip if isReadonly set`, function() {
-    setupStandardCollection('ReadonlyChip');
+  test(`should disable chip if isReadonly set`, fakeAsync(() => {
+    setupStandardCollection(testComponents.ReadonlyChip);
     chipCollectionInstance.isReadonly = true;
+    tick();
     fixture.detectChanges();
 
     expect(chipInstance.isRemovable).toBeFalsy();
-    expect(chipNativeElement.classList).not.toContain('c-chip-removable');
-  });
+    expect(chipNativeElement.classList).not.toContain('c-chip--removable');
+  }));
 
   test(`should be able to select`, fakeAsync(function() {
-    setupStandardCollection('RegularChip');
+    setupStandardCollection(testComponents.RegularChip);
 
     chipInstance.select();
     const chip1 = chipElements[0].nativeElement;
@@ -117,8 +119,8 @@ describe(`TsChipCollection`, function() {
     tick(1000);
     fixture.detectChanges();
 
-    expect(chip1.classList).toContain('ts-chip-selected');
-    expect(chip2.classList).not.toContain('ts-chip-selected');
+    expect(chip1.classList).toContain('ts-chip--selected');
+    expect(chip2.classList).not.toContain('ts-chip--selected');
   }));
 
   test(`should set value properly`, function() {
@@ -132,12 +134,25 @@ describe(`TsChipCollection`, function() {
     expect(instance.value).toEqual(['banana']);
   });
 
+  describe(`empty`, () => {
+
+    test(`should check the number of chips if the collection exists`, () => {
+      fixture = createComponent(testComponents.NoChip);
+      chipCollectionInstance = getChipCollectionInstance(fixture);
+      fixture.detectChanges();
+
+      expect(chipCollectionInstance.empty).toEqual(true);
+    });
+
+  });
+
   test(`should be able to set isSelectable from chip collection and populate to chips`, fakeAsync(function() {
-    setupStandardCollection('RegularChip');
+    setupStandardCollection(testComponents.RegularChip);
 
     chipCollectionInstance.isSelectable = true;
     const chip = chips.toArray()[0];
     fixture.detectChanges();
+
     chipInstance.select();
     tick(1000);
     fixture.detectChanges();
@@ -145,31 +160,47 @@ describe(`TsChipCollection`, function() {
     expect(chip.chipCollectionSelectable).toBeTruthy();
   }));
 
-  test(`should emit remove event when chip is removed`, fakeAsync(function() {
-    setupStandardCollection('RegularChip');
-    const chip = fixture.debugElement.query(By.css('.ts-chip')).nativeElement;
-    const chipRemovalButton = chip.querySelector('.ts-chip-remove');
-    chipCollectionInstance.remove = jest.fn();
-    chipCollectionInstance.removed.subscribe(event => {
-      expect(event).toEqual('apple');
-    });
+  test(`should emit 'collectionChange' and 'removed' events when a chip is removed`, function() {
+    setupStandardCollection(testComponents.Events);
+    const buttons = fixture.nativeElement.querySelectorAll('.c-chip__remove');
+    const chipRemovalButton = buttons[1];
+    fixture.componentInstance.change = jest.fn();
+    fixture.componentInstance.removed = jest.fn();
 
-    dispatchMouseEvent(chipRemovalButton, 'click');
-    tick(1000);
+    expect(chipCollectionInstance.chips.length).toEqual(2);
+
+    chipRemovalButton.click();
     fixture.detectChanges();
 
-    expect(chipCollectionInstance.remove).toHaveBeenCalled();
+    expect(fixture.componentInstance.change.mock.calls[0][0].source.chips.length).toEqual(1);
+    expect(fixture.componentInstance.removed.mock.calls[0][0].chip.value).toEqual('banana');
+    expect.assertions(3);
+  });
+
+  test(`should emit the tabUpdateFocus event`, fakeAsync(() => {
+    setupStandardCollection(testComponents.Events);
+    fixture.componentInstance.tabbed = jest.fn();
+    const event = document.createEvent('KeyboardEvent');
+    event.initEvent('keydown', true, false);
+    Object.defineProperties(event, { code: { get: () => KEYS.TAB.code } });
+    Object.defineProperties(event, { keyCode: { get: () => KEYS.TAB.keyCode } });
+    const chip = chipElements[1].nativeElement;
+
+    dispatchEvent(chip, event);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.tabbed).toHaveBeenCalled();
   }));
 
   test(`should focus on nothing if blur and no focused chip`, () => {
-    setupStandardCollection('RegularChip');
+    setupStandardCollection(testComponents.RegularChip);
     chipCollectionInstance.blur();
     fixture.detectChanges();
     expect(manager.activeItemIndex).toBe(-1);
   });
 
   test(`should deselect current selected chip if select another chip under allowMultipleSelections false`, () => {
-    setupStandardCollection('NotAllowMultipleSelections');
+    setupStandardCollection(testComponents.NotAllowMultipleSelections);
     const allChips = chips.toArray();
     allChips[0].selected = true;
     fixture.detectChanges();
@@ -181,13 +212,14 @@ describe(`TsChipCollection`, function() {
   });
 
   describe(`focus`, function() {
+
     test(`should return undefined if isDisabled`, function() {
-      setupStandardCollection('DisabledChip');
+      setupStandardCollection(testComponents.DisabledChip);
       expect(chipCollectionInstance.focus()).toEqual(undefined);
     });
 
     test(`should focus the first non-disabled chip`, function() {
-      setupStandardCollection('RegularChip');
+      setupStandardCollection(testComponents.RegularChip);
       chipCollectionInstance.keyManager.setFirstItemActive = jest.fn();
       chipCollectionInstance.focus();
       fixture.detectChanges();
@@ -196,17 +228,27 @@ describe(`TsChipCollection`, function() {
     });
 
     test(`should set chip focus state if focus method is triggered`, function() {
-      setupStandardCollection('RegularChip');
+      setupStandardCollection(testComponents.RegularChip);
       chipInstance.focus();
       expect(chipInstance.hasFocus).toBeTruthy();
       expect(chipCollectionInstance.focused).toBeTruthy();
     });
 
+    test(`should call the blur() method when a chip is blurred`, fakeAsync(() => {
+      setupStandardCollection(testComponents.RegularChip);
+      chipCollectionInstance.blur = jest.fn();
+      chipInstance.handleBlur();
+      fixture.detectChanges();
+      tick();
+
+      expect(chipCollectionInstance.blur).toHaveBeenCalled();
+    }));
+
   });
 
   describe(`tabIndex`, () => {
     beforeEach(() => {
-      setupStandardCollection('Tabindex');
+      setupStandardCollection(testComponents.Tabindex);
     });
 
     test(`should set tabindex if not disabled`, () => {
@@ -229,24 +271,22 @@ describe(`TsChipCollection`, function() {
     chipCollectionInstance = getChipCollectionInstance(fixture);
     fixture.detectChanges();
     tick(1000);
-    expect(chipCollectionInstance._tabIndex).toBe(-1);
+    expect(chipCollectionInstance.tabIndex).toBe(-1);
   }));
 
-
   test('should not have the aria-selected attribute when is not selectable', () => {
-    setupStandardCollection('isSelectable');
+    setupStandardCollection(testComponents.StandardChipCollection);
     testComponent = fixture.debugElement.componentInstance;
-    testComponent.isSelectable = false;
+    testComponent.selectable = false;
     fixture.detectChanges();
-
-    const chipsValid = chips.toArray().every(chip => !chip.isSelectable && !chip._elementRef.nativeElement.hasAttribute('aria-selectable'));
+    const chipsValid = chips.toArray().every(chip => !chip.isSelectable && !chip.elementRef.nativeElement.hasAttribute('aria-selectable'));
 
     expect(chipsValid).toBe(true);
   });
 
   describe(`ID`, function() {
     beforeEach(() => {
-      setupStandardCollection('Id');
+      setupStandardCollection(testComponents.Id);
     });
 
     test(`should get UID as its id`, () => {
@@ -264,16 +304,17 @@ describe(`TsChipCollection`, function() {
 
   });
 
+  // TODO: Move autocomplete tests to the autocomplete spec file(s)
   describe(`used in autocomplete component`, function() {
+
     beforeEach(() => {
-      setupStandardCollection('Autocomplete');
+      setupStandardCollection(testComponents.Autocomplete);
       nativeInput = fixture.nativeElement.querySelector('input');
       BACKSPACE_EVENT = createKeyboardEvent('keydown', KEYS.BACKSPACE, nativeInput);
       BACKSPACE_EVENT_CHIP = createKeyboardEvent('keydown', KEYS.BACKSPACE, chipCollectionNativeElement);
     });
 
     test(`should focus on last item if input is empty and BACKSPACE is used`, () => {
-
       // Focus the input
       nativeInput.focus();
       expect(manager.activeItemIndex).toBe(-1);
@@ -306,21 +347,12 @@ describe(`TsChipCollection`, function() {
       expect(nodeName).toBe('INPUT');
     });
 
-    test(`should emit removed event when a chip removed`, () => {
-      const allchips = chips.toArray();
-      chipCollectionInstance.removed.emit = jest.fn();
-      fixture.detectChanges();
-      chipCollectionInstance.remove(allchips[0]);
-      fixture.detectChanges();
-
-      expect(chipCollectionInstance.removed.emit).toHaveBeenCalled();
-    });
-
   });
 
   describe(`keydown`, function() {
+
     beforeEach(() => {
-      setupStandardCollection('StandardChipCollection');
+      setupStandardCollection(testComponents.StandardChipCollection);
     });
 
     test(`should set first item active when use HOME key`, fakeAsync(function() {
@@ -337,20 +369,6 @@ describe(`TsChipCollection`, function() {
 
       expect(chipCollectionInstance.keyManager.setFirstItemActive).toHaveBeenCalled();
     }));
-
-    test(`should focus on last item when press END`, () => {
-      const firstNativeChip = nativeChips[0] as HTMLElement;
-
-      const array = chips.toArray();
-      const lastIndex = array.length - 1;
-      const firstItem = array[0];
-      const END_EVENT = createKeyboardEvent('keydown', KEYS.END, firstNativeChip);
-
-      firstItem.focus();
-      chipCollectionInstance.keydown(END_EVENT);
-      fixture.detectChanges();
-      expect(manager.activeItemIndex).toEqual(lastIndex);
-    });
 
     test(`should select OR deselect all items with CTRL + A`, fakeAsync(function() {
       chipCollectionInstance.allowMultipleSelections = true;
@@ -377,7 +395,7 @@ describe(`TsChipCollection`, function() {
   describe(`updateFocus`, () => {
 
     beforeEach(() => {
-      setupStandardCollection('StandardChipCollection');
+      setupStandardCollection(testComponents.StandardChipCollection);
     });
 
     test(`should focus on last chip when END key pressed`, () => {
@@ -415,7 +433,7 @@ describe(`TsChipCollection`, function() {
   });
 
   test('should focus the chip collection if the last focused item is removed', fakeAsync(function() {
-    setupStandardCollection('OneChip');
+    setupStandardCollection(testComponents.OneChip);
     const chip = chipCollectionInstance.chips.toArray()[0];
     testComponent = fixture.debugElement.componentInstance;
     chip.hasFocus = true;
@@ -434,42 +452,39 @@ describe(`TsChipCollection`, function() {
 
   describe(`shift+click`, () => {
     let mouseEvent: MouseEvent;
-    let chip;
+    let firstChip;
 
     beforeEach(() => {
-      setupStandardCollection('StandardChipCollection');
-      chip = chipCollectionInstance.chips.toArray()[0];
+      setupStandardCollection(testComponents.StandardChipCollection);
+      firstChip = chipCollectionInstance.chips.toArray()[0];
       mouseEvent = createMouseEvent('click');
       Object.defineProperty(mouseEvent, 'shiftKey', { get: () => true });
     });
-    test(`should select a chip if it's not selected and allowMultiple being true`, fakeAsync(() => {
+
+    test(`should select a chip if it's not selected and allowMultiple is true`, () => {
       chipCollectionInstance.allowMultipleSelections = true;
       // If chip is not selected, shift click will select the chip
-      chip.selected = false;
+      firstChip.selected = false;
       fixture.detectChanges();
-      dispatchEvent(chipInsideElement, mouseEvent);
+      dispatchEvent(firstChip.elementRef.nativeElement, mouseEvent);
       fixture.detectChanges();
-      tick(3000);
-      expect(chip.selected).toBeTruthy();
+      expect(firstChip.selected).toBeTruthy();
 
       // If chip is selected, shift click will deselect the chip
-      chip.selected = true;
+      dispatchEvent(firstChip.elementRef.nativeElement, mouseEvent);
       fixture.detectChanges();
-      dispatchEvent(chipInsideElement, mouseEvent);
-      fixture.detectChanges();
-      tick(3000);
-      expect(chip.selected).toBeFalsy();
-    }));
+      expect(firstChip.selected).toBeFalsy();
+    });
 
     test(`should not select a chip if allowMultiple being false`, fakeAsync(() => {
       chipCollectionInstance.allowMultipleSelections = false;
-      chip.selected = false;
+      firstChip.selected = false;
       fixture.detectChanges();
 
       dispatchEvent(chipInsideElement, mouseEvent);
       fixture.detectChanges();
       tick(3000);
-      expect(chip.selected).toBeFalsy();
+      expect(firstChip.selected).toBeFalsy();
     }));
   });
 
