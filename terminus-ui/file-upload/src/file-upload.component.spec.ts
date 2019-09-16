@@ -466,7 +466,8 @@ describe(`TsFileUploadComponent`, function() {
       hostComponent.mimeTypes = undefined;
       fixture.detectChanges();
 
-      expect(component.virtualFileInput.getAttribute('accept')).toEqual('text/csv,image/jpeg,image/jpg,image/png,image/gif,video/mp4');
+      expect(component.virtualFileInput.getAttribute('accept'))
+        .toEqual('text/csv,image/jpeg,image/jpg,image/png,image/gif,video/mp4,video/x-flv,video/webm,video/quicktime,video/mpeg');
     });
 
   });

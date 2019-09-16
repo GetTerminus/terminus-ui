@@ -1,3 +1,10 @@
+# [14.12.0](https://github.com/GetTerminus/terminus-ui/compare/v14.11.0...v14.12.0) (2019-09-16)
+
+
+### Features
+
+* **FileUpload:** allow video mime types ([#1694](https://github.com/GetTerminus/terminus-ui/issues/1694)) ([c5fa585](https://github.com/GetTerminus/terminus-ui/commit/c5fa585))
+
 # [14.11.0](https://github.com/GetTerminus/terminus-ui/compare/v14.10.1...v14.11.0) (2019-09-12)
 
 
