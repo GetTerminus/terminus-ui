@@ -1,3 +1,10 @@
+# [14.13.0](https://github.com/GetTerminus/terminus-ui/compare/v14.12.2...v14.13.0) (2019-09-17)
+
+
+### Features
+
+* **Link:** tel & email links no longer show external icon ([#1695](https://github.com/GetTerminus/terminus-ui/issues/1695)) ([a5ed791](https://github.com/GetTerminus/terminus-ui/commit/a5ed791))
+
 ## [14.12.2](https://github.com/GetTerminus/terminus-ui/compare/v14.12.1...v14.12.2) (2019-09-17)
 
 
