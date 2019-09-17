@@ -1,3 +1,10 @@
+## [14.12.2](https://github.com/GetTerminus/terminus-ui/compare/v14.12.1...v14.12.2) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Select:** text vertical alignment with or without a floating label ([#1699](https://github.com/GetTerminus/terminus-ui/issues/1699)) ([05a8933](https://github.com/GetTerminus/terminus-ui/commit/05a8933))
+
 ## [14.12.1](https://github.com/GetTerminus/terminus-ui/compare/v14.12.0...v14.12.1) (2019-09-16)
 
 
