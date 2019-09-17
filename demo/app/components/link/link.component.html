@@ -1,6 +1,22 @@
 <ts-card id="top">
   <div>
     <ts-link
+      [destination]="emailDestination"
+      [isExternal]="true"
+      tsVerticalSpacing
+    >support@terminus.com</ts-link>
+  </div>
+
+  <div>
+    <ts-link
+      [destination]="phoneDestination"
+      [isExternal]="true"
+      tsVerticalSpacing
+    >1800-423-4562</ts-link>
+  </div>
+
+  <div>
+    <ts-link
       [destination]="localDestination"
       tsVerticalSpacing
     >Standard link.</ts-link>

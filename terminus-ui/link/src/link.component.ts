@@ -4,6 +4,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { isString } from '@terminus/ngx-tools';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
@@ -57,10 +58,24 @@ export class TsLinkComponent {
   public localRoute = ['.'];
 
   /**
+   * Decide whether an external icon should be shown
+   */
+  public showExternalIcon = true;
+
+  /**
    * Define the link's destination
    */
   @Input()
-  public destination: string | string[] | undefined;
+  public set destination(value: string | string[] | undefined) {
+    if (isString(value) && (value.includes('mailto') || value.includes('tel'))) {
+      this.showExternalIcon = false;
+    }
+    this._destination = value;
+  }
+  public get destination(): string | string[] | undefined {
+    return this._destination;
+  }
+  public _destination: string | string[] | undefined;
 
   /**
    * Define the link's fragment

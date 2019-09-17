@@ -18,7 +18,9 @@
 >
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 
-  <ts-icon>
+  <ts-icon
+    *ngIf="showExternalIcon"
+  >
     open_in_new
   </ts-icon>
 </a>

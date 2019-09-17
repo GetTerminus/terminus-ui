@@ -27,7 +27,8 @@ Wrap your link text and define a destination:
 
 ## External links
 
-To signify a link will leave the current app or site, set `external` to true:
+To signify a link will leave the current app or site, set `external` to true. 
+When the destination is a string and contains either `mailto` or `tel`, the external icon would not show.
 
 ```html
 <ts-link
