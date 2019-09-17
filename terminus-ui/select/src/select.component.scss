@@ -25,6 +25,25 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   @include reset;
   display: block;
   outline: none;
+  .ts-form-field {
+    &.ts-form-field--float {
+      .ts-select-arrow-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .ts-form-field__infix {
+        $select-form-field-padding-top: .6em;
+        padding: $select-form-field-padding-top 0 1em;
+      }
+    }
+    &:not(.ts-form-field--float) {
+      .ts-select-arrow-wrapper {
+        display: table-cell;
+        transform: translateY(-10%);
+        vertical-align: middle;
+      }
+    }
+  }
 
   // <div> trigger to open select
   .ts-select-trigger {
@@ -67,11 +86,7 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
     @include truncate-overflow;
   }
 
-  .ts-select-arrow-wrapper {
-    display: table-cell;
-    transform: translateY(-25%);
-    vertical-align: middle;
-  }
+
 
   .ts-select-arrow {
     border-left: $ts-select-arrow-size solid transparent;

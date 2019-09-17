@@ -1,3 +1,24 @@
+## [14.12.2](https://github.com/GetTerminus/terminus-ui/compare/v14.12.1...v14.12.2) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Select:** text vertical alignment with or without a floating label ([#1699](https://github.com/GetTerminus/terminus-ui/issues/1699)) ([05a8933](https://github.com/GetTerminus/terminus-ui/commit/05a8933))
+
+## [14.12.1](https://github.com/GetTerminus/terminus-ui/compare/v14.12.0...v14.12.1) (2019-09-16)
+
+
+### Bug Fixes
+
+* **Select:** Text vertical alignment ([#1693](https://github.com/GetTerminus/terminus-ui/issues/1693)) ([07c8521](https://github.com/GetTerminus/terminus-ui/commit/07c8521))
+
+# [14.12.0](https://github.com/GetTerminus/terminus-ui/compare/v14.11.0...v14.12.0) (2019-09-16)
+
+
+### Features
+
+* **FileUpload:** allow video mime types ([#1694](https://github.com/GetTerminus/terminus-ui/issues/1694)) ([c5fa585](https://github.com/GetTerminus/terminus-ui/commit/c5fa585))
+
 # [14.11.0](https://github.com/GetTerminus/terminus-ui/compare/v14.10.1...v14.11.0) (2019-09-12)
 
 
