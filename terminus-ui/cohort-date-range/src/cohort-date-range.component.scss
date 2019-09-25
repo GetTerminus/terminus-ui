@@ -1,0 +1,17 @@
+@import './../../scss/helpers/spacing';
+
+$SELECT_MIN_WIDTH: 200px;
+
+.ts-select {
+  &.ts-cohort-date-range__select {
+    display: inline-block;
+    min-width: $SELECT_MIN_WIDTH;
+  }
+}
+
+.ts-date-range {
+  &.ts-cohort-date-range__date-range {
+    display: inline-block;
+    margin-right: spacing(large);
+  }
+}

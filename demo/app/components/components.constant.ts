@@ -59,6 +59,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'cohort-date-range',
+    loadChildren: `./components/cohort-date-range/cohort-date-range.module#CohortDateRangeModule`,
+    data: {
+      name: 'Cohort Date Range',
+    },
+  },
+  {
     path: 'confirmation',
     loadChildren: `./components/confirmation/confirmation.module#ConfirmationModule`,
     data: {

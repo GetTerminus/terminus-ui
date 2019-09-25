@@ -6,6 +6,7 @@ export * from '@terminus/ui/card';
 export * from '@terminus/ui/chart';
 export * from '@terminus/ui/checkbox';
 export * from '@terminus/ui/chip';
+export * from '@terminus/ui/cohort-date-range';
 export * from '@terminus/ui/confirmation';
 export * from '@terminus/ui/copy';
 export * from '@terminus/ui/csv-entry';
