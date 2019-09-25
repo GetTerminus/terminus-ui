@@ -1,14 +1,16 @@
-import { ComponentFixture } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  TsChipComponent,
-  TsChipCollectionComponent,
-} from '@terminus/ui/chip';
 import { getAutocompleteInstance } from '@terminus/ui/autocomplete/testing';
+import {
+  TsChipCollectionComponent,
+  TsChipComponent,
+} from '@terminus/ui/chip';
+import { TsUILibraryError } from '@terminus/ui/utilities';
+
 
 /**
- * Get an array of all DebugElements for TsChipComponents
+ * Get an array of all DebugElements for {@link TsChipComponent}s
  *
  * @param fixture - The component fixture
  * @return An array of DebugElements
@@ -18,7 +20,7 @@ export function getAllChipDebugElements(fixture: ComponentFixture<any>): DebugEl
 }
 
 /**
- * Get an array of all DebugElements for TsChipCollections
+ * Get an array of all DebugElements for {@link TsChipCollectionComponent}s
  *
  * @param fixture - The component fixture
  * @return An array of DebugElements
@@ -28,47 +30,46 @@ export function getAllChipCollectionDebugElements(fixture: ComponentFixture<any>
 }
 
 /**
- * Get an array of all chip instances for a TsSelectComponent
+ * Get an array of all chip instances for a {@link TsChipCollectionComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsSelectComponent
+ * @param index - The index of the desired {@link TsChipCollectionComponent}
  * @return An array of chip instances
  */
 export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): TsChipComponent[] {
   const instance = getChipCollectionInstance(fixture, index);
   if (!instance.chips) {
-    throw new Error(`'getAllChipInstances' did not find a chips collection from the select at index '${index}'`);
+    throw new TsUILibraryError(`'getAllChipInstances' did not find a chips collection from the select at index '${index}'`);
   }
   return instance.chips.toArray();
 }
 
 /**
- * Get a specific chip instance for a TsChipCollection
+ * Get a specific chip instance for a {@link TsChipCollectionComponent}
  *
  * @param fixture - The component fixture
- * @param selectIndex - The index of the desired TsChipCollection
+ * @param selectIndex - The index of the desired {@link TsChipCollectionComponent
  * @param chipIndex - The index of the desired chip
- * @return A chip instances
+ * @return A chip instance
  */
 export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): TsChipComponent {
   const chips = getAllChipInstances(fixture, selectIndex);
   if (!chips[chipIndex]) {
-    throw new Error(`'getChipInstance' did not find a chip at index '${chipIndex}'`);
+    throw new TsUILibraryError(`'getChipInstance' did not find a chip at index '${chipIndex}'`);
   }
   return chips[chipIndex];
 }
 
-
 /**
- * Get an array of all TsChipCollectionComponent instances
+ * Get an array of all {@link TsChipCollectionComponent} instances
  *
  * @param fixture - The component fixture
- * @return An array of TsChipCollectionComponent
+ * @return An array of {@link TsChipCollectionComponent}
  */
 export function getAllChipCollectionInstances(fixture: ComponentFixture<any>): TsChipCollectionComponent[] {
   const debugElements = getAllChipCollectionDebugElements(fixture);
   if (debugElements.length < 1) {
-    throw new Error(`getAllChipCollectionInstances did not find any instances`);
+    throw new TsUILibraryError(`getAllChipCollectionInstances did not find any instances`);
   }
   return debugElements.map(debugElement => debugElement.componentInstance);
 }
@@ -82,46 +83,46 @@ export function getAllChipCollectionInstances(fixture: ComponentFixture<any>): T
 export function getChipCollectionInstanceInAutocomplete(fixture: ComponentFixture<any>): TsChipCollectionComponent {
   const instance = getAutocompleteInstance(fixture);
   if (!instance.chipCollection) {
-    throw new Error('no chip collection');
+    throw new TsUILibraryError(`'getChipCollectionInstanceInAutocomplete' found no chip collection.`);
   }
   return instance.chipCollection;
 }
 
 /**
- * Get the DebugElement for a TsChipComponent
+ * Get the DebugElement for a {@link TsChipComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsChipComponent
+ * @param index - The index of the desired {@link TsChipComponent}
  * @return The DebugElement
  */
 export function getChipDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const all = getAllChipDebugElements(fixture);
   if (!all[index]) {
-    throw new Error(`getChipDebugElement could not find a debug element at index '${index}'`);
+    throw new TsUILibraryError(`'getChipDebugElement' could not find a debug element at index '${index}'`);
   }
   return all[index];
 }
 
 /**
- * Get the DebugElement for a TsChipCollection
+ * Get the DebugElement for a {@link TsChipCollectionComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsChipCollection
+ * @param index - The index of the desired {@link TsChipCollectionComponent}
  * @return The DebugElement
  */
 export function getChipCollectionDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const all = getAllChipCollectionDebugElements(fixture);
   if (!all[index]) {
-    throw new Error(`getChipCollectionDebugElement could not find a debug element at index '${index}'`);
+    throw new TsUILibraryError(`'getChipCollectionDebugElement' could not find a debug element at index '${index}'`);
   }
   return all[index];
 }
 
 /**
- * Get the component instance for a TsChipCollection
+ * Get the component instance for a {@link TsChipCollectionComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsChipCollection
+ * @param index - The index of the desired {@link TsChipCollectionComponent}
  * @return The instance
  */
 
@@ -131,10 +132,10 @@ export function getChipCollectionInstance(fixture: ComponentFixture<any>, index 
 }
 
 /**
- * Get the element for a TsChipComponent
+ * Get the element for a {@link TsChipComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsChipComponent
+ * @param index - The index of the desired {@link TsChipComponent}
  * @return The element
  */
 export function getChipElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
@@ -143,10 +144,10 @@ export function getChipElement(fixture: ComponentFixture<any>, index = 0): HTMLE
 }
 
 /**
- * Get the element for a TsChipCollection
+ * Get the element for a {@link TsChipCollectionComponent}
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsChipCollection
+ * @param index - The index of the desired {@link TsChipCollectionComponent}
  * @return The element
  */
 export function getChipCollectionElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {

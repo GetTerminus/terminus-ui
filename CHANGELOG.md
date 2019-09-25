@@ -1,3 +1,10 @@
+# [14.14.0](https://github.com/GetTerminus/terminus-ui/compare/v14.13.0...v14.14.0) (2019-09-23)
+
+
+### Features
+
+* **Chips:** chips are now defined by the consumer ([35f8341](https://github.com/GetTerminus/terminus-ui/commit/35f8341))
+
 # [14.13.0](https://github.com/GetTerminus/terminus-ui/compare/v14.12.2...v14.13.0) (2019-09-17)
 
 

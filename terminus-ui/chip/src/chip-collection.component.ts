@@ -1,24 +1,22 @@
 // NOTE: A method must be used to dynamically format values for the UI
 // tslint:disable: template-no-call-expression
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { Directionality } from '@angular/cdk/bidi';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
   NgZone,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   QueryList,
-  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
@@ -26,13 +24,10 @@ import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   merge,
   Observable,
-  Subject,
   Subscription,
 } from 'rxjs';
-import {
-  startWith,
-  takeUntil,
-} from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
+
 import {
   TsChipComponent,
   TsChipEvent,
@@ -44,31 +39,43 @@ import {
 let nextUniqueId = 0;
 
 /**
+ * Possible orientations for {@link TsChipCollectionComponent}
+ */
+export type TsChipCollectionOrientation
+  = 'horizontal'
+  | 'vertical'
+;
+
+/**
  * Change event object that is emitted when the chip collection value has changed.
  */
 export class TsChipCollectionChange {
   constructor(
-    // Chip collection that emitted the event.
+    // Chip collection that emitted the event
     public source: TsChipCollectionComponent,
-    // Value of the chip collection when the event was emitted.
-    // tslint:disable-next-line no-any
+    // Value of the chip collection when the event was emitted
     public value: string[],
   ) { }
 }
 
 
 /**
- * Component that is used to group instances of {@link TsChipComponent}s
+ * Component that is used to group {@link TsChipComponent} instances
  *
  * @example
  * <ts-chip-collection
  *              [allowMultipleSelections]="true"
+ *              aria-orientation="vertical"
  *              [isDisabled]="false"
  *              [isReadonly]="false"
  *              [isRemovable]="true"
  *              [isSelectable]="false"
  *              [orientation]="horizontal"
+ *              [tabIndex]="1"
+ *              [value]="myValue"
  *              (collectionChange)="collectionChange($event)"
+ *              (removed)="chipRemoved($event)"
+ *              (tabUpdateFocus)="tabFocusUpdated($event)"
  * ></ts-chip-collection>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/chip</example-url>
@@ -76,8 +83,12 @@ export class TsChipCollectionChange {
 @Component({
   selector: 'ts-chip-collection',
   templateUrl: `./chip-collection.component.html`,
-  exportAs: 'tsChipCollection',
+  styleUrls: ['./chip-collection.component.scss'],
   host: {
+    'class': 'ts-chip-collection',
+    '[class.ts-chip-collection--disabled]': 'isDisabled',
+    '[class.ts-chip-collection--vertical]': 'orientation === "vertical"',
+    '[class.ts-chip-collection--selectable]': 'isSelectable',
     '[attr.tabindex]': 'isDisabled ? null : _tabIndex',
     '[attr.aria-describedby]': 'ariaDescribedby || null',
     '[attr.aria-disabled]': 'isDisabled',
@@ -87,25 +98,16 @@ export class TsChipCollectionChange {
     '[attr.aria-required]': 'false',
     '[attr.aria-selectable]': 'isSelectable',
     '[attr.role]': 'role',
-    '[class.ts-chip-collection-disabled]': 'isDisabled',
-    '[class.ts-chip-collection-selectable]': 'isSelectable',
-    'class': 'ts-chip-collection',
     '(focus)': 'focus()',
     '(blur)': 'blur()',
     '(keydown)': 'keydown($event)',
     '[id]': 'id',
   },
-  styleUrls: ['./chip.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs: 'tsChipCollection',
 })
-export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestroy {
-
-  /**
-   * Subject that emits when the component has been destroyed.
-   */
-  private destroyed = new Subject<void>();
-
+export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   /**
    * Subscription to focus changes in the chips.
    */
@@ -187,13 +189,13 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
    * Combined stream of all of the child chips' blur change events.
    */
   public get chipBlurChanges(): Observable<TsChipEvent> {
-    return merge(...this.chips.map(chip => chip.onBlur));
+    return merge(...this.chips.map(chip => chip.blurred));
   }
 
   /**
    * Combined stream of all of the child chips' remove change events.
    */
-  public get chipRemoveChanges(): Observable<TsChipEvent> {
+  public get chipDestroyChanges(): Observable<TsChipEvent> {
     return merge(...this.chips.map(chip => chip.destroyed));
   }
 
@@ -222,41 +224,27 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
   /**
    * The chip components contained within this chip collection.
    */
-  @ViewChildren(TsChipComponent) public chips!: QueryList<TsChipComponent>;
-
-  /**
-   * A list of chip values as input.
-   */
-  @Input()
-  public chipsInput: ReadonlyArray<string> = [];
-
-  @Input()
-  public displayFormatter = v => v as string
+  @ContentChildren(TsChipComponent)
+  public chips!: QueryList<TsChipComponent>;
 
   /**
    * Whether the user should be allowed to select multiple chips.
    */
   @Input()
   public set allowMultipleSelections(value: boolean) {
-    this._multiple = coerceBooleanProperty(value);
+    this._allowMultipleSelections = value;
     this.syncChipsState();
   }
   public get allowMultipleSelections(): boolean {
-    return this._multiple;
+    return this._allowMultipleSelections;
   }
-  private _multiple = false;
+  private _allowMultipleSelections = false;
 
   /**
-   * Set and get chip collection value
+   * Orientation of the chip collection.
    */
-  @Input()
-  public set value(value: string[]) {
-    this._value = value;
-  }
-  public get value(): string[] {
-    return this._value;
-  }
-  protected _value = [''];
+  @Input('aria-orientation')
+  public ariaOrientation: 'horizontal' | 'vertical' = 'horizontal';
 
   /**
    * Set and get chip collection id
@@ -275,7 +263,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
    */
   @Input()
   public set isDisabled(value: boolean) {
-    this._disabled = coerceBooleanProperty(value);
+    this._disabled = value;
     this.syncChipsState();
   }
   public get isDisabled(): boolean {
@@ -288,7 +276,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
    */
   @Input()
   public set isReadonly(value: boolean) {
-    this._readonly = coerceBooleanProperty(value);
+    this._readonly = value;
   }
   public get isReadonly(): boolean {
     return this._readonly;
@@ -301,12 +289,8 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
    */
   @Input()
   public set isSelectable(value: boolean) {
-    this._selectable = coerceBooleanProperty(value);
-    if (this.chips) {
-      this.chips.forEach(chip => {
-        chip.chipCollectionSelectable = this._selectable;
-      });
-    }
+    this._selectable = value;
+    this.syncChipsState();
   }
   public get isSelectable(): boolean {
     return this._selectable;
@@ -316,9 +300,8 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
   /**
    * Orientation of the chip - either horizontal or vertical. Default to horizontal.
    */
-
   @Input()
-  public orientation: 'horizontal' | 'vertical' = 'horizontal';
+  public orientation: TsChipCollectionOrientation = 'horizontal';
 
   /**
    * Set and get tabindex
@@ -334,10 +317,16 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
   public _tabIndex = 0;
 
   /**
-   * Orientation of the chip collection.
+   * Set and get chip collection value
    */
-  @Input('aria-orientation')
-  public ariaOrientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input()
+  public set value(value: string[]) {
+    this._value = value;
+  }
+  public get value(): string[] {
+    return this._value;
+  }
+  protected _value = [''];
 
   /**
    * Event emitted when the chip collection value has been changed by the user.
@@ -357,34 +346,43 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
   @Output()
   public readonly tabUpdateFocus = new EventEmitter();
 
-  constructor(protected elementRef: ElementRef<HTMLElement>,
-              private changeDetectorRef: ChangeDetectorRef,
-              public zone: NgZone,
-              @Optional() private dir: Directionality,) {
+
+  constructor(
+    protected elementRef: ElementRef<HTMLElement>,
+    private changeDetectorRef: ChangeDetectorRef,
+    public zone: NgZone,
+  ) {
     zone.runOutsideAngular(() => {
       this._role = this.empty ? null : 'listbox';
     });
   }
 
-  public ngOnInit() {
+
+  /**
+   * Initialize the selection model
+   */
+  public ngOnInit(): void {
     this.selectionModel = new SelectionModel<TsChipComponent>(this.allowMultipleSelections, undefined, false);
   }
 
-  public ngAfterViewInit() {
+
+  /**
+   * Initialize the key manager and listen for chip changes
+   */
+  public ngAfterViewInit(): void {
     this.keyManager = new FocusKeyManager<TsChipComponent>(this.chips)
       .withWrap()
       .withVerticalOrientation()
-      .withHorizontalOrientation(this.dir ? this.dir.value : 'ltr');
+      .withHorizontalOrientation('ltr');
 
     this.keyManager.tabOut.pipe(untilComponentDestroyed(this)).subscribe(() => {
       this.tabUpdateFocus.emit();
     });
 
     // When the collection changes, re-subscribe
-    this.chips.changes.pipe(startWith(null), untilComponentDestroyed(this)).subscribe(() => {
+    this.chips.changes.pipe(startWith<void, null>(null), untilComponentDestroyed(this)).subscribe(() => {
       if (this.isDisabled || this.isReadonly) {
-        // Since this happens after the content has been
-        // checked, we need to defer it to the next tick.
+        // Since this happens after the content has been checked, we need to defer it to the next tick.
         Promise.resolve().then(() => {
           this.syncChipsState();
         });
@@ -400,64 +398,56 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
       // Check to see if we have a destroyed chip and need to refocus
       this.updateFocusForDestroyedChips();
       this.propagateChanges();
-
     });
   }
 
-  // Needed for untilComponentDestroyed
+
+  /**
+   * Trigger an initial sync after the content has loaded
+   */
+  public ngAfterContentInit(): void {
+    Promise.resolve().then(() => {
+      this.syncChipsState();
+    });
+  }
+
+
+  /**
+   * Needed for untilComponentDestroyed
+   */
   public ngOnDestroy() { }
+
 
   /**
    * When blurred, mark the field as touched when focus moved outside the chip collection.
    */
-  public blur() {
+  public blur(): void {
+    // istanbul ignore else
     if (!this.focused) {
       this.keyManager.setActiveItem(-1);
     }
   }
 
-  /**
-   * When remove called, emit removed event emitter
-   *
-   * @param event
-   */
-  public remove(event) {
-    this.removed.emit(event);
-  }
 
   /**
-   * Focuses the first non-disabled chip in this chip collection, or the associated input when there
-   * are no eligible chips.
+   * Focuses the first non-disabled chip in this chip collection, or the associated input when there are no eligible chips.
    */
   public focus(): void {
     if (this.isDisabled) {
       return;
     }
 
+    // istanbul ignore else
     if (this.chips.length > 0) {
       this.keyManager.setFirstItemActive();
     }
   }
 
-  /**
-   * Utility to for whether input field is empty
-   *
-   * @param element - An HTMLElement
-   * @return boolean
-   */
-  private isInputEmpty(element: HTMLElement): boolean {
-    if (element && element.nodeName.toLowerCase() === 'input') {
-      const input = element as HTMLInputElement;
-      return !input.value;
-    }
-
-    return false;
-  }
 
   /**
    * Pass events to the keyboard manager.
    *
-   * @param event - They KeyboarEvent
+   * @param event - They KeyboardEvent
    */
   public keydown(event: KeyboardEvent): void {
     event.stopPropagation();
@@ -465,7 +455,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     const keyCode = event.code;
 
     // If they are on an empty input and hit backspace, focus the last chip
-    if (keyCode === KEYS.BACKSPACE.code && this.isInputEmpty(target)) {
+    if (keyCode === KEYS.BACKSPACE.code && TsChipCollectionComponent.isInputEmpty(target)) {
       this.keyManager.setLastItemActive();
       event.preventDefault();
     } else if (target && target.classList.contains('ts-chip')) {
@@ -491,29 +481,22 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     }
   }
 
-  public clickSelect(clickEvent) {
-    const shiftKey = clickEvent.event.shiftKey;
-    if (this.allowMultipleSelections && shiftKey) {
-      // Disable text highlight when shift click
-      document.onselectstart = function() {
-        return false;
-      };
-      clickEvent.chip.toggleSelected();
-      clickEvent.event.preventDefault();
-    }
-  }
 
   /**
-   * Emits change event to set the model value.
+   * Utility to for whether input field is empty
+   *
+   * @param element - An HTMLElement
+   * @return boolean
    */
-  private propagateChanges(): void {
-    let valueToEmit: string | string[] = '';
-    valueToEmit = this.chips.map(chip => chip.value);
-    this._value = valueToEmit;
-    this.collectionChange.emit(new TsChipCollectionChange(this, valueToEmit));
-    this.onChange(valueToEmit);
-    this.changeDetectorRef.markForCheck();
+  private static isInputEmpty(element: HTMLElement): boolean {
+    if (element && element.nodeName.toLowerCase() === 'input') {
+      const input = element as HTMLInputElement;
+      return !input.value;
+    }
+
+    return false;
   }
+
 
   /**
    * Check the tab index as you should not be allowed to focus an empty list.
@@ -522,6 +505,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     // If we have 0 chips, we should not allow keyboard focus
     this.tabIndex = this._userTabIndex || (this.chips.length === 0 ? -1 : 0);
   }
+
 
   /**
    * If the amount of chips changed, we need to update the key manager state and focus the next closest chip.
@@ -540,6 +524,20 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     this.lastDestroyedChipIndex = null;
   }
 
+
+  /**
+   * Emits change event to set the model value.
+   */
+  private propagateChanges(): void {
+    let valueToEmit: string | string[] = '';
+    valueToEmit = this.chips.map(chip => chip.value);
+    this._value = valueToEmit;
+    this.collectionChange.emit(new TsChipCollectionChange(this, valueToEmit));
+    this.onChange(valueToEmit);
+    this.changeDetectorRef.markForCheck();
+  }
+
+
   /**
    * Utility to ensure all indexes are valid.
    *
@@ -550,15 +548,16 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     return index >= 0 && index < this.chips.length;
   }
 
+
   /**
    * Reset all the chips subscription
    */
-
   private resetChips(): void {
     this.listenToChipsFocus();
     this.listenToChipsSelection();
     this.listenToChipsRemoved();
   }
+
 
   /**
    * Listens to user-generated selection events on each chip.
@@ -580,6 +579,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     });
   }
 
+
   /**
    * Listens to user-generated selection events on each chip.
    */
@@ -587,6 +587,7 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     this.chipFocusSubscription = this.chipFocusChanges.subscribe(event => {
       const chipIndex: number = this.chips.toArray().indexOf(event.chip);
 
+      // istanbul ignore else
       if (this.isValidIndex(chipIndex)) {
         this.keyManager.updateActiveItem(chipIndex);
       }
@@ -597,44 +598,40 @@ export class TsChipCollectionComponent implements AfterViewInit, OnInit, OnDestr
     });
   }
 
+
   /**
    * Listens to remove events on each chip.
    */
-
   private listenToChipsRemoved(): void {
-    this.chipRemoveSubscription = this.chipRemoveChanges.subscribe(event => {
+    this.chipRemoveSubscription = this.chipDestroyChanges.subscribe(event => {
       const chip = event.chip;
       const chipIndex = this.chips.toArray().indexOf(event.chip);
 
-      // In case the chip that will be removed is currently focused, we temporarily store
-      // the index in order to be able to determine an appropriate sibling chip that will
-      // receive focus.
+      // In case the chip that will be removed is currently focused, we temporarily store the index in order to be able to determine an
+      // appropriate sibling chip that will receive focus.
+      // istanbul ignore else
       if (this.isValidIndex(chipIndex) && chip.hasFocus) {
         this.lastDestroyedChipIndex = chipIndex;
       }
+      this.removed.emit(new TsChipEvent(chip));
     });
   }
+
 
   /**
    * Syncs the collection's state with the individual chips.
    */
-  private syncChipsState() {
-    if (this.chips) {
+  private syncChipsState(): void {
+    // istanbul ignore else
+    if (this.chips && this.chips.length) {
       this.chips.forEach(chip => {
-        chip.isDisabled = this.isDisabled;
+        chip.allowMultiple = this.allowMultipleSelections;
         chip.chipCollectionMultiple = this.allowMultipleSelections;
+        chip.isDisabled = this.isDisabled;
         chip.isRemovable = !this.isReadonly && !this.isDisabled;
+        chip.isSelectable = this.isSelectable;
       });
     }
   }
 
-  /**
-   * Function for tracking for-loops changes
-   *
-   * @param index - The item index
-   * @return The index
-   */
-  public trackByFn(index): number {
-    return index;
-  }
 }

@@ -2,11 +2,11 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsAutocompleteComponent } from '@terminus/ui/autocomplete';
+import { TsChipComponent } from '@terminus/ui/chip';
 import {
   TsOptgroupComponent,
   TsOptionComponent,
 } from '@terminus/ui/option';
-import { TsChipComponent } from '@terminus/ui/chip';
 
 /**
  * Get the DebugElement for a TsAutocompleteComponent
@@ -132,7 +132,7 @@ export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0,
  */
 export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): HTMLElement {
   const chip = getChipInstance(fixture, selectIndex, chipIndex);
-  return chip._elementRef.nativeElement;
+  return chip.elementRef.nativeElement;
 }
 
 /**
