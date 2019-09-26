@@ -19,6 +19,7 @@
   - [Releasing](#releasing)
   - [Code Comments](#code-comments)
   - [Usage Docs](#usage-docs)
+- [Releases](#releases)
 - [Code Style](#code-style)
   - [Lint configurations](#lint-configurations)
   - [Member Ordering](#member-ordering)
@@ -320,6 +321,22 @@ When the documentation published, this usage doc will be automatically consumed 
 
 When editing or creating usage documentation, add headlines and appropriate content, then run `yarn run docs:toc` to update (or generate)
 the table of contents.
+
+
+## Releases
+
+Any code merged to the `release` branch gets published under the `next` tag:
+
+```bash
+$ yarn add @terminus/ui@next
+```
+
+Once the code is ready to be promoted to `latest` a member of our NPM organization can promote it:
+
+```bash
+# Replace `0.0.0` with the version to promote
+$ npm dist-tag add @terminus/ui@0.0.0 latest
+```
 
 
 ## Code Style
