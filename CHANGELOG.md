@@ -1,3 +1,10 @@
+# [14.15.0](https://github.com/GetTerminus/terminus-ui/compare/v14.14.0...v14.15.0) (2019-09-25)
+
+
+### Features
+
+* **CohortDateRange:** new TsCohortDateRange component ([#1711](https://github.com/GetTerminus/terminus-ui/issues/1711)) ([5f2722b](https://github.com/GetTerminus/terminus-ui/commit/5f2722b))
+
 # [14.14.0](https://github.com/GetTerminus/terminus-ui/compare/v14.13.0...v14.14.0) (2019-09-23)
 
 
