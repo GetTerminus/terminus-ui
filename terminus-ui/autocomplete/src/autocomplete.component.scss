@@ -45,3 +45,9 @@ $chip-font-size: 14px;
     box-shadow: none;
   }
 }
+
+.cdk-overlay-container {
+  .ts-autocomplete__backdrop {
+    background: transparent;
+  }
+}
