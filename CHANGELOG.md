@@ -1,3 +1,10 @@
+## [14.15.3](https://github.com/GetTerminus/terminus-ui/compare/v14.15.2...v14.15.3) (2019-09-26)
+
+
+### Bug Fixes
+
+* **Chip:** chips now wrap if content is too long ([0951198](https://github.com/GetTerminus/terminus-ui/commit/0951198))
+
 ## [14.15.2](https://github.com/GetTerminus/terminus-ui/compare/v14.15.1...v14.15.2) (2019-09-26)
 
 
