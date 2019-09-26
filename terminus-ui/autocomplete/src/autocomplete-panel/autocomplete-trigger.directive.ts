@@ -234,8 +234,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
       this.optionSelections,
       this.autocompletePanel.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
       this.closeKeyEventStream,
-      this.getOutsideClickStream(),
-      this.overlayRef ? this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) : of(),
+      this.overlayRef.backdropClick(),
     ).pipe(
       // Normalize the output so we return a consistent type.
       map(event => (event instanceof TsOptionSelectionChange ? event : null)),
@@ -471,33 +470,6 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   public openPanel(): void {
     this.attachOverlay();
     this.floatLabel();
-    this.overlayClickOutside(this.overlayRef, this.elementRef.nativeElement).subscribe(() => this.closePanel());
-  }
-
-  /**
-   * Generate document’s click event stream,
-   * when a click meets two conditions:
-   * 1) The click target isn’t the origin.
-   * 2) The click target isn’t the panel or any one of its children.
-   * @param overlayRef
-   * @param origin
-   * @return observable
-   */
-
-  public overlayClickOutside(overlayRef: OverlayRef | null | undefined, origin: HTMLElement) {
-    if (!overlayRef) {
-      return of();
-    }
-    return fromEvent<MouseEvent>(document, 'click')
-      .pipe(
-        filter(event => {
-          const clickTarget = event.target as HTMLElement;
-          const notOrigin = clickTarget !== origin;
-          const notOverlay = !!overlayRef && (!overlayRef.overlayElement.contains(clickTarget));
-          return notOrigin && notOverlay;
-        }),
-        takeUntil(overlayRef.detachments())
-      );
   }
 
 
@@ -679,10 +651,12 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    */
   private getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
+      backdropClass: 'ts-autocomplete__backdrop',
+      direction: 'ltr',
+      hasBackdrop: true,
       positionStrategy: this.getOverlayPosition(),
       scrollStrategy: this.scrollStrategy(),
       width: this.getPanelWidth(),
-      direction: 'ltr',
     });
   }
 

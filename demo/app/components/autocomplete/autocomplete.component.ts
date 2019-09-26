@@ -1,19 +1,17 @@
 import {
   Component,
-  OnInit,
-  AfterViewInit,
   ViewChild,
 } from '@angular/core';
 import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { TsChipCollectionComponent } from '@terminus/ui/chip';
 import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TsChipCollectionComponent } from '@terminus/ui/chip';
 
 
 export interface State {
@@ -29,7 +27,6 @@ export interface State {
 export class AutocompleteComponent {
   @ViewChild(TsChipCollectionComponent, { static: false })
   public list!: TsChipCollectionComponent;
-
   states: State[] = [
     {
       name: 'Arkansas',
@@ -124,7 +121,6 @@ export class AutocompleteComponent {
   singleStateCtrl = new FormControl([this.states[4]], [Validators.required]);
 
   constructor() {
-
     this.filteredStates = this.myQuery$
       .pipe(
         map(state => {
