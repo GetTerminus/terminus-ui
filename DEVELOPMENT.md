@@ -19,6 +19,12 @@
   - [Releasing](#releasing)
   - [Code Comments](#code-comments)
   - [Usage Docs](#usage-docs)
+- [Code Style](#code-style)
+  - [Lint configurations](#lint-configurations)
+  - [Member Ordering](#member-ordering)
+  - [Underscores](#underscores)
+  - [Setters & Getters](#setters--getters)
+  - [Decorators](#decorators)
 - [Issues](#issues)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -316,6 +322,61 @@ When editing or creating usage documentation, add headlines and appropriate cont
 the table of contents.
 
 
+## Code Style
+
+Most code style is enforced through ESLint, TSLint and Stylelint, so make sure to run all of the linters.
+
+### Lint configurations
+
+- [ESLint configuration][eslint-config]
+- [TSLint configuration][tslint-config]
+- [Stylelint configuration][stylelint-config]
+
+### Member Ordering
+
+When writing a class, this is the basic order of items:
+
+1. Private properties
+1. Public properties
+1. Getters (setter goes before getter, which is before the associated private property)
+1. View references (`@ViewChild` etc)
+1. `@Input`s
+1. `@Output`s
+1. Constructor
+1. Lifecycle methods (in the order they are called by Angular) (`ngOnInit` etc)
+1. Public methods
+1. Protected or static methods
+1. Private methods
+
+### Underscores
+
+Prefixing private methods and properties is a common pattern. We have opted to rely on TypeScript's member access rather than the
+ underscore method.
+
+> Caveat: The one place we do use the underscore is to prefix the private property that is used with a getter and setter:
+
+```typescript
+public set active(v: boolean) {
+  this._foo = v;
+}
+public get active(): boolean {
+  return this._foo;
+}
+private _foo = false;
+```
+
+### Setters & Getters
+
+Our setters always come before the getter; which is in turn before the private property. (See the above code example)
+
+### Decorators
+
+Decorators go on their own line above the item they are decorating:
+
+```typescript
+@Input()
+public foo;
+```
 
 ## Issues
 
@@ -417,3 +478,6 @@ the table of contents.
 [pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/release/package.json
 [jest]: https://facebook.github.io/jest/
 [zenhub]: https://www.zenhub.com/
+[eslint-config]: https://github.com/GetTerminus/eslint-config-frontend
+[tslint-config]: https://github.com/GetTerminus/tslint-config-frontend
+[stylelint-config]: https://github.com/GetTerminus/stylelint-config-frontend
