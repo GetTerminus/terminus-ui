@@ -18,5 +18,6 @@
   $negative-spacing: spacing(small, 2);
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   margin: $negative-spacing;
 }
