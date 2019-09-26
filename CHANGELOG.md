@@ -1,3 +1,17 @@
+## [14.15.2](https://github.com/GetTerminus/terminus-ui/compare/v14.15.1...v14.15.2) (2019-09-26)
+
+
+### Bug Fixes
+
+* **Autocomplete:** fix for bug when clicking another instance ([#1722](https://github.com/GetTerminus/terminus-ui/issues/1722)) ([b36c77a](https://github.com/GetTerminus/terminus-ui/commit/b36c77a))
+
+## [14.15.1](https://github.com/GetTerminus/terminus-ui/compare/v14.15.0...v14.15.1) (2019-09-26)
+
+
+### Bug Fixes
+
+* **Select:** fix box height when label floats ([#1721](https://github.com/GetTerminus/terminus-ui/issues/1721)) ([3c7008a](https://github.com/GetTerminus/terminus-ui/commit/3c7008a))
+
 # [14.15.0](https://github.com/GetTerminus/terminus-ui/compare/v14.14.0...v14.15.0) (2019-09-25)
 
 
