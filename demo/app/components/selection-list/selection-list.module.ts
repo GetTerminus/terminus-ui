@@ -5,7 +5,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
-import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectionListModule } from '@terminus/ui/selection-list';
 import { TsSpacingModule } from '@terminus/ui/spacing';
@@ -21,7 +20,6 @@ import { SelectionListComponent } from './selection-list.component';
     ReactiveFormsModule,
     SelectionListRoutingModule,
     TsCardModule,
-    TsCheckboxModule,
     TsOptionModule,
     TsSelectionListModule,
     TsSpacingModule,

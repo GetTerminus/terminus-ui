@@ -13,13 +13,8 @@ import {
 } from '@terminus/ngx-tools/browser';
 import 'hammerjs';
 
-// Native Material modules only needed for demo shell
-import {
-  MatButtonModule,
-  MatIconModule,
-  MatMenuModule,
-  MatToolbarModule,
-} from '@angular/material';
+import { TsOptionModule } from '@terminus/ui/option';
+import { TsSelectionListModule } from '@terminus/ui/selection-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,19 +23,15 @@ import { ComponentsComponent } from './components/components.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
+    BrowserModule,
+    FlexLayoutModule.withConfig({ useColumnBasisZero: false }),
+    FormsModule,
     HttpClientModule,
-
-    // Native Material modules only needed for demo shell
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
+    ReactiveFormsModule,
+    TsOptionModule,
+    TsSelectionListModule,
   ],
   providers: [
     TsDocumentService,
