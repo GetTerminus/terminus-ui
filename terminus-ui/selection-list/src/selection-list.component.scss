@@ -1,5 +1,6 @@
 @import './../../scss/helpers/animation';
 @import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
 @import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/spacing';
@@ -9,6 +10,7 @@
 $transition-duration: 200;
 
 .ts-selection-list {
+  cursor: cursor(pointer);
   display: block;
 }
 
