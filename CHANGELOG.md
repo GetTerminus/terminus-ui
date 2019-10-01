@@ -1,3 +1,16 @@
+# [14.16.0](https://github.com/GetTerminus/terminus-ui/compare/v14.15.3...v14.16.0) (2019-10-01)
+
+
+### Bug Fixes
+
+* **Docs:** all imports now correct ([4a22bc7](https://github.com/GetTerminus/terminus-ui/commit/4a22bc7))
+* **FormField:** correctly apply hover color ([995f543](https://github.com/GetTerminus/terminus-ui/commit/995f543))
+
+
+### Features
+
+* **SelectionList:** new component ([5494922](https://github.com/GetTerminus/terminus-ui/commit/5494922))
+
 ## [14.15.3](https://github.com/GetTerminus/terminus-ui/compare/v14.15.2...v14.15.3) (2019-09-26)
 
 
