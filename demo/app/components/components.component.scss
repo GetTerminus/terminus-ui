@@ -1,21 +1,40 @@
 @import '~@terminus/ui/helpers';
 
-.versions {
-  color: rgba(black, .6);
-  font-size: 12px;
-  line-height: 1.4em;
-
-  strong {
-    color: black;
-  }
-}
-
-// Lock the navigation menu to a max height
-::ng-deep .menu-nav.mat-menu-panel {
-  // This height makes it obvious there is more content by scrolling
-  max-height: 30rem;
-}
-
-::ng-deep .mat-toolbar {
+header {
+  --bg-header: #eee;
+  --padding: 1em 1em 0 1em;
+  --black: color(pure, dark);
+  background-color: var(--bg-header);
+  left: 0;
+  padding: var(--padding);
+  position: sticky;
+  right: 0;
+  top: 0;
   z-index: z(global-header);
+
+  .versions {
+    color: rgba(var(--black), .6);
+    font-size: 12px;
+    line-height: 1.4em;
+
+    strong {
+      color: var(--black);
+    }
+  }
+
+  ::ng-deep {
+    ts-selection-list {
+      @include typography;
+      // Offset space created by header so versions align with the select
+      margin-top: -.4em;
+
+      .ts-form-field {
+        --padding-overrides: .3em 0 .4em;
+
+        .ts-form-field__infix {
+          padding: var(--padding-overrides);
+        }
+      }
+    }
+  }
 }

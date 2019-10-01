@@ -1,15 +1,15 @@
-<mat-toolbar fxLayout="row">
-  <span>
+<header fxLayout="row">
+  <div fxFlex fxLayout="column" fxLayoutAlign="start stretch">
     Demos
     <sup>
       ({{ components.length }})
     </sup>
-  </span>
+  </div>
 
   <span fxFlex></span>
 
   <div class="versions" fxLayout="row" fxLayoutGap="1em">
-    <div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxLayout="column" fxLayoutAlign="start stretch">
       <div>
         @terminus/ui:
         <strong>{{ uiVersion.full }}</strong>
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxLayout="column" fxLayoutAlign="start stretch">
       <div>
         @angular/*:
         <strong>{{ ngVersion.full }}</strong>
@@ -35,23 +35,24 @@
 
   <span fxFlex></span>
 
-  <span>
-    <mat-menu #appMenu="matMenu" class="menu-nav">
-      <a
-        mat-menu-item
-        *ngFor="let component of components"
-        routerLink="{{component.path}}"
+  <div>
+    <ts-selection-list
+      label="Select a demo"
+      [formControl]="currentPage"
+      [displayFormatter]="formatter"
+      (queryChange)="queryHasChanged($event)"
+      (selectionChange)="pageSelected($event)"
+    >
+      <ts-option
+        *ngFor="let component of simpleResults$ | async"
+        [option]="component"
+        [value]="component"
       >
         {{ component.data.name }}
-      </a>
-    </mat-menu>
-
-    <button mat-button [matMenuTriggerFor]="appMenu">
-      {{ activeNavItem?.data?.name || 'Select Demo' }}
-      <mat-icon>keyboard_arrow_down</mat-icon>
-    </button>
-  </span>
-</mat-toolbar>
+      </ts-option>
+    </ts-selection-list>
+  </div>
+</header>
 
 
 <div class="content">
