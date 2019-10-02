@@ -54,12 +54,8 @@ $ts-selection-list-panel-border-radius: 4px !default;
     }
   }
 
-  &.ts-selection-list-visible {
+  &.ts-selection-list--visible {
     visibility: visible;
-  }
-
-  &.ts-selection-list-hidden {
-    visibility: hidden;
   }
 
   .ts-selection-list-panel-above & {
