@@ -89,12 +89,12 @@ $date-picker-width: 200px;
   &:not(.ts-form-field--disabled) {
     .ts-form-field__container {
       &:hover {
-        &.ts-form-field__outline {
+        .ts-form-field__outline {
           opacity: 0;
           transition: opacity 600ms $swift-ease-out-timing-function;
         }
 
-        &.ts-form-field__outline--thick {
+        .ts-form-field__outline--thick {
           opacity: 1;
         }
       }
