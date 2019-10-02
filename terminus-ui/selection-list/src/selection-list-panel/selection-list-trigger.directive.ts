@@ -28,12 +28,11 @@ import { ControlValueAccessor } from '@angular/forms';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
-import {
-  isUnset,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools/utilities';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsFormFieldComponent } from '@terminus/ui/form-field';
 import {
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
   TsOptionComponent,
   TsOptionSelectionChange,
 } from '@terminus/ui/option';
@@ -72,6 +71,9 @@ export const TS_SELECTION_LIST_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   deps: [Overlay],
   useFactory: TS_SELECTION_LIST_SCROLL_STRATEGY_FACTORY,
 };
+
+// The max height of the select's overlay panel
+export const SELECTION_LIST_PANEL_MAX_HEIGHT = 256;
 
 // Unique ID for each instance
 let nextUniqueId = 0;
@@ -209,6 +211,18 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     }
 
     return null;
+  }
+
+  /**
+   * Calculates the height of the options
+   *
+   * Only called if at least one option exists
+   */
+  private get itemHeight(): number {
+    // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
+    const options = this.selectionListPanel.options.toArray();
+    const option = options[1] || options[0];
+    return option.elementRef.nativeElement.offsetHeight;
   }
 
   /**
@@ -438,6 +452,10 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
         this.selectionListPanel.keyManager.onKeydown(event);
       } else if (isArrowKey && this.canOpen()) {
         this.openPanel();
+      }
+
+      if (isArrowKey || this.selectionListPanel.keyManager.activeItem !== prevActiveItem) {
+        this.scrollToOption();
       }
     }
   }
@@ -780,6 +798,37 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     // If the user blurred the window while the selection list is focused, it means that it'll be refocused when they come back. In this
     // case we want to skip the first focus event, if the pane was closed, in order to avoid reopening it unintentionally.
     this.canOpenOnNextFocus = this.document.activeElement !== this.elementRef.nativeElement || this.panelOpen;
+  }
+
+
+  /**
+   * Scroll to an option
+   *
+   * Given that we are not actually focusing active options, we must manually adjust scroll to reveal options below the fold. First, we find
+   * the offset of the option from the top of the panel. If that offset is below the fold, the new scrollTop will be the offset - the panel
+   * height + the option height, so the active option will be just visible at the bottom of the panel. If that offset is above the top of
+   * the visible panel, the new scrollTop will become the offset. If that offset is visible within the panel already, the scrollTop is not
+   * adjusted.
+   */
+  private scrollToOption(): void {
+    const index: number = this.selectionListPanel.keyManager.activeItemIndex || 0;
+    const labelCount: number = countGroupLabelsBeforeOption(index, this.selectionListPanel.options, this.selectionListPanel.optionGroups);
+
+    if (index === 0 && labelCount === 1) {
+      // If we've got one group label before the option and we're at the top option,
+      // scroll the list to the top. This is better UX than scrolling the list to the
+      // top of the option, because it allows the user to read the top group's label.
+      this.selectionListPanel.scrollTop = 0;
+    } else {
+      const newScrollPosition = getOptionScrollPosition(
+        index + labelCount,
+        this.itemHeight,
+        this.selectionListPanel.scrollTop,
+        SELECTION_LIST_PANEL_MAX_HEIGHT,
+      );
+
+      this.selectionListPanel.scrollTop = newScrollPosition;
+    }
   }
 
 }

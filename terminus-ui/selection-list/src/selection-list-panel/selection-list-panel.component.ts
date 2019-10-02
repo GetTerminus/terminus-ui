@@ -81,6 +81,29 @@ export class TsSelectionListPanelComponent implements AfterContentInit {
   public readonly uid = `ts-selection-list-panel-${nextUniqueId++}`;
 
   /**
+   * Return the panel's scrollTop
+   *
+   * @return The scrolltop number
+   */
+  public get scrollTop(): number {
+    return this.panel ? this.panel.nativeElement.scrollTop : 0;
+  }
+
+  /**
+   * Set the panel scrollTop
+   *
+   * This allows us to manually scroll to display options above or below the fold, as they are not actually being focused when active.
+   *
+   * @param scrollTop - The number of pixels to move
+   */
+  public set scrollTop(scrollTop: number) {
+    // istanbul ignore else
+    if (this.panel) {
+      this.panel.nativeElement.scrollTop = scrollTop;
+    }
+  }
+
+  /**
    * Access the template. Used by {@link TsSelectionListTriggerDirective}
    */
   @ViewChild(TemplateRef, { static: false })
@@ -90,7 +113,7 @@ export class TsSelectionListPanelComponent implements AfterContentInit {
   /**
    * Access the element for the panel containing the options
    */
-  @ViewChild('panel', { static: true })
+  @ViewChild('panel', { static: false })
   public panel!: ElementRef;
 
   /**

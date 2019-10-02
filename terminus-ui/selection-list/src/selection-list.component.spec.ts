@@ -965,4 +965,11 @@ describe(`TsSelectionListComponent`, function() {
     expect(fixture.componentInstance.clicked).toHaveBeenCalled();
   }));
 
+
+  describe(`scroll into view`, () => {
+
+    test.todo(`should update panel scroll position when focusing option out of view`);
+
+  });
+
 });
