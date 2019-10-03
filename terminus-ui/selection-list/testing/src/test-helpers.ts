@@ -200,3 +200,18 @@ export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex =
   const group = getOptgroup(fixture, selectIndex, groupIndex);
   return group.elementRef.nativeElement;
 }
+
+/**
+ * Open the panel
+ *
+ * @param fixture - The component fixture
+ * @param index - The index of the desired TsSelectionListComponent
+ * @return The whenStable promise
+ */
+// tslint:disable-next-line no-any
+export function openSelectionList(fixture: ComponentFixture<any>, index = 0): Promise<any> {
+  const trigger = getSelectionListTriggerElement(fixture, index);
+  trigger.click();
+  fixture.detectChanges();
+  return fixture.whenStable();
+}

@@ -770,7 +770,8 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
         // Create a new stream of panelClosingActions, replacing any previous streams that were created, and flatten it so our stream only
         // emits closing events...
         switchMap(() => {
-          this.resetActiveItem();
+          // Focus the first option when options change
+          this.selectionListPanel.keyManager.setActiveItem(0);
           this.selectionListPanel.setVisibility();
 
           return this.panelClosingActions;
@@ -820,14 +821,12 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       // top of the option, because it allows the user to read the top group's label.
       this.selectionListPanel.scrollTop = 0;
     } else {
-      const newScrollPosition = getOptionScrollPosition(
+      this.selectionListPanel.scrollTop = getOptionScrollPosition(
         index + labelCount,
         this.itemHeight,
         this.selectionListPanel.scrollTop,
         SELECTION_LIST_PANEL_MAX_HEIGHT,
       );
-
-      this.selectionListPanel.scrollTop = newScrollPosition;
     }
   }
 

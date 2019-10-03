@@ -72,7 +72,6 @@ export class ComponentsComponent implements OnInit {
    * Pass the query change to our search
    */
   public queryHasChanged(query: string): void {
-    console.log('queryHasChanged: ', query);
     this.query$.next(query);
   }
 
@@ -104,7 +103,6 @@ export class ComponentsComponent implements OnInit {
    */
   private queryComponents(query: string): Route[] {
     query = query.toLowerCase();
-    console.warn('queryComponents: ', query);
 
     if (query) {
       const letters = query.split('').map(l => `${l}.*`).join('');
