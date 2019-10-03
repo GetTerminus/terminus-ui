@@ -1,3 +1,13 @@
+## [14.16.1](https://github.com/GetTerminus/terminus-ui/compare/v14.16.0...v14.16.1) (2019-10-03)
+
+
+### Bug Fixes
+
+* **SelectionList:** cursor now signifies interaction ([c3d6868](https://github.com/GetTerminus/terminus-ui/commit/c3d6868)), closes [#1730](https://github.com/GetTerminus/terminus-ui/issues/1730)
+* **SelectionList:** first option now selected by default ([cd18162](https://github.com/GetTerminus/terminus-ui/commit/cd18162)), closes [#1729](https://github.com/GetTerminus/terminus-ui/issues/1729)
+* **SelectionList:** focused options are now scrolled into view ([01e8b21](https://github.com/GetTerminus/terminus-ui/commit/01e8b21)), closes [#1727](https://github.com/GetTerminus/terminus-ui/issues/1727)
+* **FormField:** now correctly displays hover styles ([92d166c](https://github.com/GetTerminus/terminus-ui/commit/92d166c)), closes [#1730](https://github.com/GetTerminus/terminus-ui/issues/1730)
+
 # [14.16.0](https://github.com/GetTerminus/terminus-ui/compare/v14.15.3...v14.16.0) (2019-10-01)
 
 
