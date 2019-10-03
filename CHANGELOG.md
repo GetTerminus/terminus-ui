@@ -1,3 +1,11 @@
+## [14.16.2](https://github.com/GetTerminus/terminus-ui/compare/v14.16.1...v14.16.2) (2019-10-03)
+
+
+### Bug Fixes
+
+* **SelectionList:** correctly handle null values ([ce94cd4](https://github.com/GetTerminus/terminus-ui/commit/ce94cd4))
+* **SelectionList:** input text now selected on focus ([10f2c89](https://github.com/GetTerminus/terminus-ui/commit/10f2c89)), closes [#1728](https://github.com/GetTerminus/terminus-ui/issues/1728)
+
 ## [14.16.1](https://github.com/GetTerminus/terminus-ui/compare/v14.16.0...v14.16.1) (2019-10-03)
 
 
