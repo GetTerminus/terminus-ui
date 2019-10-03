@@ -985,4 +985,8 @@ describe(`TsSelectionListComponent`, function() {
     expect(instance.panel.keyManager.activeItemIndex).toEqual(0);
   }));
 
+  // TODO: Not currently supported by Jest
+  //   Waiting for https://github.com/jsdom/jsdom/issues/317 to land
+  test.todo(`should select all existing text when the input is focused`);
+
 });

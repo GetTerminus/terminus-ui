@@ -33,8 +33,8 @@ export class SelectionListComponent implements OnInit, OnDestroy {
   public states = STATES.slice();
 
   // FormControls
-  public complexMultipleControl = new FormControl();
-  public simpleControl = new FormControl();
+  public complexMultipleControl = new FormControl('');
+  public simpleControl = new FormControl('');
 
   // Query controls
   public complexMultipleQuery$ = new BehaviorSubject('');
