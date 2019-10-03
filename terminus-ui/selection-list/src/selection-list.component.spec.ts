@@ -965,11 +965,24 @@ describe(`TsSelectionListComponent`, function() {
     expect(fixture.componentInstance.clicked).toHaveBeenCalled();
   }));
 
+  // Note: Simply dispatching the arrow down key on the trigger repeatedly did not work
+  test.todo(`should update panel scroll position when focusing an out-of-view option`);
 
-  describe(`scroll into view`, () => {
+  test(`should focus first option when the options collection changes`, fakeAsync(() => {
+    const fixture = createComponent(testComponents.Basic);
+    fixture.detectChanges();
+    const instance = getSelectionListInstance(fixture);
 
-    test.todo(`should update panel scroll position when focusing option out of view`);
+    expect(instance.panel.keyManager.activeItemIndex).toEqual(-1);
 
-  });
+    const input = getSelectionListInput(fixture);
+    const states = fixture.componentInstance.states;
+    const name = states[3].name.substring(0, 2);
+    typeInElement(name, input);
+    tick(1000);
+    fixture.detectChanges();
+
+    expect(instance.panel.keyManager.activeItemIndex).toEqual(0);
+  }));
 
 });
