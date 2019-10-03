@@ -1,7 +1,6 @@
 @import './../../scss/helpers/color';
 @import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
-@import './../../scss/helpers/scrollbars';
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
 
@@ -21,7 +20,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 .ts-table {
   @include reset;
   @include typography;
-  @include visible-scrollbars;
   display: inline-block;
   max-height: 100%;
 
@@ -66,7 +64,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
     box-sizing: border-box;
     display: flex;
   }
-
 
   //
   // Cells

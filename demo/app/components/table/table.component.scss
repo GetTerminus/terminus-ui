@@ -1,4 +1,8 @@
+@import '~@terminus/ui/helpers';
+
+
 .example-container {
   height: 400px;
   overflow: auto;
+  @include visible-scrollbars;
 }
