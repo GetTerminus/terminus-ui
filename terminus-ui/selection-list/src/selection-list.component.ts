@@ -653,7 +653,7 @@ export class TsSelectionListComponent implements
         const controlValue = this.ngControl.value;
         // If the input value doesn't match the selection, then the user must have edited the input value
         // istanbul ignore else
-        if (inputValue !== ((controlValue && controlValue.length > 0) ? this.displayFormatter(controlValue[0]) : '')) {
+        if (controlValue && inputValue !== ((controlValue && controlValue.length > 0) ? this.displayFormatter(controlValue[0]) : '')) {
           this.ngControl.value.length = 0;
         }
       }
