@@ -1,7 +1,10 @@
 {
   "ngPackage": {
     "lib": {
-      "entryFile": "src/public-api.ts"
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools/type-guards": "terminus.ngxTools.type-guards"
+      }
     }
   }
 }

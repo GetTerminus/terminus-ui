@@ -21,7 +21,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   @include reset;
   @include typography;
   display: inline-block;
-  max-height: 100%;
 
   //
   // Rows
@@ -71,23 +70,24 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 
   // Body cell
   .ts-cell {
+    $sticky-border: 1px solid color(utility, xlight);
     background-color: color(pure);
     padding: spacing(default);
     vertical-align: middle;
 
-    &.ts-table--sticky {
-      border-right: 1px solid color(utility, xlight);
+    &--sticky {
+      border-right: $sticky-border;
+    }
+
+    &--sticky-end {
+      border-left: $sticky-border;
     }
   }
 
   // Header cell
   .ts-header-cell {
     background-color: color(pure);
-    // If the column isn't sortable, add padding here that would normally be added by
-    // `ts-sort-header-container`
-    &:not(.ts-sortable) {
-      padding: spacing(default);
-    }
+    padding: spacing(default);
 
     &.ts-sortable {
       border-bottom: 3px solid color(utility, light);
@@ -100,11 +100,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
       border-bottom-color: color(accent);
       color: color(accent);
     }
-
-    // <div> inner container wrapping the sort control
-    .ts-sort-header-container {
-      padding: spacing(default);
-    }
   }
 
   // Any cell
@@ -112,7 +107,6 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
   .ts-header-cell {
     align-items: stretch;
     background-color: color(pure);
-    display: flex;
     flex: 1;
     flex-basis: 6em;
     min-height: inherit;

@@ -22,3 +22,5 @@ recreate a spreadsheet.
 
 Row selection (single or multiple) is not implemented. UX needs a better use-case for this need
 before we take the time to build it in.
+
+This can be added by the consumer fairly easily.
