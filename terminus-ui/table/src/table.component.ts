@@ -2,8 +2,27 @@ import { CdkTable } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { isUndefined } from '@terminus/ngx-tools/type-guards';
+
+
+/**
+ * The definition for a single column
+ */
+export interface TsColumn {
+  // The column name
+  name: string;
+  // The desired width as a string (eg '200px', '14rem' etc)
+  width?: string;
+  // Allow any other data properties the consumer may need
+  // tslint:disable-next-line no-any
+  [key: string]: any;
+}
+
+// Default column width = ~112px
+const DEFAULT_COLUMN_WIDTH = '7rem';
 
 
 /**
@@ -47,13 +66,40 @@ import {
     provide: CdkTable,
     useExisting: TsTableComponent,
   }],
-  exportAs: 'tsTable',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs: 'tsTable',
 })
 export class TsTableComponent<T> extends CdkTable<T> {
   /**
-   * Override CDK's class
+   * Override the sticky CSS class set by the `CdkTable`
    */
-  protected stickyCssClass = 'ts-table--sticky';
+  protected stickyCssClass = 'ts-cell--sticky';
+
+  /**
+   * Return a simple array of column names
+   *
+   * Used by {@link TsHeaderRowDefDirective} and {@link TsRowDefDirective}.
+   */
+  public get columnNames(): string[] {
+    return this.columns.map(c => c.name);
+  }
+
+  /**
+   * Define the array of columns
+   */
+  @Input()
+  public set columns(value: ReadonlyArray<TsColumn>) {
+    this._columns = value.map(column => {
+      if (isUndefined(column.width)) {
+        column.width = DEFAULT_COLUMN_WIDTH;
+      }
+      return column;
+    });
+  }
+  public get columns(): ReadonlyArray<TsColumn> {
+    return this._columns;
+  }
+  private _columns: ReadonlyArray<TsColumn>;
+
 }

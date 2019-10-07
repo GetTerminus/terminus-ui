@@ -17,38 +17,13 @@
 <div class="example-container">
   <ts-table
     [dataSource]="dataSource"
+    [columns]="resizableColumns"
     tsSort
     tsVerticalSpacing
+    #myTable="tsTable"
   >
 
-    <ng-container tsColumnDef="created" noWrap="true" minWidth="200px">
-      <ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Created
-      </ts-header-cell>
-      <ts-cell *tsCellDef="let item">
-        {{ item.created_at | date:"shortDate" }}
-      </ts-cell>
-    </ng-container>
-
-    <ng-container tsColumnDef="updated" noWrap="true" minWidth="200px" sticky>
-      <ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Updated
-      </ts-header-cell>
-      <ts-cell *tsCellDef="let item">
-        {{ item.updated_at | date:"shortDate" }}
-      </ts-cell>
-    </ng-container>
-
-    <ng-container tsColumnDef="number" noWrap="true" minWidth="100px">
-      <ts-header-cell *tsHeaderCellDef>
-        Number
-      </ts-header-cell>
-      <ts-cell *tsCellDef="let item">
-        {{ item.number }}
-      </ts-cell>
-    </ng-container>
-
-    <ng-container tsColumnDef="title" minWidth="400px">
+    <ng-container tsColumnDef="title" sticky>
       <ts-header-cell *tsHeaderCellDef>
         Title
       </ts-header-cell>
@@ -57,25 +32,16 @@
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="body" minWidth="500px">
-      <ts-header-cell *tsHeaderCellDef>
-        Body
+    <ng-container tsColumnDef="updated" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef ts-sort-header>
+        Updated
       </ts-header-cell>
       <ts-cell *tsCellDef="let item">
-        <span [innerHTML]="item.body"></span>
+        {{ item.updated_at | date:"shortDate" }}
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="state" noWrap="true" minWidth="200px">
-      <ts-header-cell *tsHeaderCellDef>
-        State
-      </ts-header-cell>
-      <ts-cell *tsCellDef="let item">
-        {{ item.state }}
-      </ts-cell>
-    </ng-container>
-
-    <ng-container tsColumnDef="comments" noWrap="true" alignment="right" minWidth="200px">
+    <ng-container tsColumnDef="comments" noWrap="true">
       <ts-header-cell *tsHeaderCellDef ts-sort-header>
         Comments
       </ts-header-cell>
@@ -84,7 +50,7 @@
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="assignee" noWrap="true" minWidth="200px">
+    <ng-container tsColumnDef="assignee" noWrap="true">
       <ts-header-cell *tsHeaderCellDef ts-sort-header>
         Assignee
       </ts-header-cell>
@@ -93,7 +59,16 @@
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="labels" minWidth="200px">
+    <ng-container tsColumnDef="number" noWrap="true" alignment="right">
+      <ts-header-cell *tsHeaderCellDef>
+        Number
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.number }}
+      </ts-cell>
+    </ng-container>
+
+    <ng-container tsColumnDef="labels">
       <ts-header-cell *tsHeaderCellDef>
         Labels
       </ts-header-cell>
@@ -104,27 +79,67 @@
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="id" minWidth="200px" stickyEnd>
+    <ng-container tsColumnDef="created" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef ts-sort-header>
+        Created
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.created_at | date:"shortDate" }}
+      </ts-cell>
+    </ng-container>
+
+    <ng-container tsColumnDef="body">
+      <ts-header-cell *tsHeaderCellDef>
+        Body
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        <span class="truncate" [innerHTML]="sanitize(item.body)"></span>
+      </ts-cell>
+    </ng-container>
+
+    <ng-container tsColumnDef="state" noWrap="true">
+      <ts-header-cell *tsHeaderCellDef>
+        State
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        {{ item.state }}
+      </ts-cell>
+    </ng-container>
+
+    <ng-container tsColumnDef="id" alignment="right">
       <ts-header-cell *tsHeaderCellDef>
         ID
       </ts-header-cell>
       <ts-cell *tsCellDef="let item">
-        {{ item.id }},
+        {{ item.id }}
       </ts-cell>
     </ng-container>
 
-    <ts-header-row *tsHeaderRowDef="displayedColumns; sticky: true"></ts-header-row>
+    <ng-container tsColumnDef="html_url" noWrap="true" stickyEnd>
+      <ts-header-cell *tsHeaderCellDef>
+        View
+      </ts-header-cell>
+      <ts-cell *tsCellDef="let item">
+        <a href="{{ item.html_url }}">
+          <ts-icon>open_in_new</ts-icon>
+        </a>
+      </ts-cell>
+    </ng-container>
 
-    <ts-row *tsRowDef="let row; columns: displayedColumns;">
+    <ts-header-row *tsHeaderRowDef="myTable.columnNames; sticky: true"></ts-header-row>
+
+    <ts-row *tsRowDef="let row; columns: myTable.columnNames;">
     </ts-row>
 
   </ts-table>
 </div>
 
-<ts-paginator
-  [totalRecords]="resultsLength"
-  recordCountTooHighMessage="Please refine your filters."
-  (pageSelect)="onPageSelect($event)"
-  (recordsPerPageChange)="perPageChange($event)"
-></ts-paginator>
+<div fxLayout="row" fxLayoutAlign="end start">
+  <ts-paginator
+    [totalRecords]="resultsLength"
+    recordCountTooHighMessage="Please refine your filters."
+    (pageSelect)="onPageSelect($event)"
+    (recordsPerPageChange)="perPageChange($event)"
+  ></ts-paginator>
+</div>
 
