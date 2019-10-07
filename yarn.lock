@@ -1433,10 +1433,10 @@
     "@typescript-eslint/eslint-plugin-tslint" "^1.10.2"
     "@typescript-eslint/parser" "^1.10.2"
 
-"@terminus/ngx-tools@^7.2.4":
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-7.2.4.tgz#aed4d97fadc314a313ebffd7734f921c5c6088e0"
-  integrity sha512-E7uYMpVjTGDT2ZQHLpCkM5V+arrjqax9E5CqYovvPTFzoj5w7QFdd6BaqKMkfoSSnXnChGyhRCHaZhX+CG5gog==
+"@terminus/ngx-tools@^7.2.6":
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-7.2.6.tgz#b5f975befb787265cdd13d680fa921c9060d9b55"
+  integrity sha512-wP4o9BUp1Ejceaew5U93I/stHt3KwF15N0kE/ZvknxTSLeAgHkyIbfV5XE5VhDBgCBej8B0rI5+kng3c26TkQQ==
   dependencies:
     tslib "^1.9.0"
 
