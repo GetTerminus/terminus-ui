@@ -13,10 +13,7 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  CanDisable,
-  mixinDisabled,
-} from '@angular/material/core';
+import { CanDisable } from '@angular/material/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { isBoolean } from '@terminus/ngx-tools/type-guards';
 import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
@@ -48,12 +45,10 @@ import {
  * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
  */
 @Component({
-  // NOTE(B$): This component needs to be added to another component so we need a non-element
-  // selector
+  // NOTE: This component needs to be added to another component so we need a non-element selector
   // tslint:disable: component-selector
   selector: '[ts-sort-header]',
   // tslint:enable: component-selector
-  exportAs: 'tsSortHeader',
   templateUrl: './sort-header.component.html',
   styleUrls: ['./sort-header.component.scss'],
   host: {
@@ -63,8 +58,6 @@ import {
     '(click)': '_handleClick()',
   },
   preserveWhitespaces: false,
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disabled'],
@@ -74,6 +67,9 @@ import {
     tsSortAnimations.rightPointer,
     tsSortAnimations.indicatorToggle,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsSortHeader',
 })
 export class TsSortHeaderComponent implements TsSortableItem, CanDisable, OnInit, OnDestroy  {
   public disabled = false;

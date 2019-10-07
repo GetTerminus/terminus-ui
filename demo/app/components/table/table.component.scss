@@ -6,3 +6,10 @@
   overflow: auto;
   @include visible-scrollbars;
 }
+
+.truncate {
+  display: block;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
