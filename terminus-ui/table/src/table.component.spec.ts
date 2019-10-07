@@ -1,18 +1,31 @@
 /* eslint-disable no-underscore-dangle */
 import { ComponentFixture } from '@angular/core/testing';
-import { createComponent } from '@terminus/ngx-tools/testing';
+import {
+  createComponent,
+  ElementRefMock,
+} from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/table/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   expectTableToMatchContent,
+  getCells,
   getHeaderCells,
   getHeaderRow,
 } from '@terminus/ui/table/testing';
 
+import {
+  TsCellDirective,
+  TsColumnDefDirective,
+} from './cell';
 import { TsTableDataSource } from './table-data-source';
 import { TsTableModule } from './table.module';
 
 
+interface TestData {
+  a: string|number|undefined;
+  b: string|number|undefined;
+  c: string|number|undefined;
+}
 
 
 describe(`TsTableComponent`, function() {
@@ -34,7 +47,6 @@ describe(`TsTableComponent`, function() {
       ]);
     });
 
-
     test(`should create a table with special when row`, function() {
       const fixture = createComponent(testComponents.TableWithWhenRowApp, [], [TsTableModule]);
       fixture.detectChanges();
@@ -49,7 +61,6 @@ describe(`TsTableComponent`, function() {
       ]);
     });
   });
-
 
   describe(`with TsTableDataSource`, function() {
     let tableElement: HTMLElement;
@@ -66,7 +77,6 @@ describe(`TsTableComponent`, function() {
       dataSource = fixture.componentInstance.dataSource;
     });
 
-
     test(`should create table and display data source contents`, function() {
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -75,7 +85,6 @@ describe(`TsTableComponent`, function() {
         ['a_3', 'b_3', 'c_3'],
       ]);
     });
-
 
     test(`changing data should update the table contents`, function() {
       // Add data
@@ -102,13 +111,11 @@ describe(`TsTableComponent`, function() {
       ]);
     });
 
-
     test(`should add the no wrap class`, function() {
       const noWrapColumn = fixture.nativeElement.querySelector('.ts-column-no-wrap');
 
       expect(noWrapColumn).toBeTruthy();
     });
-
 
     test(`should add the min-width style`, function() {
       const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
@@ -121,12 +128,11 @@ describe(`TsTableComponent`, function() {
         headerStyle = headerColumn.style._values['flex-basis'];
       }
 
-      expect(style).toEqual('100px');
-      expect(headerStyle).toEqual('100px');
+      expect(style).toEqual('7rem');
+      expect(headerStyle).toEqual('7rem');
     });
 
   });
-
 
   describe(`table column alignment`, () => {
     let fixture: ComponentFixture<testComponents.TableColumnAlignmentTableApp>;
@@ -171,19 +177,16 @@ describe(`TsTableComponent`, function() {
 
   });
 
+  test(`should throw error for invalid alignment arguments`, () => {
+    const col = new TsColumnDefDirective();
+    Object.defineProperties(col, { alignment: { get: () => 'foo' } });
 
-  describe(`invalid alignment argument`, () => {
+    const actual = () => {
+      const test = new TsCellDirective(col, new ElementRefMock(), {} as any, {} as any);
+    };
 
-    test(`should throw warning`, () => {
-      window.console.warn = jest.fn();
-      const fixture = createComponent(testComponents.TableColumnInvalidAlignmentTableApp, [], [TsTableModule]);
-      fixture.detectChanges();
-
-      expect(window.console.warn).toHaveBeenCalled();
-    });
-
+    expect(actual).toThrowError('TsCellDirective: ');
   });
-
 
   describe(`pinned header and column`, () => {
     let fixture: ComponentFixture<testComponents.PinnedTableHeaderColumn>;
@@ -198,13 +201,16 @@ describe(`TsTableComponent`, function() {
 
     test(`should set a header to be sticky`, () => {
       const header = getHeaderRow(tableElement);
-      expect(header.classList).toContain('ts-table--sticky');
+      expect(header.classList).toContain('ts-cell--sticky');
     });
 
     test(`should set a column to be sticky`, () => {
       const headerCells = getHeaderCells(tableElement);
-      expect(headerCells[0].classList).toContain('ts-table--sticky');
-      expect(headerCells[1].classList).not.toContain('ts-table--sticky');
+      const cells = getCells(tableElement);
+      expect(headerCells[0].classList).toContain('ts-cell--sticky');
+      expect(headerCells[1].classList).not.toContain('ts-cell--sticky');
+      expect(cells[0].classList).not.toContain('ts-cell--sticky-end');
+      expect(cells[2].classList).toContain('ts-cell--sticky-end');
     });
 
   });

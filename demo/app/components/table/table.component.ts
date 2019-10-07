@@ -4,12 +4,16 @@ import {
   Component,
   ViewChild,
 } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,
 } from '@terminus/ui/paginator';
 import { TsSortDirective } from '@terminus/ui/sort';
-import { TsTableDataSource } from '@terminus/ui/table';
+import {
+  TsColumn,
+  TsTableDataSource,
+} from '@terminus/ui/table';
 import {
   merge,
   Observable,
@@ -76,10 +80,14 @@ const COLUMNS_SOURCE_GITHUB = [
 
 export interface GithubApi {
   items: GithubIssue[];
+  // NOTE: Format controlled by GitHub
+  // eslint-disable-next-line camelcase
   total_count: number;
 }
 
 export interface GithubIssue {
+  // NOTE: Format controlled by GitHub
+  // eslint-disable-next-line camelcase
   created_at: string;
   number: string;
   state: string;
@@ -92,11 +100,10 @@ export interface GithubIssue {
 export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
-  getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
+  public getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
+    const href = `https://api.github.com/search/issues`;
     const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
     const requestParams = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
-
     return this.http.get<GithubApi>(`${requestUrl}${requestParams}`);
   }
 }
@@ -108,8 +115,8 @@ export class ExampleHttpDao {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterViewInit {
-  allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
-  displayedColumns: string[] = [
+  public allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
+  public displayedColumns = [
     'title',
     'updated',
     'comments',
@@ -117,26 +124,52 @@ export class TableComponent implements AfterViewInit {
     'number',
     'labels',
     'created',
-    'id',
     'body',
+    'id',
+    'html_url',
   ];
-  exampleDatabase!: ExampleHttpDao;
-  dataSource: TsTableDataSource<GithubIssue> = new TsTableDataSource();
-  resultsLength = 0;
+  public exampleDatabase!: ExampleHttpDao;
+  public dataSource = new TsTableDataSource<GithubIssue>();
+  public resultsLength = 0;
+  public resizableColumns: TsColumn[] = [
+    {
+      name: 'title',
+      width: '400px',
+    },
+    { name: 'updated' },
+    { name: 'comments' },
+    {
+      name: 'assignee',
+      width: '160px',
+    },
+    { name: 'number' },
+    {
+      name: 'labels',
+      width: '260px',
+    },
+    { name: 'created' },
+    { name: 'id' },
+    {
+      name: 'body',
+      width: '500px',
+    },
+    { name: 'html_url' },
+  ];
 
-  @ViewChild(TsSortDirective, {static: true})
-  sort!: TsSortDirective;
+  @ViewChild(TsSortDirective, { static: true })
+  public sort!: TsSortDirective;
 
-  @ViewChild(TsPaginatorComponent, {static: true})
-  paginator!: TsPaginatorComponent;
+  @ViewChild(TsPaginatorComponent, { static: true })
+  public readonly paginator!: TsPaginatorComponent;
 
 
   constructor(
+    private domSanitizer: DomSanitizer,
     private http: HttpClient,
   ) {}
 
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
@@ -171,12 +204,16 @@ export class TableComponent implements AfterViewInit {
   }
 
 
-  perPageChange(e: number): void {
+  public perPageChange(e: number): void {
     console.log('DEMO records per page changed: ', e);
   }
 
-  onPageSelect(e: TsPaginatorMenuItem): void {
+  public onPageSelect(e: TsPaginatorMenuItem): void {
     console.log('DEMO page selected: ', e);
+  }
+
+  public sanitize(content): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustHtml(content);
   }
 
 }

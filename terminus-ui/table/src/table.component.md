@@ -3,34 +3,33 @@
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [1. Define the table's columns](#1-define-the-tables-columns)
-  - [2. Define the table's rows](#2-define-the-tables-rows)
-  - [3. Provide data](#3-provide-data)
-  - [4. Full HTML example](#4-full-html-example)
+  - [1. Define the columns HTML](#1-define-the-columns-html)
+  - [2. Define the displayed columns](#2-define-the-displayed-columns)
+  - [3. Define the table's rows](#3-define-the-tables-rows)
+  - [4. Provide data](#4-provide-data)
+  - [Full HTML example](#full-html-example)
 - [Dynamically update table data](#dynamically-update-table-data)
 - [Dynamic columns](#dynamic-columns)
 - [Sorting by column](#sorting-by-column)
 - [Row selection](#row-selection)
 - [No-wrap for a column](#no-wrap-for-a-column)
-- [Min-width for a column](#min-width-for-a-column)
-- [Alignment for a cell](#alignment-for-a-cell)
+- [Cell alignment](#cell-alignment)
 - [Sticky header](#sticky-header)
 - [Sticky column](#sticky-column)
-  - [StickyEnd](#stickyend)
-- [Full example with pagination, sorting and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
+  - [Sticky column at end](#sticky-column-at-end)
+- [Full example with pagination, sorting, and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+
 ## Basic usage
 
+### 1. Define the columns HTML
 
-### 1. Define the table's columns
+Define the table's columns. Each column definition should be given a unique name and contain the content for its header and row cells.
 
-Define the table's columns. Each column definition should be given a unique name and contain the
-content for its header and row cells.
-
-Here's a simple column definition with the name `userName`. The header cell contains the text `Username`
-and the row cell will render the name property of each row's data.
+Here's a simple column definition with the name `userName`. The header cell contains the text `Username` and the row cell will render the
+name property of each row's data.
 
 ```html
 <ng-container tsColumnDef="username">
@@ -39,20 +38,32 @@ and the row cell will render the name property of each row's data.
   </ts-header-cell>
 
   <ts-cell *tsCellDef="let item">
+    <!-- Place any HTML content here -->
     {{ item.username }}
   </ts-cell>
 </ng-container>
 ```
 
 
-### 2. Define the table's rows
+### 2. Define the displayed columns
 
-After defining your columns, provide the header and data row templates that will be rendered out by
-the table. Each row needs to be given a list of the columns that it should contain. The order of the
-names will define the order of the cells rendered.
+The table expects an array of `TsColumn` definitions to manage the displayed columns and (optionally) their associated widths.
 
-It is not required to provide a list of all the defined column names, but only the ones that you
-want to have rendered.
+```typescript
+const columns: TsColumn = [
+  {name: 'title', width: '200px'},
+  {name: 'body', width: '400px'},
+  // The width will default to `7rem` if not defined here
+  {name: 'link'},
+];
+```
+
+### 3. Define the table's rows
+
+After defining your columns, provide the header and data row templates that will be rendered out by the table. Each row needs to be given a
+list of the columns that it should contain. The order of the names will define the order of the cells rendered.
+
+NOTE: It is not required to provide a list of all the defined column names, but only the ones that you want to have rendered.
 
 ```html
 <ts-header-row *tsHeaderRowDef="['userName', 'age']">
@@ -63,11 +74,43 @@ want to have rendered.
 </ts-row>
 ```
 
+The table component provides an array of column names built from the array of `TsColumn` definitions passed to the table. You can use this
+reference for the rows rather than defining two different arrays:
 
-### 3. Provide data
+```html
+<ts-table
+  [dataSource]="dataSource"
+  [columns]="resizableColumns"
+  #myTable="tsTable"
+>
 
-The column and row definitions now capture how data will render - all that's left is to provide the
-data itself.
+  <ts-header-row *tsHeaderRowDef="myTable.columnNames">
+  </ts-header-row>
+
+  <!-- 
+    `myTable` is the template reference for the table component.
+    `columnNames` is a getter that returns an array of column names.
+  -->
+  <ts-row *tsRowDef="let row; columns: myTable.columnNames">
+  </ts-row>
+</ts-table>
+```
+
+Mapping the array of names manually is also fairly simple:
+
+```typescript
+const columns: TsColumn = [
+  {name: 'title', width: '200px'},
+  {name: 'body', width: '400px'},
+  {name: 'link'},
+];
+const columnName = this.columns.map(c => c.name);
+```
+
+
+### 4. Provide data
+
+The column and row definitions now capture how data will render - all that's left is to provide the data itself.
 
 Create an instance of `TsTableDataSource` and set the items to be displayed to the `data` property.
 
@@ -88,7 +131,7 @@ The `DataSource` can be seeded with initial data:
 this.myDataSource = new TsTableDataSource(INITIAL_DATA);
 ```
 
-An interface for your table item can be passed to `TsTableDataSource` for stricter typing:
+An interface for your table data can be passed to `TsTableDataSource` for stricter typing:
 
 ```typescript
 export interface MyTableItem {
@@ -96,16 +139,15 @@ export interface MyTableItem {
   id: number;
 }
 
-this.myDataSource: TsTableDataSource<MyTableItem> = new TsTableDataSource(INITIAL_DATA)
+this.myDataSource = new TsTableDataSource<MyTableItem>(INITIAL_DATA);
 ```
 
 
-### 4. Full HTML example
+### Full HTML example
 
 ```html
 <!-- Pass in the dataSource -->
-<ts-table [dataSource]="myDataSource">
-
+<ts-table [dataSource]="myDataSource" [columns]="myColumns" #myTable="tsTable">
   <!-- Define the header cell and body cell for the `username` Column -->
   <ng-container tsColumnDef="username">
     <ts-header-cell *tsHeaderCellDef>
@@ -129,13 +171,10 @@ this.myDataSource: TsTableDataSource<MyTableItem> = new TsTableDataSource(INITIA
   </ng-container>
 
   <!-- Define the table's header row -->
-  <ts-header-row *tsHeaderRowDef="displayedColumns" fxLayout="row">
-  </ts-header-row>
+  <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
 
   <!-- Define the table's body row(s) -->
-  <ts-row *tsRowDef="let row; columns: displayedColumns;" fxLayout="row">
-  </ts-row>
-
+  <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
 </ts-table>
 ```
 
@@ -145,11 +184,10 @@ this.myDataSource: TsTableDataSource<MyTableItem> = new TsTableDataSource(INITIA
 Your data source was created during the bootstraping of your component:
 
 ```typescript
-this.myDataSource = new TsTableDataSource();
+this.myDataSource = new TsTableDataSource<MyDataType>();
 ```
 
-Simply assign the new data to `myDataSource.data`. The table will flush the old data and display the
-new data:
+Simply assign the new data to `myDataSource.data`. The table will flush the old data and display the new data:
 
 ```typescript
 this.myDataSource.data = dataToRender;
@@ -158,88 +196,50 @@ this.myDataSource.data = dataToRender;
 
 ## Dynamic columns
 
-Enable dynamic columns using a `TsSelectComponent`:
-
-```typescript
-// Define a data source
-this.myDataSource = new TsTableDataSource();
-
-// Define all available columns (`TsSelectComponent` requires an array of objects)
-allColumns = [
-  {
-    name: 'Username',
-    myValue: 'username',
-  },
-  {
-    name: 'Age',
-    myValue: 'age',
-  },
-];
-```
-
-Both the `TsSelectComponent` and the `tsRowDef` `columns` input should reference the same `ngModel`
-(`displayedColumns` in this example).
+Columns can be dynamically added and removed with any control. The selected control should affect the array of columns passed to the table
+(`myColumns` in the example below).
 
 ```html
-<ts-select
-  [multipleAllowed]="true"
-  valueKey="myValue"
-  [(ngModel)]="displayedColumns"
-  [items]="allColumns"
-  (open)="selectOpen($event)"
-  (change)="selectChange($event)"
-></ts-select>
-
-<ts-table [dataSource]="myDataSource" tsSort>
+<!-- As the `myColumns` array is changed, columns will be shown/hidden in real time -->
+<ts-table [dataSource]="myDataSource" [columns]="myColumns" #myTable="tsTable">
   <!-- Custom column definitions excluded for brevity -->
 
-  <!-- `displayedColumns` is referencing the same model as the `ts-select` -->
-  <ts-header-row *tsHeaderRowDef="displayedColumns" fxLayout="row">
-  </ts-header-row>
-
-  <!-- `displayedColumns` is referencing the same model as the `ts-select` -->
-  <ts-row *tsRowDef="let row; columns: displayedColumns;" fxLayout="row">
-  </ts-row>
-
+  <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
+  <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
 </ts-table>
 ```
 
 
 ## Sorting by column
 
-To add sorting behavior to the table, add the `tsSort` directive to the `<ts-table>` and add
-`ts-sort-header` to each column header cell that should trigger sorting. Provide the
-`TsSortDirective` directive to the `TsTableDataSource` and it will automatically listen for sorting
+To add sorting behavior to the table, add the `tsSort` directive to the `<ts-table>` and add `ts-sort-header` to each column header cell
+that should trigger sorting. Provide the `TsSortDirective` directive to the `TsTableDataSource` and it will automatically listen for sorting
 changes and change the order of data rendered by the table.
 
-By default, the `TsTableDataSource` sorts with the assumption that the sorted column's name matches
-the data property name that the column displays. For example, the following column definition is
-named `position`, which matches the name of the property displayed in the row cell.
+By default, the `TsTableDataSource` sorts with the assumption that the sorted column's name matches the data property name that the column
+displays. For example, the following column definition is named `position`, which matches the name of the property displayed in the row
+cell.
 
 ```html
 <!-- Add the `tsSort` directive to the table -->
-<ts-table [dataSource]="myDataSource" tsSort>
-
-  <!-- Name the column -->
+<ts-table [dataSource]="myDataSource" [columns]="myColumns" tsSort>
   <ng-container tsColumnDef="position">
-    <!-- Add the `ts-sort-header` directive -->
+    <!-- Add the `ts-sort-header` directive to the column -->
     <ts-header-cell *tsHeaderCellDef ts-sort-header>
       Position
     </ts-header-cell>
 
     <ts-cell *tsCellDef="let element">
-      <!-- tsColumnDef is named to match the data item displayed here -->
       {{ element.position }}
     </ts-cell>
   </ng-container>
-
 </ts-table>
 ```
 
 In your class, get a reference to the `TsSortDirective` using `@ViewChild`:
 
 ```typescript
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, ViewChild } from '@angular/core';
 import { TsSortDirective } from '@terminus/ui/sort';
 
 export class TableComponent implements AfterViewInit {
@@ -249,8 +249,9 @@ export class TableComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     // Subscribe to the sortChange event to reset pagination, fetch new data, etc
-    this.sort.sortChange.subscribe(() => {
+    this.sort.sortChange.subscribe(sortState => {
       // Table was sorted - go get new data!
+      console.log('Table sort changed! ', sortState);
     });
   }
 }
@@ -259,18 +260,17 @@ export class TableComponent implements AfterViewInit {
 
 ## Row selection
 
-Possible but not implemented until a valid use-case arises.
+This can be implemented at the consumer level by adding a column that contains a checkbox.
 
 
 ## No-wrap for a column
 
-Sometimes a column's content should not wrap even at small viewport sizes. Adding the directive
-`noWrap="true"` to the column will keep then contents from wrapping regardless of the viewport
-width.
+Sometimes a column's content should not wrap, even at small viewport sizes. Setting the `@Input` `[noWrap]="true"` on the column will keep
+the contents from wrapping regardless of the viewport width.
 
 ```html
-<!-- set noWrap on the column -->
-<ng-container tsColumnDef="created" noWrap="true">
+<!-- Set noWrap on the column -->
+<ng-container tsColumnDef="created" [noWrap]="true">
   <ts-header-cell *tsHeaderCellDef ts-sort-header>
     Created
   </ts-header-cell>
@@ -281,32 +281,13 @@ width.
 ```
 
 
-## Min-width for a column
+## Cell alignment
 
-Defining a minimum width for specific columns can help the layout not compress certain columns past
-a readable point. Add the directive `minWidth` and pass it any valid CSS min-width value (`100px`,
-`10%`, `12rem`, etc..).
-
-```html
-<!-- set minWidth on the column -->
-<ng-container tsColumnDef="created" minWidth="100px">
-  <ts-header-cell *tsHeaderCellDef ts-sort-header>
-    Created
-  </ts-header-cell>
-  <ts-cell *tsCellDef="let item">
-    {{ item.created_at | date:shortDate }}
-  </ts-cell>
-</ng-container>
-```
-
-
-## Alignment for a cell
-
-Defining an alignment style for a cell can set the horizontal alignment of text inside the cell. Add the
-directive `alignment` and pass it any valid TsTableColumnAlignment value (`left`, `center` or `right`).
+Defining an alignment style for a cell will set the horizontal alignment of text inside the cell. Set the directive `alignment` and pass it
+any valid TsTableColumnAlignment value (`left`, `center` or `right`).
 
 ```html
-<!-- set alignment on the column -->
+<!-- Set alignment on the column -->
 <ng-container tsColumnDef="created" alignment="right">
   <ts-header-cell *tsHeaderCellDef ts-sort-header>
     Created
@@ -320,70 +301,63 @@ directive `alignment` and pass it any valid TsTableColumnAlignment value (`left`
 
 ## Sticky header
 
-Defining the header as sticky will ensure it is always visible as the table scrolls. Set `sticky: true` in the `ts-header-row`'s `tsHeaderRowDef` directive.
+Defining the header as sticky will ensure it is always visible as the table scrolls. Set `sticky: true` in the `ts-header-row`'s
+`tsHeaderRowDef` directive.
 
 ```html
-  <ts-header-row *tsHeaderRowDef="displayedColumns; sticky: true"></ts-header-row>
+<ts-header-row *tsHeaderRowDef="displayedColumns; sticky: true"></ts-header-row>
 ```
 
 
 ## Sticky column
 
-Defining a sticky column will pin it to the left side as the table scrolls horizontally. Add the sticky parameter to the `<ng-container>` of the column definition. This can be applied to more than one column.
+Defining a sticky column will pin it to the left side as the table scrolls horizontally. Add the sticky data attribute to the column
+definition. This can be applied to more than one column.
 
 ```html
-  <ng-container tsColumnDef="updated" sticky>
-    <ts-header-cell *tsHeaderCellDef>
-      Updated
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.updated_at | date:"shortDate" }}
-    </ts-cell>
-  </ng-container>
+<ng-container tsColumnDef="updated" sticky>
+  <ts-header-cell *tsHeaderCellDef>
+    Updated
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.updated_at | date:"shortDate" }}
+  </ts-cell>
+</ng-container>
 ```
 
-### StickyEnd
+### Sticky column at end
 
-Defining a stickyEnd column will pin it to the right side as the table scrolls horizontally. Add the stickyEnd parameter to the `<ng-container>` of the column definition. This can be applied to more than one column.
+Adding the data attribute `stickyEnd` will pin the column to the end of the table as it scrolls horizontally. This can be applied to more
+than one column.
 
 
 ```html
-  <ng-container tsColumnDef="updated" stickyEnd>
-    <ts-header-cell *tsHeaderCellDef>
-      Updated
-    </ts-header-cell>
-    <ts-cell *tsCellDef="let item">
-      {{ item.updated_at | date:"shortDate" }}
-    </ts-cell>
-  </ng-container>
+<ng-container tsColumnDef="updated" stickyEnd>
+  <ts-header-cell *tsHeaderCellDef>
+    Updated
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.updated_at | date:"shortDate" }}
+  </ts-cell>
+</ng-container>
 ```
 
 ---
 
 
-## Full example with pagination, sorting and dynamic columns
-
+## Full example with pagination, sorting, and dynamic columns
 
 ```typescript
-import {
-  Component,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { merge, Observable, of } from 'rxjs';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { catchError } from 'rxjs/operators/catchError';
-
 import { TsSortDirective } from '@terminus/ui/sort';
-import {
-  TsTableDataSource,
-  TsSortDirective,
-  TsPaginatorComponent,
-  TsPaginatorMenuItem,
-} from '@terminus/ui/table';
+import { TsTableDataSource, TsColumn } from '@terminus/ui/table';
+import { TsPaginatorComponent } from '@terminus/ui/paginator';
 
 
 @Component({
@@ -400,14 +374,13 @@ import {
       ></ts-select>
     </div>
 
-
     <ts-table
       [dataSource]="dataSource"
+      [columns]="displayedColumns"
       tsSort
-      tsVerticalSpacing
+      #myTable="tsTable"
     >
-
-      <ng-container tsColumnDef="created" noWrap="true" minWidth="100px">
+      <ng-container tsColumnDef="created" [noWrap]="true">
         <ts-header-cell *tsHeaderCellDef ts-sort-header>
           Created
         </ts-header-cell>
@@ -416,7 +389,7 @@ import {
         </ts-cell>
       </ng-container>
 
-      <ng-container tsColumnDef="number" noWrap="true" alignment="right">
+      <ng-container tsColumnDef="number" [noWrap]="true" alignment="right">
         <ts-header-cell *tsHeaderCellDef>
           Number
         </ts-header-cell>
@@ -434,7 +407,7 @@ import {
         </ts-cell>
       </ng-container>
 
-      <ng-container tsColumnDef="state" noWrap="true">
+      <ng-container tsColumnDef="state" [noWrap]="true">
         <ts-header-cell *tsHeaderCellDef>
           State
         </ts-header-cell>
@@ -443,7 +416,7 @@ import {
         </ts-cell>
       </ng-container>
 
-      <ng-container tsColumnDef="comments" noWrap="true">
+      <ng-container tsColumnDef="comments">
         <ts-header-cell *tsHeaderCellDef ts-sort-header>
           Comments
         </ts-header-cell>
@@ -452,12 +425,8 @@ import {
         </ts-cell>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="displayedColumns">
-      </ts-header-row>
-
-      <ts-row *tsRowDef="let row; columns: displayedColumns;">
-      </ts-row>
-
+      <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
+      <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
     </ts-table>
 
 
@@ -477,7 +446,7 @@ import {
   `,
 })
 export class TableComponent implements AfterViewInit {
-  allColumns: any[] = [
+  allColumns: TsColumn[] = [
     {
       name: 'Created',
       value: 'created',
@@ -485,10 +454,12 @@ export class TableComponent implements AfterViewInit {
     {
       name: 'Title',
       value: 'title',
+      width: '12.5rem',    
     },
     {
       name: 'Comments',
       value: 'comments',
+      width: '500px',
     },
     {
       name: 'State',
@@ -499,16 +470,11 @@ export class TableComponent implements AfterViewInit {
       value: 'number',
     },
   ];
-  displayedColumns: string[] = [
-    'created',
-    'number',
-    'title',
-    'state',
-    'comments',
-  ];
+  // Default to all columns visible
+  displayedColumns: TsColumn[] = this.allColumns.slice();
   exampleDatabase: ExampleHttpDao | null;
-  dataSource: TsTableDataSource = new TsTableDataSource();
-  resultsLength: number = 0;
+  dataSource = new TsTableDataSource<GithubIssue>();
+  resultsLength = 0;
 
   @ViewChild(TsSortDirective, {static: true})
   sort: TsSortDirective;
@@ -516,21 +482,17 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(TsPaginatorComponent, {static: true})
   paginator: TsPaginatorComponent;
 
-
   constructor(
     private http: HttpClient,
   ) {}
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => {
-      this.paginator.currentPageIndex = 0;
-    });
+    this.sort.sortChange.subscribe(() => this.paginator.currentPageIndex = 0);
 
-    // Fetch new data anytime the sort is changed, the page is changed, or the records shown per
-    // page is changed
+    // Fetch new data anytime the sort is changed, the page is changed, or the records shown per page is changed
     merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
@@ -545,7 +507,6 @@ export class TableComponent implements AfterViewInit {
         map(data => {
           console.log('Demo: fetched data: ', data)
           this.resultsLength = data.total_count;
-
           return data.items;
         }),
         catchError(() => {
@@ -578,11 +539,10 @@ export interface GithubIssue {
 export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
-  getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
+  public getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
+    const href = `https://api.github.com/search/issues`;
     const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
     const requestParams = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
-
     return this.http.get<GithubApi>(`${requestUrl}${requestParams}`);
   }
 }

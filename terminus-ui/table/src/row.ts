@@ -11,6 +11,7 @@ import {
   Directive,
   ViewEncapsulation,
 } from '@angular/core';
+import { TsTableComponent } from './table.component';
 
 
 /**
