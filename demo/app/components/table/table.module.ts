@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
+import { TsIconModule } from '@terminus/ui/icon';
 import { TsOptionModule } from '@terminus/ui/option';
 import { TsPaginatorModule } from '@terminus/ui/paginator';
 import { TsSelectModule } from '@terminus/ui/select';
@@ -21,6 +22,7 @@ import { TableComponent } from './table.component';
     FormsModule,
     TableRoutingModule,
     TsCardModule,
+    TsIconModule,
     TsOptionModule,
     TsPaginatorModule,
     TsSelectModule,

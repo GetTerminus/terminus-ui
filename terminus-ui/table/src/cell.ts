@@ -1,5 +1,5 @@
-// NOTE(B$): In this case, we want an actual selector (so content can be nested inside) for our
-// directive. So we are disabling the `directive-selector` rule
+// NOTE: In this case, we want an actual selector (so content can be nested inside) for our directive. So we are disabling the
+// `directive-selector` rule
 // tslint:disable: directive-selector
 import {
   CdkCell,
@@ -11,11 +11,21 @@ import {
 import {
   Directive,
   ElementRef,
+  Host,
   Input,
   isDevMode,
+  Optional,
   Renderer2,
+  SkipSelf,
 } from '@angular/core';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 
+import { TsTableComponent } from './table.component';
+
+
+/**
+ * Allowed column alignments
+ */
 export type TsTableColumnAlignment
   = 'left'
   | 'center'
@@ -25,7 +35,11 @@ export type TsTableColumnAlignment
 /**
  * An array of the allowed {@link TsTableColumnAlignment} for checking values
  */
-export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = ['left', 'center', 'right'];
+export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = [
+  'left',
+  'center',
+  'right',
+];
 
 
 /**
@@ -71,9 +85,10 @@ export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
 })
 export class TsHeaderCellDirective extends CdkHeaderCell {
   constructor(
-    columnDef: CdkColumnDef,
-    elementRef: ElementRef,
+    public columnDef: CdkColumnDef,
     public renderer: Renderer2,
+    private elementRef: ElementRef,
+    @Optional() @Host() @SkipSelf() parent: TsTableComponent<unknown>,
   ) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
@@ -81,10 +96,14 @@ export class TsHeaderCellDirective extends CdkHeaderCell {
     // tslint:disable-next-line no-any
     const column: any = columnDef;
 
-    // Set inline style for min-width if passed in
-    if (column.minWidth) {
-      renderer.setStyle(elementRef.nativeElement, 'flex-basis', column.minWidth);
+    if (parent.columns) {
+      const width = parent.columns.filter(c => c.name === columnDef.name).map(v => v.width)[0];
+      // istanbul ignore else
+      if (width) {
+        renderer.setStyle(elementRef.nativeElement, 'flex-basis', width);
+      }
     }
+
   }
 }
 
@@ -100,44 +119,64 @@ export class TsHeaderCellDirective extends CdkHeaderCell {
   },
 })
 export class TsCellDirective extends CdkCell {
+  public column: TsColumnDefDirective;
+
   constructor(
-    columnDef: CdkColumnDef,
-    elementRef: ElementRef,
-    public renderer: Renderer2,
+    private columnDef: CdkColumnDef,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    @Optional() @Host() @SkipSelf() parent: TsTableComponent<unknown>,
   ) {
     super(columnDef, elementRef);
-
-    // NOTE: We are adding `noWrap` to the column in `TsColumnDefDirective` which doesn't exist
-    // in the `CdkColumnDef` so we cast it to 'any'.
-    // tslint:disable-next-line no-any
-    const column: any = columnDef;
+    // NOTE: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
+    // Coercing the type here is a hack, but allows us to reference properties that do not exist on the underlying `CdkColumnDef`.
+    this.column = columnDef as TsColumnDefDirective;
 
     // Set a custom class for each column
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
 
     // Set the no-wrap class if needed
-    if (column.noWrap) {
+    if (this.column.noWrap) {
       elementRef.nativeElement.classList.add(`ts-column-no-wrap`);
     }
 
-    // Set inline style for min-width if passed in
-    if (column.minWidth) {
-      renderer.setStyle(elementRef.nativeElement, 'flex-basis', column.minWidth);
+    TsCellDirective.setColumnAlignment(this.column, renderer, elementRef);
+
+    if (parent.columns) {
+      const width = parent.columns.filter(c => c.name === columnDef.name).map(v => v.width)[0];
+      // istanbul ignore else
+      if (width) {
+        renderer.setStyle(elementRef.nativeElement, 'flex-basis', width);
+      }
     }
 
-    // Skip the following in or to maintain backward compatibility with cells that do not use alignment
+    // eslint-disable-next-line no-underscore-dangle
+    if (columnDef._stickyEnd) {
+      elementRef.nativeElement.classList.add(`ts-cell--sticky-end`);
+    }
+  }
+
+
+  /**
+   * Set the column alignment styles
+   *
+   * @param column - The column definition
+   * @param renderer - The Renderer2
+   * @param elementRef - The element ref to add the class to
+   */
+  private static setColumnAlignment(column: TsColumnDefDirective, renderer: Renderer2, elementRef: ElementRef): void {
     if (column.alignment) {
       // Verify the alignment value is allowed
       if (tsTableColumnAlignmentTypesArray.indexOf(column.alignment) < 0 && isDevMode()) {
-        console.warn(`TsCellDirective: "${column.alignment}" is not an allowed alignment. `
-        + `See TsTableColumnAlignment for available options.`);
-        return;
+        throw new TsUILibraryError(`TsCellDirective: "${column.alignment}" is not an allowed alignment.`
+          + `See "TsTableColumnAlignment" type for available options.`);
       }
 
       // Set inline style for text-align
       renderer.setStyle(elementRef.nativeElement, 'textAlign', column.alignment);
     }
   }
+
 }
 
 
@@ -153,10 +192,14 @@ export class TsCellDirective extends CdkCell {
       provide: CdkColumnDef,
       useExisting: TsColumnDefDirective,
     },
+    {
+      provide: 'MAT_SORT_HEADER_COLUMN_DEF',
+      useExisting: TsColumnDefDirective,
+    },
   ],
 })
 export class TsColumnDefDirective extends CdkColumnDef {
-  // NOTE(B$): We must rename here so that the property matches the extended CdkColumnDef class
+  // NOTE: We must rename here so that the property matches the extended CdkColumnDef class
   // tslint:disable: no-input-rename
   /**
    * Define a unique name for this column
@@ -170,12 +213,6 @@ export class TsColumnDefDirective extends CdkColumnDef {
    */
   @Input()
   public noWrap = false;
-
-  /**
-   * Define a minimum width for the column
-   */
-  @Input()
-  public minWidth: string | undefined;
 
   /**
    * Define an alignment type for the cell.
@@ -194,4 +231,5 @@ export class TsColumnDefDirective extends CdkColumnDef {
    */
   @Input()
   public stickyEnd = false;
+
 }
