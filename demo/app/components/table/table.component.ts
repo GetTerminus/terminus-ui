@@ -4,7 +4,10 @@ import {
   Component,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  DomSanitizer,
+  SafeHtml,
+} from '@angular/platform-browser';
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,
@@ -12,6 +15,8 @@ import {
 import { TsSortDirective } from '@terminus/ui/sort';
 import {
   TsColumn,
+  TsTableColumnsChangeEvent,
+  TsTableComponent,
   TsTableDataSource,
 } from '@terminus/ui/table';
 import {
@@ -101,6 +106,7 @@ export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
   public getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
+    console.log('HITTING GITHUB');
     const href = `https://api.github.com/search/issues`;
     const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
     const requestParams = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
@@ -116,6 +122,8 @@ export class ExampleHttpDao {
 })
 export class TableComponent implements AfterViewInit {
   public allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
+  public savedResponse: GithubApi | null = null;
+  public useCachedData = true;
   public displayedColumns = [
     'title',
     'updated',
@@ -136,22 +144,25 @@ export class TableComponent implements AfterViewInit {
       name: 'title',
       width: '400px',
     },
-    { name: 'updated' },
-    { name: 'comments' },
-    {
-      name: 'assignee',
-      width: '160px',
-    },
     { name: 'number' },
     {
-      name: 'labels',
-      width: '260px',
+      name: 'updated',
+      // width: '300px',
     },
-    { name: 'created' },
-    { name: 'id' },
+    // { name: 'comments' },
+    // {
+    //   name: 'assignee',
+    //   width: '160px',
+    // },
+    {
+      name: 'labels',
+      // width: '260px',
+    },
+    // { name: 'created' },
+    // { name: 'id' },
     {
       name: 'body',
-      width: '500px',
+      // width: '500px',
     },
     { name: 'html_url' },
   ];
@@ -162,6 +173,8 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(TsPaginatorComponent, { static: true })
   public readonly paginator!: TsPaginatorComponent;
 
+  @ViewChild('myTable', { static: false })
+  public readonly myTable!: TsTableComponent;
 
   constructor(
     private domSanitizer: DomSanitizer,
@@ -182,14 +195,21 @@ export class TableComponent implements AfterViewInit {
     merge(this.sort.sortChange, this.paginator.pageSelect, this.paginator.recordsPerPageChange)
       .pipe(
         startWith({}),
-        switchMap(() => this.exampleDatabase.getRepoIssues(
-          this.sort.active,
-          this.sort.direction,
-          this.paginator.currentPageIndex,
-          this.paginator.recordsPerPage,
-        )),
+        switchMap(() => {
+          if (this.useCachedData && this.savedResponse && this.savedResponse.items) {
+            return of(this.savedResponse);
+          }
+
+          return this.exampleDatabase.getRepoIssues(
+            this.sort.active,
+            this.sort.direction,
+            this.paginator.currentPageIndex,
+            this.paginator.recordsPerPage,
+          );
+        }),
         map(data => {
           console.log('Demo: fetched data: ', data);
+          this.savedResponse = data as GithubApi;
           this.resultsLength = data.total_count;
 
           return data.items;
@@ -203,17 +223,28 @@ export class TableComponent implements AfterViewInit {
       });
   }
 
+  public clearCachedData(): void {
+    this.savedResponse = null;
+  }
 
   public perPageChange(e: number): void {
-    console.log('DEMO records per page changed: ', e);
+    console.log('DEMO: Records per page changed: ', e);
   }
 
   public onPageSelect(e: TsPaginatorMenuItem): void {
-    console.log('DEMO page selected: ', e);
+    console.log('DEMO: Page selected: ', e);
+  }
+
+  public columnsChange(e: TsTableColumnsChangeEvent): void {
+    console.log('DEMO: Columns change: ', e);
   }
 
   public sanitize(content): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  public log() {
+    console.log('Demo: columns: ', this.myTable.columns);
   }
 
 }

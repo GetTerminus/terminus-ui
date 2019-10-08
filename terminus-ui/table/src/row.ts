@@ -9,8 +9,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   Directive,
+  ElementRef,
   ViewEncapsulation,
 } from '@angular/core';
+
 import { TsTableComponent } from './table.component';
 
 
@@ -29,7 +31,13 @@ import { TsTableComponent } from './table.component';
   exportAs: 'tsHeaderRow',
   preserveWhitespaces: false,
 })
-export class TsHeaderRowComponent extends CdkHeaderRow {}
+export class TsHeaderRowComponent extends CdkHeaderRow {
+  constructor(
+    public elementRef: ElementRef,
+  ) {
+    super();
+  }
+}
 
 
 /**
@@ -47,7 +55,13 @@ export class TsHeaderRowComponent extends CdkHeaderRow {}
   exportAs: 'tsRow',
   preserveWhitespaces: false,
 })
-export class TsRowComponent extends CdkRow {}
+export class TsRowComponent extends CdkRow {
+  constructor(
+    public elementRef: ElementRef,
+  ) {
+    super();
+  }
+}
 
 /**
  * Header row definition for the {@link TsTableComponent}.

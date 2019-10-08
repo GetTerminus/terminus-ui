@@ -1,4 +1,18 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div style="font-size: 12px;">
+    <p>
+      To get around GitHub rate limiting, we cache response data by default.
+      <br>
+      Clear cached data and/or disable below.
+    </p>
+    <label style="margin-right: 1rem;">
+      Use cached data:
+      <input type="checkbox" [(ngModel)]="useCachedData">
+    </label>
+    <button (click)="clearCachedData()">Clear cached GitHub data</button>
+  </div>
+
+  <span fxFlex></span>
 
   <ts-select
     label="Show/hide columns"
@@ -18,13 +32,14 @@
   <ts-table
     [dataSource]="dataSource"
     [columns]="resizableColumns"
+    (columnsChange)="columnsChange($event)"
     tsSort
     tsVerticalSpacing
     #myTable="tsTable"
   >
 
-    <ng-container tsColumnDef="title" sticky>
-      <ts-header-cell *tsHeaderCellDef>
+    <ng-container tsColumnDef="title">
+      <ts-header-cell *tsHeaderCellDef sticky>
         Title
       </ts-header-cell>
       <ts-cell *tsCellDef="let item">
@@ -32,7 +47,7 @@
       </ts-cell>
     </ng-container>
 
-    <ng-container tsColumnDef="updated" noWrap="true">
+    <ng-container tsColumnDef="updated" noWrap="true" alignment="right">
       <ts-header-cell *tsHeaderCellDef ts-sort-header>
         Updated
       </ts-header-cell>
@@ -60,7 +75,7 @@
     </ng-container>
 
     <ng-container tsColumnDef="number" noWrap="true" alignment="right">
-      <ts-header-cell *tsHeaderCellDef>
+      <ts-header-cell *tsHeaderCellDef ts-sort-header>
         Number
       </ts-header-cell>
       <ts-cell *tsCellDef="let item">
@@ -127,10 +142,7 @@
     </ng-container>
 
     <ts-header-row *tsHeaderRowDef="myTable.columnNames; sticky: true"></ts-header-row>
-
-    <ts-row *tsRowDef="let row; columns: myTable.columnNames;">
-    </ts-row>
-
+    <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
   </ts-table>
 </div>
 
@@ -143,3 +155,6 @@
   ></ts-paginator>
 </div>
 
+<div>
+  <button (click)="log()">Log column definitions</button>
+</div>

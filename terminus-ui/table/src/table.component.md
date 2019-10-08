@@ -17,7 +17,11 @@
 - [Sticky header](#sticky-header)
 - [Sticky column](#sticky-column)
   - [Sticky column at end](#sticky-column-at-end)
+- [Events](#events)
+  - [Table](#table)
+  - [Cell](#cell)
 - [Full example with pagination, sorting, and dynamic columns](#full-example-with-pagination-sorting-and-dynamic-columns)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -58,6 +62,9 @@ const columns: TsColumn = [
 ];
 ```
 
+> NOTE: Any valid CSS string can be passed in for the width: `1rem|12px|13vw|etc`. But when the user resizes the column, the width will be
+> converted into pixels.
+
 ### 3. Define the table's rows
 
 After defining your columns, provide the header and data row templates that will be rendered out by the table. Each row needs to be given a
@@ -66,12 +73,10 @@ list of the columns that it should contain. The order of the names will define t
 NOTE: It is not required to provide a list of all the defined column names, but only the ones that you want to have rendered.
 
 ```html
-<ts-header-row *tsHeaderRowDef="['userName', 'age']">
-</ts-header-row>
+<ts-header-row *tsHeaderRowDef="['userName', 'age']"></ts-header-row>
 
 <!-- `let row;` is  exposing the row data to the template as the variable `row` -->
-<ts-row *tsRowDef="let row; columns: ['userName', 'age']">
-</ts-row>
+<ts-row *tsRowDef="let row; columns: ['userName', 'age']"></ts-row>
 ```
 
 The table component provides an array of column names built from the array of `TsColumn` definitions passed to the table. You can use this
@@ -342,7 +347,62 @@ than one column.
 </ng-container>
 ```
 
----
+## Events
+
+### Table
+
+| Event           | Description                      | Payload                     |
+|:----------------|:---------------------------------|:----------------------------|
+| `columnsChange` | Fired when any column is changed | `TsTableColumnsChangeEvent` |
+
+> NOTE: This event is not throttled or debounced and may be called repeatedly.
+
+```html
+<ts-table (columnsChange)="whenColumnsChange($event)">
+  ...
+</ts-table>
+```
+
+The `TsTableColumnsChangeEvent` structure:
+
+```typescript
+class TsTableColumnsChangeEvent {
+  constructor(
+    // The table instance that originated the event
+    public table: TsTableComponent,
+    // The updated array of columns
+    public columns: TsColumn[],
+  ) {}
+}
+```
+
+###  Cell
+
+| Event     | Description                           | Payload                   |
+|:----------|:--------------------------------------|:--------------------------|
+| `resized` | Fired when the header cell is resized | `TsHeaderCellResizeEvent` |
+
+```html
+<ng-container tsColumnDef="title">
+  <ts-header-cell *tsHeaderCellDef (resized)="whenCellIsResized($event)">
+    Title
+  </ts-header-cell>
+  <ts-cell *tsCellDef="let item">
+    {{ item.title }}
+  </ts-cell>
+</ng-container>
+```
+
+```typescript
+class TsHeaderCellResizeEvent {
+  constructor(
+    // The header cell instance that originated the event
+    public instance: TsHeaderCellDirective,
+    // The new width
+    public width: string,
+  ) {}
+}
+```
 
 
 ## Full example with pagination, sorting, and dynamic columns
@@ -547,3 +607,21 @@ export class ExampleHttpDao {
   }
 }
 ```
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/table/testing`;
+
+[[source]][test-helpers-src]
+
+| Function                    |
+|-----------------------------|
+| `getElements`               |
+| `getHeaderRow`              |
+| `getRows`                   |
+| `getCells`                  |
+| `getHeaderCells`            |
+| `expectTableToMatchContent` |
+
+
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/table/testing/src/test-helpers.ts

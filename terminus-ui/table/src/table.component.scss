@@ -1,14 +1,10 @@
 @import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
 @import './../../scss/helpers/layout';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/spacing';
+@import './../../scss/helpers/scrollbars';
 @import './../../scss/helpers/typography';
-
-$ts-header-row-height: 56px;
-$ts-row-height: 48px;
-$ts-row-horizontal-padding: 24px;
-$ts-row-hover: rgba(color(utility, xlight), .5);
-
 
 
 //
@@ -16,33 +12,118 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
 //  Table
 // @description
 //  A table component
-//
 .ts-table {
+  --table-bg: #{color(pure)};
+  --header-bg: #{color(utility, xlight)};
+  --header-text-color: #{color(utility, dark)};
+  --border-color: #{color(utility, light)};
+  $primary: color(primary);
+  --row-bg--hover: #{desaturate(lighten($primary, 66%), 70%)};
+  // NOTE: This must be above 40 as that is the number of header cell z-indexes set
+  --header-cell-sticky-z-index: 50;
+  --row-cell-sticky-z-index: 3;
+  --z-index-negative: -1;
+  --z-index-base-context: 1;
   @include reset;
   @include typography;
-  display: inline-block;
+  @include visible-scrollbars;
+  border: 1px solid var(--border-color);
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: scroll;
 
-  //
-  // Rows
-  //
+  // <div> Inner wrapper for the table
+  &__inner {
+    display: table;
+  }
+
+  // Class added to all sticky cells and rows
+  .ts-table--sticky {
+    &:not(.ts-table--sticky-end) {
+      // NOTE: Important needed to overwrite inline style
+      // stylelint-disable-next-line declaration-no-important
+      z-index: var(--row-cell-sticky-z-index) !important;
+    }
+
+    // Since the sticky cell has a right border at all times, we can remove the left border from the cell that immediately follows it.
+    + .ts-cell,
+    + .ts-header-cell {
+      border-left: none;
+    }
+  }
+
+  // Class added to all sticky-end cells
+  .ts-table--sticky-end {
+    z-index: var(--z-index-negative);
+
+    // For the last sticky cell of a row, hide the overflow so that the resize grabber doesn't create extra space past the final cell.
+    &:last-of-type {
+      &.ts-header-cell {
+        overflow: hidden;
+
+        // Move the resizer back into view since we aren't overlapping a following cell
+        .ts-header-cell__resizer {
+          transform: translateX(40%);
+        }
+      }
+    }
+  }
+
+  // Any row
+  .ts-row,
+  .ts-header-row {
+    align-items: stretch;
+    box-sizing: border-box;
+    display: table-row;
+    white-space: nowrap;
+
+    .ts-cell,
+    .ts-header-cell {
+      &:not(last-of-type) {
+        &:not(.ts-table--sticky) {
+          border-right: none;
+        }
+      }
+    }
+
+    // No border needed for the bottom of the last row since the table already has one
+    &:not(last-of-type) {
+      .ts-cell {
+        border-bottom: none;
+      }
+    }
+  }
 
   // Header row
   .ts-header-row {
     @include typography(caption);
-    color: color(utility);
-    min-height: $ts-header-row-height;
+    color: var(--header-text-color);
     transition: background-color 200ms ease-out;
-    will-change: background-color;
+    // Create base z-index context
+    z-index: var(--z-index-base-context);
+
+    .ts-table--sticky {
+      // NOTE: Important needed to overwrite inline style from the CDK
+      // stylelint-disable-next-line declaration-no-important
+      z-index: var(--header-cell-sticky-z-index) !important;
+    }
   }
 
   // Body row
   .ts-row {
-    min-height: $ts-row-height;
-    transition: background-color 200ms ease-out;
-    will-change: background-color;
+    z-index: var(--z-index-negative);
 
     &:hover {
-      background-color: $ts-row-hover;
+      .ts-cell {
+        background-color: var(--row-bg--hover);
+      }
+    }
+
+    &:first-of-type {
+      .ts-cell {
+        border-top: none;
+      }
     }
 
     // Workaround for https://goo.gl/pFmjJD in IE 11. Adds a pseudo
@@ -55,67 +136,115 @@ $ts-row-hover: rgba(color(utility, xlight), .5);
     }
   }
 
-  // Any row
-  .ts-row,
-  .ts-header-row {
-    align-items: stretch;
-    border-bottom: 1px solid color(utility, xlight);
-    box-sizing: border-box;
-    display: flex;
-  }
-
-  //
-  // Cells
-  //
-
-  // Body cell
-  .ts-cell {
-    $sticky-border: 1px solid color(utility, xlight);
-    background-color: color(pure);
-    padding: spacing(default);
-    vertical-align: middle;
-
-    &--sticky {
-      border-right: $sticky-border;
-    }
-
-    &--sticky-end {
-      border-left: $sticky-border;
-    }
-  }
-
-  // Header cell
-  .ts-header-cell {
-    background-color: color(pure);
-    padding: spacing(default);
-
-    &.ts-sortable {
-      border-bottom: 3px solid color(utility, light);
-      transition: border-bottom 200ms ease-out;
-      will-change: border-bottom-color;
-    }
-
-    // Class added when the column is sorted
-    &.ts-sort-header-sorted {
-      border-bottom-color: color(accent);
-      color: color(accent);
-    }
-  }
-
   // Any cell
   .ts-cell,
   .ts-header-cell {
     align-items: stretch;
-    background-color: color(pure);
-    flex: 1;
-    flex-basis: 6em;
+    border: 1px solid var(--border-color);
+    display: table-cell;
     min-height: inherit;
-    overflow: hidden;
+    position: relative;
     word-wrap: break-word;
 
     // Class added if a column should not wrap
     &.ts-column-no-wrap {
       white-space: nowrap;
+    }
+
+    // The table already has a border
+    &:first-of-type {
+      border-left: none;
+    }
+  }
+
+  // Body cell
+  .ts-cell {
+    background-color: var(--table-bg);
+    overflow: hidden;
+    padding: spacing(default);
+    transition: background-color 200ms ease-out;
+    vertical-align: middle;
+
+    &.ts-table--sticky {
+      background-color: var(--table-bg);
+    }
+  }
+
+  // Header cell
+  .ts-header-cell {
+    background-color: var(--header-bg);
+    border-top: none;
+    padding: spacing(default);
+    position: sticky;
+    top: 0;
+
+    // Reverse the natural z-index order so that all borders on the right created with box-shadow are visible above the following cell.
+    // Supports up to 40 columns
+    $possible-columns: 40;
+    @for $i from 1 through $possible-columns {
+      &:nth-child(#{$i}) {
+        $z: #{$possible-columns - $i};
+        z-index: $z;
+      }
+    }
+
+    // Class added when the column is sorted
+    &.ts-sort-header-sorted {
+      color: color(accent);
+    }
+
+    // Class added when the user hovers the resize column hit area
+    &.ts-cell--resizing {
+      .ts-header-cell__resizer {
+        $resizer-width: #{spacing(small, 2)};
+        opacity: 1;
+
+        &::after {
+          width: calc(#{$resizer-width} + 1px);
+        }
+      }
+    }
+
+    // <span> 'Grabber' hit area to resize a column
+    &__resizer {
+      bottom: 0;
+      cursor: cursor(col-resize);
+      display: block;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(50%);
+      transition: opacity 200ms ease-out;
+      width: spacing(large);
+
+      // Visible marker for grabber
+      &::after {
+        background-color: color(primary);
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 50%;
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        transition: width 100ms ease-out;
+        width: 1px;
+        z-index: var(--z-index-base-context);
+      }
+
+      // Dots inside grabber
+      &::before {
+        --z-index-above-bg: 2;
+        color: color(utility, xlight);
+        content: '\2026';
+        display: block;
+        left: 50%;
+        position: absolute;
+        top: 30%;
+        transform: rotate(90deg) translateY(4%);
+        z-index: var(--z-index-above-bg);
+      }
     }
   }
 }
