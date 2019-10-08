@@ -105,6 +105,7 @@
       (blur)="focusChanged(false)"
       (focus)="focusChanged(true)"
       (input)="onInput($event.target)"
+      (paste)="inputPaste.emit($event)"
       #inputElement
     >
   </ng-container>
@@ -134,6 +135,7 @@
       [min]="minDate"
       [max]="maxDate"
       (dateChange)="onDateChanged($event.value)"
+      (paste)="inputPaste.emit($event)"
       #inputElement
     >
   </ng-container>
@@ -158,6 +160,7 @@
       (blur)="focusChanged(false)"
       (focus)="focusChanged(true)"
       (input)="onInput($event.target)"
+      (paste)="inputPaste.emit($event)"
       #inputElement
     ></textarea>
   </ng-container>
