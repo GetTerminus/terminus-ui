@@ -8,6 +8,7 @@ import {
   TsSortHeaderComponent,
 } from '@terminus/ui/sort';
 import {
+  TsTableColumnsChangeEvent,
   TsTableComponent,
   TsTableDataSource,
   TsTableModule,
@@ -21,7 +22,12 @@ import {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource" [columns]="columns">
+    <ts-table
+      [dataSource]="dataSource"
+      [columns]="columns"
+      (columnsChange)="columnsChanged($event)"
+      #myTable="tsTable"
+    >
       <ng-container tsColumnDef="column_a">
         <ts-header-cell *tsHeaderCellDef> Column A</ts-header-cell>
         <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
@@ -41,8 +47,8 @@ import {
         <ts-cell *tsCellDef="let row">fourth_row</ts-cell>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
+      <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
+      <ts-row *tsRowDef="let row; columns: myTable.columnNames"></ts-row>
       <ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></ts-row>
     </ts-table>
   `,
@@ -55,9 +61,10 @@ export class TableApp {
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
   public columns = this.columnsToRender.map(c => ({
     name: c,
-    width: '112px',
+    width: '100px',
   }));
   public isFourthRow = (i: number, _rowData: TestData) => i === 3;
+  public columnsChanged(e: TsTableColumnsChangeEvent) {}
 }
 
 
