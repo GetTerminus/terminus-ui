@@ -320,6 +320,7 @@ Supported event emitters:
   (cleared)="inputWasBlurred($event)"
   (inputFocus)="inputGainedFocus($event)"
   (selected)="newDateSelected($event)"
+  (inputPaste)="inputValuePasted($event)"
 ></ts-input>
 ```
 
