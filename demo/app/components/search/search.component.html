@@ -1,0 +1,30 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <label tsVerticalSpacing>
+    Auto-submit:
+    <input type="checkbox" [(ngModel)]="shouldAutoSubmit">
+  </label>
+
+  <br>
+
+  <label>
+    Is submitting:
+    <input type="checkbox" [(ngModel)]="inProgress">
+  </label>
+</ts-card>
+
+
+<ts-card>
+  <ts-search
+    [isSubmitting]="inProgress"
+    [isFocused]="true"
+    [initialValue]="startingValue"
+    [autoSubmit]="shouldAutoSubmit"
+    (submitted)="onSubmit($event)"
+    (cleared)="onClear()"
+    (changed)="onChange($event)"
+  ></ts-search>
+</ts-card>

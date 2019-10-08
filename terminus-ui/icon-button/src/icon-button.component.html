@@ -1,0 +1,18 @@
+<button
+  class="c-icon-button qa-icon-button"
+  [attr.aria-label]="actionName"
+  [attr.type]="buttonType"
+  [disabled]="isDisabled"
+  tabindex="{{ tabIndex }}"
+  (click)="clicked.emit($event)"
+>
+  <ts-icon aria-hidden="true">
+    <ng-content></ng-content>
+  </ts-icon>
+
+  <div
+    matRipple
+    class="mat-button-ripple mat-button-ripple-round"
+    [matRippleTrigger]="hostElement"
+  ></div>
+</button>

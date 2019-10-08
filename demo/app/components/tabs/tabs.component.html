@@ -1,0 +1,181 @@
+<h3>Basic Example</h3>
+
+<ts-tab-collection tsVerticalSpacing="large--2">
+  <ts-tab label="Tab 1 with a longer name">
+    Tab content 1
+
+    <p>
+      Dicta temporibus ea nostrum quam id. Delectus harum minima asperiores. Molestias aperiam dolor laboriosam fugit.
+    </p>
+
+    <p>
+      Blanditiis repudiandae alias eum. Culpa dolorem quidem iste velit modi. Esse sint quidem expedita.
+    </p>
+
+    <p>
+      Odit perferendis sit in. Excepturi voluptate libero est earum excepturi iure cupiditate. Quam perferendis fugiat magni repellat quidem
+      consectetur officiis.
+    </p>
+  </ts-tab>
+
+  <ts-tab label="2">
+    Tab content 2
+
+    <div>
+      <button>Click</button>
+    </div>
+
+    <p>
+      Odit perferendis sit in. Excepturi voluptate libero est earum excepturi iure cupiditate. Quam perferendis fugiat magni repellat quidem
+      consectetur officiis.
+    </p>
+
+    <p>
+      Dicta temporibus ea nostrum quam id. Delectus harum minima asperiores. Molestias aperiam dolor laboriosam fugit.
+    </p>
+
+    <div>
+      <button>Click</button>
+    </div>
+
+    <p>
+      Blanditiis repudiandae alias eum. Culpa dolorem quidem iste velit modi. Esse sint quidem expedita.
+    </p>
+  </ts-tab>
+
+  <ts-tab label="Tab 3" [isDisabled]="true">
+    Tab content 3
+  </ts-tab>
+
+  <ts-tab label="Tab 4">
+    Tab content 4
+
+    <p>
+      Dicta temporibus ea nostrum quam id. Delectus harum minima asperiores. Molestias aperiam dolor laboriosam fugit.
+    </p>
+
+    <p>
+      Blanditiis repudiandae alias eum. Culpa dolorem quidem iste velit modi. Esse sint quidem expedita.
+    </p>
+
+    <p>
+      Odit perferendis sit in. Excepturi voluptate libero est earum excepturi iure cupiditate. Quam perferendis fugiat magni repellat quidem
+      consectetur officiis.
+    </p>
+  </ts-tab>
+</ts-tab-collection>
+
+
+<!-- TAB LAYOUTS -->
+
+<h3>Tab layouts</h3>
+
+<div>
+  <div>
+    Header position below:
+    <input type="checkbox" [(ngModel)]="isBelow">
+  </div>
+
+  <div>
+    Tabs horizontal alignment:
+    <select id="alignment" name="alignment" [formControl]="alignmentControl">
+      <option value="start">Start</option>
+      <option value="center">Center</option>
+      <option value="end">End</option>
+      <option value="stretch">Stretch</option>
+    </select>
+  </div>
+</div>
+
+<ts-tab-collection
+  [headerPosition]="isBelow ? 'below' : 'above'"
+  [tabAlignment]="alignmentControl.value"
+  tsVerticalSpacing="large--2"
+  #tabCollection
+>
+  <ts-tab label="First">
+    Content 1
+  </ts-tab>
+
+  <ts-tab label="Second">
+    Content 2
+  </ts-tab>
+</ts-tab-collection>
+
+
+<!-- EVENTS -->
+
+<h3>Events (check the console)</h3>
+
+<div>
+  <button (click)="updateIndex()">
+    Update the selected index to {{ !eventsIndex ? '1' : '0'}}
+  </button>
+
+  {{ (eventsIndex | json) || 'undefined' }}
+</div>
+
+<ts-tab-collection
+  [(selectedIndex)]="eventsIndex"
+  (animationFinished)="animationFinished()"
+  (focusChange)="focusChange($event)"
+  (selectedIndexChange)="indexChange($event)"
+  (selectedTabChange)="tabChange($event)"
+  tsVerticalSpacing="large--2"
+>
+  <ts-tab label="First">
+    Content 1
+  </ts-tab>
+
+  <ts-tab label="Second">
+    <ng-template tsTabContent>
+      Content 2 (dynamic)
+    </ng-template>
+  </ts-tab>
+</ts-tab-collection>
+
+
+<!-- DYNAMIC TABS -->
+
+<h3>Dynamic Tabs</h3>
+
+<div>
+  <button (click)="insertTab()">
+    Insert a new tab at the end
+  </button>
+
+  <button (click)="insertTabAtLocation(1)">
+    Insert a new tab at location `1`
+  </button>
+</div>
+
+<ts-tab-collection tsVerticalSpacing="large--2">
+  <ts-tab *ngFor="let tab of dynamicTabs; let index = index" [label]="tab">
+    Content for {{ tab }} tab
+  </ts-tab>
+</ts-tab-collection>
+
+
+<!-- CUSTOM LABELS -->
+
+<h3>Custom label templates</h3>
+
+<ts-tab-collection>
+  <ts-tab>
+    <ng-template tsTabLabel>
+      <ts-icon style="position: relative; top: 5px;">home</ts-icon>
+      First
+    </ng-template>
+
+    Content 1
+  </ts-tab>
+
+  <ts-tab>
+    <ng-template tsTabLabel>
+      <ts-icon style="position: relative; top: 5px;">help</ts-icon>
+      Second
+    </ng-template>
+
+    Content 2
+  </ts-tab>
+</ts-tab-collection>

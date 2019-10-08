@@ -1,0 +1,239 @@
+@import './../../scss/helpers/animation';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+// This makes the bottom padding space look better than the default 36px
+$button-line-height: 35px;
+$rotation: 360deg;
+// NOTE: All transition durations are based off of the content transition. We should only need to adjust this value.
+$content-transition-duration: 500ms;
+$icon-transition-duration-collapse: $content-transition-duration - 100ms;
+$icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms;
+$label-transition-duration: $icon-transition-duration-expand - 100ms;
+$color-transition-duration: $label-transition-duration - 100ms;
+
+$color-transition: color $color-transition-duration $g-easing;
+// FIXME: This exact transition is needed in the link styles (when inside a menu, links emulate
+// button styles). How can we share something this specific? Or simply make this more generic
+$background-transition: background $icon-transition-duration-collapse $g-material-background-easing;
+$shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shadow-easing;
+
+// Styles applied when the button is collapsed
+@mixin collapsed {
+  $collapsed-padding: 6px;
+
+  padding-left: $collapsed-padding;
+  padding-right: $collapsed-padding;
+
+  .c-icon {
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    transform: rotate(#{$rotation});
+    transition-duration: $icon-transition-duration-collapse;
+  }
+
+  // collapse the text content
+  .c-button__content {
+    max-width: 0;
+  }
+}
+
+
+
+
+//
+// @component
+//  Button
+// @description
+//  A button component
+//
+.ts-button {
+  @include reset;
+  display: inline-block;
+
+  // Top level styles should be nested here
+  .c-button {
+    @include typography;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: color(pure);
+    line-height: $button-line-height;
+    // Overwrite material min-width
+    min-width: auto;
+    // stylelint-disable declaration-no-important
+    // Important needed to override the `!important` within the ladda styles
+    transition: $color-transition, $background-transition, $shadow-transition !important;
+    // stylelint-enable declaration-no-important
+    will-change: background, color, contents;
+  }
+
+  // Target instances nested inside the TsSearchComponent
+  .ts-search & {
+    // Offset to account for space under input for error messages
+    position: relative;
+    top: -#{spacing(small)};
+  }
+}
+
+
+.c-button {
+  // Define theme styles
+  $themes: primary accent warn;
+  $collapsable-radius: 2em;
+
+  &[disabled] {
+    @include cursor(not-allowed);
+  }
+
+  .mat-button-wrapper {
+    // Set up for spinner
+    position: relative;
+    transition: padding 200ms ease-out;
+    will-change: padding, margin;
+  }
+
+  // Class added when progress indicator is shown
+  &.c-button--progress {
+    .mat-button-wrapper {
+      $custom-progress-padding: 36px;
+
+      padding-right: $custom-progress-padding;
+    }
+  }
+
+  // Adjust icon vertical layout
+  .c-icon {
+    $horizontal-alignment-fix: .2em;
+    $vertical-alignment-fix: -.15em;
+
+    margin-right: $horizontal-alignment-fix;
+    // Fix small vertical aligment issue between icon & text
+    margin-top: $vertical-alignment-fix;
+    transition: transform $icon-transition-duration-expand $g-easing;
+    vertical-align: middle;
+    will-change: transform;
+  }
+
+  // Overwrite the Material spinner to fit our layout
+  .c-button__spinner {
+    display: inline-block;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity $label-transition-duration $g-easing;
+    will-change: opacity;
+
+    &--active {
+      opacity: 1;
+    }
+
+    circle {
+      stroke: color(utility);
+    }
+  }
+
+  // Collapsed and not focused or hovered
+  &.c-button--collapsed {
+    &:not(:hover) {
+      &:not(:focus) {
+        @include collapsed;
+      }
+    }
+  }
+
+  // When collapsable AND disabled
+  &.c-button--collapsable {
+    &[disabled] {
+      &:not(:hover) {
+        &:not(:focus) {
+          @include collapsed;
+        }
+      }
+    }
+  }
+
+  // Loop through using each theme name to create styles
+  @each $theme in $themes {
+
+    // Theme class sets the colors for standard buttons
+    &.c-button--#{$theme} {
+      background-color: color(#{$theme});
+
+      &[disabled] {
+        background-color: color(utility, light);
+        color: color(utility);
+      }
+
+      // Collapsable button
+      &.c-button--collapsable {
+        border-radius: $collapsable-radius;
+
+        // Fix left alignment when the icon is the first item
+        .c-icon {
+          $first-icon-adjustment: -.15em;
+
+          margin-left: $first-icon-adjustment;
+        }
+
+        .c-button__content {
+          display: inline-block;
+          max-width: 400px;
+          overflow: hidden;
+          transition: max-width $content-transition-duration $g-easing;
+          white-space: nowrap;
+          will-change: max-width;
+        }
+
+        .mat-ripple {
+          border-radius: $collapsable-radius;
+        }
+      }
+
+      // Hollow button
+      &.c-button--hollow {
+        background-color: transparent;
+        border-color: color(#{$theme});
+        box-shadow: none;
+        color: color(#{$theme});
+
+        &:focus,
+        &:hover {
+          background-color: color(#{$theme});
+          color: color(pure);
+        }
+
+        &[disabled] {
+          background-color: transparent;
+          border-color: color(utility);
+          color: color(utility);
+        }
+      }
+    }
+  }
+
+  // Target button instances nested inside a TsMenuComponent
+  .mat-menu-panel & {
+    // needed for specificity
+    &.c-button {
+      background-color: transparent;
+      box-shadow: none;
+      color: color(pure, dark);
+      text-align: left;
+      width: 100%;
+
+      &:focus,
+      &:active,
+      &:hover {
+        background-color: color(utility, xlight);
+        box-shadow: none;
+        color: color(primary);
+      }
+    }
+  }
+}

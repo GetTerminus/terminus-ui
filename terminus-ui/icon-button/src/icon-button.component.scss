@@ -1,0 +1,136 @@
+@import './../../scss/helpers/buttons';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/reset';
+
+
+$ripple-opacity: .1;
+$black: color(pure, dark);
+$primary: color(primary);
+$accent: color(accent);
+$warn: color(warn);
+$ripple-black: rgba($black, $ripple-opacity);
+$ripple-primary: rgba($primary, $ripple-opacity);
+$ripple-accent: rgba($accent, $ripple-opacity);
+$ripple-warn: rgba($warn, $ripple-opacity);
+$icon-dimension: 40px;
+
+
+//
+// @component
+//  Icon Button
+// @description
+//  An icon button with ripple support and a transparent background.
+//
+.ts-icon-button {
+  @include reset;
+  display: inline-block;
+  height: $icon-dimension;
+  // Set up for inner button
+  position: relative;
+  // Align with standard buttons
+  vertical-align: bottom;
+  width: $icon-dimension;
+
+  // Top level styles belong here
+  .c-icon-button {
+    $alignment-adjustment: 1px;
+    @include button-base;
+    @include take-space;
+    border-radius: 50%;
+    color: color(pure, dark);
+    margin-left: $alignment-adjustment;
+    transition: color 200ms ease;
+    will-change: color;
+
+    &:focus,
+    &:hover {
+      color: color(utility, xdark);
+    }
+
+    .mat-ripple-element {
+      background-color: $ripple-black;
+    }
+  }
+
+  &[theme='primary'] {
+    .c-icon-button {
+      color: color(primary);
+    }
+
+    &:focus,
+    &:hover {
+      .c-icon-button {
+        color: color(primary, light);
+      }
+    }
+
+    .mat-ripple-element {
+      background-color: $ripple-primary;
+    }
+  }
+
+  &[theme='accent'] {
+    .c-icon-button {
+      color: color(accent);
+    }
+
+    &:focus,
+    &:hover {
+      .c-icon-button {
+        color: color(accent, light);
+      }
+    }
+
+    .mat-ripple-element {
+      background-color: $ripple-accent;
+    }
+  }
+
+  &[theme='warn'] {
+    .c-icon-button {
+      color: color(warn);
+    }
+
+    &:focus,
+    &:hover {
+      .c-icon-button {
+        color: color(warn, light);
+      }
+    }
+
+    .mat-ripple-element {
+      background-color: $ripple-warn;
+    }
+  }
+
+  // When used within the file upload component, the button should be our utility color by default
+  .c-file-upload & {
+    &[theme] {
+      .c-icon-button {
+        color: color(utility);
+      }
+
+      &:focus,
+      &:hover {
+        .c-icon-button {
+          color: color(warn);
+        }
+      }
+    }
+  }
+
+  // When used within the csv-entry component
+  .c-csv-entry & {
+    .c-icon-button {
+      color: color(utility);
+    }
+
+    &:focus,
+    &:hover {
+      .c-icon-button {
+        color: color(warn);
+      }
+    }
+  }
+}

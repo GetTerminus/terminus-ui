@@ -1,0 +1,16 @@
+@import '~@terminus/ui/helpers';
+
+.outer {
+  @include elevation-element(app-bar);
+  background-color: color(primary);
+
+  span {
+    color: color(pure);
+    padding: 0 1rem;
+  }
+}
+
+a {
+  display: inline-block;
+  padding: 8px;
+}

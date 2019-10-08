@@ -1,0 +1,39 @@
+<form
+  *ngIf="searchForm"
+  class="c-search qa-search"
+  [formGroup]="searchForm"
+  [ngClass]="{'c-search--disabled': isSubmitting}"
+  (keyup)="keyup()"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+>
+
+  <ts-input
+    class="qa-search-input"
+    [label]="inputLabel"
+    [prefixIcon]="icon"
+    [isClearable]="userCanClear"
+    [formControl]="searchFormControl"
+    [hint]="inputHint"
+    [isFocused]="isFocused"
+    name="query"
+    minlength="{{ queryMinLength }}"
+    pattern="{{ inputPatternRegex }}"
+    [validateOnChange]="autoSubmit"
+    fxFlex="grow"
+    [theme]="theme"
+    (cleared)="cleared.emit(true)"
+  ></ts-input>
+
+  <ts-button
+    class="qa-search-button"
+    *ngIf="!autoSubmit"
+    [theme]="theme"
+    [isDisabled]="!searchForm.valid || !currentQuery"
+    [showProgress]="isSubmitting"
+    [buttonType]="buttonType"
+    [actionName]="buttonAction"
+    (clicked)="searchForm.valid && !isSubmitting && submitted.emit({query: currentQuery})"
+  >Search</ts-button>
+
+</form>

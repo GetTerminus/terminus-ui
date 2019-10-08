@@ -1,0 +1,11 @@
+<ng-template>
+  <div
+    class="ts-selection-list-panel__inner"
+    [class.ts-selection-list--visible]="showPanel"
+    role="listbox"
+    [attr.id]="id"
+    #panel
+  >
+    <ng-content></ng-content>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<mat-slide-toggle
+  class="c-toggle qa-toggle"
+  [(ngModel)]="value"
+  [required]="isRequired"
+  [labelPosition]="labelPosition"
+  [color]="theme"
+  [aria-label]="ariaLabel"
+  [disabled]="isDisabled"
+  [name]="name"
+  (change)="change.emit($event)"
+  (change)="selectionChange.emit($event)"
+>
+  <ng-content></ng-content>
+</mat-slide-toggle>

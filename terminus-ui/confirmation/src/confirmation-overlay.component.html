@@ -1,0 +1,26 @@
+<div 
+  fxLayout="column"
+>
+  <p *ngIf="explanationTxt" class="ts-confirmation-overlay__explanation">{{ explanationTxt }}</p>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center space-between"
+    [fxLayoutGap]="gap"
+  >
+    <ts-button
+      class="qa-confirmation-cancel"
+      theme="warn"
+      format="hollow"
+      (clicked)="confirm.next(false)"
+    >
+      {{ cancelButtonTxt }}
+    </ts-button>
+
+    <ts-button
+      class="qa-confirmation-confirm"
+      (clicked)="confirm.next(true)"
+    >
+      {{ confirmationButtonTxt }}
+    </ts-button>
+  </div>
+</div>

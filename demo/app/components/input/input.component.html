@@ -1,0 +1,176 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: ngModel
+  </h3>
+
+  <div style="max-width: 20rem;" tsVerticalSpacing>
+    <ts-select
+      label="Active mask"
+      [(ngModel)]="activeMask"
+      hint="Select a mask to apply it to the input below."
+    >
+      <ts-option
+        [value]="mask"
+        *ngFor="let mask of masks"
+      >{{ mask }}</ts-option>
+    </ts-select>
+
+    <label>
+      <input type="checkbox" [(ngModel)]="sanitizeValue">
+      Sanitize model value
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isClearable">
+      Allow input to be cleared
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isDisabled">
+      Disabled
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isFocused">
+      Focused
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isRequired">
+      Required
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="hideRequiredMarker">
+      Hide required marker
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="isReadonly">
+      Readonly
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" [(ngModel)]="allowDecimal">
+      Allow decimal
+    </label>
+
+  </div>
+
+
+  <ts-input
+    [(ngModel)]="myValue"
+    label="Input with ngModel"
+    [maskSanitizeValue]="sanitizeValue"
+    [isRequired]="isRequired"
+    [hideRequiredMarker]="hideRequiredMarker"
+    [isClearable]="isClearable"
+    [isDisabled]="isDisabled"
+    [isFocused]="isFocused"
+    [maskAllowDecimal]="allowDecimal"
+    [readOnly]="isReadonly"
+    [mask]="activeMask"
+    [autocomplete]="'on'"
+    name="static input"
+    theme="accent"
+    tsVerticalSpacing="small--0"
+  ></ts-input>
+
+  <strong>ngModel value: {{ myValue }}</strong>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input with Datepicker
+  </h3>
+
+  <ts-input
+    [(ngModel)]="myDatepickerValue"
+    label="Input with datepicker"
+    mask="date"
+    name="Datepicker input"
+    tsVerticalSpacing="small--0"
+    [datepicker]="true"
+  ></ts-input>
+
+  <strong>ngModel value: {{ myDatepickerValue }}</strong>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: Reactive Form
+  </h3>
+
+  <div tsVerticalSpacing>
+    <button (click)="updateLabel()">Update Label</button>
+    <button (click)="submit(myForm.value)">Submit Form</button>
+    <button (click)="foo.reset()">Reset name input</button>
+    <button (click)="shouldDisable = !shouldDisable">
+      {{ shouldDisable ? 'Enable' : 'Disable' }} the name input
+    </button>
+  </div>
+
+  <form [formGroup]="myForm" novalidate>
+    <ts-input
+      [formControl]="myForm.get('name')"
+      [label]="label1"
+      [isClearable]="clearable"
+      hint="Name input with validation"
+      [isDisabled]="shouldDisable"
+      [spellcheck]="false"
+      [prefixIcon]="icon"
+      #foo="tsInput"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('email')"
+      [label]="label2"
+      [isClearable]="clearable"
+      [prefixIcon]="'alternate_email'"
+      [validateOnChange]="true"
+      [hint]="'Email input with validation'"
+      name="email"
+      [spellcheck]="false"
+      [autocomplete]="'email'"
+      type="email"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('phone')"
+      label="Phone"
+      hint="Phone input with masking"
+      mask="phone"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('myDate')"
+      label="Date"
+      name="Date"
+      mask="date"
+      [datepicker]="true"
+    ></ts-input>
+
+  </form>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: Textarea
+  </h3>
+
+  <ts-input
+    [(ngModel)]="textareaModel"
+    label="My textarea"
+    name="My textarea"
+    hint="So much space! How will you use it?"
+    [isTextarea]="true"
+  ></ts-input>
+
+  <strong>ngModel value:</strong>
+<pre style="outline: 1px solid lightgray;">
+{{ textareaModel }}
+</pre>
+</ts-card>

@@ -1,0 +1,35 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/typography';
+
+
+//
+// @component
+//  Tooltip
+// @description
+//  A tooltip component
+//
+.ts-tooltip {
+  @include reset;
+  display: inline-block;
+}
+
+.c-tooltip--underline {
+  border-bottom: .1em dotted;
+  border-color: inherit;
+  cursor: cursor(help);
+}
+
+// Override material styles
+.mat-tooltip-panel {
+  .mat-tooltip {
+    @include typography(caption);
+    @include elevation-element(snackbar);
+    background-color: color(pure);
+    color: color(pure, dark);
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+}

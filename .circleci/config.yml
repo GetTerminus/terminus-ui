@@ -2,9 +2,8 @@ version: 2
 
 jobs:
   build:
-
     docker:
-      - image: circleci/node:latest-browsers
+      - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
 
     working_directory: ~/ci-build
 
@@ -16,41 +15,78 @@ jobs:
 
       - checkout
 
+      - restore_cache:
+          name: Restore Yarn Cache
+          keys:
+            - yarn
+
       - run:
           name: Install Dependencies
-          command: tooling/ci/install-dependencies.sh
+          command: yarn install --frozen-lockfile
+
+      - save_cache:
+          name: Save Yarn Cache
+          key: yarn
+          paths:
+            - ./node_modules
 
       - run:
-          name: Lint Styles
-          command: tooling/ci/lint-scss.sh
-
-      - run:
-          name: Lint TypeScript
-          command: tooling/ci/lint-typescript.sh
+          name: Lint
+          command: yarn run lint:ci
 
       - run:
           name: Run Tests
           command: tooling/ci/test-unit.sh
 
+      - store_test_results:
+          path: coverage/junit/
+
       - run:
           name: Build Project
-          command: npm run build
+          command: yarn run build
+
+      - run:
+          name: Rename Primary Typings File
+          command: tooling/ci/rename-typings-index.sh
+
+      - run:
+          name: Test AoT Demo App Build
+          command: tooling/ci/build-demos-aot.sh
 
       - run:
           name: Release
-          command: tooling/ci/publish.sh
+          command: npx semantic-release
+
+      - run:
+          name: Update Package Versions for Demo Build
+          command: tooling/ci/inject-library-version-number.sh
+
+      - run:
+          name: Publish Demos
+          command: tooling/ci/demos-deploy.sh
+
+      - run:
+          name: Generate Documentation
+          command: yarn run docs
+
+      - run:
+          name: Upload Documentation
+          command: tooling/ci/s3-deploy.sh
 
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
 
       - store_artifacts:
-          path: dist/
-          destination: ~/dist/
-
-      - store_artifacts:
           path: /home/circleci/.npm/_logs/
           destination: ~/npm_logs/
+
+      - store_artifacts:
+          path: /home/circleci/ci-build/dist/app/
+          destination: ~/demo/
+
+
+
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8

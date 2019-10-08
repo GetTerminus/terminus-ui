@@ -1,0 +1,197 @@
+<label>
+  Supports interaction:
+  <input type="checkbox" [(ngModel)]="supportsInteraction">
+</label>
+
+<label>
+  Centered content:
+  <input type="checkbox" [(ngModel)]="centered">
+</label>
+
+<label>
+  Is flat:
+  <input type="checkbox" [(ngModel)]="flat">
+</label>
+
+<label>
+  Theme:
+  <select [(ngModel)]="theme">
+    <option value="primary">Primary</option>
+    <option value="accent">Accent</option>
+    <option value="warn">Warn</option>
+  </select>
+</label>
+
+<label>
+  Border:
+  <select [(ngModel)]="border">
+    <option value="none">None</option>
+    <option value="bottom">Bottom</option>
+    <option value="left">Left</option>
+    <option value="right">Right</option>
+    <option value="top">Top</option>
+  </select>
+</label>
+
+<br>
+
+<ts-card
+  [supportsInteraction]="supportsInteraction"
+  [centeredContent]="centered"
+  [border]="border"
+  [theme]="theme"
+  [flat]="flat"
+  tsVerticalSpacing
+>
+  Standard card
+
+  <ng-container *ngIf="centered">
+    (centered content)
+  </ng-container>
+
+  <ng-container *ngIf="supportsInteraction">
+    (with interaction)
+  </ng-container>
+</ts-card>
+
+
+<ts-card
+  [supportsInteraction]="true"
+  [centeredContent]="true"
+  [utilityMenuTemplate]="myTemplate"
+  aspectRatio="16:9"
+  tsVerticalSpacing
+>
+  Standard card with utility menu and aspect ratio
+</ts-card>
+
+
+
+<ts-card [centeredContent]="true" tsVerticalSpacing>
+  Centered content
+</ts-card>
+
+
+<p tsVerticalSpacing>
+  Nested within flex layout:
+</p>
+
+<div fxFlex tsVerticalSpacing>
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <ts-card fxFlex style="background: lightblue">
+      Card 1
+      Foo
+      Bar
+    </ts-card>
+
+    <ts-card fxFlex>
+      Card 1
+      <br>
+      Foo
+      <br>
+      Bar
+      <br>
+      baz
+      <br>
+      nitch
+    </ts-card>
+  </div>
+</div>
+
+
+<ts-card aspectRatio="16:9" tsVerticalSpacing>
+  <h3 tsCardTitle>Card with Title & aspect</h3>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsTitleAccentBorder>Card with Title & accent border</h3>
+</ts-card>
+
+<ts-card [isDisabled]="true" [supportsInteraction]="true" tsVerticalSpacing>
+  Disabled with interactions
+</ts-card>
+
+
+<ts-card [isDisabled]="true" tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Disabled Card with a very long title foo bar baz
+  </h3>
+
+  Foo
+  <br>
+  Bar
+  <br>
+  Baz
+  <br>
+  Bing
+</ts-card>
+
+
+<ts-card
+  [isDisabled]="false"
+  tsVerticalSpacing
+  [utilityMenuTemplate]="myTemplate"
+>
+  <p>
+    DISABLED WITH UTILITY Repellat alias explicabo voluptatibus nesciunt. Optio maxime delectus ex aspernatur quidem. Dolorem nihil eos cum.
+  </p>
+
+  <p>
+    Voluptate perferendis facere pariatur. Hic ipsum est tempora dignissimos dolores. Magnam blanditiis quisquam fugit.
+  </p>
+
+  <p>
+    Officia voluptatum consequuntur rem quo. Fugiat mollitia maiores tempora et. Culpa distinctio ipsum blanditiis.
+  </p>
+</ts-card>
+
+
+
+
+<ng-template #myTemplate>
+  <ts-menu
+    triggerType="utility"
+    menuPositionX="before"
+    [menuItemsTemplate]="utilityButtons"
+  ></ts-menu>
+
+
+  <ng-template #utilityButtons>
+    <ts-button>
+      My menu item
+    </ts-button>
+  </ng-template>
+</ng-template>
+
+
+<ts-card [flat]="true" tsVerticalSpacing>
+  <p>
+    FLAT CARD Repellat alias explicabo voluptatibus nesciunt. Optio maxime delectus ex aspernatur quidem. Dolorem nihil eos cum.
+  </p>
+
+  <p>
+    Voluptate perferendis facere pariatur. Hic ipsum est tempora dignissimos dolores. Magnam blanditiis quisquam fugit.
+  </p>
+
+  <p>
+    Officia voluptatum consequuntur rem quo. Fugiat mollitia maiores tempora et. Culpa distinctio ipsum blanditiis.
+  </p>
+</ts-card>
+
+<ts-card [flat]="true" tsVerticalSpacing [isDisabled]="false">
+  <h3 tsVerticalSpacing>Nested card</h3>
+  <p>This card is flat and not disabled</p>
+  <ts-card [flat]="false" [isDisabled]="true">
+    This card is not flat and disabled
+  </ts-card>
+</ts-card>
+
+
+<ts-card [flat]="true" #transitionCard="tsCard">
+  <h3 tsVerticalSpacing>Example showing transition</h3>
+
+  <button (click)="changeCardHeight()">Change card height</button>
+</ts-card>
+
+<br><br><br><br>

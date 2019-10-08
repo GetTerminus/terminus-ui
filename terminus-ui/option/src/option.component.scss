@@ -1,0 +1,93 @@
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/menu';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/z-index';
+
+
+// FIXME: Remove custom color once our palette supports a color for this use-case.
+$select-color: color(primary);
+$select-color-active: desaturate(lighten($select-color, 60%), 50%);
+$ts-select-item-height: 3em !default;
+
+
+//
+// @component
+//  Select Option
+// @description
+//  An individual option for a select component
+//
+.ts-option {
+  @include reset;
+  @include menu-item-base;
+  cursor: cursor(pointer);
+  transition: background-color 200ms ease-out;
+
+  &:not(.ts-option--disabled) {
+    &:focus,
+    &:hover {
+      background-color: color(utility, xlight);
+    }
+  }
+
+  &.ts-option--active {
+    background-color: $select-color-active;
+  }
+
+  &.ts-option--disabled {
+    color: color(utility);
+    cursor: cursor(auto);
+  }
+
+  .ts-checkbox {
+    line-height: 3em;
+    // This checkbox is for visual purposes only, so we stop all interaction since it is handled by the parent ts-option
+    pointer-events: none;
+  }
+}
+
+
+// <div> container for dropdown panel
+.ts-select-panel {
+  @include elevation-element(menu);
+  background: color(pure);
+  z-index: z(attached-panel-overlay);
+
+  // NOTE: The `:not(..)` prefix is not needed for `.ts-optgroup-label`. Simply combined as it doesn't break it either.
+  .ts-optgroup-label,
+  .ts-option {
+    &:not(.ts-option--template) {
+      font-size: inherit;
+      height: $ts-select-item-height;
+      line-height: $ts-select-item-height;
+    }
+  }
+
+  .ts-option {
+    &.ts-selected {
+      &:not(.ts-option--multiple) {
+        background-color: $select-color-active;
+      }
+    }
+  }
+
+  .ts-optgroup {
+    .ts-option {
+      padding-left: spacing(large);
+    }
+  }
+
+  // When in multiple mode
+  &.ts-select-panel--multiple {
+    // Remove left padding since the checkbox has its own padding
+    .ts-optgroup-label {
+      padding-left: 0;
+    }
+
+    .ts-option {
+      padding-left: spacing(small, 2);
+    }
+  }
+}

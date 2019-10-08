@@ -1,0 +1,60 @@
+<ts-tab-header
+  #tabHeader
+  [selectedIndex]="selectedIndex"
+  (indexFocused)="focusChanged($event)"
+  (selectFocusedIndex)="selectedIndex = $event"
+>
+
+  <div
+    class="ts-tab-label"
+    [class.ts-tab-label--active]="selectedIndex === i"
+    role="tab"
+    tsTabLabelWrapper
+    mat-ripple
+    cdkMonitorElementFocus
+    *ngFor="let tab of tabs; let i = index; trackBy: trackByFn"
+    [id]="'ts-tab-label-' + collectionId + '-' + i"
+    [attr.tabIndex]="tab.isDisabled ? null : selectedIndex === i ? 0 : -1"
+    [attr.aria-posinset]="i + 1"
+    [attr.aria-setsize]="tabs.length"
+    [attr.aria-controls]="'ts-tab-content-' + collectionId + '-' + i"
+    [attr.aria-selected]="selectedIndex === i"
+    [attr.aria-label]="tab.ariaLabel || null"
+    [attr.aria-labelledby]="(!tab.ariaLabel && tab.ariaLabelledby) ? tab.ariaLabelledby : null"
+    [attr.title]="tab.label || ''"
+    [isDisabled]="tab.isDisabled || false"
+    [matRippleDisabled]="tab.isDisabled"
+    (click)="handleClick(tab, tabHeader, i)"
+  >
+
+    <div class="ts-tab-label__content">
+      <!-- If there is a label template, use it. -->
+      <ng-template [ngIf]="tab.templateLabel">
+        <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
+      </ng-template>
+
+      <!-- If there is not a label template, fall back to the text label. -->
+      <ng-template [ngIf]="!tab.templateLabel">
+        {{ tab.label }}
+      </ng-template>
+    </div>
+  </div>
+</ts-tab-header>
+
+<div
+  class="ts-tab-collection__body-wrapper"
+  #tabBodyWrapper
+>
+  <ts-tab-body
+    role="tabpanel"
+    *ngFor="let tab of tabs; let i = index; trackBy: trackByFn"
+    [id]="'ts-tab-content-' + collectionId + '-' + i"
+    [attr.aria-labelledby]="'ts-tab-label-' + collectionId + '-' + i"
+    [class.ts-tab-body--active]="selectedIndex === i"
+    [content]="tab.content"
+    [position]="tab.position"
+    [origin]="tab.origin"
+    (centered)="removeTabBodyWrapperHeight()"
+    (centering)="setTabBodyWrapperHeight($event)"
+  ></ts-tab-body>
+</div>

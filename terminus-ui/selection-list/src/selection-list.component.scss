@@ -1,0 +1,61 @@
+@import './../../scss/helpers/animation';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+$transition-duration: 200;
+
+.ts-selection-list {
+  cursor: cursor(pointer);
+  display: block;
+}
+
+.ts-selection-list__input-wrap {
+  position: relative;
+
+  &--hidden {
+    @include visually-hidden;
+  }
+
+  > .ts-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.ts-selection-list__input {
+  background: transparent;
+  border: none;
+  color: currentColor;
+  display: inline-block;
+  font: inherit;
+  max-width: 100%;
+  outline: none;
+  padding: 0;
+  // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
+  // easily overwritten by targeting the input element using a simple CSS selector, but since
+  // the text-align will be applied most of the time on the `ts-form-field` to also align the
+  // placeholder, the alignment should be inherited here.
+  text-align: inherit;
+  // Needed to make last line of the textarea line up with the baseline.
+  vertical-align: bottom;
+
+  // Undo the red box-shadow glow added by Firefox on invalid inputs.
+  // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+  &:-moz-ui-invalid {
+    box-shadow: none;
+  }
+}
+
+
+.cdk-overlay-container {
+  .ts-autocomplete__backdrop {
+    background: transparent;
+  }
+}

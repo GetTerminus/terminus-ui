@@ -1,0 +1,25 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <button (click)="updateNav()">Update Nav</button>
+</ts-card>
+
+
+<div class="outer" fxLayout="row" fxLayoutAlign="space-between stretch">
+  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="none">
+    <span>
+      Logo
+    </span>
+  </div>
+
+  <ts-navigation
+    [items]="navigationItems$ | async"
+    [user]="currentUser$ | async"
+    [welcomeMessage]="myMessage"
+    welcomeMsgLength="30"
+    userNameLength="10"
+    (action)="triggerAction($event)"
+  ></ts-navigation>
+</div>

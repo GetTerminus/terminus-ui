@@ -1,0 +1,56 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div style="max-width: 20rem;">
+    <ts-select
+      [(ngModel)]="example"
+      label="Change binding example"
+    >
+      <ts-option
+        [value]="item.value"
+        *ngFor="let item of items"
+      >
+        {{ item.name }}
+      </ts-option>
+    </ts-select>
+  </div>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing="large--2">
+
+  <ng-container *ngIf="example === 'default'">
+    <h3 tsCardTitle><pre>tsAutofocus</pre></h3>
+
+    <input type="text" tsAutofocus />
+  </ng-container>
+
+
+  <ng-container *ngIf="example === 'bindingTrue'">
+    <h3 tsCardTitle><pre>[tsAutofocus]="true"</pre></h3>
+
+    <input type="text" [tsAutofocus]="true" />
+  </ng-container>
+
+
+  <ng-container *ngIf="example === 'bindingString'">
+    <h3 tsCardTitle><pre>[tsAutofocus]="'my string'"</pre></h3>
+
+    <input type="text" [tsAutofocus]="'my string'" />
+  </ng-container>
+
+
+  <ng-container *ngIf="example === 'emptyString'">
+    <h3 tsCardTitle><pre>tsAutofocus=""</pre></h3>
+
+    <input type="text" tsAutofocus="" />
+  </ng-container>
+
+
+  <ng-container *ngIf="example === 'bindingFalse'">
+    <h3 tsCardTitle><pre>tsAutofocus="false"</pre></h3>
+
+    <input type="text" [tsAutofocus]="false" />
+  </ng-container>
+
+</ts-card>

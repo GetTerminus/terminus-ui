@@ -1,0 +1,11 @@
+<ng-template>
+  <div
+    class="ts-autocomplete-panel__inner"
+    [class.ts-autocomplete-visible]="showPanel"
+    role="listbox"
+    [attr.id]="id"
+    #panel
+  >
+    <ng-content></ng-content>
+  </div>
+</ng-template>

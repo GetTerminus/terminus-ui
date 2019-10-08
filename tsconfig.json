@@ -1,19 +1,36 @@
 {
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false
+  },
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
+    "allowJs": true,
+    "baseUrl": "demo",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "skipLibCheck": true,
-    "stripInternal": true,
+    "incremental": true,
     "lib": [
+      "es2016",
       "es2015",
       "dom"
+    ],
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist/out-tsc",
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ],
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
     ]
   }
 }

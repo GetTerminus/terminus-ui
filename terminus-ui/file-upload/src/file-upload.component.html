@@ -1,0 +1,124 @@
+<div
+  class="c-file-upload qa-file-upload"
+  [class.c-file-upload--drag]="dragInProgress"
+  [class.c-file-upload--file]="file"
+  [class.c-file-upload--error]="file && !file.isValid"
+  tabindex="1"
+  fxLayout="column"
+>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    [fxLayoutGap]="layoutGap"
+  >
+    <div
+      class="c-file-upload__empty qa-file-upload-empty"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxFlex="grow"
+      *ngIf="!file"
+    >
+      <!--
+        NOTE: If the copy isn't touching the </ts-icon> closing tag too much space will exist between the icon and text
+      -->
+      <ts-icon [inline]="true">
+        cloud_upload
+      </ts-icon>Drop file{{ multiple ? 's' : '' }} here
+      {{ hideButton ? 'or click to select' : '' }}
+    </div>
+
+    <div
+      class="c-file-upload__file"
+      [class.c-file-upload__file--hidden]="!file"
+      fxFlex
+      fxLayout="column"
+      fxLayoutAlign="center start"
+    >
+
+      <div
+        fxFill
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <div
+          class="c-file-upload__preview qa-file-upload-preview"
+          [hidden]="!file"
+          fxFlex="noshrink"
+        >
+          <img
+            #preview
+            alt=""
+            [attr.src]="file?.fileContents"
+            *ngIf="file?.isImage"
+          >
+
+          <ts-icon
+            [svgIcon]="'csv'"
+            *ngIf="file?.isCSV"
+          ></ts-icon>
+        </div>
+
+        <div
+          class="c-file-upload__filename qa-file-upload-name"
+          fxFlex="grow"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          title="{{ file?.name }}"
+        >
+          <div class="c-file-upload__filename-inner">
+            {{ file?.name }}
+          </div>
+        </div>
+
+        <ts-tooltip tooltipValue="Remove file">
+          <ts-icon-button
+            class="c-file-upload__remove qa-file-upload-remove"
+            theme="warn"
+            actionName="Reset"
+            (click)="removeFile($event)"
+          >clear</ts-icon-button>
+        </ts-tooltip>
+      </div>
+    </div>
+
+    <ts-button
+      class="c-file-upload__prompt qa-file-upload-prompt"
+      [class.c-file-upload__prompt--hidden]="hideButton"
+      [theme]="theme"
+      [isDisabled]="dragInProgress"
+      (clicked)="promptForFiles()"
+    >
+      {{ buttonMessage }}
+    </ts-button>
+  </div>
+
+  <mat-progress-bar
+    *ngIf="file && progress > 0"
+    class="c-file-upload__progress qa-file-upload-progress"
+    mode="determinate"
+    [value]="progress"
+    [color]="theme"
+  ></mat-progress-bar>
+</div>
+
+<div
+  fxLayout="column"
+  fxLayout.gt-xs="row"
+>
+  <ts-validation-messages
+    fxFlex="noshrink"
+    class="qa-file-upload-validation-messages"
+    *ngIf="formControl && formControl.errors"
+    [control]="formControl"
+  ></ts-validation-messages>
+
+
+  <div fxFlex="grow" class="c-file-upload__hints qa-file-upload-hints">
+    <div
+      class="c-file-upload__hint"
+      *ngFor="let hint of hints; trackBy: trackByFn"
+    >
+      {{ hint }}
+    </div>
+  </div>
+</div>

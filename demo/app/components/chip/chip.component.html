@@ -1,0 +1,39 @@
+<ts-card tsVerticalSpacing>
+  <div tsVerticalSpacing>
+    <label>
+      Orientation:
+      <select [(ngModel)]="orientation">
+        <option selected="selected" value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+      </select>
+    </label>
+    <br>
+    <label>
+      Allow removal:
+      <input type="checkbox" [(ngModel)]="removable">
+    </label>
+    <br>
+    <label>
+      Allow selection:
+      <input type="checkbox" [(ngModel)]="selectable">
+    </label>
+  </div>
+
+
+  <ts-chip-collection
+    [allowMultipleSelections]="true"
+    [isSelectable]="selectable"
+    [orientation]="orientation"
+    (collectionChange)="change($event)"
+  >
+    <ts-chip
+      *ngFor="let chip of options;"
+      [isRemovable]="!readonly && removable"
+      [isDisabled]="disabled"
+      [isSelectable]="selectable"
+      [value]="chip"
+      (remove)="removeChip($event)"
+    >{{ chip }}</ts-chip>
+  </ts-chip-collection>
+</ts-card>
+

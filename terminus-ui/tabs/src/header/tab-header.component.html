@@ -1,0 +1,48 @@
+<div
+  class="ts-tab-header__pagination ts-tab-header__pagination--before mat-elevation-z4"
+  #previousPaginator
+  aria-hidden="true"
+  mat-ripple
+  [matRippleDisabled]="disableScrollBefore"
+  [class.ts-tab-header__pagination--disabled]="disableScrollBefore"
+  (click)="handlePaginatorClick('before')"
+  (mousedown)="handlePaginatorPress('before')"
+  (touchend)="stopInterval()"
+>
+  <div class="ts-tab-header__pagination-chevron"></div>
+</div>
+
+
+<div
+  class="ts-tab-header__labels-container"
+  #tabListContainer
+  (keydown)="handleKeydown($event)"
+>
+  <div
+    class="ts-tab-header__labels-container-inner"
+    #tabList
+    role="tablist"
+    (cdkObserveContent)="onContentChanges()"
+  >
+    <div class="ts-tab-header__labels">
+      <ng-content></ng-content>
+    </div>
+
+    <ts-tab-ink-bar></ts-tab-ink-bar>
+  </div>
+</div>
+
+
+<div
+  class="ts-tab-header__pagination ts-tab-header__pagination--after mat-elevation-z4"
+  #nextPaginator
+  aria-hidden="true"
+  mat-ripple
+  [matRippleDisabled]="disableScrollAfter"
+  [class.ts-tab-header__pagination--disabled]="disableScrollAfter"
+  (mousedown)="handlePaginatorPress('after')"
+  (click)="handlePaginatorClick('after')"
+  (touchend)="stopInterval()"
+>
+  <div class="ts-tab-header__pagination-chevron"></div>
+</div>

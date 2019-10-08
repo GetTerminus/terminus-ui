@@ -1,0 +1,25 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing="small--0">
+    Demo Controls
+  </h3>
+
+  <div style="max-width: 20rem;">
+    <ts-select
+      label="Select visualization"
+      [(ngModel)]="visualization"
+    >
+      <ts-option
+        [value]="option"
+        *ngFor="let option of visualizationOptions"
+      >{{ option }}</ts-option>
+    </ts-select>
+  </div>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing style="min-height: 600px;">
+  <ts-chart
+    [visualization]="visualization"
+    (chartInitialized)="chartCreated($event)"
+  ></ts-chart>
+</ts-card>

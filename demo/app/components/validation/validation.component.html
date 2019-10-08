@@ -1,0 +1,337 @@
+<form [formGroup]="myForm" novalidate>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsVerticalSpacing>
+      Demo controls
+    </h3>
+
+    <p>
+      Note: You must leave the input for the validation to trigger.
+    </p>
+
+    <button (click)="log(myForm.value)">
+      Log form value
+    </button>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>Email</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+// Valid emails:
+foo@bar.co
+foo@bar.baz.net
+</pre>
+
+<pre fxFlex>
+// Invalid emails:
+foo
+foo@
+foo@bar
+foo@bar.
+foo@bar.c
+</pre>
+    </div>
+
+    <ts-input
+      [formControl]="myForm.get('email')"
+      label="Email"
+      type="email"
+    ></ts-input>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+
+    <h3 tsCardTitle>Password</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+// Valid passwords:
+7GmfvH
+V9Cpp7RGB9
+29N74UV9ogt2UKpT3pZN3oLngp8Trkk4mCZfCgdE
+FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xNFQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdN
+</pre>
+
+<pre fxFlex>
+// Invalid passwords:
+MA9Lv
+xnhoQzDwAv
+yGiUf>DfQ2
+FQ49j BQ29
+FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdNFQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdN1
+</pre>
+    </div>
+
+    <ts-input
+      [formControl]="myForm.get('password')"
+      label="Password"
+    ></ts-input>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+
+    <h3 tsCardTitle>Credit Card</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+// Valid card numbers:
+4242424242424242
+38520000023237
+6011111111111117
+378282246310005
+</pre>
+
+<pre fxFlex>
+// Invalid card numbers:
+1234
+e
+test@test.com
+3852000023237
+424242424242424242
+</pre>
+    </div>
+
+    <ts-input
+      [formControl]="myForm.get('creditCard')"
+      label="Credit Card Number"
+    ></ts-input>
+
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing="small--0">Date (min/max)</h3>
+
+    <ts-input
+      datepicker="date"
+      mask="date"
+      label="My date"
+      [formControl]="myForm.get('date')"
+      hint="Date must be between 1/5/2018 and 1/25/2018"
+    ></ts-input>
+  </ts-card>
+
+
+  <div fxLayout="row" [fxLayoutGap]="flexGap">
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Less Than</h3>
+
+        <ts-input
+          [formControl]="myForm.get('lessThan')"
+          label="Number"
+          type="number"
+          hint="Must be less than 10"
+        ></ts-input>
+      </ts-card>
+    </div>
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Greater Than</h3>
+
+        <ts-input
+          [formControl]="myForm.get('greaterThan')"
+          label="Number"
+          type="number"
+          hint="Must be greater than 10"
+        ></ts-input>
+      </ts-card>
+    </div>
+
+  </div>
+
+
+  <div fxLayout="row" [fxLayoutGap]="flexGap">
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">isInRange (min/max)</h3>
+
+        <ts-input
+          label="Is In Range"
+          type="number"
+          [formControl]="myForm.get('isInRange')"
+          hint="Number must be between 10 and 100"
+        ></ts-input>
+      </ts-card>
+    </div>
+  </div>
+
+  <div fxLayout="row" [fxLayoutGap]="flexGap">
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains lowercase</h3>
+
+        <ts-input [formControl]="myForm.get('lowercase')" hint="Must contain at least 4 lowercase"></ts-input>
+      </ts-card>
+    </div>
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains uppercase</h3>
+
+        <ts-input [formControl]="myForm.get('uppercase')" hint="Must contain at least 4 uppercase"></ts-input>
+      </ts-card>
+    </div>
+
+    <div fxFlex>
+      <ts-card tsVerticalSpacing>
+        <h3 tsCardTitle tsVerticalSpacing="small--0">Contains numbers</h3>
+
+        <ts-input [formControl]="myForm.get('numbers')" hint="Must contain at least 4 numbers"></ts-input>
+      </ts-card>
+    </div>
+
+  </div>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>Url</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+// Valid URLs:
+http://foo.com
+http://foo.com/blah_blah_(wikipedia)
+https://www.example.com/foo/?bar=baz&inga=42&quux
+http://userid:password@example.com:8080/
+http://⌘.ws
+ftp://foo.bar/baz
+http://foo.bar/?q=Test%20URL-encoded%20stuff
+http://223.255.255.254
+</pre>
+
+<pre fxFlex>
+// Invalid URLs:
+http://
+http://foo.bar?q=Spaces should be encoded
+foo.com
+rdar://1234
+http://1.1.1.1.1
+http://.www.foo.bar./
+http:// shouldfail.com
+</pre>
+    </div>
+
+    <ts-input
+      [formControl]="myForm.get('url')"
+      label="Url"
+    ></ts-input>
+  </ts-card>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>Domain</h3>
+
+    <div fxLayout="row" [fxLayoutGap]="flexGap">
+<pre fxFlex>
+  // Valid domains:
+  foo.com
+  foo.com/blah_blah_(wikipedia)
+  www.example.com/foo/?bar=baz&inga=42&quux
+  userid:password@example.com:8080/
+  ⌘.ws
+  oo.bar/baz
+  foo.bar/?q=Test%20URL-encoded%20stuff
+  223.255.255.254
+  </pre>
+
+<pre fxFlex>
+  // Invalid domains:
+  http://
+  http://foo.bar?q=Spaces should be encoded
+  rdar://1234
+  1.1.1.1.1
+  .www.foo.bar./
+    shouldfail.com
+  </pre>
+    </div>
+
+    <ts-input [formControl]="myForm.get('domain')" label="Domain"></ts-input>
+  </ts-card>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Compare two form controls
+    </h3>
+
+    <div fxLayout="row" fxLayoutGap="2em">
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('compare1')"
+        label="Input 1"
+      ></ts-input>
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('compare2')"
+        label="Input 2"
+      ></ts-input>
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Example using a control as a validation source
+    </h3>
+
+    <div fxLayout="row" fxLayoutGap="2em" tsVerticalSpacing>
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('greaterThanSource')"
+        hint="Change the number to set the validation minimum"
+        label="Input 1"
+        type="number"
+      ></ts-input>
+
+      <ts-input
+        fxFlex
+        [formControl]="myForm.get('greaterThanInUse')"
+        hint="My validation is based on the other control's value"
+        label="Input 2"
+        type="number"
+      ></ts-input>
+    </div>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Verify value is in a collection
+    </h3>
+    <div fxLayout="row" fxLayoutGap="2em" tsVerticalSpacing>
+
+      <div fxFlex="50">
+        <ts-input
+          [formControl]="myForm.get('inCollection')"
+          hint="Input a value that exists"
+          label="Verify in shallow collection"
+        ></ts-input>
+
+        <div>
+          Collection: {{ this.myCollection }}
+        </div>
+      </div>
+
+      <div fxFlex="50">
+        <ts-input
+          [formControl]="myForm.get('inCollectionDeep')"
+          hint="Input a value that exists"
+          label="Verify in deep collection"
+        ></ts-input>
+
+        <div>
+          Collection: {{ this.myDeepCollection | json }}
+        </div>
+      </div>
+    </div>
+  </ts-card>
+
+</form>

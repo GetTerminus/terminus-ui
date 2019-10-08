@@ -1,0 +1,31 @@
+<a
+  *ngIf="!isExternal"
+  class="c-link qa-link qa-link-internal"
+  [routerLink]="destination || localRoute"
+  fragment="{{ fragment }}"
+  tabindex="{{ tabIndex }}"
+>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</a>
+
+
+<a
+  *ngIf="isExternal"
+  class="c-link qa-link qa-link-external"
+  [href]="destination"
+  target="_blank"
+  tabindex="{{ tabIndex }}"
+>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+
+  <ts-icon
+    *ngIf="showExternalIcon"
+  >
+    open_in_new
+  </ts-icon>
+</a>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

@@ -1,0 +1,32 @@
+<div
+  class="c-copy qa-copy"
+  fxLayout="row"
+  tabindex="0"
+  (click)="selectText(content, hasSelected, disableInitialSelection)"
+  (blur)="resetSelection()"
+>
+    <div
+      #content
+      class="c-copy__content qa-copy-content"
+      fxFlex="auto"
+    >
+      <ts-tooltip [tooltipValue]="textContent">
+        <ng-content></ng-content>
+      </ts-tooltip>
+    </div>
+
+  <div class="c-copy__tooltip">
+    <ts-tooltip tooltipValue="Copy to clipboard" *ngIf="enableQuickCopy">
+      <div
+        class="c-copy__icon qa-copy-icon"
+        (click)="copyToClipboard(textContent)"
+        mat-ripple
+        [matRippleColor]="rippleColor"
+      >
+        <ts-icon matSuffix fxFlex>
+          {{ icon }}
+        </ts-icon>
+      </div>
+    </ts-tooltip>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<form
+  class="c-login-form qa-login-form"
+  [formGroup]="loginForm"
+  fxLayout="column"
+  *ngIf="showForm"
+  (keydown.enter)="loginForm?.valid && submit.emit(loginForm?.value)"
+>
+
+  <ts-input
+    class="qa-login-form-email"
+    label="Email"
+    name="email"
+    type="email"
+    [formControl]="emailControl"
+    [isRequired]="true"
+    [spellcheck]="false"
+    [autocapitalize]="false"
+    autocomplete="email"
+    tabindex="-1"
+    tabIndex="1"
+  ></ts-input>
+
+  <ts-input
+    class="qa-login-form-password"
+    label="Password"
+    name="password"
+    type="password"
+    [formControl]="passwordControl"
+    [isRequired]="true"
+    autocomplete="current-password"
+    [autocapitalize]="false"
+    [spellcheck]="false"
+    tabindex="-1"
+    tabIndex="2"
+  ></ts-input>
+
+  <ts-checkbox
+    class="qa-login-form-remember-me"
+    [formControl]="rememberMeControl"
+    tabindex="-1"
+    tabIndex="3"
+    tsVerticalSpacing
+  >
+    Remember me
+  </ts-checkbox>
+
+  <ts-link
+    class="qa-login-form-forgot-password"
+    [destination]="forgotPasswordLink"
+    tsVerticalSpacing
+    tabindex="-1"
+    tabIndex="5"
+  >{{ forgotPasswordText }}</ts-link>
+
+  <div fxLayout="row" fxFlexAlign="end">
+    <ts-button
+      class="qa-login-form-submit"
+      actionName="Submit"
+      buttonType="submit"
+      [showProgress]="inProgress || isRedirecting"
+      [isDisabled]="!loginForm?.valid"
+      (clicked)="submit.emit(loginForm?.value)"
+      (clicked)="submission.emit(loginForm?.value)"
+      tabindex="-1"
+      tabIndex="4"
+    >
+      {{ loginCTA }}
+    </ts-button>
+  </div>
+
+</form>

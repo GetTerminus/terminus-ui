@@ -1,0 +1,24 @@
+<label
+  class="ts-optgroup-label qa-optgroup-label"
+  [attr.id]="labelId"
+  [attr.title]="label"
+  (click)="toggle()"
+>
+  <ts-checkbox
+    class="qa-optgroup-checkbox"
+    [isDisabled]="isDisabled"
+    [isChecked]="allSelected"
+    [isIndeterminate]="someSelected"
+    *ngIf="parent.allowMultiple"
+  >
+    {{ label }}
+  </ts-checkbox>
+
+  <ng-container *ngIf="!parent.allowMultiple">
+    {{ label }}
+  </ng-container>
+</label>
+
+
+<ng-content select="ts-option, ng-container">
+</ng-content>

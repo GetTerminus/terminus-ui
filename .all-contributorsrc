@@ -1,0 +1,143 @@
+{
+  "projectName": "terminus-ui",
+  "projectOwner": "GetTerminus",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "benjamincharity",
+      "name": "Benjamin Charity",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/270193?s=460&v=4",
+      "profile": "https://github.com/benjamincharity",
+      "contributions": [
+        "code",
+        "doc",
+        "test",
+        "design",
+        "ideas",
+        "review",
+        "tool"
+      ]
+    },
+    {
+      "login": "coreyterminator",
+      "name": "coreyterminator",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/31667397?v=4",
+      "profile": "https://github.com/coreyterminator",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "atlwendy",
+      "name": "Wendy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/377552?v=4",
+      "profile": "https://github.com/atlwendy",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "ideas",
+        "maintenance",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "bmalinconico",
+      "name": "Brian Malinconico",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19909708?v=4",
+      "profile": "https://github.com/bmalinconico",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "david-harkness",
+      "name": "David Harkness",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2921?v=4",
+      "profile": "http://rubykata.wordpress.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kal93",
+      "name": "kal93",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/14012571?v=4",
+      "profile": "https://github.com/kal93",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "divyameher",
+      "name": "divyameher",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/24610542?v=4",
+      "profile": "https://github.com/divyameher",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "dpeet",
+      "name": "Devon Peet",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4729779?v=4",
+      "profile": "https://github.com/dpeet",
+      "contributions": [
+        "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "deanterm",
+      "name": "dean jones",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/41060343?v=4",
+      "profile": "https://github.com/deanterm",
+      "contributions": [
+        "code",
+        "ideas",
+        "test",
+        "design",
+        "bug"
+      ]
+    },
+    {
+      "login": "shani-terminus",
+      "name": "shani-terminus",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/44702601?v=4",
+      "profile": "https://github.com/shani-terminus",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "example",
+        "review",
+        "test",
+        "ideas",
+        "maintenance",
+        "tool"
+      ]
+    },
+    {
+      "login": "edwin-terminus",
+      "name": "edwin-terminus",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/41646583?v=4",
+      "profile": "https://github.com/edwin-terminus",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "example",
+        "test"
+      ]
+    }
+  ],
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
+}

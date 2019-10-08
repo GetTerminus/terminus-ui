@@ -1,0 +1,135 @@
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  [id]="id"
+  [theme]="theme"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
+>
+  <ts-label *ngIf="label">
+    {{ label }}
+  </ts-label>
+
+  <!--
+     -SELECT TRIGGER
+     -->
+    <div
+      class="ts-select-trigger qa-select-trigger"
+      [attr.id]="id"
+      [attr.tabindex]="tabIndex"
+      aria-hidden="true"
+      (click)="toggle()"
+      #trigger
+    >
+      <div class="ts-select-value" [ngSwitch]="empty">
+        <span
+          class="ts-select-placeholder"
+          *ngSwitchCase="true"
+        >
+          {{ placeholder || '\u00A0' }}
+        </span>
+
+        <span class="ts-select-value-text qa-select-value-text" *ngSwitchCase="false" [ngSwitch]="!!customTrigger">
+          <span *ngSwitchDefault [attr.title]="selectTriggerValue">
+            {{ selectTriggerValue || '\u00A0' }}
+          </span>
+
+          <ng-content select="ts-select-trigger" *ngSwitchCase="true"></ng-content>
+        </span>
+      </div>
+
+      <div class="ts-select-arrow-wrapper qa-select-arrow-wrapper">
+        <div class="ts-select-arrow"></div>
+      </div>
+    </div>
+</ts-form-field>
+
+
+<!--
+   -SELECT PANEL
+   -->
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayViewportMargin]="viewportMarginSpacing"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayMinWidth]="triggerRect?.width"
+  [cdkConnectedOverlayWidth]="triggerRect?.width"
+  (backdropClick)="close()"
+  (attach)="onAttached()"
+  (detach)="close()"
+>
+
+  <div
+    #panel
+    class="ts-select-panel ts-{{ theme }} qa-select-panel"
+    [class.ts-select-panel--multiple]="allowMultiple"
+    [class.ts-select-panel--filter]="isFilterable"
+    [@transformPanel]="allowMultiple ? 'showing-multiple' : 'showing'"
+    (@transformPanel.done)="panelDoneAnimatingStream.next($event.toState)"
+    [style.transformOrigin]="transformOrigin"
+    [style.font-size.px]="triggerFontSize"
+    (keydown)="handleKeydown($event)"
+  >
+    <div class="ts-select-panel__filter-input" *ngIf="isFilterable">
+      <ts-input
+        label="Begin typing to filter..."
+        [ngModel]="searchQuery"
+        (ngModelChange)="queryChange.emit($event)"
+      ></ts-input>
+    </div>
+
+    <div
+      class="ts-select-panel__toggle-all qa-select-toggle-all"
+      (click)="toggleAllOptions()"
+      *ngIf="allowMultiple"
+    >
+      <ts-checkbox
+        [isChecked]="allOptionsSelected"
+        [isIndeterminate]="someOptionsSelected"
+        theme="accent"
+      >
+        {{ someOptionsSelected ? 'Deselect' : 'Select' }} All
+
+        <span
+          class="ts-select-panel__count qa-select-selected-count"
+          *ngIf="selectionModel?.selected.length"
+        >
+          {{ selectionModel?.selected.length }} selected
+        </span>
+      </ts-checkbox>
+    </div>
+
+    <!-- Outlet for options passed in by consumer -->
+    <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+
+    <div
+      class="ts-select-panel__refresh"
+      *ngIf="showRefresh"
+      (click)="optionsRefreshRequested.emit()"
+    >
+      <ts-icon>refresh</ts-icon>
+      <span>
+        Refresh &amp; reload to bring in new choices.
+      </span>
+    </div>
+
+    <div
+      class="ts-select-panel__refine"
+      *ngIf="showRefineSearchMessage"
+    >
+      Narrow your search to reveal {{ totalHiddenResults ? totalHiddenResults + ' ' : '' }}hidden results.
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

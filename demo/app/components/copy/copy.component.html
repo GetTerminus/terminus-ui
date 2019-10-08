@@ -1,0 +1,36 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <label>
+    Enable quick copy:
+    <input type="checkbox" [(ngModel)]="canCopy">
+  </label>
+  <br>
+
+  <label>
+    Format:
+    <select [(ngModel)]="format">
+      <option selected="selected" value="standard">Standard</option>
+      <option value="minimal">Minimal</option>
+      <option value="icon">Icon</option>
+    </select>
+  </label>
+  <br>
+
+  <label>
+    Theme:
+    <select [(ngModel)]="theme">
+      <option value="{{ theme }}" *ngFor="let theme of themes">{{ theme | titlecase }}</option>
+    </select>
+  </label>
+</ts-card>
+
+<ts-card style="max-width: 22rem;">
+  <ts-copy
+    [enableQuickCopy]="canCopy"
+    [format]="format"
+    [theme]="theme"
+  >{{ fakeUrl }}</ts-copy>
+</ts-card>

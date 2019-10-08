@@ -1,0 +1,87 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>Demo controls</h3>
+
+  <label>
+    Disabled:
+    <input type="checkbox" [(ngModel)]="isDisabled">
+  </label>
+
+  <br>
+
+  <label>
+    Stop content from wrapping (creates x-axis scrollbar):
+    <input type="checkbox" [(ngModel)]="nowrap">
+  </label>
+
+  <br>
+  <br>
+
+  <button (click)="scrollBottom()">Scroll to Bottom</button>
+  <button (click)="scrollLeft()" *ngIf="nowrap">Scroll to Left</button>
+  <button (click)="scrollRight()" *ngIf="nowrap">Scroll to Right</button>
+  <button (click)="scrollTop()">Scroll to Top</button>
+  <button (click)="scrollToElement()">Scroll to Element</button>
+
+  <br>
+  <br>
+
+  <small>See `console` for event logs.</small>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>Scrollbars</h3>
+
+  <div class="scroll-container">
+    <ts-scrollbars
+      [class.nowrap]="nowrap"
+      (scrollDown)="myScrollDown($event)"
+      (scrollLeft)="myScrollLeft($event)"
+      (scrollRight)="myScrollRight($event)"
+      (scrollUp)="myScrollUp($event)"
+      [isDisabled]="isDisabled"
+    >
+      <p>
+        Nobis neque maxime incidunt reprehenderit. Sapiente laboriosam impedit excepturi. Odit corrupti voluptatibus ducimus harum.
+      </p>
+
+      <p>
+        Repellendus maiores nemo quo sequi aut quisquam. Reprehenderit sequi eum ducimus voluptas. Tempora consectetur laudantium.
+      </p>
+
+      <p>
+        Repellat ad architecto mollitia tempore. At eligendi ex nemo vel architecto repellendus. Autem quod tempora temporibus.
+      </p>
+
+      <p class="p1">
+        P1: Nesciunt ut consequuntur fugit. Cupiditate velit expedita laborum. Cum enim praesentium voluptatum unde reiciendis assumenda.
+      </p>
+
+      <p>
+        Pariatur magni quaerat sint. Repellendus nobis ex debitis cum est explicabo. Illum provident architecto rerum minima dicta.
+      </p>
+
+      <p>
+        Nisi illum deleniti quasi debitis debitis ullam libero. Sapiente veniam eius saepe sit repellat pariatur. Eligendi laudantium
+        debitis quibusdam aliquam laborum deserunt.
+      </p>
+
+      <p>
+        Architecto qui at accusamus voluptate hic dolore. Ad cupiditate optio quo velit voluptas maiores. Natus molestias perspiciatis hic
+        et laboriosam tempore.
+      </p>
+
+      <p>
+        Cumque iure voluptatibus fugiat iusto. Ea facere rerum tenetur laborum. Odit facere ullam.
+      </p>
+
+      <p>
+        Harum officia voluptas eum natus dolorem id. Numquam quasi culpa a eveniet consectetur. Ut rem voluptatem eius fuga.
+      </p>
+
+      <p>
+        Quas provident pariatur consequatur ipsum debitis harum temporibus. Ipsam error delectus dicta nisi. Non facilis vitae repudiandae.
+      </p>
+    </ts-scrollbars>
+  </div>
+</ts-card>

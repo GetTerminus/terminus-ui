@@ -1,0 +1,42 @@
+<div
+  class="c-menu qa-menu"
+  [ngClass]="{'c-menu--utility': isUtilityMenu}"
+>
+  <mat-menu
+    #menu="matMenu"
+    [yPosition]="menuPositionY"
+    [xPosition]="menuPositionX"
+    [overlapTrigger]="shouldOverlapTrigger"
+  >
+    <ng-container [ngTemplateOutlet]="menuItemsTemplate"></ng-container>
+  </mat-menu>
+
+  <ts-button
+    *ngIf="!isUtilityMenu"
+    class="c-menu__trigger qa-menu-trigger"
+    [theme]="theme"
+    [format]="format"
+    [matMenuTriggerFor]="menu"
+    [isDisabled]="isDisabled"
+    [attr.data-disabled]="isDisabled"
+    format="filled"
+  >
+    <ng-content></ng-content>
+
+    <ts-icon>
+      {{ triggerIcon }}
+    </ts-icon>
+  </ts-button>
+
+  <button
+    *ngIf="isUtilityMenu"
+    class="c-menu__trigger c-menu__trigger--utility qa-menu-trigger"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    [disabled]="isDisabled"
+  >
+    <ts-icon>
+      {{ triggerIcon }}
+    </ts-icon>
+  </button>
+</div>

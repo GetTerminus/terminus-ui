@@ -1,0 +1,13 @@
+<mat-checkbox
+  class="c-checkbox qa-checkbox"
+  [color]="theme"
+  [indeterminate]="isIndeterminate"
+  [disabled]="isDisabled ? 'disabled' : null"
+  [required]="isRequired ? '' : null"
+  [(ngModel)]="value"
+  tabIndex="{{ tabIndex }}"
+  (change)="inputChange.emit($event.checked)"
+  (indeterminateChange)="indeterminateChange.emit($event)"
+>
+  <ng-content></ng-content>
+</mat-checkbox>

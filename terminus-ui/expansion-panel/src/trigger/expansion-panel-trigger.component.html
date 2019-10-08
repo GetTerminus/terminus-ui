@@ -1,0 +1,14 @@
+<span
+  class="ts-expansion-panel__trigger-content"
+  role="button"
+>
+  <ng-content select="ts-expansion-panel-trigger-title"></ng-content>
+  <ng-content select="ts-expansion-panel-trigger-description"></ng-content>
+  <ng-content></ng-content>
+</span>
+
+<span
+  class="ts-expansion-panel__indicator"
+  [@indicatorRotate]="currentPanelExpandedState"
+  *ngIf="shouldShowToggle"
+></span>

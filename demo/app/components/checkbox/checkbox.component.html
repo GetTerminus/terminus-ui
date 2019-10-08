@@ -1,0 +1,52 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Reactive Form
+  </h3>
+
+  <form [formGroup]="myForm">
+    <ts-checkbox
+      tsVerticalSpacing
+      [formControl]="myForm.get('myCheck')"
+    >My (form) checkbox!</ts-checkbox>
+
+    <button (click)="submit(myForm.value)">Submit</button>
+  </form>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    isChecked property
+  </h3>
+
+  <ts-checkbox
+    [isChecked]="checked"
+    [theme]="myTheme"
+    [isDisabled]="disabled"
+    [isRequired]="required"
+    [isIndeterminate]="indeterminate"
+    (inputChange)="changed($event)"
+    (indeterminateChange)="interChanged($event)"
+  >My checkbox!</ts-checkbox>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    ngModel
+  </h3>
+
+  <ts-checkbox
+    [(ngModel)]="myValue"
+    [theme]="myTheme"
+    [isDisabled]="disabled"
+    [isRequired]="required"
+    [isIndeterminate]="indeterminate"
+    (inputChange)="changed($event)"
+    (indeterminateChange)="interChanged($event)"
+  >My (ngModel) checkbox!</ts-checkbox>
+
+  <br>
+
+  Value: {{ myValue }}
+</ts-card>

@@ -1,0 +1,152 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+//
+// @component
+//  CSV Manual Entry Component
+// @description
+//  Excel-like component with keyboard navigation and advanced paste support.
+//
+.ts-csv-entry {
+  display: inline-block;
+  font-size: $type__size--base;
+  max-width: 100%;
+
+  &.c-csv-entry--full-width {
+    display: block;
+    width: 100%;
+
+    .c-csv-entry__row {
+      display: block;
+    }
+
+    .c-csv-entry__input {
+      width: 100%;
+    }
+  }
+}
+
+// <div> primary container
+.c-csv-entry {
+  $rowHeight: 43px;
+  $rightColumnWidth: 40px;
+  $leftColumnWidth: 15px;
+
+  // <div> container for overall table to allow scrolling
+  .c-csv-entry__scroll {
+    // Odd height used to ensure that the table cuts off mid-cell so the user knows there is more content
+    max-height: 28.5em;
+    overflow-y: auto;
+  }
+
+  // <div> container for table info
+  .c-csv-entry__info {
+    @include typography(caption);
+    line-height: 1.2em;
+    margin-bottom: spacing(small, 2);
+    // Match the size of the ts-icon-button
+    margin-right: $rightColumnWidth;
+    text-align: right;
+  }
+
+  // <form>
+  .c-csv-entry__form {
+    $space: spacing(small);
+    border: 1px solid color(utility, light);
+    // Allow horizontal scrolling when all columns cannot be displayed
+    overflow-x: auto;
+  }
+
+  // <div> Container for a row
+  .c-csv-entry__row {
+    display: table-row;
+    white-space: nowrap;
+  }
+
+  // <input> individual cell content
+  .c-csv-entry__input {
+    @include truncate-overflow;
+    border: 1px solid color(utility, light);
+    display: table-cell;
+    font-size: inherit;
+    min-width: spacing(large, 5);
+    padding: spacing(small);
+
+    // remove double border between columns
+    + .c-csv-entry__input {
+      border-left-width: 0;
+    }
+
+    &:first-of-type {
+      border-left: 0;
+    }
+
+    &:last-of-type {
+      border-right: 0;
+    }
+
+    &:focus {
+      // TODO: Use a standard color once a light blue is added
+      $focus-bg: lighten(color(primary, xlight), 50%);
+      background-color: $focus-bg;
+    }
+
+    // Class added to header cells
+    &--header {
+      border-bottom-width: 3px;
+      border-top: 0;
+    }
+
+    &--invalid {
+      color: color(warn);
+    }
+  }
+
+  // <ts-icon-button> button to delete row
+  .c-csv-entry__delete {
+    // Match the height of the row
+    height: $rowHeight;
+
+    .ts-icon-button {
+      color: color(utility, light);
+    }
+  }
+
+  // <div> cell in column of row IDs
+  .c-csv-entry__column-id {
+    @include typography(caption);
+    color: color(utility, light);
+    // Match the height of the row
+    height: $rowHeight;
+    padding: 0 spacing(small, 2);
+
+    &--invalid {
+      color: color(warn);
+      font-weight: $type__weight--base;
+    }
+  }
+
+  // <div> container for all validation messages
+  .c-csv-entry__messages {
+    @include typography(hint);
+    color: color(warn);
+    line-height: 1.2em;
+    // Create margin matching column with 'delete' buttons
+    margin-left: $leftColumnWidth;
+    margin-right: $rightColumnWidth;
+    padding-top: spacing(small, 2);
+  }
+}
+
+// Remove double border between rows
+.c-csv-entry__row {
+  &:not(.c-csv-entry__row--header) {
+    &:not(:last-child) {
+      .c-csv-entry__input {
+        border-bottom-width: 0;
+      }
+    }
+  }
+}

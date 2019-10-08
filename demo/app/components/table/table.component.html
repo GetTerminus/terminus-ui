@@ -1,0 +1,136 @@
+<div fxLayout="row" fxLayoutAlign="end center">
+
+  <ts-select
+    label="Show/hide columns"
+    [allowMultiple]="true"
+    [(ngModel)]="displayedColumns"
+  >
+    <ts-option
+      [value]="column.value"
+      *ngFor="let column of allColumns"
+    >{{ column.name }}</ts-option>
+  </ts-select>
+
+</div>
+
+
+<ts-card style="height: 600px;">
+  <div fxLayout="column" style="height: 100%;">
+    <ts-table
+      [dataSource]="dataSource"
+      tsSort
+      tsVerticalSpacing
+      fxFlex
+    >
+
+      <ng-container tsColumnDef="created" noWrap="true" minWidth="100px">
+        <ts-header-cell *tsHeaderCellDef ts-sort-header>
+          Created
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.created_at | date:"shortDate" }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="updated" noWrap="true" minWidth="100px">
+        <ts-header-cell *tsHeaderCellDef ts-sort-header>
+          Updated
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.updated_at | date:"shortDate" }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="number" noWrap="true">
+        <ts-header-cell *tsHeaderCellDef>
+          Number
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.number }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="title">
+        <ts-header-cell *tsHeaderCellDef>
+          Title
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.title }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="body">
+        <ts-header-cell *tsHeaderCellDef>
+          Body
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          <span [innerHTML]="item.body"></span>
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="state" noWrap="true">
+        <ts-header-cell *tsHeaderCellDef>
+          State
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.state }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="comments" noWrap="true" alignment="right">
+        <ts-header-cell *tsHeaderCellDef ts-sort-header>
+          Comments
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.comments }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="assignee" noWrap="true">
+        <ts-header-cell *tsHeaderCellDef ts-sort-header>
+          Assignee
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.login }}
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="labels">
+        <ts-header-cell *tsHeaderCellDef>
+          Labels
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          <span *ngFor="let l of item.labels">
+            {{ l.name }},
+          </span>
+        </ts-cell>
+      </ng-container>
+
+      <ng-container tsColumnDef="id">
+        <ts-header-cell *tsHeaderCellDef>
+          ID
+        </ts-header-cell>
+        <ts-cell *tsCellDef="let item">
+          {{ item.id }},
+        </ts-cell>
+      </ng-container>
+
+      <ts-header-row *tsHeaderRowDef="displayedColumns">
+      </ts-header-row>
+
+      <ts-row *tsRowDef="let row; columns: displayedColumns;">
+      </ts-row>
+
+    </ts-table>
+
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <ts-paginator
+        [totalRecords]="resultsLength"
+        recordCountTooHighMessage="Please refine your filters."
+        (pageSelect)="onPageSelect($event)"
+        (recordsPerPageChange)="perPageChange($event)"
+      ></ts-paginator>
+    </div>
+  </div>
+</ts-card>

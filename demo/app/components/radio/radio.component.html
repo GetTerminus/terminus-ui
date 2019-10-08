@@ -1,0 +1,82 @@
+<form [formGroup]="myForm" novalidate>
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Demo Controls
+    </h3>
+
+    <button (click)="log(myForm.value)">
+      Log form value
+    </button>
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Group 1
+    </h3>
+
+    <ts-radio-group
+      [options]="items$ | async"
+      [formatUILabelFn]="uiFormatter"
+      [formatUISubLabelFn]="uiSubFormatter"
+      [formatModelValueFn]="modelFormatter"
+      [formControl]="myForm.get('myRadioGroup')"
+      (selectionChange)="selected($event)"
+      tsVerticalSpacing
+    ></ts-radio-group>
+
+    Selected value: {{ myForm.get('myRadioGroup')?.value }}
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Group 2
+    </h3>
+
+    <ts-radio-group
+      [formatUILabelFn]="uiFormatter"
+      [formatModelValueFn]="modelFormatter"
+      [formControl]="myForm.get('myRadioGroup2')"
+      [options]="items2$ | async"
+      (selectionChange)="selected($event)"
+    ></ts-radio-group>
+
+    Selected value: {{ myForm.get('myRadioGroup2')?.value }}
+  </ts-card>
+
+
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle tsVerticalSpacing>
+      Group 2 - visual
+    </h3>
+
+    <div>
+      <label>
+        <input formControlName="isSmall" type="checkbox">
+        Small
+      </label>
+      <br>
+      <label>
+        <input formControlName="isCentered" type="checkbox">
+        Centered Content
+      </label>
+    </div>
+
+    <ts-radio-group
+      [isVisual]="true"
+      [small]="myForm.get('isSmall')?.value"
+      [centeredContent]="myForm.get('isCentered')?.value"
+      [formatUILabelFn]="uiFormatter"
+      [formatUISubLabelFn]="uiSubFormatter"
+      [formatModelValueFn]="modelFormatter"
+      [formControl]="myForm.get('myRadioGroup2')"
+      [options]="items2$ | async"
+      (selectionChange)="selected($event)"
+    ></ts-radio-group>
+
+    Selected value: {{ myForm.get('myRadioGroup2')?.value }}
+  </ts-card>
+
+</form>

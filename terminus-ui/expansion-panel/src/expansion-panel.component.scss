@@ -1,0 +1,67 @@
+@import './../../scss/helpers/a11y';
+@import './../../scss/helpers/animation';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/spacing';
+
+
+.ts-expansion-panel {
+  $border-radius: 4px;
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+  background: color(pure);
+  border-radius: $border-radius;
+  // stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-sizing: content-box;
+  color: color(pure, dark);
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  transition:
+    margin 225ms $g-animation-fast-out-slow-in-timing-function,
+    box-shadow g-elevation-transition-duration $g-animation-fast-out-slow-in-timing-function;
+
+  .ts-accordion & {
+    border-radius: 0;
+
+    &:first-of-type {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+
+  &.ng-animate-disabled,
+  .ng-animate-disabled &,
+  &.ts-expansion-panel--animation-noopable {
+    transition: none;
+  }
+}
+
+.ts-expansion-panel__content {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.ts-expansion-panel__body {
+  padding: 0 spacing(large) spacing(default);
+}
+
+.ts-expansion-panel__action-row {
+  border-top: 1px solid color(utility, light);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: spacing(default) spacing(small, 1) spacing(default) spacing(large);
+
+  .ts-button {
+    margin-left: spacing(small, 1);
+  }
+}

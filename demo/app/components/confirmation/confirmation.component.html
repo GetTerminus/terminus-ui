@@ -1,0 +1,65 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div tsVerticalSpacing>
+    <label>
+      Overlay Position:
+      <select name="myOverlayPosition" [(ngModel)]="myOverlayPosition">
+        <option value="{{ overlayPosition }}" *ngFor="let overlayPosition of overlayPositions">
+          {{ overlayPosition }}
+        </option>
+      </select>
+    </label>
+  </div>
+</ts-card>
+
+<ts-card tsVerticalSpacing *ngIf="myOverlayPosition === 'after'" aspectRatio="5:3">
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Use 'after' when the button is on the left</h3>
+  <div fxLayout="row" fxLayoutAlign="start">
+    <ts-button
+      tsConfirmation
+      [showProgress]="progress"
+      (clicked)="submit()"
+      (cancelled)="cancel($event)"
+      confirmationButtonText="Custom Confirmation Button Text"
+      [explanationText]="explanation"
+      [overlayPosition]="myOverlayPosition"
+    >
+    Click Me!
+  </ts-button>
+</div>
+</ts-card>
+
+<ts-card tsVerticalSpacing *ngIf="myOverlayPosition === 'before'" aspectRatio="5:3">
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Use 'before' when the button is on the right</h3>
+  <div fxLayout="row" fxLayoutAlign="end">
+    <ts-button
+      tsConfirmation
+      [showProgress]="progress"
+      (clicked)="submit()"
+      (cancelled)="cancel($event)"
+      confirmationButtonText="Custom Confirmation Button Text"
+      [explanationText]="explanation"
+      [overlayPosition]="myOverlayPosition"
+    >
+      Click Me!
+    </ts-button>
+  </div>
+</ts-card>
+
+
+<ts-card *ngIf="myOverlayPosition === 'above' || myOverlayPosition === 'below'" [centeredContent]="true" aspectRatio="5:3">
+
+  <ts-button
+    tsConfirmation
+    [showProgress]="progress"
+    (clicked)="submit()"
+    (cancelled)="cancel($event)"
+    confirmationButtonText="Custom Confirmation Button Text"
+    [explanationText]="explanation"
+    [overlayPosition]="myOverlayPosition"
+  >
+    Click Me!
+  </ts-button>
+
+</ts-card>

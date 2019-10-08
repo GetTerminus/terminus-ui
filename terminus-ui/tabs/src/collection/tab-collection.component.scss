@@ -1,0 +1,21 @@
+@import './../../../scss/helpers/animation';
+
+
+// Container around all tabs
+.ts-tab-collection {
+  display: flex;
+  flex-direction: column;
+
+  // Support for moving the tab header below the content
+  &.ts-tab-collection--inverted-header {
+    flex-direction: column-reverse;
+  }
+}
+
+// The bottom section of the view containing the tab bodies
+.ts-tab-collection__body-wrapper {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition: height $g-tab-animation-duration $g-tab-ease-in-out-curve-function;
+}

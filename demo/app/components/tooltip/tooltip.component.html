@@ -1,0 +1,32 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Demo Controls
+  </h3>
+
+  <label>
+    Change the tooltip position:
+
+    <select class="example-select" [(ngModel)]="myPosition">
+      <option value="before">Before</option>
+      <option value="after">After</option>
+      <option value="above">Above</option>
+      <option value="below">Below</option>
+    </select>
+  </label>
+  <br>
+
+  <label>
+    Enable dotted underline:
+    <input type="checkbox" [(ngModel)]="showUnderline">
+  </label>
+
+</ts-card>
+
+
+<ts-card [centeredContent]="true">
+  <ts-tooltip
+    [tooltipValue]="myTooltip"
+    [tooltipPosition]="myPosition"
+    [hasUnderline]="showUnderline"
+  >Hover me.</ts-tooltip>
+</ts-card>

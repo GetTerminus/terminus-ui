@@ -1,0 +1,22 @@
+<mat-icon
+  class="c-icon qa-icon"
+  [ngClass]="{'c-icon--inline': inline}"
+  *ngIf="!svgIcon"
+>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</mat-icon>
+
+
+<mat-icon
+  class="c-icon qa-icon"
+  [ngClass]="{'c-icon--inline': inline}"
+  *ngIf="svgIcon"
+  [svgIcon]="svgIcon"
+>
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</mat-icon>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

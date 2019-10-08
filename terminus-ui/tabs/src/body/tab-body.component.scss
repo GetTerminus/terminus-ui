@@ -1,0 +1,30 @@
+@import './../../../scss/helpers/color';
+@import './../../../scss/helpers/layout';
+@import './../../../scss/helpers/spacing';
+
+
+// Wraps each tab body
+.ts-tab-body {
+  $z-index-upper: 1;
+
+  @include take-space;
+  display: block;
+  // Fix for auto content wrapping in IE11
+  flex-basis: 100%;
+  overflow: hidden;
+
+  &.ts-tab-body--active {
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    z-index: $z-index-upper;
+  }
+}
+
+.ts-tab-body__content {
+  background-color: color(pure);
+  height: 100%;
+  overflow: hidden;
+  padding: spacing(default);
+}

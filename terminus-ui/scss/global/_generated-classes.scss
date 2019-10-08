@@ -1,0 +1,29 @@
+@import './../helpers/typography';
+@import './../helpers/spacing';
+
+
+/**
+ * Base vertical spacing class
+ */
+.u-vertical-spacing {
+  margin-bottom: $g-spacing;
+}
+
+
+/**
+ * Loop over the map and create vertical layout utility classes
+ * Example: `.u-spacing__large--2`
+ */
+@each $size, $collection in $g-spacings {
+  // Loop over each collection (ie 'small')
+  @each $x, $spacing in $collection {
+    .u-vertical-spacing__#{$size}--#{$x} {
+      margin-bottom: $spacing;
+    }
+  }
+
+  // Class needed for directive implementation
+  .u-vertical-spacing__none {
+    margin-bottom: 0;
+  }
+}

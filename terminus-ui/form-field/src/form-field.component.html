@@ -1,0 +1,82 @@
+<div class="ts-form-field__wrapper qa-form-field">
+  <div
+    class="ts-form-field__container qa-form-field-container"
+    #containerElement
+    (click)="control.onContainerClick && control.onContainerClick($event)"
+  >
+
+    <div class="ts-form-field__outline qa-form-field-outline">
+      <div class="ts-form-field__outline-start js-outline-start"></div>
+      <div class="ts-form-field__outline-gap js-outline-gap"></div>
+      <div class="ts-form-field__outline-end"></div>
+    </div>
+    <div class="ts-form-field__outline ts-form-field__outline--thick qa-form-field-outline">
+      <div class="ts-form-field__outline-start js-outline-start"></div>
+      <div class="ts-form-field__outline-gap  js-outline-gap"></div>
+      <div class="ts-form-field__outline-end"></div>
+    </div>
+
+
+    <div class="ts-form-field__prefix qa-form-field-prefix" *ngIf="prefixChildren.length">
+      <ng-content select="[tsPrefix]"></ng-content>
+    </div>
+
+
+    <div class="ts-form-field__infix qa-form-field-control-container">
+      <ng-content>
+      </ng-content>
+
+      <span class="ts-form-field__label-wrapper">
+        <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
+             read if it comes before the control in the DOM. -->
+        <label
+          class="ts-form-field__label qa-form-field-label"
+          [attr.for]="id"
+          [attr.aria-owns]="id"
+          [class.ts-form-field__label--empty]="control.empty && !shouldAlwaysFloat"
+          [class.ts-accent]="theme == 'accent'"
+          [class.ts-warn]="theme == 'warn'"
+          #labelElement
+        >
+          <ng-content select="ts-label"></ng-content>
+
+          <span
+            class="ts-form-field-required-marker qa-form-field-required-marker"
+            aria-hidden="true"
+            *ngIf="!hideRequiredMarker && control.isRequired && !control.isDisabled"
+          >*</span>
+        </label>
+      </span>
+    </div>
+
+
+    <div class="ts-form-field__suffix qa-form-field-suffix" *ngIf="suffixChildren.length">
+      <ng-content select="[tsSuffix]"></ng-content>
+    </div>
+
+  </div>
+
+  <div
+    class="ts-form-field__subscript-wrapper"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    [fxLayoutGap]="flexGap"
+  >
+    <div *ngIf="control && (control.ngControl || control.formControl)">
+      <ts-validation-messages
+        class="qa-form-field-validation-messages"
+        [control]="control.ngControl || control.formControl"
+        [validateOnChange]="validateOnChange"
+      ></ts-validation-messages>
+    </div>
+
+    <div
+      class="ts-form-field__hint-wrapper"
+      *ngIf="hint"
+    >
+      <div
+        class="c-input__hint qa-form-field-hint"
+      >{{ hint }}</div>
+    </div>
+  </div>
+</div>

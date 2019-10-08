@@ -1,0 +1,42 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>Standard icons</h3>
+
+  <ts-icon>home</ts-icon>
+  <ts-icon>wallpaper</ts-icon>
+  <ts-icon theme="accent">storage</ts-icon>
+  <ts-icon theme="warn">open_in_new</ts-icon>
+  <ts-icon svgIcon="csv"></ts-icon>
+  <ts-icon svgIcon="engage" theme="primary"></ts-icon>
+  <ts-icon svgIcon="lightbulb" theme="accent"></ts-icon>
+  <ts-icon svgIcon="logo" theme="warn"></ts-icon>
+  <ts-icon svgIcon="logo_color"></ts-icon>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>With background</h3>
+
+  <ts-icon [background]="true">brightness_medium</ts-icon>
+  <ts-icon theme="primary" [background]="true">brightness_medium</ts-icon>
+  <ts-icon theme="accent" [background]="true">storage</ts-icon>
+  <ts-icon theme="warn" [background]="true">hourglass_empty</ts-icon>
+  <ts-icon svgIcon="logo" theme="primary" [background]="true"></ts-icon>
+  <ts-icon svgIcon="csv" theme="accent" [background]="true"></ts-icon>
+
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>Inline</h3>
+
+  <div>
+    Test me out
+    <ts-icon [inline]="true">home</ts-icon>
+    for horizontal rhythm
+    <ts-icon [inline]="true">queue</ts-icon>
+    to make sure
+    <ts-icon [inline]="true">add_alarm</ts-icon>
+    everything looks fine.
+    <ts-icon [inline]="true">open_in_new</ts-icon>
+  </div>
+</ts-card>

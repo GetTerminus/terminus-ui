@@ -1,0 +1,219 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+@import './../../scss/helpers/z-index';
+
+
+
+$ts-select-arrow-size: 5px !default;
+$ts-select-arrow-margin: 4px !default;
+$ts-select-panel-max-height: 256px !default;
+$ts-select-item-height: 3em !default;
+$ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arrow-margin);
+
+
+//
+// @component
+//  Select menu
+// @description
+//  A select menu component
+//
+.ts-select {
+  @include reset;
+  display: block;
+  outline: none;
+  .ts-form-field {
+    &.ts-form-field--float {
+      .ts-select-arrow-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    &:not(.ts-form-field--float) {
+      .ts-select-arrow-wrapper {
+        display: table-cell;
+        transform: translateY(-10%);
+        vertical-align: middle;
+      }
+    }
+  }
+
+  // <div> trigger to open select
+  .ts-select-trigger {
+    box-sizing: border-box;
+    cursor: cursor(pointer);
+    display: inline-table;
+    position: relative;
+
+    &--hidden {
+      @include visually-hidden;
+    }
+
+    .ts-option--disabled & {
+      cursor: cursor(not-allowed);
+      user-select: none;
+    }
+  }
+
+  &.ts-select--disabled {
+    .ts-select-trigger {
+      cursor: cursor(not-allowed);
+      user-select: none;
+    }
+
+    .ts-select-arrow {
+      color: color(utility);
+    }
+  }
+
+  .ts-select-value {
+    display: table-cell;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .ts-select-value-text {
+    @include truncate-overflow;
+  }
+
+
+
+  .ts-select-arrow {
+    border-left: $ts-select-arrow-size solid transparent;
+    border-right: $ts-select-arrow-size solid transparent;
+    border-top: $ts-select-arrow-size solid;
+    height: 0;
+    margin: 0 $ts-select-arrow-margin;
+    width: 0;
+  }
+}
+
+
+// Position the filter input inside the panel
+.cdk-overlay-pane {
+  .ts-select-panel__filter-input {
+    $padding: spacing(small, 1);
+    background-color: color(pure);
+    border-bottom: 1px solid color(utility, light);
+    left: 0;
+    padding: $padding;
+    position: absolute;
+    right: -#{$padding * 3};
+    top: 0;
+    width: calc(100% - #{$padding * 2});
+    z-index: z(panel-header);
+
+    .ts-form-field {
+      .ts-form-field__wrapper {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+
+.ts-select-panel {
+  max-height: $ts-select-panel-max-height;
+  // Allow long lists to scroll
+  overflow: auto;
+
+  // Create space for the absolutely positioned filter input
+  &.ts-select-panel--filter {
+    $space-for-filter-input: 85px;
+    padding-top: $space-for-filter-input;
+  }
+
+  // Indent the checkboxes if children of an optgroup
+  .ts-optgroup {
+    .ts-option {
+      .ts-checkbox {
+        padding-left: spacing(default);
+      }
+    }
+  }
+
+  // <div> wrapper for checkbox to toggle all options
+  .ts-select-panel__toggle-all {
+    background-color: color(utility, xlight);
+    border-bottom: 1px solid color(utility);
+    // Set up for positioned child
+    position: relative;
+
+    .ts-checkbox {
+      line-height: $ts-select-item-height;
+    }
+  }
+
+  // <span> wrapper for count of selected options
+  .ts-select-panel__count {
+    @include typography(caption);
+    color: color(utility);
+    position: absolute;
+    right: spacing(small);
+  }
+
+  // <div> trigger to call for options refresh
+  .ts-select-panel__refresh {
+    // Match the height of the options (3em)
+    $height: 3 * 16;
+    @include typography(body, 2);
+    @include typography(caption);
+    background-color: color(utility, xlight);
+    color: color(utility, dark);
+    cursor: cursor(pointer);
+    height: #{$height}px;
+    line-height: #{$height}px;
+    padding: 0 spacing(default);
+    transition: color 200ms ease;
+
+    .ts-icon {
+      height: 24px;
+      vertical-align: text-bottom;
+    }
+
+    &:focus,
+    &:hover {
+      color: color(primary);
+    }
+  }
+
+  // <div> message telling the user to refine their search
+  .ts-select-panel__refine {
+    @include typography(caption);
+    color: color(utility);
+    // NOTE: Currently there are no defined italicised typography styles
+    // stylelint-disable-next-line scale-unlimited/declaration-strict-value
+    font-style: italic;
+    padding: spacing(small) spacing(default);
+  }
+}
+
+
+// Paginator Overrides
+.ts-paginator {
+  // Update styles so that the new select style 'fits' with the vertical height of the paginator
+  .ts-select {
+    display: inline-block;
+    position: relative;
+    top: .3em;
+    width: 5em;
+
+    .ts-form-field__infix {
+      $padding-adjustment-for-paginator: .4em 0;
+      padding: $padding-adjustment-for-paginator;
+    }
+
+    // Move the arrow down to center with less padding
+    &.ts-select--disabled {
+      .ts-select-arrow-wrapper {
+        transform: translateY(0);
+      }
+    }
+  }
+}

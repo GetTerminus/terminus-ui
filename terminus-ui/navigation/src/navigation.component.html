@@ -1,0 +1,143 @@
+<nav class="c-navigation t-dark qa-navigation" fxLayout="row">
+
+  <div
+    class="c-navigation__items qa-navigation-items"
+    #visibleItemsList
+    fxFlex="1 1 auto"
+    fxLayout="row"
+    fxLayoutAlign="end stretch"
+  >
+
+    <ng-container *ngFor="let item of visibleItems | async; trackBy: trackByFn">
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        routerLink="{{ item.destination }}"
+        routerLinkActive="c-navigation__item--active"
+        [routerLinkActiveOptions]="{exact: true}"
+        *ngIf="item.destination && !item.isExternal"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        tabindex="0"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        *ngIf="item.destination && item.isExternal"
+        href="{{ item.destination }}"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        tabindex="0"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+
+      <a
+        class="c-navigation__item qa-navigation-item"
+        *ngIf="!item.destination"
+        #visibleLinkElement
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        tabindex="0"
+        (click)="action.emit({event: $event, action: item.action})"
+      >
+        <span class="c-navigation__item-inner">
+          {{ item.name }}
+        </span>
+      </a>
+    </ng-container>
+
+  </div>
+
+
+  <button
+    class="c-navigation__trigger qa-navigation-secondary-trigger"
+    [ngClass]="{'c-navigation__trigger--separator': visibleItemsLength}"
+    mat-button
+    [matMenuTriggerFor]="secondaryNav"
+    fxFlex="none"
+    tabindex="0"
+  >
+    <span class="c-navigation__trigger-welcome" *ngIf="welcomeMessage.length>welcomeMsgLength">
+      <ts-tooltip
+        [tooltipValue]="welcomeMessage"
+      >
+        {{ welcomeMessage | tsTruncateAt:welcomeMsgLength }}
+      </ts-tooltip>
+    </span>
+    <span class="c-navigation__trigger-welcome" *ngIf="welcomeMessage.length<=welcomeMsgLength">
+      {{ welcomeMessage }}
+    </span>
+    <br *ngIf="usersFullName">
+    <span *ngIf="usersFullName && usersFullName.length > userNameLength">
+      <ts-tooltip
+        [tooltipValue]="usersFullName"
+      >
+        {{ usersFullName | tsTruncateAt:userNameLength }}
+      </ts-tooltip>
+    </span>
+    <span *ngIf="usersFullName && usersFullName.length <= userNameLength">
+        {{ usersFullName }}
+    </span>
+
+    <ts-icon class="c-navigation__trigger-icon">
+      keyboard_arrow_down
+    </ts-icon>
+  </button>
+
+
+
+
+  <mat-menu
+    class="c-navigation__hidden-items qa-navigation-secondary-items"
+    #secondaryNav="matMenu"
+    xPosition="before"
+    [overlapTrigger]="false"
+  >
+
+    <ng-container *ngFor="let item of hiddenItems | async; trackBy: trackByFn">
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        routerLink="{{ item.destination }}"
+        *ngIf="item.destination && !item.isExternal"
+        mat-menu-item
+        #hiddenLinkElement
+      >
+        {{ item.name }}
+      </a>
+
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        href="{{ item.destination }}"
+        *ngIf="item.destination && item.isExternal"
+        mat-menu-item
+        #hiddenLinkElement
+      >
+        {{ item.name }}
+      </a>
+
+      <a
+        class="c-navigation__hidden-item qa-navigation-secondary-item"
+        [ngClass]="{'c-navigation__hidden-item--admin': item.alwaysHidden}"
+        *ngIf="!item.destination"
+        mat-menu-item
+        #hiddenLinkElement
+        (click)="action.emit({event: $event, action: item.action})"
+      >
+        {{ item.name }}
+      </a>
+    </ng-container>
+
+  </mat-menu>
+
+</nav>

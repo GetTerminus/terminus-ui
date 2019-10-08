@@ -1,0 +1,32 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>Form</h3>
+
+  <form [formGroup]="myForm" novalidate>
+    <ts-toggle
+      [formControl]="myForm.get('myToggle')"
+      [isDisabled]="isDisabled"
+      [name]="name"
+      [isRequired]="required"
+      (change)="isChanged($event)"
+      tsVerticalSpacing
+    >Toggle Me!</ts-toggle>
+
+    <div>
+      <button (click)="log(myForm.value)">Log form value</button>
+    </div>
+  </form>
+</ts-card>
+
+
+<ts-card>
+  <h3 tsVerticalSpacing>Seed via @Input</h3>
+
+    <ts-toggle
+      [isDisabled]="true"
+      name="two"
+      [isChecked]="true"
+      (change)="isChanged($event)"
+      tsVerticalSpacing
+    >Toggle Me!</ts-toggle>
+
+</ts-card>

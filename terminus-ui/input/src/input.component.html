@@ -1,0 +1,173 @@
+<!--
+   -NOTE: The query lists built within TsFormFieldComponent cannot find directives nested within ng-template. So, for now, we are simply
+   -defining all internal components twice. :(
+   -->
+
+
+<!--
+   -With included TsFormFieldComponent wrapper
+   -->
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  [theme]="theme"
+  *ngIf="!hasExternalFormField"
+>
+  <ts-label>
+    <span class="c-input__label-text qa-input-label-text">
+      {{ label }}
+    </span>
+  </ts-label>
+
+  <ts-icon
+    tsPrefix
+    *ngIf="prefixIcon"
+    class="qa-input-prefix-icon"
+  >{{ prefixIcon }}</ts-icon>
+
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+
+  <ts-icon
+    tsSuffix
+    *ngIf="isClearable && !shouldBeDisabled && !datepicker"
+    class="c-input__clear qa-input-suffix-icon"
+    [class.c-input__clear--visible]="value?.length > 0"
+    (click)="reset()"
+  >clear</ts-icon>
+
+  <mat-datepicker-toggle
+    tsSuffix
+    *ngIf="datepicker"
+    class="qa-datepicker-toggle qa-input-suffix-icon"
+    [for]="picker"
+  ></mat-datepicker-toggle>
+</ts-form-field>
+
+
+<!--
+   -Without included TsFormFieldComponent wrapper
+   -->
+<ng-container *ngIf="hasExternalFormField">
+  <ts-label>
+    <span class="c-input__label-text qa-input-label-text">
+      {{ label }}
+    </span>
+  </ts-label>
+
+  <ts-icon
+    tsPrefix
+    *ngIf="prefixIcon"
+    class="qa-input-prefix-icon"
+  >{{ prefixIcon }}</ts-icon>
+
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+
+  <ts-icon
+    tsSuffix
+    *ngIf="isClearable && !shouldBeDisabled && !datepicker"
+    class="c-input__clear qa-input-suffix-icon"
+    [class.c-input__clear--visible]="value?.length > 0"
+    (click)="reset()"
+  >clear</ts-icon>
+
+  <mat-datepicker-toggle
+    tsSuffix
+    *ngIf="datepicker"
+    class="qa-datepicker-toggle qa-input-suffix-icon"
+    [for]="picker"
+  ></mat-datepicker-toggle>
+</ng-container>
+
+
+<!--
+   -Inner Input
+   -->
+<ng-template #contentTemplate>
+  <ng-container *ngIf="!isTextarea && !datepicker">
+    <input
+      class="c-input__text qa-input-text ts-form-field-autofill-control"
+      type="{{ type }}"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target)"
+      #inputElement
+    >
+  </ng-container>
+
+  <ng-container *ngIf="!isTextarea && datepicker">
+    <input
+      class="c-input__text c-input__text--datepicker qa-input-text ts-form-field-autofill-control"
+      type="{{ type }}"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target)"
+      [matDatepickerFilter]="dateFilter"
+      [matDatepicker]="picker"
+      [min]="minDate"
+      [max]="maxDate"
+      (dateChange)="onDateChanged($event.value)"
+      #inputElement
+    >
+  </ng-container>
+
+  <ng-container *ngIf="isTextarea">
+    <textarea
+      class="c-input__text c-input__text--textarea qa-input-text ts-form-field-autofill-control"
+      [attr.aria-required]="isRequired"
+      [attr.aria-describedby]="ariaDescribedby || null"
+      [attr.autocapitalize]="autocapitalize ? 'on' : 'off'"
+      [attr.autocomplete]="autocomplete"
+      [attr.autofocus]="isFocused ? '' : null"
+      [attr.disabled]="shouldBeDisabled ? '' : null"
+      [attr.name]="name"
+      [attr.id]="id"
+      [attr.rows]="textareaRows"
+      [readonly]="readOnly"
+      [required]="isRequired ? 'required' : null"
+      [attr.spellcheck]="spellcheck"
+      tabIndex="{{ tabIndex }}"
+      [(ngModel)]="value"
+      (blur)="focusChanged(false)"
+      (focus)="focusChanged(true)"
+      (input)="onInput($event.target)"
+      #inputElement
+    ></textarea>
+  </ng-container>
+</ng-template>
+
+
+<mat-datepicker
+  class="c-datepicker__calendar qa-datepicker-calendar"
+  [disabled]="shouldBeDisabled"
+  [startView]="startingView"
+  [startAt]="openTo"
+  #picker
+></mat-datepicker>

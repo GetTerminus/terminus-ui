@@ -3,22 +3,31 @@ codecov:
     require_ci_to_pass: yes
 
 coverage:
-  range: "40...80"
+  range: 90..100
+  round: down
+  precision: 2
   status:
     project:
-      default:
-        threshold: 1
+      default: off
+      unit:
+        flags: unit
+
+flags:
+  unit:
+    paths:
+      - terminus-ui/
 
 ignore:
   - "coverage"
   - "dist"
   - "build"
   - "docs"
+  # TODO: Remove 'integration' from this list when enabling integration tests
   - "integration"
   - "node_modules"
   - "out-tsc"
-  - "src/demo"
-  - "styleguide"
+  - "demo/app"
   - "tooling"
-  - "src/lib/src/**/*.spec.ts"
+  - "terminus-ui/src/**/*.spec.ts"
+  - "terminus-ui/src/**/*.mock.ts"
 

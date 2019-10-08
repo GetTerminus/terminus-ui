@@ -1,0 +1,147 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/scrollbars';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+$ts-header-row-height: 56px;
+$ts-row-height: 48px;
+$ts-row-horizontal-padding: 24px;
+$ts-row-hover: rgba(color(utility, xlight), .5);
+
+
+
+//
+// @component
+//  Table
+// @description
+//  A table component
+//
+.ts-table {
+  @include reset;
+  @include typography;
+  border-collapse: collapse;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  // <div> inner container for overflow control
+  &__container {
+    @include visible-scrollbars;
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  // <div> Emulate <table> element and hide overflow caused by hover crosshairs
+  &__table {
+    display: table;
+    min-width: 100%;
+    overflow: hidden;
+  }
+
+  // Target a table inside of a card component
+  // When inside a card we adjust the top|right|left margins to cancel the default card padding
+  .c-card & {
+    // NOTE: Currently the table component does not include pagination so the table's bottom margin
+    // is not adjusted here. Once we have a `paged-table` that includes pagination we can add the
+    // negative bottom margin.
+    $table-margin-adjustment-for-pagination: -#{spacing(large)} -#{spacing(large)} 0 -#{spacing(large)};
+    $table-adjustment-for-margins: spacing(large) * 2;
+
+    margin: $table-margin-adjustment-for-pagination;
+    width: calc(100% + #{$table-adjustment-for-margins});
+  }
+
+
+  //
+  // Rows
+  //
+
+  // Header row
+  .ts-header-row {
+    @include typography(caption);
+    color: color(utility);
+    min-height: $ts-header-row-height;
+    transition: background-color 200ms ease-out;
+    will-change: background-color;
+  }
+
+  // Body row
+  .ts-row {
+    min-height: $ts-row-height;
+    transition: background-color 200ms ease-out;
+    will-change: background-color;
+
+    &:hover {
+      background-color: $ts-row-hover;
+    }
+
+    // Workaround for https://goo.gl/pFmjJD in IE 11. Adds a pseudo
+    // element that will stretch the row the correct height. See:
+    // https://connect.microsoft.com/IE/feedback/details/802625
+    &::after {
+      content: '';
+      display: inline-block;
+      min-height: inherit;
+    }
+  }
+
+  // Any row
+  .ts-row,
+  .ts-header-row {
+    border-bottom: 1px solid color(utility, xlight);
+    box-sizing: border-box;
+    display: table-row;
+  }
+
+
+  //
+  // Cells
+  //
+
+  // Body cell
+  .ts-cell {
+    padding: spacing(default);
+    vertical-align: middle;
+  }
+
+  // Header cell
+  .ts-header-cell {
+    vertical-align: bottom;
+    // If the column isn't sortable, add padding here that would normally be added by
+    // `ts-sort-header-container`
+    &:not(.ts-sortable) {
+      padding: spacing(default);
+    }
+
+    &.ts-sortable {
+      border-bottom: 3px solid color(utility, light);
+      transition: border-bottom 200ms ease-out;
+      will-change: border-bottom-color;
+    }
+
+    // Class added when the column is sorted
+    &.ts-sort-header-sorted {
+      border-bottom-color: color(accent);
+      color: color(accent);
+    }
+
+    // <div> inner container wrapping the sort control
+    .ts-sort-header-container {
+      padding: spacing(default);
+    }
+  }
+
+  // Any cell
+  .ts-cell,
+  .ts-header-cell {
+    display: table-cell;
+
+    // Class added if a column should not wrap
+    &.ts-column-no-wrap {
+      white-space: nowrap;
+    }
+  }
+}

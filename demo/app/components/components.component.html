@@ -1,0 +1,60 @@
+<header fxLayout="row">
+  <div fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    Demos
+    <sup>
+      ({{ components.length }})
+    </sup>
+  </div>
+
+  <span fxFlex></span>
+
+  <div class="versions" fxLayout="row" fxLayoutGap="1em">
+    <div fxLayout="column" fxLayoutAlign="start stretch">
+      <div>
+        @terminus/ui:
+        <strong>{{ uiVersion.full }}</strong>
+      </div>
+
+      <div>
+        @terminus/ngx-tools:
+        <strong>{{ ngxVersion.full }}</strong>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start stretch">
+      <div>
+        @angular/*:
+        <strong>{{ ngVersion.full }}</strong>
+      </div>
+      <div>
+        @angular/material:
+        <strong>{{ matVersion.full }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <span fxFlex></span>
+
+  <div>
+    <ts-selection-list
+      label="Select a demo"
+      [formControl]="currentPage"
+      [displayFormatter]="formatter"
+      (queryChange)="queryHasChanged($event)"
+      (selectionChange)="pageSelected($event)"
+    >
+      <ts-option
+        *ngFor="let component of simpleResults$ | async"
+        [option]="component"
+        [value]="component"
+      >
+        {{ component.data.name }}
+      </ts-option>
+    </ts-selection-list>
+  </div>
+</header>
+
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

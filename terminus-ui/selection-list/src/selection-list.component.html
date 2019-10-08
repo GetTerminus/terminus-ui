@@ -1,0 +1,95 @@
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  [id]="id"
+  [theme]="theme"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
+>
+  <ts-label *ngIf="label">
+    {{ label }}
+  </ts-label>
+
+  <div class="ts-selection-list__input-wrap">
+
+    <ng-container *ngIf="allowMultiple">
+      <ts-chip-collection (tabUpdateFocus)="focusInput()">
+        <ts-chip
+          *ngFor="let chip of ngControl.value; trackBy: trackByFn"
+          [value]="chip"
+          [isDisabled]="isDisabled"
+          (remove)="deselectItem($event)"
+        >
+          {{ displayFormatter(chip) }}
+        </ts-chip>
+
+        <input
+          class="ts-selection-list__input"
+          [tsSelectionListTrigger]="auto"
+          [allowMultiple]="allowMultiple"
+          [reopenAfterSelection]="reopenAfterSelection"
+          [attr.id]="id"
+          [(ngModel)]="searchQuery"
+          [readonly]="isDisabled ? 'true' : null"
+          (ngModelChange)="querySubject.next($event)"
+          (blur)="handleInputBlur($event)"
+          onfocus="this.select()"
+          #input
+        />
+      </ts-chip-collection>
+
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="!allowMultiple">
+      <input
+        class="ts-selection-list__input"
+        [tsSelectionListTrigger]="auto"
+        [allowMultiple]="allowMultiple"
+        [attr.id]="id"
+        [readonly]="isDisabled ? 'true' : null"
+        [(ngModel)]="searchQuery"
+        [value]="searchQuery"
+        (ngModelChange)="querySubject.next($event)"
+        (blur)="handleInputBlur($event)"
+        onfocus="this.select()"
+        #input
+      />
+
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
+    </ng-container>
+
+    <ts-icon *ngIf="shouldShowDropdownIcon">arrow_drop_down</ts-icon>
+  </div>
+</ts-form-field>
+
+
+<ts-selection-list-panel
+  class="ts-selection-list"
+  #auto="tsSelectionListPanel"
+  [id]="id + '-panel'"
+  [options]="options"
+  [optionGroups]="optionGroups"
+  [displayWith]="displayFormatter"
+  (optionSelected)="selectItem($event)"
+>
+  <!-- Outlet for options passed in by consumer -->
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</ts-selection-list-panel>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #spinnerTemplate>
+  <mat-progress-spinner
+    *ngIf="showProgress"
+    class="c-selection-list__spinner c-selection-list__spinner--{{theme}}"
+    [ngClass]="{'c-selection-list__spinner--active': showProgress}"
+    diameter="21"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</ng-template>

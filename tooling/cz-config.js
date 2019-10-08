@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-
   types: [
     {value: 'feat',     name: 'feat:     A new feature'},
     {value: 'fix',      name: 'fix:      A bug fix'},
@@ -16,48 +15,55 @@ module.exports = {
   ],
 
   scopes: [
+    {name: 'Autocomplete'},
+    {name: 'Autofocus'},
     {name: 'Button'},
+    {name: 'Card'},
+    {name: 'Chart'},
+    {name: 'Checkbox'},
+    {name: 'Chip'},
+    {name: 'Confirmation'},
+    {name: 'Copy'},
+    {name: 'CSVEntry'},
+    {name: 'DateRange'},
+    {name: 'ExpansionPanel'},
+    {name: 'FileUpload'},
+    {name: 'FormField'},
+    {name: 'Icon'},
+    {name: 'IconButton'},
     {name: 'Input'},
-    {name: 'ValidationMessages'},
+    {name: 'Link'},
+    {name: 'LoadingOverlay'},
+    {name: 'LoginForm'},
+    {name: 'Logo'},
     {name: 'Menu'},
-    {name: 'Pagination'},
+    {name: 'Navigation'},
+    {name: 'Paginator'},
+    {name: 'Pipes'},
+    {name: 'RadioGroup'},
+    {name: 'Scrollbars'},
     {name: 'Search'},
     {name: 'Select'},
-    {name: 'Toggle'},
-    {name: 'Copy'},
-    {name: 'Tooltip'},
-    {name: 'Datepicker'},
-    {name: 'DateRange'},
+    {name: 'SelectionList'},
+    {name: 'Services'},
+    {name: 'SCSS'},
+    {name: 'Sort'},
     {name: 'Spacing'},
-    {name: 'Checkbox'},
-    {name: 'LoginForm'},
-    {name: 'Link'},
-    {name: 'Navigation'},
-    {name: 'LoadingOverlay'},
+    {name: 'Tabs'},
+    {name: 'Table'},
+    {name: 'Toggle'},
+    {name: 'Tooltip'},
+    {name: 'Utilities'},
+    {name: 'ValidationMessages'},
+    {name: 'Validators'},
     // INJECT: Add commitizen scope
     // NB! The above line is required for our yeoman generator and should not be changed.
 
-    {name: 'SCSS'},
-    {name: 'CI'},
-    {name: 'Dependencies'},
     {name: 'Demo'},
-    {name: 'Services'},
-    {name: 'Utilities'},
+    {name: 'Packages'},
+    {name: 'CI'},
   ],
 
-  // it needs to match the value for field type. Eg.: 'fix'
-  /*
-  scopeOverrides: {
-    fix: [
-      {name: 'merge'},
-      {name: 'style'},
-      {name: 'e2eTest'},
-      {name: 'unitTest'}
-    ]
-  },
-  */
-
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix']
-
+  allowBreakingChanges: ['feat', 'fix', 'refactor', 'revert', 'chore']
 };

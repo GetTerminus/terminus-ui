@@ -1,0 +1,12 @@
+<ts-card>
+  <form [formGroup]="myForm" novalidate>
+
+    <ts-cohort-date-range
+      [cohorts]="cohorts"
+      [allowCustomDates]="true"
+      (cohortDateRangeChanged)="printRange($event)"
+      [isDisabled]="false"
+    ></ts-cohort-date-range>
+
+  </form>
+</ts-card>

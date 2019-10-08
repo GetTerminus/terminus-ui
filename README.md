@@ -1,594 +1,522 @@
 # Terminus UI Library
 
+
 The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
-[![documentation coverage][compodoc-badge]][docs-url]
-[![NPM version][npm-version-image]][npm-url]
-[![Library size][file-size-badge]][raw-distribution-js]
-[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
+[![ZenHub][zenhub-image]][zenhub-url]
+<br>
+[![NPM version][npm-version-image]][npm-url]
+[![Github release][gh-release-badge]][gh-releases]
+[![Library size][file-size-badge]][raw-distribution-js]
+<br>
+[![components](https://img.shields.io/badge/Components-37-%2316a085.svg)](#components)
+[![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
+[![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
+[![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
+[![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
 
+---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Library Component Documentation](#library-component-documentation)
-- [Primary Library Features](#primary-library-features)
+- [Library Purpose](#library-purpose)
+- [Documentation](#documentation)
+  - [Versioned Documentation and Demos](#versioned-documentation-and-demos)
 - [Available Features](#available-features)
   - [Components](#components)
+  - [Pipes](#pipes)
   - [Services](#services)
+    - [Available Validators](#available-validators)
+  - [Constants](#constants)
   - [Style Helpers](#style-helpers)
 - [Installation](#installation)
-- [Adding a Component](#adding-a-component)
-- [Developing](#developing)
-  - [Demos](#demos)
-  - [Branching](#branching)
-    - [Naming](#naming)
-    - [Workflow](#workflow)
-    - [Hotfixes](#hotfixes)
-  - [Committing](#committing)
-    - [Breaking Changes](#breaking-changes)
-  - [Linting](#linting)
-  - [Testing](#testing)
-  - [Pull Requests](#pull-requests)
-  - [Releasing](#releasing)
-  - [Code Comments](#code-comments)
-- [Issues](#issues)
+  - [Fonts and Typefaces](#fonts-and-typefaces)
+  - [Global Styles](#global-styles)
+- [SCSS Helpers](#scss-helpers)
+- [Contributing](#contributing)
+- [Contributors](#contributors)
 - [Project Resources](#project-resources)
-- [Suggested Tools](#suggested-tools)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Library Component Documentation
+## Library Purpose
 
-This document covers documentation for building and maintaining the terminus-ui library. For
-documentation on all components and styles, visit [GetTerminus.github.io/terminus-ui][docs-url].
+This library was created to assist Terminus engineers in maintaining a consistent experience across
+applications while following a unified design language.
+
+The library is open source with the hopes that others may find solutions and ideas here, as we have
+done while browsing so many other repositories. While we want to make decisions that are best for
+everyone, in the end, the needs of the Terminus engineering team must come first.
+
+If a deviation makes sense for the feature itself, but not for Terminus, we support (and will assist
+in) abstracting the functionality out for generalization.
+
+This library is heavily based on Material Design currently. This provides us a way to rely on very
+well thought out usability and accessibility decisions for areas we have not yet addressed
+internally. While we hold Material in high regard, we do not believe that all of their decisions are
+best for the Terminus UI specifically.
 
 
-## Primary Library Features
+## Documentation
 
-1. Demo app for developing within a real application
-1. Testing
-    - Unit (cross-browser)
-    - JiT integration
-    - AoT integration
-    - Style regression (not yet implemented)
-1. Linting
-    - TypeScript
-    - SCSS
-1. Documentation
-    - Manual docs for basic project flow (README)
-      - Automated Table of Contents updates
-      - Automated markdown link checking
-    - Generated docs for TypeScript (`docs/`)
-    - Generated docs for SCSS (`styleguide/`)
-1. Automated semantic versioning & publishing to NPM
-1. Enforced commit style
-1. Tree-shaking via Rollup.js
-1. SCSS variables & functions exposed to the consuming application
-1. Code coverage reporting (`coverage/`)
-1. Automated dependency updates
+The [available features table](#available-features) contains links for functional and usage documentation
+for each feature.
+
+### Versioned Documentation and Demos
+
+- `latest`
+  - [Latest TypeScript Documentation][docs-latest]
+  - [Latest Demos][demo-latest]
 
 
 ## Available Features
 
-> - :x:: not started
-> - :hammer:: started
-> - :white_check_mark:: available
+> - :hammer: started
+> - :white_check_mark: available
+> - :hankey: deprecated
 
 ### Components
 
-| Feature          | Notes                                                  | Status             | Demo                         |
-|------------------|--------------------------------------------------------|        :---:       |------------------------------|
-| alert            |                                                        |                :x: |                              |
-| autocomplete     |                                                        |                :x: |                              |
-| badge            |                                                        |                :x: |                              |
-| button           |                                                        | :white_check_mark: |          [Demo][demo-button] |
-| breadcrumbs      |                                                        |                :x: |                              |
-| chip             |                                                        |                :x: |                              |
-| checkbox         |                                                        | :white_check_mark: |        [Demo][demo-checkbox] |
-| copy             |                                                        | :white_check_mark: |            [Demo][demo-copy] |
-| datavis          |                                                        |                :x: |                              |
-| datetable        |                                                        |                :x: |                              |
-| datepicker       |                                                        | :white_check_mark: |      [Demo][demo-datepicker] |
-| date-range       |                                                        | :white_check_mark: |      [Demo][demo-date-range] |
-| dialog           |                                                        |                :x: |                              |
-| divider          |                                                        |                :x: |                              |
-| expansion        |                                                        |                :x: |                              |
-| file-picker      |                                                        |                :x: |                              |
-| input-masking    |                                                        |                :x: |                              |
-| input-messages   |         Used by `input` to display validation messages | :white_check_mark: |                              |
-| input            |                                                        | :white_check_mark: |           [Demo][demo-input] |
-| link             |                                                        | :white_check_mark: |            [Demo][demo-link] |
-| loading overlay  |                                                        | :white_check_mark: | [Demo][demo-loading-overlay] |
-| login form       |                                                        | :white_check_mark: |      [Demo][demo-login-form] |
-| menu             |                                                        | :white_check_mark: |            [Demo][demo-menu] |
-| navigation       |                                                        | :white_check_mark: |      [Demo][demo-navigation] |
-| pagination       |                                                        | :white_check_mark: |      [Demo][demo-pagination] |
-| picklist         |                                                        |                :x: |                              |
-| progress         |                                                        |                :x: |                              |
-| progression      |                                                        |                :x: |                              |
-| radio            |                                                        |                :x: |                              |
-| search           |                                                        | :white_check_mark: |                              |
-| select           |                                                        | :white_check_mark: |          [Demo][demo-select] |
-| tabs             |                                                        |                :x: |                              |
-| toggle           |                                                        | :white_check_mark: |          [Demo][demo-toggle] |
-| tooltip          |                                                        | :white_check_mark: |                              |
+| Feature                                    | Notes                                                     | Status             | Demo                            | Docs                           | Usage                            |
+|--------------------------------------------|-----------------------------------------------------------|:------------------:|---------------------------------|--------------------------------|----------------------------------|
+| alert                                      |                                                           |                    |                                 |                                |                                  |
+| [autocomplete][src-autocomplete]           | An input with suggestions                                 | :white_check_mark: | [Demo][demo-autocomplete]       | [Docs][autocomplete-docs]      | [Usage][autocomplete-usage]      |
+| [autofocus][src-autofocus]                 | Focus a focusable element on load                         | :white_check_mark: | [Demo][demo-autofocus]          | [Docs][autofocus-docs]         | [Usage][autofocus-usage]         |
+| badge                                      |                                                           |                    |                                 |                                |                                  |
+| [button][src-button]                       |                                                           | :white_check_mark: | [Demo][demo-button]             | [Docs][button-docs]            |                                  |
+| breadcrumbs                                |                                                           |                    |                                 |                                |                                  |
+| [card][src-card]                           |                                                           | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]              | [Usage][card-usage]              |
+| [chart][src-chart]                         | Charts, graphs etc                                        | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]             | [Usage][chart-usage]             |
+| [chip][src-chip]                           | Chip                                                      | :white_check_mark: | [Demo][demo-chip]               | [Docs][chip-docs]              | [Usage][chip-usage]              |
+| [checkbox][src-checkbox]                   |                                                           | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]          | [Usage][checkbox-usage]          |
+| [cohort-date-range][src-cohort-date-range] | CohortDateRange                                           | :white_check_mark: | [Demo][demo-cohort-date-range]  | [Docs][cohort-date-range-docs] | [Usage][cohort-date-range-usage] |
+| [confirmation][src-confirmation]           | Add a confirmation step to any `ts-button`                | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]      | [Usage][confirmation-usage]      |
+| [copy][src-copy]                           |                                                           | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]              | [Usage][copy-usage]              |
+| [csv entry][src-csv-entry]                 | Manually enter CSV values                                 | :white_check_mark: | [Demo][demo-csv-entry]          | [Docs][csv-entry-docs]         | [Usage][csv-entry-usage]         |
+| [datepicker][src-input]                    | See `TsInputComponent`                                    | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]             | [Usage][input-usage]             |
+| [date-range][src-date-range]               | Dual inputs with calendar pop-ups                         | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]        | [Usage][date-range-usage]        |
+| dialog                                     |                                                           |                    |                                 |                                |                                  |
+| divider                                    |                                                           |                    |                                 |                                |                                  |
+| [expansion-panel][src-expansion-panel]     | Expansion panel with accordion & stepper functionality    | :white_check_mark: | [Demo][demo-expansion-panel]    | [Docs][expansion-panel-docs]   | [Usage][expansion-panel-usage]   |
+| [file-upload][src-file-upload]             | File upload with drag and drop                            | :white_check_mark: | [Demo][demo-file-upload]        | [Docs][file-upload-docs]       | [Usage][file-upload-usage]       |
+| [icon][src-icon]                           | Supported icons: https://material.io/icons                | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]              | [Usage][icon-usage]              |
+| [icon-button][src-button]                  |                                                           | :white_check_mark: | [Demo][demo-icon-button]        | [Docs][icon-button-docs]       | [Usage][icon-button-usage]       |
+| [input][src-input]                         |                                                           | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]             | [Usage][input-usage]             |
+| [link][src-link]                           |                                                           | :white_check_mark: | [Demo][demo-link]               | [Docs][link-docs]              | [Usage][link-usage]              |
+| [loading overlay][src-loading-overlay]     | Overlay with loading spinner                              | :white_check_mark: | [Demo][demo-loading-overlay]    | [Docs][loading-overlay-docs]   |                                  |
+| [login form][src-login-form]               | Email/password with 'remember me' checkbox                | :white_check_mark: | [Demo][demo-log-in-form]        | [Docs][login-form-docs]        | [Usage][login-form-usage]        |
+| [logo][src-logo]                           | Variations of the official logo, certain colors available | :white_check_mark: | [Demo][demo-logo]               | [Docs][logo-docs]              | [Usage][logo-usage]              |
+| [menu][src-menu]                           |                                                           | :white_check_mark: | [Demo][demo-menu]               | [Docs][menu-docs]              | [Usage][menu-usage]              |
+| [navigation][src-navigation]               | Global navigation menu                                    | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]        | [Usage][navigation-usage]        |
+| [paginator][src-paginator]                 | Paging controls for collections                           | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]         | [Usage][paginator-usage]         |
+| [pipes][src-pipes]                         | A collection of pipes for Angular                         | :white_check_mark: | [Demo][demo-pipes]              | [Docs][pipes-docs]             |                                  |
+| progress                                   |                                                           |                    |                                 |                                |                                  |
+| [radio-group][src-radio-group]             |                                                           | :white_check_mark: | [Demo][demo-radio-group]        | [Docs][radio-group-docs]       | [Usage][radio-group-usage]       |
+| [scrollbars][src-scrollbars]               | Custom scrollars for both axis'                           | :white_check_mark: | [Demo][demo-scrollbars]         | [Docs][scrollbars-docs]        | [Usage][scrollbars-usage]        |
+| [search][src-search]                       | Input with search capabilities                            | :white_check_mark: | [Demo][demo-search]             | [Docs][search-docs]            |                                  |
+| [select][src-select]                       | Classic select menu with optgroup support                 | :white_check_mark: | [Demo][demo-select]             | [Docs][select-docs]            | [Usage][select-usage]            |
+| [selection-list][src-selection-list]       | Classic select dropdown / autocomplete                    | :white_check_mark: | [Demo][demo-selection-list]     | [Docs][selection-list-docs]    | [Usage][selection-list-usage]    |
+| [spacing][src-spacing]                     | Helpers for consistent spacing                            | :white_check_mark: | [Demo][demo-spacing]            | [Docs][spacing-docs]           |                                  |
+| [sort][src-sort]                           | Used by `table` for column sorting                        | :white_check_mark: | <small>(see table demo)</small> | [Docs][sort-docs]              | [Usage][sort-usage]              |
+| [table][src-table]                         |                                                           | :white_check_mark: | [Demo][demo-table]              | [Docs][table-docs]             | [Usage][table-usage]             |
+| [tabs][src-tabs]                           | Horizontal tab interface                                  | :white_check_mark: | [Demo][demo-tabs]               | [Docs][tabs-docs]              | [Usage][tabs-usage]              |
+| textarea                                   | See `input`                                               | :white_check_mark: | <small>(see input demo)</small> |                                |                                  |
+| [toggle][src-toggle]                       |                                                           | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]            | [Usage][toggle-usage]            |
+| [tooltip][src-tooltip]                     |                                                           | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]           |                                  |
+
+
+### Pipes
+
+[:books: Pipes Documentation][pipes-docs]
+<br>
+[:circus_tent: Pipes Demo][demo-pipes]
+
+| Pipe                                       | Notes                                       | Status             |
+|--------------------------------------------|---------------------------------------------|:------------------:|
+| [`tsDate`][src-pipes-date]                 | `short`, `medium`, `extended`, `timestamp`  | :white_check_mark: |
+| [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision      | :white_check_mark: |
+| [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case      | :white_check_mark: |
+| [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                    | :white_check_mark: |
+| [`tsTitleCase`][src-pipes-titleCase]       | Title Case A String                         | :white_check_mark: |
+| [`tsTruncateAt`][src-pipes-truncate]       | Truncate a string, `start`, `middle`, `end` | :white_check_mark: |
 
 
 ### Services
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| WindowService    |             Provide access to the native window object | :white_check_mark: |
+| Feature                      | Notes                                               | Status             | Demo                    | Docs                    | Usage                     |
+|------------------------------|-----------------------------------------------------|:------------------:|-------------------------|-------------------------|---------------------------|
+| [Validators][src-validators] | Expose custom validation methods for reactive forms | :white_check_mark: | [Demo][demo-validators] | [Docs][validators-docs] | [Usage][validators-usage] |
+
+
+#### Available Validators
+
+| Name             | Purpose                                                       | Status             |
+|------------------|---------------------------------------------------------------|:------------------:|
+| `creditCard`     | A credit card number must be valid                            | :white_check_mark: |
+| `domain`         | A domain must be valid                                        | :white_check_mark: |
+| `email`          | An email address must be valid                                | :white_check_mark: |
+| `equalToControl` | A control's value must be equal to another control's value    | :white_check_mark: |
+| `greaterThan`    | A number must be greater than another value                   | :white_check_mark: |
+| `inCollection`   | A value must be found in a collection                         | :white_check_mark: |
+| `isInRange`      | A number must be between two numbers                          | :white_check_mark: |
+| `lessThan`       | A number must be less than another value                      | :white_check_mark: |
+| `lowercase`      | A value must contain a minimum amount of lowercase characters | :white_check_mark: |
+| `maxDate`        | A date must be before a maximum date                          | :white_check_mark: |
+| `minDate`        | A date must be after a minimum date                           | :white_check_mark: |
+| `numbers`        | A value must contain a minimum amount of numbers              | :white_check_mark: |
+| `password`       | A password must meet certain requirements                     | :white_check_mark: |
+| `uppercase`      | A value must contain a minimum amount of uppercase characters | :white_check_mark: |
+| `url`            | A URL must be valid                                           | :white_check_mark: |
+
+
+### Constants
+
+| Feature      | Notes                                  | Status             | Demo                          | Docs | Usage |
+|--------------|----------------------------------------|:------------------:|-------------------------------|------|-------|
+| `TS_SPACING` | Expose our spacing sizes in TypeScript | :white_check_mark: | [Demo][demo-spacing-constant] |      |       |
 
 
 ### Style Helpers
 
-| Feature          | Notes                                                  | Status             |
-|------------------|--------------------------------------------------------|        :---:       |
-| assets           |                                                        |           :hammer: |
-| breakpoints      |                                                        | :white_check_mark: |
-| colors           |                                                        |           :hammer: |
-| layout           |                                                        |           :hammer: |
-| spacing          |                                                        | :white_check_mark: |
-| typography       |                                                        | :white_check_mark: |
-| z-index          |                                                        | :white_check_mark: |
+| Feature            | Notes                       | Status             | Docs                     |
+|--------------------|-----------------------------|:------------------:|--------------------------|
+| a11y               | Accessibility helpers       | :white_check_mark: |                          |
+| animation          |                             | :hammer:           |                          |
+| assets             |                             | :hammer:           |                          |
+| breakpoints        |                             | :white_check_mark: | [Docs][breakpoints-docs] |
+| colors             |                             | :white_check_mark: | [Docs][color-docs]       |
+| cursors            |                             | :white_check_mark: | [Docs][cursors-docs]     |
+| input-placeholder  |                             | :white_check_mark: |                          |
+| layout             |                             | :white_check_mark: | [Docs][layout-docs]      |
+| opposite-direction | Reverse a direction         | :white_check_mark: |                          |
+| shadows            |                             | :white_check_mark: | [Docs][shadows-docs]     |
+| spacing            |                             | :white_check_mark: | [Docs][spacing-docs]     |
+| triangle           | Create a triangle using CSS | :white_check_mark: |                          |
+| typography         |                             | :white_check_mark: | [Docs][typography-docs]  |
+| z-index            |                             | :white_check_mark: | [Docs][z-index-docs]     |
 
 
 ## Installation
 
-Install the library and all required dependencies:
+Install the library and required dependencies:
 
 ```bash
-$ yarn add @terminus/ui @angular/forms @angular/animations @angular/material angular2-ladda hammerjs
+# Primary dependencies:
+$ yarn add @terminus/ui @terminus/ngx-tools
+
+# Peer dependencies that will need to be installed (needed by UI and tools libraries):
+$ yarn add @angular/cdk @angular/material @angular/flex-layout@8.0.0-beta.26 date-fns @ngrx/effects @ngrx/store hammerjs
+
+# Optional dependencies (needed if using the TsChartComponent):
+$ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 ```
 
 
-## Adding a Component
+### Fonts and Typefaces
 
-> NOTE: You can also use the [yeoman generator][generator] to quickly scaffold a new component
+Add the following links to install the body fonts and icon fonts used by the library:
 
-1. Create a directory using the component name: `src/lib/src/button/`
-    - Necessary files:
-      - `button.module.ts`
-          - Class name: `TsButtonModule`
-      - `button.component.ts`
-          - Class name: `TsButtonComponent`
-      - `button.component.scss`
-      - `button.component.html`
-1. Import **and** export `button.component.ts` inside `button.module.ts`
-1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
-1. Import `TsButtonModule` in `src/lib/src/module.ts` and add it to imports **and** exports array.
-1. Export `TsButtonModule` from `src/lib/index.ts`.
-1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
-1. Add a usage example in the component documentation with every possible input included.
-1. Document styles using [nucleus comments][nucleus_annotation].
-1. Run `yarn run docs` to generate all documentation.
-1. Add the new component to available scopes in `tooling/cz-config.js`
-1. Update the status for the component in the [components table](#components)
-
-
-## Developing
-
-```bash
-# Start the demo project and watch demo and lib files for changes
-$ yarn run start
-
-# Generate TypeScript and SCSS docs
-$ yarn run docs
-
-# Update the README table of contents
-$ yarn run docs:toc
-
-# Build the library
-$ yarn run build
-
-# Test JiT and AoT integration
-$ yarn run integration
-
-# Run TypeScript and SCSS linters
-$ yarn run lint
-
-# Run all TypeScript tests
-$ yarn run test
+```html
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
-> Check [package.json][pkg-json] for all available commands
 
+### Global Styles
 
-### Demos
+To use the global styles, import the CSS file into your stylesheets:
 
-1. `yarn install && yarn run start`
-2. Navigate to `http://localhost:4300/components/`
-3. Select a component from the menu
-
-![select a demo component][component-demo-screenshot]
-
-
-### Branching
-
-Note: `master` is **always deployable**.
-
-#### Naming
-
-1. Branches should have a brief but comprehensive name.
-    - The name should clearly encompass the work that the branch will contain. A name like
-    `user-view` may make sense now, but some time later it will be difficult to know what work was
-    done on the branch. A better name could be `27-create-user-detail-view`. Be as specific as
-    possible, while keeping the length as short as possible.
-1. Branches should have the associated GitHub issue number in the name.
-    - This is a helpful reference to the issue details. More importantly, it forces everyone to
-    create the issue _before_ the work begins. If it is worth doing, than it deserves an issue. This
-    creates better historical data and more importantly, gives everyone visibility into the work
-    being done.
-    - The number should be at the beginning of the branch name: `45-update-payment-gateways`. This
-    enables quick auto-completion in most terminals.
-
-
-#### Workflow
-
-##### Beginning a feature
-
-1. Checkout `master`
-1. Pull `master`
-1. Create a feature branch from `master` (see [branch naming](#naming))
-
-##### Working on a feature
-
-1. Commit all work on the feature branch
-1. Create a [pull request](#pull-requests) at any time (just don't request a review until you are
-   finished)
-1. Keep the remote up to date with your latest changes. Committing often locally is good, but those
-   commits should be pushed to the remote (i.e. GitHub) at _least_ once a day so that the code is
-   available to all engineers.
-
-##### Finish a feature
-
-1. If there are conflicts, merge `master` into the feature branch
-    - Only do this if there are conflicts
-    - See [Pull Requests](#pull-requests) for more information
-1. Verify **all** [linters](#linting) run successfully
-1. Verify all [tests](#testing) are passing **and** code coverage did not decrease (bonus points if
-   it increases)
-1. If you haven't yet, create a pull request from the feature branch into `master`
-1. Add as much [information into the pull request body](#pull-requests) as possible
-1. Request a review
-
-
-#### Hotfixes
-
-Hotfixes follow the same strategy as features.
-
-
-### Committing
-
-When code gets merged to master, many of our projects are automatically versioned and released. In
-order to give our tooling the information it needs, we write our commit messages in a specific
-format. This has the added benefit of improving the readability of our commit history.
-
-```
-# The format:
-type(scope): message
-
-# Examples:
-fix(Button): Aria label is now correctly read by JAWS
-feat(Tooltip): Add a tooltip component
-chore(): Bump lodash version
+```scss
+@import '@terminus/ui/terminus-ui.css'
 ```
 
-For a friendlier prompt, you can run `yarn run cm` in the repo. This will ask several questions
-and then construct the commit in the proper format for you. The prompt will allow you to choose
-from a list of types and then a list of scopes. This is much easier than trying to remember all
-possible scopes.
 
-> Optional: Installing [committizen][commitizen-cli] (`yarn add -g committizen`) will allow you
-> to run `git cz` or even alias to your preferred git command.
+## SCSS Helpers
 
-You **must** use one of the defined types since the types have specific meaning to the automatic
-versioning tool.
+To use the provided SCSS helper methods/variables/mixins, import the helpers file from `@terminus/ui`:
 
-- A type `fix` will increase the patch version (`x.x.1`)
-- A type `feat` will increase the minor version (`x.1.x`)
+```scss
+@import '~@terminus/ui/helpers'
+```
 
-To see all valid types for a project, look for the file `cz-config.js`.
+## Contributing
+
+View the [contribution documentation][contributing] and the [development documentation][dev-workflow].
 
 
-#### Breaking Changes
+## Contributors
 
-When a commit contains a breaking change, it _must_ be included in the commit message body (not the
-title). Both words should be uppercase and the comment body should include everything that other
-engineers may need to know: `BREAKING CHANGE: A description of the breaking change`. This could
-include comments, images, code examples, and more. Generally speaking, **more information is
-better**.  (Note: when using the cli prompt, it will ask you about any breaking changes and add the
-prefix `BREAKING CHANGES: ` automatically)
+Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 
-Learn more about the automatic versioning tools we use:
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/benjamincharity"><img src="https://avatars1.githubusercontent.com/u/270193?s=460&v=4" width="100px;" alt="Benjamin Charity"/><br /><sub><b>Benjamin Charity</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Documentation">📖</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=benjamincharity" title="Tests">⚠️</a> <a href="#design-benjamincharity" title="Design">🎨</a> <a href="#ideas-benjamincharity" title="Ideas, Planning, & Feedback">🤔</a> <a href="#review-benjamincharity" title="Reviewed Pull Requests">👀</a> <a href="#tool-benjamincharity" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/coreyterminator"><img src="https://avatars1.githubusercontent.com/u/31667397?v=4" width="100px;" alt="coreyterminator"/><br /><sub><b>coreyterminator</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=coreyterminator" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/atlwendy"><img src="https://avatars0.githubusercontent.com/u/377552?v=4" width="100px;" alt="Wendy"/><br /><sub><b>Wendy</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Aatlwendy" title="Bug reports">🐛</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=atlwendy" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=atlwendy" title="Documentation">📖</a> <a href="#ideas-atlwendy" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-atlwendy" title="Maintenance">🚧</a> <a href="#review-atlwendy" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=atlwendy" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/bmalinconico"><img src="https://avatars0.githubusercontent.com/u/19909708?v=4" width="100px;" alt="Brian Malinconico"/><br /><sub><b>Brian Malinconico</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Abmalinconico" title="Bug reports">🐛</a> <a href="#ideas-bmalinconico" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://rubykata.wordpress.com/"><img src="https://avatars0.githubusercontent.com/u/2921?v=4" width="100px;" alt="David Harkness"/><br /><sub><b>David Harkness</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=david-harkness" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kal93"><img src="https://avatars0.githubusercontent.com/u/14012571?v=4" width="100px;" alt="kal93"/><br /><sub><b>kal93</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Akal93" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/divyameher"><img src="https://avatars0.githubusercontent.com/u/24610542?v=4" width="100px;" alt="divyameher"/><br /><sub><b>divyameher</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Adivyameher" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/dpeet"><img src="https://avatars2.githubusercontent.com/u/4729779?v=4" width="100px;" alt="Devon Peet"/><br /><sub><b>Devon Peet</b></sub></a><br /><a href="#design-dpeet" title="Design">🎨</a> <a href="#ideas-dpeet" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/deanterm"><img src="https://avatars2.githubusercontent.com/u/41060343?v=4" width="100px;" alt="dean jones"/><br /><sub><b>dean jones</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/commits?author=deanterm" title="Code">💻</a> <a href="#ideas-deanterm" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=deanterm" title="Tests">⚠️</a> <a href="#design-deanterm" title="Design">🎨</a> <a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Adeanterm" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/shani-terminus"><img src="https://avatars3.githubusercontent.com/u/44702601?v=4" width="100px;" alt="shani-terminus"/><br /><sub><b>shani-terminus</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Ashani-terminus" title="Bug reports">🐛</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=shani-terminus" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=shani-terminus" title="Documentation">📖</a> <a href="#example-shani-terminus" title="Examples">💡</a> <a href="#review-shani-terminus" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=shani-terminus" title="Tests">⚠️</a> <a href="#ideas-shani-terminus" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-shani-terminus" title="Maintenance">🚧</a> <a href="#tool-shani-terminus" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/edwin-terminus"><img src="https://avatars1.githubusercontent.com/u/41646583?v=4" width="100px;" alt="edwin-terminus"/><br /><sub><b>edwin-terminus</b></sub></a><br /><a href="https://github.com/GetTerminus/terminus-ui/issues?q=author%3Aedwin-terminus" title="Bug reports">🐛</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=edwin-terminus" title="Code">💻</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=edwin-terminus" title="Documentation">📖</a> <a href="#example-edwin-terminus" title="Examples">💡</a> <a href="https://github.com/GetTerminus/terminus-ui/commits?author=edwin-terminus" title="Tests">⚠️</a></td>
+  </tr>
+</table>
 
-- [semantic-release][semantic-release]
-- [Conference talk on semantic-release][semantic-release-video]
-- [validate-commit-msg][validate-commit-msg]
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-
-### Linting
-
-All projects should pass all available linters _before_ committing.
-
-TypeScript projects use TSLint, JavaScript projects use ESLint, and SASS/SCSS projects use SASSLint.
-
-To edit configuration, look for the files `tslint.json`, `.eslintrc`, or `.sass-lint.yml`. **These
-files should not be edited without a discussion with the team.**
-
-Look at the scripts section in the project's `package.json` for the command to run tests.
-
-
-### Testing
-
-All projects should work towards full test coverage. This is often not practical in a quickly
-changing software startup, but a project should never dip below 80% coverage.
-
-All projects use a combination of Jasmine and Karma for unit tests.
-
-Look at the scripts section in the project's `package.json` for the command to run tests.
-
-
-### Pull Requests
-
-When it is time merge a branch into `master`, create a pull request from the feature into `master`.
-
-1. At the top of the pull request, link to the original issue.
-1. If the pull request includes more than one item, include a high level list of what was done.
-1. If the pull request covers UI changes, include a GIF or image to clearly show the change (bonus
-   points for before and after images).
-1. Request a review from someone on your team.
-1. A pull request may be opened before the work is complete. This makes it easier to get feedback
-   while the work is in progress. Include `WIP: ` at the beginning of the pull request title so that
-   it is not accidentally merged and `cc/ @mention` anyone that should take a look.
-1. There are two options to check for merge conflicts between your branch and master:
-    - Create a pull request against master. (Note: This will cause any associated CI service to
-      begin building the feature branch on every push)
-    - Use GitHub's compare view:
-    `https://github.com/GetTerminus/terminus-ui/compare/featureBranch...master`
-1. The pull request body, just like the issue body, is the single source of truth. Any discussions,
-   decisions or relevant information should be added to the pull request body immediately.
-
-
-### Releasing
-
-Releases are handled automatically when code is merged to master. Never merge code to master that is
-not production ready!
-
-1. [Semantic Release][semantic_release] looks at all commits since the last tag on master
-1. Based on those commits it will [bump the version number appropriately][semver]
-1. A changelog is generated in the release notes on [Github][ui-github]
-1. The new version is published to [NPM][ui-npm]
-
-> You can view the currently published files using the [unpkg cdn][unpkg-terminus].
-
-### Code Comments
-
-When writing code, an engineer should be mindful that others will need to understand and edit this
-code in the future. For this reason we don't assume that the future editor has the context.
-
-Modern tooling will handle cleaning up comments and white space so we write for humans - not
-machines.
-
-1. Always include a JSDoc-style comment above all methods/functions:
-
-    ```
-    /**
-     * Get a customer by ID
-     *
-     * @param {string} customerId
-     * @return {object} customer
-     */
-    ```
-
-1. For general notes, always include the prefix if one applies:
-
-    ```
-    // NOTE: A general informational note. Not for every comment; just when there is an important
-             piece of unusual information.
-    // OPTIMIZE: A note about code that is sub-optimal
-    // TODO: A note about missing logic.
-    // HACK: A note about a 'hacky' solution.
-    // FIXME: A note about something that needs refactoring.
-    // BUG: A note about a bug. Include the associated issue number in the note.
-    ```
-
-1. All engineers should do their best to never need most of these note types. However, if needed,
-  _always_ include the reason the notes is needed. Remember, more information is better!
-
-
-## Issues
-
-1. Always create an issue for things you work on. If it is worth spending time on, it is worth
-   creating an issue for it since that enables other people to learn and help. You can always edit
-   the description or close it when the problem is something different or disappears.
-1. Always include a link to the original issue when submitting a pull request.
-1. If two issues are related, cross link them (a link from each issue to the other one). Put the
-   link at the top of each issue's description with a short mention of the relationship (Report,
-   etc.). If there are more than 2 issues, use one issue as the central one and cross link all
-   issues to this one.
-1. After a discussion about a feature update the issue body with the consensus or final conclusions.
-   This makes it much easier to see the state of an issue for everyone involved in the
-   implementation and prevents confusion and discussion later on.
-1. Submit the smallest item of work that makes sense. When creating an issue describe the smallest
-   fix possible, put suggestions for enhancements in separate issues and link them.
-1. Do not leave issues open for a long time, issues should be actionable and realistic. If you are
-   assigned to an issue but don't have time to work on it, remove your assignment so that the next
-   available engineer can pick it up.
-1. Make a conscious effort to prioritize your work. The priority of items depends on multiple
-   factors: Is there a team member waiting for the answer? What is the impact if you delay it? How
-   many people does it affect, etc.?
-1. If the project is using milestones, pick issues from the current milestone.
-1. Assign an issue to yourself as soon as you start to work on it, but not before that time. If you
-   complete part of an issue and need someone else to take the next step, re-assign the issue to
-   that person.
-1. When re-assigning an issue, make sure that the issue body contains the latest information. The
-   issue body should be the single source of truth.
-1. When working on an issue, ask for feedback from your peers. For example, if you're a designer and
-   you propose a design, ping a fellow designer to review your work. If they approve, you can move
-   it to the next step. If they suggest changes, you get the opportunity to improve your design.
-   This promotes collaboration and advances everyone's skills.
-1. Even when something is not done, share it internally so people can comment early and prevent
-   rework. Mark the pull request `Work In Progress` or `WIP` so it is not merged by accident.
-1. When you create a pull request, mention the issue(s) that it solves in the description. After the
-   merge, if any followup actions are required on the issue like reporting back to any customers or
-   writing documentation, avoid auto closing it by including text such as 'Fixes #1' or 'Closes #1'.
-1. When the pull request is complete, remove the `WIP` prefix and assign the pull request to someone
-   to review and merge it. You can still make changes based on feedback, but by removing the WIP
-   prefix it clarifies that the main body of work has been completed.
-1. If a pull request is assigned to you and there is a merge conflict, consider trying to resolve it
-   yourself instead of asking the pull request creator to resolve the conflict. If it is easy to
-   resolve, you avoid a round trip between you and the creator, and the pull request gets merged
-   sooner. This is a suggestion, not an obligation.
-1. If you ask a question to a specific person, always start the comment by mentioning them; this
-   will ensure they see it and other people will understand they don't have to respond.
-1. Do not close an issue until it is fully complete, which means code has been merged, tested, all
-   issue trackers are updated, and any documentation is written and merged.
-1. When closing an issue, leave a comment explaining why you are closing the issue.
-1. If you notice that the tests for the master branch of any project are failing (red) or broken
-   (green as a false positive), fixing this takes priority over everything else development related,
-   since everything we do while test are broken may break functionality, or introduce new bugs and
-   security issues. If the problem cannot be fixed by you within a few hours, because if it is too
-   much work for one person and/or you have other priorities, create an issue, post about it in
-   development Slack channel.
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 
 ## Project Resources
 
 - [Semantic Release][semantic-release] - Automatically release versioned release to NPM and generate
     a changelog in the Github tag.
-- [Greenkeeper][greenkeeper] - Automatically keep dependencies up to date.
 - [Commitizen][commitizen] - Interactive cli for enforcing commit message format.
 - [Commitizen VSCode Plugin][commitizen_vsc] - VSCode plugin for commitizen.
-- [SauceLabs Platforms][saucelab_platforms] - Cross-browser unit tests.
-- [Nucleus][nucleus] - Generates SCSS documentation.
 - [Doctoc][doctoc] - Generate documentation table of contents.
 - [CodeCov][codecov] - Code coverage reporting.
 
 
-## Suggested Tools
-
-1. [Committizen CLI][commitizen-cli]
-    - When you commit with Commitizen, you'll be prompted to fill out any required commit fields at
-    commit time.
-1. [Github Desktop][github-gui]
-    - GitHub Desktop is a seamless way to contribute to projects on GitHub.
-1. [CCMenu][ccmenu]
-    - CCMenu displays the build status of projects on a continuous integration server as an item in
-    the Mac's menu bar.
-1. [Hub for Git][hub]
-    - Hub is a command line tool that wraps git in order to extend it with extra features and commands
-    that make working with GitHub easier.
-1. [KeepingYouAwake][keeping-you-awake]
-    - A Caffeine clone for macOS Yosemite, El Capitan and Sierra.
-1. [Npm Task List][ntl]
-    - Interactive CLI menu to list & run NPM tasks.
-1. [Migrating from NPM to Yarn][npm-to-yarn]
-    - Migration cheat-sheet
-1. [ImageOptim][imageoptim]
-    - Removes bloated metadata. Saves disk space & bandwidth by compressing images without losing
-    quality.
-1. [NPM commands cheatsheet][npm-cheatsheet]
-    - A useful NPM commands cheat sheet.
-1. [Refined Github][refined-github]
-    - Chrome extension that simplifies the GitHub interface and adds useful features.
-1. [Octotree][octotree]
-    - Chrome extension that adds a code tree for GitHub.
-1. [Github with a Cape][github-cape]
-    - Chrome Extension which adds a bunch of new features to GitHub.
-1. [CodeCov Browser Extensions][codecov_browser]
-    - Browser extensions for CodeCov.
-1. [Github Highlight Selected][github-highlight]
-    - Chrome extension for highlighting selected word in GitHub source view like Sublime Text.
-1. [Octopatcher][octopatcher]
-    - Chrome extension to make GitHub content collapsable.
-1. [PR Deetz][pr-deetz]
-    - Chrome extension that shows details of pull requests related to a commit.
-1. [Neo Vision][neo-vision]
-    - Chrome extension that syntax-highlights source code files with customizable themes.
 
 
+<!--
+  LINKS
+-->
 
-
-<!-- LINKS -->
-
-[compodoc-badge]: https://rawgit.com/GetTerminus/terminus-ui/master/docs/typescript/images/coverage-badge.svg
-[docs-url]: https://getterminus.github.io/terminus-ui/
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: LICENSE
-[npm-url]: https://npmjs.org/package/@terminus/ui
-[npm-version-image]: http://img.shields.io/npm/v/@terminus/ui.svg
-[circle-badge]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master.svg?style=shield
-[circle-link]: https://circleci.com/gh/GetTerminus/terminus-ui/tree/master
-[greenkeeper-badge]: https://badges.greenkeeper.io/GetTerminus/terminus-ui.svg
-[greenkeeper]: https://greenkeeper.io/
-[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release]: https://github.com/semantic-release/semantic-release
-[codecov-badge]: https://codecov.io/gh/GetTerminus/terminus-ui/branch/master/graph/badge.svg
-[codecov-project]: https://codecov.io/gh/GetTerminus/terminus-ui
-[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js?compression=gzip
-[raw-distribution-js]: https://unpkg.com/@terminus/ui/bundles/ui.umd.min.js
-[commitizen]: https://github.com/commitizen
-[commitizen_vsc]: https://github.com/commitizen
-[saucelab_platforms]: https://saucelabs.com/platforms
-[compodoc]: https://compodoc.github.io/website/
-[compodoc_comments]: https://compodoc.github.io/website/guides/comments.html
-[nucleus]: https://github.com/holidaypirates/nucleus/
-[nucleus_annotation]: https://holidaypirates.github.io/nucleus/annotation-reference.html
-[doctoc]: https://github.com/thlorenz/doctoc
-[codecov]: https://codecov.io
-[codecov_browser]: https://docs.codecov.io/docs/browser-extension
-[semantic-release-video]: https://youtu.be/tc2UgG5L7WM
-[markdown]: https://daringfireball.net/projects/markdown/syntax
-[imageoptim]: https://imageoptim.com/mac
-[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
-[commitizen-cli]: https://github.com/commitizen/cz-cli
-[github-gui]: https://desktop.github.com/
-[ccmenu]: http://ccmenu.org/
-[refined-github]: https://github.com/sindresorhus/refined-github
-[octotree]: https://github.com/buunguyen/octotree
-[hub]: https://github.com/github/hub
-[npm-cheatsheet]: https://gist.github.com/martinheidegger/5554941
-[keeping-you-awake]: https://github.com/newmarcel/KeepingYouAwake
-[code-climate-chrome]: https://codeclimate.com/browser-extension
-[ntl]: https://github.com/ruyadorno/ntl
-[validate-commit-msg]: https://github.com/kentcdodds/validate-commit-msg
-[github-highlight]: https://github.com/Nuclides/github-highlight-selected
-[octopatcher]: https://github.com/Mottie/Octopatcher
-[pr-deetz]: https://github.com/steveklebanoff/pr_deetz
-[neo-vision]: https://github.com/desandro/neo-vision
-[github-cape]: https://github-with-a-cape.nicosantangelo.com/
-[npm-to-yarn]: https://yarnpkg.com/lang/en/docs/migrating-from-npm/
-[npm-dist-tag]: https://docs.npmjs.com/cli/dist-tag
-[ui-npm]: https://www.npmjs.com/package/@terminus/ui
-[ui-github]: https://github.com/GetTerminus/terminus-ui
-[semver]: http://semver.org/
-[generator]: https://github.com/GetTerminus/generator-terminus-ui
+<!-- PROJECT -->
+[circle-link]:               https://circleci.com/gh/GetTerminus/terminus-ui/tree/release
+[codecov-project]:           https://codecov.io/gh/GetTerminus/terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
-[unpkg-terminus]: https://unpkg.com/@terminus/ui/
-[pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/master/package.json
+[dev-workflow]:              https://github.com/GetTerminus/terminus-ui/blob/release/DEVELOPMENT.md
+[contributing]:              https://github.com/GetTerminus/terminus-ui/blob/release/CONTRIBUTING.md
+[license-url]:               https://github.com/GetTerminus/terminus-ui/blob/release/LICENSE
+[pkg-json]:                  https://github.com/GetTerminus/terminus-ui/blob/release/package.json
+[docs-url]:                  http://uilibrary-docs.terminus.ninja/release/
+[generator]:                 https://github.com/GetTerminus/generator-terminus-ui
+[npm-url]:                   https://npmjs.org/package/@terminus/ui
+[raw-distribution-js]:       https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js
+[ui-github]:                 https://github.com/GetTerminus/terminus-ui
+[ui-npm]:                    https://www.npmjs.com/package/@terminus/ui
+[unpkg-terminus]:            https://unpkg.com/@terminus/ui/
+
+<!-- BADGES -->
+[circle-badge]:           https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
+[codecov-badge]:          https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
+[compodoc-badge]:         https://rawgit.com/GetTerminus/terminus-ui/release/docs/images/coverage-badge.svg
+[file-size-badge]:        http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js?compression=gzip
+[npm-version-image]:      http://img.shields.io/npm/v/@terminus/ui.svg
+[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[license-image]:          http://img.shields.io/badge/license-MIT-blue.svg
+[gh-release-badge]:       https://img.shields.io/github/release/GetTerminus/terminus-ui.svg
+[gh-releases]:            https://github.com/GetTerminus/terminus-ui/releases/
+[zenhub-image]:           https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.png
+[zenhub-url]:             https://github.com/GetTerminus/terminus-ui#zenhub
+
+<!-- 3RD PARTY -->
+[codecov]:                https://codecov.io
+[codecov_browser]:        https://docs.codecov.io/docs/browser-extension
+[commitizen-cli]:         https://github.com/commitizen/cz-cli
+[commitizen]:             https://github.com/commitizen
+[commitizen_vsc]:         https://github.com/KnisterPeter/vscode-commitizen
+[compodoc]:               https://compodoc.github.io/website/
+[compodoc_comments]:      https://compodoc.github.io/website/guides/comments.html
+[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
+[doctoc]:                 https://github.com/thlorenz/doctoc
+[markdown]:               https://daringfireball.net/projects/markdown/syntax
+[semantic-release-video]: https://youtu.be/tc2UgG5L7WM
+[semantic-release]:       https://github.com/semantic-release/semantic-release
+[semver]:                 http://semver.org/
+[validate-commit-msg]:    https://github.com/kentcdodds/validate-commit-msg
+[all-contributors-key]:   https://github.com/kentcdodds/all-contributors#emoji-key
 
 <!-- Demos -->
-[demo-button]: https://embed.plnkr.co/plunk/W1t5Awrg7LLp4tyM?show=app,preview
-[demo-link]: https://embed.plnkr.co/plunk/XmIN87Q0gPx4wwBW?show=app,preview
-[demo-checkbox]: https://embed.plnkr.co/plunk/S3nMGAO5ov1qswnl?show=app,preview
-[demo-copy]: https://embed.plnkr.co/plunk/Fh0vM71Xq5R06bfA?show=app,preview
-[demo-datepicker]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
-[demo-date-range]: https://embed.plnkr.co/plunk/wUSgHiloMlzdKeDN?show=app,preview
-[demo-input]: https://embed.plnkr.co/plunk/KGUh1mcdnmX4vMPD?show=app,preview
-[demo-login-form]: https://embed.plnkr.co/plunk/rbPXFU8FtCUJv5HR?show=app,preview
-[demo-menu]: https://embed.plnkr.co/plunk/ZDPGxMuPoA2CAp35?show=app,preview
-[demo-pagination]: https://embed.plnkr.co/plunk/HHnqCzyj0ks05ahD?show=app,preview
-[demo-select]: https://embed.plnkr.co/plunk/v2ey7q6Hl2jr2KIw?show=app,preview
-[demo-toggle]: https://embed.plnkr.co/plunk/lRsheSRvzEBuXjiP?show=app,preview
-[demo-navigation]: https://embed.plnkr.co/plunk/uvwbjzzBcglSa0mw?show=app,preview
-[demo-loading-overlay]: https://embed.plnkr.co/plunk/yvuP3SojN6Juvnnb?show=app,preview
+[demo-autocomplete]:     https://getterminus.github.io/ui-demos-release/components/autocomplete
+[demo-autofocus]:        https://getterminus.github.io/ui-demos-release/components/autofocus
+[demo-button]:           https://getterminus.github.io/ui-demos-release/components/button
+[demo-card]:             https://getterminus.github.io/ui-demos-release/components/card
+[demo-chart]:            https://getterminus.github.io/ui-demos-release/components/chart
+[demo-chip]:             https://getterminus.github.io/ui-demos-release/components/chip
+[demo-checkbox]:         https://getterminus.github.io/ui-demos-release/components/checkbox
+[demo-cohort-date-range]:https://getterminus.github.io/ui-demos-release/components/cohort-date-range
+[demo-confirmation]:     https://getterminus.github.io/ui-demos-release/components/confirmation
+[demo-copy]:             https://getterminus.github.io/ui-demos-release/components/copy
+[demo-csv-entry]:        https://getterminus.github.io/ui-demos-release/components/csv-entry
+[demo-date-range]:       https://getterminus.github.io/ui-demos-release/components/date-range
+[demo-datepicker]:       https://getterminus.github.io/ui-demos-release/components/datepicker
+[demo-expansion-panel]:  https://getterminus.github.io/ui-demos-release/components/expansion-panel
+[demo-file-upload]:      https://getterminus.github.io/ui-demos-release/components/file-upload
+[demo-icon-button]:      https://getterminus.github.io/ui-demos-release/components/icon-button
+[demo-icon]:             https://getterminus.github.io/ui-demos-release/components/icon
+[demo-input]:            https://getterminus.github.io/ui-demos-release/components/input
+[demo-link]:             https://getterminus.github.io/ui-demos-release/components/link
+[demo-loading-overlay]:  https://getterminus.github.io/ui-demos-release/components/loading-overlay
+[demo-log-in-form]:      https://getterminus.github.io/ui-demos-release/components/log-in-form
+[demo-logo]:             https://getterminus.github.io/ui-demos-release/components/logo
+[demo-menu]:             https://getterminus.github.io/ui-demos-release/components/menu
+[demo-navigation]:       https://getterminus.github.io/ui-demos-release/components/navigation
+[demo-paginator]:        https://getterminus.github.io/ui-demos-release/components/paginator
+[demo-pipes]:            https://getterminus.github.io/ui-demos-release/components/pipes
+[demo-radio-group]:      https://getterminus.github.io/ui-demos-release/components/radio
+[demo-scrollbars]:       https://getterminus.github.io/ui-demos-release/components/scrollbars
+[demo-search]:           https://getterminus.github.io/ui-demos-release/components/search
+[demo-select]:           https://getterminus.github.io/ui-demos-release/components/select
+[demo-selection-list]:   https://getterminus.github.io/ui-demos-release/components/selection-list
+[demo-spacing-constant]: https://getterminus.github.io/ui-demos-release/components/spacing-constant
+[demo-spacing]:          https://getterminus.github.io/ui-demos-release/components/spacing
+[demo-table]:            https://getterminus.github.io/ui-demos-release/components/table
+[demo-tabs]:             https://getterminus.github.io/ui-demos-release/components/tabs
+[demo-toggle]:           https://getterminus.github.io/ui-demos-release/components/toggle
+[demo-tooltip]:          https://getterminus.github.io/ui-demos-release/components/tooltip
+[demo-validators]:       https://getterminus.github.io/ui-demos-release/components/validation
 
+<!-- SCSS Docs -->
+[breakpoints-docs]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/breakpoints.md
+[color-docs]:       https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/color.md
+[cursors-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/cursors.md
+[layout-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/layout.md
+[shadows-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/shadows.md
+[spacing-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/spacing.md
+[typography-docs]:  https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/typography.md
+[z-index-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scss/docs/z-index.md
+
+<!-- Source Directories -->
+[src-autocomplete]:       ./terminus-ui/autocomplete/src/
+[src-autofocus]:          ./terminus-ui/autofocus/src/
+[src-button]:             ./terminus-ui/button/src/
+[src-card]:               ./terminus-ui/card/src/
+[src-chart]:              ./terminus-ui/chart/src/
+[src-checkbox]:           ./terminus-ui/checkbox/src/
+[src-chip]:               ./terminus-ui/chip/src
+[src-cohort-date-range]:  ./terminus-ui/cohort-date-range/src/
+[src-confirmation]:       ./terminus-ui/confirmation/src/
+[src-copy]:               ./terminus-ui/copy/src/
+[src-csv-entry]:          ./terminus-ui/csv-entry/src/
+[src-date-range]:         ./terminus-ui/date-range/src/
+[src-expansion-panel]:    ./terminus-ui/expansion-panel/src/
+[src-file-upload]:        ./terminus-ui/file-upload/src/
+[src-icon-button]:        ./terminus-ui/icon-button/src/
+[src-icon]:               ./terminus-ui/src/icon/src/
+[src-input]:              ./terminus-ui/input/src/
+[src-link]:               ./terminus-ui/link/src/
+[src-loading-overlay]:    ./terminus-ui/loading-overlay/src/
+[src-login-form]:         ./terminus-ui/login-form/src/
+[src-logo]:               ./terminus-ui/logo/src/
+[src-menu]:               ./terminus-ui/menu/src/
+[src-navigation]:         ./terminus-ui/navigation/src/
+[src-paginator]:          ./terminus-ui/paginator/src/
+[src-pipes-date]:         ./terminus-ui/pipes/src/date/date.pipe.ts
+[src-pipes-roundNumber]:  ./terminus-ui/pipes/src/round-number/round-number.pipe.ts
+[src-pipes-sentenceCase]: ./terminus-ui/pipes/src/sentence-case/sentence-case.pipe.ts
+[src-pipes-timeAgo]:      ./terminus-ui/pipes/src/time-ago/time-ago.pipe.ts
+[src-pipes-titleCase]:    ./terminus-ui/pipes/src/title-case/title-case.pipe.ts
+[src-pipes-truncate]:     ./terminus-ui/pipes/src/truncate/truncate.pipe.ts
+[src-pipes]:              ./terminus-ui/pipes/src/
+[src-radio-group]:        ./terminus-ui/radio-group/src/
+[src-scrollbars]:         ./terminus-ui/scrollbars/src/
+[src-search]:             ./terminus-ui/search/src/
+[src-select]:             ./terminus-ui/select/src/
+[src-selection-list]:     ./terminus-ui/selection-list/src/
+[src-sort]:               ./terminus-ui/sort/src/
+[src-spacing]:            ./terminus-ui/spacing/src/
+[src-table]:              ./terminus-ui/table/src/
+[src-tabs]:               ./terminus-ui/tabs/src/
+[src-toggle]:             ./terminus-ui/toggle/src/
+[src-tooltip]:            ./terminus-ui/tooltip/src/
+[src-validators]:         ./terminus-ui/validators/src/
+
+<!-- TS Primary Docs -->
+[autocomplete-docs]:    http://uilibrary-docs.terminus.ninja/release/components/TsAutocompleteComponent.html
+[autofocus-docs]:       http://uilibrary-docs.terminus.ninja/release/directives/TsAutofocusDirective.html
+[button-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsButtonComponent.html
+[card-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsCardComponent.html
+[chart-docs]:           http://uilibrary-docs.terminus.ninja/release/components/TsChartComponent.html
+[checkbox-docs]:        http://uilibrary-docs.terminus.ninja/release/components/TsCheckboxComponent.html
+[chip-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsChipCollectionComponent.html
+[cohort-date-range-docs]:http://uilibrary-docs.terminus.ninja/release/components/TsCohortDateRangeComponent.html
+[confirmation-docs]:    http://uilibrary-docs.terminus.ninja/release/directives/TsConfirmationDirective.html
+[copy-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsCopyComponent.html
+[csv-entry-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html
+[date-range-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html
+[datepicker-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html
+[expansion-panel-docs]: http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html
+[file-upload-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html
+[icon-button-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsIconButtonComponent.html
+[icon-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsIconComponent.html
+[input-docs]:           http://uilibrary-docs.terminus.ninja/release/components/TsInputComponent.html
+[link-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsLinkComponent.html
+[loading-overlay-docs]: http://uilibrary-docs.terminus.ninja/release/components/TsLoadingOverlayComponent.html
+[login-form-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsLoginFormComponent.html
+[logo-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsLogoComponent.html
+[menu-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsMenuComponent.html
+[navigation-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsNavigationComponent.html
+[paginator-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsPaginatorComponent.html
+[pipes-docs]:           http://uilibrary-docs.terminus.ninja/release/modules/TsPipesModule.html
+[radio-group-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsRadioGroupComponent.html
+[scrollbars-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsScrollbarsComponent.html
+[search-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsSearchComponent.html
+[select-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsSelectComponent.html
+[selection-list-docs]:  http://uilibrary-docs.terminus.ninja/release/components/TsSelectionListComponent.html
+[sort-docs]:            http://uilibrary-docs.terminus.ninja/release/directives/TsSortDirective.html
+[spacing-docs]:         http://uilibrary-docs.terminus.ninja/release/directives/TsVerticalSpacingDirective.html
+[table-docs]:           http://uilibrary-docs.terminus.ninja/release/components/TsTableComponent.html
+[tabs-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsTabComponent.html
+[toggle-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsToggleComponent.html
+[tooltip-docs]:         http://uilibrary-docs.terminus.ninja/release/components/TsTooltipComponent.html
+[validators-docs]:      http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html
+
+<!-- Versioned Docs & Demos -->
+[docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
+[docs-v9]: http://uilibrary-docs.terminus.ninja/9.x.x/
+[docs-v10]: http://uilibrary-docs.terminus.ninja/10.x.x/
+[docs-latest]: http://uilibrary-docs.terminus.ninja/release/
+[demo-v8]: https://getterminus.github.io/ui-demos-8.x.x/
+[demo-v9]: https://getterminus.github.io/ui-demos-9.x.x/
+[demo-v10]: https://getterminus.github.io/ui-demos-10.x.x/
+[demo-latest]: https://getterminus.github.io/ui-demos-release/
+
+<!-- TS Usage Docs -->
+[autocomplete-usage]:      http://uilibrary-docs.terminus.ninja/release/components/TsAutocompleteComponent.html#readme
+[autofocus-usage]:         http://uilibrary-docs.terminus.ninja/release/directives/TsAutofocusDirective.html#readme
+[card-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsCardComponent.html#readme
+[chart-usage]:             http://uilibrary-docs.terminus.ninja/release/components/TsChartComponent.html#readme
+[checkbox-usage]:          http://uilibrary-docs.terminus.ninja/release/components/TsCheckboxComponent.html#readme
+[chip-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsChipCollectionComponent.html#readme
+[cohort-date-range-usage]: http://uilibrary-docs.terminus.ninja/release/components/TsCohortDateRangeComponent.html#readme
+[confirmation-usage]:      http://uilibrary-docs.terminus.ninja/release/directives/TsConfirmationDirective.html#readme
+[copy-usage]:              http://uilibrary-docs.terminus.ninja/release/directives/TsCopyComponent.html#readme
+[csv-entry-usage]:         http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html#readme
+[date-range-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html#readme
+[datepicker-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html#readme
+[expansion-panel-usage]:   http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html#readme
+[file-upload-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html#readme
+[icon-button-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsIconButtonComponent.html#readme
+[icon-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsIconComponent.html#readme
+[input-usage]:             http://uilibrary-docs.terminus.ninja/release/components/TsInputComponent.html#readme
+[link-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsLinkComponent.html#readme
+[logo-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsLogoComponent.html#readme
+[login-form-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsLoginFormComponent.html#readme
+[menu-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsMenuComponent.html#readme
+[paginator-usage]:         http://uilibrary-docs.terminus.ninja/release/components/TsPaginatorComponent.html#readme
+[navigation-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsNavigationComponent.html#readme
+[radio-group-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsRadioGroupComponent.html#readme
+[scrollbars-usage]:        http://uilibrary-docs.terminus.ninja/release/directives/TsScrollbarsComponent.html#readme
+[select-usage]:            http://uilibrary-docs.terminus.ninja/release/directives/TsSelectComponent.html#readme
+[selection-list-usage]:    http://uilibrary-docs.terminus.ninja/release/directives/TsSelectionListComponent.html#readme
+[sort-usage]:              http://uilibrary-docs.terminus.ninja/release/directives/TsSortDirective.html#readme
+[table-usage]:             http://uilibrary-docs.terminus.ninja/release/components/TsTableComponent.html#readme
+[tabs-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsTabComponent.html#readme
+[toggle-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsToggleComponent.html#readme
+[validators-usage]:        http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html#readme

@@ -1,0 +1,113 @@
+<!-- STANDARD MODE -->
+<ng-container *ngIf="!isVisual">
+
+  <mat-radio-group
+    class="c-radio qa-radio-group"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [class.c-radio--sublabel]="formatUISubLabelFn"
+    [(ngModel)]="value"
+  >
+    <ng-container *ngFor="let option of options; trackBy: trackByFn">
+
+      <mat-radio-button
+        class="c-radio__control qa-radio-control"
+        [value]="retrieveValue(option, formatModelValueFn)"
+        [disabled]="option.disabled"
+        [name]="id"
+        (change)="radioGroupChange($event)"
+        #radio="matRadioButton"
+      >
+        {{ retrieveValue(option, formatUILabelFn) }}
+
+        <small
+          class="c-radio__control-sublabel"
+          *ngIf="formatUISubLabelFn"
+        >
+          {{ retrieveValue(option, formatUISubLabelFn) }}
+        </small>
+      </mat-radio-button>
+
+    </ng-container>
+
+    <ts-validation-messages
+      class="qa-radio-validation-messages"
+      *ngIf="formControl"
+      [control]="formControl"
+      [validateImmediately]="true"
+    ></ts-validation-messages>
+  </mat-radio-group>
+
+</ng-container>
+
+
+<!-- VISUAL MODE -->
+<ng-container *ngIf="isVisual">
+
+  <fieldset
+    class="c-radio c-radio--visual qa-radio-group"
+    [class.c-radio--small]="small"
+  >
+    <legend class="c-radio__legend">
+      {{ label }}
+    </legend>
+
+    <div class="c-radio__options">
+      <ng-container *ngFor="let option of options; trackBy: trackByFn">
+        <label
+          class="c-radio__control qa-radio-control"
+          [class.c-radio__control--disabled]="isDisabled || option.disabled"
+          (click)="visualRadioGroupChange(option)"
+        >
+          <input
+            type="radio"
+            class="c-radio__input"
+            [name]="id"
+            [value]="retrieveValue(option, formatModelValueFn)"
+            [disabled]="(isDisabled || option.disabled)"
+            [checked]="retrieveValue(option, formatModelValueFn) === value"
+            [attr.aria-label]="ariaLabel"
+            [attr.aria-labelledby]="ariaLabelledby"
+            [attr.aria-describedby]="ariaDescribedby"
+            [(ngModel)]="value"
+          >
+          <div
+            class="c-radio__content"
+            [class.c-radio__content--disabled]="isDisabled || option.disabled"
+            [class.c-radio__content--centered]="centeredContent"
+            mat-ripple
+            [matRippleDisabled]="(isDisabled || option.disabled) ? 'disabled' : null"
+            [matRippleColor]="rippleColor"
+          >
+            <ts-icon class="c-radio__content-checkmark" [inline]="true">
+              done
+            </ts-icon>
+
+            <ng-container *ngIf="!option.template">
+              <span class="c-radio__content-label">
+                {{ retrieveValue(option, formatUILabelFn) }}
+              </span>
+
+              <small
+                class="c-radio__control-sublabel"
+                *ngIf="formatUISubLabelFn"
+              >
+                {{ retrieveValue(option, formatUISubLabelFn) }}
+              </small>
+            </ng-container>
+
+            <span *ngIf="option.template" [innerHTML]="domSanitizer.bypassSecurityTrustHtml(option.template)"></span>
+          </div>
+        </label>
+      </ng-container>
+    </div>
+
+    <ts-validation-messages
+      class="qa-radio-validation-messages"
+      *ngIf="formControl"
+      [control]="formControl"
+      [validateImmediately]="true"
+    ></ts-validation-messages>
+  </fieldset>
+
+</ng-container>

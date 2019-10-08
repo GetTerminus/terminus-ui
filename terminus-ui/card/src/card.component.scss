@@ -1,0 +1,170 @@
+@import './../../scss/helpers/card';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+
+@mixin card-border($side) {
+  &.c-card--primary {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(primary);
+    }
+  }
+
+  &.c-card--accent {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(accent);
+    }
+  }
+
+  &.c-card--warn {
+    .c-card__inner {
+      border-#{$side}: 2px solid color(warn);
+    }
+  }
+}
+
+
+//
+// @component
+//  Card
+// @description
+//  A simple card component
+//
+.ts-card {
+  @include reset;
+  display: flex;
+  flex-flow: row nowrap;
+
+  // Top level styles should be nested here
+  .c-card {
+    @include typography;
+    background-color: color(pure);
+    // Set up for possible utility nav
+    position: relative;
+    transition: height 200ms ease;
+    width: 100%;
+
+    &:not(.c-card--interaction),
+    &:not(.c-card--aspect) {
+      align-items: stretch;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+}
+
+.c-card {
+  .c-card__inner {
+    @include card;
+    // Needed to contain the ripple effect
+    position: relative;
+    width: 100%;
+
+    .c-card__title-accent-border {
+      border-left: 2px solid color(primary);
+      padding-left: spacing(small, 1);
+
+      &[theme='accent'] {
+        border-left-color: color(accent);
+      }
+
+      &[theme='warn'] {
+        border-left-color: color(warn);
+      }
+    }
+  }
+}
+
+.c-card--interaction {
+  &:not(.c-card--disabled) {
+    .c-card__inner {
+      @include card($allows-interaction: true);
+    }
+  }
+}
+
+.c-card--centered {
+  .c-card__inner {
+    @include center-content;
+  }
+}
+
+.c-card--aspect {
+  $padding: spacing(large) * 2;
+
+  .c-card__inner {
+    @include take-space;
+  }
+}
+
+.c-card--disabled {
+  .c-card__inner {
+    opacity: .5;
+  }
+
+  // Class added to menu container when the card is disabled
+  .c-menu {
+    opacity: .3;
+    pointer-events: none;
+  }
+
+  // Lock icon
+  .c-card__lock {
+    color: color(utility);
+    position: absolute;
+    right: spacing(large);
+    // Magic number adjustment to align with title
+    top: calc(#{spacing(large)} - 2px);
+    transform: scale(.7);
+  }
+}
+
+// Class added when padding needed on the right for icon or utility menu
+.c-card--right-spacing {
+  .c-card__inner {
+    padding-right: spacing(large, 4);
+  }
+}
+
+// Class added for flat cards (no drop shadow)
+.c-card--flat {
+  > .c-card__inner {
+    border: 1px solid color(utility, light);
+    box-shadow: none;
+  }
+}
+
+// Class added for borders on the side
+.c-card--border {
+  &-bottom {
+    @include card-border(bottom);
+  }
+
+  &-left {
+    @include card-border(left);
+  }
+
+  &-right {
+    @include card-border(right);
+  }
+
+  &-top {
+    @include card-border(top);
+  }
+}
+
+// HACK: Manage overlay when a table is nested in a card
+.c-card__inner {
+  .ts-table {
+    ~ .ts-loading-overlay {
+      .c-loading-overlay {
+        left: -(spacing(large));
+        right: -(spacing(large));
+      }
+    }
+  }
+}

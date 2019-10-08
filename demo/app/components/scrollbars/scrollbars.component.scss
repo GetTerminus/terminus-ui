@@ -1,0 +1,17 @@
+.scroll-container {
+  height: 320px;
+  outline: 1px solid lightblue;
+  width: 400px;
+}
+
+.ts-scrollbars {
+  p {
+    margin-bottom: 2em;
+  }
+
+  &.nowrap {
+    p {
+      white-space: nowrap;
+    }
+  }
+}

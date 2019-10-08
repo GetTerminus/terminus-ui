@@ -1,0 +1,93 @@
+<ts-form-field
+  [validateOnChange]="validateOnChange"
+  [control]="selfReference"
+  [hideRequiredMarker]="hideRequiredMarker"
+  [hint]="hint"
+  [id]="id"
+  [theme]="theme"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
+>
+  <ts-label *ngIf="label">
+    {{ label }}
+  </ts-label>
+
+  <div class="ts-autocomplete__input-wrap">
+
+    <ng-container *ngIf="allowMultiple">
+      <ts-chip-collection
+        [allowMultipleSelections]="true"
+        [isDisabled]="false"
+        [isReadonly]="false"
+        (tabUpdateFocus)="focusInput()"
+        #chipCollection="tsChipCollection"
+      >
+        <ts-chip
+          *ngFor="let chip of autocompleteFormControl.value; trackBy: trackByFn"
+          [isRemovable]="true"
+          [isDisabled]="isDisabled"
+          [value]="chip"
+          (remove)="autocompleteDeselectItem($event.chip)"
+        >{{ displayFormatter(chip) }}</ts-chip>
+
+        <input
+          class="ts-autocomplete__input qa-select-autocomplete-input"
+          [tsAutocompleteTrigger]="auto"
+          [reopenAfterSelection]="reopenAfterSelection"
+          [attr.id]="id"
+          [(ngModel)]="searchQuery"
+          [readonly]="isDisabled ? 'true' : null"
+          (ngModelChange)="querySubject.next($event)"
+          (blur)="handleInputBlur($event)"
+          #input
+        />
+      </ts-chip-collection>
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="!allowMultiple">
+      <input
+        class="ts-autocomplete__input qa-select-autocomplete-input"
+        [tsAutocompleteTrigger]="auto"
+        [attr.id]="id"
+        [readonly]="isDisabled ? 'true' : null"
+        [(ngModel)]="searchQuery"
+        [value]="searchQuery"
+        (ngModelChange)="querySubject.next($event)"
+        (blur)="handleInputBlur($event)"
+        #input
+      />
+
+      <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
+    </ng-container>
+
+  </div>
+</ts-form-field>
+
+
+<ts-autocomplete-panel
+  class="ts-autocomplete"
+  #auto="tsAutocompletePanel"
+  [id]="id + '-panel'"
+  [options]="options"
+  [optionGroups]="optionGroups"
+  (optionSelected)="autocompleteSelectItem($event)"
+>
+  <!-- Outlet for options passed in by consumer -->
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</ts-autocomplete-panel>
+
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #spinnerTemplate>
+  <mat-progress-spinner
+    *ngIf="showProgress"
+    class="c-autocomplete__spinner c-autocomplete__spinner--{{theme}} qa-select-autocomplete-spinner"
+    [ngClass]="{'c-autocomplete__spinner--active': showProgress}"
+    diameter="21"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</ng-template>

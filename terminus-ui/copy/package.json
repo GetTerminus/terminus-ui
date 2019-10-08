@@ -1,0 +1,11 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts",
+      "umdModuleIds": {
+        "@terminus/ngx-tools/browser": "terminus.ngxTools.browser",
+        "@terminus/ngx-tools/coercion": "terminus.ngxTools.coercion"
+      }
+    }
+  }
+}

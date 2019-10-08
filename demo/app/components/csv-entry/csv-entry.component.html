@@ -1,0 +1,29 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>CSV Entry</h3>
+
+  <div style="max-width: 80%;" tsVerticalSpacing>
+    <ts-csv-entry
+      [columnValidators]="validators"
+      [columnHeaders]="['foo', 'bar']"
+      (blobGenerated)="file($event)"
+    ></ts-csv-entry>
+  </div>
+
+  <button (click)="generateFile()">Generate file & download</button>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsVerticalSpacing>CSV Full Width Entry</h3>
+
+  <div fxLayout="row">
+    <ts-csv-entry
+      [columnValidators]="validators"
+      [columnHeaders]="['Full Width']"
+      (blobGenerated)="file($event)"
+      [fullWidth]="true"
+      columnCount=1
+    ></ts-csv-entry>
+  </div>
+
+</ts-card>

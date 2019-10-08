@@ -1,0 +1,34 @@
+<!-- NOTE: `disabled` is an Angular Material @Input - not an HTML attribute -->
+<button
+  mat-raised-button
+  class="c-button mat-raised-button qa-button"
+  [ngClass]="{
+    'c-button--collapsed': isCollapsed,
+    'c-button--progress': showProgress && !isDisabled
+  }"
+  [attr.aria-label]="actionName"
+  [attr.type]="buttonType"
+  [disabled]="shouldBeDisabled"
+  tabindex="{{ tabIndex }}"
+  (click)="clickedButton($event)"
+  #button
+>
+  <ts-icon
+    *ngIf="iconName"
+    class="c-button__icon"
+  >
+    {{ iconName }}
+  </ts-icon>
+
+  <span class="c-button__content">
+    <ng-content></ng-content>
+  </span>
+
+  <mat-progress-spinner
+    *ngIf="showProgress && !isDisabled"
+    class="c-button__spinner qa-button-spinner"
+    [ngClass]="{'c-button__spinner--active': showProgress && !isDisabled}"
+    diameter="21"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</button>

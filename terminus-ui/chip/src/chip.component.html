@@ -1,0 +1,18 @@
+<div
+  class="c-chip"
+  [ngClass]="{
+    'c-chip--disabled': isDisabled,
+    'c-chip--removable': isRemovable
+  }"
+  [attr.id]="id"
+  (click)="click($event)"
+>
+  <span #content>
+     <ng-content></ng-content>
+  </span>
+
+  <ts-icon class="c-chip__remove" (click)="removeChip($event)">
+    cancel
+  </ts-icon>
+
+</div>

@@ -1,0 +1,109 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+
+  <div tsVerticalSpacing>
+    <label>
+      Theme:
+      <select name="myTheme" [(ngModel)]="myTheme">
+        <option value="{{ theme }}" *ngFor="let theme of themes">
+          {{ theme | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div tsVerticalSpacing>
+    <label>
+      Format:
+      <select name="myFormat" [(ngModel)]="myFormat">
+        <option value="{{ format }}" *ngFor="let format of formats">
+          {{ format | titlecase }}
+        </option>
+      </select>
+    </label>
+  </div>
+</ts-card>
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Standard Menu
+  </h3>
+
+  <div tsVerticalSpacing>
+    <label>
+      Disabled:
+      <input type="checkbox" [(ngModel)]="disabled"/>
+    </label>
+  </div>
+
+  <div tsVerticalSpacing>
+    <ts-menu
+      [theme]="myTheme"
+      [format]="myFormat"
+      [isDisabled]="disabled"
+      [menuItemsTemplate]="myTemplate"
+    >
+      Select Item
+    </ts-menu>
+  </div>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Utility Menu
+  </h3>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <ts-menu
+      [theme]="myTheme"
+      [format]="myFormat"
+      triggerType="utility"
+      [isDisabled]="disabled"
+      [menuItemsTemplate]="myTemplate"
+    ></ts-menu>
+  </div>
+
+  <ng-template #myTemplate>
+    <ts-button (clicked)="customItemSelected('yup')">
+      Roger, Roger.
+    </ts-button>
+
+    <ts-button (clicked)="customItemSelected('nope')">
+      Don't call me Shirley.
+    </ts-button>
+
+    <ts-link [destination]="'foo/'">
+      A tasty link
+    </ts-link>
+
+    <ts-button (clicked)="customItemSelected('nope')">
+      And a final button
+    </ts-button>
+  </ng-template>
+</ts-card>
+
+
+<ts-card>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Checkbox Menu
+  </h3>
+
+  <div tsVerticalSpacing>
+    <ts-menu [menuItemsTemplate]="checkboxTemplate">
+      Show/Hide Columns
+    </ts-menu>
+  </div>
+
+  <button (click)="log(myForm.value)">Log selections</button>
+
+  <ng-template #checkboxTemplate>
+    <form [formGroup]="myForm">
+      <ng-container *ngFor="let control of columnControls.controls; let i = index">
+        <ts-checkbox [formControl]="control" (click)="$event.stopPropagation()">
+          {{ columns[i] }}
+        </ts-checkbox>
+      </ng-container>
+    </form>
+  </ng-template>
+</ts-card>

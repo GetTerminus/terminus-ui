@@ -1,0 +1,20 @@
+@import '~@terminus/ui/helpers';
+
+.box {
+  margin-bottom: spacing(large, 0);
+  // sass-lint:disable no-color-keywords no-color-literals
+  outline: 1px solid lightblue;
+
+  // Create classes to demonstrate all spacing options
+  @each $type, $sizes in $g-spacings {
+    @each $size, $space in $sizes {
+      &--#{$type}--#{$size} {
+        @if $space {
+          padding: spacing($type, $size);
+        } @else {
+          padding: spacing($type);
+        }
+      }
+    }
+  }
+}
