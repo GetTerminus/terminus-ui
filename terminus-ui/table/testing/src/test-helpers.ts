@@ -11,7 +11,6 @@ export interface TestData {
   c: string;
 }
 
-// TODO: change to my datasource - says properties connect aren't the same???
 export class FakeDataSource extends DataSource<TestData> {
   public _dataChange = new BehaviorSubject<TestData[]>([]);
   public set data(data: TestData[]) {
@@ -50,28 +49,76 @@ export class FakeDataSource extends DataSource<TestData> {
 
 
 
-// Utilities copied from CDKTable's spec
+/**
+ * Query elements within another element
+ *
+ * @param element - The element to search within
+ * @param query - The selector to query
+ * @return An array of Elements
+ */
 export function getElements(element: Element, query: string): Element[] {
   return [].slice.call(element.querySelectorAll(query));
 }
 
+/**
+ * Get the header row
+ *
+ * @param tableElement - The table element to search within
+ * @return The table element
+ */
 export function getHeaderRow(tableElement: Element): Element {
   return tableElement.querySelector('.ts-header-row')!;
 }
 
+/**
+ * Get all row elements
+ *
+ * @param tableElement - The table to search within
+ * @return An array of row elements
+ */
 export function getRows(tableElement: Element): Element[] {
   return getElements(tableElement, '.ts-row');
 }
 
+/**
+ * Get all cells within a row
+ *
+ * @param row - The row to search within
+ * @return An array of cells
+ */
 export function getCells(row: Element): Element[] {
   return row ? getElements(row, '.ts-cell') : [];
 }
 
+/**
+ * Get all header cells
+ *
+ * @param tableElement - The table to search within
+ * @return An array of header cells
+ */
 export function getHeaderCells(tableElement: Element): Element[] {
   return getElements(getHeaderRow(tableElement), '.ts-header-cell');
 }
 
-export function expectTableToMatchContent(tableElement: Element, expectedTableContent: any[]) {
+/**
+ * Get all cells within a column
+ *
+ * @param columnName - The name of the column to search for
+ * @param tableElement - The table to search within
+ * @return An array of column cells
+ */
+export function getColumnElements(columnName: string, tableElement: Element): HTMLElement[] {
+  const className = `.ts-column-${columnName}`;
+  return Array.from(tableElement.querySelectorAll(className));
+}
+
+/**
+ * Custom matcher to determine if the table's contents are correct
+ *
+ * @param tableElement - The table element to check
+ * @param expectedTableContent - The content that should be found in the table
+ */
+export function expectTableToMatchContent(tableElement: Element, expectedTableContent: any[]): void {
   const missedExpectations: string[] = [];
   function checkCellContent(cell: Element, expectedTextContent: string) {
     const actualTextContent = cell.textContent!.trim();

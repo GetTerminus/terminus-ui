@@ -9,37 +9,25 @@ import {
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Host,
-  Input,
+  EventEmitter,
   isDevMode,
-  Optional,
+  OnDestroy,
+  Output,
   Renderer2,
-  SkipSelf,
 } from '@angular/core';
+import {
+  TsDocumentService,
+  TsWindowService,
+} from '@terminus/ngx-tools/browser';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 
-import { TsTableComponent } from './table.component';
-
-
-/**
- * Allowed column alignments
- */
-export type TsTableColumnAlignment
-  = 'left'
-  | 'center'
-  | 'right'
-;
-
-/**
- * An array of the allowed {@link TsTableColumnAlignment} for checking values
- */
-export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = [
-  'left',
-  'center',
-  'right',
-];
+import {
+  TsColumnDefDirective,
+  tsTableColumnAlignmentTypesArray,
+} from './column';
 
 
 /**
@@ -72,6 +60,30 @@ export class TsCellDefDirective extends CdkCellDef {}
 export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
 
 
+/**
+ * Define the event object for header cell resizes
+ */
+export class TsHeaderCellResizeEvent {
+  constructor(
+    // The header cell instance that originated the event
+    public instance: TsHeaderCellDirective,
+    // The new width
+    public width: string,
+  ) {}
+}
+
+/**
+ * Define the event object for a header cell resizer hover
+ */
+export class TsHeaderCellResizeHoverEvent {
+  constructor(
+    // The header cell instance that originated the event
+    public instance: TsHeaderCellDirective,
+    // If the cell is currently hovered
+    public isHovered: boolean,
+  ) {}
+}
+
 
 /**
  * Header cell template container that adds the right classes and role.
@@ -82,29 +94,174 @@ export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
     class: 'ts-header-cell',
     role: 'columnheader',
   },
+  exportAs: 'tsHeaderCell',
 })
-export class TsHeaderCellDirective extends CdkHeaderCell {
+export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewInit, OnDestroy {
+  /**
+   * Store reference to the document
+   */
+  private document: Document;
+
+  /**
+   * Store reference to the window
+   */
+  private window: Window;
+
+  /**
+   * Store references to event listener removal functions
+   */
+  private resizeListenerRemover: Function;
+  private clickListenerRemover: Function;
+  private mouseEnterListenerRemover: Function;
+  private mouseLeaveListenerRemover: Function;
+
+  /**
+   * Store the starting offset when a resize event begins
+   */
+  public startOffsetX = 0;
+
+  /**
+   * Store the starting width of a cell before resizing
+   */
+  public startWidth = 0;
+
+  /**
+   * Create bound methods to preserve 'this' context
+   */
+  public readonly boundDragging = e => this.triggerDragging(e);
+  public readonly boundDragEnd = e => this.triggerDragEnd(e);
+
+  /**
+   * Event emitted when the cell is hovered
+   */
+  @Output()
+  public readonly hovered = new EventEmitter<TsHeaderCellResizeHoverEvent>();
+
+  /**
+   * Event emitted when the cell is resized
+   */
+  @Output()
+  public readonly resized = new EventEmitter<TsHeaderCellResizeEvent>();
+
+
   constructor(
     public columnDef: CdkColumnDef,
     public renderer: Renderer2,
-    private elementRef: ElementRef,
-    @Optional() @Host() @SkipSelf() parent: TsTableComponent<unknown>,
+    public elementRef: ElementRef,
+    private documentService: TsDocumentService,
+    private windowService: TsWindowService,
   ) {
     super(columnDef, elementRef);
+    this.document = documentService.document;
+    this.window = windowService.nativeWindow;
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
 
-    // tslint:disable-next-line no-any
-    const column: any = columnDef;
-
-    if (parent.columns) {
-      const width = parent.columns.filter(c => c.name === columnDef.name).map(v => v.width)[0];
-      // istanbul ignore else
-      if (width) {
-        renderer.setStyle(elementRef.nativeElement, 'flex-basis', width);
-      }
+    // eslint-disable-next-line no-underscore-dangle
+    if (columnDef._stickyEnd) {
+      elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
     }
-
   }
+
+
+  /**
+   * Inject the cell resizer
+   */
+  public ngAfterViewInit(): void {
+    this.injectResizeElement();
+  }
+
+
+  /**
+   * Remove all event listeners when destroyed
+   */
+  public ngOnDestroy(): void {
+    this.removeAllEventListeners();
+  }
+
+
+  /**
+   * Remove any existing event listeners
+   */
+  private removeAllEventListeners(): void {
+    if (this.resizeListenerRemover) {
+      this.resizeListenerRemover();
+    }
+    if (this.clickListenerRemover) {
+      this.clickListenerRemover();
+    }
+    if (this.mouseEnterListenerRemover) {
+      this.mouseEnterListenerRemover();
+    }
+    if (this.mouseLeaveListenerRemover) {
+      this.mouseLeaveListenerRemover();
+    }
+  }
+
+
+  /**
+   * Inject the resize 'grabber' element
+   */
+  private injectResizeElement(): void {
+    const resizeElement = this.renderer.createElement('span');
+    resizeElement.classList.add('ts-header-cell__resizer');
+    resizeElement.classList.add(`ts-header-cell__resizer--${this.columnDef.cssClassFriendlyName}`);
+    resizeElement.title = 'Drag to resize column.';
+    this.renderer.appendChild(this.elementRef.nativeElement, resizeElement);
+
+    // Remove any existing event listeners
+    this.removeAllEventListeners();
+    this.resizeListenerRemover = this.renderer.listen(resizeElement, 'mousedown', e => this.onResizeColumn(e));
+
+    // Stop click events so that sorting is not triggered
+    this.clickListenerRemover = this.renderer.listen(resizeElement, 'click', e => e.stopPropagation());
+
+    // Listen to mouse enter/leave and emit events
+    this.mouseEnterListenerRemover =
+      this.renderer.listen(resizeElement, 'mouseenter', () => this.hovered.emit(new TsHeaderCellResizeHoverEvent(this, true)));
+    this.mouseLeaveListenerRemover =
+      this.renderer.listen(resizeElement, 'mouseleave', () => this.hovered.emit(new TsHeaderCellResizeHoverEvent(this, false)));
+  }
+
+
+  /**
+   * Save initial width and offset, bind to more events
+   *
+   * @param event - The mouse event
+   */
+  private onResizeColumn(event: MouseEvent): void {
+    this.startOffsetX = event.clientX;
+    this.document.addEventListener('mousemove', this.boundDragging);
+    this.document.addEventListener('mouseup', this.boundDragEnd);
+    const style = this.window.getComputedStyle(this.elementRef.nativeElement);
+    // NOTE: Else branch should never be reachable in the browser
+    this.startWidth = style.width ? parseInt(style.width, 10) /* istanbul ignore next */ : 0;
+  }
+
+
+  /**
+   * Determine the new width as the cell is resized and emit the width
+   *
+   * @param event - The mouse event
+   */
+  private triggerDragging(event: MouseEvent): void {
+    const diff = event.clientX - this.startOffsetX;
+    const newWidth = `${this.startWidth + diff}px`;
+    this.resized.emit(new TsHeaderCellResizeEvent(this, newWidth));
+  }
+
+
+  /**
+   * Reset resize items
+   *
+   * @param event - The mouse event
+   */
+  private triggerDragEnd(event: MouseEvent): void {
+    this.startOffsetX = 0;
+    this.document.removeEventListener('mousemove', this.boundDragging);
+    this.document.removeEventListener('mouseup', this.boundDragEnd);
+    this.startWidth = 0;
+  }
+
 }
 
 
@@ -119,13 +276,16 @@ export class TsHeaderCellDirective extends CdkHeaderCell {
   },
 })
 export class TsCellDirective extends CdkCell {
+  /**
+   * Store a reference to the column
+   */
   public column: TsColumnDefDirective;
 
+
   constructor(
+    public elementRef: ElementRef,
     private columnDef: CdkColumnDef,
-    private elementRef: ElementRef,
     private renderer: Renderer2,
-    @Optional() @Host() @SkipSelf() parent: TsTableComponent<unknown>,
   ) {
     super(columnDef, elementRef);
     // NOTE: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
@@ -142,18 +302,11 @@ export class TsCellDirective extends CdkCell {
 
     TsCellDirective.setColumnAlignment(this.column, renderer, elementRef);
 
-    if (parent.columns) {
-      const width = parent.columns.filter(c => c.name === columnDef.name).map(v => v.width)[0];
-      // istanbul ignore else
-      if (width) {
-        renderer.setStyle(elementRef.nativeElement, 'flex-basis', width);
-      }
-    }
-
     // eslint-disable-next-line no-underscore-dangle
     if (columnDef._stickyEnd) {
-      elementRef.nativeElement.classList.add(`ts-cell--sticky-end`);
+      elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
     }
+
   }
 
 
@@ -176,60 +329,5 @@ export class TsCellDirective extends CdkCell {
       renderer.setStyle(elementRef.nativeElement, 'textAlign', column.alignment);
     }
   }
-
-}
-
-
-/**
- * Column definition for the {@link TsTableComponent}.
- *
- * Defines a set of cells available for a table column.
- */
-@Directive({
-  selector: '[tsColumnDef]',
-  providers: [
-    {
-      provide: CdkColumnDef,
-      useExisting: TsColumnDefDirective,
-    },
-    {
-      provide: 'MAT_SORT_HEADER_COLUMN_DEF',
-      useExisting: TsColumnDefDirective,
-    },
-  ],
-})
-export class TsColumnDefDirective extends CdkColumnDef {
-  // NOTE: We must rename here so that the property matches the extended CdkColumnDef class
-  // tslint:disable: no-input-rename
-  /**
-   * Define a unique name for this column
-   */
-  @Input('tsColumnDef')
-  public name!: string;
-  // tslint:enable: no-input-rename
-
-  /**
-   * Define if a column's contents should wrap when long
-   */
-  @Input()
-  public noWrap = false;
-
-  /**
-   * Define an alignment type for the cell.
-   */
-  @Input()
-  public alignment: TsTableColumnAlignment | undefined;
-
-  /**
-   * Define stickiness for the column
-   */
-  @Input()
-  public sticky = false;
-
-  /**
-   * Define if a column should stick to the end
-   */
-  @Input()
-  public stickyEnd = false;
 
 }
