@@ -7,10 +7,10 @@ import { TsSortModule } from '@terminus/ui/sort';
 import {
   TsCellDefDirective,
   TsCellDirective,
-  TsColumnDefDirective,
   TsHeaderCellDefDirective,
   TsHeaderCellDirective,
 } from './cell';
+import { TsColumnDefDirective } from './column';
 import {
   TsHeaderRowComponent,
   TsHeaderRowDefDirective,
@@ -21,6 +21,7 @@ import { TsTableComponent } from './table.component';
 
 export * from './table-data-source';
 export * from './cell';
+export * from './column';
 export * from './row';
 export * from './table.component';
 
