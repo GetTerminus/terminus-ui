@@ -38,12 +38,13 @@ This is also available as a mixin:
 
 | Value         | Meaning                                 |
 |---------------|-----------------------------------------|
-| `auto`        | Let the browser decide                  |
-| `text`        | Indicates text controls                 |
-| `pointer`     | Indicates interaction                   |
-| `not-allowed` | Indicates no available interaction      |
-| `copy`        | Indicates ability to copy               |
 | `alias`       | Indicates an alias or copy will be made |
+| `auto`        | Let the browser decide                  |
+| `col-resize`  | Indicates the ability to resize         |
+| `copy`        | Indicates ability to copy               |
 | `help`        | Indicates help is available             |
+| `not-allowed` | Indicates no available interaction      |
+| `pointer`     | Indicates interaction                   |
+| `text`        | Indicates text controls                 |
 
-Passing an invalid cursor `$type` will throw a Sass compilation warning.
+Passing an invalid cursor `$type` will throw a Sass compilation error.

@@ -9,6 +9,8 @@ $g-cursors: (
   alias,
   /* Let the browser decide */
   auto,
+  /* Indicates ability to resize a piece of the dom; often a table column */
+  col-resize,
   /* Indicates ability to copy */
   copy,
   /* Reset to the default cursor */
