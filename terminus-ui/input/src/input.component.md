@@ -320,10 +320,9 @@ Supported event emitters:
   (cleared)="inputWasBlurred($event)"
   (inputFocus)="inputGainedFocus($event)"
   (selected)="newDateSelected($event)"
+  (inputPaste)="inputValuePasted($event)"
 ></ts-input>
 ```
-
-Each emitter is called with the current input value.
 
 > NOTE: The `selected` input is only available when `datepicker` is true.
 
