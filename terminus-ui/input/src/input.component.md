@@ -324,8 +324,6 @@ Supported event emitters:
 ></ts-input>
 ```
 
-Each emitter is called with the current input value.
-
 > NOTE: The `selected` input is only available when `datepicker` is true.
 
 

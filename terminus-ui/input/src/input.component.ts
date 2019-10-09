@@ -843,6 +843,9 @@ export class TsInputComponent implements
   @Output()
   public readonly inputFocus: EventEmitter<boolean> = new EventEmitter();
 
+  /**
+   * The event to emit when the input element receives a paste event
+   */
   @Output()
   public readonly inputPaste: EventEmitter<ClipboardEvent> = new EventEmitter();
 

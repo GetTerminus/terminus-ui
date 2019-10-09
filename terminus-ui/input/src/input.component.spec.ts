@@ -20,7 +20,7 @@ import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { TsDocumentServiceMock } from '@terminus/ngx-tools/browser/testing';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
-  createComponent as createComponentInner,
+  createComponent as createComponentInner, createFakeEvent,
   createKeyboardEvent,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
@@ -1027,6 +1027,24 @@ describe(`TsInputComponent`, function() {
       expect(element.getAttribute('rows')).toEqual('7');
     });
 
+  });
+
+  describe(`inputPaste`, () => {
+    test(`should emit a ClipboardEvent when the input receives a paste event`, () => {
+      const pasteEvent = createFakeEvent('paste') as ClipboardEvent;
+      (pasteEvent.clipboardData as any) = { getData: jest.fn().mockReturnValue('asdf') };
+      const fixture = createComponent(TestComponents.SimpleFormControl);
+      const component = fixture.componentInstance.inputComponent;
+      jest.spyOn(component.inputPaste, 'emit');
+
+      fixture.detectChanges();
+
+      const inputContainer = fixture.debugElement.query(By.css('.c-input__text')).nativeElement as HTMLElement;
+      inputContainer.dispatchEvent(pasteEvent);
+      fixture.detectChanges();
+
+      expect(component.inputPaste.emit).toHaveBeenCalledWith(pasteEvent);
+    });
   });
 
 });
