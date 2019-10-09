@@ -1,3 +1,10 @@
+# [14.17.0](https://github.com/GetTerminus/terminus-ui/compare/v14.16.2...v14.17.0) (2019-10-09)
+
+
+### Features
+
+* **Input:** Emit when user pastes into the input ([0117efe](https://github.com/GetTerminus/terminus-ui/commit/0117efe))
+
 ## [14.16.2](https://github.com/GetTerminus/terminus-ui/compare/v14.16.1...v14.16.2) (2019-10-03)
 
 
