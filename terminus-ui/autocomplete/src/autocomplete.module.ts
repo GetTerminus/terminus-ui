@@ -26,6 +26,7 @@ import { TsAutocompleteComponent } from './autocomplete.component';
 
 export * from './autocomplete.component';
 export * from './autocomplete-panel/autocomplete-panel.component';
+export * from './autocomplete-panel/autocomplete-trigger.directive';
 
 @NgModule({
   imports: [
