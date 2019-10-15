@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { TsIconModule } from '@terminus/ui/icon';
 
 import { TS_SORT_HEADER_INTL_PROVIDER } from './sort-header-intl';
 import { TsSortHeaderComponent } from './sort-header.component';
@@ -19,6 +20,7 @@ export * from './sort.directive';
 @NgModule({
   imports: [
     CommonModule,
+    TsIconModule,
   ],
   providers: [
     TS_SORT_HEADER_INTL_PROVIDER,
