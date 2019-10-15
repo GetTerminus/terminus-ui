@@ -19,9 +19,27 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
   align-items: center;
   cursor: cursor(pointer);
   display: flex;
+  // Set up for icon
+  position: relative;
 
   .ts-sort-header-disabled & {
     cursor: cursor(default);
+  }
+
+  // Double arrow icon to signify sortability
+  &__icon {
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(40%, -36%);
+    transition: opacity 200ms ease-out 200ms;
+
+    // Sort direction shown via Angular animation so we hide this icon
+    &--hidden {
+      opacity: 0;
+      transition: opacity 100ms ease-out 100ms;
+    }
   }
 }
 
