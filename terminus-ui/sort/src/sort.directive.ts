@@ -73,12 +73,6 @@ export interface TsSortState {
 }
 
 
-// Boilerplate for applying mixins to TsSort.
-// export class TsSortBase {}
-// eslint-disable-next-line no-underscore-dangle
-// export const _TsSortMixinBase = mixinDisabled(TsSortBase);
-
-
 /**
  * Container for TsSortables to manage the sort state and provide default sort parameters
  *
@@ -119,7 +113,7 @@ export class TsSortDirective implements OnChanges, OnDestroy {
   /**
    * The direction to set when an TsSortable is initially sorted.
    *
-   * May be overriden by the TsSortable's sort start.
+   * May be overridden by the TsSortable's sort start.
    */
   @Input('tsSortStart')
   public start: 'asc' | 'desc' = 'asc';
@@ -142,7 +136,7 @@ export class TsSortDirective implements OnChanges, OnDestroy {
   /**
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
    *
-   * May be overriden by the TsSortable's disable clear input.
+   * May be overridden by the TsSortable's disable clear input.
    */
   @Input('tsSortDisableClear')
   public disableClear = false;

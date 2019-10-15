@@ -10,6 +10,11 @@
   >
     <ng-content></ng-content>
 
+    <ts-icon
+      class="ts-sort-header-container__icon"
+      [class.ts-sort-header-container__icon--hidden]="_isSorted()"
+    >swap_vert</ts-icon>
+
     <div
       class="ts-sort-header-arrow"
       *ngIf="_isSorted()"
