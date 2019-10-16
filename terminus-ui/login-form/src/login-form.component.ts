@@ -186,17 +186,6 @@ export class TsLoginFormComponent implements OnChanges {
   /**
    * Emit an event on form submission
    */
-  // TODO: Rename to avoid conflict with native events: https://github.com/GetTerminus/terminus-ui/issues/1469
-  /**
-   * @deprecated Use 'submission' instead
-   */
-  // tslint:disable-next-line: no-output-native
-  @Output()
-  public readonly submit: EventEmitter<TsLoginFormResponse> = new EventEmitter();
-
-  /**
-   * Emit an event on form submission
-   */
   // tslint:disable-next-line: no-output-native
   @Output()
   public readonly submission: EventEmitter<TsLoginFormResponse> = new EventEmitter();
