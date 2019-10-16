@@ -289,18 +289,9 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   /**
    * Emit event when a selection occurs. {@link TsRadioChange}
    */
-  /**
-   * @deprecated Use 'selectionChange' instead
-   */
-  // tslint:disable-next-line: no-output-native
-  @Output()
-  public readonly change: EventEmitter<TsRadioChange> = new EventEmitter();
-
-  /**
-   * Emit event when a selection occurs. {@link TsRadioChange}
-   */
   @Output()
   public readonly selectionChange: EventEmitter<TsRadioChange> = new EventEmitter();
+
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -353,8 +344,6 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
    */
   public radioGroupChange(option: MatRadioChange): void {
     const change = new TsRadioChange(this, option.value);
-    // tslint:disable-next-line: deprecation
-    this.change.emit(change);
     this.selectionChange.emit(change);
     this.changeDetectorRef.markForCheck();
   }
@@ -367,8 +356,6 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   public visualRadioGroupChange(option: TsRadioOption): void {
     const value = this.retrieveValue(option, this.formatModelValueFn);
     const change = new TsRadioChange(this, value);
-    // tslint:disable-next-line: deprecation
-    this.change.emit(change);
     this.selectionChange.emit(change);
     this.changeDetectorRef.markForCheck();
   }
