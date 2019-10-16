@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   ViewChild,
 } from '@angular/core';
@@ -19,8 +18,8 @@ import {
   selectVisualRadio,
 } from '@terminus/ui/radio-group/testing';
 
-import { TsRadioChange } from '@terminus/ui/radio-group';
 import {
+  TsRadioChange,
   TsRadioFormatFn,
   TsRadioGroupComponent,
   TsRadioOption,
