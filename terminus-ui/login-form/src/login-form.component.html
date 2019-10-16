@@ -3,7 +3,7 @@
   [formGroup]="loginForm"
   fxLayout="column"
   *ngIf="showForm"
-  (keydown.enter)="loginForm?.valid && submit.emit(loginForm?.value)"
+  (keydown.enter)="loginForm?.valid && submission.emit(loginForm?.value)"
 >
 
   <ts-input
@@ -59,7 +59,6 @@
       buttonType="submit"
       [showProgress]="inProgress || isRedirecting"
       [isDisabled]="!loginForm?.valid"
-      (clicked)="submit.emit(loginForm?.value)"
       (clicked)="submission.emit(loginForm?.value)"
       tabindex="-1"
       tabIndex="4"
