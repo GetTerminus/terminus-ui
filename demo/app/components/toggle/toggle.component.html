@@ -7,7 +7,7 @@
       [isDisabled]="isDisabled"
       [name]="name"
       [isRequired]="required"
-      (change)="isChanged($event)"
+      (selectionChange)="isChanged($event)"
       tsVerticalSpacing
     >Toggle Me!</ts-toggle>
 
@@ -25,7 +25,7 @@
       [isDisabled]="true"
       name="two"
       [isChecked]="true"
-      (change)="isChanged($event)"
+      (selectionChange)="isChanged($event)"
       tsVerticalSpacing
     >Toggle Me!</ts-toggle>
 
