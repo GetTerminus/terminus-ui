@@ -30,6 +30,27 @@ import {
 } from './column';
 
 
+
+/**
+ * Set the column alignment styles
+ *
+ * @param column - The column definition
+ * @param renderer - The Renderer2
+ * @param elementRef - The element ref to add the class to
+ */
+export function setColumnAlignment(column: TsColumnDefDirective, renderer: Renderer2, elementRef: ElementRef): void {
+  if (column.alignment) {
+    // Verify the alignment value is allowed
+    if (tsTableColumnAlignmentTypesArray.indexOf(column.alignment) < 0 && isDevMode()) {
+      throw new TsUILibraryError(`TsCellDirective: "${column.alignment}" is not an allowed alignment.`
+        + `See "TsTableColumnAlignment" type for available options.`);
+    }
+
+    renderer.addClass(elementRef.nativeElement, 'ts-cell--align-right');
+  }
+}
+
+
 /**
  * Cell definition for the {@link TsTableComponent}.
  *
@@ -108,6 +129,11 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
   private window: Window;
 
   /**
+   * Store a reference to the column
+   */
+  public column: TsColumnDefDirective;
+
+  /**
    * Store references to event listener removal functions
    */
   private resizeListenerRemover: Function;
@@ -152,6 +178,7 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
     private windowService: TsWindowService,
   ) {
     super(columnDef, elementRef);
+    this.column = columnDef as TsColumnDefDirective;
     this.document = documentService.document;
     this.window = windowService.nativeWindow;
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
@@ -160,6 +187,8 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
     if (columnDef._stickyEnd) {
       elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
     }
+
+    setColumnAlignment(this.column, renderer, elementRef);
   }
 
 
@@ -300,34 +329,13 @@ export class TsCellDirective extends CdkCell {
       elementRef.nativeElement.classList.add(`ts-column-no-wrap`);
     }
 
-    TsCellDirective.setColumnAlignment(this.column, renderer, elementRef);
+    setColumnAlignment(this.column, renderer, elementRef);
 
     // eslint-disable-next-line no-underscore-dangle
     if (columnDef._stickyEnd) {
       elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
     }
 
-  }
-
-
-  /**
-   * Set the column alignment styles
-   *
-   * @param column - The column definition
-   * @param renderer - The Renderer2
-   * @param elementRef - The element ref to add the class to
-   */
-  private static setColumnAlignment(column: TsColumnDefDirective, renderer: Renderer2, elementRef: ElementRef): void {
-    if (column.alignment) {
-      // Verify the alignment value is allowed
-      if (tsTableColumnAlignmentTypesArray.indexOf(column.alignment) < 0 && isDevMode()) {
-        throw new TsUILibraryError(`TsCellDirective: "${column.alignment}" is not an allowed alignment.`
-          + `See "TsTableColumnAlignment" type for available options.`);
-      }
-
-      // Set inline style for text-align
-      renderer.setStyle(elementRef.nativeElement, 'textAlign', column.alignment);
-    }
   }
 
 }
