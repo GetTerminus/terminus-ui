@@ -17,6 +17,7 @@
 - [Sticky header](#sticky-header)
 - [Sticky column](#sticky-column)
   - [Sticky column at end](#sticky-column-at-end)
+- [Re-orderable columns](#re-orderable-columns)
 - [Events](#events)
   - [Table](#table)
   - [Cell](#cell)
@@ -346,6 +347,128 @@ than one column.
   </ts-cell>
 </ng-container>
 ```
+
+
+## Re-orderable columns
+
+Column reordering is not built into the table itself, but it is supported with the help of the Angular CDK.
+ 
+The example below shows how to allow users to adjust column visibility *and* column order via a menu.
+
+```html
+<!-- Set up a TsMenuComponent to control which columns are visible and their order -->
+<ts-menu [menuItemsTemplate]="columns" theme="accent">
+  Edit Columns
+</ts-menu>
+
+<!-- Here we are defining the list of controls that will be shown in the menu -->
+<ng-template #columns>
+  <!-- Here we wire up a two CDK drop list directives and one CDK emitter -->
+  <form
+    [formGroup]="columnsForm"
+    cdkDropList
+    cdkDropListLockAxis="y"
+    (cdkDropListDropped)="columnDropped($event)"
+  >
+    <!-- Pass an array of all columns that can be made visible. This array's order will be update when column order is changed. -->
+    <ng-container *ngFor="let column of allPossibleColumns">
+      <!-- The menu normally closes after each interaction, so we need to stop propagation here to
+      support multiple selections without closing using the `(click)` event. -->
+      <ts-checkbox
+        [formControl]="column.control"
+        (click)="$event.stopPropagation()"
+        theme="accent"
+        cdkDrag
+      >
+        <span>
+          {{ column.display }}
+        </span>
+
+        <!-- Here we specify the drag handle with another CDK directive (optional). -->    
+        <!-- We also need to stop drag interactions from affecting the checkbox status. -->
+        <ts-icon
+          cdkDragHandle
+          (click)="$event.preventDefault() && $event.stopPropagation()"
+        >drag_indicator</ts-icon>
+
+        <!-- Define a placeholder that is seen in the slot the current item will fill when released (optional) -->
+        <div *cdkDragPlaceholder></div>
+      </ts-checkbox>
+    </ng-container>
+  </form>
+</ng-template>
+
+<!-- The table (column & row definitions omitted for brevity) -->
+<ts-table
+  [dataSource]="dataSource"
+  [columns]="visibleColumns"
+  (columnsChange)="columnsChange($event)"
+  #myTable="tsTable"
+>
+  <!-- ... -->
+</ts-table>
+```
+
+```typescript
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TsColumn } from '@terminus/ui/table';
+
+/**
+ * Extend the TsColumn interface with properties our component needs.
+ *
+ * This allows us to add a control we can use to determine which columns should be shown
+ */
+export interface CustomColumn extends TsColumn {
+  // The UI text for the column dropdown
+  display: string;
+  // The associated FormControl
+  control: FormControl;
+}
+
+@Component({...})
+export class TableComponent {
+  // Define the original column source with all columns defaulted to visible
+  private readonly columnsSource: CustomColumn[] = [
+    {
+      display: 'Title',
+      name: 'title',
+      width: '400px',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Number',
+      name: 'number',
+      control: new FormControl(true),
+    },
+    // ...etc
+  ];
+
+  // Define the mutable version of your columns (must be mutable as we will be changing the order)
+  public allPossibleColumns: CustomColumn[] = this.columnsSource.slice();
+
+  // Define a getter that filters our columns whose control is currently `false`.
+  // This is what will get passed to the table's `columns` input.
+  public get visibleColumns(): CustomColumn[] {
+    return this.allPossibleColumns.filter(c => c.control && c.control.value);
+  }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+  // Define a method to handle the drop event. When an item is dropped in the UI, the underlying data has not been changed yet.
+  public columnDropped(event: CdkDragDrop<string[]>): void {
+    // `moveItemInArray` mutates the original array, so first we clone the array
+    const columns = this.allPossibleColumns.slice();
+    // Then update the positions (this function is provided by the CDK)
+    moveItemInArray(columns, event.previousIndex, event.currentIndex);
+    // Update the original columns array
+    this.allPossibleColumns = columns;
+    // Fire the change detector so that the table will update all columns. (Without this, the column widths aren't re-set until
+    // closing the menu.
+    this.changeDetectorRef.detectChanges();
+  }
+}
+```
+
 
 ## Events
 

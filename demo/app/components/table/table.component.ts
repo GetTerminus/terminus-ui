@@ -1,9 +1,17 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ViewChild,
 } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+} from '@angular/forms';
 import {
   DomSanitizer,
   SafeHtml,
@@ -31,57 +39,15 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-
-export interface TableItem {
-  username: string;
-  age: number;
-  title: string;
-  active: boolean;
-  visible: boolean;
+/**
+ * Extend the TsColumn interface with properties our component needs
+ */
+export interface CustomColumn extends TsColumn {
+  // The UI text for the column dropdown
+  display: string;
+  // The associated FormControl
+  control: FormControl;
 }
-
-const COLUMNS_SOURCE_GITHUB = [
-  {
-    name: 'Updated',
-    value: 'updated',
-  },
-  {
-    name: 'Number',
-    value: 'number',
-  },
-  {
-    name: 'State',
-    value: 'state',
-  },
-  {
-    name: 'Title',
-    value: 'title',
-  },
-  {
-    name: 'Body',
-    value: 'body',
-  },
-  {
-    name: 'Labels',
-    value: 'labels',
-  },
-  {
-    name: 'Comments',
-    value: 'comments',
-  },
-  {
-    name: 'Assignee',
-    value: 'assignee',
-  },
-  {
-    name: 'ID',
-    value: 'id',
-  },
-  {
-    name: 'Created',
-    value: 'created',
-  },
-];
 
 export interface GithubApi {
   items: GithubIssue[];
@@ -106,7 +72,7 @@ export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
   public getRepoIssues(sort: string, order: string, page: number, perPage: number): Observable<GithubApi> {
-    console.log('HITTING GITHUB');
+    console.log('Hitting the GitHub API');
     const href = `https://api.github.com/search/issues`;
     const requestUrl = `${href}?q=repo:GetTerminus/terminus-ui`;
     const requestParams = `&sort=${sort}&order=${order}&page=${page + 1}&per_page=${perPage}`;
@@ -121,51 +87,79 @@ export class ExampleHttpDao {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterViewInit {
-  public allColumns = COLUMNS_SOURCE_GITHUB.slice(0);
+  private readonly columnsSource: CustomColumn[] = [
+    {
+      display: 'Title',
+      name: 'title',
+      width: '400px',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Number',
+      name: 'number',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Updated',
+      name: 'updated',
+      control: new FormControl(true),
+    },
+    {
+      display: 'State',
+      name: 'state',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Labels',
+      name: 'labels',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Body',
+      name: 'body',
+      width: '260px',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Comments',
+      name: 'comments',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Assignee',
+      name: 'assignee',
+      control: new FormControl(true),
+    },
+    {
+      display: 'ID',
+      name: 'id',
+      control: new FormControl(true),
+    },
+    {
+      display: 'Created',
+      name: 'created',
+      control: new FormControl(true),
+    },
+    {
+      display: 'View',
+      name: 'html_url',
+      control: new FormControl(true),
+    },
+  ];
   public savedResponse: GithubApi | null = null;
   public useCachedData = true;
-  public displayedColumns = [
-    'title',
-    'updated',
-    'comments',
-    'assignee',
-    'number',
-    'labels',
-    'created',
-    'body',
-    'id',
-    'html_url',
-  ];
+  public allPossibleColumns: CustomColumn[] = this.columnsSource.slice();
+  public columnsForm = this.formBuilder.group({});
   public exampleDatabase!: ExampleHttpDao;
   public dataSource = new TsTableDataSource<GithubIssue>();
   public resultsLength = 0;
-  public resizableColumns: TsColumn[] = [
-    {
-      name: 'title',
-      width: '400px',
-    },
-    { name: 'number' },
-    {
-      name: 'updated',
-      // width: '300px',
-    },
-    // { name: 'comments' },
-    // {
-    //   name: 'assignee',
-    //   width: '160px',
-    // },
-    {
-      name: 'labels',
-      // width: '260px',
-    },
-    // { name: 'created' },
-    // { name: 'id' },
-    {
-      name: 'body',
-      // width: '500px',
-    },
-    { name: 'html_url' },
-  ];
+
+  /**
+   * Return all visible columns
+   */
+  public get visibleColumns(): CustomColumn[] {
+    return this.allPossibleColumns.filter(c => c.control && c.control.value);
+  }
 
   @ViewChild(TsSortDirective, { static: true })
   public sort!: TsSortDirective;
@@ -176,13 +170,23 @@ export class TableComponent implements AfterViewInit {
   @ViewChild('myTable', { static: false })
   public readonly myTable!: TsTableComponent;
 
+
   constructor(
     private domSanitizer: DomSanitizer,
     private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
 
   public ngAfterViewInit(): void {
+    this.setUpTable();
+  }
+
+  /**
+   * Set up the database, sorting and API calls
+   */
+  public setUpTable(): void {
     this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
@@ -227,6 +231,36 @@ export class TableComponent implements AfterViewInit {
     this.savedResponse = null;
   }
 
+  /**
+   * Sanitize HTML content before injecting it
+   *
+   * @param content - The HTML to sanitize
+   * @return The safe HTML
+   */
+  public sanitize(content): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  /**
+   * Reorder columns list when a list item is dropped
+   *
+   * @param event - The drop event
+   */
+  public columnDropped(event: CdkDragDrop<string[]>): void {
+    const columns = this.allPossibleColumns.slice();
+    moveItemInArray(columns, event.previousIndex, event.currentIndex);
+
+    this.allPossibleColumns = columns;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  public trackBy(index: number, item: GithubIssue): string {
+    return item.number;
+  }
+
+
+  // Log functions for Demo purposes
+
   public perPageChange(e: number): void {
     console.log('DEMO: Records per page changed: ', e);
   }
@@ -236,11 +270,8 @@ export class TableComponent implements AfterViewInit {
   }
 
   public columnsChange(e: TsTableColumnsChangeEvent): void {
-    console.log('DEMO: Columns change: ', e);
-  }
-
-  public sanitize(content): SafeHtml {
-    return this.domSanitizer.bypassSecurityTrustHtml(content);
+    // NOTE: Commented out due to the volume - uncomment as needed for demo purposes.
+    // console.log('DEMO: Columns change: ', e);
   }
 
   public log() {
