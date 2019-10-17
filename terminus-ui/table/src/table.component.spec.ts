@@ -30,7 +30,7 @@ export class TsWindowServiceMock {
 
   public get nativeWindow(): Window {
     return {
-      getComputedStyle: e => this.styleObject as CSSStyleDeclaration,
+      getComputedStyle: e => this.styleObject,
       open: noop,
       location: {
         href: 'foo/bar',
@@ -171,26 +171,16 @@ describe(`TsTableComponent`, function() {
       fixture.detectChanges();
     });
 
-    test(`should add the text-align style and set value to left`, () => {
+    test(`should add the text-align class`, () => {
       const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_a');
 
-      let style;
-      if (column.style && column.style._values) {
-        style = column.style._values['text-align'];
-      }
-
-      expect(style).toEqual('left');
+      expect(column.classList).toContain('ts-cell--align-right');
     });
 
     test(`should NOT add the text-align style if alignment is not provided`, () => {
       const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
 
-      let style;
-      if (column.style && column.style._values) {
-        style = column.style._values['text-align'];
-      }
-
-      expect(style).toBeUndefined();
+      expect(column.classList).not.toContain('ts-cell--align-right');
     });
 
     test(`should NOT add the text-align style if alignment is not a valid alignment`, () => {
