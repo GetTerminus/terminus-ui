@@ -14,8 +14,8 @@
 //  A table component
 .ts-table {
   --table-bg: #{color(pure)};
-  --header-bg: #{color(utility, xlight)};
-  --header-text-color: #{color(utility, dark)};
+  --header-bg: #{color(utility, light)};
+  --header-text-color: #{color(pure, dark)};
   --border-color: #{color(utility, light)};
   $primary: color(primary);
   --row-bg--hover: #{desaturate(lighten($primary, 66%), 70%)};
@@ -78,8 +78,7 @@
     display: table-row;
     white-space: nowrap;
 
-    .ts-cell,
-    .ts-header-cell {
+    .ts-cell {
       &:not(last-of-type) {
         &:not(.ts-table--sticky) {
           border-right: none;
@@ -98,7 +97,9 @@
   // Header row
   .ts-header-row {
     @include typography(caption);
+    $increased-weight: bold;
     color: var(--header-text-color);
+    font-weight: $increased-weight;
     transition: background-color 200ms ease-out;
     // Create base z-index context
     z-index: var(--z-index-base-context);
@@ -140,26 +141,34 @@
   .ts-cell,
   .ts-header-cell {
     align-items: stretch;
-    border: 1px solid var(--border-color);
     display: table-cell;
     min-height: inherit;
     position: relative;
     word-wrap: break-word;
+
+    // The table already has a border
+    &:first-of-type {
+      border-left: none;
+    }
 
     // Class added if a column should not wrap
     &.ts-column-no-wrap {
       white-space: nowrap;
     }
 
-    // The table already has a border
-    &:first-of-type {
-      border-left: none;
+    &--align-right {
+      text-align: right;
+
+      .ts-sort-header-container {
+        justify-content: flex-end;
+      }
     }
   }
 
   // Body cell
   .ts-cell {
     background-color: var(--table-bg);
+    border: 1px solid var(--border-color);
     overflow: hidden;
     padding: spacing(default);
     transition: background-color 200ms ease-out;
@@ -173,10 +182,15 @@
   // Header cell
   .ts-header-cell {
     background-color: var(--header-bg);
+    border-bottom: 1px solid color(utility);
     border-top: none;
     padding: spacing(default);
     position: sticky;
     top: 0;
+
+    &:not(first-of-type) {
+      border-left: 1px solid color(utility);
+    }
 
     // Reverse the natural z-index order so that all borders on the right created with box-shadow are visible above the following cell.
     // Supports up to 40 columns
@@ -199,27 +213,27 @@
         $resizer-width: #{spacing(small, 2)};
         opacity: 1;
 
-        &::after {
-          width: calc(#{$resizer-width} + 1px);
+        &::before {
+          width: 7px;
         }
       }
     }
 
     // <span> 'Grabber' hit area to resize a column
     &__resizer {
-      bottom: 0;
+      bottom: -1px;
       cursor: cursor(col-resize);
       display: block;
       opacity: 0;
       position: absolute;
       right: 0;
-      top: 0;
+      top: -1px;
       transform: translateX(50%);
       transition: opacity 200ms ease-out;
       width: spacing(large);
 
-      // Visible marker for grabber
-      &::after {
+      // Visible container for grabber
+      &::before {
         background-color: color(primary);
         bottom: 0;
         content: '';
@@ -234,15 +248,18 @@
       }
 
       // Dots inside grabber
-      &::before {
+      &::after {
         --z-index-above-bg: 2;
+        --grabber-icon-font-size: 14px;
         color: color(utility, xlight);
         content: '\2026';
         display: block;
+        font-size: var(--grabber-icon-font-size);
+        height: 11px;
         left: 50%;
         position: absolute;
         top: 30%;
-        transform: rotate(90deg) translateY(4%);
+        transform: rotate(90deg) translate(50%, -3px);
         z-index: var(--z-index-above-bg);
       }
     }
