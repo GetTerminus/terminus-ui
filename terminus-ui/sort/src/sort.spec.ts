@@ -131,7 +131,8 @@ class SimpleTsSortApp {
 
   sort(id: string) {
     const sortElement = this.elementRef.nativeElement.querySelector(`#${id}`);
-    dispatchMouseEvent(sortElement, 'click');
+    const sortButton = sortElement.querySelector('.ts-sort-header-button');
+    dispatchMouseEvent(sortButton, 'click');
   }
 }
 
