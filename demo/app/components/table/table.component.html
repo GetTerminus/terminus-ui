@@ -14,27 +14,52 @@
 
   <span fxFlex></span>
 
-  <ts-select
-    label="Show/hide columns"
-    [allowMultiple]="true"
-    [(ngModel)]="displayedColumns"
-  >
-    <ts-option
-      [value]="column.value"
-      *ngFor="let column of allColumns"
-    >{{ column.name }}</ts-option>
-  </ts-select>
+  <ts-menu [menuItemsTemplate]="columns" theme="accent">
+    Edit Columns
+  </ts-menu>
 
+  <ng-template #columns>
+    <form
+      [formGroup]="columnsForm"
+      cdkDropList
+      cdkDropListLockAxis="y"
+      (cdkDropListDropped)="columnDropped($event)"
+    >
+      <ng-container *ngFor="let column of allPossibleColumns">
+        <!-- The menu normally closes after each interaction, so we need to stop propagation here to
+        support multiple selections while open -->
+        <ts-checkbox
+          [formControl]="column.control"
+          (click)="$event.stopPropagation()"
+          theme="accent"
+          cdkDrag
+        >
+          <span>
+            {{ column.display }}
+          </span>
+
+          <!-- Stop drag interactions from affecting the checkbox status -->
+          <ts-icon
+            cdkDragHandle
+            (click)="$event.preventDefault() && $event.stopPropagation()"
+          >drag_indicator</ts-icon>
+
+          <div *cdkDragPlaceholder></div>
+        </ts-checkbox>
+      </ng-container>
+    </form>
+  </ng-template>
 </div>
 
 
 <div class="example-container">
   <ts-table
     [dataSource]="dataSource"
-    [columns]="resizableColumns"
+    [columns]="visibleColumns"
     (columnsChange)="columnsChange($event)"
     tsSort
     tsVerticalSpacing
+    [trackBy]="trackBy"
     #myTable="tsTable"
   >
 
@@ -136,7 +161,7 @@
       </ts-header-cell>
       <ts-cell *tsCellDef="let item">
         <a href="{{ item.html_url }}">
-          <ts-icon>open_in_new</ts-icon>
+          <ts-icon theme="accent">open_in_new</ts-icon>
         </a>
       </ts-cell>
     </ng-container>

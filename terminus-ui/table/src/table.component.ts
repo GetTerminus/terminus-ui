@@ -15,6 +15,7 @@ import {
   Input,
   IterableDiffers,
   NgZone,
+  OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -27,6 +28,7 @@ import {
   defer,
   merge,
   Observable,
+  Subscription,
 } from 'rxjs';
 import {
   switchMap,
@@ -83,6 +85,8 @@ export class TsTableColumnsChangeEvent {
  *  <ts-table
  *    [dataSource]="dataSource"
  *    [columns]="myColumns"
+ *    [trackBy]="myTrackByFn"
+ *    [multiTemplateDataRows]="false"
  *    (columnsChange)="columnsWereUpdated($event)
  *    #myTable="tsTable"
  *  >
@@ -124,11 +128,17 @@ export class TsTableColumnsChangeEvent {
   exportAs: 'tsTable',
 })
 // tslint:disable-next-line no-any
-export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, AfterViewChecked {
+export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, AfterViewChecked, OnDestroy {
   /**
    * Override the sticky CSS class set by the `CdkTable`
    */
   protected stickyCssClass = 'ts-table--sticky';
+
+  /**
+   * Store subscription references for header cell functionality
+   */
+  private headerCellResize$: Subscription;
+  private headerCellHover$: Subscription;
 
   /**
    * An observable of all header cell resize events
@@ -186,17 +196,20 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
    */
   @Input()
   public set columns(value: ReadonlyArray<TsColumn>) {
-    this._columns = value.map(column => {
-      if (isUndefined(column.width)) {
-        column.width = DEFAULT_COLUMN_WIDTH;
-      }
-      return column;
-    });
+    // istanbul ignore else
+    if (value && value.length) {
+      this._columns = value.map(column => {
+        if (isUndefined(column.width)) {
+          column.width = DEFAULT_COLUMN_WIDTH;
+        }
+        return column;
+      });
+    }
   }
   public get columns(): ReadonlyArray<TsColumn> {
     return this._columns;
   }
-  private _columns: TsColumn[];
+  private _columns: TsColumn[] = [];
 
   /**
    * Emit when a column is resized
@@ -229,16 +242,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
    */
   public ngOnInit(): void {
     super.ngOnInit();
-
-    this.headerCellResizes.subscribe(v => {
-      const { instance, width } = v as TsHeaderCellResizeEvent;
-      this.updateColumnWidth(instance.columnDef.name, width);
-    });
-
-    this.headerCellHovers.subscribe(v => {
-      const { instance, isHovered } = v as TsHeaderCellResizeHoverEvent;
-      this.updateColumnHoverClass(instance.columnDef.name, isHovered);
-    });
+    this.initHeaderSubscriptions();
   }
 
 
@@ -246,12 +250,20 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
    * Update the column width definitions when the rows change
    */
   public ngAfterViewChecked(): void {
+    this.viewChange.subscribe(v => {
+      this.initHeaderSubscriptions();
+    });
+
     this.rows.changes.subscribe(() => {
       for (const column of this.columns) {
         this.setColumnWidthStyle(column.name, column.width);
       }
+      this.initHeaderSubscriptions();
     });
   }
+
+
+  public ngOnDestroy(): void {}
 
 
   /**
@@ -312,6 +324,29 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
         this.renderer.removeClass(cell, 'ts-cell--resizing');
       }
     }
+  }
+
+
+  /**
+   * Initialize subscriptions for header events
+   */
+  private initHeaderSubscriptions(): void {
+    if (this.headerCellResize$) {
+      this.headerCellResize$.unsubscribe();
+    }
+    if (this.headerCellHover$) {
+      this.headerCellHover$.unsubscribe();
+    }
+
+    this.headerCellResize$ = this.headerCellResizes.subscribe(v => {
+      const { instance, width } = v as TsHeaderCellResizeEvent;
+      this.updateColumnWidth(instance.columnDef.name, width);
+    });
+
+    this.headerCellHover$ = this.headerCellHovers.subscribe(v => {
+      const { instance, isHovered } = v as TsHeaderCellResizeHoverEvent;
+      this.updateColumnHoverClass(instance.columnDef.name, isHovered);
+    });
   }
 
 }

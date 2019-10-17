@@ -17,7 +17,6 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
 // <div> primary container
 .ts-sort-header-container {
   align-items: center;
-  cursor: cursor(pointer);
   display: flex;
   // Set up for icon
   position: relative;
@@ -28,11 +27,11 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
 
   // Double arrow icon to signify sortability
   &__icon {
-    opacity: 1;
+    opacity: 0;
     position: absolute;
     right: 0;
     top: 50%;
-    transform: translate(40%, -36%);
+    transform: translate(22%, -42%);
     transition: opacity 200ms ease-out 200ms;
 
     // Sort direction shown via Angular animation so we hide this icon
@@ -54,13 +53,24 @@ $ts-sort-header-arrow-transition: 225ms cubic-bezier(.4, 0, .2, 1);
   background: 0 0;
   border: none;
   color: currentColor;
-  cursor: inherit;
-  display: flex;
+  cursor: cursor(pointer);
+  display: block;
   font: inherit;
   outline: 0;
+  overflow: hidden;
   padding: 0 1.4em 0 0;
   // Set up for absolutely positioned arrow
   position: relative;
+  text-overflow: ellipsis;
+
+  &:focus,
+  &:hover {
+    .ts-sort-header-container__icon {
+      &:not(.ts-sort-header-container__icon--hidden) {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 // <div> container for sorting arrow

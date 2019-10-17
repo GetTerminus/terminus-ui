@@ -55,7 +55,6 @@ import {
     'class': 'ts-sortable',
     '[class.ts-sort-header-sorted]': '_isSorted()',
     '[class.ts-sort-header-disabled]': '_isDisabled()',
-    '(click)': '_handleClick()',
   },
   preserveWhitespaces: false,
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
