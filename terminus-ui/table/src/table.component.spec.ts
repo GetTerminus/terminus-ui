@@ -18,7 +18,9 @@ import {
   getHeaderRow,
 } from '@terminus/ui/table/testing';
 
-import { TsCellDirective } from './cell';
+import {
+  TsCellDirective, TsHeaderCellDirective,
+} from './cell';
 import { TsColumnDefDirective } from './column';
 import { TsTableDataSource } from './table-data-source';
 import { TsTableModule } from './table.module';
@@ -310,6 +312,15 @@ describe(`TsTableComponent`, function() {
       fixture.detectChanges();
 
       expect(clickEvent.stopPropagation).toHaveBeenCalled();
+    });
+
+    describe(`TsHeaderCellDirective.determineWidth`, () => {
+
+      test(`should not allow column to go below minimum width`, () => {
+        expect(TsHeaderCellDirective['determineWidth'](100, -50)).toEqual(70);
+        expect(TsHeaderCellDirective['determineWidth'](140, -50)).toEqual(90);
+      });
+
     });
 
   });

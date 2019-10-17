@@ -7,6 +7,7 @@
     type="button"
     [attr.aria-label]="_intl.sortButtonLabel(id)"
     [attr.disabled]="_isDisabled() || null"
+    (click)="_handleClick()"
   >
     <ng-content></ng-content>
 
