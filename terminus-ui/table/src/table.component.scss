@@ -18,7 +18,7 @@
   --header-text-color: #{color(pure, dark)};
   --border-color: #{color(utility, light)};
   $primary: color(primary);
-  --row-bg--hover: #{desaturate(lighten($primary, 66%), 70%)};
+  --drop-bg: #{desaturate(lighten($primary, 66%), 70%)};
   // NOTE: This must be above 40 as that is the number of header cell z-indexes set
   --header-cell-sticky-z-index: 50;
   --row-cell-sticky-z-index: 3;
@@ -117,7 +117,7 @@
 
     &:hover {
       .ts-cell {
-        background-color: var(--row-bg--hover);
+        background-color: var(--drop-bg);
       }
     }
 
@@ -140,7 +140,6 @@
   // Any cell
   .ts-cell,
   .ts-header-cell {
-    align-items: stretch;
     display: table-cell;
     min-height: inherit;
     position: relative;
@@ -171,6 +170,7 @@
     border: 1px solid var(--border-color);
     overflow: hidden;
     padding: spacing(default);
+    text-overflow: ellipsis;
     transition: background-color 200ms ease-out;
     vertical-align: middle;
 

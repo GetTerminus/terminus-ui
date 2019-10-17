@@ -1,4 +1,7 @@
+@import './../../scss/helpers/color';
 @import './../../scss/helpers/cursors';
+// NOTE: Drag and drop included to add classes rather than mixins etc
+@import './../../scss/helpers/drag-and-drop';
 @import './../../scss/helpers/reset';
 @import './../../scss/helpers/spacing';
 @import './../../scss/helpers/typography';
@@ -61,12 +64,34 @@ $icon-margin: 16px;
 }
 
 
-.mat-menu-panel {
+.ts-menu__panel {
   .mat-menu-content {
     // NOTE: Universal selector needed since we don't know what the first child will be
     > * {
       display: block;
     }
+  }
+
+  // Set a background so .cdk-drag items don't have a transparent background
+  .ts-checkbox {
+    background-color: color(pure);
+  }
+
+  // Drop area
+  .cdk-drag-placeholder {
+    // Match the height of the default checkbox
+    min-height: 50px;
+  }
+}
+
+// NOTE: When being dragged the element is not nested inside the panel
+.ts-checkbox {
+  // Item being dragged
+  &.cdk-drag-preview {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0 spacing();
   }
 }
 
