@@ -60,11 +60,20 @@ $ts-select-item-height: 3em !default;
   }
 
   // Target checkboxes inside a material menu dropdown panel
-  .mat-menu-panel & {
+  .ts-menu__panel & {
     // Match the material button line-height and spacing
     .c-checkbox {
       line-height: 2em;
       padding: 0 spacing(default);
+    }
+    
+    // By default the label doesn't fill the width even though the cursor signifies interaction
+    .mat-checkbox-layout {
+      width: 100%;
+    }
+
+    .mat-checkbox-label {
+      flex: 1;
     }
   }
 
