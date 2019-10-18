@@ -1,8 +1,5 @@
 /**
  * The map of available cursors
- *
- * @nuclide
- * @section Cursors
  */
 $g-cursors: (
   /* Indicates an alias or copy will be made */
@@ -17,6 +14,8 @@ $g-cursors: (
   default,
   /* Indicates help is available */
   help,
+  /* Indicates the ability to drag an item */
+  move,
   /* Indicates no available interaction */
   not-allowed,
   /* Indicates interaction */
@@ -29,10 +28,8 @@ $g-cursors: (
 /**
  * Retrieve a space from the $g-cursors list.
  *
- * The primary purpose for this function is to enforce which cursors can be used.
+ * The primary purpose of this function is to enforce which cursors can be used.
  *
- * @mixin cursor
- * @section Functions
  * @param $type
  *  The cursor value to use. Default: auto
  * @example
@@ -54,8 +51,6 @@ $g-cursors: (
 /**
  * Include a custom cursor
  *
- * @mixin cursor
- * @section Mixins
  * @param $type
  *  The cursor value to use.
  * @example
