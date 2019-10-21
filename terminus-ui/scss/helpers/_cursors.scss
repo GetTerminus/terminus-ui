@@ -18,6 +18,8 @@ $g-cursors: (
   move,
   /* Indicates no available interaction */
   not-allowed,
+  /* Indicates the ability to move North and South */
+  ns-resize,
   /* Indicates interaction */
   pointer,
   /* Indicates text controls */
