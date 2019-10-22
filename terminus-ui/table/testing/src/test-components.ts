@@ -22,35 +22,36 @@ import {
 
 @Component({
   template: `
-    <ts-table
+    <table
+      ts-table
       [dataSource]="dataSource"
       [columns]="columns"
       (columnsChange)="columnsChanged($event)"
       #myTable="tsTable"
     >
       <ng-container tsColumnDef="column_a">
-        <ts-header-cell *tsHeaderCellDef> Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_b">
-        <ts-header-cell *tsHeaderCellDef> Column B</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column B</th>
+        <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_c">
-        <ts-header-cell *tsHeaderCellDef> Column C</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column C</th>
+        <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="special_column">
-        <ts-cell *tsCellDef="let row">fourth_row</ts-cell>
+        <td ts-cell *tsCellDef="let row">fourth_row</td>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: myTable.columnNames"></ts-row>
-      <ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="myTable.columnNames"></tr>
+      <tr ts-row *tsRowDef="let row; columns: myTable.columnNames"></tr>
+      <tr ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></tr>
+    </table>
   `,
 })
 export class TableApp {
@@ -70,20 +71,20 @@ export class TableApp {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource" [columns]="columns">
+    <table ts-table [dataSource]="dataSource" [columns]="columns">
       <ng-container tsColumnDef="column_a">
-        <ts-header-cell *tsHeaderCellDef> Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="special_column">
-        <ts-cell *tsCellDef="let row">fourth_row</ts-cell>
+        <td ts-cell *tsCellDef="let row">fourth_row</td>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="['column_a']"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: ['column_a']"></ts-row>
-      <ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="['column_a']"></tr>
+      <tr ts-row *tsRowDef="let row; columns: ['column_a']"></tr>
+      <tr ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></tr>
+    </table>
   `,
 })
 export class TableWithWhenRowApp {
@@ -98,25 +99,25 @@ export class TableWithWhenRowApp {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
+    <table ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
       <ng-container tsColumnDef="column_a" noWrap="true">
-        <ts-header-cell *tsHeaderCellDef ts-sort-header="a">Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef ts-sort-header="a">Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_b" noWrap="true">
-        <ts-header-cell *tsHeaderCellDef>Column B</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column B</th>
+        <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_c">
-        <ts-header-cell *tsHeaderCellDef>Column C</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column C</th>
+        <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="columnsToRender"></tr>
+      <tr ts-row *tsRowDef="let row; columns: columnsToRender"></tr>
+    </table>
   `,
 })
 export class ArrayDataSourceTableApp {
@@ -148,25 +149,25 @@ export class ArrayDataSourceTableApp {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
+    <table ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
       <ng-container tsColumnDef="column_a" alignment="left">
-        <ts-header-cell *tsHeaderCellDef>Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_b">
-        <ts-header-cell *tsHeaderCellDef>Column B</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column B</th>
+        <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_c">
-        <ts-header-cell *tsHeaderCellDef>Column C</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column C</th>
+        <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="columnsToRender"></tr>
+      <tr ts-row *tsRowDef="let row; columns: columnsToRender"></tr>
+    </table>
   `,
 })
 export class TableColumnAlignmentTableApp {
@@ -192,14 +193,14 @@ export class TableColumnAlignmentTableApp {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
+    <table ts-table [dataSource]="dataSource" [columns]="columns" tsSort>
       <ng-container tsColumnDef="column_a" alignment="top">
-        <ts-header-cell *tsHeaderCellDef>Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef>Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
-      <ts-header-row *tsHeaderRowDef="columnsToRender"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="columnsToRender"></tr>
+      <tr ts-row *tsRowDef="let row; columns: columnsToRender"></tr>
+    </table>
   `,
 })
 export class TableColumnInvalidAlignmentTableApp {
@@ -226,30 +227,30 @@ export class TableColumnInvalidAlignmentTableApp {
 
 @Component({
   template: `
-    <ts-table [dataSource]="dataSource">
+    <table ts-table [dataSource]="dataSource">
       <ng-container tsColumnDef="column_a" sticky>
-        <ts-header-cell *tsHeaderCellDef> Column A</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.a }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column A</th>
+        <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_b">
-        <ts-header-cell *tsHeaderCellDef> Column B</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.b }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column B</th>
+        <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_c" stickyEnd>
-        <ts-header-cell *tsHeaderCellDef> Column C</ts-header-cell>
-        <ts-cell *tsCellDef="let row">{{ row.c }}</ts-cell>
+        <th ts-header-cell *tsHeaderCellDef> Column C</th>
+        <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
       <ng-container tsColumnDef="special_column">
-        <ts-cell *tsCellDef="let row">fourth_row</ts-cell>
+        <td ts-cell *tsCellDef="let row">fourth_row</td>
       </ng-container>
 
-      <ts-header-row *tsHeaderRowDef="columnsToRender; sticky: true"></ts-header-row>
-      <ts-row *tsRowDef="let row; columns: columnsToRender"></ts-row>
-      <ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></ts-row>
-    </ts-table>
+      <tr ts-header-row *tsHeaderRowDef="columnsToRender; sticky: true"></tr>
+      <tr ts-row *tsRowDef="let row; columns: columnsToRender"></tr>
+      <tr ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></tr>
+    </table>
   `,
 })
 export class PinnedTableHeaderColumn {

@@ -54,12 +54,6 @@ export class TsColumnDefDirective extends CdkColumnDef {
   // tslint:enable: no-input-rename
 
   /**
-   * Define if a column's contents should wrap when long
-   */
-  @Input()
-  public noWrap = false;
-
-  /**
    * Define an alignment type for the cell.
    */
   @Input()

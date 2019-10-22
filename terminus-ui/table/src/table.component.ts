@@ -1,6 +1,8 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { CdkTable } from '@angular/cdk/table';
+import {
+  CDK_TABLE_TEMPLATE, CdkTable,
+} from '@angular/cdk/table';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
@@ -114,8 +116,8 @@ export class TsTableColumnsChangeEvent {
  * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
  */
 @Component({
-  selector: 'ts-table',
-  templateUrl: './table.component.html',
+  selector: 'ts-table, table[ts-table]',
+  template: CDK_TABLE_TEMPLATE,
   styleUrls: ['./table.component.scss'],
   host: { class: 'ts-table' },
   providers: [{
@@ -251,6 +253,8 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
   public ngAfterViewChecked(): void {
     this.viewChange.subscribe(v => {
       this.initHeaderSubscriptions();
+      // NOTE: We need to manually call this since we have likely adjusted the cell widths.
+      this.updateStickyColumnStyles();
     });
 
     this.rows.changes.subscribe(() => {
@@ -262,6 +266,9 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
   }
 
 
+  /**
+   * Must be present for `untilComponentDestroyed`
+   */
   public ngOnDestroy(): void {}
 
 
@@ -293,6 +300,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
     for (const cell of columnCells) {
       this.renderer.setStyle(cell, 'max-width', width);
     }
+    this.updateStickyColumnStyles();
   }
 
 
