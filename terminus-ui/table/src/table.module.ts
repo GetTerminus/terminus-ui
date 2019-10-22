@@ -26,11 +26,25 @@ export * from './row';
 export * from './table.component';
 
 
-/**
- * Much of this was lifted directly from Angular Material. I highly recommend checking out
- * their source code: https://github.com/angular/material2/tree/master/src/lib/table
- */
+const EXPORTED_DECLARATIONS = [
+  // Table
+  TsTableComponent,
 
+  // Template definitions
+  TsCellDefDirective,
+  TsColumnDefDirective,
+  TsHeaderCellDefDirective,
+  TsHeaderRowDefDirective,
+  TsRowDefDirective,
+
+  // Cell directives
+  TsCellDirective,
+  TsHeaderCellDirective,
+
+  // Row directives
+  TsHeaderRowComponent,
+  TsRowComponent,
+];
 
 @NgModule({
   imports: [
@@ -40,28 +54,10 @@ export * from './table.component';
     TsSortModule,
   ],
   declarations: [
-    TsCellDefDirective,
-    TsCellDirective,
-    TsColumnDefDirective,
-    TsHeaderCellDefDirective,
-    TsHeaderCellDirective,
-    TsHeaderRowComponent,
-    TsHeaderRowDefDirective,
-    TsRowComponent,
-    TsRowDefDirective,
-    TsTableComponent,
+    ...EXPORTED_DECLARATIONS,
   ],
   exports: [
-    TsCellDefDirective,
-    TsCellDirective,
-    TsColumnDefDirective,
-    TsHeaderCellDefDirective,
-    TsHeaderCellDirective,
-    TsHeaderRowComponent,
-    TsHeaderRowDefDirective,
-    TsRowComponent,
-    TsRowDefDirective,
-    TsTableComponent,
+    ...EXPORTED_DECLARATIONS,
   ],
 })
 export class TsTableModule {}

@@ -18,11 +18,11 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import {
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools/browser';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 import {
   fromEvent,
@@ -116,7 +116,7 @@ export class TsHeaderCellResizeHoverEvent {
  * Header cell template container that adds the right classes and role.
  */
 @Directive({
-  selector: 'ts-header-cell',
+  selector: 'ts-header-cell, th[ts-header-cell]',
   host: {
     class: 'ts-header-cell',
     role: 'columnheader',
@@ -183,7 +183,11 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
 
     // eslint-disable-next-line no-underscore-dangle
     if (columnDef._stickyEnd) {
-      elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    }
+
+    if (columnDef.sticky) {
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
     }
 
     setColumnAlignment(this.column, renderer, elementRef);
@@ -301,7 +305,7 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
  * Cell template container that adds the right classes and role.
  */
 @Directive({
-  selector: 'ts-cell',
+  selector: 'ts-cell, td[ts-cell]',
   host: {
     class: 'ts-cell',
     role: 'gridcell',
@@ -327,16 +331,15 @@ export class TsCellDirective extends CdkCell {
     // Set a custom class for each column
     elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
 
-    // Set the no-wrap class if needed
-    if (this.column.noWrap) {
-      elementRef.nativeElement.classList.add(`ts-column-no-wrap`);
-    }
-
     setColumnAlignment(this.column, renderer, elementRef);
 
     // eslint-disable-next-line no-underscore-dangle
     if (columnDef._stickyEnd) {
-      elementRef.nativeElement.classList.add(`ts-table--sticky-end`);
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    }
+
+    if (columnDef.sticky) {
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
     }
 
   }
