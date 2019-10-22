@@ -17,6 +17,7 @@
   --header-bg: #{color(utility, light)};
   --header-text-color: #{color(pure, dark)};
   --border-color: #{color(utility, light)};
+  --header-border-color: #{color(utility)};
   $primary: color(primary);
   --drop-bg: #{desaturate(lighten($primary, 66%), 70%)};
   // NOTE: This must be above 40 as that is the number of header cell z-indexes set
@@ -182,7 +183,7 @@
   // Header cell
   .ts-header-cell {
     background-color: var(--header-bg);
-    border-bottom: 1px solid color(utility);
+    border-bottom: 1px solid var(--header-border-color);
     border-top: none;
     padding: spacing(default);
     position: sticky;
@@ -190,6 +191,10 @@
 
     &:not(first-of-type) {
       border-left: 1px solid color(utility);
+    }
+
+    &.ts-table--sticky {
+      border-right: 1px solid var(--header-border-color);
     }
 
     // Reverse the natural z-index order so that all borders on the right created with box-shadow are visible above the following cell.
