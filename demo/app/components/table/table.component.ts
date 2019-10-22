@@ -4,7 +4,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import {
-  AfterViewInit, ChangeDetectorRef,
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ViewChild,
 } from '@angular/core';
@@ -63,6 +64,7 @@ export interface GithubIssue {
   number: string;
   state: string;
   title: string;
+  comments: string;
 }
 
 /**
@@ -95,6 +97,11 @@ export class TableComponent implements AfterViewInit {
       control: new FormControl(true),
     },
     {
+      display: 'Comments',
+      name: 'comments',
+      control: new FormControl(true),
+    },
+    {
       display: 'Number',
       name: 'number',
       control: new FormControl(true),
@@ -118,11 +125,6 @@ export class TableComponent implements AfterViewInit {
       display: 'Body',
       name: 'body',
       width: '260px',
-      control: new FormControl(true),
-    },
-    {
-      display: 'Comments',
-      name: 'comments',
       control: new FormControl(true),
     },
     {

@@ -141,12 +141,6 @@ describe(`TsTableComponent`, function() {
       ]);
     });
 
-    test(`should add the no wrap class`, function() {
-      const noWrapColumn = fixture.nativeElement.querySelector('.ts-column-no-wrap');
-
-      expect(noWrapColumn).toBeTruthy();
-    });
-
     test(`should add the min-width style`, function() {
       fixture.detectChanges();
       const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
@@ -220,18 +214,15 @@ describe(`TsTableComponent`, function() {
       tableElement = fixture.nativeElement.querySelector('.ts-table');
     });
 
-    test(`should set a header to be sticky`, () => {
-      const header = getHeaderRow(tableElement);
-      expect(header.classList).toContain('ts-table--sticky');
-    });
-
     test(`should set a column to be sticky`, () => {
       const headerCells = getHeaderCells(tableElement);
       const cells = getCells(tableElement);
-      expect(headerCells[0].classList).toContain('ts-table--sticky');
-      expect(headerCells[1].classList).not.toContain('ts-table--sticky');
-      expect(cells[0].classList).not.toContain('ts-table--sticky-end');
-      expect(cells[2].classList).toContain('ts-table--sticky-end');
+
+      expect(headerCells[0].classList).toContain('ts-table__column--sticky');
+      expect(headerCells[1].classList).not.toContain('ts-table__column--sticky');
+
+      expect(cells[0].classList).not.toContain('ts-table__column--sticky-end');
+      expect(cells[2].classList).toContain('ts-table__column--sticky-end');
     });
 
   });

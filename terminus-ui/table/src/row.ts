@@ -20,7 +20,7 @@ import { TsTableComponent } from './table.component';
  * Header template container that contains the cell outlet. Adds the right class and role.
  */
 @Component({
-  selector: 'ts-header-row',
+  selector: 'ts-header-row, tr[ts-header-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
     class: 'ts-header-row',
@@ -44,7 +44,7 @@ export class TsHeaderRowComponent extends CdkHeaderRow {
  * Data row template container that contains the cell outlet. Adds the right class and role.
  */
 @Component({
-  selector: 'ts-row',
+  selector: 'ts-row, tr[ts-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
     class: 'ts-row',
