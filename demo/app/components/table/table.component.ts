@@ -26,7 +26,7 @@ import {
   TsColumn,
   TsTableColumnsChangeEvent,
   TsTableComponent,
-  TsTableDataSource,
+  TsTableDataSource, TsTableDensity,
 } from '@terminus/ui/table';
 import {
   merge,
@@ -155,6 +155,7 @@ export class TableComponent implements AfterViewInit {
   public exampleDatabase!: ExampleHttpDao;
   public dataSource = new TsTableDataSource<GithubIssue>();
   public resultsLength = 0;
+  public density: TsTableDensity = 'comfy';
 
   /**
    * Return all visible columns

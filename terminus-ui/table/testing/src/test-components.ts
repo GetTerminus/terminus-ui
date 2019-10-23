@@ -10,7 +10,7 @@ import {
 import {
   TsTableColumnsChangeEvent,
   TsTableComponent,
-  TsTableDataSource,
+  TsTableDataSource, TsTableDensity,
   TsTableModule,
 } from '@terminus/ui/table';
 
@@ -25,6 +25,7 @@ import {
     <table
       ts-table
       [dataSource]="dataSource"
+      [density]="density"
       [columns]="columns"
       (columnsChange)="columnsChanged($event)"
       #myTable="tsTable"
@@ -57,7 +58,7 @@ import {
 export class TableApp {
   @ViewChild(TsTableComponent, { static: true })
   public table!: TsTableComponent<TestData>;
-
+  public density: TsTableDensity = 'comfy';
   public dataSource: FakeDataSource | null = new FakeDataSource();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
   public columns = this.columnsToRender.map(c => ({
