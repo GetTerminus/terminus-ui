@@ -18,6 +18,7 @@
 - [Sticky column](#sticky-column)
   - [Sticky column at end](#sticky-column-at-end)
 - [Re-orderable columns](#re-orderable-columns)
+- [Density](#density)
 - [Events](#events)
   - [Table](#table)
   - [Cell](#cell)
@@ -469,6 +470,17 @@ export class TableComponent {
     this.changeDetectorRef.detectChanges();
   }
 }
+```
+
+
+## Density
+
+The table supports two density settings: `comfy` (default) & `compact`.
+
+```html
+<table ts-table density="compact">
+  ...
+</table>
 ```
 
 

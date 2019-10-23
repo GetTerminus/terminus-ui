@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="space-between center">
+<div fxLayout="row" fxLayoutAlign="space-between center" tsVerticalSpacing>
   <div style="font-size: 12px;">
     <p>
       To get around GitHub rate limiting, we cache response data by default.
@@ -13,6 +13,16 @@
       </label>
 
       <button (click)="clearCachedData()">Clear cached GitHub data</button>
+    </div>
+
+    <div>
+      <label>
+        Table density:
+        <select name="density" id="density" [(ngModel)]="density">
+          <option value="comfy">Comfy</option>
+          <option value="compact">Compact</option>
+        </select>
+      </label>
     </div>
   </div>
 
@@ -57,7 +67,9 @@
 
 
 <div class="example-container">
-  <table ts-table
+  <table
+    ts-table
+    [density]="density"
     [dataSource]="dataSource"
     [columns]="visibleColumns"
     (columnsChange)="columnsChange($event)"
@@ -85,7 +97,7 @@
       </td>
     </ng-container>
 
-    <ng-container tsColumnDef="comments">
+    <ng-container tsColumnDef="comments" alignment="right">
       <th ts-header-cell *tsHeaderCellDef>
         Comments
       </th>
