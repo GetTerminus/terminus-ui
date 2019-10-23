@@ -1,12 +1,14 @@
 import {
   Component,
+  OnDestroy,
   OnInit,
   VERSION as NG_VERSION,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { VERSION as MAT_VERSION } from '@angular/material';
 import {
-  NavigationEnd, Route,
+  NavigationEnd,
+  Route,
   Router,
   Routes,
 } from '@angular/router';
@@ -17,11 +19,12 @@ import {
 import { TsSelectionListChange } from '@terminus/ui/selection-list';
 import { VERSION as UI_VERSION } from '@terminus/ui/utilities';
 import {
-  BehaviorSubject, Observable,
+  BehaviorSubject,
+  Observable,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { orderArrayByProperty } from './../utilities/orderArrayByProperty';
+import { orderArrayByProperty } from '../utilities/orderArrayByProperty';
 import { componentsList } from './components.constant';
 
 
@@ -30,7 +33,7 @@ import { componentsList } from './components.constant';
   templateUrl: './components.component.html',
   styleUrls: ['./components.component.scss'],
 })
-export class ComponentsComponent implements OnInit {
+export class ComponentsComponent implements OnInit, OnDestroy {
   public components = orderArrayByProperty(componentsList, 'path');
   public path = '';
   public uiVersion = UI_VERSION;
