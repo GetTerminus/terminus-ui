@@ -6,6 +6,8 @@
 @import './../../scss/helpers/typography';
 
 
+// FIXME: Refactor to use CSS variables. Currently we are generating a lot of duplicate CSS.
+
 // This makes the bottom padding space look better than the default 36px
 $button-line-height: 35px;
 $rotation: 360deg;
@@ -40,6 +42,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
   // collapse the text content
   .c-button__content {
     max-width: 0;
+    padding: 0;
   }
 }
 
@@ -65,11 +68,10 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     line-height: $button-line-height;
     // Overwrite material min-width
     min-width: auto;
-    // stylelint-disable declaration-no-important
-    // Important needed to override the `!important` within the ladda styles
+    padding: 0 spacing(small);
+    // NOTE: Important needed to override the `!important` within the ladda styles
+    // stylelint-disable-next-line declaration-no-important
     transition: $color-transition, $background-transition, $shadow-transition !important;
-    // stylelint-enable declaration-no-important
-    will-change: background, color, contents;
   }
 
   // Target instances nested inside the TsSearchComponent
@@ -106,12 +108,16 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     }
   }
 
+  // Target the prefix icon
+  &__icon {
+    $horizontal-alignment-fix: .2em;
+    margin-right: $horizontal-alignment-fix;
+  }
+
+  // Target any icon inside a button
   // Adjust icon vertical layout
   .c-icon {
-    $horizontal-alignment-fix: .2em;
     $vertical-alignment-fix: -.15em;
-
-    margin-right: $horizontal-alignment-fix;
     // Fix small vertical aligment issue between icon & text
     margin-top: $vertical-alignment-fix;
     transition: transform $icon-transition-duration-expand $g-easing;
@@ -185,9 +191,15 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
           display: inline-block;
           max-width: 400px;
           overflow: hidden;
+          padding: 0 spacing(small);
           transition: max-width $content-transition-duration $g-easing;
           white-space: nowrap;
-          will-change: max-width;
+
+          .ts-icon {
+            --negative-padding-adjustment: -4px;
+            margin-left: var(--negative-padding-adjustment);
+            margin-right: var(--negative-padding-adjustment);
+          }
         }
 
         .mat-ripple {

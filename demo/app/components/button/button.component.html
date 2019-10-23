@@ -1,47 +1,62 @@
 <ts-card tsVerticalSpacing>
-  <h3 tsCardTitle tsVerticalSpacing="small--0">Demo Controls</h3>
+  <div fxLayout="row" fxLayoutGap="2em">
+    <div>
+      <div tsVerticalSpacing>
+        <label>
+          Theme:
+          <select name="myTheme" [(ngModel)]="myTheme">
+            <option value="{{ theme }}" *ngFor="let theme of themes">
+              {{ theme | titlecase }}
+            </option>
+          </select>
+        </label>
+      </div>
 
-  <div tsVerticalSpacing>
-    <label>
-      Theme:
-      <select name="myTheme" [(ngModel)]="myTheme">
-        <option value="{{ theme }}" *ngFor="let theme of themes">
-          {{ theme | titlecase }}
-        </option>
-      </select>
-    </label>
-  </div>
+      <div tsVerticalSpacing>
+        <label>
+          Format:
+          <select name="myFormat" [(ngModel)]="myFormat">
+            <option value="{{ format }}" *ngFor="let format of formats">
+              {{ format | titlecase }}
+            </option>
+          </select>
+        </label>
+      </div>
 
-  <div tsVerticalSpacing>
-    <label>
-      Format:
-      <select name="myFormat" [(ngModel)]="myFormat">
-        <option value="{{ format }}" *ngFor="let format of formats">
-          {{ format | titlecase }}
-        </option>
-      </select>
-    </label>
-  </div>
+      <div tsVerticalSpacing>
+        <label tsVerticalSpacing>
+          Right-align layout:
+          <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
+        </label>
+      </div>
+    </div>
 
-  <div tsVerticalSpacing>
-    <label tsVerticalSpacing>
-      Right-align layout:
-      <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
-    </label>
-  </div>
-</ts-card>
+    <div [style.textAlign]="layout">
+      <div fxLayout="column">
+        <div tsVerticalSpacing="small--0">
+          <ts-button
+            [theme]="myTheme"
+            (clicked)="run('progress2')"
+            [isDisabled]="disabled"
+            [showProgress]="progress2"
+            [iconName]="icon"
+            [format]="myFormat"
+          >Click Me!</ts-button>
+        </div>
 
-
-<ts-card tsVerticalSpacing>
-  <div [style.textAlign]="layout">
-    <ts-button
-      [theme]="myTheme"
-      (clicked)="run('progress2')"
-      [isDisabled]="disabled"
-      [showProgress]="progress2"
-      [iconName]="icon"
-      [format]="myFormat"
-    >Click Me!</ts-button>
+        <div>
+          <ts-button
+            [theme]="myTheme"
+            (clicked)="run('progress2')"
+            [isDisabled]="disabled"
+            [showProgress]="progress2"
+            [format]="myFormat"
+          >
+            <ts-icon>build</ts-icon>
+          </ts-button>
+        </div>
+      </div>
+    </div>
   </div>
 </ts-card>
 
