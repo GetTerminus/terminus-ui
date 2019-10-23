@@ -58,6 +58,14 @@ export interface TsColumn {
 }
 
 /**
+ * The possible table density settings
+ */
+export type TsTableDensity
+  = 'comfy'
+  | 'compact'
+;
+
+/**
  * Default column width.
  *
  * NOTE: Columns will only expand until all cell content is visible for the entire column. So we are defaulting to a very large number and
@@ -119,7 +127,11 @@ export class TsTableColumnsChangeEvent {
   selector: 'ts-table, table[ts-table]',
   template: CDK_TABLE_TEMPLATE,
   styleUrls: ['./table.component.scss'],
-  host: { class: 'ts-table' },
+  host: {
+    'class': 'ts-table',
+    '[class.ts-table--comfy]': 'density === "comfy"',
+    '[class.ts-table--compact]': 'density === "compact"',
+  },
   providers: [{
     provide: CdkTable,
     useExisting: TsTableComponent,
@@ -211,6 +223,12 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
     return this._columns;
   }
   private _columns: TsColumn[] = [];
+
+  /**
+   * Define the density of the cells
+   */
+  @Input()
+  public density: TsTableDensity = 'comfy';
 
   /**
    * Emit when a column is resized

@@ -21,6 +21,7 @@
   $primary: color(primary);
   --drop-bg: #{desaturate(lighten($primary, 66%), 70%)};
   --z-index-base-context: 1;
+  --cell-padding: #{spacing(default)};
   // Must be greater than 40 as that is the length of the generated z-indexes for header cells
   --sticky-end-z: 50;
   @include reset;
@@ -33,6 +34,10 @@
   max-height: 100%;
   max-width: 100%;
   overflow: scroll;
+
+  &.ts-table--compact {
+    --cell-padding: #{spacing(small, 2)};
+  }
 
   // Class added to all sticky-end cells
   .ts-table__column--sticky-end {
@@ -114,7 +119,7 @@
   .ts-cell {
     background-color: var(--table-bg);
     overflow: hidden;
-    padding: spacing(default);
+    padding: var(--cell-padding);
     text-overflow: ellipsis;
     transition: background-color 200ms ease-out;
     white-space: nowrap;
@@ -128,7 +133,7 @@
   .ts-header-cell {
     background-color: var(--header-bg);
     border-color: var(--header-border-color);
-    padding: spacing(default);
+    padding: var(--cell-padding);
 
     // Class added when the column is sorted
     &.ts-sort-header-sorted {

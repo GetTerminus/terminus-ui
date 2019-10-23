@@ -316,4 +316,22 @@ describe(`TsTableComponent`, function() {
 
   });
 
+  describe(`density`, () => {
+
+    test(`should be able to change the density of the table spacing`, () => {
+      const fixture = createComponent(testComponents.TableApp, undefined, [TsTableModule]);
+      fixture.detectChanges();
+      const tableElement = fixture.nativeElement.querySelector('.ts-table');
+      expect(tableElement.classList).toContain('ts-table--comfy');
+      expect(tableElement.classList).not.toContain('ts-table--compact');
+
+      fixture.componentInstance.density = 'compact';
+      fixture.detectChanges();
+
+      expect(tableElement.classList).not.toContain('ts-table--comfy');
+      expect(tableElement.classList).toContain('ts-table--compact');
+    });
+
+  });
+
 });
