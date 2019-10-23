@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsCardModule } from '@terminus/ui/card';
+import { TsIconModule } from '@terminus/ui/icon';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 
 import { ButtonRoutingModule } from './button-routing.module';
@@ -18,6 +19,7 @@ import { ButtonComponent } from './button.component';
     FormsModule,
     TsButtonModule,
     TsCardModule,
+    TsIconModule,
     TsSpacingModule,
   ],
   declarations: [
