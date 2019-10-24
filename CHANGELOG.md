@@ -1,3 +1,10 @@
+# [14.18.0](https://github.com/GetTerminus/terminus-ui/compare/v14.17.0...v14.18.0) (2019-10-24)
+
+
+### Features
+
+* **Button:** support icon-only mode ([3575d3a](https://github.com/GetTerminus/terminus-ui/commit/3575d3a)), closes [#1714](https://github.com/GetTerminus/terminus-ui/issues/1714)
+
 # [14.17.0](https://github.com/GetTerminus/terminus-ui/compare/v14.16.2...v14.17.0) (2019-10-09)
 
 
