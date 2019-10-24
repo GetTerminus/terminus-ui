@@ -472,7 +472,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [sort-docs]:            http://uilibrary-docs.terminus.ninja/release/directives/TsSortDirective.html
 [spacing-docs]:         http://uilibrary-docs.terminus.ninja/release/directives/TsVerticalSpacingDirective.html
 [table-docs]:           http://uilibrary-docs.terminus.ninja/release/components/TsTableComponent.html
-[tabs-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsTabComponent.html
+[tabs-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsTabCollectionComponent.html
 [toggle-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsToggleComponent.html
 [tooltip-docs]:         http://uilibrary-docs.terminus.ninja/release/components/TsTooltipComponent.html
 [validators-docs]:      http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html
@@ -517,6 +517,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [selection-list-usage]:    http://uilibrary-docs.terminus.ninja/release/directives/TsSelectionListComponent.html#readme
 [sort-usage]:              http://uilibrary-docs.terminus.ninja/release/directives/TsSortDirective.html#readme
 [table-usage]:             http://uilibrary-docs.terminus.ninja/release/components/TsTableComponent.html#readme
-[tabs-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsTabComponent.html#readme
+[tabs-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsTabCollectionComponent.html#readme
 [toggle-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsToggleComponent.html#readme
 [validators-usage]:        http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html#readme
