@@ -24,51 +24,58 @@ Pass in the cohorts:
 ```
 
 ```typescript
-  public cohorts: TsDateCohort = [{
+cohorts: TsDateCohort[] = [
+  {
     display: 'Last full year',
     range: {
-      start: new Date(2018, 01, 01),
-      end: new Date(2018, 12, 31),
+      startDate: new Date(2018, 1, 1),
+      endDate: new Date(2018, 12, 31),
     },
-  }, {
+  },
+  {
     display: 'Last full month',
     range: {
-      start: new Date(2019, 08, 01),
-      end: new Date(2019, 08, 31),
+      startDate: new Date(2019, 8, 1),
+      endDate: new Date(2019, 8, 31),
     },
-  }, {
+  },
+  {
     display: 'Custom dates',
     range: {
-      start: '',
-      end: '',
+      startDate: '',
+      endDate: '',
     },
-  }];
+  },
+];
 ```
 
 NOTE: The keys inside the passed in `cohorts` object defined as `TsDateCohort` interface has to be in the form of 
+
 ```typescript
+{
   display: string,
   range: {
-   start: Date | string,
-   end: Date | string,
-   }
+    startDate: Date | string,
+    endDate: Date | string,
+  }
+}
 ```
 
-NOTE: For any custom dates which allows user to select a date from date 
-range selection would need to pass in start and end date with empty string:
+NOTE: For any custom dates which allows user to select a date from date range selection would need to pass in start and end date with empty string:
+
 ```typescript
 {
   display: 'Custom Dates',
   range: {
-    start: '',
-    end: '',
+    startDate: '',
+    endDate: '',
   }
 }
 ```
 
 ## Event driven
 
-The event that's tied into this component is `cohortDateRangeChanged`.
+Anytime the date range is changed, `cohortDateRangeChanged` is emitted.
 
 ```html
 <ts-cohort-date-range
@@ -77,13 +84,13 @@ The event that's tied into this component is `cohortDateRangeChanged`.
 ></ts-cohort-date-range>
 ```
 
-`cohortDateRangeChanged` is fired off when the date range changes.
 
 ## Inputs to the component
 
 ### allowCustomDates
 
 `allowCustomDates` defaults to `true`. When set to `false`, date range is readonly.
+
 ```html
 <ts-cohort-date-range
   [allowCustomDates]="allowCustomDates"
