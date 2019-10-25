@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const ENGAGE_ICON = `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path fill-rule="evenodd" d="M13.584689 4.2754491C13.5344498 4.17365269 13.4641148 4.10239521 13.3736842

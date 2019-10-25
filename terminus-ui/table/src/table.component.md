@@ -357,9 +357,12 @@ Column reordering is not built into the table itself, but it is supported with t
  
 The example below shows how to allow users to adjust column visibility *and* column order via a menu.
 
+> NOTE: Use the custom icon `table_large_plus` to indicate a table settings menu.
+
 ```html
 <!-- Set up a TsMenuComponent to control which columns are visible and their order -->
 <ts-menu [menuItemsTemplate]="columns" theme="accent">
+  <ts-icon svgIcon="table_large_plus"></ts-icon>
   Edit Columns
 </ts-menu>
 
