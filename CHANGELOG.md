@@ -1,3 +1,44 @@
+# [15.0.0](https://github.com/GetTerminus/terminus-ui/compare/v14.18.0...v15.0.0) (2019-10-25)
+
+
+### Bug Fixes
+
+* **Table:** correct right border visibility when stickied ([0294049](https://github.com/GetTerminus/terminus-ui/commit/0294049))
+* **Menu:** label now fills width ([f0a3131](https://github.com/GetTerminus/terminus-ui/commit/f0a3131))
+* **Toggle:** remove deprecated change emitter ([d3ed8d9](https://github.com/GetTerminus/terminus-ui/commit/d3ed8d9)), closes [#1472](https://github.com/GetTerminus/terminus-ui/issues/1472)
+* **RadioGroup:** remove deprecated change event ([9ce0126](https://github.com/GetTerminus/terminus-ui/commit/9ce0126)), closes [#1465](https://github.com/GetTerminus/terminus-ui/issues/1465)
+* **LoginForm:** remove deprecated submit emitter ([5395a7b](https://github.com/GetTerminus/terminus-ui/commit/5395a7b)), closes [#1469](https://github.com/GetTerminus/terminus-ui/issues/1469)
+* **Table:** update demo to show scrollbars correctly ([0c1921b](https://github.com/GetTerminus/terminus-ui/commit/0c1921b))
+
+
+### Features
+
+* **CSS:** add col-resize to available cursors ([6ac9980](https://github.com/GetTerminus/terminus-ui/commit/6ac9980))
+* **Sort:** better visual representation a column is sortable ([bd4955c](https://github.com/GetTerminus/terminus-ui/commit/bd4955c)), closes [#1739](https://github.com/GetTerminus/terminus-ui/issues/1739)
+* **Table:** column widths can be defined by consumer ([2dc796c](https://github.com/GetTerminus/terminus-ui/commit/2dc796c)), closes [#1617](https://github.com/GetTerminus/terminus-ui/issues/1617)
+* **Table:** header cell now matches body cell alignment ([14e27de](https://github.com/GetTerminus/terminus-ui/commit/14e27de))
+* **Table:** now supports pinning ([dd69833](https://github.com/GetTerminus/terminus-ui/commit/dd69833))
+* **Table:** support compact density ([a9ff309](https://github.com/GetTerminus/terminus-ui/commit/a9ff309)), closes [#1676](https://github.com/GetTerminus/terminus-ui/issues/1676)
+* **Table:** support for multiple headers ([83fe61d](https://github.com/GetTerminus/terminus-ui/commit/83fe61d)), closes [#1675](https://github.com/GetTerminus/terminus-ui/issues/1675)
+* **Table:** support for re-orderable columns ([811a509](https://github.com/GetTerminus/terminus-ui/commit/811a509))
+* **Table:** support for re-orderable columns ([c11f8c7](https://github.com/GetTerminus/terminus-ui/commit/c11f8c7))
+* **Utilities:** support for the 'move' cursor ([ec7d6a6](https://github.com/GetTerminus/terminus-ui/commit/ec7d6a6))
+* **Icon:** support new table edit icon ([b53ac1b](https://github.com/GetTerminus/terminus-ui/commit/b53ac1b)), closes [#1759](https://github.com/GetTerminus/terminus-ui/issues/1759)
+* **Utilities:** support ns-resized cursor type ([6509194](https://github.com/GetTerminus/terminus-ui/commit/6509194))
+* **Table:** update header styles ([e39945c](https://github.com/GetTerminus/terminus-ui/commit/e39945c))
+* **Table:** user resizable columns ([9a071ea](https://github.com/GetTerminus/terminus-ui/commit/9a071ea))
+
+
+### BREAKING CHANGES
+
+* **Table:** Moved to native HTML table
+* **Table:** - `TsColumn` definitions must be passed to `TsTable`.
+- `minWidth` support has been removed in favor of `TsColumn`
+definitions.
+* **Toggle:** `change` emitter removed in favor of `selectionChange`
+* **LoginForm:** submit emitter removed in favor of submission
+* **RadioGroup:** `change` event removed in favor of `selectionChange`
+
 # [14.18.0](https://github.com/GetTerminus/terminus-ui/compare/v14.17.0...v14.18.0) (2019-10-24)
 
 
