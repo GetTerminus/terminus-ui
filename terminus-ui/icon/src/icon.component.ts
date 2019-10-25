@@ -13,7 +13,8 @@ import { CSV_ICON } from './custom-icons/csv';
 import { ENGAGE_ICON } from './custom-icons/engage';
 import { LIGHTBULB_ICON } from './custom-icons/lightbulb';
 import { LOGO_ICON } from './custom-icons/logo';
-import { LOGO_COLOR_ICON } from './custom-icons/logo_color';
+import { LOGO_COLOR_ICON } from './custom-icons/logo-color';
+import { TABLE_LARGE_PLUS } from './custom-icons/table-large-plus';
 
 
 /**
@@ -25,6 +26,7 @@ export type TS_CUSTOM_ICON
   | `lightbulb`
   | `logo`
   | `logo_color`
+  | `table_large_plus`
 ;
 
 
@@ -37,6 +39,7 @@ export const TS_CUSTOM_ICONS: TS_CUSTOM_ICON[] = [
   'lightbulb',
   'logo',
   'logo_color',
+  'table_large_plus',
 ];
 
 
@@ -119,6 +122,7 @@ export class TsIconComponent {
     this.matIconRegistry.addSvgIconLiteral('lightbulb', this.domSanitizer.bypassSecurityTrustHtml(LIGHTBULB_ICON));
     this.matIconRegistry.addSvgIconLiteral('logo', this.domSanitizer.bypassSecurityTrustHtml(LOGO_ICON));
     this.matIconRegistry.addSvgIconLiteral('logo_color', this.domSanitizer.bypassSecurityTrustHtml(LOGO_COLOR_ICON));
+    this.matIconRegistry.addSvgIconLiteral('table_large_plus', this.domSanitizer.bypassSecurityTrustHtml(TABLE_LARGE_PLUS));
   }
 
 }
