@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const LOGO_ICON = `
   <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12.5094828,12.1879106 L15.8689156,11.0607065 C16.0108355,11.0099402 16.1612661,11.112335 16.1612661,11.2597834
