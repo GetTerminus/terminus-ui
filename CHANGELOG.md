@@ -1,3 +1,10 @@
+## [15.0.1](https://github.com/GetTerminus/terminus-ui/compare/v15.0.0...v15.0.1) (2019-10-25)
+
+
+### Bug Fixes
+
+* **Demo:** bump demo to use v15 ([a727638](https://github.com/GetTerminus/terminus-ui/commit/a727638))
+
 # [15.0.0](https://github.com/GetTerminus/terminus-ui/compare/v14.18.0...v15.0.0) (2019-10-25)
 
 
