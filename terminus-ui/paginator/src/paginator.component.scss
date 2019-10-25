@@ -26,7 +26,6 @@
   // <div> container for the message about too many records
   .c-paginator__message {
     $message-spacing: .4em 0;
-
     @include typography('caption');
     color: color(utility, dark);
     margin: $message-spacing;

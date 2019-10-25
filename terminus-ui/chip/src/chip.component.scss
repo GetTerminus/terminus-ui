@@ -5,13 +5,20 @@
 @import './../../scss/helpers/typography';
 
 
-$ts-chip-focus-background-color: color(utility);
-
 .ts-chip {
+  --chip-fontSize: 14px;
+  --chip-height: #{spacing(large)};
+  --chip-padding: #{spacing(small, 2)} #{spacing(small, 1)};
+  --chip-backgroundColor: #{color(utility, light)};
+  --chip-backgroundColor-hover: #{color(utility)};
+  --chip-borderRadius: 16px;
+  --chip-color: #{color(pure, dark)};
+  --chip-remove-size: #{spacing(large)};
+
   &:focus,
   &:hover {
     .c-chip {
-      background-color: $ts-chip-focus-background-color;
+      --chip-backgroundColor: var(--chip-backgroundColor-hover);
       transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
     }
   }
@@ -32,52 +39,51 @@ $ts-chip-focus-background-color: color(utility);
       color: color(pure);
     }
   }
-}
 
 
+  .c-chip {
+    @include typography;
+    align-items: center;
+    background-color: var(--chip-backgroundColor);
+    border-radius: var(--chip-borderRadius);
+    box-sizing: border-box;
+    color: var(--chip-color);
+    display: inline-flex;
+    font-size: var(--chip-fontSize);
+    height: var(--chip-height);
+    margin: 0 spacing(small, 2);
+    overflow: hidden;
+    padding: var(--chip-padding);
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    transform: translateZ(0);
+    transition: background-color 200ms ease-out;
 
-.c-chip {
-  $chip-height: spacing(large, 1);
-  $chip-padding: spacing(small, 2) spacing(small, 1);
-  @include typography;
-  align-items: center;
-  background-color: color(utility, light);
-  border-radius: 16px;
-  box-sizing: border-box;
-  color: color(pure, dark);
-  display: inline-flex;
-  height: $chip-height;
-  margin: spacing(small, 2);
-  overflow: hidden;
-  padding: $chip-padding;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  transform: translateZ(0);
-  transition: background-color 200ms ease-out;
+    &.c-chip--removable {
+      padding-right: spacing(large);
 
-  &.c-chip--removable {
-    padding-right: spacing(large, 1);
+      .c-chip__remove {
+        display: block;
+      }
+    }
 
     .c-chip__remove {
-      display: block;
-    }
-  }
+      cursor: cursor(pointer);
+      display: none;
+      height: var(--chip-remove-size);
+      opacity: .4;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) scale(.8);
+      transition: opacity 200ms ease-out;
+      width: var(--chip-remove-size);
 
-  .c-chip__remove {
-    $size: 24px;
-    cursor: cursor(pointer);
-    display: none;
-    height: $size;
-    opacity: .4;
-    position: absolute;
-    right: spacing(small, 2);
-    top: 50%;
-    transform: translateY(-50%);
-    transition: opacity 200ms ease-out;
-    width: $size;
-
-    &:hover {
-      opacity: .7;
+      &:hover {
+        opacity: .7;
+      }
     }
   }
 }
+
+

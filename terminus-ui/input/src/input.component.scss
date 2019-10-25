@@ -127,7 +127,6 @@
     @include cursor(pointer);
     opacity: 0;
     transition: opacity 200ms ease, color 200ms ease;
-    will-change: opacity;
 
     &--visible {
       opacity: 1;
