@@ -94,10 +94,15 @@ Any icon with a -color suffix will not accept themes. Currently they accept a ba
 
 ### Available
 
-| Name          | Description                                             | Example Usage                     |
-|--------------:|:-------------------------------------------------------:|:----------------------------------|
-| `csv`         | A file with the text 'CSV'                              | Upload a CSV                      |
-| `engage`      | A right-pointing arrow stacked on a left-pointing arrow | Navigation for Engage product     |
-| `lightbulb`   | A lightbulb                                             | Pro-tip box                       |
-| `logo`        | Terminus logo, default is black, but accepts theme      | Logo, negative logo               |
-| `logo_color`  | Terminus logo in correct colors, does not accept theme  | Logo like it is supposed to look  |
+|               Name | Description                                             | Example Usage                    |
+|-------------------:|:--------------------------------------------------------|:---------------------------------|
+|              `csv` | A file with the text 'CSV'                              | Upload a CSV                     |
+|           `engage` | A right-pointing arrow stacked on a left-pointing arrow | Navigation for Engage product    |
+|        `lightbulb` | A lightbulb                                             | Pro-tip box                      |
+|             `logo` | Terminus logo, default is black, but accepts theme      | Logo, negative logo              |
+|       `logo_color` | Terminus logo in correct colors, does not accept theme  | Logo like it is supposed to look |
+| `table_large_plus` | A table icon with a plus sign                           | Editing table columns            |
+
+
+
+
