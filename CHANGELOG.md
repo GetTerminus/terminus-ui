@@ -39,6 +39,127 @@ definitions.
 * **LoginForm:** submit emitter removed in favor of submission
 * **RadioGroup:** `change` event removed in favor of `selectionChange`
 
+
+### Breaking Change Migration Guide
+
+#### Table
+
+##### 1. Table functionality is now added as directives to a native HTML table. 
+
+This was necessary to support future enhancements such as multiple sticky headers etc.
+
+```diff
+- <ts-table>
++ <table ts-table>
+
+    <ng-container tsColumnDef="title">
+-      <ts-header-cell *tsHeaderCellDef>
++      <th ts-header-cell *tsHeaderCellDef>
+         Title
+-      </ts-header-cell>
++      </th>
+-      <ts-cell *tsCellDef="let item">
++      <td ts-cell *tsCellDef="let item">
+         {{ item.title }}
+-      </ts-cell>
++      </td>
+    </ng-container>
+
+-    <ts-header-row *tsHeaderRowDef="..."></ts-header-row>
++    <tr ts-header-row *tsHeaderRowDef="..."></tr>
+
+-    <ts-row *tsRowDef="let row; columns: ...;"></ts-row>
++    <tr ts-row *tsRowDef="let row; columns: ...;"></tr>
+
+- </ts-table
++ </table
+```
+
+##### 2. Column definitions are now typed objects rather than strings
+
+This change was to enable the consumer to define more column information, such as column widths.
+
+```diff
+- const columns = ['title'];
++ const columns: TsColumn[] = [{
++   name: 'title',
++ }];
+```
+
+Column widths can be defined by the `width` property:
+
+```typescript
+const columns: TsColumn[] = [{
+  name: 'title',
+  width: '12rem',
+}];
+```
+
+##### 3. Column definitions now must be passed to the table instance
+
+Previously, a simple array of column names were passed to the row definitions:
+
+```diff
+<!-- 
+  Previously, a simple array of column names were passed to the row definitions:
+-->
+- <ts-table>
+-   <ts-header-row *tsHeaderRowDef="['title']"></ts-header-row>
+-   <ts-row *tsRowDef="let row; columns: ['title'];"></ts-row>
+- </ts-table>
+
+<!-- 
+  Now, the array of column objects are passed to the table directive AND a simple array
+    of names are passed to the rows.
+  Note: The table reference provides the simple array for you:
+-->
++ <table ts-table [columns]="[{name: title}]" #myTable="tsTable">
++   <tr ts-header-row *tsHeaderRowDef="myTable.columnNames"></tr>
++   <tr ts-row *tsRowDef="let row; columns: myTable.columnNames;"></tr>
++ </table>
+```
+
+##### 4. Columns no longer support a `min-width` declaration
+
+Width is now controlled with the column definitions.
+
+
+#### RadioGroup
+
+- `change` emitter removed in favor of `selectionChange` (Deprecated 7/12/2019)
+
+```diff
+<ts-radio-group
+-  (change)="selected($event)"
++  (selectionChange)="selected($event)"
+></ts-radio-group>
+```
+
+
+#### LoginForm
+
+- `change` emitter removed in favor of `selectionChange` (Deprecated 7/12/2019)
+
+```diff
+<ts-login-form
+-  (submit)="formSubmission($event)"
++  (submission)="formSubmission($event)"
+></ts-login-form>
+```
+
+#### Toggle
+
+- `change` emitter removed in favor of `selectionChange` (Deprecated 7/12/2019)
+
+```diff
+<ts-toggle
+-  (change)="isChanged($event)"
++  (selectionChange)="isChanged($event)"
+>Toggle Me!</ts-toggle>
+```
+
+
+
 # [14.18.0](https://github.com/GetTerminus/terminus-ui/compare/v14.17.0...v14.18.0) (2019-10-24)
 
 
