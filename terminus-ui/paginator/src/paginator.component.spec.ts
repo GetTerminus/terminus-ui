@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
+
 import * as TestComponents from '../testing/src/test-components';
 import {
   clickToChangePage,
@@ -15,7 +16,7 @@ import { TsPaginatorMenuItem } from './paginator.component';
 import { TsPaginatorModule } from './paginator.module';
 
 
-
+// FIXME: Tests should not rely on QA* classes
 describe(`TsPaginatorComponent`, function() {
   test(`should exist`, () => {
     const fixture = createComponent(TestComponents.Basic);

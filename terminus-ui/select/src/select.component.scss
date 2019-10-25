@@ -25,13 +25,16 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
   @include reset;
   display: block;
   outline: none;
+
   .ts-form-field {
     &.ts-form-field--float {
       .ts-select-arrow-wrapper {
         display: table-cell;
+        transform: translateY(-10%);
         vertical-align: middle;
       }
     }
+
     &:not(.ts-form-field--float) {
       .ts-select-arrow-wrapper {
         display: table-cell;
@@ -197,17 +200,10 @@ $ts-select-placeholder-arrow-space: 2 * ($ts-select-arrow-size + $ts-select-arro
 
 // Paginator Overrides
 .ts-paginator {
-  // Update styles so that the new select style 'fits' with the vertical height of the paginator
   .ts-select {
     display: inline-block;
     position: relative;
-    top: .3em;
     width: 5em;
-
-    .ts-form-field__infix {
-      $padding-adjustment-for-paginator: .4em 0;
-      padding: $padding-adjustment-for-paginator;
-    }
 
     // Move the arrow down to center with less padding
     &.ts-select--disabled {

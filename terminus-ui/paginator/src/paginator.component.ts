@@ -57,16 +57,6 @@ const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
 /**
  * A paginator component
  *
- * #### QA CSS CLASSES
- * - `qa-paginator`: Placed on the primary container
- * - `qa-paginator-per-page-select`: Placed on the results per page select menu
- * - `qa-paginator-first-page-button`: Placed on the 'first page' button
- * - `qa-paginator-previous-page-button`: Placed on the 'previous page' button
- * - `qa-paginator-current-page-menu`: Placed on the 'current page' menu dropdown
- * - `qa-paginator-next-page-button`: Placed on the 'next page' button
- * - `qa-paginator-last-page-button`: Placed on the the 'last page' button
- * - `qa-paginator-message`: Placed on the messaging regarding the record count being too high
- *
  * @example
  * <ts-paginator
  *              currentPageIndex="1"
@@ -150,10 +140,6 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public templateContext = { $implicit: this.DEFAULT_HIGH_RECORD_MESSAGE };
 
   /**
-   * GETTERS
-   */
-
-  /**
    * Getter to return the index of the first page
    */
   public get firstPageIndex(): number {
@@ -173,10 +159,6 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public get lastPageIndex(): number {
     return this.isZeroBased ? (this.pagesArray.length - 1) : this.pagesArray.length;
   }
-
-  /**
-   * INPUTS
-   */
 
   /**
    * Define if the paging is 0-based or 1-based

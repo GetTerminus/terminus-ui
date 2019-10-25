@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsMenuModule } from '@terminus/ui/menu';
@@ -16,6 +17,7 @@ export * from './paginator.component';
   imports: [
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     TsButtonModule,
     TsMenuModule,
     TsOptionModule,

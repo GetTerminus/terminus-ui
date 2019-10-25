@@ -7,60 +7,6 @@
 @import './../../scss/helpers/animation';
 
 
-// The horizontal padding between the edge of the form field fill box and the start of the text.
-$form-field-outline-side-padding: .75em !default;
-// The scale of the subscript and floating label text in relation to the value text.
-$form-field-outline-subscript-font-scale: .75 !default;
-// The amount of overlap between the label and the outline.
-$form-field-outline-label-overlap: .25em;
-// The border radius of the outline.
-$form-field-outline-border-radius: 5px;
-// The width of the outline.
-$form-field-outline-width: 1px;
-// The width of the thick outline (used for focus, hover, and error state).
-$form-field-outline-thick-width: 2px;
-// The horizontal padding between the edge of the subscript box and the start of the subscript text.
-$form-field-outline-subscript-padding: $form-field-outline-side-padding / $form-field-outline-subscript-font-scale;
-// Infix stretches to fit the container, but naturally wants to be this wide. We set this in order
-// to have a a consistent natural size for the various types of controls that can go in a form
-// field.
-$form-field-default-infix-width: 180px !default;
-
-$primary: color(primary);
-$accent: color(accent);
-$warn: color(warn);
-$foreground: color(pure);
-
-$label-disabled-color: color(utility);
-$outline-color: color(utility, light);
-$outline-color-hover: color(pure, dark);
-$outline-color-primary: color(primary);
-$outline-color-accent: color(accent);
-$outline-color-warn: color(warn);
-$outline-color-disabled: color(utility, light);
-
-$line-height: 1.125;
-// The amount to scale the font for the floating label and subscript.
-$subscript-font-scale: .75;
-// The padding above and below the infix.
-$infix-padding: 1em;
-// The margin applied to the form-field-infix to reserve space for the floating label.
-$infix-margin-top: 1em * $line-height * $subscript-font-scale;
-// The space between the bottom of the .ts-form-field__container area and the subscript wrapper.
-// Mocks show half of the text size, but this margin is applied to an element with the subscript
-// text font size, so we need to divide by the scale factor to make it half of the original text
-// size.
-$subscript-margin-top: .5em / $subscript-font-scale;
-// The padding applied to the form-field-wrapper to reserve space for the subscript, since it's
-// absolutely positioned. This is a combination of the subscript's margin and line-height, but we
-// need to multiply by the subscript font scale factor since the wrapper has a larger font size.
-$wrapper-padding-bottom: ($subscript-margin-top + $line-height) * $subscript-font-scale;
-// The amount we offset the label from the input text in the outline appearance.
-$outline-appearance-label-offset: -.25em;
-// The width we set for datepicker
-$date-picker-width: 200px;
-
-
 //
 // @component
 //  Form Field
@@ -68,6 +14,39 @@ $date-picker-width: 200px;
 //  The wrapping component around form controls
 //
 .ts-form-field {
+  --formField-outlineColor-default: #{color(utility)};
+  --formField-outlineColor-default-hover: #{color(pure, dark)};
+  --formField-outlineColor-theme: #{color(primary)};
+  --formField-outlineColor-disabled: #{color(utility, light)};
+  --formField-color-disabled: #{color(utility)};
+  --formField-outline-borderRadius: 5px;
+  --formField-outline-width: 1px;
+  // The width of the thick outline (used for focus, hover, and error state).
+  --formField-outline-width-thick: 2px;
+  // The amount of overlap between the label and the outline.
+  --formField-outline-labelOverlap: .25em;
+  // The horizontal padding between the edge of the form field fill box and the start of the text.
+  --formField-outline-sidePadding: .45em;
+  // The scale of the subscript and floating label text in relation to the value text.
+  --formField-outline-fontScale-subscript: .75;
+  // The horizontal padding between the edge of the subscript box and the start of the subscript text.
+  --formField-outline-subscript-padding: #{var(--formField-outline-sidePadding)} / #{var(--formField-outline-fontScale-subscript)};
+  --formfield-lineHeight: 1.125;
+  // The amount to scale the font for the floating label and subscript.
+  --formField-fontScale-subscript: .75;
+  // The padding above and below the infix.
+  --formField-infix-padding: .4em;
+  // The margin applied to the form-field-infix to reserve space for the floating label.
+  --formField-infix-marginTop: calc(1em * #{var(--formfield-lineHeight)} * #{var(--formField-fontScale-subscript)});
+  --formField-infix-marginTop-negative: calc(-1 * #{var(--formField-infix-marginTop)});
+  // The space between the bottom of the .ts-form-field__container area and the subscript wrapper. Mocks show half of the text size, but
+  // this margin is applied to an element with the subscript text font size, so we need to divide by the scale factor to make it half of the
+  // original text size.
+  --formField-marginTop-subscript: calc(.5em / var(--formField-fontScale-subscript));
+  --formField-wrapper-paddingBottom: 1.43em;
+  // The amount we offset the label from the input text in the outline appearance.
+  --formField-outline-labelOffset: -.35em;
+
   @include reset;
   display: block;
 
@@ -103,11 +82,12 @@ $date-picker-width: 200px;
 
   &.ts-form-field--float {
     .ts-form-field__label {
+      --translate: calc(var(--formField-infix-marginTop-negative) - (var(--formField-infix-padding) + var(--formField-outline-labelOffset)));
       transform:
-        translateY(-$infix-margin-top - ($infix-padding + $outline-appearance-label-offset))
-        scale($subscript-font-scale)
+        translateY(var(--translate))
+        scale(var(--formField-fontScale-subscript))
       ;
-      width: 100% / $subscript-font-scale;
+      width: 100% / #{var(--formField-fontScale-subscript)};
     }
 
     .ts-form-field__outline-gap {
@@ -118,18 +98,18 @@ $date-picker-width: 200px;
   // Focused theme support
   &.ts-form-field--focused {
     .ts-form-field__outline--thick {
-      color: $outline-color-primary;
+      color: var(--formField-outlineColor-theme);
     }
 
     &.ts-form-field--accent {
       .ts-form-field__outline--thick {
-        color: $outline-color-accent;
+        --formField-outlineColor-theme: #{color(accent)};
       }
     }
 
     &.ts-form-field--warn {
       .ts-form-field__outline--thick {
-        color: $outline-color-warn;
+        --formField-outlineColor-theme: #{color(warn)};
       }
     }
   }
@@ -138,26 +118,28 @@ $date-picker-width: 200px;
   &.ts-form-field--invalid {
     &.ts-form-field--invalid {
       .ts-form-field__outline--thick {
-        color: $outline-color-warn;
+        --formField-outlineColor-theme: #{color(warn)};
       }
     }
   }
 
   &.ts-form-field--disabled {
     .ts-form-field__label {
-      color: $label-disabled-color;
+      color: var(--formField-outlineColor-disabled);
+    }
+
+    .c-input__text {
+      color: var(--formField-color-disabled);
     }
 
     .ts-form-field__outline {
-      color: $outline-color-disabled;
+      color: var(--formField-outlineColor-disabled);
     }
 
     .ts-form-field__container {
       cursor: cursor(not-allowed);
     }
   }
-
-
 
 
   /////////////////////////
@@ -167,34 +149,34 @@ $date-picker-width: 200px;
   // <div> wrapper for outline border divs
   .ts-form-field__outline {
     bottom: 0;
-    color: $outline-color;
+    color: var(--formField-outlineColor-default);
     display: flex;
     left: 0;
     pointer-events: none;
     position: absolute;
     right: 0;
-    top: $form-field-outline-label-overlap;
+    top: var(--formField-outline-labelOverlap);
   }
 
   .ts-form-field__outline-start,
   .ts-form-field__outline-end {
-    border: $form-field-outline-width solid currentColor;
-    min-width: $form-field-outline-border-radius;
+    border: var(--formField-outline-width) solid currentColor;
+    min-width: var(--formField-outline-borderRadius);
   }
 
   .ts-form-field__outline-start {
-    border-radius: $form-field-outline-border-radius 0 0 $form-field-outline-border-radius;
+    border-radius: var(--formField-outline-borderRadius) 0 0 var(--formField-outline-borderRadius);
     border-right-style: none;
   }
 
   .ts-form-field__outline-end {
     border-left-style: none;
-    border-radius: 0 $form-field-outline-border-radius $form-field-outline-border-radius 0;
+    border-radius: 0 var(--formField-outline-borderRadius) var(--formField-outline-borderRadius) 0;
     flex-grow: 1;
   }
 
   .ts-form-field__outline-gap {
-    border: $form-field-outline-width solid currentColor;
+    border: var(--formField-outline-width) solid currentColor;
     border-left-style: none;
     // HACK: For Chrome's treatment of borders with non-integer (scaled) widths refer to https://github.com/angular/material2/issues/10710
     border-radius: .000001px;
@@ -202,13 +184,13 @@ $date-picker-width: 200px;
   }
 
   .ts-form-field__outline--thick {
-    color: $outline-color-hover;
+    color: var(--formField-outlineColor-default-hover);
     opacity: 0;
 
     .ts-form-field__outline-start,
     .ts-form-field__outline-end,
     .ts-form-field__outline-gap {
-      border-width: $form-field-outline-thick-width;
+      --formField-outline-width: var(--formField-outline-width-thick);
       transition: border-color 300ms $swift-ease-out-timing-function;
     }
   }
@@ -216,8 +198,6 @@ $date-picker-width: 200px;
   /////////////////////////
   // END: Outline
   /////////////////////////
-
-
 
 
   /////////////////////////
@@ -230,8 +210,8 @@ $date-picker-width: 200px;
     align-items: baseline;
     box-sizing: border-box;
     display: inline-flex;
-    margin-top: -$form-field-outline-label-overlap;
-    padding: 0 $form-field-outline-side-padding;
+    margin-top: calc(var(--formField-outline-labelOverlap) * -1);
+    padding: 0 var(--formField-outline-sidePadding);
     position: relative;
     width: 100%;
 
@@ -243,31 +223,34 @@ $date-picker-width: 200px;
   }
 
   .ts-form-field__infix {
-    // In high contrast mode IE/Edge will render all of the borders, even if they're transparent.
-    // Since we can't remove the border altogether or replace it with a margin, because it'll throw
-    // off the baseline, and we can't use a base64-encoded 1x1 transparent image because of CSP,
-    // we work around it by setting a linear gradient that goes from `transparent` to `transparent`.
+    // In high contrast mode IE/Edge will render all of the borders, even if they're transparent. Since we can't remove the border
+    // altogether or replace it with a margin, because it'll throw off the baseline, and we can't use a base64-encoded 1x1 transparent image
+    // because of CSP, we work around it by setting a linear gradient that goes from `transparent` to `transparent`.
     @include cdk-high-contrast {
       border-image: linear-gradient(transparent, transparent);
     }
     // Throws off the baseline if we do it as a real margin, so we do it as a border instead.
-    border-top: $infix-margin-top solid transparent;
+    border-top: var(--formField-infix-marginTop) solid transparent;
     display: block;
     flex: auto;
     // Overwrite standard typography style
-    line-height: 18px;
+    line-height: 19px;
     min-width: 0;
-    padding: $infix-padding 0;
+    padding: calc(#{var(--formField-infix-padding)} / 2) 0 var(--formField-infix-padding);
     position: relative;
-    width: $form-field-default-infix-width;
   }
 
   .ts-form-field__prefix,
   .ts-form-field__suffix {
     flex: none;
     position: relative;
-    top: $form-field-outline-label-overlap - .1;
+    top: var(--formField-outline-labelOverlap);
     white-space: nowrap;
+  }
+
+  .ts-form-field__prefix {
+    $space-between-icon-and-text: .2em;
+    margin-right: $space-between-icon-and-text;
   }
 
   // Scale down icons in the label and hint to be the same size as the text.
@@ -287,12 +270,11 @@ $date-picker-width: 200px;
     box-sizing: content-box;
     height: 100%;
     left: 0;
-    overflow: hidden;
-    padding-top: $infix-margin-top;
+    padding-top: var(--formField-infix-marginTop);
     // We shouldn't catch mouse events (let them through).
     pointer-events: none;
     position: absolute;
-    top: -$infix-margin-top;
+    top: var(--formField-infix-marginTop-negative);
     width: 100%;
   }
 
@@ -301,7 +283,7 @@ $date-picker-width: 200px;
     box-sizing: border-box;
     // Prevent multi-line errors from overlapping the control
     overflow: hidden;
-    padding: 0 $form-field-outline-subscript-padding;
+    padding: 0 var(--formField-outline-subscript-padding);
     position: absolute;
     width: 100%;
   }
@@ -317,14 +299,12 @@ $date-picker-width: 200px;
   /////////////////////////
 
 
-
   // The label itself. This is invisible unless it is. The logic to show it is basically `empty || (float && (!empty || focused))`. Float is
   // dependent on the `floatingPlaceholder` property.
   .ts-form-field__label {
     font: inherit;
     left: 0;
-    margin-top: $outline-appearance-label-offset;
-
+    margin-top: var(--formField-outline-labelOffset);
     // Put ellipsis text overflow.
     overflow: hidden;
     // We shouldn't catch mouse events (let them through).
@@ -332,7 +312,7 @@ $date-picker-width: 200px;
     // The label is after the form field control, but needs to be aligned top-left of the infix <div>.
     position: absolute;
     text-overflow: ellipsis;
-    top: $infix-margin-top + $infix-padding;
+    top: calc(var(--formField-infix-marginTop) + var(--formField-infix-padding));
 
     transform-origin: 0 0;
     transition:
@@ -358,13 +338,13 @@ $date-picker-width: 200px;
     }
   }
 
-  // Top level styles belong here
   .ts-form-field__wrapper {
-    // We need to add margin to the top to reserve space in the layout for the label which sticks out
-    // of the top. In order to ensure that the outline appearance aligns nicely with other form-field
-    // appearances when center-aligned, we also need to add the same amount of margin to the bottom.
-    margin: $form-field-outline-label-overlap 0;
-    padding-bottom: $wrapper-padding-bottom;
+    // We need to add margin to the top to reserve space in the layout for the label which sticks out of the top. In order to ensure that
+    // the outline appearance aligns nicely with other form-field appearances when center-aligned, we also need to add the same amount of
+    // margin to the bottom.
+    $wrapper-margin: var(--formField-outline-labelOverlap) 0;
+    margin: $wrapper-margin;
+    padding-bottom: var(--formField-wrapper-paddingBottom);
     position: relative;
     // To avoid problems with text-align.
     text-align: left;
@@ -374,14 +354,7 @@ $date-picker-width: 200px;
 
 // Target an input datepicker within a form field
 .ts-input--datepicker {
+  // The width we set for datepicker
+  $date-picker-width: 200px;
   width: $date-picker-width;
-  .ts-form-field {
-    // Center the datepicker icon vertically
-    .ts-form-field__suffix {
-      $padding-adjustment-for-datepicker: .5em 0;
-
-      padding: $padding-adjustment-for-datepicker;
-      top: .2em;
-    }
-  }
 }
