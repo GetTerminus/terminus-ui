@@ -197,17 +197,18 @@ describe(`TsInputComponent`, function() {
     });
 
 
-    test(`should set the disabled flag when appropriate`, () => {
+    test(`should set the disabled flag when appropriate`, fakeAsync(() => {
       const fixture = createComponent(TestComponents.AttrDisabled);
       fixture.detectChanges();
-      const el = getInputElement(fixture);
-      expect(el.getAttribute('disabled')).toEqual(null);
+      const inputElement = getInputElement(fixture);
+      expect(inputElement.disabled).toEqual(false);
 
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
+      tick();
 
-      expect(el.getAttribute('disabled')).toEqual('');
-    });
+      expect(inputElement.disabled).toEqual(true);
+    }));
 
 
     test(`should set autofocus`, () => {
