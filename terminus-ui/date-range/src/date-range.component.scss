@@ -1,3 +1,4 @@
+@import './../../scss/helpers/color';
 @import './../../scss/helpers/reset';
 
 
@@ -13,9 +14,10 @@
 }
 
 .c-date-range {
-  .c-date-range__seperator {
-    $seperator-spacing: 1.8em .6em;
-
-    margin: $seperator-spacing;
+  .c-date-range__separator {
+    // NOTE: Needed to offset the space created for validation messages
+    $negative-adjustment: -1.2em;
+    color: color(utility);
+    margin-top: $negative-adjustment;
   }
 }

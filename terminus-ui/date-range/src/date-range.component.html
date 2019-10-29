@@ -1,4 +1,9 @@
-<div class="c-date-range qa-date-range" fxLayout="row">
+<div
+  class="c-date-range qa-date-range"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap=".6em"
+>
   <ts-input
     class="c-date-range--start qa-date-range-start-datepicker"
     [formControl]="internalStartControl"
@@ -15,7 +20,7 @@
     #start
   ></ts-input>
 
-  <span class="c-date-range__seperator">
+  <span class="c-date-range__separator">
     {{ separator }}
   </span>
 
