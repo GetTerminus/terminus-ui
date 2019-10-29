@@ -72,7 +72,7 @@
     display: table-cell;
     font-size: inherit;
     min-width: spacing(large, 5);
-    padding: spacing(small);
+    padding: spacing(small, 1);
 
     // remove double border between columns
     + .c-csv-entry__input {
