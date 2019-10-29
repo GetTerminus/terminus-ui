@@ -570,7 +570,7 @@ export class TsSelectionListComponent implements
     // Propagate changes from form control
     this.selectionListFormControl.valueChanges.pipe(
       untilComponentDestroyed(this),
-    ).subscribe(_ => {
+    ).subscribe(() => {
       this.propagateChanges();
     });
   }
@@ -580,6 +580,9 @@ export class TsSelectionListComponent implements
    * Subscribe to panel events and query subject changes
    */
   public ngAfterViewInit(): void {
+    // Seed any initial value into the query subject
+    this.querySubject.next(this.inputElement.nativeElement.value);
+
     // Wire up listeners for panel events
     this.trigger.selectionListPanel.opened.pipe(untilComponentDestroyed(this)).subscribe(() => {
       this.opened.emit();
