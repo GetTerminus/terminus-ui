@@ -105,9 +105,8 @@ export class ComponentsComponent implements OnInit, OnDestroy {
    * Query for components from the primary list
    */
   private queryComponents(query: string): Route[] {
-    query = query.toLowerCase();
-
     if (query) {
+      query = query.toLowerCase();
       const letters = query.split('').map(l => `${l}.*`).join('');
       const regex = new RegExp(letters, 'ig');
       return this.components.filter(s => !!s.data.name.match(regex));
