@@ -39,11 +39,7 @@ export class RecordsPerPage {
   public recordsPerPageChoices = [10, 20, 50];
   public totalRecords = 100;
   public zeroBased = true;
-
-  @ViewChild(TsPaginatorComponent, { static: true })
-  public paginatorComponent!: TsPaginatorComponent;
 }
-
 
 @Component({
   template: `
@@ -58,11 +54,7 @@ export class RecordsCount {
   public maxPreferredRecords = 50;
   public recordCountTooHighMessage = 'Too many records';
   public totalRecords = 100;
-
-  @ViewChild(TsPaginatorComponent, { static: true })
-  public paginatorComponent!: TsPaginatorComponent;
 }
-
 
 @Component({
   template: `
@@ -75,9 +67,19 @@ export class RecordsCount {
 export class ZeroBased {
   public isZeroBased: boolean | undefined;
   public totalRecords = 100;
+}
 
-  @ViewChild(TsPaginatorComponent, { static: true })
-  public paginatorComponent!: TsPaginatorComponent;
+@Component({
+  template: `
+      <ts-paginator
+        [isSimpleMode]="isSimple"
+        [totalRecords]="totalRecords"
+      ></ts-paginator>
+  `,
+})
+export class SimpleMode {
+  public isSimple = false;
+  public totalRecords = 100;
 }
 
 
@@ -92,6 +94,7 @@ export class ZeroBased {
     Basic,
     RecordsCount,
     RecordsPerPage,
+    SimpleMode,
     ZeroBased,
   ],
 })

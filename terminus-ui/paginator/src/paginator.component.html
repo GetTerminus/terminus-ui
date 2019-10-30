@@ -1,6 +1,9 @@
-<div class="c-paginator">
+<div
+  class="c-paginator qa-paginator"
+  [class.c-paginator--simple-mode]="isSimpleMode"
+>
 
-  <div fxLayout="row" fxLayoutAlign="start start">
+<div fxLayout="row" fxLayoutAlign="start start">
 
     <ts-select
       class="qa-paginator-per-page-select"
@@ -40,6 +43,7 @@
 
 
     <ts-menu
+      *ngIf="!isSimpleMode"
       class="qa-paginator-current-page-menu"
       [theme]="theme"
       [menuItemsTemplate]="menuItems"
@@ -48,6 +52,10 @@
       [ngClass]="{'disabled': menuIsDisabled(pagesArray?.length)}"
     >{{ currentPageLabel }}</ts-menu>
 
+    <div
+      class="c-paginator__current-page"
+      *ngIf="isSimpleMode"
+    >{{ currentPageLabel }}</div>
 
     <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : nextPageTooltip">
       <ts-button
@@ -60,8 +68,11 @@
     </ts-tooltip>
 
 
-    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip">
-      <ts-button
+  <ts-tooltip
+    [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip"
+    *ngIf="!isSimpleMode"
+  >
+    <ts-button
         class="qa-paginator-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"

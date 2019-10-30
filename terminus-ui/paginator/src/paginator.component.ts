@@ -45,13 +45,13 @@ const DEFAULT_RECORDS_PER_PAGE = 10;
 /**
  * Default max records before message is shown
  */
-const DEFAULT_MAX_PREFERED_RECORDS = 100;
+const DEFAULT_MAX_PREFERRED_RECORDS = 100;
 
 /**
  * Define the default options for the records per page select menu
  */
 // eslint-disable-next-line no-magic-numbers
-const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
+const DEFAULT_RECORDS_PER_PAGE_OPTIONS = [10, 20, 50];
 
 
 /**
@@ -60,18 +60,19 @@ const DEFAULT_RECORDS_PER_PAGE_OPTIONS: number[] = [10, 20, 50];
  * @example
  * <ts-paginator
  *              currentPageIndex="1"
+ *              firstPageTooltip="View first results"
+ *              [isSimpleMode]="true"
+ *              [isZeroBased]="true"
+ *              lastPageTooltip="View last results"
  *              maxPreferredRecords="100"
  *              menuLocation="below"
- *              [isZeroBased]="true"
- *              totalRecords="1450"
+ *              nextPageTooltip="View next results"
+ *              [paginatorMessageTemplate]="myTemplate"
+ *              previousPageTooltip="View previous results"
  *              recordCountTooHighMessage="Please refine your filters."
  *              recordsPerPageChoices="[10, 20, 50]"
  *              [showRecordsPerPageSelector]="true"
- *              firstPageTooltip="View first results"
- *              previousPageTooltip="View previous results"
- *              nextPageTooltip="View next results"
- *              lastPageTooltip="View last results"
- *              [paginatorMessageTemplate]="myTemplate"
+ *              totalRecords="1450"
  *              (pageSelect)="myMethod($event)"
  *              (recordsPerPageChange)="myMethod($event)"
  * ></ts-paginator>
@@ -96,8 +97,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Define the default message to show when too many records are returned
    */
-  private DEFAULT_HIGH_RECORD_MESSAGE = 'That\'s a lot of results! '
-    + 'Try refining your filters for better results.';
+  private DEFAULT_HIGH_RECORD_MESSAGE = `That's a lot of results! Try refining your filters for better results.`;
 
   /**
    * Define the icon for the 'first page' button
@@ -206,7 +206,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    * Define how many pages exist to show a prompt about better filtering
    */
   @Input()
-  public maxPreferredRecords: number = DEFAULT_MAX_PREFERED_RECORDS;
+  public maxPreferredRecords: number = DEFAULT_MAX_PREFERRED_RECORDS;
 
   /**
    * Define the menu location (open up or open down)
@@ -263,16 +263,24 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public showRecordsPerPageSelector = true;
 
   /**
+   * Determine if the paginator should be in 'simple' mode
+   *
+   * Simple mode: Page jump dropdown is converted to plain text, jump to last page button removed.
+   */
+  @Input()
+  public isSimpleMode = false;
+
+  /**
    * Emit a page selected event
    */
   @Output()
-  public readonly pageSelect: EventEmitter<TsPaginatorMenuItem> = new EventEmitter();
+  public readonly pageSelect = new EventEmitter<TsPaginatorMenuItem>();
 
   /**
    * Emit a change event when the records per page changes
    */
   @Output()
-  public readonly recordsPerPageChange: EventEmitter<number> = new EventEmitter();
+  public readonly recordsPerPageChange = new EventEmitter<number>();
 
 
   constructor(
@@ -391,7 +399,6 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       return page === (this.pagesArray.length - (this.isZeroBased ? 1 : 0));
     }
     return false;
-
   }
 
 
@@ -408,7 +415,6 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
       return !!((message && message.length > 0));
     }
     return false;
-
   }
 
 
@@ -441,14 +447,13 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   /**
    * Determine if the records-per-page menu should be disabled
    *
-   * @param total - The total number of records
+   * @param totalRecords - The total number of records
    * @param recordsPerPageChoices - The array of counts representing how many records may be show
    * per page
    * @return A boolean representing if the records select should be disabled
    */
   public disableRecordsPerPage(totalRecords: number, recordsPerPageChoices: number[]): boolean {
     const lowestPerPage: number = Math.min.apply(Math, recordsPerPageChoices);
-
     return totalRecords < lowestPerPage;
   }
 
@@ -458,6 +463,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    *
    * @param currentPage - The current page
    * @param pages - The array of all pages
+   * @param totalRecords - The number of total records
    * @return The string to use as the current page label
    */
   private createCurrentPageLabel(

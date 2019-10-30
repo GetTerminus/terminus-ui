@@ -23,6 +23,13 @@
     Pagination is zero-based:
     <input type="checkbox" [(ngModel)]="zeroBased" (ngModelChange)="updatePages($event)">
   </label>
+
+  <br>
+
+  <label>
+    Simple mode:
+    <input type="checkbox" [(ngModel)]="simpleMode">
+  </label>
 </ts-card>
 
 
@@ -34,6 +41,7 @@
   [menuLocation]="location"
   [paginatorMessageTemplate]="myTemplate"
   [isZeroBased]="zeroBased"
+  [isSimpleMode]="simpleMode"
   recordCountTooHighMessage="Please refine your filters."
   (recordsPerPageChange)="perPageChange($event)"
   (pageSelect)="onPageSelect($event)"

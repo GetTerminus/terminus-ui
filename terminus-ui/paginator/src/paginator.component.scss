@@ -32,6 +32,21 @@
     text-align: right;
   }
 
+  // <div> container for current page in simple mode
+  .c-paginator__current-page {
+    $button-margin: 4px;
+    $width-to-match-menu: 8em;
+    display: inline-block;
+    // Center vertically
+    line-height: 2.6em;
+    // Match margin added to buttons
+    margin-right: $button-margin;
+    margin-top: $button-margin;
+    text-align: center;
+    // Add a width so the layout is close to the original
+    width: $width-to-match-menu;
+  }
+
   .ts-select,
   .ts-button {
     margin-right: spacing(small, 2);
