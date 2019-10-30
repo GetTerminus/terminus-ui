@@ -1,3 +1,10 @@
+# [15.1.0](https://github.com/GetTerminus/terminus-ui/compare/v15.0.1...v15.1.0) (2019-10-30)
+
+
+### Features
+
+* **CSVEntry:** allow consumers to pass in custom footer content ([d8f69fb](https://github.com/GetTerminus/terminus-ui/commit/d8f69fb)), closes [#1690](https://github.com/GetTerminus/terminus-ui/issues/1690)
+
 ## [15.0.1](https://github.com/GetTerminus/terminus-ui/compare/v15.0.0...v15.0.1) (2019-10-25)
 
 
