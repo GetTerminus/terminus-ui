@@ -1,12 +1,33 @@
 <ts-card tsVerticalSpacing>
   <h3 tsVerticalSpacing>CSV Entry</h3>
 
+  <div>
+    Footer direction:
+    <ul>
+      <li>
+        <label>
+          ltr
+          <input type="radio" name="direction" value="ltr" [(ngModel)]="footerDirection">
+        </label>
+      </li>
+      <li>
+        <label>
+          rtl
+          <input type="radio" name="direction" value="rtl" [(ngModel)]="footerDirection">
+        </label>
+      </li>
+    </ul>
+  </div>
+
   <div style="max-width: 80%;" tsVerticalSpacing>
     <ts-csv-entry
       [columnValidators]="validators"
       [columnHeaders]="['foo', 'bar']"
+      [footerDirection]="footerDirection"
       (blobGenerated)="file($event)"
-    ></ts-csv-entry>
+    >
+      <button>My Custom Content!</button>
+    </ts-csv-entry>
   </div>
 
   <button (click)="generateFile()">Generate file & download</button>

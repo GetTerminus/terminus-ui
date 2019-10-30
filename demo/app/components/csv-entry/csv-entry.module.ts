@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsCSVEntryModule } from '@terminus/ui/csv-entry';
 import { TsSpacingModule } from '@terminus/ui/spacing';
@@ -13,6 +14,7 @@ import { CSVEntryComponent } from './csv-entry.component';
   imports: [
     CommonModule,
     CSVEntryRoutingModule,
+    FormsModule,
     TsCardModule,
     TsCSVEntryModule,
     TsSpacingModule,
