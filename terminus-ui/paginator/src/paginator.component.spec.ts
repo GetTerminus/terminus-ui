@@ -10,6 +10,8 @@ import { createComponent as createComponentInner } from '@terminus/ngx-tools/tes
 import * as TestComponents from '../testing/src/test-components';
 import {
   clickToChangePage,
+  expectAllButtonsEnabled,
+  getPaginatorInstance,
   updateRecordsPerPage,
 } from '../testing/src/test-helpers';
 import { TsPaginatorMenuItem } from './paginator.component';
@@ -68,14 +70,14 @@ describe(`TsPaginatorComponent`, function() {
     });
 
     test(`should go to the next page`, fakeAsync(() => {
-      const hostComponent = fixture.componentInstance;
       fixture.detectChanges();
       const dir = 'next';
       tick(2000);
       clickToChangePage(fixture, dir);
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const nextPageIndex = hostComponent.paginatorComponent.nextPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const nextPageIndex = instance.nextPageIndex;
 
       expect(titleEl.textContent).toContain('11 - 20 of 100');
       expect(nextPageIndex).toEqual(1);
@@ -151,42 +153,32 @@ describe(`TsPaginatorComponent`, function() {
       fixture.detectChanges();
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const firstPageIndex = instance.firstPageIndex;
 
       expect(titleEl.textContent).toContain('1 - 10 of 100');
-      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+      expect(instance.isFirstPage(firstPageIndex)).toEqual(true);
     });
 
-    /** TODO revisit this after menu component has been converted to INT
+    /**
+     * TODO: revisit this after menu component has been converted to integration tests
      * menu:  https://github.com/GetTerminus/terminus-ui/issues/1288
      * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
-     *
-    test(`should change page when another page is selected from the menu`, () => {});
      */
+    test.todo(`should change page when another page is selected from the menu`);
 
     test(`should show all results if they fit on a page, zeroBased`, () => {
       hostComponent.totalRecords = 8;
       fixture.detectChanges();
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const firstPageIndex = instance.firstPageIndex;
 
       expect(titleEl.textContent).toContain('1 - 8 of 8');
-      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+      expect(instance.isFirstPage(firstPageIndex)).toEqual(true);
 
-      const firstPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-first-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const previousPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const lastPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-last-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const nextPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
-
-      expect(firstPageBut.disabled).toEqual(true);
-      expect(previousPageBut.disabled).toEqual(true);
-      expect(lastPageBut.disabled).toEqual(true);
-      expect(nextPageBut.disabled).toEqual(true);
+      expectAllButtonsEnabled(fixture);
     });
 
     test(`should show all results if they fit on a page, not zeroBased`, () => {
@@ -195,24 +187,13 @@ describe(`TsPaginatorComponent`, function() {
       fixture.detectChanges();
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const firstPageIndex = hostComponent.paginatorComponent.firstPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const firstPageIndex = instance.firstPageIndex;
 
       expect(titleEl.textContent).toContain('1 - 8 of 8');
-      expect(hostComponent.paginatorComponent.isFirstPage(firstPageIndex)).toEqual(true);
+      expect(instance.isFirstPage(firstPageIndex)).toEqual(true);
 
-      const firstPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-first-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const previousPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const lastPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-last-page-button .c-button`)).nativeElement as HTMLButtonElement;
-      const nextPageBut =
-        fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
-
-      expect(firstPageBut.disabled).toEqual(true);
-      expect(previousPageBut.disabled).toEqual(true);
-      expect(lastPageBut.disabled).toEqual(true);
-      expect(nextPageBut.disabled).toEqual(true);
+      expectAllButtonsEnabled(fixture);
     });
 
     test(`should specify partial results on the last page, zeroBased`, fakeAsync(() => {
@@ -223,10 +204,11 @@ describe(`TsPaginatorComponent`, function() {
       clickToChangePage(fixture, 'last');
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const lastPageIndex = hostComponent.paginatorComponent.lastPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const lastPageIndex = instance.lastPageIndex;
 
       expect(titleEl.textContent).toContain('91 - 95 of 95');
-      expect(hostComponent.paginatorComponent.isLastPage(lastPageIndex)).toEqual(true);
+      expect(instance.isLastPage(lastPageIndex)).toEqual(true);
     }));
 
     test(`should specify partial results on the last page, not zeroBased`, fakeAsync(() => {
@@ -237,10 +219,11 @@ describe(`TsPaginatorComponent`, function() {
       clickToChangePage(fixture, 'last');
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      const lastPageIndex = hostComponent.paginatorComponent.lastPageIndex;
+      const instance = getPaginatorInstance(fixture);
+      const lastPageIndex = instance.lastPageIndex;
 
       expect(titleEl.textContent).toContain('11 - 15 of 15');
-      expect(hostComponent.paginatorComponent.isLastPage(lastPageIndex)).toEqual(true);
+      expect(instance.isLastPage(lastPageIndex)).toEqual(true);
     }));
 
     test(`should return to current page if invalid page is requested`, () => {
@@ -249,12 +232,13 @@ describe(`TsPaginatorComponent`, function() {
         value: 10,
       };
       fixture.detectChanges();
-      hostComponent.paginatorComponent.currentPageChanged(requestedPage);
+      const instance = getPaginatorInstance(fixture);
+      instance.currentPageChanged(requestedPage);
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
 
       expect(titleEl.textContent).toContain('91 - 100 of 100');
-      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(hostComponent.paginatorComponent.lastPageIndex);
+      expect(instance.currentPageIndex).toEqual(instance.lastPageIndex);
     });
   });
 
@@ -262,37 +246,39 @@ describe(`TsPaginatorComponent`, function() {
 
     test(`should be zero-based by default`, () => {
       const fixture = createComponent(TestComponents.Basic);
-      const hostComponent = fixture.componentInstance;
       fixture.detectChanges();
+      const instance = getPaginatorInstance(fixture);
 
-      expect(hostComponent.paginatorComponent.isZeroBased).toEqual(true);
-      expect(hostComponent.paginatorComponent.firstPageIndex).toEqual(0);
-      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(0);
+      expect(instance.isZeroBased).toEqual(true);
+      expect(instance.firstPageIndex).toEqual(0);
+      expect(instance.currentPageIndex).toEqual(0);
     });
 
     test(`should not be zero-based when set`, () => {
       const fixture = createComponent(TestComponents.ZeroBased);
+      const instance = getPaginatorInstance(fixture);
       const hostComponent = fixture.componentInstance;
       hostComponent.isZeroBased = false;
       fixture.detectChanges();
 
-      expect(hostComponent.paginatorComponent.isZeroBased).toEqual(false);
-      expect(hostComponent.paginatorComponent.firstPageIndex).toEqual(1);
-      expect(hostComponent.paginatorComponent.currentPageIndex).toEqual(1);
+      expect(instance.isZeroBased).toEqual(false);
+      expect(instance.firstPageIndex).toEqual(1);
+      expect(instance.currentPageIndex).toEqual(1);
     });
 
     test(`should adjust lastPageIndex`, () => {
       const fixture = createComponent(TestComponents.ZeroBased);
+      const instance = getPaginatorInstance(fixture);
       const hostComponent = fixture.componentInstance;
       hostComponent.isZeroBased = true;
       fixture.detectChanges();
 
-      expect(hostComponent.paginatorComponent.lastPageIndex).toEqual(9);
+      expect(instance.lastPageIndex).toEqual(9);
 
       hostComponent.isZeroBased = false;
       fixture.detectChanges();
 
-      expect(hostComponent.paginatorComponent.lastPageIndex).toEqual(10);
+      expect(instance.lastPageIndex).toEqual(10);
     });
   });
 
@@ -301,12 +287,12 @@ describe(`TsPaginatorComponent`, function() {
 
     test(`should not display message when totalRecords is less than maxPreferredRecords`, () => {
       const fixture = createComponent(TestComponents.RecordsPerPage);
-      const hostComponent = fixture.componentInstance;
+      const instance = getPaginatorInstance(fixture);
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.c-paginator__message'))).toBeFalsy();
-      expect(hostComponent.paginatorComponent.totalRecords).toEqual(100);
-      expect(hostComponent.paginatorComponent.maxPreferredRecords).toEqual(100);
+      expect(instance.totalRecords).toEqual(100);
+      expect(instance.maxPreferredRecords).toEqual(100);
     });
 
     test(`should display message when totalRecords is greater than maxPreferredRecords`, () => {
@@ -315,10 +301,8 @@ describe(`TsPaginatorComponent`, function() {
       hostComponent.totalRecords = 125;
       fixture.detectChanges();
 
-      // check default message
       const messageEl = fixture.debugElement.query(By.css('.c-paginator__message')).nativeElement as HTMLElement;
-
-      expect(messageEl.textContent.trim()).toEqual('That\'s a lot of results! Try refining your filters for better results.');
+      expect(messageEl.textContent!.trim()).toEqual('That\'s a lot of results! Try refining your filters for better results.');
     });
 
     test(`should update message text`, () => {
@@ -329,31 +313,35 @@ describe(`TsPaginatorComponent`, function() {
 
       const messageEl = fixture.debugElement.query(By.css('.c-paginator__message')).nativeElement as HTMLElement;
 
-      expect(messageEl.textContent.trim()).toEqual('There are too many results!');
+      expect(messageEl.textContent!.trim()).toEqual('There are too many results!');
     });
 
     test(`should set maxPreferredRecords`, () => {
       const fixture = createComponent(TestComponents.RecordsCount);
       const hostComponent = fixture.componentInstance;
+      const instance = getPaginatorInstance(fixture);
       hostComponent.maxPreferredRecords = 200;
       fixture.detectChanges();
 
-      expect(hostComponent.paginatorComponent.maxPreferredRecords).toEqual(200);
+      expect(instance.maxPreferredRecords).toEqual(200);
       expect(fixture.debugElement.query(By.css('.c-paginator__message'))).toBeFalsy();
     });
   });
 
 
-/* TODO: revisit this after tooltip tests have been converted to INT
- * tooltip:   https://github.com/GetTerminus/terminus-ui/issues/1296
- * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
+  /*
+   * TODO: revisit this after tooltip tests have been converted to integration tests
+   * tooltip:   https://github.com/GetTerminus/terminus-ui/issues/1296
+   * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
+   */
   describe(`tooltips`, () => {
 
-    test(`should display default tooltips by default`, () => { });
+    test.todo(`should display default tooltips by default`);
 
-    test(`should update tooltips if set`, () => { });
+    test.todo(`should update tooltips if set`);
+
   });
- */
+
 });
 
 

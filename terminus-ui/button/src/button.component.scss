@@ -56,9 +56,9 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 //  A button component
 //
 .ts-button {
+  $vertical-alignment-adjustment-for-inputs: 4px 0;
   @include reset;
   display: inline-block;
-  $vertical-alignment-adjustment-for-inputs: 4px 0;
   margin: $vertical-alignment-adjustment-for-inputs;
 
   // Top level styles should be nested here

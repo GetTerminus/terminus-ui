@@ -22,6 +22,7 @@ export class PaginatorComponent {
   location = 'below';
   pages: number[] = [0, 1, 2, 3, 4, 5];
   zeroBased = true;
+  simpleMode = false;
 
   @ViewChild(TsPaginatorComponent, {static: true})
   paginator!: TsPaginatorComponent;
