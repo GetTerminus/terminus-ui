@@ -129,21 +129,29 @@
       >{{ tooManyRowsMessage }}</div>
     </div>
 
-    <div [fxLayout]="columnCount < 2 ? 'column' : 'row'" fxLayout="end center" [fxLayoutGap]="layoutGap">
-      <ts-button
-        id="ts-csv-reset"
-        class="qa-csv-entry-reset"
-        format="hollow"
-        theme="warn"
-        (clicked)="resetTable()"
-      >Reset Table</ts-button>
+    <div fxLayout="row" [dir]="footerDirection" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGap">
+      <div dir="ltr" fxLayoutGap="1em">
+        <ts-button
+          id="ts-csv-reset"
+          class="qa-csv-entry-reset"
+          format="hollow"
+          theme="warn"
+          (clicked)="resetTable()"
+        >Reset Table</ts-button>
 
-      <ts-button
-        id="ts-csv-add-row"
-        class="qa-csv-entry-add-row"
-        format="hollow"
-        (clicked)="addRows()"
-      >Add Row</ts-button>
+        <ts-button
+          id="ts-csv-add-row"
+          class="qa-csv-entry-add-row"
+          format="hollow"
+          (clicked)="addRows()"
+        >Add Row</ts-button>
+      </div>
+
+      <span fxFlex></span>
+
+      <div>
+        <ng-content></ng-content>
+      </div>
     </div>
   </div>
 </div>

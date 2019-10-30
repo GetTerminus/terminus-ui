@@ -8,30 +8,28 @@ import { TsValidatorsService } from '@terminus/ui/validators';
   templateUrl: './csv-entry.component.html',
 })
 export class CSVEntryComponent {
-  validators = [
+  public validators = [
     Validators.required,
     this.validatorsService.url(),
   ];
-  results: string | undefined;
-  blob;
-  myFile;
+  public results: string | undefined;
+  public blob;
+  public myFile;
+  public footerDirection: 'ltr' | 'rtl' = 'ltr';
 
   constructor(
     private validatorsService: TsValidatorsService,
   ) {}
 
-
-  file(v: Blob) {
+  public file(v: Blob): void {
     console.log('DEMO: Got file from CSV entry: ', v);
     this.blob = v;
   }
 
-
-  generateFile() {
+  public generateFile(): void {
     this.myFile = new File([this.blob], 'testCsv');
     saveFile(this.blob, 'test');
   }
-
 
 }
 

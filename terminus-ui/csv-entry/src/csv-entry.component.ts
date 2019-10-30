@@ -94,16 +94,6 @@ const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
 /**
  * This is the csv-entry UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-csv-entry`: The primary container
- * - `qa-csv-entry-info`: Container for row/column count
- * - `qa-csv-entry-row`: A row
- * - `qa-csv-entry-cell`: A body cell
- * - `qa-csv-entry-header-cell`: A header cell
- * - `qa-csv-entry-header-row`: Container for a header row
- * - `qa-csv-entry-delete`: A delete button
- * - `qa-csv-entry`: Placed on the primary container
- *
  * @example
  * <ts-csv-entry
  *              id="my-id"
@@ -113,6 +103,7 @@ const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
  *              [fullWidth]="false"
  *              [columnHeaders]="arrayOfHeaders"
  *              [columnValidators]="arrayOfValidators"
+ *              [footerDirection]="ltr"
  *              outputFormat="csv"
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
@@ -263,6 +254,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return this._columnValidators;
   }
   private _columnValidators: ValidatorFn | null[] = [];
+
+  /**
+   * Define the layout direction for the footer
+   */
+  @Input()
+  public footerDirection: 'ltr' | 'rtl' = 'ltr';
 
   /**
    * Define output to be CSV rather than TSV
