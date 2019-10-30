@@ -12,6 +12,8 @@
 - [Column validation](#column-validation)
 - [Static Column Headers](#static-column-headers)
 - [Full Width Table](#full-width-table)
+- [Custom footer content](#custom-footer-content)
+- [Footer direction](#footer-direction)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -109,3 +111,29 @@ If the table should be one full-width column, set both in the input:
 </ts-csv-entry>
 ```
 > NOTE: full width should only be with one column
+
+## Custom footer content
+
+Consumer's can add custom footer content by enclosing it within the CSVEntry component:
+
+```html
+<ts-csv-entry>
+  <button>My custom footer button!</button>
+</ts-csv-entry>
+```
+
+This content will be added opposite the default footer buttons set.
+
+
+## Footer direction
+
+The footer layout defaults to `ltr` mode which lays out the default buttons on the left and any custom content on the
+right. This can be reversed by the `footerDirection` input.
+
+```html
+<ts-csv-entry footerDirection="rtl">
+</ts-csv-entry>
+```
+
+Allowed directions are: `ltr`, `rtl`.
+
