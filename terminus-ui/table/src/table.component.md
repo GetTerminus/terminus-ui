@@ -581,7 +581,7 @@ import { TsPaginatorComponent } from '@terminus/ui/paginator';
       tsSort
       #myTable="tsTable"
     >
-      <ng-container tsColumnDef="created" [noWrap]="true">
+      <ng-container tsColumnDef="created">
         <th ts-header-cell *tsHeaderCellDef ts-sort-header>
           Created
         </th>
@@ -590,7 +590,7 @@ import { TsPaginatorComponent } from '@terminus/ui/paginator';
         </td>
       </ng-container>
 
-      <ng-container tsColumnDef="number" [noWrap]="true" alignment="right">
+      <ng-container tsColumnDef="number" alignment="right">
         <th ts-header-cell *tsHeaderCellDef>
           Number
         </th>
@@ -608,7 +608,7 @@ import { TsPaginatorComponent } from '@terminus/ui/paginator';
         </td>
       </ng-container>
 
-      <ng-container tsColumnDef="state" [noWrap]="true">
+      <ng-container tsColumnDef="state">
         <th ts-header-cell *tsHeaderCellDef>
           State
         </th>
