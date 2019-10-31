@@ -28,7 +28,7 @@ $z-layers: (
  */
 @function z($name) {
   @if index($z-layers, $name) {
-    @return (length($z-layers) - index($z-layers, $name)) + 1;
+    @return (length($z-layers) - index($z-layers, $name)) + 1000;
   } @else {
     @error 'There is no item "#{$name}" in this list; choose one of: #{$z-layers}';
     @return null;
