@@ -1,3 +1,14 @@
+## [15.1.1](https://github.com/GetTerminus/terminus-ui/compare/v15.1.0...v15.1.1) (2019-10-31)
+
+
+### Bug Fixes
+
+* **FormField:** align control sizing ([5eb61ba](https://github.com/GetTerminus/terminus-ui/commit/5eb61ba))
+* **Input:** correctly reflect disabled status to the native element ([fa091c7](https://github.com/GetTerminus/terminus-ui/commit/fa091c7))
+* **CSVEntry:** decrease padding ([78ac39e](https://github.com/GetTerminus/terminus-ui/commit/78ac39e)), closes [#1685](https://github.com/GetTerminus/terminus-ui/issues/1685)
+* **SelectionList:** now begins with the correct value in stream ([4e87fad](https://github.com/GetTerminus/terminus-ui/commit/4e87fad))
+* **DateRange:** update dash position and color ([e4c8d79](https://github.com/GetTerminus/terminus-ui/commit/e4c8d79)), closes [#1716](https://github.com/GetTerminus/terminus-ui/issues/1716)
+
 # [15.1.0](https://github.com/GetTerminus/terminus-ui/compare/v15.0.1...v15.1.0) (2019-10-30)
 
 
