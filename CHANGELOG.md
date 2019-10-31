@@ -1,3 +1,10 @@
+## [15.2.2](https://github.com/GetTerminus/terminus-ui/compare/v15.2.1...v15.2.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* **SCSS:** zindex now starting at 500 ([ef057ee](https://github.com/GetTerminus/terminus-ui/commit/ef057ee))
+
 ## [15.2.1](https://github.com/GetTerminus/terminus-ui/compare/v15.2.0...v15.2.1) (2019-10-31)
 
 
