@@ -13,7 +13,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-37-%2316a085.svg)](#components)
+[![components](https://img.shields.io/badge/Components-38-%2316a085.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
@@ -104,6 +104,7 @@ for each feature.
 | [date-range][src-date-range]               | Dual inputs with calendar pop-ups                         | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]        | [Usage][date-range-usage]        |
 | dialog                                     |                                                           |                    |                                 |                                |                                  |
 | divider                                    |                                                           |                    |                                 |                                |                                  |
+| [drawer][src-drawer]                       | Drawer                                                    | :white_check_mark: | [Demo][demo-drawer]             | [Docs][drawer-docs]            | [Usage][drawer-usage]            |
 | [expansion-panel][src-expansion-panel]     | Expansion panel with accordion & stepper functionality    | :white_check_mark: | [Demo][demo-expansion-panel]    | [Docs][expansion-panel-docs]   | [Usage][expansion-panel-usage]   |
 | [file-upload][src-file-upload]             | File upload with drag and drop                            | :white_check_mark: | [Demo][demo-file-upload]        | [Docs][file-upload-docs]       | [Usage][file-upload-usage]       |
 | [icon][src-icon]                           | Supported icons: https://material.io/icons                | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]              | [Usage][icon-usage]              |
@@ -356,6 +357,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-csv-entry]:        https://getterminus.github.io/ui-demos-release/components/csv-entry
 [demo-date-range]:       https://getterminus.github.io/ui-demos-release/components/date-range
 [demo-datepicker]:       https://getterminus.github.io/ui-demos-release/components/datepicker
+[demo-drawer]:           https://getterminus.github.io/ui-demos-release/components/drawer
 [demo-expansion-panel]:  https://getterminus.github.io/ui-demos-release/components/expansion-panel
 [demo-file-upload]:      https://getterminus.github.io/ui-demos-release/components/file-upload
 [demo-icon-button]:      https://getterminus.github.io/ui-demos-release/components/icon-button
@@ -405,6 +407,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-copy]:               ./terminus-ui/copy/src/
 [src-csv-entry]:          ./terminus-ui/csv-entry/src/
 [src-date-range]:         ./terminus-ui/date-range/src/
+[src-drawer]:             ./terminus-ui/drawer/src/
 [src-expansion-panel]:    ./terminus-ui/expansion-panel/src/
 [src-file-upload]:        ./terminus-ui/file-upload/src/
 [src-icon-button]:        ./terminus-ui/icon-button/src/
@@ -451,6 +454,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [csv-entry-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html
 [date-range-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html
 [datepicker-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html
+[drawer-docs]:          http://uilibrary-docs/terminus.ninja/release/components/TsDrawerComponent.html
 [expansion-panel-docs]: http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html
 [file-upload-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html
 [icon-button-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsIconButtonComponent.html
@@ -500,6 +504,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [csv-entry-usage]:         http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html#readme
 [date-range-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html#readme
 [datepicker-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html#readme
+[drawer-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsDrawerComponent.html#readme
 [expansion-panel-usage]:   http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html#readme
 [file-upload-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html#readme
 [icon-button-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsIconButtonComponent.html#readme
