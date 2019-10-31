@@ -1,3 +1,10 @@
+# [15.2.0](https://github.com/GetTerminus/terminus-ui/compare/v15.1.1...v15.2.0) (2019-10-31)
+
+
+### Features
+
+* **Paginator:** support for simple mode ([5443d27](https://github.com/GetTerminus/terminus-ui/commit/5443d27)), closes [#1706](https://github.com/GetTerminus/terminus-ui/issues/1706)
+
 ## [15.1.1](https://github.com/GetTerminus/terminus-ui/compare/v15.1.0...v15.1.1) (2019-10-31)
 
 
