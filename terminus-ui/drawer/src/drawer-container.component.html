@@ -1,0 +1,11 @@
+<div
+  class="ts-drawer__backdrop"
+  (click)="onBackdropClicked()"
+  *ngIf="hasBackdrop"
+  [class.ts-drawer__backdrop--visible]="isShowingBackdrop"
+></div>
+
+<ng-content select="ts-drawer"></ng-content>
+
+<ng-content select="ts-drawer-content">
+</ng-content>

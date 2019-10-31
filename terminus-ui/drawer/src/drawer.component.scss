@@ -1,0 +1,103 @@
+@import './../../scss/helpers/animation';
+@import './../../scss/helpers/reset';
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/cursors';
+@import './../../scss/helpers/layout';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/spacing';
+@import './../../scss/helpers/typography';
+
+$ts-drawer-content-z-index: 1;
+$ts-drawer-push-drawer-z-index: 2;
+$ts-drawer-backdrop-z-index: 3;
+$ts-drawer-over-drawer-z-index: 4;
+$ts-animation-duration: 400ms;
+
+// Mixin that creates a new stacking context.
+@mixin ts-drawer-stacking-context($z-index: 1) {
+  position: relative;
+  // Use a z-index to create a new stacking context. (We can't use transform because it breaks fixed
+  // positioning inside of the transformed element).
+  z-index: $z-index;
+}
+
+.ts-drawer-container {
+  // We need a stacking context here so that the backdrop and drawers are clipped to the
+  // TsDrawerContainer. This creates a new z-index stack so we use low numbered z-indices.
+  // We create another stacking context in the '.ts-drawer-content' and in each drawer so that
+  // the application content does not get messed up with our own CSS.
+  @include ts-drawer-stacking-context;
+  box-sizing: border-box;
+  // Need this to take up space in the layout.
+  display: block;
+  -webkit-overflow-scrolling: touch;
+
+  // Note that the `NoopAnimationsModule` is being handled inside of the component code.
+  &.ng-animate-disabled,
+  .ng-animate-disabled & {
+    .ts-drawer__backdrop,
+    .ts-drawer-content {
+      transition: none;
+    }
+  }
+}
+
+.ts-drawer__backdrop {
+  @include take-space;
+
+  display: block;
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  visibility: hidden;
+  z-index: $ts-drawer-backdrop-z-index;
+  &.ts-drawer__backdrop--visible {
+    visibility: visible;
+  }
+
+  .ts-drawer-transition & {
+    transition: {
+      duration: $ts-animation-duration;
+      property: background-color, visibility;
+      timing-function: cubic-bezier($g-material-background-easing);
+    }
+  }
+}
+
+.ts-drawer-content {
+  @include ts-drawer-stacking-context($ts-drawer-content-z-index);
+
+  display: block;
+  height: 100%;
+  overflow: auto;
+
+  .ts-drawer-transition & {
+    transition: {
+      duration: $ts-animation-duration;
+      property: transform, margin-left, margin-right;
+      timing-function: cubic-bezier($g-material-background-easing);
+    }
+  }
+}
+
+.ts-drawer {
+  @include ts-drawer-stacking-context($ts-drawer-over-drawer-z-index);
+  @include elevation-element(menu);
+  $high-contrast-border: solid 1px currentColor;
+  background-color: color(utility, light);
+  bottom: 0;
+  box-sizing: border-box;
+  display: block;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  z-index: $ts-drawer-backdrop-z-index;
+  &.ts-drawer--push {
+    z-index: $ts-drawer-push-drawer-z-index;
+  }
+
+  &.ts-drawer--end {
+    right: 0;
+  }
+}
+
+

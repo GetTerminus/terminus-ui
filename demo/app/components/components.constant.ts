@@ -94,6 +94,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'drawer',
+    loadChildren:`./components/drawer/drawer.module#DrawerModule`,
+    data: {
+      name: 'Drawer',
+    },
+  },
+  {
     path: 'expansion-panel',
     loadChildren: `./components/expansion-panel/expansion-panel.module#ExpansionPanelModule`,
     data: {

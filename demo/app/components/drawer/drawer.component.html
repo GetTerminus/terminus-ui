@@ -1,0 +1,101 @@
+  <div tsVerticalSpacing>
+    <ts-radio-group
+      label="Position:"
+      [options]="positions"
+      [formControl]="positionControl"
+      [formatUILabelFn]="uiFormatter"
+      [formatModelValueFn]="modelFormatter"
+    >
+    </ts-radio-group>
+  </div>
+
+  <ts-drawer-container
+    class="drawer-container"
+    [hasBackdrop]="false"
+    #drawerContainer
+  >
+    <ts-drawer
+      [mode]="modeControl.value"
+      [position]="positionControl.value"
+      [isExpanded]="false"
+      collapsedSize="2rem"
+      expandedSize="12rem"
+      class="first-drawer"
+      #drawer
+    >
+      <div tsVerticalSpacing class="content">
+        <p tsVerticalSpacing>
+          <ts-button
+            (click)="drawer.toggle()"
+          >First Drawer</ts-button>
+        </p>
+        <p>
+          <ts-radio-group
+            label="Mode:"
+            [options]="items"
+            [formControl]="modeControl"
+            [formatUILabelFn]="uiFormatter"
+            [formatModelValueFn]="modelFormatter"
+            class="radio"
+          >
+          </ts-radio-group>
+        </p>
+      </div>
+    </ts-drawer>
+
+    <ts-drawer
+      [mode]="mode2Control.value"
+      [position]="position2Control.value"
+      class="second-drawer"
+      collapsedSize="0rem"
+      #drawer2
+    >
+      <div tsVerticalSpacing>
+        <p tsVerticalSpacing>
+          <ts-button
+            (click)="drawer2.toggle()"
+          >Second Drawer</ts-button>
+        </p>
+        <p>
+          <ts-radio-group
+            label="Mode2:"
+            [options]="items"
+            [formControl]="mode2Control"
+            [formatUILabelFn]="uiFormatter"
+            [formatModelValueFn]="modelFormatter"
+          >
+          </ts-radio-group>
+        </p>
+      </div>
+    </ts-drawer>
+
+    <ts-drawer-content>
+      <div style="margin: 0px 100px;">
+        <div tsVerticalSpacing>
+          <ts-button
+            [theme]="theme"
+            [isDisabled]="false"
+            (clicked)="drawer.toggle()"
+          >Toggle first drawer</ts-button>
+        </div>
+
+        <div tsVerticalSpacing>
+          <ts-button
+            [theme]="theme"
+            [isDisabled]="false"
+            (clicked)="drawer2.toggle()"
+          >Toggle 2nd drawer</ts-button>
+        </div>
+
+        <div tsVerticalSpacing>
+          This is the drawer content...
+          The #1 software development tool used by agile teams.
+          Visual regression testing is the ability to cross-reference snapshots of a product, highlighting pixel differences — returning fast feedback on the current state of the screen.
+        </div>
+      </div>
+    </ts-drawer-content>
+  </ts-drawer-container>
+
+
+
+
