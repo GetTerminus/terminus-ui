@@ -14,11 +14,7 @@ export * from './checkbox.component';
     FormsModule,
     MatCheckboxModule,
   ],
-  exports: [
-    TsCheckboxComponent,
-  ],
-  declarations: [
-    TsCheckboxComponent,
-  ],
+  exports: [TsCheckboxComponent],
+  declarations: [TsCheckboxComponent],
 })
 export class TsCheckboxModule {}

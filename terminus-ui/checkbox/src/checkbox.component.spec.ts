@@ -221,11 +221,11 @@ describe(`TsCheckboxComponent`, function() {
     describe(`set ngModel`, () => {
 
       test(`should set the private variable`, () => {
-        expect(component._isChecked).toEqual(false);
+        expect(component['_isChecked']).toEqual(false);
 
         component.ngModel = true;
 
-        expect(component._isChecked).toEqual(true);
+        expect(component['_isChecked']).toEqual(true);
       });
 
     });

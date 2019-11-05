@@ -4,9 +4,6 @@
 @import './../../scss/helpers/typography';
 
 
-$ts-select-item-height: 3em !default;
-
-
 //
 // @component
 //  Checkbox
@@ -14,6 +11,7 @@ $ts-select-item-height: 3em !default;
 //  A simple checkbox component
 //
 .ts-checkbox {
+  $ts-select-item-height: 3em !default;
   @include reset;
   @include typography;
   display: block;
