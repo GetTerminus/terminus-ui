@@ -48,9 +48,16 @@ export type TsButtonFormatTypes
   = 'filled'
   | 'hollow'
   | 'collapsable'
+  | 'collapsible'
 ;
 
-export const tsButtonFormatTypesArray = ['filled', 'hollow', 'collapsable'];
+export const tsButtonFormatTypesArray = [
+  'filled',
+  'hollow',
+  // @deprecated Use 'collapsible' instead.
+  'collapsable',
+  'collapsible',
+];
 
 const DEFAULT_COLLAPSE_DELAY_MS = 4000;
 
@@ -89,7 +96,7 @@ const DEFAULT_COLLAPSE_DELAY_MS = 4000;
 })
 export class TsButtonComponent implements OnInit, OnDestroy {
   /**
-   * Store a reference to the timeout needed for collapsable buttons
+   * Store a reference to the timeout needed for collapsible buttons
    */
   private collapseTimeoutId!: number;
 
@@ -162,16 +169,18 @@ export class TsButtonComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (value === 'collapsable' && isDevMode()) {
+      console.warn(`TsButtonComponent: "collapsable" has been deprecated. Please use "collapsible" instead.`);
+    }
+
     this._format = value;
 
-    // If the button is collapsable
-    if (this._format === 'collapsable') {
-      // Set the collapse delay
+    if (this._format === 'collapsable' || this._format === 'collapsible') {
       if (!this.collapseDelay) {
         this.collapseDelay = DEFAULT_COLLAPSE_DELAY_MS;
       }
     } else if (this.collapseDelay) {
-      // If the format is NOT collapsable, remove the delay
+      // If the format is NOT collapsible, remove the delay
       this.collapseDelay = undefined;
     }
 
@@ -218,8 +227,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
     // Verify the value is allowed
     if (tsStyleThemeTypesArray.indexOf(value) < 0 && isDevMode()) {
-      console.warn(`TsButtonComponent: "${value}" is not an allowed theme. `
-      + `See TsStyleThemeTypes for available options.`);
+      console.warn(`TsButtonComponent: "${value}" is not an allowed theme. See TsStyleThemeTypes for available options.`);
       return;
     }
 
@@ -235,12 +243,9 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * Pass the click event through to the parent
    */
   @Output()
-  public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly clicked = new EventEmitter<MouseEvent>();
 
 
-  /**
-   * Inject services
-   */
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private windowService: TsWindowService,
@@ -266,9 +271,9 @@ export class TsButtonComponent implements OnInit, OnDestroy {
       this.format = 'filled';
     }
 
-    // If the format is `collapsable`, verify an `iconName` is set
-    if (this.format === 'collapsable' && !this.iconName && isDevMode()) {
-      throw new Error('`iconName` must be defined for collapsable buttons.');
+    // If the format is `collapsible`, verify an `iconName` is set
+    if ((this.format === 'collapsable' || this.format === 'collapsible') && !this.iconName && isDevMode()) {
+      throw new Error('`iconName` must be defined for collapsible buttons.');
     }
   }
 
@@ -303,8 +308,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Collapse the button after a delay
    *
-   * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be
-   * patching setTimeout automatically.
+   * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be patching setTimeout automatically.
    *
    * @param delay - The time to delay before collapsing the button
    * @return The ID of the timeout
@@ -331,7 +335,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   private updateClasses(classname: string): void {
     const themeOptions = ['primary', 'accent', 'warn'];
-    const formatOptions = ['filled', 'hollow', 'collapsable'];
+    const formatOptions = ['filled', 'hollow', 'collapsable', 'collapsible'];
     const isTheme = themeOptions.indexOf(classname) >= 0;
     const isFormat = formatOptions.indexOf(classname) >= 0;
     // NOTE: Underscore dangle name controlled by Material
