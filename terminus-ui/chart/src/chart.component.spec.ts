@@ -66,17 +66,17 @@ describe(`ChartComponent`, function() {
 
   describe(`ngOnChanges`, () => {
 
-    test(`should should destroy and reinit when the visualization changes`, () => {
+    test(`should should destroy and reinitialize when the visualization changes`, () => {
       const fixture = createComponent(VisualizationsHost);
       fixture.detectChanges();
-      fixture.componentInstance.component.destroyChart = jest.fn();
-      fixture.componentInstance.component.init = jest.fn();
+      fixture.componentInstance.component['destroyChart'] = jest.fn();
+      fixture.componentInstance.component['init'] = jest.fn();
 
       fixture.componentInstance.visualization = 'pie';
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.component.destroyChart).toHaveBeenCalled();
-      expect(fixture.componentInstance.component.init).toHaveBeenCalledWith('pie');
+      expect(fixture.componentInstance.component['destroyChart']).toHaveBeenCalled();
+      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('pie');
     });
 
   });
@@ -90,7 +90,7 @@ describe(`ChartComponent`, function() {
       tick();
       fixture.componentInstance.component.ngOnDestroy();
 
-      expect(fixture.componentInstance.component.chart.dispose).toHaveBeenCalled();
+      expect(fixture.componentInstance.component.chart!.dispose).toHaveBeenCalled();
     }));
 
   });
@@ -117,7 +117,7 @@ describe(`ChartComponent`, function() {
         fixture.componentInstance.visualization = t;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.component.amCharts.core.create).toHaveBeenCalled();
+        expect(fixture.componentInstance.component['amCharts'].core.create).toHaveBeenCalled();
         expect(window.console.warn).not.toHaveBeenCalled();
       });
     }
@@ -252,16 +252,12 @@ class VisualizationsHost {
    `,
  })
 class TypeChecking {
-  /*
-   *public visualization!: TsChartVisualizationOptions;
-   */
   public chart!: TsChart;
 
   @ViewChild(TsChartComponent, { static: true })
   public component!: TsChartComponent;
 
   public chartCreated(chart: TsChart): void {
-    console.log('chartCreated: ', chart.className);
     this.chart = chart;
   }
  }

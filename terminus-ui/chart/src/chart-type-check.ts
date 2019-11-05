@@ -1,11 +1,7 @@
 import * as am4charts from '@amcharts/amcharts4/charts';
 import * as am4maps from '@amcharts/amcharts4/maps';
 
-import {
-  TsChart,
-  TsChartVisualizationOptions,
-} from './chart.component';
-
+import { TsChart } from './chart.component';
 
 
 /**

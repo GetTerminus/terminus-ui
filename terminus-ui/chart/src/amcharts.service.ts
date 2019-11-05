@@ -15,9 +15,9 @@ export interface TsAmChartsToken {
 // tslint:enable no-any
 
 /**
- * Create an injection token that the consumer can override with their version of Highcharts
+ * Create an injection token that the consumer can override with their version of amCharts
  */
-export const TS_AMCHARTS_TOKEN: InjectionToken<TsAmChartsToken> = new InjectionToken('amCharts');
+export const TS_AMCHARTS_TOKEN = new InjectionToken<TsAmChartsToken>('amCharts');
 
 
 /**

@@ -55,11 +55,8 @@ export type TsChart
 /**
  * This is the chart UI Component
  *
- * FIXME: Once amCharts v4 is TypeScript scrict complient, we should set the `tsconfig.skipLibCheck` to true.
+ * FIXME: Once amCharts v4 is TypeScript script compliant, we should set the `tsconfig.skipLibCheck` to true.
  * https://github.com/GetTerminus/terminus-ui/issues/1327
- *
- * #### QA CSS CLASSES
- * - `qa-chart`: Placed on the primary container
  *
  * @example
  * <ts-chart
@@ -87,7 +84,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Save a reference to the underlying amCharts library
    */
-  private amCharts: TsAmChartsToken;
+  private readonly amCharts: TsAmChartsToken;
 
   /**
    * Get access to the chart container
@@ -102,11 +99,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   public set visualization(value: TsChartVisualizationOptions) {
-    if (!value) {
-      return;
-    }
-
-    this._visualization = value;
+    this._visualization = value ? value : 'xy';
   }
   public get visualization(): TsChartVisualizationOptions {
     return this._visualization;
@@ -117,7 +110,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
    * Emit an event containing the chart each time it is initialized
    */
   @Output()
-  public readonly chartInitialized: EventEmitter<TsChart> = new EventEmitter();
+  public readonly chartInitialized = new EventEmitter<TsChart>();
 
 
   constructor(
@@ -132,16 +125,14 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
    * Initialize the chart if amCharts exists
    */
   public ngOnInit(): void {
-    // Don't initialize a chart if the Highcharts library wasn't passed in.
+    // Don't initialize a chart if the core library wasn't passed in.
     if (this.amCharts) {
       // NOTE: We must delay for the first tick so the outer component has a width set.
       Promise.resolve().then(() => {
         this.init(this.visualization);
       });
     } else if (isDevMode()) {
-      console.warn(
-        'TsChartComponent: The amCharts library was not provided via injection token!',
-      );
+      console.warn('TsChartComponent: The amCharts library was not provided via injection token!');
     }
   }
 
