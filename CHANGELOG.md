@@ -1,3 +1,11 @@
+## [15.3.2](https://github.com/GetTerminus/terminus-ui/compare/v15.3.1...v15.3.2) (2019-11-05)
+
+
+### Bug Fixes
+
+* **Demo:** bump UI library version for demo ([e3da0d0](https://github.com/GetTerminus/terminus-ui/commit/e3da0d0))
+* **Demo:** delete old demo files when deploying new demo ([55f81c7](https://github.com/GetTerminus/terminus-ui/commit/55f81c7))
+
 ## [15.3.1](https://github.com/GetTerminus/terminus-ui/compare/v15.3.0...v15.3.1) (2019-11-05)
 
 
