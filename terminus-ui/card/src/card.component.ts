@@ -42,10 +42,6 @@ let nextUniqueId = 0;
 /**
  * A presentational component to render a card
  *
- * #### QA CSS CLASSES
- * - `qa-card`: Placed on the primary element
- * - `qa-card-lock`: Placed on the lock icon for disabled cards
- *
  * @example
  * <ts-card
  *              aspectRatio="3:5"
@@ -74,7 +70,7 @@ export class TsCardComponent {
   /**
    * Define the default component ID
    */
-  protected _uid = `ts-card-${nextUniqueId++}`;
+  protected uid = `ts-card-${nextUniqueId++}`;
 
   /**
    * Expose the aspect ratio as a percentage
@@ -102,11 +98,7 @@ export class TsCardComponent {
    */
   @Input()
   public set border(value: TsCardBorderOptions) {
-    if (!value) {
-      return;
-    }
-
-    this._border = value;
+    this._border = value ? value : 'none';
   }
   public get border(): TsCardBorderOptions {
     return this._border;
@@ -136,12 +128,12 @@ export class TsCardComponent {
    */
   @Input()
   public set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this.uid;
   }
   public get id(): string {
     return this._id;
   }
-  protected _id: string = this._uid;
+  protected _id: string = this.uid;
 
   /**
    * Define if the card should support interaction (via hover)
@@ -156,11 +148,7 @@ export class TsCardComponent {
    */
   @Input()
   public set theme(value: TsStyleThemeTypes) {
-    if (!value) {
-      return;
-    }
-
-    this._theme = value;
+    this._theme = value ? value : 'primary';
   }
   public get theme(): TsStyleThemeTypes {
     return this._theme;
@@ -178,12 +166,6 @@ export class TsCardComponent {
    */
   public get borderClass(): string {
     return (!this.border || this.border === 'none') ? '' : `c-card--border-${this.border}`;
-  }
-
-
-  constructor() {
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
   }
 
 }

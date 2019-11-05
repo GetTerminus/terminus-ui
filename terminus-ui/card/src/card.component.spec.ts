@@ -133,7 +133,7 @@ describe(`TsCardComponent`, function() {
       expect(cardComponent.id).toEqual('foo');
 
       cardComponent.id = null as any;
-      expect(cardComponent.id).toEqual(cardComponent._uid);
+      expect(cardComponent.id).toEqual(cardComponent.uid);
     });
 
   });
