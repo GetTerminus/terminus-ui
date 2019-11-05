@@ -1,4 +1,8 @@
 import { DataSource } from '@angular/cdk/collections';
+import { ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { TsTableComponent } from '@terminus/ui/table';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 import {
   BehaviorSubject,
   Observable,
@@ -48,6 +52,19 @@ export class FakeDataSource extends DataSource<TestData> {
 }
 
 
+/**
+ * Get the instance for a TsTableComponent
+ *
+ * @param fixture - The test fixture
+ * @return The instance
+ */
+export function getTableInstance<T = unknown>(fixture: ComponentFixture<T>): TsTableComponent {
+  const debugElement = fixture.debugElement.query(By.directive(TsTableComponent));
+  if (!debugElement) {
+    throw new TsUILibraryError(`'getTableInstance' did not find an instance.`);
+  }
+  return debugElement.componentInstance;
+}
 
 /**
  * Query elements within another element

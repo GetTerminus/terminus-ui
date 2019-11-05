@@ -1,7 +1,8 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import {
-  CDK_TABLE_TEMPLATE, CdkTable,
+  CDK_TABLE_TEMPLATE,
+  CdkTable,
 } from '@angular/cdk/table';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -16,7 +17,8 @@ import {
   Inject,
   Input,
   IterableDiffers,
-  NgZone, OnDestroy,
+  NgZone,
+  OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -25,6 +27,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { isUndefined } from '@terminus/ngx-tools/type-guards';
+import { debounce } from '@terminus/ngx-tools/utilities';
 import {
   defer,
   merge,
@@ -73,6 +76,10 @@ export type TsTableDensity
  */
 const DEFAULT_COLUMN_WIDTH = '1000px';
 
+/**
+ * The default debounce delay for column sizing update calls
+ */
+const COLUMN_DEBOUNCE_DELAY = 100;
 
 /**
  * The payload for a columns change event
@@ -142,10 +149,11 @@ export class TsTableColumnsChangeEvent {
 })
 // tslint:disable-next-line no-any
 export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, AfterViewChecked, OnDestroy {
+
   /**
-   * Override the sticky CSS class set by the `CdkTable`
+   * Create a debounced function to update CDK sticky styles
    */
-  protected stickyCssClass = 'ts-table--sticky';
+  public debouncedStickyColumnUpdate = debounce(this.updateStickyColumnStyles, COLUMN_DEBOUNCE_DELAY);
 
   /**
    * Store subscription references for header cell functionality
@@ -182,6 +190,11 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
       .asObservable()
       .pipe(take(1), switchMap(() => this.headerCellHovers));
   });
+
+  /**
+   * Override the sticky CSS class set by the `CdkTable`
+   */
+  protected stickyCssClass = 'ts-table--sticky';
 
   /**
    * Return a simple array of column names
@@ -318,7 +331,13 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements OnInit, Af
     for (const cell of columnCells) {
       this.renderer.setStyle(cell, 'max-width', width);
     }
-    this.updateStickyColumnStyles();
+
+    // NOTE: To lessen the thrashing, only call the sticky column updater if there are defined sticky columns
+    const stickyCells = this.headerCells.toArray().filter(c => c.columnDef.sticky || c.columnDef.stickyEnd);
+    // istanbul ignore else
+    if (stickyCells.length) {
+      this.debouncedStickyColumnUpdate();
+    }
   }
 
 

@@ -13,13 +13,16 @@ import * as testComponents from '@terminus/ui/table/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   expectTableToMatchContent,
-  getCells, getColumnElements,
+  getCells,
+  getColumnElements,
   getHeaderCells,
-  getHeaderRow,
+  getTableInstance,
+  TestData,
 } from '@terminus/ui/table/testing';
 
 import {
-  TsCellDirective, TsHeaderCellDirective,
+  TsCellDirective,
+  TsHeaderCellDirective,
 } from './cell';
 import { TsColumnDefDirective } from './column';
 import { TsTableDataSource } from './table-data-source';
@@ -51,12 +54,6 @@ export class TsWindowServiceMock {
 
 }
 
-interface TestData {
-  a: string|number|undefined;
-  b: string|number|undefined;
-  c: string|number|undefined;
-}
-
 
 describe(`TsTableComponent`, function() {
 
@@ -67,7 +64,7 @@ describe(`TsTableComponent`, function() {
       fixture.detectChanges();
 
       const tableElement = fixture.nativeElement.querySelector('.ts-table');
-      const data = fixture.componentInstance.dataSource.data;
+      const data = fixture.componentInstance.dataSource!.data;
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
         [data[0].a, data[0].b, data[0].c],
@@ -223,6 +220,15 @@ describe(`TsTableComponent`, function() {
 
       expect(cells[0].classList).not.toContain('ts-table__column--sticky-end');
       expect(cells[2].classList).toContain('ts-table__column--sticky-end');
+    });
+
+    test(`should only call to update sticky columns if at least one column is marked as sticky`, () => {
+      const instance = getTableInstance<testComponents.PinnedTableHeaderColumn>(fixture);
+      instance.updateStickyColumnStyles = jest.fn();
+      fixture.detectChanges();
+
+      instance.setColumnWidthStyle('column_a', '100px');
+      expect(instance.updateStickyColumnStyles).toHaveBeenCalledTimes(1);
     });
 
   });
