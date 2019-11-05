@@ -7,14 +7,8 @@ export * from './autofocus.directive';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
-  declarations: [
-    TsAutofocusDirective,
-  ],
-  exports: [
-    TsAutofocusDirective,
-  ],
+  imports: [CommonModule],
+  declarations: [TsAutofocusDirective],
+  exports: [TsAutofocusDirective],
 })
 export class TsAutofocusModule {}

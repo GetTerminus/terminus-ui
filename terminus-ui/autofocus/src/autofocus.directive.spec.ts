@@ -26,8 +26,8 @@ describe(`TsAutofocusDirective`, function() {
       new ElementRefMock(),
       new ChangeDetectorRefMock(),
     );
-    directive.elementRef.nativeElement = { focus: jest.fn() };
-    directive.changeDetectorRef.detectChanges = jest.fn();
+    directive['elementRef'].nativeElement = { focus: jest.fn() };
+    directive['changeDetectorRef'].detectChanges = jest.fn();
     directive.tsAutofocus = '';
   };
   const teardown = () => {
@@ -49,7 +49,7 @@ describe(`TsAutofocusDirective`, function() {
       if (!directive) {
         setup();
       }
-      directive.tsAutofocus = value;
+      directive.tsAutofocus = value as any;
       directive.ngAfterViewInit();
 
       expect(directive.elementRef.nativeElement.focus).toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe(`TsAutofocusDirective`, function() {
       directive.tsAutofocus = value as any;
       directive.ngAfterViewInit();
 
-      expect(directive.elementRef.nativeElement.focus).not.toHaveBeenCalled();
+      expect(directive['elementRef'].nativeElement.focus).not.toHaveBeenCalled();
       teardown();
     }
 
@@ -80,12 +80,12 @@ describe(`TsAutofocusDirective`, function() {
     directive.tsAutofocus = 'my string';
     directive.ngAfterViewInit();
 
-    expect(directive.elementRef.nativeElement.focus).toHaveBeenCalled();
+    expect(directive['elementRef'].nativeElement.focus).toHaveBeenCalled();
   });
 
 
   test(`should throw an error if in dev mode and the element is not focusable`, () => {
-    directive.elementRef.nativeElement.focus = undefined;
+    directive['elementRef'].nativeElement.focus = undefined;
 
     expect(() => {
       directive.ngAfterViewInit();
@@ -94,10 +94,10 @@ describe(`TsAutofocusDirective`, function() {
 
 
   test(`should not autofocus with falsy value`, () => {
-    directive.tsAutofocus = null;
+    directive.tsAutofocus = null as any;
     directive.ngAfterViewInit();
 
-    expect(directive.elementRef.nativeElement.focus).not.toHaveBeenCalled();
+    expect(directive['elementRef'].nativeElement.focus).not.toHaveBeenCalled();
   });
 
 });

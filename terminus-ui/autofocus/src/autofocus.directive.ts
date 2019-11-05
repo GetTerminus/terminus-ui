@@ -7,6 +7,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 
 
 /**
@@ -52,7 +53,7 @@ export class TsAutofocusDirective implements AfterViewInit {
         el.focus();
         this.changeDetectorRef.detectChanges();
       } else if (isDevMode()) {
-        throw Error(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
+        throw new TsUILibraryError(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
       }
     }
   }
