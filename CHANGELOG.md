@@ -1,3 +1,10 @@
+## [15.3.1](https://github.com/GetTerminus/terminus-ui/compare/v15.3.0...v15.3.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* **Table:** only update sticky columns if they exist ([9dcd8b8](https://github.com/GetTerminus/terminus-ui/commit/9dcd8b8))
+
 # [15.3.0](https://github.com/GetTerminus/terminus-ui/compare/v15.2.2...v15.3.0) (2019-11-05)
 
 
