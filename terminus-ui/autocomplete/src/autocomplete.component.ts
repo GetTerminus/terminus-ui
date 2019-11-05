@@ -85,16 +85,6 @@ export type TsAutocompleteComparator = (a: unknown, b: unknown) => boolean;
 /**
  * The autocomplete UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-autocomplete`: The primary container
- * - `qa-autocomplete-input`: The input element
- * - `qa-autocomplete-spinner`: The progress indicator
- * - `qa-autocomplete-chip`: An individual selection 'chip'
- * - `qa-autocomplete-options`: The container for the list of options
- * - `qa-autocomplete-option`: An individual option from the list
- * - `qa-autocomplete-hint`: The input hint
- * - `qa-autocomplete-validation-messages`: The container for validation messages
- *
  * @example
  * <ts-autocomplete
  *              [allowMultiple]="allowMultiple"
@@ -170,7 +160,7 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * Implemented as part of TsFormFieldControl.
    */
-  public readonly labelChanges: Subject<void> = new Subject<void>();
+  public readonly labelChanges = new Subject<void>();
 
   /**
    * Manages keyboard events for options in the panel.
@@ -196,7 +186,7 @@ export class TsAutocompleteComponent implements OnInit,
   /*
    * Implemented as part of {@link TsFormFieldControl}
    */
-  public readonly stateChanges: Subject<void> = new Subject<void>();
+  public readonly stateChanges = new Subject<void>();
 
   /**
    * Define the default component ID
@@ -206,7 +196,7 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Management of the query string
    */
-  public querySubject: BehaviorSubject<string> = new BehaviorSubject('');
+  public querySubject = new BehaviorSubject<string>('');
 
   /**
    * Store the search query
@@ -426,55 +416,55 @@ export class TsAutocompleteComponent implements OnInit,
    * Event for when the panel is closed
    */
   @Output()
-  public readonly closed: EventEmitter<void> = new EventEmitter();
+  public readonly closed = new EventEmitter<void>();
 
   /**
    * Event for when a duplicate selection is made
    */
   @Output()
-  public readonly duplicateSelection: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly duplicateSelection = new EventEmitter<TsAutocompleteChange>();
 
   /**
    * Event for when the panel is opened
    */
   @Output()
-  public readonly opened: EventEmitter<void> = new EventEmitter();
+  public readonly opened = new EventEmitter<void>();
 
   /**
    * Emit the selected chip
    */
   @Output()
-  public readonly optionSelected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly optionSelected = new EventEmitter<TsAutocompleteChange>();
 
   /**
    * Event for when an option is removed
    */
   @Output()
-  public readonly optionDeselected: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly optionDeselected = new EventEmitter<TsAutocompleteChange>();
 
   /**
    * Emit the current selection
    */
   @Output()
-  public readonly selection: EventEmitter<string[]> = new EventEmitter();
+  public readonly selection = new EventEmitter<string[]>();
 
   /**
    * Emit the query string
    */
   @Output()
-  public readonly query: EventEmitter<string> = new EventEmitter();
+  public readonly query = new EventEmitter<string>();
 
   /**
    * Event for when the query has changed
    */
   @Output()
-  public readonly queryChange: EventEmitter<string> = new EventEmitter();
+  public readonly queryChange = new EventEmitter<string>();
 
   /**
    * Event for when the selections change
    */
   @Output()
-  public readonly selectionChange: EventEmitter<TsAutocompleteChange> = new EventEmitter();
+  public readonly selectionChange = new EventEmitter<TsAutocompleteChange>();
 
   /**
    * Event that emits whenever the raw value of the select changes. This is here primarily
@@ -483,7 +473,8 @@ export class TsAutocompleteComponent implements OnInit,
    * Needed for {@link TsFormFieldComponent}.
    */
   @Output()
-  public readonly valueChange: EventEmitter<string> = new EventEmitter<string>();
+  public readonly valueChange = new EventEmitter<string>();
+
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -501,8 +492,11 @@ export class TsAutocompleteComponent implements OnInit,
     }
   }
 
-  public ngOnInit(): void {
 
+  /**
+   * Seed initial control values
+   */
+  public ngOnInit(): void {
     // Seed the control value
     // NOTE: When the consumer is using an ngModel, the value is not set on the first cycle.
     // We need to push it to the next event loop. When using a FormControl the value is there on the first run.
@@ -647,7 +641,6 @@ export class TsAutocompleteComponent implements OnInit,
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr')
       .withWrap();
-
   }
 
   /**
@@ -751,7 +744,7 @@ export class TsAutocompleteComponent implements OnInit,
    * @param event - The keyboard or mouse event
    */
   public handleInputBlur(event: KeyboardEvent | MouseEvent): void {
-    // NOTE(B$): cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
+    // FIXME: cannot use dot syntax here since 'relatedTarget' doesn't exist on a KeyboardEvent
     // eslint-disable-next-line dot-notation
     const hasRelatedTarget = !!(event && event['relatedTarget']);
     // eslint-disable-next-line dot-notation
@@ -797,8 +790,7 @@ export class TsAutocompleteComponent implements OnInit,
    * @param selection - The item to select
    */
   public autocompleteSelectItem(selection: TsAutocompletePanelSelectedEvent): void {
-    const isDuplicate = (this.autocompleteFormControl.value || [])
-      .findIndex(o => this.valueComparator(o, selection.option.value)) >= 0;
+    const isDuplicate = (this.autocompleteFormControl.value || []).findIndex(o => this.valueComparator(o, selection.option.value)) >= 0;
 
     // istanbul ignore else
     if (isDuplicate) {

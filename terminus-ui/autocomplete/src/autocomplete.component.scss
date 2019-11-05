@@ -11,7 +11,7 @@
     @include visually-hidden;
   }
 
-  // NOTE: Currently hardcode the text size since typography doesn't support 14px at this moment.
+  // NOTE: Currently hardcoded the text size since typography doesn't support 14px at this moment.
   .ts-chip {
     $chip-font-size: 14px;
     font-size: $chip-font-size;

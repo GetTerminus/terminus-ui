@@ -44,7 +44,7 @@ let nextUniqueId = 0;
  * - `qa-autocomplete-panel`: The panel container
  *
  * @example
- * <ts-autcomplete-panel
+ * <ts-autocomplete-panel
  *              [options]="myOptionsQueryList"
  *              [optionGroups]="myOptionGroupsQueryList"
  *              (optionsSelected)="doSomething($event)"
@@ -84,10 +84,6 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   public readonly uid = `ts-select-autocomplete-${nextUniqueId++}`;
 
   /**
-   * VIEW ACCESS
-   */
-
-  /**
    * Access the template. Used by {@link TsAutocompleteTriggerDirective}
    */
   @ViewChild(TemplateRef, { static: false })
@@ -99,10 +95,6 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    */
   @ViewChild('panel', { static: true })
   public panel!: ElementRef;
-
-  /**
-   * GETTERS
-   */
 
   /**
    * Whether the autocomplete panel is open
@@ -146,10 +138,6 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    */
   @Input()
   public options!: QueryList<TsOptionComponent>;
-
-  /**
-   * EMITTERS
-   */
 
   /**
    * Event that is emitted whenever an option from the list is selected
