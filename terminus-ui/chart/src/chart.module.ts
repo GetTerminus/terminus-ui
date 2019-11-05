@@ -13,23 +13,17 @@ export * from './chart-type-check';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   providers: [
     TsAmChartsService,
     {
-      // This injection token will be overriden by the user.
+      // This injection token will be overridden by the user.
       // It will provide the amCharts core library and chart library
       provide: TS_AMCHARTS_TOKEN,
       useValue: null,
     },
   ],
-  declarations: [
-    TsChartComponent,
-  ],
-  exports: [
-    TsChartComponent,
-  ],
+  declarations: [TsChartComponent],
+  exports: [TsChartComponent],
 })
 export class TsChartModule {}

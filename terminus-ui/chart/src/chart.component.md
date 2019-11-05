@@ -10,7 +10,7 @@
   - [Set up the chart](#set-up-the-chart)
 - [Supported chart types](#supported-chart-types)
   - [Chart Type Coercion](#chart-type-coercion)
-- [AmCharts documentation](#amcharts-documentation)
+- [amCharts documentation](#amcharts-documentation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -19,7 +19,7 @@
 
 ### Inject the needed libraries
 
-> Note:  Since the end-user of this library is the one with the actual license to use AmCharts, we let the consumer pass in the library.
+> Note:  Since the end-user of this library is the one with the actual license to use amCharts, we let the consumer pass in the library.
 
 Create a factory function to inject the needed libraries:
 
@@ -110,6 +110,6 @@ if (tsChartXYTypeCheck(chart)) {
 ```
 
 
-## AmCharts documentation
+## amCharts documentation
 
 See https://www.amcharts.com/docs/v4/ for full documentation.
