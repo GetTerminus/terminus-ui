@@ -88,7 +88,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 .c-button {
   // Define theme styles
   $themes: primary accent warn;
-  $collapsable-radius: 2em;
+  $collapsible-radius: 2em;
 
   &[disabled] {
     @include cursor(not-allowed);
@@ -155,8 +155,9 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     }
   }
 
-  // When collapsable AND disabled
-  &.c-button--collapsable {
+  // When collapsible AND disabled
+  &.c-button--collapsable,
+  &.c-button--collapsible {
     &[disabled] {
       &:not(:hover) {
         &:not(:focus) {
@@ -168,7 +169,6 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 
   // Loop through using each theme name to create styles
   @each $theme in $themes {
-
     // Theme class sets the colors for standard buttons
     &.c-button--#{$theme} {
       background-color: color(#{$theme});
@@ -178,9 +178,10 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
         color: color(utility);
       }
 
-      // Collapsable button
-      &.c-button--collapsable {
-        border-radius: $collapsable-radius;
+      // Collapsible button
+      &.c-button--collapsable,
+      &.c-button--collapsible {
+        border-radius: $collapsible-radius;
 
         // Fix left alignment when the icon is the first item
         .c-icon {
@@ -205,7 +206,7 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
         }
 
         .mat-ripple {
-          border-radius: $collapsable-radius;
+          border-radius: $collapsible-radius;
         }
       }
 

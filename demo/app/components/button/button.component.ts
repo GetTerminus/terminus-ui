@@ -9,23 +9,22 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  style = 'primary';
-  style2 = 'accent';
-  disabled = false;
-  progress1 = false;
-  progress2 = false;
-  icon = 'home';
-  formatCollapsable = 'collapsable';
-  formats: TsButtonFormatTypes[] = ['filled', 'hollow', 'collapsable'];
-  myFormat = 'filled';
-  myTheme: TsStyleThemeTypes = 'primary';
-  themes: TsStyleThemeTypes[] = ['primary', 'accent', 'warn'];
-  layoutIsRightAligned = false;
-  get layout(): string {
+  public style = 'primary';
+  public disabled = false;
+  public progress1 = false;
+  public progress2 = false;
+  public icon = 'home';
+  public formatCollapsible = 'collapsible';
+  public formats: TsButtonFormatTypes[] = ['filled', 'hollow', 'collapsible'];
+  public myFormat = 'filled';
+  public myTheme: TsStyleThemeTypes = 'primary';
+  public themes: TsStyleThemeTypes[] = ['primary', 'accent', 'warn'];
+  public layoutIsRightAligned = false;
+  public get layout(): string {
     return this.layoutIsRightAligned ? 'right' : 'left';
   }
 
-  run(progress: string): void {
+  public run(progress: string): void {
     console.log('Demo: In run!');
 
     if (progress === 'progress1') {
