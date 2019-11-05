@@ -19,7 +19,12 @@ if [[ " ${releaseBranches[@]} " =~ " ${CIRCLE_BRANCH} " ]]; then
   # Clone the demo repo
   cd $HOME
   git clone git@github.com:GetTerminus/ui-demos-$CIRCLE_BRANCH.git
+
+  # Enter the demos repo
   cd ui-demos-$CIRCLE_BRANCH
+
+  # Remove old demo files
+  find -E . -regex '.*\.(html|css|js)' -type f -delete
 
   # Move new files into the cloned repo
   mv -f -v $HOME/ci-build/dist/app/* $HOME/ui-demos-$CIRCLE_BRANCH/
