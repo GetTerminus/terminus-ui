@@ -20,7 +20,7 @@ import {
 
 
 /**
- * Expose the MatCheckboxChange event as TsCheckboxChange. Used by {@link TsCheckboxComponent}
+ * Expose the MatCheckboxChange event as TsCheckboxChange
  */
 export class TsCheckboxChange extends MatCheckboxChange {}
 
@@ -32,9 +32,6 @@ let nextUniqueId = 0;
 
 /**
  * This is the checkbox UI Component
- *
- * #### QA CSS CLASSES
- * - `qa-checkbox`: The checkbox input element
  *
  * @example
  * <ts-checkbox
@@ -70,7 +67,7 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
   /**
    * Define the default component ID
    */
-  protected _uid = `ts-checkbox-${nextUniqueId++}`;
+  protected uid = `ts-checkbox-${nextUniqueId++}`;
 
   /**
    * Provide access to the MatCheckboxComponent
@@ -83,12 +80,12 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    */
   @Input()
   public set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this.uid;
   }
   public get id(): string {
     return this._id;
   }
-  protected _id: string = this._uid;
+  protected _id: string = this.uid;
 
   /**
    * Toggle the underlying checkbox if the isChecked property changes
@@ -149,13 +146,13 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
    * Emit an event on input change
    */
   @Output()
-  public readonly inputChange: EventEmitter<boolean> = new EventEmitter();
+  public readonly inputChange = new EventEmitter<boolean>();
 
   /**
    * Emit a change when moving from the indeterminate state
    */
   @Output()
-  public readonly indeterminateChange: EventEmitter<TsCheckboxChange> = new EventEmitter();
+  public readonly indeterminateChange = new EventEmitter<boolean>();
 
 
   constructor(
