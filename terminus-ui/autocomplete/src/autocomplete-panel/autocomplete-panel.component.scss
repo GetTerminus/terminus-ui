@@ -4,21 +4,20 @@
 @import './../../../scss/helpers/color';
 
 
-// Menu width must be a multiple of 56px
-// 56 * 2:
-$ts-menu-overlay-min-width: 112px !default;
-// 56 * 5:
-$ts-menu-overlay-max-width: 280px !default;
-$ts-select-item-height: 3em !default;
-
-/**
- * The max-height of the panel, currently matching ts-select value
- */
-$ts-autocomplete-panel-max-height: 256px !default;
-$ts-autocomplete-panel-border-radius: 4px !default;
 
 
 .ts-autocomplete-panel__inner {
+  // Menu width must be a multiple of 56px
+  // 56 * 2:
+  $ts-menu-overlay-min-width: 112px !default;
+  // 56 * 5:
+  $ts-menu-overlay-max-width: 280px !default;
+  $ts-select-item-height: 3em !default;
+  // The max-height of the panel, currently matching ts-select value
+  $ts-autocomplete-panel-max-height: 256px !default;
+  $ts-autocomplete-panel-border-radius: 4px !default;
+  $offset-for-divider-line: -1px;
+  
   @include elevation-element(menu);
   @include cdk-high-contrast {
     outline: solid 1px;
@@ -65,14 +64,11 @@ $ts-autocomplete-panel-border-radius: 4px !default;
   }
 
   .ts-autocomplete-panel-above & {
-    border-radius: 0;
-    border-top-left-radius: $ts-autocomplete-panel-border-radius;
-    border-top-right-radius: $ts-autocomplete-panel-border-radius;
+    border-radius: $ts-autocomplete-panel-border-radius $ts-autocomplete-panel-border-radius 0 0;
   }
 
   .ts-divider-horizontal {
     // We need to offset horizontal dividers by their height, because they throw off the keyboard navigation inside the panel.
-    $offset-for-divider-line: -1px;
     margin-top: $offset-for-divider-line;
   }
 }

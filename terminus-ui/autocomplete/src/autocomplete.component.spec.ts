@@ -97,13 +97,13 @@ describe(`TsAutocompleteComponent`, function() {
     fixture.detectChanges();
     const instance = getAutocompleteInstance(fixture);
     const autocomplete = fixture.debugElement.query(By.css('.ts-autocomplete')).nativeElement;
-    instance.changeDetectorRef.markForCheck = jest.fn();
+    instance['changeDetectorRef'].markForCheck = jest.fn();
     instance.stateChanges.next = jest.fn();
 
     instance.setDisabledState(true);
     fixture.detectChanges();
 
-    expect(instance.changeDetectorRef.markForCheck).toHaveBeenCalled();
+    expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
     expect(instance.stateChanges.next).toHaveBeenCalled();
     expect(instance.isDisabled).toEqual(true);
     expect(autocomplete.classList).toContain('ts-autocomplete--disabled');
@@ -150,7 +150,7 @@ describe(`TsAutocompleteComponent`, function() {
       instance.autocompleteTrigger.handleFocus();
       instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
 
-      dispatchMouseEvent(chipRemovalButton, 'click');
+      dispatchMouseEvent(chipRemovalButton as Node, 'click');
       fixture.detectChanges();
 
       chips = getAllChipInstances(fixture);
@@ -160,7 +160,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(document.activeElement).toEqual(input);
       jest.advanceTimersByTime(200);
 
-      expect(instance.autocompleteTrigger.overlayRef.updatePosition).toHaveBeenCalled();
+      expect(instance.autocompleteTrigger.overlayRef!.updatePosition).toHaveBeenCalled();
       jest.runAllTimers();
     });
 
@@ -510,7 +510,7 @@ describe(`TsAutocompleteComponent`, function() {
       fixture.detectChanges();
       instance.autocompleteTrigger.overlayRef!.updatePosition = jest.fn();
 
-      dispatchMouseEvent(chipRemovalButton, 'click');
+      dispatchMouseEvent(chipRemovalButton as Node, 'click');
       jest.advanceTimersByTime(1000);
       fixture.detectChanges();
 
@@ -696,14 +696,14 @@ describe(`TsAutocompleteComponent`, function() {
         const option = getOptionInstance(fixture, 0, 2);
         option.select();
         fixture.detectChanges();
-        option.emitSelectionChangeEvent = jest.fn();
+        option['emitSelectionChangeEvent'] = jest.fn();
 
         option.deselect();
         fixture.detectChanges();
 
-        expect(option.emitSelectionChangeEvent.mock.calls.length).toEqual(1);
+        expect(option['emitSelectionChangeEvent'].mock.calls.length).toEqual(1);
         // Verify it was not called with the boolean
-        expect(option.emitSelectionChangeEvent.mock.calls[0]).toEqual([]);
+        expect(option['emitSelectionChangeEvent'].mock.calls[0]).toEqual([]);
       });
 
     });

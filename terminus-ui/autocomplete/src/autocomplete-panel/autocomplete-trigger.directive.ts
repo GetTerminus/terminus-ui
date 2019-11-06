@@ -56,7 +56,6 @@ import {
   map,
   switchMap,
   take,
-  takeUntil,
   tap,
 } from 'rxjs/operators';
 
@@ -687,33 +686,6 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
       ]);
 
     return this.positionStrategy;
-  }
-
-
-  /**
-   * Stream of clicks outside of the autocomplete panel
-   *
-   * @return The observable of clicks
-   */
-  // tslint:disable-next-line no-any
-  private getOutsideClickStream(): Observable<any> {
-    if (!this.document) {
-      return of(null);
-    }
-
-    return merge(
-      fromEvent<MouseEvent>(this.document, 'click'),
-      fromEvent<TouchEvent>(this.document, 'touchend'),
-    )
-      .pipe(filter(event => {
-        const clickTarget = event.target as HTMLElement;
-        const formField = this.formField ?  this.formField.elementRef.nativeElement : null;
-
-        return this.overlayAttached
-              && clickTarget !== this.elementRef.nativeElement
-              && (!formField || !formField.contains(clickTarget))
-              && (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
-      }));
   }
 
 
