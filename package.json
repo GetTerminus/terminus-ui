@@ -164,7 +164,7 @@
     "@angular/platform-browser-dynamic": "^8.2.4",
     "@angular/router": "^8.2.4",
     "@terminus/ngx-tools": "^7.2.6",
-    "@terminus/ui": "^15.0.0",
+    "@terminus/ui": "^15.3.0",
     "date-fns": "2.0.1",
     "jsdom": "15.1.1",
     "ngx-perfect-scrollbar": "^8.0.0",

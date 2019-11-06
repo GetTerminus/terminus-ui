@@ -8,8 +8,10 @@ import {
   SkipSelf,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-import { isBoolean } from '@terminus/ngx-tools/type-guards';
-import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+import {
+  TsStyleThemeTypes,
+  TsUILibraryError,
+} from '@terminus/ui/utilities';
 
 import { TsCardComponent } from './card.component';
 
@@ -21,6 +23,7 @@ export class TsCardTitleDirective {
    */
   @Input()
   public set tsTitleAccentBorder(value: boolean) {
+    // istanbul ignore else
     if (coerceBooleanProperty(value)) {
       this.tsCardTitle = `${this.tsCardTitle} c-card__title-accent-border`;
     }
@@ -45,7 +48,7 @@ export class TsCardTitleDirective {
     @Optional() @Host() @SkipSelf() parent: TsCardComponent,
   ) {
     if (!(parent instanceof TsCardComponent) && isDevMode()) {
-      throw Error(`The 'tsCardTitle' directive must be inside a <ts-card> component.`);
+      throw new TsUILibraryError(`The 'tsCardTitle' directive must be inside a <ts-card> component.`);
     }
   }
 
