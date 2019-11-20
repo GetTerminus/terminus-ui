@@ -3,7 +3,6 @@
 #
 # Rename built typings index file
 #
-#
 
 . ~/.bashrc
 

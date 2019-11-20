@@ -43,7 +43,7 @@ if [[ " ${releaseBranches[@]} " =~ " ${CIRCLE_BRANCH} " ]]; then
   git commit -m "Update via CircleCI: ${CIRCLE_BRANCH}"
 
   # Push quietly to prevent showing the token in log
-  git push -q https://${GH_TOKEN}@github.com/GetTerminus/ui-demos-${CIRCLE_BRANCH}.git master
+  git push -q https://"${GH_TOKEN}"@github.com/GetTerminus/ui-demos-"${CIRCLE_BRANCH}".git master
 else
   echo "Branch '${CIRCLE_BRANCH}' is not a release branch. Skipping demo release."
   echo "Valid release branches:  ${releaseBranches[*]}"
