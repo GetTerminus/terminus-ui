@@ -1,3 +1,10 @@
+## [15.3.4](https://github.com/GetTerminus/terminus-ui/compare/v15.3.3...v15.3.4) (2019-11-20)
+
+
+### Bug Fixes
+
+* **CI:** switch to linux supported regex flag ([3b83160](https://github.com/GetTerminus/terminus-ui/commit/3b83160))
+
 ## [15.3.3](https://github.com/GetTerminus/terminus-ui/compare/v15.3.2...v15.3.3) (2019-11-20)
 
 
