@@ -1,92 +1,173 @@
-version: 2
+version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
+#
+# Reusable definitions
+#
 
-    working_directory: ~/ci-build
+# Basic defaults that most jobs will need.
+defaults: &defaults
+  working_directory: ~/ci-build
+  docker:
+    - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
+  environment:
+    TEST_REPORTS: /coverage
 
-    environment:
-      TEST_REPORTS: /coverage
+# Filter to run a job on builds for pull requests only.
+filter_only_prs: &only_on_pull_requests
+  filters:
+    branches:
+      only:
+        - /pull\/\d+/
 
+# Filter to skip a job on builds for pull requests.
+filter_no_prs: &filter_no_prs
+  filters:
+    branches:
+      ignore:
+        - /pull\/\d+/
+
+# Filter to run a job on builds for the release branch only.
+filter_only_release_branch: &only_on_release_branch
+  filters:
+    branches:
+      only:
+        - /^release$/
+
+#
+# Commands
+#
+commands:
+  add_ssh_and_checkout:
+    description: "Add SSH keys and checkout code."
     steps:
       - add_ssh_keys
-
       - checkout
-
+  save_yarn_cache:
+    description: "Update the Yarn packages cache."
+    steps:
+      - save_cache:
+          name: Save Yarn Cache
+          keys:
+            - yarn-packages-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - yarn-packages-
+          paths:
+            - ~/.cache/yarn
+#            - ./node_modules  # This was the original command but not what Circle docs use
+  restore_yarn_cache:
+    description: "Restore the Yarn packages cache."
+    steps:
       - restore_cache:
           name: Restore Yarn Cache
           keys:
-            - yarn
-
+            - yarn-packages-{{ checksum "yarn.lock" }}
+  install_dependencies:
+    description: "Install Yarn dependencies."
+    steps:
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
 
-      - save_cache:
-          name: Save Yarn Cache
-          key: yarn
-          paths:
-            - ./node_modules
 
+
+
+
+#
+# Jobs
+#
+jobs:
+  lint:
+    <<: *defaults
+    steps:
       - run:
           name: Lint
           command: yarn run lint:ci
 
+  test:
+    <<: *defaults
+    steps:
+      - add_ssh_and_checkout
+      - restore_yarn_cache
+      - install_dependencies
+      - save_yarn_cache
       - run:
           name: Run Tests
           command: tooling/ci/test-unit.sh
-
       - store_test_results:
           path: coverage/junit/
-
-      - run:
-          name: Build Project
-          command: yarn run build
-
-      - run:
-          name: Rename Primary Typings File
-          command: tooling/ci/rename-typings-index.sh
-
-      - run:
-          name: Test AoT Demo App Build
-          command: tooling/ci/build-demos-aot.sh
-
-      - run:
-          name: Release
-          command: npx semantic-release
-
-      - run:
-          name: Update Package Versions for Demo Build
-          command: tooling/ci/inject-library-version-number.sh
-
-      - run:
-          name: Publish Demos
-          command: tooling/ci/demos-deploy.sh
-
-      - run:
-          name: Generate Documentation
-          command: yarn run docs
-
-      - run:
-          name: Upload Documentation
-          command: tooling/ci/s3-deploy.sh
-
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
 
+  build:
+    <<: *defaults
+    steps:
+      - add_ssh_and_checkout
+      - run:
+          name: Build Project
+          command: yarn run build
+      - run:
+          name: Rename Primary Typings File
+          command: tooling/ci/rename-typings-index.sh
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
           destination: ~/npm_logs/
 
+  publish:
+    <<: *defaults
+    steps:
+      - add_ssh_and_checkout
+      - run:
+          name: Release
+          command: npx semantic-release
+
+  build_demos:
+    <<: *defaults
+    steps:
+      - run:
+          name: Build Demos with AoT
+          command: tooling/ci/build-demos-aot.sh
+      - run:
+          name: Update Package Versions for Demo Build
+          command: tooling/ci/inject-library-version-number.sh
       - store_artifacts:
           path: /home/circleci/ci-build/dist/app/
           destination: ~/demo/
 
+  deploy_demos:
+    <<: *defaults
+    steps:
+      - add_ssh_and_checkout
+      - run:
+          name: Publish Demos
+          command: tooling/ci/demos-deploy.sh
 
+  deploy_docs:
+    <<: *defaults
+    steps:
+      - add_ssh_and_checkout
+    - run:
+        name: Generate Documentation
+        command: yarn run docs
+          - run:
+              name: Upload Documentation
+              command: tooling/ci/s3-deploy.sh
 
+workflows:
+  version: 2.1
+  # All PRs should be linted, tested and built
+  build_and_test:
+    jobs:
+      - lint
+      - build
+      - test:
+          filters: *only_on_pull_requests
+#      - test:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
