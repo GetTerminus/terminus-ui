@@ -7,7 +7,7 @@
 
 . ~/.bashrc
 
-echo 'Current Branch: ' $CIRCLE_BRANCH
+echo 'Current Branch: ' "$CIRCLE_BRANCH"
 
 # Demos will only deploy when merging to one of these branches:
 releaseBranches=("release")
@@ -17,20 +17,21 @@ releaseBranches=("release")
 if [[ " ${releaseBranches[@]} " =~ " ${CIRCLE_BRANCH} " ]]; then
 
   # Clone the demo repo
-  cd $HOME
-  git clone git@github.com:GetTerminus/ui-demos-$CIRCLE_BRANCH.git
+  cd "$HOME" || exit
+  git clone git@github.com:GetTerminus/ui-demos-"$CIRCLE_BRANCH".git
 
   # Enter the demos repo
-  cd ui-demos-$CIRCLE_BRANCH
+  cd ui-demos-"$CIRCLE_BRANCH" || exit
 
   # Remove old demo files
-  find -E . -regex '.*\.(html|css|js)' -type f -delete
+  echo "Deleting old demo files:"
+  find . -regextype posix-extended -regex '.*\.(html|css|js)' -type f -delete
 
   # Move new files into the cloned repo
-  mv -f -v $HOME/ci-build/dist/app/* $HOME/ui-demos-$CIRCLE_BRANCH/
+  mv -f -v "$HOME"/ci-build/dist/app/* "$HOME"/ui-demos-"$CIRCLE_BRANCH"/
 
   # Clone the index.html file as 404.html to support deep linking
-  cp $HOME/ui-demos-$CIRCLE_BRANCH/index.html $HOME/ui-demos-$CIRCLE_BRANCH/404.html
+  cp "$HOME"/ui-demos-"$CIRCLE_BRANCH"/index.html "$HOME"/ui-demos-"$CIRCLE_BRANCH"/404.html
 
   # Update git credentials
   git config credential.helper 'cache --timeout=120'
