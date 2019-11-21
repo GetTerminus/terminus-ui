@@ -209,42 +209,6 @@ workflows:
           requires:
             - build_demos
 
-#  build_test_deploy:
-#    jobs:
-#      - setup:
-#          filters: *release_tag_filter
-#      - lint:
-#          requires:
-#            - setup
-#          filters: *release_tag_filter
-#      - build:
-#          requires:
-#            - setup
-#          filters: *release_tag_filter
-#      - test:
-#          requires:
-#            - setup
-#          filters: *release_tag_filter
-#
-#      - publish_library:
-#          filters: *release_tag_filter
-#          requires:
-#            - lint
-#            - build
-#            - test
-#      - deploy_docs:
-#          filters: *release_tag_filter
-#          requires:
-#            - publish_library
-#      - build_demos:
-#          filters: *release_tag_filter
-#          requires:
-#            - publish_library
-#      - deploy_demos:
-#          filters: *release_tag_filter
-#          requires:
-#            - build_demos
-
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
