@@ -40,8 +40,11 @@ references:
   # https://circleci.com/docs/2.0/workflows/#using-regular-expressions-to-filter-tags-and-branches
   # https://circleci.com/docs/2.0/workflows/#executing-workflows-for-a-git-tag
   release_tag_filter: &release_tag_filter
-    tags:
-      only: /^v[0-9.]+.*/
+    filters:
+      tags:
+        only: /^v[0-9.]+.*/
+      branches:
+        ignore: /.*/
 
   # Attach the root workspace
   attach_workspace: &attach_workspace
@@ -174,55 +177,73 @@ workflows:
   build_and_test:
     jobs:
       - setup:
-          filters: *filter_only_prs
+          <<: *filter_only_prs
       - lint:
+          <<: *filter_only_prs
           requires:
             - setup
-          filters: *filter_only_prs
       - build:
+          <<: *filter_only_prs
           requires:
             - setup
-          filters: *filter_only_prs
       - test:
+          <<: *filter_only_prs
           requires:
             - setup
-          filters: *filter_only_prs
-
-  build_test_deploy:
-    jobs:
-      - setup:
-          filters: *release_tag_filter
-      - lint:
-          requires:
-            - setup
-          filters: *release_tag_filter
-      - build:
-          requires:
-            - setup
-          filters: *release_tag_filter
-      - test:
-          requires:
-            - setup
-          filters: *release_tag_filter
-
       - publish_library:
-          filters: *release_tag_filter
+          <<: *release_tag_filter
           requires:
             - lint
             - build
             - test
       - deploy_docs:
-          filters: *release_tag_filter
+          <<: *release_tag_filter
           requires:
             - publish_library
       - build_demos:
-          filters: *release_tag_filter
+          <<: *release_tag_filter
           requires:
             - publish_library
       - deploy_demos:
-          filters: *release_tag_filter
+          <<: *release_tag_filter
           requires:
             - build_demos
+
+#  build_test_deploy:
+#    jobs:
+#      - setup:
+#          filters: *release_tag_filter
+#      - lint:
+#          requires:
+#            - setup
+#          filters: *release_tag_filter
+#      - build:
+#          requires:
+#            - setup
+#          filters: *release_tag_filter
+#      - test:
+#          requires:
+#            - setup
+#          filters: *release_tag_filter
+#
+#      - publish_library:
+#          filters: *release_tag_filter
+#          requires:
+#            - lint
+#            - build
+#            - test
+#      - deploy_docs:
+#          filters: *release_tag_filter
+#          requires:
+#            - publish_library
+#      - build_demos:
+#          filters: *release_tag_filter
+#          requires:
+#            - publish_library
+#      - deploy_demos:
+#          filters: *release_tag_filter
+#          requires:
+#            - build_demos
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
