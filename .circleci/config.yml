@@ -1,84 +1,98 @@
 version: 2.1
 
+#orbs:
+#  aws-s3: circleci/aws-s3@1.0.0
+
 #
 # Reusable definitions
 #
+references:
+  # Basic defaults that most jobs will need.
+  defaults: &defaults
+    working_directory: ~/ci-build
+    docker:
+      - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
+    environment:
+      TEST_REPORTS: /coverage
 
-# Basic defaults that most jobs will need.
-defaults: &defaults
-  working_directory: ~/ci-build
-  docker:
-    - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
-  environment:
-    TEST_REPORTS: /coverage
+  # Filter to run a job on builds for pull requests only.
+  filter_only_prs: &filter_only_prs
+    filters:
+      branches:
+        only:
+          - /pull\/\d+/
 
-# Filter to run a job on builds for pull requests only.
-filter_only_prs: &only_on_pull_requests
-  filters:
-    branches:
-      only:
-        - /pull\/\d+/
+  # Filter to skip a job on builds for pull requests.
+  filter_no_prs: &filter_no_prs
+    filters:
+      branches:
+        ignore:
+          - /pull\/\d+/
 
-# Filter to skip a job on builds for pull requests.
-filter_no_prs: &filter_no_prs
-  filters:
-    branches:
-      ignore:
-        - /pull\/\d+/
+  # Filter to run a job on builds for the release branch only.
+  filter_only_release_branch: &only_on_release_branch
+    filters:
+      branches:
+        only:
+          - /^master$/
 
-# Filter to run a job on builds for the release branch only.
-filter_only_release_branch: &only_on_release_branch
-  filters:
-    branches:
-      only:
-        - /^release$/
+  # Filter to run a job on tagged releases.
+  # https://circleci.com/docs/2.0/workflows/#using-regular-expressions-to-filter-tags-and-branches
+  # https://circleci.com/docs/2.0/workflows/#executing-workflows-for-a-git-tag
+  release_tag_filter: &release_tag_filter
+    tags:
+      only: /^v[0-9.]+.*/
 
-#
-# Commands
-#
-commands:
-  add_ssh_and_checkout:
-    description: "Add SSH keys and checkout code."
-    steps:
-      - add_ssh_keys
-      - checkout
-  save_yarn_cache:
-    description: "Update the Yarn packages cache."
-    steps:
-      - save_cache:
-          name: Save Yarn Cache
-          keys:
-            - yarn-packages-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - yarn-packages-
-          paths:
-            - ~/.cache/yarn
-#            - ./node_modules  # This was the original command but not what Circle docs use
-  restore_yarn_cache:
-    description: "Restore the Yarn packages cache."
-    steps:
-      - restore_cache:
-          name: Restore Yarn Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-  install_dependencies:
-    description: "Install Yarn dependencies."
-    steps:
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
+  # Attach the root workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: '.'
 
+  # The default container image.
+  container_config_default: &container_config_default
+    docker:
+      - image: circleci/node:12.9.1
 
-
+  # The AWS CLI container image.
+  container_config_aws: &container_config_aws
+    docker:
+      - image: circleci/python:2.7
 
 
 #
 # Jobs
 #
 jobs:
+
+  setup:
+    <<: *defaults
+    steps:
+      - add_ssh_keys
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --non-interactive
+      - run:
+          name: Prune node_modules
+          command: yarn autoclean --force
+      - save_cache:
+          name: Save Yarn Cache
+          key: yarn-packages-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+
   lint:
     <<: *defaults
     steps:
+      - *attach_workspace
       - run:
           name: Lint
           command: yarn run lint:ci
@@ -86,10 +100,7 @@ jobs:
   test:
     <<: *defaults
     steps:
-      - add_ssh_and_checkout
-      - restore_yarn_cache
-      - install_dependencies
-      - save_yarn_cache
+      - *attach_workspace
       - run:
           name: Run Tests
           command: tooling/ci/test-unit.sh
@@ -102,7 +113,7 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - add_ssh_and_checkout
+      - *attach_workspace
       - run:
           name: Build Project
           command: yarn run build
@@ -112,18 +123,23 @@ jobs:
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
           destination: ~/npm_logs/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist/terminus-ui/*
 
-  publish:
+  publish_library:
     <<: *defaults
     steps:
-      - add_ssh_and_checkout
+      - *attach_workspace
       - run:
-          name: Release
+          name: Publish Library
           command: npx semantic-release
 
   build_demos:
     <<: *defaults
     steps:
+      - *attach_workspace
       - run:
           name: Build Demos with AoT
           command: tooling/ci/build-demos-aot.sh
@@ -133,11 +149,15 @@ jobs:
       - store_artifacts:
           path: /home/circleci/ci-build/dist/app/
           destination: ~/demo/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist/app/*
 
   deploy_demos:
     <<: *defaults
     steps:
-      - add_ssh_and_checkout
+      - *attach_workspace
       - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy.sh
@@ -145,34 +165,78 @@ jobs:
   deploy_docs:
     <<: *defaults
     steps:
-      - add_ssh_and_checkout
-    - run:
-        name: Generate Documentation
-        command: yarn run docs
-          - run:
-              name: Upload Documentation
-              command: tooling/ci/s3-deploy.sh
+      - *attach_workspace
+      - run:
+          name: Generate Documentation
+          command: yarn run docs
+      - run:
+          name: Upload Documentation
+          command: tooling/ci/s3-deploy.sh
 
+
+#
+# Workflows
+#
 workflows:
   version: 2.1
-  # All PRs should be linted, tested and built
   build_and_test:
     jobs:
-      - lint
-      - build
+      - setup:
+          filters: *filter_only_prs
+      - lint:
+          requires:
+            - setup
+          filters: *filter_only_prs
+      - build:
+          requires:
+            - setup
+          filters: *filter_only_prs
       - test:
-          filters: *only_on_pull_requests
-#      - test:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+          requires:
+            - setup
+          filters: *filter_only_prs
+
+  build_test_deploy:
+    jobs:
+      - setup:
+          filters: *release_tag_filter
+      - lint:
+          requires:
+            - setup
+          filters: *release_tag_filter
+      - build:
+          requires:
+            - setup
+          filters: *release_tag_filter
+      - test:
+          requires:
+            - setup
+          filters: *release_tag_filter
+
+      - publish_library:
+          filters: *release_tag_filter
+          requires:
+            - lint
+            - build
+            - test
+      - deploy_docs:
+          filters: *release_tag_filter
+          requires:
+            - publish_library
+      - build_demos:
+          filters: *release_tag_filter
+          requires:
+            - publish_library
+      - deploy_demos:
+          filters: *release_tag_filter
+          requires:
+            - build_demos
+
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
-deployment:
-  fake_deploy_for_cci2:
-    tag: /.*/
-    commands:
-      - echo "make tags run in 2.0"
+#deployment:
+#  fake_deploy_for_cci2:
+#    tag: /.*/
+#    commands:
+#      - echo "make tags run in 2.0"
