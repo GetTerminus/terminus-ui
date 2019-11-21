@@ -63,7 +63,6 @@ references:
 # Jobs
 #
 jobs:
-
   setup:
     <<: *defaults
     steps:
@@ -88,7 +87,6 @@ jobs:
           root: .
           paths:
             - ./*
-
   lint:
     <<: *defaults
     steps:
@@ -96,7 +94,6 @@ jobs:
       - run:
           name: Lint
           command: yarn run lint:ci
-
   test:
     <<: *defaults
     steps:
@@ -109,7 +106,6 @@ jobs:
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
-
   build:
     <<: *defaults
     steps:
@@ -127,7 +123,6 @@ jobs:
           root: .
           paths:
             - ./dist/terminus-ui/*
-
   publish_library:
     <<: *defaults
     steps:
@@ -135,7 +130,6 @@ jobs:
       - run:
           name: Publish Library
           command: npx semantic-release
-
   build_demos:
     <<: *defaults
     steps:
@@ -153,7 +147,6 @@ jobs:
           root: .
           paths:
             - ./dist/app/*
-
   deploy_demos:
     <<: *defaults
     steps:
@@ -161,7 +154,6 @@ jobs:
       - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy.sh
-
   deploy_docs:
     <<: *defaults
     steps:
