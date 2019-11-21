@@ -83,7 +83,7 @@ jobs:
           command: yarn autoclean --force
       - save_cache:
           name: Save Yarn Cache
-          key: yarn-packages-{{ checksum "package.json" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
