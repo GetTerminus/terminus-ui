@@ -1,3 +1,10 @@
+## [15.3.6](https://github.com/GetTerminus/terminus-ui/compare/v15.3.5...v15.3.6) (2019-11-22)
+
+
+### Bug Fixes
+
+* **CI:** demo build should depend on library build ([af4c735](https://github.com/GetTerminus/terminus-ui/commit/af4c735))
+
 ## [15.3.5](https://github.com/GetTerminus/terminus-ui/compare/v15.3.4...v15.3.5) (2019-11-22)
 
 
