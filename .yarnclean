@@ -6,7 +6,8 @@ powered-test
 
 # asset directories
 docs
-doc
+# NOTE: Compodoc depends on ts-simple-ast which requires a doc directory
+*/!(compodoc)/doc
 website
 images
 assets

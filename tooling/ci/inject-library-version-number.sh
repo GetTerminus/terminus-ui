@@ -15,4 +15,5 @@ echo "Updating library version to: " "$VERSION_TRIMMED"
 grep -rl $PLACEHOLDER 'dist/app' | xargs sed -i'' -e 's|'$PLACEHOLDER'|'$VERSION_TRIMMED'|g'
 
 # Delete edit reference files left over from the sed replacement
-rm dist/app/*-e
+# NOTE: The force flag is required so that the build isn't cancelled if these files don't exist
+rm -f dist/app/*-e
