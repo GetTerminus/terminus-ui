@@ -191,6 +191,7 @@ workflows:
           <<: *filter_only_release_branch
           requires:
             - setup
+            - build
       - publish_library:
           <<: *filter_only_release_branch
           requires:
