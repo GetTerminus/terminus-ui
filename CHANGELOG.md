@@ -1,3 +1,10 @@
+## [15.3.7](https://github.com/GetTerminus/terminus-ui/compare/v15.3.6...v15.3.7) (2019-11-22)
+
+
+### Bug Fixes
+
+* **CI:** don't cancel build if generated files don't exist ([57fe720](https://github.com/GetTerminus/terminus-ui/commit/57fe720))
+
 ## [15.3.6](https://github.com/GetTerminus/terminus-ui/compare/v15.3.5...v15.3.6) (2019-11-22)
 
 
