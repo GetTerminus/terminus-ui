@@ -65,7 +65,7 @@
     "check:next-release": "npx semantic-release --no-ci --dry-run",
     "////////// Section: Tooling": "==============================",
     "lint-staged": "lint-staged",
-    "validate:circleci": "circleci config validate -c .circleci/config.yml",
+    "validate:circleci": "circleci config validate",
     "cm": "npx git-cz",
     "todo": "npx notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x terminus-ui/helpers.scss",
     "contributors:add": "npx all-contributors add",

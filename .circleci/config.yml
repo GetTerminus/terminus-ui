@@ -1,97 +1,216 @@
-version: 2
+version: 2.1
 
-jobs:
-  build:
+#orbs:
+#  aws-s3: circleci/aws-s3@1.0.0
+
+#
+# Reusable definitions
+#
+references:
+  # Basic defaults that most jobs will need.
+  defaults: &defaults
+    working_directory: ~/ci-build
     docker:
       - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
-
-    working_directory: ~/ci-build
-
     environment:
       TEST_REPORTS: /coverage
 
+  # Filter to run a job on builds for pull requests only.
+  filter_only_prs: &filter_only_prs
+    filters:
+      branches:
+        only:
+          - /pull\/\d+/
+
+  # Filter to skip a job on builds for pull requests.
+  filter_no_prs: &filter_no_prs
+    filters:
+      branches:
+        ignore:
+          - /pull\/\d+/
+
+  # Filter to run a job on builds for the release branch only.
+  filter_only_release_branch: &filter_only_release_branch
+    filters:
+      branches:
+        only:
+          - /^release$/
+
+  # Filter to run a job on tagged releases.
+  # https://circleci.com/docs/2.0/workflows/#using-regular-expressions-to-filter-tags-and-branches
+  # https://circleci.com/docs/2.0/workflows/#executing-workflows-for-a-git-tag
+  release_tag_filter: &release_tag_filter
+    filters:
+      tags:
+        only: /^v[0-9.]+.*/
+      branches:
+        ignore: /.*/
+
+  # Attach the root workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: '.'
+
+  # The default container image.
+  container_config_default: &container_config_default
+    docker:
+      - image: circleci/node:12.9.1
+
+  # The AWS CLI container image.
+  container_config_aws: &container_config_aws
+    docker:
+      - image: circleci/python:2.7
+
+
+#
+# Jobs
+#
+jobs:
+  setup:
+    <<: *defaults
     steps:
       - add_ssh_keys
-
       - checkout
-
       - restore_cache:
           name: Restore Yarn Cache
           keys:
-            - yarn
-
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
-
+          command: yarn install --frozen-lockfile --non-interactive
+      - run:
+          name: Prune node_modules
+          command: yarn autoclean --force
       - save_cache:
           name: Save Yarn Cache
-          key: yarn
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
-
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+  lint:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Lint
           command: yarn run lint:ci
-
+  test:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Run Tests
           command: tooling/ci/test-unit.sh
-
       - store_test_results:
           path: coverage/junit/
-
+      - store_artifacts:
+          path: coverage/
+          destination: ~/coverage/
+  build:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Build Project
           command: yarn run build
-
       - run:
           name: Rename Primary Typings File
           command: tooling/ci/rename-typings-index.sh
-
+      - store_artifacts:
+          path: /home/circleci/.npm/_logs/
+          destination: ~/npm_logs/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist/terminus-ui/*
+  publish_library:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
-          name: Test AoT Demo App Build
-          command: tooling/ci/build-demos-aot.sh
-
-      - run:
-          name: Release
+          name: Publish Library
           command: npx semantic-release
-
+  build_demos:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Build Demos with AoT
+          command: tooling/ci/build-demos-aot.sh
       - run:
           name: Update Package Versions for Demo Build
           command: tooling/ci/inject-library-version-number.sh
-
+      - store_artifacts:
+          path: /home/circleci/ci-build/dist/app/
+          destination: ~/demo/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist/app/*
+  deploy_demos:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy.sh
-
+  deploy_docs:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Generate Documentation
           command: yarn run docs
-
       - run:
           name: Upload Documentation
           command: tooling/ci/s3-deploy.sh
 
-      - store_artifacts:
-          path: coverage/
-          destination: ~/coverage/
 
-      - store_artifacts:
-          path: /home/circleci/.npm/_logs/
-          destination: ~/npm_logs/
-
-      - store_artifacts:
-          path: /home/circleci/ci-build/dist/app/
-          destination: ~/demo/
-
-
+#
+# Workflows
+#
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - build:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - build_demos:
+          <<: *filter_only_release_branch
+          requires:
+            - setup
+      - publish_library:
+          <<: *filter_only_release_branch
+          requires:
+            - lint
+            - build
+            - test
+      - deploy_docs:
+          <<: *filter_only_release_branch
+          requires:
+            - publish_library
+      - deploy_demos:
+          <<: *filter_only_release_branch
+          requires:
+            - build_demos
+            - publish_library
 
 
 # HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
 # https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
-deployment:
-  fake_deploy_for_cci2:
-    tag: /.*/
-    commands:
-      - echo "make tags run in 2.0"
+#deployment:
+#  fake_deploy_for_cci2:
+#    tag: /.*/
+#    commands:
+#      - echo "make tags run in 2.0"
