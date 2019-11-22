@@ -198,6 +198,7 @@ workflows:
             - lint
             - build
             - test
+            - build_demos
       - deploy_docs:
           <<: *filter_only_release_branch
           requires:
