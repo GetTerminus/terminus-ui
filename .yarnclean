@@ -42,4 +42,5 @@ wercker.yml
 .travis.yml
 
 # misc
-*.md
+# NOTE: Angular CLI depends on markdown files: https://github.com/angular/angular-cli/issues/12905#issuecomment-437310227
+*/!(angular)/*.md
