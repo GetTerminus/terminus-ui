@@ -130,6 +130,7 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
+      - add_ssh_keys
       - run:
           name: Publish Library
           command: npx semantic-release
