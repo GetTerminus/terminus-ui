@@ -3,6 +3,14 @@
 
 ### Bug Fixes
 
+* **CI:** don't remove angular md files, add ssh before release ([3769ec1](https://github.com/GetTerminus/terminus-ui/commit/3769ec1))
+* **CI:** move to workflows ([5d7ba7c](https://github.com/GetTerminus/terminus-ui/commit/5d7ba7c))
+
+## [15.3.5](https://github.com/GetTerminus/terminus-ui/compare/v15.3.4...v15.3.5) (2019-11-22)
+
+
+### Bug Fixes
+
 * **CI:** move to workflows ([5d7ba7c](https://github.com/GetTerminus/terminus-ui/commit/5d7ba7c))
 
 ## [15.3.4](https://github.com/GetTerminus/terminus-ui/compare/v15.3.3...v15.3.4) (2019-11-20)
