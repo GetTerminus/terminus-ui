@@ -1,3 +1,10 @@
+## [15.3.8](https://github.com/GetTerminus/terminus-ui/compare/v15.3.7...v15.3.8) (2019-11-22)
+
+
+### Bug Fixes
+
+* **CI:** hack for github unknown host issue ([9f66fcb](https://github.com/GetTerminus/terminus-ui/commit/9f66fcb))
+
 ## [15.3.7](https://github.com/GetTerminus/terminus-ui/compare/v15.3.6...v15.3.7) (2019-11-22)
 
 
