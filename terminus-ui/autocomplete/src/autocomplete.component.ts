@@ -62,6 +62,7 @@ import { TsAutocompleteTriggerDirective } from './autocomplete-panel/autocomplet
 
 
 // Unique ID for each instance
+// @internal
 let nextUniqueId = 0;
 
 export class TsAutocompleteSelectedEvent extends MatAutocompleteSelectedEvent {}
@@ -142,16 +143,22 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Give the component an explicit name
+   *
+   * @internal
    */
   public readonly componentName = 'TsAutocompleteComponent';
 
   /**
    * Define the FormControl
+   *
+   * @internal
    */
   public autocompleteFormControl = new FormControl([]);
 
   /**
    * Store a reference to the document object
+   *
+   * @internal
    */
   private document: Document;
 
@@ -159,16 +166,21 @@ export class TsAutocompleteComponent implements OnInit,
    * Subject used to alert the parent {@link TsFormFieldComponent} when the label gap should be recalculated
    *
    * Implemented as part of TsFormFieldControl.
+   * @internal
    */
   public readonly labelChanges = new Subject<void>();
 
   /**
    * Manages keyboard events for options in the panel.
+   *
+   * @internal
    */
   private keyManager!: ActiveDescendantKeyManager<TsOptionComponent>;
 
   /**
    * The IDs of child options to be passed to the aria-owns attribute.
+   *
+   * @internal
    */
   public optionIds = '';
 
@@ -180,26 +192,36 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Since the {@link TsFormFieldComponent} is inside this template, we cannot use a provider to pass this component instance to the form
    * field. Instead, we pass it manually through the template with this reference.
+   *
+   * @internal
    */
   public selfReference = this;
 
   /*
    * Implemented as part of {@link TsFormFieldControl}
+   *
+   * @internal
    */
   public readonly stateChanges = new Subject<void>();
 
   /**
    * Define the default component ID
+   *
+   * @internal
    */
   public readonly uid = `ts-autocomplete-${nextUniqueId++}`;
 
   /**
    * Management of the query string
+   *
+   * @internal
    */
   public querySubject = new BehaviorSubject<string>('');
 
   /**
    * Store the search query
+   *
+   * @internal
    */
   public searchQuery!: string;
 
@@ -603,6 +625,8 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Stub in onChange
    *
+   * @internal
+   *
    * Needed for ControlValueAccessor (View -> model callback called when value changes)
    */
   // istanbul ignore next
@@ -611,6 +635,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Stub in onTouched
+   *
+   * @internal
    *
    * Needed for ControlValueAccessor (View -> model callback called when select has been touched)
    */
@@ -644,8 +670,9 @@ export class TsAutocompleteComponent implements OnInit,
   }
 
   /**
+   * Focus the text input
    *
-   * Should focus the text input.
+   * @internal
    */
   public focus(): void {
     this.inputElement.nativeElement.focus();
@@ -688,6 +715,8 @@ export class TsAutocompleteComponent implements OnInit,
    *
    * NOTE: Currently we are not using this, but it still must be present since this component is acting as a CVA.
    *
+   * @internal
+   *
    * @param value - New value to be written to the model
    */
   public writeValue(value: string): void { }
@@ -696,6 +725,8 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Save a callback function to be invoked when the select's value changes from user input.
    * Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
+   *
+   * @internal
    *
    * @param fn - Callback to be triggered when the value changes
    */
@@ -707,6 +738,8 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Save a callback function to be invoked when the select is blurred by the user.
    * Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
+   *
+   * @internal
    *
    * @param fn - Callback to be triggered when the component has been touched
    */
@@ -730,6 +763,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Ensure the correct element gets focus when the primary container is clicked.
+   *
+   * @internal
    *
    * Implemented as part of TsFormFieldControl.
    */
@@ -877,6 +912,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Function for tracking for-loops changes
+   *
+   * @internal
    *
    * @param index - The item index
    * @return The unique ID
