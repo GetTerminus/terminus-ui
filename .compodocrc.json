@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+  "customFavicon": "./demo/favicon.ico",
+  "customLogo": "./tooling/mark-small.svg",
+  "disableDomTree": true,
+  "disableInternal": true,
+  "disableLifeCycleHooks": true,
+  "disablePrivate": true,
+  "disableRoutesGraph": true,
+  "disableStyleTab": true,
+  "disableTemplateTab": true,
+  "disableCoverage": true,
+  "hideGenerator": true,
+  "name": "Terminus UI",
+  "navTabConfig": [
+    {
+      "id": "info",
+      "label": "API"
+    },
+    {
+      "id": "readme",
+      "label": "Usage Guides"
+    },
+    {
+      "id": "source",
+      "label": "TypeScript"
+    },
+    {
+      "id": "example",
+      "label": "Live Demo"
+    }
+  ],
+  "output": "./docs",
+  "theme": "laravel",
+  "tsconfig": "./terminus-ui/tsconfig.compodoc.json"
+}
