@@ -148,6 +148,12 @@ jobs:
       - run:
           name: Generate Documentation
           command: yarn run docs
+      - run:
+          name: Install emoji tool
+          command: yarn global add emojis
+      - run:
+          name: Replace emoji codes
+          command: node tooling/ci/replace-docs-emoji.js
       - persist_to_workspace:
           root: .
           paths:
