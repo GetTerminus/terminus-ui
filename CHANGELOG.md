@@ -1,3 +1,11 @@
+## [15.3.9](https://github.com/GetTerminus/terminus-ui/compare/v15.3.8...v15.3.9) (2019-11-25)
+
+
+### Bug Fixes
+
+* **CI:** replace shortcodes with unicode emojis in generated docs ([3fc3cf9](https://github.com/GetTerminus/terminus-ui/commit/3fc3cf9))
+* **CI:** use default ci image with orb for aws ([81c1cbf](https://github.com/GetTerminus/terminus-ui/commit/81c1cbf))
+
 ## [15.3.8](https://github.com/GetTerminus/terminus-ui/compare/v15.3.7...v15.3.8) (2019-11-22)
 
 
