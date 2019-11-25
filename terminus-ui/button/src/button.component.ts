@@ -51,6 +51,9 @@ export type TsButtonFormatTypes
   | 'collapsible'
 ;
 
+/**
+ * @internal
+ */
 export const tsButtonFormatTypesArray = [
   'filled',
   'hollow',
@@ -112,15 +115,26 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
   /**
    * A flag to determine if click events should be intercepted.
+   *
    * Set by {@link TsConfirmationDirective}
    */
   public interceptClick = false;
 
   /**
    * Store the original event from a click (used when `interceptClick` is true)
+   *
+   * @internal
+   *
    * Used by {@link TsConfirmationDirective}
    */
   public originalClickEvent!: MouseEvent;
+
+  /**
+   * Getter returning a boolean based on both the component `isDisabled` flag and the FormControl's disabled status
+   */
+  public get shouldBeDisabled(): boolean {
+    return this.isDisabled || this.showProgress;
+  }
 
   /**
    * Provide access to the inner button element
@@ -292,6 +306,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   /**
    * Handle button clicks
    *
+   * @internal
+   *
    * @param event - The MouseEvent
    */
   public clickedButton(event: MouseEvent): void {
@@ -318,13 +334,6 @@ export class TsButtonComponent implements OnInit, OnDestroy {
       this.isCollapsed = true;
       this.changeDetectorRef.detectChanges();
     }, delay);
-  }
-
-  /**
-   * Getter returning a boolean based on both the component `isDisabled` flag and the FormControl's disabled status
-   */
-  public get shouldBeDisabled(): boolean {
-    return this.isDisabled || this.showProgress;
   }
 
 
