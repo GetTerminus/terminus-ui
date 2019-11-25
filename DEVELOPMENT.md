@@ -18,6 +18,7 @@
   - [Pull Requests](#pull-requests)
   - [Releasing](#releasing)
   - [Code Comments](#code-comments)
+    - [JSDoc Tags](#jsdoc-tags)
   - [Usage Docs](#usage-docs)
 - [Releases](#releases)
 - [Code Style](#code-style)
@@ -294,7 +295,6 @@ machines.
     ```
     // NOTE: A general informational note. Not for every comment; just when there is an important
              piece of unusual information.
-    // OPTIMIZE: A note about code that is sub-optimal
     // TODO: A note about missing logic.
     // HACK: A note about a 'hacky' solution.
     // FIXME: A note about something that needs refactoring.
@@ -304,6 +304,58 @@ machines.
 1. All engineers should do their best to never need most of these note types. However, if needed,
   _always_ include the reason the note is needed. Remember, more information is better!
 
+#### JSDoc Tags
+
+##### Type
+
+We don't use the type tag since the types are documented ina the TypeScript code.
+
+##### Deprecated
+
+The `@deprecated` flag can be used to mark deprecated code. It should be accompanied by a migration note if possible.
+
+```typescript
+/**
+ * @deprecated This method has been merged into `myNewMethod()`
+ */
+```
+
+##### Ignore
+
+The `@ignore` flag should be used on all code that is not part of the library (such as test host components etc).
+
+```typescript
+/**
+ * @ignore
+ */
+export class MyTestHost {}
+```
+
+##### Internal
+
+The `@internal` flag should be used on code that is not ignored (as it is part of the library) but still should not
+appear in the generated documentation.
+
+```typescript
+/**
+ * @internal
+ */
+export function myPrivateHelperFunction() {}
+```
+
+##### Link
+
+The `@link` flag can be used to link to other components or web locations.
+
+```typescript
+/**
+ * Component B.
+ * 
+ * Used by {@link ComponentA}
+ * Learn more at [Google]{@link http://www.google.com}
+ */
+export class ComponentB() {}
+```
 
 ### Usage Docs
 
