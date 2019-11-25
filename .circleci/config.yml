@@ -190,7 +190,6 @@ workflows:
           requires:
             - setup
       - build_demos:
-          <<: *filter_only_release_branch
           requires:
             - build
       - publish_library:
