@@ -1,7 +1,8 @@
 version: 2.1
 
-#orbs:
-#  aws-s3: circleci/aws-s3@1.0.0
+orbs:
+  # https://circleci.com/orbs/registry/orb/circleci/aws-s3
+  aws-s3: circleci/aws-s3@1.0.11
 
 #
 # Reusable definitions
@@ -11,23 +12,9 @@ references:
   defaults: &defaults
     working_directory: ~/ci-build
     docker:
-      - image: getterminus/terminus-ui-circleci:12.9.1-20190905162749
+      - image: circleci/node:12.9.1
     environment:
       TEST_REPORTS: /coverage
-
-  # Filter to run a job on builds for pull requests only.
-  filter_only_prs: &filter_only_prs
-    filters:
-      branches:
-        only:
-          - /pull\/\d+/
-
-  # Filter to skip a job on builds for pull requests.
-  filter_no_prs: &filter_no_prs
-    filters:
-      branches:
-        ignore:
-          - /pull\/\d+/
 
   # Filter to run a job on builds for the release branch only.
   filter_only_release_branch: &filter_only_release_branch
@@ -51,16 +38,6 @@ references:
     attach_workspace:
       at: '.'
 
-  # The default container image.
-  container_config_default: &container_config_default
-    docker:
-      - image: circleci/node:12.9.1
-
-  # The AWS CLI container image.
-  container_config_aws: &container_config_aws
-    docker:
-      - image: circleci/python:2.7
-
 
 #
 # Jobs
@@ -74,13 +51,19 @@ jobs:
       - restore_cache:
           name: Restore Yarn Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+            - terminusui-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - terminusui-yarn-deps-{{ .Branch }}
+            - terminusui-yarn-deps-release
+            - terminusui-yarn-deps-
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile --non-interactive
       - run:
-          name: Prune node_modules
-          command: yarn autoclean --force
+          name: Versions
+          command: |
+            echo "Yarn version: "
+            yarn --version
+            npx ng --version
       - save_cache:
           name: Save Yarn Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -158,16 +141,29 @@ jobs:
       - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy.sh
-  deploy_docs:
+  generate_docs:
     <<: *defaults
     steps:
       - *attach_workspace
       - run:
           name: Generate Documentation
           command: yarn run docs
-      - run:
-          name: Upload Documentation
-          command: tooling/ci/s3-deploy.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./docs/*
+  deploy_docs:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - aws-s3/sync:
+          from: docs
+          to: 's3://uilibrary-docs.terminus.ninja/"${CIRCLE_BRANCH}"'
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400" \
+            --delete
+          overwrite: true
 
 
 #
@@ -178,10 +174,10 @@ workflows:
   build_and_test:
     jobs:
       - setup
-      - lint:
+      - build:
           requires:
             - setup
-      - build:
+      - lint:
           requires:
             - setup
       - test:
@@ -190,30 +186,24 @@ workflows:
       - build_demos:
           <<: *filter_only_release_branch
           requires:
-            - setup
             - build
       - publish_library:
           <<: *filter_only_release_branch
           requires:
-            - lint
             - build
-            - test
             - build_demos
-      - deploy_docs:
+            - lint
+            - test
+      - generate_docs:
           <<: *filter_only_release_branch
           requires:
             - publish_library
+      - deploy_docs:
+          <<: *filter_only_release_branch
+          requires:
+            - generate_docs
       - deploy_demos:
           <<: *filter_only_release_branch
           requires:
             - build_demos
             - publish_library
-
-
-# HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
-# https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
-#deployment:
-#  fake_deploy_for_cci2:
-#    tag: /.*/
-#    commands:
-#      - echo "make tags run in 2.0"
