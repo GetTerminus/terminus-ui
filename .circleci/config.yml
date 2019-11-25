@@ -147,7 +147,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Generate Documentation
-          command: yarn run docs
+          command: yarn run docs:ci
       - run:
           name: Install emoji tool
           command: yarn global add emojis
