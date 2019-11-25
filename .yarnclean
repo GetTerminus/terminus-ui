@@ -10,7 +10,7 @@ docs
 */!(compodoc)/doc
 website
 images
-assets
+*/!(istanbul)/assets
 
 # examples
 example
