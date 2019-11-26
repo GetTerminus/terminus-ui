@@ -1,3 +1,10 @@
+## [15.3.11](https://github.com/GetTerminus/terminus-ui/compare/v15.3.10...v15.3.11) (2019-11-26)
+
+
+### Bug Fixes
+
+* **CI:** add back missing ci demos deploy script ([f4b91d3](https://github.com/GetTerminus/terminus-ui/commit/f4b91d3))
+
 ## [15.3.10](https://github.com/GetTerminus/terminus-ui/compare/v15.3.9...v15.3.10) (2019-11-26)
 
 
