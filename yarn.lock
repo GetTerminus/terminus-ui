@@ -31,9 +31,9 @@
     xlsx "^0.12.8"
 
 "@amcharts/amcharts4@^4.5.3":
-  version "4.7.10"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.7.10.tgz#a16bf6d0fa525508baf18ddf798ab8d53303d044"
-  integrity sha512-AnadaXLzP5yJ6TlkvA2TtuzqrOsfkU1jjyGdvj6DUReDYML7ytz9qgJo/gpuE+iMdpcTN+GdyvbQDXGNXToQNA==
+  version "4.7.11"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.7.11.tgz#d52d0f29ac6e8c6a259bfbe85a636aee383edfdc"
+  integrity sha512-gZUN0FZW2kk3Iu06aIy68LcFS6FnJZp2KvhZuhf+mrx/yMdyP0q3e8BrFY7SXn/uduOU1/M3Vdkc+tB0cRCUfg==
   dependencies:
     "@types/regression" "^2.0.0"
     canvg "^2.0.0"
@@ -1496,9 +1496,9 @@
     tslint "^5.17.0"
 
 "@terminus/ui@^15.3.0":
-  version "15.3.4"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.3.4.tgz#845816d9fb9b956ff8e213f494fcac6252e18a3f"
-  integrity sha512-DxLKJ5yZwO8kP4OzTaaPr+QNf/JooUe03sp9tCz6MCAm6zbb6MO7MVnLNykcNmAMrSanxdAdchkzGhjxbL0TIg==
+  version "15.3.10"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.3.10.tgz#459eead331773242e2352647a387f0dbf295fb7b"
+  integrity sha512-caJ1DQU87I94H1Lw/2wSGR/3jo/UyD8TqYxhA4/LaKGp81hLPSWJ+vhTGrxBtrXvHuJyf+D2iVarV9nN9rKgBg==
   dependencies:
     ngx-perfect-scrollbar "^8.0.0"
     text-mask-addons "^3.8.0"
@@ -14957,9 +14957,9 @@ svg-tags@^1.0.0:
   integrity sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=
 
 svg-to-pdfkit@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/svg-to-pdfkit/-/svg-to-pdfkit-0.1.7.tgz#7db6d47e47b3888dce18060751a8de2417f85775"
-  integrity sha1-fbbUfkeziI3OGAYHUajeJBf4V3U=
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/svg-to-pdfkit/-/svg-to-pdfkit-0.1.8.tgz#5921765922044843f0c1a5b25ec1ef8a4a33b8af"
+  integrity sha512-QItiGZBy5TstGy+q8mjQTMGRlDDOARXLxH+sgVm1n/LYeo0zFcQlcCh8m4zi8QxctrxB9Kue/lStc/RD5iLadQ==
   dependencies:
     pdfkit ">=0.8.1"
 
