@@ -1,3 +1,12 @@
+## [15.3.10](https://github.com/GetTerminus/terminus-ui/compare/v15.3.9...v15.3.10) (2019-11-26)
+
+
+### Bug Fixes
+
+* **CI:** all PRs now test demos aot build ([019d1b0](https://github.com/GetTerminus/terminus-ui/commit/019d1b0))
+* **CI:** compodoc now working off custom config ([93c9ca9](https://github.com/GetTerminus/terminus-ui/commit/93c9ca9))
+* **CI:** don't clean istanbul assets dir ([45b2b09](https://github.com/GetTerminus/terminus-ui/commit/45b2b09))
+
 ## [15.3.9](https://github.com/GetTerminus/terminus-ui/compare/v15.3.8...v15.3.9) (2019-11-25)
 
 
