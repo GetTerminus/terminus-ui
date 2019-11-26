@@ -140,7 +140,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Publish Demos
-          command: tooling/ci/promote-next-and-deploy.sh
+          command: tooling/ci/demos-deploy-ci.sh
   generate_docs:
     <<: *defaults
     steps:
