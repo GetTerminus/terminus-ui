@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
+import { TsExpansionPanelModule } from "@terminus/ui/expansion-panel";
 import { TsSpacingModule } from '@terminus/ui/spacing';
 
 import { TsButtonModule } from '@terminus/ui/button';
@@ -25,6 +26,7 @@ import { DrawerComponent } from './drawer.component';
     TsSpacingModule,
     TsDrawerModule,
     TsButtonModule,
+    TsExpansionPanelModule,
   ],
   declarations: [
     DrawerComponent,

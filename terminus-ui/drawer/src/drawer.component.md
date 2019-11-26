@@ -12,6 +12,7 @@ Drawer component is designed to add side content to a small section of a page.
   - [Position](#position)
   - [Collapsed size and expanded size](#collapsed-size-and-expanded-size)
   - [Expand on load](#expand-on-load)
+  - [Fixed header and footer](#fixed-header-and-footer)
 - [Events](#events)
   - [Container events](#container-events)
   - [Drawer events](#drawer-events)
@@ -112,6 +113,20 @@ Users can set the drawer to expand on load
 
 `isExpanded` set to `true` would have drawer expanded on load. It defaults to `false`.
 
+### Fixed header and footer
+
+Users can set drawer header and footer within a drawer, both are sticky to the view.
+
+```html
+<ts-drawer-header>
+  THIS IS MY HEADER
+</ts-drawer-header>
+```
+```html
+<ts-drawer-footer>
+  THIS IS MY FOOTER
+</ts-drawer-footer>
+```
 
 ## Events
 

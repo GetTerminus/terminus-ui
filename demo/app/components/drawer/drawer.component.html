@@ -23,7 +23,10 @@
       class="first-drawer"
       #drawer
     >
-      <div tsVerticalSpacing class="content">
+      <ts-drawer-header>
+        <h4>HEADER</h4>
+      </ts-drawer-header>
+      <div tsVerticalSpacing class="drawer-content">
         <p tsVerticalSpacing>
           <ts-button
             (click)="drawer.toggle()"
@@ -41,6 +44,29 @@
           </ts-radio-group>
         </p>
       </div>
+      <div>
+        <ts-expansion-panel>
+          <ts-expansion-panel-trigger>
+            Collapse and Expand!
+          </ts-expansion-panel-trigger>
+
+          <p>
+            And here is my standard panel content.
+          </p>
+
+          <p>
+            Consequatur fugiat eius placeat tenetur consectetur labore. Laborum architecto animi. Inventore quod unde ea quae doloribus maxime.
+          </p>
+          <p>
+            Consequatur fugiat eius placeat tenetur consectetur labore. Laborum architecto animi. Inventore quod unde ea quae doloribus maxime.
+          </p>
+
+        </ts-expansion-panel>
+      </div>
+
+      <ts-drawer-footer>
+        <h4>THIS IS MY FOOTER</h4>
+      </ts-drawer-footer>
     </ts-drawer>
 
     <ts-drawer
@@ -91,6 +117,14 @@
           This is the drawer content...
           The #1 software development tool used by agile teams.
           Visual regression testing is the ability to cross-reference snapshots of a product, highlighting pixel differences — returning fast feedback on the current state of the screen.
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/502x250?text=Visit+New+Site+Now">
+          <div fxlayout="row wrap" style="flex-flow: row wrap; box-sizing: border-box; display: flex;">
+            <img src="https://via.placeholder.com/250x300?text=View Side by Side">
+            &nbsp;&nbsp;&nbsp;
+            <img src="https://via.placeholder.com/240x300?text=This is 240x300 size">
+          </div>
         </div>
       </div>
     </ts-drawer-content>

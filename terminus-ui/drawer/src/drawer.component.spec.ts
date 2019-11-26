@@ -3,6 +3,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Type } from '@angular/core';
 import {
+  async,
   ComponentFixture,
   fakeAsync,
   flush,
@@ -20,6 +21,10 @@ import {
   createComponent as createComponentInner,
   dispatchKeyboardEvent,
 } from '@terminus/ngx-tools/testing';
+import {
+  TsDrawerFooterComponent,
+  TsDrawerHeaderComponent,
+} from '@terminus/ui/drawer';
 import * as testComponents from '@terminus/ui/drawer/testing';
 
 import {
@@ -128,5 +133,23 @@ describe(`drawer`, () => {
       expect(component.closeStartCount).toBe(1);
       expect(event.defaultPrevented).toBe(true);
     }));
+
+    describe(`header and footer`, () => {
+
+      test(`should have header and footer set`, fakeAsync(() => {
+
+        setup(testComponents.DrawerWithHeaderAndFooter);
+        fixture.detectChanges();
+        const drawerElement = fixture.debugElement.query(By.directive(TsDrawerComponent));
+        drawerElement.componentInstance.expand();
+        fixture.detectChanges();
+        tick();
+        const headerElement = fixture.debugElement.query(By.directive(TsDrawerHeaderComponent));
+        const footerElement = fixture.debugElement.query(By.directive(TsDrawerFooterComponent));
+        expect(headerElement.nativeElement.textContent.trim()).toEqual('HEADER');
+        expect(footerElement.nativeElement.textContent.trim()).toEqual('FOOTER');
+      }));
+    });
+
   });
 });
