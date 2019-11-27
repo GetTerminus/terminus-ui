@@ -11,6 +11,7 @@ $ts-drawer-content-z-index: 1;
 $ts-drawer-push-drawer-z-index: 2;
 $ts-drawer-backdrop-z-index: 3;
 $ts-drawer-over-drawer-z-index: 4;
+$ts-drawer-header-footer-z-index: 5;
 $ts-animation-duration: 400ms;
 
 // Mixin that creates a new stacking context.
@@ -79,24 +80,50 @@ $ts-animation-duration: 400ms;
   }
 }
 
+.ts-drawer__inner-container {
+  flex: 1 0 0;
+  overflow-y: scroll;
+}
+
 .ts-drawer {
   @include ts-drawer-stacking-context($ts-drawer-over-drawer-z-index);
   @include elevation-element(menu);
   $high-contrast-border: solid 1px currentColor;
-  background-color: color(utility, light);
+  background-color: color(pure);
   bottom: 0;
   box-sizing: border-box;
-  display: block;
+
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   position: absolute;
   top: 0;
   z-index: $ts-drawer-backdrop-z-index;
+
   &.ts-drawer--push {
     z-index: $ts-drawer-push-drawer-z-index;
   }
 
   &.ts-drawer--end {
     right: 0;
+  }
+
+  .ts-drawer-header {
+    border-bottom: 1px solid color(utility, light);
+    display: block;
+    max-width: inherit;
+    overflow-wrap: break-word;
+    top: 0;
+    width: inherit;
+    z-index: $ts-drawer-header-footer-z-index;
+  }
+  .ts-drawer-footer {
+    border-top: 1px solid color(utility, light);
+    bottom: 0;
+    max-width: inherit;
+    overflow-wrap: break-word;
+    width: inherit;
+    z-index: $ts-drawer-header-footer-z-index;
   }
 }
 

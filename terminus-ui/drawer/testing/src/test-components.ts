@@ -227,6 +227,27 @@ export class SimpleDrawer {
   public expandedSize = null;
 }
 
+@Component({
+  template: `
+    <ts-drawer-container>
+        <ts-drawer>
+            <ts-drawer-header>
+                HEADER
+            </ts-drawer-header>
+            <button>
+                BUTTON
+            </button>
+            <ts-drawer-footer>
+                FOOTER
+            </ts-drawer-footer>
+        </ts-drawer>
+        <ts-drawer-content>
+            CONTENT
+        </ts-drawer-content>
+    </ts-drawer-container>
+  `,
+})
+export class DrawerWithHeaderAndFooter { }
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -245,6 +266,7 @@ export class SimpleDrawer {
     MultiDrawerSameSidePush,
     SetMargins,
     SimpleDrawer,
+    DrawerWithHeaderAndFooter,
   ],
 })
 export class TsDrawerContainerTestComponentsModule { }
