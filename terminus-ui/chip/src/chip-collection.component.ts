@@ -36,6 +36,7 @@ import {
 
 
 // Increasing integer for generating unique ids for chip-collection components.
+// @internal
 let nextUniqueId = 0;
 
 /**
@@ -75,7 +76,7 @@ export class TsChipCollectionChange {
  *              [value]="myValue"
  *              (collectionChange)="collectionChange($event)"
  *              (removed)="chipRemoved($event)"
- *              (tabUpdateFocus)="tabFocusUpdated($event)"
+ *              (tabUpdateFocus)="tabFocusUpdated()"
  * ></ts-chip-collection>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/chip</example-url>
@@ -89,7 +90,7 @@ export class TsChipCollectionChange {
     '[class.ts-chip-collection--disabled]': 'isDisabled',
     '[class.ts-chip-collection--vertical]': 'orientation === "vertical"',
     '[class.ts-chip-collection--selectable]': 'isSelectable',
-    '[attr.tabindex]': 'isDisabled ? null : _tabIndex',
+    '[attr.tabindex]': 'isDisabled ? null : tabIndex',
     '[attr.aria-describedby]': 'ariaDescribedby || null',
     '[attr.aria-disabled]': 'isDisabled',
     '[attr.aria-multiselectable]': 'allowMultipleSelections',
@@ -135,12 +136,17 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
 
   /**
    * The aria-describedby attribute on the chip collection for improved a11y.
+   *
+   * @internal
    */
   public ariaDescribedby!: string;
 
   /**
    * User defined tab index.
+   *
    * When it is not null, use user defined tab index. Otherwise use _tabIndex
+   *
+   * @internal
    */
   public _userTabIndex: number | null = null;
 
@@ -148,31 +154,43 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
    * When a chip is destroyed, we store the index of the destroyed chip until the chips
    * query list notifies about the update. This is necessary because we cannot determine an
    * appropriate chip that should receive focus until the array of chips updated completely.
+   *
+   * @internal
    */
   public lastDestroyedChipIndex: number | null = null;
 
   /**
    * The FocusKeyManager which handles focus.
+   *
+   * @internal
    */
   public keyManager!: FocusKeyManager<TsChipComponent>;
 
   /**
    * Function when touched
+   *
+   * @internal
    */
   public onTouched = () => { };
 
   /**
    * Function when changed
+   *
+   * @internal
    */
   public onChange: (value: string[]) => void = () => { };
 
   /**
    * Manage selections
+   *
+   * @internal
    */
   public selectionModel!: SelectionModel<TsChipComponent>;
 
   /**
    * Combined stream of all of the child chips' selection change events.
+   *
+   * @internal
    */
   public get chipSelectionChanges(): Observable<TsChipSelectionChange> {
     return merge(...this.chips.map(chip => chip.selectionChange));
@@ -180,6 +198,8 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
 
   /**
    * Combined stream of all of the child chips' focus change events.
+   *
+   * @internal
    */
   public get chipFocusChanges(): Observable<TsChipEvent> {
     return merge(...this.chips.map(chip => chip.onFocus));
@@ -187,6 +207,8 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
 
   /**
    * Combined stream of all of the child chips' blur change events.
+   *
+   * @internal
    */
   public get chipBlurChanges(): Observable<TsChipEvent> {
     return merge(...this.chips.map(chip => chip.blurred));
@@ -194,6 +216,8 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
 
   /**
    * Combined stream of all of the child chips' remove change events.
+   *
+   * @internal
    */
   public get chipDestroyChanges(): Observable<TsChipEvent> {
     return merge(...this.chips.map(chip => chip.destroyed));
@@ -219,7 +243,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get role(): string | null {
     return this._role;
   }
-  public _role: string | null = null;
+  private _role: string | null = null;
 
   /**
    * The chip components contained within this chip collection.
@@ -256,7 +280,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get id(): string {
     return this._id;
   }
-  protected _id: string = this.uid;
+  private _id: string = this.uid;
 
   /**
    * Get and set disable state
@@ -269,7 +293,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get isDisabled(): boolean {
     return this._disabled;
   }
-  protected _disabled = false;
+  private _disabled = false;
 
   /**
    * Get and set readonly state
@@ -281,7 +305,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get isReadonly(): boolean {
     return this._readonly;
   }
-  protected _readonly = false;
+  private _readonly = false;
 
   /**
    * Whether or not this chip collection is selectable. When a chip collection is not selectable,
@@ -295,7 +319,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get isSelectable(): boolean {
     return this._selectable;
   }
-  protected _selectable = true;
+  private _selectable = true;
 
   /**
    * Orientation of the chip - either horizontal or vertical. Default to horizontal.
@@ -314,7 +338,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get tabIndex(): number {
     return this._tabIndex;
   }
-  public _tabIndex = 0;
+  private _tabIndex = 0;
 
   /**
    * Set and get chip collection value
@@ -326,7 +350,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   public get value(): string[] {
     return this._value;
   }
-  protected _value = [''];
+  private _value = [''];
 
   /**
    * Event emitted when the chip collection value has been changed by the user.
@@ -344,7 +368,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
    * Emitted when tab pressed with chip focused
    */
   @Output()
-  public readonly tabUpdateFocus = new EventEmitter();
+  public readonly tabUpdateFocus = new EventEmitter<void>();
 
 
   constructor(
@@ -447,6 +471,8 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   /**
    * Pass events to the keyboard manager.
    *
+   * @internal
+   *
    * @param event - They KeyboardEvent
    */
   public keydown(event: KeyboardEvent): void {
@@ -500,8 +526,10 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
 
   /**
    * Check the tab index as you should not be allowed to focus an empty list.
+   *
+   * @internal
    */
-  protected updateTabIndex(): void {
+  private updateTabIndex(): void {
     // If we have 0 chips, we should not allow keyboard focus
     this.tabIndex = this._userTabIndex || (this.chips.length === 0 ? -1 : 0);
   }
@@ -510,7 +538,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
   /**
    * If the amount of chips changed, we need to update the key manager state and focus the next closest chip.
    */
-  protected updateFocusForDestroyedChips(): void {
+  private updateFocusForDestroyedChips(): void {
     // Move focus to the closest chip. If no other chips remain, focus the chip-collection itself.
     if (this.lastDestroyedChipIndex !== null) {
       if (this.chips.length) {

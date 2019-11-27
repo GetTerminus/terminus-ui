@@ -16,7 +16,6 @@ import {
   createKeyboardEvent,
   createMouseEvent,
   dispatchEvent,
-  dispatchMouseEvent,
   typeInElement,
 } from '@terminus/ngx-tools/testing';
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
@@ -52,7 +51,6 @@ describe(`TsChipCollection`, function() {
   let chipElements;
   let chipDebugElement;
   let chipNativeElement;
-  let chipCollectionDebugElement;
   let chipCollectionElement;
   let chipCollectionInstance;
   let chipCollectionNativeElement;
@@ -356,7 +354,7 @@ describe(`TsChipCollection`, function() {
     });
 
     test(`should set first item active when use HOME key`, fakeAsync(function() {
-      const element = getChipInstance(fixture)['elementRef'].nativeElement as HTMLElement;
+      const element = getChipInstance(fixture)['elementRef'].nativeElement;
       chipCollectionInstance.keyManager.setFirstItemActive = jest.fn();
 
       const event = document.createEvent('KeyboardEvent');
