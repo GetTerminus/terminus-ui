@@ -1,3 +1,10 @@
+# [15.4.0](https://github.com/GetTerminus/terminus-ui/compare/v15.3.11...v15.4.0) (2019-11-27)
+
+
+### Features
+
+* **drawer:** fixed header and footer ([#1785](https://github.com/GetTerminus/terminus-ui/issues/1785)) ([aedd3bd](https://github.com/GetTerminus/terminus-ui/commit/aedd3bd))
+
 ## [15.3.11](https://github.com/GetTerminus/terminus-ui/compare/v15.3.10...v15.3.11) (2019-11-26)
 
 
