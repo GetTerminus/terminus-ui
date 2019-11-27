@@ -22,6 +22,7 @@ import { take } from 'rxjs/operators';
 
 
 // Unique ID for each instance
+// @internal
 let nextUniqueId = 0;
 
 
@@ -128,26 +129,36 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
   /**
    * Emits when the chip is focused
+   *
+   * @internal
    */
   public readonly onFocus = new Subject<TsChipEvent>();
 
   /**
    * Whether the chip has focus
+   *
+   * @internal
    */
   public hasFocus = false;
 
   /**
    * Whether the chip collection is selectable
+   *
+   * @internal
    */
   public chipCollectionSelectable = true;
 
   /**
    * Whether the chip collection is in multi-selection mode.
+   *
+   * @internal
    */
   public chipCollectionMultiple = false;
 
   /**
    * The ARIA selected applied to the chip.
+   *
+   * @internal
    */
   public get ariaSelected(): string | null {
     // NOTE: Remove the `aria-selected` when the chip is deselected in single-selection mode, because
@@ -305,6 +316,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
   /**
    * Emit the 'clicked' event
+   *
+   * @internal
    */
   public click(event: MouseEvent): void {
     this.clicked.emit(new TsChipClickEvent(this, event));
@@ -380,6 +393,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   /**
    * Handles click events on the chip.
    *
+   * @internal
    * @param event - click event
    */
   public handleClick(event: MouseEvent): void {
@@ -404,6 +418,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   /**
    * Handle custom key presses.
    *
+   * @internal
    * @param event - keyboard event
    */
   public handleKeydown(event: KeyboardEvent): void {
