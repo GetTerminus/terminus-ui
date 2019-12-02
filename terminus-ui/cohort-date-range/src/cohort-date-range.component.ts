@@ -6,23 +6,27 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+} from '@angular/forms';
+import { TsOption } from '@terminus/ui/option';
 
 /**
  * Represents date cohort object that passed in
  */
-export interface TsDateCohort {
+export interface TsDateCohort extends TsOption {
   display: string;
   range: {
-    startDate: string | Date;
-    endDate: string | Date;
+    start: string | Date;
+    end: string | Date;
   };
 }
 
 /**
  * Cohort date range change event interface
  */
-export interface TsCohortDateChangeEvent{
+export interface TsCohortDateChangeEvent {
   start: string | Date;
   end: string | Date;
 }
@@ -68,11 +72,15 @@ export class TsCohortDateRangeChanged {
 export class TsCohortDateRangeComponent {
   /**
    * Define whether date range is disabled
+   *
+   * @internal
    */
   public disableDateRange = false;
 
   /**
    * Initialize the date range with empty start and end date
+   *
+   * @internal
    */
   public formGroup = this.formBuilder.group({
     dateRange: this.formBuilder.group({
@@ -83,8 +91,12 @@ export class TsCohortDateRangeComponent {
 
   /**
    * Get reference of dateRange from formGroup
+   *
+   * @internal
    */
-  public dateRangeFg = this.formGroup.get('dateRange');
+  public get dateRangeFormGroup(): AbstractControl {
+    return this.formGroup.get('dateRange') as AbstractControl;
+  }
 
   /**
    * Define whether custom date is allowed
@@ -108,7 +120,7 @@ export class TsCohortDateRangeComponent {
    * Cohort change event emitter
    */
   @Output()
-  public readonly cohortDateRangeChanged: EventEmitter<TsCohortDateRangeChanged> = new EventEmitter();
+  public readonly cohortDateRangeChanged = new EventEmitter<TsCohortDateRangeChanged>();
 
 
   constructor(
@@ -116,8 +128,9 @@ export class TsCohortDateRangeComponent {
   ) { }
 
   /**
-   * Called when cohort date range changed and emit cohortDaterangeChanged event
+   * Emit the change event
    *
+   * @internal
    * @param event - triggered by date range change
    */
   public cohortDateRangeChange(event: TsCohortDateChangeEvent): void {
@@ -127,15 +140,18 @@ export class TsCohortDateRangeComponent {
   /**
    * Called when selection changed
    *
+   * @internal
    * @param event - TsSelectChangeEvent
    */
   public selectionChange(event): void {
     const startCtrl = this.formGroup.get('dateRange.startDate');
     const endCtrl = this.formGroup.get('dateRange.endDate');
+
     // istanbul ignore else
     if (startCtrl && endCtrl) {
       const startValue = event.value.start;
       const endValue = event.value.end;
+
       if (startValue && endValue) {
         startCtrl.setValue(startValue);
         endCtrl.setValue(endValue);
@@ -151,6 +167,7 @@ export class TsCohortDateRangeComponent {
   /**
    * Function for tracking for-loops changes
    *
+   * @internal
    * @param index - The item index
    * @return The index
    */

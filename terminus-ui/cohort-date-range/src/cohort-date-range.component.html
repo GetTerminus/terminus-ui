@@ -1,22 +1,21 @@
-<div>
-  <ts-date-range
-    class="ts-cohort-date-range__date-range"
-    [dateFormGroup]="dateRangeFg"
-    [isDisabled]="!allowCustomDates || isDisabled || disableDateRange"
-    (dateRangeChange)="cohortDateRangeChange($event)"
-  ></ts-date-range>
-  <ts-select
-    label="Select a date range"
-    class="ts-cohort-date-range__select"
-    [isDisabled]="isDisabled"
-    (selectionChange)="selectionChange($event)"
+<ts-date-range
+  class="ts-cohort-date-range__date-range"
+  [dateFormGroup]="dateRangeFormGroup"
+  [isDisabled]="!allowCustomDates || isDisabled || disableDateRange"
+  (dateRangeChange)="cohortDateRangeChange($event)"
+></ts-date-range>
+
+<ts-select
+  label="Select a date range"
+  class="ts-cohort-date-range__select"
+  [isDisabled]="isDisabled"
+  (selectionChange)="selectionChange($event)"
+>
+  <ts-option
+    [value]="option.range"
+    [option]="option"
+    *ngFor="let option of cohorts; trackBy: trackByFn"
   >
-    <ts-option
-      [value]="option.range"
-      [option]="option"
-      *ngFor="let option of cohorts; trackBy: trackByFn"
-    >
-      {{ option.display }}
-    </ts-option>
-  </ts-select>
-</div>
+    {{ option.display }}
+  </ts-option>
+</ts-select>

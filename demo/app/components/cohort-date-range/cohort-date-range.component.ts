@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,14 +6,15 @@ import {
 } from '@angular/forms';
 import {
   endOfDay,
-  parseISO,
   startOfDay,
   startOfMonth,
   subDays,
   subMonths,
 } from 'date-fns';
+import { TsCohortDateRangeChanged } from '@terminus/ui/cohort-date-range';
 
 const currentDate: Date = new Date();
+
 
 @Component({
   selector: 'demo-cohort-date-range',
@@ -53,6 +54,7 @@ export class CohortDateRangeComponent {
       end: '',
     },
   }];
+  public lastRange: TsCohortDateRangeChanged | undefined;
 
 
   constructor(
@@ -61,8 +63,9 @@ export class CohortDateRangeComponent {
 
 
 
-  public printRange(formValue: any): void {
-    console.log('DEMO: formValue: ', formValue);
+  public printRange(value: TsCohortDateRangeChanged): void {
+    console.log('DEMO: formValue: ', value);
+    this.lastRange = value;
   }
 
 }
