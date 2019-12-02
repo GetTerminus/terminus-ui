@@ -1,8 +1,12 @@
 @import './../../scss/helpers/spacing';
 
-$SELECT_MIN_WIDTH: 200px;
+.ts-cohort-date-range {
+  display: block;
+}
 
 .ts-select {
+  $SELECT_MIN_WIDTH: 200px;
+
   &.ts-cohort-date-range__select {
     display: inline-block;
     min-width: $SELECT_MIN_WIDTH;

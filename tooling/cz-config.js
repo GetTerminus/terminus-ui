@@ -22,6 +22,7 @@ module.exports = {
     {name: 'Chart'},
     {name: 'Checkbox'},
     {name: 'Chip'},
+    {name: 'CohortDateRange'},
     {name: 'Confirmation'},
     {name: 'Copy'},
     {name: 'CSVEntry'},

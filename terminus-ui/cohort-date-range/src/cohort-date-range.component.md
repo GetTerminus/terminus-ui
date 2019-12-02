@@ -8,6 +8,7 @@
   - [Inputs to the component](#inputs-to-the-component)
     - [allowCustomDates](#allowcustomdates)
     - [Disable the component](#disable-the-component)
+  - [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -107,3 +108,16 @@ The entire component can be disabled:
  [isDisabled]="true"
 ></ts-cohort-date-range>
 ```
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/cohort-date-range/testing`;
+
+[[source]][test-helpers-src]
+
+| Function                |
+|------------------------|
+| `getCohortDebugElement` |
+
+
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/cohort-date-range/testing/src/test-helpers.ts

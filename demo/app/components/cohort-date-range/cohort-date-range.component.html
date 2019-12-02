@@ -9,4 +9,9 @@
     ></ts-cohort-date-range>
 
   </form>
+
+<pre *ngIf="lastRange">
+  Start: {{ lastRange.start }}
+  End: {{ lastRange.end }}
+</pre>
 </ts-card>
