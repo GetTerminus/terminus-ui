@@ -29,7 +29,7 @@ import { take } from 'rxjs/operators';
 
 import { TsOptionDisplayDirective } from './option-display.directive';
 
-interface TsOption {
+export interface TsOption {
   isDisabled?: boolean;
   children?: TsOption[];
 }
