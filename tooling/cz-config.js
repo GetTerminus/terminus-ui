@@ -38,6 +38,7 @@ module.exports = {
     {name: 'Logo'},
     {name: 'Menu'},
     {name: 'Navigation'},
+    {name: 'Option'},
     {name: 'Paginator'},
     {name: 'Pipes'},
     {name: 'RadioGroup'},
