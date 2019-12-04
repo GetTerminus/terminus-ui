@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Input,
   isDevMode,
@@ -125,7 +124,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Define the default component ID
    */
-  protected _uid = `ts-file-upload-${nextUniqueId++}`;
+  protected uid = `ts-file-upload-${nextUniqueId++}`;
 
   /**
    * A flag that represents an in-progress drag movement
@@ -145,13 +144,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Store reference to the generated file input
    */
-  private virtualFileInput: HTMLInputElement;
-
-  /**
-   * Reflect the ID back to the DOM
-   */
-  @HostBinding('attr.id')
-  public publicID: string = this.id;
+  private readonly virtualFileInput: HTMLInputElement;
 
   /**
    * Provide access to the file preview element
@@ -163,11 +156,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * Get the file select button text
    */
   public get buttonMessage(): string {
-    if (this.dragInProgress) {
-      return `Drop File${this.multiple ? 's' : ''}`;
-    }
-    return `Select File${this.multiple ? 's' : ''}`;
-
+    return this.dragInProgress ? `Drop File${this.multiple ? 's' : ''}` : `Select File${this.multiple ? 's' : ''}`;
   }
 
   /**
@@ -265,8 +254,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define if the 'select files' button should be visible. DO NOT USE.
-   *
-   * TODO: This should be removed once UX/Product decide if they want the button.
    */
   @Input()
   public hideButton = false;
@@ -276,23 +263,25 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   @Input()
   public set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this.uid;
   }
   public get id(): string {
     return this._id;
   }
-  protected _id!: string;
+  private _id: string = this.uid;
+
+  /**
+   * Define if the component is disabled
+   */
+  @Input()
+  public isDisabled = false;
 
   /**
    * Define the maximum file size in kilobytes
    */
   @Input()
   public set maximumKilobytesPerFile(value: number) {
-    if (!value) {
-      return;
-    }
-
-    this._maximumKilobytesPerFile = value;
+    this._maximumKilobytesPerFile = value || MAXIMUM_KILOBYTES_PER_FILE;
   }
   public get maximumKilobytesPerFile(): number {
     return this._maximumKilobytesPerFile;
@@ -308,7 +297,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
       for (const value of values) {
         const v = value.split(':');
         const minPartsForValidRatio = 2;
-        if ((v.length !== minPartsForValidRatio) || (!isNumber(v[0]) && !isNumber(v[1]))) {
+        if ((v.length !== minPartsForValidRatio) || (!isNumber(v[0]) || !isNumber(v[1]))) {
           throw new Error('TsFileUploadComponent: An array of image ratios should be formatted as ["1:2", "3:4"]');
         }
       }
@@ -319,7 +308,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     return this.parseRatioToString(this._ratioConstraints);
   }
   private _ratioConstraints: Array<ImageRatio> | undefined;
-
 
   /**
    * Define if multiple files may be uploaded
@@ -393,59 +381,71 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * Event emitted when the user's cursor enters the field while dragging a file
    */
   @Output()
-  public readonly enter: EventEmitter<boolean> = new EventEmitter();
+  public readonly enter = new EventEmitter<boolean>();
 
   /**
    * Event emitted when the user's cursor exits the field while dragging a file
    */
   @Output()
-  public readonly exit: EventEmitter<boolean> = new EventEmitter();
+  public readonly exit = new EventEmitter<boolean>();
 
   /**
    * Event emitted when the user drops or selects a file
    */
   @Output()
-  public readonly selected: EventEmitter<TsSelectedFile> = new EventEmitter();
+  public readonly selected = new EventEmitter<TsSelectedFile>();
 
   /**
    * Event emitted when the user drops or selects multiple files
    */
   @Output()
-  public readonly selectedMultiple: EventEmitter<File[]> = new EventEmitter();
+  public readonly selectedMultiple = new EventEmitter<File[]>();
 
   /**
    * Event emitted when the user clears a loaded file
    */
   @Output()
-  public readonly cleared: EventEmitter<boolean> = new EventEmitter();
+  public readonly cleared = new EventEmitter<boolean>();
 
   /**
    * HostListeners
    */
   @HostListener('dragover', ['$event'])
   public handleDragover(event: TsFileUploadDragEvent) {
-    this.preventAndStopEventPropagation(event);
-    this.enter.emit(true);
-    this.dragInProgress = true;
+    // istanbul ignore else
+    if (!this.isDisabled) {
+      this.preventAndStopEventPropagation(event);
+      this.enter.emit(true);
+      this.dragInProgress = true;
+    }
   }
 
   @HostListener('dragleave', ['$event'])
   public handleDragleave(event: TsFileUploadDragEvent) {
-    this.preventAndStopEventPropagation(event);
-    this.exit.emit(true);
-    this.dragInProgress = false;
+    // istanbul ignore else
+    if (!this.isDisabled) {
+      this.preventAndStopEventPropagation(event);
+      this.exit.emit(true);
+      this.dragInProgress = false;
+    }
   }
 
   @HostListener('drop', ['$event'])
   public handleDrop(event: TsFileUploadDragEvent) {
-    this.preventAndStopEventPropagation(event);
-    this.dragInProgress = false;
-    this.collectFilesFromEvent(event);
+    // istanbul ignore else
+    if (!this.isDisabled) {
+      this.preventAndStopEventPropagation(event);
+      this.dragInProgress = false;
+      this.collectFilesFromEvent(event);
+    }
   }
 
   @HostListener('click')
   public handleClick() {
-    this.promptForFiles();
+    // istanbul ignore else
+    if (!this.isDisabled) {
+      this.promptForFiles();
+    }
   }
 
 
@@ -457,9 +457,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   ) {
     super();
     this.virtualFileInput = this.createFileInput();
-
-    // Force setter to be called in case the ID was not specified.
-    this.id = this.id;
   }
 
   /**
@@ -500,7 +497,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
 
   /**
-   * Update the virtual file imput when the change event is fired
+   * Update the virtual file input when the change event is fired
    */
   public ngAfterContentInit(): void {
     this.virtualFileInput.addEventListener('change', this.onVirtualInputElementChange.bind(this));
@@ -669,13 +666,18 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    * @param event - The event
    */
   private onVirtualInputElementChange(event: Event): void {
-    this.collectFilesFromEvent(event);
-    this.virtualFileInput.value = '';
+    // istanbul ignore else
+    if (!this.isDisabled) {
+      this.collectFilesFromEvent(event);
+      this.virtualFileInput.value = '';
+    }
   }
 
 
   /*
-   * Stops event propogation
+   * Stops event propagation
+   *
+   * NOTE: Making this static seems to break our tests.
    */
   private preventAndStopEventPropagation(event: Event): void {
     event.preventDefault();

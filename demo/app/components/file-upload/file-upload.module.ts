@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsFileUploadModule } from '@terminus/ui/file-upload';
@@ -17,6 +18,7 @@ import { FileUploadComponent } from './file-upload.component';
   imports: [
     CommonModule,
     FileUploadRoutingModule,
+    FlexLayoutModule,
     FormsModule,
     TsCardModule,
     TsFileUploadModule,

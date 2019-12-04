@@ -273,10 +273,7 @@ export class TsSelectedFile {
    */
   private isSame(number1: number, number2: number): boolean {
     const minimumAmountToConsiderMatch = .001;
-    if (Math.abs((number1 - number2) / number1) < minimumAmountToConsiderMatch) {
-      return true;
-    }
-    return false;
+    return Math.abs((number1 - number2) / number1) < minimumAmountToConsiderMatch;
   }
 
 }

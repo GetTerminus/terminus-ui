@@ -164,7 +164,7 @@ export class FileUploadComponent {
   maxKb: number | undefined;
   mimeTypeOptions = ['image/png', 'image/jpg', 'image/jpeg', 'text/csv', 'video/mp4', 'video/x-flv', 'video/webm', 'video/quicktime', 'video/mpeg'];
   ratioConstraints = ['1:2', '1.9:1', '5:1'];
-
+  disabled = false;
 
   selected(e) {
     console.log('DEMO: selected: ', e);

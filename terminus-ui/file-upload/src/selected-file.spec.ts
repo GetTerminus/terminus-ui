@@ -1,4 +1,3 @@
-
 import { TsFileImageDimensionConstraints } from './image-dimension-constraints';
 import { TsFileAcceptedMimeTypes } from './mime-types';
 import { TsSelectedFile } from './selected-file';
@@ -33,8 +32,8 @@ const FILE_BLOB = new Blob(
   ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAAA1BMVEXXbFn0Q9OUAAAADklEQVR4AWMYRmAUjAIAAtAAAaW+yXMAAAAASUVORK5CYII='],
   { type: 'image/png' },
 );
-FILE_BLOB.lastModifiedDate = new Date();
-FILE_BLOB.name = 'foo';
+FILE_BLOB['lastModifiedDate'] = new Date();
+FILE_BLOB['name'] = 'foo';
 jest.spyOn(FILE_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_MOCK = FILE_BLOB as File;
 
@@ -43,8 +42,8 @@ const FILE_CSV_BLOB = new Blob(
   ['my csv value'],
   { type: 'text/csv' },
 );
-FILE_CSV_BLOB.lastModifiedDate = new Date();
-FILE_CSV_BLOB.name = 'myCSV';
+FILE_CSV_BLOB['lastModifiedDate'] = new Date();
+FILE_CSV_BLOB['name'] = 'myCSV';
 jest.spyOn(FILE_CSV_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_CSV_MOCK = FILE_CSV_BLOB as File;
 
@@ -53,12 +52,10 @@ const FILE_VIDEO_BLOB = new Blob(
   ['my video value'],
   { type: 'video/mp4' },
 );
-FILE_VIDEO_BLOB.lastModifiedDate = new Date();
-FILE_VIDEO_BLOB.name = 'myVideo';
+FILE_VIDEO_BLOB['lastModifiedDate'] = new Date();
+FILE_VIDEO_BLOB['name'] = 'myVideo';
 jest.spyOn(FILE_VIDEO_BLOB, 'size', 'get').mockReturnValue(3 * 1024);
 const FILE_VIDEO_MOCK = FILE_VIDEO_BLOB as File;
-
-
 
 
 describe(`TsSelectedFile`, function() {
@@ -78,7 +75,6 @@ describe(`TsSelectedFile`, function() {
     size,
     ratio,
   );
-
 
   // Mock `FileReader` and `Image`:
   beforeEach(() => {
@@ -114,9 +110,7 @@ describe(`TsSelectedFile`, function() {
       }
     }
     (window as any).Image = jest.fn(() => new DummyImage());
-
   });
-
 
   describe(`constructor`, () => {
 
@@ -134,7 +128,6 @@ describe(`TsSelectedFile`, function() {
       });
       expect.assertions(6);
     });
-
 
     test(`should set top-level items and validations for videos`, done => {
       const file = createFile(FILE_VIDEO_MOCK, undefined, ['video/mp4']);
@@ -154,7 +147,6 @@ describe(`TsSelectedFile`, function() {
 
   });
 
-
   describe(`width`, () => {
 
     test(`should return the width or zero`, () => {
@@ -167,7 +159,6 @@ describe(`TsSelectedFile`, function() {
 
   });
 
-
   describe(`height`, () => {
 
     test(`should return the height or zero`, () => {
@@ -179,7 +170,6 @@ describe(`TsSelectedFile`, function() {
     });
 
   });
-
 
   describe(`isCSV`, () => {
 
@@ -195,7 +185,6 @@ describe(`TsSelectedFile`, function() {
 
   });
 
-
   describe(`isImage`, () => {
 
     test(`should return true is the file is an image`, () => {
@@ -208,7 +197,6 @@ describe(`TsSelectedFile`, function() {
     });
 
   });
-
 
   describe(`isVideo`, () => {
 
@@ -223,7 +211,6 @@ describe(`TsSelectedFile`, function() {
     });
 
   });
-
 
   describe(`fileContents`, () => {
 
@@ -257,7 +244,7 @@ describe(`TsSelectedFile`, function() {
           public onload = jest.fn();
           public addEventListener = jest.fn();
           public readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) {
-            this.onload({} as Event);
+            this.onload!({} as ProgressEvent);
           });
           public result = str2ab(FILE_BLOB);
         }
@@ -277,7 +264,7 @@ describe(`TsSelectedFile`, function() {
           public onload = jest.fn();
           public addEventListener = jest.fn();
           public readAsDataURL = jest.fn().mockImplementation(function(this: FileReader) {
-            this.onload({} as Event);
+            this.onload!({} as ProgressEvent);
           });
           public result = str2ab(FILE_CSV_BLOB);
         }
@@ -293,10 +280,7 @@ describe(`TsSelectedFile`, function() {
       });
 
     });
-
-
   });
-
 
   describe(`isValid`, () => {
     const file = createFile();
@@ -334,7 +318,6 @@ describe(`TsSelectedFile`, function() {
 
   });
 
-
   describe(`determineImageDimensions`, () => {
 
     test(`should set validation to true and exit if the file is not an image`, done => {
@@ -351,7 +334,6 @@ describe(`TsSelectedFile`, function() {
       expect.assertions(4);
     });
 
-
     test(`should still seed the FileReader for non-image files`, done => {
       const file = createFile(FILE_CSV_MOCK);
       file.fileLoaded$.subscribe(f => {
@@ -362,7 +344,6 @@ describe(`TsSelectedFile`, function() {
       });
       expect.assertions(1);
     });
-
 
     test(`should set dimensions and call callback`, () => {
       createFile().fileLoaded$.subscribe(f => {
@@ -378,28 +359,25 @@ describe(`TsSelectedFile`, function() {
 
   });
 
-
   describe(`validateImageRatio`, () => {
 
     test(`should return true if no constraints exist`, () => {
       const file = createFile();
-      expect(file.validateImageRatio(undefined)).toEqual(true);
+      expect(file['validateImageRatio'](undefined)).toEqual(true);
     });
-
 
     test(`should return true if ratio are valid`, () => {
       const file = createFile();
-      const result = file.validateImageRatio([{
+      const result = file['validateImageRatio']([{
         widthRatio: 1,
         heightRatio: 1,
       }]);
       expect(result).toEqual(true);
     });
 
-
     test(`should return false if ratio are not valid`, () => {
       const file = createFile();
-      const result = file.validateImageRatio([{
+      const result = file['validateImageRatio']([{
         widthRatio: 2,
         heightRatio: 1,
       }]);
@@ -412,16 +390,14 @@ describe(`TsSelectedFile`, function() {
 
     test(`should return true if no constraints exist`, () => {
       const file = createFile();
-      expect(file.validateImageDimensions(undefined)).toEqual(true);
+      expect(file['validateImageDimensions'](undefined)).toEqual(true);
     });
-
 
     test(`should return true if dimensions are valid`, () => {
       const file = createFile();
-      const result = file.validateImageDimensions(CONSTRAINTS_MOCK);
+      const result = file['validateImageDimensions'](CONSTRAINTS_MOCK);
       expect(result).toEqual(true);
     });
-
 
     test(`should return false if dimensions are not valid`, () => {
       const file = createFile();
@@ -447,7 +423,7 @@ describe(`TsSelectedFile`, function() {
           },
         },
       ];
-      const result = file.validateImageDimensions(constraints);
+      const result = file['validateImageDimensions'](constraints);
       expect(result).toEqual(false);
     });
 

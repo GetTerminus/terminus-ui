@@ -6,12 +6,14 @@
       <ts-toggle [(ngModel)]="multiple">Allow multiple selections</ts-toggle>
       <br>
       <ts-toggle [(ngModel)]="hideButton">Hide button</ts-toggle>
+      <br>
+      <ts-toggle [(ngModel)]="disabled">Disabled</ts-toggle>
     </div>
     <div fxLayout="row" fxLayoutGap="24px">
       <div>
         <ts-input label="Max Size (kb)" type="number" [(ngModel)]="maxKb"></ts-input>
       </div>
-      <div>
+      <div fxFlex="noshrink">
         <ts-select
           label="Allowed MIME types"
           [allowMultiple]="true"
@@ -30,6 +32,7 @@
 
 <ts-card tsVerticalSpacing>
   <ts-file-upload
+    [isDisabled]="disabled"
     [hideButton]="hideButton"
     [maximumKilobytesPerFile]="maxKb"
     [multiple]="multiple"

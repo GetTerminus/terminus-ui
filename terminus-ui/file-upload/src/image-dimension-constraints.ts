@@ -1,6 +1,6 @@
 
 /**
- * An indiviual size constraint
+ * An individual size constraint
  */
 export interface TsFileImageDimensionContraint {
   height: {
