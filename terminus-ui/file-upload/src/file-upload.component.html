@@ -1,8 +1,10 @@
 <div
   class="c-file-upload qa-file-upload"
+  [class.c-file-upload--disabled]="isDisabled"
   [class.c-file-upload--drag]="dragInProgress"
   [class.c-file-upload--file]="file"
   [class.c-file-upload--error]="file && !file.isValid"
+  [id]="id"
   tabindex="1"
   fxLayout="column"
 >
@@ -85,7 +87,7 @@
       class="c-file-upload__prompt qa-file-upload-prompt"
       [class.c-file-upload__prompt--hidden]="hideButton"
       [theme]="theme"
-      [isDisabled]="dragInProgress"
+      [isDisabled]="dragInProgress || isDisabled"
       (clicked)="promptForFiles()"
     >
       {{ buttonMessage }}

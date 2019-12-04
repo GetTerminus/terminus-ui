@@ -21,7 +21,9 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   // Top level styles belong here
   .c-file-upload {
-    cursor: cursor(pointer);
+    &:not(.c-file-upload--disabled) {
+      cursor: cursor(pointer);
+    }
   }
 
   // If followed directly by another instance, add vertical spacing
@@ -39,7 +41,9 @@ $drag-bg: lighten(color(primary, xlight), 50%);
 
   &:hover,
   &:focus {
-    border-color: color(primary, xlight);
+    &:not(.c-file-upload--disabled) {
+      border-color: color(primary, xlight);
+    }
   }
 
   // Class added when dragging over
@@ -61,6 +65,12 @@ $drag-bg: lighten(color(primary, xlight), 50%);
   // Class added if any validation fails
   &--error {
     border-color: color(warn);
+  }
+
+  &.c-file-upload--disabled {
+    .c-file-upload__empty {
+      color: color(utility, light);
+    }
   }
 
   // <div> container for the selected file
