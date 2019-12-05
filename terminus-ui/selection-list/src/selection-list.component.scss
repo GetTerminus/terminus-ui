@@ -18,6 +18,12 @@ $transition-duration: 200;
       width: 94%;
     }
   }
+
+  &.ts-selection-list--disabled {
+    .ts-selection-list__input {
+      cursor: cursor(not-allowed);
+    }
+  }
 }
 
 .ts-selection-list__input-wrap {

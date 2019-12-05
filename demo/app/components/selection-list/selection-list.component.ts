@@ -29,6 +29,8 @@ export type DEMOS
   templateUrl: './selection-list.component.html',
 })
 export class SelectionListComponent implements OnInit, OnDestroy {
+  public isDisabled = false;
+
   // Data
   public states = STATES.slice();
 
