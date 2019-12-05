@@ -1,3 +1,11 @@
+## [15.5.1](https://github.com/GetTerminus/terminus-ui/compare/v15.5.0...v15.5.1) (2019-12-05)
+
+
+### Bug Fixes
+
+* **CohortDateRange:** cleanup, correctly export test helpers ([e6b951a](https://github.com/GetTerminus/terminus-ui/commit/e6b951a))
+* **Option:** correct TsOption export ([6cba73b](https://github.com/GetTerminus/terminus-ui/commit/6cba73b))
+
 # [15.5.0](https://github.com/GetTerminus/terminus-ui/compare/v15.4.0...v15.5.0) (2019-12-05)
 
 
