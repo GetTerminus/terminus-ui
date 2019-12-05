@@ -1,3 +1,10 @@
+## [15.5.2](https://github.com/GetTerminus/terminus-ui/compare/v15.5.1...v15.5.2) (2019-12-05)
+
+
+### Bug Fixes
+
+* **Chip:** correct spacing between chips in vertical mode ([0688371](https://github.com/GetTerminus/terminus-ui/commit/0688371)), closes [#1803](https://github.com/GetTerminus/terminus-ui/issues/1803)
+
 ## [15.5.1](https://github.com/GetTerminus/terminus-ui/compare/v15.5.0...v15.5.1) (2019-12-05)
 
 
