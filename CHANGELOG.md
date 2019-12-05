@@ -1,3 +1,10 @@
+# [15.5.0](https://github.com/GetTerminus/terminus-ui/compare/v15.4.0...v15.5.0) (2019-12-05)
+
+
+### Features
+
+* **FileUpload:** support disabled mode ([f85857b](https://github.com/GetTerminus/terminus-ui/commit/f85857b)), closes [#1810](https://github.com/GetTerminus/terminus-ui/issues/1810)
+
 # [15.4.0](https://github.com/GetTerminus/terminus-ui/compare/v15.3.11...v15.4.0) (2019-11-27)
 
 
