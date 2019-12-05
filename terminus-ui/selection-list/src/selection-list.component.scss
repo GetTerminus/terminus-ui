@@ -12,6 +12,12 @@ $transition-duration: 200;
 .ts-selection-list {
   cursor: cursor(pointer);
   display: block;
+
+  &.ts-selection-list--single {
+    .ts-selection-list__input {
+      width: 94%;
+    }
+  }
 }
 
 .ts-selection-list__input-wrap {
