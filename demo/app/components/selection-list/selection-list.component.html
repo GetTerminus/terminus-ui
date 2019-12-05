@@ -1,24 +1,31 @@
 
 <ts-card tsVerticalSpacing fxFlex>
+  <h3 tsCardTitle tsVerticalSpacing>
+    SelectionList w/complex object (allowMultiple)
+  </h3>
+
+  <div tsVerticalSpacing>
+    <button (click)="seedSelections(complexMultipleControl)" tabindex="-1">
+      Seed selections
+    </button>
+    <br>
+    <label>
+      Disable
+      <input type="checkbox" [(ngModel)]="isDisabled">
+    </label>
+  </div>
+
   <form
     novalidate
     fxLayout="column"
     fxLayout.gt-sm="row"
     fxLayoutGap="1rem"
   >
-    <h3 tsCardTitle tsVerticalSpacing>
-      SelectionList w/complex object (allowMultiple)
-    </h3>
-
-    <div tsVerticalSpacing>
-      <button (click)="seedSelections(complexMultipleControl)" tabindex="-1">
-        Seed selections
-      </button>
-    </div>
 
     <ts-selection-list
       label="Select states"
       hint="Begin typing to search.."
+      [isDisabled]="isDisabled"
       [formControl]="complexMultipleControl"
       [allowMultiple]="true"
       [reopenAfterSelection]="true"

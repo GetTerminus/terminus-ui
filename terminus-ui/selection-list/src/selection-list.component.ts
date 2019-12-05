@@ -260,6 +260,9 @@ export class TsSelectionListComponent implements
    * Determines whether the input has focus
    */
   public get focused(): boolean {
+    if (this.isDisabled) {
+      return false;
+    }
     const el = this.inputElement && this.inputElement.nativeElement;
     return (this.document.activeElement === el) || this.panelOpen;
   }
@@ -395,6 +398,7 @@ export class TsSelectionListComponent implements
    */
   @Input()
   public set value(newValue: string | undefined) {
+    // istanbul ignore else
     if (newValue !== this._value) {
       this._value = newValue;
     }
