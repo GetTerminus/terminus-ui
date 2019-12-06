@@ -17,6 +17,7 @@ import {
 } from '@terminus/ui/chip';
 import { TsOptionModule } from '@terminus/ui/option';
 
+
 @Component({
   template: `
     <ts-chip-collection>
@@ -237,6 +238,31 @@ export class ChipNoValue {
   public options = ['banana'];
 }
 
+@Component({
+  template: `
+    <ts-chip tsChipBadge>foo</ts-chip>
+  `,
+})
+export class ChipBadge {}
+
+
+export type TsChipTestComponent
+  = Autocomplete
+  | RegularChip
+  | ChipBadge
+  | ChipNoValue
+  | DisabledChip
+  | Events
+  | Id
+  | OneChip
+  | NoChip
+  | NotAllowMultipleSelections
+  | NoValueChip
+  | ReadonlyChip
+  | SingleChip
+  | StandardChipCollection
+  | Tabindex
+;
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -253,6 +279,7 @@ export class ChipNoValue {
   declarations: [
     Autocomplete,
     RegularChip,
+    ChipBadge,
     ChipNoValue,
     DisabledChip,
     Events,

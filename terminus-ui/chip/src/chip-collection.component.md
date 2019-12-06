@@ -14,6 +14,7 @@ NOTE: This component does not support a `FormControl`; it is a simple collection
   - [Orientation](#orientation)
   - [Removable](#removable)
   - [Selectable](#selectable)
+- [Badge](#badge)
 - [Events](#events)
   - [Collection events](#collection-events)
   - [Chip events](#chip-events)
@@ -143,6 +144,16 @@ The ability to select chips can be disabled at the collection or chip level.
   </ts-chip>
 </ts-chip-collection>
 ```
+
+## Badge
+
+A chip can be used as a badge by placing the `tsChipBadge` directive on a standalone chip:
+
+```html
+<ts-chip tsChipBadge>My badge!</ts-chip>
+```
+
+This will disable the ability to remove, select or focus the chip.
 
 ## Events
 
