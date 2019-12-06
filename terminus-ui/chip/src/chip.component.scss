@@ -17,13 +17,16 @@
 
   &:focus,
   &:hover {
-    .c-chip {
-      --chip-backgroundColor: var(--chip-backgroundColor-hover);
-      transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+    &:not(.ts-chip--badge) {
+      .c-chip {
+        --chip-backgroundColor: var(--chip-backgroundColor-hover);
+        transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+      }
     }
   }
 
-  &.ts-chip--selected {
+  &.ts-chip--selected,
+  &.ts-chip--badge {
     color: color(pure);
     $themes: primary accent warn;
 
@@ -40,6 +43,11 @@
     }
   }
 
+  &.ts-chip--badge {
+    .c-chip {
+      --chip-color: color(pure);
+    }
+  }
 
   .c-chip {
     @include typography;

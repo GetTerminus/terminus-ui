@@ -13,6 +13,8 @@ import {
   dispatchFakeEvent,
 } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/chip/testing';
+// eslint-disable-next-line no-duplicate-imports
+import { TsChipTestComponent } from '@terminus/ui/chip/testing';
 
 import {
   TsChipComponent,
@@ -22,7 +24,7 @@ import {
 
 
 describe('Chips', () => {
-  let fixture: ComponentFixture<any>;
+  let fixture: ComponentFixture<TsChipTestComponent>;
   let chipDebugElement: DebugElement;
   let chipNativeElement: HTMLElement;
   let chipInstance: TsChipComponent;
@@ -37,7 +39,7 @@ describe('Chips', () => {
 
   describe('TsChip', () => {
     let testComponent;
-    function setup(component = testComponents.SingleChip) {
+    function setup(component: TsChipTestComponent = testComponents.SingleChip) {
       fixture = createComponent(component);
       fixture.detectChanges();
 
@@ -313,6 +315,19 @@ describe('Chips', () => {
 
         expect(event.defaultPrevented).toBe(false);
         expect(event.stopPropagation).toHaveBeenCalled();
+      });
+
+    });
+
+    describe(`tsChipBadge`, () => {
+
+      test(`should disable interactions`, () => {
+        setup(testComponents.ChipBadge);
+
+        expect(chipInstance.isFocusable).toEqual(false);
+        expect(chipInstance.isSelectable).toEqual(false);
+        expect(chipInstance.isRemovable).toEqual(false);
+        expect(chipNativeElement.classList).toContain('ts-chip--badge');
       });
 
     });

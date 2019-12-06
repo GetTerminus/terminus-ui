@@ -183,7 +183,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   public get id(): string {
     return this._id;
   }
-  protected _id: string = this.uid;
+  private _id: string = this.uid;
 
   /**
    * Define if the chip should be disabled
@@ -192,16 +192,16 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   public isDisabled = false;
 
   /**
+   * Define if the chip allows focus
+   */
+  @Input()
+  public isFocusable = true;
+
+  /**
    * Define if the chip is removable
    */
   @Input()
-  public set isRemovable(value: boolean) {
-    this._removable = value;
-  }
-  public get isRemovable(): boolean {
-    return this._removable;
-  }
-  protected _removable = true;
+  public isRemovable = true;
 
   /**
    * Whether or not the chip is selectable.
@@ -215,7 +215,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   public get isSelectable(): boolean {
     return this._selectable && this.chipCollectionSelectable;
   }
-  protected _selectable = true;
+  private _selectable = true;
 
   /**
    * Define if the chip is selected
@@ -251,7 +251,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
     return this._value;
   }
-  protected _value;
+  private _value;
 
   /**
    * Define the theme for a chip
@@ -361,7 +361,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    */
   public focus(): void {
     // istanbul ignore else
-    if (!this.hasFocus) {
+    if (!this.hasFocus && this.isFocusable) {
       this.hasFocus = true;
       this.elementRef.nativeElement.focus();
       this.onFocus.next(new TsChipEvent(this));
