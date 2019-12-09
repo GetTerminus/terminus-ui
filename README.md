@@ -5,7 +5,11 @@ The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
+[![DavidDM][david-badge]][david-link]
+[![DavidDM Dev][david-dev-badge]][david-link]
+<br>
 [![semantic-release][semantic-release-badge]][semantic-release]
+[![Renovate][renovate-badge]][renovate-link]
 [![MIT License][license-image]][license-url]
 [![ZenHub][zenhub-image]][zenhub-url]
 <br>
@@ -18,6 +22,7 @@ The library of UI components used for Terminus applications.
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
+
 
 ---
 
@@ -325,6 +330,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [gh-releases]:            https://github.com/GetTerminus/terminus-ui/releases/
 [zenhub-image]:           https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.png
 [zenhub-url]:             https://github.com/GetTerminus/terminus-ui#zenhub
+[renovate-badge]:         https://img.shields.io/badge/renovate-enabled-brightgreen.svg
+[renovate-link]:          https://renovatebot.com
+[david-dev-badge]:        https://david-dm.org/GetTerminus/terminus-ui/dev-status.svg
+[david-badge]:            https://david-dm.org/GetTerminus/terminus-ui.svg
+[david-link]:             https://david-dm.org/GetTerminus/terminus-ui?view=list
 
 <!-- 3RD PARTY -->
 [codecov]:                https://codecov.io
