@@ -166,7 +166,7 @@
     "@angular/router": "8.2.4",
     "@terminus/ngx-tools": "7.2.6",
     "@terminus/ui": "15.4.0",
-    "date-fns": "2.0.1",
+    "date-fns": "2.8.1",
     "ngx-perfect-scrollbar": "8.0.0",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
