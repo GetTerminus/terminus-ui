@@ -1,3 +1,10 @@
+# [15.6.0](https://github.com/GetTerminus/terminus-ui/compare/v15.5.3...v15.6.0) (2019-12-09)
+
+
+### Features
+
+* **Chip:** support chip as badge ([2c8ee8a](https://github.com/GetTerminus/terminus-ui/commit/2c8ee8a)), closes [#1709](https://github.com/GetTerminus/terminus-ui/issues/1709)
+
 ## [15.5.3](https://github.com/GetTerminus/terminus-ui/compare/v15.5.2...v15.5.3) (2019-12-09)
 
 
