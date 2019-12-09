@@ -1,3 +1,10 @@
+## [15.5.3](https://github.com/GetTerminus/terminus-ui/compare/v15.5.2...v15.5.3) (2019-12-09)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([a83ab88](https://github.com/GetTerminus/terminus-ui/commit/a83ab88))
+
 ## [15.5.2](https://github.com/GetTerminus/terminus-ui/compare/v15.5.1...v15.5.2) (2019-12-05)
 
 
