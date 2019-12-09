@@ -11,6 +11,5 @@
   "masterIssueTitle": "Renovate Bot - Dependencies Management",
   "prCreation": "not-pending",
   "reviewers": ["team:uxe"],
-  "schedule": ["after 9pm on sunday"],
   "timezone": "America/New_York"
 }
