@@ -1,15 +1,5 @@
 {
   "extends": [
     "config:base"
-  ],
-  "commitMessagePrefix": "chore(Packages): ",
-  "labels": ["Focus: build"],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "masterIssue": true,
-  "masterIssueTitle": "Renovate Bot - Dependencies Management",
-  "prCreation": "not-pending",
-  "reviewers": ["team:uxe"],
-  "timezone": "America/New_York"
+  ]
 }
