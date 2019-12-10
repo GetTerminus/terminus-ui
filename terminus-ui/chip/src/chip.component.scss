@@ -12,6 +12,7 @@
   --chip-color: #{color(pure, dark)};
   --chip-fontSize: 14px;
   --chip-height: #{spacing(large)};
+  --chip-margin: #{spacing(small, 2)};
   --chip-padding: #{spacing(small, 2)} #{spacing(small, 1)};
   --chip-remove-size: #{spacing(large)};
 
@@ -19,15 +20,10 @@
   &:hover {
     &:not(.ts-chip--badge) {
       .c-chip {
-        --chip-backgroundColor: var(--chip-backgroundColor-hover);
-        transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
-      }
-    }
-
-    .c-chip {
-      &:not(.c-chip--disabled) {
-        --chip-backgroundColor: var(--chip-backgroundColor-hover);
-        transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+        &:not(.c-chip--disabled) {
+          --chip-backgroundColor: var(--chip-backgroundColor-hover);
+          transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+        }
       }
     }
   }
@@ -66,7 +62,7 @@
     display: inline-flex;
     font-size: var(--chip-fontSize);
     height: var(--chip-height);
-    margin: 0 spacing(small, 2);
+    margin: 0 var(--chip-margin) var(--chip-margin) var(--chip-margin);
     overflow: hidden;
     padding: var(--chip-padding);
     position: relative;
