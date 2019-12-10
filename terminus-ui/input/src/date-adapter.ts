@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NativeDateAdapter } from '@angular/material/core';
-import { isValid as isValidDate } from 'date-fns';
+import { isDateValue } from '@terminus/ngx-tools/coercion';
 
 
 /**
@@ -62,14 +62,12 @@ export class TsDateAdapter extends NativeDateAdapter {
    * @return Whether it is valid
    */
   public isValid(date: Date): boolean {
-    // HACK: I cannot reproduce a case where the date is valid but date.getTime is not a function.
-    // However, when dynamically updating a date in real use throws an error.
-    return isValidDate(date) && date.getTime && !isNaN(date.getTime());
+    return isDateValue(date);
   }
 
 
   /**
-   * Force a two digit string with a preceeding `0` if needed
+   * Force a two digit string with a preceding `0` if needed
    *
    * @param n - The number
    * @return The two digit number
