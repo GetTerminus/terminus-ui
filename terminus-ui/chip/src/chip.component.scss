@@ -6,19 +6,26 @@
 
 
 .ts-chip {
+  --chip-backgroundColor-hover: #{color(utility)};
+  --chip-backgroundColor: #{color(utility, light)};
+  --chip-borderRadius: 16px;
+  --chip-color: #{color(pure, dark)};
   --chip-fontSize: 14px;
   --chip-height: #{spacing(large)};
   --chip-padding: #{spacing(small, 2)} #{spacing(small, 1)};
-  --chip-backgroundColor: #{color(utility, light)};
-  --chip-backgroundColor-hover: #{color(utility)};
-  --chip-borderRadius: 16px;
-  --chip-color: #{color(pure, dark)};
   --chip-remove-size: #{spacing(large)};
 
   &:focus,
   &:hover {
     &:not(.ts-chip--badge) {
       .c-chip {
+        --chip-backgroundColor: var(--chip-backgroundColor-hover);
+        transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
+      }
+    }
+
+    .c-chip {
+      &:not(.c-chip--disabled) {
         --chip-backgroundColor: var(--chip-backgroundColor-hover);
         transition: opacity 200ms cubic-bezier(.35, 0, .25, 1);
       }
@@ -72,6 +79,16 @@
 
       .c-chip__remove {
         display: block;
+      }
+    }
+
+    &.c-chip--disabled {
+      --chip-color: #{color(utility, dark)};
+      padding: var(--chip-padding);
+      pointer-events: none;
+
+      .c-chip__remove {
+        display: none;
       }
     }
 
