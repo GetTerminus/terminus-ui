@@ -1,3 +1,10 @@
+## [15.6.1](https://github.com/GetTerminus/terminus-ui/compare/v15.6.0...v15.6.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.8.1 ([47e2fe4](https://github.com/GetTerminus/terminus-ui/commit/47e2fe4))
+
 # [15.6.0](https://github.com/GetTerminus/terminus-ui/compare/v15.5.3...v15.6.0) (2019-12-09)
 
 
