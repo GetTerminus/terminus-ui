@@ -240,7 +240,7 @@
     "semantic-release": "15.13.24",
     "source-map-explorer": "2.1.2",
     "stylelint": "10.1.0",
-    "stylelint-order": "3.1.0",
+    "stylelint-order": "3.1.1",
     "systemjs": "6.0.0",
     "tsickle": "0.37.0",
     "tslib": "1.10.0",
