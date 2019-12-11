@@ -52,6 +52,9 @@ export class TsCohortDateRangeChanged {
   ) { }
 }
 
+// Unique ID for each instance
+let nextUniqueId = 0;
+
 /**
  * This is the cohort-date-range UI Component
  *
@@ -60,6 +63,7 @@ export class TsCohortDateRangeChanged {
  * <ts-cohort-date-range
  *              [allowCustomDates]="true"
  *              [cohorts]="myCohorts"
+ *              id="myID"
  *              (cohortDateRangeChange)="myFunc($event)"
  * ></ts-cohort-date-range>
  *
@@ -74,6 +78,7 @@ export class TsCohortDateRangeChanged {
     '[class.ts-cohort-date-range--disabled]': 'isDisabled',
     '[attr.disabled]': 'isDisabled',
     '[attr.aria-disabled]': 'isDisabled',
+    '[id]': 'id',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -106,6 +111,11 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   });
 
   /**
+   * Define the default component ID
+   */
+  public readonly uid = `ts-cohort-date-range-${nextUniqueId++}`;
+
+  /**
    * Get reference of dateRange from formGroup
    *
    * @internal
@@ -133,6 +143,18 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    */
   @Input()
   public cohorts!: ReadonlyArray<TsDateCohort>;
+
+  /**
+   * Define an ID for the component
+   */
+  @Input()
+  public set id(value: string) {
+    this._id = value || this.uid;
+  }
+  public get id(): string {
+    return this._id;
+  }
+  protected _id: string = this.uid;
 
   /**
    * Disable the component
