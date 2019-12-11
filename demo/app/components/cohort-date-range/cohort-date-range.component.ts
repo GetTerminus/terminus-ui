@@ -5,13 +5,16 @@ import {
   Validators,
 } from '@angular/forms';
 import {
+  TsCohortDateRangeChanged,
+  TsDateCohort,
+} from '@terminus/ui/cohort-date-range';
+import {
   endOfDay,
   startOfDay,
   startOfMonth,
   subDays,
   subMonths,
 } from 'date-fns';
-import { TsCohortDateRangeChanged } from '@terminus/ui/cohort-date-range';
 
 const currentDate: Date = new Date();
 
@@ -35,25 +38,22 @@ export class CohortDateRangeComponent {
       ],
     }),
   });
-  public cohorts = [{
-    display: 'Last 90 days',
-    range: {
-      start: startOfDay(subDays(new Date(), 90)),
-      end: currentDate,
+  public cohorts: TsDateCohort[] = [
+    {
+      display: 'Last 90 days',
+      range: {
+        start: startOfDay(subDays(new Date(), 90)),
+        end: currentDate,
+      },
     },
-  }, {
-    display: 'Last full month',
-    range: {
-      start: startOfDay(subMonths(startOfMonth(currentDate), 1)),
-      end: endOfDay(subDays(startOfMonth(currentDate), 1)),
+    {
+      display: 'Last full month',
+      range: {
+        start: startOfDay(subMonths(startOfMonth(currentDate), 1)),
+        end: endOfDay(subDays(startOfMonth(currentDate), 1)),
+      },
     },
-  }, {
-    display: 'Custom dates',
-    range: {
-      start: '',
-      end: '',
-    },
-  }];
+  ];
   public lastRange: TsCohortDateRangeChanged | undefined;
 
 
@@ -64,7 +64,7 @@ export class CohortDateRangeComponent {
 
 
   public printRange(value: TsCohortDateRangeChanged): void {
-    console.log('DEMO: formValue: ', value);
+    // console.log('DEMO: formValue: ', value);
     this.lastRange = value;
   }
 

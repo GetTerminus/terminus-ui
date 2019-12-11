@@ -7,7 +7,7 @@
   - [Event driven](#event-driven)
   - [Inputs to the component](#inputs-to-the-component)
     - [allowCustomDates](#allowcustomdates)
-    - [Disable the component](#disable-the-component)
+    - [Disable](#disable)
   - [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -50,7 +50,7 @@ cohorts: TsDateCohort[] = [
 ];
 ```
 
-NOTE: The keys inside the passed in `cohorts` object defined as `TsDateCohort` interface has to be in the form of 
+The keys inside the passed in `cohorts` object must match the `TsDateCohort` interface:
 
 ```typescript
 {
@@ -62,25 +62,13 @@ NOTE: The keys inside the passed in `cohorts` object defined as `TsDateCohort` i
 }
 ```
 
-NOTE: For any custom dates which allows user to select a date from date range selection would need to pass in start and end date with empty string:
-
-```typescript
-{
-  display: 'Custom Dates',
-  range: {
-    startDate: '',
-    endDate: '',
-  }
-}
-```
-
 ## Event driven
 
 Anytime the date range is changed, `cohortDateRangeChanged` is emitted.
 
 ```html
 <ts-cohort-date-range
-  [cohorts]="cohorts"
+  [cohorts]="myCohorts"
   (cohortDateRangeChanged)="printRange($event)"
 ></ts-cohort-date-range>
 ```
@@ -90,7 +78,7 @@ Anytime the date range is changed, `cohortDateRangeChanged` is emitted.
 
 ### allowCustomDates
 
-`allowCustomDates` defaults to `true`. When set to `false`, date range is readonly.
+When `allowCustomDates` is set to `false`, the date range is readonly (this defaults to `true`).
 
 ```html
 <ts-cohort-date-range
@@ -99,7 +87,9 @@ Anytime the date range is changed, `cohortDateRangeChanged` is emitted.
 ></ts-cohort-date-range>
 ```
 
-### Disable the component
+When set to `true`, a `Custom Dates` option will be added to the dropdown.
+
+### Disable
 
 The entire component can be disabled:
 

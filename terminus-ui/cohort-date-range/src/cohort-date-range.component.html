@@ -1,7 +1,7 @@
 <ts-date-range
   class="ts-cohort-date-range__date-range"
   [dateFormGroup]="dateRangeFormGroup"
-  [isDisabled]="!allowCustomDates || isDisabled || disableDateRange"
+  [isDisabled]="!allowCustomDates || isDisabled"
   (dateRangeChange)="cohortDateRangeChange($event)"
 ></ts-date-range>
 
@@ -17,5 +17,13 @@
     *ngFor="let option of cohorts; trackBy: trackByFn"
   >
     {{ option.display }}
+  </ts-option>
+
+  <ts-option
+    *ngIf="allowCustomDates"
+    [value]="customDateCohort.range"
+    [option]="customDateCohort"
+  >
+    {{ customDateCohort.display }}
   </ts-option>
 </ts-select>

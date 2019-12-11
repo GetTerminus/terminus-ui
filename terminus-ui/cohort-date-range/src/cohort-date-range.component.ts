@@ -3,14 +3,24 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
 } from '@angular/forms';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { coerceDateProperty } from '@terminus/ngx-tools/coercion';
 import { TsOption } from '@terminus/ui/option';
+import {
+  TsSelectChange,
+  TsSelectComponent,
+} from '@terminus/ui/select';
+
 
 /**
  * Represents date cohort object that passed in
@@ -69,13 +79,19 @@ export class TsCohortDateRangeChanged {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsCohortDateRange',
 })
-export class TsCohortDateRangeComponent {
+export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   /**
-   * Define whether date range is disabled
+   * Define the custom date cohort
    *
    * @internal
    */
-  public disableDateRange = false;
+  public customDateCohort: TsDateCohort = {
+    display: 'Custom dates',
+    range: {
+      start: null,
+      end: null,
+    },
+  };
 
   /**
    * Initialize the date range with empty start and end date
@@ -99,13 +115,21 @@ export class TsCohortDateRangeComponent {
   }
 
   /**
+   * Define a reference to the {@link TsSelectComponent}
+   *
+   * @internal
+   */
+  @ViewChild(TsSelectComponent, { static: true })
+  public selectComponent: TsSelectComponent;
+
+  /**
    * Define whether custom date is allowed
    */
   @Input()
   public allowCustomDates = true;
 
   /**
-   * Cohort dates
+   * Date cohorts
    */
   @Input()
   public cohorts!: ReadonlyArray<TsDateCohort>;
@@ -127,6 +151,15 @@ export class TsCohortDateRangeComponent {
     public formBuilder: FormBuilder,
   ) { }
 
+  public ngOnInit(): void {
+    this.updateSelectOnRangeChange();
+  }
+
+  /**
+   * Needed for untilComponentDestroyed
+   */
+  public ngOnDestroy(): void {}
+
   /**
    * Emit the change event
    *
@@ -143,24 +176,17 @@ export class TsCohortDateRangeComponent {
    * @internal
    * @param event - TsSelectChangeEvent
    */
-  public selectionChange(event): void {
-    const startCtrl = this.formGroup.get('dateRange.startDate');
-    const endCtrl = this.formGroup.get('dateRange.endDate');
+  public selectionChange(event: TsSelectChange<TsCohortDateChangeEvent>): void {
+    const dateRange = this.formGroup.get('dateRange');
+    const newValues = {
+      startDate: event.value.start,
+      endDate: event.value.end,
+    };
 
     // istanbul ignore else
-    if (startCtrl && endCtrl) {
-      const startValue = event.value.start;
-      const endValue = event.value.end;
-
-      if (startValue && endValue) {
-        startCtrl.setValue(startValue);
-        endCtrl.setValue(endValue);
-        // Make date range readonly when selection provides start and end date.
-        this.disableDateRange = true;
-        this.cohortDateRangeChange(event.value);
-      } else {
-        this.disableDateRange = false;
-      }
+    if (newValues.startDate && newValues.endDate) {
+      dateRange.setValue(newValues);
+      this.cohortDateRangeChange(event.value);
     }
   }
 
@@ -173,5 +199,38 @@ export class TsCohortDateRangeComponent {
    */
   public trackByFn(index): number {
     return index;
+  }
+
+  /**
+   * Update the select when the date is manually changed to not match a cohort
+   */
+  private updateSelectOnRangeChange(): void {
+    this.formGroup.get('dateRange').valueChanges.pipe(untilComponentDestroyed(this)).subscribe(results => {
+      if (!this.cohorts) {
+        return;
+      }
+      const resultsStartTime = coerceDateProperty(results.startDate).getTime();
+      const resultsEndTime = coerceDateProperty(results.endDate).getTime();
+
+      const matchedCohorts = this.cohorts.filter(cohort => {
+        const cohortStartTime = coerceDateProperty(cohort.range.start).getTime();
+        const cohortEndTime = coerceDateProperty(cohort.range.end).getTime();
+        const cohortStartMatches = resultsStartTime === cohortStartTime;
+        const cohortEndMatches = resultsEndTime === cohortEndTime;
+
+        // istanbul ignore else
+        if (cohortStartMatches && cohortEndMatches) {
+          return cohort;
+        }
+      });
+
+      // NOTE: Since we are adding the custom cohort after the user cohorts, we know that the custom cohort will always be last.
+      // istanbul ignore else
+      if (matchedCohorts.length === 0) {
+        const options = this.selectComponent.options.toArray();
+        const option = options[options.length - 1];
+        option.select();
+      }
+    });
   }
 }
