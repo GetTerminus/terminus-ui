@@ -56,6 +56,25 @@ describe(`TsCohortDateRangeComponent`, () => {
     cohortInstance = cohortDebugElement.componentInstance;
   }
 
+  describe(`id`, () => {
+
+    test(`should allow custom ID and fall back to UID`, () => {
+      setupComponent(testComponents.Basic);
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+      instance.id = 'foo';
+      fixture.detectChanges();
+
+      expect(document.getElementById('foo')).toBeTruthy();
+      expect(instance.id).toEqual('foo');
+      instance.id = undefined as any;
+      fixture.detectChanges();
+      expect(document.getElementById('foo')).toBeFalsy();
+      expect(instance.id).toEqual(expect.stringContaining('ts-cohort-date-range-'));
+    });
+
+  });
+
   describe(`allowCustomDates`, () => {
     beforeEach(() => {
       setupComponent(testComponents.Basic);
