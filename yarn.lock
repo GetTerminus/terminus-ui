@@ -7154,10 +7154,10 @@ gulp-sourcemaps@2.6.5:
     strip-bom-string "1.X"
     through2 "2.X"
 
-gulp-strip-json-comments@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-strip-json-comments/-/gulp-strip-json-comments-4.0.0.tgz#678314bd8318ecc3b64826b42381bee6301dfc55"
-  integrity sha512-XSdqQKqGHJqhbSJ+BtJRCbU29ck2jRYdckFtrEeBmuc+s3WGuebecmR/erjKuMpvdSL9OUwmP8h5hvcU0Px1bQ==
+gulp-strip-json-comments@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-strip-json-comments/-/gulp-strip-json-comments-4.0.1.tgz#80f822f67358db61728fec6b0104de3e85548dae"
+  integrity sha512-eoZ7wOl2SoKEDB99VCqz3ov/XuA/e7gD5IVZYbY7QpyhYRo86Uq+XfmsQoLHyjZWdqJdihXmxfip6Np9NMuA9A==
   dependencies:
     plugin-error "^1.0.1"
     strip-json-comments "^3.0.1"
