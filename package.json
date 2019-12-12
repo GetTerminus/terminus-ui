@@ -244,7 +244,7 @@
     "systemjs": "6.1.7",
     "tsickle": "0.37.1",
     "tslib": "1.10.0",
-    "tslint": "5.19.0",
+    "tslint": "5.20.1",
     "typescript": "3.4.5",
     "validate-commit-msg": "2.14.0",
     "zone.js": "0.10.2"
