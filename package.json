@@ -191,7 +191,7 @@
     "@types/jest": "24.0.18",
     "@types/node": "12.7.3",
     "all-contributors-cli": "6.8.1",
-    "autoprefixer": "9.6.1",
+    "autoprefixer": "9.7.3",
     "camelcase": "5.3.1",
     "chalk-cli": "4.1.0",
     "code-notes": "1.0.4",
