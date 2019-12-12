@@ -223,7 +223,7 @@
     "jest-create-mock-instance": "1.1.0",
     "jest-junit": "8.0.0",
     "jest-preset-angular": "7.1.1",
-    "jsdom": "15.1.1",
+    "jsdom": "15.2.1",
     "lint-staged": "9.5.0",
     "markdown-link-check": "3.8.0",
     "merge-files": "0.1.2",
@@ -250,6 +250,6 @@
     "zone.js": "0.10.2"
   },
   "resolutions": {
-    "jsdom": "14.0.0"
+    "jsdom": "15.2.1"
   }
 }
