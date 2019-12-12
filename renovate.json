@@ -2,7 +2,19 @@
   "extends": [
     "config:base"
   ],
+  "assignees": ["benjamincharity"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "rebaseStalePrs": false
+  "rebaseLabel": "Action: rebase",
+  "rebaseStalePrs": false,
+  "reviewers": [
+    "benjamincharity"
+  ],
+  "semanticCommits": true,
+  "semanticCommitScope": "Packages",
+  "stabilityDays": 10,
+  "vulnerabilityAlerts": {
+    "labels": ["Focus: security"],
+    "assignees": ["team:uxe"]
+  }
 }
