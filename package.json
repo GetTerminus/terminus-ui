@@ -224,7 +224,7 @@
     "jest-junit": "8.0.0",
     "jest-preset-angular": "7.1.1",
     "jsdom": "15.1.1",
-    "lint-staged": "9.2.5",
+    "lint-staged": "9.5.0",
     "markdown-link-check": "3.8.0",
     "merge-files": "0.1.2",
     "ng-packagr": "5.5.0",
