@@ -223,7 +223,7 @@
     "jest": "24.9.0",
     "jest-create-mock-instance": "1.1.0",
     "jest-junit": "10.0.0",
-    "jest-preset-angular": "7.1.1",
+    "jest-preset-angular": "8.0.0",
     "jsdom": "15.2.1",
     "lint-staged": "9.5.0",
     "markdown-link-check": "3.8.0",
