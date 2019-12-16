@@ -153,7 +153,7 @@
   },
   "dependencies": {
     "@amcharts/amcharts4": "4.7.15",
-    "@amcharts/amcharts4-geodata": "4.1.7",
+    "@amcharts/amcharts4-geodata": "4.1.9",
     "@angular/animations": "8.2.4",
     "@angular/cdk": "8.1.4",
     "@angular/common": "8.2.4",
