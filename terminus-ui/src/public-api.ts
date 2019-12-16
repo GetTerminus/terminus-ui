@@ -26,6 +26,7 @@ export * from '@terminus/ui/navigation';
 export * from '@terminus/ui/option';
 export * from '@terminus/ui/paginator';
 export * from '@terminus/ui/pipes';
+export * from '@terminus/ui/popover';
 export * from '@terminus/ui/radio-group';
 export * from '@terminus/ui/scrollbars';
 export * from '@terminus/ui/search';

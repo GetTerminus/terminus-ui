@@ -1,0 +1,26 @@
+<div style="max-width: 200px; height: 600px;" class="demo-popover">
+  <select
+    [(ngModel)]="example1select"
+    (change)="change()"
+  >
+    <option value="top">Top</option>
+    <option value="right">Right</option>
+    <option value="bottom">Bottom</option>
+    <option value="left">Left</option>
+  </select>
+  <button
+    tsPopoverTrigger="popper1"
+    [position]="example1select"
+    [popover]="popper1"
+    [defaultOpened]="false"
+    style="margin: 200px 250px;"
+    [id]="myId"
+    (popoverOnShown)="popoverOnShown($event)"
+    (popoverOnHidden)="popoverOnHidden($event)"
+  >Click me!</button>
+</div>
+
+<ts-popover #popper1>
+  <h1>My Title</h1>
+  <p>Other random content.</p>
+</ts-popover>
