@@ -12,18 +12,17 @@
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.9.tgz#e0c7f4de3c90dfc48d3063fbafd35bc027fbbb24"
   integrity sha512-DEMxDge+XQyq4uPNzEuJ2q7mSYFfM0ExRyYZ4WBrjoZgLbInSzzm9UJVZtBhMCp4Skp67rY/aJ4DoOflOUT4Iw==
 
-"@amcharts/amcharts4@4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.5.15.tgz#ad129241fe0ba5f7992887604d39ece46e290dab"
-  integrity sha512-xDVsXBkFauRymJxD3TJi7RKOe9f9ECN6cJq6XObffurGIiMP0MIZdKFKj/ohdwXHvdvibpHdjaGniT5dxr5KFQ==
+"@amcharts/amcharts4@4.7.15":
+  version "4.7.15"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.7.15.tgz#b73a0276ba92d72316b27726d4597fb948685cd2"
+  integrity sha512-V9UQyBu7QnJl5C6RZXMN+e9HA8hL//yaEesiYqjHtQTr4d+w7eoMd22maux5t32CUMzLg8cHU4yKeNHXYyIFyg==
   dependencies:
     "@types/regression" "^2.0.0"
     canvg "^2.0.0"
-    css-element-queries "^1.0.5"
+    css-element-queries "1.2.1"
     d3-force "^2.0.1"
     d3-geo "^1.11.3"
     d3-geo-projection "^2.6.0"
-    fabric "3.3.2-browser"
     pdfmake "^0.1.36"
     polylabel "^1.0.2"
     regression "^2.0.1"
@@ -4457,6 +4456,11 @@ css-color-names@0.0.3:
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.3.tgz#de0cef16f4d8aa8222a320d5b6d7e9bbada7b9f6"
   integrity sha1-3gzvFvTYqoIioyDVttfpu62nufY=
 
+css-element-queries@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/css-element-queries/-/css-element-queries-1.2.1.tgz#70d1a0f676fc0bd0a3306522a5b2d3bcc55c9fe6"
+  integrity sha512-hiI1tSzf+U/gE13qhfwnCvN90Ay0THnE+mT3pjN/c/mvFmEUHZVNrvMJrrkw2ppOzkl69FdgH2ZGZENYQUaN2A==
+
 css-element-queries@^1.0.5:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/css-element-queries/-/css-element-queries-1.2.2.tgz#e80ce4c523e41079152b1a3a8ec5b7afb0b45c96"
@@ -6121,11 +6125,6 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
-
-fabric@3.3.2-browser:
-  version "3.3.2-browser"
-  resolved "https://registry.yarnpkg.com/fabric/-/fabric-3.3.2-browser.tgz#1762d719a963872bea954a7c89ab2a4f933e3172"
-  integrity sha512-gyOQrvDLAQGifFK9kSZUW5E6yo8nSmbDA4vEo2Tk5oWXsnNb6e94ud5S9lI66ALW9eArEI51YOnzBdaXZHMbtA==
 
 falafel@^2.1.0:
   version "2.1.0"
