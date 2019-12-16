@@ -192,6 +192,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'popover',
+    loadChildren: `./components/popover/popover.module#PopoverModule`,
+    data: {
+      name: 'Popover',
+    }
+  },
+  {
     path: 'radio',
     loadChildren: `./components/radio/radio.module#RadioModule`,
     data: {

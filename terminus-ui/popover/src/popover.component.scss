@@ -1,0 +1,88 @@
+@import './../../scss/helpers/color';
+@import './../../scss/helpers/shadows';
+@import './../../scss/helpers/spacing';
+
+
+.popover__container {
+  $PLACEMENT_MARGIN: 5px;
+  $POSITION_ADJUSTMENT: -5px;
+
+  @include elevation-element(snackbar);
+  background-color: color(pure);
+  padding: spacing(default);
+  position: absolute;
+
+  .popover__arrow {
+    border-color: color(pure);
+    border-style: solid;
+    height: 0;
+    position: absolute;
+    width: 0;
+  }
+
+  &.c-popover--visible {
+    display: block;
+    opacity: 1;
+  }
+
+  &.c-popover--hidden {
+    display: none;
+    opacity: 0;
+  }
+
+  &[x-placement^='top'] {
+    margin-bottom: $PLACEMENT_MARGIN;
+    .popover__arrow {
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-width: $PLACEMENT_MARGIN $PLACEMENT_MARGIN 0;
+      bottom: $POSITION_ADJUSTMENT;
+      left: calc(50% - 5px);
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+  &[x-placement^='bottom'] {
+    margin-top: $PLACEMENT_MARGIN;
+    .popover__arrow {
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      border-width: 0 $PLACEMENT_MARGIN $PLACEMENT_MARGIN;
+      left: calc(50% - 5px);
+      margin-bottom: 0;
+      margin-top: 0;
+      top: $POSITION_ADJUSTMENT;
+    }
+  }
+  &[x-placement^='right'] {
+    margin-left: $PLACEMENT_MARGIN;
+    .popover__arrow {
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      border-width: $PLACEMENT_MARGIN $PLACEMENT_MARGIN $PLACEMENT_MARGIN 0;
+      left: $POSITION_ADJUSTMENT;
+      margin-left: 0;
+      margin-right: 0;
+      top: calc(50% - 5px);
+    }
+  }
+  &[x-placement^='left'] {
+    display: block;
+    margin-right: $PLACEMENT_MARGIN;
+    .popover__arrow {
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      border-width: $PLACEMENT_MARGIN 0 $PLACEMENT_MARGIN $PLACEMENT_MARGIN;
+      margin-left: 0;
+      margin-right: 0;
+      right: $POSITION_ADJUSTMENT;
+      top: calc(50% - 5px);
+    }
+  }
+}
+
+

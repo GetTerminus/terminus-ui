@@ -26,6 +26,7 @@ more on the communities needs.
 - https://github.com/prestopasto/SCSS-Material-Shadows
 - https://github.com/fknop/angular-pipes
 - https://github.com/zefoy/ngx-perfect-scrollbar
+- https://github.com/popperjs/popper.js
 
 
 ## Icons

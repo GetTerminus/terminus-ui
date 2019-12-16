@@ -1,0 +1,17 @@
+<div
+  #popoverViewRef
+  class="popover__container"
+  [ngClass]="{
+    'c-popover--visible': visibility,
+    'c-popover--hidden': !visibility
+  }"
+  attr.aria-hidden="{{ariaHidden}}"
+  attr.role="{{popoverOptions.ariaRole}}"
+  [attr.aria-labelledby]="id"
+>
+  <div class="popover__inner">
+    <ng-content></ng-content>
+  </div>
+  <div class="popover__arrow">
+  </div>
+</div>

@@ -42,6 +42,7 @@ module.exports = {
     {name: 'Option'},
     {name: 'Paginator'},
     {name: 'Pipes'},
+    {name: 'Popover'},
     {name: 'RadioGroup'},
     {name: 'Scrollbars'},
     {name: 'Search'},

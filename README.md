@@ -17,7 +17,7 @@ The library of UI components used for Terminus applications.
 [![Github release][gh-release-badge]][gh-releases]
 [![Library size][file-size-badge]][raw-distribution-js]
 <br>
-[![components](https://img.shields.io/badge/Components-38-%2316a085.svg)](#components)
+[![components](https://img.shields.io/badge/Components-39-%2316a085.svg)](#components)
 [![pipes](https://img.shields.io/badge/Pipes-6-%2316a085.svg)](#pipes)
 [![services](https://img.shields.io/badge/Services-1-%2316a085.svg)](#services)
 [![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
@@ -123,6 +123,7 @@ for each feature.
 | [navigation][src-navigation]               | Global navigation menu                                    | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]        | [Usage][navigation-usage]        |
 | [paginator][src-paginator]                 | Paging controls for collections                           | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]         | [Usage][paginator-usage]         |
 | [pipes][src-pipes]                         | A collection of pipes for Angular                         | :white_check_mark: | [Demo][demo-pipes]              | [Docs][pipes-docs]             |                                  |
+| [popover][src-popover]                     | Popover                                                   | :white_check_mark: | [Demo][demo-popover]            | [Docs][popover-docs]           | [Usage][popover-usage]           |
 | progress                                   |                                                           |                    |                                 |                                |                                  |
 | [radio-group][src-radio-group]             |                                                           | :white_check_mark: | [Demo][demo-radio-group]        | [Docs][radio-group-docs]       | [Usage][radio-group-usage]       |
 | [scrollbars][src-scrollbars]               | Custom scrollars for both axis'                           | :white_check_mark: | [Demo][demo-scrollbars]         | [Docs][scrollbars-docs]        | [Usage][scrollbars-usage]        |
@@ -381,6 +382,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-navigation]:       https://getterminus.github.io/ui-demos-release/components/navigation
 [demo-paginator]:        https://getterminus.github.io/ui-demos-release/components/paginator
 [demo-pipes]:            https://getterminus.github.io/ui-demos-release/components/pipes
+[demo-popover]:          https://getterminus.github.io/ui-demos-release/components/popover
 [demo-radio-group]:      https://getterminus.github.io/ui-demos-release/components/radio
 [demo-scrollbars]:       https://getterminus.github.io/ui-demos-release/components/scrollbars
 [demo-search]:           https://getterminus.github.io/ui-demos-release/components/search
@@ -437,6 +439,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-pipes-titleCase]:    https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/title-case/title-case.pipe.ts
 [src-pipes-truncate]:     https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/truncate/truncate.pipe.ts
 [src-pipes]:              https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/
+[src-popover]:            https://github.com/Getterminus/terminus-ui/blob/release/terminus-ui/popover/src/
 [src-radio-group]:        https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/radio-group/src/
 [src-scrollbars]:         https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/scrollbars/src/
 [src-search]:             https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/search/src/
@@ -478,6 +481,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [navigation-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsNavigationComponent.html
 [paginator-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsPaginatorComponent.html
 [pipes-docs]:           http://uilibrary-docs.terminus.ninja/release/modules/TsPipesModule.html
+[popover-docs]:         http://uilibrary-docs.terminus.ninja/release/modules/TsPopoverComponent.html
 [radio-group-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsRadioGroupComponent.html
 [scrollbars-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsScrollbarsComponent.html
 [search-docs]:          http://uilibrary-docs.terminus.ninja/release/components/TsSearchComponent.html
@@ -526,6 +530,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [menu-usage]:              http://uilibrary-docs.terminus.ninja/release/components/TsMenuComponent.html#readme
 [paginator-usage]:         http://uilibrary-docs.terminus.ninja/release/components/TsPaginatorComponent.html#readme
 [navigation-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsNavigationComponent.html#readme
+[popover-usage]:           http://uilibrary-docs.terminus.ninja/release/components/TsPopoverComponent.html#readme
 [radio-group-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsRadioGroupComponent.html#readme
 [scrollbars-usage]:        http://uilibrary-docs.terminus.ninja/release/directives/TsScrollbarsComponent.html#readme
 [select-usage]:            http://uilibrary-docs.terminus.ninja/release/directives/TsSelectComponent.html#readme

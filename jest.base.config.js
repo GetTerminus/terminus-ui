@@ -50,7 +50,7 @@ module.exports = {
   ],
   transform: {'^.+\\.(ts|js|html)$': 'ts-jest'},
   transformIgnorePatterns: [
-    'node_modules/(?!@ngrx)',
+    '<rootDir>/node_modules/(?!@ngrx|popper)',
   ],
 };
 
