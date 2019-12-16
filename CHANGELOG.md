@@ -1,3 +1,10 @@
+# [15.7.0](https://github.com/GetTerminus/terminus-ui/compare/v15.6.3...v15.7.0) (2019-12-16)
+
+
+### Features
+
+* **Popover:** Popover component ([baf8e64](https://github.com/GetTerminus/terminus-ui/commit/baf8e64))
+
 ## [15.6.3](https://github.com/GetTerminus/terminus-ui/compare/v15.6.2...v15.6.3) (2019-12-16)
 
 
