@@ -1,3 +1,13 @@
+## [15.7.1](https://github.com/GetTerminus/terminus-ui/compare/v15.7.0...v15.7.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **Chip:** correctly display disabled state ([1c588d0](https://github.com/GetTerminus/terminus-ui/commit/1c588d0))
+* **SelectionList:** no longer allows interaction when disabled ([c1d51ea](https://github.com/GetTerminus/terminus-ui/commit/c1d51ea)), closes [#1818](https://github.com/GetTerminus/terminus-ui/issues/1818)
+* **SelectionList:** single mode no longer truncates long text ([64acd2d](https://github.com/GetTerminus/terminus-ui/commit/64acd2d)), closes [#1772](https://github.com/GetTerminus/terminus-ui/issues/1772)
+* **Chip:** vertical margin now always present ([54d8338](https://github.com/GetTerminus/terminus-ui/commit/54d8338))
+
 # [15.7.0](https://github.com/GetTerminus/terminus-ui/compare/v15.6.3...v15.7.0) (2019-12-16)
 
 
