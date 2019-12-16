@@ -12,7 +12,7 @@
   ],
   "semanticCommits": true,
   "semanticCommitScope": "Packages",
-  "stabilityDays": 10,
+  "stabilityDays": 2,
   "vulnerabilityAlerts": {
     "labels": ["Focus: security"],
     "assignees": ["team:uxe"]
