@@ -1,3 +1,11 @@
+# [15.8.0](https://github.com/GetTerminus/terminus-ui/compare/v15.7.1...v15.8.0) (2019-12-16)
+
+
+### Features
+
+* **CohortDateRange:** add uid and support custom ID ([ec02d89](https://github.com/GetTerminus/terminus-ui/commit/ec02d89)), closes [#1815](https://github.com/GetTerminus/terminus-ui/issues/1815)
+* **CohortDateRange:** no longer blocks user from custom interaction when allowed ([5af8868](https://github.com/GetTerminus/terminus-ui/commit/5af8868)), closes [#1819](https://github.com/GetTerminus/terminus-ui/issues/1819)
+
 ## [15.7.1](https://github.com/GetTerminus/terminus-ui/compare/v15.7.0...v15.7.1) (2019-12-16)
 
 
