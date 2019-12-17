@@ -14,7 +14,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -127,7 +126,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   /**
    * Define the default component ID
    */
-  protected _uid = `ts-csv-entry-${nextUniqueId++}`;
+  protected uid = `ts-csv-entry-${nextUniqueId++}`;
 
   /**
    * Expose the flexbox layout gap
@@ -176,12 +175,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   @Input()
   public set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this.uid;
   }
   public get id(): string {
     return this._id;
   }
-  protected _id: string = this._uid;
+  protected _id: string = this.uid;
 
   /**
    * Set the maximum number of allowed rows
@@ -311,6 +310,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param rowCount - The number of rows to add
    * @param columnCount - The number of columns each row should have
    * @param content - The column content
+   * @param index - The row index
    */
   public addRows(rowCount = 1, columnCount: number = this.columnCount, content?: string[][], index?: number): void {
     if ((this.rows.length + rowCount) > this.maxRows) {
@@ -368,6 +368,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Handle paste event for standard content cell
    *
    * @param event - The paste event
+   * @param hasHeader - Whether the content has a header row
    */
   public onPaste(event: ClipboardEvent, hasHeader?: boolean): void {
     const eventContent = event.clipboardData.getData('Text');
@@ -383,7 +384,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
     hasHeader = coerceBooleanProperty(hasHeader);
     const pastedRowId: number = parseInt((event.target as HTMLInputElement).id.split('X')[0].split('_')[1], 10);
-    const content = this.splitContent(eventContent, hasHeader);
+    const content = TsCSVEntryComponent.splitContent(eventContent, hasHeader);
     const neededRows: number = content.rows.length;
 
     // If the paste was into a header cell, verify that header cell content doesn't already exist
@@ -400,7 +401,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       // If more columns were pasted than currently exist, increase the column count
       if (pastedColumnCount > this.columnCount) {
         const numberOfMissingColumns = pastedColumnCount - this.columnCount;
-        this.addColumnsToRows(this.rows, this.headerCells, numberOfMissingColumns);
+        TsCSVEntryComponent.addColumnsToRows(this.rows, this.headerCells, numberOfMissingColumns);
         this.columnCount = pastedColumnCount;
       }
       this.deleteRow(pastedRowId);
@@ -509,7 +510,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     const row: number = parseInt(rowId.split('_')[1], 10);
     const column: number = parseInt(columnId.split('_')[1], 10);
     const isFirstColumn: boolean = column === 0;
-    const islastColumn: boolean = column === (this.columnCount - 1);
+    const isLastColumn: boolean = column === (this.columnCount - 1);
     let newColumnNumber: number;
     let newRowNumber: number = row;
     // If first column, move to last column of previous row
@@ -521,7 +522,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       } else {
         newColumnNumber = column - 1;
       }
-    } else if (islastColumn) {
+    } else if (isLastColumn) {
       // Forward
       newColumnNumber = 0;
       newRowNumber += 1;
@@ -562,13 +563,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
       // istanbul ignore else
       if (errors) {
-        const resultsArray: TsCSVFormError[] = Object.keys(errors).map(key => ({
+        return Object.keys(errors).map(key => ({
           control: key,
           // De-duplicate the errors array
           [key]: errors[key].filter((el, i, arr) => arr.indexOf(el) === i),
         }));
-
-        return resultsArray;
       }
       return null;
 
@@ -646,7 +645,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public resetTable(): void {
     this.clearAllRows();
     this.clearHeaderCells();
-    this.columnCount = this.columnCount;
+    this.columnCount = DEFAULT_COLUMN_COUNT;
     this.addRows(this.rowCount, this.columnCount);
     this.addHeaders(this.columnCount, this.columnHeaders);
     this.allErrors = null;
@@ -672,6 +671,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Get all errors for the form
    *
    * @param form - The primary form group
+   * @param result - The collection of errors
    * @return An object containing all errors
    */
   private getAllErrors(form: FormGroup | FormArray, result: {required?: TsCSVRequiredError; url?: TsCSVUrlError}): void {
@@ -726,10 +726,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * Split pasted data into headers, rows, and columns
    *
    * @param content - The event content
+   * @param hasHeaders - Whether the content has a header row
    * @return An object containing all data
    */
   // tslint:disable-next-line no-any
-  private splitContent(content: string, hasHeaders: boolean): Record<string, any> {
+  private static splitContent(content: string, hasHeaders: boolean): Record<string, any> {
     const result: {headers: undefined|string[]; rows: undefined|string[]|string[][]} = {
       headers: undefined,
       rows: undefined,
@@ -827,7 +828,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param headerCells - The array of header cells
    * @param columnsToAdd - The number of columns to add
    */
-  private addColumnsToRows(rows: FormArray, headerCells: FormArray, columnsToAdd: number): void {
+  private static addColumnsToRows(rows: FormArray, headerCells: FormArray, columnsToAdd: number): void {
     // Add columns to body rows
     for (let i = 0; i < rows.length; i += 1) {
       const row: FormGroup = rows.controls[i] as FormGroup;
