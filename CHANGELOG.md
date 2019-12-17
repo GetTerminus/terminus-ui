@@ -1,3 +1,10 @@
+## [15.8.1](https://github.com/GetTerminus/terminus-ui/compare/v15.8.0...v15.8.1) (2019-12-17)
+
+
+### Bug Fixes
+
+* **packages:** update angular monorepo to v8.2.14 ([84f99ad](https://github.com/GetTerminus/terminus-ui/commit/84f99ad))
+
 # [15.8.0](https://github.com/GetTerminus/terminus-ui/compare/v15.7.1...v15.8.0) (2019-12-16)
 
 
