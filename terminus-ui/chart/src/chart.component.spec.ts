@@ -1,9 +1,7 @@
 // tslint:disable: no-use-before-declare component-class-suffix
 import {
-  Component,
   Provider,
   Type,
-  ViewChild,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -11,6 +9,9 @@ import {
   tick,
 } from '@angular/core/testing';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/chart/testing';
+// eslint-disable-next-line no-duplicate-imports
+import { getChartInstance } from '@terminus/ui/chart/testing';
 
 import { TsAmChartsService } from './amcharts.service';
 import {
@@ -24,7 +25,6 @@ import {
 } from './chart-type-check';
 import {
   TsChart,
-  TsChartComponent,
   TsChartVisualizationOptions,
 } from './chart.component';
 import { TsChartModule } from './chart.module';
@@ -33,98 +33,135 @@ import { TsChartModule } from './chart.module';
 describe(`ChartComponent`, function() {
 
   test(`should exist`, () => {
-    const fixture = createComponent(SimpleHost);
+    const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost);
     fixture.detectChanges();
 
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-
   describe(`ngOnInit`, () => {
 
-    test(`should log a warning if the amCharts library wasn't passed in`, () => {
-      window.console.warn = jest.fn();
-      const fixture = createComponent(SimpleHost, []);
+    test(`should call protectedInitialize`, () => {
+      const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost);
+      fixture.componentInstance.component['protectedInitialize'] = jest.fn();
       fixture.detectChanges();
+      const component = getChartInstance(fixture);
 
-      expect(window.console.warn).toHaveBeenCalledWith(expect.stringContaining('The amCharts library was not provided'));
+      expect(component['protectedInitialize']).toHaveBeenCalled();
     });
 
-
-    test(`should call to initialize the chart if amCharts exists`, fakeAsync(() => {
-      const fixture = createComponent(SimpleHost);
-      fixture.detectChanges();
-      fixture.componentInstance.component.init = jest.fn();
-      fixture.componentInstance.component.ngOnInit();
-      tick();
-
-      expect(fixture.componentInstance.component.init).toHaveBeenCalledWith('xy');
-    }));
-
   });
-
 
   describe(`ngOnChanges`, () => {
 
-    test(`should should destroy and reinitialize when the visualization changes`, () => {
-      const fixture = createComponent(VisualizationsHost);
-      fixture.detectChanges();
-      fixture.componentInstance.component['destroyChart'] = jest.fn();
-      fixture.componentInstance.component['init'] = jest.fn();
-
+    test(`should call protected initialize if the visualization changes`, () => {
+      const fixture = createComponent<testComponents.VisualizationsHost>(testComponents.VisualizationsHost, []);
+      const component = getChartInstance(fixture);
+      component['protectedInitialize'] = jest.fn();
       fixture.componentInstance.visualization = 'pie';
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.component['destroyChart']).toHaveBeenCalled();
-      expect(fixture.componentInstance.component['init']).toHaveBeenCalledWith('pie');
+      expect(component['protectedInitialize']).toHaveBeenCalled();
     });
 
   });
 
-
   describe(`ngOnDestroy`, () => {
 
-    test(`should destroy the chart`, fakeAsync(() => {
-      const fixture = createComponent(SimpleHost);
+    test(`should call destroyChart`, () => {
+      const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost);
       fixture.detectChanges();
-      tick();
-      fixture.componentInstance.component.ngOnDestroy();
+      const component = getChartInstance(fixture);
+      component['destroyChart'] = jest.fn();
+      component.ngOnDestroy();
 
-      expect(fixture.componentInstance.component.chart!.dispose).toHaveBeenCalled();
+      expect(component['destroyChart']).toHaveBeenCalled();
+    });
+
+  });
+
+  describe(`protectedInitialize`, () => {
+
+    test(`should throw an error if the amCharts library wasn't passed in`, () => {
+      expect.assertions(1);
+      try {
+        const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost, []);
+        fixture.detectChanges();
+      } catch (e) {
+        expect(e.message).toEqual(expect.stringContaining('The amCharts library was not provided'));
+      }
+    });
+
+    test(`should wait one tick and call createChart`, fakeAsync(() => {
+      const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost);
+      fixture.detectChanges();
+      const component = getChartInstance(fixture);
+      component['createChart'] = jest.fn();
+      component['protectedInitialize']();
+      tick();
+
+      expect(component['createChart']).toHaveBeenCalled();
     }));
 
   });
 
 
-  describe(`init`, () => {
+  describe(`createChart`, () => {
 
-    test(`should log an warning if no chart could be created`, () => {
-      window.console.warn = jest.fn();
-      const fixture = createComponent(VisualizationsHost);
+    test(`should dispose of the chart if it exists`, fakeAsync(() => {
+      const fixture = createComponent<testComponents.SimpleHost>(testComponents.SimpleHost);
       fixture.detectChanges();
+      tick();
+      const component = getChartInstance(fixture);
+      component.chart!.dispose = jest.fn();
+      component['createChart']();
 
+      expect(component.chart!.dispose).toHaveBeenCalled();
+    }));
+
+    test(`should log an warning if no chart could be created`, fakeAsync(() => {
+      window.console.warn = jest.fn();
+      const fixture = createComponent<testComponents.VisualizationsHost>(testComponents.VisualizationsHost);
       fixture.componentInstance.visualization = 'foo' as any;
       fixture.detectChanges();
+      tick();
 
       expect(window.console.warn).toHaveBeenCalledWith(expect.stringContaining('is not a supported chart type'));
-    });
+    }));
 
     const visualizationTests: TsChartVisualizationOptions[] = ['xy', 'pie', 'map', 'radar', 'tree', 'sankey', 'chord'];
     for (const t of visualizationTests) {
-      test(`should initialize for the ${t} visualization`, () => {
+      test(`should initialize for the ${t} visualization`, fakeAsync(() => {
         window.console.warn = jest.fn();
-        const fixture = createComponent(VisualizationsHost);
+        const fixture = createComponent<testComponents.VisualizationsHost>(testComponents.VisualizationsHost);
         fixture.componentInstance.visualization = t;
         fixture.detectChanges();
+        tick();
 
         expect(fixture.componentInstance.component['amCharts'].core.create).toHaveBeenCalled();
         expect(window.console.warn).not.toHaveBeenCalled();
-      });
+      }));
     }
-
 
   });
 
+  describe(`visualization input`, () => {
+
+    test(`should fall back to xy chart type if nothing is passed in`, () => {
+      const fixture = createComponent<testComponents.VisualizationsHost>(testComponents.VisualizationsHost);
+      fixture.detectChanges();
+      const component = getChartInstance(fixture);
+      fixture.componentInstance.visualization = 'pie';
+      fixture.detectChanges();
+      expect(component.visualization).toEqual('pie');
+
+      fixture.componentInstance.visualization = undefined as any;
+      fixture.detectChanges();
+
+      expect(component.visualization).toEqual('xy');
+    });
+
+  });
 
   // TODO: Test types once we implement a tool to do so
   describe(`chart type coercion`, function() {
@@ -209,10 +246,6 @@ const AM_CHARTS_PROVIDER: Provider[] = [{
 }];
 
 
-/**
- * Helpers
- */
-
 function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHARTS_PROVIDER, imports: any[] = []): ComponentFixture<T> {
   return createComponentInner<T>(
     component,
@@ -223,41 +256,3 @@ function createComponent<T>(component: Type<T>, providers: Provider[] = AM_CHART
     ],
   );
 }
-
-
-/**
- * TEMPLATES
- */
-
- @Component({ template: `<ts-chart></ts-chart>` })
-class SimpleHost {
-  @ViewChild(TsChartComponent, { static: true })
-  public component: TsChartComponent;
- }
-
- @Component({ template: `<ts-chart [visualization]="visualization"></ts-chart>` })
-class VisualizationsHost {
-  public visualization: TsChartVisualizationOptions | undefined;
-
-  @ViewChild(TsChartComponent, { static: true })
-  public component: TsChartComponent;
- }
-
- @Component({
-   template: `
-     <ts-chart
-       visualization="xy"
-       (chartInitialized)="chartCreated($event)"
-     ></ts-chart>
-   `,
- })
-class TypeChecking {
-  public chart!: TsChart;
-
-  @ViewChild(TsChartComponent, { static: true })
-  public component!: TsChartComponent;
-
-  public chartCreated(chart: TsChart): void {
-    this.chart = chart;
-  }
- }

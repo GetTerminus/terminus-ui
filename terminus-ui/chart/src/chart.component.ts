@@ -6,7 +6,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  isDevMode,
   NgZone,
   OnChanges,
   OnDestroy,
@@ -16,7 +15,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { inputHasChanged } from '@terminus/ui/utilities';
+import {
+  inputHasChanged,
+  TsUILibraryError,
+} from '@terminus/ui/utilities';
 
 import {
   TsAmChartsService,
@@ -125,15 +127,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
    * Initialize the chart if amCharts exists
    */
   public ngOnInit(): void {
-    // Don't initialize a chart if the core library wasn't passed in.
-    if (this.amCharts) {
-      // NOTE: We must delay for the first tick so the outer component has a width set.
-      Promise.resolve().then(() => {
-        this.init(this.visualization);
-      });
-    } else if (isDevMode()) {
-      console.warn('TsChartComponent: The amCharts library was not provided via injection token!');
-    }
+    this.protectedInitialize();
   }
 
 
@@ -143,8 +137,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   public ngOnChanges(changes: SimpleChanges): void {
     // istanbul ignore else
     if (inputHasChanged(changes, 'visualization')) {
-      this.destroyChart();
-      this.init(this.visualization);
+      this.protectedInitialize();
     }
   }
 
@@ -156,6 +149,23 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
     this.destroyChart();
   }
 
+
+  /**
+   * A function to verify the initialization requirements before creating the chart
+   */
+  private protectedInitialize(): void {
+    if (!this.amCharts) {
+      throw new TsUILibraryError(`
+        TsChartComponent: The amCharts library was not provided via injection token!
+        Please see: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chart/src/chart.component.md%23inject-the-needed-libraries
+      `);
+    }
+
+    // NOTE: We must delay for the first tick so the outer component has a width set.
+    Promise.resolve().then(() => {
+      this.createChart(this.visualization);
+    });
+  }
 
   /**
    * Destroy the chart
@@ -173,9 +183,12 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Initialize a chart
    */
-  private init(type: TsChartVisualizationOptions): void {
+  private createChart(type: TsChartVisualizationOptions): void {
     this.zone.runOutsideAngular(() => {
-      // Create the appropriate chart using a chained ternary
+      if (this.chart) {
+        this.chart.dispose();
+      }
+
       const chart: TsChart
         = type === 'xy'     ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.XYChart)
         : type === 'pie'    ? this.amCharts.core.create(this.chartDiv.nativeElement, this.amCharts.charts.PieChart)
@@ -192,7 +205,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
         this.chart = chart;
         this.chartInitialized.emit(chart);
       } else {
-        console.warn(`TsChartComponent: ${type} is not a supported chart type. See TsChartVisualizationOptions.`);
+        console.warn(`TsChartComponent: "${type}" is not a supported chart type. See TsChartVisualizationOptions.`);
       }
     });
   }
