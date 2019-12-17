@@ -190,7 +190,7 @@
     "@terminus/stylelint-config-frontend": "1.1.0",
     "@terminus/tslint-config-frontend": "1.0.7",
     "@types/jest": "24.0.23",
-    "@types/node": "12.12.18",
+    "@types/node": "12.12.19",
     "all-contributors-cli": "6.11.2",
     "autoprefixer": "9.7.3",
     "camelcase": "5.3.1",
