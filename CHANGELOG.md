@@ -1,3 +1,10 @@
+## [15.8.3](https://github.com/GetTerminus/terminus-ui/compare/v15.8.2...v15.8.3) (2019-12-17)
+
+
+### Bug Fixes
+
+* **Chart:** correctly dispose of the chart when needed ([e1b7735](https://github.com/GetTerminus/terminus-ui/commit/e1b7735)), closes [#1873](https://github.com/GetTerminus/terminus-ui/issues/1873)
+
 ## [15.8.2](https://github.com/GetTerminus/terminus-ui/compare/v15.8.1...v15.8.2) (2019-12-17)
 
 
