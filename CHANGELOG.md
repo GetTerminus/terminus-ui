@@ -1,3 +1,10 @@
+## [15.8.2](https://github.com/GetTerminus/terminus-ui/compare/v15.8.1...v15.8.2) (2019-12-17)
+
+
+### Bug Fixes
+
+* **packages:** update angularmaterial monorepo to v8.2.3 ([95aabb6](https://github.com/GetTerminus/terminus-ui/commit/95aabb6))
+
 ## [15.8.1](https://github.com/GetTerminus/terminus-ui/compare/v15.8.0...v15.8.1) (2019-12-17)
 
 
