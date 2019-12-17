@@ -12,7 +12,10 @@ module.exports = {
       ignoreCoverageForAllDecorators: true,
       diagnostics: false,
       stringifyContentPathRegex: '\\.html$',
-      astTransformers: [require.resolve('jest-preset-angular/InlineHtmlStripStylesTransformer')],
+      astTransformers: [
+        'jest-preset-angular/build/InlineFilesTransformer',
+        'jest-preset-angular/build/StripStylesTransformer'
+      ]
     },
   },
   moduleFileExtensions: [
@@ -40,9 +43,9 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/tooling/jest-setup.ts'],
   snapshotSerializers: [
-    'jest-preset-angular/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/AngularSnapshotSerializer.js',
-    'jest-preset-angular/HTMLCommentSerializer.js',
+    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
+    'jest-preset-angular/build/AngularSnapshotSerializer.js',
+    'jest-preset-angular/build/HTMLCommentSerializer.js',
   ],
   testMatch: [
     '<rootDir>/**/?(*.)spec.ts?(x)',
