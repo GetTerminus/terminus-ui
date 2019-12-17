@@ -11,6 +11,7 @@
 - [Supported chart types](#supported-chart-types)
   - [Chart Type Coercion](#chart-type-coercion)
 - [amCharts documentation](#amcharts-documentation)
+- [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -113,3 +114,18 @@ if (tsChartXYTypeCheck(chart)) {
 ## amCharts documentation
 
 See https://www.amcharts.com/docs/v4/ for full documentation.
+
+
+## Test Helpers
+
+Some helpers are exposed to assist with testing. These are imported from `@terminus/ui/chart/testing`;
+
+[[source]][test-helpers-src]
+
+|        Function        |
+|------------------------|
+| `getChartDebugElement` |
+| `getChartInstance`     |
+
+
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chart/testing/src/test-helpers.ts
