@@ -166,7 +166,7 @@
     "@angular/router": "8.2.14",
     "@terminus/ngx-tools": "7.2.6",
     "@terminus/ui": "15.4.0",
-    "date-fns": "2.8.1",
+    "date-fns": "2.9.0",
     "ngx-perfect-scrollbar": "8.0.0",
     "popper.js": "1.16.0",
     "text-mask-addons": "3.8.0",
