@@ -1497,14 +1497,14 @@
     eslint "^5.16.0"
     tslint "^5.17.0"
 
-"@terminus/ui@15.4.0":
-  version "15.4.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.4.0.tgz#63e3f0e5a00ad7ef09072bb3cf277314c5a593d4"
-  integrity sha512-2OB1JVELkMuRLfvV5IWMQJQMLUeMCielH9ly6Zdh6jlwa9A5sYSeqtSpLhlrhbyxrsQ4g2W5/2ztYEB1v+v51A==
+"@terminus/ui@15.8.3":
+  version "15.8.3"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.8.3.tgz#f236a9226aae177f808cb9026711d1b732400f64"
+  integrity sha512-Wy3tOOqFQ6ctVAeNbB1hX8odV9Ccsq8a5vNoo50EtPmfg/kcF4/TTJFusYRTNjjKgT2qFyGSuYCNayi3Fj4rqw==
   dependencies:
-    ngx-perfect-scrollbar "^8.0.0"
-    text-mask-addons "^3.8.0"
-    text-mask-core "^5.1.2"
+    ngx-perfect-scrollbar "8.0.0"
+    text-mask-addons "3.8.0"
+    text-mask-core "5.1.2"
     tslib "^1.9.0"
   optionalDependencies:
     "@amcharts/amcharts4" "^4.5.3"
@@ -10879,7 +10879,7 @@ ng-packagr@5.5.0:
     terser "^4.1.2"
     update-notifier "^3.0.0"
 
-ngx-perfect-scrollbar@8.0.0, ngx-perfect-scrollbar@^8.0.0:
+ngx-perfect-scrollbar@8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-8.0.0.tgz#19c1bbf9b1a36d89b00a68f7834e39427d29182f"
   integrity sha512-IXoFbULQnxyJj0gdCcKCLE/6OW9HCP9KARzMCKS1kNxTuzG4DghjM2AaCBRM5/sFwdbn6rqOKMCINtHA8W8YCA==
@@ -15552,12 +15552,12 @@ text-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/text-extensions/-/text-extensions-1.9.0.tgz#1853e45fee39c945ce6f6c36b2d659b5aabc2a26"
   integrity sha512-wiBrwC1EhBelW12Zy26JeOUkQ5mRu+5o8rpsJk5+2t+Y5vE7e842qtZDQ2g1NpX/29HdyFeJ4nSIhI47ENSxlQ==
 
-text-mask-addons@3.8.0, text-mask-addons@^3.8.0:
+text-mask-addons@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/text-mask-addons/-/text-mask-addons-3.8.0.tgz#17b61ef665a4f36811f2ea1f01a223b4be61ab26"
   integrity sha1-F7Ye9mWk82gR8uofAaIjtL5hqyY=
 
-text-mask-core@5.1.2, text-mask-core@^5.1.2:
+text-mask-core@5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/text-mask-core/-/text-mask-core-5.1.2.tgz#80dd5ebe04825757e46619e691407a9f8b3c1b6f"
   integrity sha1-gN1evgSCV1fkZhnmkUB6n4s8G28=
