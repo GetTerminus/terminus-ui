@@ -109,7 +109,6 @@
  */
 @mixin visually-hidden {
   $smallest-adjustment: 1px;
-
   border: 0;
   clip-path: rect(0, 0, 0, 0);
   // Not all styles apply to inline elements
@@ -120,5 +119,6 @@
   padding: 0;
   pointer-events: none;
   position: absolute;
+  visibility: hidden;
   width: $smallest-adjustment;
 }
