@@ -47,6 +47,7 @@ const config = {
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_spacing.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_triangle.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_typography.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_utilities.scss'),
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_z-index.scss'),
         // Card must be after spacing and shadows
         path.join(rootFolder, 'terminus-ui', 'scss/helpers/_card.scss'),
