@@ -149,6 +149,13 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   public chipCollectionSelectable = true;
 
   /**
+   * Whether the chip collection allows chip removable
+   *
+   * @internal
+   */
+  public chipCollectionRemovable = true;
+
+  /**
    * Whether the chip collection is in multi-selection mode.
    *
    * @internal

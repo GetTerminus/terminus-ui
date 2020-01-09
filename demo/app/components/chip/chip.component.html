@@ -10,20 +10,25 @@
       </select>
     </label>
     <br>
-    <label>
-      Allow removal:
-      <input type="checkbox" [(ngModel)]="removable">
-    </label>
     <br>
+    <div tsVerticalSpacing>
+      <label>
+        Chip Collection Disabled:
+        <input type="checkbox" [(ngModel)]="disabled">
+      </label>
+    </div>
+
+    <div tsVerticalSpacing>
+      <label>
+        Allow chip removal:
+        <input type="checkbox" [(ngModel)]="removable">
+      </label>
+    </div>
     <label>
-      Allow selection:
+      Allow chip selection:
       <input type="checkbox" [(ngModel)]="selectable">
     </label>
     <br>
-    <label>
-      Disable:
-      <input type="checkbox" [(ngModel)]="disabled">
-    </label>
   </div>
 
 
@@ -32,6 +37,7 @@
     [isSelectable]="selectable"
     [orientation]="orientation"
     (collectionChange)="change($event)"
+    [isDisabled]="disabled"
   >
     <ts-chip
       *ngFor="let chip of options;"
