@@ -5,25 +5,20 @@
   (dateRangeChange)="cohortDateRangeChange($event)"
 ></ts-date-range>
 
-<ts-select
+<ts-selection-list
   label="Select a date range"
   class="ts-cohort-date-range__select"
   [isDisabled]="isDisabled"
+  [allowUserInput]="false"
+  [formControl]="cohortControl"
+  [displayFormatter]="formatter"
   (selectionChange)="selectionChange($event)"
 >
   <ts-option
-    [value]="option.range"
+    [value]="option"
     [option]="option"
     *ngFor="let option of cohorts; trackBy: trackByFn"
   >
     {{ option.display }}
   </ts-option>
-
-  <ts-option
-    *ngIf="allowCustomDates"
-    [value]="customDateCohort.range"
-    [option]="customDateCohort"
-  >
-    {{ customDateCohort.display }}
-  </ts-option>
-</ts-select>
+</ts-selection-list>

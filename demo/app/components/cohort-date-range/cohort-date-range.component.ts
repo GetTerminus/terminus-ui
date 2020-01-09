@@ -52,6 +52,7 @@ export class CohortDateRangeComponent {
         start: startOfDay(subMonths(startOfMonth(currentDate), 1)),
         end: endOfDay(subDays(startOfMonth(currentDate), 1)),
       },
+      active: true,
     },
   ];
   public lastRange: TsCohortDateRangeChanged | undefined;

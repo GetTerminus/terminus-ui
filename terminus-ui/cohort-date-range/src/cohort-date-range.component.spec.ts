@@ -5,20 +5,18 @@ import {
 } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { KEYS } from '@terminus/ngx-tools';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/cohort-date-range/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   getCohortDebugElement,
   getFormFieldElement,
-  getSelectTriggerElement,
   TsCohortDateRangeTestComponent,
 } from '@terminus/ui/cohort-date-range/testing';
 import { TsDateRangeModule } from '@terminus/ui/date-range';
 import { getRangeInputInstances } from '@terminus/ui/date-range/testing';
 import { TsInputComponent } from '@terminus/ui/input';
-import { createKeydownEvent } from '@terminus/ui/select/testing';
+import { TsSelectionListChange } from '@terminus/ui/selection-list';
 
 import {
   TsCohortDateRangeComponent,
@@ -49,7 +47,6 @@ describe(`TsCohortDateRangeComponent`, () => {
     fixture = createComponent(component);
     fixture.detectChanges();
     hostInstance = fixture.componentInstance;
-    fixture.detectChanges();
     startInputInstance = getRangeInputInstances(fixture)[0];
     formFieldElement = getFormFieldElement(fixture);
     cohortDebugElement = getCohortDebugElement(fixture);
@@ -98,11 +95,11 @@ describe(`TsCohortDateRangeComponent`, () => {
   describe(`updateSelectOnRangeChange`, () => {
 
     test(`should do nothing if no cohorts exist`, () => {
-      setupComponent(testComponents.Basic);
+      setupComponent(testComponents.NoCohorts);
+      fixture.detectChanges();
       const debug = getCohortDebugElement(fixture);
       const instance: TsCohortDateRangeComponent = debug.componentInstance;
-      instance.selectComponent.options.toArray = jest.fn();
-      instance.cohorts = undefined as any;
+      instance.cohortControl.setValue = jest.fn();
 
       instance.dateRangeFormGroup.setValue({
         startDate: new Date(),
@@ -110,53 +107,71 @@ describe(`TsCohortDateRangeComponent`, () => {
       });
       fixture.detectChanges();
 
-      expect(instance.selectComponent.options.toArray).not.toHaveBeenCalled();
+      expect(instance.cohortControl.setValue).not.toHaveBeenCalled();
     });
 
-    test(`should set the select to the custom cohort when the range is manually changed`, () => {
+    test(`should update the select to the custom cohort when the range is manually changed`, () => {
       setupComponent(testComponents.Basic);
       const debug = getCohortDebugElement(fixture);
       const instance: TsCohortDateRangeComponent = debug.componentInstance;
-      const options = instance.selectComponent.options.toArray();
-      const lastOption = options[options.length - 1];
-      lastOption.select = jest.fn();
       instance.dateRangeFormGroup.patchValue({ startDate: new Date() });
       fixture.detectChanges();
 
-      expect(lastOption.select).toHaveBeenCalled();
+      expect(instance.cohortControl.value[0]).toEqual(expect.objectContaining({ display: 'Custom dates' }));
+    });
+
+    test(`should not update the select when the range is manually changed to a cohort range`, () => {
+      const date1 = new Date(2018, 1, 1);
+      const date2 = new Date(2018, 2, 1);
+      setupComponent(testComponents.Basic);
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+      instance.cohortControl.setValue = jest.fn();
+      instance.dateRangeFormGroup.patchValue({
+        startDate: date1,
+        endDate: date2,
+      });
+      fixture.detectChanges();
+
+      expect(instance.cohortControl.setValue).not.toHaveBeenCalled();
+    });
+
+  });
+
+  describe(`cohorts`, () => {
+
+    test(`should set the active cohort by default`, () => {
+      setupComponent(testComponents.DefaultCohort);
+      fixture.detectChanges();
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+      const range = instance.dateRangeFormGroup.value;
+      const year = new Date(range.startDate).getFullYear();
+
+      expect(year).toEqual(2019);
+    });
+
+    test(`should not add the custom cohort if custom dates are not allowed`, () => {
+      setupComponent(testComponents.NoCustomDates);
+      fixture.detectChanges();
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+      expect(instance.cohorts.length).toEqual(1);
+    });
+
+    test(`should add the custom cohort to the end if allowUserInput is true`, () => {
+      setupComponent(testComponents.Basic);
+      fixture.detectChanges();
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+
+      expect(instance.cohorts.length).toEqual(2);
+      expect(instance.cohorts[1]).toEqual(expect.objectContaining({ display: 'Custom dates' }));
     });
 
   });
 
   describe(`select emitters`, function() {
-    let trigger: HTMLElement;
-    let event: KeyboardEvent;
-
-    beforeEach(() => {
-      event = createKeydownEvent(KEYS.DOWN_ARROW);
-    });
-
-    test(`should emit change event and set date range disabled when there is start/end date passed in`, () => {
-      setupComponent(testComponents.Basic);
-      fixture.detectChanges();
-      hostInstance.cohortDateRangeChanged = jest.fn();
-      trigger = getSelectTriggerElement(fixture);
-      event = createKeydownEvent(KEYS.DOWN_ARROW);
-      trigger.dispatchEvent(event);
-      fixture.detectChanges();
-
-      expect(hostInstance.cohortDateRangeChanged).toHaveBeenCalled();
-    });
-
-    test(`should not emit change event and set date range enabled when there is no start/end date passed in`, () => {
-      setupComponent(testComponents.Standard);
-      cohortInstance.cohortDateRangeChange = jest.fn();
-      trigger = getSelectTriggerElement(fixture);
-      event = createKeydownEvent(KEYS.DOWN_ARROW);
-      trigger.dispatchEvent(event);
-
-      expect(cohortInstance.cohortDateRangeChange).not.toHaveBeenCalled();
-    });
 
     test(`should emit change event if date range has any changes`, () => {
       setupComponent(testComponents.Basic);
@@ -170,6 +185,30 @@ describe(`TsCohortDateRangeComponent`, () => {
       fixture.detectChanges();
       expect(cohortInstance.cohortDateRangeChanged.emit).toHaveBeenCalledWith(dates);
     });
+  });
+
+  describe(`selectionChange`, () => {
+
+    test(`should set the date range if the cohort selection changes`, () => {
+      setupComponent(testComponents.DefaultCohort);
+      fixture.detectChanges();
+      const debug = getCohortDebugElement(fixture);
+      const instance: TsCohortDateRangeComponent = debug.componentInstance;
+      instance.setDateRangeValues = jest.fn();
+
+      const cohort = {
+        display: 'foo',
+        range: {
+          start: new Date(),
+          end: new Date(),
+        },
+      };
+      const fakeEvent = new TsSelectionListChange({} as any, [cohort]);
+      instance.selectionChange(fakeEvent as any);
+
+      expect(instance.setDateRangeValues).toHaveBeenCalled();
+    });
+
   });
 
 });

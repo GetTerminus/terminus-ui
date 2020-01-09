@@ -63,8 +63,77 @@ export class Standard {
   public cohortDateRangeChanged() { }
 }
 
+@Component({
+  template: `
+    <ts-cohort-date-range
+      [cohorts]="dateCohorts"
+    ></ts-cohort-date-range>
+  `,
+})
+// tslint:disable-next-line:component-class-suffix
+export class DefaultCohort {
+  public date1 = new Date(2018, 1, 1);
+  public date2 = new Date(2018, 2, 1);
+  public date3 = new Date(2019, 1, 1);
+  public date4 = new Date(2019, 2, 1);
+  public dateCohorts: TsDateCohort[] = [
+    {
+      display: 'cohort one',
+      range: {
+        start: this.date1,
+        end: this.date2,
+      },
+    },
+    {
+      display: 'cohort two',
+      range: {
+        start: this.date3,
+        end: this.date4,
+      },
+      active: true,
+    },
+  ];
+}
+
+@Component({
+  template: `
+    <ts-cohort-date-range
+      [allowCustomDates]="false"
+      [cohorts]="dateCohorts"
+    ></ts-cohort-date-range>
+  `,
+})
+// tslint:disable-next-line:component-class-suffix
+export class NoCustomDates {
+  public date1 = new Date(2018, 1, 1);
+  public date2 = new Date(2018, 2, 1);
+  public dateCohorts: TsDateCohort[] = [
+    {
+      display: 'cohort one',
+      range: {
+        start: this.date1,
+        end: this.date2,
+      },
+    },
+  ];
+}
+
+@Component({
+  template: `
+    <ts-cohort-date-range
+      [allowCustomDates]="false"
+      [cohorts]="[]"
+    ></ts-cohort-date-range>
+  `,
+})
+// tslint:disable-next-line:component-class-suffix
+export class NoCohorts {}
+
 export type TsCohortDateRangeTestComponent
   = Basic
+  | DefaultCohort
+  | NoCohorts
+  | NoCustomDates
   | Standard
 ;
 
@@ -82,6 +151,9 @@ export type TsCohortDateRangeTestComponent
   ],
   declarations: [
     Basic,
+    DefaultCohort,
+    NoCohorts,
+    NoCustomDates,
     Standard,
   ],
 })
