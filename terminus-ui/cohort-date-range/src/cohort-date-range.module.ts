@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TsDateRangeModule } from '@terminus/ui/date-range';
 import { TsOptionModule } from '@terminus/ui/option';
-import { TsSelectModule } from '@terminus/ui/select';
+import { TsSelectionListModule } from '@terminus/ui/selection-list';
 
 import { TsCohortDateRangeComponent } from './cohort-date-range.component';
 
@@ -15,16 +15,12 @@ export * from './cohort-date-range.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    TsDateRangeModule,
-    TsSelectModule,
-    TsOptionModule,
     ReactiveFormsModule,
+    TsDateRangeModule,
+    TsOptionModule,
+    TsSelectionListModule,
   ],
-  exports: [
-    TsCohortDateRangeComponent,
-  ],
-  declarations: [
-    TsCohortDateRangeComponent,
-  ],
+  exports: [TsCohortDateRangeComponent],
+  declarations: [TsCohortDateRangeComponent],
 })
 export class TsCohortDateRangeModule {}

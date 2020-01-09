@@ -1,15 +1,15 @@
 @import './../../scss/helpers/spacing';
 
+
 .ts-cohort-date-range {
+  --cohort-selection-list-minWidth: 200px;
   display: block;
-}
 
-.ts-select {
-  $SELECT_MIN_WIDTH: 200px;
-
-  &.ts-cohort-date-range__select {
-    display: inline-block;
-    min-width: $SELECT_MIN_WIDTH;
+  .ts-selection-list {
+    &.ts-cohort-date-range__select {
+      display: inline-block;
+      min-width: var(--cohort-selection-list-minWidth);
+    }
   }
 }
 

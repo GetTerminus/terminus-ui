@@ -4,6 +4,7 @@
 
 - [Cohort Date Range](#cohort-date-range)
   - [Basic usage](#basic-usage)
+    - [Defaulting to a specific cohort](#defaulting-to-a-specific-cohort)
   - [Event driven](#event-driven)
   - [Inputs to the component](#inputs-to-the-component)
     - [allowCustomDates](#allowcustomdates)
@@ -25,12 +26,13 @@ Pass in the cohorts:
 ```
 
 ```typescript
+```typescript
 cohorts: TsDateCohort[] = [
   {
     display: 'Last full year',
     range: {
-      startDate: new Date(2018, 1, 1),
-      endDate: new Date(2018, 12, 31),
+      start: new Date(2018, 1, 1),
+      end: new Date(2018, 12, 31),
     },
   },
   {
@@ -40,13 +42,6 @@ cohorts: TsDateCohort[] = [
       endDate: new Date(2019, 8, 31),
     },
   },
-  {
-    display: 'Custom dates',
-    range: {
-      startDate: '',
-      endDate: '',
-    },
-  },
 ];
 ```
 
@@ -54,12 +49,38 @@ The keys inside the passed in `cohorts` object must match the `TsDateCohort` int
 
 ```typescript
 {
+  active?: boolean;
   display: string,
   range: {
-    startDate: Date | string,
-    endDate: Date | string,
+    start: Date | string,
+    end: Date | string,
   }
 }
+```
+
+### Defaulting to a specific cohort
+
+The first `TsDateCohort` that has the `active` key set to `true` will be selected by default.
+
+```typescript
+```typescript
+cohorts: TsDateCohort[] = [
+  {
+    display: 'Last full year',
+    range: {
+      start: new Date(2018, 1, 1),
+      end: new Date(2018, 12, 31),
+    },
+  },
+  {
+    active: true, // Now this cohort will be selected on load!
+    display: 'Last full month',
+    range: {
+      start: new Date(2019, 8, 1),
+      end: new Date(2019, 8, 31),
+    },
+  },
+];
 ```
 
 ## Event driven
