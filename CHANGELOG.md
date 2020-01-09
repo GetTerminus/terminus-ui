@@ -1,3 +1,10 @@
+## [15.8.6](https://github.com/GetTerminus/terminus-ui/compare/v15.8.5...v15.8.6) (2020-01-09)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @terminus/ui to v15.8.3 ([c7bf909](https://github.com/GetTerminus/terminus-ui/commit/c7bf909))
+
 ## [15.8.5](https://github.com/GetTerminus/terminus-ui/compare/v15.8.4...v15.8.5) (2020-01-09)
 
 
