@@ -11,7 +11,12 @@
     <br>
     <label>
       Disable
-      <input type="checkbox" [(ngModel)]="isDisabled">
+      <input type="checkbox" [(ngModel)]="isDisabledMulti" [ngModelOptions]="{standalone: true}">
+    </label>
+    <br>
+    <label>
+      Allow user input
+      <input type="checkbox" [(ngModel)]="allowInputMulti" [ngModelOptions]="{standalone: true}">
     </label>
   </div>
 
@@ -25,9 +30,10 @@
     <ts-selection-list
       label="Select states"
       hint="Begin typing to search.."
-      [isDisabled]="isDisabled"
+      [isDisabled]="isDisabledMulti"
       [formControl]="complexMultipleControl"
       [allowMultiple]="true"
+      [allowUserInput]="allowInputMulti"
       [reopenAfterSelection]="true"
       [showProgress]="complexMultipleAsync"
       [displayFormatter]="formatter"
@@ -70,11 +76,23 @@
       <button (click)="seedSelections(simpleControl, [states[0]])" tabindex="-1">
         Seed selection
       </button>
+      <br>
+      <label>
+        Disable
+        <input type="checkbox" [(ngModel)]="isDisabledSingle" [ngModelOptions]="{standalone: true}">
+      </label>
+      <br>
+      <label>
+        Allow user input
+        <input type="checkbox" [(ngModel)]="allowInputSingle" [ngModelOptions]="{standalone: true}">
+      </label>
     </div>
 
     <ts-selection-list
       label="Select states"
       hint="Begin typing to search.."
+      [allowUserInput]="allowInputSingle"
+      [isDisabled]="isDisabledSingle"
       [formControl]="simpleControl"
       [showProgress]="simpleAsync"
       [displayFormatter]="formatter"

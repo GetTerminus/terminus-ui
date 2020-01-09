@@ -64,7 +64,6 @@ import { TsSelectionListTriggerDirective } from './selection-list-panel/selectio
 
 // Unique ID for each instance
 let nextUniqueId = 0;
-
 const DEFAULT_MINIMUM_CHARACTER_COUNT = 2;
 const DEFAULT_DEBOUNCE_DELAY = 200;
 
@@ -91,7 +90,6 @@ export type TsSelectionListComparator = (a: unknown, b: unknown) => boolean;
  *              [displayFormatter]="formatterFunc"
  *              [valueComparator]="comparatorFunc"
  *              debounceDelay="300"
- *              displayWith="(v) => v.name"
  *              [formControl]="myFormControl"
  *              hint="Begin typing to search.."
  *              [isDisabled]="isDisabled"
@@ -142,7 +140,7 @@ export class TsSelectionListComponent implements
   OnInit,
   AfterViewInit,
   OnDestroy,
-  TsFormFieldControl<string> {
+  TsFormFieldControl<unknown> {
 
   /**
    * Give the component an explicit name
@@ -282,6 +280,18 @@ export class TsSelectionListComponent implements
   }
 
   /**
+   * Determine the trigger display when no user input is allowed
+   */
+  public get staticTriggerDisplay(): string {
+    const selection = this.ngControl.value[0];
+    const display = selection ? this.displayFormatter(selection) : '';
+    if (this.allowMultiple || !display) {
+      return '';
+    }
+    return display;
+  }
+
+  /**
    * Define if multiple selections are allowed
    */
   @Input()
@@ -294,12 +304,10 @@ export class TsSelectionListComponent implements
   public allowDuplicateSelections = false;
 
   /**
-   * Define if the panel should reopen after a selection is made
-   *
-   * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.
+   * Define if the user is allowed to type to search/filter
    */
   @Input()
-  public reopenAfterSelection = false;
+  public allowUserInput = true;
 
   /**
    * Define a debounce delay for the query stream
@@ -374,6 +382,14 @@ export class TsSelectionListComponent implements
     return this._minimumCharacters;
   }
   private _minimumCharacters = DEFAULT_MINIMUM_CHARACTER_COUNT;
+
+  /**
+   * Define if the panel should reopen after a selection is made
+   *
+   * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.
+   */
+  @Input()
+  public reopenAfterSelection = false;
 
   /**
    * Define if the input should currently be showing a progress spinner
@@ -525,7 +541,7 @@ export class TsSelectionListComponent implements
       // istanbul ignore else
       if (this.ngControl.value && !isArray(this.ngControl.value)) {
         throw new TsUILibraryError(`TsSelectionListComponent: Form control values must be an array of values`);
-      } else if (this.ngControl.value) {
+      } else if (this.ngControl.value && this.ngControl.value.length) {
         this.selectionListFormControl.setValue(this.ngControl.value);
         if (!this.allowMultiple) {
           this.searchQuery = this.displayFormatter(this.ngControl.value[0]);
@@ -580,7 +596,6 @@ export class TsSelectionListComponent implements
     });
   }
 
-
   /**
    * Subscribe to panel events and query subject changes
    */
@@ -622,12 +637,10 @@ export class TsSelectionListComponent implements
     });
   }
 
-
   /**
    * Needed for untilComponentDestroyed
    */
   public ngOnDestroy(): void {}
-
 
   /**
    * Stub in onChange
@@ -637,7 +650,6 @@ export class TsSelectionListComponent implements
   // istanbul ignore next
   public onChange: (value: string) => void = () => { };
 
-
   /**
    * Stub in onTouched
    *
@@ -645,7 +657,6 @@ export class TsSelectionListComponent implements
    */
   // istanbul ignore next
   public onTouched = () => { };
-
 
   /**
    * Close the overlay panel
@@ -670,14 +681,12 @@ export class TsSelectionListComponent implements
     }
   }
 
-
   /**
    * Focus the native input element
    */
   public focusInput(): void {
     this.inputElement.nativeElement.focus();
   }
-
 
   /**
    * Open the overlay panel
@@ -689,7 +698,6 @@ export class TsSelectionListComponent implements
     this.opened.emit();
   }
 
-
   /**
    * Sets the select's value. Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
    *
@@ -698,7 +706,6 @@ export class TsSelectionListComponent implements
    * @param value - New value to be written to the model
    */
   public writeValue(value: string): void { }
-
 
   /**
    * Save a callback function to be invoked when the select's value changes from user input.
@@ -710,7 +717,6 @@ export class TsSelectionListComponent implements
     this.onChange = fn;
   }
 
-
   /**
    * Save a callback function to be invoked when the select is blurred by the user.
    * Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
@@ -720,7 +726,6 @@ export class TsSelectionListComponent implements
   public registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-
 
   /**
    * Disables the select.
@@ -734,7 +739,6 @@ export class TsSelectionListComponent implements
     this.stateChanges.next();
   }
 
-
   /**
    * Ensure the correct element gets focus when the primary container is clicked.
    *
@@ -743,7 +747,6 @@ export class TsSelectionListComponent implements
   public onContainerClick(): void {
     this.focusInput();
   }
-
 
   /**
    * Close the dropdown and reset the query when the user leaves the input
@@ -784,7 +787,6 @@ export class TsSelectionListComponent implements
     this.onTouched();
     this.updateValueAndValidity();
   }
-
 
   /**
    * Select an item
@@ -835,7 +837,6 @@ export class TsSelectionListComponent implements
     this.optionSelected.emit(new TsSelectionListChange(this, selection.option.value));
   }
 
-
   /**
    * Deselect an item
    *
@@ -868,7 +869,6 @@ export class TsSelectionListComponent implements
     this.optionDeselected.emit(new TsSelectionListChange(this, option));
   }
 
-
   /**
    * Function for tracking for-loops changes
    *
@@ -878,7 +878,6 @@ export class TsSelectionListComponent implements
   public trackByFn(index): number {
     return index;
   }
-
 
   /**
    * Set up a key manager to listen to keyboard events on the overlay panel
@@ -893,7 +892,6 @@ export class TsSelectionListComponent implements
 
   }
 
-
   /**
    * Emit a change event to set the model value
    */
@@ -906,7 +904,6 @@ export class TsSelectionListComponent implements
     this.changeDetectorRef.markForCheck();
   }
 
-
   /**
    * Call FormControl updateValueAndValidity function to ensure value and valid status get updated.
    */
@@ -916,7 +913,6 @@ export class TsSelectionListComponent implements
       this.ngControl.control.updateValueAndValidity();
     }
   }
-
 
   /**
    * Reset input

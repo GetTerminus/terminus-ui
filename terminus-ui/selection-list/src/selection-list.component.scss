@@ -7,9 +7,9 @@
 @import './../../scss/helpers/typography';
 
 
-$transition-duration: 200;
-
 .ts-selection-list {
+  // This brings chips above the static trigger
+  --chip-zIndex: 2;
   cursor: cursor(pointer);
   display: block;
 
@@ -24,14 +24,27 @@ $transition-duration: 200;
       cursor: cursor(not-allowed);
     }
   }
+
+  // Static trigger when user input is not allowed
+  .ts-selection-list__custom-trigger {
+    cursor: cursor(pointer);
+    // This magic number forces the div to fill the same vertical space the input would normally
+    min-height: 19px;
+    // Don't let it fully collapse when empty
+    min-width: 1px;
+  }
+
+  .ts-chip-collection-wrapper {
+    z-index: 1;
+  }
+
+  .ts-chip {
+    z-index: var(--chip-zIndex);
+  }
 }
 
 .ts-selection-list__input-wrap {
   position: relative;
-
-  &--hidden {
-    @include visually-hidden;
-  }
 
   > .ts-icon {
     position: absolute;

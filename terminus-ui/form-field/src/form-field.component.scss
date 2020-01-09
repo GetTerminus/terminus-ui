@@ -128,7 +128,8 @@
       color: var(--formField-outlineColor-disabled);
     }
 
-    .c-input__text {
+    .c-input__text,
+    .ts-selection-list__input {
       color: var(--formField-color-disabled);
     }
 

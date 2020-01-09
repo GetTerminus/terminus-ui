@@ -105,9 +105,9 @@ export function getSelectionListElement(fixture: ComponentFixture<any>, index = 
  * @param index - The index of the desired TsSelectionListComponent
  * @return The element
  */
-export function getSelectionListTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
+export function getSelectionListTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getSelectionListDebugElement(fixture, index);
-  return debugElement.query(By.directive(TsSelectionListTriggerDirective)).nativeElement as HTMLInputElement;
+  return debugElement.query(By.directive(TsSelectionListTriggerDirective)).nativeElement;
 }
 
 /**
