@@ -104,6 +104,7 @@ let nextUniqueId = 0;
     // a little earlier. This avoids issues where IE delays the focusing of the input.
     '(blur)': 'onTouched()',
     '(focusin)': 'handleFocus()',
+    '(click)': 'handleFocus()',
     '(input)': 'handleInput($event)',
     '(keydown)': 'handleKeydown($event)',
   },
@@ -587,7 +588,15 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    */
   private canOpen(): boolean {
     const element = this.elementRef.nativeElement;
-    return !element.readOnly && !element.disabled && !this.selectionListDisabled;
+    const isDisabled = coerceBooleanProperty(element.disabled)
+      || coerceBooleanProperty(element.getAttribute('data-disabled'))
+      || coerceBooleanProperty(this.selectionListDisabled);
+    const isReadOnly = coerceBooleanProperty(element.readOnly);
+    const allowsUserInput = coerceBooleanProperty(element.getAttribute('data-user-input'));
+    if (allowsUserInput) {
+      return !isReadOnly && !isDisabled;
+    }
+    return !isDisabled;
   }
 
 

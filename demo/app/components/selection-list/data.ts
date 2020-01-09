@@ -1,5 +1,7 @@
+import { TsOption } from '@terminus/ui/option';
 
-export interface State {
+
+export interface State extends TsOption {
   name: string;
   abbreviation: string;
 }

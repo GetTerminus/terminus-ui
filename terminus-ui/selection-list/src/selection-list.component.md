@@ -1,6 +1,5 @@
 <h1>SelectionList</h1>
 
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -12,6 +11,7 @@
   - [Minimum Characters](#minimum-characters)
   - [Formatting](#formatting)
   - [Complex comparator](#complex-comparator)
+  - [Standard dropdown mode (no typing)](#standard-dropdown-mode-no-typing)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -131,6 +131,20 @@ To compare custom objects, a compare function may be passed in:
 import { TsSelectionListComparator } from '@terminus/ui/selection-list';
 
 public compareFunc: TsSelectionListComparator = (a, b) => a.id === b.id;
+```
+
+### Standard dropdown mode (no typing)
+
+If the component should act as a standard dropdown with no ability to type a query, set the flag `allowUserInput` to
+`false`. By default it is `true`.
+
+```html
+<ts-selection-list
+  [formControl]="myCtrl"
+  [allowUserInput]="false"
+>
+  ...
+</ts-selection-list>
 ```
 
 ## Events

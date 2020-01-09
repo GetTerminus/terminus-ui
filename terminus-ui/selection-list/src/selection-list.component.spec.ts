@@ -86,31 +86,18 @@ describe(`TsSelectionListComponent`, function() {
     expect.assertions(2);
   });
 
-  test(`should not open when disabled`, () => {
-    const fixture = createComponent(testComponents.Basic);
-    fixture.componentInstance.disabled = true;
-    fixture.detectChanges();
-    const trigger = getSelectionListTriggerElement(fixture);
-    const instance = getSelectionListInstance(fixture);
-
-    expect(instance.panelOpen).toEqual(false);
-
-    dispatchKeyboardEvent(trigger, 'keydown', KEYS.DOWN_ARROW);
-    expect(instance.panelOpen).toEqual(false);
-  });
-
   test(`should set the disabled state when called`, () => {
     const fixture = createComponent(testComponents.Basic);
     fixture.detectChanges();
     const instance = getSelectionListInstance(fixture);
     const selectionList = fixture.debugElement.query(By.css('.ts-selection-list')).nativeElement;
-    instance['changeDetectorRef'].markForCheck = jest.fn();
+    instance.changeDetectorRef.markForCheck = jest.fn();
     instance.stateChanges.next = jest.fn();
 
     instance.setDisabledState(true);
     fixture.detectChanges();
 
-    expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
+    expect(instance.changeDetectorRef.markForCheck).toHaveBeenCalled();
     expect(instance.stateChanges.next).toHaveBeenCalled();
     expect(instance.isDisabled).toEqual(true);
     expect(selectionList.classList).toContain('ts-selection-list--disabled');
@@ -119,13 +106,11 @@ describe(`TsSelectionListComponent`, function() {
   test(`should not open when disabled`, () => {
     const fixture = createComponent(testComponents.Disabled);
     fixture.detectChanges();
-    fixture.componentInstance.wasOpened = jest.fn();
     const trigger = getSelectionListTriggerElement(fixture);
     dispatchMouseEvent(trigger, 'click');
     fixture.detectChanges();
     const instance = getSelectionListInstance(fixture);
 
-    expect(fixture.componentInstance.wasOpened).not.toHaveBeenCalled();
     expect(instance.panelOpen).toEqual(false);
   });
 
@@ -684,14 +669,14 @@ describe(`TsSelectionListComponent`, function() {
         const option = getOptionInstance(fixture, 0, 2);
         option.select();
         fixture.detectChanges();
-        option['emitSelectionChangeEvent'] = jest.fn();
+        option.emitSelectionChangeEvent = jest.fn();
 
         option.deselect();
         fixture.detectChanges();
 
-        expect(option['emitSelectionChangeEvent'].mock.calls.length).toEqual(1);
+        expect(option.emitSelectionChangeEvent.mock.calls.length).toEqual(1);
         // Verify it was not called with the boolean
-        expect(option['emitSelectionChangeEvent'].mock.calls[0]).toEqual([]);
+        expect(option.emitSelectionChangeEvent.mock.calls[0]).toEqual([]);
       });
 
     });
@@ -813,7 +798,7 @@ describe(`TsSelectionListComponent`, function() {
       const fixture = createComponent(testComponents.Basic);
       const instance = getSelectionListInstance(fixture);
       fixture.detectChanges();
-      instance.trigger['selectionListPanel'] = undefined as any;
+      instance.trigger.selectionListPanel = undefined as any;
 
       const actual = () => {
         instance.trigger.openPanel();
@@ -837,14 +822,14 @@ describe(`TsSelectionListComponent`, function() {
       triggerInstance.openPanel();
       fixture.detectChanges();
       const triggerElement = getSelectionListTriggerElement(fixture);
-      triggerInstance['resetActiveItem'] = jest.fn();
-      triggerInstance['closeKeyEventStream'].next = jest.fn();
+      triggerInstance.resetActiveItem = jest.fn();
+      triggerInstance.closeKeyEventStream.next = jest.fn();
       const overlayElement = triggerInstance.overlayRef!.overlayElement;
       overlayElement.dispatchEvent(event);
       fixture.detectChanges();
 
-      expect(triggerInstance['resetActiveItem']).toHaveBeenCalled();
-      expect(triggerInstance['closeKeyEventStream'].next).toHaveBeenCalled();
+      expect(triggerInstance.resetActiveItem).toHaveBeenCalled();
+      expect(triggerInstance.closeKeyEventStream.next).toHaveBeenCalled();
     });
 
     test(`should trigger an overlayRef resize when the viewport size changes`, fakeAsync(() => {
@@ -884,7 +869,7 @@ describe(`TsSelectionListComponent`, function() {
       let selected = getAllOptionInstances(fixture).filter(o => o.selected);
       expect(selected.length).toEqual(2);
 
-      trigger['clearPreviousSelectedOption'](options[2]);
+      trigger.clearPreviousSelectedOption(options[2]);
       selected = getAllOptionInstances(fixture).filter(o => o.selected);
 
       expect(selected.length).toEqual(0);
@@ -894,7 +879,7 @@ describe(`TsSelectionListComponent`, function() {
       let selected = getAllOptionInstances(fixture).filter(o => o.selected);
       expect(selected.length).toEqual(2);
 
-      trigger['clearPreviousSelectedOption'](options[1]);
+      trigger.clearPreviousSelectedOption(options[1]);
       selected = getAllOptionInstances(fixture).filter(o => o.selected);
 
       expect(selected.length).toEqual(1);
@@ -909,9 +894,9 @@ describe(`TsSelectionListComponent`, function() {
       fixture.detectChanges();
       const instance = getSelectionListInstance(fixture);
       const trigger = instance.trigger;
-      trigger['formField'] = undefined as any;
+      trigger.formField = undefined as any;
 
-      expect(trigger['getConnectedElement']().nativeElement.classList).toContain('ts-selection-list-trigger');
+      expect(trigger.getConnectedElement().nativeElement.classList).toContain('ts-selection-list-trigger');
     });
 
   });

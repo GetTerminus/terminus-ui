@@ -13,9 +13,10 @@
   </ts-label>
 
   <div class="ts-selection-list__input-wrap">
-
     <ng-container *ngIf="allowMultiple">
-      <ts-chip-collection (tabUpdateFocus)="focusInput()">
+      <ts-chip-collection
+        (tabUpdateFocus)="focusInput()"
+      >
         <ts-chip
           *ngFor="let chip of ngControl.value; trackBy: trackByFn"
           [value]="chip"
@@ -27,17 +28,21 @@
 
         <input
           class="ts-selection-list__input"
+          *ngIf="allowUserInput"
           [tsSelectionListTrigger]="auto"
+          [attr.data-allow-input]="allowUserInput"
+          [attr.id]="id"
+          [disabled]="isDisabled"
           [allowMultiple]="allowMultiple"
           [reopenAfterSelection]="reopenAfterSelection"
-          [attr.id]="id"
           [(ngModel)]="searchQuery"
-          [readonly]="isDisabled ? 'true' : null"
+          [readonly]="isDisabled || !allowUserInput ? 'true' : null"
           (ngModelChange)="querySubject.next($event)"
           (blur)="handleInputBlur($event)"
           onfocus="this.select()"
           #input
         />
+        <ng-template *ngTemplateOutlet="triggerTemplate"></ng-template>
       </ts-chip-collection>
 
       <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
@@ -46,10 +51,13 @@
     <ng-container *ngIf="!allowMultiple">
       <input
         class="ts-selection-list__input"
+        *ngIf="allowUserInput"
         [tsSelectionListTrigger]="auto"
-        [allowMultiple]="allowMultiple"
+        [attr.data-allow-input]="allowUserInput"
         [attr.id]="id"
-        [readonly]="isDisabled ? 'true' : null"
+        [disabled]="isDisabled"
+        [allowMultiple]="allowMultiple"
+        [readonly]="isDisabled || !allowUserInput ? 'true' : null"
         [(ngModel)]="searchQuery"
         [value]="searchQuery"
         (ngModelChange)="querySubject.next($event)"
@@ -58,11 +66,28 @@
         #input
       />
 
+      <ng-template *ngTemplateOutlet="triggerTemplate"></ng-template>
       <ng-template *ngTemplateOutlet="spinnerTemplate"></ng-template>
     </ng-container>
 
     <ts-icon *ngIf="shouldShowDropdownIcon">arrow_drop_down</ts-icon>
   </div>
+
+  <!-- NOTE: This template must remain inside the form field component or disabled states aren't reflected correctly. -->
+  <ng-template #triggerTemplate>
+    <input
+      type="text"
+      fxFlex
+      *ngIf="!allowUserInput"
+      [tsSelectionListTrigger]="auto"
+      class="ts-selection-list__input ts-selection-list__custom-trigger"
+      [attr.data-disabled]="isDisabled"
+      readonly
+      value="{{ staticTriggerDisplay }}"
+      title="{{ staticTriggerDisplay }}"
+      #input
+    >
+  </ng-template>
 </ts-form-field>
 
 
@@ -78,6 +103,7 @@
   <!-- Outlet for options passed in by consumer -->
   <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
 </ts-selection-list-panel>
+
 
 
 <ng-template #contentTemplate>
