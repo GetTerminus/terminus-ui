@@ -103,7 +103,8 @@ describe(`TsChipCollection`, function() {
     tick();
     fixture.detectChanges();
 
-    expect(chipInstance.isRemovable).toBeFalsy();
+    expect(chipInstance.isRemovable).toBeTruthy();
+    expect(chipInstance.chipCollectionRemovable).toBeFalsy();
     expect(chipNativeElement.classList).not.toContain('c-chip--removable');
   }));
 

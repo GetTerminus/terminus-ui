@@ -2,7 +2,7 @@
   class="c-chip"
   [ngClass]="{
     'c-chip--disabled': isDisabled,
-    'c-chip--removable': isRemovable
+    'c-chip--removable': isRemovable && chipCollectionRemovable
   }"
   [attr.id]="id"
   (click)="click($event)"

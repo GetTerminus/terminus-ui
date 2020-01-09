@@ -656,7 +656,7 @@ export class TsChipCollectionComponent implements OnInit, AfterViewInit, AfterCo
         chip.allowMultiple = this.allowMultipleSelections;
         chip.chipCollectionMultiple = this.allowMultipleSelections;
         chip.isDisabled = this.isDisabled;
-        chip.isRemovable = !this.isReadonly && !this.isDisabled;
+        chip.chipCollectionRemovable = !this.isReadonly && !this.isDisabled;
         chip.isSelectable = this.isSelectable;
       });
     }
