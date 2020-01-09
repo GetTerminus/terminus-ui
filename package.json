@@ -204,7 +204,7 @@
     "doctoc": "1.4.0",
     "emojis": "1.0.10",
     "eslint": "6.8.0",
-    "execa": "3.4.0",
+    "execa": "4.0.0",
     "glob": "7.1.6",
     "global": "4.4.0",
     "gulp": "gulpjs/gulp#4.0",
