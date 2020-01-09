@@ -12,7 +12,7 @@ references:
   defaults: &defaults
     working_directory: ~/ci-build
     docker:
-      - image: circleci/node:12.14.0
+      - image: circleci/node:12.14.1
     environment:
       TEST_REPORTS: /coverage
 
