@@ -1,3 +1,10 @@
+## [15.9.1](https://github.com/GetTerminus/terminus-ui/compare/v15.9.0...v15.9.1) (2020-01-10)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @amcharts/amcharts4 to v4.7.21 ([ebaa789](https://github.com/GetTerminus/terminus-ui/commit/ebaa789))
+
 # [15.9.0](https://github.com/GetTerminus/terminus-ui/compare/v15.8.7...v15.9.0) (2020-01-10)
 
 
