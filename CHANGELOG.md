@@ -1,3 +1,10 @@
+## [15.8.7](https://github.com/GetTerminus/terminus-ui/compare/v15.8.6...v15.8.7) (2020-01-10)
+
+
+### Bug Fixes
+
+* **Chip:** chip takes chip collection inputs into consideration.. ([2285443](https://github.com/GetTerminus/terminus-ui/commit/2285443))
+
 ## [15.8.6](https://github.com/GetTerminus/terminus-ui/compare/v15.8.5...v15.8.6) (2020-01-09)
 
 
