@@ -1,3 +1,17 @@
+# [15.9.0](https://github.com/GetTerminus/terminus-ui/compare/v15.8.7...v15.9.0) (2020-01-10)
+
+
+### Bug Fixes
+
+* **SCSS:** visually hidden mixin now sets visibility directly ([d3028a9](https://github.com/GetTerminus/terminus-ui/commit/d3028a9))
+
+
+### Features
+
+* **SCSS:** add utility classes file ([87cd584](https://github.com/GetTerminus/terminus-ui/commit/87cd584))
+* **CohortDateRange:** now a cohort can be selected by default ([5b1e9a6](https://github.com/GetTerminus/terminus-ui/commit/5b1e9a6)), closes [#1893](https://github.com/GetTerminus/terminus-ui/issues/1893)
+* **SelectionList:** now can disable user input ([2fd2c4b](https://github.com/GetTerminus/terminus-ui/commit/2fd2c4b))
+
 ## [15.8.7](https://github.com/GetTerminus/terminus-ui/compare/v15.8.6...v15.8.7) (2020-01-10)
 
 
