@@ -1,0 +1,20 @@
+"PR: awaiting review":
+  title: "*"
+
+"PR: approved":
+  mergeable: true
+
+"Size: XS":
+  size-below: 10
+"Size: S":
+  size-above: 9
+  size-below: 50
+"Size: M":
+  size-above: 49
+  size-below: 100
+"Size: L":
+  size-above: 99
+  size-below: 400
+"Size: XL":
+  size-above: 399
+
