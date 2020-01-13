@@ -89,10 +89,11 @@ export class TsSearchComponent implements OnInit {
   }
 
   /**
-   * Define a helper to return the current query string
+   * Define a helper to return the current query string. If current form value length below minimum length, set the query to empty string
    */
   public get currentQuery(): string {
-    return this.searchForm.value.query ? this.searchForm.value.query.trim() : '';
+    return this.searchForm.value.query
+    && this.searchForm.value.query.length >= this.queryMinLength ? this.searchForm.value.query.trim() : '';
   }
 
   /**
@@ -122,7 +123,6 @@ export class TsSearchComponent implements OnInit {
     query: [
       null,
       [
-        Validators.minLength(this.queryMinLength),
         Validators.pattern(this.inputPatternRegex),
       ],
     ],
@@ -231,9 +231,8 @@ export class TsSearchComponent implements OnInit {
   public keyup(): void {
     this.changed.emit(this.currentQuery);
 
-    // NOTE: We need to check for a valid query length here even though we are using a minLength
-    // validator. When the length is 0 the minLength validator returns valid.
-    if (this.autoSubmit && this.searchForm.valid && this.currentQuery.length > 0) {
+    // NOTE: We need to check for a valid query here.
+    if (this.autoSubmit && this.searchForm.valid) {
       this.debouncedEmit(this);
     }
   }
