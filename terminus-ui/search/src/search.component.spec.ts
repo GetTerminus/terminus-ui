@@ -62,6 +62,12 @@ describe('TsSearchComponent', function() {
       expect(component.currentQuery).toEqual('');
     });
 
+    test(`should return empty string if current query length below required minimum`, () => {
+      component.initialValue = 'a';
+      component.ngOnInit();
+      expect(component.currentQuery).toEqual('');
+    });
+
   });
 
 
