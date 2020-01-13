@@ -1,8 +1,6 @@
+# Targeting all titles so that this label is added to every PR
 "PR: awaiting review":
-  title: "*"
-
-"PR: approved":
-  mergeable: true
+  title: "[\s\S]*"
 
 "Size: XS":
   size-below: 10
