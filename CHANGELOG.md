@@ -1,3 +1,15 @@
+# [15.10.0](https://github.com/GetTerminus/terminus-ui/compare/v15.9.1...v15.10.0) (2020-01-15)
+
+
+### Features
+
+* **Search:** Emit empty string when the characters are less than the required minimum. ([cd2ca22](https://github.com/GetTerminus/terminus-ui/commit/cd2ca22))
+
+
+### Reverts
+
+* **CI:** remove rebase action ([b762783](https://github.com/GetTerminus/terminus-ui/commit/b762783))
+
 ## [15.9.1](https://github.com/GetTerminus/terminus-ui/compare/v15.9.0...v15.9.1) (2020-01-10)
 
 
