@@ -115,6 +115,13 @@ export const componentsList: Routes = [
     },
   },
   {
+    path: 'form-controls',
+    loadChildren: `./components/form-controls/form-controls.module#FormControlsModule`,
+    data: {
+      name: 'Form Controls',
+    },
+  },
+  {
     path: 'icon',
     loadChildren: `./components/icon/icon.module#IconModule`,
     data: {
