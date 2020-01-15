@@ -1,0 +1,98 @@
+
+<ts-card>
+  <p tsVerticalSpacing>Horizontal alignment test cases.</p>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-input [(ngModel)]="inputModel" label="Enter information"></ts-input>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-selection-list
+      label="Select items"
+      [allowMultiple]="true"
+      [(ngModel)]="selectionListModel"
+      [displayFormatter]="selectionListFormatter"
+    >
+      <ts-option [option]="item" [value]="item" *ngFor="let item of options">
+        {{ selectionListFormatter(item) }}
+      </ts-option>
+    </ts-selection-list>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-toggle>Toggle Me!</ts-toggle>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-radio-group
+      [options]="options"
+      [formatUILabelFn]="uiFormatterRadio"
+      [formatModelValueFn]="modelFormatterRadio"
+    ></ts-radio-group>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-select
+      label="Make a selection"
+      fxFlex
+    >
+      <ts-option
+        *ngFor="let item of options"
+        [value]="item.value"
+      >{{ item.name }}</ts-option>
+    </ts-select>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+  <row>
+    <ts-button>
+      Action
+    </ts-button>
+
+    <ts-checkbox>My checkbox!</ts-checkbox>
+
+    <ts-button>
+      Action
+    </ts-button>
+  </row>
+
+</ts-card>
