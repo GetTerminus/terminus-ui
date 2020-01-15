@@ -174,8 +174,8 @@
     "text-mask-core": "5.1.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.803.20",
-    "@angular/cli": "8.3.20",
+    "@angular-devkit/build-angular": "0.803.23",
+    "@angular/cli": "8.3.23",
     "@angular/compiler": "8.2.14",
     "@angular/compiler-cli": "8.2.14",
     "@compodoc/compodoc": "1.1.11",
