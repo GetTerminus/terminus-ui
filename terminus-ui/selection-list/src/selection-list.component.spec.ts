@@ -974,4 +974,20 @@ describe(`TsSelectionListComponent`, function() {
   //   Waiting for https://github.com/jsdom/jsdom/issues/317 to land
   test.todo(`should select all existing text when the input is focused`);
 
+  describe(`should scroll populated item into view`, () => {
+    let fixture: ComponentFixture<testComponents.SeededSingleSelect>;
+    let instance: TsSelectionListComponent;
+
+    beforeEach(() => {
+      fixture = createComponent(testComponents.SeededSingleSelect);
+      fixture.detectChanges();
+      instance = getSelectionListInstance(fixture);
+    });
+    test(`should have panel open with the preset value`, fakeAsync(() => {
+      instance.trigger.handleFocus();
+      tick(100);
+      expect(instance.panel.keyManager.activeItemIndex).toEqual(6);
+    }));
+  });
+
 });

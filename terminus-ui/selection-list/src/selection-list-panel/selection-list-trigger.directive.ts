@@ -219,7 +219,7 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    *
    * Only called if at least one option exists
    */
-  private get itemHeight(): number {
+  public get itemHeight(): number {
     // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
     const options = this.selectionListPanel.options.toArray();
     const option = options[1] || options[0];

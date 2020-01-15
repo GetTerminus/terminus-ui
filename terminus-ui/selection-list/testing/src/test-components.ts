@@ -313,6 +313,35 @@ export class Seeded {
   template: `
     <ts-selection-list
       [formControl]="myCtrl"
+      [displayFormatter]="formatter"
+      [allowUserInput]="allowUserInput"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-option>
+    </ts-selection-list>
+  `,
+})
+export class SeededSingleSelect {
+  public states: State[] = STATES.slice();
+  public myCtrl = new FormControl([STATES[6]]);
+  public allowUserInput = false;
+  public formatter(state: State) {
+    return state.population;
+  }
+}
+
+@Component({
+  template: `
+    <ts-selection-list
+      [formControl]="myCtrl"
       [allowMultiple]="allowMultiple"
       [allowDuplicateSelections]="allowDuplicates"
       [reopenAfterSelection]="keepOpen"
@@ -996,6 +1025,7 @@ export class BackdropClick {
     SeededNgModel,
     SeededNgModelError,
     SeededNonArray,
+    SeededSingleSelect,
     SelectionEvent,
     SelectOptionChange,
     SimpleArray,

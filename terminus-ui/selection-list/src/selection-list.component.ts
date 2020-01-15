@@ -36,6 +36,7 @@ import {
 } from '@terminus/ui/chip';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import {
+  getOptionScrollPosition,
   TS_OPTION_PARENT_COMPONENT,
   TsOptgroupComponent,
   TsOptionComponent,
@@ -59,7 +60,10 @@ import {
   TsSelectionListPanelComponent,
   TsSelectionListPanelSelectedEvent,
 } from './selection-list-panel/selection-list-panel.component';
-import { TsSelectionListTriggerDirective } from './selection-list-panel/selection-list-trigger.directive';
+import {
+  SELECTION_LIST_PANEL_MAX_HEIGHT,
+  TsSelectionListTriggerDirective,
+} from './selection-list-panel/selection-list-trigger.directive';
 
 
 // Unique ID for each instance
@@ -608,6 +612,14 @@ export class TsSelectionListComponent implements
     this.trigger.selectionListPanel.opened.pipe(untilComponentDestroyed(this)).subscribe(() => {
       this.opened.emit();
     });
+    // Wire up listeners for panel opened event
+    this.opened.pipe(untilComponentDestroyed(this)).subscribe(() => {
+      // NOTE: setTimeout is added to resolve a timing issue. Promise.resolve().then does not work in this case.
+      // Without setTimeout when opened event emitted, panel is still undefined.
+      setTimeout(() => {
+        this.scrollActiveOptionIntoView();
+      });
+    });
     this.trigger.selectionListPanel.closed.pipe(untilComponentDestroyed(this)).subscribe(() => {
       this.closed.emit();
     });
@@ -928,4 +940,22 @@ export class TsSelectionListComponent implements
     this.inputElement.nativeElement.value = '';
   }
 
+  /**
+   * Scroll the active option into view
+   */
+  private scrollActiveOptionIntoView(): void {
+    const ctrlValue = this.selectionListFormControl.value;
+    if (ctrlValue.length === 0) {
+      return;
+    }
+    const allOptions = this.trigger.selectionListPanel.options.toArray().map(o => o.value);
+    const index = allOptions.findIndex(o => this.valueComparator(o, ctrlValue[ctrlValue.length - 1]));
+    this.trigger.selectionListPanel.scrollTop = getOptionScrollPosition(
+      index,
+      this.trigger.itemHeight,
+      this.trigger.selectionListPanel.scrollTop,
+      SELECTION_LIST_PANEL_MAX_HEIGHT,
+    );
+    this.trigger.selectionListPanel.keyManager.setActiveItem(index);
+  }
 }
