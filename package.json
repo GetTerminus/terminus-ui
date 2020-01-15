@@ -57,7 +57,6 @@
     "lint:eslint:fix": "npx eslint \"terminus-ui/**/*.{js,ts}\" --ignore-pattern \"terminus-ui/**/*.d.ts\" --config .eslintrc.js --fix",
     "lint:eslint:ci": "npx eslint \"terminus-ui/**/*.{js,ts}\" --ignore-pattern \"terminus-ui/**/*.d.ts\" --config .eslintrc.ci.js",
     "lint:scss": "npx stylelint 'terminus-ui/**/!(*.spec).scss'",
-    "lint:scss:no-files": "npx stylelint",
     "lint:scss:fix": "npx stylelint 'terminus-ui/**/!(*.spec).scss' --fix",
     "lint": "yarn run lint:tslint:fix && yarn run lint:eslint:fix && yarn run lint:scss:fix",
     "lint:ci": "yarn run lint:tslint:ci && yarn run lint:eslint:ci && yarn run lint:scss",
