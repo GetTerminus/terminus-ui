@@ -10,10 +10,10 @@
   --chip-backgroundColor: #{color(utility, light)};
   --chip-borderRadius: 16px;
   --chip-color: #{color(pure, dark)};
-  --chip-fontSize: 14px;
+  --chip-fontSize: 12px;
   --chip-height: #{spacing(large)};
   --chip-margin: #{spacing(small, 2)};
-  --chip-padding: #{spacing(small, 2)} #{spacing(small, 1)};
+  --chip-padding: 2px 4px 2px 6px;
   --chip-remove-size: #{spacing(large)};
 
   &:focus,
@@ -103,6 +103,12 @@
       &:hover {
         opacity: .7;
       }
+    }
+  }
+
+  &:first-of-type {
+    .c-chip {
+      margin-left: 0;
     }
   }
 }

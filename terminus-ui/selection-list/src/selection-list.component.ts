@@ -118,6 +118,7 @@ export type TsSelectionListComparator = (a: unknown, b: unknown) => boolean;
     '[class.ts-selection-list--required]': 'isRequired',
     '[class.ts-selection-list--disabled]': 'isDisabled',
     '[class.ts-selection-list--single]': '!allowMultiple',
+    '[class.ts-selection-list--multiple]': 'allowMultiple',
     '[attr.aria-owns]': 'panelOpen ? optionIds : null',
     '[attr.aria-required]': 'isRequired.toString()',
     '[attr.aria-multiselectable]': 'allowMultiple',

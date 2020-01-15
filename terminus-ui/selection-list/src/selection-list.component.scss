@@ -19,6 +19,17 @@
     }
   }
 
+  // NOTE: When chips are added, they increase the vertical height so we need to counteract that here.
+  // We cannot change the outer padding as that will negatively impact the layout when no vales exist.
+  &.ts-selection-list--multiple {
+    --margin-adustment: -3px;
+
+    .ts-chip-collection {
+      margin-bottom: calc(var(--margin-adustment) * 2);
+      margin-top: var(--margin-adustment);
+    }
+  }
+
   &.ts-selection-list--disabled {
     .ts-selection-list__input {
       cursor: cursor(not-allowed);
@@ -54,13 +65,17 @@
   }
 }
 
+// NOTE: Bottom margin and min-height needed to keep vertical alignment consistent when no chips are present.
 .ts-selection-list__input {
+  --fake-margin: 3px;
   background: transparent;
   border: none;
   color: currentColor;
   display: inline-block;
   font: inherit;
+  margin-bottom: var(--fake-margin);
   max-width: 100%;
+  min-height: 25px;
   outline: none;
   padding: 0;
   // User agent stylesheets set the text-align of inputs explicitly to "start". Those can be
