@@ -36,7 +36,7 @@ module.exports = {
     const fileList = removeDirectories(files);
 
     return [
-      `yarn run lint:scss:no-files ${fileList}`,
+      `yarn run lint:scss ${fileList}`,
       `git add ${fileList}`,
     ];
   },
