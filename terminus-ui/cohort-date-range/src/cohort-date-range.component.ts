@@ -98,7 +98,7 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    * @internal
    */
   public customDateCohort: TsDateCohort = {
-    display: 'Custom dates',
+    display: 'Custom Dates',
     range: {
       start: null,
       end: null,
@@ -309,7 +309,6 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
         }
       });
 
-      // NOTE: Since we are adding the custom cohort after the user cohorts, we know that the custom cohort will always be last.
       // istanbul ignore else
       if (matchedCohorts.length === 0) {
         this.cohortControl.setValue([this.customDateCohort]);

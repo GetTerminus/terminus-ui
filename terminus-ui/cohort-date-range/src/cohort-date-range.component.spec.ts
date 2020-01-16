@@ -116,8 +116,13 @@ describe(`TsCohortDateRangeComponent`, () => {
       const instance: TsCohortDateRangeComponent = debug.componentInstance;
       instance.dateRangeFormGroup.patchValue({ startDate: new Date() });
       fixture.detectChanges();
+      const trigger = document.querySelector('.ts-selection-list__custom-trigger');
 
-      expect(instance.cohortControl.value[0]).toEqual(expect.objectContaining({ display: 'Custom dates' }));
+      if (trigger) {
+        expect((trigger as HTMLInputElement).value).toEqual('Custom Dates');
+      } else {
+        throw new Error('Trigger not found');
+      }
     });
 
     test(`should not update the select when the range is manually changed to a cohort range`, () => {
@@ -166,7 +171,7 @@ describe(`TsCohortDateRangeComponent`, () => {
       const instance: TsCohortDateRangeComponent = debug.componentInstance;
 
       expect(instance.cohorts.length).toEqual(2);
-      expect(instance.cohorts[1]).toEqual(expect.objectContaining({ display: 'Custom dates' }));
+      expect(instance.cohorts[1]).toEqual(expect.objectContaining({ display: 'Custom Dates' }));
     });
 
   });
