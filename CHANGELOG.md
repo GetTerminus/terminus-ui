@@ -1,3 +1,10 @@
+## [15.10.2](https://github.com/GetTerminus/terminus-ui/compare/v15.10.1...v15.10.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **SelectionList:** selected option should be scrolled into view when panel opened ([6dc348b](https://github.com/GetTerminus/terminus-ui/commit/6dc348b))
+
 ## [15.10.1](https://github.com/GetTerminus/terminus-ui/compare/v15.10.0...v15.10.1) (2020-01-16)
 
 
