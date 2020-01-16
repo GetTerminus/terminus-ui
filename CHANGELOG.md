@@ -1,3 +1,15 @@
+## [15.10.1](https://github.com/GetTerminus/terminus-ui/compare/v15.10.0...v15.10.1) (2020-01-16)
+
+
+### Bug Fixes
+
+* **SelectionList:** now has consistent vertical height with or without values ([c9d8980](https://github.com/GetTerminus/terminus-ui/commit/c9d8980))
+
+
+### Reverts
+
+* **CI:** revert scss no files for lint staged ([92020a1](https://github.com/GetTerminus/terminus-ui/commit/92020a1))
+
 # [15.10.0](https://github.com/GetTerminus/terminus-ui/compare/v15.9.1...v15.10.0) (2020-01-15)
 
 
