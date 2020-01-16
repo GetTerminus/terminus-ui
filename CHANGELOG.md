@@ -1,3 +1,10 @@
+## [15.10.3](https://github.com/GetTerminus/terminus-ui/compare/v15.10.2...v15.10.3) (2020-01-16)
+
+
+### Bug Fixes
+
+* **CohortDateRange:** title case custom cohort ([90c22ad](https://github.com/GetTerminus/terminus-ui/commit/90c22ad)), closes [#1938](https://github.com/GetTerminus/terminus-ui/issues/1938)
+
 ## [15.10.2](https://github.com/GetTerminus/terminus-ui/compare/v15.10.1...v15.10.2) (2020-01-16)
 
 
