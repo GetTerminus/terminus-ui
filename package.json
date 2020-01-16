@@ -165,7 +165,7 @@
     "@angular/platform-browser-dynamic": "8.2.14",
     "@angular/router": "8.2.14",
     "@terminus/ngx-tools": "7.2.6",
-    "@terminus/ui": "15.8.3",
+    "@terminus/ui": "15.10.3",
     "date-fns": "2.9.0",
     "ngx-perfect-scrollbar": "8.0.0",
     "popper.js": "1.16.0",

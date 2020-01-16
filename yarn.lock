@@ -1497,10 +1497,10 @@
     eslint "^5.16.0"
     tslint "^5.17.0"
 
-"@terminus/ui@15.8.3":
-  version "15.8.3"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.8.3.tgz#f236a9226aae177f808cb9026711d1b732400f64"
-  integrity sha512-Wy3tOOqFQ6ctVAeNbB1hX8odV9Ccsq8a5vNoo50EtPmfg/kcF4/TTJFusYRTNjjKgT2qFyGSuYCNayi3Fj4rqw==
+"@terminus/ui@15.10.3":
+  version "15.10.3"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-15.10.3.tgz#ed4b01cc1f2ed215ba5e4650ddd0386a8192fbf6"
+  integrity sha512-Pr507nGk1liyoe1KfiujJ1oq6SQeg5De9pEIz0AR4scv142lkpE/ER0qIKPJFgQBqrpnfkkTXiriwHz+r83dwQ==
   dependencies:
     ngx-perfect-scrollbar "8.0.0"
     text-mask-addons "3.8.0"
