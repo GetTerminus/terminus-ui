@@ -10,6 +10,9 @@ export interface MyOption extends TsOption {
   selector: 'demo-form-controls',
   templateUrl: './form-controls.component.html',
   styleUrls: ['./form-controls.component.scss'],
+  host: {
+    class: 'form-control-demo',
+  },
 })
 export class FormControlsComponent {
   options: MyOption[] = [
