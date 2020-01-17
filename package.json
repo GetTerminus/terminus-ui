@@ -228,7 +228,7 @@
     "markdown-link-check": "3.8.0",
     "merge-files": "0.1.2",
     "ng-packagr": "5.5.0",
-    "node-sass": "4.13.0",
+    "node-sass": "4.13.1",
     "node-sass-import": "2.0.1",
     "remap-istanbul": "0.13.0",
     "require-dir": "1.2.0",
