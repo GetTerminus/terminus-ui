@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.9.tgz#e0c7f4de3c90dfc48d3063fbafd35bc027fbbb24"
   integrity sha512-DEMxDge+XQyq4uPNzEuJ2q7mSYFfM0ExRyYZ4WBrjoZgLbInSzzm9UJVZtBhMCp4Skp67rY/aJ4DoOflOUT4Iw==
 
-"@amcharts/amcharts4@4.7.21":
-  version "4.7.21"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.7.21.tgz#df5a2d6e63574ba2dd4ca2e84ddfa458a4bbcf1c"
-  integrity sha512-A0tcBPX9ZiMEFhxsSkW9Kc5SdGXc56RbbeQkbavox1ds9wKf3d3R0M0rCXsjrvDmUx1TFGhmH0eAo7TijjMNIg==
+"@amcharts/amcharts4@4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.8.0.tgz#7e1a5e68b523f11d8e9cca6d69ee43b316990911"
+  integrity sha512-UMi60pa+qyAJskahRxd1WELIkpGyLSM4nvkPF2/DYm3u+vI907lu6Bi4ZDgq0rvhL49Ut5uqXwNLMRAYh5hXLQ==
   dependencies:
     "@types/regression" "^2.0.0"
     canvg "^2.0.0"
