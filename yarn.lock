@@ -15492,10 +15492,10 @@ synesthesia@^1.0.1:
   dependencies:
     css-color-names "0.0.3"
 
-systemjs@6.1.7:
-  version "6.1.7"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.1.7.tgz#631474f8d0d33412be215ab39a294663a90157d9"
-  integrity sha512-v2tDs5HV7Ql8iZd7eBupzTOPIV6OUzNyJ1wNCAlQ7Et73yfQm4dbfQOSNLzcESLY2YEsLbn0K9WAnNsqwK7OFg==
+systemjs@6.1.9:
+  version "6.1.9"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.1.9.tgz#17e5601867a9d1ee7a5dab71b050f38877d6992c"
+  integrity sha512-pmmYAaI/bk1RIPFIOrvP94DlvSyqZ5/BcAXTcUo0sKBqOc3rMuZaLsh1ofhxuIYgxzB/wDeCmG8i6RpmZj6yqA==
 
 table@^5.0.0, table@^5.2.3, table@^5.4.6:
   version "5.4.6"
