@@ -3,6 +3,37 @@
     "config:base"
   ],
   "assignees": ["benjamincharity"],
+  "masterIssue": "true",
+  "packageRules": [
+    {
+      "packagePatterns": ["jest"],
+      "groupName": "Jest Packages"
+    },
+    {
+      "packagePatterns": ["^@semantic-release"],
+      "groupName": "SemanticRelease Packages"
+    },
+    {
+      "packagePatterns": ["^@terminus"],
+      "groupName": "Terminus Packages"
+    },
+    {
+      "packagePatterns": ["^@terminus"],
+      "groupName": "Terminus Packages"
+    },
+    {
+      "packagePatterns": ["^text-mask"],
+      "groupName": "TextMask Packages"
+    },
+    {
+      "packagePatterns": ["gulp"],
+      "groupName": "Gulp Packages"
+    },
+    {
+      "packagePatterns": ["stylelint"],
+      "groupName": "StyleLint Packages"
+    }
+  ],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "rebaseLabel": "Action: rebase",
@@ -12,7 +43,9 @@
   ],
   "semanticCommits": true,
   "semanticCommitScope": "Packages",
-  "stabilityDays": 2,
+  "semanticCommitType": "chore",
+  "schedule": ["every weekend"],
+  "stabilityDays": 1,
   "vulnerabilityAlerts": {
     "labels": ["Focus: security"],
     "assignees": ["team:uxe"]
