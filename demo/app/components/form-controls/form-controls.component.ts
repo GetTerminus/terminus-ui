@@ -30,7 +30,10 @@ export class FormControlsComponent {
     },
   ];
   selectionListModel = [this.options[0]];
-  selectionListFormatter = v => v.name;
+  selectionListModelSingle = [this.options[0]];
+  emptyModel1 = [];
+  emptyModel2 = [];
+  selectionListFormatter = v => v ? v.name : '';
   uiFormatterRadio = v => v.name;
   modelFormatterRadio = v => v.value;
   inputModel = 'My value';
