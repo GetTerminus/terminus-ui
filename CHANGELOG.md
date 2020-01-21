@@ -1,3 +1,10 @@
+## [15.10.6](https://github.com/GetTerminus/terminus-ui/compare/v15.10.5...v15.10.6) (2020-01-21)
+
+
+### Bug Fixes
+
+* **SelectionList:** single and multiple select now have matching height ([48e44e3](https://github.com/GetTerminus/terminus-ui/commit/48e44e3))
+
 ## [15.10.5](https://github.com/GetTerminus/terminus-ui/compare/v15.10.4...v15.10.5) (2020-01-17)
 
 
