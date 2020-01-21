@@ -91,6 +91,13 @@
   &:-moz-ui-invalid {
     box-shadow: none;
   }
+
+  // Style overrides for the input trigger when in single selection mode
+  .ts-selection-list--single & {
+    margin-bottom: 0;
+    min-height: auto;
+    padding-top: 0;
+  }
 }
 
 

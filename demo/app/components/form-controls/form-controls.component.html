@@ -3,24 +3,18 @@
   <p tsVerticalSpacing>Horizontal alignment test cases.</p>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
 
     <ts-input [(ngModel)]="inputModel" label="Enter information"></ts-input>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
   </row>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
 
     <ts-selection-list
-      label="Select items"
+      label="Seeded multi-select"
       [allowMultiple]="true"
       [(ngModel)]="selectionListModel"
       [displayFormatter]="selectionListFormatter"
@@ -30,27 +24,62 @@
       </ts-option>
     </ts-selection-list>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
+
+    <ts-selection-list
+      label="Seeded single select"
+      [allowMultiple]="false"
+      [(ngModel)]="selectionListModelSingle"
+      [displayFormatter]="selectionListFormatter"
+    >
+      <ts-option [option]="item" [value]="item" *ngFor="let item of options">
+        {{ selectionListFormatter(item) }}
+      </ts-option>
+    </ts-selection-list>
+
+    <ts-button>Foo</ts-button>
   </row>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
+
+    <ts-selection-list
+      label="Empty multi-select"
+      [allowMultiple]="true"
+      [(ngModel)]="emptyModel1"
+      [displayFormatter]="selectionListFormatter"
+    >
+      <ts-option [option]="item" [value]="item" *ngFor="let item of options">
+        {{ selectionListFormatter(item) }}
+      </ts-option>
+    </ts-selection-list>
+
+    <ts-button>Foo</ts-button>
+
+    <ts-selection-list
+      label="Empty single select"
+      [allowMultiple]="false"
+      [(ngModel)]="emptyModel2"
+      [displayFormatter]="selectionListFormatter"
+    >
+      <ts-option [option]="item" [value]="item" *ngFor="let item of options">
+        {{ selectionListFormatter(item) }}
+      </ts-option>
+    </ts-selection-list>
+
+    <ts-button>Foo</ts-button>
+  </row>
+
+  <row>
+    <ts-button>Foo</ts-button>
 
     <ts-toggle>Toggle Me!</ts-toggle>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
   </row>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
 
     <ts-radio-group
       [options]="options"
@@ -58,15 +87,11 @@
       [formatModelValueFn]="modelFormatterRadio"
     ></ts-radio-group>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
   </row>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
 
     <ts-select
       label="Make a selection"
@@ -78,21 +103,15 @@
       >{{ item.name }}</ts-option>
     </ts-select>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
   </row>
 
   <row>
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
 
     <ts-checkbox>My checkbox!</ts-checkbox>
 
-    <ts-button>
-      Action
-    </ts-button>
+    <ts-button>Foo</ts-button>
   </row>
 
 </ts-card>
