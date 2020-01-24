@@ -11,15 +11,19 @@ interface Foo {
 describe(`TsTableDataSource`, function() {
   let source: TsTableDataSource<Foo>;
   let seededSource: TsTableDataSource<any>;
+  const dataObject = { foo: 'bar' };
 
   beforeEach(() => {
     source = new TsTableDataSource();
-    seededSource = new TsTableDataSource([{ foo: 'bar' }]);
+    seededSource = new TsTableDataSource([dataObject]);
   });
 
   test(`should initialize an empty array if no data passed in`, () => {
     expect(source.data).toEqual([]);
-    expect(seededSource.data).toEqual([{ foo: 'bar' }]);
+  });
+
+  test(`should default to initial data if any is passed in`, () => {
+    expect(seededSource.data).toEqual([dataObject]);
   });
 
   describe(`in _renderChangesSubscription exists`, () => {

@@ -7,6 +7,8 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import {
@@ -17,6 +19,7 @@ import {
   DomSanitizer,
   SafeHtml,
 } from '@angular/platform-browser';
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,
@@ -26,7 +29,8 @@ import {
   TsColumn,
   TsTableColumnsChangeEvent,
   TsTableComponent,
-  TsTableDataSource, TsTableDensity,
+  TsTableDataSource,
+  TsTableDensity,
 } from '@terminus/ui/table';
 import {
   merge,
@@ -88,63 +92,72 @@ export class ExampleHttpDao {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly columnsSource: CustomColumn[] = [
     {
       display: 'Title',
       name: 'title',
-      width: '400px',
+      width: 200,
       control: new FormControl(true),
     },
     {
       display: 'Comments',
       name: 'comments',
-      control: new FormControl(true),
+      width: 100,
+      control: new FormControl(false),
     },
     {
       display: 'Number',
       name: 'number',
+      width: 100,
       control: new FormControl(true),
     },
     {
       display: 'Updated',
       name: 'updated',
+      width: 100,
       control: new FormControl(true),
     },
     {
       display: 'State',
       name: 'state',
-      control: new FormControl(true),
+      width: 100,
+      control: new FormControl(false),
     },
     {
       display: 'Labels',
       name: 'labels',
+      width: 200,
       control: new FormControl(true),
     },
-    {
-      display: 'Body',
-      name: 'body',
-      width: '260px',
-      control: new FormControl(true),
-    },
+    // {
+    //   display: 'Body',
+    //   name: 'body',
+    //   width: '260px',
+    //   control: new FormControl(true),
+    // },
     {
       display: 'Assignee',
       name: 'assignee',
-      control: new FormControl(true),
+      width: 200,
+      control: new FormControl(false),
     },
     {
       display: 'ID',
       name: 'id',
+      width: 100,
       control: new FormControl(true),
     },
     {
       display: 'Created',
       name: 'created',
-      control: new FormControl(true),
+      width: 100,
+      control: new FormControl(false),
     },
     {
       display: 'View',
       name: 'html_url',
+      width: 100,
       control: new FormControl(true),
     },
   ];
@@ -156,13 +169,8 @@ export class TableComponent implements AfterViewInit {
   public dataSource = new TsTableDataSource<GithubIssue>();
   public resultsLength = 0;
   public density: TsTableDensity = 'comfy';
-
-  /**
-   * Return all visible columns
-   */
-  public get visibleColumns(): CustomColumn[] {
-    return this.allPossibleColumns.filter(c => c.control && c.control.value);
-  }
+  public visibleColumns: TsColumn[] = [];
+  public allFormControlChanges$ = merge(...this.allPossibleColumns.map(c => c.control && c.control.valueChanges));
 
   @ViewChild(TsSortDirective, { static: true })
   public sort!: TsSortDirective;
@@ -181,9 +189,24 @@ export class TableComponent implements AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
+  public ngOnInit(): void {
+    this.setVisibleColumns();
+  }
 
   public ngAfterViewInit(): void {
     this.setUpTable();
+
+    this.allFormControlChanges$.pipe(untilComponentDestroyed(this)).subscribe(change => {
+      this.setVisibleColumns();
+    });
+  }
+
+  // NOTE: Needed for untilComponentDestroyed
+  public ngOnDestroy(): void {}
+
+  public setVisibleColumns(): void {
+    this.visibleColumns = this.allPossibleColumns.filter(c => c.control && c.control.value);
+    console.log('DEMO: setVisibleColumns', this.visibleColumns);
   }
 
   /**
@@ -215,7 +238,7 @@ export class TableComponent implements AfterViewInit {
           );
         }),
         map(data => {
-          console.log('Demo: fetched data: ', data);
+          // console.log('Demo: fetched data: ', data);
           this.savedResponse = data as GithubApi;
           this.resultsLength = data.total_count;
 
@@ -274,7 +297,7 @@ export class TableComponent implements AfterViewInit {
 
   public columnsChange(e: TsTableColumnsChangeEvent): void {
     // NOTE: Commented out due to the volume - uncomment as needed for demo purposes.
-    // console.log('DEMO: Columns change: ', e);
+    console.log('DEMO: Columns change: ', e);
   }
 
   public log() {

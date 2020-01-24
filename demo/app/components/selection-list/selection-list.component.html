@@ -27,6 +27,10 @@
     fxLayoutGap="1rem"
   >
 
+
+    <div fxLayout="row" fxLayoutAlign="center">
+
+      <div style="height: 42px; background: lightblue; " fxFlex="noshrink"></div>
     <ts-selection-list
       label="Select states"
       hint="Begin typing to search.."
@@ -53,6 +57,7 @@
         {{ state.name }}
       </ts-option>
     </ts-selection-list>
+    </div>
 
     <div>
       FormControl value: {{ complexMultipleControl.value | json }}
