@@ -9,11 +9,11 @@ import {
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
 import {
-  AfterViewInit,
   Directive,
   ElementRef,
   EventEmitter,
   isDevMode,
+  NgZone,
   OnDestroy,
   Output,
   Renderer2,
@@ -26,8 +26,12 @@ import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 import {
   fromEvent,
-  Subscription,
+  Subject,
 } from 'rxjs';
+import {
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 import {
   TsColumnDefDirective,
@@ -36,6 +40,10 @@ import {
 
 
 export const TS_TABLE_MIN_COLUMN_WIDTH = 70;
+
+// Unique ID for each instance
+let cellNextUniqueId = 0;
+let headerNextUniqueId = 0;
 
 /**
  * Set the column alignment styles
@@ -88,26 +96,14 @@ export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
 
 
 /**
- * Define the event object for header cell resizes
+ * Define the event object for header cell resize events
  */
 export class TsHeaderCellResizeEvent {
   constructor(
     // The header cell instance that originated the event
     public instance: TsHeaderCellDirective,
     // The new width
-    public width: string,
-  ) {}
-}
-
-/**
- * Define the event object for a header cell resizer hover
- */
-export class TsHeaderCellResizeHoverEvent {
-  constructor(
-    // The header cell instance that originated the event
-    public instance: TsHeaderCellDirective,
-    // If the cell is currently hovered
-    public isHovered: boolean,
+    public width: number,
   ) {}
 }
 
@@ -118,32 +114,38 @@ export class TsHeaderCellResizeHoverEvent {
 @Directive({
   selector: 'ts-header-cell, th[ts-header-cell]',
   host: {
-    class: 'ts-header-cell',
-    role: 'columnheader',
+    'class': 'ts-header-cell',
+    'role': 'columnheader',
+    '[id]': 'uid',
   },
   exportAs: 'tsHeaderCell',
 })
-export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewInit, OnDestroy {
-  /**
-   * Store reference to the document
-   */
-  private document: Document;
-
-  /**
-   * Store reference to the window
-   */
-  private window: Window;
-
+export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
   /**
    * Store a reference to the column
    */
   public column: TsColumnDefDirective;
 
   /**
-   * Store references to subscriptions
+   * Store reference to the document
    */
-  private resizeMoveEvent: Subscription;
-  private resizeMouseUpEvent: Subscription;
+  private document: Document;
+
+  /**
+   * Stream used inside takeUntil pipes
+   */
+  private killStream$ = new Subject<void>();
+
+  /**
+   * Stub in listener storage
+   */
+  private resizableMousemove: () => void;
+  private resizableMouseup: () => void;
+
+  /**
+   * Define the class for the resizable element
+   */
+  private readonly resizerClass = 'ts-header-cell__resizer';
 
   /**
    * Store the starting offset when a resize event begins
@@ -156,10 +158,33 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
   public startWidth = 0;
 
   /**
-   * Event emitted when the cell is hovered
+   * Define the default component ID
    */
-  @Output()
-  public readonly hovered = new EventEmitter<TsHeaderCellResizeHoverEvent>();
+  public readonly uid = `ts-table-header-cell-${headerNextUniqueId++}`;
+
+  /**
+   * Store the current cell width
+   */
+  public width = 'auto';
+
+  /**
+   * Store reference to the window
+   */
+  private window: Window;
+
+  /**
+   * Return the current set width
+   */
+  public get cellWidth(): number {
+    return parseInt(this.width, 0);
+  }
+
+  /**
+   * Return a reference to the resize element
+   */
+  private get resizeElement(): HTMLElement | null {
+    return this.elementRef.nativeElement.querySelector(`.${this.resizerClass}`);
+  }
 
   /**
    * Event emitted when the cell is resized
@@ -170,10 +195,11 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
 
   constructor(
     public columnDef: CdkColumnDef,
-    public renderer: Renderer2,
     public elementRef: ElementRef,
+    private renderer: Renderer2,
     private documentService: TsDocumentService,
     private windowService: TsWindowService,
+    private ngZone: NgZone,
   ) {
     super(columnDef, elementRef);
     this.column = columnDef as TsColumnDefDirective;
@@ -194,84 +220,47 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
   }
 
   /**
-   * Inject the cell resizer
-   */
-  public ngAfterViewInit(): void {
-    this.injectResizeElement();
-  }
-
-
-  /**
    * Remove all event listeners when destroyed
    */
-  public ngOnDestroy(): void {}
-
+  public ngOnDestroy(): void {
+    this.killStream$.complete();
+  }
 
   /**
-   * Inject the resize 'grabber' element
+   * Inject the resize 'grabber' element.
+   *
+   * Called by {@link TsTableComponent}
    */
-  private injectResizeElement(): void {
+  public injectResizeElement(): void {
+    // If the element has been injected before, remove it
+    if (this.resizeElement) {
+      this.renderer.removeChild(this.elementRef.nativeElement, this.resizeElement);
+    }
+
     const resizeElement = this.renderer.createElement('span');
-    resizeElement.classList.add('ts-header-cell__resizer');
-    resizeElement.classList.add(`ts-header-cell__resizer--${this.columnDef.cssClassFriendlyName}`);
+    resizeElement.classList.add(this.resizerClass);
+    resizeElement.classList.add(`${this.resizerClass}--${this.columnDef.cssClassFriendlyName}`);
     resizeElement.title = 'Drag to resize column.';
     this.renderer.appendChild(this.elementRef.nativeElement, resizeElement);
 
-    // Handle column resize events
-    fromEvent<MouseEvent>(resizeElement, 'mousedown')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(e => this.onResizeColumn(e));
+    this.ngZone.runOutsideAngular(() => {
+      fromEvent<MouseEvent>(resizeElement, 'mousedown')
+        .pipe(untilComponentDestroyed<MouseEvent>(this))
+        .subscribe(e => this.onResizeColumn(e));
 
-    // Stop click events so that sorting is not triggered
-    fromEvent<MouseEvent>(resizeElement, 'click')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(e => e.stopPropagation());
+      fromEvent<MouseEvent>(resizeElement, 'click')
+        .pipe(untilComponentDestroyed<MouseEvent>(this))
+        .subscribe(e => e.stopPropagation());
 
-    // Handle mouse enter
-    fromEvent<MouseEvent>(resizeElement, 'mouseenter')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(() => this.hovered.emit(new TsHeaderCellResizeHoverEvent(this, true)));
+      fromEvent<MouseEvent>(resizeElement, 'mouseenter')
+        .pipe(untilComponentDestroyed<MouseEvent>(this))
+        .subscribe(() => this.syncHoverClass(true));
 
-    // Handle mouse leave
-    fromEvent<MouseEvent>(resizeElement, 'mouseleave')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(() => this.hovered.emit(new TsHeaderCellResizeHoverEvent(this, false)));
+      fromEvent<MouseEvent>(resizeElement, 'mouseleave')
+        .pipe(untilComponentDestroyed<MouseEvent>(this))
+        .subscribe(() => this.syncHoverClass(false));
+    });
   }
-
-
-  /**
-   * Save initial width and offset, bind to more events
-   *
-   * @param event - The mouse event
-   */
-  private onResizeColumn(event: MouseEvent): void {
-    this.startOffsetX = event.clientX;
-
-    this.resizeMoveEvent = fromEvent<MouseEvent>(document, 'mousemove')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(e => this.triggerDragging(e));
-
-    this.resizeMouseUpEvent = fromEvent<MouseEvent>(document, 'mouseup')
-      .pipe(untilComponentDestroyed<MouseEvent>(this))
-      .subscribe(e => this.triggerDragEnd(e));
-
-    const style = this.window.getComputedStyle(this.elementRef.nativeElement);
-    // NOTE: Else branch should never be reachable in the browser
-    this.startWidth = style.width ? parseInt(style.width, 10) /* istanbul ignore next */ : 0;
-  }
-
-
-  /**
-   * Determine the new width as the cell is resized and emit the width
-   *
-   * @param event - The mouse event
-   */
-  private triggerDragging(event: MouseEvent): void {
-    const diff = event.clientX - this.startOffsetX;
-    const newWidth = TsHeaderCellDirective.determineWidth(this.startWidth, diff);
-    this.resized.emit(new TsHeaderCellResizeEvent(this, `${newWidth}px`));
-  }
-
 
   /**
    * Return the new width if above the minimum width
@@ -281,21 +270,64 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements AfterViewIni
    * @return The final column width
    */
   private static determineWidth(start: number, difference: number): number {
-    const newWidth = start + difference;
-    return (newWidth >= TS_TABLE_MIN_COLUMN_WIDTH) ? newWidth : TS_TABLE_MIN_COLUMN_WIDTH;
+    const total = start + difference;
+    return (total >= TS_TABLE_MIN_COLUMN_WIDTH) ? total : TS_TABLE_MIN_COLUMN_WIDTH;
   }
 
-
   /**
-   * Reset resize items
+   * Save initial width and offset, bind to more events
    *
    * @param event - The mouse event
    */
-  private triggerDragEnd(event: MouseEvent): void {
-    this.startOffsetX = 0;
-    this.resizeMoveEvent.unsubscribe();
-    this.resizeMouseUpEvent.unsubscribe();
-    this.startWidth = 0;
+  private onResizeColumn(event: MouseEvent): void {
+    this.startOffsetX = event.clientX;
+    this.startWidth = this.cellWidth;
+
+    fromEvent<MouseEvent>(document, 'mousemove')
+      .pipe(
+        untilComponentDestroyed(this),
+        takeUntil(this.killStream$),
+      ).subscribe(e => {
+        const diff = e.clientX - this.startOffsetX;
+        const newWidth = TsHeaderCellDirective.determineWidth(this.startWidth, diff);
+
+        // istanbul ignore else
+        if (newWidth) {
+          this.setColumnWidth(newWidth);
+        }
+      });
+
+    fromEvent<MouseEvent>(document, 'mouseup')
+      .pipe(
+        untilComponentDestroyed(this),
+        take(1),
+      ).subscribe(() => {
+        this.startOffsetX = 0;
+        this.startWidth = 0;
+        this.killStream$.next(void 0);
+        this.resized.emit(new TsHeaderCellResizeEvent(this, this.elementRef.nativeElement.offsetWidth));
+      });
+  }
+
+  /**
+   * Set the column width style and save the width
+   *
+   * @param width - The width to set
+   */
+  public setColumnWidth(width: number): void {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${width}px`);
+    this.width = `${width}px`;
+  }
+
+  /**
+   * Sync the hovered class
+   *
+   * @param isHovered - Whether the resize element is currently hovered
+   */
+  private syncHoverClass(isHovered: boolean): void {
+    isHovered
+      ? this.renderer.addClass(this.elementRef.nativeElement, 'ts-cell--resizing')
+      : this.renderer.removeClass(this.elementRef.nativeElement, 'ts-cell--resizing');
   }
 
 }
@@ -316,6 +348,11 @@ export class TsCellDirective extends CdkCell {
    * Store a reference to the column
    */
   public column: TsColumnDefDirective;
+
+  /**
+   * Define the default component ID
+   */
+  public readonly uid = `ts-table-cell-${cellNextUniqueId++}`;
 
 
   constructor(
@@ -341,7 +378,6 @@ export class TsCellDirective extends CdkCell {
     if (columnDef.sticky) {
       elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
     }
-
   }
 
 }

@@ -27,6 +27,7 @@ import {
       [dataSource]="dataSource"
       [density]="density"
       [columns]="columns"
+      [id]="myId"
       (columnsChange)="columnsChanged($event)"
       #myTable="tsTable"
     >
@@ -63,8 +64,9 @@ export class TableApp {
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
   public columns = this.columnsToRender.map(c => ({
     name: c,
-    width: '100px',
+    width: 100,
   }));
+  public myId = 'foobar';
   public isFourthRow = (i: number, _rowData: TestData) => i === 3;
   public columnsChanged(e: TsTableColumnsChangeEvent) {}
 }
@@ -94,7 +96,10 @@ export class TableWithWhenRowApp {
   public dataSource: FakeDataSource | null = new FakeDataSource();
   public isFourthRow = (i: number, _rowData: TestData) => i === 3;
   public columnsToRender = ['column_a'];
-  public columns = this.columnsToRender.map(c => ({ name: c }));
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
 }
 
 
@@ -125,7 +130,10 @@ export class ArrayDataSourceTableApp {
   public underlyingDataSource = new FakeDataSource();
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
-  public columns = this.columnsToRender.map(c => ({ name: c }));
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
 
   @ViewChild(TsTableComponent, { static: true })
   public table!: TsTableComponent<TestData>;
@@ -175,7 +183,10 @@ export class TableColumnAlignmentTableApp {
   public underlyingDataSource = new FakeDataSource();
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
-  public columns = this.columnsToRender.map(c => ({ name: c }));
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
 
   @ViewChild(TsTableComponent, { static: true })
   public table!: TsTableComponent<TestData>;
@@ -208,7 +219,10 @@ export class TableColumnInvalidAlignmentTableApp {
   public underlyingDataSource = new FakeDataSource();
   public dataSource = new TsTableDataSource<TestData>();
   public columnsToRender = ['column_a'];
-  public columns = this.columnsToRender.map(c => ({ name: c }));
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
 
   @ViewChild(TsTableComponent, { static: true })
   public table!: TsTableComponent<TestData>;
@@ -228,7 +242,7 @@ export class TableColumnInvalidAlignmentTableApp {
 
 @Component({
   template: `
-    <table ts-table [dataSource]="dataSource">
+    <table ts-table [dataSource]="dataSource" [columns]="columns">
       <ng-container tsColumnDef="column_a" sticky>
         <th ts-header-cell *tsHeaderCellDef> Column A</th>
         <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
@@ -260,7 +274,52 @@ export class PinnedTableHeaderColumn {
 
   public dataSource: FakeDataSource | null = new FakeDataSource();
   public columnsToRender = ['column_a', 'column_b', 'column_c'];
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
   public isFourthRow = (i: number, _rowData: TestData) => i === 3;
+}
+
+@Component({
+  template: `
+    <div style="width: 250px;">
+      <table
+        ts-table
+        [dataSource]="dataSource"
+        [columns]="columns"
+        (columnsChange)="columnsChanged($event)"
+        #myTable="tsTable"
+      >
+        <ng-container tsColumnDef="column_a">
+          <th ts-header-cell *tsHeaderCellDef> Column A</th>
+          <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
+        </ng-container>
+
+        <ng-container tsColumnDef="column_b">
+          <th ts-header-cell *tsHeaderCellDef> Column B</th>
+          <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
+        </ng-container>
+
+        <ng-container tsColumnDef="column_c">
+          <th ts-header-cell *tsHeaderCellDef> Column C</th>
+          <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
+        </ng-container>
+
+        <tr ts-header-row *tsHeaderRowDef="myTable.columnNames"></tr>
+        <tr ts-row *tsRowDef="let row; columns: myTable.columnNames"></tr>
+      </table>
+    </div>
+  `,
+})
+export class ScrollingTable {
+  public dataSource: FakeDataSource | null = new FakeDataSource();
+  public columnsToRender = ['column_a', 'column_b', 'column_c'];
+  public columns = this.columnsToRender.map(c => ({
+    name: c,
+    width: 100,
+  }));
+  public columnsChanged(e: TsTableColumnsChangeEvent) {}
 }
 
 
@@ -274,6 +333,7 @@ export class PinnedTableHeaderColumn {
   declarations: [
     ArrayDataSourceTableApp,
     PinnedTableHeaderColumn,
+    ScrollingTable,
     TableApp,
     TableColumnAlignmentTableApp,
     TableColumnInvalidAlignmentTableApp,

@@ -14,7 +14,6 @@ import * as testComponents from '@terminus/ui/table/testing';
 import {
   expectTableToMatchContent,
   getCells,
-  getColumnElements,
   getHeaderCells,
   getTableInstance,
   TestData,
@@ -46,8 +45,7 @@ export class TsWindowServiceMock {
         removeAllRanges: noop,
         addRange: noop,
       }),
-      scrollTo: (x: number, y: number) => {
-      },
+      scrollTo: (x: number, y: number) => { },
       prompt: noop,
     } as any;
   }
@@ -56,6 +54,18 @@ export class TsWindowServiceMock {
 
 
 describe(`TsTableComponent`, function() {
+
+  test(`should allow a custom ID and fall back to the UID`, function() {
+    const fixture = createComponent(testComponents.TableApp, [], [TsTableModule]);
+    fixture.detectChanges();
+    const instance = getTableInstance(fixture);
+
+    expect(instance.id).toEqual('foobar');
+
+    fixture.componentInstance.myId = undefined as any;
+    fixture.detectChanges();
+    expect(instance.id).toEqual(expect.stringContaining('ts-table-'));
+  });
 
   describe(`with basic data source`, function() {
 
@@ -138,20 +148,26 @@ describe(`TsTableComponent`, function() {
       ]);
     });
 
-    test(`should add the min-width style`, function() {
+  });
+
+  describe(`column width`, () => {
+    let fixture: ComponentFixture<testComponents.TableColumnAlignmentTableApp>;
+
+    beforeEach(() => {
+      fixture = createComponent(testComponents.TableColumnAlignmentTableApp, [], [TsTableModule]);
       fixture.detectChanges();
-      const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
-      const headerColumn = fixture.nativeElement.querySelector('.ts-header-cell.ts-column-column_b');
+    });
+
+    test(`should set the width`, () => {
+      fixture.detectChanges();
+      const column = fixture.nativeElement.querySelector('.ts-header-cell.ts-column-column_a');
 
       let style;
-      let headerStyle;
       if (column.style && column.style._values) {
-        style = column.style._values['max-width'];
-        headerStyle = headerColumn.style._values['max-width'];
+        style = column.style._values['width'];
       }
 
-      expect(style).toEqual('1000px');
-      expect(headerStyle).toEqual('1000px');
+      expect(style).toEqual('100px');
     });
 
   });
@@ -201,17 +217,11 @@ describe(`TsTableComponent`, function() {
   });
 
   describe(`pinned header and column`, () => {
-    let fixture: ComponentFixture<testComponents.PinnedTableHeaderColumn>;
-    let tableElement: HTMLElement;
-
-    beforeEach(() => {
-      fixture = createComponent(testComponents.PinnedTableHeaderColumn, [], [TsTableModule]);
-      fixture.detectChanges();
-
-      tableElement = fixture.nativeElement.querySelector('.ts-table');
-    });
 
     test(`should set a column to be sticky`, () => {
+      const fixture = createComponent(testComponents.PinnedTableHeaderColumn, [], [TsTableModule]);
+      fixture.detectChanges();
+      const tableElement = fixture.nativeElement.querySelector('.ts-table');
       const headerCells = getHeaderCells(tableElement);
       const cells = getCells(tableElement);
 
@@ -223,12 +233,26 @@ describe(`TsTableComponent`, function() {
     });
 
     test(`should only call to update sticky columns if at least one column is marked as sticky`, () => {
-      const instance = getTableInstance<testComponents.PinnedTableHeaderColumn>(fixture);
+      const fixture = createComponent(testComponents.PinnedTableHeaderColumn, [], [TsTableModule]);
+      const instance = getTableInstance(fixture);
       instance.updateStickyColumnStyles = jest.fn();
       fixture.detectChanges();
 
-      instance.setColumnWidthStyle('column_a', '100px');
-      expect(instance.updateStickyColumnStyles).toHaveBeenCalledTimes(1);
+      instance['setColumnWidthStyle']('column_a', 100);
+      fixture.detectChanges();
+      // 5: 1 initial by the base cdk class, then 1 for each of the 4 columns
+      expect(instance.updateStickyColumnStyles).toHaveBeenCalledTimes(5);
+    });
+
+    test(`should not call to update sticky columns if none are marked as sticky`, () => {
+      const fixture = createComponent(testComponents.TableApp, [], [TsTableModule]);
+      const instance = getTableInstance(fixture);
+      instance.updateStickyColumnStyles = jest.fn();
+      fixture.detectChanges();
+
+      instance['setColumnWidthStyle']('column_a', 100);
+      fixture.detectChanges();
+      expect(instance.updateStickyColumnStyles).not.toHaveBeenCalledTimes(1);
     });
 
   });
@@ -245,24 +269,18 @@ describe(`TsTableComponent`, function() {
       expect(headerCells[0].classList).not.toContain('ts-cell--resizing');
 
       const firstResizer = headerCells[0].querySelector('.ts-header-cell__resizer')!;
-      const hoverEvent = createMouseEvent('mouseenter');
-      firstResizer.dispatchEvent(hoverEvent);
-      fixture.detectChanges();
-      const columnElements = getColumnElements('column_a', tableElement);
-
-      for (const col of columnElements) {
-        expect(col.classList).toContain('ts-cell--resizing');
-      }
-
-      const hoverEndEvent = createMouseEvent('mouseleave');
-      firstResizer.dispatchEvent(hoverEndEvent);
+      const mouseenter = createMouseEvent('mouseenter');
+      firstResizer.dispatchEvent(mouseenter);
       fixture.detectChanges();
 
-      for (const col of columnElements) {
-        expect(col.classList).not.toContain('ts-cell--resizing');
-      }
+      expect(headerCells[0].classList).toContain('ts-cell--resizing');
+      expect(headerCells[1].classList).not.toContain('ts-cell--resizing');
 
-      expect.assertions(9);
+      const mouseleave = createMouseEvent('mouseleave');
+      firstResizer.dispatchEvent(mouseleave);
+      fixture.detectChanges();
+
+      expect(headerCells[0].classList).not.toContain('ts-cell--resizing');
     });
 
     test(`should allow column resizing and emit the updated columns`, () => {
@@ -318,6 +336,67 @@ describe(`TsTableComponent`, function() {
         expect(TsHeaderCellDirective['determineWidth'](140, -50)).toEqual(90);
       });
 
+    });
+
+    test(`should remove the resizer element if one exists during creation`, () => {
+      const fixture = createComponent(testComponents.TableApp, undefined, [TsTableModule]);
+      // NOTE: 2 detection cycles are needed
+      fixture.detectChanges();
+      fixture.detectChanges();
+      const instance = getTableInstance(fixture);
+      const cell = instance.headerCells.toArray()[0];
+      cell['renderer'].removeChild = jest.fn();
+      cell.injectResizeElement();
+      fixture.detectChanges();
+
+      expect(cell['renderer'].removeChild).toHaveBeenCalled();
+    });
+
+    test.todo(`should update column math on viewport changes`);
+
+    test.todo(`should update column math on column changes`);
+
+  });
+
+  describe(`addRemainingSpaceToLastColumn`, () => {
+
+    test(`should add any remaining table space to the width of the last column`, () => {
+      const fixture = createComponent(testComponents.TableApp, undefined, [TsTableModule]);
+      fixture.detectChanges();
+      const instance = getTableInstance(fixture);
+      const columns = [
+        {
+          name: 'one',
+          width: 100,
+        },
+        {
+          name: 'two',
+          width: 100,
+        },
+      ];
+      instance['addRemainingSpaceToLastColumn'](columns, 60);
+      expect(columns[1].width).toEqual(160);
+    });
+
+  });
+
+  describe(`updateInternalColumns`, () => {
+
+    test(`should update internal columns and add space to last column`, () => {
+      const columnsToRender = ['column_a', 'column_b', 'column_c'];
+      const columns = columnsToRender.map(name => ({
+        name,
+        width: 100,
+      }));
+      const fixture = createComponent(testComponents.TableApp, undefined, [TsTableModule]);
+      const instance = getTableInstance(fixture);
+      fixture.detectChanges();
+      const mock = jest.spyOn(instance, 'addRemainingSpaceToLastColumn');
+      instance['updateInternalColumns'](instance['getFreshColumnsCopy'](columns));
+      fixture.detectChanges();
+
+      expect(instance['columnsInternal'].length).toEqual(3);
+      expect(mock).toHaveBeenCalled();
     });
 
   });

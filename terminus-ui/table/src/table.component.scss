@@ -20,20 +20,19 @@
   --header-border-color: #{color(utility)};
   $primary: color(primary);
   --drop-bg: #{desaturate(lighten($primary, 66%), 70%)};
-  --z-index-base-context: 1;
+  --z-index-base-context: 2;
+  --z-index-resize-background: calc(var(--z-index-base-context) + 1);
+  --z-index-resize-grabber: calc(var(--z-index-resize-background) + 1);
   --cell-padding: #{spacing(default)};
   // Must be greater than 40 as that is the length of the generated z-indexes for header cells
   --sticky-end-z: 50;
   @include reset;
   @include typography;
-  @include visible-scrollbars;
-  border: 1px solid var(--border-color);
   border-collapse: separate;
   border-spacing: unset;
-  display: block;
   max-height: 100%;
-  max-width: 100%;
-  overflow: scroll;
+  table-layout: fixed;
+  width: 100%;
 
   &.ts-table--compact {
     --cell-padding: #{spacing(small, 2)};
@@ -56,15 +55,25 @@
 
   // Header row
   .ts-header-row {
-    @include typography(caption);
     $increased-weight: bold;
+    @include typography(caption);
+    // NOTE: Adding the background here ensures that no white area is seen during manual column resize.
+    background-color: var(--header-bg);
     color: var(--header-text-color);
     font-weight: $increased-weight;
     transition: background-color 200ms ease-out;
+
+    // NOTE: This is required for the tr background color to be visible.
+    &::after {
+      content: '';
+      display: block;
+    }
   }
 
   // Body row
   .ts-row {
+    border-bottom: 1px solid var(--border-color);
+
     &:hover {
       .ts-cell {
         background-color: var(--drop-bg);
@@ -84,8 +93,6 @@
   // Any cell
   .ts-cell,
   .ts-header-cell {
-    border-bottom: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
     min-height: inherit;
     position: relative;
     text-align: left;
@@ -135,6 +142,31 @@
     border-color: var(--header-border-color);
     padding: var(--cell-padding);
 
+    &:not(:last-of-type) {
+      position: relative;
+
+      &::after {
+        background-color: var(--header-border-color);
+        bottom: 0;
+        content: '';
+        display: block;
+        left: calc(100% - 1px);
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity 200ms ease-out;
+        width: 1px;
+        z-index: var(--z-index-base-context);
+      }
+
+      &:focus,
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
     // Class added when the column is sorted
     &.ts-sort-header-sorted {
       color: color(accent);
@@ -162,7 +194,6 @@
     // Class added when the user hovers the resize column hit area
     &.ts-cell--resizing {
       .ts-header-cell__resizer {
-        $resizer-width: #{spacing(small, 2)};
         opacity: 1;
 
         &::before {
@@ -183,6 +214,7 @@
       transform: translateX(50%);
       transition: opacity 200ms ease-out;
       width: spacing(large);
+      z-index: calc(var(--z-index-resize-background));
 
       // Visible container for grabber
       &::before {
@@ -196,12 +228,10 @@
         transform: translateX(-50%);
         transition: width 100ms ease-out;
         width: 1px;
-        z-index: var(--z-index-base-context);
       }
 
       // Dots inside grabber
       &::after {
-        --z-index-above-bg: 2;
         --grabber-icon-font-size: 14px;
         color: color(utility, xlight);
         content: '\2026';
@@ -212,7 +242,7 @@
         position: absolute;
         top: 30%;
         transform: rotate(90deg) translate(50%, -3px);
-        z-index: var(--z-index-above-bg);
+        z-index: var(--z-index-resize-grabber);
       }
     }
   }

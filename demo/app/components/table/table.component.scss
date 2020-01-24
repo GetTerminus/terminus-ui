@@ -1,5 +1,7 @@
 .example-container {
-  height: 400px;
+  //height: 400px;
+  overflow-y: scroll;
+  width: 100%;
 }
 
 .truncate {

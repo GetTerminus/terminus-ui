@@ -19,6 +19,8 @@
   - [Sticky column at end](#sticky-column-at-end)
 - [Re-orderable columns](#re-orderable-columns)
 - [Density](#density)
+- [Outer border](#outer-border)
+- [Scrolling](#scrolling)
 - [Events](#events)
   - [Table](#table)
   - [Cell](#cell)
@@ -55,26 +57,24 @@ name property of each row's data.
 
 ### 2. Define the displayed columns
 
-The table expects an array of `TsColumn` definitions to manage the displayed columns and (optionally) their associated widths.
+The table expects an array of `TsColumn` definitions to manage the displayed columns and the initial column width.
 
 ```typescript
+import { TsColumn } from '@terminus/ui/table'; 
+
 const columns: TsColumn = [
-  {name: 'title', width: '200px'},
-  {name: 'body', width: '400px'},
-  // The width will default to `7rem` if not defined here
-  {name: 'link'},
+  {name: 'title', width: 200},
+  {name: 'body', width: 400},
 ];
 ```
-
-> NOTE: Any valid CSS string can be passed in for the width: `1rem|12px|13vw|etc`. But when the user resizes the column, the width will be
-> converted into pixels.
 
 ### 3. Define the table's rows
 
 After defining your columns, provide the header and data row templates that will be rendered out by the table. Each row needs to be given a
 list of the columns that it should contain. The order of the names will define the order of the cells rendered.
 
-NOTE: It is not required to provide a list of all the defined column names, but only the ones that you want to have rendered.
+NOTE: It is not required to provide a list of all the _defined_ column names, but only the ones that you want to have
+rendered.
 
 ```html
 <tr ts-header-row *tsHeaderRowDef="['userName', 'age']"></tr>
@@ -83,11 +83,11 @@ NOTE: It is not required to provide a list of all the defined column names, but 
 <tr ts-row *tsRowDef="let row; columns: ['userName', 'age']"></tr>
 ```
 
-> NOTE: `ts-header-row` & `ts-row` can both be used as a component selector or an attribute selector. We _highly_ encourage the attribute
-> usage as it is more accessible and has better support for items such as multiple sticky headers etc.
+> NOTE: `ts-header-row` & `ts-row` can both be used as a component selector or an attribute selector. Attribute usage is _highly_ encouraged  
+> as it is more accessible and has better support for items such as multiple sticky headers etc.
 
-The table component provides an array of column names built from the array of `TsColumn` definitions passed to the table. You can use this
-reference for the rows rather than defining two different arrays:
+The table component provides an array of column names built from the array of `TsColumn` definitions passed to the table. You can use this  
+ reference for the rows rather than defining two seperate arrays:
 
 ```html
 <table
@@ -107,16 +107,17 @@ reference for the rows rather than defining two different arrays:
 </table>
 ```
 
-> NOTE: `ts-table` can be used as a component selector or an attribute selector. We _highly_ encourage the attribute usage as it is more
+> NOTE: `ts-table` can be used as a component selector or an attribute selector. Attribute usage is _highly_ encouraged as it is more  
 > accessible and has better support for items such as multiple sticky headers etc.
 
 Mapping the array of names manually is also fairly simple:
 
 ```typescript
+import { TsColumn } from '@terminus/ui/table'; 
+
 const columns: TsColumn = [
-  {name: 'title', width: '200px'},
-  {name: 'body', width: '400px'},
-  {name: 'link'},
+  {name: 'title', width: 200},
+  {name: 'body', width: 400},
 ];
 const columnName = this.columns.map(c => c.name);
 ```
@@ -124,11 +125,13 @@ const columnName = this.columns.map(c => c.name);
 
 ### 4. Provide data
 
-The column and row definitions now capture how data will render - all that's left is to provide the data itself.
+The column and row definitions capture how data will render - all that's left is to provide the data itself.
 
 Create an instance of `TsTableDataSource` and set the items to be displayed to the `data` property.
 
 ```typescript
+import { TsTableDataSource } from '@terminus/ui/table'; 
+
 this.myDataSource = new TsTableDataSource();
 this.myDataSource.data = dataToRender;
 ```
@@ -142,12 +145,16 @@ this.myDataSource.data = dataToRender;
 The `DataSource` can be seeded with initial data:
 
 ```typescript
+import { TsTableDataSource } from '@terminus/ui/table'; 
+
 this.myDataSource = new TsTableDataSource(INITIAL_DATA);
 ```
 
 An interface for your table data can be passed to `TsTableDataSource` for stricter typing:
 
 ```typescript
+import { TsTableDataSource } from '@terminus/ui/table'; 
+
 export interface MyTableItem {
   name: string;
   id: number;
@@ -438,13 +445,14 @@ export class TableComponent {
     {
       display: 'Title',
       name: 'title',
-      width: '400px',
+      width: 300,
       control: new FormControl(true),
     },
     {
       display: 'Number',
       name: 'number',
       control: new FormControl(true),
+      width: 100,
     },
     // ...etc
   ];
@@ -484,6 +492,28 @@ The table supports two density settings: `comfy` (default) & `compact`.
 <table ts-table density="compact">
   ...
 </table>
+```
+
+## Outer border
+
+Since the scrolling container around the table is now a consumer responsibility, adding a border around the table also
+must be done by the consumer:
+
+```scss
+.my-table-container {
+  border: 1px solid color(utility, light);
+}
+```
+
+## Scrolling
+
+Scrolling is controlled by the containing element that is placed around the table. If persistent scrollbars are desired,
+the scrollbars mixin can be used:
+
+```scss
+.my-table-container {
+  @include visible-scrollbars;
+}
 ```
 
 
@@ -651,24 +681,27 @@ export class TableComponent implements AfterViewInit {
     {
       name: 'Created',
       value: 'created',
+      width: 100,
     },
     {
       name: 'Title',
       value: 'title',
-      width: '12.5rem',    
+      width: 100,
     },
     {
       name: 'Comments',
       value: 'comments',
-      width: '500px',
+      width: 200,
     },
     {
       name: 'State',
       value: 'state',
+      width: 100,
     },
     {
       name: 'Number',
       value: 'number',
+      width: 100,
     },
   ];
   // Default to all columns visible
@@ -720,7 +753,6 @@ export class TableComponent implements AfterViewInit {
       });
   }
 }
-
 
 export interface GithubApi {
   items: GithubIssue[];
