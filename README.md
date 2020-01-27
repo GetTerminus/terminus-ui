@@ -145,14 +145,15 @@ for each feature.
 <br>
 [:circus_tent: Pipes Demo][demo-pipes]
 
-| Pipe                                       | Notes                                       | Status             |
-|--------------------------------------------|---------------------------------------------|:------------------:|
-| [`tsDate`][src-pipes-date]                 | `short`, `medium`, `extended`, `timestamp`  | :white_check_mark: |
-| [`tsRoundNumber`][src-pipes-roundNumber]   | Round a number to a specific precision      | :white_check_mark: |
-| [`tsSentenceCase`][src-pipes-sentenceCase] | Convert string casing to sentence-case      | :white_check_mark: |
-| [`tsTimeAgo`][src-pipes-timeAgo]           | Human-readable time span                    | :white_check_mark: |
-| [`tsTitleCase`][src-pipes-titleCase]       | Title Case A String                         | :white_check_mark: |
-| [`tsTruncateAt`][src-pipes-truncate]       | Truncate a string, `start`, `middle`, `end` | :white_check_mark: |
+| Pipe                                              | Notes                                       | Status             |
+|---------------------------------------------------|---------------------------------------------|:------------------:|
+| [`tsAbbreviateNumber`][src-pipes-abbreviateNumber]| Abbreviate a number                         | :white_check_mark: |
+| [`tsDate`][src-pipes-date]                        | `short`, `medium`, `extended`, `timestamp`  | :white_check_mark: |
+| [`tsRoundNumber`][src-pipes-roundNumber]          | Round a number to a specific precision      | :white_check_mark: |
+| [`tsSentenceCase`][src-pipes-sentenceCase]        | Convert string casing to sentence-case      | :white_check_mark: |
+| [`tsTimeAgo`][src-pipes-timeAgo]                  | Human-readable time span                    | :white_check_mark: |
+| [`tsTitleCase`][src-pipes-titleCase]              | Title Case A String                         | :white_check_mark: |
+| [`tsTruncateAt`][src-pipes-truncate]              | Truncate a string, `start`, `middle`, `end` | :white_check_mark: |
 
 
 ### Services
@@ -432,6 +433,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-menu]:               https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/menu/src/
 [src-navigation]:         https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/navigation/src/
 [src-paginator]:          https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/paginator/src/
+[src-pipes-abbreviateNumber]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/abbreviate-number/abbreviate-number.pipe.ts
 [src-pipes-date]:         https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/date/date.pipe.ts
 [src-pipes-roundNumber]:  https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/round-number/round-number.pipe.ts
 [src-pipes-sentenceCase]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/pipes/src/sentence-case/sentence-case.pipe.ts
