@@ -1,3 +1,10 @@
+## [15.10.7](https://github.com/GetTerminus/terminus-ui/compare/v15.10.6...v15.10.7) (2020-01-27)
+
+
+### Bug Fixes
+
+* **SelectionList:** form control value updated properly when set to empty array ([25e789c](https://github.com/GetTerminus/terminus-ui/commit/25e789c))
+
 ## [15.10.6](https://github.com/GetTerminus/terminus-ui/compare/v15.10.5...v15.10.6) (2020-01-21)
 
 
