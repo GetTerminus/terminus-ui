@@ -848,6 +848,36 @@ describe(`TsSelectionListComponent`, function() {
     }));
   });
 
+  test(`should be able to clear all options programmatically`, fakeAsync(() => {
+    const fixture = createComponent(testComponents.Seeded);
+    fixture.componentInstance.allowDuplicates = true;
+    fixture.detectChanges();
+    let chips = getAllChipInstances(fixture);
+    expect(chips.length).toEqual(1);
+    let instance = getSelectionListInstance(fixture);
+    instance.selectionListFormControl.setValue([]);
+    tick(1000);
+    fixture.detectChanges();
+    chips = getAllChipInstances(fixture);
+    expect(chips.length).toEqual(0);
+
+    const input = getSelectionListInput(fixture);
+    const states = fixture.componentInstance.states;
+    typeInElement(states[5].name.substring(0, 2), input);
+    tick(1000);
+    fixture.detectChanges();
+
+    const opt = getOptionElement(fixture, 0, 5);
+    opt.click();
+    tick(1000);
+    fixture.detectChanges();
+
+    chips = getAllChipInstances(fixture);
+    expect(chips.length).toEqual(1);
+    instance = getSelectionListInstance(fixture);
+    expect(instance.selectionListFormControl.value).toEqual([states[5]]);
+  }));
+
   describe(`clearPreviousSelectedOption`, () => {
     let fixture: ComponentFixture<testComponents.Seeded>;
     let trigger: TsSelectionListTriggerDirective;
