@@ -1,3 +1,15 @@
+# [16.0.0](https://github.com/GetTerminus/terminus-ui/compare/v15.10.7...v16.0.0) (2020-01-27)
+
+
+### Features
+
+* **Table:** now dynamically sizing all columns ([739e575](https://github.com/GetTerminus/terminus-ui/commit/739e575)), closes [#1805](https://github.com/GetTerminus/terminus-ui/issues/1805)
+
+
+### BREAKING CHANGES
+
+* **Table:** - TsColumn definition change|- Outer border change|- Style changes
+
 ## [15.10.7](https://github.com/GetTerminus/terminus-ui/compare/v15.10.6...v15.10.7) (2020-01-27)
 
 
