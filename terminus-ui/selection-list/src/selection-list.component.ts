@@ -561,11 +561,9 @@ export class TsSelectionListComponent implements
           .subscribe(newValue => {
             // istanbul ignore else
             if (newValue) {
-              if (!newValue[0]) {
-                return;
+              if (newValue[0]) {
+                this.searchQuery = this.displayFormatter(newValue[0]);
               }
-
-              this.searchQuery = this.displayFormatter(newValue[0]);
 
               if (this.allowMultiple) {
                 this.selectionListFormControl.setValue(newValue, { emitEvent: false });
