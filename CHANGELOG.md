@@ -8,7 +8,34 @@
 
 ### BREAKING CHANGES
 
-* **Table:** - TsColumn definition change|- Outer border change|- Style changes
+* **Table:** - `TsColumn` definition change
+* **Table:** - Outer border change
+* **Table:** - Style changes
+
+#### Migration Notes
+
+##### `TsColumn`
+
+`TsColumn` definitions now require a width to be set:
+
+```diff
+const columns: TsColumn[] = [
+  {
+    name: 'Column One',
++   width: 100,
+  },
+];
+```
+
+##### Outer border
+
+The table no longer defines it's own outer border. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/table/src/table.component.md).
+
+##### Persistent scrollbars
+
+The table no longer controls the scrollbars. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/table/src/table.component.md).
+
+
 
 ## [15.10.7](https://github.com/GetTerminus/terminus-ui/compare/v15.10.6...v15.10.7) (2020-01-27)
 
