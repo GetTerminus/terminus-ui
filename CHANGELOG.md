@@ -1,3 +1,10 @@
+# [16.1.0](https://github.com/GetTerminus/terminus-ui/compare/v16.0.0...v16.1.0) (2020-01-28)
+
+
+### Features
+
+* **Pipe:** Add abbreviate number pipe ([bcfcf40](https://github.com/GetTerminus/terminus-ui/commit/bcfcf40))
+
 # [16.0.0](https://github.com/GetTerminus/terminus-ui/compare/v15.10.7...v16.0.0) (2020-01-27)
 
 
