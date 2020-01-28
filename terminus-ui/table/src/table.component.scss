@@ -26,6 +26,7 @@
   --cell-padding: #{spacing(default)};
   // Must be greater than 40 as that is the length of the generated z-indexes for header cells
   --sticky-end-z: 50;
+  --grip-vertical-adjustment: 50%;
   @include reset;
   @include typography;
   border-collapse: separate;
@@ -36,6 +37,7 @@
 
   &.ts-table--compact {
     --cell-padding: #{spacing(small, 2)};
+    --grip-vertical-adjustment: calc(50% - 4px);
   }
 
   // Class added to all sticky-end cells
@@ -219,7 +221,7 @@
       // Visible container for grabber
       &::before {
         background-color: color(primary);
-        bottom: 0;
+        bottom: 1px;
         content: '';
         display: block;
         left: 50%;
@@ -241,7 +243,7 @@
         left: 50%;
         position: absolute;
         top: 30%;
-        transform: rotate(90deg) translate(50%, -3px);
+        transform: rotate(90deg) translate(var(--grip-vertical-adjustment), -3px);
         z-index: var(--z-index-resize-grabber);
       }
     }
