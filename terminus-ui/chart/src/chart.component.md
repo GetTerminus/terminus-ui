@@ -68,7 +68,6 @@ Add the component and set up access to the generated chart:
 ```
 
 ```typescript
-
 setUpChart(chart: am4charts.Chart) {
   // Add axis' and series' etc...
 }

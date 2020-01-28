@@ -25,12 +25,16 @@ NOTE: This component does not support a `FormControl`; it is a simple collection
 
 ## Basic Usage
 
-Loop through a collection to generate chips:
+Create a collection of chips:
+
+```typescript
+myChips = ['one', 'two', 'three'];
+```
 
 ```html
 <ts-chip-collection>
   <ts-chip
-    *ngFor="let chip of chips;"
+    *ngFor="let chip of myChips;"
     [value]="chip"
   >{{ chip }}</ts-chip>
 </ts-chip-collection>
@@ -50,7 +54,7 @@ For string based collections, the value input can be disregarded as the value wi
 
 ### Theme
 
-A theme can be set a the chip level:
+A theme can be defined at the chip level:
 
 ```html
 <ts-chip-collection>
@@ -63,7 +67,8 @@ A theme can be set a the chip level:
 
 ### Orientation
 
-A collection can be displayed in a row (`horizontal`) or a column (`vertical`) via the `orientation` input. By default it displays as a row.
+A collection of chips can be displayed in a row (`horizontal`) or a column (`vertical`) via the `orientation` input. By
+default it displays as a row.
 
 ```html
 <ts-chip-collection>
@@ -76,8 +81,9 @@ A collection can be displayed in a row (`horizontal`) or a column (`vertical`) v
 
 ### Removable
 
-By default, chips are 'removable'. Since this component does not directly manage the data, when a user tries to remove a chip, an event is
-emitted. The consumer is responsible to using that event to remove the item from the collection. (See [Events](#events))
+By default, chips are 'removable'. Since this component does not directly manage the data, when a user attempts to
+remove a chip, an event is emitted. The consumer is responsible to use that event to remove the item from the
+collection. (See [Events](#events))
 
 ```html
 <ts-chip-collection>
@@ -91,11 +97,8 @@ emitted. The consumer is responsible to using that event to remove the item from
 ```typescript
 myChips = ['apple', 'banana'];
 
-removeChip(event: TsChipEvent): void {
-  if (!event.chip.value) {
-    return;
-  }
-  const index = this.myChips.indexOf(event.chip.value);
+removeChip(removeEvent: TsChipEvent): void {
+  const index = this.myChips.indexOf(removeEvent.chip.value);
   if (index < 0) {
     return;
   }
@@ -106,11 +109,11 @@ removeChip(event: TsChipEvent): void {
 The ability to remove a chip can be disabled per chip or as a collection:
 
 ```html
-<!-- Disable on the chip directly -->
+<!-- Disable the chip directly -->
 <ts-chip-collection>
   <ts-chip
     *ngFor="let chip of chips"
-    [isRemovable]="chip.removable"
+    [isRemovable]="false"
   >{{ chip }}</ts-chip>
 </ts-chip-collection>
 
@@ -124,16 +127,17 @@ The ability to remove a chip can be disabled per chip or as a collection:
 
 ### Selectable
 
-Chips can be selected and visually show that selection. The style of the selected state reflects the current [theme](#theme).
+Chips can be selected and will visually show that selection. The style of the selected state reflects the current
+[theme](#theme).
 
-The ability to select chips can be disabled at the collection or chip level.
+The ability to select chips can be disabled per chip or as a collection:
 
 ```html
 <!-- Disable on the chip directly -->
 <ts-chip-collection>
   <ts-chip
     *ngFor="let chip of chips"
-    [isSelectable]="chip.canSelect"
+    [isSelectable]="false"
   >{{ chip }}</ts-chip>
 </ts-chip-collection>
 
@@ -157,7 +161,8 @@ This will disable the ability to remove, select or focus the chip.
 
 ## Events
 
-Since this component does not directly manage the data, we rely on emitting events to alert the consumer as to what needs to happen.
+Since this component does not directly manage the data, we rely on emitting events to alert the consumer for any user
+interaction.
 
 ### Collection events
 
@@ -186,17 +191,17 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 
 | Function                                  |
 |-------------------------------------------|
-| `getAllChipDebugElements`                 |
 | `getAllChipCollectionDebugElements`       |
+| `getAllChipCollectionInstances`           |
+| `getChipCollectionInstance`               |
+| `getChipCollectionInstanceInAutocomplete` |
+| `getChipCollectionElement`                |
 | `getAllChipInstances`                     |
 | `getChipInstance`                         |
-| `getAllChipCollectionInstances`           |
-| `getChipCollectionInstanceInAutocomplete` |
+| `getAllChipDebugElements`                 |
 | `getChipDebugElement`                     |
 | `getChipCollectionDebugElement`           |
-| `getChipCollectionInstance`               |
 | `getChipElement`                          |
-| `getChipCollectionElement`                |
 
 
 [test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chip/testing/src/test-helpers.ts

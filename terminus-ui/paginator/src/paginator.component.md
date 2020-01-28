@@ -8,7 +8,7 @@
 - [Basic usage](#basic-usage)
 - [Events](#events)
 - [Current page](#current-page)
-- [Zero or One based pagination](#zero-or-one-based-pagination)
+- [Zero or one based pagination](#zero-or-one-based-pagination)
 - [Record count too high](#record-count-too-high)
   - [Max records](#max-records)
   - [Record count message](#record-count-message)
@@ -19,7 +19,7 @@
 
 ## Basic usage
 
-For the most minimal implementation, just pass in the total record count:
+For the most minimal implementation, just pass in the total number of records:
 
 ```html
 <ts-paginator
@@ -29,8 +29,7 @@ For the most minimal implementation, just pass in the total record count:
 
 ## Events
 
-The paginator will emit the current page each time the page is changed or the records-per-page count
-is changed:
+The paginator will emit the current page each time the page is changed or the records-per-page count is changed:
 
 ```html
 <ts-paginator
@@ -57,7 +56,7 @@ myChangeFunc(v: number) {
 
 ## Current page
 
-Set the current page:
+Define the current active page by index:
 
 ```html
 <ts-paginator
@@ -67,7 +66,7 @@ Set the current page:
 ```
 
 
-## Zero or One based pagination
+## Zero or one based pagination
 
 By default the paginator starts the pages array with a value of '0'. If your API starts it's
 pagination at 1 (such as Rails) you can set `isZeroBased` to `false`:
@@ -88,12 +87,12 @@ pagination at 1 (such as Rails) you can set `isZeroBased` to `false`:
 
 ## Record count too high
 
-The paginator will display a message if too many records are found. This is to encourage better
-filtering rather than more time paging through results.
+The paginator will display a message if too many records are found. This is to encourage better filtering rather than
+spending time paging through results.
 
 ### Max records
 
-By default, anything over `100` is considered too many. To change this value, pass in a number to
+By default, anything over `100` is considered too many records. To change this value, pass in a number to
 `maxPreferredRecords`:
 
 ```html
@@ -110,17 +109,17 @@ A custom message may be defined:
 ```html
 <ts-paginator
   [totalRecords]="100"
-  recordCountTooHighMessage="What they heck are you looking for?"
+  recordCountTooHighMessage="What the heck are you looking for?"
 ></ts-paginator>
 ```
 
-A custom message template can also be defined. This allows dynamic links to documentation, help or a
-better set of filters.
+A custom message template can also be defined. This allows dynamic links to documentation, help, or a better set of
+filters.
 
 ```html
 <ts-paginator
   [totalRecords]="100"
-  recordCountTooHighMessage="What they heck are you looking for?"
+  recordCountTooHighMessage="What the heck are you looking for?"
   [paginatorMessageTemplate]="myTemplate"
 ></ts-paginator>
 
@@ -129,13 +128,13 @@ better set of filters.
   example.
 -->
 <ng-template #myTemplate let-message>
-  <a routerLink="/components/link">{{ message }}</a>
+  <a routerLink="/my/route">{{ message }}</a>
 </ng-template>
 ```
 
 ## Records per page
 
-Define the choices for how many records can be displayed on a single 'page':
+Define the choices for how many records will be displayed on a single 'page':
 
 ```html
 <ts-paginator
@@ -144,7 +143,7 @@ Define the choices for how many records can be displayed on a single 'page':
 ></ts-paginator>
 ```
 
-This menu can be disabled completely if desired:
+This menu can be removed if desired:
 
 ```html
 <ts-paginator

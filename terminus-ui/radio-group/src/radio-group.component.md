@@ -13,7 +13,7 @@
   - [Disabled option](#disabled-option)
 - [Visual mode](#visual-mode)
   - [Small](#small)
-  - [Centered Content](#centered-content)
+  - [Centered content](#centered-content)
   - [Custom content](#custom-content)
 - [Test Helpers](#test-helpers)
 
@@ -24,13 +24,13 @@
 
 Pass in:
 
-1. an array of items
-1. a form control
-1. a formatter function to determine the UI display value
-1. a formatter function to determine the model value
+1. An array of items
+1. A form control
+1. A formatter function to determine the UI display value
+1. A formatter function to determine the model value
 
 ```html
-<form [formGroup]="myForm" novalidate>
+<form [formGroup]="myForm">
   <ts-radio-group
     [options]="items$ | async"
     [formControl]="myForm.get('myRadioGroup')"
@@ -70,12 +70,9 @@ myForm = this.formBuilder.group({
 
 // Use the 'bar' value as the UI display
 uiFormatter = (v) => v.bar;
-// use the 'foo' value to save to the model
+// Use the 'foo' value to save to the model
 modelFormatter = (v) => v.foo;
 ```
-
-> NOTE: Since we can set the default value in the form control, we no longer need to add the
-> `checked` property to any or our items.
 
 
 ## Sub-labels
@@ -185,9 +182,9 @@ Enable by setting the `isVisual` flag:
 
 ### Small
 
-For a smaller clickable area, use the `small` flag. This sets the visual radio buttons to 13.75rem x 7rem.
+For a smaller clickable area, use the `small` flag.
 
-_Note_ The maximum content should be a title with two lines and body with 3 lines
+NOTE: The maximum content should be a title with two lines and body with 3 lines
 
 ```html
 <ts-radio-group
@@ -197,14 +194,14 @@ _Note_ The maximum content should be a title with two lines and body with 3 line
 ></ts-radio-group>
 ```
 
-### Centered Content
+### Centered content
 
 By default the content is centered when in visual mode. Setting `centeredContent` to `false` will use standard top/left alignment.
 
 ```html
 <ts-radio-group
   [isVisual]="true"
-  [centeredContent]="true"
+  [centeredContent]="false"
   ...
 ></ts-radio-group>
 ```

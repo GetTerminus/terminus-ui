@@ -9,5 +9,4 @@ import { Directive } from '@angular/core';
   selector: '[tsTabLabel]',
   exportAs: 'tsTabLabel',
 })
-export class TsTabLabelDirective extends CdkPortal {
-}
+export class TsTabLabelDirective extends CdkPortal { }

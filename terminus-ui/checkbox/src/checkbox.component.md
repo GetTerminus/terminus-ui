@@ -12,7 +12,7 @@
 
 ## Basic usage
 
-Wrap your label text inside the component:
+Place your label text inside the component:
 
 ```html
 <ts-checkbox>

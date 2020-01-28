@@ -2,12 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
-  InjectionToken,
   NgZone,
   ViewEncapsulation,
 } from '@angular/core';
-import { isSet } from '@terminus/ngx-tools/type-guards';
 
 
 /**

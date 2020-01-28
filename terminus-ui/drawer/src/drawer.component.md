@@ -1,16 +1,16 @@
 <h1>Drawer</h1>
 
-Drawer component is designed to add side content to a small section of a page.
+The drawer component is designed to add side content to a section of content.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Basic Usage](#basic-usage)
-  - [Backdrop](#backdrop)
-  - [Mode](#mode)
-  - [Position](#position)
-  - [Collapsed size and expanded size](#collapsed-size-and-expanded-size)
+- [Basic usage](#basic-usage)
+- [Backdrop](#backdrop)
+- [Mode](#mode)
+- [Position](#position)
+  - [Collapsed and expanded sizes](#collapsed-and-expanded-sizes)
   - [Expand on load](#expand-on-load)
   - [Fixed header and footer](#fixed-header-and-footer)
 - [Events](#events)
@@ -20,9 +20,9 @@ Drawer component is designed to add side content to a small section of a page.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Basic Usage
+## Basic usage
 
-Define a drawer:
+Define a container, a drawer, and the page content:
 
 ```html
 <ts-drawer-container>
@@ -42,89 +42,72 @@ Define a drawer:
 </ts-drawer-container>
 ```
 
-### Backdrop
+## Backdrop
 
-If `hasBackdrop` set to `true`, users can close the drawer if they click the backdrops.
+If `hasBackdrop` is set to `true`, users can close the drawer by clicking outside (default is `false`):
 
 ```html
-<ts-drawer-container
-  hasBackdrop="true"
->
-  <ts-drawer>
-  
-  </ts-drawer>
+<ts-drawer-container hasBackdrop="true">
+  <ts-drawer>...</ts-drawer>
 </ts-drawer-container>
 ```
 
-`hasBackdrop` defaults to `false`.
+## Mode
 
-### Mode
-
-Mode property defines how a drawer expanded on the page. It defaults to `overlay`.
+The mode defines how the page content reacts to the drawer. A drawer can open over the page content (`overlay`) or push
+(`push`) the content to make room for the drawer (default is `overlay`):
 
 ```html
-<ts-drawer
-  [mode]="push"
->
+<ts-drawer [mode]="push">
+</ts-drawer>
+```
+ 
+## Position
+
+Consumers can specify which side of the container the drawer opens from. The default is `start` which opens from the
+left side of the page. If set to `end`, it would expand the drawer from right of the page.
+
+```html
+<ts-drawer [position]="end">
 </ts-drawer>
 ```
 
-We currently support two types of modes, `overlay` and `push`. 
-`overlay` means that the drawer floats over the main content, which is covered by a backdrop.
-`push` is that drawer pushes the primary content out of its way and also covering it with a backdrop.
- 
- ### Position
- 
- ```html
- <ts-drawer
-   [position]="end"
- >
- </ts-drawer>
- ```
- 
- Consumers can specify which side the drawer opens at. It defaults to `start`, which opens from the left of the page. If set to `end`, it would expand the drawer from right of the page.
- 
- NOTE: An error is thrown if users have more than one drawer in a given container with the same position AND `push` mode.
- 
- ### Collapsed size and expanded size
- 
- Users can specify the size of a drawer when it's collapsed and expanded.
- 
- ```html
- <ts-drawer
-   [collpasedSize]="2rem"
-   [expandedSize]="12rem"
- >
- </ts-drawer>
- ```
+NOTE: An error will be thrown if more than one drawer in a given container has the same position AND `push` mode set.
 
-`collapsedSize` defaults to `3.75rem` and `expandedSize` to `12.5rem` if not specified.
+### Collapsed and expanded sizes
+
+The size of a drawer when it's collapsed and expanded can be customized:
+
+```html
+<ts-drawer
+  [collapsedSize]="2rem"
+  [expandedSize]="12rem"
+></ts-drawer>
+```
+
+NOTE: `collapsedSize` defaults to `3.75rem` and `expandedSize` to `12.5rem`.
 
 ### Expand on load
 
-Users can set the drawer to expand on load
+The drawer can be forced to expand on load:
 
 ```html
-<ts-drawer
-  [isExpanded]="true"
->
+<ts-drawer [isExpanded]="true">
 </ts-drawer>
 ```
 
-`isExpanded` set to `true` would have drawer expanded on load. It defaults to `false`.
-
 ### Fixed header and footer
 
-Users can set drawer header and footer within a drawer, both are sticky to the view.
+The drawer supports both a header and footer:
 
 ```html
 <ts-drawer-header>
-  THIS IS MY HEADER
+  My header content...
 </ts-drawer-header>
 ```
 ```html
 <ts-drawer-footer>
-  THIS IS MY FOOTER
+  My footer content...
 </ts-drawer-footer>
 ```
 
@@ -132,15 +115,15 @@ Users can set drawer header and footer within a drawer, both are sticky to the v
 
 ### Container events
 
-| Event              | Description                                    | Payload                  |
-|:-------------------|:-----------------------------------------------|:-------------------------|
-| `backdropClick`    | Fired when backdrop is clicked                 |  void                    |
+| Event           | Description                    | Payload |
+|:----------------|:-------------------------------|:--------|
+| `backdropClick` | Fired when backdrop is clicked | void    |
 
 ### Drawer events
 
-| Event             | Description                                 | Payload                 |
-|:------------------|:--------------------------------------------|:------------------------|
-| `expandedStart`   | Fired when the drawer expansion starts      |    void                 |
-| `collapsedStart`  | Fired when the drawer collapse starts       |    void                 |
-| `expandedChange`  | Fired when state change ends (animation ends)| boolean                  |
+| Event            | Description                                   | Payload |
+|:-----------------|:----------------------------------------------|:--------|
+| `expandedStart`  | Fired when the drawer expansion starts        | void    |
+| `collapsedStart` | Fired when the drawer collapse starts         | void    |
+| `expandedChange` | Fired when state change ends (animation ends) | boolean |
 

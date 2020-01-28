@@ -23,13 +23,10 @@ export class TsSlideToggleChange extends MatSlideToggleChange {}
 /**
  * The is a toggle component
  *
- * #### QA CSS CLASSES
- * - `qa-toggle`: The toggle element
- *
  * @example
  * <ts-toggle
- *              [formControl]="yourHelperToGetFormControl('thingIsDisabled')"
  *              arialLabel="Disable my thing"
+ *              [formControl]="yourHelperToGetFormControl('thingIsDisabled')"
  *              [isDisabled]="true"
  *              [isRequired]="true"
  *              labelPosition="before"
@@ -103,8 +100,6 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
   /**
    * Emit an event each time the toggle value changes
    */
-  // tslint:disable-next-line: no-output-native
   @Output()
   public readonly selectionChange: EventEmitter<TsSlideToggleChange> = new EventEmitter();
-
 }

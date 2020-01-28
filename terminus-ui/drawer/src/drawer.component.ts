@@ -58,12 +58,12 @@ export const TS_DRAWER_DEFAULT_EXPAND_SIZE = '12.5rem';
  *
  * @example
  * <ts-drawer
- *              [mode]="mode"
- *              [position]="position"
  *              [collapsedSize]="collapsedSize"
  *              [expandedSize]="expandedSize"
- *              [role]="role"
  *              [isExpanded]="isExpanded"
+ *              [mode]="mode"
+ *              [position]="position"
+ *              [role]="role"
  *              (expandedChange)="expandedChanged($event)"
  *              (expandedStart)="expandedStarted($event)"
  *              (collapsedStart)="collapsedStarted($event)"
@@ -99,7 +99,6 @@ export const TS_DRAWER_DEFAULT_EXPAND_SIZE = '12.5rem';
   exportAs: 'tsDrawer',
 })
 export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
-
   /**
    * Define animation state, defaults to void state
    */
@@ -132,12 +131,6 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   public readonly modeChanged = new Subject();
 
   /**
-   * aria role label, default to nothing
-   */
-  @Input()
-  public role = '';
-
-  /**
    * Collapsed drawer width
    */
   @Input()
@@ -162,6 +155,31 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   public _expandedSize = '12.75rem';
 
   /**
+   * Define whether the drawer is open
+   */
+  @Input()
+  public set isExpanded(value: boolean) {
+    this.toggle(value);
+  }
+  public get isExpanded(): boolean {
+    return this._isExpanded;
+  }
+  private _isExpanded = false;
+
+  /**
+   * Mode of the drawer, overlay or push
+   */
+  @Input()
+  public set mode(value: TsDrawerModes) {
+    this._mode = value;
+    this.modeChanged.next();
+  }
+  public get mode(): TsDrawerModes {
+    return this._mode;
+  }
+  private _mode: TsDrawerModes = 'overlay';
+
+  /**
    * The side that the drawer is attached to.
    */
   @Input()
@@ -179,34 +197,15 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   private _position: TsDrawerPosition = 'start';
 
   /**
-   * Mode of the drawer, overlay or push
+   * Define the aria role label, default to nothing
    */
   @Input()
-  public set mode(value: TsDrawerModes) {
-    this._mode = value;
-    this.modeChanged.next();
-  }
-  public get mode(): TsDrawerModes {
-    return this._mode;
-  }
-  private _mode: TsDrawerModes = 'overlay';
-
-  /**
-   * Whether the drawer is opened. We overload this because we trigger an event when it
-   * starts or end.
-   */
-  @Input()
-  public set isExpanded(value: boolean) {
-    this.toggle(value);
-  }
-  public get isExpanded(): boolean {
-    return this._isExpanded;
-  }
-  private _isExpanded = false;
+  public role = '';
 
   /**
    * Event emitted when the drawer open state is changed.
-   * Note this has to be async in order to avoid some issues with two-bindings - setting isAsync to true.
+   *
+   * NOTE: This has to be async in order to avoid some issues with two-way bindings - setting isAsync to true.
    */
   @Output()
   public readonly expandedChange = new EventEmitter<boolean>(true);

@@ -129,24 +129,12 @@ const DEFAULT_WELCOME_MESSAGE_MAX_LENGTH = 20;
 /**
  * This is the navigation UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-navigation`: Placed on the nav element which contains this component
- * - `qa-navigation-items`: Placed on the div element which contains the navigation items
- * - `qa-navigation-item`: Placed on the button elements which represent each visible navigation
- * item
- * - `qa-navigation-secondary-trigger`: Placed on the button element which displays the drop down
- * containing secondary links when clicked
- * - `qa-navigation-secondary-items`: Placed on the menu element which contains the secondary
- * navigation items
- * - `qa-navigation-secondary-item`: Placed on the button elements which represent each secondary
- * navigation item
- *
  * @example
  * <ts-navigation
  *              [items]="navigationItems$ | async"
  *              [user]="currentUser$ | async"
- *              welcomeMessage="Hi!"
  *              userNameLength="20"
+ *              welcomeMessage="Hi!"
  *              welcomeMsgLength="25"
  *              (itemSelected)="myMethod($event)"
  * ></ts-navigation>

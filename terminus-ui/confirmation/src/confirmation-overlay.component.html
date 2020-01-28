@@ -1,7 +1,10 @@
-<div 
+<div
   fxLayout="column"
 >
-  <p *ngIf="explanationTxt" class="ts-confirmation-overlay__explanation">{{ explanationTxt }}</p>
+  <p *ngIf="explanationText" class="ts-confirmation-overlay__explanation">
+    {{ explanationText }}
+  </p>
+
   <div
     fxLayout="row"
     fxLayoutAlign="center space-between"
@@ -13,14 +16,14 @@
       format="hollow"
       (clicked)="confirm.next(false)"
     >
-      {{ cancelButtonTxt }}
+      {{ cancelButtonText }}
     </ts-button>
 
     <ts-button
       class="qa-confirmation-confirm"
       (clicked)="confirm.next(true)"
     >
-      {{ confirmationButtonTxt }}
+      {{ confirmationButtonText }}
     </ts-button>
   </div>
 </div>

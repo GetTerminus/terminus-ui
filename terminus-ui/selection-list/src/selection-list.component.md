@@ -1,17 +1,17 @@
-<h1>SelectionList</h1>
+<h1>Selection List</h1>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [Duplicate selections](#duplicate-selections)
-  - [Keeping the panel open](#keeping-the-panel-open)
-  - [Debouncing queries](#debouncing-queries)
-  - [Minimum Characters](#minimum-characters)
-  - [Formatting](#formatting)
-  - [Complex comparator](#complex-comparator)
-  - [Standard dropdown mode (no typing)](#standard-dropdown-mode-no-typing)
+- [Duplicate selections](#duplicate-selections)
+- [Keeping the panel open](#keeping-the-panel-open)
+- [Debouncing queries](#debouncing-queries)
+- [Minimum characters](#minimum-characters)
+- [Formatting](#formatting)
+- [Complex comparator](#complex-comparator)
+- [Standard dropdown mode (no typing)](#standard-dropdown-mode-no-typing)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -35,7 +35,7 @@ Pass a collection of `ts-option` components inside the `selection-list`:
 ```
 
 
-### Duplicate selections
+## Duplicate selections
 
 By default, duplicate selections are ignored. They can be allowed via a flag:
 
@@ -50,7 +50,7 @@ By default, duplicate selections are ignored. They can be allowed via a flag:
 ```
 
 
-### Keeping the panel open
+## Keeping the panel open
 
 By default, the panel will close after each selection. It can be forced to stay open via a flag.
 
@@ -68,7 +68,7 @@ By default, the panel will close after each selection. It can be forced to stay 
 ```
 
 
-### Debouncing queries
+## Debouncing queries
 
 By default, the input query will be debounced 200ms. This time may be adjusted as needed:
 
@@ -82,7 +82,7 @@ By default, the input query will be debounced 200ms. This time may be adjusted a
 ```
 
 
-### Minimum Characters
+## Minimum characters
 
 By default, at least two characters must be typed before the query is fired. This limit may be adjusted:
 
@@ -95,7 +95,7 @@ By default, at least two characters must be typed before the query is fired. Thi
 </ts-selection-list>
 ```
 
-### Formatting
+## Formatting
 
 For complex object support, a formatter function may be passed in to define the view value:
 
@@ -114,14 +114,14 @@ import { TsSelectionListFormatter } from '@terminus/ui/selection-list';
 public formatDisplay: TsSelectionListFormatter = v => v.name;
 ```
 
-### Complex comparator
+## Complex comparator
 
 To compare custom objects, a compare function may be passed in:
 
 ```html
 <ts-selection-list
   [formControl]="myCtrl"
-  [compareWith]="compareFunc"
+  [valueComparator]="myCompareFunction"
 >
   ...
 </ts-selection-list>
@@ -130,10 +130,10 @@ To compare custom objects, a compare function may be passed in:
 ```typescript
 import { TsSelectionListComparator } from '@terminus/ui/selection-list';
 
-public compareFunc: TsSelectionListComparator = (a, b) => a.id === b.id;
+public myCompareFunction: TsSelectionListComparator = (a, b) => a.id === b.id;
 ```
 
-### Standard dropdown mode (no typing)
+## Standard dropdown mode (no typing)
 
 If the component should act as a standard dropdown with no ability to type a query, set the flag `allowUserInput` to
 `false`. By default it is `true`.

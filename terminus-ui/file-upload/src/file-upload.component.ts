@@ -75,34 +75,25 @@ let nextUniqueId = 0;
 /**
  * This is the file-upload UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-file-upload`: Placed on the primary container
- * - `qa-file-upload-empty`: Placed on the container shown when no file exists
- * - `qa-file-upload-preview`: The file preview container
- * - `qa-file-upload-name`: The filename container
- * - `qa-file-upload-remove`: The button to remove a loaded file
- * - `qa-file-upload-prompt`: The button to open the native file picker
- * - `qa-file-upload-validation-messages`: The container for validation messages
- * - `qa-file-upload-hints`: The container for input hints
- * - `qa-file-upload-progress`: The upload progress bar
- *
  * @example
  * <ts-file-upload
  *              accept="['image/png', 'image/jpg']"
- *              id="my-id"
- *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
- *              ratioConstraints="['2:1', '3:4']"
- *              [multiple]="false"
- *              [formControl]="myForm.get('myControl')"
- *              [progress]="myUploadProgress"
- *              [seedFile]="myFile"
  *              dimensionConstraints="myConstraints" (see TsFileImageDimensionConstraints)
+ *              [formControl]="myForm.get('myControl')"
+ *              [hideButton]="false"
+ *              id="my-id"
+ *              [isDisabled]="true"
+ *              maximumKilobytesPerFile="{{ 10 * 1024 }}"
+ *              [multiple]="false"
+ *              [progress]="myUploadProgress"
+ *              ratioConstraints="['2:1', '3:4']"
+ *              [seedFile]="myFile"
  *              theme="primary"
+ *              (cleared)="fileWasCleared($event)"
  *              (enter)="userDragBegin($event)"
  *              (exit)="userDragEnd($event)"
  *              (selected)="handleFile($event)"
  *              (selectedMultiple)="handleMultipleFiles($event)"
- *              (cleared)="fileWasCleared($event)"
  * ></ts-file-upload>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/file-upload</example-url>
@@ -241,6 +232,18 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   private _acceptedTypes: TsFileAcceptedMimeTypes[] = TS_ACCEPTED_MIME_TYPES.slice();
 
   /**
+   * Define maximum and minimum pixel dimensions for images
+   */
+  @Input()
+  public set dimensionConstraints(value: TsFileImageDimensionConstraints | undefined) {
+    this._sizeConstraints = value;
+  }
+  public get dimensionConstraints(): TsFileImageDimensionConstraints | undefined {
+    return this._sizeConstraints;
+  }
+  private _sizeConstraints: TsFileImageDimensionConstraints | undefined;
+
+  /**
    * Create a form control to manage validation messages
    */
   @Input()
@@ -289,6 +292,24 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   private _maximumKilobytesPerFile: number = MAXIMUM_KILOBYTES_PER_FILE;
 
   /**
+   * Define if multiple files may be uploaded
+   */
+  @Input()
+  public multiple = false;
+
+  /**
+   * Define the upload progress
+   */
+  @Input()
+  public set progress(value: number) {
+    this._progress = coerceNumberProperty(value);
+  }
+  public get progress(): number {
+    return this._progress;
+  }
+  private _progress = 0;
+
+  /**
    * Define supported ratio for images
    */
   @Input()
@@ -308,24 +329,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     return this.parseRatioToString(this._ratioConstraints);
   }
   private _ratioConstraints: Array<ImageRatio> | undefined;
-
-  /**
-   * Define if multiple files may be uploaded
-   */
-  @Input()
-  public multiple = false;
-
-  /**
-   * Define the upload progress
-   */
-  @Input()
-  public set progress(value: number) {
-    this._progress = coerceNumberProperty(value);
-  }
-  public get progress(): number {
-    return this._progress;
-  }
-  private _progress = 0;
 
   /**
    * Seed an existing file (used for multiple upload hack)
@@ -360,22 +363,16 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   private _seedFile: File | undefined;
 
   /**
-   * Define maximum and minimum pixel dimensions for images
-   */
-  @Input()
-  public set dimensionConstraints(value: TsFileImageDimensionConstraints | undefined) {
-    this._sizeConstraints = value;
-  }
-  public get dimensionConstraints(): TsFileImageDimensionConstraints | undefined {
-    return this._sizeConstraints;
-  }
-  private _sizeConstraints: TsFileImageDimensionConstraints | undefined;
-
-  /**
    * Define the theme. See {@link TsStyleThemeTypes}.
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
+
+  /**
+   * Event emitted when the user clears a loaded file
+   */
+  @Output()
+  public readonly cleared = new EventEmitter<boolean>();
 
   /**
    * Event emitted when the user's cursor enters the field while dragging a file
@@ -400,12 +397,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
    */
   @Output()
   public readonly selectedMultiple = new EventEmitter<File[]>();
-
-  /**
-   * Event emitted when the user clears a loaded file
-   */
-  @Output()
-  public readonly cleared = new EventEmitter<boolean>();
 
   /**
    * HostListeners

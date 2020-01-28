@@ -7,9 +7,9 @@ Popover component is designed to pop up content based on user trigger.
 **Table of Contents**
 
 - [Basic info](#basic-info)
-- [Basic Usage](#basic-usage)
+- [Basic usage](#basic-usage)
   - [Position](#position)
-  - [Hide on Blur](#hide-on-blur)
+  - [Hide on blur](#hide-on-blur)
   - [Open on load](#open-on-load)
 - [Events](#events)
 - [popper.js documentations](#popperjs-documentations)
@@ -19,12 +19,13 @@ Popover component is designed to pop up content based on user trigger.
 ## Basic info
 
 We wrap our popover trigger/component with a third party library, named [popper.js](#popperjs-documentations).
-`popper.js` is not a required import for ui library but if it's not imported and consumers try to use popover component, an error will show up.
+`popper.js` must be installed and imported before using this component.
 
 `popper.js` can be installed via `yarn add popper.js`
-Please refer to [popper.js docs](#popperjs-documentations) for detailed documentation on `popper.js`. 
 
-## Basic Usage
+Refer to [popper.js docs](#popperjs-documentations) for detailed documentation on `popper.js`. 
+
+## Basic usage
 
 Define a popover trigger and popover content:
 
@@ -33,13 +34,13 @@ Define a popover trigger and popover content:
 
 <ts-popover #popper1>
   <h1>My Title</h1>
-  <p>Other random content.</p>
+  <p>Any HTML can be placed here!</p>
 </ts-popover>
 ```
 
 ### Position
 
-Defines where the popover shows relative to current element.
+Defines where the popover is positioned, relative to current element:
 
 ```html
 <button 
@@ -48,16 +49,16 @@ Defines where the popover shows relative to current element.
 >Click me!</button>
 
 <ts-popover #popper1>
-  <h1>My Title</h1>
-  <p>Other random content.</p>
+  My popover
 </ts-popover>
 ```
 
-It defaults to `bottom`. For all available positions, please reference [popper.js docs](#popperjs-documentations).
+The default is `bottom`. For all available positions, please see the [popper.js docs](#popperjs-documentations).
 
-### Hide on Blur
+### Hide on blur
 
-If `hideOnBlur` set to `true`, it allows close by clicking outside the popover. If it's `false`, popover can only be closed by clicking on trigger element.
+By default, the popover will be closed by clicking outside the popover. If this functionality is not desired, it can be
+disabled:
 
 ```html
 <button 
@@ -66,8 +67,7 @@ If `hideOnBlur` set to `true`, it allows close by clicking outside the popover. 
 >Click me!</button>
 
 <ts-popover #popper1>
-  <h1>My Title</h1>
-  <p>Other random content.</p>
+  My popover
 </ts-popover>
 ```
 
@@ -75,7 +75,7 @@ It defaults to `true`.
 
 ### Open on load
 
-If `defaultOpened` set to `true`, popover content opens up on initial load.
+The popover can be defined to open on load:
 
 ```html
 <button 
@@ -84,8 +84,7 @@ If `defaultOpened` set to `true`, popover content opens up on initial load.
 >Click me!</button>
 
 <ts-popover #popper1>
-  <h1>My Title</h1>
-  <p>Other random content.</p>
+  My popover
 </ts-popover>
 ```
 
@@ -93,10 +92,10 @@ It defaults to `false`.
 
 ## Events
 
-| Event             | Description                                 | Payload                 |
-|:------------------|:--------------------------------------------|:------------------------|
-| `popoverOnShown`  | Fired when popover shows up                 |    popoverInstance                 |
-| `popoverOnHidden` | Fired when popover hides                    |    popoverInstance                 |
+| Event             | Description                 | Payload         |
+|:------------------|:----------------------------|:----------------|
+| `popoverOnShown`  | Fired when popover shows up | popoverInstance |
+| `popoverOnHidden` | Fired when popover hides    | popoverInstance |
 
 ## popper.js documentations
 

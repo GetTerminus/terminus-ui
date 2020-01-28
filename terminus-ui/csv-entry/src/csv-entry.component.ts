@@ -74,6 +74,9 @@ export interface TsCSVFormError {
   url?: TsCSVUrlError;
 }
 
+/**
+ * The structure for a row
+ */
 export interface TsCSVRow {
   recordId: FormControl;
   columns: FormArray;
@@ -95,14 +98,14 @@ const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
  *
  * @example
  * <ts-csv-entry
- *              id="my-id"
- *              maxRows="1000"
  *              columnCount="6"
- *              rowCount="12"
- *              [fullWidth]="false"
  *              [columnHeaders]="arrayOfHeaders"
  *              [columnValidators]="arrayOfValidators"
  *              [footerDirection]="ltr"
+ *              [fullWidth]="false"
+ *              id="my-id"
+ *              maxRows="1000"
+ *              rowCount="12"
  *              outputFormat="csv"
  *              (blobGenerated)="handleTheFileBlob($event)"
  * ></ts-csv-entry>
@@ -171,30 +174,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Define an ID for the component
-   */
-  @Input()
-  public set id(value: string) {
-    this._id = value || this.uid;
-  }
-  public get id(): string {
-    return this._id;
-  }
-  protected _id: string = this.uid;
-
-  /**
-   * Set the maximum number of allowed rows
-   */
-  @Input()
-  public set maxRows(value: number) {
-    this._maxRows = coerceNumberProperty(value, DEFAULT_MAX_ROWS);
-  }
-  public get maxRows(): number {
-    return this._maxRows;
-  }
-  private _maxRows: number = DEFAULT_MAX_ROWS;
-
-  /**
    * Set the number of columns
    */
   @Input()
@@ -205,24 +184,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return this._columnCount;
   }
   private _columnCount: number = DEFAULT_COLUMN_COUNT;
-
-  /**
-   * Define the number of rows
-   */
-  @Input()
-  public set rowCount(value: number) {
-    this._rowCount = coerceNumberProperty(value, DEFAULT_ROW_COUNT);
-  }
-  public get rowCount(): number {
-    return this._rowCount;
-  }
-  private _rowCount: number = DEFAULT_ROW_COUNT;
-
-  /**
-   * Allow full-width mode
-   */
-  @Input()
-  public fullWidth = false;
 
   /**
    * Allow static headers to be set
@@ -261,10 +222,52 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public footerDirection: 'ltr' | 'rtl' = 'ltr';
 
   /**
+   * Allow full-width mode
+   */
+  @Input()
+  public fullWidth = false;
+
+  /**
+   * Define an ID for the component
+   */
+  @Input()
+  public set id(value: string) {
+    this._id = value || this.uid;
+  }
+  public get id(): string {
+    return this._id;
+  }
+  protected _id: string = this.uid;
+
+  /**
+   * Set the maximum number of allowed rows
+   */
+  @Input()
+  public set maxRows(value: number) {
+    this._maxRows = coerceNumberProperty(value, DEFAULT_MAX_ROWS);
+  }
+  public get maxRows(): number {
+    return this._maxRows;
+  }
+  private _maxRows: number = DEFAULT_MAX_ROWS;
+
+  /**
    * Define output to be CSV rather than TSV
    */
   @Input()
   public outputFormat: 'csv' | 'tsv' = 'tsv';
+
+  /**
+   * Define the number of rows
+   */
+  @Input()
+  public set rowCount(value: number) {
+    this._rowCount = coerceNumberProperty(value, DEFAULT_ROW_COUNT);
+  }
+  public get rowCount(): number {
+    return this._rowCount;
+  }
+  private _rowCount: number = DEFAULT_ROW_COUNT;
 
   /**
    * Emit the built file blob

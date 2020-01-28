@@ -19,7 +19,9 @@ import {
 
 
 
-
+/**
+ * The possible display formats for {@link TsCopyComponent}
+ */
 export type TsCopyDisplayFormat
   = 'standard'
   | 'minimal'
@@ -28,17 +30,13 @@ export type TsCopyDisplayFormat
 
 
 /**
- * This is the TsCopyComponent UI Component
- *
- * #### QA CSS CLASSES
- * `qa-copy`: Placed on the div element which contains this component
- * `qa-copy-content`: Placed on a div element which contains the content which will be copied
- * `qa-copy-icon`: Placed on the icon which copies the content to the clipboard when clicked
+ * A component to facilitate the easy copying of text
  *
  * @example
  * <ts-copy
  *              [disableInitialSelection]="true"
  *              [enableQuickCopy]="true"
+ *              [format]="icon"
  *              theme="accent"
  * >My text to copy!</ts-copy>
  *
@@ -133,7 +131,6 @@ export class TsCopyComponent {
     return this._format;
   }
   private _format: TsCopyDisplayFormat = 'standard';
-
 
   /**
    * Define the component theme

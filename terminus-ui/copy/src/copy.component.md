@@ -8,8 +8,8 @@ This component is used to contain very long strings that users may need to copy.
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [Display format](#display-format)
-  - [Initial selection](#initial-selection)
+- [Display format](#display-format)
+- [Initial selection](#initial-selection)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -22,20 +22,20 @@ Pass in text content:
 <ts-copy>My text to copy!</ts-copy>
 ```
 
-### Display format
+## Display format
 
 Three display formats are offered:
 
-| mode       | description                                             |
+| Mode       | Description                                             |
 |------------|---------------------------------------------------------|
 | `standard` | The full, bordered version (default)                    |
 | `minimal`  | Slightly more compact with no border (useful in tables) |
 | `icon`     | Icon only, all text hidden (quick copy must be enabled) |
 
-### Initial selection
+## Initial selection
 
-By default, when a user focus on this component, the text is automatically selected. This provides an easy fallback in the instance where
-the user's browser does not support clipboard functionality.
+By default, when a user focuses on this component, the text is automatically selected. This provides an easy fallback in
+the instance where the user's browser does not support clipboard functionality.
 
 It should be extremely rare, but if needed, this functionality can be disabled.
 

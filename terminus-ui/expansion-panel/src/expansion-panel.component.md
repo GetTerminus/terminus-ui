@@ -5,15 +5,15 @@
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [Title and description](#title-and-description)
-  - [Disable a panel](#disable-a-panel)
-  - [Default a panel open](#default-a-panel-open)
-  - [Lazy loaded content](#lazy-loaded-content)
-  - [Panel events](#panel-events)
-  - [Custom trigger heights](#custom-trigger-heights)
-  - [Manual panel control](#manual-panel-control)
+- [Title and description](#title-and-description)
+- [Disable a panel](#disable-a-panel)
+- [Default a panel open](#default-a-panel-open)
+- [Lazy loaded content](#lazy-loaded-content)
+- [Panel events](#panel-events)
+- [Custom trigger heights](#custom-trigger-heights)
+- [Manual panel control](#manual-panel-control)
 - [Accordion](#accordion)
-  - [Allow mutiple panels to be open](#allow-mutiple-panels-to-be-open)
+  - [Allow multiple panels to be open](#allow-multiple-panels-to-be-open)
   - [Accordion events](#accordion-events)
   - [Accordion as a stepper](#accordion-as-a-stepper)
   - [Hide toggle](#hide-toggle)
@@ -22,8 +22,6 @@
 - [Test Helpers](#test-helpers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 
 
 ## Basic usage
@@ -43,7 +41,7 @@ The most basic usage is a single panel with a trigger:
 > NOTE: Without a trigger, the panel will not be visible.
 
 
-### Title and description
+## Title and description
 
 Trigger text can be split into `title` and `description` using the `TsExpansionPanelTitleComponent` and
 `TsExpansionPanelDescriptionComponent` respectively.
@@ -68,9 +66,9 @@ Trigger text can be split into `title` and `description` using the `TsExpansionP
 ```
 
 
-### Disable a panel
+## Disable a panel
 
-The `isDisabled` flag will disable a panel and it's trigger.
+The `isDisabled` flag will disable a panel and it's trigger:
 
 ```html
 <ts-expansion-panel [isDisabled]="true">
@@ -83,7 +81,7 @@ The `isDisabled` flag will disable a panel and it's trigger.
 ```
 
 
-### Default a panel open
+## Default a panel open
 
 The `isExpanded` flag will change the state of a panel. This can be used to default to a specific state or to dynamically change the state.
 
@@ -98,7 +96,7 @@ The `isExpanded` flag will change the state of a panel. This can be used to defa
 ```
 
 
-### Lazy loaded content
+## Lazy loaded content
 
 Panel content can be lazily loaded by using a template with the `tsExpansionPanelContent` directive. The template will not be loaded until
 the panel is opened for the first time. The content will remain in the DOM until the panel is destroyed.
@@ -116,7 +114,7 @@ the panel is opened for the first time. The content will remain in the DOM until
 ```
 
 
-### Panel events
+## Panel events
 
 | Event            | Description                                        | Payload   |
 |:-----------------|:---------------------------------------------------|:----------|
@@ -134,7 +132,7 @@ the panel is opened for the first time. The content will remain in the DOM until
 ```
 
 
-### Custom trigger heights
+## Custom trigger heights
 
 Custom heights can be set for a trigger's collapsed and/or expanded state.
 
@@ -153,9 +151,9 @@ Custom heights can be set for a trigger's collapsed and/or expanded state.
 </ts-expansion-panel>
 ```
 
-### Manual panel control
+## Manual panel control
 
-Panels can be programatically opened, closed or toggled through a reference to the instance.
+Panels can be programmatically opened, closed or toggled through a reference to the instance:
 
 ```typescript
 @ViewChild(TsExpansionPanelComponent, {static: false})
@@ -188,7 +186,7 @@ An accordion is created by wrapping two or more `TsExpansionPanelComponent`s ins
 ```
 
 
-### Allow mutiple panels to be open
+### Allow multiple panels to be open
 
 By default an accordion can only have a single panel open at a time. This functionality can be change with the `multi` input.
 
@@ -223,7 +221,7 @@ An accordion can function as a stepper which can be useful for guided flows. To 
 the `ts-expansion-panel-action-row`.
 
 ```html
-<!-- Hide the toggle icon since this is a programatically controlled flow -->
+<!-- Hide the toggle icon since this is a programmatically controlled flow -->
 <ts-accordion [hideToggle]="true">
   <!-- STEP 1 -->
   <ts-expansion-panel [isExpanded]="activeStep === 0">
@@ -280,7 +278,7 @@ the `ts-expansion-panel-action-row`.
 
 ### Hide toggle
 
-When an accordion is controlled programatically, the toggle icon can be hidden to avoid confusion for the user. Setting `hideToggle` on the
+When an accordion is controlled programmatically, the toggle icon can be hidden to avoid confusion for the user. Setting `hideToggle` on the
 accordion will hide the toggle icon for *all panels within*.
 
 > NOTE: This should _only_ be used in cases when the accordion is functioning as a stepper.
@@ -322,7 +320,7 @@ controls.
 
 ### Open or close all panels
 
-An accordion can programatically open or close all panels at once.
+An accordion can programmatically open or close all panels at once.
 
 ```typescript
 @ViewChild(TsAccordionComponent, {static: false})
@@ -335,10 +333,6 @@ accordion.closeAll();
 ```
 
 > NOTE: These methods will *not* change the state of disabled panels.
-
-
-
-
 
 
 ## Test Helpers

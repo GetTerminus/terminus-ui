@@ -19,13 +19,12 @@ let nextUniqueId = 0;
 /**
  * A presentational component to render validation messages
  *
- * #### QA CSS CLASSES
- * - `qa-validation-message`: Placed on the error element used for this component
- *
  * @example
  * <ts-validation-messages
  *              [control]="myForm.get('controlName')"
+ *              id="my-id"
  *              [validateOnChange]="true"
+ *              [validateImmediately]="false"
  * ></ts-validation-messages>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/validation</example-url>
@@ -67,7 +66,6 @@ export class TsValidationMessagesComponent implements OnDestroy {
 
       }
     }
-
     return null;
   }
 

@@ -16,9 +16,6 @@ import {
 /**
  * This is the icon-button UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-icon-button`: Placed on the primary container
- *
  * @example
  * <ts-icon-button
  *              actionName="Menu"

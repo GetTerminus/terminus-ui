@@ -103,12 +103,12 @@ When `allowCustomDates` is set to `false`, the date range is readonly (this defa
 
 ```html
 <ts-cohort-date-range
-  [allowCustomDates]="allowCustomDates"
+  [allowCustomDates]="false"
   [cohorts]="cohorts"
 ></ts-cohort-date-range>
 ```
 
-When set to `true`, a `Custom Dates` option will be added to the dropdown.
+NOTE: When set to `true`, a `Custom Dates` option will be added to the dropdown.
 
 ### Disable
 
