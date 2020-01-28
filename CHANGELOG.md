@@ -1,3 +1,10 @@
+## [16.1.1](https://github.com/GetTerminus/terminus-ui/compare/v16.1.0...v16.1.1) (2020-01-28)
+
+
+### Bug Fixes
+
+* **Table:** resize handle now has correct vertical alignment in all table layout modes ([f883e7c](https://github.com/GetTerminus/terminus-ui/commit/f883e7c)), closes [#1991](https://github.com/GetTerminus/terminus-ui/issues/1991)
+
 # [16.1.0](https://github.com/GetTerminus/terminus-ui/compare/v16.0.0...v16.1.0) (2020-01-28)
 
 
