@@ -59,7 +59,7 @@ import { TsRowComponent } from './row';
 export interface TsColumn {
   // The column name
   name: string;
-  // The desired width in pixels as a integer (eg '200')
+  // The desired pixel width as an integer (eg '200')
   width: number;
   // Allow any other data properties the consumer may need
   // tslint:disable-next-line no-any

@@ -1,8 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
-import {
-  PortalHostDirective,
-  TemplatePortal,
-} from '@angular/cdk/portal';
+import { TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,17 +8,12 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { isNumber } from '@terminus/ngx-tools/type-guards';
 import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
-import {
-  Subject,
-  Subscription,
-} from 'rxjs';
+import { Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 import { tsTabsAnimations } from './tab-animations';
@@ -33,7 +25,7 @@ import { tsTabsAnimations } from './tab-animations';
  * tab body), then there will be no transition animation to its state.
  *
  * In the case of a new tab body that should immediately be centered with an animating transition, then left-origin-center or
- * right-origin-center can be used, which will use left or right as its psuedo-prior state.
+ * right-origin-center can be used, which will use left or right as its pseudo-prior state.
  */
 export type TsTabBodyPositionState
   = 'left'
@@ -219,7 +211,7 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Deterimine whether the provided position state is considered center (regardless of origin)
+   * Determine whether the provided position state is considered center (regardless of origin)
    *
    * @param position - The toState of the animation
    * @return True if in a center position

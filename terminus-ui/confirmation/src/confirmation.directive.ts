@@ -1,5 +1,4 @@
 import {
-  ConnectedPositionStrategy,
   FlexibleConnectedPositionStrategy,
   HorizontalConnectionPos,
   Overlay,
@@ -52,12 +51,13 @@ export const allowedOverlayPositionTypes: TsConfirmationOverlayPositionTypes[] =
  * A directive to inject a confirmation step into any button
  *
  * @example
- *         <tsButton
+ *         <ts-button
  *           tsConfirmation
- *           explanationText="Are you sure you want to delete this?"
- *           confirmationButtonText="Confirm!"
  *           cancelButtonText="Abort!"
+ *           confirmationButtonText="Confirm!"
+ *           explanationText="Are you sure you want to do this?"
  *           overlayPosition="before"
+ *           (cancelled)="myFunction($event)"
  *         >
  *           Click me!
  *         </ts-button>
@@ -80,20 +80,12 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    */
   private overlayRef!: OverlayRef | null;
 
-
   /**
-   * INPUTS
-   */
-
-  /**
-   * Define the Confirmation Button Text
+   * Define the confirmation button text
    */
   @Input()
   public set confirmationButtonText(value: string) {
-    if (!value) {
-      return;
-    }
-    this._confirmationButtonText = value;
+    this._confirmationButtonText = value || 'Confirm';
   }
   public get confirmationButtonText(): string {
     return this._confirmationButtonText;
@@ -101,14 +93,11 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   private _confirmationButtonText = 'Confirm';
 
   /**
-   * Define the Cancel Button Text
+   * Define the cancel button text
    */
   @Input()
   public set cancelButtonText(value: string) {
-    if (!value) {
-      return;
-    }
-    this._cancelButtonText = value;
+    this._cancelButtonText = value || 'Cancel';
   }
   public get cancelButtonText(): string {
     return this._cancelButtonText;
@@ -116,16 +105,10 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   private _cancelButtonText = 'Cancel';
 
   /**
-   * Define the Explanation Text
+   * Define the explanation text
    */
   @Input()
-  public set explanationText(value: string | undefined) {
-    this._explanationText = value;
-  }
-  public get explanationText(): string | undefined {
-    return this._explanationText;
-  }
-  private _explanationText: string | undefined;
+  public explanationText: string | undefined;
 
   /**
    * Define position of the overlay
@@ -148,7 +131,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * An event emitted when the confirmation is cancelled
    */
   @Output()
-  public readonly cancelled: EventEmitter<boolean> = new EventEmitter();
+  public readonly cancelled = new EventEmitter<boolean>();
 
 
   constructor(
@@ -162,7 +145,7 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
   /**
    * Spawn the confirmation overlay on click
    *
-   * @param event - The MouseEvent
+   * NOTE: Even though the 'event' param is not used, the param must exist for AoT to pass.
    */
   @HostListener('click', ['$event'])
   public onClick(event: Event): void {
@@ -172,8 +155,6 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
   /**
    * Dismiss the confirmation overlay on pressing escape
-   *
-   * @param event - The Keyboard Event
    */
   @HostListener('document:keydown.escape')
   public onKeydownHandler(): void {
@@ -223,9 +204,9 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     // Create and attach the overlay
     const userProfilePortal = new ComponentPortal(TsConfirmationOverlayComponent);
     this.overlayInstance = this.overlayRef.attach(userProfilePortal).instance;
-    this.overlayInstance.confirmationButtonTxt = this.confirmationButtonText;
-    this.overlayInstance.cancelButtonTxt = this.cancelButtonText;
-    this.overlayInstance.explanationTxt = this.explanationText;
+    this.overlayInstance.confirmationButtonText = this.confirmationButtonText;
+    this.overlayInstance.cancelButtonText = this.cancelButtonText;
+    this.overlayInstance.explanationText = this.explanationText;
 
     // Start the progress indicator of the TsButton
     this.host.showProgress = true;
@@ -290,7 +271,6 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
       // skip default - unreachable
     }
 
-
     const positionStrategy: FlexibleConnectedPositionStrategy =
       this.overlay.position()
         .flexibleConnectedTo(this.elementRef)
@@ -305,15 +285,13 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
           },
         ]);
 
-    const overlayConfig: OverlayConfig = new OverlayConfig({
+    return new OverlayConfig({
       positionStrategy,
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
       hasBackdrop: true,
       backdropClass: 'ts-confirmation-overlay',
       panelClass: ['qa-confirmation', 'ts-confirmation-overlay__panel', `${positionClass}`],
     });
-
-    return overlayConfig;
   }
 
 

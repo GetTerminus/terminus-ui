@@ -112,7 +112,7 @@ When using `ngModel`, validations are placed on the input as data-attributes (ju
 ></ts-input>
 ```
 
-If only the required asterisk is needed rather than valiation errors, the `isRequired` flag can be used:
+If only the required asterisk is needed rather than validation errors, the `isRequired` flag can be used:
 
 ```html
 <ts-input

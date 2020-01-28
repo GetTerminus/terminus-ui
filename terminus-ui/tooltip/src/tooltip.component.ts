@@ -33,15 +33,11 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
 /**
  * This is the tooltip UI Component
  *
- * #### QA CSS CLASSES
- *
- * - qa-tooltip : Placed on the span element used for this component
- *
  * @example
  * <ts-tooltip
- *              [tooltipValue]="myTooltip"
- *              [tooltipPosition]="myPosition"
  *              [hasUnderline]="myUnderlineOption"
+ *              [tooltipPosition]="myPosition"
+ *              [tooltipValue]="myTooltip"
  * >My Tooltip!</ts-tooltip>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/tooltip</example-url>
@@ -55,6 +51,12 @@ export const allowedTooltipTypes: TsTooltipPositionTypes[] = [
   encapsulation: ViewEncapsulation.None,
 })
 export class TsTooltipComponent {
+  /**
+   * Define whether there is a dotted underline shown on the text
+   */
+  @Input()
+  public hasUnderline = false;
+
   /**
    * Define the position of the tooltip
    */
@@ -75,12 +77,6 @@ export class TsTooltipComponent {
    */
   @Input()
   public tooltipValue!: string;
-
-  /**
-   * Define whether there is a dotted underline shown on the text
-   */
-  @Input()
-  public hasUnderline = false;
 
   /**
    * Access Material Tooltip Directive

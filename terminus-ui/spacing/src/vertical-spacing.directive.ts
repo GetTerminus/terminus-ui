@@ -82,10 +82,6 @@ export class TsVerticalSpacingDirective {
     this.elementRef.nativeElement.style.marginBottom = margin;
   }
 
-
-  /**
-   * Inject services
-   */
   constructor(
     private elementRef: ElementRef,
   ) {}

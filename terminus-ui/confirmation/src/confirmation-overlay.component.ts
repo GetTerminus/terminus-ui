@@ -23,7 +23,7 @@ export class TsConfirmationOverlayComponent {
   /**
    * Stream confirmation choices
    */
-  public confirm: Subject<boolean> = new Subject<boolean>();
+  public confirm = new Subject<boolean>();
 
   /**
    * Define the space between the buttons
@@ -33,16 +33,16 @@ export class TsConfirmationOverlayComponent {
   /**
    * Text for confirmation button
    */
-  public confirmationButtonTxt: string | undefined;
+  public confirmationButtonText: string | undefined;
 
   /**
    * Text for cancel button
    */
-  public cancelButtonTxt: string | undefined;
+  public cancelButtonText: string | undefined;
 
   /**
    * Text for explanation
    */
-  public explanationTxt: string | undefined;
+  public explanationText: string | undefined;
 
 }

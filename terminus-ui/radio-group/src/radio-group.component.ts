@@ -73,11 +73,6 @@ let nextUniqueId = 0;
 /**
  * This is the radio UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-radio-group`: The primary container
- * - `qa-radio-control`: An individual radio control
- * - `qa-radio-validation-messages`: The validation messages container
- *
  * @example
  * <ts-radio-group
  *              [ariaDescribedby]="Aria Describedby"

@@ -27,7 +27,7 @@ export type TsScrollbarsScrollDirections
 
 
 /**
- * A class that represents the current gemotric state of scrolling for {@link TsScrollbarsComponent}.
+ * A class that represents the current geometric state of scrolling for {@link TsScrollbarsComponent}.
  */
 export class TsScrollbarsGeometry extends Geometry {}
 
@@ -48,9 +48,6 @@ const DEFAULT_SCROLL_SPEED = 400;
 /**
  * The scrollbars UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-scrollbars`: Placed on the primary container
- *
  * @example
  * <ts-scrollbars
  *              id="my-id"
@@ -65,7 +62,7 @@ const DEFAULT_SCROLL_SPEED = 400;
  *              (xReachStart)="myFunc($event)
  *              (yReachEnd)="myFunc($event)
  *              (yReachStart)="myFunc($event)
- * ></ts-scrollbars>
+ * >My content...</ts-scrollbars>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/scrollbars</example-url>
  */
@@ -95,6 +92,32 @@ export class TsScrollbarsComponent {
   protected scrollSpeed = DEFAULT_SCROLL_SPEED;
 
   /**
+   * Return an object containing scrollbar geometry.
+   *
+   * @return An object with all geometry information
+   */
+  public get geometry(): TsScrollbarsGeometry | null {
+    if (this.scrollbar) {
+      return this.scrollbar.geometry('scroll') as TsScrollbarsGeometry;
+    }
+    return null;
+
+  }
+
+  /**
+   * Return the current scrollbar position.
+   *
+   * @return The current scrollbar position
+   */
+  public get position(): TsScrollbarPosition | null {
+    if (this.scrollbar) {
+      return this.scrollbar.position() as TsScrollbarPosition;
+    }
+    return null;
+
+  }
+
+  /**
    * Define an ID for the component
    */
   @Input()
@@ -119,71 +142,43 @@ export class TsScrollbarsComponent {
   public scrollbar!: PerfectScrollbarDirective;
 
   /**
-   * Event Emitters:
+   * Event Emitters
    */
   @Output()
-  public readonly scrollDown: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollDown = new EventEmitter<Event>();
 
   @Output()
-  public readonly scrollLeft: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollLeft = new EventEmitter<Event>();
 
   @Output()
-  public readonly scrollRight: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollRight = new EventEmitter<Event>();
 
   @Output()
-  public readonly scrollUp: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollUp = new EventEmitter<Event>();
 
   @Output()
-  public readonly scrollX: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollX = new EventEmitter<Event>();
 
   @Output()
-  public readonly scrollY: EventEmitter<Event> = new EventEmitter();
+  public readonly scrollY = new EventEmitter<Event>();
 
   @Output()
-  public readonly xReachEnd: EventEmitter<Event> = new EventEmitter();
+  public readonly xReachEnd = new EventEmitter<Event>();
 
   @Output()
-  public readonly xReachStart: EventEmitter<Event> = new EventEmitter();
+  public readonly xReachStart = new EventEmitter<Event>();
 
   @Output()
-  public readonly yReachEnd: EventEmitter<Event> = new EventEmitter();
+  public readonly yReachEnd = new EventEmitter<Event>();
 
   @Output()
-  public readonly yReachStart: EventEmitter<Event> = new EventEmitter();
-
-
+  public readonly yReachStart = new EventEmitter<Event>();
 
 
   /**
-   * Return an object containing scrollbar geometry.
+   * Determine if a direction is scrollable.
    *
-   * @return An object with all geometry information
-   */
-  public get geometry(): TsScrollbarsGeometry | null {
-    if (this.scrollbar) {
-      return this.scrollbar.geometry('scroll') as TsScrollbarsGeometry;
-    }
-    return null;
-
-  }
-
-
-  /**
-   * Return the current scrollbar position.
-   *
-   * @return The current scrollbar position
-   */
-  public get position(): TsScrollbarPosition | null {
-    if (this.scrollbar) {
-      return this.scrollbar.position() as TsScrollbarPosition;
-    }
-    return null;
-
-  }
-
-
-  /**
-   * Determine if a direction is scrollable. See {@link TsScrollbarsScrollDirections} for all possible options.
+   * See {@link TsScrollbarsScrollDirections} for all possible options.
    *
    * @param direction - The scroll direction to check
    * @return Whether the direction is currently scrollable
@@ -193,10 +188,15 @@ export class TsScrollbarsComponent {
       return this.scrollbar.scrollable(direction);
     }
     return null;
-
   }
 
-
+  /**
+   * Scroll to a location
+   *
+   * @param x - The value to scroll the x axis
+   * @param y - The value to scroll the y axis
+   * @param x - The speed to scroll at
+   */
   public scrollTo(x: number, y?: number, speed?: number): void {
     // istanbul ignore else
     if (this.scrollbar) {
@@ -204,13 +204,12 @@ export class TsScrollbarsComponent {
     }
   }
 
-
   /**
    * Scroll to element
    *
    * @param queryString - The string to query the DOM for
    * @param speed - The speed to move at
-   * @param offset - A px offest
+   * @param offset - A px offset
    */
   public scrollToElement(queryString: string, speed: number = this.scrollSpeed, offset?: number): void {
     // istanbul ignore else

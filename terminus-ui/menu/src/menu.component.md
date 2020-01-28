@@ -1,11 +1,15 @@
+<h1>Menu</h1>
+
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [Basic Usage](#basic-usage)
-- [Checkbox Menu](#checkbox-menu)
+- [Checkbox menu](#checkbox-menu)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Basic Usage
 
@@ -33,7 +37,7 @@ proxied through event emitters.
 > NOTE: `<ts-link>` and `<ts-button>` will be styled the same within a menu.
 
 
-## Checkbox Menu
+## Checkbox menu
 
 > This is very similar to the basic usage example, with a few small, key differences.
 

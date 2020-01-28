@@ -29,10 +29,10 @@ let nextUniqueId = 0;
  *
  * @example
  * <ts-tab
- *               [isDisabled]="true"
- *               label="First"
  *               ariaLabel="My label"
  *               ariaLabelledby="myId"
+ *               [isDisabled]="true"
+ *               label="First"
  * >
  *               My tab content!
  * </ts-tab>
@@ -79,7 +79,7 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   public isActive = false;
 
   /**
-   * Provides quick access to the content poratl
+   * Provides quick access to the content portal
    */
   public get content(): TemplatePortal | null {
     return this.contentPortal;
@@ -109,18 +109,6 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   public templateLabel!: TsTabLabelDirective;
 
   /**
-   * Define if the tab is disabled
-   */
-  @Input()
-  public isDisabled = false;
-
-  /**
-   * Simple text label for the tab (used when there is no template label)
-   */
-  @Input()
-  public label = '';
-
-  /**
    * Aria label for the tab
    */
   @Input()
@@ -133,6 +121,18 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   public ariaLabelledby: string | undefined;
+
+  /**
+   * Define if the tab is disabled
+   */
+  @Input()
+  public isDisabled = false;
+
+  /**
+   * Simple text label for the tab (used when there is no template label)
+   */
+  @Input()
+  public label = '';
 
 
   constructor(

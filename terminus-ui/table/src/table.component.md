@@ -87,7 +87,7 @@ rendered.
 > as it is more accessible and has better support for items such as multiple sticky headers etc.
 
 The table component provides an array of column names built from the array of `TsColumn` definitions passed to the table. You can use this  
- reference for the rows rather than defining two seperate arrays:
+ reference for the rows rather than defining two separate arrays:
 
 ```html
 <table

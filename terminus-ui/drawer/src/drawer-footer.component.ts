@@ -1,16 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   ViewEncapsulation,
 } from '@angular/core';
 
 /**
- * The drawer footer UI Component
+ * The footer component for the {@link TsDrawerComponent}
  *
  * @example
  * <ts-drawer-footer>
- *              THIS IS MY FOOTER
+ *              My content.
  * </ts-drawer-footer>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/drawer</example-url>

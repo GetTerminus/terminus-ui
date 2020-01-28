@@ -41,12 +41,18 @@ let nextUniqueId = 0;
  * @example
  * <button
  *              tsPopoverTrigger="popper1"
- *              [position]="position"
- *              [popover]="popper1"
  *              [defaultOpened]="defaultOpened"
- *              (popoverOnShown)="popoverOnShown()"
- *              (popoverOnHidden)="popoverOnHidden()"
+ *              [hideOnBlur]="false"
+ *              id="my-id"
+ *              [popover]="popper1"
+ *              [position]="position"
+ *              (popoverOnCreate)="myFunction($event)"
+ *              (popoverOnShown)="myFunction($event)"
+ *              (popoverOnHidden)="myFunction($event)"
+ *              (popoverOnUpdate)="myFunction($event)"
  * />
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/popover</example-url>
  */
 @Directive({
   selector: '[tsPopoverTrigger]',
@@ -54,19 +60,18 @@ let nextUniqueId = 0;
   exportAs: 'tsPopoverTrigger',
 })
 export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, AfterContentInit, AfterContentChecked {
-
   /**
    * Store a reference to the document object
    */
   private document: Document;
 
   /**
-   * When no id provided, it falls back to uid
+   * Define the UID
    */
   public readonly uid = `ts-popover-trigger-${nextUniqueId++}`;
 
   /**
-   * Some default options for popper.
+   * Default options for popper
    *
    * For now we only support click, so it specifies click here. But could support more if needed.
    */
@@ -85,25 +90,13 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
    * Whether popover is opened on load.
    */
   @Input()
-  public set defaultOpened(value: boolean) {
-    this._defaultOpened = value;
-  }
-  public get defaultOpened(): boolean {
-    return this._defaultOpened;
-  }
-  public _defaultOpened = false;
+  public defaultOpened = false;
 
   /**
    * Whether popover closes when click outside.
    */
   @Input()
-  public set hideOnBlur(value: boolean) {
-    this._hideOnBlur = value;
-  }
-  public get hideOnBlur(): boolean {
-    return this._hideOnBlur;
-  }
-  public _hideOnBlur = true;
+  public hideOnBlur = true;
 
   /**
    * Define an ID for the directive
@@ -116,6 +109,12 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
     return this._id;
   }
   protected _id: string = this.uid;
+
+  /**
+   * TsPopoverComponent provided as an input
+   */
+  @Input()
+  public popover!: TsPopoverComponent;
 
   /**
    * Set position of where popover opens
@@ -131,12 +130,6 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
     return this._position;
   }
   public _position = TsPopoverPositions.Bottom;
-
-  /**
-   * TsPopoverComponent provided as an input
-   */
-  @Input()
-  public popover!: TsPopoverComponent;
 
   /**
    * Emit when create popover.

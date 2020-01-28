@@ -148,7 +148,7 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
   /**
    * A stored reference to the document
    */
-  private document: Document;
+  private readonly document: Document;
 
   /**
    * The ID for the associated trigger element. Used for a11y labelling.

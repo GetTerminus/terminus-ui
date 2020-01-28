@@ -138,16 +138,11 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
 
   /**
    * Whether the drawer container should have a backdrop while one of the drawers is open.
-   * If explicitly set to `true`, the backdrop will be enabled for drawers.
+   *
+   * If set to `true`, the backdrop will be enabled for all contained drawers.
    */
   @Input()
-  public set hasBackdrop(value: boolean) {
-    this._hasBackdrop = value;
-  }
-  public get hasBackdrop(): boolean {
-    return this._hasBackdrop;
-  }
-  public _hasBackdrop = false;
+  public hasBackdrop = false;
 
   /**
    * Event emitted when the drawer backdrop is clicked.

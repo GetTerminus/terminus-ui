@@ -54,7 +54,7 @@ A custom tabindex can also be set:
 
 ## Local URL fragments
 
-Local fragements are supported for deep linking within a page:
+Local fragments are supported for deep linking within a page:
 
 ```html
 <ts-link

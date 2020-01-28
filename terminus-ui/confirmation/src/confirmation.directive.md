@@ -17,9 +17,10 @@ Basic flow:
 
 - [Basic usage](#basic-usage)
 - [Cancelled event](#cancelled-event)
-- [Confirmation Button Text](#confirmation-button-text)
-- [Cancel Button Text](#cancel-button-text)
-- [Explanation Text](#explanation-text)
+- [Text customization](#text-customization)
+  - [Confirm button](#confirm-button)
+  - [Cancel button](#cancel-button)
+  - [Explanation text](#explanation-text)
 - [Position](#position)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -31,11 +32,9 @@ Add the directive to any `ts-button`:
 
 ```html
 <ts-button
-  ts-confirmation
+  tsConfirmation
   (clicked)="myContinueFn($event)"
->
-  Click me!
-</ts-button>
+>Click me!</ts-button>
 ```
 
 
@@ -46,73 +45,57 @@ from the confirmation pop-up.
 
 ```html
 <ts-button
-  ts-confirmation
-  (clicked)="myContinueFn($event)"
+  tsConfirmation
   (cancelled)="myCancelEvent($event)"
->
-  Click me!
-</ts-button>
+>Click me!</ts-button>
 ```
 
+## Text customization
 
-## Confirmation Button Text
+### Confirm button
 
-Customizes the text in the overlay of the confirmation button; default is "Confirm".
+Customizes the confirmation button text in the overlay. This defaults to `Confirm`.
 
 ```html
 <ts-button
-    tsConfirmation
-    (clicked)="submit()"
-    (cancelled)="cancel($event)"
-    confirmationButtonText="Custom Confirmation Button Text"
-  >
-    Click Me!
-  </ts-button>
+  tsConfirmation
+  confirmationButtonText="Custom Confirmation Button Text"
+>Click Me!</ts-button>
 ```
 
 
-## Cancel Button Text
+### Cancel button
 
 Customizes the text in the overlay of the cancel button; default is "Cancel".
 
 ```html
 <ts-button
-    tsConfirmation
-    (clicked)="submit()"
-    (cancelled)="cancel($event)"
-    cancelButtonText="Custom Cancel Button Text"
-  >
-    Click Me!
-  </ts-button>
+  tsConfirmation
+  cancelButtonText="Custom Cancel Button Text"
+>Click Me!</ts-button>
 ```
 
 
-## Explanation Text
+### Explanation text
 
-Optional text to appear inside of the overlay, generally to use as a warning, for example, "Are you sure you want to delete this tactic, a delete can not be undone". Default is null.
+Optional text to appear inside of the overlay, generally to use as a warning, for example, "Are you sure you want to do
+this action?". No explanation text exists by default.
 
 ```html
 <ts-button
-    tsConfirmation
-    (clicked)="submit()"
-    (cancelled)="cancel($event)"
-    explanationText="Optional text within overlay."
-  >
-    Click Me!
-  </ts-button>
+  tsConfirmation
+  explanationText="This will permanently delete this record."
+>Click Me!</ts-button>
 ```
 
 ## Position
 
-Optional overlayPosition for defining where the overlay will appear relative to the button. Options are defined in `TsConfirmationOverlayPositionTypes`. Default is 'below'.
+The position of the panel is centered below the trigger by default. This position can be changed to any of the  
+`TsConfirmationOverlayPositionTypes` (`above`|`below`|`before`|`after`).
 
 ```html
 <ts-button
-    tsConfirmation
-    (clicked)="submit()"
-    (cancelled)="cancel($event)"
-    overlayPosition="before"
-  >
-    Click Me!
-  </ts-button>
+  tsConfirmation
+  overlayPosition="before"
+>Click Me!</ts-button>
 ```

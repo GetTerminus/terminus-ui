@@ -22,6 +22,22 @@ import {
 } from './popover-options';
 
 
+/**
+ * A popover component that supports rich HTML
+ *
+ * @example
+ * <ts-popover
+ *              #myPopper
+ *              (onHidden)="myFunction($event)"
+ *              (onUpdate)="myFunction($event)"
+ *              (popoverHidden)="myFunction($event)"
+ *              (popoverShown)="myFunction($event)"
+ * >
+ *              My popover content
+ * </ts-popover>
+ *
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/popover</example-url>
+ */
 @Component({
   selector: 'ts-popover',
   styleUrls: ['./popover.component.scss'],
@@ -32,7 +48,6 @@ import {
   exportAs: 'tsPopoverComponent',
 })
 export class TsPopoverComponent implements OnDestroy, OnInit {
-
   /**
    * The element that passed to popper.js
    */
@@ -64,12 +79,12 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
   public visibility = false;
 
   /**
-   * id set by trigger and pass to popover element
+   * ID set by trigger and pass to popover element
    */
   public id = '';
 
   /**
-   * options needed for popper.js
+   * Options needed for popper.js
    */
   public popoverOptions: TsPopoverOptions = {
     placement: TsPopoverPositions.Bottom,
@@ -77,48 +92,48 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
   };
 
   /**
-   * A reference to popover view
+   * A reference to the popover view
    */
   @ViewChild('popoverViewRef', { static: true })
   public popoverViewRef!: ElementRef;
 
   /**
-   * Emit when it's updated.
-   */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output()
-  public readonly onUpdate = new EventEmitter<Popper>();
-
-  /**
-   * Emit when it's hidden.
+   * Event emitted when the popover is hidden
    */
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public readonly onHidden = new EventEmitter<Popper>();
 
   /**
-   * Emit when popover shown.
+   * Event emitted when the popover is updated
    */
+  // tslint:disable-next-line:no-output-on-prefix
   @Output()
-  public readonly popoverShown = new EventEmitter<Popper>();
+  public readonly onUpdate = new EventEmitter<Popper>();
 
   /**
-   * Emit when popover hidden
+   * Event emitted when the popover is hidden
    */
   @Output()
   public readonly popoverHidden = new EventEmitter<Popper>();
+
+  /**
+   * Event emitted when the popover is shown
+   */
+  @Output()
+  public readonly popoverShown = new EventEmitter<Popper>();
 
   constructor(
     private viewRef: ViewContainerRef,
     private CDR: ChangeDetectorRef,
   ) { }
 
+  /**
+   * Check whether popper.js has been properly imported.
+   */
   public ngOnInit(): void {
-    /**
-     * Check whether popper.js has been properly imported.
-     */
     if (!Popper) {
-      throw new TsUILibraryError('TsPopoverComponent:: popper.js is not available to reference.');
+      throw new TsUILibraryError('TsPopoverComponent: popper.js is not available to reference.');
     }
   }
 
@@ -182,7 +197,6 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
       this.displayType = 'block';
       this.ariaHidden = 'false';
       this.visibility = true;
-
     } else {
       this.opacity = 0;
       this.displayType = 'none';

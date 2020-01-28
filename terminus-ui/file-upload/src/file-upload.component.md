@@ -42,7 +42,7 @@ Collect the selected file via the `selected` event:
 
 The `TsSelectedFile` instance will have several items available:
 
-```typescript
+```
 file.fileContents // string
 file.height       // number (will be 0 for CSVs)
 file.isCSV        // boolean
@@ -190,6 +190,11 @@ If a file is loaded that do not meet any ratio constraints, a validation message
 
 The user can clear the selected file by clicking the `X` button next to the filename. An event will be emitted when this occurs:
 
+```html
+<ts-file-upload (cleared)="fileWasCleared()">
+</ts-file-upload>
+```
+
 ```typescript
 ...
 
@@ -198,15 +203,15 @@ The user can clear the selected file by clicking the `X` button next to the file
   }
 ```
 
-```html
-<ts-file-upload (cleared)="fileWasCleared()">
-</ts-file-upload>
-```
-
 
 ## Showing upload progress
 
 The progress of an upload can be reflected in the UI by passing a number between 0 and 100 to the `progress` input:
+
+```html
+<ts-file-upload [progress]="myProgress">
+</ts-file-upload>
+```
 
 ```typescript
 ...
@@ -226,11 +231,6 @@ The progress of an upload can be reflected in the UI by passing a number between
   }
 ```
 
-```html
-<ts-file-upload [progress]="myProgress">
-</ts-file-upload>
-```
-
 
 ## Enable multiple file selection
 
@@ -248,6 +248,26 @@ Currently this component does not natively handle multiple file uploads (this su
 that functionality in a way.
 
 An example:
+
+```html
+<!--
+  Here is the original file upload. Initially this is all the user sees.
+  When multiple files are selected, they will be emitted through this event:
+-->
+<ts-file-upload
+  (selectedMultiple)="selectedMultiple($event)"
+></ts-file-upload>
+
+<!-- Loop over the files that were collected from the selectedMultiple event -->
+<ng-container *ngFor="let v of files">
+  <ts-file-upload
+    <!-- Only show this upload if the file still exists in our files collection: -->
+    *ngIf="fileExists(v.id)"
+    <!-- Seed the file input with the file from our collection: -->
+    [seedFile]="v.file"
+  ></ts-file-upload>
+</ng-container>
+```
 
 ```typescript
 ...
@@ -290,24 +310,4 @@ An example:
 
     return found ? true : false;
   }
-```
-
-```html
-<!--
-  Here is the original file upload. Initially this is all the user sees.
-  When multiple files are selected, they will be emitted through this event:
--->
-<ts-file-upload
-  (selectedMultiple)="selectedMultiple($event)"
-></ts-file-upload>
-
-<!-- Loop over the files that were collected from the selectedMultiple event -->
-<ng-container *ngFor="let v of files">
-  <ts-file-upload
-    <!-- Only show this upload if the file still exists in our files collection: -->
-    *ngIf="fileExists(v.id)"
-    <!-- Seed the file input with the file from our collection: -->
-    [seedFile]="v.file"
-  ></ts-file-upload>
-</ng-container>
 ```

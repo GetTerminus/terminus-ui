@@ -39,24 +39,20 @@ const INPUT_MINIMUM_LENGTH = 2;
 /**
  * A presentational component to render a search form
  *
- * #### QA CSS CLASSES
- * - `qa-search`: Placed on the form element which contains this component
- * - `qa-search-input`: Placed on the {@link TsInputComponent} used for the search text input
- * - `qa-search-button`: Placed on the {@link TsButtonComponent} used for the submit button
- *
  * @example
  * <ts-search
  *              [autoSubmit]="true"
  *              initialValue="My starting value"
- *              inputLabel="Search for a tactic"
  *              inputHint="Enter at least 17 characters"
+ *              inputLabel="Search for a tactic"
+ *              [isDisabled]="false"
  *              [isFocused]="false"
  *              [isSubmitting]="false"
  *              theme="primary"
  *              [userCanClear]="true"
  *              (changed)="doSomething($event)"
- *              (submitted)="doSomething($event)"
  *              (cleared)="doSomething()"
+ *              (submitted)="doSomething($event)"
  * ></ts-search>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/search</example-url>
@@ -188,27 +184,24 @@ export class TsSearchComponent implements OnInit {
   public userCanClear = true;
 
   /**
-   * The event to emit when the form is submitted
-   */
-  @Output()
-  public readonly submitted: EventEmitter<TsSearchResponse> = new EventEmitter();
-
-  /**
    * The event to emit when the internal input value is changed
    */
   @Output()
-  public readonly changed: EventEmitter<string> = new EventEmitter();
+  public readonly changed = new EventEmitter<string>();
 
   /**
    * The event to emit when the internal input value is cleared
    */
   @Output()
-  public readonly cleared: EventEmitter<boolean> = new EventEmitter();
-
+  public readonly cleared = new EventEmitter<boolean>();
 
   /**
-   * Inject services
+   * The event to emit when the form is submitted
    */
+  @Output()
+  public readonly submitted = new EventEmitter<TsSearchResponse>();
+
+
   constructor(
     private formBuilder: FormBuilder,
   ) {}

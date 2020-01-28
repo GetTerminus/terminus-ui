@@ -1,4 +1,4 @@
-<h1>csv-entry</h1>
+<h1>CSV Entry</h1>
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -6,12 +6,12 @@
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [Column Count](#column-count)
-  - [Row count](#row-count)
-  - [Max rows](#max-rows)
+- [Column count](#column-count)
+- [Row count](#row-count)
+- [Max rows](#max-rows)
 - [Column validation](#column-validation)
-- [Static Column Headers](#static-column-headers)
-- [Full Width Table](#full-width-table)
+- [Static column headers](#static-column-headers)
+- [Full width table](#full-width-table)
 - [Custom footer content](#custom-footer-content)
 - [Footer direction](#footer-direction)
 
@@ -20,8 +20,8 @@
 
 ## Basic usage
 
-The most basic implementation only needs the HTML and a single method. Each time the CSV table is updated, a new File Blob is generated and
-emitted.
+The most basic implementation only needs the HTML and a single method. Each time the CSV table is updated, a new File
+Blob is generated and emitted:
 
 ```html
 <ts-csv-entry (blobGenerated)="myFunc($event)">
@@ -29,41 +29,39 @@ emitted.
 ```
 
 ```typescript
-myFunc(blob: Blob) {
-  ...
-}
+myFunc(blob: Blob) { ... }
 ```
 
 
-### Column Count
+## Column count
 
-Control the default column count via an Input:
+Define the number of columns (default is 2):
 
 ```html
 <ts-csv-entry [columnCount]="7">
-  <!-- Will generate a table with 7 columns -->
+  <!-- Will generate a csv entry with 7 columns -->
 </ts-csv-entry>
 ```
 
-> NOTE: Column count does not restrict what is pasted into the table.
+> NOTE: Column count does not restrict how many columns can be pasted into the table.
 
 
-### Row count
+## Row count
 
-Control the default number of rows via an Input:
+Define the number of rows (default is 4):
 
 ```html
 <ts-csv-entry [rowCount]="5">
-  <!-- Will generate a table with 5 rows -->
+  <!-- Will generate a csv entry with 5 rows -->
 </ts-csv-entry>
 ```
 
-> NOTE: Row count does not restrict what is pasted into the table.
+> NOTE: Row count does not restrict how may rows can be pasted into the table.
 
 
-### Max rows
+## Max rows
 
-Control the maximum number of rows a table will allow
+Define the maximum number of rows a table will allow (default is 2000):
 
 ```html
 <ts-csv-entry [maxRows]="100">
@@ -91,7 +89,7 @@ myValidators = [null, this.validatorsService.url(), null, null];
 This example would add the URL validation to the second column only.
 
 
-## Static Column Headers
+## Static column headers
 
 If there are certain headers that must be available, these can be set via an input:
 
@@ -103,18 +101,19 @@ If there are certain headers that must be available, these can be set via an inp
 Setting static column headers will set the header cells to `readonly`. This will still allow keyboard navigation but will not allow the user
 to change the contents of the set header cells.
 
-## Full Width Table
-If the table should be one full-width column, set both in the input:
+## Full width table
+
+If the table should be a single, full-width column, set both `columnCount` and `fullWidth`:
 
 ```html
 <ts-csv-entry [columnCount]="1" [fullWidth]="true">
 </ts-csv-entry>
 ```
-> NOTE: full width should only be with one column
+> NOTE: full width should only be used with a single column
 
 ## Custom footer content
 
-Consumer's can add custom footer content by enclosing it within the CSVEntry component:
+Consumer's can add custom footer content by enclosing it within the CSV entry component:
 
 ```html
 <ts-csv-entry>
@@ -128,7 +127,7 @@ This content will be added opposite the default footer buttons set.
 ## Footer direction
 
 The footer layout defaults to `ltr` mode which lays out the default buttons on the left and any custom content on the
-right. This can be reversed by the `footerDirection` input.
+right. This can be reversed:
 
 ```html
 <ts-csv-entry footerDirection="rtl">

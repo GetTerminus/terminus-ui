@@ -92,16 +92,12 @@ let nextUniqueId = 0;
 /**
  * Single option inside of a {@link TsSelectComponent}
  *
- * #### QA CSS CLASSES
- * - `qa-option-checkbox`: The option checkbox
- * - `qa-option-text`: The option text content
- *
  * @example
  * <ts-option
  *              id="my-id"
  *              [isDisabled]="true"
- *              value="My value!"
  *              [option]="myOptionObject"
+ *              value="My value!"
  *              (selectionChange)="selectedStateChanged($event)"
  * ></ts-option>
  *
@@ -242,13 +238,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   private _isDisabled = false;
 
   /**
-   * The form value of the option
-   */
-  @Input()
-  // tslint:disable-next-line no-any
-  public value: any;
-
-  /**
    * Define the option data object (needed for template support)
    */
   @Input()
@@ -259,6 +248,13 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     return this._option;
   }
   private _option: TsOption | undefined;
+
+  /**
+   * The form value of the option
+   */
+  @Input()
+  // tslint:disable-next-line no-any
+  public value: any;
 
   /**
    * Event emitted when the option is selected or deselected

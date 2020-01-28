@@ -17,8 +17,8 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 /**
  * Define the allowed X positions for a menu
  */
-export type TsMenuPositionTypesX =
-  'before'
+export type TsMenuPositionTypesX
+  = 'before'
   | 'after'
 ;
 
@@ -26,8 +26,8 @@ export type TsMenuPositionTypesX =
 /**
  * Define the allowed Y positions for a menu
  */
-export type TsMenuPositionTypesY =
-  'above'
+export type TsMenuPositionTypesY
+  = 'above'
   | 'below'
 ;
 
@@ -44,20 +44,16 @@ export type TsMenuTriggerTypes
 /**
  * A presentational component to render a dropdown menu.
  *
- * #### QA CSS CLASSES
- * -`qa-menu`: Placed on the wrapper around the menu items
- * -`qa-menu-trigger`: Placed on the menu trigger
- *
  * @example
  * <ts-menu
  *              [defaultOpened]="false"
+ *              format="filled"
  *              [isDisabled]="false"
  *              [menuItemsTemplate]="myTemplate"
  *              menuPositionX="20px"
  *              menuPositionY="20px"
  *              theme="accent"
  *              triggerType="utility"
- *              (selected)="myMethod($event)"
  * >Select Item</ts-menu>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/menu</example-url>
@@ -112,6 +108,12 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   public defaultOpened = false;
 
   /**
+   * Define the button format
+   */
+  @Input()
+  public format: TsButtonFormatTypes = 'filled';
+
+  /**
    * Define if the menu should be disabled
    */
   @Input()
@@ -140,12 +142,6 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
    */
   @Input()
   public theme: TsStyleThemeTypes = 'primary';
-
-  /**
-   * Define the button format
-   */
-  @Input()
-  public format: TsButtonFormatTypes = 'filled';
 
   /**
    * Define the type of trigger {@link TsMenuTriggerTypes}

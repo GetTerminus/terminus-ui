@@ -38,11 +38,6 @@ export interface TsDateRange {
 /**
  * This is the date-range UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-date-range`: The primary component container
- * - `qa-date-range-start-datepicker`: The start date {@link TsInputComponent}
- * - `qa-date-range-end-datepicker`: The end date {@link TsInputComponent}
- *
  * @example
  * <ts-date-range
  *              [dateFormGroup]="myForm.get('dateRange')"

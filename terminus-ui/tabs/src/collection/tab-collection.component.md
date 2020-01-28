@@ -6,9 +6,9 @@
 **Table of Contents**
 
 - [Basic usage](#basic-usage)
-  - [Events](#events)
-  - [Label alignment](#label-alignment)
-  - [Header position](#header-position)
+- [Events](#events)
+- [Label alignment](#label-alignment)
+- [Header position](#header-position)
 - [Dynamically insert a tab](#dynamically-insert-a-tab)
 - [Custom label template](#custom-label-template)
 - [Lazy load tab content](#lazy-load-tab-content)
@@ -22,7 +22,6 @@ In its most simple form this must consist of a collection with at least one tab:
 
 ```html
 <ts-tab-collection>
-
   <ts-tab label="First">
     Content 1
   </ts-tab>
@@ -30,12 +29,11 @@ In its most simple form this must consist of a collection with at least one tab:
   <ts-tab label="Second">
     Content 2
   </ts-tab>
-
 </ts-tab-collection>
 ```
 
 
-### Events
+## Events
 
 | Event                 | Description                                      | Payload            |
 |:----------------------|:-------------------------------------------------|:-------------------|
@@ -64,7 +62,7 @@ class TsTabChangeEvent {
 ```
 
 
-### Label alignment
+## Label alignment
 
 There are four horizontal layout options for tab labels.
 
@@ -82,9 +80,9 @@ There are four horizontal layout options for tab labels.
 ```
 
 
-### Header position
+## Header position
 
-The collection of tab labels are positioned above the tab content by default. This can be inverted so  the labels appear below the tab
+The collection of tab labels are positioned above the tab content by default. This can be inverted so the labels appear below the tab
 content:
 
 ```html
@@ -112,7 +110,6 @@ Or by showing and hiding via `ngIf`:
 
 ```html
 <ts-tab-collection>
-
   <ts-tab label="First">
     Content 1
   </ts-tab>
@@ -120,7 +117,6 @@ Or by showing and hiding via `ngIf`:
   <ts-tab label="Second" *ngIf="shouldIncludeTab">
     Content 2
   </ts-tab>
-
 </ts-tab-collection>
 ```
 
@@ -132,7 +128,6 @@ If label customization is needed a template can be defined to contain custom lab
 
 ```html
 <ts-tab-collection>
-
   <ts-tab>
     <ng-template tsTabLabel>
       <ts-icon>home</ts-icon>
@@ -141,7 +136,6 @@ If label customization is needed a template can be defined to contain custom lab
 
     Content 1
   </ts-tab>
-
 </ts-tab-collection>
 ```
 
