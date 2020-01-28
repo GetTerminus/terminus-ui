@@ -1,5 +1,22 @@
 <ts-card tsVerticalSpacing>
 
+  <h2>AbbreviateNumber</h2>
+
+<pre tsVerticalSpacing>
+Value:
+12345
+</pre>
+
+  <div>
+    Abbreviate with 2 decimal: <b>{{ 12345 | tsAbbreviateNumber:2 }}</b>
+    <br>
+    Abbreviate with 1 decimal as default: <b>{{ 12345 | tsAbbreviateNumber }}</b>
+  </div>
+
+</ts-card>
+
+<ts-card tsVerticalSpacing>
+
   <h2>Date</h2>
 
 <pre tsVerticalSpacing>
@@ -119,8 +136,8 @@ String 2: THAT RUG REALLY TIED THE ROOM TOGETHER.
   <h2>TruncateAt</h2>
 
 <pre tsVerticalSpacing>
-  'Here is my string' | tsTruncateAt:7 
-  'Here is my string' | tsTruncateAt:8:'middle' 
+  'Here is my string' | tsTruncateAt:7
+  'Here is my string' | tsTruncateAt:8:'middle'
   'Here is my string' | tsTruncateAt:6:'start'
 </pre>
 
