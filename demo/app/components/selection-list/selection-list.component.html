@@ -23,14 +23,9 @@
   <form
     novalidate
     fxLayout="column"
-    fxLayout.gt-sm="row"
     fxLayoutGap="1rem"
   >
 
-
-    <div fxLayout="row" fxLayoutAlign="center">
-
-      <div style="height: 42px; background: lightblue; " fxFlex="noshrink"></div>
     <ts-selection-list
       label="Select states"
       hint="Begin typing to search.."
@@ -57,7 +52,6 @@
         {{ state.name }}
       </ts-option>
     </ts-selection-list>
-    </div>
 
     <div>
       FormControl value: {{ complexMultipleControl.value | json }}
@@ -70,7 +64,6 @@
   <form
     novalidate
     fxLayout="column"
-    fxLayout.gt-sm="row"
     fxLayoutGap="1rem"
   >
     <h3 tsCardTitle tsVerticalSpacing="small--1">
