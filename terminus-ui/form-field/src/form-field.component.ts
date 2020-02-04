@@ -225,6 +225,12 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
   protected _id: string = this.uid;
 
   /**
+   * Define whether form field needs a validation or a hint
+   */
+  @Input()
+  public noValidationOrHint = false;
+
+  /**
    * Define the component theme
    */
   @Input()

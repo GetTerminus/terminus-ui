@@ -906,6 +906,18 @@ export class TooManyResults {
   public total: number | undefined = undefined;
 }
 
+@Component({
+  template: `
+      <ts-select
+        [formControl]="myCtrl"
+        [noValidationOrHint]="validationFlag"
+      ></ts-select>
+  `,
+})
+export class NoValidationOrHint {
+  public myCtrl = new FormControl();
+  public validationFlag = true;
+}
 
 
 
@@ -935,6 +947,7 @@ export class TooManyResults {
     Id,
     Label,
     NoGroupsMultiple,
+    NoValidationOrHint,
     NullSelection,
     OptgroupBadIDs,
     OptgroupIDs,

@@ -254,6 +254,13 @@ export class TsRadioGroupComponent extends TsReactiveFormBaseComponent implement
   private _name: string = this._uid;
 
   /**
+   * Define whether a validation or a hint needed.
+   */
+  @Input()
+  public noValidationOrHint = false;
+
+
+  /**
    * Accept an array of radio options in the {@link TsRadioOption} format
    */
   @Input()

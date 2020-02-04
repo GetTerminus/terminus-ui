@@ -986,6 +986,20 @@ export class BackdropClick {
   public clicked = () => {};
 }
 
+@Component({
+  template: `
+      <ts-selection-list
+        [formControl]="myCtrl"
+        [noValidationOrHint]="validationFlag"
+      ></ts-selection-list>
+  `,
+})
+export class NoValidationOrHint {
+  public myCtrl = new FormControl();
+  public validationFlag = true;
+}
+
+
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -1014,6 +1028,7 @@ export class BackdropClick {
     Id,
     Label,
     Multiple,
+    NoValidationOrHint,
     NullSelection,
     OptgroupBadIDs,
     OptgroupIDs,

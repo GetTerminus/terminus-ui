@@ -424,8 +424,17 @@ export class ToggleInputComponent {
   public show = true;
 }
 
-
-
+@Component({
+  template: `
+    <ts-input
+        [formControl]="formControl"
+        [noValidationOrHint]="true"
+    ></ts-input>
+  `,
+})
+export class NoValidationOrHint {
+  public formControl = new FormControl();
+}
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.
@@ -462,6 +471,7 @@ export class ToggleInputComponent {
     MinMaxDate,
     MissingFormControl,
     NoExternalFormField,
+    NoValidationOrHint,
     OnChanges,
     OpenTo,
     PostalMask,

@@ -389,6 +389,12 @@ export class TsSelectionListComponent implements
   private _minimumCharacters = DEFAULT_MINIMUM_CHARACTER_COUNT;
 
   /**
+   * Define whether a validation or a hint needed.
+   */
+  @Input()
+  public noValidationOrHint = false;
+
+  /**
    * Define if the panel should reopen after a selection is made
    *
    * NOTE: Though it is technically 're-opening', it happens fast enough so that it doesn't appear to close at all.

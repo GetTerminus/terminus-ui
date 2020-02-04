@@ -631,6 +631,13 @@ export class TsSelectComponent implements
   }
   private _label: string | undefined;
 
+
+  /**
+   * Define whether a validation or a hint needed.
+   */
+  @Input()
+  public noValidationOrHint = false;
+
   /**
    * Placeholder to be shown if no value has been selected
    */

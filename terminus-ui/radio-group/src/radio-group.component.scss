@@ -51,8 +51,10 @@
 .c-radio--sublabel {
   $sublabel-padding: 1.25em;
 
-  // Create space for validation messages (this is usually handled by `mat-form-field`
-  padding-bottom: $sublabel-padding;
+  // Create space for validation messages (this is usually handled by `mat-form-field`)
+  &.c-radio-sublabel--with-validation {
+    padding-bottom: $sublabel-padding;
+  }
 
   .c-radio__control {
     .mat-radio-label {

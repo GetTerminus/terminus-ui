@@ -1,4 +1,7 @@
-<div class="ts-form-field__wrapper qa-form-field">
+<div
+  class="ts-form-field__wrapper qa-form-field"
+  [ngClass]="{'ts-form-field--with-validation': !noValidationOrHint}"
+>
   <div
     class="ts-form-field__container qa-form-field-container"
     #containerElement
@@ -61,6 +64,7 @@
     fxLayout="row"
     fxLayoutAlign="space-between center"
     [fxLayoutGap]="flexGap"
+    *ngIf="!noValidationOrHint"
   >
     <div *ngIf="control && (control.ngControl || control.formControl)">
       <ts-validation-messages

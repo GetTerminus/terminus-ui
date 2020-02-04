@@ -178,3 +178,21 @@
 {{ textareaModel }}
 </pre>
 </ts-card>
+
+<ts-card tsVertialSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>
+    Input: with no validation or hint
+  </h3>
+
+  <ts-input
+    [formControl]="myForm.get('name')"
+    label="No validation or hint padding added"
+    [noValidationOrHint]="true"
+  ></ts-input>
+
+  <ts-input
+    [formControl]="myForm.get('email')"
+    [label]="label2"
+    [noValidationOrHint]="true"
+  ></ts-input>
+</ts-card>

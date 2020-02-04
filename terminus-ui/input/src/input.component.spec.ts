@@ -1050,7 +1050,15 @@ describe(`TsInputComponent`, function() {
 
 });
 
+describe(`noValidationOrHint`, () => {
+  test(`should not have validation or hint added if set to true`, () => {
+    const fixture = createComponent(TestComponents.NoValidationOrHint);
+    fixture.detectChanges();
+    const validationBlock = fixture.debugElement.query(By.css('.ts-form-field__subscript-wrapper'));
 
+    expect(validationBlock).toBeFalsy();
+  });
+});
 
 
 /**
