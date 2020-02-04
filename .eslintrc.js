@@ -3,28 +3,42 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": 6,
     "project": "./tsconfig.json",
-    "sourceType": "module"
+    "sourceType": "module",
   },
+  "root": true,
   "rules": {
+    // TODO: Remove once all `console.warn`s have been converted to JS errors.
     "no-console": [
       "error",
       {
         "allow": [
-          "warn"
-        ]
-      }
-    ]
+          "warn",
+        ],
+      },
+    ],
   },
-  'overrides': [
+  "overrides": [
+    // Spec files:
     {
-      'files': [
-        '**/*.spec.ts',
-        '**/*.mock.ts',
-        '**/test-sass.js',
+      "files": [
+        "*.spec.ts",
+        "*.mock.ts",
+        // Sass test file:
+        "test-sass.js",
+        // Test helper files:
+        "test-*.ts",
       ],
-      'env': {
-        'jest': true,
+      "env": {
+        "jest": true,
+      },
+      "rules": {
+        "dot-notation": "off",
+        "guard-for-in": "off",
+        "line-comment-position": "off",
+        "no-console": "off",
+        "no-magic-numbers": "off",
+        "no-underscore-dangle": "off",
       },
     },
   ],
-}
+};
