@@ -5,8 +5,6 @@ node_modules/
 out-tsc/
 debug.log
 npm-debug.log
-src/**/*.js
-terminus-ui/**/*.js
 src/**/*.css
 *.js.map
 *.css.map
