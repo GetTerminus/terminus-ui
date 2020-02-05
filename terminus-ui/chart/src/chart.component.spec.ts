@@ -11,7 +11,10 @@ import {
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/chart/testing';
 // eslint-disable-next-line no-duplicate-imports
-import { getChartInstance } from '@terminus/ui/chart/testing';
+import {
+  AmChartsServiceMock,
+  getChartInstance,
+} from '@terminus/ui/chart/testing';
 
 import { TsAmChartsService } from './amcharts.service';
 import {
@@ -217,28 +220,6 @@ describe(`ChartComponent`, function() {
 /**
  * Providers
  */
-
-class AmChartsServiceMock {
-  public get amCharts() {
-    return {
-      core: {
-        create: jest.fn(() => ({
-          responsive: { enabled: false },
-          dispose: jest.fn(),
-        })),
-      },
-      charts: {
-        XYChart: {},
-        PieChart: {},
-        RadarChart: {},
-        TreeMap: {},
-        SankeyDiagram: {},
-        ChordDiagram: {},
-      },
-      maps: { MapChart: {} },
-    };
-  }
-}
 
 const AM_CHARTS_PROVIDER: Provider[] = [{
   provide: TsAmChartsService,
