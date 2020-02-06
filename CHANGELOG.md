@@ -1,3 +1,10 @@
+# [16.2.0](https://github.com/GetTerminus/terminus-ui/compare/v16.1.1...v16.2.0) (2020-02-06)
+
+
+### Features
+
+* **formControl:** now form control supports no validation mode. ([#2005](https://github.com/GetTerminus/terminus-ui/issues/2005)) ([2fd3123](https://github.com/GetTerminus/terminus-ui/commit/2fd3123))
+
 ## [16.1.1](https://github.com/GetTerminus/terminus-ui/compare/v16.1.0...v16.1.1) (2020-01-28)
 
 
