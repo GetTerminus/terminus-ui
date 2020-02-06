@@ -1,4 +1,4 @@
-const micromatch = require('micromatch')
+const micromatch = require('micromatch');
 
 module.exports = {
 

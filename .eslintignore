@@ -1,0 +1,8 @@
+.github
+coverage
+dist
+docs
+e2e
+node_modules
+.DS_Store
+**/*.d.ts
