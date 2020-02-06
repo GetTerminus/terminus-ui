@@ -7,6 +7,7 @@
 
 - [Basic usage](#basic-usage)
 - [Sub-labels](#sub-labels)
+- [noValidationOrHint](#novalidationorhint)
 - [Event driven](#event-driven)
 - [Required](#required)
 - [Disabled](#disabled)
@@ -98,6 +99,16 @@ uiFormatter = (v) => v.bar;
 modelFormatter = (v) => v.foo;
 ```
 
+## noValidationOrHint
+
+A flag to define whether this radio group field needs validation or hint. If it needs validation or hint, a padding bottom is added for the message, otherwise, no padding at the bottom.
+
+```html
+<ts-radio-group
+  [formControl]="myFormCtrl"
+  [noValidationOrHint]="true"
+></ts-radio-group>
+```
 
 ## Event driven
 

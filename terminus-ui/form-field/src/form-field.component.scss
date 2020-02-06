@@ -345,10 +345,13 @@
     // margin to the bottom.
     $wrapper-margin: var(--formField-outline-labelOverlap) 0;
     margin: $wrapper-margin;
-    padding-bottom: var(--formField-wrapper-paddingBottom);
     position: relative;
     // To avoid problems with text-align.
     text-align: left;
+    // Add padding to the bottom only if there is validation needed.
+    &.ts-form-field--with-validation {
+      padding-bottom: var(--formField-wrapper-paddingBottom);
+    }
   }
 }
 

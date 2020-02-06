@@ -7,6 +7,7 @@
 
 - [Basic usage](#basic-usage)
   - [Hint](#hint)
+  - [noValidationOrHint](#novalidationorhint)
   - [Prefix icon](#prefix-icon)
   - [Disabled](#disabled)
   - [Required](#required)
@@ -63,6 +64,16 @@ requirements.
 ></ts-input>
 ```
 
+### noValidationOrHint
+
+A flag to define whether this input field needs validation or hint. If it needs validation or hint, a padding bottom is added for the message, otherwise, no padding at the bottom.
+
+```html
+<ts-input
+  [formControl]="myFormCtrl"
+  [noValidationOrHint]="true"
+></ts-input>
+```
 
 ### Prefix icon
 

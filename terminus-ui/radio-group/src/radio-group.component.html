@@ -6,6 +6,7 @@
     [disabled]="isDisabled"
     [required]="isRequired"
     [class.c-radio--sublabel]="formatUISubLabelFn"
+    [ngClass]="{'c-radio-sublabel--with-validation': !noValidationOrHint}"
     [(ngModel)]="value"
   >
     <ng-container *ngFor="let option of options; trackBy: trackByFn">
@@ -32,7 +33,7 @@
 
     <ts-validation-messages
       class="qa-radio-validation-messages"
-      *ngIf="formControl"
+      *ngIf="formControl && !noValidationOrHint"
       [control]="formControl"
       [validateImmediately]="true"
     ></ts-validation-messages>
@@ -104,7 +105,7 @@
 
     <ts-validation-messages
       class="qa-radio-validation-messages"
-      *ngIf="formControl"
+      *ngIf="formControl  && !noValidationOrHint"
       [control]="formControl"
       [validateImmediately]="true"
     ></ts-validation-messages>

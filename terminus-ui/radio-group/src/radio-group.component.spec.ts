@@ -46,6 +46,7 @@ class DomSanitizerMock {
     [formatUILabelFn]="uiFormatter"
     [formatModelValueFn]="modelFormatter"
     [formControl]="control"
+    [noValidationOrHint]="validationFlag"
     [options]="optionsArray"
     (selectionChange)="selectionChange($event)"
   ></ts-radio-group>
@@ -56,6 +57,7 @@ class TestHostComponent {
   public isVisual = false;
   public small = false;
   public centered = true;
+  public validationFlag = false;
   public optionsArray: TsRadioOption[] = [
     {
       foo: 'bar',
@@ -146,6 +148,18 @@ describe('TsRadioGroupComponent INT test', function() {
         expect(centeredClass.length).toEqual(0);
       });
 
+    });
+  });
+
+  describe(`noValidationOrHint`, () => {
+    test(`should not have padding bottom if noValidationOrHint flag is on`, () => {
+      const component = getRadioGroupInstance(fixture);
+      let validationBlock = fixture.debugElement.query(By.css('.c-radio-sublabel--with-validation'));
+      expect(validationBlock).toBeTruthy();
+      component.noValidationOrHint = true;
+      fixture.detectChanges();
+      validationBlock = fixture.debugElement.query(By.css('.c-radio-sublabel--with-validation'));
+      expect(validationBlock).toBeFalsy();
     });
   });
 
@@ -375,7 +389,7 @@ describe('TsRadioGroupComponent', function() {
   });
 
 
-  describe(`trackByFn`, function() {
+  describe(`trackByFn`, () => {
 
     test(`should return the passed index`, function() {
       expect(component.trackByFn(1)).toEqual(1);

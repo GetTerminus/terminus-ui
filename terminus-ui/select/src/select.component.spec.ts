@@ -14,7 +14,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
-  createFakeEvent,
   createKeyboardEvent,
   dispatchEvent,
   dispatchKeyboardEvent,
@@ -1286,6 +1285,16 @@ describe(`TsSelectComponent`, function() {
       expect(refineDom.nativeElement.textContent.trim()).toEqual('Narrow your search to reveal 99 hidden results.');
     });
 
+  });
+
+  describe(`noValidationOrHint`, () => {
+    test(`should not have validation or hint added if set to true`, () => {
+      const fixture = createComponent(testComponents.NoValidationOrHint);
+      fixture.detectChanges();
+      const validationBlock = fixture.debugElement.query(By.css('.ts-form-field__subscript-wrapper'));
+
+      expect(validationBlock).toBeFalsy();
+    });
   });
 
 });

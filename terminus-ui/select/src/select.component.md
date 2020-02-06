@@ -8,6 +8,7 @@
 - [Basic usage](#basic-usage)
   - [Label](#label)
   - [Hint](#hint)
+  - [noValidationOrHint](#novalidationorhint)
   - [FormControl](#formcontrol)
   - [ngModel](#ngmodel)
   - [Custom compare function](#custom-compare-function)
@@ -73,6 +74,16 @@ Define a hint on the select:
 </ts-select>
 ```
 
+### noValidationOrHint
+
+A flag to define whether this select field needs validation or hint. If it needs validation or hint, a padding bottom is added for the message, otherwise, no padding at the bottom.
+
+```html
+<ts-select
+  [formControl]="myCtrl"
+  [noValidationOrHint]="true"
+></ts-select>
+```
 
 ### FormControl
 

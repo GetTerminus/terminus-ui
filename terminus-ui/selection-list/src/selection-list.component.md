@@ -12,6 +12,7 @@
 - [Formatting](#formatting)
 - [Complex comparator](#complex-comparator)
 - [Standard dropdown mode (no typing)](#standard-dropdown-mode-no-typing)
+- [noValidationOrHint](#novalidationorhint)
 - [Events](#events)
 - [Test Helpers](#test-helpers)
 
@@ -145,6 +146,17 @@ If the component should act as a standard dropdown with no ability to type a que
 >
   ...
 </ts-selection-list>
+```
+
+## noValidationOrHint
+
+A flag to define whether this selectionlist field needs validation or hint. If it needs validation or hint, a padding bottom is added for the message, otherwise, no padding at the bottom.
+
+```html
+<ts-selection-list
+  [formControl]="myCtrl"
+  [noValidationOrHint]="true"
+></ts-selection-list>
 ```
 
 ## Events

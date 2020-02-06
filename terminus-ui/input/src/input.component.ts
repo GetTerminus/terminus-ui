@@ -707,6 +707,12 @@ export class TsInputComponent implements
   public name: string | undefined;
 
   /**
+   * Define whether formControl needs a validation or a hint
+   */
+  @Input()
+  public noValidationOrHint = false;
+
+  /**
    * Define a date that the calendar should open to for the datepicker
    */
   @Input()
