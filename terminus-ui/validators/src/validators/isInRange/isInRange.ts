@@ -4,9 +4,10 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { isNumber } from '@terminus/ngx-tools/type-guards';
-import { isAbstractControl } from '@terminus/ui/utilities';
-
+import {
+  isAbstractControl,
+  isNumber,
+} from '@terminus/ngx-tools/type-guards';
 
 
 /**
@@ -30,7 +31,7 @@ export function isInRangeValidator(minimum: number | AbstractControl = 0, maximu
       return null;
     }
 
-    if (isAbstractControl(minimum) && isAbstractControl(maximum)) {
+    if (!isNumber(minimum) && !isNumber(maximum) && isAbstractControl(minimum) && isAbstractControl(maximum)) {
       return getValidationResult(minimum.value, maximum.value, control);
     }
     return getValidationResult(coerceNumberProperty(minimum), coerceNumberProperty(maximum), control);

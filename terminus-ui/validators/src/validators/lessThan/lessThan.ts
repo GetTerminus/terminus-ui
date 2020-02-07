@@ -4,7 +4,10 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { isAbstractControl } from '@terminus/ui/utilities';
+import {
+  isAbstractControl,
+  isNumber,
+} from '@terminus/ngx-tools/type-guards';
 
 
 /**
@@ -20,7 +23,7 @@ export function lessThanValidator(max: number | AbstractControl = 0): ValidatorF
       return null;
     }
 
-    if (isAbstractControl(max)) {
+    if (!isNumber(max) && isAbstractControl(max)) {
       return getValidationResult(max.value, control);
     }
     return getValidationResult(max, control);

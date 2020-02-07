@@ -4,7 +4,10 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { isAbstractControl } from '@terminus/ui/utilities';
+import {
+  isAbstractControl,
+  isNumber,
+} from '@terminus/ngx-tools/type-guards';
 
 
 /**
@@ -20,7 +23,7 @@ export function greaterThanValidator(minimum: number | AbstractControl = 0): Val
       return null;
     }
 
-    if (isAbstractControl(minimum)) {
+    if (!isNumber(minimum) && isAbstractControl(minimum)) {
       return getValidationResult(minimum.value, control);
     }
     return getValidationResult(minimum, control);

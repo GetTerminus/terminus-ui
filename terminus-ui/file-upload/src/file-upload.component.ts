@@ -26,14 +26,18 @@ import {
   coerceNumberProperty,
 } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
-import { isNumber } from '@terminus/ngx-tools/type-guards';
-import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
+import {
+  isDragEvent,
+  isHTMLInputElement,
+  isNumber,
+} from '@terminus/ngx-tools/type-guards';
+import {
+  inputHasChanged,
+  untilComponentDestroyed,
+} from '@terminus/ngx-tools/utilities';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import {
   ControlValueAccessorProviderFactory,
-  inputHasChanged,
-  isDragEvent,
-  isHTMLInputElement,
   TsReactiveFormBaseComponent,
   TsStyleThemeTypes,
 } from '@terminus/ui/utilities';
