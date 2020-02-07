@@ -4,16 +4,9 @@ import { TsReactiveFormBaseComponent } from './reactive-form-base/reactive-form-
 
 export * from './cva-provider-factory/cva-provider-factory';
 export * from './error/ui-error';
-export * from './input-has-changed/input-has-changed';
 export * from './merge/merge';
 export * from './reactive-form-base/reactive-form-base.component';
 export * from './strip-control-characters/strip-control-characters';
-export * from './type-coercion/is-abstract-control';
-export * from './type-coercion/is-drag-event';
-export * from './type-coercion/is-html-input-element';
-export * from './type-coercion/is-keyboard-event';
-export * from './type-coercion/is-mouse-event';
-export * from './is-valid-date/is-valid-date';
 export * from './types/style-theme.types';
 export * from './version/version';
 

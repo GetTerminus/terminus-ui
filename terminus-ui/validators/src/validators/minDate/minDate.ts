@@ -5,8 +5,9 @@ import {
 } from '@angular/forms';
 import {
   isAbstractControl,
+  isString,
   isValidDate,
-} from '@terminus/ui/utilities';
+} from '@terminus/ngx-tools/type-guards';
 
 
 /**
@@ -22,7 +23,7 @@ export function minDateValidator(minDate: string | AbstractControl): ValidatorFn
       return null;
     }
 
-    if (isAbstractControl(minDate)) {
+    if (!isString(minDate) && isAbstractControl(minDate)) {
       return getValidationResult(minDate.value, control);
     }
 

@@ -3,7 +3,7 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import { isValidDate } from '@terminus/ui/utilities';
+import { isValidDate } from '@terminus/ngx-tools/type-guards';
 import { format as formatDate } from 'date-fns';
 
 

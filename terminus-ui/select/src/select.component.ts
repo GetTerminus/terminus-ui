@@ -45,6 +45,7 @@ import {
 } from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
+  inputHasChanged,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools/utilities';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
@@ -60,10 +61,7 @@ import {
   TsOptionSelectionChange,
 } from '@terminus/ui/option';
 import { TS_SPACING } from '@terminus/ui/spacing';
-import {
-  inputHasChanged,
-  TsStyleThemeTypes,
-} from '@terminus/ui/utilities';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
   BehaviorSubject,
   defer,

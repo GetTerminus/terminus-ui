@@ -5,9 +5,9 @@ import {
 } from '@angular/forms';
 import {
   isAbstractControl,
+  isString,
   isValidDate,
-} from '@terminus/ui/utilities';
-
+} from '@terminus/ngx-tools/type-guards';
 
 /**
  * Return a validator function to verify the selected date is before a maximum date
@@ -22,7 +22,7 @@ export function maxDateValidator(maxDate: string | AbstractControl): ValidatorFn
       return null;
     }
 
-    if (isAbstractControl(maxDate)) {
+    if (!isString(maxDate) && isAbstractControl(maxDate)) {
       return getValidationResult(maxDate.value, control);
     }
 

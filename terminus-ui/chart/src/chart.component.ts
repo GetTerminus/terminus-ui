@@ -15,10 +15,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  inputHasChanged,
-  TsUILibraryError,
-} from '@terminus/ui/utilities';
+import { inputHasChanged } from '@terminus/ngx-tools/utilities';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 
 import {
   TsAmChartsService,

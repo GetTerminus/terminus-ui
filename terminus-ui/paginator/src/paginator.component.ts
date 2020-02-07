@@ -14,11 +14,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
+import { inputHasChanged } from '@terminus/ngx-tools/utilities';
 import { TsSelectChange } from '@terminus/ui/select';
-import {
-  inputHasChanged,
-  TsStyleThemeTypes,
-} from '@terminus/ui/utilities';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
 /**

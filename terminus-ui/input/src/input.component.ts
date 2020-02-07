@@ -34,19 +34,20 @@ import {
 import { MatDatepicker } from '@angular/material/datepicker';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
-import { isNumber } from '@terminus/ngx-tools/type-guards';
+import {
+  isFunction,
+  isNumber,
+  isValidDate,
+} from '@terminus/ngx-tools/type-guards';
 import {
   hasRequiredControl,
+  inputHasChanged,
   noop,
 } from '@terminus/ngx-tools/utilities';
 import { TsFormFieldControl } from '@terminus/ui/form-field';
 import { TsDatePipe } from '@terminus/ui/pipes';
 import { TS_SPACING } from '@terminus/ui/spacing';
-import {
-  inputHasChanged,
-  isValidDate,
-  TsStyleThemeTypes,
-} from '@terminus/ui/utilities';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { Subject } from 'rxjs';
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -148,21 +149,6 @@ const allowedMaskShorcuts: TsMaskShortcutOptions[] = [
   'postal',
   'default',
 ];
-
-
-/**
- * Coerce a function type
- *
- * FIXME: This should be coming from the ngx-tools library, but the typings are not working for some reason when imported.
- * https://github.com/GetTerminus/terminus-ui/issues/1156
- *
- * @param item - The item to check
- * @return Whether the item is a function
- */
-// tslint:disable-next-line no-any
-function isFunction(item: any): item is Function {
-  return !!(item && item.constructor && item.call && item.apply);
-}
 
 
 // Unique ID for each instance
