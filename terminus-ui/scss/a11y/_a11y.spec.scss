@@ -1,0 +1,28 @@
+@import 'true';
+@import 'a11y';
+
+@include describe ('a11y') {
+  @include test ('should correctly render cdk-a11y') {
+    @include assert {
+      @include output {
+        @include cdk-a11y();
+      }
+      @include expect {
+        .cdk-visually-hidden {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          outline: 0;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+      }
+    }
+  }
+}

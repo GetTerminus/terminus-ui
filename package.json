@@ -164,6 +164,7 @@
     "@angular/platform-browser": "8.2.14",
     "@angular/platform-browser-dynamic": "8.2.14",
     "@angular/router": "8.2.14",
+    "@terminus/design-tokens": "^1.0.2",
     "@terminus/ngx-tools": "7.4.0",
     "@terminus/ui": "15.8.3",
     "date-fns": "2.9.0",

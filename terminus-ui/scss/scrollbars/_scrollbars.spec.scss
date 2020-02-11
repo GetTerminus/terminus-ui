@@ -1,0 +1,43 @@
+@import 'true';
+@import 'scrollbars';
+
+
+@include describe ('visible-scrollbars') {
+  @include test ('should correctly render styles') {
+    @include assert {
+      @include output {
+        .test {
+          @include visible-scrollbars;
+        }
+      }
+      @include expect {
+        .test::-webkit-scrollbar {
+          -webkit-appearance: none;
+        }
+
+        .test::-webkit-scrollbar:vertical {
+          width: 11px;
+        }
+
+        .test::-webkit-scrollbar:horizontal {
+          height: 11px;
+        }
+
+        .test::-webkit-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, .5);
+          border: 2px solid #fafafa;
+          border-radius: 8px;
+        }
+
+        .test::-webkit-scrollbar-track {
+          background-color: #fafafa;
+          border-radius: 8px;
+        }
+
+        .test::-webkit-scrollbar-corner {
+          background-color: #fafafa;
+        }
+      }
+    }
+  }
+}

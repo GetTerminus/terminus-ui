@@ -1,0 +1,11 @@
+/**
+ * Center child content vertically and horizontally
+ *
+ * @example
+ *  @include center-content;
+ */
+@mixin center-content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

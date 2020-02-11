@@ -1,0 +1,65 @@
+/**
+ * The spacing default
+ *
+ * @section Spacing
+ */
+$g-spacing: 16px !default;
+
+
+/**
+ * The map of layout spacings
+ *
+ * Small: 12, 8, 4
+ * Base: 16
+ * Large: 24, 32, 40, 48, 56, 72, 96
+ *
+ * @section Spacing
+ */
+$g-spacings: (
+  small:  (
+    2: floor($g-spacing / 4),
+    1: floor($g-spacing / 2),
+    0: floor($g-spacing - 4),
+  ),
+  default: (
+    0: $g-spacing,
+  ),
+  large: (
+    0: ceil($g-spacing / 2 * 3),
+    1: ceil($g-spacing / 2 * 4),
+    2: ceil($g-spacing / 2 * 5),
+    3: ceil($g-spacing / 2 * 6),
+    4: ceil($g-spacing / 2 * 7),
+    5: ceil($g-spacing / 2 * 9),
+    6: ceil($g-spacing / 2 * 12),
+  )
+);
+
+
+/**
+ * Retrieve a space from the $g-spacings map
+ *
+ * @param $type
+ *  The spacing map to use. Default: default
+ * @param $size
+ *  The value desired from the map. Default: 0
+ * @example
+ *  padding: spacing(default);
+ *  padding: spacing(large);
+ *  padding: spacing(large, 4);
+ */
+@function spacing($type: default, $size: 0) {
+  // Verify the type exists
+  @if not(map-has-key($g-spacings, $type)) {
+    $allowed-types: map-keys($g-spacings);
+    @error 'Invalid spacing type name: `#{$type}`. Allowed type: #{$allowed-types}';
+  }
+
+  // Verify the size
+  @if not(map-has-key(map-get($g-spacings, $type), $size)) {
+    $allowed-sizes: map-keys(map-get($g-spacings, $type));
+    @error 'Invalid size: `#{$size}`. Allowed sizes for `#{$type}` are: #{$allowed-sizes}';
+  }
+
+  @return map-get(map-get($g-spacings, $type), $size);
+}

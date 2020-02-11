@@ -1,0 +1,39 @@
+/**
+ * Control the ratio for responsive elements
+ *
+ * @param $x
+ *  The x ratio
+ * @param $y
+ *  The y ratio
+ * @param $pseudo
+ *  Determine if a pseudo element should be used to control the ratio. Default: true
+ * @param $image
+ *  The image source. Default: null
+ * @example
+ *  @include responsive-ratio(3, 4);
+ *  @include responsive-ratio(20, 9, true, url('/images/landing-hero.jpg'));
+ */
+@mixin responsive-ratio($x, $y, $pseudo: true, $image: null) {
+  $padding: unquote((( $y / $x ) * 100) + '%');
+
+  @if $x == null or $y == null {
+    @error 'Both the x and y ratios must be passed in.';
+  }
+
+  @if $pseudo {
+    &::before {
+      @include pseudo($position: relative);
+      padding-top: $padding;
+      width: 100%;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+
+  @if image != null {
+    background-image: url($image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

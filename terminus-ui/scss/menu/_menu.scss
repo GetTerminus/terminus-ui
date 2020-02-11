@@ -1,0 +1,22 @@
+@import '../typography/typography';
+@import '../spacing/spacing';
+
+
+/**
+ * Base styles for menu items
+ *
+ * @example
+ *  @include menu-base;
+ */
+@mixin menu-item-base() {
+  @include truncate-overflow;
+  // Needs to be a block for the ellipsis to work.
+  display: block;
+  // Required for Edge not to show scrollbars when setting the width manually.
+  max-width: 100%;
+  padding: 0 spacing(default);
+  position: relative;
+  text-align: left;
+  // Necessary to reset anchor tags:
+  text-decoration: none;
+}

@@ -1,0 +1,56 @@
+@import 'true';
+@import 'spacing';
+
+@include describe ('spacing') {
+  @include describe ('default') {
+    @include test('should return the correct default spacing') {
+      $test: spacing(default);
+      $expect: 16px;
+
+      @include assert-equal($test, $expect);
+    }
+  }
+
+  @include describe ('small') {
+    @include test('should return the correct small spacing') {
+      $test1: spacing(small);
+      $expect1: 12px;
+
+      $test2: spacing(small, 1);
+      $expect2: 8px;
+
+      $test3: spacing(small, 2);
+      $expect3: 4px;
+
+      @include assert-equal($test1, $expect1);
+      @include assert-equal($test2, $expect2);
+      @include assert-equal($test3, $expect3);
+    }
+  }
+
+  @include describe ('large') {
+    @include test('should return the correct large spacing') {
+      $test1: spacing(large);
+      $expect1: 24px;
+
+      $test2: spacing(large, 3);
+      $expect2: 48px;
+
+      $test3: spacing(large, 6);
+      $expect3: 96px;
+
+      @include assert-equal($test1, $expect1);
+      @include assert-equal($test2, $expect2);
+      @include assert-equal($test3, $expect3);
+    }
+  }
+
+  @include describe('failures') {
+    @include test('should fail with mismatched values') {
+      $test: spacing(large, 2);
+      $expect: 24px;
+
+      @include assert-unequal($test, $expect);
+    }
+  }
+}

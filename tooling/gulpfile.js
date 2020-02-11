@@ -1,15 +1,7 @@
 'use strict';
 
-const fs                   = require('fs');
 const path                 = require('path');
-const rollup               = require('rollup');
 const gulp                 = require('gulp');
-const glob                 = require('glob');
-const ngc                  = require('@angular/compiler-cli/src/main').main;
-const execa                = require('execa');
-const camelCase            = require('camelcase');
-const del                  = require('del');
-const gulpSourcemaps       = require('gulp-sourcemaps');
 const gulpSass             = require('gulp-sass');
 const sassModuleImporter   = require('sass-module-importer');
 const postcss              = require('gulp-postcss');
@@ -35,22 +27,28 @@ const config = {
     npmFolder: path.join(rootFolder, 'node_modules/@terminus/ui'),
     scss: {
       helpersInputs: [
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_a11y.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_animation.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_assets.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_breakpoints.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_color.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_cursors.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_layout.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_scrollbars.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_shadows.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_spacing.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_triangle.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_typography.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_utilities.scss'),
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_z-index.scss'),
+        // NOTE: Keep custom properties first in line:
+        path.join(rootFolder, 'terminus-ui', 'scss/global/_custom-properties.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/a11y/_a11y.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/animation/_animation.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/breakpoints/_breakpoints.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/color/_color.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/cursors/_cursors.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_center-content.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_opposite-direction.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_pseudo.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_responsive-ratio.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_take-space.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/layout/_visually-hidden.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/scrollbars/_scrollbars.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/shadows/_shadows.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/spacing/_spacing.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/triangle/_triangle.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/typography/_typography.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/utilities/_utilities.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/z-index/_z-index.scss'),
         // Card must be after spacing and shadows
-        path.join(rootFolder, 'terminus-ui', 'scss/helpers/_card.scss'),
+        path.join(rootFolder, 'terminus-ui', 'scss/card/_card.scss'),
       ],
       globalStylesInput: path.join(rootFolder, 'terminus-ui', `scss/global/terminus-ui.scss`),
     },
@@ -61,7 +59,7 @@ const config = {
       importer: sassModuleImporter(),
     },
     postCss: [
-      autoprefixer({grid: true}),
+      autoprefixer({ grid: true }),
     ],
   },
 };
@@ -119,6 +117,7 @@ gulp.task('generate:css', () => gulp.src(config.paths.scss.globalStylesInput)
  */
 gulp.task('copy-to-npm', () => gulp.src([
   path.join(config.paths.distFolder, 'helpers.scss'),
+  path.join(config.paths.rootFolder, 'node_modules/@terminus/design-tokens/css/library-design-tokens.css'),
   path.join(config.paths.distFolder, 'terminus-ui.css'),
 ])
   .pipe(gulp.dest(config.paths.npmFolder)));

@@ -1,0 +1,379 @@
+/**
+ * Pure - Dark
+ */
+$color__pure--dark: #302d35 !default;
+
+/**
+ * Pure - Light
+ */
+$color__pure--light: #fafafa !default;
+
+
+
+
+/**
+ * Utility - Extra Dark
+ */
+$color__utility--xdark: #3e3c43 !default;
+
+/**
+ * Utility - Dark
+ */
+$color__utility--dark: #757575 !default;
+
+/**
+ * Utility
+ */
+$color__utility: #999 !default;
+
+/**
+ * Utility - Light
+ */
+$color__utility--light: #cecdd1 !default;
+
+/**
+ * Utility - Extra Light
+ */
+$color__utility--xlight: #f2f0f7 !default;
+
+
+/**
+ * Primary - Extra Dark
+ */
+$color__primary--xdark: #0a375b !default;
+
+/**
+ * Primary - Dark
+ */
+$color__primary--dark: #0c4271 !default;
+
+/**
+ * Primary
+ */
+$color__primary: #00538a !default;
+
+/**
+ * Primary - Light
+ */
+$color__primary--light: #1666b1 !default;
+
+/**
+ * Primary - xLight
+ */
+$color__primary--xlight: #1777b6 !default;
+
+
+/**
+ * Accent - Extra Dark
+ */
+$color__accent--xdark: #2b673f !default;
+
+/**
+ * Accent - Dark
+ */
+$color__accent--dark: #317448 !default;
+
+/**
+ * Accent
+ */
+$color__accent: #2f854d !default;
+
+/**
+ * Accent - Light
+ */
+$color__accent--light: #3b9b5c !default;
+
+/**
+ * Accent - xLight
+ */
+$color__accent--xlight: lighten($color__accent, 60%) !default;
+
+
+
+
+/**
+ * Error - Dark
+ */
+$color__error--dark: #b55949 !default;
+
+/**
+ * Error
+ */
+$color__error: #c8604d !default;
+
+/**
+ * Error - Light
+ */
+$color__error--light: #d76c59 !default;
+
+
+/**
+ * Warn - Dark
+ */
+$color__warn--dark: #cc9f45 !default;
+
+/**
+ * Warn
+ */
+$color__warn: #dea83b !default;
+
+/**
+ * Warn - Light
+ */
+$color__warn--light: #e8b550 !default;
+
+
+/**
+ * Highlight - Dark
+ */
+$color__highlight--dark: #ddd455 !default;
+
+/**
+ * Highlight
+ */
+$color__highlight: #efe557 !default;
+
+/**
+ * Highlight - Light
+ */
+$color__highlight--light: #f6ef8b !default;
+
+
+/**
+ * The map of colors
+ *
+ * Note: Currently, warn and error are the same color in the $palettes map. More work needs to be done to solidify our palette.
+ */
+$palettes: (
+  primary: (
+    xlight: $color__primary--xlight,
+    light: $color__primary--light,
+    base: $color__primary,
+    dark: $color__primary--dark,
+    xdark: $color__primary--xdark
+  ),
+  accent: (
+    xlight: $color__accent--xlight,
+    light: $color__accent--light,
+    base: $color__accent,
+    dark: $color__accent--dark,
+    xdark: $color__accent--xdark
+  ),
+  error: (
+    light: $color__error--light,
+    base: $color__error,
+    dark: $color__error--dark
+  ),
+  warn: (
+    light: $color__error--light,
+    base: $color__error,
+    dark: $color__error--dark
+  ),
+  highlight: (
+    light: $color__highlight--light,
+    base: $color__highlight,
+    dark: $color__highlight--dark
+  ),
+  pure: (
+    dark: $color__pure--dark,
+    base: $color__pure--light
+  ),
+  utility: (
+    xlight: $color__utility--xlight,
+    light: $color__utility--light,
+    base: $color__utility,
+    dark: $color__utility--dark,
+    xdark: $color__utility--xdark
+  )
+);
+
+
+/**
+ * Retrieve a color from the colors map
+ *
+ * @param $palette
+ *  The palette to use from the map
+ * @param $tone
+ *  The tone to use from the selected map. Default: base
+ * @example
+ *  @include color(primary);
+ *  @include color(accent, light);
+ */
+@function color($palette, $tone: 'base') {
+  // Verify the palette exists (color)
+  @if not(map-has-key($palettes, $palette)) {
+    $allowed: map-keys($palettes);
+    @error 'Invalid palette name: `#{$palette}`. Allowed palettes: #{$allowed}';
+  }
+
+  // Verify the tone exists (variation)
+  @if not(map-has-key(map-get($palettes, $palette), $tone)) {
+    $allowed: map-keys(map-get($palettes, $palette));
+    @error 'Invalid palette tone: `#{$tone}`. Allowed tones for `#{$palette}` are: #{$allowed}';
+  }
+
+  @return map-get(map-get($palettes, $palette), $tone);
+}
+
+
+
+/**
+ * The map themes to colors
+ */
+$theme-and-color: (
+  'primary': $color__primary,
+  'accent': $color__accent,
+  'error': $color__error,
+  'warn': $color__warn,
+  'highlight': $color__highlight,
+  'pure': $color__pure--light,
+  'utility': $color__utility
+);
+
+
+/**
+ * Output conditional styles for the possible themes
+ *
+ * @param $property
+ *  The CSS property that should be colored. Default: 'background-color'
+ * @example
+ *  @include theme-color;
+ *  @include theme-color('color');
+ */
+@mixin theme-color($property: 'background-color') {
+  // Verify an allowed property was passed in
+  @if not(($property == background-color)) and not(($property == color)) {
+    @error 'The `theme__color` mixin only accepts `background-color` or `color`';
+  }
+
+  @each $key, $value in $theme-and-color {
+    ::ng-deep .u-theme--#{$key} & {
+      &[disabled] {
+        background-color: color(utility, light);
+        color: color(utility);
+      }
+      #{$property}: $value;
+
+      @if ($property == 'background-color') and (not(($key == 'pure')) and not(($key == 'highlight'))) {
+        color: $color__pure--light;
+      }
+
+      @if ($property == 'background-color') and ($key == 'highlight') {
+        color: $color__pure--dark;
+      }
+    }
+  }
+}
+
+
+// stylelint-disable value-keyword-case
+
+/**
+ * Define the material based primary map
+ */
+$ts-material-primary: (
+  50: $color__primary--xlight,
+  100: $color__primary--light,
+  200: $color__primary,
+  300: $color__primary,
+  400: $color__primary,
+  500: $color__primary,
+  600: $color__primary,
+  700: $color__primary--dark,
+  800: $color__primary,
+  900: $color__primary--xdark,
+  a100: $color__primary,
+  a200: $color__primary,
+  a400: $color__primary,
+  a700: $color__primary,
+  contrast: (
+    50: $color__pure--light,
+    100: $color__pure--light,
+    200: $color__pure--light,
+    300: $color__pure--light,
+    400: $color__pure--light,
+    500: $color__pure--light,
+    600: $color__pure--light,
+    700: $color__pure--light,
+    800: $color__pure--light,
+    900: $color__pure--light,
+    a100: $color__pure--light,
+    a200: $color__pure--light,
+    a400: $color__pure--light,
+    a700: $color__pure--light,
+  )
+);
+
+/**
+ * Define the material based accent map
+ */
+$ts-material-accent: (
+  50: $color__accent--xlight,
+  100: $color__accent--light,
+  200: $color__accent,
+  300: $color__accent,
+  400: $color__accent,
+  500: $color__accent,
+  600: $color__accent,
+  700: $color__accent--dark,
+  800: $color__accent,
+  900: $color__accent--xdark,
+  a100: $color__accent,
+  a200: $color__accent,
+  a400: $color__accent,
+  a700: $color__accent,
+  contrast: (
+    50: $color__pure--light,
+    100: $color__pure--light,
+    200: $color__pure--light,
+    300: $color__pure--light,
+    400: $color__pure--light,
+    500: $color__pure--light,
+    600: $color__pure--light,
+    700: $color__pure--light,
+    800: $color__pure--light,
+    900: $color__pure--light,
+    a100: $color__pure--light,
+    a200: $color__pure--light,
+    a400: $color__pure--light,
+    a700: $color__pure--light,
+  )
+);
+
+/**
+ * Define the material based warn map
+ */
+$ts-material-warn: (
+  50: $color__error--light,
+  100: $color__error--light,
+  200: $color__error,
+  300: $color__error,
+  400: $color__error,
+  500: $color__error,
+  600: $color__error,
+  700: $color__error--dark,
+  800: $color__error,
+  900: $color__error--dark,
+  a100: $color__error,
+  a200: $color__error,
+  a400: $color__error,
+  a700: $color__error,
+  contrast: (
+    50: $color__pure--light,
+    100: $color__pure--light,
+    200: $color__pure--light,
+    300: $color__pure--light,
+    400: $color__pure--light,
+    500: $color__pure--light,
+    600: $color__pure--light,
+    700: $color__pure--light,
+    800: $color__pure--light,
+    900: $color__pure--light,
+    a100: $color__pure--light,
+    a200: $color__pure--light,
+    a400: $color__pure--light,
+    a700: $color__pure--light,
+  )
+);
+
+// stylelint-enable value-keyword-case

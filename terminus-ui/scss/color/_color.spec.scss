@@ -1,0 +1,11 @@
+@import 'true';
+@import 'color';
+
+@include describe ('color') {
+  @include test('should return the correct color based on palette and tone') {
+    $test: color(warn, dark);
+    $expect: #b55949;
+
+    @include assert-equal($test, $expect);
+  }
+}

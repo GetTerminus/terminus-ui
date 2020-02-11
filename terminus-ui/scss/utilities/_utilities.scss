@@ -1,0 +1,9 @@
+@import '../layout/layout';
+
+
+/**
+ * Utility class to hide an element
+ */
+.u-visually-hidden {
+  @include visually-hidden;
+}

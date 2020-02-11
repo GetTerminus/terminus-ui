@@ -1,5 +1,6 @@
+@import './custom-properties';
 @import './generated-classes';
-@import './../helpers/theme';
+@import '../theme/theme';
 
 
 // Remove outline from all focused elements. Focus styles should be handled by the component
