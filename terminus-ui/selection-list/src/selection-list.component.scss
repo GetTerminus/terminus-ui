@@ -15,7 +15,9 @@
 
   &.ts-selection-list--single {
     .ts-selection-list__input {
-      width: 94%;
+      // ts icon wraps around material icon, which defines width 24px.
+      $MAT_ICON_WIDTH: 24px;
+      width: calc(100% - #{$MAT_ICON_WIDTH});
     }
   }
 
