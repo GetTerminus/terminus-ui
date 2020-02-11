@@ -1,0 +1,19 @@
+/**
+ * Pseudo element base styles
+ *
+ * @param $display
+ *  The display value (block/inline/etc)
+ * @param $position
+ *  The position style (absolute/static/etc)
+ * @param $content
+ *  The content value
+ */
+@mixin pseudo(
+  $display: block,
+  $position: absolute,
+  $content: ''
+) {
+  content: $content;
+  display: $display;
+  position: $position;
+}

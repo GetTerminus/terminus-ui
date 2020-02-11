@@ -1,42 +1,63 @@
-@import './../../scss/helpers/animation';
-@import './../../scss/helpers/color';
-@import './../../scss/helpers/cursors';
-@import './../../scss/helpers/reset';
-@import './../../scss/helpers/spacing';
-@import './../../scss/helpers/typography';
+@import '../../scss/animation/animation';
+@import '../../scss/color/color';
+@import '../../scss/cursors/cursors';
+@import '../../scss/reset/reset';
+@import '../../scss/spacing/spacing';
+@import '../../scss/typography/typography';
 
 
-// FIXME: Refactor to use CSS variables. Currently we are generating a lot of duplicate CSS.
+ts-button {
+  // NOTE: This makes the bottom padding space look better than the default 36px
+  --button-lineHeight: 35px;
+  --button-rotation: 360deg;
+  --button-icon-negative-padding-adjustment: -4px;
+  --button-collapsible-first-icon-adjustment: -.15em;
 
-// This makes the bottom padding space look better than the default 36px
-$button-line-height: 35px;
-$rotation: 360deg;
-// NOTE: All transition durations are based off of the content transition. We should only need to adjust this value.
-$content-transition-duration: 500ms;
-$icon-transition-duration-collapse: $content-transition-duration - 100ms;
-$icon-transition-duration-expand: $icon-transition-duration-collapse - 100ms;
-$label-transition-duration: $icon-transition-duration-expand - 100ms;
-$color-transition-duration: $label-transition-duration - 100ms;
+  // NOTE: All transition durations are based off of the content transition.
+  --button-content-transitionDuration: var(--ts-animation-time-duration-500);
+  --button-icon-transitionDuration-collapse: calc(var(--button-content-transitionDuration) - 100ms);
+  --button-icon-transitionDuration-expand: calc(var(--button-icon-transitionDuration-collapse) - 100ms);
+  --button-label-transitionDuration: calc(var(--button-icon-transitionDuration-expand) - 100ms);
+  --button-color-transitionDuration: calc(var(--button-label-transitionDuration) - 100ms);
 
-$color-transition: color $color-transition-duration $g-easing;
-// FIXME: This exact transition is needed in the link styles (when inside a menu, links emulate
-// button styles). How can we share something this specific? Or simply make this more generic
-$background-transition: background $icon-transition-duration-collapse $g-material-background-easing;
-$shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shadow-easing;
+  --button-color-transition: color var(--button-color-transitionDuration) var(--ts-animation-easing-ease);
+  --button-background-transition: background var(--button-icon-transitionDuration-collapse) var(--ts-animation-easing-ease);
+  --button-shadow-transition: box-shadow var(--button-icon-transitionDuration-expand) var(--ts-animation-easing-ease);
+  --button-maxWidth-transition: max-width var(--button-content-transitionDuration) var(--ts-animation-easing-ease);
+  --button-icon-transition: transform var(--button-icon-transitionDuration-expand) var(--ts-animation-easing-ease);
+  --button-spinner-transition: opacity var(--button-label-transitionDuration) var(--ts-animation-easing-ease);
+
+  // NOTE: This is to better align with inputs that have extra space above and below
+  --button-margin: 4px 0;
+  --button-padding: 0 var(--ts-space-inline-400);
+  --button-padding-collapsed: 0 6px;
+  --button-border: 1px solid transparent;
+  --button-border-radius: 3px;
+  --button-border-radius-collapsible: 2em;
+
+  --button-backgroundColor-disabled: var(--ts-color-utility-300);
+  --button-backgroundColor-primary: var(--ts-color-primary-500);
+  --button-backgroundColor-accent: var(--ts-color-accent-500);
+  --button-backgroundColor-warn: var(--ts-color-warn-500);
+  --button-color-disabled: var(--ts-color-utility-500);
+  --button-color: var(--ts-color-light);
+  --button-padding-right-progress: 36px;
+  --button-icon-vertical-adjustment: -.15em;
+  --button-icon-horizontal-adjustment: .2em;
+}
 
 // Styles applied when the button is collapsed
 @mixin collapsed {
-  $collapsed-padding: 6px;
+  padding: var(--button-padding-collapsed);
 
-  padding-left: $collapsed-padding;
-  padding-right: $collapsed-padding;
+  .ts-icon {
+    margin-right: 0;
+  }
 
   .c-icon {
-    margin-left: 0;
-    margin-right: 0;
     position: relative;
-    transform: rotate(#{$rotation});
-    transition-duration: $icon-transition-duration-collapse;
+    transform: rotate(var(--button-rotation));
+    transition-duration: var(--button-icon-transitionDuration-collapse);
   }
 
   // collapse the text content
@@ -47,8 +68,6 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 }
 
 
-
-
 //
 // @component
 //  Button
@@ -56,42 +75,59 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
 //  A button component
 //
 .ts-button {
-  $vertical-alignment-adjustment-for-inputs: 4px 0;
   @include reset;
   display: inline-block;
-  margin: $vertical-alignment-adjustment-for-inputs;
+  margin: var(--button-margin);
 
   // Top level styles should be nested here
   .c-button {
     @include typography;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    color: color(pure);
-    line-height: $button-line-height;
+    border: var(--button-border);
+    border-radius: var(--button-border-radius);
+    color: var(--button-color);
+    line-height: var(--button-lineHeight);
     // Overwrite material min-width
     min-width: auto;
-    padding: 0 spacing(small);
-    // NOTE: Important needed to override the `!important` within the ladda styles
-    // stylelint-disable-next-line declaration-no-important
-    transition: $color-transition, $background-transition, $shadow-transition !important;
+    padding: var(--button-padding);
+    transition: var(--button-color-transition), var(--button-background-transition), var(--button-shadow-transition);
   }
 
   // Target instances nested inside the TsSearchComponent
   .ts-search & {
     // Offset to account for space under input for error messages
     position: relative;
-    top: -#{spacing(small)};
+    top: calc(var(--ts-space-stack-45) * -1);
+  }
+
+  // Target button instances nested inside a TsMenuComponent
+  .mat-menu-panel & {
+    // needed for specificity
+    &.c-button {
+      background-color: transparent;
+      box-shadow: none;
+      color: var(--ts-color-dark);
+      text-align: left;
+      width: 100%;
+
+      &:focus,
+      &:active,
+      &:hover {
+        background-color: var(--ts-color-utility-300);
+        box-shadow: none;
+        color: var(--ts-color-primary-500);
+      }
+    }
   }
 }
 
 
 .c-button {
-  // Define theme styles
+  // TODO: Sass area of possible themes should be available to all components from a global location
+  // Define all possible themes
   $themes: primary accent warn;
-  $collapsible-radius: 2em;
 
   &[disabled] {
-    @include cursor(not-allowed);
+    cursor: not-allowed;
   }
 
   .mat-button-wrapper {
@@ -104,25 +140,21 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
   // Class added when progress indicator is shown
   &.c-button--progress {
     .mat-button-wrapper {
-      $custom-progress-padding: 36px;
-
-      padding-right: $custom-progress-padding;
+      padding-right: var(--button-padding-right-progress);
     }
   }
 
   // Target the prefix icon
   &__icon {
-    $horizontal-alignment-fix: .2em;
-    margin-right: $horizontal-alignment-fix;
+    margin-right: var(--button-icon-horizontal-adjustment);
   }
 
   // Target any icon inside a button
   // Adjust icon vertical layout
   .c-icon {
-    $vertical-alignment-fix: -.15em;
-    // Fix small vertical aligment issue between icon & text
-    margin-top: $vertical-alignment-fix;
-    transition: transform $icon-transition-duration-expand $g-easing;
+    // Fix small vertical alignment issue between icon & text
+    margin-top: var(--button-icon-vertical-adjustment);
+    transition: var(--button-icon-transition);
     vertical-align: middle;
     will-change: transform;
   }
@@ -134,15 +166,14 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     position: absolute;
     right: 0;
     top: 0;
-    transition: opacity $label-transition-duration $g-easing;
-    will-change: opacity;
+    transition: var(--button-spinner-transition);
 
     &--active {
       opacity: 1;
     }
 
     circle {
-      stroke: color(utility);
+      stroke: var(--ts-color-utility-500);
     }
   }
 
@@ -155,9 +186,11 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
     }
   }
 
-  // When collapsible AND disabled
   &.c-button--collapsable,
   &.c-button--collapsible {
+    border-radius: var(--button-border-radius-collapsible);
+
+    // When collapsible AND disabled
     &[disabled] {
       &:not(:hover) {
         &:not(:focus) {
@@ -165,89 +198,64 @@ $shadow-transition: box-shadow $icon-transition-duration-expand $g-material-shad
         }
       }
     }
+
+    // Fix left alignment when button is expanded and an icon is the first item
+    &:hover,
+    &:focus {
+      .c-icon {
+        margin-left: var(--button-collapsible-first-icon-adjustment);
+      }
+    }
+
+    .c-button__content {
+      display: inline-block;
+      max-width: 400px;
+      overflow: hidden;
+      transition: var(--button-maxWidth-transition);
+      white-space: nowrap;
+
+      .ts-icon {
+        margin-left: var(--button-icon-negative-padding-adjustment);
+        margin-right: var(--button-icon-negative-padding-adjustment);
+      }
+    }
+
+    .mat-ripple {
+      border-radius: var(--button-border-radius-collapsible);
+    }
   }
+
 
   // Loop through using each theme name to create styles
   @each $theme in $themes {
     // Theme class sets the colors for standard buttons
     &.c-button--#{$theme} {
-      background-color: color(#{$theme});
-
-      &[disabled] {
-        background-color: color(utility, light);
-        color: color(utility);
+      &:not(.c-button--hollow) {
+        background-color: var(--button-backgroundColor-#{$theme});
       }
 
-      // Collapsible button
-      &.c-button--collapsable,
-      &.c-button--collapsible {
-        border-radius: $collapsible-radius;
-
-        // Fix left alignment when the icon is the first item
-        .c-icon {
-          $first-icon-adjustment: -.15em;
-
-          margin-left: $first-icon-adjustment;
-        }
-
-        .c-button__content {
-          display: inline-block;
-          max-width: 400px;
-          overflow: hidden;
-          padding: 0 spacing(small);
-          transition: max-width $content-transition-duration $g-easing;
-          white-space: nowrap;
-
-          .ts-icon {
-            --negative-padding-adjustment: -4px;
-            margin-left: var(--negative-padding-adjustment);
-            margin-right: var(--negative-padding-adjustment);
-          }
-        }
-
-        .mat-ripple {
-          border-radius: $collapsible-radius;
-        }
+      &[disabled] {
+        background-color: var(--button-backgroundColor-disabled);
+        color: var(--button-color-disabled);
       }
 
       // Hollow button
       &.c-button--hollow {
-        background-color: transparent;
-        border-color: color(#{$theme});
+        border-color: var(--ts-color-#{$theme}-500);
         box-shadow: none;
-        color: color(#{$theme});
+        color: var(--ts-color-#{$theme}-500);
 
         &:focus,
         &:hover {
-          background-color: color(#{$theme});
-          color: color(pure);
+          background-color: var(--button-backgroundColor-#{$theme});
+          color: var(--button-color);
         }
 
         &[disabled] {
           background-color: transparent;
-          border-color: color(utility);
-          color: color(utility);
+          border-color: var(--ts-color-utility-500);
+          color: var(--ts-color-utility-500);
         }
-      }
-    }
-  }
-
-  // Target button instances nested inside a TsMenuComponent
-  .mat-menu-panel & {
-    // needed for specificity
-    &.c-button {
-      background-color: transparent;
-      box-shadow: none;
-      color: color(pure, dark);
-      text-align: left;
-      width: 100%;
-
-      &:focus,
-      &:active,
-      &:hover {
-        background-color: color(utility, xlight);
-        box-shadow: none;
-        color: color(primary);
       }
     }
   }

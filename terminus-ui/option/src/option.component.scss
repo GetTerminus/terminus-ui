@@ -1,10 +1,10 @@
-@import './../../scss/helpers/reset';
-@import './../../scss/helpers/menu';
-@import './../../scss/helpers/color';
-@import './../../scss/helpers/shadows';
-@import './../../scss/helpers/cursors';
-@import './../../scss/helpers/spacing';
-@import './../../scss/helpers/z-index';
+@import '../../scss/reset/reset';
+@import '../../scss/menu/menu';
+@import '../../scss/color/color';
+@import '../../scss/shadows/shadows';
+@import '../../scss/cursors/cursors';
+@import '../../scss/spacing/spacing';
+@import '../../scss/z-index/z-index';
 
 
 // FIXME: Remove custom color once our palette supports a color for this use-case.

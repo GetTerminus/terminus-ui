@@ -1,0 +1,16 @@
+/**
+ * Fill the parent element
+ *
+ * @param $margin
+ *  The amount of space between the edge of the parent. Default: 0
+ * @example
+ *  @include fill-parent;
+ *  @include fill-parent(1em);
+ */
+@mixin take-space($margin: 0) {
+  bottom: $margin;
+  left: $margin;
+  position: absolute;
+  right: $margin;
+  top: $margin;
+}

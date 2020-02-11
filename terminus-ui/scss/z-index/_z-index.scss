@@ -1,0 +1,34 @@
+/**
+ * The list of possible z-index values
+ *
+ * (items at the top have a higher value)
+ *
+ * @section Config
+ */
+$z-layers: (
+  'global-overlay',
+  'global-header',
+  'drawer',
+  'tooltip',
+  'attached-panel-overlay',
+  'panel-header',
+  'menu-trigger',
+);
+
+/**
+ * Retrieve the correct z-index value by passing in the item name
+ *
+ * @param $name
+ *  The name of the item that should have an associated z-index
+ * @example
+ *  z(tooltip);
+ *  z(attached-panel-overlay);
+ */
+@function z($name) {
+  @if index($z-layers, $name) {
+    @return (length($z-layers) - index($z-layers, $name)) + 500;
+  } @else {
+    @error 'There is no item "#{$name}" in this list; choose one of: #{$z-layers}';
+    @return null;
+  }
+}

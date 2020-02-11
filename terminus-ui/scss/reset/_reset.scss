@@ -1,0 +1,28 @@
+/**
+ * Reset browser and bootstrap styles
+ *
+ * NOTE: This is needed because we cannot use a global reset stylesheet. Once the full Terminus app
+ * has transitioned to the UI library, this can be removed in favor of a global reset stylesheet.
+ *
+ * @example
+ *  @include reset;
+ */
+@mixin reset() {
+  // Enforce consistent sizing
+  // NOTE: wrappers for Material labels use a custom box-sizing
+  * {
+    &:not(.mat-form-field-label-wrapper) {
+      box-sizing: border-box;
+    }
+  }
+
+  // Unset margins
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    margin: unset;
+  }
+}

@@ -1,9 +1,9 @@
-@import './../../scss/helpers/card';
-@import './../../scss/helpers/color';
-@import './../../scss/helpers/layout';
-@import './../../scss/helpers/reset';
-@import './../../scss/helpers/spacing';
-@import './../../scss/helpers/typography';
+@import '../../scss/card/card';
+@import '../../scss/color/color';
+@import '../../scss/layout/layout';
+@import '../../scss/reset/reset';
+@import '../../scss/spacing/spacing';
+@import '../../scss/typography/typography';
 
 
 @mixin card-border($side) {

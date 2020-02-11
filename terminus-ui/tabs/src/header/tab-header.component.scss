@@ -1,9 +1,9 @@
-@import './../../../scss/helpers/a11y';
-@import './../../../scss/helpers/animation';
-@import './../../../scss/helpers/color';
-@import './../../../scss/helpers/cursors';
-@import './../../../scss/helpers/spacing';
-@import './../../../scss/helpers/typography';
+@import '../../../scss/a11y/a11y';
+@import '../../../scss/animation/animation';
+@import '../../../scss/color/color';
+@import '../../../scss/cursors/cursors';
+@import '../../../scss/spacing/spacing';
+@import '../../../scss/typography/typography';
 
 
 $header-border: 1px solid color(utility, light);

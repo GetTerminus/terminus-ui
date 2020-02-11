@@ -1,0 +1,29 @@
+/**
+ * The primary easing definition
+ */
+$g-easing: cubic-bezier(.26, .86, .44, .985) !default;
+
+/**
+ * The material background easing definition
+ */
+$g-material-background-easing: cubic-bezier(.25, .8, .25, 1) !default;
+
+/**
+ * The material shadow easing definition
+ */
+$g-material-shadow-easing: cubic-bezier(.4, 0, .2, 1) !default;
+
+
+// Currently used in form-field and select components
+$swift-ease-out-duration: 400ms !default;
+$swift-ease-out-timing-function: cubic-bezier(.25, .8, .25, 1) !default;
+$swift-ease-in-duration: 300ms !default;
+$swift-ease-in-timing-function: cubic-bezier(.55, 0, .55, .2) !default;
+
+
+// Currently used in expansion panel component
+$g-animation-fast-out-slow-in-timing-function: cubic-bezier(.4, 0, .2, 1) !default;
+$g-elevation-transition-duration: 280ms !default;
+
+$g-tab-animation-duration: 200ms !default;
+$g-tab-ease-in-out-curve-function: cubic-bezier(.35, 0, .25, 1) !default;

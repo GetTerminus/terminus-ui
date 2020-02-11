@@ -1,0 +1,222 @@
+// NOTE: Disabling the strict value rule as we need to build our type styles
+// stylelint-disable scale-unlimited/declaration-strict-value
+
+
+/**
+ * The base typeface
+ */
+$type__family--base: #{Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif} !default;
+
+/**
+ * The monospaced typeface family
+ */
+$type__family--monospaced: #{'Lucida Console', Monaco, 'DejaVu Sans Mono', monospace} !default;
+
+/**
+ * The available typefaces
+ */
+$typography-typefaces: (
+  'primary': $type__family--base,
+  'monospaced': $type__family--monospaced
+);
+
+/**
+ * The base typography size
+ */
+$type__size--base: 16px !default;
+
+/**
+ * The base typography weight
+ */
+$type__weight--base: 400 !default;
+
+/**
+ * The available typography formats
+ */
+$typography-formats: (
+  'display',
+  'headline',
+  'title',
+  'subhead',
+  'body',
+  'caption',
+  'fixedwidth',
+  'hint'
+);
+
+/**
+ * The available typography levels for the `display` format
+ */
+$typography-display-levels: (
+  1,
+  2,
+  3,
+  4
+);
+
+/**
+ * The available typography levels for the `body` format
+ */
+$typography-body-levels: (
+  1,
+  2
+);
+
+
+/**
+ * Return typography styles based on the format and level
+ *
+ * @param $format
+ *  One of the available formats defined within $typography-formats. Default: 'body'.
+ * @param $level
+ *  One of the accepted levels for the passed in format. Default: 1
+ * @param $typeface
+ *  One of the available typefaces defined in $typography-typefaces. Default: 'primary'
+ * @example
+ *  @include typography;
+ *  @include typography(display, 4);
+ */
+@mixin typography($format: 'body', $level: 1, $typeface: 'primary') {
+  // Verify the format is valid
+  @if index($typography-formats, $format) == null {
+    @error 'Invalid typography format: `#{$format}`. Allowed formats: #{$typography-formats}';
+  }
+
+  // Verify the typeface is valid
+  @if not(map-has-key($typography-typefaces, $typeface)) {
+    $allowed: map-keys($typography-typefaces);
+    @error 'Invalid typography typeface: `#{$typeface}`. Allowed typefaces: #{$allowed}';
+  } @else {
+    font-family: map-get($typography-typefaces, $typeface);
+  }
+
+
+  // DISPLAY
+  @if $format == 'display' {
+    // Verify the level is valid for this format
+    @if index($typography-display-levels, $level) == null {
+      @error 'Invalid display format level: `#{$level}`. Allowed levels: #{$typography-display-levels}';
+    }
+
+    @if $level == 1 {
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 40px;
+    }
+
+    @if $level == 2 {
+      font-size: 45px;
+      font-weight: 500;
+      line-height: 64px;
+    }
+
+    @if $level == 3 {
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: -.005em;
+      line-height: 56px;
+    }
+
+    @if $level == 4 {
+      font-size: 112px;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      line-height: 112px;
+    }
+  }
+
+
+  // HEADLINE
+  @if $format == 'headline' {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+
+  // TITLE
+  @if $format == 'title' {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: .005em;
+  }
+
+
+  // SUBHEAD
+  @if $format == 'subhead' {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    line-height: 24px;
+  }
+
+
+  // BODY
+  @if $format == 'body' {
+    font-size: 16px;
+    letter-spacing: .01em;
+
+    // Verify the level is valid for this format
+    @if index($typography-body-levels, $level) == null {
+      @error 'Invalid body format level: `#{$level}`. Allowed levels: #{$typography-body-levels}';
+    }
+
+    @if $level == 1 {
+      font-weight: 400;
+
+      // TODO: overwrite in files rather than this nested chain (too specific) https://github.com/GetTerminus/terminus-ui/issues/1152
+      // Don't apply custom line-height to buttons
+      &:not(.c-button) {
+        &:not(.c-input) {
+          &:not(.c-select) {
+            &:not(.ts-checkbox) {
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    @if $level == 2 {
+      font-weight: 500;
+    }
+  }
+
+
+  // CAPTION
+  @if $format == 'caption' {
+    font-size: 12px;
+    letter-spacing: .02em;
+  }
+
+
+  // FIXEDWIDTH
+  @if $format == 'fixedwidth' {
+    font-family: $type__family--monospaced;
+  }
+
+
+  // Hints (for inputs)
+  @if $format == 'hint' {
+    color: color(utility);
+    font-size: 75%;
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 1.5;
+  }
+}
+
+
+/**
+ * Truncate overflowing text with an ellipsis
+ *
+ * @mixin typography
+ * @section Style Helpers
+ * @example
+ *  @include truncate-overflow;
+ */
+@mixin truncate-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

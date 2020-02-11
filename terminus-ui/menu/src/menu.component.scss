@@ -1,10 +1,10 @@
-@import './../../scss/helpers/color';
-@import './../../scss/helpers/cursors';
+@import '../../scss/color/color';
+@import '../../scss/cursors/cursors';
 // NOTE: Drag and drop included to add classes rather than mixins etc
-@import './../../scss/helpers/drag-and-drop';
-@import './../../scss/helpers/reset';
-@import './../../scss/helpers/spacing';
-@import './../../scss/helpers/typography';
+@import '../../scss/drag-and-drop/drag-and-drop';
+@import '../../scss/reset/reset';
+@import '../../scss/spacing/spacing';
+@import '../../scss/typography/typography';
 
 
 $icon-width: 24px;
