@@ -1,3 +1,10 @@
+## [16.2.1](https://github.com/GetTerminus/terminus-ui/compare/v16.2.0...v16.2.1) (2020-02-12)
+
+
+### Bug Fixes
+
+* **Services:** define external services as singletons ([3c6fc4f](https://github.com/GetTerminus/terminus-ui/commit/3c6fc4f)), closes [#2014](https://github.com/GetTerminus/terminus-ui/issues/2014)
+
 # [16.2.0](https://github.com/GetTerminus/terminus-ui/compare/v16.1.1...v16.2.0) (2020-02-06)
 
 
