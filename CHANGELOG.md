@@ -1,3 +1,10 @@
+## [16.2.2](https://github.com/GetTerminus/terminus-ui/compare/v16.2.1...v16.2.2) (2020-02-12)
+
+
+### Bug Fixes
+
+* **ValidationMessage:** Disable change detection OnPush to get called on first change cycle ([7181dce](https://github.com/GetTerminus/terminus-ui/commit/7181dce))
+
 ## [16.2.1](https://github.com/GetTerminus/terminus-ui/compare/v16.2.0...v16.2.1) (2020-02-12)
 
 
