@@ -92,6 +92,19 @@ describe(`TsInputComponent`, function() {
         expect(el.getAttribute('required')).toEqual('');
       });
 
+      test(`should display validation message if the form control is required and validation fails`, () => {
+        const fixture = createComponent(TestComponents.FormControlAttrRequired);
+        fixture.detectChanges();
+        const component = getInputInstance(fixture);
+        const el = component.inputElement.nativeElement;
+        el.focus();
+
+        component.onBlur();
+        fixture.detectChanges();
+
+        const validation = fixture.debugElement.query(By.css('.c-validation-message'));
+        expect(validation.nativeElement.textContent.trim()).toEqual('Required');
+      });
 
       test(`should set required if the required flag is set`, () => {
         const fixture = createComponent(TestComponents.AttrInputRequired);
