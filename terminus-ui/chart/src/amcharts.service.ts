@@ -23,7 +23,7 @@ export const TS_AMCHARTS_TOKEN = new InjectionToken<TsAmChartsToken>('amCharts')
 /**
  * Expose amCharts via a service
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TsAmChartsService {
 
   constructor(

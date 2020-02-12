@@ -22,7 +22,7 @@
 
 > Note:  Since the end-user of this library is the one with the actual license to use amCharts, we let the consumer pass in the library.
 
-Create a factory function to inject the needed libraries:
+Create a factory function to inject the needed libraries and plugins:
 
 ```typescript
 import { TS_AMCHARTS_TOKEN, TsAmChartsToken } from '@terminus/ui/chart';

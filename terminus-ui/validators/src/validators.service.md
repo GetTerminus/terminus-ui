@@ -12,6 +12,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+NOTE: This service is provided as a singleton by defining the `providedIn` property as `root`.
 
 ## Basic usage
 
