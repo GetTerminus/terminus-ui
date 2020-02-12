@@ -1,3 +1,10 @@
+## [16.2.3](https://github.com/GetTerminus/terminus-ui/compare/v16.2.2...v16.2.3) (2020-02-12)
+
+
+### Bug Fixes
+
+* **CSVEntry:** external rows now correctly match height of inner rows ([285a72f](https://github.com/GetTerminus/terminus-ui/commit/285a72f)), closes [#2020](https://github.com/GetTerminus/terminus-ui/issues/2020)
+
 ## [16.2.2](https://github.com/GetTerminus/terminus-ui/compare/v16.2.1...v16.2.2) (2020-02-12)
 
 
