@@ -132,6 +132,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   protected uid = `ts-csv-entry-${nextUniqueId++}`;
 
   /**
+   * Define the static height needed in the DOM for the external rows
+   */
+  public fakeRowHeight = '35px';
+
+  /**
    * Expose the flexbox layout gap
    */
   public layoutGap: string = TS_SPACING.small[0];
