@@ -30,7 +30,9 @@
 
 // <div> primary container
 .c-csv-entry {
-  $rowHeight: 43px;
+  --csv-row-height: 39px;
+  --csv-cell-padding: #{spacing(small, 1)};
+  --csv-external-row-height: 35px;
   $rightColumnWidth: 40px;
   $leftColumnWidth: 15px;
 
@@ -72,7 +74,7 @@
     display: table-cell;
     font-size: inherit;
     min-width: spacing(large, 5);
-    padding: spacing(small, 1);
+    padding: var(--csv-cell-padding);
 
     // remove double border between columns
     + .c-csv-entry__input {
@@ -106,8 +108,7 @@
 
   // <ts-icon-button> button to delete row
   .c-csv-entry__delete {
-    // Match the height of the row
-    height: $rowHeight;
+    max-height: var(--csv-external-row-height);
 
     .ts-icon-button {
       color: color(utility, light);
@@ -118,9 +119,8 @@
   .c-csv-entry__column-id {
     @include typography(caption);
     color: color(utility, light);
-    // Match the height of the row
-    height: $rowHeight;
-    padding: 0 spacing(small, 2);
+    max-height: var(--csv-external-row-height);
+    padding: var(--csv-cell-padding);
 
     &--invalid {
       color: color(warn);

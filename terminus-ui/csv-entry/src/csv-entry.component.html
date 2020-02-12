@@ -13,14 +13,14 @@
       <!-- Column for delete buttons -->
       <div fxLayout="column">
         <!-- Fake row for header -->
-        <div style="height: 47px" fxFlex="noshrink"></div>
+        <div [style.height]="fakeRowHeight" fxFlex="0 0 auto"></div>
 
         <div
           class="c-csv-entry__column-id"
           [class.c-csv-entry__column-id--invalid]="row.invalid"
           [attr.id]="'csv-row-id-' + (idIndex + 1)"
           *ngFor="let row of rows?.controls; let idIndex = index"
-          fxFlex="noshrink"
+          fxFlex="0 0 auto"
           fxLayout="row"
           fxLayoutAlign="center center"
         >
@@ -94,7 +94,7 @@
       <!-- Column for delete buttons -->
       <div fxLayout="column">
         <!-- Fake row for header -->
-        <div style="height: 47px" fxFlex="noshrink"></div>
+        <div [style.height]="fakeRowHeight"  fxFlex="0 0 auto"></div>
 
         <ts-icon-button
           class="c-csv-entry__delete qa-csv-entry-delete"
