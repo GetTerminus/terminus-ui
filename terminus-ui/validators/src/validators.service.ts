@@ -20,7 +20,7 @@ import { urlValidator } from './validators/url/url';
 /**
  * Define a service that exposes custom form validators for use with reactive forms.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TsValidatorsService {
   public creditCard = creditCardValidator;
   public domain = domainValidator;
