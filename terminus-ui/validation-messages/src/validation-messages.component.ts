@@ -18,6 +18,7 @@ let nextUniqueId = 0;
 
 /**
  * A presentational component to render validation messages
+ * NOTE: ChangeDetectionStrategy.OnPush is disabled here because it affects control getting to this service on the first change cycle.
  *
  * @example
  * <ts-validation-messages
@@ -29,13 +30,13 @@ let nextUniqueId = 0;
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/validation</example-url>
  */
+// tslint:disable: prefer-on-push-component-change-detection
 @Component({
   selector: 'ts-validation-messages',
   templateUrl: './validation-messages.component.html',
   styleUrls: ['./validation-messages.component.scss'],
   host: { class: 'ts-validation-messages' },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsValidationMessages',
 })
 export class TsValidationMessagesComponent implements OnDestroy {
