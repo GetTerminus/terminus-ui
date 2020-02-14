@@ -22,6 +22,7 @@ import { TsButtonModule } from './button.module';
       [showProgress]="showProgress"
       [collapsed]="collapsed"
       [iconName]="iconName"
+      [id]="myId"
       [format]="format"
       [theme]="theme"
       (clicked)="clicked($event)"
@@ -36,6 +37,7 @@ class TestHostComponent implements OnInit, OnDestroy {
   public format!: string;
   public iconName!: string | undefined;
   public theme!: string;
+  public myId = 'foo';
 
   @ViewChild(TsButtonComponent, { static: true })
   public buttonComponent!: TsButtonComponent;
@@ -457,6 +459,20 @@ describe(`TsButtonComponent`, function() {
       expect(buttonComponent.isCollapsed).toEqual(true);
       jest.runAllTimers();
       expect(button.classList).toContain('c-button--collapsible');
+    });
+
+  });
+
+  describe(`ID`, function() {
+
+    test(`should support a custom ID`, () => {
+      expect(button.getAttribute('id')).toEqual('foo');
+    });
+
+    test(`should fall back to the UID if no ID is passed in`, () => {
+      component.myId = undefined as any;
+      fixture.detectChanges();
+      expect(button.getAttribute('id')).toContain('ts-button-');
     });
 
   });
