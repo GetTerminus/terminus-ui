@@ -126,6 +126,7 @@ const DEFAULT_VALIDATION_MESSAGES_MAX = 6;
   exportAs: 'tsCSVEntry',
 })
 export class TsCSVEntryComponent implements OnInit, OnDestroy {
+  private originalColumnCount = DEFAULT_COLUMN_COUNT;
   /**
    * Define the default component ID
    */
@@ -294,6 +295,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.addRows(this.rowCount, this.columnCount);
     this.addHeaders(this.columnCount, this.columnHeaders);
+    this.originalColumnCount = this.columnCount;
 
     this.recordsForm.valueChanges.pipe(
       // Let the form values 'settle' before we emit anything
@@ -653,7 +655,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
   public resetTable(): void {
     this.clearAllRows();
     this.clearHeaderCells();
-    this.columnCount = DEFAULT_COLUMN_COUNT;
+    this.columnCount = this.originalColumnCount;
     this.addRows(this.rowCount, this.columnCount);
     this.addHeaders(this.columnCount, this.columnHeaders);
     this.allErrors = null;
