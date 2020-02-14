@@ -19,6 +19,8 @@ import {
   tsStyleThemeTypesArray,
 } from '@terminus/ui/utilities';
 
+// Unique ID for each instance
+let nextUniqueId = 0;
 
 /**
  * Define the allowed {@link TsButtonComponent} action types
@@ -130,6 +132,11 @@ export class TsButtonComponent implements OnInit, OnDestroy {
   public originalClickEvent!: MouseEvent;
 
   /**
+   * Define the default component ID
+   */
+  public readonly uid = `ts-button-${nextUniqueId++}`;
+
+  /**
    * Getter returning a boolean based on both the component `isDisabled` flag and the FormControl's disabled status
    */
   public get shouldBeDisabled(): boolean {
@@ -217,6 +224,18 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    */
   @Input()
   public isDisabled = false;
+
+  /**
+   * Define an ID for the component
+   */
+  @Input()
+  public set id(value: string) {
+    this._id = value || this.uid;
+  }
+  public get id(): string {
+    return this._id;
+  }
+  protected _id: string = this.uid;
 
   /**
    * Define if the progress indicator should show

@@ -6,6 +6,7 @@
     'c-button--progress': showProgress && !isDisabled
   }"
   [attr.aria-label]="actionName"
+  [attr.id]="id"
   [attr.type]="buttonType"
   [disabled]="shouldBeDisabled"
   tabindex="{{ tabIndex }}"
