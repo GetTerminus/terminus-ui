@@ -1,3 +1,11 @@
+## [16.2.4](https://github.com/GetTerminus/terminus-ui/compare/v16.2.3...v16.2.4) (2020-02-14)
+
+
+### Bug Fixes
+
+* **CsvEntry:** make container scrollbar not showing up in firefox ([3d5ffaa](https://github.com/GetTerminus/terminus-ui/commit/3d5ffaa))
+* **CsvEvent:** when reset, not just reset to default column number. ([038e25b](https://github.com/GetTerminus/terminus-ui/commit/038e25b))
+
 ## [16.2.3](https://github.com/GetTerminus/terminus-ui/compare/v16.2.2...v16.2.3) (2020-02-12)
 
 
