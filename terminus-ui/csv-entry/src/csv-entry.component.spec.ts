@@ -573,7 +573,11 @@ describe(`TsCSVEntryComponent`, function() {
 
     test(`should restore the table to the default settings`, () => {
       hostComponent.maxRows = 5;
+      const initialColumnCount = 3;
+      component.columnCount = initialColumnCount;
+      component.ngOnInit();
       fixture.detectChanges();
+
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentThreeCol));
       let row2Cell1: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
       expect(row2Cell1.value).toEqual(expect.any(String));
@@ -592,7 +596,7 @@ describe(`TsCSVEntryComponent`, function() {
       row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
       message = fixture.debugElement.query(By.css('.c-csv-entry__message'));
       expect(row2Cell1.value).toEqual('');
-      expect(component.columnCount).toEqual(component.columnCount);
+      expect(component.columnCount).toEqual(initialColumnCount);
       expect(component.rows.length).toEqual(component.rowCount);
       expect(message).toBeFalsy();
     });
