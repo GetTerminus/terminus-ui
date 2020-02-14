@@ -40,6 +40,8 @@
   .c-csv-entry__scroll {
     // Odd height used to ensure that the table cuts off mid-cell so the user knows there is more content
     max-height: 28.5em;
+    // To remove a horizontal scrollbar showing in firefox
+    overflow-x: -moz-hidden-unscrollable;
     overflow-y: auto;
   }
 
