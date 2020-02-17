@@ -1,3 +1,10 @@
+# [16.3.0](https://github.com/GetTerminus/terminus-ui/compare/v16.2.4...v16.3.0) (2020-02-17)
+
+
+### Features
+
+* **Button:** now support custom ID ([0aaef78](https://github.com/GetTerminus/terminus-ui/commit/0aaef78))
+
 ## [16.2.4](https://github.com/GetTerminus/terminus-ui/compare/v16.2.3...v16.2.4) (2020-02-14)
 
 
