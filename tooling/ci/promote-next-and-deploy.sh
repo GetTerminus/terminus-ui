@@ -154,6 +154,7 @@ npx chalk green bold "Success!"
 npx chalk --template "{green Library version {bold $VERSION_NUMBER} promoted and demos released!}"
 npx chalk --template "{yellow UI Library on NPM: {blue.bold.underline https://www.npmjs.com/package/@terminus/ui?activeTab=versions}}"
 npx chalk --template "{yellow Live demos: {blue.bold.underline https://getterminus.github.io/ui-demos-release}}"
+npx chalk --template "{yellow Changelog: {blue.bold.underline https://github.com/GetTerminus/terminus-ui/blob/release/CHANGELOG.md}}"
 
 # Reset any git changes
 git checkout .
