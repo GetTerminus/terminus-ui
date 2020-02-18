@@ -393,7 +393,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
 
     hasHeader = coerceBooleanProperty(hasHeader);
-    const pastedRowId: number = parseInt((event.target as HTMLInputElement).id.split('X')[0].split('_')[1], 10);
+    const pastedRowId: number = parseInt((event.target as HTMLInputElement).id.split('X')[0].split('_')[2], 10);
     const content = TsCSVEntryComponent.splitContent(eventContent, hasHeader);
     const neededRows: number = content.rows.length;
 
@@ -489,9 +489,9 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       return;
     }
     const [rowId, columnId]: string[] = currentCellId.split('X');
-    const row: string = rowId.split('_')[1];
+    const row: string = rowId.split('_')[2];
     const column: string = columnId.split('_')[1];
-    const newId = `r_${parseInt(row, 10) + (up ? -1 : 1)}Xc_${column}`;
+    const newId = `${this.uid}_r_${parseInt(row, 10) + (up ? -1 : 1)}Xc_${column}`;
     const input: HTMLElement | null = this.documentService.document.querySelector(`#${newId}`);
 
     if (input) {
@@ -517,7 +517,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     event.preventDefault();
     previous = coerceBooleanProperty(previous);
     const [rowId, columnId]: string[] = currentCellId.split('X');
-    const row: number = parseInt(rowId.split('_')[1], 10);
+    const row: number = parseInt(rowId.split('_')[2], 10);
     const column: number = parseInt(columnId.split('_')[1], 10);
     const isFirstColumn: boolean = column === 0;
     const isLastColumn: boolean = column === (this.columnCount - 1);
@@ -539,7 +539,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     } else {
       newColumnNumber = column + 1;
     }
-    const newId = `r_${newRowNumber}Xc_${newColumnNumber}`;
+    const newId = `${this.uid}_r_${newRowNumber}Xc_${newColumnNumber}`;
     const input: HTMLElement | null = this.documentService.document.querySelector(`#${newId}`);
 
     // istanbul ignore else
@@ -550,14 +550,14 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Create an ID for a cell. Format: `r_7Xc_2` would be the 2nd cell in the 7th row.
+   * Create an ID for a cell. Format: `ts-csv-entry-{number}_r_7Xc_2` would be the 2nd cell in the 7th row.
    *
    * @param recordIndex - The index of the record/row
    * @param cellIndex - The index of the cell within the row
    * @return The ID
    */
   public createId(recordIndex: number, cellIndex: number): string {
-    return `r_${recordIndex}Xc_${cellIndex}`;
+    return `${this.uid}_r_${recordIndex}Xc_${cellIndex}`;
   }
 
 
