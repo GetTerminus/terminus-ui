@@ -1,3 +1,10 @@
+## [16.3.1](https://github.com/GetTerminus/terminus-ui/compare/v16.3.0...v16.3.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* **Table:** refactor to fix docs generation issue ([49fabff](https://github.com/GetTerminus/terminus-ui/commit/49fabff))
+
 # [16.3.0](https://github.com/GetTerminus/terminus-ui/compare/v16.2.4...v16.3.0) (2020-02-17)
 
 
