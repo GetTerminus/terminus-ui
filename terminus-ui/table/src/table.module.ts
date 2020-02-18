@@ -26,26 +26,7 @@ export * from './row';
 export * from './table.component';
 
 
-const EXPORTED_DECLARATIONS = [
-  // Table
-  TsTableComponent,
-
-  // Template definitions
-  TsCellDefDirective,
-  TsColumnDefDirective,
-  TsHeaderCellDefDirective,
-  TsHeaderRowDefDirective,
-  TsRowDefDirective,
-
-  // Cell directives
-  TsCellDirective,
-  TsHeaderCellDirective,
-
-  // Row directives
-  TsHeaderRowComponent,
-  TsRowComponent,
-];
-
+// NOTE: Moving declarations/exports items into shared array breaks documentation generation.
 @NgModule({
   imports: [
     CdkTableModule,
@@ -54,10 +35,42 @@ const EXPORTED_DECLARATIONS = [
     TsSortModule,
   ],
   declarations: [
-    ...EXPORTED_DECLARATIONS,
+    // Table
+    TsTableComponent,
+
+    // Template definitions
+    TsCellDefDirective,
+    TsColumnDefDirective,
+    TsHeaderCellDefDirective,
+    TsHeaderRowDefDirective,
+    TsRowDefDirective,
+
+    // Cell directives
+    TsCellDirective,
+    TsHeaderCellDirective,
+
+    // Row directives
+    TsHeaderRowComponent,
+    TsRowComponent,
   ],
   exports: [
-    ...EXPORTED_DECLARATIONS,
+    // Table
+    TsTableComponent,
+
+    // Template definitions
+    TsCellDefDirective,
+    TsColumnDefDirective,
+    TsHeaderCellDefDirective,
+    TsHeaderRowDefDirective,
+    TsRowDefDirective,
+
+    // Cell directives
+    TsCellDirective,
+    TsHeaderCellDirective,
+
+    // Row directives
+    TsHeaderRowComponent,
+    TsRowComponent,
   ],
 })
 export class TsTableModule {}
