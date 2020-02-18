@@ -108,6 +108,7 @@ describe(`TsCSVEntryComponent`, function() {
     (event.clipboardData as any) = { getData: jest.fn().mockReturnValue(stringValue) };
     return event;
   };
+  let instancePrefix: string;
   let ENTER_EVENT: KeyboardEvent;
   let SHIFT_ENTER_EVENT: KeyboardEvent;
   let TAB_EVENT: KeyboardEvent;
@@ -279,7 +280,8 @@ describe(`TsCSVEntryComponent`, function() {
     hostComponent = fixture.componentInstance;
     component = hostComponent.component;
     fixture.detectChanges();
-    firstHeaderCell = fixture.debugElement.query(By.css('#r_-1Xc_0')).nativeElement;
+    instancePrefix = fixture.nativeElement.querySelectorAll('[id^="ts-csv-entry"]')[0].getAttribute('id');
+    firstHeaderCell = fixture.debugElement.query(By.css(`#${instancePrefix}_r_-1Xc_0`)).nativeElement;
     rowCount = fixture.nativeElement.querySelectorAll('.c-csv-entry__column-id').length;
     columnCount = fixture.nativeElement.querySelectorAll('.c-csv-entry__input--header').length;
   });
@@ -330,7 +332,8 @@ describe(`TsCSVEntryComponent`, function() {
     test(`should correctly inject content into existing content`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       fixture.detectChanges();
-      let row2Cell1: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
+      const selector = `#${instancePrefix}_r_1Xc_0`;
+      let row2Cell1: HTMLInputElement = fixture.debugElement.query(By.css(selector)).nativeElement;
       expect(row2Cell1.value).toEqual('foo2');
 
       const stringRecords = 'bing4\tbang4\r\nbing5\tbang5\r\n';
@@ -338,10 +341,10 @@ describe(`TsCSVEntryComponent`, function() {
       (event.clipboardData as any) = { getData: jest.fn().mockReturnValue(stringRecords) };
       row2Cell1.dispatchEvent(event);
       fixture.detectChanges();
-      row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
+      row2Cell1 = fixture.debugElement.query(By.css(selector)).nativeElement;
       expect(row2Cell1.value).toEqual('bing4');
 
-      const row4Cell1 = fixture.debugElement.query(By.css('#r_4Xc_0')).nativeElement;
+      const row4Cell1 = fixture.debugElement.query(By.css(`#${instancePrefix}_r_4Xc_0`)).nativeElement;
       expect(row4Cell1.value).toEqual('foo3');
     });
 
@@ -391,8 +394,8 @@ describe(`TsCSVEntryComponent`, function() {
   describe(`keyboard navigation`, () => {
 
     test(`should navigate rows with enter & shift+enter`, () => {
-      const cell1: HTMLInputElement = fixture.debugElement.query(By.css('#r_0Xc_0')).nativeElement;
-      const cell2: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
+      const cell1: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_0Xc_0`)).nativeElement;
+      const cell2: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
 
       // Current cell:
       cell1.focus();
@@ -409,8 +412,8 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should navigate columns with tab & tab+enter`, () => {
-      const cell1: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
-      const cell2: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_1')).nativeElement;
+      const cell1: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
+      const cell2: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_1`)).nativeElement;
 
       // Current cell:
       cell1.focus();
@@ -425,8 +428,8 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should change row if the column isn't found`, () => {
-      const lastCell: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_1')).nativeElement;
-      const firstCell: HTMLInputElement = fixture.debugElement.query(By.css('#r_2Xc_0')).nativeElement;
+      const lastCell: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_1`)).nativeElement;
+      const firstCell: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_2Xc_0`)).nativeElement;
 
       // Current cell:
       lastCell.focus();
@@ -441,7 +444,7 @@ describe(`TsCSVEntryComponent`, function() {
 
 
     test(`should create a new row if moving down and one doesn't exist`, () => {
-      const lastRowId = `#r_${component.rows.length - 1}Xc_0`;
+      const lastRowId = `#${instancePrefix}_r_${component.rows.length - 1}Xc_0`;
       const lastRowCell: HTMLInputElement = fixture.debugElement.query(By.css(lastRowId)).nativeElement;
       expect(component.rows.length).toEqual(4);
 
@@ -544,7 +547,7 @@ describe(`TsCSVEntryComponent`, function() {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       fixture.detectChanges();
 
-      const bodyCell = fixture.debugElement.query(By.css('#r_3Xc_0')).nativeElement;
+      const bodyCell = fixture.debugElement.query(By.css(`#${instancePrefix}_r_3Xc_0`)).nativeElement;
       bodyCell.dispatchEvent(createPasteEvent(formContentThreeCol));
       fixture.detectChanges();
       const message = fixture.debugElement.query(By.css('.c-csv-entry__message')).nativeElement;
@@ -579,7 +582,7 @@ describe(`TsCSVEntryComponent`, function() {
       fixture.detectChanges();
 
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentThreeCol));
-      let row2Cell1: HTMLInputElement = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
+      let row2Cell1: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
       expect(row2Cell1.value).toEqual(expect.any(String));
 
       const addRowButton = fixture.debugElement.query(By.css('#ts-csv-add-row')).nativeElement;
@@ -593,7 +596,7 @@ describe(`TsCSVEntryComponent`, function() {
       dispatchMouseEvent(resetButton, 'clicked');
       fixture.detectChanges();
 
-      row2Cell1 = fixture.debugElement.query(By.css('#r_1Xc_0')).nativeElement;
+      row2Cell1 = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
       message = fixture.debugElement.query(By.css('.c-csv-entry__message'));
       expect(row2Cell1.value).toEqual('');
       expect(component.columnCount).toEqual(initialColumnCount);
