@@ -1,3 +1,10 @@
+## [16.3.2](https://github.com/GetTerminus/terminus-ui/compare/v16.3.1...v16.3.2) (2020-02-18)
+
+
+### Bug Fixes
+
+* **Paginator:** simple mode no longer shows total count ([e8421d5](https://github.com/GetTerminus/terminus-ui/commit/e8421d5)), closes [#2031](https://github.com/GetTerminus/terminus-ui/issues/2031)
+
 ## [16.3.1](https://github.com/GetTerminus/terminus-ui/compare/v16.3.0...v16.3.1) (2020-02-18)
 
 
