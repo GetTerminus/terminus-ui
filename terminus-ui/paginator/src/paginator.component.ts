@@ -364,6 +364,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     const destinationIsValid: boolean = destinationPage >= this.firstPageIndex && destinationPage <= pages.length;
     const notAlreadyOnPage: boolean = destinationPage !== currentPage;
 
+    // istanbul ignore else
     if (destinationIsValid && notAlreadyOnPage) {
       const foundPage: TsPaginatorMenuItem | undefined = pages.find((page: TsPaginatorMenuItem): boolean => page.value === destinationPage);
 
@@ -492,6 +493,9 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     }
 
     // '1 - 10 of 243'
+    if (this.isSimpleMode) {
+      return `${foundPage.name}`;
+    }
     return `${foundPage.name} of ${totalRecords}`;
   }
 

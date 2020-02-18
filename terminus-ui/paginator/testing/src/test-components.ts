@@ -78,7 +78,7 @@ export class ZeroBased {
   `,
 })
 export class SimpleMode {
-  public isSimple = false;
+  public isSimple = true;
   public totalRecords = 100;
 }
 

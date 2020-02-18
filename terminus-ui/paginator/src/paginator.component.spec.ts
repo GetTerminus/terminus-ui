@@ -50,7 +50,6 @@ describe(`TsPaginatorComponent`, function() {
 
       const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
       expect(titleEl.textContent).toContain('1 - 20 of 100');
-
     });
 
     test(`should be hidden when set`, () => {
@@ -340,6 +339,24 @@ describe(`TsPaginatorComponent`, function() {
 
     test.todo(`should update tooltips if set`);
 
+  });
+
+  describe(`simple mode`, () => {
+    let fixture: ComponentFixture<TestComponents.SimpleMode>;
+    let hostComponent: TestComponents.SimpleMode;
+
+    beforeEach(() => {
+      fixture = createComponent(TestComponents.SimpleMode);
+      hostComponent = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    test(`should output the correct, shortened, current page message`, fakeAsync(() => {
+      tick(1000);
+      fixture.detectChanges();
+      const titleEl = fixture.debugElement.query(By.css('.c-paginator__current-page')).nativeElement as HTMLElement;
+      expect(titleEl.textContent).toContain('1 - 10');
+    }));
   });
 
 });
