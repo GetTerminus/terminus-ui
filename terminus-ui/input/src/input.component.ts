@@ -411,8 +411,9 @@ export class TsInputComponent implements
 
     // istanbul ignore else
     if (v !== this.value) {
+      const sanitizedValue = this.maskSanitizeValue && this.currentMask ? this.cleanValue(v, this.currentMask.unmaskRegex) : v;
       this.inputValueAccessor.value = v;
-      this.onChangeCallback(v);
+      this.onChangeCallback(sanitizedValue);
       this.stateChanges.next();
     }
 
