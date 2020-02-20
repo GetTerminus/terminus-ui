@@ -1,3 +1,10 @@
+## [16.3.4](https://github.com/GetTerminus/terminus-ui/compare/v16.3.3...v16.3.4) (2020-02-20)
+
+
+### Bug Fixes
+
+* **Input:** sanitize input value inside of value setter before value emits ([75c8fdf](https://github.com/GetTerminus/terminus-ui/commit/75c8fdf))
+
 ## [16.3.3](https://github.com/GetTerminus/terminus-ui/compare/v16.3.2...v16.3.3) (2020-02-18)
 
 
