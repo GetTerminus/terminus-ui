@@ -1233,7 +1233,7 @@ export class TsInputComponent implements
     }
     // If the unmask regex is a function, invoke it to get the plain regex
     const finalRegex: RegExp = isFunction(regex) ? regex() : regex;
-    return finalRegex ? value.replace(new RegExp(finalRegex), '') : value;
+    return finalRegex && value ? value.replace(new RegExp(finalRegex), '') : value;
 
   }
 
