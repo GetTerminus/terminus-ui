@@ -1,3 +1,10 @@
+## [16.3.6](https://github.com/GetTerminus/terminus-ui/compare/v16.3.5...v16.3.6) (2020-02-21)
+
+
+### Bug Fixes
+
+* **Input:** force the value to a string before sanitization attempt ([4dfe810](https://github.com/GetTerminus/terminus-ui/commit/4dfe810))
+
 ## [16.3.5](https://github.com/GetTerminus/terminus-ui/compare/v16.3.4...v16.3.5) (2020-02-21)
 
 
