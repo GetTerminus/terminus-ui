@@ -1,3 +1,10 @@
+## [16.3.5](https://github.com/GetTerminus/terminus-ui/compare/v16.3.4...v16.3.5) (2020-02-21)
+
+
+### Bug Fixes
+
+* **Input:** check to make sure value is not null before attempting to clean it ([788cfe3](https://github.com/GetTerminus/terminus-ui/commit/788cfe3))
+
 ## [16.3.4](https://github.com/GetTerminus/terminus-ui/compare/v16.3.3...v16.3.4) (2020-02-20)
 
 
