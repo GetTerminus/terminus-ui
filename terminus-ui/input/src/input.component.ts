@@ -1232,9 +1232,10 @@ export class TsInputComponent implements
       return value;
     }
     // If the unmask regex is a function, invoke it to get the plain regex
+    // Note: There is a potential the value won't be a string during runtime. It is possible
+    // a form control could contain a primitive value like a number instead. Make sure it's a string.
     const finalRegex: RegExp = isFunction(regex) ? regex() : regex;
-    return finalRegex && value ? value.replace(new RegExp(finalRegex), '') : value;
-
+    return finalRegex && value ? value.toString().replace(new RegExp(finalRegex), '') : value;
   }
 
 
