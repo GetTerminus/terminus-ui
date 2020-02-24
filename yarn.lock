@@ -1533,7 +1533,7 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@terminus/design-tokens@^1.0.2":
+"@terminus/design-tokens@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@terminus/design-tokens/-/design-tokens-1.0.2.tgz#5d1c3133ed24055df5483cf7167820d76919a00a"
   integrity sha512-abIUkmgbQDFvQnn2KZGW+EAGI8Hprb8jsxTRaNf7qGaNIELdzlpCd0mWy/FkPY0DNzOM3mXJFW0bpp/FNebusQ==
@@ -12655,7 +12655,7 @@ polylabel@^1.0.2:
   dependencies:
     tinyqueue "^1.1.0"
 
-popper.js@^1.16.0:
+popper.js@1.16.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
   integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
