@@ -1,3 +1,10 @@
+## [16.3.8](https://github.com/GetTerminus/terminus-ui/compare/v16.3.7...v16.3.8) (2020-02-25)
+
+
+### Bug Fixes
+
+* **packages:** pin dependencies ([65fb7cf](https://github.com/GetTerminus/terminus-ui/commit/65fb7cf))
+
 ## [16.3.7](https://github.com/GetTerminus/terminus-ui/compare/v16.3.6...v16.3.7) (2020-02-24)
 
 
