@@ -3,7 +3,6 @@
     "config:base",
     "schedule:nonOfficeHours"
   ],
-  "assignees": ["benjamincharity"],
   "masterIssue": true,
   "packageRules": [
     {
