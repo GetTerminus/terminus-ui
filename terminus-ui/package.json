@@ -58,6 +58,7 @@
     "@angular/material": "^8.0.1",
     "@angular/platform-browser": "^8.0.1",
     "@angular/router": "^8.0.1",
+    "@terminus/design-tokens": "^1.0.5",
     "@terminus/ngx-tools": ">=7.0.0",
     "date-fns": "^2.0.1",
     "rxjs": "^6.5.2"
