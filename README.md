@@ -217,7 +217,7 @@ Install the library and required dependencies:
 
 ```bash
 # Primary dependencies:
-$ yarn add @terminus/ui @terminus/ngx-tools
+$ yarn add @terminus/ui @terminus/ngx-tools @terminus/design-tokens
 
 # Peer dependencies that will need to be installed (needed by UI and tools libraries):
 $ yarn add @angular/cdk @angular/material @angular/flex-layout@8.0.0-beta.26 date-fns @ngrx/effects @ngrx/store hammerjs
