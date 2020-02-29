@@ -244,7 +244,7 @@
     "stylelint-order": "4.0.0",
     "systemjs": "6.1.9",
     "tsickle": "0.38.0",
-    "tslib": "1.11.0",
+    "tslib": "1.11.1",
     "tslint": "5.20.1",
     "typescript": "3.4.5",
     "validate-commit-msg": "2.14.0",
