@@ -72,7 +72,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ./*
+            - .
   lint:
     <<: *defaults
     steps:
@@ -108,7 +108,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ./dist/terminus-ui/*
+            - ./dist/library/*
   publish_library:
     <<: *defaults
     steps:
@@ -128,12 +128,12 @@ jobs:
           name: Update Package Versions for Demo Build
           command: tooling/ci/inject-library-version-number.sh
       - store_artifacts:
-          path: /home/circleci/ci-build/dist/app/
-          destination: ~/demo/
+          path: /home/circleci/ci-build/dist/demo/
+          destination: ~/projects/demo/
       - persist_to_workspace:
           root: .
           paths:
-            - ./dist/app/*
+            - ./dist/demo/*
   deploy_demos:
     <<: *defaults
     steps:

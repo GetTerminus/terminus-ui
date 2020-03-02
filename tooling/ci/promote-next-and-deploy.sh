@@ -94,7 +94,7 @@ tooling/ci/rename-typings-index.sh
 npx chalk blue bold "Removing existing UI Library files from demo node_modules.."
 rm -rf node_modules/@terminus/ui/*
 npx chalk blue bold "Moving new library files to the demo's node_modules.."
-cp -r dist/terminus-ui/* node_modules/@terminus/ui/
+cp -r dist/library/* node_modules/@terminus/ui/
 
 #
 # Compile the demo app with AoT
@@ -107,10 +107,10 @@ yarn run build:app:ci --base-href "https://getterminus.github.io/ui-demos-releas
 #
 npx chalk blue bold "Injecting new library version ($VERSION_NUMBER) in demos.."
 # Replace the placeholder text with the library version in all demo app files
-grep -rl $PLACEHOLDER 'dist/app' | xargs sed -i'' -e 's|'$PLACEHOLDER'|'"$VERSION_NUMBER"'|g'
+grep -rl $PLACEHOLDER 'dist/demo' | xargs sed -i'' -e 's|'$PLACEHOLDER'|'"$VERSION_NUMBER"'|g'
 # Delete edit reference files left over from the sed replacement
 # NOTE: The force flag is required so that the build isn't cancelled if these files don't exist
-rm -f dist/app/*-e
+rm -f dist/demo/*-e
 
 #
 # Update the demos GitHub repo
@@ -132,7 +132,7 @@ fi
 
 # Move new files into the demos repo
 npx chalk blue bold "Moving new demo files into the demos repo.."
-mv -f -v ../terminus-ui/dist/app/* .
+mv -f -v ../terminus-ui/dist/demo/* .
 
 # Clone the index.html file as 404.html to support SPA deep links
 cp index.html 404.html

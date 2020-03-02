@@ -6,7 +6,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "demo",
+    "baseUrl": "projects/demo",
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -31,6 +31,14 @@
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "library": [
+        "dist/library"
+      ],
+      "library/*": [
+        "dist/library/*"
+      ]
+    }
   }
 }

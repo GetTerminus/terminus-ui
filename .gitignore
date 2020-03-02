@@ -15,3 +15,4 @@ e2e/**/*.js.map
 docs/*
 coverage/
 .tsbuildinfo
+.DS_Store

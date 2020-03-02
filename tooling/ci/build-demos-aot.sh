@@ -13,7 +13,7 @@
 rm -rf node_modules/@terminus/ui/*
 
 # Move library files to the demo's node_modules
-cp -r dist/terminus-ui/* node_modules/@terminus/ui/
+cp -r dist/library/* node_modules/@terminus/ui/
 
 # Build the app with the correct base href
 yarn run build:app:ci --base-href https://getterminus.github.io/ui-demos-release/
