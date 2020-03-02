@@ -1,0 +1,30 @@
+@import '~@terminus/ui/helpers';
+@import '~@terminus/ui/terminus-ui.css';
+
+html {
+  background-color: color(pure);
+  font-family: $type__family--base;
+  font-size: $type__size--base;
+  font-weight: $type__weight--base;
+}
+
+body {
+  margin: 0;
+}
+
+hr {
+  margin: 1rem;
+}
+
+
+// stylelint-disable selector-type-no-unknown
+router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  .content {
+    padding: 2rem;
+  }
+}
+// stylelint-enable selector-type-no-unknown

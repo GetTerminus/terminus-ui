@@ -3,20 +3,20 @@ const micromatch = require('micromatch');
 module.exports = {
 
   // Target TESTING files
-  '**/testing/**/*.ts': [
-    `yarn run lint:tslint:spec:fix`,
-    `git add`,
-  ],
+  // '**/testing/**/*.ts': [
+  //   `yarn run lint:tslint:spec:fix`,
+  //   `git add`,
+  // ],
 
   // Target SPEC files
-  '**/*.spec.ts': files => {
-    const fileList = removeDirectories(files);
-
-    return [
-      `yarn run lint:tslint:spec:fix ${fileList}`,
-      `git add ${fileList}`,
-    ];
-  },
+  // '**/*.spec.ts': files => {
+  //   const fileList = removeDirectories(files);
+  //
+  //   return [
+  //     `yarn run lint:tslint:spec:fix ${fileList}`,
+  //     `git add ${fileList}`,
+  //   ];
+  // },
 
 
   // Target TYPESCRIPT files
@@ -24,7 +24,7 @@ module.exports = {
     const fileList = removeDirectories(files);
 
     return [
-      `yarn run lint:tslint:fix ${fileList}`,
+      // `yarn run lint:tslint:fix ${fileList}`,
       `eslint --config .eslintrc.js --fix ${fileList}`,
       `git add ${fileList}`,
     ];

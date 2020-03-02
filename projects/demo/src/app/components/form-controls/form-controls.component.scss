@@ -1,0 +1,24 @@
+:host {
+  outline: 1px solid red;
+
+  ::ng-deep {
+    // Needed for specificity
+    ts-card {
+      &.ts-card {
+        --white: #fff;
+        --white-trans: #{rgba(#fff, .3)};
+
+        .c-card {
+          background-color: rgba(#269, .1);
+          background-image:
+            linear-gradient(var(--white) 2px, transparent 2px),
+            linear-gradient(90deg, var(--white) 2px, transparent 2px),
+            linear-gradient(rgba(255, 255, 255, .3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, .3) 1px, transparent 1px);
+          background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+          background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        }
+      }
+    }
+  }
+}

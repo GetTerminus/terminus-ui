@@ -1,0 +1,15 @@
+.drawer-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 25%;
+}
+.drawer-card {
+  min-height: 600px;
+}
+.first-drawer {
+  .content {
+    margin-right: 20px;
+  }
+}

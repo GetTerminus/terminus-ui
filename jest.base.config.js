@@ -1,14 +1,14 @@
 module.exports = {
   clearMocks: true,
   collectCoverageFrom: [
-    'terminus-ui/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts',
-    'terminus-ui/**/*.directive.ts',
-    '!terminus-ui/**/testing/**',
+    'projects/library/**/!(index|public-api|*.module|*.interface|*.constant|*.mock|*.d).ts',
+    'projects/library/**/*.directive.ts',
+    '!projects/library/**/testing/**',
   ],
   coverageDirectory: '<rootDir>/coverage/',
   globals: {
     'ts-jest': {
-      tsConfig: './terminus-ui/tsconfig.spec.json',
+      tsConfig: './projects/library/tsconfig.spec.json',
       ignoreCoverageForAllDecorators: true,
       diagnostics: false,
       stringifyContentPathRegex: '\\.html$',
@@ -24,11 +24,11 @@ module.exports = {
     'html',
   ],
   moduleNameMapper: {
-    'app/(.*)': '<rootDir>/demo/app/$1',
-    'assets/(.*)': '<rootDir>/demo/assets/$1',
-    'environments/(.*)': '<rootDir>/demo/environments/$1',
-    '^@terminus/ui(.*)$': '<rootDir>/terminus-ui$1/src/public-api.ts',
-    '^@terminus/ui(.*)/testing$': '<rootDir>/terminus-ui$1/testing/src/public-api.ts',
+    'app/(.*)': '<rootDir>/projects/demo/app/$1',
+    'assets/(.*)': '<rootDir>/projects/demo/assets/$1',
+    'environments/(.*)': '<rootDir>/projects/demo/environments/$1',
+    '^@terminus/ui(.*)$': '<rootDir>/projects/library$1/src/public-api.ts',
+    '^@terminus/ui(.*)/testing$': '<rootDir>/projects/library$1/testing/src/public-api.ts',
   },
   preset: 'jest-preset-angular',
   reporters: [

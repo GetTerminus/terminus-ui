@@ -1,0 +1,162 @@
+<ts-card tsVerticalSpacing>
+  <div fxLayout="row" fxLayoutGap="2em">
+    <div>
+      <div tsVerticalSpacing>
+        <label>
+          Theme:
+          <select name="myTheme" [(ngModel)]="myTheme">
+            <option value="{{ theme }}" *ngFor="let theme of themes">
+              {{ theme | titlecase }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <div tsVerticalSpacing>
+        <label>
+          Format:
+          <select name="myFormat" [(ngModel)]="myFormat">
+            <option value="{{ format }}" *ngFor="let format of formats">
+              {{ format | titlecase }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <div tsVerticalSpacing>
+        <label tsVerticalSpacing>
+          Right-align layout:
+          <input type="checkbox" [(ngModel)]="layoutIsRightAligned">
+        </label>
+      </div>
+    </div>
+
+    <div [style.textAlign]="layout">
+      <div fxLayout="column">
+        <div tsVerticalSpacing="small--0">
+          <ts-button
+            [theme]="myTheme"
+            (clicked)="run('progress2')"
+            [isDisabled]="disabled"
+            [showProgress]="progress2"
+            [iconName]="icon"
+            [format]="myFormat"
+          >Click Me!</ts-button>
+        </div>
+
+        <div>
+          <ts-button
+            [theme]="myTheme"
+            (clicked)="run('progress2')"
+            [isDisabled]="disabled"
+            [showProgress]="progress2"
+            [format]="myFormat"
+          >
+            <ts-icon>build</ts-icon>
+          </ts-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing class="double">
+  <h3 tsCardTitle tsVerticalSpacing id="title">
+    Themes:
+  </h3>
+
+  <ts-button
+    theme="primary"
+    tsVerticalSpacing
+    id="ts-button-id-1"
+  >Primary</ts-button>
+
+  <ts-button
+    theme="primary"
+    format="hollow"
+    icon="home"
+    tsVerticalSpacing
+  >Primary Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="accent"
+    tsVerticalSpacing
+  >Accent</ts-button>
+
+  <ts-button
+    theme="accent"
+    format="hollow"
+    tsVerticalSpacing
+  >Accent Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="warn"
+    tsVerticalSpacing
+  >Warn</ts-button>
+
+  <ts-button
+    theme="warn"
+    format="hollow"
+    tsVerticalSpacing
+  >Warn Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="primary"
+    [isDisabled]="true"
+    tsVerticalSpacing
+  >I'm disabled :(</ts-button>
+
+  <ts-button
+    theme="primary"
+    format="hollow"
+    [isDisabled]="true"
+    [showProgress]="progress2"
+    (clicked)="run('progress2')"
+    tsVerticalSpacing
+  >I'm disabled AND empty inside :(</ts-button>
+</ts-card>
+
+
+<ts-card tsVerticalSpacing>
+  <div fxLayout="column" fxLayoutAlign="start end" style="padding-right: 2rem;">
+    <h3 tsCardTitle tsVerticalSpacing>
+      Collapsable
+    </h3>
+
+    <ts-button
+      theme="primary"
+      iconName="add"
+      [format]="formatCollapsible"
+      tsVerticalSpacing
+    >New Campaign / New Tactic</ts-button>
+
+    <ts-button
+      theme="accent"
+      iconName="add"
+      [format]="formatCollapsible"
+      tsVerticalSpacing
+    >New Campaign / New Tactic</ts-button>
+
+    <ts-button
+      theme="warn"
+      iconName="add"
+      [format]="formatCollapsible"
+      tsVerticalSpacing
+    >New Campaign / New Tactic</ts-button>
+
+    <ts-button
+      theme="primary"
+      iconName="add"
+      [format]="formatCollapsible"
+      [isDisabled]="true"
+      tsVerticalSpacing
+    >Rounded - Disabled</ts-button>
+  </div>
+</ts-card>
