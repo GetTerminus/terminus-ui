@@ -367,6 +367,42 @@ describe(`TsPaginatorComponent`, function() {
     }));
   });
 
+  describe('disable next button', () => {
+    let fixture: ComponentFixture<TestComponents.SimpleMode>;
+    let hostComponent: TestComponents.SimpleMode;
+
+    beforeEach(() => {
+      fixture = createComponent(TestComponents.SimpleMode);
+      hostComponent = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    test(`shouldn't disable next button if not set`, () => {
+      const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
+      expect(btn.attributes['isNextDisabled']).toBeUndefined();
+      expect(btn.nativeElement.querySelector('button').disabled).toBeFalsy();
+    });
+
+    test(`should not disable next button if set to false`, fakeAsync(() => {
+      const instance = getPaginatorInstance(fixture);
+      instance.isNextDisabled = false;
+      tick(1000);
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
+      expect(btn.nativeElement.querySelector('button').disabled).toEqual(false);
+    }));
+
+    test(`should disable next button if set`, fakeAsync(() => {
+      const instance = getPaginatorInstance(fixture);
+      instance.isNextDisabled = true;
+      tick(1000);
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
+      expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy();
+    }));
+
+  });
+
 });
 
 
