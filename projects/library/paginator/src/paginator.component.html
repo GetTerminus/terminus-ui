@@ -57,26 +57,26 @@
       *ngIf="isSimpleMode"
     >{{ currentPageLabel }}</div>
 
-    <ts-tooltip [tooltipValue]="isLastPage(currentPageIndex) ? '' : nextPageTooltip">
+    <ts-tooltip [tooltipValue]="isNextButtonDisabled(currentPageIndex) ? '' : nextPageTooltip">
       <ts-button
         class="qa-paginator-next-page-button"
         [theme]="theme"
         [iconName]="nextPageIcon"
-        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
+        [isDisabled]="isNextButtonDisabled(currentPageIndex)"
         (clicked)="changePage(currentPageIndex + 1, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>
 
 
   <ts-tooltip
-    [tooltipValue]="isLastPage(currentPageIndex) ? '' : lastPageTooltip"
+    [tooltipValue]="isNextButtonDisabled(currentPageIndex) ? '' : lastPageTooltip"
     *ngIf="!isSimpleMode"
   >
     <ts-button
         class="qa-paginator-last-page-button"
         [theme]="theme"
         [iconName]="lastPageIcon"
-        [isDisabled]="isLastPage(currentPageIndex) || !pagesArray?.length"
+        [isDisabled]="isNextButtonDisabled(currentPageIndex)"
         (clicked)="changePage(lastPageIndex, currentPageIndex, pagesArray)"
       ></ts-button>
     </ts-tooltip>

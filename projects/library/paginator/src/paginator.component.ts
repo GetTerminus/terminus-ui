@@ -269,6 +269,12 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   public isSimpleMode = false;
 
   /**
+   * Override the disabling of the next button
+   */
+  @Input()
+  public isNextDisabled: boolean | undefined;
+
+  /**
    * Emit a page selected event
    */
   @Output()
@@ -400,6 +406,18 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
     return false;
   }
 
+  /**
+   * Check if the next button is disabled
+   *
+   * @param page - The number of the current page
+   * @return A boolena representing if the button is disabled.
+   */
+  public isNextButtonDisabled(page: number): boolean {
+    if (this.isNextDisabled === undefined) {
+      return this.isLastPage(page) || !this.pagesArray || !this.pagesArray.length;
+    }
+    return this.isNextDisabled;
+  }
 
   /**
    * Determine if the string exists
