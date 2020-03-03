@@ -489,14 +489,34 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
     // This may be the case if there are no records
     if (!foundPage || !foundPage.name) {
-      foundPage = { name: '0' };
+      return this.createDefaultPageLabel(currentPage, totalRecords);
     }
 
     // '1 - 10 of 243'
-    if (this.isSimpleMode) {
-      return `${foundPage.name}`;
-    }
     return `${foundPage.name} of ${totalRecords}`;
+  }
+
+  /**
+   * Create a default label based on the records per page and total records
+   *
+   * @param currentPage - The current page
+   * @param totalRecords - The number of total records
+   * @return The string to use as the current page label
+   */
+  private createDefaultPageLabel(
+    currentPage: number,
+    totalRecords: number,
+  ): string {
+    const start = this.isZeroBased
+      ? (currentPage * this.recordsPerPage)
+      : (currentPage - 1) * this.recordsPerPage;
+    const end = start + this.recordsPerPage;
+    // '1 - 10'
+    if (this.isSimpleMode && !totalRecords) {
+      return `${start + 1} - ${end}`;
+    }
+    // '1 - 10 of 243'
+    return `${start + 1} - ${end} of ${totalRecords}`;
   }
 
 

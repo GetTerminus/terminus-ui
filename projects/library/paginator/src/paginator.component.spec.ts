@@ -351,7 +351,15 @@ describe(`TsPaginatorComponent`, function() {
       fixture.detectChanges();
     });
 
+    test(`should output the correct, current page message`, fakeAsync(() => {
+      tick(1000);
+      fixture.detectChanges();
+      const titleEl = fixture.debugElement.query(By.css('.c-paginator__current-page')).nativeElement as HTMLElement;
+      expect(titleEl.textContent).toContain('1 - 10 of 100');
+    }));
+
     test(`should output the correct, shortened, current page message`, fakeAsync(() => {
+      fixture.componentInstance.totalRecords = 0;
       tick(1000);
       fixture.detectChanges();
       const titleEl = fixture.debugElement.query(By.css('.c-paginator__current-page')).nativeElement as HTMLElement;
