@@ -15,7 +15,10 @@
   "scripts": {
     "//////// Section: Demo App": "==============================",
     "ng": "ng",
-    "start:app": "yarn run build:styles && yarn run link && ng serve --project demo",
+    "cy:run": "cypress run",
+    "cy:test": "start-server-and-test start:app http://localhost:4200 cy:run",
+    "start": "ng serve --project demo",
+    "start:app": "sudo npm link gulp && yarn run build:styles && yarn run link && ng serve --project demo",
     "start:app:visual-regression": "yarn run build:styles && yarn run link && ng serve --project visual-regression",
     "start:app:aot": "yarn run link && ng serve --aot",
     "build:app": "ng build --project packages --prod",
@@ -26,6 +29,7 @@
     "lint:regression": "npx tslint --project ./projects/visual-regression/tsconfig.app.json --config ./projects/visual-regression/tslint.json --format stylist",
     "lint:app:scss": "npx stylelint 'projects/demo/**/*.scss' --fix",
     "e2e:app": "ng e2e",
+    "e2e": "cypress run",
     "link": "cd dist/library && yarn link && cd ../../ && yarn link @terminus/ui",
     "unlink": "yarn unlink @terminus/ui && cd dist/library && yarn unlink",
     "////////// Section: Library:Build": "==============================",
@@ -73,7 +77,9 @@
     "todo": "npx notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x projects/library/helpers.scss",
     "contributors:add": "npx all-contributors add",
     "contributors:generate": "npx all-contributors generate",
-    "contributors:check": "npx all-contributors check"
+    "contributors:check": "npx all-contributors check",
+    "////////// Section: Integration": "===========================",
+    "cypress": "yarn install cypress --save-dev && cypress run"
   },
   "husky": {
     "hooks": {
@@ -202,6 +208,7 @@
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cpr": "3.0.1",
+    "cypress": "^4.1.0",
     "cz-customizable": "6.2.0",
     "del": "5.1.0",
     "doctoc": "1.4.0",
