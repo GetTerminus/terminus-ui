@@ -14,11 +14,11 @@
 //  The wrapping component around form controls
 //
 .ts-form-field {
-  --formField-outlineColor-default: #{color(utility)};
-  --formField-outlineColor-default-hover: #{color(pure, dark)};
-  --formField-outlineColor-theme: #{color(primary)};
-  --formField-outlineColor-disabled: #{color(utility, light)};
-  --formField-color-disabled: #{color(utility)};
+  --formField-outlineColor-default: var(--ts-color-utility-500);
+  --formField-outlineColor-default-hover: var(--ts-color-base-black);
+  --formField-outlineColor-theme: var(--ts-color-primary-500);
+  --formField-outlineColor-disabled: var(--ts-color-utility-300);
+  --formField-color-disabled: var(--ts-color-utility-500);
   --formField-outline-borderRadius: 5px;
   --formField-outline-width: 1px;
   // The width of the thick outline (used for focus, hover, and error state).
@@ -57,7 +57,7 @@
   &.ts-form-field--invalid {
     .ts-form-field__outline {
       opacity: 0;
-      transition: opacity 100ms $swift-ease-out-timing-function;
+      transition: opacity 100ms var(--swift-ease-out-timing-function);
     }
 
     .ts-form-field__outline--thick {
@@ -70,7 +70,7 @@
       &:hover {
         .ts-form-field__outline {
           opacity: 0;
-          transition: opacity 600ms $swift-ease-out-timing-function;
+          transition: opacity 600ms var(--swift-ease-out-timing-function);
         }
 
         .ts-form-field__outline--thick {
@@ -86,7 +86,7 @@
       transform:
         translateY(var(--translate))
         scale(var(--formField-fontScale-subscript))
-      ;
+    ;
       width: 100% / #{var(--formField-fontScale-subscript)};
     }
 
@@ -103,13 +103,13 @@
 
     &.ts-form-field--accent {
       .ts-form-field__outline--thick {
-        --formField-outlineColor-theme: #{color(accent)};
+        --formField-outlineColor-theme: var(--ts-color-accent-500);
       }
     }
 
     &.ts-form-field--warn {
       .ts-form-field__outline--thick {
-        --formField-outlineColor-theme: #{color(warn)};
+        --formField-outlineColor-theme: var(--ts-color-warn-500);
       }
     }
   }
@@ -118,7 +118,7 @@
   &.ts-form-field--invalid {
     &.ts-form-field--invalid {
       .ts-form-field__outline--thick {
-        --formField-outlineColor-theme: #{color(warn)};
+        --formField-outlineColor-theme: var(--ts-color-warn-500);
       }
     }
   }
@@ -192,7 +192,7 @@
     .ts-form-field__outline-end,
     .ts-form-field__outline-gap {
       --formField-outline-width: var(--formField-outline-width-thick);
-      transition: border-color 300ms $swift-ease-out-timing-function;
+      transition: border-color 300ms var(--swift-ease-out-timing-function);
     }
   }
 
@@ -219,7 +219,7 @@
     // When used with a TsInputComponent instance, use the text cursor when hovering the container
     .ts-input &,
     .ts-select--autocomplete & {
-      cursor: cursor(text);
+      cursor: text;
     }
   }
 
@@ -317,9 +317,9 @@
 
     transform-origin: 0 0;
     transition:
-      color $swift-ease-out-duration $swift-ease-out-timing-function,
-      transform $swift-ease-out-duration $swift-ease-out-timing-function,
-      width $swift-ease-out-duration $swift-ease-out-timing-function;
+      color var(--swift-ease-out-duration) var(--swift-ease-out-timing-function),
+      transform var(--swift-ease-out-duration) var(--swift-ease-out-timing-function),
+      width var(--swift-ease-out-duration) var(--swift-ease-out-timing-function);
     white-space: nowrap;
     width: 100%;
 
@@ -359,6 +359,6 @@
 // Target an input datepicker within a form field
 .ts-input--datepicker {
   // The width we set for datepicker
-  $date-picker-width: 200px;
-  width: $date-picker-width;
+  --date-picker-width: 200px;
+  width: var(--date-picker-width);
 }
