@@ -1,6 +1,7 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    "schedule:nonOfficeHours"
   ],
   "assignees": ["benjamincharity"],
   "masterIssue": "true",
@@ -45,7 +46,6 @@
   "semanticCommits": true,
   "semanticCommitScope": "Packages",
   "semanticCommitType": "chore",
-  "schedule": ["every weekend"],
   "stabilityDays": 1,
   "vulnerabilityAlerts": {
     "labels": ["Focus: security"],
