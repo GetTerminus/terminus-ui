@@ -45,7 +45,7 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "8.0.0",
+    "ngx-perfect-scrollbar": "9.0.0",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
   },

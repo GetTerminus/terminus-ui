@@ -10964,6 +10964,14 @@ ngx-perfect-scrollbar@8.0.0:
     perfect-scrollbar "^1.4.0"
     resize-observer-polyfill "^1.5.0"
 
+ngx-perfect-scrollbar@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-9.0.0.tgz#361c75010d2a560dd8aaadb799bdf04db5a1824b"
+  integrity sha512-jiFrOLONf/w2PjSKkEjQeTnMdlMVcQgjzIrYcsor1HWTmE+95J2sZAd/WF4zoutbpIqfU8VQQoAp8HOa7U1c/g==
+  dependencies:
+    perfect-scrollbar "1.5.0"
+    resize-observer-polyfill "^1.5.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -12281,7 +12289,7 @@ pegjs@^0.10.0:
   resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
   integrity sha1-z4uvrm7d/0tafvsYUmnqr0YQ3b0=
 
-perfect-scrollbar@^1.4.0:
+perfect-scrollbar@1.5.0, perfect-scrollbar@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.0.tgz#821d224ed8ff61990c23f26db63048cdc75b6b83"
   integrity sha512-NrNHJn5mUGupSiheBTy6x+6SXCFbLlm8fVZh9moIzw/LgqElN5q4ncR4pbCBCYuCJ8Kcl9mYM0NgDxvW+b4LxA==
