@@ -171,7 +171,7 @@
     "@terminus/ui": "15.8.3",
     "date-fns": "2.9.0",
     "ngx-perfect-scrollbar": "8.0.0",
-    "popper.js": "1.16.0",
+    "popper.js": "1.16.1",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
 },
