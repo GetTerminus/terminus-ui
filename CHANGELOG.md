@@ -1,3 +1,10 @@
+## [17.0.1](https://github.com/GetTerminus/terminus-ui/compare/v17.0.0...v17.0.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* **packages:** update dependency popper.js to v1.16.1 ([787ef20](https://github.com/GetTerminus/terminus-ui/commit/787ef20f889353e092d85ef62375b642e6e2cec6))
+
 # [17.0.0](https://github.com/GetTerminus/terminus-ui/compare/v16.3.9...v17.0.0) (2020-03-05)
 
 
