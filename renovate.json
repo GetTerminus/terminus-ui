@@ -1,9 +1,10 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    "schedule:nonOfficeHours"
   ],
   "assignees": ["benjamincharity"],
-  "masterIssue": "true",
+  "masterIssue": true,
   "packageRules": [
     {
       "packagePatterns": ["jest"],
@@ -40,12 +41,11 @@
   "rebaseConflictedPrs": false,
   "rebaseStalePrs": false,
   "reviewers": [
-    "benjamincharity"
+    "team:uxe"
   ],
   "semanticCommits": true,
   "semanticCommitScope": "Packages",
   "semanticCommitType": "chore",
-  "schedule": ["every weekend"],
   "stabilityDays": 1,
   "vulnerabilityAlerts": {
     "labels": ["Focus: security"],
