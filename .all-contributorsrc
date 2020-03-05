@@ -135,9 +135,19 @@
         "example",
         "test"
       ]
+    },
+    {
+      "login": "IraErshova",
+      "name": "Irina Ershova",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14790520?v=4",
+      "profile": "https://github.com/IraErshova",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "repoType": "github",
   "repoHost": "https://github.com",
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
