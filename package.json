@@ -174,7 +174,6 @@
     "popper.js": "1.16.0",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
-  ,    "tslib": "^1.10.0"
 },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.803.20",
