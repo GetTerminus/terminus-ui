@@ -223,7 +223,7 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
     const options = this.selectionListPanel.options.toArray();
     const option = options[1] || options[0];
-    return option.elementRef.nativeElement.offsetHeight;
+    return option && option.elementRef.nativeElement.offsetHeight;
   }
 
   /**
@@ -375,8 +375,9 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.changeDetectorRef.detectChanges();
     }
 
-    // Only allow reopening when in multiple mode
-    if (this.allowMultiple && this.reopenAfterSelection && !overrideReopenFlag) {
+    const options = this.selectionListPanel.options.toArray();
+    // Only allow reopening when in multiple mode and when there are options, which could be selected
+    if (this.allowMultiple && this.reopenAfterSelection && !overrideReopenFlag && options.length) {
       this.openPanel();
     }
   }

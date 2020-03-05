@@ -28,10 +28,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  FormControl,
-  NgControl,
-} from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
@@ -433,7 +430,7 @@ export class TsSelectComponent implements
     // Try to use the 2nd option in case the first option is blank or a filter etc. Fall back to the first item if needed.
     const options = this.options.toArray();
     const option = options[1] || options[0];
-    return option.elementRef.nativeElement.offsetHeight;
+    return option && option.elementRef.nativeElement.offsetHeight;
   }
 
   /**
