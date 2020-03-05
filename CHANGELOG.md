@@ -1,3 +1,10 @@
+## [16.3.9](https://github.com/GetTerminus/terminus-ui/compare/v16.3.8...v16.3.9) (2020-03-05)
+
+
+### Bug Fixes
+
+* **SelectionList:** fix selection list on blur ([89ad181](https://github.com/GetTerminus/terminus-ui/commit/89ad1812a60ae382f7e2b776eee57cddf9c3a4c6)), closes [#2056](https://github.com/GetTerminus/terminus-ui/issues/2056)
+
 ## [16.3.8](https://github.com/GetTerminus/terminus-ui/compare/v16.3.7...v16.3.8) (2020-02-25)
 
 
