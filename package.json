@@ -246,7 +246,7 @@
     "stylelint": "13.2.0",
     "stylelint-order": "4.0.0",
     "systemjs": "6.1.9",
-    "tsickle": "0.38.0",
+    "tsickle": "0.38.1",
     "tslib": "1.11.0",
     "tslint": "5.20.1",
     "typescript": "3.4.5",
