@@ -101,33 +101,33 @@ let nextUniqueId = 0;
  *
  * @example
  *  <ts-table
- *    [columns]="myColumns"
- *    [dataSource]="dataSource"
- *    [multiTemplateDataRows]="false"
- *    [trackBy]="myTrackByFn"
- *    (columnsChange)="columnsWereUpdated($event)
- *    #myTable="tsTable"
+ *               [columns]="myColumns"
+ *               [dataSource]="dataSource"
+ *               [multiTemplateDataRows]="false"
+ *               [trackBy]="myTrackByFn"
+ *               (columnsChange)="columnsWereUpdated($event)
+ *               #myTable="tsTable"
  *  >
- *    <ng-container tsColumnDef="title">
- *      <ts-header-cell *tsHeaderCellDef>
- *        Title
- *      </ts-header-cell>
- *      <ts-cell *tsCellDef="let item">
- *        {{ item.title }}
- *      </ts-cell>
- *    </ng-container>
+ *               <ng-container tsColumnDef="title">
+ *                 <ts-header-cell *tsHeaderCellDef>
+ *                   Title
+ *                 </ts-header-cell>
+ *                 <ts-cell *tsCellDef="let item">
+ *                   {{ item.title }}
+ *                 </ts-cell>
+ *               </ng-container>
  *
- *    <ng-container tsColumnDef="id">
- *      <ts-header-cell *tsHeaderCellDef>
- *        ID
- *      </ts-header-cell>
- *      <ts-cell *tsCellDef="let item">
- *        {{ item.id }},
- *      </ts-cell>
- *    </ng-container>
+ *               <ng-container tsColumnDef="id">
+ *                 <ts-header-cell *tsHeaderCellDef>
+ *                   ID
+ *                 </ts-header-cell>
+ *                 <ts-cell *tsCellDef="let item">
+ *                   {{ item.id }},
+ *                 </ts-cell>
+ *               </ng-container>
  *
- *    <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
- *    <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
+ *               <ts-header-row *tsHeaderRowDef="myTable.columnNames"></ts-header-row>
+ *               <ts-row *tsRowDef="let row; columns: myTable.columnNames;"></ts-row>
  *  </ts-table>
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/table</example-url>
