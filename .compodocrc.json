@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
-  "customFavicon": "./demo/favicon.ico",
+  "customFavicon": "./projects/demo/src/favicon.ico",
   "customLogo": "./tooling/mark-small.svg",
   "disableDomTree": true,
   "disableInternal": true,
@@ -32,5 +32,5 @@
   ],
   "output": "./docs",
   "theme": "laravel",
-  "tsconfig": "./terminus-ui/tsconfig.compodoc.json"
+  "tsconfig": "./projects/library/tsconfig.compodoc.json"
 }
