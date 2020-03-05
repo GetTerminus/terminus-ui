@@ -1,3 +1,16 @@
+# [17.0.0](https://github.com/GetTerminus/terminus-ui/compare/v16.3.9...v17.0.0) (2020-03-05)
+
+
+### Features
+
+* **Paginator:** allow next button disable override ([744b1c4](https://github.com/GetTerminus/terminus-ui/commit/744b1c4e021aef3fe79984e96fed96e2c1cbaf7a))
+* **Paginator:** show "out of" total to simple paginator if total is available ([dd6c648](https://github.com/GetTerminus/terminus-ui/commit/dd6c648e8a4408e22212b749c06d83dc68ba9958)), closes [#2047](https://github.com/GetTerminus/terminus-ui/issues/2047)
+
+
+### BREAKING CHANGES
+
+* **Paginator:**
+
 ## [16.3.9](https://github.com/GetTerminus/terminus-ui/compare/v16.3.8...v16.3.9) (2020-03-05)
 
 
