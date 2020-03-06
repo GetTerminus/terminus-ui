@@ -60,7 +60,7 @@ export function setColumnAlignment(column: TsColumnDefDirective, renderer: Rende
         + `See "TsTableColumnAlignment" type for available options.`);
     }
 
-    renderer.addClass(elementRef.nativeElement, 'ts-cell--align-right');
+    renderer.addClass(elementRef.nativeElement, `ts-cell--align-${column.alignment}`);
   }
 }
 

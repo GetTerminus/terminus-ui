@@ -181,9 +181,12 @@ describe(`TsTableComponent`, function() {
     });
 
     test(`should add the text-align class`, () => {
-      const column = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_a');
-
-      expect(column.classList).toContain('ts-cell--align-right');
+      const columnA = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_a');
+      const columnB = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_b');
+      const columnC = fixture.nativeElement.querySelector('.ts-cell.ts-column-column_c');
+      expect(columnA.classList).toContain('ts-cell--align-left');
+      expect(columnB.classList).toContain('ts-cell--align-center');
+      expect(columnC.classList).toContain('ts-cell--align-right');
     });
 
     test(`should NOT add the text-align style if alignment is not provided`, () => {

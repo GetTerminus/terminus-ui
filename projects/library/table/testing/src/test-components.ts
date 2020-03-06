@@ -10,7 +10,8 @@ import {
 import {
   TsTableColumnsChangeEvent,
   TsTableComponent,
-  TsTableDataSource, TsTableDensity,
+  TsTableDataSource,
+  TsTableDensity,
   TsTableModule,
 } from '@terminus/ui/table';
 
@@ -164,12 +165,12 @@ export class ArrayDataSourceTableApp {
         <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
-      <ng-container tsColumnDef="column_b">
+      <ng-container tsColumnDef="column_b" alignment="center">
         <th ts-header-cell *tsHeaderCellDef>Column B</th>
         <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
-      <ng-container tsColumnDef="column_c">
+      <ng-container tsColumnDef="column_c" alignment="right">
         <th ts-header-cell *tsHeaderCellDef>Column C</th>
         <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
       </ng-container>
