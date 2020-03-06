@@ -62,7 +62,10 @@ export type TsMenuTriggerTypes
   selector: 'ts-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  host: { class: 'ts-menu' },
+  host: {
+    'class': 'ts-menu',
+    '[class.ts-menu--disabled]': 'isDisabled',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsMenu',
