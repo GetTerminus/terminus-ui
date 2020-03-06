@@ -122,6 +122,14 @@
         justify-content: flex-end;
       }
     }
+
+    &--align-left {
+      text-align: left;
+    }
+
+    &--align-center {
+      text-align: center;
+    }
   }
 
   // Body cell
