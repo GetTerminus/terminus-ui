@@ -1,3 +1,10 @@
+## [17.0.3](https://github.com/GetTerminus/terminus-ui/compare/v17.0.2...v17.0.3) (2020-03-06)
+
+
+### Bug Fixes
+
+* **Table:** correctly set any possible column alignment ([954291b](https://github.com/GetTerminus/terminus-ui/commit/954291bed5790b6cc1f03baefe9a76da2d51139c)), closes [#2066](https://github.com/GetTerminus/terminus-ui/issues/2066)
+
 ## [17.0.2](https://github.com/GetTerminus/terminus-ui/compare/v17.0.1...v17.0.2) (2020-03-06)
 
 
