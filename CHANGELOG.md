@@ -1,3 +1,10 @@
+## [17.0.5](https://github.com/GetTerminus/terminus-ui/compare/v17.0.4...v17.0.5) (2020-03-06)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @amcharts/amcharts4 to v4.9.6 ([0b476ee](https://github.com/GetTerminus/terminus-ui/commit/0b476ee59fa094b6155152934987fe174d646db7))
+
 ## [17.0.4](https://github.com/GetTerminus/terminus-ui/compare/v17.0.3...v17.0.4) (2020-03-06)
 
 
