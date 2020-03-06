@@ -222,7 +222,7 @@
     "gulp-sourcemaps": "2.6.5",
     "gulp-strip-json-comments": "4.0.1",
     "hammerjs": "2.0.8",
-    "husky": "4.0.10",
+    "husky": "4.2.3",
     "jest": "24.9.0",
     "jest-create-mock-instance": "1.1.0",
     "jest-junit": "10.0.0",
