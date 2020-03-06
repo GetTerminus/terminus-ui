@@ -936,7 +936,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.6":
+"@babel/runtime@^7.3.1", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.6":
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
   integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
@@ -2257,19 +2257,19 @@ align-text@^0.1.1, align-text@^0.1.3:
     longest "^1.0.1"
     repeat-string "^1.5.2"
 
-all-contributors-cli@6.12.0:
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/all-contributors-cli/-/all-contributors-cli-6.12.0.tgz#2fe6a3dc08721ba96124e62ebdaefb8e62023f25"
-  integrity sha512-ENkZIWmJgU4v/gGpuJTGtYypX4qXd8oLXkeCtfDd6+yjrOIGzxyvB/iFCPAkZTltb4O5tgBw3p1ikNNBR3RUeA==
+all-contributors-cli@6.14.0:
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/all-contributors-cli/-/all-contributors-cli-6.14.0.tgz#9ecddabd9c1befef660f7589289b264db94bbbc8"
+  integrity sha512-rGpKRWXFaxAVWHLRBuJMvkI/86FIW7z2gvuEVTA60FPCw6Z/y0vDZgTATVEJQ4XV2+eSM5BHLZGW7YQTwTHCJQ==
   dependencies:
-    "@babel/runtime" "^7.2.0"
+    "@babel/runtime" "^7.7.6"
     async "^3.0.1"
     chalk "^3.0.0"
     didyoumean "^1.2.1"
-    inquirer "^6.2.1"
-    json-fixer "^1.3.1-0"
+    inquirer "^7.0.4"
+    json-fixer "^1.4.0"
     lodash "^4.11.2"
-    pify "^4.0.1"
+    pify "^5.0.0"
     request "^2.72.0"
     yargs "^15.0.1"
 
@@ -8040,7 +8040,7 @@ inquirer@6.5.1:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
-inquirer@^6.2.1, inquirer@^6.2.2, inquirer@^6.3.1:
+inquirer@^6.2.2, inquirer@^6.3.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.5.2.tgz#ad50942375d036d327ff528c08bd5fab089928ca"
   integrity sha512-cntlB5ghuB0iuO65Ovoi8ogLHiWGs/5yNrtUcKjFhSSiVeAIVpD7koaSU9RM8mpXw5YDi9RdYXGQMaOURB7ycQ==
@@ -8063,6 +8063,25 @@ inquirer@^7.0.0:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.5.tgz#fb95b238ba19966c1a1f55db53c3f0ce5c9e4275"
   integrity sha512-6Z5cP+LAO0rzNE7xWjWtT84jxKa5ScLEGLgegPXeO3dGeU8lNe5Ii7SlXH6KVtLGlDuaEhsvsFjrjWjw8j5lFg==
+  dependencies:
+    ansi-escapes "^4.2.1"
+    chalk "^3.0.0"
+    cli-cursor "^3.1.0"
+    cli-width "^2.0.0"
+    external-editor "^3.0.3"
+    figures "^3.0.0"
+    lodash "^4.17.15"
+    mute-stream "0.0.8"
+    run-async "^2.4.0"
+    rxjs "^6.5.3"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+    through "^2.3.6"
+
+inquirer@^7.0.4:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.6.tgz#ee4ff0ea7ecda5324656fe665878790f66df7d0c"
+  integrity sha512-7SVO4h+QIdMq6XcqIqrNte3gS5MzCCKZdsq9DO4PJziBFNYzP3PGFbDjgadDb//MCahzgjCxvQ/O2wa7kx9o4w==
   dependencies:
     ansi-escapes "^4.2.1"
     chalk "^3.0.0"
@@ -9266,7 +9285,7 @@ json-buffer@3.0.0:
   resolved "https://registry.yarnpkg.com/json-buffer/-/json-buffer-3.0.0.tgz#5b1f397afc75d677bde8bcfc0e47e1f9a3d9a898"
   integrity sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=
 
-json-fixer@^1.3.1-0:
+json-fixer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/json-fixer/-/json-fixer-1.4.0.tgz#591a65c3284b6720940657f8c80a38fa265eed34"
   integrity sha512-9Nbl396T9eRPvrUxKnBQeiVgQjuBhvumptJfwSAdjQ+cjUqJ981O8Kts/A7ZEID3SbRr76uTOayxVTi+AbAf/A==
@@ -12317,6 +12336,11 @@ pify@^4.0.0, pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+
+pify@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
+  integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
