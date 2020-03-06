@@ -92,39 +92,53 @@ ts-button {
     transition: var(--button-color-transition), var(--button-background-transition), var(--button-shadow-transition);
   }
 
+  // TODO: Sass area of possible themes should be available to all components from a global location
+  // Define all possible themes
+  $themes: primary accent warn;
+  // Loop through using each theme name to create styles
+  @each $theme in $themes {
+    // Theme class sets the colors for standard buttons
+    .c-button--#{$theme} {
+      &:not(.c-button--hollow) {
+        background-color: var(--button-backgroundColor-#{$theme});
+      }
+
+      &[disabled] {
+        background-color: var(--button-backgroundColor-disabled);
+        color: var(--button-color-disabled);
+      }
+
+      // Hollow button
+      &.c-button--hollow {
+        border-color: var(--ts-color-#{$theme}-500);
+        box-shadow: none;
+        color: var(--ts-color-#{$theme}-500);
+
+        &:focus,
+        &:hover {
+          background-color: var(--button-backgroundColor-#{$theme});
+          color: var(--button-color);
+        }
+
+        &[disabled] {
+          background-color: transparent;
+          border-color: var(--ts-color-utility-500);
+          color: var(--ts-color-utility-500);
+        }
+      }
+    }
+  }
+
   // Target instances nested inside the TsSearchComponent
   .ts-search & {
     // Offset to account for space under input for error messages
     position: relative;
     top: calc(var(--ts-space-stack-45) * -1);
   }
-
-  // Target button instances nested inside a TsMenuComponent
-  .mat-menu-panel & {
-    // needed for specificity
-    &.c-button {
-      background-color: transparent;
-      box-shadow: none;
-      color: var(--ts-color-dark);
-      text-align: left;
-      width: 100%;
-
-      &:focus,
-      &:active,
-      &:hover {
-        background-color: var(--ts-color-utility-300);
-        box-shadow: none;
-        color: var(--ts-color-primary-500);
-      }
-    }
-  }
 }
 
 
 .c-button {
-  // TODO: Sass area of possible themes should be available to all components from a global location
-  // Define all possible themes
-  $themes: primary accent warn;
 
   &[disabled] {
     cursor: not-allowed;
@@ -224,37 +238,33 @@ ts-button {
       border-radius: var(--button-border-radius-collapsible);
     }
   }
+}
 
 
-  // Loop through using each theme name to create styles
-  @each $theme in $themes {
-    // Theme class sets the colors for standard buttons
-    &.c-button--#{$theme} {
-      &:not(.c-button--hollow) {
-        background-color: var(--button-backgroundColor-#{$theme});
-      }
-
-      &[disabled] {
-        background-color: var(--button-backgroundColor-disabled);
-        color: var(--button-color-disabled);
-      }
-
-      // Hollow button
-      &.c-button--hollow {
-        border-color: var(--ts-color-#{$theme}-500);
+// Target button instances nested inside a TsMenuComponent
+.mat-menu-panel {
+  // Needed for specificity
+  .ts-button {
+    button {
+      &.c-button {
+        --menu-item-color: var(--ts-color-base-black);
+        --menu-item-backgroundColor: transparent;
+        background-color: var(--menu-item-backgroundColor);
+        border-radius: 0;
         box-shadow: none;
-        color: var(--ts-color-#{$theme}-500);
+        color: var(--menu-item-color);
+        text-align: left;
+        transition-duration: var(--ts-animation-time-duration-400);
+        transition-property: background-color, color;
+        transition-timing-function: var(--ts-animation-easing-ease);
+        width: 100%;
 
         &:focus,
+        &:active,
         &:hover {
-          background-color: var(--button-backgroundColor-#{$theme});
-          color: var(--button-color);
-        }
-
-        &[disabled] {
-          background-color: transparent;
-          border-color: var(--ts-color-utility-500);
-          color: var(--ts-color-utility-500);
+          --menu-item-backgroundColor: var(--ts-color-utility-100);
+          --menu-item-color: var(--ts-color-primary-500);
+          box-shadow: none;
         }
       }
     }
