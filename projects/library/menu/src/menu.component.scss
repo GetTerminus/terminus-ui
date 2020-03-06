@@ -7,10 +7,6 @@
 @import '../../scss/typography/typography';
 
 
-$icon-width: 24px;
-$icon-margin: 16px;
-
-
 //
 // @component
 //  Menu
@@ -18,17 +14,17 @@ $icon-margin: 16px;
 //  A dropdown menu component
 //
 .ts-menu {
+  --menu-caret-icon-adjustment: -.4em;
   @include reset;
   display: inline-block;
 
-  &.disabled {
-    pointer-events: none;
+  &--disabled {
+    cursor: not-allowed;
   }
 
   // <ts-button> trigger to show the menu
   ts-button {
     &[data-disabled='true'] {
-      @include cursor(not-allowed);
       pointer-events: none;
     }
   }
@@ -55,9 +51,7 @@ $icon-margin: 16px;
     // For the dropdown caret, lessen the right side whitespace
     .c-button {
       .c-menu__caret {
-        $icon-adjustment-for-menu: -.4em;
-
-        margin-right: $icon-adjustment-for-menu;
+        margin-right: var(--menu-caret-icon-adjustment);
       }
     }
   }
@@ -74,7 +68,7 @@ $icon-margin: 16px;
 
   // Set a background so .cdk-drag items don't have a transparent background
   .ts-checkbox {
-    background-color: color(pure);
+    background-color: var(--ts-color-base-white);
   }
 
   // Drop area
@@ -91,7 +85,7 @@ $icon-margin: 16px;
     align-items: center;
     display: flex;
     flex-direction: row;
-    padding: 0 spacing();
+    padding: 0 var(--ts-space-inset-500);
   }
 }
 
@@ -101,8 +95,8 @@ $icon-margin: 16px;
   .c-menu {
     &.c-menu--utility {
       position: absolute;
-      right: spacing(small, 2);
-      top: spacing(small, 2);
+      right: var(--ts-space-inset-200);
+      top: var(--ts-space-inset-200);
     }
   }
 }
