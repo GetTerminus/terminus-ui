@@ -121,7 +121,7 @@
     webpack-subresource-integrity "1.1.0-rc.6"
     worker-plugin "3.2.0"
 
-"@angular-devkit/build-ng-packagr@~0.803.20":
+"@angular-devkit/build-ng-packagr@0.803.25":
   version "0.803.25"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.803.25.tgz#215ddd24e0d90d35825effae3334edfbd1168a78"
   integrity sha512-bCtREHIHCG4d3MsvfB4vE+7R1QWPpwL8HrN9eeuVvHQgyTe/kVp9gvdoJA/0MDcj3IKTzTb5avKz/xtDA4V3BQ==
