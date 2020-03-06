@@ -1,3 +1,10 @@
+## [17.0.4](https://github.com/GetTerminus/terminus-ui/compare/v17.0.3...v17.0.4) (2020-03-06)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @amcharts/amcharts4-geodata to v4.1.12 ([436fde7](https://github.com/GetTerminus/terminus-ui/commit/436fde738d86b89a7694ee2c9c6cf804ce3a97c5))
+
 ## [17.0.3](https://github.com/GetTerminus/terminus-ui/compare/v17.0.2...v17.0.3) (2020-03-06)
 
 
