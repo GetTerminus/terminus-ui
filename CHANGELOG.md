@@ -1,3 +1,11 @@
+## [17.0.2](https://github.com/GetTerminus/terminus-ui/compare/v17.0.1...v17.0.2) (2020-03-06)
+
+
+### Bug Fixes
+
+* **Menu:** correct nested button styles ([238fa55](https://github.com/GetTerminus/terminus-ui/commit/238fa5590006d5e310f24d2360355a86b84984f0)), closes [#2046](https://github.com/GetTerminus/terminus-ui/issues/2046)
+* **Menu:** correctly style cursor when disabled ([86a6aae](https://github.com/GetTerminus/terminus-ui/commit/86a6aae4a588e1e73c9aa1ebe285094b0566c559))
+
 ## [17.0.1](https://github.com/GetTerminus/terminus-ui/compare/v17.0.0...v17.0.1) (2020-03-05)
 
 
