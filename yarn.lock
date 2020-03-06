@@ -2,12 +2,7 @@
 # yarn lockfile v1
 
 
-"@amcharts/amcharts4-geodata@4.1.10":
-  version "4.1.10"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.10.tgz#27624f6b4c5e91f37164873c319b6992d6c9d4f4"
-  integrity sha512-cFSEVGoDX4gqDxHvRSFlea6PcRRYUg6QrbvweFspcmn2k2Bx6kVLNkNQ+mWBVg1WmX5DxkDDnOVveoL4FDhvGg==
-
-"@amcharts/amcharts4-geodata@^4.1.6":
+"@amcharts/amcharts4-geodata@4.1.12", "@amcharts/amcharts4-geodata@^4.1.6":
   version "4.1.12"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.12.tgz#fcd73e82ca29718d05fa1342346fc1a294a64475"
   integrity sha512-mK31lSAuZv7EMCioxf9yaOaWgI59TQfSPzc3wBGFsGZTJT4CVFiqY6fggkn8Lpj9U5Hs8pcLIW2XPCZ6X0PVmw==
