@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatRippleModule } from '@angular/material';
+import { MatRippleModule } from '@angular/material/core';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
 import { TsFormFieldModule } from '@terminus/ui/form-field';
 import { TsIconModule } from '@terminus/ui/icon';

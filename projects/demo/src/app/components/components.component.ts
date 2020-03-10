@@ -5,7 +5,7 @@ import {
   VERSION as NG_VERSION,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { VERSION as MAT_VERSION } from '@angular/material';
+import { VERSION as MAT_VERSION } from '@angular/material/core';
 import {
   NavigationEnd,
   Route,

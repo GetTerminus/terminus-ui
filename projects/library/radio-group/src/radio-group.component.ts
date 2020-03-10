@@ -12,7 +12,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { MatRadioChange } from '@angular/material';
+import { MatRadioChange } from '@angular/material/radio';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isFunction } from '@terminus/ngx-tools/type-guards';
 import {

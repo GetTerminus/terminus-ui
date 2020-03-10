@@ -12,7 +12,7 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { MatRippleModule } from '@angular/material';
+import { MatRippleModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import {
   KeyCode,
