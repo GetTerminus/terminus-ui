@@ -1,3 +1,10 @@
+## [17.0.6](https://github.com/GetTerminus/terminus-ui/compare/v17.0.5...v17.0.6) (2020-03-11)
+
+
+### Bug Fixes
+
+* **core:** change imports pathes ([afb5c61](https://github.com/GetTerminus/terminus-ui/commit/afb5c61dd6b38c058cb0692c93b33976f794c058))
+
 ## [17.0.5](https://github.com/GetTerminus/terminus-ui/compare/v17.0.4...v17.0.5) (2020-03-06)
 
 
