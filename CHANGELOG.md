@@ -1,3 +1,10 @@
+## [17.0.7](https://github.com/GetTerminus/terminus-ui/compare/v17.0.6...v17.0.7) (2020-03-12)
+
+
+### Bug Fixes
+
+* **Button:** fix update classes functionality ([5cfc30b](https://github.com/GetTerminus/terminus-ui/commit/5cfc30beaa9819dd1096a327695a6c4d4a52ffd4))
+
 ## [17.0.6](https://github.com/GetTerminus/terminus-ui/compare/v17.0.5...v17.0.6) (2020-03-11)
 
 
