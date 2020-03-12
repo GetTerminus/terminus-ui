@@ -212,11 +212,11 @@ const columns: TsColumn[] = [
 
 ##### Outer border
 
-The table no longer defines it's own outer border. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/table/src/table.component.md).
+The table no longer defines it's own outer border. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/table/src/table.component.md).
 
 ##### Persistent scrollbars
 
-The table no longer controls the scrollbars. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/table/src/table.component.md).
+The table no longer controls the scrollbars. See [usage docs](https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/table/src/table.component.md).
 
 
 

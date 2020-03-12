@@ -155,7 +155,7 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.amCharts) {
       throw new TsUILibraryError(`
         TsChartComponent: The amCharts library was not provided via injection token!
-        Please see: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chart/src/chart.component.md%23inject-the-needed-libraries
+        Please see: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/chart/src/chart.component.md%23inject-the-needed-libraries
       `);
     }
 
