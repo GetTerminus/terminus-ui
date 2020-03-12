@@ -566,6 +566,6 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 
 
 <!-- LINKS -->
-[autocomplete]: https://github.com/getterminus/terminus-ui/blob/release/terminus-ui/src/input/input.component.ts#l64-73
-[input-types]: https://github.com/getterminus/terminus-ui/blob/release/terminus-ui/src/input/input.component.ts#l48-57
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/input/testing/src/test-helpers.ts
+[autocomplete]: https://github.com/getterminus/terminus-ui/blob/release/projects/library/src/input/input.component.ts#l64-73
+[input-types]: https://github.com/getterminus/terminus-ui/blob/release/projects/library/src/input/input.component.ts#l48-57
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/input/testing/src/test-helpers.ts

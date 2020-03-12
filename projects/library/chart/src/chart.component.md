@@ -131,4 +131,4 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `AmChartsServiceMock`   |
 
 
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chart/testing/src/test-helpers.ts
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/chart/testing/src/test-helpers.ts

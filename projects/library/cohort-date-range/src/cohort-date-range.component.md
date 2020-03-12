@@ -131,4 +131,4 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `getCohortDebugElement` |
 
 
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/cohort-date-range/testing/src/test-helpers.ts
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/cohort-date-range/testing/src/test-helpers.ts

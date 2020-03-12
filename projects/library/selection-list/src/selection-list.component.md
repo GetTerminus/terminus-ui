@@ -215,4 +215,4 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `getOptgroupElement`               |
 
 
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/selection-list/testing/src/test-helpers.ts
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/selection-list/testing/src/test-helpers.ts

@@ -204,4 +204,4 @@ Some helpers are exposed to assist with testing. These are imported from `@termi
 | `getChipElement`                          |
 
 
-[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/terminus-ui/chip/testing/src/test-helpers.ts
+[test-helpers-src]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/chip/testing/src/test-helpers.ts
