@@ -205,7 +205,6 @@ export class TsButtonComponent implements OnInit, OnDestroy {
       this.collapseDelay = undefined;
     }
 
-    this.changeDetectorRef.detectChanges();
     this.updateClasses(value);
   }
   public get format(): TsButtonFormatTypes {
@@ -294,13 +293,20 @@ export class TsButtonComponent implements OnInit, OnDestroy {
       this.collapseTimeoutId = this.collapseWithDelay(this.collapseDelay);
     }
 
-    // Set a default theme if one wasn't set
-    if (!this.theme) {
+    // NOTE: Update classes in ngOnInit because this.button is only available here
+    // It there is a theme then update classes
+    // Otherwise set a default theme
+    if (this.theme) {
+      this.updateClasses(this.theme);
+    } else {
       this.theme = 'primary';
     }
 
-    // Set a default format if one wasn't set
-    if (!this.format) {
+    // It there is a format then update classes
+    // Otherwise set a filled format
+    if (this.format) {
+      this.updateClasses(this.format);
+    } else {
       this.format = 'filled';
     }
 
@@ -369,23 +375,25 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     // NOTE: Underscore dangle name controlled by Material
     /* eslint-disable no-underscore-dangle */
     // NOTE: This 'any' is needed since the `mat-raised-button` directive overwrites elementRef
+    // NOTE: Need to check if button is already available (could be undefined during initialization)
     // tslint:disable-next-line no-any
-    const buttonEl = (this.button as any)._elementRef.nativeElement;
+    const buttonEl = this.button ? (this.button as any)._elementRef.nativeElement : null;
     /* eslint-enable no-underscore-dangle */
     const themeClasses = themeOptions.map(theme => `c-button--${theme}`);
     const formatClasses = formatOptions.map(format => `c-button--${format}`);
 
-    // If dealing with a theme class
+    // If dealing with a theme class. Update only in case if button is available
     // istanbul ignore else
-    if (isTheme) {
+    if (isTheme && buttonEl) {
       for (const themeClass of themeClasses) {
         this.renderer.removeClass(buttonEl, themeClass);
       }
       this.renderer.addClass(buttonEl, `c-button--${classname}`);
     }
 
+    // Update only in case if button is available
     // istanbul ignore else
-    if (isFormat) {
+    if (isFormat && buttonEl) {
       for (const formatClass of formatClasses) {
         this.renderer.removeClass(buttonEl, formatClass);
       }
